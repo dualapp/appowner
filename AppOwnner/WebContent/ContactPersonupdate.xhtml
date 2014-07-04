@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+ <f:metadata>
+	<f:viewParam name="int_CompanyPersonID" value="#{updateBean.int_CompanyPersonID}"  />
+	 
+	<f:viewAction action="#{updateBean.getCompanyPerson1}" />
+	
+</f:metadata>
+<h:head>
+    <title>CompanyPerson Edition</title>
+</h:head>
+<h:body>
+ <h:form>
+  <h:panelGrid columns="2">
+    <h:outputText value="ContactPersonName:"/>
+    <h:inputText value="#{updateBean.cmpp.str_CompanyPersonName}"/>
+    
+    <h:outputText value="PersonAddress:"/>
+    <h:inputText value="#{updateBean.cmpp.str_Designation}"/>
+      <h:outputText value="Email:"/>
+    <h:inputText value="#{updateBean.cmpp.str_Email}"  required="true" validatorMessage=" Email is not valid" requiredMessage="Please enter correct EmailAddress">
+                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                  </h:inputText>
+    <h:outputText value="MobileNo:"/>
+    <h:inputText value="#{updateBean.cmpp.str_MobileNo}"   required="true"  validatorMessage="ContactPersonMobile must be 10" requiredMessage="PersonMobileNo. is required">
+                     <f:validateLength minimum="10" />
+                    <f:validateRegex pattern="^([+]?[\d]+)?$" />
+                  </h:inputText>
+   
+    
+   
+    
+    
+    
+     <h:commandButton  value="Submit"  action="#{updateBean.saveCompanyPerson}"/>
+  </h:panelGrid>
+  </h:form>
+</h:body>
+</html>

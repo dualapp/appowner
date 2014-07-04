@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	<h:head>
+    <title>Welcome to Contact Page</title>
+</h:head>
+<body>
+    <h:form>
+       
+          
+        <h:panelGrid id="notificationList" width="100%">
+      <h:panelGroup >                          
+       <p:dataTable   var="notice" value="#{roleMasterBean.listOfNotice}" style="width: 80%"> 
+           
+          
+       
+         <p:column>
+        <f:facet name="header">
+                    <h:outputText value="Subject" />
+                </f:facet>
+         
+            <h:outputText value="#{notice.str_Subject}"/>
+          </p:column>
+          <p:column>
+           <f:facet name="header">
+                    <h:outputText value="Expired By" />
+                </f:facet>
+         
+                 <h:outputText value="#{notice.dat_ExpireOn}">
+                   <f:convertDateTime pattern="dd-MM-yyyy"/>
+                   </h:outputText>
+         </p:column>
+         <p:column>
+                   <h:outputText value="Visible To:#{notice.str_Visible}"/>
+           </p:column>
+           <p:column>
+          <f:facet name="header">
+                    <h:outputText value="Posted On" />
+                </f:facet>
+         
+                  <h:outputText value="#{notice.dat_EntryDate}">
+                   <f:convertDateTime pattern="dd-MM-yyyy"  />
+               </h:outputText>
+              
+         </p:column>
+           </p:dataTable>
+         
+        </h:panelGroup></h:panelGrid>
+     
+      
+     
+    </h:form>
+</body>
+</html>
