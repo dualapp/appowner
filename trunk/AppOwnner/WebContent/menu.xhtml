@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+        <title>Layout</title>
+            
+           <style>
+           .ui-menubar {
+    background: orange !important;
+}
+    .affaires .ui-menuitem-text{color:blue;}
+    
+    .affaires .ui-menu-child{background: pink;}
+</style>
+    </h:head>
+   
+    <body>
+    <h:form>
+    <h:panelGrid columns="1" style="font: 12px sans-serif;width:1000px;height: 19px">
+         
+                       
+               <p:menubar   autoDisplay="true" style="padding: 0px">  
+<p:submenu styleClass="affaires" label="Home">
+<p:menuitem value="Gmail" url="http://www.google.com" />
+<p:separator/>
+<p:menuitem value="Hotmail" url="http://www.hotmail.com" />
+<p:separator/>
+<p:menuitem value="Yahoo Mail" url="http://mail.yahoo.com" />
+</p:submenu>
+  
+<p:submenu styleClass="affaires"  label="Services">
+<p:menuitem value="AddcommitteeMember" url="addcommitteemembers.xhtml" />
+<p:separator/>
+<p:menuitem value="Hotmail" url="http://www.hotmail.com" />
+<p:separator/>
+<p:menuitem value="Yahoo Mail" url="addvendor.xhtml" />
+</p:submenu>
+ 
+<p:submenu  styleClass="affaires" label="Directory">
+<p:submenu label="Committeemember">
+<p:menuitem value="AddcommiteMembers"    url="addcommitteemembers.xhtml" />
+<p:separator/>
+<p:menuitem value="commiteMemberlist"    url="committeememberlist.xhtml" />
+<p:separator/>
+</p:submenu>
+  
+ <p:separator/>
+
+<p:submenu label="Vendor">
+<p:menuitem value="AddVendor" url="addvendor.xhtml" />
+<p:separator/>
+<p:menuitem value="VendorList"    url="vendorlists.xhtml" />
+<p:separator/>
+<p:menuitem value="WaterPaymentList"    url="waterpaymentlist.xhtml" />
+<p:separator/>
+<p:menuitem value="Watervendortransactionlist"    url="watervendortransactionlist.xhtml" />
+<p:separator/>
+<p:menuitem value="VendorTransaction" url="vendortransaction.xhtml" />
+</p:submenu>
+ <p:separator/>
+ <p:submenu label="MaintainanceStaff">
+<p:menuitem value="AddMaintainanceStaff" url="addmaintainancestaff.xhtml" />
+<p:separator/>
+<p:menuitem value="MaintainanceStafflist" url="maintainancestafflist.xhtml" />
+</p:submenu>
+ <p:separator/>
+<p:menuitem value="Administrators" url="administrationaccess.xhtml" />
+ <p:separator/>
+<p:menuitem value="RoleManagement" url="rolemanagement.xhtml" />
+ 
+ 
+ </p:submenu>
+ <p:submenu styleClass="affaires" label="AddVertisement">
+ <p:menuitem value="Company" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="ContactPerson" url="rolemanagement.xhtml" />
+ </p:submenu>
+ <p:submenu styleClass="affaires" label="ContactUs">
+ <p:menuitem value="contactForm" url="AddContact.xhtml" />
+ <p:separator/>
+ <p:menuitem value="EnquiryForm" url="AddEnquiry.xhtml" />
+ <p:separator/>
+ <p:menuitem value="FeedbackForm" url="AddFeedback.xhtml" />
+ </p:submenu>
+ <p:submenu   styleClass="affaires" label="NoticeBoard">
+ <p:menuitem value="AddNotice" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="ViewNoticeboard" url="rolemanagement.xhtml" />
+ </p:submenu>
+ <p:submenu  styleClass="affaires" label="Complain">
+ <p:menuitem value="Addcomplain" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="complainlist" url="rolemanagement.xhtml" />
+ 
+ </p:submenu>
+ <p:submenu styleClass="affaires" label="Repository">
+ <p:menuitem value="AddDocument" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="Categories" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="DocumentList" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="AddSubcription" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="AddOptionName" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="SubscriptionOptionList" url="rolemanagement.xhtml" />
+ 
+ <p:menuitem value="complainlist" url="rolemanagement.xhtml" />
+ <p:separator/>
+ <p:menuitem value="SubscriptionList" url="rolemanagement.xhtml" />
+ </p:submenu>
+ 
+ <p:submenu  styleClass="affaires" label="LogOff">
+ </p:submenu>
+  
+  
+ 
+</p:menubar>
+   
+  
+         
+       </h:panelGrid>
+        
+        </h:form>
+        
+    </body>
+   
+</html>
+ 

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	 
+	<h:head>
+    <title> View Vendor By Name</title>
+</h:head>
+<body bgcolor="pink">
+<h:form>
+  <h:panelGrid columns="2">
+  <p:panel  id="panel" header="View Vendor Details">
+ <p:focus context="panel"/>
+ <table>
+ 
+  <tr>
+ <td>
+    <h:outputText value="Vendor Name:"/></td>
+    <td>
+    <h:outputText value="#{ waterPaymentBean.vendor.str_VendorName}"> </h:outputText></td>
+    </tr>
+     <tr>
+ <td>
+    <h:outputText value="Vendor Type:"/></td>
+    <td>
+    <h:outputText value="#{ waterPaymentBean.vendor.str_VendorType}"> </h:outputText></td>
+    </tr>
+      <tr>
+ <td>
+    <h:outputText value="Vendor Type:"/></td>
+    <td>
+    <h:outputText value="#{ waterPaymentBean.vendor.str_VendorPhone}"> </h:outputText></td>
+    </tr>
+      <tr>
+ <td>
+    <h:outputText value="Vendor Email:"/></td>
+    <td>
+    <h:outputText value="#{ waterPaymentBean.vendor.str_VendorEmail}"> </h:outputText></td>
+    </tr>
+      <tr>
+ <td>
+    <h:outputText value="Contact Person:"/></td>
+    <td>
+    <h:outputText value="#{ waterPaymentBean.vendor.str_ContactPersonName}"> </h:outputText></td>
+    </tr>
+    
+    <tr>
+ <td>
+    <h:outputText value="Address:"/></td>
+    <td>
+    <h:outputText value="#{ waterPaymentBean.vendor.str_AddressLine1}"> </h:outputText></td>
+    </tr>
+     </table>
+     </p:panel>
+     </h:panelGrid>
+     </h:form>
+     </body>
+     
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Welcome to lookupit solutions  for seeing PrimeFaces_Spring_Hibernate_Project</title>
+    <a href="addvendor.xhtml">Add Vendor</a>
+</h:head>
+ <body bgcolor="yellow">
+    <h:form method="post">
+        <h:outputText value="WaterVendors Transaction Details : "></h:outputText>
+        <p:dataTable id="vendorT" var="watervendortransactionlist" value="#{vendorTransactionBean.waterVendortransaction1}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Transaction ID" />
+                </f:facet>
+                <h:outputText  id="int_tId" value="#{watervendortransactionlist.int_TransactionId}" />
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Type" />
+                </f:facet>
+                <h:outputText  id="vtype" value="#{watervendortransactionlist.str_VendorType}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Name" />
+                </f:facet>
+                <h:outputText  id="vname" value="#{watervendortransactionlist.str_VendorName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="No Of Tankers" />
+                </f:facet>
+                <h:outputText  id="nots" value="#{watervendortransactionlist.int_NoOfTankers}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Water Capacity" />
+                </f:facet>
+                <h:outputText  id="wc" value="#{watervendortransactionlist.int_WaterCapacity}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="water Price" />
+                </f:facet>
+                <h:outputText  id="wp" value="#{watervendortransactionlist.int_WaterPrice}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Driver Name" />
+                </f:facet>
+                <h:outputText  id="dname" value="#{watervendortransactionlist.str_DriverName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+             
+	   		<h:link outcome="editwatervendortransaction.xhtml">
+	   			<p:graphicImage  height="50" width="50" alt="Edit" value="images/k1.png"/> 
+	   				<f:param name="int_TransactionId" value="#{watervendortransactionlist.int_TransactionId}" />
+	   		</h:link>
+	   		 <h:link outcome="deletewatervendortransaction.xhtml">
+	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   				<f:param name="int_TransactionId" value="#{watervendortransactionlist.int_TransactionId}" />
+	   		</h:link>
+            </p:column>
+            
+            </p:dataTable>
+            </h:form>
+            </body>
+            
+ 
+</html>

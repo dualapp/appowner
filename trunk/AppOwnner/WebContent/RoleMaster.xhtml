@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+ xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head><title>Welcome to Advertisement</title></h:head>
+ 
+ <h:body bgcolor="pink">
+    <h:form id="form">
+         <p:panel header="RoleMaster Information : ">
+        <p:dataTable  id="master" var="master" value="#{roleMasterBean.listRoleMaster}" style="width: 50%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Maintenance Staff Role Name" />
+                </f:facet>
+                <h:outputText value="#{master.str_RoleName}"/>
+            </p:column>
+           
+           
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                <h:link outcome="update1.xhtml" >
+                <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
+                <f:param name="int_StaffID" value="#{staff.int_StaffID}"/>
+                </h:link>
+                <h:link outcome="update1.xhtml" >
+                <p:graphicImage height="50" width="50" value="images/delete.jpg"/> 
+                <f:param name="int_StaffID" value="#{staff.int_StaffID}"/>
+                </h:link>      
+               
+               </p:column>      
+           
+           
+          
+            
+        </p:dataTable>
+       
+        <br/>
+        <br/>
+       
+      
+     
+     </p:panel> 
+     <br/>        
+          <p:panel  header="Add New Role">
+   
+         
+	    <p:inputText value="#{service.str_RoleName}" valueChangeListener="#{roleMasterBean.masterchangeListener}"/>
+	    
+         <br/>
+          <br/>      
+               
+        <p:column>
+	       <p:commandButton id="submit" value="Add RoleMaster" action="#{roleMasterBean.addMaster}" ajax="false" /> 
+	    </p:column>
+       </p:panel>  
+    
+   
+         
+            
+      
+       
+    </h:form>
+</h:body>
+
+</html>
+

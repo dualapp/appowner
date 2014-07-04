@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Contact Form</title>
+    <a href="index.xhtml">Add Contact</a>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="Contact : "></h:outputText>
+        <p:dataTable id="Contact" var="contact" value="#{cls_ContactBean.contactList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText  id="contactId" value="#{contact.contactId}" />
+            </p:column>
+          
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Name" />
+                </f:facet>
+                <h:outputText value="#{contact.contactName}" />
+            </p:column>
+             
+               <p:column>
+            <f:facet name="header">  
+              <h:outputText value="Service" />
+                </f:facet>
+                <h:outputText value="#{contact.contactService1}" />
+            </p:column>
+            
+            
+             <p:column>
+            <f:facet name="header">  
+              <h:outputText value="Phone" />
+                </f:facet>
+                <h:outputText value="#{contact.contactPhone}" />
+            </p:column>
+            
+            <p:column>
+            <f:facet name="header">  
+              <h:outputText value="UserPhone" />
+                </f:facet>
+                <h:outputText value="#{contact.str_PhoneNo}" />
+            </p:column>
+            
+             
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Email" />
+                </f:facet>
+                <h:outputText value="#{contact.str_Email}" />
+            </p:column>
+            
+            <p:column>
+            <f:facet name="header">  
+              <h:outputText value="UserId" />
+                </f:facet>
+                <h:outputText value="#{contact.int_UserId}" />
+            </p:column>
+            
+            <p:column>
+            <f:facet name="header">  
+              <h:outputText value="UserName" />
+                </f:facet>
+                <h:outputText value="#{contact.str_Username}" />
+            </p:column>
+            
+             <p:column>
+            <f:facet name="header">  
+              <h:outputText value="AppartmentId" />
+                </f:facet>
+                <h:outputText value="#{contact.int_ApartmentId}" />
+            </p:column>        
+                   
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="AdditionalInformation" />
+                </f:facet>
+                <h:outputText value="#{contact.additionalInfo}" />
+            </p:column>
+            
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                <p:commandButton value="delete" action="#{cls_ContactBean.deleteContact(contact.contactId)}">
+                </p:commandButton>
+                <f:facet name="header">update</f:facet>
+	   			<h:link outcome="update.xhtml" value="Edit">
+	   				<f:param name="userId" value="#{person.userId}" />
+	   		</h:link>
+               
+              </p:column> 
+          <!-- <p:commandButton value="update" action="#{cls_UpdateBean.editPerson(person.personId)}"   -->  
+             
+             
+             
+              <p:column>
+	   			
+	   		</p:column>
+        </p:dataTable>
+        
+        
+         </h:form>
+        <h:form>
+        
+        </h:form>
+        
+         
+</h:body>
+
+</html>
