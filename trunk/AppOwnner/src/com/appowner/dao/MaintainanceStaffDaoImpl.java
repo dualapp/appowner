@@ -98,7 +98,7 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 
 	@Override
 	public String getUserName(Integer int_UserId) {
-		 String hql1="select str_FirstName from User where int_UserId=?";
+		 String hql1="select str_Username from User where int_UserId=?";
 		return (String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, int_UserId).uniqueResult() ;
 	}
 
@@ -116,13 +116,13 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 
 	@Override
 	public Character getUserType(Integer int_UserId) {
-		String hql4="select char_User_Type from CommiteeMember where int_MemberId=?";
+		String hql4="select char_User_Type from MaintainanceStaff where int_UserId=?";
 		return (Character) getSessionFactory().getCurrentSession().createQuery(hql4).setParameter(0, int_UserId).uniqueResult() ;
 	}
 
 	@Override
 	public Integer getUserId(String str_UserName) {
-		String hql="select int_UserId from User where str_FirstName=?";
+		String hql="select int_UserId from User where str_UserName=?";
 		return (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_UserName).uniqueResult();
 	}
 
@@ -167,22 +167,28 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 	public List<RoleAssignment> getRoleNames(Integer int_UserId) {
 		// TODO Auto-generated method stub
 		String hql7="select str_RoleName from  RoleAssignment where int_UserId=?";
+		//String hql8="from  RoleAssignment where int_UserId=?";
 		return getSessionFactory().getCurrentSession().createQuery(hql7).setParameter(0, int_UserId).list();
+		 
+		  
+		
 	}
 
 	@Override
-	public void deleteAssignedRoles(String str_RoleName) {
+	public void deleteAssignedRoles(String str_RoleName,Integer int_UserId) {
 		String hql="select int_RoleId from RoleAssignment where  str_RoleName=?";
 		
 		@SuppressWarnings("unchecked")
 		List<Integer> roleId=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_RoleName).list();
+		@SuppressWarnings("rawtypes")
 		ListIterator itr= roleId.listIterator();
 		while(itr.hasNext())
 		{
 			Integer roleID=(Integer) itr.next();
 			
-			String hql2="select  int_RoleAssignID from  RoleAssignment where int_RoleId =?";
-			Integer assignedroleId= (Integer) getSessionFactory().getCurrentSession().createQuery(hql2).setParameter(0, roleID).uniqueResult();
+			String hql2="select  int_RoleAssignID from  RoleAssignment where int_RoleId =? and int_UserId=?";
+			Integer assignedroleId= (Integer) getSessionFactory().getCurrentSession().createQuery(hql2).setParameter(0, roleID).setParameter(1, int_UserId).uniqueResult();
+			System.out.println(assignedroleId);
 			String hql1="delete from RoleAssignment where int_RoleAssignID=?";
 			getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,assignedroleId).executeUpdate();
 			
@@ -195,11 +201,46 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 	 
 
 	@Override
-	public Integer getRoleID(Integer int_UserId) {
-		String hql="select int_RoleAssignID from  RoleAssignment where int_UserId=?";
+	public List<Integer> getRoleID(Integer int_UserId) {
+		String hql="select int_RoleId from  RoleAssignment where int_UserId=?";
 		
-		return (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_UserId).uniqueResult();
+		return (List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_UserId).list();
+	}
+
+	@Override
+	public List<RoleManagement> getRoleManagementList() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(RoleAssignment.class).list();
+	}
+
+	@Override
+	public String getRoleNameFromRoleMaster(Integer roleId1) {
+		String hql="select str_RoleName from RoleManagement where int_RoleID=?";
+		return (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, roleId1).uniqueResult();
+	}
+
+	/*@Override
+	public void deleteAssignedRoles(RoleManagement rm) {
+String hql="select int_RoleId from RoleAssignment where  str_RoleName=?";
+		System.out.println(rm);
+		System.out.println("Sudhaaaaaaaaaaaaaaaa");
+		@SuppressWarnings("unchecked")
+		List<Integer> roleId=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, rm).list();
+		ListIterator itr= roleId.listIterator();
+		while(itr.hasNext())
+		{
+			Integer roleID=(Integer) itr.next();
+			
+			String hql2="select  int_RoleAssignID from  RoleAssignment where int_RoleId =?";
+			Integer assignedroleId= (Integer) getSessionFactory().getCurrentSession().createQuery(hql2).setParameter(0, roleID).uniqueResult();
+			System.out.println(assignedroleId);
+			System.out.println("kalpanaaaaaaaaaaaaaaaaaaaaaaa");
+			String hql1="delete from RoleAssignment where int_RoleAssignID=?";
+			getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,assignedroleId).executeUpdate();
+			
+		
 	}
 	
 	
- }
+	}*/
+}

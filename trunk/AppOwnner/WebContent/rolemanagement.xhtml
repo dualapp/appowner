@@ -15,39 +15,33 @@
 	<f:viewAction action="#{roleManagementBean.getAssignedRoles}" />
 	
 	 </f:metadata>
-	<h:head><title>Role Management</title></h:head>
+	<h:head><title>Role Management</title>
+	<meta http-equiv="refresh" content="30">
+	</meta>
+	</h:head>
       <body bgcolor="pink">
-	 <h4 style="color:red">You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox. </h4>
-	 <h:messages style="color:red"/>
-	<h:form>
-	<fieldset>  
-	 <legend><h:commandButton  value="Current Roles of #{roleManagementBean.str_UserName} are checked bellow"  style="background-color:#c00; color:#fff;"/></legend>
 	 
-	  &#150;
-	 <c:forEach var="assignedRole" items="#{roleManagementBean.str_AssinedRoles}">
-	  <h:selectManyCheckbox value="#{roleManagementBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.deleteAssignedRolesListener}"   >
-	  <f:selectItem itemValue="#{assignedRole.str_RoleName}"  />
-	   
-	  </h:selectManyCheckbox>
-	  </c:forEach></fieldset>
-	   &#150;
-	   <fieldset>
-	 <legend><h:commandButton value="Update Role Management" style="background-color:#c00; color:#fff;"/></legend>
-	<c:forEach var="roles" items="#{roleManagementBean.str_Roles}">
-	<h:selectManyCheckbox    value="#{roleManagementBean.str_AssignedRoleName}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="lineDirection" styleClass="nostyle">
- <f:selectItem itemValue="#{roles}" itemLabel= "#{roles}"/>
-  
+	 
+	<h:form>
+ <h:messages style="color:red"/>
+	<fieldset class="repeat">
+	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
+	  <h3 style="color:red">Current Roles of <h:outputText value="#{roleManagementBean.str_UserName}"/> are checked bellow. </h3>
+	 
+	<h:selectManyCheckbox     value="#{roleManagementBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
+  <f:selectItems value="#{roleManagementBean.str_Roles}"  /><br/>
+   <!-- <f:ajax event="valueChange" update="@form" process="@form"/> --> 
 </h:selectManyCheckbox>
-</c:forEach> 
+ 
 <h4 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h4>
-</fieldset>
+ </fieldset>
 <br/><br/>
  
  <h:commandButton value="AddOrUpdate Role"    action="#{roleManagementBean.addRoleManagement}">
-  
+   <f:ajax render="@all" execute="@all"/>
   </h:commandButton> 
 
 	</h:form>
-	</body>
+	 </body>
  
 </html>

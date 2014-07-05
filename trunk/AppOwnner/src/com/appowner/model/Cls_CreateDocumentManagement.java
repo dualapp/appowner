@@ -20,7 +20,8 @@ public class Cls_CreateDocumentManagement{
 	private Integer Int_DocumentID;
 	@Column
 	private String str_FileNM;
-	
+	@Column
+	private Integer Int_Document_CatID;
 	@Column
 	private String str_Description;
 	@Column
@@ -73,8 +74,7 @@ public class Cls_CreateDocumentManagement{
 		this.str_Description = str_Description;
 	}
 
-	@Column
-	private Integer Int_Document_CatID;
+	
 	@Column
 	private String Ch_Access;
 	

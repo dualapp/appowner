@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  <f:metadata>
+	<f:viewParam name="subcriptID" value="#{update.subcriptID}"  />
+	 
+	<f:viewAction action="#{update.getSubcript}" />
+	
+</f:metadata>
+
+<h:head>
+    <title>JSFlive JSF 2.2 - Example 01</title>
+</h:head>
+<body  bgcolor="pink">
+<h:form>
+  <h:panelGrid columns="2">
+   
+ 
+    <h:outputText value="Name:"/>
+    <h:inputText value="#{update.usr.subscriptname}"/>
+    
+ <h:outputText value="Price:"/>
+    <h:inputText value="#{update.usr.price}"/>
+  
+   
+     
+   <h:commandButton  value="Submit"  action="#{update.saveUser}"/>
+   <h:button outcome="AddOption.xhtml" value="AddOptionalInformation"  />
+  </h:panelGrid>
+  </h:form>
+</body>
+</html>

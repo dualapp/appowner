@@ -46,22 +46,50 @@ public class RoleManagementBean  implements Serializable{
 	public void setStr_RoleName(String str_RoleName) {
 		this.str_RoleName = str_RoleName;
 	}
+private Boolean Selected=true;
+	public Boolean getSelected() {
+	return Selected;
+}
+
+public void setSelected(Boolean selected) {
+	Selected = selected;
+}
+private List<RoleManagement> roleManagementList;
+	public List<RoleManagement> getRoleManagementList() {
+		roleManagementList= new ArrayList<RoleManagement>();
+		roleManagementList.addAll( getMaintainanceStaffService().getRoleManagementList());
+	return roleManagementList;
+}
+
+public void setRoleManagementList(List<RoleManagement> roleManagementList) {
+	this.roleManagementList = roleManagementList;
+}
 
 	@SuppressWarnings("unchecked")
 	public void deleteAssignedRolesListener(ValueChangeEvent event)
 	{str_AssignedRoleName=new ArrayList<String>();
-		str_AssignedRoleName.addAll((List<String>) event.getNewValue());
+	System.out.println(str_AssignedRoleName);
+		 str_AssignedRoleName.addAll((List<String>) event.getNewValue());
 		 System.out.println("testttttttttttttttttttttttttttttttttttttt");
-		
+		// getMaintainanceStaffService().deleteAssignedRoles(str_AssignedRoleName);
 		System.out.println(str_AssignedRoleName);
 		@SuppressWarnings("rawtypes")
 		ListIterator itr = str_AssignedRoleName.listIterator();
-		while(itr.hasNext())
+		/*while(itr.hasNext())
 		{
 			str_RoleName=(String) itr.next();
 			System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 			System.out.println(str_RoleName);
 		 getMaintainanceStaffService().deleteAssignedRoles(str_RoleName);
+		}*/
+		while(itr.hasNext())
+		{
+			String rm=(String) itr.next();
+			RoleAssignment r=new RoleAssignment();
+			System.out.println("kkkkkkkkkkkkkkkk");
+			 
+			System.out.println(rm);
+			//getMaintainanceStaffService().deleteAssignedRoles(rm);
 		}
 	}
 	public List<String> getStr_Roles() {
@@ -115,6 +143,7 @@ public  void getAssignedRoles()
 	//return  str_AssinedRoles;
 	*/
 	str_AssinedRoles =new ArrayList<RoleAssignment>();
+	System.out.println(int_UserId);
 	str_AssinedRoles.addAll(getMaintainanceStaffService().getRoleNames(int_UserId));
 	System.out.println(str_AssinedRoles);
 	
@@ -141,23 +170,51 @@ public void setStr_AssignedRoleName(List<String> str_AssignedRoleName) {
 		this.maintainanceStaffService = maintainanceStaffService;
 	}
 	 
- public List getList() {
+	List list=new ArrayList();
+
+public List getList() {
 		return list;
 	}
 
 	public void setList(List list) {
 		this.list = list;
 	}
-private List list=new ArrayList();
+	List list1=new ArrayList();
+
+public List getList1() {
+		return list1;
+	}
+
+	public void setList1(List list1) {
+		this.list1 = list1;
+	}
+
 @SuppressWarnings("unchecked")
 public void roleChangeListener(ValueChangeEvent event)
-{
+{  
+
+ 
 	//str_AssignedRoleName=new ArrayList<String>();
+	list1.addAll((List<String>) event.getOldValue());
+	ListIterator itr1=list1.listIterator();
+	while(itr1.hasNext())
+	{
+		str_RoleName=(String) itr1.next();
+		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+		System.out.println(str_RoleName);
+		System.out.println(int_UserId);
+	 getMaintainanceStaffService().deleteAssignedRoles(str_RoleName,int_UserId);
+	}
+	System.out.println(list);
 	
+	 
+	 //return "committeememberlist.xhtml";
+
 	list.addAll((List<String>) event.getNewValue());
 	 
 	 
 }
+ 
 private RoleManagement roleManagement;
 public Integer getInt_RoleId() {
 	return int_RoleId;
@@ -214,10 +271,11 @@ public void setS(Character s) {
 public void setRoleAssignment(RoleAssignment roleAssignment) {
 	this.roleAssignment = roleAssignment;
 }
-private Character C=null;
-private Character S=null;
+private Character C;
+private Character S;
 public String  addRoleManagement()
-{
+{S=S;
+C=C;
 	@SuppressWarnings("rawtypes")
 	ListIterator itr1=list.listIterator();
 	while(itr1.hasNext())
@@ -231,30 +289,37 @@ public String  addRoleManagement()
 		roleAssignment.setInt_UserId(int_UserId);
 		 
 		S=getMaintainanceStaffService().getUserType(int_UserId);
-		if(S!=null)
+		System.out.println(S);
+		if(S==null)
 		{
-		roleAssignment.setChar_User_Type('S');
+		roleAssignment.setChar_User_Type('C');
 		}
 		else{
-			roleAssignment.setChar_User_Type('C');
+			roleAssignment.setChar_User_Type('S');
 		}
 		roleAssignment.setInt_ApartmentId(getMaintainanceStaffService().getApartmentId(int_UserId));
-		//Integer roleId=getMaintainanceStaffService().getRoleID(int_UserId);
-		 
-		//System.out.println(roleId);
-		
-		/* if( roleId!=null)
+		List<Integer> roleId=getMaintainanceStaffService().getRoleID(int_UserId);
+		 ListIterator itr=roleId.listIterator();
+		 while(itr.hasNext())
 		 {
+			 System.out.println(roleId);
+				
+			 Integer roleId1=(Integer) itr.next();
+			String roleName= getMaintainanceStaffService().getRoleNameFromRoleMaster(roleId1);
+			 if( roleName.equals(str_RoleName))
+			 {
+				System.out.println(roleName);
+				 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( getStr_RoleName()+" is already Assigned  to u plz Choose another Role "));
+			 return null;
+			 }
 			
-			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Selected   Role is already Assigned  to another User plz Choose another Role "));
-		 return null;
+			 System.out.println("k1111111111111111111111");
+		   
+	} getMaintainanceStaffService().saveRoleManagement(roleAssignment);
 		 }
-		 else{
-		 System.out.println("k1111111111111111111111");*/
-		 getMaintainanceStaffService().saveRoleManagement(roleAssignment);
-	}
-	 
-	 return "committeememberlist.xhtml";
+ 
+	 return  null;
+	
 }
 private String str_UserName;
 public void getUserName()

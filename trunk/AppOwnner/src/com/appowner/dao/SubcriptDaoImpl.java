@@ -265,7 +265,7 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	@Override
 	public void Deletedoc(Cls_DocumentCategory category) 
 		{
-			System.out.println("kkkkkkkkk");
+			System.out.println("pip");
 			 getSessionFactory().getCurrentSession().createQuery("delete from Cls_DocumentCategory where Int_Document_CatID="+category.getInt_Document_CatID()).executeUpdate();
 			
 		}

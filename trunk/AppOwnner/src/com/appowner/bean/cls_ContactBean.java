@@ -26,7 +26,7 @@ public class cls_ContactBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String SUCCESS = "success";
+	private static final String SUCCESS = "ViewContact";
 	private static final String ERROR   = "error";
 	private String contactName;
 	private String contactPhone;
