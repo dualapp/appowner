@@ -87,35 +87,38 @@
  <p:menuitem value="FeedbackForm" url="AddFeedback.xhtml" />
  </p:submenu>
  <p:submenu   styleClass="affaires" label="NoticeBoard">
- <p:menuitem value="AddNotice" url="rolemanagement.xhtml" />
+ <p:menuitem value="AddNotice" url="Notice.xhtml" />
  <p:separator/>
- <p:menuitem value="ViewNoticeboard" url="rolemanagement.xhtml" />
+ <p:menuitem value="ViewNoticeBoard" url="noticeView.xhtml" />
  </p:submenu>
  <p:submenu  styleClass="affaires" label="Complain">
- <p:menuitem value="Addcomplain" url="rolemanagement.xhtml" />
+ <p:menuitem value="Addcomplain" url="complain.xhtml" />
  <p:separator/>
- <p:menuitem value="complainlist" url="rolemanagement.xhtml" />
+ <p:menuitem value="complainlist" url="ComplainView.xhtml" />
  
  </p:submenu>
  <p:submenu styleClass="affaires" label="Repository">
- <p:menuitem value="AddDocument" url="rolemanagement.xhtml" />
+ <p:menuitem value="AddDocument" url="CreateDocument.xhtml" />
  <p:separator/>
- <p:menuitem value="Categories" url="rolemanagement.xhtml" />
+ <p:menuitem value="Categories" url="CategoriesName.xhtml" />
  <p:separator/>
- <p:menuitem value="DocumentList" url="rolemanagement.xhtml" />
+ <p:menuitem value="DocumentList" url="DocumentList.xhtml" />
  <p:separator/>
  <p:menuitem value="AddSubcription" url="rolemanagement.xhtml" />
  <p:separator/>
  <p:menuitem value="AddOptionName" url="rolemanagement.xhtml" />
  <p:separator/>
- <p:menuitem value="SubscriptionOptionList" url="rolemanagement.xhtml" />
+ <p:menuitem value="SubscriptionOptionList" url="SubcriptionOptionList.xhtml" />
  
- <p:menuitem value="complainlist" url="rolemanagement.xhtml" />
+ <p:menuitem value="complainlist" url="ComplainView.xhtml" />
  <p:separator/>
- <p:menuitem value="SubscriptionList" url="rolemanagement.xhtml" />
+ <p:menuitem value="SubscriptionList" url="SubcriptionList.xhtml" />
  </p:submenu>
  
  <p:submenu  styleClass="affaires" label="LogOff">
+  <p:menuitem value="Link I" action="#{vendorBean.navigateTo}" ajax="false" update=":contentPanel">
+                        <f:param name="navParam" value="/addcommitteemembers.xhtml" />
+                        </p:menuitem>
  </p:submenu>
   
   
