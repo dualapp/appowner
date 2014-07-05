@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
+import com.appowner.model.RoleManagement;
 
 public interface MaintainanceStaffService {
 
@@ -41,9 +42,15 @@ public interface MaintainanceStaffService {
 
 	List<RoleAssignment> getRoleNames(Integer int_UserId);
 
-	void deleteAssignedRoles(String str_RoleName);
+	void deleteAssignedRoles(String str_RoleName,Integer int_UserId);
 
-	Integer getRoleID(Integer int_UserId);
+	List<Integer> getRoleID(Integer int_UserId);
+
+	List<RoleManagement> getRoleManagementList();
+
+	String getRoleNameFromRoleMaster(Integer roleId1);
+
+	//void deleteAssignedRoles(RoleManagement rm);
 
 	 
 }

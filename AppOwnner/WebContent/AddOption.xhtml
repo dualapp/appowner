@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"    
+xmlns:ui="http://java.sun.com/jsf/facelets"    
+xmlns:h="http://java.sun.com/jsf/html"    
+xmlns:f="http://java.sun.com/jsf/core"> 
+<head> 
+<link rel="stylesheet" type="text/css" href="./style/main.css" />
+ </head> 
+<body  bgcolor="pink">
+ <center>
+ <h:outputText value="Option-Name" styleClass="header">
+ </h:outputText> 
+    
+ </center>    
+ <h:form>
+ <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage">
+ </h:messages>        
+ <h:panelGrid columns="2">
+          
+  
+            
+            <h:outputText value="Please Enter Option Name :">
+            </h:outputText>            
+            <h:inputText id="optionName" value="#{scriptBean.optionName}" required="true" requiredMessage="Please Enter Option Name">
+            </h:inputText> 		
+            <h:commandButton id="add" value="Submit" action="#{scriptBean.addOption}" ajax="false"/> 
+             </h:panelGrid>    
+            </h:form> 
+</body>
+          
+</html>

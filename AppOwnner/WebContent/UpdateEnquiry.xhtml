@@ -7,9 +7,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
 	  <f:metadata>
-	<f:viewParam name="personId" value="#{cls_UpdateBean.personId}"  />
+	<f:viewParam name="personId" value="#{cls_EnquiryUpdateBean.personId}"  />
 	 
-	<f:viewAction action="#{cls_UpdateBean.getPerson}" />
+	<f:viewAction action="#{cls_EnquiryUpdateBean.getPerson}" />
 </f:metadata>
 
 <h:head>
@@ -19,19 +19,19 @@
 <h:form>
   <h:panelGrid columns="2">
     <h:outputText value="Name:"/>
-    <h:inputText value="#{cls_UpdateBean.person.personName}"/>
+    <h:inputText value="#{cls_EnquiryUpdateBean.person.personName}"/>
     
  
     <h:outputText value="Email:"/>
-    <h:inputText value="#{cls_UpdateBean.person.personEmail}"/>
+    <h:inputText value="#{cls_EnquiryUpdateBean.person.personEmail}"/>
     
  
     <h:outputText value="Message:"/>
-    <h:inputTextarea row="8" cols="17" id="personMessage" value="#{cls_UpdateBean.person.personMessage}"/>
+    <h:inputTextarea row="8" cols="17" id="personMessage" value="#{cls_EnquiryUpdateBean.person.personMessage}"/>
     
      
-   <h:commandButton  value="Submit"  action="#{cls_UpdateBean.savePerson}"/>
-   <h:button outcome="success.xhtml" value="Cancel"  />
+   <h:commandButton  value="Submit"  action="#{cls_EnquiryUpdateBean.savePerson}"/>
+   <h:button outcome="ViewEnquiry.xhtml" value="Cancel"  />
   </h:panelGrid>
   </h:form>
 </h:body>

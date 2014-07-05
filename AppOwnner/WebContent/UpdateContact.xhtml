@@ -7,9 +7,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
 	  <f:metadata>
-	<f:viewParam name="personId" value="#{cls_UpdateBean.contactId}"  />
+	<f:viewParam name="personId" value="#{cls_ContactUpdateBean.contactId}"  />
 	 
-	<f:viewAction action="#{cls_UpdateBean.getContact}" />
+	<f:viewAction action="#{cls_ContactUpdateBean.getContact}" />
 </f:metadata>
 
 <h:head>
@@ -19,28 +19,28 @@
 <h:form>
   <h:panelGrid columns="2">
     <h:outputText value="Contact Name:"/>
-    <h:inputText value="#{cls_UpdateBean.contact.contactName}"/>
+    <h:inputText value="#{cls_ContactUpdateBean.contact.contactName}"/>
     
  
     <h:outputText value="Service Offered:"/>
-    <h:inputText value="#{cls_UpdateBean.contact.contactService}"/>
+    <h:inputText value="#{cls_ContactUpdateBean.contact.contactService1}"/>
     
      <h:outputText value="Contact Phone:"/>
-    <h:inputText value="#{cls_UpdateBean.contact.contactPhone}"/>
+    <h:inputText value="#{cls_ContactUpdateBean.contact.contactPhone}"/>
     
      <h:outputText value="User Phone:"/>
-    <h:inputText value="#{cls_UpdateBean.contact.userPhone}"/>
+    <h:inputText value="#{cls_ContactUpdateBean.contact.str_PhoneNo}"/>
     
      <h:outputText value="User Email:"/>
-    <h:inputText value="#{cls_UpdateBean.contact.userEmail}"/>
+    <h:inputText value="#{cls_ContactUpdateBean.contact.str_Email}"/>
     
  
     <h:outputText value="Additional Information:"/>
-    <h:inputTextarea row="8" cols="17" id="additionalInfo" value="#{cls_UpdateBean.contact.additionalInfo}"/>
+    <h:inputTextarea row="8" cols="17" id="additionalInfo" value="#{cls_ContactUpdateBean.contact.additionalInfo}"/>
     
      
-   <h:commandButton  value="Submit"  action="#{cls_UpdateBean.savePerson}"/>
-   <h:button outcome="success.xhtml" value="Cancel"  />
+   <h:commandButton  value="Submit"  action="#{cls_ContactUpdateBean.saveContact}"/>
+   <h:button outcome="ViewContact.xhtml" value="Cancel"  />
   </h:panelGrid>
   </h:form>
 </h:body>

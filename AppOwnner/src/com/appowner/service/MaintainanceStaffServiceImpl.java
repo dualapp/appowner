@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.appowner.dao.MaintainanceStaffDao;
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
+import com.appowner.model.RoleManagement;
 
 @Service("MaintainanceStaffService")
 @Transactional
@@ -127,16 +128,34 @@ public class MaintainanceStaffServiceImpl implements MaintainanceStaffService {
 	}
 
 	@Override
-	public void deleteAssignedRoles(String str_RoleName) {
-		 getMaintainanceStaffDao().deleteAssignedRoles(str_RoleName);
+	public void deleteAssignedRoles(String str_RoleName,Integer int_UserId) {
+		 getMaintainanceStaffDao().deleteAssignedRoles(str_RoleName,int_UserId);
 		
 	}
  
 	@Override
-	public Integer getRoleID(Integer int_UserId) {
+	public List<Integer> getRoleID(Integer int_UserId) {
 		// TODO Auto-generated method stub
 		  return  getMaintainanceStaffDao().getRoleID((int_UserId));
 	}
+
+	@Override
+	public List<RoleManagement> getRoleManagementList() {
+		// TODO Auto-generated method stub
+		return getMaintainanceStaffDao().getRoleManagementList();
+	}
+
+	@Override
+	public String getRoleNameFromRoleMaster(Integer roleId1) {
+		// TODO Auto-generated method stub
+		return getMaintainanceStaffDao().getRoleNameFromRoleMaster(roleId1);
+	}
+
+	/*@Override
+	public void deleteAssignedRoles(RoleManagement rm) {
+		getMaintainanceStaffDao().deleteAssignedRoles(rm);
+		
+	}*/
 
  
  

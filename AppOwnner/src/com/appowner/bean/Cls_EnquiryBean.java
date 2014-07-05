@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 
 import org.springframework.dao.DataAccessException;
@@ -14,39 +15,21 @@ import org.springframework.dao.DataAccessException;
 import com.appowner.model.cls_Person;
 import com.appowner.service.cls_PersonService;
 @ManagedBean
-@SessionScoped
+@ViewScoped
 
 public class Cls_EnquiryBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	  private static final String SUCCESS = "success";
+	  private static final String SUCCESS = "ViewEnquiry";
 	    private static final String ERROR   = "error";
 	    private String personEmail;
 	    private String personMessage;
 	    private String personAddress;
 	    private String personPhone;
-	    private String personCountry;
-	    private String personState;
-	    private String personCity;
-	    public String getPersonCountry() {
-			return personCountry;
-		}
-		public void setPersonCountry(String personCountry) {
-			this.personCountry = personCountry;
-		}
-		public String getPersonState() {
-			return personState;
-		}
-		public void setPersonState(String personState) {
-			this.personState = personState;
-		}
-		public String getPersonCity() {
-			return personCity;
-		}
-		public void setPersonCity(String personCity) {
-			this.personCity = personCity;
-		}
-
-
+	    
+	    
+	    private String personZip;
+	     
+	 
 
 		private ArrayList<String> stateListByCountry;
 	    private String enquiry_zip;
@@ -263,6 +246,7 @@ public class Cls_EnquiryBean implements Serializable {
 		public void setPersonService(cls_PersonService personService) {
 			this.personService = personService;
 		}
+	 
 		public String addPerson()
 		{  
 			try{
@@ -270,11 +254,11 @@ public class Cls_EnquiryBean implements Serializable {
 			 person.setPersonId(getPersonId());
 			 person.setPersonName(getPersonName());
 			 person.setPersonEmail(getPersonEmail());
-			 person.setPersonPhone(getPersonPhone());
-			 person.setPersonCountry(getPersonCountry());
-			 person.setPersonState(getPersonState());
-			 person.setPersonCity(getPersonCity());
-			 person.setPersonZip(getPersonZip());
+			 person.setPersonPhone(personPhone);
+			 person.setPersonCountry(enquiry_selectedCountry);
+			 person.setPersonState(enquiry_selectedState);
+			 person.setPersonCity(enquiry_selectedCity);
+			 person.setPersonZip(personZip);
 			 person.setPersonMessage(getPersonMessage());
 			 getPersonService().addPerson(person);
 		
@@ -286,6 +270,9 @@ public class Cls_EnquiryBean implements Serializable {
 		}
 		return ERROR;
 			
+		}
+		public void setPersonZip(String personZip) {
+			this.personZip = personZip;
 		}
 		private String getPersonZip() {
 			return null;
