@@ -7,6 +7,8 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.CommiteeMember;
+import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
 
 @Repository
@@ -50,5 +52,19 @@ public class AdministrationAccessDaoImpl implements AdministrationAccessDao{
 		@SuppressWarnings("unchecked")
 		List<String> roles=getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, id).list();
 		return roles;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAllCommitteeMembers() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class).setProjection(Projections.property("str_UserName")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAllMaintainanceMembers() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(MaintainanceStaff.class).setProjection(Projections.property("str_UserName")).list();
 	}
 }

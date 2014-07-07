@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -140,4 +142,47 @@ public void setUserIds(List<Integer> userIds) {
 	this.userIds = userIds;
 }
 
+private Set<String> str_AdminNames;
+public Set<String> getStr_AdminNames() {
+	str_AdminNames=new TreeSet<String>();
+	str_AdminNames.addAll(getStr_CommitteeMembers());
+	str_AdminNames.addAll(getStr_MaintainanceStaffmembers());
+	return str_AdminNames;
+}
+
+
+public void setStr_AdminNames(List<String> str_AdminNames) {
+	this.str_AdminNames = (Set<String>) str_AdminNames;
+}
+private List<String> str_CommitteeMembers;
+private List<String> str_MaintainanceStaffmembers;
+/*
+ * get All Committee Members
+ */
+public List<String> getStr_CommitteeMembers() {
+	str_CommitteeMembers=new ArrayList<String>();
+	str_CommitteeMembers.addAll(getAdministrationAccessService().getAllCommitteeMembers());
+	
+	return str_CommitteeMembers;
+}
+
+
+public void setStr_CommitteeMembers(List<String> str_CommitteeMembers) {
+	this.str_CommitteeMembers = str_CommitteeMembers;
+}
+/*
+ * get All Maintainance Members
+ */
+
+public List<String> getStr_MaintainanceStaffmembers() {
+	str_MaintainanceStaffmembers=new ArrayList<String>();
+	str_MaintainanceStaffmembers.addAll(getAdministrationAccessService().getAllMaintainanceMembers());
+	return str_MaintainanceStaffmembers;
+}
+
+
+public void setStr_MaintainanceStaffmembers(
+		List<String> str_MaintainanceStaffmembers) {
+	this.str_MaintainanceStaffmembers = str_MaintainanceStaffmembers;
+}
 }

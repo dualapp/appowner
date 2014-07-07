@@ -51,6 +51,18 @@ public class AdministrationServiceImpl implements AdministrationAccessService{
 		return getAdministrationAccessDao().getStr_Roles(username);
 	}
 
+	@Override
+	public List<String> getAllCommitteeMembers() {
+		// TODO Auto-generated method stub
+		return getAdministrationAccessDao().getAllCommitteeMembers();
+	}
+
+	@Override
+	public List<String> getAllMaintainanceMembers() {
+		// TODO Auto-generated method stub
+		return  getAdministrationAccessDao().getAllMaintainanceMembers();
+	}
+
 	
 
 }

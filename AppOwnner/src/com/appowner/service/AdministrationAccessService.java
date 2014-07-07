@@ -15,4 +15,8 @@ public interface AdministrationAccessService {
 
 	List<String> getStr_Roles(String username);
 
+	List<String> getAllCommitteeMembers();
+
+	List<String> getAllMaintainanceMembers();
+
 }

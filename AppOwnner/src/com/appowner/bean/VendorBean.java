@@ -793,20 +793,5 @@ public void setInt_ServiceId(int int_ServiceId) {
 				"Cancel Event", "Rate Reset");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
-	private String pageName;
-	public String getPageName() {
-		return pageName;
-	}
-
-	public void setPageName(String pageName) {
-		this.pageName = pageName;
-	}
-
-	public void navigateTo() 
-	{
-		FacesContext ctx = FacesContext.getCurrentInstance();
-	     String target = ctx.getCurrentInstance().getExternalContext().getRequestParameterMap().get("navParam");
-	     System.out.println(target);
-	     setPageName(target);
-	}
+	
 }
