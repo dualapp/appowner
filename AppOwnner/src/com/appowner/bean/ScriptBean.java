@@ -47,17 +47,17 @@ public class ScriptBean implements Serializable{
 		private String str_Description;
 		private String subscriptname;    
 		private float price;       
-	  private Integer subcriptID;
-	  private Integer SubcriptionID;
-	  private Integer sizeinkb;
-	  private String uploadedon;
-	  private String uploadedby;
-	  public int intdocID;
-	  public int   AprID; 
-	  private int id;
-		private Integer int_ApartmentId;
-	  private String str_ApartmentName;
-	  private String str_UserName;
+	    private Integer subcriptID;
+	    private Integer SubcriptionID;
+	    private Integer sizeinkb;
+	    private String uploadedon;
+	    private String uploadedby;
+	    public int intdocID;
+	    public int   AprID; 
+	    private int id;
+	    private Integer int_ApartmentId;
+	    private String str_ApartmentName;
+	    private String str_UserName;
 	  
 	  
 	public String getStr_UserName() {
@@ -464,8 +464,6 @@ public void AddDocManagement()
 			 getSubcriptService().addUsers(usr);
 			
 			return "SubcriptionList.xhtml";
-			
-		
 			}
 			
 		}private String path1;
@@ -484,13 +482,12 @@ public void AddDocManagement()
 		System.out.println(intdocid);
 		intdocID= getSubcriptService().getdocid1(intdocid);	
 		Cls_CreateDocumentManagement d=new Cls_CreateDocumentManagement();
-			
-			d.setInt_Document_CatID(intdocID);
+		    d.setInt_Document_CatID(intdocID);
 			d.setBit_emailsend(getBit_emailsend());
 			d.setCh_Access(getCh_Access());
 			d.setDt_Date(getDt_Date());
 			d.setStr_Description(getStr_Description());
-		   d.setStr_FileNM(path1);
+		    d.setStr_FileNM(path1);
 			System.out.println(path1);
 			d.setInt_Userid(27);
 			d.setInt_ApartmentID(15);
@@ -498,16 +495,12 @@ public void AddDocManagement()
 			d.setStr_FolderNM("image");
 			d.setStr_ApartmentName("ramjeet villa");
 			d.setInt_Document_CatNM("Circulars");
-			
 			d.setSize("25");
 			d.setAction(" ");
-			
-		//	System.out.println(getStr_FileNM());
 			d.setInt_DocumentID(getInt_DocumentID());
 			getSubcriptService().documents(d);
 			}
-				
-	public String addOption()
+			public String addOption()
 		{  
 			String optionname=getOptionName();
 			System.out.println(optionname);
@@ -523,9 +516,7 @@ public void AddDocManagement()
 			 
 			Option usr1=new Option();
 	        usr1.setOptionName(getOptionName());
-			
-			 getSubcriptService().addOptions(usr1);
-			
+			getSubcriptService().addOptions(usr1);
 			return "";
 			
 		}
