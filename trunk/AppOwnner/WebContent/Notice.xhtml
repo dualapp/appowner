@@ -13,18 +13,18 @@
        <p:messages id="messages"/>  
         <table>
         <tr>
-           <td><h:outputText for="str_Subject" value="Subject "/></td>
+           <th align="left">Subject</th>
             <td>&#150; &#150;<p:inputText id="str_Subject" value="#{roleMasterBean.str_Subject}"  required="true" requiredMessage="Subject can not be Empty"  size="40"/></td>
               
             </tr>
            <tr>
-          <td><h:outputText value="Flash the notice?"/></td>
-           <td>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectBooleanCheckbox id="str_Flash" value="#{roleMasterBean.bool_Flash}"/>Check this box if you want to flash this message to the the members, when they login into their accounts       
+            <th align="left">Flash the notice?</th>
+           <td>&#150; &#150;<p:selectBooleanCheckbox id="str_Flash" value="#{roleMasterBean.bool_Flash}"/>Check this box if you want to flash this message to the the members, when they login into their accounts       
         </td>
             </tr> 
              <tr>
-              <td><h:outputText  value="Expires By" /></td>
-              <td>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectOneMenu id="int_ExpireDay" value="#{roleMasterBean.int_ExpireDay}">
+              <th align="left">Expires By</th>
+              <td>&#150; &#150; <p:selectOneMenu id="int_ExpireDay" value="#{roleMasterBean.int_ExpireDay}">
                   <f:selectItem itemLabel="1 Day" itemValue="1"/>
                    <f:selectItem itemLabel="1 Week" itemValue="7"/>
                     <f:selectItem itemLabel="15 Days" itemValue="15"/>
@@ -33,35 +33,35 @@
              </td>
              </tr>
              <tr>
-             <td><h:outputText  value="Attachment, if any" /></td>
-               <td>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:fileUpload fileUploadListener="#{roleMasterBean.handleFileUpload}" value="#{roleMasterBean.str_Document}" mode="advanced"  auto="true" 
-            sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width:500px"/> 
+             <th align="left">Attachment, if any</th>
+               <th align="left">&#150; &#150;<p:fileUpload fileUploadListener="#{roleMasterBean.handleFileUpload}" value="#{roleMasterBean.str_Document}" mode="advanced"  auto="true" 
+            sizeLimit="100000" fileLimit="3"  style="width:500px"/> 
                  
-             </td>
+          </th>
              </tr>
              <tr>
-             <td><h:outputText  value="Notice Description" /></td>
-              <td>&nbsp;    &nbsp; &nbsp; &nbsp;<p:editor id="editor" widgetVar="editorWidget" value="#{roleMasterBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  />
+            <th align="left">Notice Description</th>
+              <td><p:editor id="editor" widgetVar="editorWidget" value="#{roleMasterBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  />
                  
               </td>
              
            
              </tr>
              <tr>
-             <td><h:outputText for="str_SpecialNotice" value="Special Notice?" /></td>
+           <th align="left">Special Notice?</th>
             
-             <td>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectBooleanCheckbox id="bool_SpecialNotice" value="#{roleMasterBean.bool_SpecialNotice}"/>Notices are emailed only to those members who have opted to receive emails.Check this box to mark this as a special notic Special<br/> notices will also be emailed to relevant members including those who have marked their preference NOT to receieve emaHence, this must be used sparingly for some critical messages such as AGM <br/>notices or emergency repair notices.
+             <td> &#150; &#150;<p:selectBooleanCheckbox id="bool_SpecialNotice" value="#{roleMasterBean.bool_SpecialNotice}"/>Notices are emailed only to those members who have opted to receive emails.Check this box to mark this as a special notic Special notices will also be<br/> emailed to relevant members including those who have marked their preference NOT to receieve emaHence, this must be used sparingly for some critical messages such as AGM notices or emergency repair notices.
              </td>
             </tr>
             <tr> 
-          <td>  <h:outputText for="str_Staff" value="Copy Maintenance Staff?" /></td> 
-          <td>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectBooleanCheckbox id="bool_Staff" value="#{roleMasterBean.bool_Staff}"/>If this is checked the notice will be sent to all staff who has email ids on record.
+        <th align="left">Copy Maintenance Staff?</th>
+          <td>&#150; &#150; <p:selectBooleanCheckbox id="bool_Staff" value="#{roleMasterBean.bool_Staff}"/>If this is checked the notice will be sent to all staff who has email ids on record.
      </td>
             </tr>
             <tr>
-            <td><h:outputText  value="Notice shall be visible to" /></td>
+          <th align="left">Visible to</th>
             
-             <td>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectOneMenu id="options" value="#{roleMasterBean.str_Visible}" >
+             <td>&#150; &#150; <p:selectOneMenu id="options" value="#{roleMasterBean.str_Visible}" >
                 <f:selectItem itemLabel="Only Member of this Complex" itemValue="Only Member of this Complex" />
                 <f:selectItem itemLabel="Only Owner of this Complex" itemValue="Only Owner of this Complex" />
                  <f:selectItem itemLabel="Only Commitee Member of this Complex" itemValue="Only Commitee Member of this Complex" />
@@ -79,5 +79,3 @@
     </body>
 </html> 
 
-
- 
