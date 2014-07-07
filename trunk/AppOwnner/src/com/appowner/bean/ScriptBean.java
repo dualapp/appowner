@@ -478,10 +478,7 @@ public void AddDocManagement()
 	//For create Document
 	public void document()
 		{
-		/*Aprid=getStr_ApartmentName();
-		System.out.println(Aprid);
-		System.out.println("kkkkkkkkkkkkkkkkkkkkkkk");
-		AprID= getSubcriptService().getAprId1(Aprid)*/
+		
 		
 		intdocid=getInt_Document_CatNM();
 		System.out.println(intdocid);
@@ -508,10 +505,7 @@ public void AddDocManagement()
 		//	System.out.println(getStr_FileNM());
 			d.setInt_DocumentID(getInt_DocumentID());
 			getSubcriptService().documents(d);
-			
-			
-			
-		}
+			}
 				
 	public String addOption()
 		{  
@@ -590,8 +584,6 @@ public void AddDocument()
    }
 	   
    } 
-
-
 private List<Cls_CreateDocumentManagement> ListCreatedocument;
 @SuppressWarnings("unchecked")
 public List<Cls_CreateDocumentManagement> getListCreatedocument()
@@ -666,16 +658,7 @@ public void handleFileUpload(FileUploadEvent event) throws IOException {
 	    path1=file.getName();
 	    System.out.println(path1);
 }
-/*public String addinguser()
-{
-	
-	Subcript s=new Subcript();
-	s.setSubscriptname(getSubscriptname());
-	s.setPrice(getPrice());
-	getSubcriptService().update(s);
-	return "SubcriptionList.xhtml";
 
-}*/
 
 }
 
