@@ -420,10 +420,9 @@ public void AddDocManagement()
    {
 	   System.out.println("mukesh");
 	   Object p=itr1.next();
-	
 	   int_Document_CatNM= (String) p;
 	   System.out.println(int_Document_CatNM);
-	  // m.setInt_Document_CatID( int_Document_CatNM);
+	  
 	    m.setInt_Document_CatID(getSubcriptService().getInt_Document_CatID1(int_Document_CatNM));
 	  getSubcriptService().addmanagement(m);
    }
