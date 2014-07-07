@@ -33,8 +33,7 @@
 </p:submenu>
   
 <p:submenu styleClass="affaires"  label="Services">
-<p:menuitem value="AddcommitteeMember" url="addcommitteemembers.xhtml" />
-<p:separator/>
+ <p:separator/>
 <p:menuitem value="Hotmail" url="http://www.hotmail.com" />
 <p:separator/>
 <p:menuitem value="Yahoo Mail" url="addvendor.xhtml" />
@@ -42,82 +41,254 @@
  
 <p:submenu  styleClass="affaires" label="Directory">
 <p:submenu label="Committeemember">
-<p:menuitem value="AddcommiteMembers"    url="addcommitteemembers.xhtml" />
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+           <h:commandLink value="AddcommiteMembers" action="#{navigationBean.navigateTo}">
+            <f:param name="navParam" value="/addcommitteemembers.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 <p:separator/>
-<p:menuitem value="commiteMemberlist"    url="committeememberlist.xhtml" />
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"   > 
+           <h:commandLink value="commiteMemberlist" action="#{navigationBean.navigateTo}">
+            <f:param name="navParam" value="/committeememberlist.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 <p:separator/>
 </p:submenu>
   
  <p:separator/>
 
 <p:submenu label="Vendor">
-<p:menuitem value="AddVendor" url="addvendor.xhtml" />
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="AddVendor" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/addvendor.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 <p:separator/>
-<p:menuitem value="VendorList"    url="vendorlists.xhtml" />
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="VendorList" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/vendorlists.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+<p:separator/> 
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"   > 
+           <h:commandLink value="WaterPaymentList" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/waterpaymentlist.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 <p:separator/>
-<p:menuitem value="WaterPaymentList"    url="waterpaymentlist.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+           <h:commandLink value="Watervendortransactionlist" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/watervendortransactionlist.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 <p:separator/>
-<p:menuitem value="Watervendortransactionlist"    url="watervendortransactionlist.xhtml" />
-<p:separator/>
-<p:menuitem value="VendorTransaction" url="vendortransaction.xhtml" />
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="VendorTransaction" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/vendortransaction.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 </p:submenu>
  <p:separator/>
  <p:submenu label="MaintainanceStaff">
-<p:menuitem value="AddMaintainanceStaff" url="addmaintainancestaff.xhtml" />
+ 
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="AddMaintainanceStaff" action="#{navigationBean.navigateTo}">
+            <f:param name="navParam" value="/addmaintainancestaff.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 <p:separator/>
-<p:menuitem value="MaintainanceStafflist" url="maintainancestafflist.xhtml" />
+ 
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="MaintainanceStafflist" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/maintainancestafflist.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
 </p:submenu>
  <p:separator/>
-<p:menuitem value="Administrators" url="administrationaccess.xhtml" />
- <p:separator/>
-<p:menuitem value="RoleManagement" url="rolemanagement.xhtml" />
  
+<f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="Administrators" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/administrationaccess.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+ <p:separator/>
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="RoleManagement" action="#{navigationBean.navigateTo}">
+            <f:param name="navParam" value="/rolemanagement.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  
  </p:submenu>
  <p:submenu styleClass="affaires" label="AddVertisement">
- <p:menuitem value="Company" url="rolemanagement.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="Company" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/rolemanagement.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  <p:separator/>
- <p:menuitem value="ContactPerson" url="rolemanagement.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="ContactPerson" action="#{navigationBean.navigateTo}">
+            <f:param name="navParam" value="/rolemanagement.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  </p:submenu>
  <p:submenu styleClass="affaires" label="ContactUs">
- <p:menuitem value="contactForm" url="AddContact.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="contactForm" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/AddContact.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  <p:separator/>
- <p:menuitem value="EnquiryForm" url="AddEnquiry.xhtml" />
- <p:menuitem value="ViewEnquiry" url="ViewEnquiry.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="EnquiryForm" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/AddEnquiry.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  <p:separator/>
- <p:menuitem value="FeedbackForm" url="AddFeedback.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"   > 
+           <h:commandLink value="ViewEnquiry" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/ViewEnquiry.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+ <p:separator/>
+  
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"   > 
+           <h:commandLink value="FeedbackForm" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/AddFeedback.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  </p:submenu>
  <p:submenu   styleClass="affaires" label="NoticeBoard">
- <p:menuitem value="AddNotice" url="Notice.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="AddNotice" action="#{navigationBean.navigateTo}">
+            <f:param name="navParam" value="/Notice.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  <p:separator/>
- <p:menuitem value="ViewNoticeBoard" url="noticeView.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="ViewNoticeBoard" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/noticeView.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  </p:submenu>
  <p:submenu  styleClass="affaires" label="Complain">
- <p:menuitem value="Addcomplain" url="complain.xhtml" />
+  
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="Addcomplain" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/complain.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  <p:separator/>
- <p:menuitem value="complainlist" url="ComplainView.xhtml" />
- 
- </p:submenu>
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="complainlist" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/ComplainView.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax> </p:submenu>
  <p:submenu styleClass="affaires" label="Repository">
- <p:menuitem value="AddDocument" url="CreateDocument.xhtml" />
+ <f:ajax  render=":centerContentPanel"  execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="AddDocument" action="#{navigationBean.navigateTo}">
+            <f:param name="navParam" value="/CreateDocument.xhtml" />
+           </h:commandLink>
+            </p:menuitem>
+           </f:ajax>
  <p:separator/>
- <p:menuitem value="DocumentList" url="DocumentList.xhtml" />
+ <f:ajax  render=":centerContentPanel"  execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="DocumentList" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/DocumentList.xhtml" />
+           </h:commandLink>
+            </p:menuitem>
+           </f:ajax>
  <p:separator/>
- <p:menuitem value="AddSubcription" url="AddSubcription.xhtml" />
- <p:separator/>
- <p:menuitem value="AddOptionName" url="AddOption.xhtml" />
+  <f:ajax  render=":centerContentPanel"  execute="@this">
+                         <p:menuitem update=":centerContentPanel"   > 
+           <h:commandLink value="AddSubcription" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/AddSubcription.xhtml" />
+           </h:commandLink>
+            </p:menuitem>
+           </f:ajax>
+ <p:separator/> 
+                        <f:ajax  render=":centerContentPanel"  execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="AddOptionName" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/AddOption.xhtml" />
+           </h:commandLink>
+            </p:menuitem>
+           </f:ajax>
  <p:separator/>
  <p:menuitem value="SubscriptionOptionList" url="SubcriptionOptionList.xhtml" />
- 
- <p:menuitem value="complainlist" url="ComplainView.xhtml" />
+ <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="complainlist" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/ComplainView.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+  
  <p:separator/>
- <p:menuitem value="SubscriptionList" url="SubcriptionList.xhtml" />
+  
+ <f:ajax  render=":centerContentPanel"  execute="@this">
+                         <p:menuitem update=":centerContentPanel"   > 
+           <h:commandLink value="SubcriptionList" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/SubcriptionList.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
  </p:submenu>
  
  <p:submenu  styleClass="affaires" label="LogOff">
-  <p:menuitem value="Link I" action="#{vendorBean.navigateTo}" ajax="false" update=":contentPanel">
-                        <f:param name="navParam" value="/addcommitteemembers.xhtml" />
-                        </p:menuitem>
+                       
+                        <f:ajax  render=":centerContentPanel"  execute="@this">
+                         <p:menuitem update=":centerContentPanel"  > 
+           <h:commandLink value="page1" action="#{navigationBean.navigateTo}" >
+            <f:param name="navParam" value="/addcommitteemembers.xhtml" />
+           </h:commandLink>
+            </p:menuitem>
+           </f:ajax>
+          
  </p:submenu>
   
   
