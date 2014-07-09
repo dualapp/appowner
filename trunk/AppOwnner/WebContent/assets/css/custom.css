@@ -1,0 +1,188 @@
+.ui-widget-header {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	position: relative;
+	min-height: 38px;
+	background: #f7f7f7;
+	background-image: -webkit-gradient(linear, left 0, left 100%, from(#fff),
+		to(#eee));
+	background-image: -webkit-linear-gradient(top, #fff, 0%, #eee, 100%);
+	background-image: -moz-linear-gradient(top, #fff 0, #eee 100%);
+	background-image: linear-gradient(to bottom, #fff 0, #eee 100%);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',
+		endColorstr='#ffeeeeee', GradientType=0);
+	color: #669fc7;
+	border: 1px solid #CCC;
+	border-bottom: 1px solid #DDD;
+	padding-left: 12px
+}
+
+.ui-widget-content {
+	border: 1px solid #CCC;
+	border-top: 0;
+	background-color: #FFF
+}
+
+.no-pdmg {
+	margin: 0px !important;
+	padding: 0px !important;
+	display: inline;
+}
+
+.ui-button-text-only .ui-button-text {
+	padding: 0px;
+}
+
+.ui-message {
+	display: inline-block;
+}
+
+.ui-datatable.borderless thead th, .ui-datatable.borderless tbody,
+	.ui-datatable.borderless tbody tr, .ui-datatable.borderless tbody td {
+	border-style: none;
+}
+
+
+.ui-state-error {
+	background-color: #FFFFFF !important;
+	border: none !important;
+	color: #d68273;
+	margin: 0px 0px 0px !important;
+	/* padding: 6px 10px; */
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	font-size: 14px
+}
+
+
+/* Primeface Error Messages (Start) */
+
+.ui-messages-error,.ui-message-error {
+color:#d16e6c !important;
+background-color:#FFFFFF !important;
+border-color:#eed3d7;
+}
+
+.ui-message-info,.ui-message-error,.ui-message-warn,.ui-message-fatal {
+border:none !important;
+margin:0 5px;
+padding:2px 5px;
+}
+
+.ui-message-error-icon{
+background:none !important;
+display:block;
+float:left;
+position:relative;
+margin:0;
+padding:0;
+}
+
+.ui-message-error-detail{
+margin-left: -9px  !important;
+}
+
+.ui-outputlabel.ui-state-error {
+	color: #d16e6c;
+}
+
+/* .ui-state-error, .ui-widget-content  .ui-widget-header .ui-state-error {
+	border: 1px solid #cd0a0a;
+} */
+
+.ui-outputlabel.ui-state-error {
+border: 0 none !important;
+}
+
+.ui-state-error {
+border: 1px solid #f09784 !important;
+}
+
+
+
+.ui-datepicker-header{
+	
+	background: none!important;
+	border: 0px!important;
+}
+.ui-datepicker td{
+	
+	background-color:#fff!important;
+}
+.ui-datepicker td .ui-state-default{
+	
+	background: none!important;
+	background-image:none!important;
+	text-shadow:none!important;
+	border-radius:0px!important;
+	box-shadow:none!important;
+	border: 0px!important;
+}
+.ui-datepicker td .ui-state-default:hover{
+	
+	background:#ccc!important;
+}
+.ui-datepicker td .ui-state-highlight{
+	
+	background:#ccc!important;
+	color:#000!important;
+}
+.ui-datepicker td .ui-state-active{
+	
+	background:#2283c5!important;
+	
+	
+}
+.ui-datatable thead th, .ui-datatable tfoot td
+{
+	text-align: left!important;
+	font-family:'Open Sans'!important;
+	font-size: 13px!important;
+	color:#707070!important;
+}
+.ui-datatable  th, .ui-datatable  td
+{
+	
+	font-family:'Open Sans'!important;
+	font-size: 12px!important;
+	color:#707070!important;
+	
+}
+.mg-b-no{
+	
+	margin-bottom: 0px!important;
+}
+.mg-b-lg{
+	
+	margin-bottom: 18px!important;
+}
+.mg-b-md{
+	
+	margin-bottom: 10px!important;
+}
+.mg-b-sm{
+	
+	margin-bottom: 5px!important;
+}
+.mg-b-xsm{
+	
+	margin-bottom: 3px!important;
+}
+.ui-datatable-footer{
+	
+	background-color: #fff!important;
+	border-bottom: 0px!important;
+	border-radius:0px!important;
+	background-image:  none!important;
+	min-height:25px!important;
+}
+
+.hide-column-names table thead tr {
+    display: none;
+}
+
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td{
+	overflow:visible!important;
+}
