@@ -123,7 +123,8 @@
 	   			<p:graphicImage  height="50" width="50" alt="update" value="images/k1.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
-	   		 <h:link outcome="deletevendor.xhtml" >
+	   		 <h:link outcome="deletevendor.xhtml"
+	   		 onclick="return confirm('Are you sure you want to delete #{vendor.str_VendorName}?');" >  
 	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>

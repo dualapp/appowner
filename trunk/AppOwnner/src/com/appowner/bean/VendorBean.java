@@ -648,8 +648,10 @@ public void setInt_ServiceId(int int_ServiceId) {
 	public List<VendorServiceDetails> getVendorServiceDetails3() {
 		//vendorServiceDetails3=new ArrayList<VendorServiceDetails>();
 		//Thread.dumpStack();
+		if(vendorServiceDetails3!=null)
+		{
 		vendorServiceDetails3.addAll(getVendorservice().getVendorServiceDetails(int_VendorId));
-		
+		}
 		return vendorServiceDetails3;
 	}
 	 
