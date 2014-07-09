@@ -109,7 +109,8 @@
 	   			<p:graphicImage  height="50" width="50" alt="Edit" value="images/k1.png"/> 
 	   				<f:param name="int_WaterPaymentId" value="#{waterpaymentlist.int_WaterPaymentId}" />
 	   		</h:link>
-	   		 <h:link outcome="deletewaterpayment.xhtml">
+	   		 <h:link outcome="deletewaterpayment.xhtml"
+	   		 onclick="return confirm('Are you sure you want to delete #{waterpaymentlist.str_VendorName}?');" > 
 	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="int_WaterPaymentId" value="#{waterpaymentlist.int_WaterPaymentId}" />
 	   		</h:link>

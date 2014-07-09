@@ -3,6 +3,7 @@ package com.appowner.service;
 import java.util.Collection;
 import java.util.List;
 
+import com.appowner.model.AdministrationAccess;
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
@@ -49,6 +50,8 @@ public interface MaintainanceStaffService {
 	List<RoleManagement> getRoleManagementList();
 
 	String getRoleNameFromRoleMaster(Integer roleId1);
+
+	void saveAdministrationAccess(AdministrationAccess administrationAccess);
 
 	//void deleteAssignedRoles(RoleManagement rm);
 

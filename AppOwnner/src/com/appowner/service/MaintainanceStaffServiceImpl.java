@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.MaintainanceStaffDao;
+import com.appowner.model.AdministrationAccess;
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
@@ -149,6 +150,14 @@ public class MaintainanceStaffServiceImpl implements MaintainanceStaffService {
 	public String getRoleNameFromRoleMaster(Integer roleId1) {
 		// TODO Auto-generated method stub
 		return getMaintainanceStaffDao().getRoleNameFromRoleMaster(roleId1);
+	}
+
+	@Override
+	public void saveAdministrationAccess(
+			AdministrationAccess administrationAccess) {
+		
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*@Override
