@@ -3,6 +3,7 @@ package com.appowner.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -379,7 +380,47 @@ public class ComplainBean implements Serializable{
 			public void onEdit(RowEditEvent event) {
 				   
 				}
+			private String name;
+			public String getName() {
+				return name;
+			}
+			public void setName(String name) {
+				this.name = name;
+			}
+			public String getPassword() {
+				return password;
+			}
+			public void setPassword(String password) {
+				this.password = password;
+			}
+			private String password;
+			private User user;
+			public User getUser() {
+				return user;
+			}
+			public void setUser(User user) {
+				this.user = user;
+			}
 			
+			
+			public String validate (String name1,String Password)  
+			{	user=getComplainService().validate(name1,Password);
+			          if(user==null)
+			        	{  
+			        		FacesContext facesContext = FacesContext.getCurrentInstance();
+				    	   facesContext.addMessage(null, new FacesMessage("invalid user name or password!!!!!"));
+				    	       return "SuperAdmin.xhtml";  
+				       
+			        	}
+			   else    
+			   { 
+				   FacesContext facesContext = FacesContext.getCurrentInstance();
+		           facesContext.addMessage(null, new FacesMessage("Login Successful!!!!!!!!!!!"));
+		           return null;
+			   }
+			          
 }
+}			
+
 	 
 
