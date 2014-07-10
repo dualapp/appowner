@@ -11,6 +11,7 @@ import com.appowner.model.Notice;
 import com.appowner.model.PanelPrice;
 import com.appowner.model.Staff;
 import com.appowner.model.RoleMaster;
+import com.appowner.model.User;
 
 
 public interface ComplainService {
@@ -47,5 +48,6 @@ public interface ComplainService {
 	public CompanyPerson getCompanyPerson1(int int_CompanyPersonID);
 //	public int getNoPerson(String str_CompanyName);
 	public void updatePanel(PanelPrice panel);
+	public User validate(String name,String password);
 }
 
