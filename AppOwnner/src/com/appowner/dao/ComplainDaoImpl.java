@@ -220,7 +220,17 @@ public class ComplainDaoImpl implements ComplainDao {
 	 {
 		 sessionFactory.getCurrentSession().update(panel); 
 	 }
-	 
+	 @SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
+		public User validate(String name,String password) {
+			
+		 System.out.println(name);
+		 System.out.println(password);
+			 String hql="from User  where str_Username=? and str_Password=?";
+			
+			 return (User)sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,name).setParameter(1,password).uniqueResult();
+			   
 	 
 	
+}
 }
