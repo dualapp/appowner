@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -23,14 +24,6 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "int_UserId")
 	private Integer int_UserId;
-	@Column(name="str_Username")
-	private String str_Username;
-	public String getStr_Username() {
-		return str_Username;
-	}
-	public void setStr_Username(String str_Username) {
-		this.str_Username = str_Username;
-	}
 	@Column
 	private String str_Country;
 	@Column
@@ -39,14 +32,6 @@ public class User implements Serializable{
 	private String str_City;
 	@Column
 	private String str_Apartment;
-	@Column
-	private Integer int_ApartmentId;
-	public Integer getInt_ApartmentId() {
-		return int_ApartmentId;
-	}
-	public void setInt_ApartmentId(Integer int_ApartmentId) {
-		this.int_ApartmentId = int_ApartmentId;
-	}
 	@Column
 	private String str_FirstName;
 	@Column
@@ -66,8 +51,20 @@ public class User implements Serializable{
 	@Column
 	private String str_Block;
 	@Column
+	private String str_Username;
+	@Column 
+	private String str_UserRoleName;
+	@Column
 	private String str_PhoneNo;
-	
+	@Column 
+	private Integer int_ApartmentId;
+	@JoinColumn(name = "int_ApartmentId", insertable = false, updatable=false)
+	public Integer getInt_ApartmentId() {
+		return int_ApartmentId;
+	}
+	public void setInt_ApartmentId(Integer int_ApartmentId) {
+		this.int_ApartmentId = int_ApartmentId;
+	}
 	public String getStr_Country() {
 		return str_Country;
 	}
@@ -161,6 +158,21 @@ public class User implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public String getStr_Username() {
+		return str_Username;
+	}
+	public void setStr_Username(String str_Username) {
+		this.str_Username = str_Username;
+	}
+	public String getStr_UserRoleName() {
+		return str_UserRoleName;
+	}
+	public void setStr_UserRoleName(String str_UserRoleName) {
+		this.str_UserRoleName = str_UserRoleName;
+	}
+	
+	
+	
 	
 	
 }
