@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head><title>Super Admin Login</title>
+ </h:head>
+ <body bgcolor="pink">
+    <h:form id="form" > 
+    
+ 
+     <center>
+    <legend>
+    
+        <table>
+          <tr><td><h2 align="center">Login Details</h2></td></tr>
+            <tr>
+                <td><h:outputLabel for="LoginName" value="LoginName: " /></td>
+                <td><p:inputText id="LoginName" value="#{complainBean.name}" required="true" requiredMessage="Name is required">
+                <p:message for="LoginName"/> 
+                </p:inputText>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="Password" value="Password: " /></td>
+                <td><p:inputText id="Password" value="#{complainBean.password}" required="true" requiredMessage="Password is required">
+                     <p:message for="Password"/> 
+                     </p:inputText>
+              </td>
+            </tr>
+             <tr>
+                 <td><h:commandButton id="submit" value="Login" action="#{complainBean.validate(complainBean.name,complainBean.password)}"  ajax="false" >
+              
+                </h:commandButton>
+                </td>
+            </tr> 
+             </table>
+          
+             </legend>
+             </center>
+             </h:form>
+             </body>
+             
+</html>
