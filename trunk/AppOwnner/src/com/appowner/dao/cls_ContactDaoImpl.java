@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -39,7 +40,11 @@ public class cls_ContactDaoImpl implements cls_ContactDao {
 		return (cls_Contact) getSessionFactory().getCurrentSession().get(cls_Contact.class, contactid);
 	}
 
-	public void deleteContact(cls_Contact contact) {
+/*	public cls_Contact getDate(Date date) {
+		return (cls_Contact) getSessionFactory().getCurrentSession().get(cls_Contact.class, date);
+	}*/
+	
+	public void deleteContact1(cls_Contact contact) {
 		System.out.println(contact.getContactId());
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM cls_Contact WHERE contactid = "+contact.getContactId()).executeUpdate();
 	}
