@@ -173,6 +173,9 @@ public class ComplainServiceImpl implements ComplainService{
 	public List<UserApartment> listApartment(){
 		return getComplainDao().listApartment();
 	}
-	
+	public int count(String ApartmentName)
+	{
+		return getComplainDao().count(ApartmentName);
+	}
 	
 }
