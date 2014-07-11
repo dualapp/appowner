@@ -3,12 +3,7 @@ package com.appowner.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-
-//import java.util.Date;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -39,7 +34,7 @@ public class cls_ContactBean implements Serializable {
 		this.contactService1 = contactService1;
 	}
 	
-	//private Date date_Date;
+	private Date date;
 	private String str_PhoneNo;
 	private String str_Email;
 	//private Integer int_UserId;
@@ -118,6 +113,13 @@ public class cls_ContactBean implements Serializable {
 	 
 	
 	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public int con;
 	public String con1;
 	public String addContact()
@@ -125,7 +127,7 @@ public class cls_ContactBean implements Serializable {
 		try{
 			System.out.println("Hi");
 			cls_Contact contact=new cls_Contact();
-			//contact.setDate_Date(getDate_Date());
+			contact.setDate(getDate());
 			contact.setContactId(getContactId());
 		    contact.setContactName(getContactName());
 		    contact.setContactService1(getContactService1());
@@ -154,9 +156,13 @@ public class cls_ContactBean implements Serializable {
 		 
 		 contact.setContactId(ContactId);
 		
-		 getContactService().deleteContact(contact);
+		 getContactService().deleteContact1(contact);
 		 return SUCCESS;
 	 }
+	
+	public String cancelContact () {
+		return "AddContact.xhtml?faces-redirect=true";
+	}
 	
 	public int getContactId() {
 		return contactId;
