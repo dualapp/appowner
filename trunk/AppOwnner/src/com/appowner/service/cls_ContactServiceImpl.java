@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,12 @@ public class cls_ContactServiceImpl implements cls_ContactService {
 		return contactDao.getContact(contactId);
 	}
 	
-	public void deleteContact(cls_Contact contact) {
-		getContactDao().deleteContact(contact);
+/*	public cls_Contact getDate(Date date) {
+		return contactDao.getDate(date);
+	}*/
+	
+	public void deleteContact1(cls_Contact contact) {
+		getContactDao().deleteContact1(contact);
 	}
  
 
