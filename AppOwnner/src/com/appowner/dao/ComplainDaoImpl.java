@@ -18,6 +18,7 @@ import com.appowner.model.PanelPrice;
 import com.appowner.model.Staff;
 import com.appowner.model.RoleMaster;
 import com.appowner.model.User;
+import com.appowner.model.UserApartment;
 import com.appowner.model.Vendor;
 
 @Repository
@@ -233,4 +234,9 @@ public class ComplainDaoImpl implements ComplainDao {
 	 
 	
 }
+	 @SuppressWarnings("unchecked")
+	 public List<UserApartment> listApartment()
+	 {
+		 return (List<UserApartment>) getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).list();	 
+	 }
 }
