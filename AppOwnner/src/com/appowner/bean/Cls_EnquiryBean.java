@@ -2,8 +2,7 @@ package com.appowner.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -25,17 +24,25 @@ public class Cls_EnquiryBean implements Serializable {
 	    private String personMessage;
 	    private String personAddress;
 	    private String personPhone;
-	    
-	    
 	    private String personZip;
-	     
-	 
-
 		private ArrayList<String> stateListByCountry;
 	    private String enquiry_zip;
 	    private List<cls_Person> personList;
-		 
 		private List<String> enquiry_selecteCities;
+		private String RandomnumberGenerator;
+		
+		public String getRandomNumberGenerator() {
+			Random rand = new Random();
+			String AlphabetString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+			char[] alphabet = AlphabetString.toCharArray();
+			StringBuilder generator = new StringBuilder();
+			for(int i=0 ; i < 16 ; i++)
+			{
+				generator.append(alphabet[rand.nextInt(alphabet.length)]);
+			}
+			return generator.toString();
+		}
+		
 		public List<String> getEnquiry_selecteCities() {
 			if(enquiry_selectedState!=null)
 			   {
@@ -251,7 +258,7 @@ public class Cls_EnquiryBean implements Serializable {
 		{  
 			try{
 			 cls_Person person=new cls_Person();
-			 person.setPersonId(getPersonId());
+			 person.setPersonId(RandomnumberGenerator);
 			 person.setPersonName(getPersonName());
 			 person.setPersonEmail(getPersonEmail());
 			 person.setPersonPhone(personPhone);
@@ -277,7 +284,7 @@ public class Cls_EnquiryBean implements Serializable {
 		private String getPersonZip() {
 			return null;
 		}
-		public String deletePerson(int PersonId)
+		public String deletePerson(String PersonId)
 		 {
 			 cls_Person person=new cls_Person();
 			 
@@ -298,11 +305,11 @@ public class Cls_EnquiryBean implements Serializable {
 			ListPerson = listPerson;
 		}
 		
-		private int personId;
-		public int getPersonId() {
+		private String personId;
+		public String getPersonId() {
 			return personId;
 		}
-		public void setPersonId(int personId) {
+		public void setPersonId(String personId) {
 			this.personId = personId;
 		}
 		private String personName;
@@ -315,7 +322,7 @@ public class Cls_EnquiryBean implements Serializable {
 			return personName;
 		}
 		public void reset() {
-	        this.setPersonId(0);
+	        this.setPersonId("");
 	        this.setPersonName("");
 	        
 	    }
