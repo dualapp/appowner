@@ -2,6 +2,7 @@ package com.appowner.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -211,6 +212,15 @@ public class CompanyBean  implements Serializable{
    	public List<UserApartment> getListApartment() {
    		listApartment=new ArrayList<UserApartment>();
    		listApartment.addAll(getComplainService().listApartment());
+   		ListIterator list=listApartment.listIterator();
+   		while(list.hasNext())
+   		{   Object o=list.next();
+   			UserApartment name = (UserApartment)o;
+   			String name1=name.getStr_ApartmentName();
+   			System.out.println(name1);
+   			Integer count=getComplainService().count(name1);
+   			System.out.println(count);
+   		}
 		return listApartment;
    		
    	}
