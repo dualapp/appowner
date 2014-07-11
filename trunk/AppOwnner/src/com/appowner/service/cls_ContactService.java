@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.appowner.model.cls_Contact;
@@ -13,7 +14,9 @@ public interface cls_ContactService {
 	
 	public cls_Contact getContact(int Contactid);
 	
-	public void deleteContact(cls_Contact contact);
+	//public cls_Contact getDate(Date date);
+	
+	public void deleteContact1(cls_Contact contact);
 
 	public void update(cls_Contact contact);
 
