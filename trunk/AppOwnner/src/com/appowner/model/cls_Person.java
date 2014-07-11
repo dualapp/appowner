@@ -21,9 +21,8 @@ public class cls_Person implements Serializable{
 	 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "personid")
-	private Integer personId;
+	private String personId;
 	@Column
 	private String personEmail;
 	private String personMessage;
@@ -120,11 +119,11 @@ public class cls_Person implements Serializable{
 	}
 	
 	
-	public Integer getPersonId() {
+	public String getPersonId() {
 		return personId;
 	}
 
-	public void setPersonId(Integer personId) {
+	public void setPersonId(String personId) {
 		this.personId = personId;
 	}
 
