@@ -239,4 +239,12 @@ public class ComplainDaoImpl implements ComplainDao {
 	 {
 		 return (List<UserApartment>) getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).list();	 
 	 }
+	 public int count(String ApartmentName)
+	 {
+		 String hql="select count(*) from User where str_Apartment=?";
+		 int count1=(Integer) sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,ApartmentName).uniqueResult();
+		   
+		 System.out.println(count1);
+		 return count1;
+	 }
 }
