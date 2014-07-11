@@ -51,5 +51,6 @@ public interface ComplainService {
 	public void updatePanel(PanelPrice panel);
 	public User validate(String name,String password);
 	public List<UserApartment> listApartment();
+	public int count(String ApartmentName);
 }
 
