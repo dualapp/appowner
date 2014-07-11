@@ -12,6 +12,8 @@ import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
+import com.appowner.model.User;
+import com.appowner.model.UserApartment;
 import com.appowner.service.ComplainService;
 
 @ManagedBean
@@ -205,6 +207,17 @@ public class CompanyBean  implements Serializable{
 	     person1.add(person2);
 		 
 	}
+	 private List<UserApartment> listApartment;
+   	public List<UserApartment> getListApartment() {
+   		listApartment=new ArrayList<UserApartment>();
+   		listApartment.addAll(getComplainService().listApartment());
+		return listApartment;
+   		
+   	}
+   	public void setListApartment(List<UserApartment> listApartment) {
+   		this.listApartment = listApartment;
+   	}   
+		
 	
 	 
 		}
