@@ -11,7 +11,7 @@ public interface cls_PersonService {
 
 	public List<cls_Person> listPersons();
 	
-	public cls_Person getPerson(int personid);
+	public cls_Person getPerson(String personid);
 	
 	public void deletePerson(cls_Person person);
 
