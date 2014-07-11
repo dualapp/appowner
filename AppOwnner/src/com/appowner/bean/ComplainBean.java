@@ -19,6 +19,7 @@ import org.springframework.dao.DataAccessException;
 import com.appowner.model.Complain;
 import com.appowner.model.PanelPrice;
 import com.appowner.model.User;
+import com.appowner.model.UserApartment;
 import com.appowner.service.ComplainService;
 
 import org.primefaces.event.FileUploadEvent;
@@ -416,9 +417,9 @@ public class ComplainBean implements Serializable{
 			   { 
 				   FacesContext facesContext = FacesContext.getCurrentInstance();
 		           facesContext.addMessage(null, new FacesMessage("Login Successful!!!!!!!!!!!"));
-		           return null;
+		           return "ApartmentView.xhtml";
 			   }
-			          
+			         
 }
 }			
 
