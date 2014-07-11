@@ -17,6 +17,7 @@ import com.appowner.model.PanelPrice;
 import com.appowner.model.Staff;
 import com.appowner.model.RoleMaster;
 import com.appowner.model.User;
+import com.appowner.model.UserApartment;
 
 
 @Service("ComplainService")
@@ -169,7 +170,9 @@ public class ComplainServiceImpl implements ComplainService{
 	{
 		 return getComplainDao().validate(name,password);
 	}
-	
+	public List<UserApartment> listApartment(){
+		return getComplainDao().listApartment();
+	}
 	
 	
 }
