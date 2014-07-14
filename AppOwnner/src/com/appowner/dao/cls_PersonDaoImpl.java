@@ -34,7 +34,7 @@ public class cls_PersonDaoImpl implements cls_PersonDao {
 		return (List<cls_Person>) getSessionFactory().getCurrentSession().createCriteria(cls_Person.class).list();
 	}
 
-	public cls_Person getPerson(int personid) {
+	public cls_Person getPerson(String personid) {
 		return (cls_Person) getSessionFactory().getCurrentSession().get(cls_Person.class, personid);
 	}
 
