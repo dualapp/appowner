@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+
+	xmlns:f="http://java.sun.com/jsf/core">
+ <h:head><title></title></h:head>
+<body bgcolor="white">
+  <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    
+   <table>
+   <tr> 
+        <td><h:outputLabel for="ch_Access" value="Organization" /></td>
+            <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:150px">
+             <f:selectItem itemLabel="Shaffi Paradise"  itemValue="Shaffi Paradise"  />
+            
+            </p:selectOneMenu>
+            </td>
+             
+                <td><h:outputLabel for="ch_Access1" value="Category" /></td>
+            <td><p:selectOneMenu id="ch_Access1" value="#{scriptBean.ch_Access}" style="width:150px">
+             <f:selectItem itemLabel="Furniture"  itemValue="Furniture"  />
+            <f:selectItem itemLabel="Household"  itemValue="Household"  />
+                <f:selectItem itemLabel="Apartment"  itemValue="Apartment"  />
+                 <f:selectItem itemLabel="Vechile"  itemValue="Vechile"  />
+               	<f:selectItem itemLabel="Other"  itemValue="Other"  />
+               	<f:selectItem itemLabel="Electronic Appliances"  itemValue="Electronic Appliances"  />
+               	<f:selectItem itemLabel="Real Estate"  itemValue="Real Estate"  />
+            </p:selectOneMenu>
+            </td>
+            </tr>
+      
+   
+             <h3 style="margin-top:0"></h3>
+             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+            <p:outputLabel for="AD" value="AD Type" />
+             <p:selectOneRadio id="AD" value="#{radioView.aDType}">
+            <f:selectItem itemLabel="My Community" itemValue="My Community" />
+            <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood  " />
+            
+           </p:selectOneRadio>
+         </h:panelGrid>
+
+       <h3 style="margin-top:0"></h3>
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <p:outputLabel for="I" value="I want to" />
+        <p:selectOneRadio id="I" value="#{radioView.console}">
+            <f:selectItem itemLabel="SELL" itemValue="SELL" />
+            <f:selectItem itemLabel="BUY" itemValue="BUY" />
+            <f:selectItem itemLabel="RENT" itemValue="RENT" />
+        </p:selectOneRadio>
+    </h:panelGrid>
+ 
+ 
+          <tr>
+           <td>
+          <h:outputText value="Title"></h:outputText></td>
+                        
+          <td>  <h:inputText  value="#{scriptBean.str_Description}" style="width:500px">
+            </h:inputText>
+            </td>
+            </tr>
+   <br />
+   <br />
+  
+    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                  multiple="true" update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+ 
+    <p:growl id="messages" showDetail="true" />
+
+     <h3 style="margin-top: 0">Description</h3>
+  <p:inputTextarea rows="10" cols="50" completeMethod="#{inputTextareaView.completeArea}" queryDelay="750" minQueryLength="4" />
+            
+            <tr>
+                <td><p:commandButton id="addContact" value="Submit"  action="#{cls_ContactBean.addContact}" ajax="false"/></td>     
+            </tr>
+    <tr>
+                <td><p:commandButton id="addContact1" value="Cancle"  action="#{cls_ContactBean.addContact}" ajax="false"/></td>     
+            </tr>
+
+                  </table>
+           
+             
+           </h:form>
+
+           </body>
+   </html>
