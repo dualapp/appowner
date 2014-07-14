@@ -173,9 +173,13 @@ public class ComplainServiceImpl implements ComplainService{
 	public List<UserApartment> listApartment(){
 		return getComplainDao().listApartment();
 	}
-	public int count(String ApartmentName)
+	public Long count(String ApartmentName)
 	{
 		return getComplainDao().count(ApartmentName);
 	}
-	
+	@SuppressWarnings("unchecked")
+	public List<User> getUserlist(String str_Apartmentname)
+	{
+		return (List<User>) getComplainDao().getUserlist(str_Apartmentname);
+	}
 }
