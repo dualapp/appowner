@@ -1,8 +1,8 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.*;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -26,21 +26,24 @@ public class Cls_EnquiryBean implements Serializable {
 	    private String personPhone;
 	    private String personZip;
 		private ArrayList<String> stateListByCountry;
-	    private String enquiry_zip;
+	   // private String enquiry_zip;
 	    private List<cls_Person> personList;
 		private List<String> enquiry_selecteCities;
 		private String RandomnumberGenerator;
 		
 		public String getRandomNumberGenerator() {
-			Random rand = new Random();
-			String AlphabetString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-			char[] alphabet = AlphabetString.toCharArray();
-			StringBuilder generator = new StringBuilder();
-			for(int i=0 ; i < 16 ; i++)
-			{
-				generator.append(alphabet[rand.nextInt(alphabet.length)]);
-			}
-			return generator.toString();
+			int len = 0;
+			Random rnd = new Random();
+			String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			StringBuilder sb = new StringBuilder( len );
+			   for( int i = 0; i < len; i++ ) 
+			      sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
+			   System.out.println(sb.toString());
+			   return sb.toString();
+		}
+		
+		public void setRandomnumberGenerator(String randomnumberGenerator) {
+			RandomnumberGenerator=randomnumberGenerator;
 		}
 		
 		public List<String> getEnquiry_selecteCities() {
@@ -130,12 +133,20 @@ public class Cls_EnquiryBean implements Serializable {
 		
 	
 	    
-	public String getEnquiry_zip() {
+	public String getPersonZip() {
+			return personZip;
+		}
+
+		public void setPersonZip(String personZip) {
+			this.personZip = personZip;
+		}
+
+	/*public String getEnquiry_zip() {
 			return enquiry_zip;
 		}
 		public void setEnquiry_zip(String enquiry_zip) {
 			this.enquiry_zip = enquiry_zip;
-		}
+		}*/
 	public String getEnquiry_selectedCity() {
 			return enquiry_selectedCity;
 		}
@@ -258,7 +269,7 @@ public class Cls_EnquiryBean implements Serializable {
 		{  
 			try{
 			 cls_Person person=new cls_Person();
-			 person.setPersonId(RandomnumberGenerator);
+			 person.setPersonId( getRandomNumberGenerator());
 			 person.setPersonName(getPersonName());
 			 person.setPersonEmail(getPersonEmail());
 			 person.setPersonPhone(personPhone);
@@ -278,12 +289,9 @@ public class Cls_EnquiryBean implements Serializable {
 		return ERROR;
 			
 		}
-		public void setPersonZip(String personZip) {
-			this.personZip = personZip;
-		}
-		private String getPersonZip() {
-			return null;
-		}
+		 
+		 
+
 		public String deletePerson(String PersonId)
 		 {
 			 cls_Person person=new cls_Person();
