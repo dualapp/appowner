@@ -1,8 +1,7 @@
 package com.appowner.model;
 
 import java.io.Serializable;
- 
-
+import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,8 +30,17 @@ public class cls_Person implements Serializable{
 	private String personCity;
 	private String personPhone;
 	private String personZip;
+//	private String RandomnumberGenerator;
 	
 	
+/*	public String getRandomnumberGenerator() {
+		return RandomnumberGenerator;
+	}
+
+	public void setRandomnumberGenerator(String randomnumberGenerator) {
+		RandomnumberGenerator = randomnumberGenerator;
+	}*/
+
 	public String getPersonPhone() {
 		return personPhone;
 	}
@@ -77,7 +85,7 @@ public class cls_Person implements Serializable{
 	}
 
 
-	private String enquiry_zip;
+	/*private String enquiry_zip;
 
 	public String getEnquiry_zip() {
 		return enquiry_zip;
@@ -85,7 +93,7 @@ public class cls_Person implements Serializable{
 
 	public void setEnquiry_zip(String enquiry_zip) {
 		this.enquiry_zip = enquiry_zip;
-	}
+	}*/
 
 	 
 

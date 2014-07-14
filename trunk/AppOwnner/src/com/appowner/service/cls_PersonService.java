@@ -34,5 +34,7 @@ public interface cls_PersonService {
 	public List<String> stateList();
 
 	public List< String> cityList();
+
+	 
 }
 
