@@ -75,5 +75,16 @@ public class UserApartment   implements Serializable{
 	public void setInt_PinCode(int int_PinCode) {
 		this.int_PinCode = int_PinCode;
 	}
+	@Column(name="str_User")
+	private Long int_NoOfUser;
+	public Long getInt_NoOfUser() {
+		return int_NoOfUser;
+	}
+	public void setInt_NoOfUser(Long int_NoOfUser) {
+		this.int_NoOfUser = int_NoOfUser;
+	}
+	
+	
+	
 	
 }
