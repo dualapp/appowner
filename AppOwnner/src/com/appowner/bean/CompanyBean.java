@@ -218,18 +218,39 @@ public class CompanyBean  implements Serializable{
    			UserApartment name = (UserApartment)o;
    			String name1=name.getStr_ApartmentName();
    			System.out.println(name1);
-   			Integer count=getComplainService().count(name1);
+   			Long count=(Long)getComplainService().count(name1);
    			System.out.println(count);
+   			name.setInt_NoOfUser(count);
+   			
    		}
 		return listApartment;
    		
    	}
    	public void setListApartment(List<UserApartment> listApartment) {
    		this.listApartment = listApartment;
-   	}   
-		
+   	} 
+   	
+	private List<User> userlist;
 	
-	 
+   	
+	
+	public List<User> getUserlist() {
+		userlist=new ArrayList<User>();
+		userlist.addAll(getComplainService().getUserlist(str_ApartmentName));
+		System.out.println(userlist);
+		return userlist;
+	}
+	public void setUserlist(List<User> userlist) {
+		this.userlist = userlist;
+	}
+	private String str_ApartmentName;
+	public String getStr_ApartmentName() {
+		return str_ApartmentName;
+	}
+	public void setStr_ApartmentName(String str_ApartmentName) {
+		this.str_ApartmentName = str_ApartmentName;
+	}
+	
 		}
 			
 		
