@@ -25,7 +25,6 @@ import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
-import com.appowner.model.User;
 import com.appowner.service.SubcriptService;
 import com.ibm.icu.text.SimpleDateFormat;
 
@@ -475,8 +474,6 @@ public void AddDocManagement()
 	//For create Document
 	public void document()
 		{
-		
-		
 		intdocid=getInt_Document_CatNM();
 		System.out.println(intdocid);
 		intdocID= getSubcriptService().getdocid1(intdocid);	
