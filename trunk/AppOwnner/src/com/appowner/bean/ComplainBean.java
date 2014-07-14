@@ -419,7 +419,7 @@ public class ComplainBean implements Serializable{
 		           facesContext.addMessage(null, new FacesMessage("Login Successful!!!!!!!!!!!"));
 		           return "ApartmentView.xhtml";
 			   }
-			         
+			      
 }
 }			
 
