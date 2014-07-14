@@ -35,7 +35,7 @@ public class cls_PersonServiceImpl implements cls_PersonService {
 		return getPersonDao().listPersons();
 	}
 
-	public cls_Person getPerson(int personId) {
+	public cls_Person getPerson(String personId) {
 		return personDao.getPerson(personId);
 	}
 	
