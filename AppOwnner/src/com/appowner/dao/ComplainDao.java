@@ -51,7 +51,8 @@ public interface ComplainDao {
 		public void updatePanel(PanelPrice panel);
 		public User validate(String name,String password);
 		public List<UserApartment> listApartment();
-		public int count(String ApartmentName);
+		public Long count(String ApartmentName);
+		public List<User> getUserlist(String str_Apartmentname);
 		}
 	
 
