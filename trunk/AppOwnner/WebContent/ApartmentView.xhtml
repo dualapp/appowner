@@ -47,16 +47,21 @@
                </h:outputText>
               
          </p:column>
-         /*  <p:column>
+           <p:column>
           <f:facet name="header">
                     <h:outputText value="No Of Users" />
                 </f:facet>
-         
-                  <h:outputText value="#{apartment.int_PinCode}">
-               </h:outputText>
+                  <h:link outcome="UserView.xhtml">
+                  <h:outputText value="#{apartment.int_NoOfUser}"/>
+                  
+                  
+                   <h:outputText value="View" />
+                    <f:param name="str_ApartmentName" value="#{apartment.str_ApartmentName}"/>
+                    </h:link>
+              
               
          </p:column>
-          */
+         
         
            </p:dataTable>
          
