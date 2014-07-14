@@ -239,12 +239,21 @@ public class ComplainDaoImpl implements ComplainDao {
 	 {
 		 return (List<UserApartment>) getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).list();	 
 	 }
-	 public int count(String ApartmentName)
+	 public Long count(String ApartmentName)
 	 {
 		 String hql="select count(*) from User where str_Apartment=?";
-		 int count1=(Integer) sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,ApartmentName).uniqueResult();
+		 Long count1=(Long) sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,ApartmentName).uniqueResult();
 		   
 		 System.out.println(count1);
 		 return count1;
 	 }
+	 @SuppressWarnings("unchecked")
+	public List<User> getUserlist(String str_Apartmentname)
+	 {
+		 String hql="from User where str_Apartment=?";
+		  return (List<User>)sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_Apartmentname).list();
+		   
+		
+	 }
+
 }
