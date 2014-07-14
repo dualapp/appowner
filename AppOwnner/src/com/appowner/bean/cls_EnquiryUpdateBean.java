@@ -32,12 +32,12 @@ public class cls_EnquiryUpdateBean implements Serializable {
 		this.person = person;
 	}
 	 
-private int personId;
+private String personId;
 	
-	public int getpersonId() {
+	public String getpersonId() {
 	return personId;
 }
-public void setpersonId(int personId) {
+public void setpersonId(String personId) {
 	this.personId = personId;
 }
 	public void getPerson()
