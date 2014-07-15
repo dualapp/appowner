@@ -2,7 +2,11 @@ package com.appowner.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="tb_ad_category")
@@ -12,21 +16,24 @@ public class Cls_categoryDetail implements Serializable{
 	 * mukesh
 	 */
 	private static final long serialVersionUID = 1L;
-private Integer Int_Category;
-private String Var_CategoryName;
-public Integer getInt_Category() {
-	return Int_Category;
-}
-public void setInt_Category(Integer int_Category) {
-	Int_Category = int_Category;
-}
-public String getVar_CategoryName() {
-	return Var_CategoryName;
-}
-public void setVar_CategoryName(String var_CategoryName) {
-	Var_CategoryName = var_CategoryName;
-}
-public static long getSerialversionuid() {
-	return serialVersionUID;
-}
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+   private Integer int_Ad_categoryId;
+   public Integer getInt_Ad_categoryId() {
+		return int_Ad_categoryId;
+	}
+	public void setInt_Ad_categoryId(Integer int_Ad_categoryId) {
+		this.int_Ad_categoryId = int_Ad_categoryId;
+	}
+	public String getVar_Ad_CategoryName() {
+		return var_Ad_CategoryName;
+	}
+	public void setVar_Ad_CategoryName(String var_Ad_CategoryName) {
+		this.var_Ad_CategoryName = var_Ad_CategoryName;
+	}
+private String var_Ad_CategoryName;
+
+
+
 }

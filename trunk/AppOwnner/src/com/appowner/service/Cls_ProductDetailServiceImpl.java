@@ -1,21 +1,15 @@
 package com.appowner.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.ProductDao;
+import com.appowner.dao.SubcriptDao;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 
-@Service("ProductDetailService")
-@Transactional
-public class ProductServiceImpl implements ProductDetailService {
+public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 	@Autowired
 	private ProductDao productDao;
-
 	public ProductDao getProductDao() {
 		return productDao;
 	}
@@ -27,16 +21,13 @@ public class ProductServiceImpl implements ProductDetailService {
 	@Override
 	public void AddProducts(Cls_ProductDetails pro) {
 		getProductDao().AddProducts(pro);
-	}
-
-	@Override
-	public void getcategoryName() {
-		getProductDao().getcategoryName();
 		
 	}
 
+	@Override
+	public void AddCategorys(Cls_categoryDetail cat) {
+		getProductDao().AddCategorys(cat);
+		
+	}
 
-	
-
-	
 }

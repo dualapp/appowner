@@ -24,24 +24,25 @@ public class Cls_AddDetailsBean implements Serializable {
 	private String Var_ImageName;
 	private String var_Description;
 	private String Ch_Ad_Type;
-	private Integer Int_Ad_categoryId;
-	private String Var_Ad_CategoryName;
-	public String getVar_Ad_CategoryName() {
-		return Var_Ad_CategoryName;
-	}
-	public Integer getInt_Ad_categoryId() {
-		return Int_Ad_categoryId;
-	}
-	public void setInt_Ad_categoryId(Integer int_Ad_categoryId) {
-		Int_Ad_categoryId = int_Ad_categoryId;
-	}
-	public void setVar_Ad_CategoryName(String var_Ad_CategoryName) {
-		Var_Ad_CategoryName = var_Ad_CategoryName;
-	}
+	private Integer int_Ad_categoryId;
+	   public Integer getInt_Ad_categoryId() {
+			return int_Ad_categoryId;
+		}
+		public void setInt_Ad_categoryId(Integer int_Ad_categoryId) {
+			this.int_Ad_categoryId = int_Ad_categoryId;
+		}
+		public String getVar_Ad_CategoryName() {
+			return var_Ad_CategoryName;
+		}
+		public void setVar_Ad_CategoryName(String var_Ad_CategoryName) {
+			this.var_Ad_CategoryName = var_Ad_CategoryName;
+		}
+	private String var_Ad_CategoryName;
+
 	public String getCh_Ad_Type()
 	
 	{
-		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+		
 		return Ch_Ad_Type;
 	}
 	public void setCh_Ad_Type(String ch_Ad_Type) {
@@ -106,22 +107,20 @@ public class Cls_AddDetailsBean implements Serializable {
 		pro.setVar_ImageName(getVar_ImageName());
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
-		getProductDetailService().AddProducts(pro);		
+ getProductDetailService().AddProducts(pro);		
 	}
 	
-	public List<Cls_categoryDetail> getCategoryName() {
-		{
-			ListCreatedocument=new ArrayList<Cls_categoryDetail>();
-			ListCreatedocument.addAll(getProductDetailService().getcategoryName());
-			return ListCreatedocument;
-		};
-	}
-	public void setCategoryName(String categoryName) {
-		Var_Ad_CategoryName = categoryName;
-	}
-	private List<Cls_categoryDetail> ListCreatedocument;
+	public String AddCategory(){
+		Cls_categoryDetail Cat=new Cls_categoryDetail();
+	      System.out.println("hi");
+		Cat.setVar_Ad_CategoryName(getVar_Ad_CategoryName());
+		
+		getProductDetailService().AddCategorys(Cat);
+		return null;
+		
 	}
 	
+}
 	
 	
 	

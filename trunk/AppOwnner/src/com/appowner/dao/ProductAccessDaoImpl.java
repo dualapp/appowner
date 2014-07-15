@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.appowner.model.Cls_ProductDetails;
+import com.appowner.model.Cls_categoryDetail;
 
 public class ProductAccessDaoImpl implements ProductDao{
 	@Autowired
@@ -21,6 +22,12 @@ public class ProductAccessDaoImpl implements ProductDao{
 	@Override
 	public void AddProducts(Cls_ProductDetails pro) {
 		getSessionFactory().getCurrentSession().save(pro);
+	}
+
+	@Override
+	public void AddCategorys(Cls_categoryDetail cat) {
+		getSessionFactory().getCurrentSession().save(cat);	
+		
 	}
 
 	
