@@ -24,13 +24,14 @@ public class Cls_AddDetailsBean implements Serializable {
 	private String Var_ImageName;
 	private String var_Description;
 	private String Ch_Ad_Type;
-	private Integer int_Ad_categoryId;
-	   public Integer getInt_Ad_categoryId() {
-			return int_Ad_categoryId;
-		}
-		public void setInt_Ad_categoryId(Integer int_Ad_categoryId) {
-			this.int_Ad_categoryId = int_Ad_categoryId;
-		}
+	private int int_Ad_categoryId;
+	   
+		public int getInt_Ad_categoryId() {
+		return int_Ad_categoryId;
+	}
+	public void setInt_Ad_categoryId(int int_Ad_categoryId) {
+		this.int_Ad_categoryId = int_Ad_categoryId;
+	}
 		public String getVar_Ad_CategoryName() {
 			return var_Ad_CategoryName;
 		}
@@ -107,16 +108,17 @@ public class Cls_AddDetailsBean implements Serializable {
 		pro.setVar_ImageName(getVar_ImageName());
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
- getProductDetailService().AddProducts(pro);		
+        getProductDetailService().AddProducts(pro);		
 	}
 	
-	public String AddCategory(){
+	public void AddCategory(){
 		Cls_categoryDetail Cat=new Cls_categoryDetail();
 	      System.out.println("hi");
+	      Cat.setInt_Ad_categoryId(getInt_Ad_categoryId());
 		Cat.setVar_Ad_CategoryName(getVar_Ad_CategoryName());
-		
+		System.out.println(var_Ad_CategoryName);
 		getProductDetailService().AddCategorys(Cat);
-		return null;
+		
 		
 	}
 	

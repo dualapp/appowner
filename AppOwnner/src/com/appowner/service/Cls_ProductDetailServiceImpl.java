@@ -30,4 +30,6 @@ public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 		
 	}
 
+	
+
 }
