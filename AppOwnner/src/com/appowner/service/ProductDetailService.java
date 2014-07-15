@@ -5,9 +5,15 @@ import com.appowner.model.Cls_categoryDetail;
 
 public interface ProductDetailService {
 
-	public void AddProducts(Cls_ProductDetails pro);
+	
+
+	public void AddProduct1(Cls_ProductDetails pro);
 
 	public void AddCategorys(Cls_categoryDetail cat);
+
+	
+
+	
 
 	
 

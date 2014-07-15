@@ -1,13 +1,10 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.service.ProductDetailService;
@@ -90,7 +87,10 @@ public class Cls_AddDetailsBean implements Serializable {
 		return serialVersionUID;
 	
 	}
+	@ManagedProperty(value = "#{ProductDetailService}")
+	 
 	private ProductDetailService productDetailService;
+	
 	
 	public ProductDetailService getProductDetailService() {
 		return productDetailService;
@@ -108,18 +108,18 @@ public class Cls_AddDetailsBean implements Serializable {
 		pro.setVar_ImageName(getVar_ImageName());
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
-        getProductDetailService().AddProducts(pro);		
+        getProductDetailService().AddProduct1(pro);		
 	}
 	
 	public void AddCategory(){
-		Cls_categoryDetail Cat=new Cls_categoryDetail();
+		/*Cls_categoryDetail Cat=new Cls_categoryDetail();
 	      System.out.println("hi");
 	      Cat.setInt_Ad_categoryId(getInt_Ad_categoryId());
 		Cat.setVar_Ad_CategoryName(getVar_Ad_CategoryName());
 		System.out.println(var_Ad_CategoryName);
 		getProductDetailService().AddCategorys(Cat);
 		
-		
+		*/
 	}
 	
 }

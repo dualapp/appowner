@@ -7,7 +7,8 @@ public interface ProductDao {
 
 	public void AddProducts(Cls_ProductDetails pro);
 
-	public void AddCategorys(Cls_categoryDetail cat);
+	public void AddProduct1(Cls_ProductDetails pro);
+    public void AddCategorys(Cls_categoryDetail cat);
 
 	
 }
