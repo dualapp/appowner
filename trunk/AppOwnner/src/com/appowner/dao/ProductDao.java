@@ -9,4 +9,5 @@ public interface ProductDao {
 
 	public void AddCategorys(Cls_categoryDetail cat);
 
+	
 }

@@ -9,4 +9,6 @@ public interface ProductDetailService {
 
 	public void AddCategorys(Cls_categoryDetail cat);
 
+	
+
 }

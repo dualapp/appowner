@@ -26,9 +26,11 @@ public class ProductAccessDaoImpl implements ProductDao{
 
 	@Override
 	public void AddCategorys(Cls_categoryDetail cat) {
-		getSessionFactory().getCurrentSession().save(cat);	
+		getSessionFactory().getCurrentSession().save(cat);
 		
 	}
+
+	
 
 	
 
