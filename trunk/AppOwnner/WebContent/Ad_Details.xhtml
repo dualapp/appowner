@@ -13,6 +13,7 @@
     <h:form id="form" enctype="multipart/form-data" prependId="false"> 
     
    <table>
+   <!--  
     <tr> 
         <td><h:outputLabel for="ch_Access" value="Organization" /></td>
             <td><p:selectOneMenu id="ch_Access" value="#{Cls_AddDetailsBean.ch_Access}" style="width:150px">
@@ -20,14 +21,19 @@
             
             </p:selectOneMenu>
             </td>
+              
              
-                <td><h:outputLabel for="ch_Access1" value="Category" /></td>
-            <td><p:selectOneMenu id="ch_Access1" value="#{scriptBean.ch_Access}" style="width:150px">
-             <f:selectItem itemLabel="Shaffi Paradise"  itemValue="Shaffi Paradise"  />
-            
+                 <td><h:outputLabel for="subscriptnames" value="Select Subcription" /></td>
+            <td><p:selectOneMenu id="subscriptname" value="#{scriptBean.subscriptname}" style="width:150px">
+            <f:selectItem itemLabel="Select Subscription"  itemValue=""  />
+                <f:selectItems value="#{scriptBean.subscriptnames}"  />
+                 
+               	
             </p:selectOneMenu>
+            
+            
             </td>
-            </tr>
+            </tr>-->
        
   
               <h3 style="margin-top:0"></h3>

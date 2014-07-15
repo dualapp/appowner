@@ -19,7 +19,7 @@ public class Cls_categoryDetail implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-   private int int_Ad_categoryId;
+    private int int_Ad_categoryId;
 	@Column
 	private String var_Ad_CategoryName;
    
@@ -29,6 +29,7 @@ public class Cls_categoryDetail implements Serializable{
 	public void setInt_Ad_categoryId(int int_Ad_categoryId) {
 		this.int_Ad_categoryId = int_Ad_categoryId;
 	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
