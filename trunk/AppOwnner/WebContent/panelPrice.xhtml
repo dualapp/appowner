@@ -16,7 +16,7 @@
            <tr>
             <td><h:outputText  value="Panel*:" /></td>
             
-             <td><p:selectOneMenu id="options" value="#{complainBean.str_Panel}">
+             <td><p:selectOneMenu id="options" value="#{advertisemaneBean.str_Panel}">
                  <f:selectItem itemLabel="Select One" itemValue="" />
                 <f:selectItem itemLabel="left" itemValue="left" />
                 <f:selectItem itemLabel="right" itemValue="right" />
@@ -28,12 +28,12 @@
             </tr>
            <tr>
                 <td><h:outputLabel  value="Price:" /></td>
-                <td><p:inputText id="Price" value="#{complainBean.doub_Price}">
+                <td><p:inputText id="Price" value="#{advertisementBean.doub_Price}">
                 </p:inputText>
                 </td>
             </tr>
              <tr>
-                <td><p:commandButton id="submit" value="Submit" action="#{complainBean.addPanel}" ajax="false" /></td>
+                <td><p:commandButton id="submit" value="Submit" action="#{advertisementBean.addPanel}" ajax="false" /></td>
             </tr> 
             
         </table>

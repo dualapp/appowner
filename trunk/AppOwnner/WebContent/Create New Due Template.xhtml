@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+         </h:head>
+  <body bgcolor="pink">
+    <h:form id="form1" enctype="multipart/form-data">
+      <p:panel id="panel" header="Crate New Due Template" style="margin-bottom:20px;"> 
+       <p:messages id="messages"/>  
+        <table>
+            <tr>
+                <td><h:outputLabel value="Organisation:" /></td>
+              <td><p:selectOneMenu id="option" value="aaa"  style="width:150px">
+                   <f:selectItems value="aaa" />
+                 </p:selectOneMenu>
+             </td>
+               
+            </tr>
+           <tr>
+            <td><h:outputText  value="Due Template*:" /></td>
+            
+              
+              <td> <h:inputText id="result" value="#{flash.passedObject.selected}" /> 
+               
+                </td>
+             </tr>
+             </table>
+             </p:panel>
+             </h:form>
+             </body>
+             </html>
+              
+              
+              
+        
+           
+            
