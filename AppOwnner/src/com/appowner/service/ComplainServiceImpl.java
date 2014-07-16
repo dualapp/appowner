@@ -35,48 +35,20 @@ public class ComplainServiceImpl implements ComplainService{
 	{
 		getComplainDao().addComplain(complain);
 	}
-	public void addStaff(Staff staff)
-	{
-		getComplainDao().addStaff(staff);
-	}
+
 	
 	public void addContact(Contact contact)
 	{
 		getComplainDao().addContact(contact);
 	}
-	public void addRole(CommiteeRole role)
-	{
-		getComplainDao().addRole(role);
-	}
-	public void addMaster(RoleMaster master)
-	{
-		getComplainDao().addMaster(master);
-	}
-	public void addNotice(Notice notice)
-	{
-		getComplainDao().addNotice(notice);
-	}
+	
 	
 	  public List<String> blockList()
 	  {
 		 return  getComplainDao().blockList(); 
 	  }
-	  public List<Staff> listStaffRoles()
-	  {
-		  return  getComplainDao().listStaffRoles();
-	  }
-	  public List<CommiteeRole> listCommiteeRoles()
-	  {
-		  return  getComplainDao().listCommiteeRoles(); 
-	  }
-	  public List<RoleMaster> listRoleMaster()
-	  {
-		  return  getComplainDao().listRoleMaster();  
-	  }
-	  public List<Notice> listNotices()
-	  {
-		  return  getComplainDao().listNotices();  
-	  }
+	 
+	
 	  @Override
 		public List<String> faltListBlock(String Block) {
 		     System.out.println(Block);
@@ -86,18 +58,7 @@ public class ComplainServiceImpl implements ComplainService{
 			 return  getComplainDao().renterListFlat(Flat); 
 		}  
 	
-	public void addCompany(Company company)
-	{
-		getComplainDao().addCompany(company);
-	}
-	public void addCompanyPerson(CompanyPerson person)
-	{
-		getComplainDao().addCompanyPerson(person);
-	}
-	public void addPanel(PanelPrice panel)
-	{
-		getComplainDao().addPanel(panel);
-	}
+	
 	public List<Complain> listComplain() {
 		return getComplainDao().listComplain();
 	}
@@ -113,73 +74,26 @@ public class ComplainServiceImpl implements ComplainService{
 		 return getComplainDao().vendorListName(str_VendorType);  
 	 }
 	
-	public List<PanelPrice> listPanelPrice()
-	{
-		return getComplainDao().listPanelPrice();
-	}
+	
 	public Complain getComplain(int int_ComplainID) {
 		return getComplainDao().getComplain(int_ComplainID);
 	}
-	public Company getCompany(int int_CompanyID)
-	{
-		return getComplainDao().getCompany(int_CompanyID);
-	}
-	public List<CompanyPerson> getCompanyPerson(int int_CompanyID)
-	{
-		return getComplainDao().getCompanyPerson(int_CompanyID);
-	}
 	
-	 public List<Company> listCompany()
-	 {
-		 return getComplainDao().listCompany(); 
-	 }
-	    public List<CompanyPerson> listCompanyPerson()
-	    {
-	    	return getComplainDao().listCompanyPerson();
-	    }
 	public void update(Complain cmp)
 	{
 		getComplainDao().update(cmp);
 	}
-	public void update(Company cmp1)
-	{
-		getComplainDao().update(cmp1);
-	}
-	public void update(CompanyPerson person)
-	{
-		getComplainDao().update(person);
-	}
+	
 	public void deleteComplain(Complain complain)
 	{
 		getComplainDao().deleteComplain(complain);
 	}
-	public CompanyPerson getCompanyPerson1(int int_CompanyPersonID)
-	{
-		 return getComplainDao().getCompanyPerson1(int_CompanyPersonID);
-	}
+	
 	
 /*	public int getNoPerson(String str_CompanyName)
 	{
 		return getComplainDao().getNoPerson(str_CompanyName);
 	}*/
-	public void updatePanel(PanelPrice panel)
-	{
-		getComplainDao().updatePanel(panel);
-	}
-	public User validate(String name,String password)
-	{
-		 return getComplainDao().validate(name,password);
-	}
-	public List<UserApartment> listApartment(){
-		return getComplainDao().listApartment();
-	}
-	public Long count(String ApartmentName)
-	{
-		return getComplainDao().count(ApartmentName);
-	}
-	@SuppressWarnings("unchecked")
-	public List<User> getUserlist(String str_Apartmentname)
-	{
-		return (List<User>) getComplainDao().getUserlist(str_Apartmentname);
-	}
+	
+	
 }
