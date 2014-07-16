@@ -8,9 +8,9 @@
 	xmlns:p="http://primefaces.org/ui">
 
  <f:metadata>
-	<f:viewParam name="int_CompanyPersonID" value="#{updateBean.int_CompanyPersonID}"  />
+	<f:viewParam name="int_CompanyPersonID" value="#{advertisementBean.int_CompanyPersonID}"  />
 	 
-	<f:viewAction action="#{updateBean.getCompanyPerson1}" />
+	<f:viewAction action="#{advertisementBean.getCompanyPerson1}" />
 	
 </f:metadata>
 <h:head>
@@ -20,16 +20,16 @@
  <h:form>
   <h:panelGrid columns="2">
     <h:outputText value="ContactPersonName:"/>
-    <h:inputText value="#{updateBean.cmpp.str_CompanyPersonName}"/>
+    <h:inputText value="#{advertisementBean.cmpp.str_CompanyPersonName}"/>
     
     <h:outputText value="PersonAddress:"/>
-    <h:inputText value="#{updateBean.cmpp.str_Designation}"/>
+    <h:inputText value="#{advertisementBean.cmpp.str_Designation}"/>
       <h:outputText value="Email:"/>
-    <h:inputText value="#{updateBean.cmpp.str_Email}"  required="true" validatorMessage=" Email is not valid" requiredMessage="Please enter correct EmailAddress">
+    <h:inputText value="#{advertisementBean.cmpp.str_Email}"  required="true" validatorMessage=" Email is not valid" requiredMessage="Please enter correct EmailAddress">
                      <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                   </h:inputText>
     <h:outputText value="MobileNo:"/>
-    <h:inputText value="#{updateBean.cmpp.str_MobileNo}"   required="true"  validatorMessage="ContactPersonMobile must be 10" requiredMessage="PersonMobileNo. is required">
+    <h:inputText value="#{advertisementBean.cmpp.str_MobileNo}"   required="true"  validatorMessage="ContactPersonMobile must be 10" requiredMessage="PersonMobileNo. is required">
                      <f:validateLength minimum="10" />
                     <f:validateRegex pattern="^([+]?[\d]+)?$" />
                   </h:inputText>

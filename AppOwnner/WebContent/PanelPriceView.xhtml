@@ -12,7 +12,7 @@
 <h:body>
     <h:form>
         <h:outputText value="Booking Information : "></h:outputText>
-         <p:dataTable  id="panel" var="panel" value="#{complainBean.listPanelPrice}"  rowEditListener="#{complainBean.onEdit}" style="width: 20%">
+         <p:dataTable  id="panel" var="panel" value="#{advertisementBean.listPanelPrice}"  rowEditListener="#{advertisementBean.onEdit}" style="width: 20%">
        
             <p:column>
               <p:rowEditor>
@@ -56,7 +56,7 @@
             
               </p:dataTable>
               <br/><br/>
-              <p:commandButton value="Save Changes" action="#{complainBean.saveAction}" />
+              <p:commandButton value="Save Changes" action="#{companyBean.saveAction}" />
               </h:form>
               </h:body>
 </html>

@@ -7,9 +7,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
 	  <f:metadata>
-	<f:viewParam name="int_ComplainID" value="#{updateBean.int_ComplainID}"  />
+	<f:viewParam name="int_ComplainID" value="#{complainBean.int_ComplainID}"  />
 	 
-	<f:viewAction action="#{updateBean.getComplain}" />
+	<f:viewAction action="#{complainBean.getComplain}" />
 </f:metadata>
 
 <h:head>
@@ -19,27 +19,27 @@
 <h:form>
   <h:panelGrid columns="2">
     <h:outputText value="Name:"/>
-    <h:inputText value="#{updateBean.cmp.str_UserName}"/>
+    <h:inputText value="#{complainBean.cmp.str_UserName}"/>
     
     <h:outputText value="Complaint Type:"/>
-    <h:inputText value="#{updateBean.cmp.str_ComplainType}"/>
+    <h:inputText value="#{complainBean.cmp.str_ComplainType}"/>
      
      <h:outputText value="Category:"/>
-    <h:inputText value="#{updateBean.cmp.str_VendorType}"/>
+    <h:inputText value="#{complainBean.cmp.str_VendorType}"/>
     
     
     <h:outputText value="Assigned To:"/>
-    <h:inputText value="#{updateBean.cmp.str_VenderName}"  />
+    <h:inputText value="#{complainBean.cmp.str_VenderName}"  />
     
      <h:outputText value="Complaint Nature:"/>
-    <h:inputText value="#{updateBean.cmp.ch_Complain}"/>
+    <h:inputText value="#{complainBean.cmp.ch_Complain}"/>
      
     
      
      <h:outputText value="Description:"/>
-     <h:inputTextarea rows="8" cols="25"  value="#{updateBean.cmp.str_Description}"/>
+     <h:inputTextarea rows="8" cols="25"  value="#{complainBean.cmp.str_Description}"/>
     
-     <h:commandButton  value="Submit"  action="#{updateBean.saveUser}"/>
+     <h:commandButton  value="Submit"  action="#{complainBean.saveUser}"/>
   </h:panelGrid>
   </h:form>
   </h:body>

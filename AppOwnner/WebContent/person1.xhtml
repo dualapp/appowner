@@ -7,9 +7,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 	<f:metadata>
-	<f:viewParam name="int_CompanyID" value="#{updateBean.int_CompanyID}"  />
+	<f:viewParam name="int_CompanyID" value="#{advertisementBean.int_CompanyID}"  />
 	 
-	<f:viewAction action="#{updateBean.getCompany}" />
+	<f:viewAction action="#{advertisementBean.getCompany}" />
 </f:metadata>
  <body bgcolor="pink">
 <h:form>
@@ -18,36 +18,36 @@
 <p:focus context="panel"/>
 <table>
   <tr><td><h:outputText value="CompanyName:"/></td>  
-  <td><h:inputText value="#{updateBean.cmp1.str_CompanyName}"/></td>  
+  <td><h:inputText value="#{advertisementBean.cmp1.str_CompanyName}"/></td>  
     </tr>
     <tr>
     
    <td> <h:outputText value="CompanyAddress:"/></td>
-  <td>  <h:inputText value="#{updateBean.cmp1.str_CompanyAddress}"/></td>
+  <td>  <h:inputText value="#{advertisementBean.cmp1.str_CompanyAddress}"/></td>
     </tr>
     <tr>
      <td>  <h:outputText value="City:"/></td>
-   <td>  <h:inputText value="#{updateBean.cmp1.str_City}"/></td>  
+   <td>  <h:inputText value="#{advertisementBean.cmp1.str_City}"/></td>  
    </tr>
    <tr>
    <td>  <h:outputText value="State:"/></td>
-   <td>  <h:inputText value="#{updateBean.cmp1.str_State}"/></td>  	
+   <td>  <h:inputText value="#{advertisementBean.cmp1.str_State}"/></td>  	
    </tr>
    <tr>
     <td> <h:outputText value="Zipcode:"/></td>
-   <td>  <h:inputText value="#{updateBean.cmp1.int_Zipcode}" />
+   <td>  <h:inputText value="#{advertisementBean.cmp1.int_Zipcode}" />
        </td>  
         </tr>
         <tr>
    <td>   <h:outputText value="MobileNo:"/></td>
-   <td>  <h:inputText value="#{updateBean.cmp1.str_Mobile}" />
+   <td>  <h:inputText value="#{advertisementBean.cmp1.str_Mobile}" />
                   </td>  
     </tr>
     
    
     <tr>
   <td>   <h:outputText value="CompanyType:"/></td>  
-   <td>  <h:inputText id="options" value="#{updateBean.cmp1.str_CompanyType}"/>
+   <td>  <h:inputText id="options" value="#{advertisementBean.cmp1.str_CompanyType}"/>
                 
                 
    </td>  
@@ -63,7 +63,7 @@
   
   <h:form id="form1">
         <h:outputText value="CompanyPerson Information : "></h:outputText>
-       <p:dataTable id="person" var="person1" value="#{updateBean.listCompanyPerson1}" style="width: 10%">
+       <p:dataTable id="person" var="person1" value="#{advertisementBean.listCompanyPerson1}" style="width: 10%">
            <p:column>
                 <f:facet name="header">
                     <h:outputText value="CompanyPersonId" />

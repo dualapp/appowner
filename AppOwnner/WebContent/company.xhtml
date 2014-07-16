@@ -20,34 +20,34 @@
           <tr><td><h2 align="center">Company Registration Details</h2></td></tr>
             <tr>
                 <td><h:outputLabel for="CompanyName" value="CompanyName: " /></td>
-                <td><p:inputText id="CompanyName" value="#{companyBean.str_CompanyName}">
+                <td><p:inputText id="CompanyName" value="#{advertisementBean.str_CompanyName}">
                 </p:inputText>
                 </td>
             </tr>
             <tr>
                 <td><h:outputLabel for="CompanyAddress" value="CompanyAddress*: " /></td>
-                <td><p:inputTextarea rows="2" cols="30" id="CompanyAddress" value="#{companyBean.str_CompanyAddress}" required="true" requiredMessage="Address is required">
+                <td><p:inputTextarea rows="2" cols="30" id="CompanyAddress" value="#{advertisementBean.str_CompanyAddress}" required="true" requiredMessage="Address is required">
                   </p:inputTextarea>
                   <!--     <p:message for="empId"/> -->
                 </td>
             </tr>
              <tr>
                 <td><h:outputLabel for="City" value="City*: " /></td>
-                <td><p:inputText id="City" value="#{companyBean.str_City}" required="true" requiredMessage="City is required">
+                <td><p:inputText id="City" value="#{advertisementBean.str_City}" required="true" requiredMessage="City is required">
                   </p:inputText>
                   <!--     <p:message for="empId"/> -->
                 </td>
             </tr>
             <tr>
                 <td><h:outputLabel for="State" value="State*: " /></td>
-                <td><p:inputText id="State" value="#{companyBean.str_State}" required="true" requiredMessage="State is required">
+                <td><p:inputText id="State" value="#{advertisementBean.str_State}" required="true" requiredMessage="State is required">
                   </p:inputText>
                   <!--     <p:message for="empId"/> -->
                 </td>
             </tr>
             <tr>
                 <td><h:outputLabel for="Zip" value="Zip*: " /></td>
-                <td><p:inputText id="Zip" value="#{companyBean.int_Zipcode}" required="true" validatorMessage="Zipcode must be 6"  requiredMessage="Zipcode  is required">
+                <td><p:inputText id="Zip" value="#{advertisementBean.int_Zipcode}" required="true" validatorMessage="Zipcode must be 6"  requiredMessage="Zipcode  is required">
                      <f:validateLength minimum="6" />
                 
                   </p:inputText>
@@ -56,7 +56,7 @@
             </tr>
              <tr>
                 <td><h:outputLabel for="MobileNo" value="MobileNo*: " /></td>
-                <td><p:inputText id="MobileNo" value="#{companyBean.str_MobileNo}" required="true"  validatorMessage="MobileNo. must be 10" requiredMessage="MobileNo. is required">
+                <td><p:inputText id="MobileNo" value="#{advertisementBean.str_MobileNo}" required="true"  validatorMessage="MobileNo. must be 10" requiredMessage="MobileNo. is required">
                      <f:validateLength minimum="10" />
                     <f:validateRegex pattern="^([+]?[\d]+)?$" />
                   </p:inputText>
@@ -66,7 +66,7 @@
             <tr>
             <td><h:outputText  value="CompanyType*:" /></td>
             
-             <td><p:selectOneMenu id="options" value="#{companyBean.str_CompanyType}">
+             <td><p:selectOneMenu id="options" value="#{advertisementBean.str_CompanyType}">
                  <f:selectItem itemLabel="Select One" itemValue="" />
                 <f:selectItem itemLabel="Software" itemValue="Software" />
                 <f:selectItem itemLabel="sales" itemValue="sales" />
@@ -81,7 +81,7 @@
           
        <tr><td><h2 align="center">ContactPerson Details</h2></td></tr>
            <tr>
-                 <td><h:commandButton  value="AddContactPerson" action="#{companyBean.add}" immediate="true" execute="@this" >
+                 <td><h:commandButton  value="AddContactPerson" action="#{advertisementBean.add}" immediate="true" execute="@this" >
                      <f:ajax render="@form" execute="@form"/>
                      </h:commandButton>
                  </td>
@@ -90,7 +90,7 @@
      <p:spacer height="40px;"/>
       <tr>
       <td>
-     <c:forEach items="#{companyBean.person1}"   var="person"  varstatus="true">
+     <c:forEach items="#{advertisementBean.person1}"   var="person"  varstatus="true">
           <br/>
             <h:outputText value="CompanyPersonName"/>
 	    <p:inputText value="#{person.str_CompanyPersonName}"/>
