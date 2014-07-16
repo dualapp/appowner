@@ -175,85 +175,7 @@ public class ComplainBean implements Serializable{
        
         
     }
-	private PanelPrice panel;
-	 public PanelPrice getPanel() {
-		return panel;
-	}
-	public void setPanel(PanelPrice panel) {
-		this.panel = panel;
-	}
-	private String str_Panel;
-	  public String getStr_Panel() {
-		return str_Panel;
-	}
-	public void setStr_Panel(String str_Panel) {
-		this.str_Panel = str_Panel;
-	}
-	public double getDoub_Price() {
-		return doub_Price;
-	}
-	public void setDoub_Price(double doub_Price) {
-		this.doub_Price = doub_Price;
-	}
-	private double doub_Price;
-	private Integer int_PanelID;
-	  public Integer getInt_PanelID() {
-			return int_PanelID;
-		}
-		public void setInt_PanelID(Integer int_PanelID) {
-			this.int_PanelID = int_PanelID;
-		}
-		 public String addPanel()
-			{  try{
-				PanelPrice panel=new PanelPrice();
-				panel.setStr_Panel(getStr_Panel());
-				panel.setDoub_Price(getDoub_Price());
-				getComplainService().addPanel(panel);
-				
-				return "PanelPriceView.xhtml";
-			}
-			catch(DataAccessException e)
-			{e.printStackTrace();
-				
-			}
-			return ERROR;
-				
-			}
-		 private List<PanelPrice> ListPanelPrice;
-			public List<PanelPrice> getListPanelPrice() {
-				ListPanelPrice	= new ArrayList<PanelPrice>();
-				ListPanelPrice.addAll(getComplainService().listPanelPrice());
-				System.out.println(ListPanelPrice);
-			return ListPanelPrice;
-			}
-			public void setListPanelPrice(List<PanelPrice> listPanelPrice) {
-				ListPanelPrice= listPanelPrice;
-			}
-			public Boolean getEditable() {
-				return editable;
-			}
-			public void setEditable(Boolean editable) {
-				this.editable = editable;
-			}
-			private Boolean editable;
-
-			public String editAction(PanelPrice panel) {
-				panel.setEditable(true);
-				 
-				return  null;
-			}
-			public String saveAction() {
-				 
-				//get all existing value but set "editable" to false 
-				for (PanelPrice panel : ListPanelPrice){
-					panel.setEditable(false);
-				}
-				System.out.println(ListPanelPrice);
-				//return to current page
-				return null;
-		 
-			}
-			
+	
 			private String str_File;
 			
 			
@@ -378,49 +300,36 @@ public class ComplainBean implements Serializable{
 			public void setBeHalfOfs(List<String> beHalfOfs) {
 				BeHalfOfs = beHalfOfs;
 			}
-			public void onEdit(RowEditEvent event) {
-				   
-				}
-			private String name;
-			public String getName() {
-				return name;
+			private Complain cmp;
+			 public Complain getCmp() {
+				return cmp;
 			}
-			public void setName(String name) {
-				this.name = name;
-			}
-			public String getPassword() {
-				return password;
-			}
-			public void setPassword(String password) {
-				this.password = password;
-			}
-			private String password;
-			private User user;
-			public User getUser() {
-				return user;
-			}
-			public void setUser(User user) {
-				this.user = user;
+			public void setCmp(Complain cmp) {
+				this.cmp = cmp;
 			}
 			
 			
-			public String validate (String name1,String Password)  
-			{	user=getComplainService().validate(name1,Password);
-			          if(user==null)
-			        	{  
-			        		FacesContext facesContext = FacesContext.getCurrentInstance();
-				    	   facesContext.addMessage(null, new FacesMessage("invalid user name or password!!!!!"));
-				    	       return "SuperAdmin.xhtml";  
-				       
-			        	}
-			   else    
-			   { 
-				   FacesContext facesContext = FacesContext.getCurrentInstance();
-		           facesContext.addMessage(null, new FacesMessage("Login Successful!!!!!!!!!!!"));
-		           return "ApartmentView.xhtml";
-			   }
-			      
-}
+			public void getComplain()
+			{
+			cmp=getComplainService().getComplain(int_ComplainID);
+				
+			}
+			
+			
+			public String saveUser( ) {
+				 
+				//System.out.println(emp.getEmpId());
+				
+					getComplainService().update(cmp);
+					
+				
+				
+				
+				return "ComplainView.xhtml";
+			}
+			
+			
+			
 }			
 
 	 
