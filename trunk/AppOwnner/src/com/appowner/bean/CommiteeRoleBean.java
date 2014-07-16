@@ -15,19 +15,21 @@ import javax.faces.event.ValueChangeEvent;
 import com.appowner.model.CommiteeRole;
 import com.appowner.model.Staff;
 import com.appowner.service.ComplainService;
+import com.appowner.service.StaffService;
 
 @ManagedBean
 @ViewScoped
 public class CommiteeRoleBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value = "#{ComplainService}")
-	private ComplainService complainService;
-	public ComplainService getComplainService() {
-		return complainService;
+	@ManagedProperty(value = "#{StaffService}")
+	private StaffService staffService;
+	
+	public StaffService getStaffService() {
+		return staffService;
 	}
-	public void setComplainService(ComplainService complainService) {
-		this.complainService = complainService;
+	public void setStaffService(StaffService staffService) {
+		this.staffService = staffService;
 	}
 	private Integer int_Commitee_RoleID;
 	public Integer getInt_Commitee_RoleID() {
@@ -75,7 +77,7 @@ public class CommiteeRoleBean implements Serializable{
     private List<CommiteeRole> ListCommiteeRoles;
 	public List<CommiteeRole> getListCommiteeRoles() {
 		ListCommiteeRoles=new ArrayList<CommiteeRole>();
-		ListCommiteeRoles.addAll(getComplainService().listCommiteeRoles());
+		ListCommiteeRoles.addAll(getStaffService().listCommiteeRoles());
 		return ListCommiteeRoles;
 	}
 	public void setListCommiteeRoles(List<CommiteeRole> listCommiteeRoles) {
@@ -135,7 +137,7 @@ public void setRole2(CommiteeRole role2) {
         
         	role2.setStr_Commitee_RoleName(str_Commitee_RoleName);
         
-        	getComplainService().addRole(role2);
+        	getStaffService().addRole(role2);
         	
         }
         return "CommiteeRole.xhtml";
