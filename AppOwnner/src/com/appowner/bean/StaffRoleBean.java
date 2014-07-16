@@ -16,19 +16,21 @@ import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.Staff;
 import com.appowner.service.ComplainService;
+import com.appowner.service.StaffService;
 
 @ManagedBean
 @SessionScoped
 public class StaffRoleBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value = "#{ComplainService}")
-	private ComplainService complainService;
-	public ComplainService getComplainService() {
-		return complainService;
+	@ManagedProperty(value = "#{StaffService}")
+	private StaffService staffService;
+	
+	public StaffService getStaffService() {
+		return staffService;
 	}
-	public void setComplainService(ComplainService complainService) {
-		this.complainService = complainService;
+	public void setStaffService(StaffService staffService) {
+		this.staffService = staffService;
 	}
 	private Integer int_StaffID;
 	public Integer getInt_StaffID() {
@@ -77,7 +79,7 @@ public class StaffRoleBean implements Serializable {
 	private List<Staff> ListStaffRoles;
 	public List<Staff> getListStaffRoles() {
 		ListStaffRoles=new ArrayList<Staff>();
-		ListStaffRoles.addAll(getComplainService().listStaffRoles());
+		ListStaffRoles.addAll( getStaffService().listStaffRoles());
 		System.out.println(ListStaffRoles);
 		return ListStaffRoles;
 	}
@@ -136,7 +138,7 @@ public class StaffRoleBean implements Serializable {
         
         	staff1.setStr_StaffName(str_StaffName);
         	staff1.setCh_StaffType('C');
-        	getComplainService().addStaff(staff1);
+        	 getStaffService().addStaff(staff1);
         	
         }
         return "StaffRoles.xhtml";
