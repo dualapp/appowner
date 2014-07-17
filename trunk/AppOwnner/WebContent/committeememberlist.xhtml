@@ -9,9 +9,11 @@
     <title> </title>
     <a href="addcommitteemembers.xhtml">Add More Committee Members</a>
 </h:head>
- <body bgcolor="yellow">
+ <body>
   <h:messages/>
+  <br/>
  <h:form>
+ <legend   style="background-color:#438eb9; color:#fff;">Committee Members</legend>
   <p:dataTable id="committeemember" var="committeemember" value="#{committeeMemberBean.committeememberlist}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
