@@ -1,21 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	 xmlns:p="http://primefaces.org/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jstl/core">
+	template="include/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:define name="content">
  <h:head><title>Vendor Registration</title></h:head>
-<body bgcolor="pink">
+<body>
     <h:form id="form" > 
    
    <h:messages style="color:red"/>
-   <h3 align="center">Vendor Registration Form</h3>
+   <br/><center><legend    style="background-color:#438eb9; color:#fff;">vendor Registration</legend> </center>
+   <div>
      <center>
+      <legend  align="left" style="background-color:#438eb9; color:#fff;">vendorPersonal Details</legend>
         <table>
-          <tr><td>  <h3 align="center">Vendor Personal Details</h3></td></tr>
+         
             <tr> <td><h:outputText value="Vendor CATEGORY: " /></td>
                 <td>
         <p:selectOneMenu value="#{vendorBean.str_VendorType}">
@@ -64,7 +69,10 @@
            </tr> 
            
            <tr><td><h:outputText value="Contact Person Name"/></td><td><h:inputText value="#{vendorBean.str_ContactPersonName}" /></td></tr>
-           <tr><td> <h3 align="center">Permanent Address</h3></td></tr>
+         
+          </table>
+           <legend  align="left" style="background-color:#438eb9; color:#fff;">Permanent Address</legend>
+           <table> 
            <tr> 
             <td><h:outputLabel for="Address" value="Address Line1 " /></td>
                 <td><h:inputText id="Address" label="Address"   value="#{vendorBean.str_VendorAddress}" required="true"  requiredMessage="Please enter vendor Address">
@@ -101,8 +109,10 @@
             <tr> 
             <td><h:outputLabel for="Zip" value="Zip " /></td>
                 <td><h:inputText id="Zip" label="ZipCode"   value="#{vendorBean.str_ZipCode}" required="true"  requiredMessage="Please enter vendor ZipCode">
-            </h:inputText></td></tr>
-              <tr><td>  <h3 align="center">VendorService Details</h3></td></tr>
+            </h:inputText></td></tr></table>
+            <legend  align="left" style="background-color:#438eb9; color:#fff;">VendorService Details</legend>
+            <table>
+              
               <tr><td> <h:commandButton value="Add Services" action="#{vendorBean.add}" immediate="true" execute="@this">
                
                <f:ajax render="@form" execute="@form"/>
@@ -117,10 +127,10 @@
 	    <p:inputText value="#{ int_ServicePrice}" validatorMessage="Price should be  number only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
 	    <f:validateRegex pattern="^([+]?[\d]+)?$" /></p:inputText>
 	    <br/>
-	     </c:forEach> </td></tr>
+	     </c:forEach> </td></tr></table>
     
 	  
-	   <tr><td><h:outputText value="Is Vendor Active? " /></td>
+	   <table><tr><td><h:outputText value="Is Vendor Active? " /></td>
        <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
            </tr>
            <tr><td><h:outputText value="Is a Company? " /></td>
@@ -145,28 +155,10 @@
                 </td>
            </tr>  
              
-	   
-         <!-- <tr> <td><h:outputLabel for="vendorservice" value="Service *  " /></td>
-                <td><h:inputText id="vendorservice"  label="Service"   value="#{vendorBean.str_VendorService}" required="true" requiredMessage="Please enter vendor Service">
-                
-                   
-                    <p:ajax event="blur" update="vendorserviceMsg" />
-              </h:inputText>
-                    <p:message id="vendorserviceMsg" for="vendorservice" display="icon"/>
-                </td>
-                  
-            <td><h:outputLabel for="vendorexpense" value="Pricing *  " /></td>
-           
-          <td><h:inputText id="vendorexpense" label="Expense "   value="#{vendorBean.int_VendorExpense}" required="true" requiredMessage="Please enter vendor  Expense Head">
-                </h:inputText></td>
-              <td>  <h:commandLink   action="#{vendorBean.int_VendorExpense}">
-                 <p:graphicImage  height="25" width="25"   value="images/plus.jpg"/>  
-                 </h:commandLink></td></tr>  -->  
-  
-           <tr><td>  <h3 align="center">Vendor Bank Details</h3></td></tr>
-           
-            
-          
+	   </table>
+	   <legend  align="left" style="background-color:#438eb9; color:#fff;">Vendor Bank Details</legend>
+	   <table>
+         
             <tr>
                 <td><h:outputLabel for="vendorbankaccount" value="Account Number  " /></td>
                 <td><h:inputText id="vendorbankaccount" label="Account Number"   value="#{vendorBean.str_VendorBankAccount}"/>
@@ -227,13 +219,18 @@
                 </td>
            </tr>
            
+            </table>
+            
            
-          <tr>
-          <td><h:commandButton value="Add Vendor" action="#{vendorBean.saveVendor}"/></td>
-          </tr>  
-              </table>
+          
+            <h:commandButton value="Submit" action="#{vendorBean.saveVendor}"/> 
+             
            </center>
+           
+           </div>
            </h:form>
             
            </body>
-             </html>
+            </ui:define>
+            </ui:composition>
+            
