@@ -1,17 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui"
- xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 <h:head><title>Welcome to Advertisement</title></h:head>
  
  <h:body bgcolor="pink">
     <h:form id="form">
-         <p:panel header="RoleMaster Information : ">
+    <br/>
+         <legend class="medium" style="background-color:blue; color:#fff;">RoleMaster Information </legend>
         <p:dataTable  id="master" var="master" value="#{roleMasterBean.listRoleMaster}" style="width: 50%">
             <p:column>
                 <f:facet name="header">
@@ -46,9 +47,9 @@ xmlns:p="http://primefaces.org/ui"
        
       
      
-     </p:panel> 
+      
      <br/>        
-          <p:panel  header="Add New Role">
+          <legend class="medium" style="background-color:blue; color:#fff;">Add New Role</legend>
    
          
 	    <p:inputText value="#{service.str_RoleName}" valueChangeListener="#{roleMasterBean.masterchangeListener}"/>
@@ -59,7 +60,7 @@ xmlns:p="http://primefaces.org/ui"
         <p:column>
 	       <p:commandButton id="submit" value="Add RoleMaster" action="#{roleMasterBean.addMaster}" ajax="false" /> 
 	    </p:column>
-       </p:panel>  
+        
     
    
          
@@ -69,5 +70,6 @@ xmlns:p="http://primefaces.org/ui"
     </h:form>
 </h:body>
 
-</html>
+</ui:define>
+</ui:composition>
 
