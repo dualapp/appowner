@@ -364,14 +364,7 @@ public class AdvertisementBean  implements Serializable{
 			    public void setSelected(String selected) {  
 			        this.selected = selected;  
 			    }  
-			 public void actionTest(AjaxBehaviorEvent ae) {  
-				 System.out.println("hi");
-			        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();  
-			        AdvertisementBean  request = new AdvertisementBean ();  
-			        request.setSelected("Value created in ActionTest");  
-			        flash.put("passedObject", request);  
-			        flash.keep("passedObject");  
-			    }  
+			
 		}
 			
 		
