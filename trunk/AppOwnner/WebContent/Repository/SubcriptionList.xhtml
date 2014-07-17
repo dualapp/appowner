@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>subcript Form</title>
+</h:head>
+<body  bgcolor="pink">
+    <h:form>
+        <h:outputText value="User : "></h:outputText>
+        <p:dataTable id="user" var="user" value="#{scriptBean.listUser}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                <h:outputText value="ID"/>
+                </f:facet>
+                  <h:outputText   value="#{user.subcriptID}" />  
+                
+                
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Name" />
+                </f:facet>
+                <h:outputText value="#{user.subscriptname}" />
+            </p:column>
+            
+            
+            
+            
+             
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="price" />
+                </f:facet>
+                <h:outputText value="#{user.price}" />
+            </p:column>
+            
+           
+            
+             
+              <p:column>
+                <h:link outcome="SubcriptionView.xhtml" value="View"/>
+	   			<f:facet name="header">update</f:facet>
+	   			<h:link outcome="SubcriptionUpdate.xhtml" value="Edit">
+	   			<f:param name="subcriptID" value="#{user.subcriptID}" />	
+	   		</h:link>
+	   		</p:column>
+        </p:dataTable>
+        
+        
+         </h:form>
+        <h:form>
+        
+        </h:form>
+        
+         
+</body>
+
+</ui:define>
+</ui:composition>
