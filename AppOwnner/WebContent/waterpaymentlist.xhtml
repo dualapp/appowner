@@ -14,29 +14,31 @@
  <body bgcolor="yellow">
  
  <h:messages/>
-  <h:form><table><tr><td><h:outputText value="VendorType"/>
+  
+    <h:form method="post">
+          <div>  <legend  align="left" style="background-color:#438eb9; color:#fff;">
+           <h:outputText value="VendorType"/>
        <p:selectOneMenu id="str_VendorType"  value="#{vendorTransactionBean.str_VendorType}" style="width:200px" >
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem itemLabel="Electrician" itemValue="Electrician" />
             <f:selectItem itemLabel="WaterSupplier" itemValue="WaterSupplier" />
             <f:selectItem itemLabel="MilkProvider" itemValue="MilkProvider" />
              <f:selectItem itemLabel="IronMan" itemValue="IronMan" />
-            </p:selectOneMenu></td><td>
+            </p:selectOneMenu> 
         <h:outputText value="From Date"/>
          <p:calendar  navigator="true" display="inline" value="#{ vendorTransactionBean.date_FromDate}">
-         </p:calendar></td><td>
+         </p:calendar>
          <h:outputText value="ToDate"/>
           <p:calendar  navigator="true" display="inline" value="#{vendorTransactionBean.date_ToDate}">
-          </p:calendar></td><td>
+          </p:calendar> 
          <h:commandButton  value="Search Vendor" action="#{vendorTransactionBean.getSearchByVendortype1}">
-         </h:commandButton>
-        </td></tr></table>
+         </h:commandButton> </legend> 
+         </div>
+      
         
-        
-    </h:form>
+    
      <br/><br/><br/>
-    <h:form method="post">
-         
+           
         <p:dataTable id="waterpaymentlist" var="waterpaymentlist" value="#{waterPaymentBean.waterPaymentList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
