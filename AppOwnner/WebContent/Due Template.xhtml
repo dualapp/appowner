@@ -5,15 +5,47 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Due Template  Form</title>
-      <script language='javascript'>
-      function popobjed(http://localhost:8080/AppOwnner/Due Template.xhtml)
-      {
-      var newwindow;
-      newwindow=window.open(url,'name','toolbar=0,scroll bars=1,location=0,statusbar=0,menubar=0,resizable= 0,width=600,height=500,left = 100,top = 100');
-      if (window.focus) {newwindow.focus()}
+     <script src="JavaScript/ModalPopupWindow.js"
+        type="text/javascript">
+     var modalWin = new CreateModalPopUpObject();
+     
+
+     function ShowNewPage(){
+      var callbackFunctionArray = new Array(EnrollNow, EnrollLater);
+      modalWin.ShowURL('Child.htm',320,470,'User Enrollment',null,callbackFunctionArray);
       }
-</script>
-   
+      
+      
+
+
+     function Action1(){
+     alert('Action1 is excuted');
+     modalWin.HideModalPopUp();
+     }
+
+     function Action2(){
+     alert('Action2 is excuted');
+     modalWin.HideModalPopUp();
+     }
+
+     function EnrollNow(msg){
+     modalWin.HideModalPopUp();
+     modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+     }
+
+     function EnrollLater(){
+     modalWin.HideModalPopUp();
+     modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+     }
+
+     function HideModalWindow() {
+         modalWin.HideModalPopUp();
+     }
+
+
+     }
+     </script>
+
 </h:head>
 <body  bgcolor="pink">
   <h:form id="form" prependId="false">
@@ -43,8 +75,12 @@
                 </fieldset>
                 <br/>
                 
-             <button onClick='popobjed();'>Click here</button>
-&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <button  onClick="window.open('Create New Due Template.xhtml',
+  'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
+  status=no,scrollbars=no,resize=no');return false">
+Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             
                 </h:form>
+               
                 </body>
                 </html>
