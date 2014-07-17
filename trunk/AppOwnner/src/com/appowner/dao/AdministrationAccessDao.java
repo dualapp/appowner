@@ -29,10 +29,16 @@ public interface AdministrationAccessDao {
 
 	void deleteAssignedRoles(Integer roleId, Integer int_UserId);
 
-	List<Integer> getRoleNames(Integer int_UserId);
+	List<Integer> getroleids(Integer int_UserId);
 
-	List<RoleManagement> getRoleMaster();
+	List<String> getRoleMaster();
 
 	List<AdministrationAccess> getListAdministrationAccess();
+
+	String getRoleName(Integer roleid);
+
+	List<Integer> getRoleIds();
+
+	List<Integer> getRoleMasterIds();
 
 }
