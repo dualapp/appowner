@@ -1,24 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 <h:head><title>Committee Member Registration</title>
- 
 </h:head>
 <body bgcolor="pink">
     <h:form id="form" > 
     
  
+    
+     <br/>
+     
+   <legend  align="left" style="background-color:#438eb9; color:#fff;">Committee Member Registration</legend>
      <center>
-      <fieldset>
-    <legend>
-   <h:commandButton   value="Committee Member Registration"  action="#" style="background-color:blue; color:#fff;"/> </legend>
-    <table border="1">
-        <tr><th>UserName</th> <th> CommitteeRoles</th><th>Responsible for(Optional)</th><th>Date of Election(Optional)</th></tr>
+     <div style="color:#0000FF">
+    <table >
+         <tr>
+          <th><h3> UserName</h3></th> <th><h3> CommitteeRoles</h3></th><th><h3> Responsible for</h3></th><th><h3> Date of Election(Optional)</h3></th></tr> 
       
    <tr><td>   <p:selectOneMenu value="#{committeeMemberBean.str_UserName}" required="true" requiredMessage="plz enter member Name" valueChangeListener="#{committeeMemberBean.userNameListener}" style="width:200px">
             <f:selectItem itemLabel="Select One" itemValue="" />
@@ -56,17 +60,23 @@
             <td><p:calendar     navigator="true" display="inline"   value="#{committeeMemberBean.date_ElectionDate}" valueChangeListener="#{committeeMemberBean.electionDateListener}"/> </td></tr>
              
      </table>
-      </fieldset>
-      
      <h:commandButton value="Add CommiteeMembers" action="#{committeeMemberBean.addCommitteeMember}" >
       
       </h:commandButton>
       <h:commandButton value="cancel CommiteeMember" action="#{committeeMemberBean.cancelCommitteeMembers}" >
       
       </h:commandButton>
+     </div>
      </center>
+      
+      
+     
+     
     
      </h:form>
       
      </body>
-</html>
+     </ui:define>
+     </ui:composition>
+    
+   
