@@ -86,9 +86,7 @@ public void setRoleManagementList(List<RoleManagement> roleManagementList) {
 		{
 			String rm=(String) itr.next();
 			RoleAssignment r=new RoleAssignment();
-			System.out.println("kkkkkkkkkkkkkkkk");
 			 
-			System.out.println(rm);
 			//getMaintainanceStaffService().deleteAssignedRoles(rm);
 		}
 	}
