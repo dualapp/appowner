@@ -1,19 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- <html xmlns="http://www.w3.org/1999/xhtml"
+ <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 <h:head><title>Maintainance Staff  Registration</title></h:head>
 <body bgcolor="pink">
-    <h:form id="form" > 
+    <h:form id="form" ><br/> 
     <fieldset>
-    <legend>
-   <h:commandButton value="Maintainance Staff  Registration" style="background-color:#c00; color:#fff;"/> </legend>
+     <legend  align="left" style="background-color:#438eb9; color:#fff;">Maintainance Staff Registration</legend>
      <center>
-    <table border="1">
-        <tr><th>FullName</th> <th> RoleName</th><th>Email</th><th>Mobile</th></tr>
+  <div>  <table >
+         <th><h3>FullName</h3></th> <th><h3> RoleName</h3></th><th><h3>Email</h3></th><th><h3>Mobile</h3></th> 
       
    <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
             </h:inputText></td>
@@ -78,8 +79,11 @@
             <tr><td><h:commandButton value="Add CommiteeMembers" action="#{maintainanceStaffBean.addMaintainanceStaff}" ></h:commandButton></td></tr>
             
  </table>
+ </div>
  </center>
  </fieldset>
  </h:form>
  </body>
- </html>
+ </ui:define>
+ </ui:composition>
+ 
