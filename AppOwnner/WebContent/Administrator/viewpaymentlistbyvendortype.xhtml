@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+     <h:head>
+    <title> </title>
+    <a href="addvendor.xhtml">Add Vendor</a>
+</h:head>
+ <body bgcolor="yellow">
+ <h:form>
+ <p:dataTable id="waterpaymentlist" var="v1" value="#{vendorTransactionBean.searchByVendortype}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Payment ID" />
+                </f:facet>
+                <h:outputText  id="int_WaterPaymentId" value="#{v1.int_WaterPaymentId}" />
+            </p:column>
+            
+            
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Name" />
+                </f:facet>
+                <h:outputText  id="str_VendorName" value="#{v1.str_VendorName}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Type" />
+                </f:facet>
+                <h:outputText  id="str_VendorType" value="#{v1.str_VendorType}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="From Date" />
+                </f:facet>
+                <h:outputText  id="date_FromDate" value="#{v1.date_FromDate}" >
+                 </h:outputText>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="To Date" />
+                </f:facet>
+                <h:outputText  id="date_ToDate" value="#{v1.date_ToDate}" >
+                  </h:outputText>
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Payment date" />
+                </f:facet>
+                <h:outputText  id="date_Date" value="#{v1.date_Date}" >
+                 
+                  </h:outputText>
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Total Price" />
+                </f:facet>
+                <h:outputText  id="dbl_TotalPrice" value="#{v1.dbl_TotalPrice}" />
+            </p:column>
+            
+            
+            
+            </p:dataTable>
+ </h:form>
+</body>
+</ui:define>
+</ui:composition>

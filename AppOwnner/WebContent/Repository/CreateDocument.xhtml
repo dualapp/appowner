@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+ <h:head><title></title></h:head>
+<body bgcolor="pink">
+  <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    <br/>
+   <center><legend    style="background-color:#438eb9; color:#fff;">You could frequentlty needed content like Socity Rule Regulation</legend> </center>
+    
+   <table>
+   <tr>
+   <td>
+   
+   <h:outputText value="Choose Your  File for upload "></h:outputText></td>
+   <td> <p:fileUpload value="#{scriptBean.str_FileNM}"
+                        fileUploadListener="#{scriptBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                  multiple="true"  sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+ 
+
+
+ 
+  </td>
+</tr>
+          <tr>
+           <td>
+          <h:outputText value="Description of the document">
+            </h:outputText></td>            
+          <td>  <h:inputText  value="#{scriptBean.str_Description}" style="width:250px">
+            </h:inputText>
+            </td>
+            </tr>
+             
+            
+       
+             <tr>
+                 <td><h:outputLabel for="int_Document_CatNM" value="Document    Category" /></td>
+            <td><p:selectOneMenu  value="#{scriptBean.int_Document_CatNM}" style="width:250px">
+            <f:selectItem itemLabel="Select   Document   Category"  itemValue=""  />
+                <f:selectItems value="#{scriptBean.int_Document_CatNM1}"  />
+               	
+            </p:selectOneMenu>
+            
+            </td>
+            </tr>   
+            <tr> 
+             
+                 <td><h:outputLabel for="ch_Access" value="Accessible to" /></td>
+            <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:150px">
+             <f:selectItem itemLabel="All Members"  itemValue="All Members"  />
+            <f:selectItem itemLabel="Owners"  itemValue="Owners"  />
+                <f:selectItem itemLabel="Committee"  itemValue="Committee"  />
+                 <f:selectItem itemLabel="Administrator"  itemValue="Administrator"  />
+               	<f:selectItem itemLabel="Group"  itemValue="Group"  />
+            </p:selectOneMenu>
+            
+</td>
+            </tr>
+          <tr>
+          <td>
+               <h:selectBooleanCheckbox value="#{scriptBean.bit_emailsend}" /> Notify via Email
+      </td></tr> 
+   		
+            <tr><td> <p:commandButton value="Upload Document" action="#{scriptBean.document}" ajax="false"/> 
+               <p:commandButton value="Back to Document List" action="#{scriptBean.document}" />
+               </td></tr> 
+              </table>
+             
+           </h:form>
+
+           </body>
+   </ui:define>
+   </ui:composition>

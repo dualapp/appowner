@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title> </title>
+    <a href="addvendor.xhtml">Add Vendor</a>
+</h:head>
+ <body bgcolor="yellow">
+  <h:messages/>
+ <h:form>
+        <h:inputText value="#{waterPaymentBean.str_VendorName}"></h:inputText>
+        <h:commandButton value="Search by Name" action="#{waterPaymentBean.searchVendorByName1}"  >
+         
+        </h:commandButton>
+        
+        
+    </h:form> 
+    <h:form >
+        <h:outputText value="Vendors : "></h:outputText>
+        <p:dataTable id="vendor" var="vendor" value="#{vendorBean.vendorList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor ID" />
+                </f:facet>
+                <h:outputText  id="int_vendorId" value="#{vendor.int_VendorId}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Name" />
+                </f:facet>
+                <h:outputText  id="str_vendorName" value="#{vendor.str_VendorName}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Type" />
+                </f:facet>
+                <h:outputText  id="str_vendorType" value="#{vendor.str_VendorType}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Phone" />
+                </f:facet>
+                <h:outputText  id="int_vendorPhone" value="#{vendor.str_VendorPhone}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Email" />
+                </f:facet>
+                <h:outputText  id="str_vendoremail" value="#{vendor.str_VendorEmail}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Country" />
+                </f:facet>
+                <h:outputText  id="str_vendorCountry" value="#{vendor.str_CountryName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor State" />
+                </f:facet>
+                <h:outputText  id="str_vendorstate" value="#{vendor.str_StateName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor City" />
+                </f:facet>
+                <h:outputText  id="str_vendorcity" value="#{vendor.str_CityName}" />
+            </p:column>
+            
+              
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Service Rating" />
+                </f:facet>
+                <h:outputText  id="int_vendorservicerating" value="#{vendor.int_VendorServiceRating}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vendor Comments" />
+                </f:facet>
+                <h:outputText  id="str_vendorcomments" value="#{vendor.str_VendorComments}" />
+            </p:column>
+             
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="IS A Company" />
+                </f:facet>
+                <h:outputText  id="ch_IsACompany" value="#{vendor.bool_IsaCompany}" />
+            </p:column>
+              
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Bank Account NO" />
+                </f:facet>
+                <h:outputText  id="str_VendorBankAccountNo" value="#{vendor.str_VendorAccount}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Bank Name" />
+                </f:facet>
+                <h:outputText  id="str_VendorBankAccountName" value="#{vendor.str_VendorBankName}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Bank NEFT/IFSC Code" />
+                </f:facet>
+                <h:outputText  id="str_VendorBankNeftOrIfsc" value="#{vendor.str_VendorBankNeftOrIfsc}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="action" />
+                </f:facet>
+                <h:link outcome="viewvendor.xhtml" >
+	   			  <h:outputText value="View" />
+	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
+	   		</h:link>
+              <h:link outcome="updatevendor.xhtml" >
+	   			<p:graphicImage  height="50" width="50" alt="update" value="images/k1.png"/> 
+	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
+	   		</h:link>
+	   		 <h:link outcome="deletevendor.xhtml"
+	   		 onclick="return confirm('Are you sure you want to delete #{vendor.str_VendorName}?');" >  
+	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
+	   		</h:link>
+            </p:column>
+            
+            </p:dataTable>
+            </h:form>
+            </body>
+            
+</ui:define>
+</ui:composition>

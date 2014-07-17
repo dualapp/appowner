@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head></h:head>
+  <body bgcolor="green">
+    <h:form   enctype="multipart/form-data">
+    <br/>
+     <legend  align="left" style="background-color:#438eb9; color:#fff;">Please use the form below to send us your complain or queries." style="margin-bottom:20px </legend>
+       <p:messages id="messages"/>  
+        <table>
+            <tr>
+                <td><h:outputLabel for="str_UserName" value="UserName: " /></td>
+                <td><p:inputText id="UserName" value="#{complainBean.str_UserName}"  required="true" requiredMessage="UserName is not Empty">
+                </p:inputText>
+                </td>
+            </tr>
+           <tr>
+            <td><h:outputText  value="Complaint Type*:" /></td>
+            
+              
+              <td><p:selectOneRadio id="option" value="#{complainBean.str_ComplainType}"  required="true" requiredMessage="Complaint Type should not Empty" valueChangeListener="#{complainBean.selectRadioButton}">  
+                <f:selectItem itemLabel="Personal" itemValue="Personal" />
+                
+                
+               <f:selectItem itemLabel="Community" itemValue="Community" />
+                <f:ajax event="change" execute="option" render="@all"/>
+               </p:selectOneRadio>
+               </td>
+              
+              
+              
+        
+            </tr>
+             <tr>
+              <h:panelGroup id="performed"  rendered="#{complainBean.str_ComplainType eq 'Personal'}">
+           
+              <td><h:outputText  value="Block:" /></td>
+              <td><p:selectOneMenu id="Block" value="#{complainBean.block}" valueChangeListener="#{complainBean.blockChangeListener}" style="width:150px">
+                  <f:selectItem itemLabel="Select Block" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{complainBean.blocks}" />
+                   <p:ajax event="change" update="Flat" process="Block"/>
+                 </p:selectOneMenu>
+             </td>
+             <td><h:outputText  value="FlatNo:" /></td>
+               <td><p:selectOneMenu id="Flat" value="#{complainBean.flat}" valueChangeListener="#{complainBean.flatChangeListener}" style="width:150px">
+                  <f:selectItem itemLabel="Select Flat" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{complainBean.flats}" />
+                    <p:ajax event="change" update="BeHalfOf" process="Flat"/>
+                 </p:selectOneMenu>
+             </td>
+             <td><h:outputText  value="BeHalfOf:" /></td>
+              <td><p:selectOneMenu id="BeHalfOf" value="#{complainBean.beHalfOf}">
+                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{complainBean.beHalfOfs}" />
+                 </p:selectOneMenu>
+             </td>
+             
+           
+             </h:panelGroup>
+             </tr>
+             <tr>
+             <td><h:outputText for="str_VendorType" value="Category*:" /></td>
+            
+             <td><p:selectOneMenu id="str_VendorType" value="#{complainBean.str_VendorType}"  valueChangeListener="#{complainBean.vendorChangeListener}" style="width:150px">
+                  <f:selectItem itemLabel="Select Vendor" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{complainBean.str_VendorTypes}" />
+                 <p:ajax event="change" update="str_VenderName" process="str_VendorType"/>
+                 </p:selectOneMenu>
+             </td>
+             
+          <td>  <h:outputText for="str_VendorName" value="Assigned To:" /></td> 
+            
+           <td> <p:selectOneMenu id="str_VenderName" value="#{complainBean.str_VenderName}">
+                <f:selectItem itemLabel="Not Assigned"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{complainBean.str_VendorNames}"/>
+              </p:selectOneMenu></td> 
+           
+            </tr>
+            
+            
+          
+             
+            
+          
+           <tr>
+            <td><h:outputText  value="Complain Nature*:" /></td>
+            
+             <td><p:selectOneRadio id="options" value="#{complainBean.ch_Complain}"  required="true" requiredMessage="Compalint Nature should not Empty">
+                <f:selectItem itemLabel="Complaint" itemValue="C" />
+                <f:selectItem itemLabel="Suggestion" itemValue="S" />
+                 <f:selectItem itemLabel="Preventive Maintenance Activity" itemValue="P" />
+               </p:selectOneRadio>
+            </td>
+            </tr>
+        
+            <tr>
+               <td><h:outputText  value="Description*:"/><br /><small>(max of 1000 characters)</small></td>
+                <td><p:inputTextarea rows="8" cols="30"  id="description" value="#{complainBean.str_Description}" required="true" requiredMessage="Complain box should not Empty">
+              </p:inputTextarea>
+               
+                
+            </td>
+            </tr>
+            <tr>
+            <td><h:outputText  value="Attachment if Any:" /></td>
+            <td><p:fileUpload  value="#{complainBean.str_File}" fileUploadListener="#{complainBean.handleFileUpload}" mode="advanced"
+                     update="messages" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+            </td>
+            </tr>
+            
+            
+          
+            <tr>
+                <td><p:commandButton id="submit" value="Submit" action="#{complainBean.addComplain}" ajax="false" /></td>
+                <td><p:commandButton id="reset" value="Reset" action="#{complainBean.reset}" ajax="false"/></td>
+            </tr>
+           
+        </table>
+       
+    </h:form>
+    </body>
+</ui:define>
+</ui:composition>
