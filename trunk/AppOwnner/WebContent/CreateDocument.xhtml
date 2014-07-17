@@ -1,19 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	 xmlns:p="http://primefaces.org/ui"
-
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
  <h:head><title></title></h:head>
 <body bgcolor="pink">
   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
     <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    <br/>
+   <center><legend    style="background-color:#438eb9; color:#fff;">You could frequentlty needed content like Socity Rule Regulation</legend> </center>
     
-   
-   <h3 align="center">You could frequentlty needed content like Socity Rule Regulation</h3>
    <table>
    <tr>
    <td>
@@ -75,4 +76,5 @@
            </h:form>
 
            </body>
-   </html>
+   </ui:define>
+   </ui:composition>
