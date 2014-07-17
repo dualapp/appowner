@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>TaxTemplate  Form</title>
+   </h:head>
+<body  bgcolor="pink">
+  <h:form id="form" prependId="false">
+  <fieldset>
+    <legend>
+   <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
+     <h:panelGroup id="performed"  >
+           
+              <td><h:outputLabel value="Organisation:" /></td>
+              <td><p:selectOneMenu id="option" value="aaa"  style="width:200px">
+                   <f:selectItems value="aaa" />
+                 </p:selectOneMenu>
+             </td>
+              &#150; &#150;&#150; &#150;&#150;
+                &#150; &#150;&#150; &#150;&#150;
+                <h:commandButton  value="Go" />
+                </h:panelGroup>
+              
+                </fieldset>
+                <br/>
+                
+             <button  onClick="window.open('Create Invoice Template.xhtml',
+  'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
+  status=no,scrollbars=no,resize=no');return false">
+Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             
+                </h:form>
+               
+                </body>
+                </html>

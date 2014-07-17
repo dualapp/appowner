@@ -10,28 +10,69 @@
 
          </h:head>
   <body bgcolor="pink">
-    <h:form id="form1" enctype="multipart/form-data">
+    <h:form id="form1" >
       <p:panel id="panel" header="Crate New Due Template" style="margin-bottom:20px;"> 
        <p:messages id="messages"/>  
-        <table>
+      <table>
             <tr>
-                <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="option" value="aaa"  style="width:150px">
+             <td> <h:outputLabel value="Organisation:" /></td>  
+          <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:300px">
                    <f:selectItems value="aaa" />
-                 </p:selectOneMenu>
-             </td>
-               
-            </tr>
+                 </p:selectOneMenu></td>   
+                 </tr>
+                 <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
-            <td><h:outputText  value="Due Template*:" /></td>
-            
-              
-              <td> <h:inputText id="result" value="#{flash.passedObject.selected}" /> 
-               
-                </td>
+          <td>  <h:outputText  value="Due Template*" /></td>
+           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="20"/> </td>
              </tr>
-             </table>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+             <tr>
+            
+            <td> <h:outputText  value="Account*" /></td>
+           <td>  <p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:300px">
+                   <f:selectItems value="#{templateBean.ravenues}" />
+                 </p:selectOneMenu></td>
+             </tr>
+             <tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr>
+            <td> <h:outputText  value="Frequency*" /></td>
+           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}"  style="width:300px">
+                   <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
+                     <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
+                       <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
+                        <f:selectItem itemLabel="One Time" itemValue="One Time"/>
+                 </p:selectOneMenu></td>
+            </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr>
+             <tr>
+            <td> <h:outputText  value="Calculation*" /></td>
+             <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}"  style="width:300px">
+                   <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
+                     <f:selectItem itemLabel="Flat" itemValue="Flat"/>
+                       <f:selectItem itemLabel="None" itemValue="None"/>
+                </p:selectOneRadio>
+                </td>
+              </tr>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+              <tr>
+               <td> <h:outputText  value="Rate*"  /></td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="20"/></td> 
+              </tr>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+             <tr>
+            
+            <td> <h:outputText  value="Tax Template*" /></td>
+           <td>  <p:selectOneMenu id="str_TaxTemplate" value="#{templateBean.str_TaxTemplate}"  style="width:300px">
+                   <f:selectItems value="aaa" />
+                 </p:selectOneMenu></td>
+             </tr>
+               
+         </table>
              </p:panel>
+             <tr>
+                <td align="justify"><p:commandButton id="submit" value="Submit" action="#{templateBean.addDueTemplate}" ajax="false" /></td>
+                <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" ajax="false"/></td>
+            </tr>
              </h:form>
              </body>
              </html>
