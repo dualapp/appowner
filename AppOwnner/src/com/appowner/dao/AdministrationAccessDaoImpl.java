@@ -1,8 +1,6 @@
 package com.appowner.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -14,7 +12,6 @@ import com.appowner.model.CommiteeMember;
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
-import com.appowner.model.Vendor;
 
 @Repository
 public class AdministrationAccessDaoImpl implements AdministrationAccessDao{
@@ -102,22 +99,42 @@ public Integer getUserId(String name) {
 	}
 
 	@Override
-	public List<Integer> getRoleNames(Integer int_UserId) {
+	public List<Integer> getroleids(Integer int_UserId) {
 		String hql="select  Int_RoleID  from  AdministrationAccess where int_UserID =?";
 		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_UserId).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RoleManagement> getRoleMaster() {
-		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).list();
+	public List<String> getRoleMaster() {
+		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setProjection(Projections.property("str_RoleName")).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AdministrationAccess> getListAdministrationAccess() {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createCriteria(AdministrationAccess.class).list();
+	}
+
+	@Override
+	public String getRoleName(Integer roleid) {
+		// TODO Auto-generated method stub
+		return (String) getSessionFactory().getCurrentSession().createQuery("select str_RoleName from RoleManagement where int_RoleID=?").setParameter(0, roleid).uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getRoleIds() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(AdministrationAccess.class).setProjection(Projections.property("Int_RoleID")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getRoleMasterIds() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setProjection(Projections.property("int_RoleID")).list();
 	}
 	
 	
