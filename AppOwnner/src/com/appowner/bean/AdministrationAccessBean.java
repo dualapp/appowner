@@ -50,7 +50,7 @@ public List<String> getStr_AssinedRoles() {
 	str_AssinedRoles =new ArrayList<String>();
 	roleIds=new ArrayList<Integer>();
 	System.out.println(int_UserId);
-	roleIds.addAll(getAdministrationAccessService().getRoleNames(int_UserId));
+	//roleIds.addAll(getAdministrationAccessService().getRoleNames(int_UserId));
 	ListIterator itr=roleIds.listIterator();
 	while(itr.hasNext())
 	{
@@ -69,7 +69,7 @@ public void setRm(RoleManagement rm) {
 public void setStr_AssinedRoles(List<String> str_AssinedRoles) {
 	this.str_AssinedRoles = str_AssinedRoles;
 }
-public void setStr_RoleMasters(List<RoleManagement> str_RoleMasters) {
+public void setStr_RoleMasters(List<String> str_RoleMasters) {
 	this.str_RoleMasters = str_RoleMasters;
 }
 public MaintainanceStaffService getMaintainanceStaffService() {
@@ -83,6 +83,9 @@ public void setMaintainanceStaffService(
 }
 
 private Set<String> str_AdminNames;
+/*
+ * return all CommitteeMembers and MaintainanceStaffmembers
+ */
 public Set<String> getStr_AdminNames() {
 	str_AdminNames=new TreeSet<String>();
 	str_AdminNames.addAll(getStr_CommitteeMembers());
@@ -93,7 +96,9 @@ public Set<String> getStr_AdminNames() {
 private List<String>  admins;
  
 
- 
+/*
+ * return all CommitteeMembers and MaintainanceStaffmembers
+ */
 
 public List<String> getAdmins() {
 	Iterator itr=getStr_AdminNames().iterator();
@@ -159,7 +164,11 @@ public void setStr_MaintainanceStaffmembers(
 private List<User> users ;
 
 private User user;
-public List getUsers() {
+/*
+ * it will set user id n user name
+ * return user obj
+ */
+public List<User> getUsers() {
 	 //List user1=new ArrayList();
 	Iterator itr1=getAdmins().iterator();
 	users=new ArrayList<User>();
@@ -171,9 +180,7 @@ public List getUsers() {
 		 user.setInt_UserId(userid);
 		 user.setStr_Username(name);
 		 users.add(user);
-		 System.out.println("#############################");
-		System.out.println( users);
-		//return users;
+		 
 	}
 	//System.out.println( user1);
 	return users;
@@ -211,8 +218,7 @@ public void roleChangeListener(ValueChangeEvent event)
 	{
 	String 	str_RoleName=(String) itr1.next();
 	Integer roleid=(Integer) itr2.next();
-		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-		//System.out.println(int_UserId);
+		 
 	getAdministrationAccessService().deleteAssignedRoles(roleid,int_UserId);
 	}
 	System.out.println(list);
@@ -245,7 +251,7 @@ public String  addRoleManagement()
 	while(itr1.hasNext())
 	{ 
 		str_RoleName=(String) itr1.next();
-		System.out.println(str_RoleName);
+		 
 		administrationAccess=new AdministrationAccess();
 		administrationAccess.setInt_RoleID(getMaintainanceStaffService().getRoleId(str_RoleName));
 		administrationAccess.setInt_UserID(int_UserId);
@@ -261,13 +267,12 @@ public String  addRoleManagement()
 			String roleName= getMaintainanceStaffService().getRoleNameFromRoleMaster(roleId1);
 			 if( roleName.equals(str_RoleName))
 			 {
-				System.out.println(roleName);
+				 
 				 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( getStr_RoleName()+" is already Assigned  to u plz Choose another Role "));
 			 return null;
 			 }
 			
-			 System.out.println("k1111111111111111111111");
-		   
+			 
 	} getAdministrationAccessService().saveAdministrationAccess(administrationAccess);
 		 }
  
@@ -275,12 +280,12 @@ public String  addRoleManagement()
 	
 }
 /*
- * get All RoleMasters Data
+ * get All RoleName 
  */
-private List<RoleManagement> str_RoleMasters;
+private List<String> str_RoleMasters;
 private	RoleManagement rm;
-public List<RoleManagement> getStr_RoleMasters() {
-	str_RoleMasters=new ArrayList<RoleManagement>();
+public List<String> getStr_RoleMasters() {
+	str_RoleMasters=new ArrayList<String>();
    rm=new RoleManagement();
 	str_RoleMasters=getAdministrationAccessService().getRoleMaster();
 	 
@@ -289,6 +294,117 @@ public List<RoleManagement> getStr_RoleMasters() {
 }
 
 
+private List  rolemasterList;
+
+List<Integer> roleIds1;
+/*
+ * return list of Assigned roleIds from tb_adminstration_access
+ */
+public List<Integer> getRoleIds1() {
+	
+	
+	return roleIds1;
+	 
+}
+public void setRoleIds1(List<Integer> roleIds1) {
+	this.roleIds1 = roleIds1;
+}
+ 
+private List<Integer> RolemasterIds;
+/*
+ * return all rolemaster roleids
+ */
+public List<Integer> getRolemasterIds() {
+	RolemasterIds=new ArrayList<Integer>();
+	RolemasterIds.addAll(getAdministrationAccessService().getRoleMasterIds());
+	return RolemasterIds;
+}
+public void setRolemasterIds(List<Integer> rolemasterIds) {
+	RolemasterIds = rolemasterIds;
+}
+private Boolean flag;
+private Boolean  selected;
+ 
+ 
+public   Boolean getSelected() {
+	return selected;
+}
+public void setSelected(Boolean selected) {
+	this.selected = selected;
+}
+private List selected2;
+
+@SuppressWarnings("unchecked")
+public List  getRolemasterList() {
+	
+	@SuppressWarnings("rawtypes")
+	ListIterator itr1=getRolemasterIds().listIterator();
+	
+	rolemasterList=new ArrayList<Boolean>();
+	selected2=new ArrayList<Boolean>();
+	
+	int index=0; 
+	while(itr1.hasNext())
+	{
+		Integer roleid1=(Integer) itr1.next();
+		ListIterator itr2=getUsers().listIterator();
+		//selected=new ArrayList<Boolean>();
+		
+			while(itr2.hasNext())
+			{  
+				
+				User u=(User) itr2.next();
+				Integer userId=u.getInt_UserId();
+				System.out.println(userId);
+				roleIds1=new ArrayList<Integer>();
+				 
+				roleIds1.addAll(getAdministrationAccessService().getroleids(userId));
+				System.out.println(roleIds1);
+				@SuppressWarnings("rawtypes")
+				ListIterator itr3=roleIds1.listIterator();
+				 while(itr3.hasNext())
+				{    
+					Integer roleid2=(Integer) itr3.next();
+					flag=roleid1.equals(roleid2);
+							if(flag==true)
+					 
+						 selected2.add(true);
+							else
+						 
+						selected2.add(false);
+						
+				System.out.println(flag+"$$$"+roleid1+"$$$"+roleid2);
+				
+			 
+				}
+				  
+				 
+				 rolemasterList.add(selected2.get(index++));
+				  
+				//rolemasterList.add(rolemasterList.get(index));
+				// rolemasterList.remove(false);
+			}
+			
+	}
+	System.out.println(rolemasterList);
+	System.out.println(rolemasterList.size());
+	return rolemasterList;
+}
+public List getSelected2() {
+	return selected2;
+}
+public void setSelected2(List selected2) {
+	this.selected2 = selected2;
+}
+public Boolean getFlag() {
+	return flag;
+}
+public void setFlag(Boolean flag) {
+	this.flag = flag;
+}
+public void setRolemasterList(List   rolemasterList) {
+	rolemasterList = rolemasterList;
+}
 public List getList1() {
 	return list1;
 }
@@ -334,6 +450,8 @@ public List<AdministrationAccess> getListAdministrationAccess() {
 public void setListAdministrationAccess(
 		List<AdministrationAccess> listAdministrationAccess) {
 	ListAdministrationAccess = listAdministrationAccess;
-} 
+
+}
+
 
 }
