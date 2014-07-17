@@ -1,10 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	 xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 <h:head>
     <title> </title>
     <a href="addmaintainancestaff.xhtml">Add More Maintainance Staff</a>
@@ -14,8 +16,7 @@
   <h:messages/>
  <h:form>
   <fieldset>
-    <legend>
-   <h:commandButton value="Maintainance Staff List" style="background-color:#c00; color:#fff;"/> </legend>
+    <legend  align="left" style="background-color:#438eb9; color:#fff;">Maintainance Staff</legend>
   <p:dataTable id="maintainancestaff" var="maintainancestaff" value="#{maintainanceStaffBean.maintainanceStaffList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
@@ -75,4 +76,5 @@
             </body>
             
 
-</html>
+</ui:define>
+</ui:composition>
