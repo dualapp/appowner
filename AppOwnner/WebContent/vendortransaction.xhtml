@@ -1,24 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	 xmlns:p="http://primefaces.org/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jstl/core">
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
  <h:head><title>Vendor Registration</title></h:head>
 <body bgcolor="pink">
     <h:form id="a_form1" > 
    
    <h:messages style="color:red"/>
-   <h3 align="center">Vendor Transaction Form</h3>
+   
      <center>
+     <div>
+     <br/>
+      <center>
+      <legend    style="background-color:#438eb9; color:#fff;">Vendor Transaction Form</legend></center>
         <table>
-          <tr><td>  <h3 align="center">Vendor Transaction Details</h3></td></tr>
+          
             <tr> <td><h:outputText value="Vendor Type: " /></td>
                 <td>
-       <p:selectOneMenu id="str_VendorType"  value="#{vendorTransactionBean.str_VendorType}" valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
+       <p:selectOneMenu id="str_VendorType" style="width:200px"  value="#{vendorTransactionBean.str_VendorType}" valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem itemLabel="Electrician" itemValue="Electrician" />
             <f:selectItem itemLabel="WaterSupplier" itemValue="WaterSupplier" />
@@ -32,7 +37,7 @@
  <tr>
  
             <td><h:outputLabel for="str_VendorName1" value="Select Vendor Name* " /></td>
-            <td><p:selectOneMenu id="str_VendorName1" value="#{vendorTransactionBean.str_VendorName1}"  >
+            <td><p:selectOneMenu id="str_VendorName1"  style="width:200px" value="#{vendorTransactionBean.str_VendorName1}"  >
                 <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
                   
@@ -40,7 +45,7 @@
              </tr>
              <tr>
              <td><h:outputText value="No of Tankers: " /></td>
-             <td><p:selectOneMenu id="int_NoOfTankers"  value="#{vendorTransactionBean.int_NoOfTankers}" >
+             <td><p:selectOneMenu id="int_NoOfTankers" style="width:200px" value="#{vendorTransactionBean.int_NoOfTankers}" >
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem itemLabel="1" itemValue="1" />
             <f:selectItem itemLabel="2" itemValue="2" />
@@ -61,8 +66,9 @@
              </tr>
              <tr><td> <h:commandButton value="submit" action="#{vendorTransactionBean.saveVendorTransaction}"/></td></tr>
  </table>
+ </div>
  </center>
  </h:form>
  </body>
- 
-</html>
+ </ui:define>
+ </ui:composition>
