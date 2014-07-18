@@ -1,8 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 <h:head>
     <title>Due Template  Form</title>
      <script src="JavaScript/ModalPopupWindow.js"
@@ -83,4 +86,5 @@ Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150;
                 </h:form>
                
                 </body>
-                </html>
+               </ui:define>
+               </ui:composition>

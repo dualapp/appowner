@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.org/ui">
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 	  <f:metadata>
 	<f:viewParam name="int_ComplainID" value="#{complainBean.int_ComplainID}"  />
 	 
@@ -17,7 +18,6 @@
 </h:head>
 <h:body>
 <h:form>
-  <h:panelGrid columns="2">
     <h:outputText value="Name:"/>
     <h:inputText value="#{complainBean.cmp.str_UserName}"/>
     
@@ -40,14 +40,9 @@
      <h:inputTextarea rows="8" cols="25"  value="#{complainBean.cmp.str_Description}"/>
     
      <h:commandButton  value="Submit"  action="#{complainBean.saveUser}"/>
-  </h:panelGrid>
+   
   </h:form>
   </h:body>
   
-  
-  
- 
- 
-  
-  
-</html>
+ </ui:define>
+ </ui:composition>
