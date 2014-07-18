@@ -21,43 +21,63 @@ public class Cls_ProductDetails implements Serializable {
 	@Column
 	private Integer Int_ProductId;
 	@Column
-	private  String Ch_Category;
+	private int int_Ad_categoryId;
+	public int getInt_Ad_categoryId() {
+	return int_Ad_categoryId;
+	}
+	public void setInt_Ad_categoryId(int int_Ad_categoryId) {
+		this.int_Ad_categoryId = int_Ad_categoryId;
+	}
 	@Column
-	private String Ch_Product_Type;
+	private char Ch_Product_Type;
 	@Column
 	private String Var_Title;
 	@Column
 	private String Var_FileName;
 	@Column
-	private String Ch_Ad_Type;
+	private char Ch_Ad_Type;
+	@Column
+	private int UserId;
+	@Column
+	private int ApartementId;
 	
+	public int getApartementId() {
+		return ApartementId;
+	}
+	public void setApartementId(int apartementId) {
+		ApartementId = apartementId;
+	}
+	public int getUserId() {
+		return UserId;
+	}
+	public void setUserId(int userId) {
+		UserId = userId;
+	}
 	
-	public String getCh_Ad_Type() {
+	public char getCh_Ad_Type() {
 		return Ch_Ad_Type;
 	}
-	public void setCh_Ad_Type(String ch_Ad_Type) {
+	public void setCh_Ad_Type(char ch_Ad_Type) {
 		Ch_Ad_Type = ch_Ad_Type;
 	}
 	@Column
 	private String Var_ImageName;
 	@Column
-	private String var_Description;
+	private String Var_Description;
+	
+	
 	public Integer getInt_ProductId() {
 		return Int_ProductId;
 	}
 	public void setInt_ProductId(Integer int_ProductId) {
 		Int_ProductId = int_ProductId;
 	}
-	public String getCh_Category() {
-		return Ch_Category;
-	}
-	public void setCh_Category(String ch_Category) {
-		Ch_Category = ch_Category;
-	}
-	public String getCh_Product_Type() {
+	
+	
+	public char getCh_Product_Type() {
 		return Ch_Product_Type;
 	}
-	public void setCh_Product_Type(String ch_Product_Type) {
+	public void setCh_Product_Type(char ch_Product_Type) {
 		Ch_Product_Type = ch_Product_Type;
 	}
 	public String getVar_Title() {
@@ -78,15 +98,14 @@ public class Cls_ProductDetails implements Serializable {
 	public void setVar_ImageName(String var_ImageName) {
 		Var_ImageName = var_ImageName;
 	}
+	
 	public String getVar_Description() {
-		return var_Description;
+		return Var_Description;
 	}
 	public void setVar_Description(String var_Description) {
-		this.var_Description = var_Description;
+		Var_Description = var_Description;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 	
 	
 	
