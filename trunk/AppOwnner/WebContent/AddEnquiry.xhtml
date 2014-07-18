@@ -1,13 +1,16 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 <h:head><title>Enquiry Form</title></h:head>
 <body >
    
    <H1>Enquiry Form</H1>
     <h:form>
-     <p:panel id="panel" header="">
+      
      <p:messages id="messages"/>
         <table>
            
@@ -93,7 +96,8 @@
                 <td><p:commandButton id="addPerson" value="Ask Enquiry"  action="#{cls_EnquiryBean.addPerson}" ajax="false"/></td>     
             </tr>
         </table>
-        </p:panel>
+      
     </h:form>
 </body>
-</html> 
+</ui:define>
+</ui:composition> 
