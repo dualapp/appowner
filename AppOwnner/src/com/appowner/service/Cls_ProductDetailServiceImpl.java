@@ -1,5 +1,7 @@
 package com.appowner.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,11 +25,7 @@ public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	
-	
-	
-	
-
-	@Override
+@Override
 	public void AddProduct1(Cls_ProductDetails pro) {
 		 getProductDao().AddProduct1(pro);
 		
@@ -38,6 +36,18 @@ public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 		getProductDao().AddCategorys(cat);
 		
 	}
+
+	@Override
+	public List<String> getCategories() {
+		return (List<String>) getProductDao().getCategories();	
+	}
+
+	@Override
+	public int getdocid2(String intdocid1) {
+		return getProductDao().getdocid2(intdocid1);
+		
+	}
+
 
 	
 
