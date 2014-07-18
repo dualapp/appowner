@@ -11,7 +11,7 @@
  
  <h:body bgcolor="pink">
     <h:form id="form">
-         <p:panel header="CommiteeRole Information : ">
+       <legend  align="left" style="background-color:#438eb9; color:#fff;">  CommiteeRole Information : </legend>
         <p:dataTable  id="commitee" var="commitee" value="#{commiteeRoleBean.listCommiteeRoles}" style="width: 50%">
             <p:column>
                 <f:facet name="header" style="width: 40%">
@@ -44,9 +44,9 @@
          <br/>
         <br/>
        
-   </p:panel>
+    
      <br/>        
-          <p:panel header="Add New Commitee Roles ">
+          <legend  align="left" style="background-color:#438eb9; color:#fff;"> Add New Commitee Roles</legend>
     
           <br/>
          
@@ -59,7 +59,7 @@
        <p:column>
 	      <p:commandButton id="submit" value="Add Role" action="#{commiteeRoleBean.addRole}" ajax="false" /> 
 	    </p:column>
-       </p:panel>  
+     
     </h:form>
 </h:body>
 
