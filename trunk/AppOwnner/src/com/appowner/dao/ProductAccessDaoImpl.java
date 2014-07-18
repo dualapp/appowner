@@ -2,11 +2,12 @@ package com.appowner.dao;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.appowner.bean.Cls_AddDetailsBean;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
-
+@Repository
 public class ProductAccessDaoImpl implements ProductDao{
 	@Autowired
 	private SessionFactory sessionFactory;
