@@ -7,17 +7,13 @@
 	<ui:define name="content">
 <head> 
 <link rel="stylesheet" type="text/css" href="./style/main.css" />
+<br/><center><legend    style="background-color:#438eb9; color:#fff;">Option</legend> </center> 
  </head> 
 <body  bgcolor="pink">
- <center>
- <h:outputText value="Option-Name" styleClass="header">
- </h:outputText> 
-    
- </center>    
+ 
  <h:form>
  <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage">
  </h:messages>        
- <h:panelGrid columns="2">
           
   
             
@@ -26,7 +22,7 @@
             <h:inputText id="optionName" value="#{scriptBean.optionName}" required="true" requiredMessage="Please Enter Option Name">
             </h:inputText> 		
             <h:commandButton id="add" value="Submit" action="#{scriptBean.addOption}" ajax="false"/> 
-             </h:panelGrid>    
+              
             </h:form> 
 </body>
           

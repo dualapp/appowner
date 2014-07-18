@@ -18,7 +18,7 @@
 </h:head>
 <h:body>
  <h:form>
-  <h:panelGrid columns="2">
+  <legend  align="left" style="background-color:#438eb9; color:#fff;">Company Person Edition</legend>
     <h:outputText value="ContactPersonName:"/>
     <h:inputText value="#{advertisementBean.cmpp.str_CompanyPersonName}"/>
     
@@ -40,7 +40,7 @@
     
     
      <h:commandButton  value="Submit"  action="#{updateBean.saveCompanyPerson}"/>
-  </h:panelGrid>
+   
   </h:form>
 </h:body>
 </ui:define>

@@ -7,18 +7,14 @@
 	<ui:define name="content">
 <head> 
 <link rel="stylesheet" type="text/css" href="./style/main.css" />
- </head> 
+<br/><center><legend    style="background-color:#438eb9; color:#fff;">Subcription Detai</legend> </center>
+ </head>
+ <div> 
 <body  bgcolor="pink">
- <center>
- <h:outputText value="Subcription Detail" styleClass="header">
- </h:outputText> 
-    
- </center>    
+  
  <h:form>
  <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"  style="color:red">
  </h:messages>        
- <h:panelGrid columns="2">
-          
   
             <h:outputText value="Please Enter Subscription name :">
             </h:outputText>            
@@ -29,9 +25,10 @@
             <h:inputText id="price" value="#{scriptBean.price}" required="true" requiredMessage="Please Enter price!">
             </h:inputText> 		
             <h:commandButton id="addUser" value="Submit" action="#{scriptBean.addUser}" ajax="false"/> 
-             </h:panelGrid>    
+                
             </h:form> 
+            
 </body>
-          
+        </div>  
 </ui:define>
 </ui:composition>
