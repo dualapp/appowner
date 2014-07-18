@@ -79,7 +79,7 @@ public class Cls_CreateDocumentManagement{
 	private String Ch_Access;
 	
 	@Column
-	private String Bit_emailsend;
+	private Boolean Bit_emailsend;
 	
 	
 public Integer getInt_DocumentID() {
@@ -116,11 +116,12 @@ public Integer getInt_DocumentID() {
 		Ch_Access = ch_Access;
 	}
 
-	public String getBit_emailsend() {
+	
+	public Boolean getBit_emailsend() {
 		return Bit_emailsend;
 	}
 
-	public void setBit_emailsend(String bit_emailsend) {
+	public void setBit_emailsend(Boolean bit_emailsend) {
 		Bit_emailsend = bit_emailsend;
 	}
 
