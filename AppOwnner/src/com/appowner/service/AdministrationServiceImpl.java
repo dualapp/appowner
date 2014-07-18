@@ -10,7 +10,6 @@ import com.appowner.dao.AdministrationAccessDao;
 import com.appowner.model.AdministrationAccess;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
-import com.appowner.model.User;
 
 @Service("AdministrationAccessService")
 @Transactional
@@ -92,13 +91,13 @@ public class AdministrationServiceImpl implements AdministrationAccessService{
 	}
 
 	@Override
-	public List<Integer> getRoleNames(Integer int_UserId) {
+	public List<Integer> getroleids(Integer int_UserId) {
 		// TODO Auto-generated method stub
-		return getAdministrationAccessDao().getRoleNames(int_UserId);
+		return getAdministrationAccessDao().getroleids(int_UserId);
 	}
 
 	@Override
-	public List<RoleManagement> getRoleMaster() {
+	public List<String> getRoleMaster() {
 		// TODO Auto-generated method stub
 		return getAdministrationAccessDao().getRoleMaster();
 	}
@@ -107,6 +106,24 @@ public class AdministrationServiceImpl implements AdministrationAccessService{
 	public List<AdministrationAccess> getListAdministrationAccess() {
 		// TODO Auto-generated method stub
 		return getAdministrationAccessDao().getListAdministrationAccess();
+	}
+
+	@Override
+	public String getRoleName(Integer roleid) {
+		// TODO Auto-generated method stub
+		return getAdministrationAccessDao().getRoleName(roleid);
+	}
+
+	@Override
+	public List<Integer> getRoleIds() {
+		// TODO Auto-generated method stub
+		return getAdministrationAccessDao().getRoleIds();
+	}
+
+	@Override
+	public List<Integer> getRoleMasterIds() {
+		// TODO Auto-generated method stub
+		return getAdministrationAccessDao().getRoleMasterIds();
 	}
 
 	
