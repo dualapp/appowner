@@ -41,7 +41,7 @@ public class ScriptBean implements Serializable{
 		private String Dt_Date;
 		private String str_FileNM;
 		private String Ch_Access;
-		private String Bit_emailsend;
+		private Boolean Bit_emailsend;
 		private String str_FolderNM;
 		private String str_Description;
 		private String subscriptname;    
@@ -120,6 +120,13 @@ public class ScriptBean implements Serializable{
 		}
 
 
+		public Boolean getBit_emailsend() {
+			return Bit_emailsend;
+		}
+		public void setBit_emailsend(Boolean bit_emailsend) {
+			Bit_emailsend = bit_emailsend;
+		}
+
 		//public int intdocID;
 		private List<String> subscriptnames;
 		@SuppressWarnings("unchecked")
@@ -132,6 +139,7 @@ public class ScriptBean implements Serializable{
 		public void setSubscriptnames(List<String> subscriptnames) {
 			this.subscriptnames = subscriptnames;
 		}
+		
 		
 		private String Action;
 		
@@ -329,13 +337,7 @@ public void setInt_UserId(Integer int_UserId) {
 			Ch_Access = ch_Access;
 		}
 
-		public String getBit_emailsend() {
-			return Bit_emailsend;
-		}
-
-		public void setBit_emailsend(String bit_emailsend) {
-			Bit_emailsend = bit_emailsend;
-		}
+		
 
 		public String getDt_Date() {
 			return Dt_Date;
@@ -380,7 +382,7 @@ public String getSubscriptname() {
 @SuppressWarnings("rawtypes")
 public void AddSubscription()
 
-{	 	System.out.println("kalpana");
+{	 System.out.println("kalpana");
 	System.out.println(list);
 	ListIterator itr1=list.listIterator();
 	System.out.println("hello");
@@ -471,6 +473,8 @@ public void AddDocManagement()
 		public void setPath1(String path1) {
 			this.path1 = path1;
 		}
+		private static List<String> mailids;
+		
 	//For create Document
 	public void document()
 		{
@@ -480,6 +484,11 @@ public void AddDocManagement()
 		Cls_CreateDocumentManagement d=new Cls_CreateDocumentManagement();
 		    d.setInt_Document_CatID(intdocID);
 			d.setBit_emailsend(getBit_emailsend());
+			if(Bit_emailsend==true)
+			{
+			
+			
+			}
 			d.setCh_Access(getCh_Access());
 			d.setDt_Date(getDt_Date());
 			d.setStr_Description(getStr_Description());
