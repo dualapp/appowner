@@ -95,6 +95,8 @@ public interface SubcriptDao {
 
 	public int getAprId1(String aprid);
 
+	public List getMailIds();
+
 	
 	
 	
