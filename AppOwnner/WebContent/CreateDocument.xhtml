@@ -1,13 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
-	<ui:define name="content">
+	xmlns:f="http://java.sun.com/jsf/core">
  <h:head><title></title></h:head>
 <body bgcolor="pink">
   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
@@ -67,7 +64,7 @@
           <td>
                <h:selectBooleanCheckbox value="#{scriptBean.bit_emailsend}" /> Notify via Email
       </td></tr> 
-   		
+   		<br/>
             <tr><td> <p:commandButton value="Upload Document" action="#{scriptBean.document}" ajax="false"/> 
                <p:commandButton value="Back to Document List" action="#{scriptBean.document}" />
                </td></tr> 
@@ -76,5 +73,4 @@
            </h:form>
 
            </body>
-   </ui:define>
-   </ui:composition>
+   </html>
