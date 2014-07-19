@@ -120,6 +120,7 @@ public String deletedocument(int a){
 	System.out.println(a);
 	Cls_DocumentCategory category=new Cls_DocumentCategory();
 	//System.out.println(Int_Document_CatID);
+	category.setInt_Document_CatID(a);
 	getSubcriptService().Deletedoc(category);	
 	System.out.println("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 	System.out.println(a);
