@@ -19,24 +19,18 @@
             
             </p:selectOneMenu>
             </td>
-            
-            
-                 <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
+            <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
             <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" style="width:300px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailsBean.categories}"  />
-                 
-               	
-            </p:selectOneMenu>
+                </p:selectOneMenu>
            </td>
             </tr>
-         
-             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+          <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
             <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
              <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailsBean.ch_Ad_Type}">
             <f:selectItem itemLabel="My Community" itemValue="M" />
             <f:selectItem itemLabel="Neighbourhood" itemValue="N" />
-           
            </p:selectOneRadio>
          </h:panelGrid>
         
@@ -58,8 +52,7 @@
             </h:inputText>
             </td>
             </tr>
-   <br />
-   <br />
+  
   <tr>
     <h:outputText value="Choose Your  File for upload "></h:outputText>
    <td> <p:fileUpload value="#{cls_AddDetailsBean.var_ImageName}"
@@ -67,7 +60,7 @@
         multiple="true"  sizeLimit="100000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
        </td>
        </tr>
-       <br />
+       
 
 <tr>
                <td><h:outputText  value="Description:-"/><br /><small>(max of 500 characters)</small></td>
