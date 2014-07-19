@@ -42,6 +42,17 @@
                         <f:selectItem itemLabel="One Time" itemValue="One Time"/>
                  </p:selectOneMenu></td>
             </tr>
+            <br/>
+           
+            <h:panelGroup id="aaa">
+             <tr>
+              <p:inputText id="vpnl" header="#{templateBean.dat_Date}"/>
+            <p:draggable for="vpnl"/>
+           <p:panel id="hpnl" header="#{templateBean.dat_Date}"/>
+           <p:draggable for="hpnl" axis="x" />
+            </tr>
+           </h:panelGroup>
+        
             <tr><td><h3 align="left">Payment Instruction</h3></td></tr>
             <tr>
              <td> <h:outputLabel value="Message Category" /></td>  
