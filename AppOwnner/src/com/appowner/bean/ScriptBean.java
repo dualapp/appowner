@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.event.FileUploadEvent;
+import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
@@ -42,6 +43,7 @@ public class ScriptBean implements Serializable{
 		private String str_FileNM;
 		private String Ch_Access;
 		private Boolean Bit_emailsend;
+		
 		private String str_FolderNM;
 		private String str_Description;
 		private String subscriptname;    
@@ -474,21 +476,48 @@ public void AddDocManagement()
 			this.path1 = path1;
 		}
 		private static List<String> mailids;
+		private static String content="content";
+		private static String subject="subject";
 		
-	//For create Document
-	public void document()
+	public static String getContent() {
+			return content;
+		}
+		public static void setContent(String content) {
+			ScriptBean.content = content;
+		}
+		public static String getSubject() {
+			return subject;
+		}
+		public static void setSubject(String subject) {
+			ScriptBean.subject = subject;
+		}
+	public static String getMailids() {
+		System.out.println("hi");
+		StringBuilder out=new StringBuilder();
+		for(Object o:mailids)
 		{
+			out.append(o.toString());
+		    out.append(",");
+			
+		}
+		System.out.println(out.toString());
+			return out.toString();
+		}
+		public static void setMailids(List<String> mailids) {
+			ScriptBean.mailids = mailids;
+		}
+	//For create Document
+	@SuppressWarnings("unchecked")
+	public String document()
+		{
+		try{
 		intdocid=getInt_Document_CatNM();
 		System.out.println(intdocid);
 		intdocID= getSubcriptService().getdocid1(intdocid);	
 		Cls_CreateDocumentManagement d=new Cls_CreateDocumentManagement();
 		    d.setInt_Document_CatID(intdocID);
 			d.setBit_emailsend(getBit_emailsend());
-			if(Bit_emailsend==true)
-			{
 			
-			
-			}
 			d.setCh_Access(getCh_Access());
 			d.setDt_Date(getDt_Date());
 			d.setStr_Description(getStr_Description());
@@ -504,7 +533,26 @@ public void AddDocManagement()
 			d.setAction(" ");
 			d.setInt_DocumentID(getInt_DocumentID());
 			getSubcriptService().documents(d);
+			if(Bit_emailsend==true)
+			{  System.out.println(Bit_emailsend);
+				mailids=getSubcriptService().getMailIds();
+				System.out.println(mailids);
+				content="Appowner.com";
+				System.out.println(content);
+				subject="hello";
+				System.out.println(subject);
+				return "CreateDocument1.jsp";
+			
 			}
+			return null;
+		}
+			
+		catch(DataAccessException e)
+		{e.printStackTrace();
+			
+		}
+		return null;
+		}
 			public String addOption()
 		{  
 			String optionname=getOptionName();
