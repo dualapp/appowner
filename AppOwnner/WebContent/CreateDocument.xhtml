@@ -20,11 +20,7 @@
    <td> <p:fileUpload value="#{scriptBean.str_FileNM}"
                         fileUploadListener="#{scriptBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
                   multiple="true"  sizeLimit="100000" fileLimit="3"  />
- 
-
-
- 
-  </td>
+ </td>
 </tr>
           <tr>
            <td>
@@ -34,22 +30,16 @@
             </h:inputText>
             </td>
             </tr>
-             
-            
-       
-             <tr>
+              <tr>
                  <td><h:outputLabel for="int_Document_CatNM" value="Document    Category" /></td>
             <td><p:selectOneMenu  value="#{scriptBean.int_Document_CatNM}" style="width:250px">
             <f:selectItem itemLabel="Select   Document   Category"  itemValue=""  />
                 <f:selectItems value="#{scriptBean.int_Document_CatNM1}"  />
-               	
-            </p:selectOneMenu>
-            
+               </p:selectOneMenu>
             </td>
             </tr>   
             <tr> 
-             
-                 <td><h:outputLabel for="ch_Access" value="Accessible to" /></td>
+             <td><h:outputLabel for="ch_Access" value="Accessible to" /></td>
             <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:150px">
              <f:selectItem itemLabel="All Members"  itemValue="All Members"  />
             <f:selectItem itemLabel="Owners"  itemValue="Owners"  />
