@@ -28,4 +28,8 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	  {
 		  return  getNoticeBoardDao().listNotices();  
 	  }
+	  public List<String> getmailids()
+	  {
+		  return  getNoticeBoardDao().getmailids();  
+	  }
 }
