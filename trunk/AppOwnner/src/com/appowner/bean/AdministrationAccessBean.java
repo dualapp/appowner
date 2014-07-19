@@ -296,19 +296,9 @@ public List<String> getStr_RoleMasters() {
 
 private List  rolemasterList;
 
-List<Integer> roleIds1;
-/*
- * return list of Assigned roleIds from tb_adminstration_access
- */
-public List<Integer> getRoleIds1() {
-	
-	
-	return roleIds1;
-	 
-}
-public void setRoleIds1(List<Integer> roleIds1) {
-	this.roleIds1 = roleIds1;
-}
+ private List<Integer> RoleIds;
+ 
+ 
  
 private List<Integer> RolemasterIds;
 /*
@@ -332,63 +322,64 @@ public   Boolean getSelected() {
 public void setSelected(Boolean selected) {
 	this.selected = selected;
 }
+private String tick;
+public String getTick() {
+	tick="images/tick.png";
+	return tick;
+}
+ 
+private String cross;
+public String getCross() {
+	cross="images/cross.png";
+	return cross;
+}
+ 
 private List selected2;
 
 @SuppressWarnings("unchecked")
 public List  getRolemasterList() {
 	
 	@SuppressWarnings("rawtypes")
-	ListIterator itr1=getRolemasterIds().listIterator();
 	
+	ListIterator itr1=getUsers().listIterator();
+	selected2=new ArrayList();
 	rolemasterList=new ArrayList<Boolean>();
-	selected2=new ArrayList<Boolean>();
-	
-	int index=0; 
+	 
 	while(itr1.hasNext())
 	{
-		Integer roleid1=(Integer) itr1.next();
-		ListIterator itr2=getUsers().listIterator();
-		//selected=new ArrayList<Boolean>();
 		
+		User u=(User) itr1.next();
+		Integer userId=u.getInt_UserId();
+		System.out.println(userId);
+		RoleIds=new ArrayList<Integer>();
+		RoleIds.addAll(getAdministrationAccessService().getroleids(userId));
+		
+		
+		ListIterator itr2=getRolemasterIds().listIterator();
+		//rolemasterList=new ArrayList<String>();
+		int index=0;
 			while(itr2.hasNext())
 			{  
-				
-				User u=(User) itr2.next();
-				Integer userId=u.getInt_UserId();
-				System.out.println(userId);
-				roleIds1=new ArrayList<Integer>();
+ 
+				Integer roleId1=(Integer) itr2.next();
 				 
-				roleIds1.addAll(getAdministrationAccessService().getroleids(userId));
-				System.out.println(roleIds1);
-				@SuppressWarnings("rawtypes")
-				ListIterator itr3=roleIds1.listIterator();
-				 while(itr3.hasNext())
-				{    
-					Integer roleid2=(Integer) itr3.next();
-					flag=roleid1.equals(roleid2);
-							if(flag==true)
-					 
-						 selected2.add(true);
-							else
-						 
-						selected2.add(false);
-						
-				System.out.println(flag+"$$$"+roleid1+"$$$"+roleid2);
-				
-			 
-				}
-				  
+				flag=RoleIds.contains(roleId1);
+				if( flag==true)
 				 
-				 rolemasterList.add(selected2.get(index++));
-				  
-				//rolemasterList.add(rolemasterList.get(index));
-				// rolemasterList.remove(false);
+					rolemasterList.add(getTick());
+				 
+				else
+					rolemasterList.add(getCross());
+				
 			}
-			
+			System.setProperty("line.separator", "\n");
+		 
+			 
 	}
 	System.out.println(rolemasterList);
 	System.out.println(rolemasterList.size());
 	return rolemasterList;
+	
 }
 public List getSelected2() {
 	return selected2;
