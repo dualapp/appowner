@@ -315,6 +315,11 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().getAprId1( aprid);
 	}
 
+	@Override
+	public List getMailIds() {
+		return getSubcriptDao().getMailIds();
+	}
+
 	
 
 	
