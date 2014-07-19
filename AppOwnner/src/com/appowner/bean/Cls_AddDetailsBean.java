@@ -38,7 +38,8 @@ public class Cls_AddDetailsBean implements Serializable {
 	private int int_Ad_categoryId;
 	 public int intdocID1;
 	 public String intdocid1;
-	  public int getInt_Ad_categoryId() {
+	 
+	public int getInt_Ad_categoryId() {
       return int_Ad_categoryId;
 	}
 	public void setInt_Ad_categoryId(int int_Ad_categoryId) {
@@ -154,12 +155,9 @@ public class Cls_AddDetailsBean implements Serializable {
 	}
 	public void handleFileUpload(FileUploadEvent event) throws IOException {
 		 System.out.println("hi");
-		 String path = FacesContext.getCurrentInstance().getExternalContext()
-		            .getRealPath("/");
+		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		    String name = fmt.format(new Date())
-		            +event.getFile().getFileName().substring(
-		                  event.getFile().getFileName().lastIndexOf('.'));
+		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 		    System.out.println(name);
 		    File file= new File("D://Image\\"+ "images" + name);
 		    final UploadedFile uploadedFile = event.getFile();
@@ -182,6 +180,11 @@ public class Cls_AddDetailsBean implements Serializable {
 	}
 	public void setCh_Product_Type(char ch_Product_Type) {
 		Ch_Product_Type = ch_Product_Type;
+	}
+	public String getPath()
+	{
+		
+		return null;
 	}
 
 	
