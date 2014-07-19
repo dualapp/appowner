@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
+import com.appowner.model.Mail;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
 import com.appowner.model.User;
