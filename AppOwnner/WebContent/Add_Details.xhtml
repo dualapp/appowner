@@ -14,7 +14,7 @@
   
      <tr> 
         <td><h:outputLabel for="ch_Access" value="Organization" /></td>
-            <td><p:selectOneMenu id="ch_Access"  style="width:300px">
+            <td><p:selectOneMenu id="ch_Access"  style="width:200px">
              <f:selectItem itemLabel="Shaffi Paradise"  itemValue="Shaffi Paradise"  />
             
             </p:selectOneMenu>
@@ -22,7 +22,7 @@
             
             
                  <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
-            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" style="width:300px">
+            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" style="width:200px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailsBean.categories}"  />
                  
@@ -30,7 +30,8 @@
             </p:selectOneMenu>
            </td>
             </tr>
-         
+         <tr>
+         <h:panelGroup id="sss1">
              <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
             <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
              <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailsBean.ch_Ad_Type}">
@@ -38,23 +39,25 @@
             <f:selectItem itemLabel="Neighbourhood" itemValue="N" />
            
            </p:selectOneRadio>
-         </h:panelGrid>
         
-        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
         <p:outputLabel for="I" value="I want to" />
         <p:selectOneRadio id="I" value="#{cls_AddDetailsBean.ch_Product_Type}">
             <f:selectItem itemLabel="SELL" itemValue="S" />
             <f:selectItem itemLabel="BUY" itemValue="B" />
             <f:selectItem itemLabel="RENT" itemValue="R" />
         </p:selectOneRadio>
-    </h:panelGrid>
+        <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;border:1px solid #666666;margin-bottom:20px">  
+  <p:graphicImage height="200" width="200" value="#{cls_AddDetailsBean.blb_image}"/>
+ </p:outputPanel>
  
- 
+ </h:panelGrid>
+ </h:panelGroup>
+  </tr>
           <tr>
            <td>
           <h:outputText value="Title"></h:outputText></td>
                         
-          <td>  <h:inputText  value="#{cls_AddDetailsBean.var_Title}" style="width:400px">
+          <td><h:inputText  value="#{cls_AddDetailsBean.var_Title}" style="width:400px">
             </h:inputText>
             </td>
             </tr>
@@ -64,13 +67,13 @@
     <h:outputText value="Choose Your  File for upload "></h:outputText>
    <td> <p:fileUpload value="#{cls_AddDetailsBean.var_ImageName}"
         fileUploadListener="#{cls_AddDetailsBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
-        multiple="true"  sizeLimit="100000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+        multiple="true"  sizeLimit="100000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"/>
        </td>
        </tr>
        
 
 <tr>
-               <td><h:outputText  value="Description:-"/><br /><small>(max of 500 characters)</small></td>
+               <td><h:outputText  value="Description:-"><br /><small>(max of 500 characters)</small></h:outputText></td>
                 <td><p:inputTextarea rows="10" cols="50"  id="g" value="#{cls_AddDetailsBean.var_Description}" >
               </p:inputTextarea>
                
