@@ -12,6 +12,7 @@ import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.User;
 
 /**
  * @author mukesh
@@ -291,15 +292,23 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		 return cid1;
 	}
 
-	
-	
-	
-	
-
-	
-
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getMailIds() {
+		List<String> list= (List<String>)getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_Email")).list();
+         System.out.println(list);
+         return list;
 	}
+}
+
+	
+	
+	
+
+	
+
+	
+	
 
 	
 	
