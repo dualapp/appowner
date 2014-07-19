@@ -41,6 +41,7 @@ import java.util.List;
 
 
 
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -143,6 +144,8 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 	
 
 	public int getAprId1(String aprid);
+
+	public List<String> getMailIds();
 
 	
 
