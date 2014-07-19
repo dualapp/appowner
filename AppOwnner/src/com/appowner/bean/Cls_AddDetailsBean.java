@@ -9,15 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
-
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.service.ProductDetailService;
@@ -39,7 +36,7 @@ public class Cls_AddDetailsBean implements Serializable {
 	 public int intdocID1;
 	 public String intdocid1;
 	 
-	public int getInt_Ad_categoryId() {
+   public int getInt_Ad_categoryId() {
       return int_Ad_categoryId;
 	}
 	public void setInt_Ad_categoryId(int int_Ad_categoryId) {
@@ -52,7 +49,21 @@ public class Cls_AddDetailsBean implements Serializable {
 			this.var_Ad_CategoryName = var_Ad_CategoryName;
 		}
 	private String var_Ad_CategoryName;
+	 public String getBlb_image() {
+		return blb_image;
+	}
+	public void setBlb_image(String blb_image) {
+		this.blb_image = blb_image;
+	}
+	private String blb_image;
+	 private String blb_images1;
 
+	public String getBlb_images1() {
+		return blb_images1;
+	}
+	public void setBlb_images1(String blb_images1) {
+		this.blb_images1 = blb_images1;
+	}
 	public String getVar_Description() {
 		return Var_Description;
 	}
@@ -86,7 +97,9 @@ public class Cls_AddDetailsBean implements Serializable {
 	public void setVar_FileName(String var_FileName) {
 		Var_FileName = var_FileName;
 	}
-	public String getVar_ImageName() {
+	public String getVar_ImageName()
+	{ System.out.println("hi");
+		System.out.println(Var_ImageName);
 		return Var_ImageName;
 	}
 	public void setVar_ImageName(String var_ImageName) {
@@ -133,8 +146,6 @@ public class Cls_AddDetailsBean implements Serializable {
 		System.out.println(var_Ad_CategoryName);
 		getProductDetailService().AddCategorys(Cat);
 		}
-
-	
 	private List<String>Categories;
     public List<String> getCategories() 
 	{
@@ -161,8 +172,10 @@ public class Cls_AddDetailsBean implements Serializable {
 		    System.out.println(name);
 		    File file= new File("D://Image\\"+ "images" + name);
 		    final UploadedFile uploadedFile = event.getFile();
-
-	        
+		    blb_image=file.getAbsolutePath();
+		    System.out.println(blb_image);
+		    blb_images1=file.getAbsolutePath();
+		    System.out.println(blb_images1);
 	        System.out.println(file);
 		    InputStream is = event.getFile().getInputstream();
 		    OutputStream out = new FileOutputStream(file);
