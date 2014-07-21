@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<h:head>
+	</h:head>
+	<h:form>
+	<body>
+	<a href="Expenses.xhtml">>>Back To expenses</a >
+	<div><p><h:outputText value="Organization"/><p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{accountingBean.str_OrganizationName}"  style="width:150px">
+	<f:selectItem itemLabel="Select name"  itemValue="Select name" noSelectionOption="true" />
+                <f:selectItems value="#{accountingBean.str_OrganizationNameList}"/>
+	</p:selectOneMenu>
+	</p></div>
+	<br/> 
+	 
+	<table >
+         <tr>
+          <th> Acc Name*</th> <th>  Type* </th><th> Category*  </th>  <th>  Date* </th>  <th>  Ammount* </th><th>  Description </th><th> Assets Category </th><th>  Assets Name</th></tr> 
+          <tr><td> <p:selectOneMenu  valueChangeListener="#{accountingBean.accountListener}"  value="#{accountingBean.str_AccountName}"  style="width:150px">
+          <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
+          <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
+          </p:selectOneMenu>
+          </td> 
+  <td><p:selectOneMenu   value="#{accountingBean.str_ExcepenseType}" valueChangeListener="#{accountingBean.expenseTypeListener}"  style="width:150px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
+                   
+                 </p:selectOneMenu>
+             </td>
+             
+               <td><p:selectOneMenu   value="#{accountingBean.str_ExpenseCategory}" valueChangeListener="#{accountingBean.expenseCategoryListener}"   style="width:150px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    
+                 </p:selectOneMenu>
+                 </td>
+                <td> 
+               <p:calendar     navigator="true" display="inline" valueChangeListener="#{accountingBean.dateListener}"   value="#{accountingBean.date_Duration}">
+                  </p:calendar>
+                   
+             </td>   
+             <td><h:inputText value="#{accountingBean.int_Ammount}" valueChangeListener="#{accountingBean.amountListener}"/>  </td>
+              
+               <td><h:inputText value="#{accountingBean.str_Description}"  valueChangeListener="#{accountingBean.descriptionListener}"/>  </td>
+               <td><p:selectOneMenu   value="#{accountingBean.str_AssetCatName}" valueChangeListener="#{accountingBean.assetCatNameListener}" style="width:150px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                 
+                   <f:selectItems  value="#{accountingBean.str_AssetCatNameList}" />
+                  
+                 </p:selectOneMenu>
+             </td>
+             
+               <td><p:selectOneMenu   value="#{accountingBean.str_AssetName}"  valueChangeListener="#{accountingBean.assetNameListener}" style="width:150px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  
+                 </p:selectOneMenu>
+                 </td></tr>
+             <tr><td><h:commandButton action="#{accountingBean.addExpenses}" value="Submit"/></td> </tr>
+             
+          </table>
+         
+          <a href="Expenses.xhtml">>>Back To expenses</a >
+	</body>
+	 
+	</h:form>
+ </ui:define>
+ </ui:composition>
+ 
