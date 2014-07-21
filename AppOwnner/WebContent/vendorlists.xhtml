@@ -13,13 +13,16 @@
     <a href="addvendor.xhtml">Add Vendor</a>
 </h:head>
  <body bgcolor="yellow">
-  <h:messages/>
- <h:form>
+  <div><h:messages/></div>
+ <h:form><br/>
+ <center>
+         <legend    style="background-color:#438eb9; color:#fff;">
         <h:inputText value="#{waterPaymentBean.str_VendorName}"></h:inputText>
         <h:commandButton value="Search by Name" action="#{waterPaymentBean.searchVendorByName1}"  >
          
         </h:commandButton>
-        
+        </legend>
+        </center>
         
     </h:form> 
     <h:form >
