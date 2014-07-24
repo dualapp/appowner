@@ -70,5 +70,13 @@ public class InvoiceTemplate implements Serializable {
 	}
 	@Column(name="var_MessageTemplate")
 	private String str_MessageTemplate;
+	@Column(name="var_Description")
+	private String str_Description;
+	public String getStr_Description() {
+		return str_Description;
+	}
+	public void setStr_Description(String str_Description) {
+		this.str_Description = str_Description;
+	}
 	
 }
