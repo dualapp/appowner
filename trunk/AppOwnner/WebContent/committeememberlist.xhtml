@@ -14,7 +14,11 @@
   <br/>
  <h:form>
  <legend   style="background-color:#438eb9; color:#fff;">Committee Members</legend>
-  <p:dataTable id="committeemember" var="committeemember" value="#{committeeMemberBean.committeememberlist}" style="width: 10%">
+<p:dataTable   paginator="true" lazy="true"
+ id="datatable" border="15" cellspacing="3" dir="LTR" cellpadding="5"   frame="hsides" rows="2"   var="committeemember" value="#{committeeMemberBean.committeememberlist}" style="width: 10%">
+            <p:column style="width:16px">
+            <p:rowToggler />
+        </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value=" Member ID" />
@@ -41,6 +45,9 @@
                  
                 </h:outputText>
             </p:column>
+            <p:rowExpansion>
+            
+            </p:rowExpansion>
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Action" />
