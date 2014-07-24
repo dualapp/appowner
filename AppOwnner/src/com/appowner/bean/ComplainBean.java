@@ -1,7 +1,14 @@
 package com.appowner.bean;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -109,8 +116,7 @@ public class ComplainBean implements Serializable{
 	public List<String> getStr_VendorNames() {
 		if ((str_VendorType != null)) {
 
-			// str_VendorCities=new ArrayList<String>();
-			// str_VendorCities.addAll( getVendorservice().cityList());
+			
 
 			return nameByType;
 		} else
@@ -144,7 +150,7 @@ public class ComplainBean implements Serializable{
 		cmp.setCh_Complain(getCh_Complain());
 		cmp.setStr_ComplainType(getStr_ComplainType());
 		cmp.setStr_Description(getStr_Description());
-		cmp.setStr_File(getStr_File());
+		cmp.setStr_File(uploadedFileName);
 		cmp.setStr_VendorType(str_VendorType);
 		System.out.println(str_VendorType);
 		cmp.setStr_VenderName(str_VenderName);
@@ -188,10 +194,7 @@ public class ComplainBean implements Serializable{
 			}
 			
 			
-			public void handleFileUpload(FileUploadEvent event) {
-		        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-		        FacesContext.getCurrentInstance().addMessage(null, message);
-		    }
+			
 		  
 	        public Integer getFlatID() {
 				return FlatID;
@@ -300,6 +303,58 @@ public class ComplainBean implements Serializable{
 			public void setBeHalfOfs(List<String> beHalfOfs) {
 				BeHalfOfs = beHalfOfs;
 			}
+			//FILE UPLOAD CONCEPT
+			private String uploadedFileName;
+			
+			
+			 public String getUploadedFileName() {
+				return uploadedFileName;
+			}
+			public void setUploadedFileName(String uploadedFileName) {
+				this.uploadedFileName = uploadedFileName;
+			}
+			public void handleFileUpload(FileUploadEvent event) throws IOException {
+				 System.out.println("hi");
+				 String s=event.getFile().getFileName();
+				System.out.println(s);
+				 String path = FacesContext.getCurrentInstance().getExternalContext()
+				            .getRealPath("/");
+				    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+				    String name = fmt.format(new Date())
+				            + event.getFile().getFileName().substring(
+				                  event.getFile().getFileName().lastIndexOf('.'));
+				    System.out.println(name);
+				    File file= new File("E:\\myUploads\\" + "images" + name);
+		               System.out.println(file);
+				    InputStream is = event.getFile().getInputstream();
+				    OutputStream out = new FileOutputStream(file);
+				    byte buf[] = new byte[1024];
+				    int len;
+				    while ((len = is.read(buf)) > 0)
+				        out.write(buf, 0, len);
+				    is.close();
+				    out.close();
+				     uploadedFileName = file.getName();
+				    System.out.println(uploadedFileName);
+				
+			      /*  UploadedFile file = event.getFile();
+			        String fileName = file.getFileName();
+			        System.out.println(file);
+			        System.out.println(fileName);
+			        InputStream myInputStream = file.getInputstream();
+			        System.out.println(myInputStream);
+			        OutputStream out = new FileOutputStream(file);
+			        byte buf[] = new byte[1024];
+			        int len;
+			        while ((len = myInputStream.read(buf)) > 0)
+			            out.write(buf, 0, len);
+			        myInputStream.close();
+			        out.close();
+			        
+			        //Save myInputStream in a directory of your choice and store that path in DB  */
+			    }
+		
+
 			private Complain cmp;
 			 public Complain getCmp() {
 				return cmp;
