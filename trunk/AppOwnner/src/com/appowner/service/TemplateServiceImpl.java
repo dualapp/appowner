@@ -50,4 +50,54 @@ public class TemplateServiceImpl implements TemplateService {
 	{
 		getTemplateDao().saveMessageTemplate(messageTemplate);
 	}
+	public List<DueTemplate>  listDueTemplate()
+	{
+		return getTemplateDao().listDueTemplate();
+	}
+	public List<InvoiceTemplate> listInvoiceTemplate(){
+		return getTemplateDao().listInvoiceTemplate();
+	}
+	public List<TaxTemplate> listTaxTemplate()
+	{
+		return getTemplateDao().listTaxTemplate();
+	}
+	  public List<MessageTemplate> listMessageTemplate()
+	  {
+		  return getTemplateDao().listMessageTemplate();  
+	  }
+	  public List<String> getTaxName()
+	  {
+		  return getTemplateDao().getTaxName(); 
+	  }
+	  public DueTemplate getDueTemplate(Integer int_DueTemplateID){
+		  return getTemplateDao().getDueTemplate(int_DueTemplateID);
+	  }
+	  public void updateDueTemplate(DueTemplate dueTemplate)
+	  {
+		  getTemplateDao().updateDueTemplate(dueTemplate);
+	  }
+	  public InvoiceTemplate getInvoiceTemplate(Integer int_InvoiceTemplateID)
+	  {
+		  return getTemplateDao().getInvoiceTemplate(int_InvoiceTemplateID);
+	  }
+	  public void updateInvoiceTemplate(InvoiceTemplate invoiceTemplate)
+	  {
+		  getTemplateDao().updateInvoiceTemplate(invoiceTemplate);
+	  }
+	  public TaxTemplate getTaxTemplate(Integer int_TaxTemplateID)
+	  {
+		  return getTemplateDao().getTaxTemplate(int_TaxTemplateID);
+	  }
+	  public void updateTaxTemplate(TaxTemplate taxTemplate)
+	  {
+		  getTemplateDao().updateTaxTemplate(taxTemplate);
+	  }
+	  public MessageTemplate getMessageTemplate(Integer int_MessageTemplateID)
+	  {
+		  return getTemplateDao().getMessageTemplate(int_MessageTemplateID);
+	  }
+	  public void updateMessageTemplate(MessageTemplate messageTemplate)
+	  {
+		  getTemplateDao().updateMessageTemplate(messageTemplate);
+	  }
 }
