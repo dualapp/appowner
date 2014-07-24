@@ -48,11 +48,57 @@
                 <br/>
                  <button  onClick="window.open('Create New Message Template.xhtml',
   'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
-  status=no,scrollbars=no,resize=no');return false">
+  status=no,scrollbars=yes,resize=no');return false">
 Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
-             
-                </h:form>
-                </body>
-                
-</ui:define>
-</ui:composition>
+              <br/>
+             <br/>
+              
+  </h:form>
+  </body>
+  
+  <h:form>
+  <h:body>
+        <h:outputText value="Message Template: " color="red"></h:outputText>
+        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" style="width: 20%" align="center">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Created By" />
+                </f:facet>
+                <h:outputText value="#{message.str_CreatedBy}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Mode" />
+                </f:facet>
+                <h:outputText value="#{message.str_Mode}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Category" />
+                </f:facet>
+                <h:outputText value="#{message.str_Category}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Description" />
+                </f:facet>
+                <h:outputText value="#{message.str_Description}" />
+            </p:column>
+           <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                 
+                <h:link outcome="EditMessageTemplate.xhtml" >
+                <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
+                <f:param name="int_MessageTemplateID" value="#{message.int_MessageTemplateID}"/>
+                </h:link>
+               
+            </p:column>
+            </p:dataTable>
+            </h:body>
+             </h:form>  
+               
+               
+              </ui:define>
+               </ui:composition>

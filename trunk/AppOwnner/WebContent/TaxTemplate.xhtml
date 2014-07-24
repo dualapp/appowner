@@ -33,9 +33,49 @@
   'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
   status=no,scrollbars=no,resize=no');return false">
 Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
-             
-                </h:form>
+               <br/>
+             <br/>
+              
+  </h:form>
+  </body>
+  
+  <h:form>
+  <h:body>
+        <h:outputText value="Tax Template: " color="red"></h:outputText>
+        <p:dataTable id="tax" var="tax" value="#{templateBean.listTaxs}" style="width: 40%" align="center">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Tax TemplateName" />
+                </f:facet>
+                <h:outputText value="#{tax.str_TaxName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Percentage" />
+                </f:facet>
+                <h:outputText value="#{tax.int_Percentage}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="TaxExemption" />
+                </f:facet>
+                <h:outputText value="#{tax.int_TaxExemption}" />
+            </p:column>
+          <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                 
+                <h:link outcome="EditMessageTemplate.xhtml">
+                <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
+                <f:param name="int_TaxTemplateID" value="#{tax.int_TaxTemplateID}"/>
+                </h:link>
                
-                </body>
-             </ui:define>
-             </ui:composition>
+            </p:column>
+            </p:dataTable>
+            </h:body>
+             </h:form>  
+               
+               
+              </ui:define>
+               </ui:composition>

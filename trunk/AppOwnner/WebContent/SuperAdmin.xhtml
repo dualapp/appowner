@@ -20,20 +20,20 @@
           <tr><td><h2 align="center">Login Details</h2></td></tr>
             <tr>
                 <td><h:outputLabel for="LoginName" value="LoginName: " /></td>
-                <td><p:inputText id="LoginName" value="#{complainBean.name}" required="true" requiredMessage="Name is required">
+                <td><p:inputText id="LoginName" value="#{userInformationBean.name}" required="true" requiredMessage="Name is required">
                 <p:message for="LoginName"/> 
                 </p:inputText>
                 </td>
             </tr>
             <tr>
                 <td><h:outputLabel for="Password" value="Password: " /></td>
-                <td><p:inputText id="Password" value="#{complainBean.password}" required="true" requiredMessage="Password is required">
+                <td><p:inputText id="Password" value="#{userInformationBean.password}" required="true" requiredMessage="Password is required">
                      <p:message for="Password"/> 
                      </p:inputText>
               </td>
             </tr>
              <tr>
-                 <td><h:commandButton id="submit" value="Login" action="#{complainBean.validate(complainBean.name,complainBean.password)}"  ajax="false" >
+                 <td><h:commandButton id="submit" value="Login" action="#{userInformationBean.validate(userInformationBean.name,userInformationBean.password)}"  ajax="false" >
               
                 </h:commandButton>
                 </td>
