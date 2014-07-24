@@ -54,46 +54,41 @@ public class ComplainDaoImpl implements ComplainDao {
 		  System.out.println(vendorList);
 		  return  vendorList;
 	 }
-	 public List<String> vendorListName(String str_VendorType)
+	 @SuppressWarnings("unchecked")
+	public List<String> vendorListName(String str_VendorType)
 	 {
 		 System.out.println(str_VendorType);
-			String hql=" select int_VendorID from Vendor  where str_VendorType=?";
-			int VendorID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_VendorType).uniqueResult();
+			String hql=" select str_VendorName from Vendor  where str_VendorType=?";
+			List<String> nameList=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_VendorType).list();
 			 
-			String hql1="select str_VendorName from Vendor where int_VendorID="+VendorID;
-			@SuppressWarnings("unchecked")
-			List<String> nameList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).list();
-			System.out.println(nameList);
+			
 			return nameList; 
 	 }
 	  @SuppressWarnings("unchecked")
 	public List<String> blockList()
 	  {
-		  List<String> blockList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("Block")).list();
+		  List<String> blockList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_Block")).list();
 		  System.out.println( (blockList).listIterator().hasNext());
 		  System.out.println(blockList);
 		  return  blockList;
 	  }
-	  public List<String> flatListBlock(String Block)
+	  @SuppressWarnings("unchecked")
+	public List<String> flatListBlock(String Block)
 	  {
 		  System.out.println(Block);
-			String hql=" select FlatID from User  where Block=?";
-			int FlatID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Block).uniqueResult();
+			String hql=" select str_Flat from User  where str_Block=?";
+			List<String> flatList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Block).list();
 			 
-			String hql1="select Flat from User where FlatID="+FlatID;
-			@SuppressWarnings("unchecked")
-			List<String> flatList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).list();
+		
 			System.out.println(flatList);
 			return flatList;  
 	  }
-	  public List<String> renterListFlat(String Flat) {
+	  @SuppressWarnings("unchecked")
+	public List<String> renterListFlat(String Flat) {
 		  System.out.println(Flat);
-			String hql=" select FlatID from User  where Flat=?";
-			int FlatID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Flat).uniqueResult();
+			String hql=" select str_Username from User  where str_Flat=?";
+			List<String> renterList= (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Flat).list();
 			 
-			String hql1="select BeHalfOf from User where FlatID="+FlatID;
-			@SuppressWarnings("unchecked")
-			List<String> renterList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).list();
 			System.out.println(renterList);
 			return renterList;    
 	  }
