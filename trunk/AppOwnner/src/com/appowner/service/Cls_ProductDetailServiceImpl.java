@@ -11,6 +11,7 @@ import com.appowner.dao.ProductDao;
 import com.appowner.dao.SubcriptDao;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.cls_Person;
 @Service("ProductDetailService")
 @Transactional 
 public class Cls_ProductDetailServiceImpl implements ProductDetailService {
@@ -48,6 +49,28 @@ public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 		
 	}
 
+	@Override
+	public Cls_ProductDetails editproduct(Integer int_ProductId) {
+		return getProductDao().editproduct(int_ProductId);
+	}
+
+	@Override
+	public void update1(Cls_ProductDetails pro) {
+		getProductDao().update1(pro);
+		
+	}
+
+	@Override
+	public List<Cls_ProductDetails> listPersons() {
+		return getProductDao().listPersons();
+		
+	}
+
+	
+	
+	
+	
+	
 
 	
 
