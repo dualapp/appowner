@@ -9,14 +9,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+
+import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.cls_Person;
 import com.appowner.service.ProductDetailService;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean
@@ -31,6 +36,7 @@ public class Cls_AddDetailsBean implements Serializable {
 	private String Var_FileName;
 	private String Var_ImageName;
 	private String Var_Description;
+	//private String var_Ad_CategoryName;
 	private char Ch_Ad_Type;
 	private int int_Ad_categoryId;
 	 public int intdocID1;
@@ -49,6 +55,7 @@ public class Cls_AddDetailsBean implements Serializable {
 			this.var_Ad_CategoryName = var_Ad_CategoryName;
 		}
 	private String var_Ad_CategoryName;
+	
 	 public String getBlb_image() {
 		return blb_image;
 	}
@@ -122,6 +129,7 @@ public class Cls_AddDetailsBean implements Serializable {
 		this.productDetailService = productDetailService;
 	}
 	public void AddProduct(){
+		
 	intdocid1=getVar_Ad_CategoryName();
 		System.out.println(intdocid1);
 		intdocID1=getProductDetailService().getdocid2(intdocid1);	
@@ -200,9 +208,41 @@ public class Cls_AddDetailsBean implements Serializable {
 		return null;
 	}
 
+	//Edit
+	 private Cls_ProductDetails pro;
+
+	public Cls_ProductDetails getPro() {
+		return pro;
+	}
+	public void getCls_ProductDetails(){
+		System.out.println(Int_ProductId);
+		pro=getProductDetailService().editproduct(Int_ProductId);
+	}
+	public void setPro(Cls_ProductDetails pro) {
+		this.pro = pro;
+	}
+	public String saveUser1(){
+		getProductDetailService().update1(pro);
+		System.out.println(pro);
+		return "";
+		}
 	
-	   
-	}				
+	private List<Cls_ProductDetails> listPerson;
+	public List<Cls_ProductDetails> getListPerson() {
+		listPerson= new ArrayList<Cls_ProductDetails>();
+		listPerson.addAll(getProductDetailService().listPersons());
+		
+		System.out.println(listPerson);
+		return listPerson;
+	}
+	public void setListPerson(List<Cls_ProductDetails> listPerson) {
+		this.listPerson = listPerson;
+	}
+	
+	
+	
+}
+	
 	
 	
 
