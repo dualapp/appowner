@@ -22,6 +22,7 @@ public class Cls_ProductDetails implements Serializable {
 	private Integer Int_ProductId;
 	@Column
 	private int int_Ad_categoryId;
+
 	public int getInt_Ad_categoryId() {
 	return int_Ad_categoryId;
 	}
@@ -106,9 +107,16 @@ public class Cls_ProductDetails implements Serializable {
 		Var_Description = var_Description;
 	}
 	
+	private String var_Ad_CategoryName;
+
+	public String getVar_Ad_CategoryName() {
+		return var_Ad_CategoryName;
+	}
+	public void setVar_Ad_CategoryName(String var_Ad_CategoryName) {
+		this.var_Ad_CategoryName = var_Ad_CategoryName;
+	}
 	
-	
-	
+	 
 	
 
 }
