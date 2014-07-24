@@ -31,11 +31,58 @@
                 
              <button  onClick="window.open('Create Invoice Template.xhtml',
   'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
-  status=no,scrollbars=no,resize=no');return false">
+  status=no,scrollbars=yes,resize=no');return false">
 Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
              
-                </h:form>
+                 <br/>
+             <br/>
+              
+  </h:form>
+  </body>
+  
+  <h:form>
+  <h:body>
+        <h:outputText value="Invoice Template: " color="red"></h:outputText>
+        <p:dataTable id="invoice" var="invoice" value="#{templateBean.listInvoices}" style="width: 50%" align="center">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Invoice Template" />
+                </f:facet>
+                <h:outputText value="#{invoice.str_InvoiceTemplateName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Message Category" />
+                </f:facet>
+                <h:outputText value="#{invoice.str_MessageCategory}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Message Template" />
+                </f:facet>
+                <h:outputText value="#{invoice.str_MessageTemplate}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="FreQuency" />
+                </f:facet>
+                <h:outputText value="#{invoice.str_Frequency}" />
+            </p:column>
+           <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                 
+                <h:link outcome="EditInvoiceTemplate.xhtml" >
+                <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
+                <f:param name="int_InvoiceTemplateID" value="#{invoice.int_InvoiceTemplateID}"/>
+                </h:link>
                
-                </body>
-                </ui:define>
-                </ui:composition>
+            </p:column>
+            </p:dataTable>
+            </h:body>
+             </h:form>  
+               
+               
+              </ui:define>
+               </ui:composition>
