@@ -41,6 +41,8 @@ public class MessageTemplate implements Serializable {
 	public void setStr_Email(String str_Email) {
 		this.str_Email = str_Email;
 	}
+	
+	
 	public String getDat_Date() {
 		return dat_Date;
 	}
