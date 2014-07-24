@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	  <f:metadata>
+	<f:viewParam name="int_DueTemplateID" value="#{templateBean.int_DueTemplateID}"  />
+	 
+	<f:viewAction action="#{templateBean.getDueTemplate1}" />
+</f:metadata>
+<h:head>
+    <title>Company Registration Edition </title>
+</h:head>
+<h:body>
+
+ <h:form>
+    <h:panelGrid columns="2">
+        <h:outputText value="Due Template" />
+        <h:inputText value="#{templateBean.dueTemplate.str_DueTemplate}" />
+
+        <h:outputText value="Accounts" />
+        <h:inputText value="#{templateBean.dueTemplate.str_Accounts}" />
+
+        <h:outputText value="Frequency" />
+        <h:inputText value="#{templateBean.dueTemplate.str_Frequency}" />
+       <h:outputText value="Calculation" />
+        <h:inputText value="#{templateBean.dueTemplate.str_Calculation}" />
+        <h:outputText value="Rate" />
+        <h:inputText value="#{templateBean.dueTemplate.str_Rate}" />
+       <h:outputText value="Tax Template" />
+        <h:inputText value="#{templateBean.dueTemplate.str_TaxTemplate}" />
+        
+         </h:panelGrid>
+ <h:commandButton  value="Submit"  action="#{templateBean.saveDueTemplate}"/>
+  
+   
+</h:form>
+</h:body>
+</ui:define>
+</ui:composition>
+ 
+   
+    
