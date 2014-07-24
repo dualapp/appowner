@@ -7,16 +7,22 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
-    <title>Expenses  Form</title>
+    <title>Expenses  Form
+    
+    
+    </title>
+   
 </h:head>
 <body  bgcolor="pink">
   <h:form>
+  <br/>
+  <legend    style="background-color:#438eb9; color:#fff;"><h:messages/></legend>
   <fieldset>
     <br/><center><legend    style="background-color:#438eb9; color:#fff;">Filter</legend> </center>
        <table><tr>
          
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:150px">
+              <td><p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:100px">
               
                   <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
@@ -25,7 +31,7 @@
              </td>
             
              <td><h:outputText  value="Expense Type:" /></td>
-               <td><p:selectOneMenu   value="#{expenseBean.str_ExcepenseType}"  style="width:150px">
+               <td><p:selectOneMenu   value="#{expenseBean.str_ExcepenseType}"  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
@@ -35,7 +41,7 @@
              </td>
               
              <td><h:outputText  value="Expense Category:" /></td>
-               <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  style="width:150px">
+               <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
@@ -47,7 +53,7 @@
              
             
              <tr> <td><h:outputLabel value="Duration:" /></td>
-              <td><p:selectOneMenu   value="aaa"  style="width:150px">
+              <td><p:selectOneMenu   value="aaa"  style="width:100px">
                <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.date_Duration}">
                   </p:calendar>
                    <f:selectItems value="aaa" />
@@ -55,7 +61,7 @@
              </td>
                
              <td><h:outputText  value="Asset Category:" /></td>
-               <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"  style="width:150px">
+               <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                  
                    <f:selectItems  itemLabel="Expense" value="#{expenseBean.str_AssetCatNameList}" />
@@ -65,7 +71,7 @@
              </td>
                
              <td><h:outputText  value="Asset Name" /></td>
-               <td><p:selectOneMenu   value=""  style="width:150px">
+               <td><p:selectOneMenu   value=""  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="" />
                  </p:selectOneMenu>
@@ -94,88 +100,60 @@
              
              <legend  style="background-color:#438eb9; color:#fff;"> Expense</legend>
              
-             <p:dataTable   var="Expenselist" value="#{expenseBean.expenseList}" style="width: 10%">
-           <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Organization" />
-                </f:facet>
-                <h:outputText    value="#{Expenselist.str_OrganizationName}" />
+             <p:dataTable  scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="150"  dir="rtl" resizableColumns="true"   var="Expenselist" value="#{expenseBean.expenseList}"   >
+          <p:column    headerText="Organization" footerText="Organization" width="100">
+                 <h:outputText   value="#{Expenselist.str_OrganizationName}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" ID" />
-                </f:facet>
+            <p:column  headerText="Id" footerText="Id" width="100">
+                
                 <h:outputText    value="#{Expenselist.str_ExpenseId}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Type" />
-                </f:facet>
+            <p:column  headerText="Type" footerText="Type" width="100">
+                 
                 <h:outputText    value="#{Expenselist.str_ExpenseType}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Expense" />
-                </f:facet>
+            <p:column  headerText="ExpenseCategory" footerText="ExpenseCategory" width="100">
+                 
                 <h:outputText    value="#{Expenselist.str_ExpenseCategory}" />
+                
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Date" />
-                </f:facet>
+            <p:column headerText="Date" footerText="Date" width="100">
+                 
                 <h:outputText    value="#{Expenselist.date_Duration}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Amount" />
-                </f:facet>
+            <p:column headerText="Amount" footerText="Amount" width="100">
+                
                 <h:outputText    value="#{Expenselist.int_Ammount}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" AssetCategory" />
-                </f:facet>
+            <p:column headerText="AssetCategory" footerText="AssetCategory" width="100">
+                 
                 <h:outputText    value="#{Expenselist.str_AssetCatType}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" AssetName" />
-                </f:facet>
-                <h:outputText    value="#{Expenselist.str_AssetName}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Description" />
-                </f:facet>
-                <h:outputText    value="#{Expenselist.str_Description}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Status" />
-                </f:facet>
+             
+            <p:column headerText="Status" footerText="Status" width="100">
+                  <h:outputText    value="#{Expenselist.str_AssetCatType}" />
                 
             </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Action" />
-                </f:facet>
+           
+             <p:column headerText="Action" footerText="Action" width="100">
+                 
                 <h:link outcome="editexpense.xhtml" >
                 
-	   			<p:graphicImage  height="50" width="50" alt="Edit" value="images/k1.png"/> 
+	   			<p:graphicImage  height="20" width="20" alt="Edit" value="images/k1.png"/> 
 	   			
 	   				<f:param name="str_ExpenseId" value="#{Expenselist.str_ExpenseId}" />
 	   				
 	   		</h:link  >
-	   		<h:link outcome="viewExpense.xhtml" value="View" >
-                 
-	   			
-	   				<f:param name="str_ExpenseId" value="#{Expenselist.str_ExpenseId}" />
-	   				
+	   		<h:link outcome="viewExpense.xhtml"  id="sidlink"  target="_blank" >
+                  <h:outputText value="view" styleClass="txtlink"/>
+	   				<f:param name="str_ExpenseId" value="#{Expenselist.str_ExpenseId}"/>
+	   			 
 	   		</h:link  >
+	   		
 	   		 
 	   		<h:link outcome="deleteExpense.xhtml"
 	   		 onclick="return confirm('Are you sure you want to delete #{Expenselist.str_ExpenseId}?');" >  
-	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="str_ExpenseId" value="#{Expenselist.str_ExpenseId}" />
 	   		</h:link>
 	   		 
