@@ -1,10 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+     
  <h:head><title></title></h:head>
 <body bgcolor="white">
   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
@@ -14,15 +18,14 @@
   
      <tr> 
         <td><h:outputLabel for="ch_Access" value="Organization" /></td>
-            <td><p:selectOneMenu id="ch_Access"  style="width:200px">
+            <td><p:selectOneMenu id="ch_Access"  style="width:150px">
              <f:selectItem itemLabel="Shaffi Paradise"  itemValue="Shaffi Paradise"  />
             
             </p:selectOneMenu>
             </td>
-            
-            
-                 <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
-            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" style="width:200px">
+          
+            <td>&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;<h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
+            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" style="width:150px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailsBean.categories}"  />
                  
@@ -46,8 +49,13 @@
             <f:selectItem itemLabel="BUY" itemValue="B" />
             <f:selectItem itemLabel="RENT" itemValue="R" />
         </p:selectOneRadio>
-        <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;border:1px solid #666666;margin-bottom:20px">  
-  <p:graphicImage height="200" width="200" value="#{cls_AddDetailsBean.blb_image}"/>
+        <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{cls_AddDetailsBean.blb_image}"/>
+        
+ </p:outputPanel>
+ <p:outputPanel layout="block" id="aaa2" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{cls_AddDetailsBean.blb_image}"/>
+        
  </p:outputPanel>
  
  </h:panelGrid>
@@ -57,32 +65,34 @@
            <td>
           <h:outputText value="Title"></h:outputText></td>
                         
-          <td><h:inputText  value="#{cls_AddDetailsBean.var_Title}" style="width:400px">
+          <td><h:inputText  value="#{cls_AddDetailsBean.var_Title}" size="35">
             </h:inputText>
             </td>
             </tr>
   <br />
-   <br />
+  <br />
+   
   <tr>
     <h:outputText value="Choose Your  File for upload "></h:outputText>
    <td> <p:fileUpload value="#{cls_AddDetailsBean.var_ImageName}"
-        fileUploadListener="#{cls_AddDetailsBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
-        multiple="true"  sizeLimit="100000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"/>
+        fileUploadListener="#{cls_AddDetailsBean.handleFileUpload}" mode="advance" auto="true" dragDropSupport="false"
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
        </td>
        </tr>
-       
+   
 
 <tr>
-               <td><h:outputText  value="Description:-"><br /><small>(max of 500 characters)</small></h:outputText></td>
-                <td><p:inputTextarea rows="10" cols="50"  id="g" value="#{cls_AddDetailsBean.var_Description}" >
+               <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><p:inputTextarea rows="10" cols="30" value="#{cls_AddDetailsBean.var_Description}" >
               </p:inputTextarea>
                
                 
             </td>
             </tr>
-            
+            <br/>
             <tr>
-                <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailsBean.AddProduct}" /></td>     
+                <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailsBean.AddProduct}" /></td> 
+               
             </tr>
   
                   </table>
@@ -91,4 +101,5 @@
            </h:form>
 
            </body>
-   </html>
+           </ui:define>
+  </ui:composition>
