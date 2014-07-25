@@ -11,9 +11,14 @@
 </h:head>
 <h:body>
     <h:form>
-        <h:outputText value="Person : "></h:outputText>
+        
         <p:dataTable id="Per" var="per" value="#{cls_AddDetailsBean.listPerson}" style="width: 30%">
-           
+           <p:column>
+            <f:facet name="header">
+               <h:outputText value="Id" />
+                </f:facet>
+                <h:outputText value="#{per.int_productId}" />
+               </p:column>
             <p:column>
             <f:facet name="header">
                <h:outputText value="Category" />
