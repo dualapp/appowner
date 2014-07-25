@@ -74,6 +74,24 @@ public class ProductAccessDaoImpl implements ProductDao{
 		
 	}
 
+	@Override
+	public Cls_ProductDetails editproduct(Integer int_ProductId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update1(Cls_ProductDetails pro) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Cls_ProductDetails> listPersons() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
 
