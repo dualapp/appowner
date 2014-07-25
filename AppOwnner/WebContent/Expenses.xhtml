@@ -14,9 +14,10 @@
    
 </h:head>
 <body  bgcolor="pink">
-  <h:form>
+  <h:form id="form">
+   <p:growl id="msgs" showDetail="true" />
   <br/>
-  <legend    style="background-color:#438eb9; color:#fff;"><h:messages/></legend>
+  <legend    style="background-color:#438eb9; color:#fff;"> </legend>
   <fieldset>
     <br/><center><legend    style="background-color:#438eb9; color:#fff;">Filter</legend> </center>
        <table><tr>
@@ -53,7 +54,7 @@
              
             
              <tr> <td><h:outputLabel value="Duration:" /></td>
-              <td><p:selectOneMenu   value="aaa"  style="width:100px">
+              <td><p:selectOneMenu  styleClass=".ace-nav" value="aaa"    style=" width:100px">
                <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.date_Duration}">
                   </p:calendar>
                    <f:selectItems value="aaa" />
@@ -100,42 +101,36 @@
              
              <legend  style="background-color:#438eb9; color:#fff;"> Expense</legend>
              
-             <p:dataTable  scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="150"  dir="rtl" resizableColumns="true"   var="Expenselist" value="#{expenseBean.expenseList}"   >
-          <p:column    headerText="Organization" footerText="Organization" width="100">
-                 <h:outputText   value="#{Expenselist.str_OrganizationName}" />
+             <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
+              id="dataTable" rows="10" scrollRows="10"   
+                  
+                  scrollable="true" liveScroll="true" scrollHeight="150"  
+                 var="Expenselist" value="#{expenseBean.expenseList}"   >
+                  <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" />
+        
+ 
+          <p:column    headerText="Organization" footerText="Organization" width="200">
+          <p:cellEditor>
+               <f:facet name="output"><h:outputText   value="#{Expenselist.str_OrganizationName}" /></f:facet>
+               <f:facet name="input"><p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:100px">
+              
+                  <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
+                   
+                 </p:selectOneMenu></f:facet>
+           </p:cellEditor>
+                 
             </p:column>
-            <p:column  headerText="Id" footerText="Id" width="100">
+            <p:column  headerText="Id" footerText="Id" width="200">
+                <p:cellEditor>
+               <f:facet name="output"><h:outputText    value="#{Expenselist.str_ExpenseId}" /></f:facet>
+               <f:facet name="input"><p:inputText   value="#{Expenselist.str_ExpenseId}" /> style="width:100%"/></f:facet>
+           </p:cellEditor>
                 
-                <h:outputText    value="#{Expenselist.str_ExpenseId}" />
-            </p:column>
-            <p:column  headerText="Type" footerText="Type" width="100">
-                 
-                <h:outputText    value="#{Expenselist.str_ExpenseType}" />
-            </p:column>
-            <p:column  headerText="ExpenseCategory" footerText="ExpenseCategory" width="100">
-                 
-                <h:outputText    value="#{Expenselist.str_ExpenseCategory}" />
-                
-            </p:column>
-            <p:column headerText="Date" footerText="Date" width="100">
-                 
-                <h:outputText    value="#{Expenselist.date_Duration}" />
-            </p:column>
-            <p:column headerText="Amount" footerText="Amount" width="100">
-                
-                <h:outputText    value="#{Expenselist.int_Ammount}" />
-            </p:column>
-            <p:column headerText="AssetCategory" footerText="AssetCategory" width="100">
-                 
-                <h:outputText    value="#{Expenselist.str_AssetCatType}" />
             </p:column>
              
-            <p:column headerText="Status" footerText="Status" width="100">
-                  <h:outputText    value="#{Expenselist.str_AssetCatType}" />
-                
-            </p:column>
-           
-             <p:column headerText="Action" footerText="Action" width="100">
+            
+             <p:column headerText="Action" footerText="Action" width="200">
                  
                 <h:link outcome="editexpense.xhtml" >
                 
@@ -158,9 +153,18 @@
 	   		</h:link>
 	   		 
             </p:column>
-            </p:dataTable>
-            
-           
+            <p:column >
+          
+           <p:rowEditor />
+           <h:button/>
+             
+       </p:column>
+        
+             </p:dataTable>
+            <p:contextMenu for="dataTable" widgetVar="expense">   
+       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
+       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('expense').hide()"/>  
+   </p:contextMenu>
             </h:form>
            </body>
             
