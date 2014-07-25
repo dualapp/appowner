@@ -7,7 +7,7 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
-    <title>Invoice  Form</title>
+    <title>Ad_an_Post</title>
 </h:head>
 <body  bgcolor="pink">
   <h:form>
@@ -18,27 +18,39 @@
            
               <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="option" value="aaa"  style="width:150px">
+              <f:selectItem itemLabel="Shaffi Paradise" itemValue="Shaffi Paradise"  />
                    <f:selectItems value="aaa" />
                  </p:selectOneMenu>
              </td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
-             <td><h:outputText  value="Block:" /></td>
-               <td><p:selectOneMenu id="option1" value="jhu"  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+             <td><h:outputText  value="Intent" /></td>
+               <td><p:selectOneMenu id="option1" value=""  style="width:150px">
+                  <f:selectItem itemLabel="All" itemValue="All"  />
+                  <f:selectItem itemLabel="Buy" itemValue="Buy"  />
+                  <f:selectItem itemLabel="Sell" itemValue="Sell"  />
+                  <f:selectItem itemLabel="Rent" itemValue="Rent"  />
                    <f:selectItems value="" />
                  </p:selectOneMenu>
              </td>
+             <br />
+             <br />
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
-             <td><h:outputText  value="Apartment:" /></td>
+             <td><h:outputText  value="Status" /></td>
                <td><p:selectOneMenu id="option2" value=""  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"  />
+                   <f:selectItem itemLabel="Open" itemValue="Open"  />
+                    <f:selectItem itemLabel="Pending Approval" itemValue="Pending Approval"  />
+                     <f:selectItem itemLabel="Closed" itemValue="Closed"  />
+                  
                    <f:selectItems value="" />
                  </p:selectOneMenu>
                  </td>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
-                 <td><h:outputText  value="Status:" /></td>
+                 <td><h:outputText  value="Posted in the last" /></td>
                <td><p:selectOneMenu id="option3" value=""  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="10 days" itemValue="10 days"  />
+                  <f:selectItem itemLabel="30 days" itemValue="30 days"  />
+                  <f:selectItem itemLabel="All days" itemValue="All days"  />
                    <f:selectItems value="" />
                  </p:selectOneMenu>
              </td>
@@ -47,43 +59,26 @@
              <br/>
              <h:panelGroup id="aa">
             
-              <td><h:outputLabel value="Invoice Date:" /></td>
-              <td><p:selectOneMenu id="option4" value="aaa"  style="width:150px">
-                   <f:selectItems value="aaa" />
-                 </p:selectOneMenu>
-             </td>
-               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
-             <td><h:outputText  value="Template:" /></td>
-               <td><p:selectOneMenu id="option5" value="jhu"  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+              <td><h:outputLabel value="Type" /></td>
+              <td><p:selectOneMenu id="option4" value=""  style="width:150px">
+              <f:selectItem itemLabel="All" itemValue="All"  />
+              <f:selectItem itemLabel="My Community" itemValue="My Community"  />
+              <f:selectItem itemLabel="Negihbourhood" itemValue="Negihbourhood"  />
                    <f:selectItems value="" />
                  </p:selectOneMenu>
              </td>
-               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;
-             <td><h:outputText  value="Period" /></td>
-               <td><p:selectOneMenu id="option6" value=""  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
-                 </p:selectOneMenu>
-                 </td>
-                   &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150;
-                 <td><h:outputText  value="Year" /></td>
-               <td><p:selectOneMenu id="option7" value=""  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
-                 </p:selectOneMenu>
-             </td>
-            
+               &#150; &#150;&#150; &#150;&#150;
+                &#150; &#150;&#150; &#150;&#150;
+                <h:commandButton  value="Go" />
              </h:panelGroup>
            
              </fieldset>
-             <br/>
-             <br/>
-             <p:commandButton  value="Create New" />&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
-        <p:menuitem value="Record Payment" />
-        <p:menuitem value="Quick Payment" />
-        <p:menuitem value="Export To Excel" />
-         <p:menuitem value="Notify By Mail"/>
+             
+             <p:button  value="Create New" />&#150; &#150;<p:button  value="View Selected" />&#150; &#150;<p:button  value="Edit Selected" />&#150; &#150;<p:button  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+        <p:menuitem value="Approval Selected" />
+        <p:menuitem value="Reject Selected" />
+        <p:menuitem value="Close Selected" />
+
         </p:menuButton>
        
              </h:form>
