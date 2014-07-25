@@ -16,6 +16,12 @@ public interface ProductDao {
 
 	public int getdocid2(String intdocid1);
 
+	public Cls_ProductDetails editproduct(Integer int_ProductId);
+
+	public void update1(Cls_ProductDetails pro);
+
+	public List<Cls_ProductDetails> listPersons();
+
 	
 
 	
