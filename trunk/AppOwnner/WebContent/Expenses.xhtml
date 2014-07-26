@@ -100,16 +100,25 @@
              
              
              <legend  style="background-color:#438eb9; color:#fff;"> Expense</legend>
-             
+              
              <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-              id="dataTable" rows="10" scrollRows="10"   
+              id="dataTable" rows="10" scrollRows="10"     
                   
                   scrollable="true" liveScroll="true" scrollHeight="150"  
                  var="Expenselist" value="#{expenseBean.expenseList}"   >
+                 <f:facet name="header">
+            Expand rows to see detailed information
+            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        </f:facet>
+        <p:column style="width:16px">
+            <p:rowToggler />
+            
+        </p:column>
                   <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" />
         
  
-          <p:column    headerText="Organization" footerText="Organization" width="200">
+          <p:column   sortBy="#{Expenselist.str_OrganizationName}"  headerText="Organization" footerText="Organization" width="200">
           <p:cellEditor>
                <f:facet name="output"><h:outputText   value="#{Expenselist.str_OrganizationName}" /></f:facet>
                <f:facet name="input"><p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:100px">
@@ -121,7 +130,7 @@
            </p:cellEditor>
                  
             </p:column>
-            <p:column  headerText="Id" footerText="Id" width="200">
+            <p:column sortBy="#{Expenselist.str_ExpenseId}"  headerText="Id" footerText="Id" width="200">
                 <p:cellEditor>
                <f:facet name="output"><h:outputText    value="#{Expenselist.str_ExpenseId}" /></f:facet>
                <f:facet name="input"><p:inputText   value="#{Expenselist.str_ExpenseId}" /> style="width:100%"/></f:facet>
@@ -129,9 +138,25 @@
                 
             </p:column>
              
-            
+             <p:column  sortBy="#{Expenselist.str_AssetName}" headerText="AssetName" footerText="AssetName" width="200">
+                <p:cellEditor>
+               <f:facet name="output"><h:outputText    value="#{Expenselist.str_AssetName}" /></f:facet>
+               <f:facet name="input"><p:inputText   value="#{Expenselist.str_AssetName}" /> style="width:100%"/></f:facet>
+           </p:cellEditor>
+                
+            </p:column>
+            <p:column sortBy="#{Expenselist.str_AssetCatType}" headerText="AssetCategory" footerText="AssetCategory" width="200">
+                <p:cellEditor>
+               <f:facet name="output"><h:outputText    value="#{Expenselist.str_AssetCatType}" /></f:facet>
+               <f:facet name="input"><p:inputText   value="#{Expenselist.str_AssetCatType}" /> style="width:100%"/></f:facet>
+           </p:cellEditor>
+                
+            </p:column>
+              
+     
              <p:column headerText="Action" footerText="Action" width="200">
                  
+                  
                 <h:link outcome="editexpense.xhtml" >
                 
 	   			<p:graphicImage  height="20" width="20" alt="Edit" value="images/k1.png"/> 
@@ -153,18 +178,28 @@
 	   		</h:link>
 	   		 
             </p:column>
-            <p:column >
-          
-           <p:rowEditor />
-           <h:button/>
-             
-       </p:column>
-        
+            
+         <p:rowExpansion>
+
+   <legend  align="left" style="background-color:#438eb9; color:#fff;">Expense Info</legend>
+         <p:panelGrid  columns="2"    columnClasses="label,value" style="width:300px">
+               
+                <h:outputText value="Id:" />
+                <h:outputText value="#{Expenselist.str_ExpenseId}" /> 
+                <h:outputText value="Organization:" />
+                <h:outputText value="#{Expenselist.str_OrganizationName}" /> 
+                <h:outputText value="AssetName:" />
+                <h:outputText value="#{Expenselist.str_AssetName}" /> 
+                 <h:outputText value="AssetCategory:" />
+                <h:outputText value="#{Expenselist.str_AssetCatType}" /> 
+                
+ </p:panelGrid>
+ 
+         </p:rowExpansion>
+         
              </p:dataTable>
-            <p:contextMenu for="dataTable" widgetVar="expense">   
-       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
-       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('expense').hide()"/>  
-   </p:contextMenu>
+             
+            
             </h:form>
            </body>
             
