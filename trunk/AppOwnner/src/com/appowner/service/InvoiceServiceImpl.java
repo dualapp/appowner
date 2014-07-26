@@ -29,9 +29,13 @@ public class InvoiceServiceImpl implements InvoiceService{
 	{
 		 getInvoiceDao().saveInvoiceTransaction(invoice);
 	}
-	public List<String> taxList()
+	public String taxList(String select)
+	{   System.out.println(select);
+		return getInvoiceDao().taxList(select);
+	}
+	public List<String> getTaxList(String str)
 	{
-		return getInvoiceDao().taxList();
+		return getInvoiceDao().getTaxList(str);
 	}
 	
 }
