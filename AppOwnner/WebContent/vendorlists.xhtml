@@ -13,124 +13,59 @@
     <a href="addvendor.xhtml">Add Vendor</a>
 </h:head>
  <body bgcolor="yellow">
-  <div><h:messages/></div>
- <h:form><br/>
- <center>
-         <legend    style="background-color:#438eb9; color:#fff;">
+  <h:messages/>
+ <h:form>
         <h:inputText value="#{waterPaymentBean.str_VendorName}"></h:inputText>
         <h:commandButton value="Search by Name" action="#{waterPaymentBean.searchVendorByName1}"  >
          
         </h:commandButton>
-        </legend>
-        </center>
+        
         
     </h:form> 
     <h:form >
         <h:outputText value="Vendors : "></h:outputText>
-         <p:dataTable   paginator="true" id="datatable" border="15" cellspacing="3" dir="LTR" cellpadding="5"   frame="hsides" rows="3"  var="vendor" value="#{vendorBean.vendorList}" style="width: 10%">
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor ID" />
+       <p:dataTable    editable="true" resizableColumns="true"  
+              id="dataTable"   scrollRows="10"     
+                  
+                  scrollable="true" liveScroll="true" scrollHeight="150"   var="vendor" value="#{vendorBean.vendorList}"  >
+              <f:facet name="header">
+            
+            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        </f:facet>
+         
+          <p:column   sortBy="#{vendor.int_VendorId}"  headerText="Id" footerText="Id" width="50">
+          <p:cellEditor>
+               <f:facet name="output"><h:outputText   value="#{vendor.int_VendorId}" /></f:facet>
+               <f:facet name="input">     <h:inputText   value="#{vendor.int_VendorId}" />
+               
                 </f:facet>
-                <h:outputText  id="int_vendorId" value="#{vendor.int_VendorId}" />
+           </p:cellEditor>
+                 
             </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor Name" />
+             <p:column   sortBy="#{vendor.str_VendorName}"  headerText="VendorName" footerText="Vendor Name" width="100">
+          <p:cellEditor>
+               <f:facet name="output"><h:outputText   value="#{vendor.str_VendorName}" /></f:facet>
+               <f:facet name="input">     <h:inputText   value="#{vendor.str_VendorName}" />
+               
                 </f:facet>
-                <h:outputText  id="str_vendorName" value="#{vendor.str_VendorName}" />
-            </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor Type" />
-                </f:facet>
-                <h:outputText  id="str_vendorType" value="#{vendor.str_VendorType}" />
-            </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor Phone" />
-                </f:facet>
-                <h:outputText  id="int_vendorPhone" value="#{vendor.str_VendorPhone}" />
-            </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor Email" />
-                </f:facet>
-                <h:outputText  id="str_vendoremail" value="#{vendor.str_VendorEmail}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor Country" />
-                </f:facet>
-                <h:outputText  id="str_vendorCountry" value="#{vendor.str_CountryName}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor State" />
-                </f:facet>
-                <h:outputText  id="str_vendorstate" value="#{vendor.str_StateName}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor City" />
-                </f:facet>
-                <h:outputText  id="str_vendorcity" value="#{vendor.str_CityName}" />
+           </p:cellEditor>
+                 
             </p:column>
             
-              
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Service Rating" />
-                </f:facet>
-                <h:outputText  id="int_vendorservicerating" value="#{vendor.int_VendorServiceRating}" />
-            </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Vendor Comments" />
-                </f:facet>
-                <h:outputText  id="str_vendorcomments" value="#{vendor.str_VendorComments}" />
-            </p:column>
-             
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="IS A Company" />
-                </f:facet>
-                <h:outputText  id="ch_IsACompany" value="#{vendor.bool_IsaCompany}" />
-            </p:column>
-              
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Bank Account NO" />
-                </f:facet>
-                <h:outputText  id="str_VendorBankAccountNo" value="#{vendor.str_VendorAccount}" />
-            </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Bank Name" />
-                </f:facet>
-                <h:outputText  id="str_VendorBankAccountName" value="#{vendor.str_VendorBankName}" />
-            </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Bank NEFT/IFSC Code" />
-                </f:facet>
-                <h:outputText  id="str_VendorBankNeftOrIfsc" value="#{vendor.str_VendorBankNeftOrIfsc}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="action" />
-                </f:facet>
+            <p:column  headerText="action" footerText="action" width="100">
+                
                 <h:link outcome="viewvendor.xhtml" >
 	   			  <h:outputText value="View" />
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
               <h:link outcome="updatevendor.xhtml" >
-	   			<p:graphicImage  height="20" width="20" alt="update" value="images/k1.png"/> 
+	   			<p:graphicImage  height="50" width="50" alt="update" value="images/k1.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
 	   		 <h:link outcome="deletevendor.xhtml"
 	   		 onclick="return confirm('Are you sure you want to delete #{vendor.str_VendorName}?');" >  
-	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
+	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
             </p:column>
