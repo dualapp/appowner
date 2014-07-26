@@ -3,6 +3,9 @@ package com.appowner.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -108,4 +111,31 @@ public class TemplateDaoImpl implements TemplateDao {
 		 sessionFactory.getCurrentSession().update(messageTemplate);
 	 }
 	
+	public List<String> getDueTemplate(String frequency)
+	 {    System.out.println(frequency);
+		  @SuppressWarnings("unchecked")
+		  List<String> dueList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).setProjection(Projections.property("str_DueTemplate")).list();
+		  System.out.println(dueList.iterator().hasNext());
+			System.out.println(dueList);
+			return dueList;  
+	 }
+	@SuppressWarnings("unchecked")
+	public List<String> getMessageTemplate()
+	{
+		String hql="select str_Title from MessageTemplate where str_Category='Dues'";
+		List<String> str= (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).list();
+		System.out.println(str);
+		return str;
+		
+	}
+	public String getDescription(String str)
+	{    String hql=" select int_MessageTemplateID from MessageTemplate  where str_Title=?";
+	      int ID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).uniqueResult();
+	 
+	   String hql1="select str_Description from MessageTemplate where int_MessageTemplateID="+ID;
+	   String str1= (String)getSessionFactory().getCurrentSession().createQuery(hql1).uniqueResult();
+	    System.out.println(str1);
+	    return str1;
+		
+	}
 }
