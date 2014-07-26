@@ -100,4 +100,16 @@ public class TemplateServiceImpl implements TemplateService {
 	  {
 		  getTemplateDao().updateMessageTemplate(messageTemplate);
 	  }
+	  public List<String> getDueTemplate(String frequency)
+	  {
+		  return getTemplateDao().getDueTemplate(frequency);
+	  }
+	  public List<String> getMessageTemplate()
+	  {
+		  return getTemplateDao().getMessageTemplate(); 
+	  }
+	  public String getDescription(String str)
+	  {
+		  return getTemplateDao().getDescription(str); 
+	  }
 }

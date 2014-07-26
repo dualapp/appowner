@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+
 import java.util.List;
 
 import com.appowner.model.InvoiceTransaction;
@@ -10,5 +11,7 @@ public interface InvoiceService {
 
 public void saveInvoiceTransaction(InvoiceTransaction invoice);
 
-public List<String> taxList();
+public String taxList(String select);
+
+public List<String> getTaxList(String str);
 }
