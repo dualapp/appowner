@@ -1,11 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
-	<ui:define name="content">
+	xmlns:f="http://java.sun.com/jsf/core">
+	
 <h:head>
     <title>Create Invoice Template Form</title>
 </h:head>
@@ -35,14 +34,22 @@
               <tr></tr><tr></tr><tr></tr><tr></tr>
                <tr>
             <td> <h:outputText  value="Frequency*" /></td>
-           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}"  style="width:300px">
+           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}" style="width:300px">
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
                         <f:selectItem itemLabel="One Time" itemValue="One Time"/>
+                         <p:ajax event="change" update="str_DueInvoiceTemplate" process="str_Frequency"/>
                  </p:selectOneMenu></td>
             </tr>
-       
+            <tr>
+            <td><h:outputText  value="DueTemplate*" /></td>
+            <td><p:selectCheckboxMenu id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}">
+             <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
+              <f:selectItems value="#{templateBean.dueTemplates}"  /><br/>
+             </p:selectCheckboxMenu>
+             </td>
+            </tr>
            
           
         
@@ -51,21 +58,23 @@
              <td> <h:outputLabel value="Message Category" /></td>  
           <td><p:selectOneMenu id="str_MessageCategory" value="#{templateBean.str_MessageCategory}"  style="width:300px">
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
-                    <f:selectItem itemLabel="Dues" itemValue="Dues" />
-                    
+                    <f:selectItem itemLabel="Accounts" itemValue="Accounts" />
+                     <p:ajax event="change" update="str_MessageTemplate" process="str_MessageCategory"/>
                  </p:selectOneMenu></td>   
                  </tr>
                   <tr></tr><tr></tr><tr></tr><tr></tr>
                  <tr>
              <td> <h:outputLabel value="Message Template" /></td>  
-          <td><p:selectOneMenu id="str_MessageTemplate" value="#{templateBean.str_MessageTemplate}"  style="width:300px">
-                   <f:selectItems value="aaa" />
+          <td><p:selectOneMenu id="str_MessageTemplate" value="#{templateBean.str_MessageTemplate}" valueChangeListener="#{templateBean.templateChangeListener}" style="width:300px">
+          <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="#{templateBean.str_MessageTemplate1}"  />
+                    <p:ajax event="change" update="description" process="str_MessageTemplate"/>
                  </p:selectOneMenu></td>   
                  </tr>
                  <tr></tr><tr></tr><tr></tr><tr></tr>
                  <tr>
                 
-                <td></td><td><p:inputTextarea rows="4" cols="30"  id="description" value="#{templateBean.str_Description}" required="true" />
+              <td></td>  <td><p:inputTextarea rows="4" cols="30"  id="description"  value="#{templateBean.str_description}" required="true" readonly="true"/>
            
                </td>
                </tr>
@@ -77,5 +86,4 @@
             </tr>
               </h:form>
               </body>
-             </ui:define>
-             </ui:composition>
+            </html>
