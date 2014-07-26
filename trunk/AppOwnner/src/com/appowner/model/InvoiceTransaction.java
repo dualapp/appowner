@@ -62,6 +62,18 @@ public class InvoiceTransaction implements Serializable{
 	public Integer getInt_Year() {
 		return int_Year;
 	}
+	public String getStr_TransactionDueTemplate() {
+		return str_TransactionDueTemplate;
+	}
+	public void setStr_TransactionDueTemplate(String str_TransactionDueTemplate) {
+		this.str_TransactionDueTemplate = str_TransactionDueTemplate;
+	}
+	public String getStr_TransactionTaxTemplate() {
+		return str_TransactionTaxTemplate;
+	}
+	public void setStr_TransactionTaxTemplate(String str_TransactionTaxTemplate) {
+		this.str_TransactionTaxTemplate = str_TransactionTaxTemplate;
+	}
 	public void setInt_Year(Integer int_Year) {
 		this.int_Year = int_Year;
 	}
@@ -91,5 +103,8 @@ public class InvoiceTransaction implements Serializable{
 	public void setStr_ApartmentNo(String str_ApartmentNo) {
 		this.str_ApartmentNo = str_ApartmentNo;
 	}
-	
+	@Column(name="var_TransactionDueTemplate")
+	private String str_TransactionDueTemplate;
+	@Column(name="var_TransactionTaxTemplate")
+	private String str_TransactionTaxTemplate;
 }

@@ -78,5 +78,12 @@ public class InvoiceTemplate implements Serializable {
 	public void setStr_Description(String str_Description) {
 		this.str_Description = str_Description;
 	}
-	
+	@Column(name="var_DueTemplate")
+	private String str_DueInvoiceTemplate;
+	public String getStr_DueInvoiceTemplate() {
+		return str_DueInvoiceTemplate;
+	}
+	public void setStr_DueInvoiceTemplate(String str_DueInvoiceTemplate) {
+		this.str_DueInvoiceTemplate = str_DueInvoiceTemplate;
+	}
 }
