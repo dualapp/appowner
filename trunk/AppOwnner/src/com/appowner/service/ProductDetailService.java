@@ -24,6 +24,8 @@ public interface ProductDetailService {
 	public void update1(Cls_ProductDetails pro);
 	public  List<Cls_ProductDetails> listPersons();
 
+	public Cls_ProductDetails searchByName1(char ch_Product_Type);
+
 	//public List getCategoryname1();
 
 	
