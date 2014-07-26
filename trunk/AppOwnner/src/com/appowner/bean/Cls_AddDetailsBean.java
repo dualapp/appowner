@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -18,10 +19,8 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
-import com.appowner.model.cls_Person;
 import com.appowner.service.ProductDetailService;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean
@@ -239,9 +238,46 @@ public class Cls_AddDetailsBean implements Serializable {
 		this.listPerson = listPerson;
 	}
 	
+	private Cls_ProductDetails product=new Cls_ProductDetails();
+
+	public Cls_ProductDetails getProduct() {
+		return product;
+	}
+	public void setProduct(Cls_ProductDetails product) {
+		this.product = product;
+	}
+	  
+	public String searchByName() {
+		Cls_ProductDetails product=new Cls_ProductDetails();
+		{
+			product.setCh_Ad_Type(getCh_Product_Type());
+		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+		System.out.println(product);
+		product = getProductDetailService().searchByName1(Ch_Product_Type);
+		System.out.println(product);
+		if (product!= null) {
+			return "ViewDetail.xhtml?faces-redirect=true";
+			
+		} else
+		{
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("User does not exist!!!!!"));
+			return null;
+		}
+	}
+	}
+	
+	}
 	
 	
-}
+	
+	
+	
+	
+	 
+	
+	
+
 	
 	
 	
