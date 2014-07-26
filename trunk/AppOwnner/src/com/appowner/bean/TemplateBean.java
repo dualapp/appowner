@@ -7,9 +7,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.html.HtmlDataTable;
-import javax.faces.component.html.HtmlInputHidden;
 
 
 import javax.faces.event.ValueChangeEvent;
@@ -240,12 +239,20 @@ public class TemplateBean implements Serializable {
 		this.int_InvoiceTemplateID = int_InvoiceTemplateID;
 	}
 	private String str_InvoiceTemplateName;
-	private Boolean bl_Show;
 	public String getStr_InvoiceTemplateName() {
 		return str_InvoiceTemplateName;
 	}
 	public void setStr_InvoiceTemplateName(String str_InvoiceTemplateName) {
 		this.str_InvoiceTemplateName = str_InvoiceTemplateName;
+	}
+	private Boolean bl_Show;
+
+	
+	public List<String> getStr_DueInvoiceTemplate() {
+		return str_DueInvoiceTemplate;
+	}
+	public void setStr_DueInvoiceTemplate(List<String> str_DueInvoiceTemplate) {
+		this.str_DueInvoiceTemplate = str_DueInvoiceTemplate;
 	}
 	public Boolean getBl_Show() {
 		return bl_Show;
@@ -260,6 +267,7 @@ public class TemplateBean implements Serializable {
 		this.str_MessageCategory = str_MessageCategory;
 	}
 	public String getStr_MessageTemplate() {
+		
 		return str_MessageTemplate;
 	}
 	public void setStr_MessageTemplate(String str_MessageTemplate) {
@@ -267,6 +275,22 @@ public class TemplateBean implements Serializable {
 	}
 	private String str_MessageCategory;
 	private String str_MessageTemplate;
+	public String getStr_description() {
+		
+		return description;
+	}
+	public void setStr_description(String str_description) {
+		this.str_description = str_description;
+	}
+	private String str_description;
+	private List<String> str_DueInvoiceTemplate;
+	private String str1_Frequency;
+	public String getStr1_Frequency() {
+		return str1_Frequency;
+	}
+	public void setStr1_Frequency(String str1_Frequency) {
+		this.str1_Frequency = str1_Frequency;
+	}
 	public String addInvoiceTemplate()
 	{ try{
 		
@@ -279,6 +303,7 @@ public class TemplateBean implements Serializable {
 	  invoicetemplate.setStr_MessageCategory(getStr_MessageCategory());
 	  invoicetemplate.setStr_MessageTemplate(getStr_MessageTemplate());
 	  invoicetemplate.setStr_Description(getStr_Description());
+	  invoicetemplate.setStr_DueInvoiceTemplate(str);
 	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
 	  return "InvoiceTemplate.xhtml";
 	}
@@ -288,7 +313,19 @@ public class TemplateBean implements Serializable {
 	}
 	return null;
 	}
+	private List<String> str_MessageTemplate1;
+	public List<String> getStr_MessageTemplate1() {
+		str_MessageTemplate1=new ArrayList<String>();
+		str_MessageTemplate1= getTemplateService().getMessageTemplate();
+		System.out.println(str_MessageTemplate1);
+		return str_MessageTemplate1;
+	}
 	
+	
+	
+	public void setStr_MessageTemplate1(List<String> str_MessageTemplate1) {
+		this.str_MessageTemplate1 = str_MessageTemplate1;
+	}
 	private List<InvoiceTemplate> listInvoices;
 	
 	
@@ -316,6 +353,69 @@ public class TemplateBean implements Serializable {
 		getTemplateService().updateInvoiceTemplate(invoiceTemplate);
 		return "InvoiceTemplate.xhtml";
 	}
+	private List<String> dueTemplates;
+	public List<String> getDueTemplates() {
+		
+	        return dueTemplates;
+	}
+	public void setDueTemplates(List<String> dueTemplates) {
+		this.dueTemplates = dueTemplates;
+	}
+  public List<String> frequencyChangeListener(ValueChangeEvent event)
+  {
+	   str1_Frequency=(String)event.getNewValue();
+	    dueTemplates=new ArrayList<String>();
+	     dueTemplates.addAll(getTemplateService().getDueTemplate(str1_Frequency));
+	        return dueTemplates;
+		
+	}
+	List list1=new ArrayList();
+	public List getList1() {
+		return list1;
+	}
+	public void setList1(List list1) {
+		this.list1 = list1;
+	}
+	private String str;
+	public String getStr() {
+		return str;
+	}
+	public void setStr(String str) {
+		this.str = str;
+	}
+	@SuppressWarnings("unchecked")
+	public void roleChangeListener(ValueChangeEvent event)
+	{   System.out.println("hi");
+		list1.addAll((List<String>) event.getNewValue());
+		System.out.println(list1);
+		StringBuilder out = new StringBuilder();
+		for (Object o : list1)
+		{
+		  out.append(o.toString());
+		  out.append(",");
+		}
+		str=out.toString();
+		System.out.println(str);	
+			
+			
+		}
+	private String description;
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String templateChangeListener(ValueChangeEvent event)
+	{
+		String str=(String)event.getNewValue();
+		description=getTemplateService().getDescription(str);
+		System.out.println(description);
+		return description;
+		
+	}
+		
+	
 	//MESSAGE TEMPLATE
 	private Integer int_MessageTemplateID;
 	private String str_CreatedBy;
