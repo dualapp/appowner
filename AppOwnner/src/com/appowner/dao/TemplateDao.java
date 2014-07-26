@@ -26,4 +26,7 @@ public TaxTemplate getTaxTemplate(Integer int_TaxTemplateID);
 public void updateTaxTemplate(TaxTemplate taxTemplate);
 public MessageTemplate getMessageTemplate(Integer int_MessageTemplateID);
 public void updateMessageTemplate(MessageTemplate messageTemplate);
+public List<String> getDueTemplate( String frequency);
+public List<String> getMessageTemplate();
+public String getDescription(String str);
 }
