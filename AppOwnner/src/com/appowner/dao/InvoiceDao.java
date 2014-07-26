@@ -9,5 +9,6 @@ public interface InvoiceDao {
 
 public void saveInvoiceTransaction(InvoiceTransaction invoice);
 
-public List<String> taxList();
+public String taxList(String select);
+public List<String> getTaxList(String str);
 }

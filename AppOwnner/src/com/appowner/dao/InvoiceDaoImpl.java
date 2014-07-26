@@ -35,10 +35,28 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> taxList() {
-		String hql="from DueTemplate";
-		List<String> taxlist=(List<String>) getSessionFactory().getCurrentSession().createQuery(hql).list();
+	public String taxList(String select) {
+		System.out.println(select);
+		String hql="Select int_InvoiceTemplateID from InvoiceTemplate  where str_InvoiceTemplateName=?";
+		int invoiceID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).uniqueResult();
+		System.out.println(invoiceID);
+		String hql1="select str_DueInvoiceTemplate from InvoiceTemplate where int_InvoiceTemplateID="+invoiceID;
+		String taxlist= (String) getSessionFactory().getCurrentSession().createQuery(hql1).uniqueResult();
+		
 		System.out.println(taxlist);
 		return taxlist;
 	}
+	@SuppressWarnings("unchecked")
+	public List<String> getTaxList(String str)
+	{
+		String hql="Select int_DueTemplateID from DueTemplate  where str_DueTemplate=?";
+		int dueID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).uniqueResult();
+		System.out.println(dueID);
+		String hql1="from DueTemplate where int_DueTemplateID="+dueID;
+		List<String> taxlist= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).list();
+		System.out.println(taxlist.iterator().hasNext());
+		System.out.println(taxlist);
+		return taxlist;
+	}
+	
 }
