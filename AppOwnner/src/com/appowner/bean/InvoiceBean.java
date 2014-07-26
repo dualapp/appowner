@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.StringTokenizer;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,6 +14,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.DueTemplate;
+import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.service.InvoiceService;
 
@@ -144,7 +147,16 @@ public class InvoiceBean implements Serializable{
 	}
 	private String str_DueTemplate;
 	private String str_TaxTemplate;
-public String getStr_DueTemplate() {
+
+	
+    private List<String> dueList=new ArrayList<String>();
+	public List<String> getDueList() {
+		return dueList;
+	}
+	public void setDueList(List<String> dueList) {
+		this.dueList = dueList;
+	}
+	public String getStr_DueTemplate() {
 		return str_DueTemplate;
 	}
 	public void setStr_DueTemplate(String str_DueTemplate) {
@@ -156,14 +168,22 @@ public String getStr_DueTemplate() {
 	public void setStr_TaxTemplate(String str_TaxTemplate) {
 		this.str_TaxTemplate = str_TaxTemplate;
 	}
-private List<String> listDues;
+	private String listDues;
 	
-	public List<String> getListDues() {
-		
+	
+	public String getListDues() {
 		return listDues;
 	}
-	public void setListDues(List<String> listDues) {
+	public void setListDues(String listDues) {
 		this.listDues = listDues;
+	}
+	private List<String> listTax;
+	
+	public List<String> getListTax() {
+		return listTax;
+	}
+	public void setListTax(List<String> listTax) {
+		this.listTax = listTax;
 	}
 	public List<String> selectRadioButton(ValueChangeEvent event)
 	{   System.out.println("hi");
@@ -171,15 +191,27 @@ private List<String> listDues;
          System.out.println(select);
        
 	    if(select.equals(getSelect()))
-	    {    listDues = new ArrayList<String>();
-	        listDues.addAll(getInvoiceService().taxList());
-		   System.out.println(listDues);
-	    	return listDues;
+	    {
+	        listDues=getInvoiceService().taxList(select);
+	        System.out.println(listDues);
+	        String[] strArray = listDues.split(",");
+	        for (String str : strArray) {
+	         System.out.println(str);
+	         listTax=new ArrayList<String>();
+	         listTax.addAll(getInvoiceService().getTaxList(str));
+	         System.out.println(listTax);
+	       
+	        
+	         dueList.addAll(listTax);
+	        }
+          return dueList;
+
+	       
 	    }
 	    else
-	    {
-	    	listDues=new ArrayList<String>();
-	    	return listDues;
+	    { 
+	    	 dueList=new ArrayList<String>();
+	         return dueList;
 	    }
 	      
 	}
