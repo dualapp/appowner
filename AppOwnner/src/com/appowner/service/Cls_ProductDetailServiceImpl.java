@@ -66,6 +66,11 @@ public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 		
 	}
 
+	@Override
+	public Cls_ProductDetails searchByName1(char ch_Product_Type) {
+		return getProductDao().searchByName1();
+	}
+
 	
 	
 	
