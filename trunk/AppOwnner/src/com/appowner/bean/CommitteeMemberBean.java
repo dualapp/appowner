@@ -140,20 +140,19 @@ public class CommitteeMemberBean implements Serializable{
 	public String addCommitteeMember()
 	{
 		ListIterator itr1 = list1.listIterator();
+		System.out.println(list1);
 		ListIterator itr2 = list2.listIterator();
 		ListIterator itr3 = list3.listIterator();
 		ListIterator itr4 = list4.listIterator();
 		while(itr1.hasNext()||itr2.hasNext()||itr3.hasNext()||itr4.hasNext())
 		{
-			
-			str_UserName=(String) itr1.next();
-			str_CommitteeRole=(String) itr2.next();
-			str_ResponsibleFor=(String) itr3.next();
-			date_ElectionDate=(Date) itr4.next();
-		System.out.println(str_UserName);
-		System.out.println(str_CommitteeRole);
-		System.out.println(str_ResponsibleFor);
-		System.out.println(date_ElectionDate);
+			 if(itr1.hasNext()==true)
+			 {
+			str_UserName=(String)itr1.next();
+			str_CommitteeRole=(String)itr2.next();
+			str_ResponsibleFor=(String)itr3.next();
+			date_ElectionDate=(Date)itr4.next();
+		 
 		commiteeMember=new CommiteeMember();
 		commiteeMember.setStr_UserName(str_UserName);
 		commiteeMember.setInt_UserId(getCommitteeMemberService().getUserId(str_UserName));
@@ -162,6 +161,10 @@ public class CommitteeMemberBean implements Serializable{
 		commiteeMember.setDate_Electiondate(date_ElectionDate);
 		commiteeMember.setChar_User_Type('C');
 		getCommitteeMemberService().addCommitteeMember(commiteeMember);
+			 }
+			 else
+				return  "committeememberlist.xhtml";
+				 
 		}
 		
 		return "committeememberlist.xhtml";
