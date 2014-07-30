@@ -23,4 +23,6 @@ public interface ExpenseDao {
 
 	void saveParking(Parking parking);
 
+	List<String> getParkingSlotList();
+
 }
