@@ -22,6 +22,7 @@ import org.primefaces.event.UnselectEvent;
 
 import com.appowner.model.CommiteeMember;
 import com.appowner.model.Expense;
+import com.appowner.model.Parking;
 import com.appowner.service.ExpenseService;
 
 @ManagedBean
@@ -47,6 +48,10 @@ public class ExpenseBean  implements Serializable{
 	private Integer int_ExpenseId;
 	private Integer int_Ammount;
 	private String str_Description;
+	private Integer int_ParkingId;
+	private String Str_Organization;
+	private String str_ParkingSlot;
+	
 	
 	private List<String> str_OrganizationNameList;
 	private List<String> str_AssetCatNameList;
@@ -132,7 +137,24 @@ private String str_AccountName;
 		
 		this.str_AssetCatNameList = str_AssetCatNameList;
 	}
-
+	public Integer getInt_ParkingId() {
+		return int_ParkingId;
+	}
+	public void setInt_ParkingId(Integer int_ParkingId) {
+		this.int_ParkingId = int_ParkingId;
+	}
+	public String getStr_Organization() {
+		return Str_Organization;
+	}
+	public void setStr_Organization(String str_Organization) {
+		Str_Organization = str_Organization;
+	}
+	public String getStr_ParkingSlot() {
+		return str_ParkingSlot;
+	}
+	public void setStr_ParkingSlot(String str_ParkingSlot) {
+		this.str_ParkingSlot = str_ParkingSlot;
+	}
 	public Integer getInt_Ammount() {
 		return int_Ammount;
 	}
@@ -301,11 +323,12 @@ public void setExpenseList(List<Expense> expenseList) {
 	this.expenseList = expenseList;
 }
 private Expense expense1;
-public Expense getExpense1() {
+public void getExpense1() {
 	expense=new Expense();
-	expense=getExpenseService().getOneExpense(str_ExpenseId);
-	System.out.println(expense);
-	return expense;
+	 
+	expense=getExpenseService().getOneExpense("5UPLJvvXcSHZ");
+	System.out.println(expense.getStr_AssetName());
+	 
 }
 public void setExpense1(Expense expense1) {
 	this.expense1 = expense1;
@@ -315,7 +338,9 @@ public void setExpense1(Expense expense1) {
  */
 public void getOneExpense()
 {
-	expense=getExpenseService().getOneExpense(str_ExpenseId);
+	System.out.println(str_ExpenseId);
+	
+	expense=getExpenseService().getOneExpense("5UPLJvvXcSHZ");
 }
 /*
  * Update One Expense Object
@@ -354,6 +379,23 @@ public void onRowCancel(RowEditEvent event) {
     FacesMessage msg = new FacesMessage("Edit Cancelled", ((Expense) event.getObject()).getStr_ExpenseId());
     FacesContext.getCurrentInstance().addMessage(null, msg);
 }
+private Parking parking;
+
+public void saveParking()
+{
+	System.out.println("HBNNNNNNNNNNNNNNNNNNNNNNNNNm");
+	parking=new Parking();
+	parking.setStr_OrganizationName(getStr_Organization());
+	parking.setStr_ParkingSlot(getStr_ParkingSlot());
+	getExpenseService().saveParking(parking);
+}
+public Parking getParking() {
+	return parking;
+}
+public void setParking(Parking parking) {
+	this.parking = parking;
+}
+
 
 }
 
