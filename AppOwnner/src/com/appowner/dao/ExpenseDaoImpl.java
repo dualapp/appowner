@@ -80,4 +80,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		getSessionFactory().getCurrentSession().save(parking);
 		
 	}
+
+	@Override
+	public List<String> getParkingSlotList() {
+		String  query = "{ CALL parkingSpaceList() }";
+		
+		@SuppressWarnings("unchecked")
+		List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
+		System.out.println(parkingSpaceList);
+		return parkingSpaceList;
+	}
 }
