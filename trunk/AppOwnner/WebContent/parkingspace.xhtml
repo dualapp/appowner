@@ -110,21 +110,26 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	   
 	</h:body>
 	<br/>
-	<P:dataTable var="ps" items="#{nmsmc}">
+	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
+              
+             <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
+              id="dataTable" rows="10" scrollRows="10"     
+                  
+                  scrollable="true" liveScroll="true" scrollHeight="150" var="ps" value="#{expenseBean.parkingSpaceList}">
 	 <p:column>
                 <f:facet name="header">
                     <h:outputText  value=" Organization" />
                 </f:facet>
-                <h:outputText  id="int_organizationId" value="#{expenseBean.str_OrganizationName}" />
+                <h:outputText  id="int_organizationname" value="#{ps.str_OrganizationName}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText  value="Parking slot" />
                 </f:facet>
-                <h:outputText   value="#{expenseBean.str_OrganizationName}" />
+                <h:outputText   value="#{ps.str_ParkingSlot}" />
             </p:column>
             
-	</P:dataTable>
+	 </p:dataTable>
 	
 	</h:form>
 
