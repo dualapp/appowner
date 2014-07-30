@@ -113,7 +113,7 @@
         </f:facet>
         <p:column style="width:16px">
             <p:rowToggler />
-            
+           
         </p:column>
                   <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" />
         
@@ -152,11 +152,15 @@
            </p:cellEditor>
                 
             </p:column>
-              
-     
+           
              <p:column headerText="Action" footerText="Action" width="200">
                  
-                  
+                   <p:column >
+          
+           <p:rowEditor />
+           <h:button/>
+             
+       </p:column>
                 <h:link outcome="editexpense.xhtml" >
                 
 	   			<p:graphicImage  height="20" width="20" alt="Edit" value="images/k1.png"/> 
@@ -178,11 +182,12 @@
 	   		</h:link>
 	   		 
             </p:column>
-            
+           
          <p:rowExpansion>
-
+        <br/>
+     
    <legend  align="left" style="background-color:#438eb9; color:#fff;">Expense Info</legend>
-         <p:panelGrid  columns="2"    columnClasses="label,value" style="width:300px">
+         <p:panelGrid  columns="2"    style="width:200px">
                
                 <h:outputText value="Id:" />
                 <h:outputText value="#{Expenselist.str_ExpenseId}" /> 
@@ -199,7 +204,10 @@
          
              </p:dataTable>
              
-            
+            <p:contextMenu for="dataTable" widgetVar="expense">   
+       <p:menuitem value="Edit Cell" update="dataTable"  icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
+       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('expense').hide()"/>  
+   </p:contextMenu>
             </h:form>
            </body>
             
