@@ -21,15 +21,15 @@ public class VendorServiceDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="int_ServiceId")
+	@Column 
     private Integer int_ServiceId;
-	@Column(name="var_ServiceName")
+	@Column 
     private String str_ServiceName;
 	@Column(name="int_ServicePrice")
     private String int_ServicePrice;
 	@Column(name="int_VendorId")
 	private Integer int_VendorId;
-	@Column(name="bool_editable")
+	@Column 
 	private Boolean editable;
 	public Boolean getEditable() {
 		return editable;
