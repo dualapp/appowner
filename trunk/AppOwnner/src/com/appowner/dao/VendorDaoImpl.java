@@ -7,9 +7,11 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.Expense;
 import com.appowner.model.Vendor;
 import com.appowner.model.VendorCity;
 import com.appowner.model.VendorCountry;
@@ -125,11 +127,11 @@ public class VendorDaoImpl implements VendorDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<VendorServiceDetails> getVendorServiceDetails(int int_VendorId) {
-		String hql3="from VendorServiceDetails where int_VendorId=?";
+		 String hql3="from VendorServiceDetails where int_VendorId=?";
 		List<VendorServiceDetails> v1= (List<VendorServiceDetails>) getSessionFactory().getCurrentSession().createQuery(hql3).setParameter(0, int_VendorId).list();
 		System.out.println(v1);
-		return v1;
-		  
+		return v1; 
+		
 		 
 	}
 
