@@ -13,17 +13,55 @@
  <h:form id="form1" enctype="multipart/form-data">
  <br/>
  <h:body>
+ 
+  <table><tr><td>
+               <h:outputLabel value="Organisation:" /> </td>
+              <td> <h:inputText value="SAphiParadise"/></td></tr>
+                 
+       <tr><td></td><td><p:inputTextarea rows="6" cols="33"     value="#{expenseBean.str_AdditionalInfo}"/></td></tr><br/>
   
-               <h:outputLabel value="Organisation:" /> 
-              <p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:100px">
-              
-                  <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
-                   
-                 </p:selectOneMenu>
- <p:fileUpload fileUploadListener="#{noticeBoardBean.handleFileUpload}" value="#{noticeBoardBean.str_Document}" mode="advanced"  auto="true" 
-            sizeLimit="100000" fileLimit="3"  style="width:500px"/> 
-            <Context path="/Appownner/images" docBase="e:/Appownner/" crossContext="false" debug="0" reloadable="true" privileged="true" /> 
+ 
+ <tr><td><h:outputText value="Upload Appartment image"/></td>
+ <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
+ <br/><tr><td></td><td><p:fileUpload fileUploadListener="#{expenseBean.handleFileUpload}"  mode="advanced"  auto="true" 
+            sizeLimit="100000" fileLimit="3"  style="width:500px"/> </td></tr>
+        
+         
+        <tr><td><h:outputText value="What is your association office timings? *"/></td> 
+        <td><h:outputText value="From"/><p:selectOneMenu value="#{expenseBean.str_offcInTiming}" style="width:200px">
+           <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem itemLabel="1" itemValue="1" />
+            <f:selectItem itemLabel="1:30" itemValue="1:30" />
+            <f:selectItem itemLabel="2" itemValue="2" />
+            <f:selectItem itemLabel="2:30" itemValue="2:30" />
+             <f:selectItem itemLabel="3" itemValue="3" />
+               </p:selectOneMenu></td>
+        <td><p:selectOneMenu value="#{expenseBean.str_offcInTiming}" style="width:200px">
+            <f:selectItem itemLabel="AM" itemValue="AM" />
+            <f:selectItem itemLabel="PM" itemValue="PM" />
+             
+               </p:selectOneMenu></td><td><h:outputText value="Weekly Holidays"/></td></tr>
+        <tr><td></td><td><h:outputText value="To"/><p:selectOneMenu value="#{expenseBean.str_offcOutTiming}" style="width:200px">
+            <f:selectItem itemLabel="1" itemValue="1" />
+            <f:selectItem itemLabel="1:30" itemValue="1:30" />
+            <f:selectItem itemLabel="2" itemValue="2" />
+            <f:selectItem itemLabel="2:30" itemValue="2:30" />
+             <f:selectItem itemLabel="3" itemValue="3" />
+               
+        </p:selectOneMenu></td><td><p:selectOneMenu value="#{expenseBean.str_offcOutTiming}" style="width:200px">
+            <f:selectItem itemLabel="AM" itemValue="AM" />
+            <f:selectItem itemLabel="PM" itemValue="PM" />
+             
+               
+        </p:selectOneMenu></td><td> <p:selectOneMenu value="#{expenseBean.str_Day}" style="width:200px">
+            <f:selectItem itemLabel="Sunday" itemValue="Sunday" />
+            <f:selectItem itemLabel="Monday" itemValue="monday" />
+            <f:selectItem itemLabel="tuesdat" itemValue="tuesday" />
+            <f:selectItem itemLabel="wednesday" itemValue="wednesday" />
+             <f:selectItem itemLabel="thrusday" itemValue="thrusady" /></p:selectOneMenu></td></tr>
+             <tr><td><h:commandButton value="Submit"  action="#{expenseBean.addOrganizationLogo}" /></td></tr>
+                    </table>
+        
             
  </h:body>
  </h:form>
