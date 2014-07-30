@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	</h:head>
+	<h:form>
+	<h:body>
+	<br/>
+	<div>
+	<h:panelGroup>
+	<p><h:outputLabel value="Organisation:" /> 
+               <h:outputLabel value="Organisation:" /> 
+              <p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_Organization}"  style="width:100px">
+              
+                  <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
+                   
+                 </p:selectOneMenu></p><br/>
+	<p><h:outputText value="parkingSlot"/>
+	<h:inputText value="#{expenseBean.str_ParkingSlot}"/></p>
+	<p><h:commandButton value="submit" action="#{expenseBean.saveParking}"/>  </p>
+	</h:panelGroup>
+	</div>
+	</h:body>
+	</h:form>
+ </html>
