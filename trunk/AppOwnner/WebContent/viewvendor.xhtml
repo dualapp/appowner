@@ -20,7 +20,7 @@
     <title> update</title>
 </h:head>
 <body bgcolor="pink">
-<h:form >
+<h:form id="form">
 <br/>
   <legend  align="left" style="background-color:#438eb9; color:#fff;">modify ur profile</legend>
   
@@ -90,9 +90,9 @@
                     <h:outputText value="Edit" />
                 </f:facet>
                
-              <h:commandLink  value="Edit"  rendered="#{not v.editable}"     update="@form" process="@this"  immediate="true" execute="@this"  action="#{vendorBean.editAction(v)}"   > 
-               <f:ajax render="@form" execute="@form"/>
-               </h:commandLink>
+              <h:button  value="Edit"  rendered="#{not v.editable}"     update="@form" process="@this"  immediate="true" execute="@this"  action="#{vendorBean.editAction(v)}"   > 
+                
+               </h:button>
                	   		 
                
                	   		 
@@ -103,9 +103,9 @@
                     <h:outputText value="Update" />
                 </f:facet>
                 
-	   		<h:commandLink  value="Update"     action="#{vendorBean.updateVendorServiceDetails(v)}" > 
-               <f:ajax render="@form" execute="@form" />
-               </h:commandLink>
+	   		<h:button  value="Update"     action="#{vendorBean.updateVendorServiceDetails(v)}" > 
+               
+              </h:button>
                </p:column>
             </p:dataTable>  
   
