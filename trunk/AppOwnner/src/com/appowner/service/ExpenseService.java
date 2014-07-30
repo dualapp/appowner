@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.Expense;
@@ -22,6 +23,8 @@ public interface ExpenseService {
 	void deleteOneExpense(Expense expense);
 
 	void saveParking(Parking parking);
+
+	List<String> getParkingSlotList();
 
 	 
 

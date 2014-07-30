@@ -75,4 +75,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao(). saveParking(parking);
 	}
 
+	@Override
+	public List<String> getParkingSlotList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getParkingSlotList();
+	}
+
 }
