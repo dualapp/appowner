@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+ <h:head>
+ </h:head>
+ <h:form id="form1" enctype="multipart/form-data">
+ <h:body>
+ <h:outputLabel value="Organisation:" /> 
+               <h:outputLabel value="Organisation:" /> 
+              <p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:100px">
+              
+                  <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
+                   
+                 </p:selectOneMenu>
+ <p:fileUpload fileUploadListener="#{noticeBoardBean.handleFileUpload}" value="#{noticeBoardBean.str_Document}" mode="advanced"  auto="true" 
+            sizeLimit="100000" fileLimit="3"  style="width:500px"/> 
+            <Context path="/Appownner/images" docBase="e:/Appownner/" crossContext="false" debug="0" reloadable="true" privileged="true" /> 
+            
+ </h:body>
+ </h:form>
+ </ui:define>
+ </ui:composition>
+ 
+ 
