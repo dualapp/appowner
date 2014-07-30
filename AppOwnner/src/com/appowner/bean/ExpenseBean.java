@@ -395,7 +395,18 @@ public Parking getParking() {
 public void setParking(Parking parking) {
 	this.parking = parking;
 }
-
+private List<String> parkingSpaceList;
+ 
+public List<String> getParkingSpaceList() {
+	parkingSpaceList=new ArrayList<String>();
+	parkingSpaceList.addAll(getExpenseService().getParkingSlotList());
+	System.out.println(parkingSpaceList);
+	return parkingSpaceList;
+}
+public void setParkingSpaceList(List<String> parkingSpaceList) {
+	this.parkingSpaceList = parkingSpaceList;
+}
+ 
 
 }
 
