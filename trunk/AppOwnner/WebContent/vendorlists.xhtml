@@ -13,8 +13,9 @@
     <a href="addvendor.xhtml">Add Vendor</a>
 </h:head>
  <body bgcolor="yellow">
-  <h:messages/>
- <h:form>
+   
+ <h:form >
+   
         <h:inputText value="#{waterPaymentBean.str_VendorName}"></h:inputText>
         <h:commandButton value="Search by Name" action="#{waterPaymentBean.searchVendorByName1}"  >
          
@@ -22,7 +23,8 @@
         
         
     </h:form> 
-    <h:form >
+    <h:form  id="form">
+     <p:growl id="msgs" showDetail="true" />
         <h:outputText value="Vendors : "></h:outputText>
        <p:dataTable    editable="true" resizableColumns="true"  
               id="dataTable"   scrollRows="10"     
@@ -60,17 +62,35 @@
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
               <h:link outcome="updatevendor.xhtml" >
-	   			<p:graphicImage  height="50" width="50" alt="update" value="images/k1.png"/> 
+	   			<p:graphicImage  height="20" width="20" alt="update" value="images/k1.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
 	   		 <h:link outcome="deletevendor.xhtml"
 	   		 onclick="return confirm('Are you sure you want to delete #{vendor.str_VendorName}?');" >  
-	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
             </p:column>
-            
+            <p:column style="width:32px;text-align: center">
+             <p:commandButton update=":form:vendorDetail" oncomplete="PF('vendorDialog').show()" icon="ui-icon-search" title="View">
+                <f:setPropertyActionListener value="#{vendor}" target="#{vendorBean.vendor}" />
+            </p:commandButton>
+        </p:column>
             </p:dataTable>
+            <p:dialog header="Vendor Info" widgetVar="vendorDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="vendorDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty vendorBean.vendor}" columnClasses="label,value">
+                 
+ 
+                <h:outputText value="VendorName:" />
+                <h:outputText value="#{vendorBean.vendor.str_VendorName}" />
+                <h:outputText value="Id:" />
+                <h:outputText value="#{vendorBean.vendor.int_VendorId}" />
+                
+                </p:panelGrid>
+                </p:outputPanel>
+                </p:dialog>
+                
             </h:form>
             </body>
             
