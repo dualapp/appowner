@@ -24,6 +24,7 @@ import org.primefaces.model.UploadedFile;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
+import com.appowner.model.WaterPayment;
 import com.appowner.service.ProductDetailService;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean
@@ -33,7 +34,13 @@ public class Cls_AddDetailsBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer Int_ProductId;
-	private char Ch_Product_Type;
+	private String Ch_Product_Type;
+	public String getCh_Product_Type() {
+		return Ch_Product_Type;
+	}
+	public void setCh_Product_Type(String ch_Product_Type) {
+		Ch_Product_Type = ch_Product_Type;
+	}
 	private String Var_Title;
 	private String Var_FileName;
 	private String Var_ImageName;
@@ -43,42 +50,9 @@ public class Cls_AddDetailsBean implements Serializable {
 	private char Ch_Ad_Type;
 	private int int_Ad_categoryId;
 	 public int intdocID1;
-	 public Integer getInt_NotificationId() {
-		return Int_NotificationId;
-	}
-	public void setInt_NotificationId(Integer int_NotificationId) {
-		Int_NotificationId = int_NotificationId;
-	}
-	public String getStr_Intent() {
-		return str_Intent;
-	}
-	public void setStr_Intent(String str_Intent) {
-		this.str_Intent = str_Intent;
-	}
-	public String getStr_Status() {
-		return str_Status;
-	}
-	public void setStr_Status(String str_Status) {
-		this.str_Status = str_Status;
-	}
-	public String getStr_Posted() {
-		return str_Posted;
-	}
-	public void setStr_Posted(String str_Posted) {
-		this.str_Posted = str_Posted;
-	}
-	public String getStr_Type() {
-		return str_Type;
-	}
-	public void setStr_Type(String str_Type) {
-		this.str_Type = str_Type;
-	}
+	 
 	public String intdocid1;
-	 private Integer Int_NotificationId;
-	private String str_Intent;
-	private String str_Status;
-	private String str_Posted;
-	private String str_Type;
+	 
    public int getInt_Ad_categoryId() {
       return int_Ad_categoryId;
 	}
@@ -193,16 +167,7 @@ public class Cls_AddDetailsBean implements Serializable {
 		}
 	
 	
-	public void AddNotice()
-	{
-		Notification p=new Notification();
-		p.setInt_NotificationId(getInt_NotificationId());
-		p.setStr_Intent(getStr_Intent());
-		p.setStr_Posted(getStr_Posted());
-		p.setStr_Status(getStr_Status());
-		p.setStr_Type(getStr_Type());
-		getProductDetailService().AddNotice(p);
-	}
+	
 	private List<String>Categories;
     public List<String> getCategories() 
 	{
@@ -215,54 +180,7 @@ public class Cls_AddDetailsBean implements Serializable {
 		this.Categories = categories;
 	
 }
-private List<String>Intentes;
-public List<String> getIntentes() {
-		Intentes=new ArrayList<String>();
-		Intentes.addAll(getProductDetailService().getIntentes());
-		System.out.println(Categories);
-		
-		return Intentes;
-	}
-	public void setIntentes(List<String> intentes) {
-		Intentes = intentes;
-	}
-	
-	private List<String>Statuses;
-	public List<String> getStatuses() {
-		Statuses=new ArrayList<String>();
-		Statuses.addAll(getProductDetailService().getStatuses());
-			
-			
-			return Statuses;
-		}
-		public void setStatuses(List<String> statuses) {
-			Statuses = statuses;
-		}
-		
-		private List<String>Posteds;
-		public List<String> getPosteds() {
-			Posteds=new ArrayList<String>();
-			Posteds.addAll(getProductDetailService().getPosteds());
-				
-				
-				return Posteds;
-			}
-			public void setPosteds(List<String> posteds) {
-				Posteds = posteds;
-			}
 
-			private List<String>Types;
-			public List<String> getTypes() {
-				Types=new ArrayList<String>();
-				Types.addAll(getProductDetailService().getTypes());
-					
-					
-					return Types;
-				}
-				public void setTypes(List<String> types) {
-					Types = types;
-				}
-	
 	private String path1;
 	public String getPath1() {
 		return path1;
@@ -296,17 +214,6 @@ public List<String> getIntentes() {
 	}
 	
 	
-	public char getCh_Product_Type() {
-		return Ch_Product_Type;
-	}
-	public void setCh_Product_Type(char ch_Product_Type) {
-		Ch_Product_Type = ch_Product_Type;
-	}
-	public String getPath()
-	{
-		
-		return null;
-	}
 
 	//Edit
 	 private Cls_ProductDetails pro;
@@ -354,35 +261,41 @@ public List<String> getIntentes() {
 	public void setListDetails(List<Cls_ProductDetails> listDetails) {
 		this.listDetails = listDetails;
 	}
-	/*
-	public String stateChangeListener(ValueChangeEvent event) {
-	   	
-	      System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-	      System.out.println(event.getNewValue());
-	       shellname=(String) event.getNewValue();
-	       listDetails=new ArrayList<Cls_ProductDetails>();
-			listDetails.addAll(getProductDetailService().getDetails(shellname));
+	 private List<Cls_ProductDetails> searchByProducttype;
+	
+	 public List<Cls_ProductDetails> getSearchByProducttype() {
+		
+			return searchByProducttype;
 			
-				return "View_Details.xhtml?faces-redirect=true";
+			
+	 }
+	      public String getSearchByProducttype1()
+		{
+			searchByProducttype=new ArrayList<Cls_ProductDetails>();
+			searchByProducttype=getProductDetailService().getSearchByProducttype(Ch_Product_Type);
+		//	return searchByProducttype;
+			return "View_Details.xhtml";
 		}
-		*/
+		
+		public void setSearchByProducttype(List<Cls_ProductDetails> searchByProducttype) {
+			this.searchByProducttype = searchByProducttype;
+		}
 
+		
 	////////////////////////////////////////////////////
-	public List<Cls_ProductDetails> typeChangeListener(ValueChangeEvent event)
-	{System.out.println(event.getNewValue());
+	/*public List<Cls_ProductDetails> typeChangeListener(ValueChangeEvent event)
+	{
+     System.out.println(event.getNewValue());
 	Ch_Product_Type=(char) event.getNewValue();
 	listDetails=new ArrayList<Cls_ProductDetails>();
 	listDetails.addAll(getProductDetailService().getDetails(Ch_Product_Type));
 	System.out.println(listDetails.listIterator().hasNext());
 	      return listDetails;
 	}
-	
-	
-	///////////////////////////////////////////
 	public String searchbyname() {
-		
-		System.out.println(Ch_Product_Type);
-	   if (listDetails!= null) {
+	System.out.println(Ch_Product_Type);
+	   if (listDetails!= null) 
+	   {
 			return "View_Details.xhtml?faces-redirect=true";
 			
 		} else
@@ -390,7 +303,7 @@ public List<String> getIntentes() {
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User does not exist!!!!!"));
 			return null;
 		}
-	}
+	*/
 }
 	
 	
