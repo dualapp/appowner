@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Notification;
 import com.appowner.model.cls_Person;
 
 public interface ProductDetailService {
@@ -25,6 +26,21 @@ public interface ProductDetailService {
 	public  List<Cls_ProductDetails> listPersons();
 
 	public Cls_ProductDetails searchByName1(char ch_Product_Type);
+
+	public List<Cls_ProductDetails> getDetails(char ch_Product_Type);
+
+	public void AddNotice(Notification p);
+
+	public List<String> getIntentes();
+
+	public List<String> getStatuses();
+
+	public List<String> getPosteds();
+
+	public List<String> getTypes();
+
+	//public Collection<? extends Cls_ProductDetails> getDetails(
+		//	String ch_Product_Type);
 
 	//public List getCategoryname1();
 
