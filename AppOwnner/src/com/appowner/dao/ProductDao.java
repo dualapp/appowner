@@ -30,16 +30,9 @@ public interface ProductDao {
 
 	public void AddNotice(Notification p);
 
-	public List<String> getIntentes();
-
-	public List<String> getStatuses();
-
-	public List<String> getPosteds();
-
-	public List<String> getTypes();
+	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type);
 
 	
-
 	
 
 	
