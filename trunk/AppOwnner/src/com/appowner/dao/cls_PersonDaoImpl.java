@@ -34,16 +34,16 @@ public class cls_PersonDaoImpl implements cls_PersonDao {
 		return (List<cls_Person>) getSessionFactory().getCurrentSession().createCriteria(cls_Person.class).list();
 	}
 
-	public cls_Person getPerson(String personid) {
-		return (cls_Person) getSessionFactory().getCurrentSession().get(cls_Person.class, personid);
+	public cls_Person getPerson(String personId) {
+		return (cls_Person) getSessionFactory().getCurrentSession().get(cls_Person.class, personId);
 	}
 
  
 	
 
 	public void deletePerson(cls_Person person) {
-		System.out.println(person.getPersonId());
-		sessionFactory.getCurrentSession().createQuery("DELETE FROM cls_Person WHERE personid = "+person.getPersonId()).executeUpdate();
+		getSessionFactory().getCurrentSession().delete(person);
+		
 	}
 
 	 
