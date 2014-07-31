@@ -11,18 +11,19 @@
      <title>Advertisement page</title>
 </h:head>
 <h:body>
-    <h:form>
+    <h:form id="userForm">
         <h:outputText value="Booking Information : "></h:outputText>
-         <p:dataTable  id="panel" var="panel" value="#{advertisementBean.listPanelPrice}"  rowEditListener="#{advertisementBean.onEdit}" style="width: 20%">
-       
+         <p:dataTable  id="panel" var="panel" value="#{advertisementBean.listPanelPrice}"   editable="true"
+                             rowKey="#{panel}"  style="width: 20%">
+           <p:ajax event="rowEdit"   listener="#{advertisementBean.onEdit}"  />  
             <p:column>
-              <p:rowEditor>
+               <p:rowEditor>
                 <f:facet name="header">
                  <h:outputText value="ID" />
                   </f:facet>
                 <h:inputText value="#{panel.int_PanelID}" size="10"  />
                 <h:outputText value="#{panel.int_PanelID}"  />
-             </p:rowEditor>
+            </p:rowEditor>
             </p:column>
             <p:column>
              <p:rowEditor>
@@ -31,19 +32,21 @@
                   </f:facet>
                  <h:inputText value="#{panel.str_Panel}" size="20"  />
                 <h:outputText value="#{panel.str_Panel}" />
-           </p:rowEditor>
+          </p:rowEditor>
             </p:column>
            
             <p:column>
-           <p:rowEditor>
+             <p:rowEditor>
                 <f:facet name="header">
                   <h:outputText value="Price" />
                   </f:facet>
            <h:inputText value="#{panel.doub_Price}" size="10" />
                 <h:outputText value="#{panel.doub_Price}" />
-             </p:rowEditor>
+            </p:rowEditor>
             </p:column>
-           
+           <p:column headerText="Update" style="width:6%">  
+                     <p:rowEditor />  
+                     </p:column>
          <!--   <p:column>
     				<p:cellEditor>
     				<f:facet name="header">Action</f:facet>
@@ -57,7 +60,7 @@
             
               </p:dataTable>
               <br/><br/>
-              <p:commandButton value="Save Changes" action="#{companyBean.saveAction}" />
+              <p:commandButton value="Save Changes" action="#{advertisementBean.saveAction}" />
               </h:form>
               </h:body>
 </ui:define>
