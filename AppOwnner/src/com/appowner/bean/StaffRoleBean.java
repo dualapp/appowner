@@ -138,11 +138,19 @@ public class StaffRoleBean implements Serializable {
         
         	staff1.setStr_StaffName(str_StaffName);
         	staff1.setCh_StaffType('C');
+        	staff1.setFlag(2);
         	 getStaffService().addStaff(staff1);
         	
         }
         return "StaffRoles.xhtml";
     }
-
+	private Integer flag;
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+   
 	
 }
