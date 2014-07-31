@@ -23,13 +23,13 @@
              
                  </p:selectOneMenu>
              </td>
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
+             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; 
              <td><h:outputText  value="Intent" /></td>
-               <td><p:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailsBean.ch_Product_Type}" valueChangeListener="#{cls_AddDetailsBean.typeChangeListener}" style="width:200px">
+               <td><p:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailsBean.ch_Product_Type}" style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
-                  <f:selectItem itemLabel="Buy" itemValue="B"  />
-                  <f:selectItem itemLabel="Sell" itemValue="S"  />
-                  <f:selectItem itemLabel="Rent" itemValue="R"  />
+                  <f:selectItem itemLabel="Buy" itemValue="Buy"  />
+                  <f:selectItem itemLabel="Sell" itemValue="Sell"  />
+                  <f:selectItem itemLabel="Rent" itemValue="Rent"  />
                     <p:ajax event="change" process="option1"/>
                  </p:selectOneMenu>
              </td>
@@ -41,9 +41,7 @@
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
                     <f:selectItem itemLabel="Pending Approval" itemValue="Pending Approval"  />
                      <f:selectItem itemLabel="Closed" itemValue="Closed"  />
-                  
-                   
-                 </p:selectOneMenu>
+                      </p:selectOneMenu>
                  </td>
                  <br />
                  <br />
@@ -71,7 +69,7 @@
                  </p:selectOneMenu>
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
-               <p:commandButton  value="Go" action="#{cls_AddDetailsBean.searchbyname}">
+               <p:commandButton  value="Go" action="#{cls_AddDetailsBean.getSearchByProducttype1}">
                </p:commandButton>
              </h:panelGroup>
               </fieldset>
