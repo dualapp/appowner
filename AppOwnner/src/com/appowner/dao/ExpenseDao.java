@@ -3,6 +3,7 @@ package com.appowner.dao;
 import java.util.List;
 
 import com.appowner.model.Expense;
+import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 
 public interface ExpenseDao {
@@ -24,5 +25,7 @@ public interface ExpenseDao {
 	void saveParking(Parking parking);
 
 	List<String> getParkingSlotList();
+
+	void addOrganizationLogo(OrganizationLogo ol);
 
 }

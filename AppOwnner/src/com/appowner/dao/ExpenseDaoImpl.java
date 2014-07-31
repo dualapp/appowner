@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Expense;
 import com.appowner.model.Notice;
+import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.UserApartment;
 
@@ -89,5 +90,11 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
 		System.out.println(parkingSpaceList);
 		return parkingSpaceList;
+	}
+
+	@Override
+	public void addOrganizationLogo(OrganizationLogo ol) {
+		getSessionFactory().getCurrentSession().save(ol);
+		
 	}
 }
