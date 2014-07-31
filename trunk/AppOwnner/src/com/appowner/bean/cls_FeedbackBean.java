@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ValueChangeEvent;
 
 import org.springframework.dao.DataAccessException;
 
@@ -15,14 +17,16 @@ import org.springframework.dao.DataAccessException;
 
 
 
-import com.appowner.model.cls_User;
-import com.appowner.service.cls_UserService;
+
+import com.appowner.model.cls_Person;
+import com.appowner.model.cls_Userfeedback;
+import com.appowner.service.cls_UserServicefeedback;
 @ManagedBean
-@RequestScoped
+@SessionScoped
 
 public class cls_FeedbackBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	  private static final String SUCCESS = "success";
+	  private static final String SUCCESS = "ViewFeedback";
 	    private static final String ERROR   = "error";
 	    private String userEmail;
 	    private String userMessage;
@@ -42,27 +46,23 @@ public class cls_FeedbackBean implements Serializable {
 		}
 		
 		@ManagedProperty(value="#{cls_UserService}")
-		private cls_UserService userService;
+		private cls_UserServicefeedback userService;
 		
-		public cls_UserService getUserService() {
+		public cls_UserServicefeedback getUserService() {
 			return userService;
 		}
-		public void setUserService(cls_UserService userService) {
+		public void setUserService(cls_UserServicefeedback userService) {
 			this.userService = userService;
 		}
 		public String addUser()
 		{  try{
-			cls_User user=new cls_User();
+			cls_Userfeedback user=new cls_Userfeedback();
 			user.setUserId(getUserId());
 			user.setUserName(getUserName());
 			
 			 user.setUserEmail(getUserEmail());
 			 user.setUserMessage(getUserMessage());
-	       
-	        
-	        
-			
-			getUserService().addUser(user);
+	         getUserService().addUser(user);
 		//	System.out.println("hii");
 			return SUCCESS;
 		}
@@ -73,24 +73,26 @@ public class cls_FeedbackBean implements Serializable {
 		return ERROR;
 			
 		}
-		public String deleteUser(int UserId)
-		 {
-			 cls_User user=new cls_User();
-			 
-			 user.setUserId(UserId);
-			
-			 getUserService().deleteUser(user);
-			 return SUCCESS;
-		 }
+		public String deleteUser()
+		{
+			cls_Userfeedback user=new cls_Userfeedback();
+			//maintainanceStaff.setInt_UserId(int_UserId);
+			user.setUserId(userId);
+			getUserService().deleteUser(user);
+			return "ViewEnquiry.xhtml?faces-redirect=true";
+		}
+		public String cancelUser() {
+			return "ViewEnquiry.xhtml?faces-redirect=true";
+		}
 		
-		private List<cls_User> ListUser;
-		public List<cls_User> getListUser() {
-			ListUser= new ArrayList<cls_User>();
+		private List<cls_Userfeedback> ListUser;
+		public List<cls_Userfeedback> getListUser() {
+			ListUser= new ArrayList<cls_Userfeedback>();
 				ListUser.addAll(getUserService().listUsers());
 			
 			return ListUser;
 		}
-		public void setListUser(List<cls_User> listUser) {
+		public void setListUser(List<cls_Userfeedback> listUser) {
 			ListUser = listUser;
 		}
 		
