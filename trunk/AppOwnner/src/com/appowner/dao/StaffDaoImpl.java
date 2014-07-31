@@ -47,6 +47,14 @@ public class StaffDaoImpl implements StaffDao{
 		  {
 			  return (List<RoleMaster>) getSessionFactory().getCurrentSession().createCriteria(RoleMaster.class).list();  
 		  }
+		@Override
+		public Long getNoOfRoles() {
+			String hql="Select Count(*) from Staff";
+			Long count=(Long)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+			System.out.println(count);
+			
+			return count;
+		}
 		
 		
 }
