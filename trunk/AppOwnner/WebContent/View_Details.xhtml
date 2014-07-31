@@ -12,7 +12,7 @@
 <h:body>
     <h:form>
         <h:outputText value="Person : "></h:outputText>
-        <p:dataTable id="Per" var="per" value="#{cls_AddDetailsBean.listPerson}" style="width: 30%">
+        <p:dataTable id="Per" var="per" value="#{cls_AddDetailsBean.listDetails}" style="width: 30%">
            
             <p:column>
             <f:facet name="header">
@@ -20,63 +20,7 @@
                 </f:facet>
                 <h:outputText value="#{per.var_Ad_CategoryName}" />
                </p:column>
-            <p:column>
-            <f:facet name="header">
-               <h:outputText value="AD_Type" />
-                </f:facet>
-                <h:outputText value="#{per.ch_Ad_Type}" />
-               </p:column>
-            
-            <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="I Want To" />
-                </f:facet>
-                <h:outputText value="#{per.ch_Product_Type}" />
-            </p:column>
-            
-            <p:column>
-            <f:facet name="header">  
-              <h:outputText value="Title" />
-                </f:facet>
-                <h:outputText value="#{per.var_Title}" />
-            </p:column>
-            
-              <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="ImageName" />
-                </f:facet>
-                <h:outputText value="#{per.var_ImageName}" />
-            </p:column>
-            
-              <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="Description" />
-                </f:facet>
-                <h:outputText value="#{per.var_Description}" />
-            </p:column>
-            
-             
-             
-             
-                <p:column>
-            <f:facet name="header">
                
-                    <h:outputText value="Update" />
-                </f:facet>
-	   			<h:link outcome="EditDetails.xhtml" value="Edit">
-	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		</h:link>
-	   		   
-	   			<h:link outcome="ViewDetail.xhtml" value="delete">
-	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		</h:link>
-                </p:column>
-              
-         
-             
              
              
               
