@@ -20,7 +20,7 @@ public class cls_MessageTemplateBean implements Serializable {
 	    private static final String ERROR   = "error";
 	    private String str_Email;
 	    private String MessageMode;
-	  private  String MessageCategory;
+	    private  String MessageCategory;
 	    private String var_MessageDetails;
 	    private String var_MessageSubject;
 	    private String messageId;
@@ -96,6 +96,7 @@ public class cls_MessageTemplateBean implements Serializable {
 			 msg.setMessageMode(getMessageMode());
 			 msg.setMessageCategory(getMessageCategory());
 			 msg.setVar_MessageSubject(getVar_MessageSubject());
+			 msg.setVar_MessageDetails(var_MessageDetails);
 			 getMessageService().addMessage(msg);
 		
 			 return SUCCESS;
