@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
 import com.appowner.model.Subcript;
 import com.appowner.model.Vendor;
+import com.appowner.model.WaterPayment;
 @Repository
 public class ProductAccessDaoImpl implements ProductDao{
 	@Autowired
@@ -112,7 +114,8 @@ public class ProductAccessDaoImpl implements ProductDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cls_ProductDetails> getDetails(char ch_Product_Type) {
-		{ System.out.println(ch_Product_Type);
+		{ 
+			System.out.println(ch_Product_Type);
 		String hql7="from  Cls_ProductDetails where Ch_Product_Type=?";
 	 return sessionFactory.getCurrentSession().createQuery(hql7).setParameter(0, ch_Product_Type).list();
 	}
@@ -126,30 +129,13 @@ public class ProductAccessDaoImpl implements ProductDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> getIntentes() {
-		return getSessionFactory().getCurrentSession().createCriteria(Notification.class).setProjection(Projections.property("str_Intent")).list();
+	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type) {
+		System.out.println(ch_Product_Type);
+		String hql7="from  Cls_ProductDetails where ch_Product_Type=?";
+	 return sessionFactory.getCurrentSession().createQuery(hql7).setParameter(0, ch_Product_Type).list();
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<String> getStatuses() {
-		return getSessionFactory().getCurrentSession().createCriteria(Notification.class).setProjection(Projections.property("str_Status")).list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<String> getPosteds() {
-		return getSessionFactory().getCurrentSession().createCriteria(Notification.class).setProjection(Projections.property("str_Posted")).list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<String> getTypes() {
-		return getSessionFactory().getCurrentSession().createCriteria(Notification.class).setProjection(Projections.property("str_Type")).list();
 
 	
-	}
-
 }
 	
 	
