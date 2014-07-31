@@ -58,8 +58,8 @@ public class Cls_ProductDetails implements Serializable {
 	public char getCh_Ad_Type() {
 		return Ch_Ad_Type;
 	}
-	public void setCh_Ad_Type(char ch_Ad_Type) {
-		Ch_Ad_Type = ch_Ad_Type;
+	public void setCh_Ad_Type(char c) {
+		Ch_Ad_Type = c;
 	}
 	@Column
 	private String Var_ImageName;
@@ -73,6 +73,7 @@ public class Cls_ProductDetails implements Serializable {
 	public void setInt_ProductId(Integer int_ProductId) {
 		Int_ProductId = int_ProductId;
 	}
+	
 	
 	
 	public char getCh_Product_Type() {
