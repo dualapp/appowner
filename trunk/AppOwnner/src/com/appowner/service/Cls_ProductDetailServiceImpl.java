@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.appowner.dao.ProductDao;
 import com.appowner.dao.SubcriptDao;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Notification;
 import com.appowner.model.cls_Person;
 @Service("ProductDetailService")
 @Transactional 
@@ -70,6 +72,40 @@ public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 	public Cls_ProductDetails searchByName1(char ch_Product_Type) {
 		return getProductDao().searchByName1();
 	}
+	
+
+	@Override
+	public List<Cls_ProductDetails> getDetails(char ch_Product_Type) {
+		return (List<Cls_ProductDetails>) getProductDao().getDetails(ch_Product_Type);
+	}
+
+	@Override
+	public void AddNotice(Notification p) {
+		getProductDao().AddNotice(p);
+		
+	}
+
+	@Override
+	public List<String> getIntentes() {
+		return (List<String>) getProductDao().getIntentes();	
+	}
+
+	@Override
+	public List<String> getStatuses() {
+		return (List<String>) getProductDao().getStatuses();
+	}
+
+	@Override
+	public List<String> getPosteds() {
+		return (List<String>) getProductDao().getPosteds();
+	}
+
+	@Override
+	public List<String> getTypes() {
+		return (List<String>) getProductDao().getTypes();
+	}
+
+	
 
 	
 	
