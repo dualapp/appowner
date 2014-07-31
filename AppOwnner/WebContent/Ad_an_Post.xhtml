@@ -24,38 +24,27 @@
                  </p:selectOneMenu>
              </td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
-             <td><h:outputText  value="Intent" /></td>
-               <td><p:selectOneMenu id="option1"  required="true" value="rtr"  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="All"  />
-                  <f:selectItem itemLabel="Buy" itemValue="Buy"  />
-                  <f:selectItem itemLabel="Sell" itemValue="Sell"  />
-                  <f:selectItem itemLabel="Rent" itemValue="Rent"  />
-                   
-                 </p:selectOneMenu>
+             <td><h:outputLabel value="Intent" /></td>
+             <td><p:selectOneMenu id="str_Intent" value="#{cls_AddDetailsBean.str_Intent}" style="width:150px">
+            <f:selectItems value="#{cls_AddDetailsBean.intentes}"  />
+                </p:selectOneMenu>
              </td>
-             
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; 
-             <td><h:outputText  value="Status" /></td>
-               <td><p:selectOneMenu id="option2" value="#{cls_AddDetailsBean.ch_Ad_Type}" style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="All"  />
-                   <f:selectItem itemLabel="Open" itemValue="Open"  />
-                    <f:selectItem itemLabel="Pending Approval" itemValue="Pending Approval"  />
-                     <f:selectItem itemLabel="Closed" itemValue="Closed"  />
-                  
-                   
-                 </p:selectOneMenu>
-                 </td>
+             <td><h:outputLabel value="Status" /></td>
+             <td><p:selectOneMenu id="str_Status" value="#{cls_AddDetailsBean.str_Status}" style="width:150px">
+            
+                <f:selectItems value="#{cls_AddDetailsBean.statuses}"  />
+                </p:selectOneMenu>
+             </td>
                  <br />
                  <br />
                  
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150;
-                 <td><h:outputText  value="Posted in the last" /></td>
-               <td><p:selectOneMenu id="option3" value="ghgf"  style="width:150px">
-                  <f:selectItem itemLabel="10 days" itemValue="10 days"  />
-                  <f:selectItem itemLabel="30 days" itemValue="30 days"  />
-                  <f:selectItem itemLabel="All days" itemValue="All days"  />
-                   
-                 </p:selectOneMenu>
+                 <td><h:outputLabel value="Posted in the Last" /></td>
+             <td><p:selectOneMenu id="str_Posted" value="#{cls_AddDetailsBean.str_Posted}" style="width:150px">
+            
+                <f:selectItems value="#{cls_AddDetailsBean.posteds}"  />
+                </p:selectOneMenu>
              </td>
             
              </h:panelGroup>
@@ -63,16 +52,15 @@
              <h:panelGroup id="aa">
              &#150; &#150;&#150; &#150;&#150; &#150;&#150;
               <td><h:outputLabel value="Type" /></td>
-              <td><p:selectOneMenu id="option4" value="ghtyu"  style="width:150px">
-              <f:selectItem itemLabel="All" itemValue="All"  />
-              <f:selectItem itemLabel="My Community" itemValue="My Community"  />
-              <f:selectItem itemLabel="Negihbourhood" itemValue="Negihbourhood"  />
-               
-                 </p:selectOneMenu>
+             <td><p:selectOneMenu id="str_Type" value="#{cls_AddDetailsBean.str_Type}" style="width:150px">
+            
+                <f:selectItems value="#{cls_AddDetailsBean.types}"  />
+                </p:selectOneMenu>
              </td>
+            
                &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
-               <h:commandButton  value="Go" action="#{cls_AddDetailsBean.searchByName}">
-               </h:commandButton>
+               <p:commandButton  value="Go" action="#{cls_AddDetailsBean.searchbyname}">
+               </p:commandButton>
              </h:panelGroup>
               </fieldset>
              
