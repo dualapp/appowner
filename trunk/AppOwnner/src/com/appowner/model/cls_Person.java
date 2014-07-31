@@ -2,6 +2,7 @@ package com.appowner.model;
 
 import java.io.Serializable;
 import java.util.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +26,12 @@ public class cls_Person implements Serializable{
 	@Column
 	private String personEmail;
 	private String personMessage;
-	private String personCountry;
-	private String personState;
-	private String personCity;
+	private String enquiry_selectedCountry;
+	private String enquiry_selectedState;
+	private String enquiry_selectedCity;
+	private String enquiry_selectedCountries;
+	  private List<String>  stateByCountry;
+	  private List<String> cityListByState;
 	private String personPhone;
 	private String personZip;
 //	private String RandomnumberGenerator;
@@ -40,9 +44,35 @@ public class cls_Person implements Serializable{
 	public void setRandomnumberGenerator(String randomnumberGenerator) {
 		RandomnumberGenerator = randomnumberGenerator;
 	}*/
+	
+	
 
 	public String getPersonPhone() {
 		return personPhone;
+	}
+
+	public List<String> getCityListByState() {
+		return cityListByState;
+	}
+
+	public void setCityListByState(List<String> cityListByState) {
+		this.cityListByState = cityListByState;
+	}
+
+	public List<String> getStateByCountry() {
+		return stateByCountry;
+	}
+
+	public void setStateByCountry(List<String> stateByCountry) {
+		this.stateByCountry = stateByCountry;
+	}
+
+	public String getEnquiry_selectedCountries() {
+		return enquiry_selectedCountries;
+	}
+
+	public void setEnquiry_selectedCountries(String enquiry_selectedCountries) {
+		this.enquiry_selectedCountries = enquiry_selectedCountries;
 	}
 
 	public void setPersonPhone(String personPhone) {
@@ -60,28 +90,28 @@ public class cls_Person implements Serializable{
 
 	
 	 
-	public String getPersonCountry() {
-		return personCountry;
+	public String getEnquiry_selectedCountry() {
+		return enquiry_selectedCountry;
 	}
 
-	public void setPersonCountry(String personCountry) {
-		this.personCountry = personCountry;
+	public void setEnquiry_selectedCountry(String enquiry_selectedCountry) {
+		this.enquiry_selectedCountry = enquiry_selectedCountry;
 	}
 
-	public String getPersonState() {
-		return personState;
+	public String getEnquiry_selectedState() {
+		return enquiry_selectedState;
 	}
 
-	public void setPersonState(String personState) {
-		this.personState = personState;
+	public void setEnquiry_selectedState(String enquiry_selectedState) {
+		this.enquiry_selectedState = enquiry_selectedState;
 	}
 
-	public String getPersonCity() {
-		return personCity;
+	public String getEnquiry_selectedCity() {
+		return enquiry_selectedCity;
 	}
 
-	public void setPersonCity(String personCity) {
-		this.personCity = personCity;
+	public void setEnquiry_selectedCity(String enquiry_selectedCity) {
+		this.enquiry_selectedCity = enquiry_selectedCity;
 	}
 
 
