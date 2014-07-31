@@ -15,12 +15,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
+import javax.persistence.Column;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Notification;
 import com.appowner.service.ProductDetailService;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean
@@ -34,13 +37,48 @@ public class Cls_AddDetailsBean implements Serializable {
 	private String Var_Title;
 	private String Var_FileName;
 	private String Var_ImageName;
+	public String shellname;
 	private String Var_Description;
 	//private String var_Ad_CategoryName;
 	private char Ch_Ad_Type;
 	private int int_Ad_categoryId;
 	 public int intdocID1;
-	 public String intdocid1;
-	 
+	 public Integer getInt_NotificationId() {
+		return Int_NotificationId;
+	}
+	public void setInt_NotificationId(Integer int_NotificationId) {
+		Int_NotificationId = int_NotificationId;
+	}
+	public String getStr_Intent() {
+		return str_Intent;
+	}
+	public void setStr_Intent(String str_Intent) {
+		this.str_Intent = str_Intent;
+	}
+	public String getStr_Status() {
+		return str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
+	public String getStr_Posted() {
+		return str_Posted;
+	}
+	public void setStr_Posted(String str_Posted) {
+		this.str_Posted = str_Posted;
+	}
+	public String getStr_Type() {
+		return str_Type;
+	}
+	public void setStr_Type(String str_Type) {
+		this.str_Type = str_Type;
+	}
+	public String intdocid1;
+	 private Integer Int_NotificationId;
+	private String str_Intent;
+	private String str_Status;
+	private String str_Posted;
+	private String str_Type;
    public int getInt_Ad_categoryId() {
       return int_Ad_categoryId;
 	}
@@ -153,6 +191,18 @@ public class Cls_AddDetailsBean implements Serializable {
 		System.out.println(var_Ad_CategoryName);
 		getProductDetailService().AddCategorys(Cat);
 		}
+	
+	
+	public void AddNotice()
+	{
+		Notification p=new Notification();
+		p.setInt_NotificationId(getInt_NotificationId());
+		p.setStr_Intent(getStr_Intent());
+		p.setStr_Posted(getStr_Posted());
+		p.setStr_Status(getStr_Status());
+		p.setStr_Type(getStr_Type());
+		getProductDetailService().AddNotice(p);
+	}
 	private List<String>Categories;
     public List<String> getCategories() 
 	{
@@ -163,7 +213,56 @@ public class Cls_AddDetailsBean implements Serializable {
 }
 	public void setCategories(List<String> categories) {
 		this.Categories = categories;
+	
+}
+private List<String>Intentes;
+public List<String> getIntentes() {
+		Intentes=new ArrayList<String>();
+		Intentes.addAll(getProductDetailService().getIntentes());
+		System.out.println(Categories);
+		
+		return Intentes;
 	}
+	public void setIntentes(List<String> intentes) {
+		Intentes = intentes;
+	}
+	
+	private List<String>Statuses;
+	public List<String> getStatuses() {
+		Statuses=new ArrayList<String>();
+		Statuses.addAll(getProductDetailService().getStatuses());
+			
+			
+			return Statuses;
+		}
+		public void setStatuses(List<String> statuses) {
+			Statuses = statuses;
+		}
+		
+		private List<String>Posteds;
+		public List<String> getPosteds() {
+			Posteds=new ArrayList<String>();
+			Posteds.addAll(getProductDetailService().getPosteds());
+				
+				
+				return Posteds;
+			}
+			public void setPosteds(List<String> posteds) {
+				Posteds = posteds;
+			}
+
+			private List<String>Types;
+			public List<String> getTypes() {
+				Types=new ArrayList<String>();
+				Types.addAll(getProductDetailService().getTypes());
+					
+					
+					return Types;
+				}
+				public void setTypes(List<String> types) {
+					Types = types;
+				}
+	
 	private String path1;
 	public String getPath1() {
 		return path1;
@@ -195,6 +294,8 @@ public class Cls_AddDetailsBean implements Serializable {
 		    path1=file.getName();
 		    System.out.println(path1);
 	}
+	
+	
 	public char getCh_Product_Type() {
 		return Ch_Product_Type;
 	}
@@ -246,28 +347,55 @@ public class Cls_AddDetailsBean implements Serializable {
 	public void setProduct(Cls_ProductDetails product) {
 		this.product = product;
 	}
-	  
-	public String searchByName() {
-		Cls_ProductDetails product=new Cls_ProductDetails();
-		{
-			product.setCh_Ad_Type(getCh_Product_Type());
-		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-		System.out.println(product);
-		product = getProductDetailService().searchByName1(Ch_Product_Type);
-		System.out.println(product);
-		if (product!= null) {
-			return "ViewDetail.xhtml?faces-redirect=true";
+	private List<Cls_ProductDetails>  listDetails;
+	public List<Cls_ProductDetails> getListDetails() {
+		return listDetails;
+	}
+	public void setListDetails(List<Cls_ProductDetails> listDetails) {
+		this.listDetails = listDetails;
+	}
+	/*
+	public String stateChangeListener(ValueChangeEvent event) {
+	   	
+	      System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+	      System.out.println(event.getNewValue());
+	       shellname=(String) event.getNewValue();
+	       listDetails=new ArrayList<Cls_ProductDetails>();
+			listDetails.addAll(getProductDetailService().getDetails(shellname));
+			
+				return "View_Details.xhtml?faces-redirect=true";
+		}
+		*/
+
+	////////////////////////////////////////////////////
+	public List<Cls_ProductDetails> typeChangeListener(ValueChangeEvent event)
+	{System.out.println(event.getNewValue());
+	Ch_Product_Type=(char) event.getNewValue();
+	listDetails=new ArrayList<Cls_ProductDetails>();
+	listDetails.addAll(getProductDetailService().getDetails(Ch_Product_Type));
+	System.out.println(listDetails.listIterator().hasNext());
+	      return listDetails;
+	}
+	
+	
+	///////////////////////////////////////////
+	public String searchbyname() {
+		
+		System.out.println(Ch_Product_Type);
+	   if (listDetails!= null) {
+			return "View_Details.xhtml?faces-redirect=true";
 			
 		} else
 		{
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("User does not exist!!!!!"));
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User does not exist!!!!!"));
 			return null;
 		}
 	}
-	}
+}
 	
-	}
+	
+	
+	
 	
 	
 	
