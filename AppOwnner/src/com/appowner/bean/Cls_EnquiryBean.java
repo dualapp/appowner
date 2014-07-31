@@ -9,8 +9,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.dao.DataAccessException;
 
+ 
 import com.appowner.model.cls_Person;
 import com.appowner.service.cls_PersonService;
 @ManagedBean
@@ -30,16 +32,11 @@ public class Cls_EnquiryBean implements Serializable {
 	    private List<cls_Person> personList;
 		private List<String> enquiry_selecteCities;
 		private String RandomnumberGenerator;
+		 
 		
 		public String getRandomNumberGenerator() {
-			int len = 0;
-			Random rnd = new Random();
-			String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			StringBuilder sb = new StringBuilder( len );
-			   for( int i = 0; i < len; i++ ) 
-			      sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
-			   System.out.println(sb.toString());
-			   return sb.toString();
+			personId=RandomStringUtils.randomAlphanumeric(16);
+			return personId;
 		}
 		
 		public void setRandomnumberGenerator(String randomnumberGenerator) {
@@ -184,6 +181,7 @@ public class Cls_EnquiryBean implements Serializable {
 			}
 			
 			 public String getenquiry_selectedState() {
+				 getRandomNumberGenerator();
 				   return enquiry_selectedState;
 			   }
 			   public void setenquiry_selectedState(String enquiry_selectedState) {
@@ -269,13 +267,13 @@ public class Cls_EnquiryBean implements Serializable {
 		{  
 			try{
 			 cls_Person person=new cls_Person();
-			 person.setPersonId( getRandomNumberGenerator());
+			person.setPersonId( getRandomNumberGenerator());
 			 person.setPersonName(getPersonName());
 			 person.setPersonEmail(getPersonEmail());
 			 person.setPersonPhone(personPhone);
-			 person.setPersonCountry(enquiry_selectedCountry);
-			 person.setPersonState(enquiry_selectedState);
-			 person.setPersonCity(enquiry_selectedCity);
+			 person.setEnquiry_selectedCountry(enquiry_selectedCountry);
+			 person.setEnquiry_selectedState(enquiry_selectedState);
+			 person.setEnquiry_selectedCity(enquiry_selectedCity);
 			 person.setPersonZip(personZip);
 			 person.setPersonMessage(getPersonMessage());
 			 getPersonService().addPerson(person);
@@ -292,15 +290,17 @@ public class Cls_EnquiryBean implements Serializable {
 		 
 		 
 
-		public String deletePerson(String PersonId)
-		 {
-			 cls_Person person=new cls_Person();
-			 
-			 person.setPersonId(PersonId);
-			
-			 getPersonService().deletePerson(person);
-			 return SUCCESS;
-		 }
+		public String deletePerson()
+		{
+			cls_Person person=new cls_Person();
+			//maintainanceStaff.setInt_UserId(int_UserId);
+			person.setPersonId(personId);
+			getPersonService().deletePerson(person);
+			return "ViewEnquiry.xhtml?faces-redirect=true";
+		}
+		public String cancelPerson() {
+			return "ViewEnquiry.xhtml?faces-redirect=true";
+		}
 		
 		private List<cls_Person> ListPerson;
 		public List<cls_Person> getListPerson() {
