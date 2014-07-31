@@ -16,10 +16,16 @@
           
             
            
-            <h:outputText value="Please Enter Category name :"/>
-            <p:inputText id="CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" />       
+            <h:outputText value="Intent :"/>
+            <p:inputText id="intent" value="#{cls_AddDetailsBean.str_Intent}" />
+            <h:outputText value="Status :"/>
+            <p:inputText id="Status" value="#{cls_AddDetailsBean.str_Status}" />  
+            <h:outputText value="Posted :"/>
+            <p:inputText id="CategoryName" value="#{cls_AddDetailsBean.str_Posted}" />  
+            <h:outputText value="Type:"/>
+            <p:inputText id="Type" value="#{cls_AddDetailsBean.str_Type}" />         
             <tr>
-            <td><p:commandButton   value="Submit" action="#{cls_AddDetailsBean.AddCategory}">
+            <td><p:commandButton   value="Submit" action="#{cls_AddDetailsBean.AddNotice}">
             </p:commandButton></td>
            
             </tr>
