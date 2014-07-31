@@ -64,7 +64,9 @@
             
             <td> <h:outputText  value="Tax Template*" /></td>
            <td>  <p:selectOneMenu id="str_TaxTemplate" value="#{templateBean.str_TaxTemplate}"  style="width:300px">
+                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"></f:selectItem>
                    <f:selectItems value="#{templateBean.str_TaxTemplates}"  />
+                     <f:selectItem itemLabel="None" itemValue="None" noSelectionOption="true"></f:selectItem>
                  </p:selectOneMenu></td>
              </tr>
                
