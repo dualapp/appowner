@@ -1,4 +1,11 @@
 package com.appowner.bean;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,22 +23,25 @@ import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.ResizeEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.CommiteeMember;
 import com.appowner.model.Expense;
+import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.service.ExpenseService;
+import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
 @ViewScoped
 public class ExpenseBean  implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	private String str_AssetCategoryType;
@@ -52,12 +62,111 @@ public class ExpenseBean  implements Serializable{
 	private String Str_Organization;
 	private String str_ParkingSlot;
 	
-	
+	private String str_AccountName;
 	private List<String> str_OrganizationNameList;
 	private List<String> str_AssetCatNameList;
 	@ManagedProperty(value="#{ExpenseService}")
 	private ExpenseService expenseService;
+	private String str_WelcomeMsg;
+	private String str_ApptAddress;
+	private String blb_image;
+	private String Var_FileName;
+	private String Var_ImageName;
+	private String str_offcInTiming;
+	private String str_offcOutTiming;
+	private String str_AdditionalInfo;
+	private  String str_AppartmentLogo;
+	private String str_AppartmentImg;
+	private String str_Document_Upload;
+	private Integer int_AppartmentId;
+	public String getStr_AppartmentImg() {
+		return str_AppartmentImg;
+	}
+	public void setStr_AppartmentImg(String str_AppartmentImg) {
+		this.str_AppartmentImg = str_AppartmentImg;
+	}
+	public String getStr_Document_Upload() {
+		return str_Document_Upload;
+	}
+	public void setStr_Document_Upload(String str_Document_Upload) {
+		this.str_Document_Upload = str_Document_Upload;
+	}
+	public Integer getInt_AppartmentId() {
+		return int_AppartmentId;
+	}
+	public void setInt_AppartmentId(Integer int_AppartmentId) {
+		this.int_AppartmentId = int_AppartmentId;
+	}
+	public String getStr_offcInTiming() {
+		return str_offcInTiming;
+	}
+	public void setStr_offcInTiming(String str_offcInTiming) {
+		this.str_offcInTiming = str_offcInTiming;
+	}
+	public String getStr_offcOutTiming() {
+		return str_offcOutTiming;
+	}
+	public void setStr_offcOutTiming(String str_offcOutTiming) {
+		this.str_offcOutTiming = str_offcOutTiming;
+	}
+	public String getStr_AdditionalInfo() {
+		return str_AdditionalInfo;
+	}
+	public void setStr_AdditionalInfo(String str_AdditionalInfo) {
+		this.str_AdditionalInfo = str_AdditionalInfo;
+	}
+	public String getStr_Day() {
+		return str_Day;
+	}
+	public void setStr_Day(String str_Day) {
+		this.str_Day = str_Day;
+	}
+	private String str_Day;
+	 public String getVar_FileName() {
+		return Var_FileName;
+	}
+	public void setVar_FileName(String var_FileName) {
+		Var_FileName = var_FileName;
+	}
+	public String getVar_ImageName() {
+		return Var_ImageName;
+	}
+	public void setVar_ImageName(String var_ImageName) {
+		Var_ImageName = var_ImageName;
+	}
+	private String blb_images1;
+
+	public String getBlb_images1() {
+		return blb_images1;
+	}
+	public String getStr_AppartmentLogo() {
+		return str_AppartmentLogo;
+	}
+	public void setStr_AppartmentLogo(String str_AppartmentLogo) {
+		this.str_AppartmentLogo = str_AppartmentLogo;
+	}
+	public OrganizationLogo getOl() {
+		return ol;
+	}
+	public void setOl(OrganizationLogo ol) {
+		this.ol = ol;
+	}
+	public void setBlb_images1(String blb_images1) {
+		this.blb_images1 = blb_images1;
+	}
 	
+	public String getStr_ApptAddress() {
+		return str_ApptAddress;
+	}
+	public void setStr_ApptAddress(String str_ApptAddress) {
+		this.str_ApptAddress = str_ApptAddress;
+	}
+	public String getStr_WelcomeMsg() {
+		return str_WelcomeMsg;
+	}
+	public void setStr_WelcomeMsg(String str_WelcomeMsg) {
+		this.str_WelcomeMsg = str_WelcomeMsg;
+	}
 	 
 	public ExpenseService getExpenseService() {
 		return expenseService;
@@ -92,7 +201,7 @@ public class ExpenseBean  implements Serializable{
 	public void setStr_ExpenseCategory(String str_ExpenseCategory) {
 		this.str_ExpenseCategory = str_ExpenseCategory;
 	}
-private String str_AccountName;
+
 	
 	public String getStr_AccountName() {
 		return str_AccountName;
@@ -113,11 +222,12 @@ private String str_AccountName;
 		this.date_Duration = date_Duration;
 	}
 	
+	
 /*
  * return All AppartmentName from Appartment table
  */
 	public List<String> getStr_OrganizationNameList() {
-		
+		//createDir();
 		str_OrganizationNameList=new ArrayList<String>();
 		str_OrganizationNameList=getExpenseService().getOrgationNameList();
 		return str_OrganizationNameList;
@@ -407,7 +517,194 @@ public void setParkingSpaceList(List<String> parkingSpaceList) {
 	this.parkingSpaceList = parkingSpaceList;
 }
  
+/*
+ * file Upload
+ */
+/**
+ * create directory dynamically
+ */
+/*public void createDir()
+{
+File file = new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\SaphiParadise");
+ if (!file.exists()) {
+	if (file.mkdir()) {
+		System.out.println("Directory is created!");
+	} else {
+		System.out.println("Failed to create directory!");
+	}
+ }
+}*/
+private String path1;
+private String path;
+private String textLogo;
+private OrganizationLogo ol;
+public String getTextLogo() {
+	return textLogo;
+}
+public void setTextLogo(String textLogo) {
+	this.textLogo = textLogo;
+}
+ 
+public String getPath() {
+	System.out.println(path);
+	 
+	return path;
+}
+public void setPath(String path) {
+	this.path = path;
+}
+public String getPath1() {
+	System.out.println(path1);
+	return path1;
+}
 
+public void setPath1(String path1) {
+	this.path1 = path1;
+}
+
+public String getBlb_image() {
+	return blb_image;
+}
+public void setBlb_image(String blb_image) {
+	this.blb_image = blb_image;
+}
+/*
+ * Upload Appartment Logo
+ */
+public void  handleFileUpload(FileUploadEvent event) throws IOException {
+	 System.out.println("hi");
+	 
+	   path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	    str_AppartmentLogo = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+	   
+	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\saphi");
+	    if (!file.exists()) {
+    	if (file.mkdir()) {
+    		System.out.println("Directory is created!");
+    	} else {
+    		System.out.println("Failed to create directory!");
+    	}
+     }
+	    file= new File(file,str_AppartmentLogo);
+	    
+	    //final UploadedFile uploadedFile = event.getFile();
+	    
+	    path=file.getAbsolutePath();
+	     
+      
+	    InputStream is = event.getFile().getInputstream();
+	    
+	    OutputStream out = new FileOutputStream(file);
+	    byte buf[] = new byte[1024];
+	    int len;
+	    while ((len = is.read(buf)) > 0)
+	        out.write(buf, 0, len);
+	    
+	    FacesMessage msg = new FacesMessage("Succesful",
+                event.getFile().getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+	    is.close();
+	    out.close();
+	    
+	    
+	    
+}
+/*
+ * upload Document
+ */
+private String path2;
+public String getPath2() {
+	return path2;
+}
+public void setPath2(String path2) {
+	this.path2 = path2;
+}
+public void  handleFileUpload2(FileUploadEvent event) throws IOException {
+	 System.out.println("hi");
+	   path2 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	    str_Document_Upload = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+	     
+	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\saphi");
+	    if (!file.exists()) {
+   	if (file.mkdir()) {
+   		System.out.println("Directory is created!");
+   	} else {
+   		System.out.println("Failed to create directory!");
+   	}
+    }
+	    file= new File(file,str_Document_Upload);
+	 
+	    //final UploadedFile uploadedFile = event.getFile();
+	    
+	    path2=file.getAbsolutePath();
+     
+	    InputStream is = event.getFile().getInputstream();
+	    OutputStream out = new FileOutputStream(file);
+	    byte buf[] = new byte[1024];
+	    int len;
+	    while ((len = is.read(buf)) > 0)
+	        out.write(buf, 0, len);
+	    is.close();
+	    out.close();
+	    FacesMessage msg = new FacesMessage("Succesful",
+                event.getFile().getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+	    
+}
+/*
+ * upload Appartment Image
+ */
+public void  handleFileUpload1(FileUploadEvent event) throws IOException {
+	  path1 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+    str_AppartmentImg = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+    
+    System.out.println(str_AppartmentImg);
+    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\saphi");
+    if (!file.exists()) {
+	if (file.mkdir()) {
+		System.out.println("Directory is created!");
+	} else {
+		System.out.println("Failed to create directory!");
+	}
+ }
+    file= new File(file,str_AppartmentImg);
+//  file.renameTo(new File( path+"//mackback.png"));
+   
+    //final UploadedFile uploadedFile = event.getFile();
+    path1=file.getAbsolutePath();
+    InputStream is = event.getFile().getInputstream();
+    OutputStream out = new FileOutputStream(file);
+    byte buf[] = new byte[1024];
+    int len;
+    while ((len = is.read(buf)) > 0)
+        out.write(buf, 0, len);
+    is.close();
+    out.close();
+    FacesMessage msg = new FacesMessage("Succesful",
+            event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+	
+}
+ 
+public void addOrganizationLogo ()
+{
+	ol=new OrganizationLogo();
+	ol.setStr_Appartment_Logo(getStr_AppartmentLogo());
+	ol.setStr_InTime(getStr_offcInTiming());
+	ol.setStr_OutTime(getStr_offcOutTiming());
+	ol.setStr_TextLogo(getTextLogo());
+	ol.setStr_ApptAddress(getStr_ApptAddress());
+	ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
+	ol.setInt_AppartmentId(getInt_AppartmentId());
+	ol.setStr_Document_Upload(getStr_Document_Upload());
+	ol.setStr_Appartment_Img(getStr_AppartmentImg());
+	getExpenseService().addOrganizationLogo(ol);
+	
+	
+}
 }
 
 
