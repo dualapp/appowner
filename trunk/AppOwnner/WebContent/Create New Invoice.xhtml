@@ -22,7 +22,7 @@
               <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
                      <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
-                    <f:ajax event="change" execute="str_InvoiceTemplate" render="@all"/>
+                    <f:ajax event="change" execute="str_InvoiceTemplate" render="@form"/>
                  </p:selectOneMenu>
              </td>
           &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
@@ -39,7 +39,9 @@
                 <f:facet name="header">
                     <h:outputText value="Tax Applied" />
                 </f:facet>
-                 <h:outputText value="#{due.str_TaxTemplate}" />
+                 <h:outputText value="#{due.str_TaxTemplate}">
+                
+                  </h:outputText>
             </p:column>
             </p:dataTable>
           </td>
