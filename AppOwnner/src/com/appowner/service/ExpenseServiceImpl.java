@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.ExpenseDao;
 import com.appowner.model.Expense;
+import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 
 @Service("ExpenseService")
@@ -79,6 +80,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public List<String> getParkingSlotList() {
 		// TODO Auto-generated method stub
 		return getExpenseDao().getParkingSlotList();
+	}
+
+	@Override
+	public void addOrganizationLogo(OrganizationLogo ol) {
+		getExpenseDao().addOrganizationLogo(ol);
+		
 	}
 
 }

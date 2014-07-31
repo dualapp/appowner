@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.Expense;
+import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 
 public interface ExpenseService {
@@ -25,6 +26,8 @@ public interface ExpenseService {
 	void saveParking(Parking parking);
 
 	List<String> getParkingSlotList();
+
+	void addOrganizationLogo(OrganizationLogo ol);
 
 	 
 
