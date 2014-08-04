@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.appowner.model.Expense;
+import com.appowner.model.Parking;
 import com.appowner.model.Vendor;
 import com.appowner.model.VendorCity;
 import com.appowner.model.VendorCountry;
@@ -253,6 +254,23 @@ public class VendorDaoImpl implements VendorDao{
 	public List<String> getStr_VendorTypes() {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setProjection(Projections.property("str_VendorType")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getVendorNameList() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setProjection(Projections.property("str_VendorName")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Vendor> getVendorListByName(String str_VendorName) {
+		/*String  query = "{ CALL vendorListByName() }";
+		return sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Vendor.class)).list();
+	*/
+		String hql="from Vendor where str_VendorName=?";
+	 return sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_VendorName).list();
 	}
 	 
 }

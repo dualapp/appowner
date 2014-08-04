@@ -12,6 +12,9 @@ import java.util.List;
 
 
 
+
+
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,6 +194,31 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			String hqlrolename="select str_RoleName from RoleMaster where int_RoleID=?";
 			String UserRoleName=(String) getSessionFactory().getCurrentSession().createQuery(hqlrolename).setParameter(0,i).uniqueResult();
 			return UserRoleName;
+		}
+
+		@Override
+		public User getUserDetails(String formuserloginusername) {
+			 String hql="from User where str_Username=?";
+			User Userinfo=(User) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, formuserloginusername).uniqueResult();
+			System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+			System.out.println(Userinfo);
+			return Userinfo;
+		}
+
+		@Override
+		public User validateUser(String str_Username) {
+			String hql="from User  where str_Username=?";
+			
+			 return (User)sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_Username).uniqueResult();
+			   
+		}
+
+		@Override
+		public User validateUser1(String str_Email) {
+			String hql="from User  where str_Email=?";
+			
+			 return (User)sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_Email).uniqueResult();
+			   
 		}
 
 		//@Override

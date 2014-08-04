@@ -28,4 +28,12 @@ public interface ExpenseDao {
 
 	void addOrganizationLogo(OrganizationLogo ol);
 
+	void deleteParkingSlot(Parking p);
+
+	Integer getLogoId(Integer int_AppartmentId);
+
+	Integer getInt_AppartmentId(String str_UserName);
+
+	void updateLogo(OrganizationLogo ol);
+
 }

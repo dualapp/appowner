@@ -56,4 +56,12 @@ public interface In_UserDao {
 	public int getApartmentId(String userapartment);
 
 	public String getRoleNameUser(int i);
+
+	//public User getUserDetails(String formuserloginusername);
+
+	public User getUserDetails(String formuserloginusername);
+
+	public User validateUser(String str_Username);
+
+	public User validateUser1(String str_Email);
 }

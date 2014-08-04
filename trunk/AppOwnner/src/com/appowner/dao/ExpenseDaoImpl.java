@@ -97,4 +97,28 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		getSessionFactory().getCurrentSession().save(ol);
 		
 	}
+
+	@Override
+	public void deleteParkingSlot(Parking p) {
+		getSessionFactory().getCurrentSession().delete(p);
+		
+	}
+
+	@Override
+	public Integer getLogoId(Integer int_AppartmentId) {
+		String hql="select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?";
+		return (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_AppartmentId).uniqueResult();
+	}
+
+	@Override
+	public Integer getInt_AppartmentId(String str_UserName) {
+		String hql="select int_ApartmentId from User where str_Username=?";
+		return (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_UserName).uniqueResult();
+	}
+
+	@Override
+	public void updateLogo(OrganizationLogo ol) {
+		getSessionFactory().getCurrentSession().update(ol);
+		
+	}
 }
