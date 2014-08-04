@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -47,6 +48,33 @@ public void setStr_VendorType(String str_VendorType) {
 
 public void setInt_ServiceId(int int_ServiceId) {
 	this.int_ServiceId = int_ServiceId;
+}
+
+private List<String> vendorNameList;
+	public List<String> getVendorNameList() {
+		vendorNameList=new ArrayList<String>();
+		vendorNameList=getVendorservice().getVendorNameList();
+	return vendorNameList;
+}
+
+public void setVendorNameList(List<String> vendorNameList) {
+	this.vendorNameList = vendorNameList;
+}
+private List<Vendor> vendorListByName;
+
+
+	public void getVendorName(ValueChangeEvent event) {
+		str_VendorName=(String) event.getNewValue();
+		 
+}
+	
+	public List<Vendor> getVendorListByName() {
+		vendorListByName=new ArrayList<Vendor>();
+		vendorListByName=getVendorservice().getVendorListByName(str_VendorName);
+	return vendorListByName;
+	}
+public void setVendorListByName(List<Vendor> vendorListByName) {
+	this.vendorListByName = vendorListByName;
 }
 
 	private List<String> str_VendorCities;
@@ -558,9 +586,16 @@ public void setInt_ServiceId(int int_ServiceId) {
 	public void setInt_VendorServiceRating(int int_VendorServiceRating) {
 		this.int_VendorServiceRating = int_VendorServiceRating;
 	}
-
+	
+ 
+	 
 	public Vendor getVendor() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		 
+		
 		vendor=new Vendor();
+		
+		System.out.println(int_VendorId);
 		vendor = getVendorservice().getVendor(int_VendorId);
 		return vendor;
 	}
