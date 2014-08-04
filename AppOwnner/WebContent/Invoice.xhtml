@@ -98,7 +98,7 @@
              </body>
              <h:form>
   <h:body>
-        <h:outputText value="Due Template: " color="red"></h:outputText>
+        <p:panel header="Invoice: " color="red">
         <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}" style="width: 20%" align="center">
             <p:column>
                 <f:facet name="header">
@@ -148,7 +148,7 @@
                 </f:facet>
                 <h:outputText value="#{invoice.str_Block}" />
             </p:column>
-            </p:dataTable>
+          
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Tax" />
@@ -173,6 +173,8 @@
                 </f:facet>
                 <h:outputText value="#{invoice.str_Block}" />
             </p:column>
+            </p:dataTable>
+            </p:panel>
             </h:body>
              </h:form>  
           </ui:define>
