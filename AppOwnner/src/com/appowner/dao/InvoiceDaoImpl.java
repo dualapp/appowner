@@ -58,5 +58,13 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		System.out.println(taxlist);
 		return taxlist;
 	}
+	@SuppressWarnings("unchecked")
+	public List<InvoiceTransaction> listInvoiceTransaction()
+	{
+		return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+	}
+	
+	
+	
 	
 }
