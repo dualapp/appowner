@@ -14,15 +14,19 @@ import java.util.ListIterator;
 import java.util.Random;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.ResizeEvent;
 import org.primefaces.event.RowEditEvent;
@@ -35,10 +39,11 @@ import com.appowner.model.Expense;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.service.ExpenseService;
+import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ExpenseBean  implements Serializable{
 
 	
@@ -79,6 +84,13 @@ public class ExpenseBean  implements Serializable{
 	private String str_AppartmentImg;
 	private String str_Document_Upload;
 	private Integer int_AppartmentId;
+	private String str_UserName;
+	public String getStr_UserName() {
+		return str_UserName;
+	}
+	public void setStr_UserName(String str_UserName) {
+		this.str_UserName = str_UserName;
+	}
 	public String getStr_AppartmentImg() {
 		return str_AppartmentImg;
 	}
@@ -91,7 +103,20 @@ public class ExpenseBean  implements Serializable{
 	public void setStr_Document_Upload(String str_Document_Upload) {
 		this.str_Document_Upload = str_Document_Upload;
 	}
+	@ManagedProperty(value ="#{loginBean}")
+	private LoginBean loginBean;
+	
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
 	public Integer getInt_AppartmentId() {
+		 str_UserName=Util.getUserName();
+		 System.out.println( str_UserName+""+"kalpanannnnnnnnnnnn");
+		 System.out.println(Util.getUserId());
+		//int_AppartmentId=Util.AppartmentId();
 		return int_AppartmentId;
 	}
 	public void setInt_AppartmentId(Integer int_AppartmentId) {
@@ -481,24 +506,45 @@ public String cancelCommitteeMember () {
 	
 }
 public void onRowEdit(RowEditEvent event) {
-    FacesMessage msg = new FacesMessage("Car Edited", ((Expense) event.getObject()).getStr_ExpenseId());
+	System.out.println("EDITTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+    FacesMessage msg = new FacesMessage("Car Edited");
     FacesContext.getCurrentInstance().addMessage(null, msg);
 }
  
 public void onRowCancel(RowEditEvent event) {
-    FacesMessage msg = new FacesMessage("Edit Cancelled", ((Expense) event.getObject()).getStr_ExpenseId());
+    FacesMessage msg = new FacesMessage("Edit Cancelled");
     FacesContext.getCurrentInstance().addMessage(null, msg);
 }
+
 private Parking parking;
 
-public void saveParking()
+ 
+public String saveParking()
 {
 	System.out.println("HBNNNNNNNNNNNNNNNNNNNNNNNNNm");
 	parking=new Parking();
 	parking.setStr_OrganizationName(getStr_Organization());
 	parking.setStr_ParkingSlot(getStr_ParkingSlot());
 	getExpenseService().saveParking(parking);
+	 return "parkingspace.xhtml";
 }
+ 
+public void deleteParkingSlot()
+{
+	Parking p=new Parking();
+	p.setInt_ParkingId(int_ParkingId);
+	getExpenseService().deleteParkingSlot(p);
+}
+public void onCellEdit(CellEditEvent event) {
+    Object oldValue = event.getOldValue();
+    Object newValue = event.getNewValue();
+     
+    if(newValue != null && !newValue.equals(oldValue)) {
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+}
+ 
 public Parking getParking() {
 	return parking;
 }
@@ -697,13 +743,21 @@ public void addOrganizationLogo ()
 	ol.setStr_OutTime(getStr_offcOutTiming());
 	ol.setStr_TextLogo(getTextLogo());
 	ol.setStr_ApptAddress(getStr_ApptAddress());
-	ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
+	//ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
 	ol.setInt_AppartmentId(getInt_AppartmentId());
 	ol.setStr_Document_Upload(getStr_Document_Upload());
 	ol.setStr_Appartment_Img(getStr_AppartmentImg());
+//	Integer logoid=getExpenseService().getLogoId(3);
+	/*if(logoid!=null)
+	{
+	 getExpenseService().updateLogo(ol);
+	}
+	else
+	{
 	getExpenseService().addOrganizationLogo(ol);
-	
-	
+	}
+	*/
+	getExpenseService().addOrganizationLogo(ol);
 }
 }
 
