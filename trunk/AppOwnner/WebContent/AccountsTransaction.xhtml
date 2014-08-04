@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+    <title>Accounting Form</title>
+    </h:head>
+    <body  bgcolor="pink">
+  <h:form id="form">
+ 
+   <fieldset>
+    <legend>
+   <h:commandButton value="Account Transaction" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
+      <table>
+       <h:panelGroup id="aaaa">
+            <td>  <h:outputLabel for="account" value="Accounts*" /></td>
+           <td> <h:selectOneMenu id="account" value="#{accountingBean.account}" >
+                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="#{accountingBean.accounts}" />
+                </h:selectOneMenu>
+                
+           </td>
+           <td>  <h:outputText  value="From:" /></td>
+           <td>  <p:inputText id="dat_FromDate" value="#{accountingBean.dat_FromDate}" size="20"  locale="de" navigator="true" /> </td>
+              
+           <td>  <h:outputText  value="To:" /></td>
+           <td>  <p:calendar id="dat_ToDate" value="#{accountingBean.dat_ToDate}" size="20" locale="de" navigator="true"/> </td> 
+              
+           </h:panelGroup>
+      </table>
+      </fieldset>
+      </h:form>
+      <h:form>
+  <h:body>
+        <h:outputText value="Accounts Transactions: " color="red"></h:outputText>
+          <p:dataTable  id="account" var="accounts" value="#{accountsBean.listOpeningBalance}" style="width: 70%" resizableColumns="true">
+              <p:column >
+                <f:facet name="header" >
+                    <h:outputText value="Date" />
+                </f:facet>
+                <h:outputText value="#{accounts.dat_openingDate}"  />
+            </p:column>
+            <p:column >
+                <f:facet name="header" >
+                    <h:outputText value="Accounts" />
+                </f:facet>
+                <h:outputText value="#{accounts.str_AccountsHead}"  />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Debit" />
+                </f:facet>
+                <h:outputText value="#{accounts.int_Debit}"  size="30"/>
+                
+              
+            </p:column>
+           
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Credit" />
+                </f:facet>
+                <h:outputText value="#{accounts.int_Credit}"  size="30" />
+                 
+              
+            </p:column>
+      </p:dataTable>
+            </h:body>
+            </h:form>
+      </body>
+   
+  </html>

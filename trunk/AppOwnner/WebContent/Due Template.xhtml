@@ -81,18 +81,6 @@ function HideModalWindow() {
     modalWin.HideModalPopUp();
 }
 
-function ShowChildWindowValues(name,email,address,phone,zip) {
-    var displayString = "<b>Values Of Child Window</b> <br/><br/>Name : " + name;
-    displayString += "<br/><br/>Email : " + email;
-    displayString += "<br/><br/>Address : " + address;
-    displayString += "<br/><br/>Phone : " + phone;
-    displayString += "<br/><br/>Zip : " + zip;
-    var div = document.getElementById("divShowChildWindowValues");
-    div.style.display = "";
-    div.innerHTML = displayString;
-  
-       
-}
 </script>
 </h:body>
 <body  bgcolor="pink">
@@ -123,9 +111,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                 </fieldset>
                 <br/>
                 
-             <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; <button  onClick="window.open('EditDueTemplate.xhtml',
-  'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
-  status=no,scrollbars=yes,resize=no');return false">View Selected</button>&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; <h:commandButton  value="View  Selected" action="#{templateBean.getSelectedItem}"/>&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
              <br/>
              <br/>
               
@@ -135,7 +121,16 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
   <h:form>
   <h:body>
         <h:outputText value="Due Template: " color="red"></h:outputText>
-        <p:dataTable id="dueTemplate" var="dueTemplate" value="#{templateBean.listDues}"   style="width: 20%">
+        <h:panelGrid columns="5">
+        <p:dataTable id="dueTemplate" var="dueTemplate" value="#{templateBean.listDues}"  style="width: 20%">
+                <p:column>
+            <f:facet name="header">
+                <h:outputText value="Select" />
+            </f:facet>
+                         
+             <h:outputText value="#{dueTemplate.int_DueTemplateID}" />
+            
+        </p:column>
         
        
             <p:column>
@@ -173,6 +168,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                     <h:outputText value="Action" />
                 </f:facet>
                  
+                 
                 <h:link outcome="EditDueTemplate.xhtml" >
                 <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
                 <f:param name="int_DueTemplateID" value="#{dueTemplate.int_DueTemplateID}"/>
@@ -180,6 +176,8 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                
             </p:column>
          </p:dataTable>
+         
+                  </h:panelGrid>
             </h:body>
              </h:form>  
                
