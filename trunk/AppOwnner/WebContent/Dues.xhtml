@@ -8,7 +8,80 @@
 	<ui:define name="content">
 <h:head>
     <title>Dues  Form</title>
+
+<script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
+
+ <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+
 </h:head>
+
+
+<h:body>
+
+<script>
+
+ var modalWin = new CreateModalPopUpObject();
+ modalWin.SetLoadingImagePath("images/loading.gif");
+ modalWin.SetCloseButtonImagePath("images/remove.gif");
+ //Uncomment below line to make look buttons as link
+ //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
+
+function ShowNewPage(){
+ var callbackFunctionArray = new Array(Submit, Cancel);
+ modalWin.ShowURL('Create New Due.xhtml',470,600,'Create New Due',null,callbackFunctionArray);
+ }
+
+	 
+ 
+function ShowMessage() {
+ modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
+ }
+  
+ function  ShowMessageWithAction(){
+    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
+    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
+ }
+
+function ShowMessageNoDragging(){
+ modalWin.Draggable=false;
+ modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
+
+}
+
+function Action1(){
+alert('Action1 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Action2(){
+alert('Action2 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Submit(msg){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function Cancel(){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function HideModalWindow() {
+    modalWin.HideModalPopUp();
+}
+
+</script>
+</h:body>
 <body  bgcolor="pink">
   <h:form>
   <fieldset>
@@ -17,29 +90,33 @@
      <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="option" value="aaa"  style="width:150px">
+              <td><p:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}"  style="width:150px">
                    <f:selectItems value="aaa" />
                  </p:selectOneMenu>
              </td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
              <td><h:outputText  value="Block:" /></td>
-               <td><p:selectOneMenu id="option1" value="jhu"  style="width:150px">
+               <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="" />
                  </p:selectOneMenu>
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
              <td><h:outputText  value="Apartment:" /></td>
-               <td><p:selectOneMenu id="option2" value=""  style="width:150px">
+               <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="" />
                  </p:selectOneMenu>
                  </td>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
                  <td><h:outputText  value="Status:" /></td>
-               <td><p:selectOneMenu id="option3" value=""  style="width:150px">
+               <td><p:selectOneMenu id="str_Status" value="#{dueBean.str_Status}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
+                   <f:selectItem  itemLabel="Paid" itemValue="Paid" />
+                   <f:selectItem  itemLabel="Partial" itemValue="Partial" />
+                    <f:selectItem  itemLabel="Due" itemValue="Due" />
+                
+                    <f:selectItem  itemLabel="Processing" itemValue="Processing" />
                  </p:selectOneMenu>
              </td>
             
@@ -47,30 +124,35 @@
              <br/>
              <h:panelGroup id="aa">
             
-              <td><h:outputLabel value="Invoice Date:" /></td>
-              <td><p:selectOneMenu id="option4" value="aaa"  style="width:150px">
-                   <f:selectItems value="aaa" />
+              <td><h:outputLabel value="Account:" /></td>
+              <td> &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Accounts}"  style="width:150px">
+               <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{dueBean.str_Account}" />
                  </p:selectOneMenu>
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
              <td><h:outputText  value="Template:" /></td>
-               <td><p:selectOneMenu id="option5" value="jhu"  style="width:150px">
+               <td><p:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
+                   <f:selectItems value="#{dueBean.str_DueTemplates}"/>
                  </p:selectOneMenu>
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;
              <td><h:outputText  value="Period" /></td>
-               <td><p:selectOneMenu id="option6" value=""  style="width:150px">
+               <td><p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
+                   
                  </p:selectOneMenu>
                  </td>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150;
                  <td><h:outputText  value="Year" /></td>
-               <td><p:selectOneMenu id="option7" value=""  style="width:150px">
+               <td><p:selectOneMenu id="int_Year" value="#{dueBean.int_Year}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
+                   <f:selectItem  itemLabel="2013" itemValue="2013" />
+                   <f:selectItem  itemLabel="2014" itemValue="2014" />
+                    <f:selectItem  itemLabel="2015" itemValue="2015" />
+                   <f:selectItem  itemLabel="2016" itemValue="2016" />
+                    <f:selectItem  itemLabel="2017" itemValue="2017" />
                  </p:selectOneMenu>
              </td>
             
@@ -79,7 +161,7 @@
              </fieldset>
              <br/>
              <br/>
-             <p:commandButton  value="Create New" />&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Edit Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+            <input type="button" style="width: 140px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Edit Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
         <p:menuitem value="Notify By Mail" />
         <p:menuitem value="Notify By Sms" />
         <p:menuitem value="Export To Excel" />
@@ -87,6 +169,84 @@
         </p:menuButton>
              </h:form>
              </body>
+              <h:form>
+  <h:body>
+        <fieldset class="field_set">
+        <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}" style="width: 20%" align="center">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Organisation" />
+                </f:facet>
+                <h:outputText value="#{due.str_Organisation}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="DueTemplate" />
+                </f:facet>
+                <h:outputText value="#{due.str_DueTemplate}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Period" />
+                </f:facet>
+                <h:outputText value="#{due.str_Period}" />
+            </p:column>
+         
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Block" />
+                </f:facet>
+                <h:outputText value="#{due.str_Block}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Apartment" />
+                </f:facet>
+                <h:outputText value="#{due.str_ApartmentNo}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Last Date" />
+                </f:facet>
+                <h:outputText value="#{due.dat_LastDate}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="TotalDue Amount" />
+                </f:facet>
+                <h:outputText value="#{due.dbl_TotalDueAmount}" />
+            </p:column>
+          
+            
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Status" />
+                </f:facet>
+                <h:outputText value="#{due.str_Block}" />
+            </p:column>
+             <p:column>
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Paid Amount" />
+                </f:facet>
+                <h:outputText value="#{due.dbl_DueAmount}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Invoice No." />
+                </f:facet>
+                <h:outputText value="#{due.str_Block}" />
+            </p:column>
+                <f:facet name="header">
+                    <h:outputText value="Balance" />
+                </f:facet>
+                <h:outputText value="#{due.str_Block}" />
+            </p:column>
+            </p:dataTable>
+          </fieldset>
+            </h:body>
+            </h:form>
+            
              
 </ui:define>
 </ui:composition>
