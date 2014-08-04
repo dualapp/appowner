@@ -73,8 +73,8 @@
          </table>
              </p:panel>
              <tr>
-                <td align="justify"><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()" action="#{templateBean.addDueTemplate}" ajax="false" /></td>
-                <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{templateBean.reset}" ajax="false"/></td>
+                <td align="justify"><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()" action="#{templateBean.addDueTemplate}" ajax="true" /></td>
+                <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{dueBean.reset}" ajax="false"/></td>
             </tr>
              <script>
         function EnrollNowClick() {
@@ -85,14 +85,7 @@
             window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
         }
 
-        function PassValueToParentWindow() {
-            var name = document.getElementById("user_name").value;
-            var email = document.getElementById("email").value;
-            var address = document.getElementById("address").value;
-            var phone = document.getElementById("phone").value;
-            var zip = document.getElementById("zip").value;
-            window.parent.ShowChildWindowValues(name, email, address, phone, zip);
-        }
+      
     </script>
              </h:form>
              </body>
