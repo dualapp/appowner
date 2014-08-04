@@ -33,8 +33,15 @@ public class DueBean implements Serializable{
 	private String str_InitiatedOn;
 	private Date dat_LastDate;
 	private String str_Organisation;
+	public String getStr_Status() {
+		return str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
 	private String str_Block;
 	private String str_ApartmentNo;
+	private String str_Status;
 	private Double dbl_DueAmount;
 	private Double dbl_TotalDueAmount;
 	public Integer getInt_DueTransactionID() {
