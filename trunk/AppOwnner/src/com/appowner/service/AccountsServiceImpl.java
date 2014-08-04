@@ -2,12 +2,15 @@ package com.appowner.service;
 
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.AccountsDao;
 import com.appowner.model.AccountsOpeningBalance;
+import com.appowner.model.ManualJournal;
 
 @Service("AccountsService")
 @Transactional 
@@ -33,5 +36,9 @@ public class AccountsServiceImpl implements AccountsService {
 	public void saveAccounts(Integer int_Accounts_OpeningID, Double int_Credit)
 	{
 		getAccountsDao().saveAccounts(int_Accounts_OpeningID,int_Credit);
+	}
+	public void addManualJournal(ManualJournal journal)
+	{
+		getAccountsDao().addManualJournal(journal);
 	}
 }
