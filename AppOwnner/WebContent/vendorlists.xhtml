@@ -14,28 +14,19 @@
 </h:head>
  <body bgcolor="yellow">
    
- <h:form >
-   
-        <h:inputText value="#{waterPaymentBean.str_VendorName}"></h:inputText>
-        <h:commandButton value="Search by Name" action="#{waterPaymentBean.searchVendorByName1}"  >
-         
-        </h:commandButton>
-        
-        
-    </h:form> 
-    <h:form  id="form">
-     <p:growl id="msgs" showDetail="true" />
-        <h:outputText value="Vendors : "></h:outputText>
-       <p:dataTable    editable="true" resizableColumns="true"  
-              id="dataTable"   scrollRows="10"     
-                  
-                  scrollable="true" liveScroll="true" scrollHeight="150"   var="vendor" value="#{vendorBean.vendorList}"  >
+ <h:form  id="form">
+ <p:growl id="msgs" showDetail="true" />
+    
+       <p:dataTable    id="radioDT" editable="true" resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="vendor" value="#{vendorBean.vendorList}"  selection="#{vendorBean.vendor}" rowKey="#{vendor.int_VendorId}">
+                
+        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+              
               <f:facet name="header">
             
             <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        <p:columnToggler datasource="radioDT" trigger="toggler" />
         </f:facet>
-         
+        
           <p:column   sortBy="#{vendor.int_VendorId}"  headerText="Id" footerText="Id" width="50">
           <p:cellEditor>
                <f:facet name="output"><h:outputText   value="#{vendor.int_VendorId}" /></f:facet>
@@ -55,7 +46,7 @@
                  
             </p:column>
             
-            <p:column  headerText="action" footerText="action" width="100">
+           <!--<p:column  headerText="action" footerText="action" width="100">
                 
                 <h:link outcome="viewvendor.xhtml" >
 	   			  <h:outputText value="View" />
@@ -70,12 +61,15 @@
 	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
-            </p:column>
-            <p:column style="width:32px;text-align: center">
-             <p:commandButton update=":form:vendorDetail" oncomplete="PF('vendorDialog').show()" icon="ui-icon-search" title="View">
-                <f:setPropertyActionListener value="#{vendor}" target="#{vendorBean.vendor}" />
+	   	 
+            </p:column>  --> 
+             
+        <f:facet name="footer">
+            <p:commandButton process="radioDT" update=":form:vendorDetail"  icon="ui-icon-search" value="View" oncomplete="PF('vendorDialog').show()" >
+           
             </p:commandButton>
-        </p:column>
+        </f:facet>
+         
             </p:dataTable>
             <p:dialog header="Vendor Info" widgetVar="vendorDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="vendorDetail" style="text-align:center;">
