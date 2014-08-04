@@ -143,6 +143,24 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		
 		return getIn_userdao().getRoleNameUser(i);
 	}
+
+	@Override
+	public User getUserList(String formuserloginusername) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getUserDetails(formuserloginusername);
+	}
+
+	@Override
+	public User validate(String str_Username) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().validateUser(str_Username);
+	}
+
+	@Override
+	public User validate1(String str_Email) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().validateUser1(str_Email);
+	}
 	}
 
 	 

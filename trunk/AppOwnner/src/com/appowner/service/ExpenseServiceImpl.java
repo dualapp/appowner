@@ -88,4 +88,33 @@ public class ExpenseServiceImpl implements ExpenseService {
 		
 	}
 
+	@Override
+	public void deleteParkingSlot( Parking p) {
+		getExpenseDao().deleteParkingSlot(p);
+		
+	}
+
+	@Override
+	public Integer getLogoId(Integer int_AppartmentId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getLogoId(int_AppartmentId);
+	}
+
+	@Override
+	public Integer getInt_AppartmentId(String str_UserName) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getInt_AppartmentId(str_UserName);
+	}
+
+	@Override
+	public void updateLogo(Integer logoid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateLogo(OrganizationLogo ol) {
+		getExpenseDao().updateLogo(ol);
+	}
+
 }

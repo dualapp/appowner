@@ -80,4 +80,8 @@ public interface VendorService {
 			String str_VendorType, Date date_FromDate, Date date_ToDate);
 
 	public List<String> getStr_VendorTypes();
+
+	public List<String> getVendorNameList();
+
+	public List<Vendor> getVendorListByName(String str_VendorName);
 }

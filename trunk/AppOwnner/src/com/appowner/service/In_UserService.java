@@ -43,5 +43,11 @@ public interface In_UserService {
 	public int getAppartmenId(String userapartment);
 
 	public String getRoleNameUser(int i);
+
+	public User getUserList(String formuserloginusername);
+
+	public User validate(String str_Username);
+
+	public User validate1(String str_Email);
 }
 
