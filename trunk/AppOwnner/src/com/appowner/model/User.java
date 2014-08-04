@@ -56,6 +56,9 @@ public class User implements Serializable{
 	private String str_UserRoleName;
 	@Column
 	private String str_PhoneNo;
+	@Column
+	private String str_activationkey;
+	@Column Integer int_activationbit;
 	@Column 
 	private Integer int_ApartmentId;
 	@JoinColumn(name = "int_ApartmentId", insertable = false, updatable=false)
@@ -170,9 +173,17 @@ public class User implements Serializable{
 	public void setStr_UserRoleName(String str_UserRoleName) {
 		this.str_UserRoleName = str_UserRoleName;
 	}
-	
-	
-	
-	
+	public String getStr_activationkey() {
+		return str_activationkey;
+	}
+	public void setStr_activationkey(String str_activationkey) {
+		this.str_activationkey = str_activationkey;
+	}
+	public Integer getInt_activationbit() {
+		return int_activationbit;
+	}
+	public void setInt_activationbit(Integer int_activationbit) {
+		this.int_activationbit = int_activationbit;
+	}
 	
 }
