@@ -3,7 +3,9 @@ package com.appowner.bean;
  import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,6 +13,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 
+import javax.faces.component.html.HtmlDataTable;
+import javax.faces.component.html.HtmlInputHidden;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.DueTemplate;
@@ -159,6 +165,48 @@ public class TemplateBean implements Serializable {
 		
 		
 		return "Due Template.xhtml";
+	}
+    public HtmlDataTable getDataTable() {
+		return dataTable;
+	}
+	public void setDataTable(HtmlDataTable dataTable) {
+		this.dataTable = dataTable;
+	}
+
+	
+	
+	private HtmlDataTable dataTable;
+    private HtmlInputHidden dataItemId = new HtmlInputHidden();
+  
+    public HtmlInputHidden getDataItemId() {
+		return dataItemId;
+	}
+	public void setDataItemId(HtmlInputHidden dataItemId) {
+		this.dataItemId = dataItemId;
+	}
+	private Map<Long, Boolean> checked = new HashMap<Long, Boolean>();
+	 public void getSelectedItem() {
+		 List<DueTemplate> listDues=new ArrayList<DueTemplate>();
+		 for (DueTemplate template: listDues) {
+			 System.out.println(int_DueTemplateID);
+	            if (checked.get(template.getInt_DueTemplateID())) {
+	               System.out.println(int_DueTemplateID);
+	            }
+	        }
+		
+    //  return "EditDueTemplate.xhtml";
+       
+    }
+  
+
+
+
+	
+	public Map<Long, Boolean> getChecked() {
+		return checked;
+	}
+	public void setChecked(Map<Long, Boolean> checked) {
+		this.checked = checked;
 	}
 	//TAX TEMPLATE
 	private Integer int_TaxTemplateID;
