@@ -13,8 +13,11 @@
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <i
-						class="icon-leaf"></i> Ace Admin
+						class="icon-leaf"></i>&nbsp;<h:outputText value="#{LoginBean.getUserloginname()}"/> &nbsp;<p:graphicImage  height="20" width="20" alt="AppartmentImg" value="#{expenseBean.getPath()}"/>&nbsp;<h:outputText value="#{expenseBean.getTextLogo()}"/>
 				</small>
+				<p:graphicImage  height="20" width="20" alt="AppartmentLogo" value="#{expenseBean.getPath1()}"/> &nbsp;
+				 
+				
 				</a>
 				<!-- /.brand -->
 			</div>
@@ -185,7 +188,7 @@
 						<li class="light-blue"><a data-toggle="dropdown" href="#"
 							class="dropdown-toggle"> <img class="nav-user-photo"
 								src="include/assets/avatars/kalpana.jpg" alt="kalpana's Photo" /> <span
-								class="user-info"> <small>Welcome,</small> kalpana
+								class="user-info"> <small>Welcome,</small> <h:outputText value="#{loginBean.userloginname}" />
 							</span> <i class="icon-caret-down"></i>
 						</a>
 
@@ -194,13 +197,14 @@
 								<li><a href="#"> <i class="icon-cog"></i> Settings
 								</a></li>
 
-								<li><a href="#"> <i class="icon-user"></i> Profile
+								<li><a href="#"> <i class="icon-user"></i> Edit Profile
 								</a></li>
 
 								<li class="divider"></li>
 
-								<li><a href="#"> <i class="icon-off"></i> Logout
-								</a></li>
+								<li> <i class="icon-off"></i> <p:commandButton action="#{loginBean.logout}" value="Logout"  ajax="false"></p:commandButton>
+								
+								 </li>
 							</ul></li>
 					</ul>
 					<!-- /.ace-nav -->
