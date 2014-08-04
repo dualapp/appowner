@@ -2,6 +2,7 @@ package com.appowner.model;
 
 import java.io.Serializable;
 
+import javax.faces.component.html.HtmlInputHidden;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,9 @@ public class DueTemplate implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "int_DueTemplateID")
 	private Integer int_DueTemplateID;
-	public Integer getInt_DueTemplateID() {
-		return int_DueTemplateID;
+	public HtmlInputHidden getInt_DueTemplateID() {
+		return null;
+		
 	}
 	public void setInt_DueTemplateID(Integer int_DueTemplateID) {
 		this.int_DueTemplateID = int_DueTemplateID;

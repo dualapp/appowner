@@ -1,6 +1,7 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,6 +46,19 @@ public class AccountsOpeningBalance implements Serializable {
 	private String str_AccountsHead;
 	private Double int_Debit;
 	private Double int_Credit;
-	
+	private Date dat_openingDate;
+	public Date getDat_openingDate() {
+		return dat_openingDate;
+	}
+	public void setDat_openingDate(Date dat_openingDate) {
+		this.dat_openingDate = dat_openingDate;
+	}
+	private Integer int_ApartmentID;
+	public Integer getInt_ApartmentID() {
+		return int_ApartmentID;
+	}
+	public void setInt_ApartmentID(Integer int_ApartmentID) {
+		this.int_ApartmentID = int_ApartmentID;
+	}
 	
 }
