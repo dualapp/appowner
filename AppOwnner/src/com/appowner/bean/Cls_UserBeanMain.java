@@ -12,6 +12,8 @@ import java.util.List;
 
 
 
+import java.util.UUID;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -21,6 +23,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 
 //import org.primefaces.event.RateEvent;
+
 
 
 
@@ -533,19 +536,31 @@ public class Cls_UserBeanMain implements Serializable {
 		usr.setStr_Block(getStr_Block());
 		usr.setStr_PhoneNo(getStr_PhoneNo());
 		usr.setStr_UserRoleName(str_getRoleNameUser);
+		Integer activationbit1=0;
+		System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
+		final String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		
+		//System.out.println(uuid);
+		//String s= UUID.randomUUID().toString();
+		//System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnn");
+		//System.out.println(s);
+		usr.setStr_activationkey(uuid);
+		usr.setInt_activationbit(0);
 		getUserService().addUser(usr);
 		el=getStr_Email();
 		un=getStr_Username();
 		pd=getStr_Password();
 		an=getStr_ApartmentName();
 		fn=getStr_FirstName();
+		String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid;
 		subject="AppOwner.com";
 		content="Hello."+" "  +fn+
 			   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
-				+ "You are registered as the moderator for "+","  +an+
-			   "\n Please log in to www.AppOwner.com with the following credentials and get going!\n"
+				+ "You are registered as the moderator for "+","  +an
+			  
 				+"UserName:  "+" "  +un+" "+"\n"
-			   + "Password:  "+" "  +pd;
+			   + "Password:  "+" "  +pd+
+			    "\n Please Click here to Activate your Account "+" "+url ;
 		
 		return "EmailForm1.jsp";
 		
