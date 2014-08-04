@@ -14,6 +14,7 @@ import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
 import com.appowner.model.Subcript;
+import com.appowner.model.UserApartment;
 import com.appowner.model.Vendor;
 import com.appowner.model.WaterPayment;
 @Repository
@@ -135,6 +136,12 @@ public class ProductAccessDaoImpl implements ProductDao{
 	 return sessionFactory.getCurrentSession().createQuery(hql7).setParameter(0, ch_Product_Type).list();
 	}
 
+	/*@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAprtmentName() {
+		return getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).setProjection(Projections.property("str_ApartmentName")).list();
+	}
+*/
 	
 }
 	
