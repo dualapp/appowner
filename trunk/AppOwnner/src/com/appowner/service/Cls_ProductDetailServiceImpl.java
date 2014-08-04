@@ -86,33 +86,23 @@ public class Cls_ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public List<String> getIntentes() {
-		return (List<String>) getProductDao().getIntentes();	
+	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type) {
+		 return getProductDao().getSearchByProducttype(ch_Product_Type);
 	}
 
-	@Override
-	public List<String> getStatuses() {
-		return (List<String>) getProductDao().getStatuses();
+	/*@Override
+	public List<String> getAprtmentName() {
+		return (List<String>) getProductDao().getAprtmentName();
 	}
-
-	@Override
-	public List<String> getPosteds() {
-		return (List<String>) getProductDao().getPosteds();
-	}
-
-	@Override
-	public List<String> getTypes() {
-		return (List<String>) getProductDao().getTypes();
-	}
-
+*/
 	
-
-	
-	
-	
-	
-	
-
-	
-
 }
+	
+	
+	
+	
+	
+
+	
+
+
