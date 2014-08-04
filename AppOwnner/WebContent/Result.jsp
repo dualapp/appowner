@@ -9,12 +9,11 @@
 </head>
 <body bgcolor="#33FF33">
     <center>
-        <font size="6" color="green">Your account created successfully......</font><br><br>
-        <h3><%=request.getAttribute("Message")%></h3><br><br>
-        <font size="5"><a href="https://accounts.google.com/ServiceLogin?sacu=1&scc=1&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hl=en&service=mail" >Login to gmail.com</a><br><br>
-	   		</font> 
-        <font size="5"><a href="Addapprt.xhtml" >Click here to Login With AppOwner</a>
-	   		</font> 
+         <h1>Congratulations...</h1><br>
+        <h1>Your account created successfully.....</h1><br>
+        <h1><%=request.getAttribute("Message")%></h1><br><br>
+        <h1>Please login to activate your account</h1><br>
+         <h1>Thanks....</h1><br>
     </center>
 </body>
 </html>
