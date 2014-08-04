@@ -1,22 +1,23 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-//import java.util.Date;
-import java.util.List;
+//package org.primefaces.showcase.view.ajax;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import java.util.ArrayList;
+//import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.User;
-import com.appowner.model.UserApartment;
 import com.appowner.service.In_UserService;
 /*
  * Develope by Pankaj singh.
@@ -49,7 +50,43 @@ public class Cls_UserBean implements Serializable{
 	    private static String subject="subject";
 	    private static String content="content";
 	    private String str_Username;
-	    /*
+	    private String criticaNome;
+	    public String value;
+	    public String value1;
+	    public String arrow;
+	    private String lastname;
+	    
+	    
+	    
+	    public String getLastname() {
+			return lastname;
+		}
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+		
+		public String getValue1() {
+			return value1;
+		}
+		public void setValue1(String value1) {
+			this.value1 = value1;
+		}
+		public String getValue() {
+			System.out.println("99999999999999999eeee999888889999999999999999999999");
+			//dataChange1();
+			System.out.println();
+			return value;
+		}
+		public void setValue(String value) {
+			this.value = value;
+		}
+		public String getCriticaNome() {
+			return criticaNome;
+		}
+		public void setCriticaNome(String criticaNome) {
+			this.criticaNome = criticaNome;
+		}
+		/*
 	     * Getter and setter of the abobve varialble
 	     */
 		public static String getUn() {
@@ -279,6 +316,16 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_Block(getStr_Block());
 			usr.setStr_PhoneNo(getStr_PhoneNo());
 			usr.setStr_Username(getStr_Username());
+			Integer activationbit2=0;
+			System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
+			final String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
+			
+			//System.out.println(uuid);
+			//String s= UUID.randomUUID().toString();
+			//System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnn");
+			//System.out.println(s);
+			usr.setStr_activationkey(uuid1);
+			usr.setInt_activationbit(0);
 			System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
 			getUserService().addUser(usr);
 			 el=getStr_Email();
@@ -286,13 +333,15 @@ public class Cls_UserBean implements Serializable{
 			pd=getStr_Password();
 			fn=getStr_FirstName();
 			an=getUserapartment();
+			String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
 			subject="AppOwner.com";
 			content="Hello."+" "  +fn+
-					   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
-						+ "You are registered as the moderator for "+","  +an+
-					   "\n Please log in to www.AppOwner.com with the following credentials and get going!\n"
-						+"UserName:  "+" "  +un+" "+"\n"
-					   + "Password:  "+" "  +pd;
+				   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
+					+ "You are registered as the moderator for "+","  +an
+				  
+					+"UserName:  "+" "  +un+" "+"\n"
+				   + "Password:  "+" "  +pd+
+				    "\n Please Click here to Activate your Account "+" "+url ;
 					
 				
 			List<String> list=new ArrayList<String>();
@@ -338,6 +387,7 @@ public class Cls_UserBean implements Serializable{
 		 * here getListUser method to get list of users...
 		 */
 		private List<User> ListUser;
+	
 		public List<User> getListUser() {
 			ListUser= new ArrayList<User>();
 				ListUser.addAll( getUserService().listUsers());
@@ -393,6 +443,48 @@ public class Cls_UserBean implements Serializable{
 		}
 		public void setRegistration(String registration) {
 			Registration = registration;
+		}
+		private User user;
+		
+		public User getUser() {
+			return user;
+		}
+		public void setUser(User user) {
+			this.user = user;
+		}
+		public void dataChange1()
+		{
+			user=getUserService().validate(getStr_Username());
+	          if(user==null)
+	        	{  
+	        	  setValue("User name is available.");
+	        	}
+	   else    
+	   { 
+		   setValue("This name is taken by someone try another.");
+	   }
+			
+			
+		}
+		
+		public void dataChange2()
+		{
+			user=getUserService().validate1(getStr_Email());
+	          if(user!=null)
+	        	{  
+	        	  setValue1(" Email id is already used give another email-id.");
+	        	}
+	          else    
+	   	   { 
+	   		   setValue1(" ");
+	   	   }
+	   
+			
+		}
+		public String returnStatement()
+		{
+			System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,");
+			return "login.xhtml";
 		}
 		
 
