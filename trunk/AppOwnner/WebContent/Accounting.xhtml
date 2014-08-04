@@ -20,8 +20,8 @@
 <body  bgcolor="pink">
   <h:form>
   <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="option" value="aaa"  style="width:150px">
-                   <f:selectItems value="aaa" />
+              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px">
+                   <f:selectItems value="str_Organisation" />
                  </p:selectOneMenu>
              </td>
              </h:form>
@@ -29,12 +29,14 @@
             
              <h:form>
     <h:panelGrid columns="1" style="font: 12px sans-serif;width:900px;height: 19px">
-          <p:tabMenu id="tabs" activeIndex="0" >  
-                <p:menuitem value="ACCOUNT TRANACTION" url="Invoice.xhtml" />  
-                <p:menuitem value="MANUAL JOURNAL" url="/Invoice.xhtml" />  
-                <p:menuitem value="TRIAL BALANCE" url="/Invoice.xhtml" />
-                  <p:menuitem value="PROFIT AND LOSS" url="/Invoice.xhtml" />
-                    <p:menuitem value="BALANCE SHEET" url="/Invoice.xhtml" />
+          <p:tabMenu id="tabs" activeIndex="#{param.i}" >  
+                <p:menuitem value="ACCOUNT TRANACTION" url="AccountsTransaction.xhtml?i=0" >
+                 <f:param name="i" value="0" />
+                 </p:menuitem>  
+                <p:menuitem value="MANUAL JOURNAL" url="Manual Journal.xhtml?i=1">
+                   <f:param name="i" value="1" />
+                 </p:menuitem>
+            
          </p:tabMenu>
               
           
