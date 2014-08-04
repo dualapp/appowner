@@ -81,4 +81,8 @@ public interface VendorDao {
 
 	public List<String> getStr_VendorTypes();
 
+	public List<String> getVendorNameList();
+
+	public List<Vendor> getVendorListByName(String str_VendorName);
+
 }
