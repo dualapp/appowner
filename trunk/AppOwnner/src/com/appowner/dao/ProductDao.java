@@ -32,6 +32,8 @@ public interface ProductDao {
 
 	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type);
 
+	//public List<String> getAprtmentName();
+
 	
 	
 
