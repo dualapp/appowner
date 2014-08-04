@@ -1,14 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
-	<ui:define name="content">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+xmlns:ui="http://java.sun.com/jsf/facelets"    
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:p="http://primefaces.org/ui"   
+xmlns:f="http://java.sun.com/jsf/core"> 
 <h:head><title>User Registration</title></h:head>
 <body bgcolor="#F08080">  
- <h:form bgcolor="red">
+ <h:form id="form" bgcolor="red">
  <p:panel id="panel"  header="User Pessonal Details." style="margin-bottom:50px;" > 
  <h:messages style="color:red"/>
 <table>
@@ -30,7 +28,7 @@
             <tr>
             <td><h:outputText value="Apartment :">
             </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText id="apartment" value="#{selectOneMenuBean.apartment}"  required="true" requiredMessage="Please Enter Last Name!">
+            <td><h:inputText id="apartment" value="#{selectOneMenuBean.apartment}"  required="true" requiredMessage="Please Enter Apartment/Complex name!">
             </h:inputText></td> </tr>
             <tr>
             <td><h:outputText value="First Name :">
@@ -45,8 +43,10 @@
              <tr>
              <td><h:outputText value="Email :">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText id="str_Email" value="#{cls_UserBean.str_Email}" required="true"                requiredMessage="Please Enter Email!">
-            </h:inputText></td><td ><font color="red">&#150; &#150; &#150;It must be a valid Email-id</font></td> </tr>
+             <td><h:inputText id="str_Email" value="#{cls_UserBean.str_Email}" required="true" validatorMessage=" User Email id is not valid. It should be like abc@gmail.com" requiredMessage="Please Enter Email!">
+             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+             <p:ajax event="blur" update="useremailMsg,out3" listener="#{cls_UserBean.dataChange2}" partialSubmit="true" />
+            </h:inputText> <h:outputText id="out3" value="#{cls_UserBean.value1}" /> &#150;<p:message id="useremailMsg" for="str_Email"/></td></tr>
             <tr>
             <td><h:outputText value="Confirm Email :">
             </h:outputText><font color="red" >*</font> </td>           
@@ -55,17 +55,22 @@
             <tr>
             <td><h:outputText value="User name:">
             </h:outputText><font color="red" >*</font> </td>           
-            <td><h:inputText id="str_username" value="#{cls_UserBean.str_Username}"                required="true" requiredMessage="Please Enter user name!">
-            </h:inputText></td> </tr>
+            <td><h:inputText id="str_username" value="#{cls_UserBean.str_Username}" required="true" requiredMessage="Please Enter user name!">
+            <p:ajax event="blur" update="out2" listener="#{cls_UserBean.dataChange1}" partialSubmit="true"/>   
+            </h:inputText>&#150;
+            <h:outputText id="out2" value="#{cls_UserBean.value}" />
+            </td>
+            </tr>
+   
             <tr>
             <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
             <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Please Enter Password!">
-            <f:validateLength minimum="4"/>
-            </h:inputSecret></td> </tr>
+            <f:validateLength minimum="4" maximum="16"/>
+            </h:inputSecret> &#150;<h:outputText value ="It must contain one alphanumeric value"/></td> </tr>
              <tr>
             <td><h:outputText value="Confirm Password* :"></h:outputText><font color="red" >*</font></td>
              <td><h:inputSecret id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBean.str_ConfirmPassword}" required="true"                requiredMessage="Please Enter Confirm Password!">
-             <f:validateLength minimum="4"/>
+             <f:validateLength minimum="4" maximum="16"/>
              </h:inputSecret></td> </tr>
               <tr>
              <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
@@ -98,5 +103,4 @@
             </p:panel>    
             </h:form> 
             </body> 
-</ui:define>
-</ui:composition>
+</html>
