@@ -30,7 +30,7 @@ public class Cls_ProductDetails implements Serializable {
 		this.int_Ad_categoryId = int_Ad_categoryId;
 	}
 	@Column
-	private char Ch_Product_Type;
+	private String Ch_Product_Type;
 	@Column
 	private String Var_Title;
 	@Column
@@ -73,13 +73,10 @@ public class Cls_ProductDetails implements Serializable {
 	public void setInt_ProductId(Integer int_ProductId) {
 		Int_ProductId = int_ProductId;
 	}
-	
-	
-	
-	public char getCh_Product_Type() {
+	public String getCh_Product_Type() {
 		return Ch_Product_Type;
 	}
-	public void setCh_Product_Type(char ch_Product_Type) {
+	public void setCh_Product_Type(String ch_Product_Type) {
 		Ch_Product_Type = ch_Product_Type;
 	}
 	public String getVar_Title() {
