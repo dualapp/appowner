@@ -35,6 +35,13 @@ public class InvoiceBean implements Serializable{
 	private String str_BillPeriod;
 	private Integer int_Year;
 	private String dat_InvoiceDate;
+	private String str_Status;
+	public String getStr_Status() {
+		return str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
 	public String select;
 	
 	public String getSelect() {
@@ -214,5 +221,15 @@ public class InvoiceBean implements Serializable{
 	         return dueList;
 	    }
 	      
+	}
+	private List<InvoiceTransaction> listInvoiceTransaction;
+	public List<InvoiceTransaction> getListInvoiceTransaction() {
+		listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction());
+		return listInvoiceTransaction;
+	}
+	public void setListInvoiceTransaction(
+			List<InvoiceTransaction> listInvoiceTransaction) {
+		this.listInvoiceTransaction = listInvoiceTransaction;
 	}
 }

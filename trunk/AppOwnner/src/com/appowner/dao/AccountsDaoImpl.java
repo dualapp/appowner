@@ -2,11 +2,13 @@ package com.appowner.dao;
 
 import java.util.List;
 
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.appowner.model.AccountsOpeningBalance;
+import com.appowner.model.ManualJournal;
 
 @Repository
 public class AccountsDaoImpl implements AccountsDao{
@@ -35,5 +37,9 @@ public class AccountsDaoImpl implements AccountsDao{
 	  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_Credit).setParameter(1,int_Accounts_OpeningID).executeUpdate();
 		
 	}
+	public void addManualJournal(ManualJournal journal){
+		getSessionFactory().getCurrentSession().save(journal);
+	}
+	
 	
 }
