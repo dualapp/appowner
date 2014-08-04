@@ -8,21 +8,31 @@
 	xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core">
  <h:head>
+  
    
  </h:head>
-    <body >
+    <body bgcolor="red">
         <p:layout fullPage="true">
         
          
+            
+            
+             <p:layoutUnit   position="center" height="20" width="20">
+             <table>
+             <tr>
+             <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+             <td><ui:include src="userlogin.xhtml" /></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+             <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+             <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+             <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
              
-
-             <p:layoutUnit   position="center" height="100">
-              <ui:include src="menu.xhtml" />
-                <h:panelGroup id="centerContentPanel" layout="block">
-                   <ui:include  src="#{navigationBean.pageName}"/> 
-                     <ui:include src="/include/footer.xhtml" />
-                </h:panelGroup>
-            </p:layoutUnit>   
+             <td><ui:include src="otheruserlogin.xhtml" /></td>
+                </tr>
+                </table>
+            </p:layoutUnit> 
+            
+             
+             
             
         </p:layout>
     </body>             
