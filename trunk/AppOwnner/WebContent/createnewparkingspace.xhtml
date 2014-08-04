@@ -8,11 +8,11 @@
       xmlns:p="http://primefaces.org/ui">
 	<h:head>
 	</h:head>
-	<h:form>
+	<h:form id="form">
 	<h:body>
 	<br/>
 	<div>
-	<h:panelGroup>
+	<h:panelGroup  >
 	<p><h:outputLabel value="Organisation:" /> 
                <h:outputLabel value="Organisation:" /> 
               <p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_Organization}"  style="width:100px">
@@ -23,7 +23,23 @@
                  </p:selectOneMenu></p><br/>
 	<p><h:outputText value="parkingSlot"/>
 	<h:inputText value="#{expenseBean.str_ParkingSlot}"/></p>
-	<p><h:commandButton value="submit" action="#{expenseBean.saveParking}"/>  </p>
+	<p><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}"   >
+	
+	</p:commandButton>  </p>
+	 <script>
+	 
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
 	</h:panelGroup>
 	</div>
 	</h:body>
