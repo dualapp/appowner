@@ -33,8 +33,11 @@ public class Cls_AddDetailsBean implements Serializable {
 	
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final String SEARCHBYPRODUCTTYPE = "searchByProducttype";
 	private Integer Int_ProductId;
 	private String Ch_Product_Type;
+	
 	public String getCh_Product_Type() {
 		return Ch_Product_Type;
 	}
@@ -50,10 +53,16 @@ public class Cls_AddDetailsBean implements Serializable {
 	private char Ch_Ad_Type;
 	private int int_Ad_categoryId;
 	 public int intdocID1;
-	 
+	 public String Aprtid; 
 	public String intdocid1;
-	 
-   public int getInt_Ad_categoryId() {
+	private String str_ApartmentName;
+   public String getStr_ApartmentName() {
+		return str_ApartmentName;
+	}
+	public void setStr_ApartmentName(String str_ApartmentName) {
+		this.str_ApartmentName = str_ApartmentName;
+	}
+public int getInt_Ad_categoryId() {
       return int_Ad_categoryId;
 	}
 	public void setInt_Ad_categoryId(int int_Ad_categoryId) {
@@ -141,11 +150,13 @@ public class Cls_AddDetailsBean implements Serializable {
 	}
 	public void AddProduct(){
 		
-	intdocid1=getVar_Ad_CategoryName();
+	    intdocid1=getVar_Ad_CategoryName();
 		System.out.println(intdocid1);
-		intdocID1=getProductDetailService().getdocid2(intdocid1);	
+		intdocID1=getProductDetailService().getdocid2(intdocid1);
+		Aprtid=getStr_ApartmentName();
 		Cls_ProductDetails pro=new Cls_ProductDetails();
 		pro.setInt_Ad_categoryId(intdocID1);
+		
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
@@ -157,7 +168,8 @@ public class Cls_AddDetailsBean implements Serializable {
 		pro.setUserId(1);
 		getProductDetailService().AddProduct1(pro);		
 	}
-	public void AddCategory(){
+	
+		public void AddCategory(){
 		Cls_categoryDetail Cat=new Cls_categoryDetail();
 	      System.out.println("hi");
 	      Cat.setInt_Ad_categoryId(getInt_Ad_categoryId());
@@ -181,6 +193,7 @@ public class Cls_AddDetailsBean implements Serializable {
 	
 }
 
+	
 	private String path1;
 	public String getPath1() {
 		return path1;
@@ -261,7 +274,7 @@ public class Cls_AddDetailsBean implements Serializable {
 	public void setListDetails(List<Cls_ProductDetails> listDetails) {
 		this.listDetails = listDetails;
 	}
-	 private List<Cls_ProductDetails> searchByProducttype;
+	private List<Cls_ProductDetails> searchByProducttype;
 	
 	 public List<Cls_ProductDetails> getSearchByProducttype() {
 		
@@ -271,10 +284,10 @@ public class Cls_AddDetailsBean implements Serializable {
 	 }
 	      public String getSearchByProducttype1()
 		{
-			searchByProducttype=new ArrayList<Cls_ProductDetails>();
-			searchByProducttype=getProductDetailService().getSearchByProducttype(Ch_Product_Type);
-		//	return searchByProducttype;
-			return "View_Details.xhtml";
+			 searchByProducttype=new ArrayList<Cls_ProductDetails>();
+			 searchByProducttype=getProductDetailService().getSearchByProducttype(Ch_Product_Type);
+		     System.out.println(searchByProducttype);
+			return SEARCHBYPRODUCTTYPE;
 		}
 		
 		public void setSearchByProducttype(List<Cls_ProductDetails> searchByProducttype) {
@@ -304,7 +317,7 @@ public class Cls_AddDetailsBean implements Serializable {
 			return null;
 		}
 	*/
-}
+	}
 	
 	
 	
