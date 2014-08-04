@@ -1,0 +1,38 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"    
+xmlns:ui="http://java.sun.com/jsf/facelets"    
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:p="http://primefaces.org/ui"   
+xmlns:f="http://java.sun.com/jsf/core"> 
+
+<body bgcolor="">  
+ <h:form bgcolor="red">
+ <br></br>
+ <font size="6" style="bold" color="blue">Enter Login Credential</font>
+ <h:messages style="color:red"/>
+<table>
+           <br></br><br></br>
+            <tr>
+            <td><h:outputText value="User name:">
+            </h:outputText><font color="red" >*</font> </td>           
+            <td><h:inputText id="userloginname" value="#{loginBean.userloginname}"                required="true" requiredMessage="Please Enter user name!">
+            </h:inputText></td> </tr><br></br>
+            <tr>
+            <tr><td></td></tr>
+            <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
+            <td><h:inputSecret id="userloginpassword"  label="Password" value="#{loginBean.userloginpassword}"                required="true" requiredMessage="Please Enter Password!">
+            <f:validateLength minimum="4"/>
+            </h:inputSecret><h:message for="userloginpassword"/></td> </tr><br></br>
+            
+             <tr> 			
+            <td><h:commandButton id="submit" value="Submit" action="#{loginBean.userLogin}" ajax="false"/>
+             </td></tr>
+             
+            
+            </table>
+            <br></br><br></br><br></br>
+               
+            </h:form> 
+            </body> 
+</html>
