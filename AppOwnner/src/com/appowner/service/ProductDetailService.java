@@ -31,13 +31,13 @@ public interface ProductDetailService {
 
 	public void AddNotice(Notification p);
 
-	public List<String> getIntentes();
+	
 
-	public List<String> getStatuses();
+	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type);
 
-	public List<String> getPosteds();
+	//public List<String> getAprtmentName();
 
-	public List<String> getTypes();
+	
 
 	//public Collection<? extends Cls_ProductDetails> getDetails(
 		//	String ch_Product_Type);
