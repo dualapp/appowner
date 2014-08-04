@@ -65,8 +65,8 @@
             </p:column>  --> 
              
         <f:facet name="footer">
-            <p:commandButton process="radioDT" update=":form:vendorDetail"  icon="ui-icon-search" value="View" oncomplete="PF('vendorDialog').show()" >
-           
+            <p:commandButton process="radioDT" update=":form:vendorDetail"  action="#{vendorBean.getVendor()}" icon="ui-icon-search" value="View" oncomplete="PF('vendorDialog').show()" >
+           <f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
             </p:commandButton>
         </f:facet>
          
