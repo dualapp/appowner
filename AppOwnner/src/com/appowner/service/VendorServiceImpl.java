@@ -216,6 +216,18 @@ public void setVendordao(VendorDao vendordao) {
 		return getVendordao().getStr_VendorTypes();
 	}
 
+	@Override
+	public List<String> getVendorNameList() {
+		// TODO Auto-generated method stub
+		return getVendordao().getVendorNameList();
+	}
+
+	@Override
+	public List<Vendor> getVendorListByName(String str_VendorName) {
+		// TODO Auto-generated method stub
+		return getVendordao().getVendorListByName(str_VendorName);
+	}
+
 }
 	 
  
