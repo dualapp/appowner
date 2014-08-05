@@ -6,7 +6,6 @@ import java.util.List;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
-import com.appowner.model.cls_Person;
 
 public interface ProductDetailService {
 
