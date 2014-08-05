@@ -13,7 +13,7 @@ import com.appowner.dao.SubcriptDao;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
-import com.appowner.model.cls_Person;
+
 @Service("ProductDetailService")
 @Transactional 
 public class Cls_ProductDetailServiceImpl implements ProductDetailService {
