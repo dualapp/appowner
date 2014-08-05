@@ -12,7 +12,7 @@
 <h:body>
     <h:form>
         
-        <p:dataTable id="Per" var="per" value="#{cls_AddDetailsBean.listPerson}" style="width: 30%">
+        <p:dataTable id="Per" var="per" value="#{cls_AddDetailsBean.listPerson}" style="width: 100%">
            
             <p:column>
             <f:facet name="header">
@@ -42,14 +42,15 @@
                 <h:outputText value="#{per.var_Title}" />
             </p:column>
             
-              <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="ImageName" />
+             
+            <p:column>
+            <f:facet name="header">  
+              <h:outputText value="Date" />
                 </f:facet>
-                <h:outputText value="#{per.var_ImageName}" />
+                <h:outputText value="#{per.dT_Date}" />
             </p:column>
             
+              
               <p:column>
             <f:facet name="header">
                 
