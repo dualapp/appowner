@@ -33,16 +33,16 @@
              <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
             <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
              <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailsBean.pro.ch_Ad_Type}">
-            <f:selectItem itemLabel="My Community" itemValue="M" />
-            <f:selectItem itemLabel="Neighbourhood" itemValue="N" />
+            <f:selectItem itemLabel="My Community" itemValue="My Community" />
+            <f:selectItem itemLabel="Neighbourhood" itemValue="Negihbourhood" />
            
            </p:selectOneRadio>
         
         <p:outputLabel for="I" value="I want to" />
         <p:selectOneRadio id="I" value="#{cls_AddDetailsBean.pro.ch_Product_Type}">
-            <f:selectItem itemLabel="SELL" itemValue="S" />
-            <f:selectItem itemLabel="BUY" itemValue="B" />
-            <f:selectItem itemLabel="RENT" itemValue="R" />
+            <f:selectItem itemLabel="SELL" itemValue="Sell" />
+            <f:selectItem itemLabel="BUY" itemValue="Buy" />
+            <f:selectItem itemLabel="RENT" itemValue="Rent" />
         </p:selectOneRadio>
        
  </h:panelGrid>
@@ -61,8 +61,8 @@
    
   <tr>
     <h:outputText value="Choose Your  File for upload "></h:outputText>
-   <td> <p:fileUpload value="#{cls_AddDetailsBean.pro.var_ImageName}"
-        fileUploadListener="#{cls_AddDetailsBean.handleFileUpload}" mode="advance" auto="true" dragDropSupport="false"
+   <td> <p:fileUpload value="#{scriptBean.pro.var_ImageName}"
+        fileUploadListener="#{scriptBean.handleFileUpload}" mode="advance" auto="true" dragDropSupport="false"
         sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
        </td>
        </tr>
