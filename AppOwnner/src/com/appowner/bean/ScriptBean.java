@@ -43,7 +43,7 @@ public class ScriptBean implements Serializable{
 		private String str_FileNM;
 		private String Ch_Access;
 		private Boolean Bit_emailsend;
-		
+		private String Var_ImageName;
 		private String str_FolderNM;
 		private String str_Description;
 		private String subscriptname;    
@@ -59,8 +59,14 @@ public class ScriptBean implements Serializable{
 	    private Integer int_ApartmentId;
 	    private String str_ApartmentName;
 	    private String str_UserName;
+	    private Integer flag;
 	  
-	  
+	public Integer getFlag() {
+			return flag;
+		}
+		public void setFlag(Integer flag) {
+			this.flag = flag;
+		}
 	public String getStr_UserName() {
 		return str_UserName;
 	}
@@ -624,6 +630,7 @@ public void AddDocument()
 	    str_DocumentName= (String) o;
 	    D.setInt_Document_CatNM(str_DocumentName);
 	    D.setCh_Category_Status('C');
+	    D.setFlag(2);
 	   getSubcriptService().AddDocument1(D);
    }
 	   
@@ -702,6 +709,52 @@ public void handleFileUpload(FileUploadEvent event) throws IOException {
 	    path1=file.getName();
 	    System.out.println(path1);
 }
+private String blb_image;
+private String blb_images1;
+
+public String getBlb_images1() {
+	return blb_images1;
+}
+public void setBlb_images1(String blb_images1) {
+	this.blb_images1 = blb_images1;
+}
+public String getBlb_image() {
+	return blb_image;
+}
+public void setBlb_image(String blb_image) {
+	this.blb_image = blb_image;
+}
+public void handleFileUpload1(FileUploadEvent event) throws IOException {
+	 System.out.println("hi");
+	 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+	    System.out.println(name);
+	    File file= new File("D://Image\\"+ "images" + name);
+	   // final UploadedFile uploadedFile = event.getFile();
+	    blb_image=file.getAbsolutePath();
+	    System.out.println(blb_image);
+	    blb_images1=file.getAbsolutePath();
+	    System.out.println(blb_images1);
+       System.out.println(file);
+	    InputStream is = event.getFile().getInputstream();
+	    OutputStream out = new FileOutputStream(file);
+	    byte buf[] = new byte[1024];
+	    int len;
+	    while ((len = is.read(buf)) > 0)
+	        out.write(buf, 0, len);
+	    is.close();
+	    out.close();
+	    path1=file.getName();
+	    System.out.println(path1);
+}
+public String getVar_ImageName() {
+	return Var_ImageName;
+}
+public void setVar_ImageName(String var_ImageName) {
+	Var_ImageName = var_ImageName;
+}
+
 
 
 }
