@@ -1,0 +1,122 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>Event Form</title>
+    <a href="AddEvent.xhtml">Please add an event</a>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="Event : "></h:outputText>
+        <p:dataTable id="Event" var="eve" value="#{cls_EventBean.listEvent}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText  id="eventId" value="#{eve.eventId}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Event Title" />
+                </f:facet>
+                <h:outputText value="#{eve.str_EventTitle}" />
+            </p:column>
+            
+            
+            
+            
+             
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Event Venue" />
+                </f:facet>
+                <h:outputText value="#{eve.str_EventVenue}" />
+            </p:column>
+            
+            <p:column>
+            <f:facet name="header">  
+              <h:outputText value="User Email" />
+                </f:facet>
+                <h:outputText value="#{eve.str_Email}" />
+            </p:column>
+            
+              <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Event-Category-id" />
+                </f:facet>
+                <h:outputText value="#{eve.int_eventcatid}" />
+            </p:column>
+            
+              <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Event Category" />
+                </f:facet>
+                <h:outputText value="#{eve.str_eventcatname}" />
+            </p:column>
+            
+             
+            
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Start date and time" />
+                </f:facet>
+                <h:outputText value="#{eve.dat_StartDate}" />
+            </p:column>
+            
+             <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="End date and time" />
+                </f:facet>
+                <h:outputText value="#{eve.dat_EndDate}" />
+            </p:column>
+           
+            
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Event Description " />
+                </f:facet>
+                <h:outputText value="#{eve.str_EventDescription}" />
+            </p:column>
+             
+             
+        <!--       <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                <p:commandButton value="delete" action="#{enquirybean.deletePerson(person.personId)}">
+                </p:commandButton>
+                <f:facet name="header">update</f:facet>
+	   			<h:link outcome="UpdateEnquiry.xhtml" value="Edit">
+	   				<f:param name="personId" value="#{person.personId}" />
+	   		</h:link> -->
+               
+              </p:column> 
+          <!-- <p:commandButton value="update" action="#{cls_UpdateBean.editPerson(person.personId)}"   -->  
+             
+             
+             
+              <p:column>
+	   			
+	   		</p:column>
+        </p:dataTable>
+        
+        
+         </h:form>
+        <h:form>
+        
+        </h:form>
+        
+         
+</h:body>
+ </ui:define>
+ </ui:composition>
