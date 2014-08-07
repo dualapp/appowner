@@ -35,9 +35,9 @@ public void setVendordao(VendorDao vendordao) {
 	}
 
 	@Override
-	public List<Vendor> vendorList() {
+	public List<Vendor> vendorList(String str_VendorName) {
 		 
-		return getVendordao().vendorList();
+		return getVendordao().vendorList(str_VendorName);
 	}
 
 	@Override
@@ -228,6 +228,7 @@ public void setVendordao(VendorDao vendordao) {
 		return getVendordao().getVendorListByName(str_VendorName);
 	}
 
+	 
 }
 	 
  
