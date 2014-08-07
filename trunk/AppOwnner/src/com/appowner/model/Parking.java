@@ -19,6 +19,8 @@ public class Parking implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer int_ParkingId;
+	@Column
+	private Integer int_AppartmentId;
 	@Column(name="var_Organization")
 	private String str_OrganizationName;
 	public Integer getInt_ParkingId() {
@@ -35,6 +37,12 @@ public class Parking implements Serializable {
 	}
 	public String getStr_ParkingSlot() {
 		return str_ParkingSlot;
+	}
+	public Integer getInt_AppartmentId() {
+		return int_AppartmentId;
+	}
+	public void setInt_AppartmentId(Integer int_AppartmentId) {
+		this.int_AppartmentId = int_AppartmentId;
 	}
 	public void setStr_ParkingSlot(String str_ParkingSlot) {
 		this.str_ParkingSlot = str_ParkingSlot;
