@@ -15,6 +15,14 @@
  <body bgcolor="yellow">
    
  <h:form  id="form">
+ <legend  align="left" style="background-color:#438eb9; color:#fff;">
+  <tr><td><p:selectOneMenu   value="#{vendorBean.str_VendorName }"   style="width:200px" >
+            <f:selectItem itemLabel="Select Name" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{vendorBean.vendorNameList}" />
+            </p:selectOneMenu>
+            <p:commandButton style="width:200px"  update="radioDT"   icon="ui-icon-search" value="Search" action="#{vendorBean.getVendorList()}"/>
+</td> </tr></legend>
  <p:growl id="msgs" showDetail="true" />
     
        <p:dataTable    id="radioDT" editable="true" resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="vendor" value="#{vendorBean.vendorList}"  selection="#{vendorBean.vendor}" rowKey="#{vendor.int_VendorId}">
@@ -27,26 +35,34 @@
         <p:columnToggler datasource="radioDT" trigger="toggler" />
         </f:facet>
         
-          <p:column   sortBy="#{vendor.int_VendorId}"  headerText="Id" footerText="Id" width="50">
-          <p:cellEditor>
-               <f:facet name="output"><h:outputText   value="#{vendor.int_VendorId}" /></f:facet>
-               <f:facet name="input">     <h:inputText   value="#{vendor.int_VendorId}" />
+          <p:column   sortBy="#{vendor.str_VendorName}"  headerText="VendorName" footerText="Vendor Name" width="50">
+           
+              <h:outputText   value="#{vendor.str_VendorName}" /> 
                
-                </f:facet>
-           </p:cellEditor>
-                 
-            </p:column>
-             <p:column   sortBy="#{vendor.str_VendorName}"  headerText="VendorName" footerText="Vendor Name" width="100">
-          <p:cellEditor>
-               <f:facet name="output"><h:outputText   value="#{vendor.str_VendorName}" /></f:facet>
-               <f:facet name="input">     <h:inputText   value="#{vendor.str_VendorName}" />
-               
-                </f:facet>
-           </p:cellEditor>
-                 
             </p:column>
             
-           <!--<p:column  headerText="action" footerText="action" width="100">
+          
+            <p:column   sortBy="#{vendor.str_VendorType}"  headerText="Type" footerText="Type" width="50">
+          
+                <h:outputText   value="#{vendor.str_VendorType}" /> 
+                
+            
+            </p:column>
+            <p:column   sortBy="#{vendor.str_VendorEmail}"  headerText="Email" footerText="Email" width="50">
+          
+               <h:outputText   value="#{vendor.str_VendorEmail}" /> 
+                
+            
+            </p:column>
+            <p:column   sortBy="#{vendor.str_VendorPhone}"  headerText="Phone" footerText="Phone" width="50">
+          
+             <h:outputText   value="#{vendor.str_VendorPhone}" /> 
+               
+                
+            
+            </p:column>
+            
+                        <p:column  headerText="action" footerText="action" width="100">
                 
                 <h:link outcome="viewvendor.xhtml" >
 	   			  <h:outputText value="View" />
@@ -62,29 +78,16 @@
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
 	   	 
-            </p:column>  --> 
+            </p:column>    
              
         <f:facet name="footer">
-            <p:commandButton process="radioDT" update=":form:vendorDetail"  action="#{vendorBean.getVendor()}" icon="ui-icon-search" value="View" oncomplete="PF('vendorDialog').show()" >
+            <p:commandButton process="radioDT"     action="#{vendorBean.getVendor()}" icon="ui-icon-search" value="View"  >
            <f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
             </p:commandButton>
         </f:facet>
          
             </p:dataTable>
-            <p:dialog header="Vendor Info" widgetVar="vendorDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="vendorDetail" style="text-align:center;">
-            <p:panelGrid  columns="2" rendered="#{not empty vendorBean.vendor}" columnClasses="label,value">
-                 
- 
-                <h:outputText value="VendorName:" />
-                <h:outputText value="#{vendorBean.vendor.str_VendorName}" />
-                <h:outputText value="Id:" />
-                <h:outputText value="#{vendorBean.vendor.int_VendorId}" />
-                
-                </p:panelGrid>
-                </p:outputPanel>
-                </p:dialog>
-                
+             
             </h:form>
             </body>
             
