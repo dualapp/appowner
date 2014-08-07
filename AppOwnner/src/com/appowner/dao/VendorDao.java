@@ -14,7 +14,7 @@ import com.appowner.model.WaterVendorTransaction;
 public interface VendorDao {
 	public void addVendor(Vendor vendor);
 
-	public List<Vendor> vendorList();
+	public List<Vendor> vendorList(String str_VendorName);
 	
 	public Vendor getVendor(int  vendor_id);
 	
