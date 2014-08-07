@@ -121,4 +121,11 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		getSessionFactory().getCurrentSession().update(ol);
 		
 	}
+
+	@Override
+	public OrganizationLogo getOrganizationLogo(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		String hql="from  OrganizationLogo where int_AppartmentId=?";
+		return (OrganizationLogo) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, appartmentId).uniqueResult();
+	}
 }
