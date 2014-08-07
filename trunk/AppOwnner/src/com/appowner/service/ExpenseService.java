@@ -39,6 +39,8 @@ public interface ExpenseService {
 
 	void updateLogo(OrganizationLogo ol);
 
+	OrganizationLogo getOrganizationLogo(Integer appartmentId);
+
 	 
 
 }
