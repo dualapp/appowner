@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Random;
 
 import javax.faces.application.FacesMessage;
@@ -83,14 +84,7 @@ public class ExpenseBean  implements Serializable{
 	private  String str_AppartmentLogo;
 	private String str_AppartmentImg;
 	private String str_Document_Upload;
-	private Integer int_AppartmentId;
-	private String str_UserName;
-	public String getStr_UserName() {
-		return str_UserName;
-	}
-	public void setStr_UserName(String str_UserName) {
-		this.str_UserName = str_UserName;
-	}
+	 
 	public String getStr_AppartmentImg() {
 		return str_AppartmentImg;
 	}
@@ -112,16 +106,7 @@ public class ExpenseBean  implements Serializable{
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
 	}
-	public Integer getInt_AppartmentId() {
-		 str_UserName=Util.getUserName();
-		 System.out.println( str_UserName+""+"kalpanannnnnnnnnnnn");
-		 System.out.println(Util.getUserId());
-		//int_AppartmentId=Util.AppartmentId();
-		return int_AppartmentId;
-	}
-	public void setInt_AppartmentId(Integer int_AppartmentId) {
-		this.int_AppartmentId = int_AppartmentId;
-	}
+	 
 	public String getStr_offcInTiming() {
 		return str_offcInTiming;
 	}
@@ -208,8 +193,10 @@ public class ExpenseBean  implements Serializable{
 		this.str_AssetName = str_AssetName;
 	}
 	public String getStr_OrganizationName() {
+		str_OrganizationName=Util.getAppartmentName();
 		return str_OrganizationName;
 	}
+	 
 	public void setStr_OrganizationName(String str_OrganizationName) {
 		this.str_OrganizationName = str_OrganizationName;
 	}
@@ -272,6 +259,7 @@ public class ExpenseBean  implements Serializable{
 		
 		this.str_AssetCatNameList = str_AssetCatNameList;
 	}
+	 
 	public Integer getInt_ParkingId() {
 		return int_ParkingId;
 	}
@@ -425,6 +413,7 @@ public String addExpenses()
 	expense.setStr_ExpenseType(getStr_ExcepenseType());
 	expense.setStr_OrganizationName(getStr_OrganizationName());
 	expense.setStr_Description(getStr_Description());
+	expense.setInt_AppartmentId(Util.getAppartmentId());
 	
 	getExpenseService().addExpenses(expense);
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -521,19 +510,22 @@ private Parking parking;
  
 public String saveParking()
 {
-	System.out.println("HBNNNNNNNNNNNNNNNNNNNNNNNNNm");
+	 
 	parking=new Parking();
 	parking.setStr_OrganizationName(getStr_Organization());
 	parking.setStr_ParkingSlot(getStr_ParkingSlot());
+	parking.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().saveParking(parking);
 	 return "parkingspace.xhtml";
 }
  
-public void deleteParkingSlot()
-{
+public String deleteParkingSlot()
+{System.out.println("HBNNNNNNNNNNNNNNNNNNNNNNNNNm");
 	Parking p=new Parking();
+	System.out.println(int_ParkingId+"kalpana");
 	p.setInt_ParkingId(int_ParkingId);
 	getExpenseService().deleteParkingSlot(p);
+	return  "parkingspace.xhtml?faces-redirect=true";
 }
 public void onCellEdit(CellEditEvent event) {
     Object oldValue = event.getOldValue();
@@ -556,7 +548,7 @@ private List<String> parkingSpaceList;
 public List<String> getParkingSpaceList() {
 	parkingSpaceList=new ArrayList<String>();
 	parkingSpaceList.addAll(getExpenseService().getParkingSlotList());
-	System.out.println(parkingSpaceList);
+ 
 	return parkingSpaceList;
 }
 public void setParkingSpaceList(List<String> parkingSpaceList) {
@@ -584,29 +576,7 @@ private String path1;
 private String path;
 private String textLogo;
 private OrganizationLogo ol;
-public String getTextLogo() {
-	return textLogo;
-}
-public void setTextLogo(String textLogo) {
-	this.textLogo = textLogo;
-}
- 
-public String getPath() {
-	System.out.println(path);
-	 
-	return path;
-}
-public void setPath(String path) {
-	this.path = path;
-}
-public String getPath1() {
-	System.out.println(path1);
-	return path1;
-}
 
-public void setPath1(String path1) {
-	this.path1 = path1;
-}
 
 public String getBlb_image() {
 	return blb_image;
@@ -623,8 +593,7 @@ public void  handleFileUpload(FileUploadEvent event) throws IOException {
 	   path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	    str_AppartmentLogo = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-	   
-	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\saphi");
+	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
     	if (file.mkdir()) {
     		System.out.println("Directory is created!");
@@ -672,7 +641,7 @@ public void  handleFileUpload2(FileUploadEvent event) throws IOException {
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	    str_Document_Upload = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 	     
-	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\saphi");
+	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
    	if (file.mkdir()) {
    		System.out.println("Directory is created!");
@@ -708,7 +677,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
     str_AppartmentImg = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
     
     System.out.println(str_AppartmentImg);
-    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\saphi");
+    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
     if (!file.exists()) {
 	if (file.mkdir()) {
 		System.out.println("Directory is created!");
@@ -721,6 +690,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
    
     //final UploadedFile uploadedFile = event.getFile();
     path1=file.getAbsolutePath();
+    System.out.println(path1);
     InputStream is = event.getFile().getInputstream();
     OutputStream out = new FileOutputStream(file);
     byte buf[] = new byte[1024];
@@ -738,26 +708,76 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 public void addOrganizationLogo ()
 {
 	ol=new OrganizationLogo();
+	Integer logoid=getExpenseService().getLogoId(Util.getAppartmentId());
+	 if(logoid!=null)
+	{ 
+		 ol.setInt_OthersInfoId(logoid);
+		 ol.setInt_AppartmentId(Util.getAppartmentId());
+		 ol.setStr_Appartment_Img(getStr_AppartmentImg());
+		 ol.setStr_Appartment_Logo(getStr_AppartmentLogo());
+	 getExpenseService().updateLogo(ol);
+	}
+	else
+	{
 	ol.setStr_Appartment_Logo(getStr_AppartmentLogo());
 	ol.setStr_InTime(getStr_offcInTiming());
 	ol.setStr_OutTime(getStr_offcOutTiming());
 	ol.setStr_TextLogo(getTextLogo());
 	ol.setStr_ApptAddress(getStr_ApptAddress());
-	//ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
-	ol.setInt_AppartmentId(getInt_AppartmentId());
+	ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
+	System.out.println(Util.getAppartmentId());
+	ol.setInt_AppartmentId(Util.getAppartmentId());
 	ol.setStr_Document_Upload(getStr_Document_Upload());
 	ol.setStr_Appartment_Img(getStr_AppartmentImg());
-//	Integer logoid=getExpenseService().getLogoId(3);
-	/*if(logoid!=null)
-	{
-	 getExpenseService().updateLogo(ol);
-	}
-	else
-	{
+     
 	getExpenseService().addOrganizationLogo(ol);
 	}
-	*/
-	getExpenseService().addOrganizationLogo(ol);
+}
+ 
+
+public   void getOrganizationLogo()
+{ ol=new OrganizationLogo();
+  ol=getExpenseService().getOrganizationLogo(Util.getAppartmentId());
+  System.out.println(ol+""+"hgxdddddddddddddddd");
+  File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+  if (!file.exists()) {
+	if (file.mkdir()) {
+		System.out.println("Directory is created!");
+	} else {
+		System.out.println("Failed to create directory!");
+	}
+}
+  path="/images"+"/"+Util.getAppartmentName()+"/"+ol.getStr_Appartment_Img();
+  System.out.println(path1);
+  path1="/images"+"/"+Util.getAppartmentName()+"/"+ol.getStr_Appartment_Logo();
+  if(ol==null)
+  System.out.println(ol+""+"sudhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	 
+}
+public String getTextLogo() {
+	return textLogo;
+}
+public void setTextLogo(String textLogo) {
+	this.textLogo = textLogo;
+}
+ 
+public String getPath() {
+	getOrganizationLogo();
+	System.out.println(path);
+	 
+	return path;
+}
+public void setPath(String path) {
+	this.path = path;
+}
+public String getPath1() {
+	 
+	System.out.println(path1+""+"kalpana");
+	return path1;
+}
+
+public void setPath1(String path1) {
+	this.path1 = path1;
 }
 }
 
