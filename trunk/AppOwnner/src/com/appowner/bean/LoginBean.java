@@ -24,7 +24,24 @@ public class LoginBean {
 	public String formuserloginuserpassword;
 	private Integer int_ApartmentId;
 	private Integer int_UserId;
+	private String str_Apartment;
 	
+	public String getStr_Apartment() {
+		return str_Apartment;
+	}
+
+
+
+
+
+	public void setStr_Apartment(String str_Apartment) {
+		this.str_Apartment = str_Apartment;
+	}
+
+
+
+
+
 	public String getUserloginpassword() {
 		return userloginpassword;
 	}
@@ -164,11 +181,12 @@ public void setUser(User user) {
 		
 			int_ApartmentId=user.getInt_ApartmentId();
 			int_UserId=user.getInt_UserId();
-			
+			str_Apartment=user.getStr_Apartment();
 			HttpSession session = Util.getSession();
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
+            session.setAttribute("str_Apartment", str_Apartment);
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
 		 	String index="welcomepage.xhtml";
