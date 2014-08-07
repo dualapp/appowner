@@ -117,4 +117,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().updateLogo(ol);
 	}
 
+	@Override
+	public OrganizationLogo getOrganizationLogo(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getOrganizationLogo(appartmentId);
+	}
+
 }
