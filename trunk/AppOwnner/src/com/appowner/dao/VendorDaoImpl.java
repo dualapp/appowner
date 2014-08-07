@@ -39,7 +39,13 @@ public class VendorDaoImpl implements VendorDao{
 		getSessionFactory().getCurrentSession().save(vendor);
 	}
 	@SuppressWarnings("unchecked")
-	public List<Vendor> vendorList() {
+	public List<Vendor> vendorList(String str_VendorName) {
+		if(str_VendorName!=null)
+		{
+			String hql="from  Vendor where str_VendorName=?";
+			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorName).list();
+			
+		}
 		return (List<Vendor>) getSessionFactory().getCurrentSession().createCriteria(Vendor.class).list();
 	}
 	
@@ -244,8 +250,12 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<WaterPayment> getSearchByVendortype(String str_VendorType,
 			Date date_FromDate, Date date_ToDate) {
+		if( date_FromDate==null||date_ToDate==null||str_VendorType==null)
+		 
+			return  sessionFactory.getCurrentSession().createCriteria(WaterPayment.class).list();	
+		 
 		List<WaterPayment> l=(List<WaterPayment>) sessionFactory.getCurrentSession().createCriteria(WaterPayment.class).add(Restrictions.between("date_Date", date_FromDate,date_ToDate)).add(Restrictions.eq("str_VendorType", str_VendorType)).list(); 
-		System.out.println(l);
+		 
 		return  l;
 	}
 
@@ -272,5 +282,7 @@ public class VendorDaoImpl implements VendorDao{
 		String hql="from Vendor where str_VendorName=?";
 	 return sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_VendorName).list();
 	}
+
+	 
 	 
 }
