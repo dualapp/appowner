@@ -98,11 +98,9 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	<br/>
 	<h:outputLabel value="Organisation:" /> 
                <h:outputLabel value="Organisation:" /> 
-              <p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:100px">
-              
-                  <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
-                   
+              <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
                  </p:selectOneMenu><br/>
 	 &#150; &#150; <br/>
                 
@@ -116,12 +114,12 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
        <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
    </p:contextMenu> 
              <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable" rows="10" scrollRows="10"     
-                  
-                  scrollable="true" liveScroll="true" scrollHeight="150" var="ps" value="#{expenseBean.parkingSpaceList}">
-	 <f:facet name="header">
-           Cell Editing with DoubleClick and RightClick
-       </f:facet>
+             id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.parkingSpaceList}">
+	<f:facet name="header">
+            Expand rows to see detailed information
+            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        </f:facet>
   <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" /> 
        <p:ajax event="rowEditCancel" listener="#{expenseBean.onRowCancel}" update=":form:msgs" />
           <p:column headerText="Organization">
@@ -130,6 +128,13 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                   <f:facet name="input"><p:inputText id="modelInput2" value="#{ps.str_OrganizationName}" style="width:96%"/></f:facet>
               </p:cellEditor>
           </p:column>
+          <p:column headerText="Parking Id">
+              <p:cellEditor>
+                  <f:facet name="output"><h:outputText value="#{ps.int_ParkingId}" /></f:facet>
+                  <f:facet name="input"><p:inputText id="modelInput4" value="#{ps.int_ParkingId}" style="width:96%"/></f:facet>
+              </p:cellEditor>
+          </p:column>
+          
           <p:column headerText="Parking slot">
               <p:cellEditor>
                   <f:facet name="output"><h:outputText value="#{ps.str_ParkingSlot}" /></f:facet>
@@ -137,21 +142,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
               </p:cellEditor>
           </p:column>
           
-	 <!--<p:column>
-                <f:facet name="header">
-                    <h:outputText  value=" Organization" />
-                </f:facet>
-                <h:outputText  id="int_organizationname" value="#{ps.str_OrganizationName}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText  value="Parking slot" />
-                </f:facet>
-                <h:outputText   value="#{ps.str_ParkingSlot}" />
-            </p:column>
-            
-            
-              -->
+	  
             
             <p:column style="width:32px">
            <p:rowEditor />
@@ -160,13 +151,13 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                 <f:facet name="header">
                     <h:outputText  value="Action" />
                 </f:facet>
-               <h:commandLink  
-	   		 onclick="return confirm('Are you sure you want to delete #{expenseBean.str_ParkingSlot}?');" action="#{expenseBean.deleteParkingSlot}" >  
-	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
-	   				<f:param name="int_ParkingId" value="#{expenseBean.int_ParkingId}" />
-	   		</h:commandLink>
-	   		 
-            </p:column>
+               <h:link outcome="deleteparkingspace.xhtml"
+	   		 onclick="return confirm('Are you sure you want to delete #{ps.int_ParkingId}?');" > 
+	   		<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
+		<f:param name="int_ParkingId" value="#{ps.int_ParkingId}"/>  
+	   		 </h:link>
+	   		 </p:column>
+          
 	 </p:dataTable>
 	</h:body>
 	</h:form>
