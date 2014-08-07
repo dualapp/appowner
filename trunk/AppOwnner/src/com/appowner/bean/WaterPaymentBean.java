@@ -38,7 +38,9 @@ private List<WaterPayment> waterPaymentList;
  
 public List<WaterPayment> getWaterPaymentList() {
 	waterPaymentList=new ArrayList<WaterPayment>();
-	 waterPaymentList.addAll(getVendorservice().getWaterPaymentList());
+	System.out.println(str_VendorType+str_VendorType);
+	waterPaymentList.addAll(getVendorservice().getSearchByVendortype(str_VendorType,date_FromDate,date_ToDate));
+	// waterPaymentList.addAll(getVendorservice().getWaterPaymentList());
 	
 	return waterPaymentList;
 }
