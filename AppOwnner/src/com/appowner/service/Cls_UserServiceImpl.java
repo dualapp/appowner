@@ -17,7 +17,7 @@ import com.appowner.model.UserApartment;
  * @author pankaj singh
  *
  */
-@Service("cls_UserService")
+@Service("In_UserService")
 @Transactional 
 public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	private static final long serialVersionUID = 1L;
