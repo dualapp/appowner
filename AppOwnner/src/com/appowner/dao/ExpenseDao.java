@@ -36,4 +36,6 @@ public interface ExpenseDao {
 
 	void updateLogo(OrganizationLogo ol);
 
+	OrganizationLogo getOrganizationLogo(Integer appartmentId);
+
 }
