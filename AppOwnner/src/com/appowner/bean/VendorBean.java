@@ -64,7 +64,8 @@ private List<Vendor> vendorListByName;
 
 
 	public void getVendorName(ValueChangeEvent event) {
-		str_VendorName=(String) event.getNewValue();
+		int_VendorId= (int) event.getNewValue();
+		System.out.println(int_VendorId);
 		 
 }
 	
@@ -586,19 +587,24 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	public void setInt_VendorServiceRating(int int_VendorServiceRating) {
 		this.int_VendorServiceRating = int_VendorServiceRating;
 	}
-	
- 
 	 
+	 public String getIdParam(FacesContext fc){
+		 
+		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+		System.out.println((params.get(int_VendorId)) );
+		return   (params.get(2));
+ 
+	}
 	public Vendor getVendor() {
 		FacesContext fc = FacesContext.getCurrentInstance();
-		 
+		// int_VendorId = getIdParam(fc);
 		
 		vendor=new Vendor();
 		
 		System.out.println(int_VendorId);
 		vendor = getVendorservice().getVendor(int_VendorId);
 		return vendor;
-	}
+	} 
 
 	public String getStr_VendorBankAccount() {
 		return str_VendorBankAccount;
@@ -779,7 +785,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	}
 	public List<Vendor> getVendorList() {
 		vendorList = new ArrayList<Vendor>();
-		vendorList.addAll(getVendorservice().vendorList());
+		vendorList.addAll(getVendorservice().vendorList(str_VendorName));
 
 		return vendorList;
 	}

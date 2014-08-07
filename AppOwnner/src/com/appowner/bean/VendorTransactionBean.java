@@ -217,7 +217,7 @@ private Date date_TDate;
 				searchByVendortype=new ArrayList<WaterPayment>();
 				searchByVendortype.addAll(getVendorservice().getSearchByVendortype(str_VendorType,date_FromDate,date_ToDate));
 				//System.out.println(searchByVendortype);
-				return "viewpaymentlistbyvendortype.xhtml";
+				return "waterpaymentlist.xhtml";
 			}
 
 			public void setSearchByVendortype(List<WaterPayment> searchByVendortype) {
