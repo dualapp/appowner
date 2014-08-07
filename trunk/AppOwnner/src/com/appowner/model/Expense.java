@@ -20,6 +20,14 @@ public class Expense implements Serializable{
 	@Id
 	@Column(name="var_ExpenseId")
 	private String str_ExpenseId;
+	@Column
+	private Integer int_AppartmentId;
+	public Integer getInt_AppartmentId() {
+		return int_AppartmentId;
+	}
+	public void setInt_AppartmentId(Integer int_AppartmentId) {
+		this.int_AppartmentId = int_AppartmentId;
+	}
 	@Column(name="var_OrganizationName")
 	private String str_OrganizationName;
 	@Column(name="var_ExpenseCategory")
