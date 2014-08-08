@@ -512,7 +512,7 @@ public String saveParking()
 {
 	 
 	parking=new Parking();
-	parking.setStr_OrganizationName(getStr_Organization());
+	parking.setStr_OrganizationName(Util.getAppartmentName());
 	parking.setStr_ParkingSlot(getStr_ParkingSlot());
 	parking.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().saveParking(parking);
