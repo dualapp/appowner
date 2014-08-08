@@ -12,7 +12,7 @@ import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
 @Service("ProductDetailService")
 @Transactional 
-public class Cls_ProductsDetailServiceImpl implements ProductDetailService {
+public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	@Autowired
 	private ProductsDao productDao;
 	public ProductsDao getProductDao() {
