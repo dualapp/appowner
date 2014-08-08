@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+     
+ <h:head><title></title></h:head>
+<body bgcolor="white">
+  <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    
+   <table>
+  
+     <tr> 
+        <td><h:outputLabel for="ch_Access" value="Organization" /></td>
+            <td><p:selectOneMenu id="ch_Access"  style="width:150px">
+             <f:selectItem itemLabel="Shaffi Paradise"  itemValue="Shaffi Paradise"  />
+            
+            </p:selectOneMenu>
+            </td>
+          
+            <td>&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;<h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
+            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" style="width:150px">
+            <f:selectItem itemLabel="Category"  itemValue=""  />
+                <f:selectItems value="#{cls_AddDetailsBean.categories}"  />
+                 
+               	
+            </p:selectOneMenu>
+           </td>
+            </tr>
+         <tr>
+         <h:panelGroup id="sss1">
+             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+            <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
+             <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailsBean.ch_Ad_Type}">
+            <f:selectItem itemLabel="My Community" itemValue="My Community" />
+            <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
+           
+           </p:selectOneRadio>
+        
+        <p:outputLabel for="I" value="I want to" />
+        <p:selectOneRadio id="I" value="#{cls_AddDetailsBean.ch_Product_Type}">
+            <f:selectItem itemLabel="SELL" itemValue="Sell" />
+            <f:selectItem itemLabel="BUY" itemValue="Buy" />
+            <f:selectItem itemLabel="RENT" itemValue="Rent" />
+        </p:selectOneRadio>
+        <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{cls_AddDetailsBean.blb_image}"/>
+        
+ </p:outputPanel>
+ 
+ 
+ </h:panelGrid>
+ </h:panelGroup>
+  </tr>
+          <tr>
+           <td>
+          <h:outputText value="Title"></h:outputText></td>
+                        
+          <td><h:inputText  value="#{cls_AddDetailsBean.var_Title}" size="35">
+            </h:inputText>
+            </td>
+            </tr>
+  <br />
+  <br />
+   
+  <tr>
+    <h:outputText value="Choose Your  File for upload "></h:outputText>
+   <td> <p:fileUpload value="#{cls_AddDetailsBean.var_ImageName}"
+        fileUploadListener="#{cls_AddDetailsBean.handleFileUpload}" mode="advance" auto="true" dragDropSupport="false"
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
+       </td>
+       </tr>
+   
+
+<tr>
+               <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><p:inputTextarea rows="10" cols="30" value="#{cls_AddDetailsBean.var_Description}" >
+              </p:inputTextarea>
+               
+                
+            </td>
+            </tr>
+            <br/>
+            <tr>
+                <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailsBean.AddProduct}" /></td> 
+               
+            </tr>
+  
+                  </table>
+           
+             
+           </h:form>
+
+           </body>
+           </ui:define>
+  </ui:composition>
