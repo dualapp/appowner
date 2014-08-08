@@ -97,6 +97,16 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	public List<Cls_ProductDetails> getSearchByProducttype(
 			String ch_Product_Type, String ch_Ad_Type) {
 		return getProductDao().getSearchByProducttype(ch_Product_Type,ch_Ad_Type);
+	}
+
+	@Override
+	public int getdocid3(String intdocid2) {
+		return getProductDao().getdocid3( intdocid2);
+	}
+
+	@Override
+	public int getdocid4(String intdocid3) {
+		return getProductDao().getdocid4( intdocid3);
 	}}
 	
 	
