@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -20,11 +21,11 @@ import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
-
 import com.appowner.service.ProductsDetailService;
+import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class Cls_AddDetailBean implements Serializable {
 	
 
@@ -40,6 +41,13 @@ public class Cls_AddDetailBean implements Serializable {
 	public void setCh_Product_Type(String ch_Product_Type) {
 		Ch_Product_Type = ch_Product_Type;
 	}
+	private String dT_Date;
+	public String getdT_Date() {
+		return dT_Date;
+	}
+	public void setdT_Date(String dT_Date) {
+		this.dT_Date = dT_Date;
+	}
 	private String Var_Title;
 	private String Var_FileName;
 	private String Var_ImageName;
@@ -54,13 +62,26 @@ public class Cls_AddDetailBean implements Serializable {
 	
 	private String str_ApartmentName;
 	   public String getStr_ApartmentName() {
-		  // str_ApartmentName=Util.getApartmentName();
+		  str_ApartmentName=Util.getApartmentName();
 		   System.out.println(str_ApartmentName);
 			return str_ApartmentName;
 		}
 		public void setStr_ApartmentName(String str_ApartmentName) {
 			this.str_ApartmentName = str_ApartmentName;
 		}
+		
+		private int userId;
+		
+       public int getUserId() {
+	   userId=Util.getUserId();
+	
+			return userId;
+		}
+		public void setUserId(int userId) {
+			this.userId = userId;
+		}
+		
+	
 public int getInt_Ad_categoryId() {
       return int_Ad_categoryId;
 	}
@@ -148,15 +169,29 @@ public int getInt_Ad_categoryId() {
 	public void setProductDetailService(ProductsDetailService productDetailService) {
 		this.productDetailService = productDetailService;
 	}
+	private String intdocid2;
+	private int intdocID2;
+	
+	private String intdocid3;
+	private int intdocID3;
 	public void AddProduct(){
 		
 	    intdocid1=getVar_Ad_CategoryName();
 		System.out.println(intdocid1);
-		intdocID1=getProductDetailService().getdocid2(intdocid1);
-		Aprtid=getStr_ApartmentName();
+		/*intdocID1=getProductDetailService().getdocid2(intdocid1);
+		intdocid2=getStr_ApartmentName();
+		System.out.println(intdocid1);
+		intdocID2=getProductDetailService().getdocid3(intdocid2);
+		intdocid3=getStr_Username();
+		System.out.println(intdocid3);
+		intdocID3=getProductDetailService().getdocid4(intdocid3);
+*/
+		//Aprtid=getStr_ApartmentName();
 		Cls_ProductDetails pro=new Cls_ProductDetails();
 		pro.setInt_Ad_categoryId(intdocID1);
-		
+		System.out.println(Util.getAppartmentId());
+		//pro.setInt_ApartmentId(Util.getAppartmentId());
+		pro.setUserId(getUserId());
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
@@ -164,8 +199,6 @@ public int getInt_Ad_categoryId() {
 		pro.setVar_ImageName(path1);
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
-		pro.setApartementId(1);
-		pro.setUserId(1);
 		getProductDetailService().AddProduct1(pro);		
 	}
 	
