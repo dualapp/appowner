@@ -14,12 +14,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
-import com.appowner.service.ProductDetailService;
+
+import com.appowner.service.ProductsDetailService;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean
 @ViewScoped
@@ -137,13 +139,13 @@ public int getInt_Ad_categoryId() {
 	}
 	@ManagedProperty(value ="#{ProductDetailService}")
 	 
-	private ProductDetailService productDetailService;
+	private ProductsDetailService productDetailService;
 	
 	
-	public ProductDetailService getProductDetailService() {
+	public ProductsDetailService getProductDetailService() {
 		return productDetailService;
 	}
-	public void setProductDetailService(ProductDetailService productDetailService) {
+	public void setProductDetailService(ProductsDetailService productDetailService) {
 		this.productDetailService = productDetailService;
 	}
 	public void AddProduct(){
@@ -199,7 +201,7 @@ public int getInt_Ad_categoryId() {
 	public void setPath1(String path1) {
 		this.path1 = path1;
 	}
-	public void handleFileUpload(FileUploadEvent event) throws IOException {
+	public void handleFileUpload1(FileUploadEvent event) throws IOException {
 		 System.out.println("hi");
 		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
