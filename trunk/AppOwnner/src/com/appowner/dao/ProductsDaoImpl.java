@@ -18,7 +18,7 @@ import com.appowner.model.UserApartment;
 import com.appowner.model.Vendor;
 import com.appowner.model.WaterPayment;
 @Repository
-public class ProductsDaoImpl implements ProductDao{
+public class ProductsDaoImpl implements ProductsDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
