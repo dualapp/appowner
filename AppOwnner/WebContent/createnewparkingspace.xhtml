@@ -15,11 +15,9 @@
 	<h:panelGroup  >
 	<p><h:outputLabel value="Organisation:" /> 
                <h:outputLabel value="Organisation:" /> 
-              <p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_Organization}"  style="width:100px">
-              
-                  <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
-                   
+              <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
                  </p:selectOneMenu></p><br/>
 	<p><h:outputText value="parkingSlot"/>
 	<h:inputText value="#{expenseBean.str_ParkingSlot}"/></p>
