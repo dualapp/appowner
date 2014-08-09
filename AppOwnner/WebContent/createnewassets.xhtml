@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	
+	<h:head>
+    <title>profit and loss Form</title>
+    </h:head>
+ 
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    <body>
+    
+                 <fieldset>
+                 <legend  style="background-color:#438eb9; color:#fff;"> Assets</legend>
+ <table><tr><td>
+               <h:outputLabel value="Show Assets Of Organisation:*" /> </td>
+              
+               <td><p:selectOneMenu   style="width:100px">&nbsp;
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu> </td>&nbsp;&nbsp;
+                 <td><h:outputText value="Assets Category*"/></td>
+                 <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                 
+                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                  
+                 </p:selectOneMenu>
+                 </td></tr>
+                 <tr><td><h:outputText value="Assets Name*"/></td><td><h:inputText value="#{expenseBean.str_AssetName}"/></td>
+                 &nbsp;&nbsp;<td><h:outputText value="Location(Block)"/></td><td><p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px">&nbsp;
+              <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
+                
+                 </p:selectOneMenu> </td>
+                 </tr>
+                 <tr><td><h:outputText value="Rentable*"/></td><td><p:selectOneRadio id="console"  >
+            
+            <f:selectItem itemLabel="yes" itemValue="yes" />
+            <f:selectItem itemLabel="No" itemValue="No" />
+        </p:selectOneRadio></td></tr>
+                 </table>
+                 
+</fieldset>
+<fieldset>
+                 <legend  style="background-color:#438eb9; color:#fff;"> OtherDetails</legend>
+                 <h:panelGroup id="sss1">
+             <h:panelGrid >
+                 <table><tr> 
+                   <td><p:inputTextarea rows="6" cols="33" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/>
+                 </td> <td> <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{expenseBean.path}"/></p:outputPanel>
+       
+        <p:fileUpload fileUploadListener="#{expenseBean.handleFileUpload1}"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"  mode="advanced"  auto="true" 
+                fileLimit="3"  update="aaa"   style="width:500px"/>
+       </td></tr>
+        
+                 </table>
+                 <tr><td><h:commandButton style="width:200px" value="Submit" action="#{expenseBean.addAsset()}"/></td></tr>
+                 </h:panelGrid>
+                 </h:panelGroup>
+                 </fieldset>
+</body>
+</h:form>
+</ui:define>
+</ui:composition>
