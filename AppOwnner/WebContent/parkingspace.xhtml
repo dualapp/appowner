@@ -152,7 +152,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                     <h:outputText  value="Action" />
                 </f:facet>
                <h:link outcome="deleteparkingspace.xhtml"
-	   		 onclick="return confirm('Are you sure you want to delete #{ps.int_ParkingId}?');" > 
+	   		 onclick="return confirm('Are you sure you want to delete #{ps.str_OrganizationName}?');" > 
 	   		<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
 		<f:param name="int_ParkingId" value="#{ps.int_ParkingId}"/>  
 	   		 </h:link>
