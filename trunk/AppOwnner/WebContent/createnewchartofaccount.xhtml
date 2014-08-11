@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	</h:head>
+	<h:form id="form">
+	<h:body>
+	<br/>
+	<div>
+	<h:panelGroup>
+	<table>
+	<tr><td> 
+               <h:outputLabel value="Organisation:" /> </td>
+             <td> <p:selectOneMenu       style="width:200px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td></tr>
+	<tr><td><h:outputText value="Account Type"/></td>
+	<td><p:selectOneMenu       style="width:200px">
+              <f:selectItem itemLabel="#{expenseBean.str_AccountType}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td></tr>
+	<tr><td><h:outputText value="Account Name"/></td><td><h:inputText  style="width:100px" value="#{expenseBean.accountName}"/></td></tr>
+	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveAssetCategory}"   >
+	
+	</p:commandButton></td> </tr>  
+	</table>
+	 <script>
+	 
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
+	</h:panelGroup>
+	</div>
+	</h:body>
+	</h:form>
+ </html>
