@@ -28,9 +28,31 @@
                   <h:outputText value="To Date"/>
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.date_Duration}">
                   </p:calendar>
-                  
+                  <p:button value="go"/>
                  </fieldset>
+                 
+                 
     </body>
     </h:form>
+    <h:form>
+    <p:dataTable var="c" value="#{expenseBean.chartOfAccountList}" sortBy="#{c.str_AccountName}">
+        
+        <p:column headerText="AccountName"  >
+            <h:outputText value="#{c.str_AccountName}" />
+        </p:column>
+        <p:column headerText="Amounts"  >
+            <h:outputText value="#{c.str_AccountType}" />
+        </p:column>
+         
+        <p:summaryRow>
+            <p:column colspan="1" style="text-align:right">
+                <h:outputText value="Total:" />
+            </p:column>
+            <p:column>
+                
+            </p:column>
+        </p:summaryRow>
+    </p:dataTable>
+</h:form>
 	</ui:define>
 	</ui:composition>
