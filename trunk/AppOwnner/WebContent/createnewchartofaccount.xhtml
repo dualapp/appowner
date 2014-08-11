@@ -20,13 +20,18 @@
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu></td></tr>
-	<tr><td><h:outputText value="Account Type"/></td>
-	<td><p:selectOneMenu       style="width:200px">
-              <f:selectItem itemLabel="#{expenseBean.str_AccountType}"  itemValue="#{expenseBean.str_OrganizationName}" />
-                
-                 </p:selectOneMenu></td></tr>
-	<tr><td><h:outputText value="Account Name"/></td><td><h:inputText  style="width:100px" value="#{expenseBean.accountName}"/></td></tr>
-	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveAssetCategory}"   >
+	<tr><td><h:outputLabel value="Account Type"/></td>
+	<td><p:selectOneMenu    value="#{expenseBean.str_AccountType}"   style="width:200px">
+	  
+	    <f:selectItem itemLabel="Assets"    itemValue="" noSelectionOption="true" />
+	    
+	   <f:selectItems     value="#{expenseBean.listAcc}" /> 
+	  
+	 
+              
+                         </p:selectOneMenu></td></tr>
+	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText  style="width:100px" value="#{expenseBean.str_AccountName}"/></td></tr>
+	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveChartOfAccount}"   >
 	
 	</p:commandButton></td> </tr>  
 	</table>
