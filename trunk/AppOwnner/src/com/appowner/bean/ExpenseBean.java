@@ -14,6 +14,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
@@ -25,6 +26,8 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.event.CellEditEvent;
@@ -35,6 +38,10 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.UploadedFile;
 
+import com.appowner.model.AccountingGroup;
+import com.appowner.model.AssetCategory;
+import com.appowner.model.Assets;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.CommiteeMember;
 import com.appowner.model.Expense;
 import com.appowner.model.OrganizationLogo;
@@ -234,6 +241,7 @@ public class ExpenseBean  implements Serializable{
 		this.date_Duration = date_Duration;
 	}
 	
+
 	
 /*
  * return All AppartmentName from Appartment table
@@ -253,6 +261,7 @@ public class ExpenseBean  implements Serializable{
 	public List<String> getStr_AssetCatNameList() {
 		str_AssetCatNameList=new ArrayList<String>();
 		str_AssetCatNameList=getExpenseService().getAssetCategoryList();
+		System.out.println(str_AssetCatNameList);
 		return str_AssetCatNameList;
 	}
 	public void setStr_AssetCatNameList(List<String> str_AssetCatNameList) {
@@ -319,6 +328,7 @@ public Integer getStartIndex() {
 	public void setInt_UpTosize(Integer int_UpTosize) {
 		this.int_UpTosize = int_UpTosize;
 	}
+	private List<String> str_AssetNameList;
 private List assetNameList=new ArrayList();
 private List assetCatnameList=new ArrayList();
 private List dateList=new ArrayList();
@@ -328,12 +338,24 @@ private List accountList=new ArrayList();
 private List descriptionList=new ArrayList();
 private List ammountList=new ArrayList();
 /*
+ * get assetName By assetCategory
+ */
+public List<String> getStr_AssetNameList() {
+	//str_AssetNameList=new ArrayList<String>();
+	return str_AssetNameList;
+}
+public void setStr_AssetNameList(List<String> str_AssetNameList) {
+	this.str_AssetNameList = str_AssetNameList;
+}
+/*
  * Listeners
  */
 public void assetNameListener(ValueChangeEvent  event)
 {
 	randomId();
+	
 	assetNameList.add(event.getNewValue());
+	
 }
 public String getStr_ExpenseId() {
 	return str_ExpenseId;
@@ -341,9 +363,22 @@ public String getStr_ExpenseId() {
 public void setStr_ExpenseId(String str_ExpenseId) {
 	this.str_ExpenseId = str_ExpenseId;
 }
-public void assetCatNameListener(ValueChangeEvent  event)
+public List<String> assetCatNameListener(ValueChangeEvent  event)
 {
-	assetCatnameList.add(event.getNewValue());
+	
+	if ((event.getNewValue() != str_AssetCategoryType)) {
+		str_AssetNameList = null;
+		// str_VendorCity = null;
+
+	}
+ 
+	str_AssetCategoryType=(String) event.getNewValue();
+str_AssetNameList=new ArrayList<String>();
+str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType));
+System.out.println(str_AssetNameList);
+	
+assetCatnameList.add(event.getNewValue());
+return str_AssetNameList;
 }
 public void dateListener(ValueChangeEvent  event)
 {
@@ -378,7 +413,7 @@ public String addExpenses()
 {     
 	//ListIterator itr=IDS.listIterator();
 	 
-	ListIterator  assetName=assetNameList.listIterator();
+	ListIterator  assetName=str_AssetNameList.listIterator();
 	ListIterator assetCategory=assetCatnameList.listIterator();
 	ListIterator expensetype=expenseTypeList.listIterator();
 	ListIterator expensecategory=expenseCategoryList.listIterator();
@@ -761,6 +796,7 @@ public void setTextLogo(String textLogo) {
 	this.textLogo = textLogo;
 }
  
+
 public String getPath() {
 	getOrganizationLogo();
 	System.out.println(path);
@@ -779,7 +815,170 @@ public String getPath1() {
 public void setPath1(String path1) {
 	this.path1 = path1;
 }
+/*
+ * Asset concept
+ */
+private List<String> str_BlockListByAppartmentName;
+private String str_Block;
+private Assets asset;
+private Boolean bool_Rentable;
+private AssetCategory assetcategory;
+private List<AssetCategory> assetCategoryList;
+
+public void setAssetCategoryList(List<AssetCategory> assetCategoryList) {
+	this.assetCategoryList = assetCategoryList;
 }
+public AssetCategory getAssetcategory() {
+	return assetcategory;
+}
+public void setAssetcategory(AssetCategory assetcategory) {
+	this.assetcategory = assetcategory;
+}
+public Boolean getBool_Rentable() {
+	return bool_Rentable;
+}
+public void setBool_Rentable(Boolean bool_Rentable) {
+	this.bool_Rentable = bool_Rentable;
+}
+ 
+public Assets getAsset() {
+	return asset;
+}
+public void setAsset(Assets asset) {
+	this.asset = asset;
+}
+public String getStr_AssetImg() {
+	return str_AssetImg;
+}
+public void setStr_AssetImg(String str_AssetImg) {
+	this.str_AssetImg = str_AssetImg;
+}
+private String str_AssetImg;
+public String getStr_Block() {
+	return str_Block;
+}
+public void setStr_Block(String str_Block) {
+	this.str_Block = str_Block;
+}
+public List<AssetCategory> getAssetCategoryList() {
+	assetCategoryList=new ArrayList<AssetCategory>();
+	assetCategoryList.addAll(getExpenseService().getAssetCategoryList1());
+	return assetCategoryList;
+}
+public List<String> getStr_BlockListByAppartmentName() {
+	str_BlockListByAppartmentName=new ArrayList<String>();
+	str_BlockListByAppartmentName.addAll(getExpenseService().getStr_BlockListByAppartmentName(Util.getAppartmentId()));
+	return str_BlockListByAppartmentName;
+}
+public void setStr_BlockListByAppartmentName(
+		List<String> str_BlockListByAppartmentName) {
+	this.str_BlockListByAppartmentName = str_BlockListByAppartmentName;
+}
+
+public void addAsset()
+{
+	asset =new Assets();
+	asset.setStr_assetcat_name(str_AssetCategoryType);
+	asset.setStr_AssetImg(str_AssetImg);
+	asset.setStr_AssetName(str_AssetName);
+	asset.setStr_Block(str_Block);
+	asset.setStr_OrganizationName(str_OrganizationName);
+	getExpenseService().addAsset(asset);
+	
+}
+public void saveAssetCategory()
+{
+	assetcategory=new AssetCategory();
+	assetcategory.setStr_assetcat_name(str_AssetCategoryType);
+	assetcategory.setStr_OrganizationName(str_OrganizationName);
+	
+	getExpenseService().saveAssetCategory(assetcategory);
+}
+/*
+ * chart of accounts concept
+ */
+private String str_AccountType;
+private List<ChartOfAccount> chartOfAccountList;
+
+private AccountingGroup accountGroup;
+private ChartOfAccount chartOfAccount;
+
+public ChartOfAccount getChartOfAccount() {
+	return chartOfAccount;
+}
+public void setChartOfAccount(ChartOfAccount chartOfAccount) {
+	this.chartOfAccount = chartOfAccount;
+}
+private List<String> accountTypeList;
+public AccountingGroup getAccountGroup() {
+	return accountGroup;
+}
+public void setAccountGroup(AccountingGroup accountGroup) {
+	this.accountGroup = accountGroup;
+}
+public List<ChartOfAccount> getChartOfAccountList() {
+	chartOfAccountList=new ArrayList<ChartOfAccount>();
+	chartOfAccountList.addAll(getExpenseService().getChartOfAccountList());
+	return chartOfAccountList;
+}
+public void setChartOfAccountList(List<ChartOfAccount> chartOfAccountList) {
+	this.chartOfAccountList = chartOfAccountList;
+}
+@PostConstruct
+public void init() {
+    //cars
+    SelectItemGroup g1 = new SelectItemGroup("German Cars");
+    ListIterator itr=getAccountTypeList().listIterator();
+    while(itr.hasNext())
+    {
+    	String l=(String) itr.next();
+    	 g1.setSelectItems(new SelectItem[] {new SelectItem(l)});
+     
+   // g1.setSelectItems(new SelectItem[] {new SelectItem("BMW", "BMW"), new SelectItem("Mercedes", "Mercedes"), new SelectItem("Volkswagen", "Volkswagen")});
+     
+    SelectItemGroup g2 = new SelectItemGroup("American Cars");
+    g2.setSelectItems(new SelectItem[] {new SelectItem("Chrysler", "Chrysler"), new SelectItem("GM", "GM"), new SelectItem("Ford", "Ford")});
+     
+    listAcc = new ArrayList<SelectItem>();
+    listAcc.add(g1);
+    listAcc.add(g2);
+    }
+}
+private List<SelectItem> listAcc;
+public List<SelectItem> getListAcc() {
+    return listAcc;
+}
+public List<String> getAccountTypeList() {
+	
+	
+	accountTypeList=new ArrayList<String>();
+	accountTypeList.addAll(getExpenseService().getAccountTypeList());
+	System.out.println(accountTypeList+"kskskskskkskskskkskssssssssssssssssssssssssssssssskkkkkkkkkkkkkk"); 
+	return accountTypeList;
+}
+public void setAccountTypeList(List<String> accountTypeList) {
+	this.accountTypeList = accountTypeList;
+}
+public String getStr_AccountType() {
+	return str_AccountType;
+}
+public void setStr_AccountType(String str_AccountType) {
+	this.str_AccountType = str_AccountType;
+}
+public void saveChartOfAccount()
+{
+	chartOfAccount=new ChartOfAccount();
+	chartOfAccount.setInt_UserId(Util.getUserId());
+	chartOfAccount.setInt_ApartmentId(Util.getAppartmentId());
+	chartOfAccount.setStr_AccountName(str_AccountName);
+	chartOfAccount.setStr_OrganizationName(str_OrganizationName);
+	chartOfAccount.setStr_AccountType(str_AccountType);
+	getExpenseService().saveChartOfAccount(chartOfAccount);
+	
+	
+}
+}
+
 
 
 
