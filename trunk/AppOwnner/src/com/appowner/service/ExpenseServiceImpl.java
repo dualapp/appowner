@@ -2,11 +2,16 @@ package com.appowner.service;
 
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.ExpenseDao;
+import com.appowner.model.AssetCategory;
+import com.appowner.model.Assets;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
@@ -121,6 +126,54 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public OrganizationLogo getOrganizationLogo(Integer appartmentId) {
 		// TODO Auto-generated method stub
 		return getExpenseDao().getOrganizationLogo(appartmentId);
+	}
+
+	@Override
+	public List<String> getStr_BlockListByAppartmentName(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getStr_BlockListByAppartmentName(appartmentId);
+	}
+
+	@Override
+	public void addAsset(Assets  ac) {
+		getExpenseDao().addAsset(ac);
+		
+	}
+
+	@Override
+	public List<String> getStr_AssetNameList(String str_AssetCategoryType) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getStr_AssetNameList(str_AssetCategoryType);
+	}
+
+	@Override
+	public void saveAssetCategory(AssetCategory assetcategory) {
+		getExpenseDao().saveAssetCategory(assetcategory);
+		
+	}
+
+	@Override
+	public List<AssetCategory> getAssetCategoryList1() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAssetCategoryList1();
+	}
+
+	@Override
+	public List<String> getAccountTypeList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAccountTypeList();
+	}
+
+	@Override
+	public void saveChartOfAccount(ChartOfAccount chartOfAccount) {
+		// TODO Auto-generated method stub
+		getExpenseDao().saveChartOfAccount(chartOfAccount);
+	}
+
+	@Override
+	public List<ChartOfAccount> getChartOfAccountList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getChartOfAccountList();
 	}
 
 }
