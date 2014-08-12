@@ -15,4 +15,8 @@ public interface DueService {
 
 	public List<DueTransaction> listDueTransaction();
 
+	public List<String> getBlockList(String str_Organisation);
+
+	public List<String> getApartmentlist(String str_Block);
+
 }
