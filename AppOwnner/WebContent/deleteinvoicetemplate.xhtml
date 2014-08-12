@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	  <f:metadata>
+	<f:viewParam name="int_InvoiceTemplateID" value="#{templateBean.int_InvoiceTemplateID}"  />
+	 
+	<f:viewAction action="#{templateBean.deleteInvoice}" />
+</f:metadata>
+<h:head>
+		<title>Complain delete</title>
+	</h:head>
+	
+	<h:body>
+		<h:form>
+			<p:growl id="growl" life="2000" /> 
+			 <h:outputText value="Are u want to delete??" />
+			 <br/>
+			<p:commandButton action="#{templateBean.deleteInvoice}" value="Delete"  />
+		  <p:commandButton action="#{templateBean.cancelInvoice}" value="Cancel" />  
+		</h:form>
+		</h:body>
+		
+</html>
+

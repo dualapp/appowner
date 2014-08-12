@@ -82,21 +82,25 @@
    <tr>
       <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}"  style="width:250px">
-                   <f:selectItems value="aaa" />
+                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="#{dueBean.str_Organisation}" itemValue="#{dueBean.str_Organisation}"/>
                  </p:selectOneMenu>
              </td>
              </tr>
              <tr>
              <td><h:outputLabel value="Block:" /></td>
-              <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}"  style="width:250px">
-                   <f:selectItems value="aaa" />
+              <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"  style="width:250px">
+                     <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{dueBean.str_Blocks}" />
+                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
                  </p:selectOneMenu>
              </td>
              </tr>
              <tr>
                <td><h:outputLabel value="Apt.No:" /></td>
               <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:250px">
-                   <f:selectItems value="aaa" />
+                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{dueBean.str_BlockNo}" />
                  </p:selectOneMenu>
              </td>
              </tr>
@@ -121,7 +125,7 @@
            <br/>
             <tr>
                 <td><p:commandButton id="submit" value="Submit" action="#{dueBean.addDueTransaction}" onclick="EnrollLaterClick()" ajax="false" /></td>
-                <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" ajax="false"/></td>
+                <td align="right"><p:commandButton id="cancel" value="Cancel" onclick="" ajax="false"/></td>
            </tr>
             <script>
         function EnrollNowClick() {

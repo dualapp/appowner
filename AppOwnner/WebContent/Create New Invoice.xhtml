@@ -107,14 +107,15 @@
               &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
               <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}"  style="width:250px">
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="aaa" />
+                  <f:selectItem itemLabel="#{invoiceBean.str_Organisation}" />
                  </p:selectOneMenu>
              </td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;  &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
              <td><h:outputLabel value="Block:" /></td>
-              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}" style="width:250px">
+              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}" style="width:250px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="aaa" />
+                   <f:selectItems value="#{invoiceBean.str_Blocks}" />
+                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
                  </p:selectOneMenu>
              </td>
   </h:panelGroup>
@@ -125,7 +126,7 @@
               &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;  &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
               <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" style="width:250px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="aaa" />
+                     <f:selectItems value="#{invoiceBean.str_BlockNo}" />
                  </p:selectOneMenu>
              </td>
              </h:panelGroup>
