@@ -12,13 +12,14 @@
          </h:head>
   <body bgcolor="pink">
     <h:form id="form1" >
-      <p:panel id="panel" header="Crate New Due Template" style="margin-bottom:20px;"> 
+     
        <p:messages id="messages"/>  
       <table>
             <tr>
              <td> <h:outputLabel value="Organisation:" /></td>  
           <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:300px">
-                   <f:selectItems value="aaa" />
+                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
                  </p:selectOneMenu></td>   
                  </tr>
                  <tr></tr><tr></tr><tr></tr><tr></tr>
@@ -71,22 +72,29 @@
              </tr>
                
          </table>
-             </p:panel>
+            
              <tr>
-                <td align="justify"><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()" action="#{templateBean.addDueTemplate}" ajax="true" /></td>
+                <td align="justify"><p:commandButton id="submit" value="Submit" onclick="javascript:return updateParent()"  action="#{templateBean.addDueTemplate}" ajax="false"  /></td>
                 <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{dueBean.reset}" ajax="false"/></td>
             </tr>
-             <script>
+             <script >
         function EnrollNowClick() {
             PassValueToParentWindow();
             window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
         }
         function EnrollLaterClick() {
             window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
+          
+           
         }
-
+        
+       
+ 
       
+        
     </script>
+   
              </h:form>
              </body>
             </html>

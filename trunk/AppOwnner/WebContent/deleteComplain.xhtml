@@ -19,8 +19,9 @@
 	
 	<h:body>
 		<h:form>
-			 
-			<p:commandButton action="#{deleteBean.deleteComplain}" value="Delete" />
+			<p:growl id="growl" life="2000" /> 
+			 <h:outputText value="Are u want to delete??" />
+			<p:commandButton action="#{deleteBean.deleteComplain}" value="Delete" update="growl" actionListener="#{deleteBean.buttonAction}"/>
 			<p:commandButton action="#{deleteBean.cancelComplain}" value="Cancel" />
 		</h:form>
 		</h:body>
