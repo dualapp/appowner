@@ -24,7 +24,15 @@ public class Util {
 	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	        return  session.getAttribute("username").toString();
 	      }
-	       
+	       public static String getApartmentName()
+	       {
+	    	   HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		        return  session.getAttribute("str_Apartment").toString();  
+	       }
+	       public static String getEmail(){
+	    	   HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		        return  session.getAttribute("str_Email").toString();   
+	       }
 	      
 	     public static Integer AppartmentId()
 	      {
