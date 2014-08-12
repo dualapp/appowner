@@ -100,6 +100,9 @@ public Integer getInt_DocumentID() {
 
 	
 
+	
+	
+
 	public Integer getInt_Document_CatID() {
 		return Int_Document_CatID;
 	}
@@ -162,18 +165,21 @@ public String getStr_FolderNM() {
 		Action = action;
 	}
 
-	public String getSize() {
+	
+
+	public Integer getSize() {
 		return Size;
 	}
 
-	public void setSize(String size) {
+	public void setSize(Integer size) {
 		Size = size;
 	}
+
 
 	private String Int_Document_CatNM;
 	
 	private String Action;
-	private String Size;
+	private Integer Size;
 
 
 }

@@ -17,7 +17,7 @@ public class TaxTemplate implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	private Integer int_TaxTemplateID;
-	@Column(name = "int_ApartmentID")
+	@Column(name = "var_Organisation")
 	private String str_Organisation;
 	@Column(name = "var_TaxName")
 	private String str_TaxName;

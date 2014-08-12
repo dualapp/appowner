@@ -116,4 +116,14 @@ public class InvoiceTransaction implements Serializable{
 		this.str_Status = str_Status;
 	}
 	
+	
+	public String getInt_InvoiceNo() {
+		return int_InvoiceNo;
+	}
+	public void setInt_InvoiceNo(String int_InvoiceNo) {
+		this.int_InvoiceNo = int_InvoiceNo;
+	}
+	private String int_InvoiceNo;
+	
+	
 }
