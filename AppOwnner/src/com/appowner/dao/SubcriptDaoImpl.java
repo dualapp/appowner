@@ -300,6 +300,13 @@ public class SubcriptDaoImpl implements SubcriptDao {
          System.out.println(list);
          return list;
 	}
+	public String getDocumentName(Integer int_Document_CatID)
+	{
+		String hql="select Int_Document_CatNM from Cls_DocumentCategory where Int_Document_CatID=?";
+		String sss=(String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_Document_CatID).uniqueResult();
+		System.out.println(sss);
+		return sss;
+	}
 }
 
 	
