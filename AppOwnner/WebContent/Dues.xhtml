@@ -29,8 +29,8 @@
 <script>
 
  var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading.gif");
- modalWin.SetCloseButtonImagePath("images/remove.gif");
+ modalWin.SetLoadingImagePath("images/loading_home.gif");
+ modalWin.SetCloseButtonImagePath("images/cross.png");
  //Uncomment below line to make look buttons as link
  //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
@@ -38,34 +38,6 @@ function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
  modalWin.ShowURL('Create New Due.xhtml',470,600,'Create New Due',null,callbackFunctionArray);
  }
-
-	 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
-
-}
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
 function Submit(msg){
 modalWin.HideModalPopUp();
 modalWin.ShowMessage(msg,200,400,'User Information',null,null);
@@ -91,21 +63,23 @@ function HideModalWindow() {
            
               <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}"  style="width:150px">
-                   <f:selectItems value="aaa" />
+                <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="#{dueBean.str_Organisation}" itemValue="#{dueBean.str_Organisation}"/>
                  </p:selectOneMenu>
              </td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
              <td><h:outputText  value="Block:" /></td>
-               <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}"  style="width:150px">
+               <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
-                 </p:selectOneMenu>
+                   <f:selectItems value="#{dueBean.str_Blocks}" />
+                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
+                 </p:selectOneMenu >
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
              <td><h:outputText  value="Apartment:" /></td>
                <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
+                   <f:selectItems value="#{dueBean.str_BlockNo}" />
                  </p:selectOneMenu>
                  </td>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
@@ -172,7 +146,7 @@ function HideModalWindow() {
               <h:form>
   <h:body>
         <fieldset class="field_set">
-        <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}" style="width: 20%" align="center">
+        <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}" style="width: 80%" align="center">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
@@ -222,7 +196,7 @@ function HideModalWindow() {
                 <f:facet name="header">
                     <h:outputText value="Status" />
                 </f:facet>
-                <h:outputText value="#{due.str_Block}" />
+                <h:outputText value="#{due.str_Status}" />
             </p:column>
              <p:column>
               <p:column>
