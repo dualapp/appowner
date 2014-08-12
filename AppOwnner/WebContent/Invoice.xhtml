@@ -18,7 +18,7 @@
            
               <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}"  style="width:150px">
-                   <f:selectItems value="aaa" />
+                   <f:selectItem itemLabel="#{invoiceBean.str_Organisation}" />
                  </p:selectOneMenu>
              </td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
@@ -99,7 +99,7 @@
              <h:form>
   <h:body>
         <p:panel header="Invoice: " color="red">
-        <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}" style="width: 20%" align="center">
+        <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}" style="width: 80%" align="center">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
