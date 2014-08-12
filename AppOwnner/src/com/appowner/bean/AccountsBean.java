@@ -82,8 +82,6 @@ public class AccountsBean implements Serializable{
 			
 			totalAmount+=accounts.getInt_Debit();
 			totalAmount1+=accounts.getInt_Credit();
-			System.out.println(totalAmount);
-			System.out.println(totalAmount1);
 			if(totalAmount==totalAmount1)
 			{
 				adjustmentBalance=0.0;
