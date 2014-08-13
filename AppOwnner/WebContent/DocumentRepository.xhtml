@@ -12,9 +12,9 @@
 <body  bgcolor="pink">
 
     <h:form>
-    <h:commandButton  value="Document Repositery"  action="#{update.saveUser1}" style="width: 1000%  height:100% " /> 
+    <h:commandButton  value="Document Repositery"  action="#{update.saveUser1}" style="width: 30%  height:100% " /> 
    
-      <h:commandButton  value="Upload Document"  action="#{update.saveUser1}" style="width: 1000%  height:100% " /> 
+      <h:commandButton  value="Upload Document"  action="#{update.saveUser1}" style="width: 30%  height:100% " /> 
    
     <h:commandButton  value="Manage Document Categeory"  action="#{update.saveUser1}" style="width: 30%  height: 100%" /> 
     
@@ -32,7 +32,7 @@
          
         <br/>
         <br/>
-        <p:dataTable id="user" var="user" value="#{scriptBean.listCreatedocument}" style="width: 50%">
+        <p:dataTable id="user" var="user" value="#{scriptBean.listCreatedocument}" style="width:90%">
            <p:column>
                 <f:facet name="header">
                 <h:outputText value="Document Name"/>
@@ -46,19 +46,14 @@
                 <h:outputText value="#{user.str_Description}" />
             </p:column>    
             
-          <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="Categeory" />
-                </f:facet>
-                <h:outputText value="#{user.int_Document_CatNM}" />
-            </p:column>
+          
+           
             <p:column>
             <f:facet name="header">
                 
                     <h:outputText value="Size(in KB)" />
                 </f:facet>
-                <h:outputText value="#{user.size}" />
+                <h:outputText value="#{user.size} kb" />
             </p:column>  -->
               <p:column>
            <f:facet name="header">
@@ -83,7 +78,13 @@
                 </f:facet>
                 <h:outputText value="#{user.ch_Access}" />
                 </p:column>
+                 <p:column>
+           <f:facet name="header">
                 
+                    <h:outputText value="Category" />
+                </f:facet>
+                <h:outputText value="#{user.int_Document_CatNM}" />
+            </p:column> 
             
            <p:column>
            <f:facet name="header">
@@ -92,8 +93,8 @@
                 </f:facet>
                 <h:outputText value="#{user.action}" />
             </p:column> 
+              
         </p:dataTable>
-        
         
         <br />
        
