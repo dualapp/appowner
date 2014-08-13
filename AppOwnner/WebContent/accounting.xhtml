@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	
+<h:head>
+    <title>Accounting Form</title>
+    <style>
+           .ui-menubar {
+    background: orange !important;
+}
+    .affaires .ui-menuitem-text{color:blue;}
+    
+    .affaires .ui-menu-child{background: pink;}
+</style>
+</h:head>
+
+  <h:form>
+  <td><h:outputLabel value="Organisation:" /></td>
+              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px">
+                   <f:selectItems value="str_Organisation" />
+                 </p:selectOneMenu>
+             </td>
+             </h:form>
+             <br/>
+            
+             <h:form>
+       <h:panelGrid columns="1" style="font: 12px sans-serif;width:900px;height: 19px;;float:center;">
+          <p:tabMenu autoDisplay="true" style="padding: 0px" >  
+                <p:menuitem  value="ACCOUNT TRANACTION"  >
+                <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+                         <h:commandLink value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}">
+                         <f:param name="navParam" value="/AccountsTransaction.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+                 </p:menuitem>  
+                <p:menuitem  value="MANUAL JOURNAL"  >
+                <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+                         <h:commandLink value="MANUAL JOURNAL" action="#{navigationBean.navigateTo}">
+                         <f:param name="navParam" value="/manualjournal.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+                 </p:menuitem>  
+         </p:tabMenu>
+       </h:panelGrid>  
+</h:form>
+
+</html>
