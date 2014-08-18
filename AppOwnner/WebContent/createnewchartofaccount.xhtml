@@ -16,19 +16,16 @@
 	<table>
 	<tr><td> 
                <h:outputLabel value="Organisation:" /> </td>
-             <td> <p:selectOneMenu       style="width:200px">
+             <td> <p:selectOneMenu      editable="true"   style="width:200px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Type"/></td>
 	<td><p:selectOneMenu    value="#{expenseBean.str_AccountType}"   style="width:200px">
-	  
-	    <f:selectItem itemLabel="Assets"    itemValue="" noSelectionOption="true" />
+	    <f:selectItem itemLabel="Select One" itemValue="" />  
 	    
-	   <f:selectItems     value="#{expenseBean.listAcc}" /> 
-	  
-	 
-              
+	   <f:selectItems   value="#{expenseBean.listAccountType}" /><br/> 
+	   
                          </p:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText  style="width:100px" value="#{expenseBean.str_AccountName}"/></td></tr>
 	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveChartOfAccount}"   >
