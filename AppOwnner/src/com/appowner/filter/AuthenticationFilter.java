@@ -35,6 +35,11 @@ public class AuthenticationFilter implements Filter  {
 	            if ( reqURI.indexOf("/layout.xhtml") >= 0 || (ses != null && ses.getAttribute("username") != null)
 	                                       || reqURI.indexOf("/public/") >= 0 || reqURI.contains("javax.faces.resource") )
 	                   chain.doFilter(request, response);
+	            else  if (reqURI.contains("Registration.xhtml"))
+	                 
+	                    chain.doFilter(request, response);
+	           
+	        
 	            else   // user didn't log in but asking for a page that is not allowed so take user to login page
 	                   res.sendRedirect(req.getContextPath() + "/layout.xhtml");  // Anonymous user. Redirect to login page
 	      }
