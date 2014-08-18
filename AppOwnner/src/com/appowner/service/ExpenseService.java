@@ -64,6 +64,10 @@ public interface ExpenseService {
 
 	List<ChartOfAccount> getChartOfAccountList();
 
+	List<Character> getCh_AccountGroup();
+
+	List<String> getAccountTypeList(Character c);
+
 	 
 
 }
