@@ -176,4 +176,16 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getChartOfAccountList();
 	}
 
+	@Override
+	public List<Character> getCh_AccountGroup() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getCh_AccountGroup();
+	}
+
+	@Override
+	public List<String> getAccountTypeList(Character l) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAccountTypeList(l);
+	}
+
 }
