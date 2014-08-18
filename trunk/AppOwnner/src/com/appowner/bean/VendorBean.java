@@ -283,12 +283,12 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		this.vendorservice = vendorservice;
 	}
 	private List<VendorServiceDetails> vendorServiceDetails; 
-	private List<VendorServiceDetails> vendorServiceDetails3;
+	//private List<VendorServiceDetails> vendorServiceDetails3;
 	 
 		@PostConstruct
 	    public void init() {
 			vendorServiceDetails=new ArrayList<VendorServiceDetails>();
-			vendorServiceDetails3=new ArrayList<VendorServiceDetails>();
+			//vendorServiceDetails3=new ArrayList<VendorServiceDetails>();
 			 
 			     }
 	public List<VendorServiceDetails> getVendorServiceDetails() {
@@ -682,7 +682,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		 
 		return  null;
 	}
-	// private   List<VendorServiceDetails> vendorServiceDetails3;//=new ArrayList<VendorServiceDetails>();
+	private   List<VendorServiceDetails> vendorServiceDetails3=new ArrayList<VendorServiceDetails>();
 	 /**
 	  * 
 	  * @return list of serviceDetails according to vendor id
@@ -814,6 +814,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	public void getVendor1() {
 
 		vendor = getVendorservice().getVendor(int_VendorId);
+		//System.out.println(vendor.getStr_VendorName());
 
 	}
 /**
