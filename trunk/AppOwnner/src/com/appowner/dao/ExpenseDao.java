@@ -2,6 +2,11 @@ package com.appowner.dao;
 
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
+import com.appowner.model.AssetCategory;
+import com.appowner.model.Assets;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
@@ -37,5 +42,25 @@ public interface ExpenseDao {
 	void updateLogo(OrganizationLogo ol);
 
 	OrganizationLogo getOrganizationLogo(Integer appartmentId);
+
+	List<String> getStr_BlockListByAppartmentName(Integer appartmentId);
+
+	void addAsset(Assets ac);
+
+	List<String> getStr_AssetNameList(String str_AssetCategoryType);
+
+	void saveAssetCategory(AssetCategory assetcategory);
+
+	List<AssetCategory> getAssetCategoryList1();
+
+	List<String> getAccountTypeList();
+
+	void saveChartOfAccount(ChartOfAccount chartOfAccount);
+
+	List<ChartOfAccount> getChartOfAccountList();
+
+	List<Character> getCh_AccountGroup();
+
+	List<String> getAccountTypeList(Character l);
 
 }

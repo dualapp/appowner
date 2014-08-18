@@ -8,7 +8,10 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.AccountingGroup;
 import com.appowner.model.AssetCategory;
+import com.appowner.model.Assets;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.Notice;
 import com.appowner.model.OrganizationLogo;
@@ -127,5 +130,72 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		String hql="from  OrganizationLogo where int_AppartmentId=?";
 		return (OrganizationLogo) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, appartmentId).uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getStr_BlockListByAppartmentName(Integer appartmentId) {
+		String hql="select str_Block from User  where int_ApartmentId=?";
+		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, appartmentId).list();
+	}
+
+	@Override
+	public void addAsset(Assets ac) {
+		getSessionFactory().getCurrentSession().save(ac);
+	}
+
+	@Override
+	public List<String> getStr_AssetNameList(String str_AssetCategoryType) {
+		String hql="select str_AssetName from Assets where str_assetcat_name=?";
+		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).list();
+	}
+
+	@Override
+	public void saveAssetCategory(AssetCategory assetcategory) {
+		 
+		getSessionFactory().getCurrentSession().save(assetcategory);
+	}
+
+	@Override
+	public List<AssetCategory> getAssetCategoryList1() {
+		/*String  query = "{ CALL assetCategoryList() }";
+		List<Expense> expense=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(AssetCategory.class)).list();
+		*/
+		
+		return getSessionFactory().getCurrentSession().createCriteria(AssetCategory.class).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAccountTypeList() {
+		return null;
+		// TODO Auto-generated method stub
+//		return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setProjection(Projections.property("str_Acct_GroupName")).list();
+	}
+
+	@Override
+	public void saveChartOfAccount(ChartOfAccount chartOfAccount) {
+		getSessionFactory().getCurrentSession().save(chartOfAccount);
+		
+	}
+
+	@Override
+	public List<ChartOfAccount> getChartOfAccountList() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(ChartOfAccount.class).list();
+	}
+
+	@Override
+	public List<Character> getCh_AccountGroup() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setProjection(Projections.property("ch_Group")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAccountTypeList(Character l) {
+		String hql="select str_Acct_GroupName from  AccountingGroup where ch_Group=?";
+		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, l).list();
+	 
 	}
 }
