@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -23,20 +24,22 @@ import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
+import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
 import com.appowner.service.SubcriptService;
+import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ScriptBean implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
 		private String error;
 		/*getting the name of doc cat*/
-		public String intdocid;
+		private String intdocid;
 		public String Aprid;
 		private int getdocid;
 		private String Dt_Date;
@@ -47,6 +50,13 @@ public class ScriptBean implements Serializable{
 		private String str_FolderNM;
 		private String str_Description;
 		private String subscriptname;    
+		public String getUsername() {
+			return username;
+		}
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
 		private float price;       
 	    private Integer subcriptID;
 	    private Integer SubcriptionID;
@@ -56,11 +66,38 @@ public class ScriptBean implements Serializable{
 	    public int intdocID;
 	    public int   AprID; 
 	    private int id;
-	    private Integer int_ApartmentId;
-	    private String str_ApartmentName;
-	    private String str_UserName;
+	    public String username;
+	    
+	    
+		private Integer int_ApartmentId;
+	   
+	    public String getIntdocid() {
+			return intdocid;
+		}
+		public void setIntdocid(String intdocid) {
+			this.intdocid = intdocid;
+		}
+
+		private String str_UserName;
 	    private Integer flag;
-	  
+	    private int userId;
+	    private String str_ApartmentName;
+		   public String getStr_ApartmentName() {
+			  str_ApartmentName=Util.getApartmentName();
+			   System.out.println(str_ApartmentName);
+				return str_ApartmentName;
+			}
+			public void setStr_ApartmentName(String str_ApartmentName) {
+				this.str_ApartmentName = str_ApartmentName;
+			}
+	       public int getUserId() {
+		   userId=Util.getUserId();
+		
+				return userId;
+			}
+			public void setUserId(int userId) {
+				this.userId = userId;
+			}
 	public Integer getFlag() {
 			return flag;
 		}
@@ -120,12 +157,7 @@ public class ScriptBean implements Serializable{
 		public void setList2(List list2) {
 			this.list2 = list2;
 		}
-		public String getStr_ApartmentName() {
-			return str_ApartmentName;
-		}
-		public void setStr_ApartmentName(String str_ApartmentName) {
-			this.str_ApartmentName = str_ApartmentName;
-		}
+		
 
 
 		public Boolean getBit_emailsend() {
@@ -512,6 +544,13 @@ public void AddDocManagement()
 		public static void setMailids(List<String> mailids) {
 			ScriptBean.mailids = mailids;
 		}
+		private int size;
+	public int getSize() {
+			return size;
+		}
+		public void setSize(int size) {
+			this.size = size;
+		}
 	//For create Document
 	@SuppressWarnings("unchecked")
 	public String document()
@@ -529,14 +568,15 @@ public void AddDocManagement()
 			d.setStr_Description(getStr_Description());
 		    d.setStr_FileNM(path1);
 			System.out.println(path1);
-			d.setInt_Userid(27);
-			d.setInt_ApartmentID(15);
-			d.setStr_FirstName("mukesh");
+			d.setInt_Userid(getUserId());
+			d.setInt_ApartmentID(Util.AppartmentId());
+			d.setUsername(Util.getUserName());
 			d.setStr_FolderNM("image");
-			d.setStr_ApartmentName("ramjeet villa");
-			d.setInt_Document_CatNM("Circulars");
-			d.setSize("25");
-			d.setAction(" ");
+			d.setStr_ApartmentName(getStr_ApartmentName());
+			//d.setInt_Document_CatNM(getInt_Document_CatNM());
+			//d.setInt_Document_CatNM("Circulars");
+			d.setSize(size);
+			d.setAction("");
 			d.setInt_DocumentID(getInt_DocumentID());
 			getSubcriptService().documents(d);
 			if(Bit_emailsend==true)
@@ -639,8 +679,18 @@ private List<Cls_CreateDocumentManagement> ListCreatedocument;
 @SuppressWarnings("unchecked")
 public List<Cls_CreateDocumentManagement> getListCreatedocument()
 {
+	System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 	ListCreatedocument=new ArrayList<Cls_CreateDocumentManagement>();
 	ListCreatedocument.addAll(getSubcriptService().getListCreatedocument());
+	ListIterator list=ListCreatedocument.listIterator();
+	while(list.hasNext())
+	{
+		Object obj=list.next();
+		Cls_CreateDocumentManagement aa=(Cls_CreateDocumentManagement)obj;
+		Int_Document_CatID=aa.getInt_Document_CatID();
+		intdocid=getSubcriptService().getDocumentName(Int_Document_CatID);
+		System.out.println(intdocid);
+	}
 	return ListCreatedocument;
 }
 public void setListCreatedocument(List<Cls_CreateDocumentManagement> listCreatedocument) {
@@ -685,10 +735,63 @@ public void setDocumentList(
 		List<Cls_DocumentCategory> documentList) {
 	this.documentList = documentList;
 }
+
+//Search
+/*private List<Cls_CreateDocumentManagement> SearchByName;
+
+@SuppressWarnings("unchecked")
+public List<Cls_CreateDocumentManagement> getSearchByName() {
+	SearchByName=new ArrayList<Cls_CreateDocumentManagement>();
+	SearchByName.addAll(getSubcriptService().getSearchByName(username));
+		return SearchByName;
+		
+		
+}
+     @SuppressWarnings("unchecked")
+	public String getSearchByProducttype1()
+	{
+    	 SearchByName=new ArrayList<Cls_CreateDocumentManagement>();
+		 System.out.println(username);
+		 SearchByName.addAll(getSubcriptService().getSearchByName(username));
+		return "DocumentRepository.xhtml?faces-redirect=true";
+	}
+     public void setSearchByName(List<Cls_CreateDocumentManagement> searchByName) {
+ 		SearchByName = searchByName;
+ 	}
+	
+*/
+private List<Cls_CreateDocumentManagement> SearchByName;
+
+@SuppressWarnings("unchecked")
+public List<Cls_CreateDocumentManagement> getSearchByName() {
+	System.out.println("hhhhhhhhhhhhhhhhhhhhhhh");
+	SearchByName=new ArrayList<Cls_CreateDocumentManagement>();
+	SearchByName.addAll(getSubcriptService().getSearchByName(username));
+		return SearchByName;
+	
+}
+@SuppressWarnings("unchecked")
+public String getSearchByProducttype1()
+{
+	 SearchByName=new ArrayList<Cls_CreateDocumentManagement>();
+	 System.out.println(username);
+	 SearchByName.addAll(getSubcriptService().getSearchByName(username));
+	return "DocumentRepository.xhtml?faces-redirect=true";
+}
+ 
+
+public void setSearchByName(List<Cls_CreateDocumentManagement> searchByName) {
+	SearchByName = searchByName;
+}
+
+
 // File Upload
+
+
 
 public void handleFileUpload(FileUploadEvent event) throws IOException {
 	 System.out.println("hi");
+	 size=event.getFile().getFileName().length();
 	 String path = FacesContext.getCurrentInstance().getExternalContext()
 	            .getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -709,51 +812,8 @@ public void handleFileUpload(FileUploadEvent event) throws IOException {
 	    path1=file.getName();
 	    System.out.println(path1);
 }
-private String blb_image;
-private String blb_images1;
 
-public String getBlb_images1() {
-	return blb_images1;
-}
-public void setBlb_images1(String blb_images1) {
-	this.blb_images1 = blb_images1;
-}
-public String getBlb_image() {
-	return blb_image;
-}
-public void setBlb_image(String blb_image) {
-	this.blb_image = blb_image;
-}
-public void handleFileUpload1(FileUploadEvent event) throws IOException {
-	 System.out.println("hi");
-	 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-	    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-	    System.out.println(name);
-	    File file= new File("D://Image\\"+ "images" + name);
-	   // final UploadedFile uploadedFile = event.getFile();
-	    blb_image=file.getAbsolutePath();
-	    System.out.println(blb_image);
-	    blb_images1=file.getAbsolutePath();
-	    System.out.println(blb_images1);
-       System.out.println(file);
-	    InputStream is = event.getFile().getInputstream();
-	    OutputStream out = new FileOutputStream(file);
-	    byte buf[] = new byte[1024];
-	    int len;
-	    while ((len = is.read(buf)) > 0)
-	        out.write(buf, 0, len);
-	    is.close();
-	    out.close();
-	    path1=file.getName();
-	    System.out.println(path1);
-}
-public String getVar_ImageName() {
-	return Var_ImageName;
-}
-public void setVar_ImageName(String var_ImageName) {
-	Var_ImageName = var_ImageName;
-}
+
 
 
 
