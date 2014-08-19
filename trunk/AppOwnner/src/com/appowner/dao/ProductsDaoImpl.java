@@ -132,13 +132,27 @@ public class ProductsDaoImpl implements ProductsDao{
 	@Override
 	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type ,String ch_Ad_Type)
 	{
-		List<Cls_ProductDetails> muk=(List<Cls_ProductDetails>) sessionFactory.getCurrentSession().createCriteria(Cls_ProductDetails.class).add(Restrictions.eq("Ch_Product_Type", ch_Product_Type)).add(Restrictions.eq("Ch_Ad_Type", ch_Ad_Type)).list(); 
-		System.out.println(muk);
-		return  muk;
+		if(ch_Product_Type==null && ch_Ad_Type==null)
+		{
+			String  query = "{ CALL detail() }";
+			
+			 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+			          ).list();
+		      System.out.println("kkk");   
+			 return kkk;	
+		}
+		else
+		{
+			String  query = "{ CALL details('Buy','Neighbourhood') }";
+		
+		 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+		          ).list();
+	      System.out.println("kkk");   
+		 return kkk;
 		
 	}
 	
-
+	}
 	/*@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getAprtmentName() {
