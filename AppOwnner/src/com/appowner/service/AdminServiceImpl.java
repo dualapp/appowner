@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import com.appowner.model.UserApartment;
 
 @Service("AdminService")
 @Transactional 
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService,Serializable{
 	@Autowired
 	private AdminDao adminDao;
 	public AdminDao getAdminDao() {
