@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -41,12 +42,14 @@ public class Cls_AddDetailBean implements Serializable {
 	public void setCh_Product_Type(String ch_Product_Type) {
 		Ch_Product_Type = ch_Product_Type;
 	}
-	private String dT_Date;
-	public String getdT_Date() {
-		return dT_Date;
+	private Date dt_date;
+	
+	
+	public Date getDt_date() {
+		return dt_date;
 	}
-	public void setdT_Date(String dT_Date) {
-		this.dT_Date = dT_Date;
+	public void setDt_date(Date dt_date) {
+		this.dt_date = dt_date;
 	}
 	private String Var_Title;
 	private String Var_FileName;
@@ -178,10 +181,10 @@ public int getInt_Ad_categoryId() {
 		
 	    intdocid1=getVar_Ad_CategoryName();
 		System.out.println(intdocid1);
-		/*intdocID1=getProductDetailService().getdocid2(intdocid1);
+		intdocID1=getProductDetailService().getdocid2(intdocid1);
 		intdocid2=getStr_ApartmentName();
 		System.out.println(intdocid1);
-		intdocID2=getProductDetailService().getdocid3(intdocid2);
+		/*intdocID2=getProductDetailService().getdocid3(intdocid2);
 		intdocid3=getStr_Username();
 		System.out.println(intdocid3);
 		intdocID3=getProductDetailService().getdocid4(intdocid3);
@@ -189,12 +192,14 @@ public int getInt_Ad_categoryId() {
 		//Aprtid=getStr_ApartmentName();
 		Cls_ProductDetails pro=new Cls_ProductDetails();
 		pro.setInt_Ad_categoryId(intdocID1);
-		System.out.println(Util.getAppartmentId());
+		
 		//pro.setInt_ApartmentId(Util.getAppartmentId());
 		pro.setUserId(getUserId());
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
+		pro.setUsername(Util.getUserName());
+		pro.setApartementId(Util.AppartmentId());
 		pro.setVar_FileName("image");
 		pro.setVar_ImageName(path1);
         pro.setVar_Title(getVar_Title());
@@ -282,6 +287,7 @@ public int getInt_Ad_categoryId() {
 	
 	private List<Cls_ProductDetails> listPerson;
 	public List<Cls_ProductDetails> getListPerson() {
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 		listPerson= new ArrayList<Cls_ProductDetails>();
 		listPerson.addAll(getProductDetailService().listPersons());
 		
@@ -310,7 +316,8 @@ public int getInt_Ad_categoryId() {
 	private List<Cls_ProductDetails> searchByProducttype;
 	
 	 public List<Cls_ProductDetails> getSearchByProducttype() {
-	
+		 searchByProducttype=new ArrayList<Cls_ProductDetails>();
+		 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type));
 			return searchByProducttype;
 			
 			
@@ -320,7 +327,7 @@ public int getInt_Ad_categoryId() {
 			 searchByProducttype=new ArrayList<Cls_ProductDetails>();
 			 System.out.println(Ch_Product_Type);
 			 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type));
-			return "searchByProducttype.xhtml?faces-redirect=true";
+			return "Ad_an_Post.xhtml?faces-redirect=true";
 		}
 		
 		public void setSearchByProducttype(List<Cls_ProductDetails> searchByProducttype) {
