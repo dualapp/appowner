@@ -1,6 +1,7 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,12 +37,27 @@ public class Cls_ProductDetails implements Serializable {
 	@Column
 	private String Var_FileName;
 	@Column
-	private char Ch_Ad_Type;
+	private String Ch_Ad_Type;
 	@Column
 	private int UserId;
 	@Column
 	private int ApartementId;
+	private String username;
+	private Date dt_date;
 	
+	
+	public Date getDt_date() {
+		return dt_date;
+	}
+	public void setDt_date(Date dt_date) {
+		this.dt_date = dt_date;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public int getApartementId() {
 		return ApartementId;
 	}
@@ -55,11 +71,11 @@ public class Cls_ProductDetails implements Serializable {
 		UserId = userId;
 	}
 	
-	public char getCh_Ad_Type() {
+	public String getCh_Ad_Type() {
 		return Ch_Ad_Type;
 	}
-	public void setCh_Ad_Type(char c) {
-		Ch_Ad_Type = c;
+	public void setCh_Ad_Type(String string) {
+		Ch_Ad_Type = string;
 	}
 	@Column
 	private String Var_ImageName;
