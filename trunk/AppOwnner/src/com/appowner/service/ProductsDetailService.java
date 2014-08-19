@@ -34,10 +34,6 @@ public interface ProductsDetailService {
 	public List<Cls_ProductDetails> getSearchByProducttype(
 			String ch_Product_Type, String ch_Ad_Type);
 
-	public int getdocid3(String intdocid2);
-
-	public int getdocid4(String intdocid3);
-
 	
 
 	
