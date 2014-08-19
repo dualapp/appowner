@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml"
                 xmlns:P="http://java.sun.com/jsf/html">
-	<ui:define name="content">
+	 
 	<h:head>
 
 	<title></title>
@@ -33,7 +33,7 @@
  //Uncomment below line to make look buttons as link
  //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
-function ShowNewPage(){
+function ShowNewPage2(){
  var callbackFunctionArray = new Array(Submit, Cancel);
  modalWin.ShowURL('createnewparkingspace.xhtml',400,350,'Create New parking space',null,callbackFunctionArray);
  }
@@ -91,9 +91,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 </script>
 
  </h:head>
-	<h:form id="form">
 	 
-   <p:growl id="msgs" showDetail="true"/>
 	<h:body>
 	<br/>
 	<h:outputLabel value="Organisation:" /> 
@@ -104,49 +102,37 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                  </p:selectOneMenu><br/>
 	 &#150; &#150; <br/>
                 
-             <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <input type="button" style="width: 150px" onclick="ShowNewPage2()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
 	   
 	
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
-              <p:contextMenu for="dataTable" widgetVar="cMenu">   
-       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
-       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
-   </p:contextMenu> 
+                
              <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.parkingSpaceList}">
+             id= "dataTable1" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.parkingSpaceList}">
 	<f:facet name="header">
             Expand rows to see detailed information
             <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        <p:columnToggler datasource="dataTable1" trigger="toggler" />
         </f:facet>
-  <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" /> 
-       <p:ajax event="rowEditCancel" listener="#{expenseBean.onRowCancel}" update=":form:msgs" />
+   
           <p:column headerText="Organization">
-              <p:cellEditor>
-                  <f:facet name="output"><h:outputText value="#{ps.str_OrganizationName}" /></f:facet>
-                  <f:facet name="input"><p:inputText id="modelInput2" value="#{ps.str_OrganizationName}" style="width:96%"/></f:facet>
-              </p:cellEditor>
+                <h:outputText value="#{ps.str_OrganizationName}" /> 
+                   
+               
           </p:column>
           <p:column headerText="Parking Id">
-              <p:cellEditor>
-                  <f:facet name="output"><h:outputText value="#{ps.int_ParkingId}" /></f:facet>
-                  <f:facet name="input"><p:inputText id="modelInput4" value="#{ps.int_ParkingId}" style="width:96%"/></f:facet>
-              </p:cellEditor>
+            
+                 <h:outputText value="#{ps.int_ParkingId}" /> 
           </p:column>
           
           <p:column headerText="Parking slot">
-              <p:cellEditor>
-                  <f:facet name="output"><h:outputText value="#{ps.str_ParkingSlot}" /></f:facet>
-                  <f:facet name="input"><p:inputText id="modelInput3" value="#{ps.str_ParkingSlot}" style="width:96%"/></f:facet>
-              </p:cellEditor>
+               <h:outputText value="#{ps.str_ParkingSlot}" /> 
           </p:column>
           
 	  
             
-            <p:column style="width:32px">
-           <p:rowEditor />
-       </p:column>
+            
        <p:column>
                 <f:facet name="header">
                     <h:outputText  value="Action" />
@@ -160,7 +146,6 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
           
 	 </p:dataTable>
 	</h:body>
-	</h:form>
+	 
 
-</ui:define>
-</ui:composition>
+</html>
