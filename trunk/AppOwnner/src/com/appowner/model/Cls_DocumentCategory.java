@@ -79,4 +79,17 @@ public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+private Integer flag;
+
+public Integer getFlag() {
+	return flag;
 }
+
+public void setFlag(Integer flag) {
+	this.flag = flag;
+}
+
+	
+}
+
+
