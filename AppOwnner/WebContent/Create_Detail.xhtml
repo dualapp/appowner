@@ -17,13 +17,12 @@
    <table>
   
      <tr> 
-        <td><h:outputLabel for="ch_Access" value="Organization" /></td>
-            <td><p:selectOneMenu id="ch_Access"  style="width:150px">
-             <f:selectItem itemLabel="Shaffi Paradise"  itemValue="Shaffi Paradise"  />
+        <td><h:outputLabel value="Organisation"  /></td>
+            <td><p:selectOneMenu id="str_ApartmentName"  style="width:150px">
+             <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  />
             
             </p:selectOneMenu>
             </td>
-          
             <td>&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;<h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
             <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:150px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
@@ -49,7 +48,7 @@
             <f:selectItem itemLabel="BUY" itemValue="Buy" />
             <f:selectItem itemLabel="RENT" itemValue="Rent" />
         </p:selectOneRadio>
-        <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
+        <p:outputPanel layout="block" id="aaa" >  
        <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_image}"/>
         
  </p:outputPanel>
