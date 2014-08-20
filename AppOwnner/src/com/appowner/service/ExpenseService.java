@@ -68,6 +68,8 @@ public interface ExpenseService {
 
 	List<String> getAccountTypeList(Character c);
 
+	List<Assets> getAssetsList();
+
 	 
 
 }
