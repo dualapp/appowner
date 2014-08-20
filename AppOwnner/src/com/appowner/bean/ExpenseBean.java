@@ -89,13 +89,87 @@ public class ExpenseBean  implements Serializable{
 	private String blb_image;
 	private String Var_FileName;
 	private String Var_ImageName;
+	
 	private String str_offcInTiming;
 	private String str_offcOutTiming;
 	private String str_AdditionalInfo;
 	private  String str_AppartmentLogo;
 	private String str_AppartmentImg;
 	private String str_Document_Upload;
+	
+	private String str_VendorType;
+	private String str_VendorName;
+	private Date date_PurchaseDate;
+	private Date date_WarrantyStartDate;
+	private Date  date_WarrantyEndDate;
+	
+	private Double dbl_Price;
+	private String str_SellerNameAnddetails;
+	private Date date_AMCStartDate;
+	private Date  date_AMCEndDate;
+	private String str_PurchaseImg;
+	public String getStr_PurchaseImg() {
+		return str_PurchaseImg;
+	}
+	public void setStr_PurchaseImg(String str_PurchaseImg) {
+		this.str_PurchaseImg = str_PurchaseImg;
+	}
 	 
+	public Date getDate_AMCStartDate() {
+		return date_AMCStartDate;
+	}
+	public void setDate_AMCStartDate(Date date_AMCStartDate) {
+		this.date_AMCStartDate = date_AMCStartDate;
+	}
+	public Date getDate_AMCEndDate() {
+		return date_AMCEndDate;
+	}
+	public void setDate_AMCEndDate(Date date_AMCEndDate) {
+		this.date_AMCEndDate = date_AMCEndDate;
+	}
+	public String getStr_VendorType() {
+		return str_VendorType;
+	}
+	public void setStr_VendorType(String str_VendorType) {
+		this.str_VendorType = str_VendorType;
+	}
+	public String getStr_VendorName() {
+		return str_VendorName;
+	}
+	public String getStr_SellerNameAnddetails() {
+		return str_SellerNameAnddetails;
+	}
+	public void setStr_SellerNameAnddetails(String str_SellerNameAnddetails) {
+		this.str_SellerNameAnddetails = str_SellerNameAnddetails;
+	}
+	public void setStr_VendorName(String str_VendorName) {
+		this.str_VendorName = str_VendorName;
+	}
+	public Date getDate_PurchaseDate() {
+		return date_PurchaseDate;
+	}
+	public void setDate_PurchaseDate(Date date_PurchaseDate) {
+		this.date_PurchaseDate = date_PurchaseDate;
+	}
+	public Date getDate_WarrantyStartDate() {
+		return date_WarrantyStartDate;
+	}
+	public void setDate_WarrantyStartDate(Date date_WarrantyStartDate) {
+		this.date_WarrantyStartDate = date_WarrantyStartDate;
+	}
+	public Date getDate_WarrantyEndDate() {
+		return date_WarrantyEndDate;
+	}
+	public void setDate_WarrantyEndDate(Date date_WarrantyEndDate) {
+		this.date_WarrantyEndDate = date_WarrantyEndDate;
+	}
+	public Double getDbl_Price() {
+		return dbl_Price;
+	}
+	public void setDbl_Price(Double dbl_Price) {
+		this.dbl_Price = dbl_Price;
+	}
+	
 	public String getStr_AppartmentImg() {
 		return str_AppartmentImg;
 	}
@@ -887,6 +961,18 @@ public void addAsset()
 	asset.setStr_AssetName(str_AssetName);
 	asset.setStr_Block(str_Block);
 	asset.setStr_OrganizationName(str_OrganizationName);
+	asset.setBool_Rentable(getBool_Rentable());
+	asset.setDate_AMCStartDate(date_AMCStartDate);
+	asset.setDate_AMCEndDate(date_AMCEndDate);
+	asset.setDate_PurchaseDate(date_PurchaseDate);
+	asset.setDate_WarrantyEndDate(date_WarrantyEndDate);
+	asset.setDate_WarrantyStartDate(date_WarrantyStartDate);
+	asset.setDbl_Price(dbl_Price);
+	asset.setStr_PurchaseImg(str_PurchaseImg);
+	asset.setStr_SellerNameAnddetails(str_SellerNameAnddetails);
+	asset.setStr_VendorName(str_VendorName);
+	asset.setStr_VendorType(str_VendorType);
+	asset.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().addAsset(asset);
 	
 }
@@ -1041,6 +1127,7 @@ public String getStr_AccountType() {
 public void setStr_AccountType(String str_AccountType) {
 	this.str_AccountType = str_AccountType;
 }
+
 public void saveChartOfAccount()
 {
 	chartOfAccount=new ChartOfAccount();
@@ -1052,6 +1139,16 @@ public void saveChartOfAccount()
 	getExpenseService().saveChartOfAccount(chartOfAccount);
 	
 	
+}
+private List<Assets> assetsList;
+public List<Assets> getAssetsList() {
+	assetsList=new ArrayList<Assets>();
+	assetsList.addAll(getExpenseService().getAssetsList());
+	
+	return assetsList;
+}
+public void setAssetsList(List<Assets> assetsList) {
+	this.assetsList = assetsList;
 }
 }
 
