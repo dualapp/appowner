@@ -49,7 +49,21 @@ public void setStr_VendorType(String str_VendorType) {
 public void setInt_ServiceId(int int_ServiceId) {
 	this.int_ServiceId = int_ServiceId;
 }
+/*
+ * get AllvendorType
+ */
+public List<String> getStr_VendorTypeList() {
+	str_VendorTypeList=new ArrayList<String>();
+	str_VendorTypeList.addAll(getVendorservice().getStr_VendorTypeList());
+	System.out.println(str_VendorTypeList);
+	return str_VendorTypeList;
+}
 
+public void setStr_VendorTypeList(List<String> str_VendorTypeList) {
+	this.str_VendorTypeList = str_VendorTypeList;
+}
+
+private List<String> str_VendorTypeList;
 private List<String> vendorNameList;
 	public List<String> getVendorNameList() {
 		vendorNameList=new ArrayList<String>();
