@@ -18,26 +18,34 @@
     
      
     <p:accordionPanel  multiple="true" activeIndex="">
+    <table cellpadding="10"><tr>
         <p:tab title="OrganizationLogo">
             
              <ui:include src="/organizationLogo.xhtml" />
             
-  </p:tab>
+  </p:tab></tr>
   
    
-        <p:tab title="AssetsCategory">
+      <tr>  <p:tab title="AssetsCategory">
+         <h:panelGrid columns="1" cellpadding="10">
         <ui:include src="/assetcategory.xhtml" />
+        </h:panelGrid>
             
-   </p:tab>
-   <p:tab title="ChartOfAccount">
+   </p:tab></tr>
+   <tr><p:tab title="ChartOfAccount">
+    <h:panelGrid columns="1" cellpadding="10">
            <ui:include src="/chartofaccount.xhtml" />
-   </p:tab> 
+           </h:panelGrid>
+   </p:tab> </tr>
   
    
-        <p:tab title="parking Space">
+       <tr> <p:tab title="parking Space">
+         <h:panelGrid columns="1" cellpadding="10">
             <ui:include src="/parkingspace.xhtml" />
+            </h:panelGrid>
      
-   </p:tab>
+   </p:tab></tr>
+   </table>
     
     
     </p:accordionPanel>
