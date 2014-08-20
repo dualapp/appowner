@@ -17,7 +17,10 @@ public class AssetCategory  implements Serializable{
 	@Column
 	private Integer int_assetcatId;
 	@Column(name="var_organizationname")
+	
 	private String str_OrganizationName;
+	@Column
+	private Integer int_AppartmentId;
 	@Column(name="var_assetcat_name")
 	private String str_assetcat_name;
 	 
