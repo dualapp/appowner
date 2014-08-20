@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    </h:head>
+    <h:form>
+    <h:body>
+    <table><tr><td><h:outputText value="Created by"/><h:inputText value="#{loginBean.userloginname}"/></td><td><h:outputText value="Organization"/><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><td><h:outputText value="Organization"/><h:inputText value="#{loginBean.str_ApartmentName}"/><h:outputText value="Block"/><h:inputText value=" #{loginBean.str_Block}"/></td></tr>
+   <tr><td><h:outputText value="Apartment"/><h:inputText value="#{loginBean.str_ApartmentName}"/><h:outputText value="Type"/><h:inputText value=" #{loginBean.str_Type}"/></td></tr>
+    
+    <tr><td><h:outputText value="Name"/><h:inputText value="#{loginBean.userloginname}"/><h:outputText value="Email"/><h:inputText value=" #{loginBean.str_Email}"/></td></tr>
+    <tr><td><h:outputText value="Mobile"/><h:inputText value="#{loginBean.str_Mobile}"/><h:outputText value="LandLine"/><h:inputText value=" #{loginBean.str_LandLineNo}"/></td></tr>
+   <tr><td><outputText value="Service Request Details"/></td></tr>
+    <tr><td><h:outputText value="Date Open"/><h:inputText value="#{loginBean.date_OpenDate}"/><h:outputText value="Date Closed"/><h:inputText value=" #{loginBean.date_ClosedDate}"/></td></tr>
+    <tr><td><h:outputText value="Status"/><h:inputText value="#{loginBean.str_status}"/><h:outputText value="VendorCategory"/><h:inputText value=" #{loginBean.str_VendorType}"/></td></tr>
+   <tr><td><h:outputText value="Title*"/><h:inputText value="loginBean.str_Title"/></td></tr>
+   <tr><td><h:outputText value="Description*"/></td><td><p:editor id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td></tr>
+    </table>
+    </h:body>
+    </h:form>
+	</ui:define>
+</ui:composition>
+ 
