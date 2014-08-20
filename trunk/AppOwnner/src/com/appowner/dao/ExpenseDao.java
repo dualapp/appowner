@@ -63,4 +63,6 @@ public interface ExpenseDao {
 
 	List<String> getAccountTypeList(Character l);
 
+	List<Assets> getAssetsList();
+
 }
