@@ -13,11 +13,12 @@
 	<h:head>
     <title>profit and loss Form</title>
     </h:head>
- 
+ <a href="assets.xhtml">>>Back To Asset</a >
     <h:form id="form" enctype="multipart/form-data" prependId="false"> 
     <body>
     
                  <fieldset>
+                 
                  <legend  style="background-color:#438eb9; color:#fff;"> Assets</legend>
  <table><tr><td>
                <h:outputLabel value="Show Assets Of Organisation:*" /> </td>
@@ -54,20 +55,92 @@
                  <h:panelGroup id="sss1">
              <h:panelGrid >
                  <table><tr> 
-                   <td><p:inputTextarea rows="6" cols="33" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/>
+                   <td><p:inputTextarea rows="10" cols="63" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/>
                  </td> <td> <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
-       <p:graphicImage height="150" width="150" value="#{expenseBean.path}"/></p:outputPanel>
+       <p:graphicImage height="150" width="150" value="#{expenseBean.path}"/></p:outputPanel></td ></tr><tr><td>
        
         <p:fileUpload fileUploadListener="#{expenseBean.handleFileUpload1}"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"  mode="advanced"  auto="true" 
                 fileLimit="3"  update="aaa"   style="width:500px"/>
        </td></tr>
         
                  </table>
-                 <tr><td><h:commandButton style="width:200px" value="Submit" action="#{expenseBean.addAsset()}"/></td></tr>
+                 
                  </h:panelGrid>
                  </h:panelGroup>
                  </fieldset>
+                
+                 <p:accordionPanel  multiple="true" activeIndex="">
+    
+        <p:tab title="Purchase Details">
+         <fieldset>
+        <table>
+        <tr><td><h:outputText value="Purchase Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{expenseBean.date_PurchaseDate}"/>
+                   </td>&nbsp;&nbsp;&nbsp;&nbsp;<td><h:outputText value="Price"/></td><td><h:inputText value="#{expenseBean.dbl_Price}"/></td></tr>
+                   <tr><td><h:outputText value="Warrenty Start Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyStartDate}"/></td>&nbsp;&nbsp;&nbsp;&nbsp;
+                   <td><h:outputText value="Warrenty End Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyEndDate}"/></td></tr>
+                 <tr><td><h:outputText value="Vendor"/></td><td> <p:selectOneMenu id="str_VendorType" style="width:200px" valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}"  value="#{expenseBean.str_VendorType}"  >
+            <f:selectItem itemLabel="Select One" itemValue="" />
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+              <p:ajax event="change" update="str_VendorName1" process="str_VendorType"/> 
+               
+        </p:selectOneMenu>
+        </td>
+ </tr>
+ <tr>
+ 
+ 
+            <td><h:outputLabel for="str_VendorName1" value="Select Vendor Name* " /></td>
+            <td><p:selectOneMenu id="str_VendorName1"  style="width:200px" value="#{expenseBean.str_VendorName}"  >
+                <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
+                  
+            </p:selectOneMenu></td>
+             </tr>
+             <tr><td><h:outputText value="SellerNameAndDetails"/></td><td><p:inputTextarea rows="10" cols="63" label="SellerNameAndDetails"   value="#{expenseBean.str_SellerNameAnddetails}"/>
+                  </td></tr>
+                  
+                  </table>
+           </fieldset>
+        </p:tab>
+        <p:tab title="AMC Details">
+        
+         <fieldset>
+        <table>
+        <tr><td><h:outputText value="AMC Start Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCStartDate}"/></td>&nbsp;&nbsp;&nbsp;&nbsp;
+        <td><h:outputText value="AMC End Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCEndDate}"/></td></tr>
+          <tr><td><h:outputText value="Vendor"/></td><td> <p:selectOneMenu id="str_VendorType1" style="width:200px"  value="#{expenseBean.str_VendorType}"  >
+            <f:selectItem itemLabel="Select One" itemValue="" />
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+              <p:ajax event="change" update="str_VendorName2" process="str_VendorType1"/> 
+               
+        </p:selectOneMenu>
+        </td>
+ </tr>
+ <tr>
+ 
+ 
+            <td><h:outputLabel for="str_VendorName2" value="Select Vendor Name* " /></td>
+            <td><p:selectOneMenu id="str_VendorName2"  style="width:200px" value="#{expenseBean.str_VendorName}"  >
+                <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
+                  
+            </p:selectOneMenu></td><td><h:outputText value="Same as Purchase Vendor? " /></td>
+       <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
+             </tr>
+        </table>
+        </fieldset>
+        </p:tab>
+        
+        
+         </p:accordionPanel>
+               <h:commandButton style="width:100px" value="Submit" action="#{expenseBean.addAsset()}"/> <h:commandButton style="width:100px" value="Cancel"/> 
+                 
+                 
+                 
 </body>
 </h:form>
+<a href="assets.xhtml">>>Back To Asset</a >
 </ui:define>
 </ui:composition>
