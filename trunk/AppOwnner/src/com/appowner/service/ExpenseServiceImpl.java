@@ -188,4 +188,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getAccountTypeList(l);
 	}
 
+	@Override
+	public List<Assets> getAssetsList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAssetsList();
+	}
+
 }
