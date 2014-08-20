@@ -198,4 +198,11 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, l).list();
 	 
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Assets> getAssetsList() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).list();
+	}
 }
