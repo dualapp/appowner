@@ -25,10 +25,8 @@
                 <td>
        <p:selectOneMenu id="str_VendorType" style="width:200px"  value="#{vendorTransactionBean.str_VendorType}" valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
             <f:selectItem itemLabel="Select One" itemValue="" />
-            <f:selectItem itemLabel="Electrician" itemValue="Electrician" />
-            <f:selectItem itemLabel="WaterSupplier" itemValue="WaterSupplier" />
-            <f:selectItem itemLabel="MilkProvider" itemValue="MilkProvider" />
-             <f:selectItem itemLabel="IronMan" itemValue="IronMan" />
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}"  />
               <p:ajax event="change" update="str_VendorName1" process="str_VendorType"/> 
                
         </p:selectOneMenu>
