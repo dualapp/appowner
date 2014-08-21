@@ -22,12 +22,7 @@ public class Expense implements Serializable{
 	private String str_ExpenseId;
 	@Column
 	private Integer int_AppartmentId;
-	public Integer getInt_AppartmentId() {
-		return int_AppartmentId;
-	}
-	public void setInt_AppartmentId(Integer int_AppartmentId) {
-		this.int_AppartmentId = int_AppartmentId;
-	}
+	
 	@Column(name="var_OrganizationName")
 	private String str_OrganizationName;
 	@Column(name="var_ExpenseCategory")
@@ -36,12 +31,7 @@ public class Expense implements Serializable{
 	private String str_ExpenseType;
 	@Column(name="var_AssetName")
 	private String str_AssetName;
-	public String getStr_Description() {
-		return str_Description;
-	}
-	public void setStr_Description(String str_Description) {
-		this.str_Description = str_Description;
-	}
+	
 	@Column(name="var_AssetCatType")
 	private String str_AssetCatType;
 	@Column
@@ -50,6 +40,8 @@ public class Expense implements Serializable{
 	private String str_AccountName;
 	@Column(name="var_Description")
 	private String str_Description;
+	@Column
+	private Integer int_Ammount;
 	
 	 
 	public String getStr_ExpenseId() {
@@ -106,8 +98,20 @@ public class Expense implements Serializable{
 	public void setInt_Ammount(Integer int_Ammount) {
 		this.int_Ammount = int_Ammount;
 	}
-	@Column
-	private Integer int_Ammount;
+	
+	public Integer getInt_AppartmentId() {
+		return int_AppartmentId;
+	}
+	public void setInt_AppartmentId(Integer int_AppartmentId) {
+		this.int_AppartmentId = int_AppartmentId;
+	}
+	 
+	public String getStr_Description() {
+		return str_Description;
+	}
+	public void setStr_Description(String str_Description) {
+		this.str_Description = str_Description;
+	}
 	
 
 }
