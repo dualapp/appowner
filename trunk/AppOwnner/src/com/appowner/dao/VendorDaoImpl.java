@@ -283,6 +283,13 @@ public class VendorDaoImpl implements VendorDao{
 	 return sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_VendorName).list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getStr_VendorTypeList() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setProjection(Projections.property("str_VendorType")).list();
+	}
+
 	 
 	 
 }
