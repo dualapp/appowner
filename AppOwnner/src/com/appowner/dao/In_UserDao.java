@@ -64,4 +64,8 @@ public interface In_UserDao {
 	public User validateUser(String str_Username);
 
 	public User validateUser1(String str_Email);
+
+	public User getUserDetails(Integer int_UserId);
+
+	public void updateUs(User user);
 }
