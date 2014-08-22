@@ -101,7 +101,7 @@ public class InvoiceBean implements Serializable{
 	}
 	
 	public String getStr_Organisation() {
-		str_Organisation=Util.getApartmentName();
+		str_Organisation=Util.getAppartmentName();
 		System.out.println(str_Organisation);
 		
 		return str_Organisation;
