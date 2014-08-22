@@ -15,7 +15,7 @@
 <form>
 <h:body>
 <h:outputLabel value="Organisation:" /> 
-               <h:outputLabel value="Organisation:" /> 
+              
               <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
                 
@@ -23,11 +23,12 @@
                  
                  <p:dataTable  widgetVar="MlTable"  emptyMessage="No Vendors found with given criteria"    id="radioDT" editable="true" resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="memberlog" value="#{loginBean.listMemberLog}"   >
                 <f:facet name="header">
-             
+               <h:outputText value="MemberLog"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <h:outputText  value="Search all fields:" />
                 <p:inputText id="globalFilter" onkeyup="PF('MlTable').filter()" style="width:150px"    placeholder="Enter keyword"/>
             
        </f:facet>
+         
               
               <f:facet name="header">
             
