@@ -11,4 +11,8 @@ public interface DueDao {
 	public List<DueTransaction> listDueTransaction();
 
 	public void saveDueTransaction(DueTransaction due);
+
+	public List<String> getBlockList(String str_Organisation);
+
+	public List<String> getApartmentlist(String str_Block);
 }
