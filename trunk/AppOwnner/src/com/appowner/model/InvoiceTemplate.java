@@ -1,6 +1,7 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -86,4 +87,5 @@ public class InvoiceTemplate implements Serializable {
 	public void setStr_DueInvoiceTemplate(String str_DueInvoiceTemplate) {
 		this.str_DueInvoiceTemplate = str_DueInvoiceTemplate;
 	}
+	
 }
