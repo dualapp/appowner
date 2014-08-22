@@ -1,5 +1,9 @@
 package com.appowner.bean;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -8,6 +12,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpSession;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import com.appowner.model.MemberLog;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 import com.appowner.service.In_UserService;
 import com.appowner.util.Util;
@@ -23,26 +32,348 @@ public class LoginBean {
 	public String formuserloginusername;
 	public String formuserloginuserpassword;
 	private Integer int_ApartmentId;
-	private Integer int_UserId;
-	private String str_Apartment;
+	private String str_ApartmentName;
+	private String str_LoggedInTime;
+	private String str_LoggedOutTime;
+	private String str_Mobile;
+	private String str_LandLineNum;
+	private String str_EmailId;
+	private String str_UserType;
+	private String str_Block;
+	private String str_OpenDate;
+	private String str_CloseDate;
+	private String str_VendorType;
+	private String str_Description;
+	private String str_Title;
+	private String str_Flat;
+	private String str_VendorName;
+    private static String subject="subject";
+	private static String content="content";
+	 private static String Email="Email";
+	 private static String str_Block1;
+	 private static String str_Title1;
+	 private static String str_ApartmentName1;
+	 private static String str_Flat1;
+	 private static String str_VendorType1;
+	 private static String str_OpenDate1;
+	 private String str_EventName;
+	 private String str_StartTime;
+	 private String str_EndTime;
+	 private String str_EventType;
+	 private String str_FacilityType;
+	 
+	 
+	 
+	   // private static String content="content";
 	
-	public String getStr_Apartment() {
-		return str_Apartment;
+	public String getStr_EventName() {
+		return str_EventName;
 	}
 
 
-
-
-
-	public void setStr_Apartment(String str_Apartment) {
-		this.str_Apartment = str_Apartment;
+	public void setStr_EventName(String str_EventName) {
+		this.str_EventName = str_EventName;
 	}
 
 
+	public String getStr_StartTime() {
+		return str_StartTime;
+	}
 
 
+	public void setStr_StartTime(String str_StartTime) {
+		this.str_StartTime = str_StartTime;
+	}
 
+
+	public String getStr_EndTime() {
+		return str_EndTime;
+	}
+
+
+	public void setStr_EndTime(String str_EndTime) {
+		this.str_EndTime = str_EndTime;
+	}
+
+
+	public String getStr_EventType() {
+		return str_EventType;
+	}
+
+
+	public void setStr_EventType(String str_EventType) {
+		this.str_EventType = str_EventType;
+	}
+
+
+	public String getStr_FacilityType() {
+		return str_FacilityType;
+	}
+
+
+	public void setStr_FacilityType(String str_FacilityType) {
+		this.str_FacilityType = str_FacilityType;
+	}
+
+
+	public static String getStr_OpenDate1() {
+		return str_OpenDate1;
+	}
+
+
+	public static void setStr_OpenDate1(String str_OpenDate1) {
+		LoginBean.str_OpenDate1 = str_OpenDate1;
+	}
+
+
+	public static String getStr_Block1() {
+		
+		return str_Block1;
+	}
+
+
+	public static void setStr_Block1(String str_Block1) {
+		LoginBean.str_Block1 = str_Block1;
+	}
+
+
+	public static String getStr_Title1() {
+		return str_Title1;
+	}
+
+
+	public static void setStr_Title1(String str_Title1) {
+		LoginBean.str_Title1 = str_Title1;
+	}
+
+
+	public static String getStr_ApartmentName1() {
+		return str_ApartmentName1;
+	}
+
+
+	public static void setStr_ApartmentName1(String str_ApartmentName1) {
+		LoginBean.str_ApartmentName1 = str_ApartmentName1;
+	}
+
+
+	public static String getStr_Flat1() {
+		return str_Flat1;
+	}
+
+
+	public static void setStr_Flat1(String str_Flat1) {
+		LoginBean.str_Flat1 = str_Flat1;
+	}
+
+
+	public static String getStr_VendorType1() {
+		return str_VendorType1;
+	}
+
+
+	public static void setStr_VendorType1(String str_VendorType1) {
+		LoginBean.str_VendorType1 = str_VendorType1;
+	}
+
+
+	public String getStr_VendorName() {
+		return str_VendorName;
+	}
+
+
+	public static String getSubject() {
+		
+		return subject;
+		
+	}
+
+
+	public static void setSubject(String subject) {
+		LoginBean.subject = subject;
+	}
+
+
+	public static String getContent() {
+		return content;
+	}
+
+
+	public static void setContent(String content) {
+		LoginBean.content = content;
+	}
+
+
+	public static String getEmail() {
+		return Email;
+	}
+
+
+	public static void setEmail(String email) {
+		Email = email;
+	}
+
+
+	public void setStr_VendorName(String str_VendorName) {
+		this.str_VendorName = str_VendorName;
+	}
+
+
+	public String getStr_Flat() {
+		str_Flat=user.getStr_Flat();
+		return str_Flat;
+	}
+
+
+	public void setStr_Flat(String str_Flat) {
+		this.str_Flat = str_Flat;
+	}
+
+
+	public String getStr_Mobile() {
+		str_Mobile=user.getStr_PhoneNo();
+		return str_Mobile;
+	}
+
+
+	public void setStr_Mobile(String str_Mobile) {
+		this.str_Mobile = str_Mobile;
+	}
+
+
+	public String getStr_LandLineNum() {
+		 
+		return str_LandLineNum;
+	}
+
+
+	public void setStr_LandLineNum(String str_LandLineNum) {
+		this.str_LandLineNum = str_LandLineNum;
+	}
+
+
+	public String getStr_EmailId() {
+		str_EmailId=user.getStr_Email();
+		return str_EmailId;
+	}
+
+
+	public void setStr_EmailId(String str_EmailId) {
+		this.str_EmailId = str_EmailId;
+	}
+
+
+	public String getStr_UserType() {
+		int role=user.getInt_UserRole();
+		if(role==1)
+			return str_UserType="Tenant";
+			
+		return str_UserType="Owner";
+	}
+
+
+	 
+
+	public void setStr_UserType(String str_UserType) {
+		
+		this.str_UserType = str_UserType;
+	}
+
+
+	public String getStr_Block() {
+		str_Block=user.getStr_Block();
+		return str_Block;
+	}
+
+
+	public void setStr_Block(String str_Block) {
+		this.str_Block = str_Block;
+	}
+
+
+	 
+
+
+	public String getStr_OpenDate() {
+		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date=new Date();
+		str_OpenDate=dateFormat.format(date);
+		return str_OpenDate;
+	}
+
+
+	public void setStr_OpenDate(String str_OpenDate) {
+		this.str_OpenDate = str_OpenDate;
+	}
+
+
+	public String getStr_CloseDate() {
+		str_CloseDate="Not Applicable";
+		return str_CloseDate;
+	}
+
+
+	public void setStr_CloseDate(String str_CloseDate) {
+		this.str_CloseDate = str_CloseDate;
+	}
+
+
+	public String getStr_VendorType() {
+		return str_VendorType;
+	}
+
+
+	public void setStr_VendorType(String str_VendorType) {
+		this.str_VendorType = str_VendorType;
+	}
+
+
+	public String getStr_Description() {
+		return str_Description;
+	}
+
+
+	public void setStr_Description(String str_Description) {
+		this.str_Description = str_Description;
+	}
+
+
+	public String getStr_Title() {
+		return str_Title;
+	}
+
+
+	public void setStr_Title(String str_Title) {
+		this.str_Title = str_Title;
+	}
+
+
+	public String getStr_Status() {
+		return str_Status;
+	}
+
+
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
+
+	private String str_Status;
+	
+	
+	public String getStr_ApartmentName() {
+		str_ApartmentName=user.getStr_Apartment();
+		return str_ApartmentName;
+	}
+
+ 
+	public void setStr_ApartmentName(String str_ApartmentName) {
+		this.str_ApartmentName = str_ApartmentName;
+	}
+
+	private Integer int_UserId;
+	
 	public String getUserloginpassword() {
+		
 		return userloginpassword;
 	}
 
@@ -89,6 +420,29 @@ public class LoginBean {
 
 
 
+
+
+	 
+
+
+	public String getStr_LoggedInTime() {
+		return str_LoggedInTime;
+	}
+
+
+	public void setStr_LoggedInTime(String str_LoggedInTime) {
+		this.str_LoggedInTime = str_LoggedInTime;
+	}
+
+
+	public String getStr_LoggedOutTime() {
+		return str_LoggedOutTime;
+	}
+
+
+	public void setStr_LoggedOutTime(String str_LoggedOutTime) {
+		this.str_LoggedOutTime = str_LoggedOutTime;
+	}
 
 
 	public String getFacebook_userloginpassword() {
@@ -162,7 +516,30 @@ public void setUser(User user) {
 
 
 
- 
+ private MemberLog memberLog;
+ private List<MemberLog> listMemberLog;
+
+	public MemberLog getMemberLog() {
+	return memberLog;
+}
+
+
+public void setMemberLog(MemberLog memberLog) {
+	this.memberLog = memberLog;
+}
+
+
+public List<MemberLog> getListMemberLog() {
+	listMemberLog=new ArrayList<MemberLog>();
+	listMemberLog=getUserService().getListMemberLog();
+	return listMemberLog;
+}
+
+
+public void setListMemberLog(List<MemberLog> listMemberLog) {
+	this.listMemberLog = listMemberLog;
+}
+
 
 	public String userLogin()
 	{
@@ -181,14 +558,35 @@ public void setUser(User user) {
 		
 			int_ApartmentId=user.getInt_ApartmentId();
 			int_UserId=user.getInt_UserId();
-			str_Apartment=user.getStr_Apartment();
+			
 			HttpSession session = Util.getSession();
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
-            session.setAttribute("str_Apartment", str_Apartment);
+            session.setAttribute("ApartmentName", user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
+			
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			//get current date time with Date()
+			Date date = new Date();
+			 
+			str_LoggedInTime= dateFormat.format(date);
+			System.out.println(str_LoggedInTime);
+			/*memberLog=new MemberLog();
+			memberLog.setInt_ApartmentId(int_ApartmentId);
+			memberLog.setInt_UserId(int_UserId);
+			memberLog.setStr_Block(user.getStr_Block());
+			memberLog.setStr_UserEmailId(user.getStr_Email());
+			memberLog.setStr_LoggedInTime(str_LoggedInTime);
+			memberLog.setStr_LogOutTime("N/A");
+			//memberLog.setStr_LogOutTime(str_LoggedOutTime);
+			
+			
+			getUserService().addMemberLog(memberLog);*/
+			str_LoggedInTime=dateFormat.format(date);
+			if(session==null)
+			  memberLog();
 		 	String index="welcomepage.xhtml";
 		  return index;
 		}
@@ -200,8 +598,61 @@ public void setUser(User user) {
 	public String logout() {
 	      HttpSession session = Util.getSession();
 	      session.invalidate();
+	      DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    //get current date time with Date()
+	    Date date = new Date();
+	      str_LoggedOutTime=dateFormat.format(date);
+	      memberLog();
 	      return "layout.xhtml";
 	   }
+	private ServiceRequest serviceRequest;
+	public String addServiceRequest()
+	{
+		serviceRequest=new ServiceRequest();
+		serviceRequest.setInt_ApartmentId(int_ApartmentId);
+		serviceRequest.setInt_UserId(int_UserId);
+		serviceRequest.setStr_Description(str_Description);
+		serviceRequest.setStr_EmailId(str_EmailId);
+		serviceRequest.setStr_Flat(str_Flat);
+		serviceRequest.setStr_LandLineNum(str_LandLineNum);
+		serviceRequest.setStr_Mobile(str_Mobile);
+		serviceRequest.setStr_Status(str_Status);
+		serviceRequest.setStr_Title(str_Title);
+		serviceRequest.setStr_UserType(str_UserType);
+		serviceRequest.setStr_VendorName(str_VendorName);
+		serviceRequest.setStr_VendorType(str_VendorType);
+		serviceRequest.setStr_OpenDate(str_OpenDate);
+		serviceRequest.setStr_CloseDate(str_CloseDate);
+		 getUserService().addServiceRequest(serviceRequest);
+		 //Email=user.getStr_Email();
+		 Email="devroutaray@gmail.com";
+		 subject="Service Request";
+		 content="sir i need ur BsnlBroadBand service so plz provice it";
+		 str_ApartmentName1=user.getStr_Apartment();
+		 str_Flat1=user.getStr_Flat();
+		 str_Block1=user.getStr_Block();
+		 str_VendorType1=getStr_VendorType();;
+		 str_Title1=getStr_Title();
+		 str_OpenDate1=getStr_OpenDate();
+		 return "workordercategory1.jsp";
+		
+	}
+	/*
+	 * add member login and logout info
+	 */
+	public void memberLog()
+	{
+		 memberLog=new MemberLog();
+			memberLog.setInt_ApartmentId(int_ApartmentId);
+			memberLog.setInt_UserId(int_UserId);
+			memberLog.setStr_Block(user.getStr_Block());
+			memberLog.setStr_UserEmailId(user.getStr_Email());
+			memberLog.setStr_LoggedInTime(str_LoggedInTime);
+	      
+	      memberLog.setStr_LogOutTime(str_LoggedOutTime);
+	      getUserService().addMemberLog(memberLog);
+	      System.out.println(str_LoggedOutTime);
+	}
 	public void facebookuserLogin()
 	{
 		
@@ -216,3 +667,4 @@ public void setUser(User user) {
 	}
 
 }
+
