@@ -32,6 +32,7 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserCity;
@@ -54,6 +55,13 @@ public class Cls_UserBeanMain implements Serializable {
 	 private String str_apart;
 	 private String str_Username;
 	 public String str_UserCountry;
+	 private Double sqft;
+		public Double getSqft() {
+			return sqft;
+		}
+		public void setSqft(Double sqft) {
+			this.sqft = sqft;
+		}
 	 private static String el="el";
 	    private static String pd="pd";
 	    private static String fn="fn";
@@ -534,6 +542,7 @@ public class Cls_UserBeanMain implements Serializable {
         usr.setInt_UserRole(getInt_UserRole());
         usr.setStr_Flat(getStr_Flat());
 		usr.setStr_Block(getStr_Block());
+		usr.setSqft(getSqft());
 		usr.setStr_PhoneNo(getStr_PhoneNo());
 		usr.setStr_UserRoleName(str_getRoleNameUser);
 		Integer activationbit1=0;
