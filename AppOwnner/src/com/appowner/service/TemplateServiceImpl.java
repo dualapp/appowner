@@ -123,5 +123,7 @@ public class TemplateServiceImpl implements TemplateService {
 	  {
 		  getTemplateDao().deleteInvoice(invoice);
 	  }
+	
+	  
 	  
 }
