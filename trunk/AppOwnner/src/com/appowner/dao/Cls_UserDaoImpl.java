@@ -15,6 +15,7 @@ import java.util.List;
 
 
 
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -219,6 +220,20 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			
 			 return (User)sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_Email).uniqueResult();
 			   
+		}
+
+		@Override
+		public User getUserDetails(Integer int_UserId) {
+			 String hql="from User where int_UserId=?";
+				User Userinfo=(User) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_UserId).uniqueResult();
+				System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+				System.out.println(Userinfo);
+				return Userinfo;
+		}
+
+		public void updateUs(User user) {
+			sessionFactory.getCurrentSession().update(user);
+			
 		}
 
 		//@Override
