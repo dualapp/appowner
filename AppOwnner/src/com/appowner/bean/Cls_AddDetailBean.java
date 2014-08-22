@@ -65,7 +65,7 @@ public class Cls_AddDetailBean implements Serializable {
 	
 	private String str_ApartmentName;
 	   public String getStr_ApartmentName() {
-		  str_ApartmentName=Util.getApartmentName();
+		  str_ApartmentName=Util.getAppartmentName();
 		   System.out.println(str_ApartmentName);
 			return str_ApartmentName;
 		}
@@ -199,7 +199,7 @@ public int getInt_Ad_categoryId() {
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
 		pro.setUsername(Util.getUserName());
-		pro.setApartementId(Util.AppartmentId());
+		pro.setApartementId(Util.getAppartmentId());
 		pro.setVar_FileName("image");
 		pro.setVar_ImageName(path1);
         pro.setVar_Title(getVar_Title());
