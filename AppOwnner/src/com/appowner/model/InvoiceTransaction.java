@@ -62,18 +62,7 @@ public class InvoiceTransaction implements Serializable{
 	public Integer getInt_Year() {
 		return int_Year;
 	}
-	public String getStr_TransactionDueTemplate() {
-		return str_TransactionDueTemplate;
-	}
-	public void setStr_TransactionDueTemplate(String str_TransactionDueTemplate) {
-		this.str_TransactionDueTemplate = str_TransactionDueTemplate;
-	}
-	public String getStr_TransactionTaxTemplate() {
-		return str_TransactionTaxTemplate;
-	}
-	public void setStr_TransactionTaxTemplate(String str_TransactionTaxTemplate) {
-		this.str_TransactionTaxTemplate = str_TransactionTaxTemplate;
-	}
+	
 	public void setInt_Year(Integer int_Year) {
 		this.int_Year = int_Year;
 	}
@@ -84,6 +73,8 @@ public class InvoiceTransaction implements Serializable{
 	public void setDat_InvoiceDate(String dat_InvoiceDate) {
 		this.dat_InvoiceDate = dat_InvoiceDate;
 	}
+	
+	
 	
 	public String getStr_Organisation() {
 		return str_Organisation;
@@ -103,10 +94,8 @@ public class InvoiceTransaction implements Serializable{
 	public void setStr_ApartmentNo(String str_ApartmentNo) {
 		this.str_ApartmentNo = str_ApartmentNo;
 	}
-	@Column(name="var_TransactionDueTemplate")
-	private String str_TransactionDueTemplate;
-	@Column(name="var_TransactionTaxTemplate")
-	private String str_TransactionTaxTemplate;
+	
+	
 	@Column(name="var_Status")
 	private String str_Status;
 	public String getStr_Status() {
@@ -124,6 +113,34 @@ public class InvoiceTransaction implements Serializable{
 		this.int_InvoiceNo = int_InvoiceNo;
 	}
 	private String int_InvoiceNo;
-	
+	private Double subTotal;
+	private Double taxAmount;
+	private Double totalDue;
+	public Double getSubTotal() {
+		return subTotal;
+	}
+	public void setSubTotal(Double subTotal) {
+		this.subTotal = subTotal;
+	}
+	public Double getTaxAmount() {
+		return taxAmount;
+	}
+	public void setTaxAmount(Double taxAmount) {
+		this.taxAmount = taxAmount;
+	}
+	public Double getTotalDue() {
+		return totalDue;
+	}
+	public void setTotalDue(Double totalDue) {
+		this.totalDue = totalDue;
+	}
+	public Double getTotalBalance() {
+		return totalBalance;
+	}
+	public void setTotalBalance(Double totalBalance) {
+		this.totalBalance = totalBalance;
+	}
+
+	private Double totalBalance;
 	
 }
