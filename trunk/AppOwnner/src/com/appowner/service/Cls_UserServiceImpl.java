@@ -17,7 +17,7 @@ import com.appowner.model.UserApartment;
  * @author pankaj singh
  *
  */
-@Service("In_UserService")
+@Service("cls_UserService")
 @Transactional 
 public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	private static final long serialVersionUID = 1L;
@@ -161,6 +161,20 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		return getIn_userdao().validateUser1(str_Email);
 	}
+
+	@Override
+	public User getUserList1(Integer int_UserId) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getUserDetails(int_UserId);
+	}
+
+	@Override
+	public void updateUs(User user) {
+		getIn_userdao().updateUs(user);
+		
+	}
+
+	
 	}
 
 	 
