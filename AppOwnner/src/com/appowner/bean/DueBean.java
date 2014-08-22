@@ -94,7 +94,7 @@ public class DueBean implements Serializable{
 		this.dat_LastDate = dat_LastDate;
 	}
 	public String getStr_Organisation() {
-		str_Organisation=Util.getApartmentName();
+		str_Organisation=Util.getAppartmentName();
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
