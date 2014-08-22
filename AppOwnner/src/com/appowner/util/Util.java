@@ -47,7 +47,11 @@ public class Util {
 	        else
 	            return null;
 	      }
-
+     public static Double getSqft()
+     {
+    	 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+   	  return   (Double) session.getAttribute("sqft");
+     }
 		 
 		 
 
