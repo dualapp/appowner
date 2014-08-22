@@ -57,10 +57,6 @@ public class User implements Serializable{
 	@Column
 	private String str_PhoneNo;
 	@Column
-	private String Var_FileName1;
-	@Column
-	private String Var_ImageName1;
-	@Column
 	private String str_activationkey;
 	@Column Integer int_activationbit;
 	@Column 
@@ -189,19 +185,12 @@ public class User implements Serializable{
 	public void setInt_activationbit(Integer int_activationbit) {
 		this.int_activationbit = int_activationbit;
 	}
-	public String getVar_FileName1() {
-		return Var_FileName1;
+	@Column(name="SqareFeet")
+	private Double sqft;
+	public Double getSqft() {
+		return sqft;
 	}
-	public void setVar_FileName1(String var_FileName1) {
-		Var_FileName1 = var_FileName1;
+	public void setSqft(Double sqft) {
+		this.sqft = sqft;
 	}
-	public String getVar_ImageName1() {
-		return Var_ImageName1;
-	}
-	public void setVar_ImageName1(String var_ImageName1) {
-		Var_ImageName1 = var_ImageName1;
-	}
-	
-	
-	
 }
