@@ -49,5 +49,13 @@ public interface In_UserService {
 	public User validate(String str_Username);
 
 	public User validate1(String str_Email);
+
+	public User getUserList1(Integer int_UserId);
+
+	public void updateUs(User user);
+
+	//public void updateU(User user);
+
+	
 }
 
