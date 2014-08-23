@@ -12,6 +12,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -64,8 +72,113 @@ public class LoginBean {
 	 private String str_FacilityType;
 	 private BookAFacility bookAFacility;
 	 private List<BookAFacility> bookAFacilityList;
+	 private String Var_ImageName1;
+		private String blb_image1;
+		private String blb_images2;
+		private String path2;
+		private String cropimage;
+		private String str_userRoleName;
+
 	 
-	 
+		public String getStr_userRoleName() {
+			return str_userRoleName;
+		}
+
+
+
+
+
+		public void setStr_userRoleName(String str_userRoleName) {
+			this.str_userRoleName = str_userRoleName;
+		}
+
+
+
+
+
+		public String getCropimage() {
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
+			System.out.println(cropimage);
+			return cropimage;//("")+File.separator+"images"+File.separator+"saphi"+File.separator+"crop"+File.separator+"images20140811143252.jpg";
+		}
+
+
+
+
+
+		public void setCropimage(String cropimage) {
+			this.cropimage = cropimage;
+		}
+
+
+
+
+
+		public String getPath2() {
+			return path2;
+		}
+
+
+
+
+
+		public void setPath2(String path2) {
+			this.path2 = path2;
+		}
+
+
+
+
+
+		public String getBlb_images2() {
+			
+			return blb_images2;
+		}
+
+
+
+
+
+		public void setBlb_images2(String blb_images2) {
+			this.blb_images2 = blb_images2;
+		}
+
+
+
+
+
+		public String getBlb_image1() {
+			return blb_image1;
+		}
+
+
+
+
+
+		public void setBlb_image1(String blb_image1) {
+			this.blb_image1 = blb_image1;
+		}
+
+
+
+
+
+		public String getVar_ImageName1() {
+			return Var_ImageName1;
+		}
+
+
+
+
+
+		public void setVar_ImageName1(String var_ImageName1) {
+			Var_ImageName1 = var_ImageName1;
+		}
+
+
+
+
+
 	 
 	   // private static String content="content";
 	
@@ -161,7 +274,6 @@ public class LoginBean {
 
 
 	public BookAFacility getBookAFacility() {
-		
 		return bookAFacility;
 	}
 
@@ -569,19 +681,31 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 
 	public String userLogin()
 	{
+
+		System.out.println("//////////////////////////////////");
 		formuserloginusername=getUserloginname();
 		formuserloginuserpassword=getUserloginpassword();
+		
 		System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 		System.out.println(formuserloginusername);
 		System.out.println(formuserloginuserpassword);
 		user=getUserService().getUserList(formuserloginusername);
 		System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 		System.out.println(user);
+		str_userRoleName=user.getStr_UserRoleName();
 		System.out.println(user.getStr_Password());
+		int_UserId=user.getInt_UserId();
+		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjppppppppppppppppppppppppppppppppppppppppppppppppppppppppjjjjjjjjjjjjjjjjjjj");
+		System.out.println(str_userRoleName);
+		String admin1="admin";
 		
 		if(formuserloginuserpassword.equals(user.getStr_Password()))
 		{   
-		
+			System.out.println("+++++++++++++++++++++++++++66666666666666666666666666666666");
+			System.out.println(str_userRoleName);
+			System.out.println(admin1);
+		   if(admin1.equals(str_userRoleName))
+		   {
 			int_ApartmentId=user.getInt_ApartmentId();
 			int_UserId=user.getInt_UserId();
 			
@@ -589,33 +713,50 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
-            session.setAttribute("ApartmentName", user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
-			
-			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			//get current date time with Date()
-			Date date = new Date();
-			 
-			str_LoggedInTime= dateFormat.format(date);
-			System.out.println(str_LoggedInTime);
-			/*memberLog=new MemberLog();
-			memberLog.setInt_ApartmentId(int_ApartmentId);
-			memberLog.setInt_UserId(int_UserId);
-			memberLog.setStr_Block(user.getStr_Block());
-			memberLog.setStr_UserEmailId(user.getStr_Email());
-			memberLog.setStr_LoggedInTime(str_LoggedInTime);
-			memberLog.setStr_LogOutTime("N/A");
-			//memberLog.setStr_LogOutTime(str_LoggedOutTime);
-			
-			
-			getUserService().addMemberLog(memberLog);*/
-			str_LoggedInTime=dateFormat.format(date);
-			if(session==null)
-			  memberLog();
-		 	String index="welcomepage.xhtml";
+		 	String index="Adminwelcomepage.xhtml";
 		  return index;
+		   }
+		   else
+		   {
+			   int_ApartmentId=user.getInt_ApartmentId();
+				int_UserId=user.getInt_UserId();
+				
+				HttpSession session = Util.getSession();
+				 
+	            session.setAttribute("username", userloginname);
+				session.setAttribute("ApartmentName", user.getStr_Apartment());
+				
+	            session.setAttribute("int_ApartmentId", int_ApartmentId);
+	            session.setAttribute("int_UserId", int_UserId);
+				System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+				System.out.println("hiiiiiiiiiiiii");
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				//get current date time with Date()
+				Date date = new Date();
+				 
+				str_LoggedInTime= dateFormat.format(date);
+				System.out.println(str_LoggedInTime);
+				/*memberLog=new MemberLog();
+				memberLog.setInt_ApartmentId(int_ApartmentId);
+				memberLog.setInt_UserId(int_UserId);
+				memberLog.setStr_Block(user.getStr_Block());
+				memberLog.setStr_UserEmailId(user.getStr_Email());
+				memberLog.setStr_LoggedInTime(str_LoggedInTime);
+				memberLog.setStr_LogOutTime("N/A");
+				//memberLog.setStr_LogOutTime(str_LoggedOutTime);
+				
+				
+				getUserService().addMemberLog(memberLog);*/
+				str_LoggedInTime=dateFormat.format(date);
+				if(session==null)
+				  memberLog();
+			 String index1= "welcomepage.xhtml";
+			 return index1;
+		   }
 		}
+ 
 		else
 		{FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password id invalid!"));
 		return "layout.xhtml?error=yes";
@@ -681,7 +822,6 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		getUserService().addBookAFacility(bookAFacility);
 		
 	}
-	
 	/*
 	 * add member login and logout info
 	 */
@@ -698,6 +838,44 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 	      getUserService().addMemberLog(memberLog);
 	      System.out.println(str_LoggedOutTime);
 	}
+	public String updateUser(){
+		user.setVar_FileName1(getPath2());
+		user.setVar_ImageName1(getBlb_image1());
+		getUserService().update(user);
+		//System.out.println(pro);
+		return "updationconfirmation.xhtml";
+		}
+	//image uploading
+	public void handleFileUpload1(FileUploadEvent event) throws IOException {
+		 System.out.println("hi");
+		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+		    System.out.println(name);
+		    File file= new File("C://myfinal project//9 august//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
+		   
+		    final UploadedFile uploadedFile = event.getFile();
+		    blb_image1=file.getAbsolutePath();
+		    System.out.println("ppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+		    System.out.println(blb_image1);
+		    blb_images2=blb_image1.substring(49);
+		    cropimage="/"+blb_images2;
+		    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
+		    System.out.println(cropimage);
+	        System.out.println(file);
+		    InputStream is = event.getFile().getInputstream();
+		    OutputStream out = new FileOutputStream(file);
+		    byte buf[] = new byte[1024];
+		    int len;
+		    while ((len = is.read(buf)) > 0)
+		        out.write(buf, 0, len);
+		    is.close();
+		    out.close();
+		    path2=file.getName();
+		    System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+		    System.out.println(path2);
+	}
+
 	public void facebookuserLogin()
 	{
 		

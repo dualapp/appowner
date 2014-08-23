@@ -13,10 +13,10 @@ public interface TemplateDao {
   public void saveTaxTemplate(TaxTemplate taxTemplate);
   public void saveInvoiceTemplate(InvoiceTemplate invoiceTemplate);
   public void saveMessageTemplate(MessageTemplate messageTemplate);
-  public List<DueTemplate> listDueTemplate();
+  public List<DueTemplate> listDueTemplate(String str_Accounts);
   public List<InvoiceTemplate> listInvoiceTemplate();
   public List<TaxTemplate> listTaxTemplate();
-  public List<MessageTemplate> listMessageTemplate();
+  public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category);
 public List<String> getTaxName();
 public DueTemplate getDueTemplate(Integer int_DueTemplateID);
 public void updateDueTemplate(DueTemplate dueTemplate);
@@ -29,4 +29,7 @@ public void updateMessageTemplate(MessageTemplate messageTemplate);
 public List<String> getDueTemplate( String frequency);
 public List<String> getMessageTemplate();
 public String getDescription(String str);
+public List<DueTemplate> searchDueTemplate(String account);
+public void deleteDue(DueTemplate dueTemplate);
+public void deleteInvoice(InvoiceTemplate invoice);
 }

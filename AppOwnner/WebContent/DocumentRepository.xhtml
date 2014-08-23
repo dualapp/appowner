@@ -14,66 +14,50 @@
     <h:form>
     <h:commandButton  value="Document Repositery"  action="#{update.saveUser1}" style="width: 30%  height:100% " /> 
    
-      <h:commandButton  value="Upload Document"  action="#{update.saveUser1}" style="width: 30%  height:100% " /> 
    
-    <h:commandButton  value="Manage Document Categeory"  action="#{update.saveUser1}" style="width: 30%  height: 100%" /> 
-    
-     <h4 align="center">you could post frequently like Society Rules and Regulation  Standard Operating Procedure Associtation Policies Standard Operating Procedure,Gudiline,News Letters etc,in Wiki than in Repositery for better content orgnization</h4> 
-    
-   <h:outputText value="Show"/>
-               
-           <h:inputText  value="#{scriptBean.ch_Access}" style="width:40px"/> 
-          <h:outputText value="entries"/>
-                     <br/>
-   <br/> 
-     <h:inputText  value="#{scriptBean.str_Description}" style="float:right !important;margin:0px 0px 3px 0px;"/> 
-   <h:outputText value="Search All Column"  style="float:right !important;margin:0px 0px 3px 0px;"/>
-    
+     <h:inputText    value="#{scriptBean.username}" style="float:right !important;margin:0px 0px 3px 0px;"/> 
+    <h:commandButton  value="Search by Name"  action="#{scriptBean.getSearchByProducttype1}"   update="user"    style="float:right !important;margin:0px 0px 3px 0px;">
+    </h:commandButton>
          
         <br/>
         <br/>
-        <p:dataTable id="user" var="user" value="#{scriptBean.listCreatedocument}" style="width: 50%">
+        <p:dataTable id="user" var="user" value="#{scriptBean.searchByName}" style="width:90%">
            <p:column>
                 <f:facet name="header">
                 <h:outputText value="Document Name"/>
                 </f:facet>
-                  <h:outputText   value="#{user.str_FileNM}" />  
+                  <h:outputText   value="#{user.str_FileNM}" style="width:150%"/>  
                </p:column>
         <p:column>
                 <f:facet name="header">
                     <h:outputText value="Description" />
                 </f:facet>
-                <h:outputText value="#{user.str_Description}" />
+                <h:outputText value="#{user.str_Description}" style="width:120%"/>
             </p:column>    
             
-          <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="Categeory" />
-                </f:facet>
-                <h:outputText value="#{user.int_Document_CatNM}" />
-            </p:column>
+          
+           
             <p:column>
             <f:facet name="header">
                 
                     <h:outputText value="Size(in KB)" />
                 </f:facet>
-                <h:outputText value="#{user.size}" />
+                <h:outputText value="#{user.size} kb" style="width:90%"/>
             </p:column>  -->
               <p:column>
            <f:facet name="header">
                 
                     <h:outputText value="Uploaded By" />
                 </f:facet>
-                <h:outputText value="#{user.str_FirstName}" />
-            </p:column>--> 
+                <h:outputText value="#{user.username}" style="width:90%"/>
+            </p:column>
             
             <p:column>
            <f:facet name="header">
                 
                     <h:outputText value="Uploaded On" />
                 </f:facet>
-                <h:outputText value="#{user.str_ApartmentName}" />
+                <h:outputText value="#{user.str_ApartmentName}" style="width:90%"/>
             </p:column> 
             
                <p:column>
@@ -81,28 +65,28 @@
                 
                     <h:outputText value="Accessible to" />
                 </f:facet>
-                <h:outputText value="#{user.ch_Access}" />
+                <h:outputText value="#{user.ch_Access}" style="width:90%"/>
                 </p:column>
+                 <p:column>
+           <f:facet name="header">
                 
+                    <h:outputText value="Category" />
+                </f:facet>
+                 <h:outputText value="#{user.int_Document_CatNM}" style="width:90%"/>
+            </p:column> 
             
            <p:column>
            <f:facet name="header">
                 
                     <h:outputText value="Action" />
                 </f:facet>
-                <h:outputText value="#{user.action}" />
+                <h:outputText value="#{user.action}" style="width:90%"/>
             </p:column> 
+              
         </p:dataTable>
-        
         
         <br />
        
-        <h:commandButton  value="Next"  action="#{update.saveUser1}" style="width: 6% ; float:right !important;margin:0px 0px 0px 2px;"  /> 
-        <h:commandButton  value="Last"  action="#{update.saveUser1}" style="width: 6% ; float:right !important;margin:0px 0px 0px 2px;"  /> 
-        <h:commandButton  value="1"  action="#{update.saveUser1}" style="width: 2% ; float:right !important;margin:0px 0px 0px 2px;" /> 
-         <h:commandButton  value="previous"  action="#{update.saveUser1}" style="width: 8% ; float:right !important;margin:0px 0px 0px 2px;" /> 
-         <h:commandButton  value="first"  action="#{update.saveUser1}" style="width: 6% ;  float:right !important;margin:0px 0px 0px 2px;"/> 
-        
          </h:form>
               </body>
           

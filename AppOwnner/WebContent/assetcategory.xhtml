@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml"
                 xmlns:P="http://java.sun.com/jsf/html">
-	 
+	<ui:define name="content">
 	<h:head>
 
 	<title></title>
@@ -33,9 +33,9 @@
  //Uncomment below line to make look buttons as link
  //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
-function ShowNewPage4(){
+function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewassetcategory.xhtml',200,400,'Create New assetcategory',null,callbackFunctionArray);
+ modalWin.ShowURL('createnewassetcategory.xhtml',470,600,'Create New assetcategory',null,callbackFunctionArray);
  }
  
  
@@ -91,7 +91,9 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 </script>
 
  </h:head>
+	<h:form id="form">
 	 
+   <p:growl id="msgs" showDetail="true"/>
 	<h:body>
 	<br/>
 	<h:outputLabel value="Organisation:" /> 
@@ -102,12 +104,15 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                  </p:selectOneMenu><br/>
 	 &#150; &#150; <br/>
                 
-             <input type="button" style="width: 150px" onclick="ShowNewPage4()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
 	   
 	
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
-              
+              <p:contextMenu for="dataTable" widgetVar="cMenu">   
+       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
+       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
+   </p:contextMenu> 
              <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
              id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.assetCategoryList}">
 	<f:facet name="header">
@@ -115,7 +120,8 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
             <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
         <p:columnToggler datasource="dataTable" trigger="toggler" />
         </f:facet>
-   
+  <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" /> 
+       <p:ajax event="rowEditCancel" listener="#{expenseBean.onRowCancel}" update=":form:msgs" />
           <p:column headerText="Organization">
                
                    <h:outputText value="#{ps.str_OrganizationName}" /> 
@@ -142,5 +148,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
           
 	 </p:dataTable>
 	</h:body>
-	 
-</html>
+	</h:form>
+
+</ui:define>
+</ui:composition>

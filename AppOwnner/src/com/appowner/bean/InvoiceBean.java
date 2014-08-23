@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import javax.faces.bean.ManagedBean;
@@ -13,10 +14,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 
+import org.apache.commons.lang.RandomStringUtils;
+
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.service.InvoiceService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
@@ -35,6 +39,22 @@ public class InvoiceBean implements Serializable{
 	private String str_BillPeriod;
 	private Integer int_Year;
 	private String dat_InvoiceDate;
+	private String str_Status;
+	private String int_InvoiceNo;
+	
+	
+	public String getInt_InvoiceNo() {
+		return int_InvoiceNo;
+	}
+	public void setInt_InvoiceNo(String int_InvoiceNo) {
+		this.int_InvoiceNo = int_InvoiceNo;
+	}
+	public String getStr_Status() {
+		return str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
 	public String select;
 	
 	public String getSelect() {
@@ -81,6 +101,9 @@ public class InvoiceBean implements Serializable{
 	}
 	
 	public String getStr_Organisation() {
+		str_Organisation=Util.getAppartmentName();
+		System.out.println(str_Organisation);
+		
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
@@ -136,6 +159,7 @@ public class InvoiceBean implements Serializable{
 			invoice.setStr_Organisation(getStr_Organisation());
 			invoice.setStr_Block(getStr_Block());
 			invoice.setStr_ApartmentNo(getStr_ApartmentNo());
+			invoice.setInt_InvoiceNo(randomId());
 			getInvoiceService().saveInvoiceTransaction(invoice);
 			return null;
 		}
@@ -144,6 +168,21 @@ public class InvoiceBean implements Serializable{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	/*
+	 * Random number
+	 */
+	 
+	
+	 
+	public String randomId()
+	{
+		
+		  int_InvoiceNo=RandomStringUtils.randomNumeric(10);
+	     System.out.println(int_InvoiceNo);
+	 
+		 
+		return int_InvoiceNo;
 	}
 	private String str_DueTemplate;
 	private String str_TaxTemplate;
@@ -214,5 +253,46 @@ public class InvoiceBean implements Serializable{
 	         return dueList;
 	    }
 	      
+	}
+	private List<InvoiceTransaction> listInvoiceTransaction;
+	public List<InvoiceTransaction> getListInvoiceTransaction() {
+		listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction());
+		return listInvoiceTransaction;
+	}
+	public void setListInvoiceTransaction(
+			List<InvoiceTransaction> listInvoiceTransaction) {
+		this.listInvoiceTransaction = listInvoiceTransaction;
+	}
+	@ManagedProperty(value ="#{loginBean}")
+	private LoginBean loginBean;
+	
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
+	private List<String> str_Blocks;
+	public List<String> getStr_Blocks() {
+		str_Blocks=new ArrayList<String>();
+		str_Blocks.addAll(getInvoiceService().getBlockList(str_Organisation));
+		return str_Blocks;
+	}
+	public void setStr_Blocks(List<String> str_Blocks) {
+		this.str_Blocks = str_Blocks;
+	}
+	private List<String> str_BlockNo;
+	public List<String> getStr_BlockNo() {
+		return str_BlockNo;
+	}
+	public void setStr_BlockNo(List<String> str_BlockNo) {
+		this.str_BlockNo = str_BlockNo;
+	}
+	public List<String> blockChangeListener(ValueChangeEvent event)
+	{   str_Block=(String)event.getNewValue();
+		str_BlockNo=new ArrayList<String>();
+		str_BlockNo.addAll(getInvoiceService().getApartmentlist(str_Block));
+		return str_BlockNo;
 	}
 }

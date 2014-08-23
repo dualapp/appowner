@@ -22,7 +22,7 @@
               <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
                      <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
-                    <f:ajax event="change" execute="str_InvoiceTemplate" render="@all"/>
+                    <f:ajax event="change" execute="str_InvoiceTemplate" render="@form"/>
                  </p:selectOneMenu>
              </td>
           &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
@@ -39,7 +39,9 @@
                 <f:facet name="header">
                     <h:outputText value="Tax Applied" />
                 </f:facet>
-                 <h:outputText value="#{due.str_TaxTemplate}" />
+                 <h:outputText value="#{due.str_TaxTemplate}">
+                
+                  </h:outputText>
             </p:column>
             </p:dataTable>
           </td>
@@ -105,14 +107,15 @@
               &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
               <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}"  style="width:250px">
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="aaa" />
+                  <f:selectItem itemLabel="#{invoiceBean.str_Organisation}" />
                  </p:selectOneMenu>
              </td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;  &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
              <td><h:outputLabel value="Block:" /></td>
-              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}" style="width:250px">
+              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}" style="width:250px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="aaa" />
+                   <f:selectItems value="#{invoiceBean.str_Blocks}" />
+                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
                  </p:selectOneMenu>
              </td>
   </h:panelGroup>
@@ -123,7 +126,7 @@
               &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;  &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
               <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" style="width:250px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="aaa" />
+                     <f:selectItems value="#{invoiceBean.str_BlockNo}" />
                  </p:selectOneMenu>
              </td>
              </h:panelGroup>

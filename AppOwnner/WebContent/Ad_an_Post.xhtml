@@ -9,7 +9,7 @@
 <h:head>
     <title>Ad_an_Post</title>
 </h:head>
-<body  bgcolor="pink">
+<body bgcolor="pink">
   <h:form>
   <p:messages/>
   <fieldset>
@@ -17,33 +17,33 @@
    <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
      <h:panelGroup id="performed"  >
            
-              <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="option"  required="true" value="aaa"  style="width:150px">
-              <f:selectItem itemLabel="Shaffi Paradise" itemValue="Shaffi Paradise"  />
-             
-                 </p:selectOneMenu>
-             </td>
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
+             <tr> 
+        <td><h:outputLabel value="Organisation"  /></td>
+            <td><p:selectOneMenu id="str_ApartmentName"  style="width:150px">
+             <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  Value="#{cls_AddDetailBean.str_ApartmentName}"  />
+            
+            </p:selectOneMenu>
+            </td>
+            </tr>
+             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; 
              <td><h:outputText  value="Intent" /></td>
-               <td><p:selectOneMenu id="option1"  required="true" value="rtr"  style="width:150px">
+               <td><p:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Product_Type}" style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
                   <f:selectItem itemLabel="Buy" itemValue="Buy"  />
                   <f:selectItem itemLabel="Sell" itemValue="Sell"  />
                   <f:selectItem itemLabel="Rent" itemValue="Rent"  />
-                   
+                    <p:ajax event="change" process="option1"/>
                  </p:selectOneMenu>
              </td>
              
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; 
              <td><h:outputText  value="Status" /></td>
-               <td><p:selectOneMenu id="option2" value="#{cls_AddDetailsBean.ch_Ad_Type}" style="width:150px">
+               <td><p:selectOneMenu id="option2"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
                     <f:selectItem itemLabel="Pending Approval" itemValue="Pending Approval"  />
                      <f:selectItem itemLabel="Closed" itemValue="Closed"  />
-                  
-                   
-                 </p:selectOneMenu>
+                      </p:selectOneMenu>
                  </td>
                  <br />
                  <br />
@@ -63,20 +63,20 @@
              <h:panelGroup id="aa">
              &#150; &#150;&#150; &#150;&#150; &#150;&#150;
               <td><h:outputLabel value="Type" /></td>
-              <td><p:selectOneMenu id="option4" value="ghtyu"  style="width:150px">
+              <td><p:selectOneMenu id="option4" value="#{cls_AddDetailBean.ch_Ad_Type}" style="width:150px">
               <f:selectItem itemLabel="All" itemValue="All"  />
               <f:selectItem itemLabel="My Community" itemValue="My Community"  />
-              <f:selectItem itemLabel="Negihbourhood" itemValue="Negihbourhood"  />
+              <f:selectItem itemLabel="Negihbourhood" itemValue="Neighbourhood"  />
                
                  </p:selectOneMenu>
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
-               <h:commandButton  value="Go" action="#{cls_AddDetailsBean.searchByName}">
-               </h:commandButton>
+               <p:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" >
+               </p:commandButton>
              </h:panelGroup>
               </fieldset>
              
-             <p:button  value="Create New" outcome="Create_Details.xhtml"/>&#150; &#150;<p:button  value="View Selected" outcome="ViewDetail.xhtml"/>&#150; &#150;<p:button  value="Edit Selected" outcome="EditDetails.xhtml" />&#150; &#150;<p:button  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+             <p:button  value="Create New" outcome="Create_Detail.xhtml"/>&#150; &#150;<p:button  value="View Selected" outcome="ViewDetail.xhtml"/>&#150; &#150;<p:button  value="Edit Selected" outcome="EditDetails.xhtml" />&#150; &#150;<p:button  value="Refresh" icon="ui-icon-refresh"/>&#150; &#150;<p:menuButton value="Action">
         <p:menuitem value="Approval Selected" />
         <p:menuitem value="Reject Selected" />
         <p:menuitem value="Close Selected" />
@@ -85,5 +85,77 @@
        
              </h:form>
              </body>
+             
+             <h:form>
+        <h:body>
+        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 100%">
+          
+            <p:column>
+            <f:facet name="header">
+               <h:outputText value="Category" />
+                </f:facet>
+                <h:outputText value="#{per.var_Ad_CategoryName}" />
+               </p:column>
+            <p:column>
+            <f:facet name="header">
+               <h:outputText value="AD_Type" />
+                </f:facet>
+                <h:outputText value="#{per.ch_Ad_Type}" />
+               </p:column>
+            
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="I Want To" />
+                </f:facet>
+                <h:outputText value="#{per.ch_Product_Type}" />
+            </p:column>
+            
+            <p:column>
+            <f:facet name="header">  
+              <h:outputText value="Title" />
+                </f:facet>
+                <h:outputText value="#{per.var_Title}" />
+            </p:column>
+            
+             
+            <p:column>
+            <f:facet name="header">  
+              <h:outputText value="Date" />
+                </f:facet>
+                <h:outputText value="#{per.dt_date}" />
+            </p:column>
+            
+              
+              <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Description" />
+                </f:facet>
+                <h:outputText value="#{per.var_Description}" />
+            </p:column>
+            
+             
+             
+             
+                <p:column>
+            <f:facet name="header">
+               
+                    <h:outputText value="Update" />
+                </f:facet>
+	   			<h:link outcome="EditDetails.xhtml" value="Edit">
+	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
+	   		</h:link>
+	   		   
+	   			<h:link outcome="viewproduct.xhtml" value="View">
+	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
+	   		</h:link>
+	   		   
+	   			
+                </p:column>
+               </p:dataTable>
+               </h:body>
+               </h:form>
+              
           </ui:define>
           </ui:composition>

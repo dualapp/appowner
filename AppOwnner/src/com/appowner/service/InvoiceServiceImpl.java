@@ -37,5 +37,16 @@ public class InvoiceServiceImpl implements InvoiceService{
 	{
 		return getInvoiceDao().getTaxList(str);
 	}
-	
+	public List<InvoiceTransaction> listInvoiceTransaction()
+	{
+		return getInvoiceDao().listInvoiceTransaction();
+	}
+	public List<String> getBlockList(String str_Organisation)
+	{
+		return getInvoiceDao().getBlockList(str_Organisation);
+	}
+	public List<String> getApartmentlist(String str_Block)
+	{
+		return getInvoiceDao().getApartmentlist(str_Block);
+	}
 }

@@ -1,11 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      template="include/templates/template.xhtml">
-	<ui:define name="content">
+      xmlns:p="http://primefaces.org/ui">
+      
 <h:head>
     <title>Accounting Form</title>
     </h:head>
@@ -83,21 +82,25 @@
    <tr>
       <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}"  style="width:250px">
-                   <f:selectItems value="aaa" />
+                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="#{dueBean.str_Organisation}" itemValue="#{dueBean.str_Organisation}"/>
                  </p:selectOneMenu>
              </td>
              </tr>
              <tr>
              <td><h:outputLabel value="Block:" /></td>
-              <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}"  style="width:250px">
-                   <f:selectItems value="aaa" />
+              <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"  style="width:250px">
+                     <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{dueBean.str_Blocks}" />
+                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
                  </p:selectOneMenu>
              </td>
              </tr>
              <tr>
                <td><h:outputLabel value="Apt.No:" /></td>
               <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:250px">
-                   <f:selectItems value="aaa" />
+                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{dueBean.str_BlockNo}" />
                  </p:selectOneMenu>
              </td>
              </tr>
@@ -121,12 +124,19 @@
            </fieldset>
            <br/>
             <tr>
-                <td><p:commandButton id="submit" value="Submit" action="#{templateBean.addDueTransaction}" ajax="false" /></td>
-                <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" ajax="false"/></td>
+                <td><p:commandButton id="submit" value="Submit" action="#{dueBean.addDueTransaction}" onclick="EnrollLaterClick()" ajax="false" /></td>
+                <td align="right"><p:commandButton id="cancel" value="Cancel" onclick="" ajax="false"/></td>
            </tr>
+            <script>
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
+        }
+        </script>
+     
           </h:form>
           </body>
-          </ui:define>
-          
-   
-</ui:composition>
+         </html>

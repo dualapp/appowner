@@ -107,4 +107,23 @@ public class InvoiceTransaction implements Serializable{
 	private String str_TransactionDueTemplate;
 	@Column(name="var_TransactionTaxTemplate")
 	private String str_TransactionTaxTemplate;
+	@Column(name="var_Status")
+	private String str_Status;
+	public String getStr_Status() {
+		return str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
+	
+	
+	public String getInt_InvoiceNo() {
+		return int_InvoiceNo;
+	}
+	public void setInt_InvoiceNo(String int_InvoiceNo) {
+		this.int_InvoiceNo = int_InvoiceNo;
+	}
+	private String int_InvoiceNo;
+	
+	
 }

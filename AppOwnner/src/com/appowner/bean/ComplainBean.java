@@ -32,7 +32,7 @@ import com.appowner.service.ComplainService;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ComplainBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static final String ERROR   = "error";

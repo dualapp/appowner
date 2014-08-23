@@ -12,7 +12,7 @@
 	<h:head>
     <title>profit and loss Form</title>
     </h:head>
-   <h:form>
+    <h:form>
     <body>
     
                  <fieldset>
@@ -35,55 +35,8 @@
                  </p:selectOneMenu> 
                  <h:button value="go" ></h:button>
                  </fieldset>
-                 <h:commandButton value="createNew"  action="createnewassets"/>
-                  <p:dataTable  widgetVar="carsTable"  emptyMessage="No Vendors found with given criteria"    id="radioDT" editable="true" resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="asset" value="#{expenseBean.assetsList}"   >
-                <f:facet name="header">
-             
-                <h:outputText  value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px"    placeholder="Enter keyword"/>
-            
-       </f:facet>
-              
-              <f:facet name="header">
-            
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="radioDT" trigger="toggler" />
-        </f:facet>
-        
-          <p:column   sortBy="#{asset.str_OrganizationName}"  headerText="Organization" footerText="Organization" width="50">
-           
-              <h:outputText   value="#{asset.str_OrganizationName}" /> 
-               
-            </p:column>
-            <p:column   sortBy="#{asset.str_assetcat_name}"  headerText="Asset Name" footerText="Asset Category" width="50">
-           
-              <h:outputText   value="#{asset.str_assetcat_name}" /> 
-               
-            </p:column>
-            <p:column   sortBy="#{asset.str_AssetName}"  headerText="Asset Name" footerText="Asset Category" width="50">
-           
-              <h:outputText   value="#{asset.str_AssetName}" /> 
-               
-            </p:column>
-            <p:column   sortBy="#{asset.str_Block}"  headerText="Block" footerText="Block" width="50">
-           
-              <h:outputText   value="#{asset.str_Block}" /> 
-               
-            </p:column>
-            <p:column   sortBy="#{asset.date_AMCEndDate}"  headerText="AMCEndDate" footerText="Block" width="50">
-           
-              <h:outputText   value="#{asset.date_AMCEndDate}" /> 
-               
-            </p:column>
-            <p:column   sortBy="#{asset.dbl_Price}"  headerText="Asset Cost" footerText="Asset Cost" width="50">
-           
-              <h:outputText   value="#{asset.dbl_Price}" /> 
-               
-            </p:column>
-            
-            </p:dataTable>
-            
+                 <h:button value="createNew"/>
                  </body>
-                  </h:form>
+                 </h:form>
                  </ui:define>
                  </ui:composition>

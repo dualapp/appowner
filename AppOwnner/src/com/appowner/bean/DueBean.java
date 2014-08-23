@@ -9,9 +9,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.DueTransaction;
 import com.appowner.service.DueService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
@@ -33,8 +35,15 @@ public class DueBean implements Serializable{
 	private String str_InitiatedOn;
 	private Date dat_LastDate;
 	private String str_Organisation;
+	public String getStr_Status() {
+		return str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
 	private String str_Block;
 	private String str_ApartmentNo;
+	private String str_Status;
 	private Double dbl_DueAmount;
 	private Double dbl_TotalDueAmount;
 	public Integer getInt_DueTransactionID() {
@@ -85,6 +94,7 @@ public class DueBean implements Serializable{
 		this.dat_LastDate = dat_LastDate;
 	}
 	public String getStr_Organisation() {
+		str_Organisation=Util.getAppartmentName();
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
@@ -165,5 +175,26 @@ public class DueBean implements Serializable{
 		this.listDueTransaction = listDueTransaction;
 	}
 	private List<DueTransaction> listDueTransaction;
-	
+	private List<String> str_Blocks;
+	public List<String> getStr_Blocks() {
+		str_Blocks=new ArrayList<String>();
+		str_Blocks.addAll(getDueService().getBlockList(str_Organisation));
+		return str_Blocks;
+	}
+	public void setStr_Blocks(List<String> str_Blocks) {
+		this.str_Blocks = str_Blocks;
+	}
+	private List<String> str_BlockNo;
+	public List<String> getStr_BlockNo() {
+		return str_BlockNo;
+	}
+	public void setStr_BlockNo(List<String> str_BlockNo) {
+		this.str_BlockNo = str_BlockNo;
+	}
+	public List<String> blockChangeListener(ValueChangeEvent event)
+	{   str_Block=(String)event.getNewValue();
+		str_BlockNo=new ArrayList<String>();
+		str_BlockNo.addAll(getDueService().getApartmentlist(str_Block));
+		return str_BlockNo;
+	}
 }

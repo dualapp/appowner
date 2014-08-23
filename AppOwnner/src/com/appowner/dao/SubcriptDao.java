@@ -97,6 +97,10 @@ public interface SubcriptDao {
 
 	public List getMailIds();
 
+	public String getDocumentName(Integer int_Document_CatID);
+
+	public List getSearchByName(String username);
+
 	
 	
 	

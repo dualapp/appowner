@@ -23,16 +23,12 @@ public class StringConverter  implements Converter {
 		     if(c=='G')
 		     {
 		    	String str=c.toString();
-		    	System.out.println(str);
 		    	String str1=str.concat("eneric");
-		    	System.out.println(str1);
 		    	return str1;
 		     }
 		     else
 		     {String str3=c.toString();
-		       System.out.println(str3);
 		     String str4=str3.concat("ustom");
-		     System.out.println(str4);
 		     return str4;
 		     }
 	   }

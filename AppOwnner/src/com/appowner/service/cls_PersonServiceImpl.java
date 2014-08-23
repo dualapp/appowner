@@ -92,11 +92,7 @@ public class cls_PersonServiceImpl implements cls_PersonService {
 
 	@Override
 	public List<String> cityList() {
-		// TODO Auto-generated method stub
 		return getPersonDao().cityList();
 	}
-
-	
-
 	
 	}

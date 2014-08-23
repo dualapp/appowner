@@ -58,5 +58,25 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		System.out.println(taxlist);
 		return taxlist;
 	}
+	@SuppressWarnings("unchecked")
+	public List<InvoiceTransaction> listInvoiceTransaction()
+	{
+		return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<String> getBlockList(String str_Organisation)
+	{
+		String hql="select str_Block from User where str_Apartment=?";
+		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Organisation).list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<String> getApartmentlist(String str_Block)
+	{
+		String hql="select str_Flat from User where str_Block=?";
+		List<String> list=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).list();
+		System.out.println(list);
+		return list;
+	}
+	
 	
 }
