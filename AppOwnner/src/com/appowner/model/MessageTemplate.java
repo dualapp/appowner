@@ -81,14 +81,6 @@ public class MessageTemplate implements Serializable {
 	private String str_Title;
 	@Column(name="var_Description")
 	private String str_Description;
-	@Column(name="var_Organisation")
-	private String str_Organisation;
-	public String getStr_Organisation() {
-		return str_Organisation;
-	}
-	public void setStr_Organisation(String str_Organisation) {
-		this.str_Organisation = str_Organisation;
-	}
 	
 	
 }

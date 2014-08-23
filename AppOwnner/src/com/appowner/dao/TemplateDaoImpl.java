@@ -31,10 +31,11 @@ public class TemplateDaoImpl implements TemplateDao {
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> listRavenues()
-	{
+	{System.out.println("hi");
 	String hql=" select str_Acct_GroupName from AccountingGroup  where ch_Group='R'";
 	 
 	List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).list();
+	System.out.println(ravenueList);
 	return ravenueList; 
 	}
 	 public void saveTaxTemplate(TaxTemplate taxTemplate)
@@ -50,16 +51,9 @@ public class TemplateDaoImpl implements TemplateDao {
 		 getSessionFactory().getCurrentSession().save(messageTemplate);  
 	 }
 	 @SuppressWarnings("unchecked")
-	public List<DueTemplate> listDueTemplate(String str_Accounts)
-	 {   if(str_Accounts==null)
-	     {
-		    return (List<DueTemplate>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).list();
-	     }
-	 else
+	public List<DueTemplate> listDueTemplate()
 	 {
-		 String hql="from DueTemplate  where str_Accounts=?";
-		    return (List<DueTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Accounts).list();
-	 }
+		 return (List<DueTemplate>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).list();
 		 
 	 }
 	 @SuppressWarnings("unchecked")
@@ -72,23 +66,16 @@ public class TemplateDaoImpl implements TemplateDao {
 		 return (List<TaxTemplate>) getSessionFactory().getCurrentSession().createCriteria(TaxTemplate.class).list();
 	 }
 	 @SuppressWarnings("unchecked")
-	 public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category)
-	{  if(str_Mode==null && str_Category==null)
-	    {
+	public List<MessageTemplate> listMessageTemplate()
+	{
 		 return (List<MessageTemplate>) getSessionFactory().getCurrentSession().createCriteria(MessageTemplate.class).list(); 
-	     }
-	   else
-	   {
-		   String hql="from MessageTemplate  where str_Mode=? and str_Category=?";
-		   return (List<MessageTemplate>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Mode).setParameter(1,str_Category).list();
-	   }
-		 
 	 }
 	 @SuppressWarnings("unchecked")
 	public List<String> getTaxName(){
 		 String hql=" select str_TaxName from TaxTemplate";
 		 
 			List<String> taxList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).list();
+			System.out.println(taxList);
 			return taxList; 
 	 }
 	 public DueTemplate getDueTemplate(Integer int_DueTemplateID)
@@ -124,12 +111,12 @@ public class TemplateDaoImpl implements TemplateDao {
 		 sessionFactory.getCurrentSession().update(messageTemplate);
 	 }
 	
-	@SuppressWarnings("unchecked")
 	public List<String> getDueTemplate(String frequency)
-	{
-		String hql="select str_DueTemplate from DueTemplate where str_Frequency=?";
-		List<String> dueList=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,frequency).list();
-		//  List<String> dueList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).add(Restrictions.eq("salary", 2000));
+	 {    System.out.println(frequency);
+		  @SuppressWarnings("unchecked")
+		  List<String> dueList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).setProjection(Projections.property("str_DueTemplate")).list();
+		  System.out.println(dueList.iterator().hasNext());
+			System.out.println(dueList);
 			return dueList;  
 	 }
 	@SuppressWarnings("unchecked")
@@ -137,6 +124,7 @@ public class TemplateDaoImpl implements TemplateDao {
 	{
 		String hql="select str_Title from MessageTemplate where str_Category='Dues'";
 		List<String> str= (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).list();
+		System.out.println(str);
 		return str;
 		
 	}
@@ -146,21 +134,8 @@ public class TemplateDaoImpl implements TemplateDao {
 	 
 	   String hql1="select str_Description from MessageTemplate where int_MessageTemplateID="+ID;
 	   String str1= (String)getSessionFactory().getCurrentSession().createQuery(hql1).uniqueResult();
+	    System.out.println(str1);
 	    return str1;
 		
-	}
-	@SuppressWarnings("unchecked")
-	public List<DueTemplate> searchDueTemplate(String account)
-	{
-		 String hql="from DueTemplate  where str_Accounts=?";
-	    return (List<DueTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,account).list();
-	}
-	public void deleteDue(DueTemplate dueTemplate)
-	{
-		 sessionFactory.getCurrentSession().createQuery("DELETE FROM DueTemplate WHERE int_DueTemplateID = "+dueTemplate.getInt_DueTemplateID()).executeUpdate();
-	}
-	public void deleteInvoice(InvoiceTemplate invoice)
-	{
-		sessionFactory.getCurrentSession().createQuery("DELETE FROM InvoiceTemplate WHERE int_InvoiceTemplateID="+invoice.getInt_InvoiceTemplateID()).executeUpdate();
 	}
 }

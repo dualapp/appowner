@@ -2,6 +2,8 @@ package com.appowner.dao;
 
 import java.util.List;
 
+import com.appowner.model.BookAFacility;
+import com.appowner.model.MemberLog;
 import com.appowner.model.User;
 
 //import org.apache.catalina.realm.JNDIRealm.User;
@@ -65,7 +67,13 @@ public interface In_UserDao {
 
 	public User validateUser1(String str_Email);
 
-	public User getUserDetails(Integer int_UserId);
+	public void addMemberLog(MemberLog memberLog);
 
-	public void updateUs(User user);
+	public List<MemberLog> getListMemberLog();
+
+	public void addServiceRequest(ServiceRequest serviceRequest);
+
+	public void addBookAFacility(BookAFacility bookAFacility);
+
+	public List<BookAFacility> getBookAFacilityList();
 }

@@ -1,29 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	>
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 <h:head>
     <title>Create Message Template Form</title>
 </h:head>
 <body  bgcolor="pink">
   <h:form id="form" prependId="false">
-  
+  <p:panel id="panel" header="Crate New Message Template" style="margin-bottom:20px;"> 
    <fieldset>
     <legend>
    <h:commandButton value="Create Message Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
       <table>
             <tr>
             <td>  <h:outputText  value="Created By" /></td>
-            <td>  <p:inputText id="str_CreatedBy" value="#{templateBean.str_CreatedBy}" size="25"/> </td>
+            <td>  <p:inputText id="str_CreatedBy" value="Praveen Kumar" size="25"/> </td>
           </tr>
           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
           
           <tr>
             <td>  <h:outputText  value="Email" /></td>
-            <td>  <p:inputText id="str_Email" value="#{templateBean.str_Email}" size="25"/> </td>
+            <td>  <p:inputText id="str_Email" value="praveen.ghosh123@gmail.com" size="25"/> </td>
           </tr>
             <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
@@ -68,18 +69,11 @@
           </fieldset>
           <br/>
            <tr>
-                <td align="justify"><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()" action="#{templateBean.addMessageTemplate}" ajax="false" /></td>
+                <td align="justify"><p:commandButton id="submit" value="Submit" action="#{templateBean.addMessageTemplate}" ajax="false" /></td>
                 <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" ajax="false"/></td>
             </tr>
-         <script>
-        function EnrollNowClick() {
-            PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
-        }
-        function EnrollLaterClick() {
-            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
-        }
-        </script>
+          </p:panel>
           </h:form>
           </body>
-</html>
+</ui:define>
+</ui:composition>

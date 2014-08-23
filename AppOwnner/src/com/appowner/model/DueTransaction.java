@@ -108,13 +108,4 @@ public class DueTransaction implements Serializable{
 	}
 	private Double dbl_DueAmount;
 	private Double dbl_TotalDueAmount;
-	@Column(name="var_Status")
-	private String str_Status;
-
-	public String getStr_Status() {
-		return str_Status;
-	}
-	public void setStr_Status(String str_Status) {
-		this.str_Status = str_Status;
-	}
 }

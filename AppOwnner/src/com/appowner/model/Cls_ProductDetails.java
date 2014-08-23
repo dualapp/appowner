@@ -1,7 +1,6 @@
 package com.appowner.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,33 +30,18 @@ public class Cls_ProductDetails implements Serializable {
 		this.int_Ad_categoryId = int_Ad_categoryId;
 	}
 	@Column
-	private String Ch_Product_Type;
+	private char Ch_Product_Type;
 	@Column
 	private String Var_Title;
 	@Column
 	private String Var_FileName;
 	@Column
-	private String Ch_Ad_Type;
+	private char Ch_Ad_Type;
 	@Column
 	private int UserId;
 	@Column
 	private int ApartementId;
-	private String username;
-	private Date dt_date;
 	
-	
-	public Date getDt_date() {
-		return dt_date;
-	}
-	public void setDt_date(Date dt_date) {
-		this.dt_date = dt_date;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	public int getApartementId() {
 		return ApartementId;
 	}
@@ -71,11 +55,11 @@ public class Cls_ProductDetails implements Serializable {
 		UserId = userId;
 	}
 	
-	public String getCh_Ad_Type() {
+	public char getCh_Ad_Type() {
 		return Ch_Ad_Type;
 	}
-	public void setCh_Ad_Type(String string) {
-		Ch_Ad_Type = string;
+	public void setCh_Ad_Type(char ch_Ad_Type) {
+		Ch_Ad_Type = ch_Ad_Type;
 	}
 	@Column
 	private String Var_ImageName;
@@ -89,10 +73,12 @@ public class Cls_ProductDetails implements Serializable {
 	public void setInt_ProductId(Integer int_ProductId) {
 		Int_ProductId = int_ProductId;
 	}
-	public String getCh_Product_Type() {
+	
+	
+	public char getCh_Product_Type() {
 		return Ch_Product_Type;
 	}
-	public void setCh_Product_Type(String ch_Product_Type) {
+	public void setCh_Product_Type(char ch_Product_Type) {
 		Ch_Product_Type = ch_Product_Type;
 	}
 	public String getVar_Title() {

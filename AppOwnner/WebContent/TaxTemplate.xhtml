@@ -8,72 +8,7 @@
 	<ui:define name="content">
 <h:head>
     <title>TaxTemplate  Form</title>
-    <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
-    <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
    </h:head>
-    <script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading_home.gif");
- modalWin.SetCloseButtonImagePath("images/cross.png");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-
-function ShowNewPage(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('Create New Tax.xhtml',470,600,'Create New Tax Template',null,callbackFunctionArray);
- }
-
-	 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
-
-}
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Submit(msg){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function HideModalWindow() {
-    modalWin.HideModalPopUp();
-}
-
-</script>
 <body  bgcolor="pink">
   <h:form id="form" prependId="false">
   <fieldset>
@@ -82,9 +17,8 @@ function HideModalWindow() {
      <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:200px">
-                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
+              <td><p:selectOneMenu id="option" value="aaa"  style="width:200px">
+                   <f:selectItems value="aaa" />
                  </p:selectOneMenu>
              </td>
               &#150; &#150;&#150; &#150;&#150;
@@ -95,7 +29,10 @@ function HideModalWindow() {
                 </fieldset>
                 <br/>
                 
-             <input type="button" style="width: 140px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <button  onClick="window.open('Create New Tax.xhtml',
+  'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
+  status=no,scrollbars=no,resize=no');return false">
+Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
                <br/>
              <br/>
               
@@ -105,13 +42,7 @@ function HideModalWindow() {
   <h:form>
   <h:body>
         <h:outputText value="Tax Template: " color="red"></h:outputText>
-        <p:dataTable id="tax" var="tax" value="#{templateBean.listTaxs}" style="width: 80%" >
-         <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Organisation Name" />
-                </f:facet>
-                <h:outputText value="#{tax.str_Organisation}" />
-            </p:column>
+        <p:dataTable id="tax" var="tax" value="#{templateBean.listTaxs}" style="width: 40%" align="center">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Tax TemplateName" />
@@ -126,7 +57,7 @@ function HideModalWindow() {
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Tax Limit" />
+                    <h:outputText value="TaxExemption" />
                 </f:facet>
                 <h:outputText value="#{tax.int_TaxExemption}" />
             </p:column>
@@ -135,7 +66,7 @@ function HideModalWindow() {
                     <h:outputText value="Action" />
                 </f:facet>
                  
-                <h:link outcome="EditTaxTemplate.xhtml">
+                <h:link outcome="EditMessageTemplate.xhtml">
                 <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
                 <f:param name="int_TaxTemplateID" value="#{tax.int_TaxTemplateID}"/>
                 </h:link>

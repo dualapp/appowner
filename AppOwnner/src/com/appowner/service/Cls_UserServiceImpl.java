@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.bean.Cls_UserBean;
 import com.appowner.dao.In_UserDao;
+import com.appowner.model.BookAFacility;
+import com.appowner.model.MemberLog;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 //import com.appowner.model.User.*;
 import com.appowner.model.UserApartment;
@@ -163,18 +166,35 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	}
 
 	@Override
-	public User getUserList1(Integer int_UserId) {
-		// TODO Auto-generated method stub
-		return getIn_userdao().getUserDetails(int_UserId);
-	}
-
-	@Override
-	public void updateUs(User user) {
-		getIn_userdao().updateUs(user);
+	public void addMemberLog(MemberLog memberLog) {
+		getIn_userdao().addMemberLog(memberLog);
 		
 	}
 
-	
+	@Override
+	public List<MemberLog> getListMemberLog() {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getListMemberLog();
+	}
+
+	@Override
+	public void addServiceRequest(ServiceRequest serviceRequest) {
+		getIn_userdao().addServiceRequest(serviceRequest);
+		
+	}
+
+	@Override
+	public void addBookAFacility(BookAFacility bookAFacility) {
+		// TODO Auto-generated method stub
+		getIn_userdao().addBookAFacility(bookAFacility);
+		
+	}
+
+	@Override
+	public List<BookAFacility> getBookAFacilityList() {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getBookAFacilityList();
+	}
 	}
 
 	 

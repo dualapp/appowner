@@ -13,6 +13,7 @@ import com.appowner.model.Vendor;
 import com.appowner.model.VendorServiceDetails;
 import com.appowner.model.WaterPayment;
 import com.appowner.model.WaterVendorTransaction;
+import com.appowner.model.WorkOrderCategory;
 
 @Service("VendorService")
 @Transactional 
@@ -226,6 +227,24 @@ public void setVendordao(VendorDao vendordao) {
 	public List<Vendor> getVendorListByName(String str_VendorName) {
 		// TODO Auto-generated method stub
 		return getVendordao().getVendorListByName(str_VendorName);
+	}
+
+	@Override
+	public List<String> getStr_VendorTypeList() {
+		// TODO Auto-generated method stub
+		return getVendordao().getStr_VendorTypeList();
+	}
+
+	@Override
+	public List<WorkOrderCategory> getWorkOrderCategoryList() {
+		// TODO Auto-generated method stub
+		return getVendordao().getWorkOrderCategoryList();
+	}
+
+	@Override
+	public void saveWorkOrderCategory(WorkOrderCategory workOrderCategory) {
+		// TODO Auto-generated method stub
+		getVendordao().saveWorkOrderCategory(workOrderCategory);
 	}
 
 	 

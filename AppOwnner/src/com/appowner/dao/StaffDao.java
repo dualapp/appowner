@@ -13,5 +13,4 @@ public interface StaffDao {
 	 public List<Staff> listStaffRoles();
 	  public List<CommiteeRole> listCommiteeRoles();
 	  public List<RoleMaster> listRoleMaster();
-	public Long getNoOfRoles();
 }

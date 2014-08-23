@@ -24,17 +24,14 @@ public class Util {
 	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	        return  session.getAttribute("username").toString();
 	      }
-	       public static String getApartmentName()
-	       {
-	    	   HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		        return  session.getAttribute("str_Apartment").toString();  
-	       }
-	       public static String getEmail(){
-	    	   HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		        return  session.getAttribute("str_Email").toString();   
-	       }
+	      public static String getAppartmentName()
+	      {
+	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return  session.getAttribute("ApartmentName").toString();
+	      }
+	       
 	      
-	     public static Integer AppartmentId()
+	     public static Integer getAppartmentId()
 	      {
 	    	  HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	    	  return   (Integer) session.getAttribute("int_ApartmentId");
@@ -47,11 +44,7 @@ public class Util {
 	        else
 	            return null;
 	      }
-     public static Double getSqft()
-     {
-    	 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-   	  return   (Double) session.getAttribute("sqft");
-     }
+
 		 
 		 
 

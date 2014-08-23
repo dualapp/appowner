@@ -25,7 +25,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	public List<String> getInvoiceName()
 	{
 		List<String> invoiceList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).setProjection(Projections.property("str_InvoiceTemplateName")).list();
-		
+		  System.out.println(invoiceList);
 		  return  invoiceList;
 	}
 	public void saveInvoiceTransaction(InvoiceTransaction invoice)
@@ -36,14 +36,14 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String taxList(String select) {
-		
+		System.out.println(select);
 		String hql="Select int_InvoiceTemplateID from InvoiceTemplate  where str_InvoiceTemplateName=?";
 		int invoiceID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).uniqueResult();
-		
+		System.out.println(invoiceID);
 		String hql1="select str_DueInvoiceTemplate from InvoiceTemplate where int_InvoiceTemplateID="+invoiceID;
 		String taxlist= (String) getSessionFactory().getCurrentSession().createQuery(hql1).uniqueResult();
 		
-		
+		System.out.println(taxlist);
 		return taxlist;
 	}
 	@SuppressWarnings("unchecked")
@@ -51,58 +51,12 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	{
 		String hql="Select int_DueTemplateID from DueTemplate  where str_DueTemplate=?";
 		int dueID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).uniqueResult();
-		
+		System.out.println(dueID);
 		String hql1="from DueTemplate where int_DueTemplateID="+dueID;
 		List<String> taxlist= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).list();
-	
+		System.out.println(taxlist.iterator().hasNext());
+		System.out.println(taxlist);
 		return taxlist;
 	}
-	@SuppressWarnings("unchecked")
-	public List<InvoiceTransaction> listInvoiceTransaction()
-	{
-		return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
-	}
-	@SuppressWarnings("unchecked")
-	public List<String> getBlockList(String str_Organisation)
-	{
-		String hql="select str_Block from User where str_Apartment=?";
-		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Organisation).list();
-	}
-	@SuppressWarnings("unchecked")
-	public List<String> getApartmentlist(String str_Block)
-	{
-		String hql="select str_Flat from User where str_Block=?";
-		List<String> list=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).list();
-	
-		return list;
-	}
-	public double getTaxAmount(String str1)
-	
-	{
-		System.out.println("dddddddd");
-		System.out.println(str1);
-	
-		String hql="select int_Percentage from TaxTemplate where str_TaxName=?";
-		System.out.println("sssssssssss");
-		double ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str1).uniqueResult();
-		System.out.println("gggggggggggggg");
-	     System.out.println(ddd);
-		return ddd;
-	
-	}
-	public double getSqft(String str)
-	{
-		String hql="select sqft from User where str_Flat=?";
-		double ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str).uniqueResult();
-	
-		return ddd;
-	}
-	public String getmailid(String str_ApartmentNo)
-	{
-		String hql="select str_Email from User where str_Flat=?";
-		return (String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).uniqueResult();
-	}
-	
-	
 	
 }

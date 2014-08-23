@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.appowner.dao.ComplainDao;
 import com.appowner.dao.TemplateDao;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
@@ -49,9 +50,9 @@ public class TemplateServiceImpl implements TemplateService {
 	{
 		getTemplateDao().saveMessageTemplate(messageTemplate);
 	}
-	public List<DueTemplate>  listDueTemplate(String str_Accounts)
+	public List<DueTemplate>  listDueTemplate()
 	{
-		return getTemplateDao().listDueTemplate(str_Accounts);
+		return getTemplateDao().listDueTemplate();
 	}
 	public List<InvoiceTemplate> listInvoiceTemplate(){
 		return getTemplateDao().listInvoiceTemplate();
@@ -60,9 +61,9 @@ public class TemplateServiceImpl implements TemplateService {
 	{
 		return getTemplateDao().listTaxTemplate();
 	}
-	 public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category)
+	  public List<MessageTemplate> listMessageTemplate()
 	  {
-		  return getTemplateDao().listMessageTemplate(str_Mode,str_Category);  
+		  return getTemplateDao().listMessageTemplate();  
 	  }
 	  public List<String> getTaxName()
 	  {
@@ -111,19 +112,4 @@ public class TemplateServiceImpl implements TemplateService {
 	  {
 		  return getTemplateDao().getDescription(str); 
 	  }
-	  public List<DueTemplate> searchDueTemplate(String account)
-	  {
-		  return getTemplateDao().searchDueTemplate(account);
-	  }
-	  public void deleteDue(DueTemplate dueTemplate)
-	  {
-		   getTemplateDao().deleteDue(dueTemplate);
-	  }
-	  public void deleteInvoice(InvoiceTemplate invoice)
-	  {
-		  getTemplateDao().deleteInvoice(invoice);
-	  }
-	
-	  
-	  
 }

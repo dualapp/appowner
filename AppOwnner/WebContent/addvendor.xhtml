@@ -26,11 +26,8 @@
             <tr> <td><h:outputText value="Vendor CATEGORY: " /></td>
                 <td>
         <p:selectOneMenu value="#{vendorBean.str_VendorType}">
-            <f:selectItem itemLabel="Select One" itemValue="" />
-            <f:selectItem itemLabel="Electrician" itemValue="Electrician" />
-            <f:selectItem itemLabel="WaterSupplier" itemValue="WaterSupplier" />
-            <f:selectItem itemLabel="MilkProvider" itemValue="MilkProvider" />
-             <f:selectItem itemLabel="IronMan" itemValue="IronMan" />
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
                
         </p:selectOneMenu>
         </td>

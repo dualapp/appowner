@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.List;
 
 import com.appowner.bean.Cls_UserBean;
+import com.appowner.model.BookAFacility;
+import com.appowner.model.MemberLog;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 
@@ -50,12 +53,14 @@ public interface In_UserService {
 
 	public User validate1(String str_Email);
 
-	public User getUserList1(Integer int_UserId);
+	public void addMemberLog(MemberLog memberLog);
 
-	public void updateUs(User user);
+	public List<MemberLog> getListMemberLog();
 
-	//public void updateU(User user);
+	public void addServiceRequest(ServiceRequest serviceRequest);
 
-	
+	public void addBookAFacility(BookAFacility bookAFacility);
+
+	public List<BookAFacility> getBookAFacilityList();
 }
 

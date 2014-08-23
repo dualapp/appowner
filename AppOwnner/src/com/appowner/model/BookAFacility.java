@@ -22,6 +22,9 @@ public class BookAFacility implements Serializable{
 	private String  str_EndTime;
 	@Column(name="var_EventType")
 	private String  str_EventType;
+	@Column(name="var_EventName")
+	private String  str_EventName;
+	
 	@Column(name="var_FacilityType")
 	private String  str_FacilityType;
 	@Column 
@@ -32,6 +35,18 @@ public class BookAFacility implements Serializable{
 	@Column (name="var_EmailId")
 	private String Str_EmailId;
 	 
+	public String getStr_EventName() {
+		return str_EventName;
+	}
+	public void setStr_EventName(String str_EventName) {
+		this.str_EventName = str_EventName;
+	}
+	public String getStr_Description() {
+		return Str_Description;
+	}
+	public void setStr_Description(String str_Description) {
+		Str_Description = str_Description;
+	}
 	@Column (name="var_Description")
 	private String Str_Description;
 	@Column (name="str_OpenDate")

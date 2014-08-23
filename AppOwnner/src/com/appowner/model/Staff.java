@@ -65,12 +65,5 @@ public class Staff implements Serializable {
 	private Integer int_isDelete;
 	@Column(name="int_Apartment_ID")
 	private Integer int_ApartmentID;
-	private Integer flag;
-	public Integer getFlag() {
-		return flag;
-	}
-	public void setFlag(Integer flag) {
-		this.flag = flag;
-	}
 	
 }

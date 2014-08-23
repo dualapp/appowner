@@ -39,7 +39,7 @@
             <h:link outcome="EditCategoriesName.xhtml" value="Edit" action="#{update.saveUser1}">
 	   			<f:param name="int_Document_CatID" value="#{user.int_Document_CatID}" />
 	   			</h:link>
-	   			<p:commandButton value="delete" action="#{update.deletedocument(user.int_Document_CatID)}" />
+	   			<h:commandButton value="delete" action="#{update.deletedocument(user.int_Document_CatID)}" />
 	   			  </p:column>
          </p:dataTable>
         <tr>
@@ -52,7 +52,7 @@
              </tr> 
                 <br />
         <br />         
-          <p:commandButton id="AddDocument" value="Add Categories" action="#{scriptBean.AddDocument}" ajax="false"/> 
+          <h:commandButton id="AddDocument" value="Add Categories" action="#{scriptBean.AddDocument}" ajax="false"/> 
       
          </h:form>
        

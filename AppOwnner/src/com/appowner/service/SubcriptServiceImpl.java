@@ -43,8 +43,6 @@ import java.util.List;
 
 
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,8 +84,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
-
-
 
 
 import com.appowner.dao.SubcriptDao;
@@ -323,15 +319,7 @@ public   class SubcriptServiceImpl implements SubcriptService {
 	public List getMailIds() {
 		return getSubcriptDao().getMailIds();
 	}
-	public String getDocumentName(Integer int_Document_CatID)
-	{
-		return getSubcriptDao().getDocumentName(int_Document_CatID);
-	}
 
-	@Override
-	public List getSearchByName(String username) {
-		return getSubcriptDao().getSearchByName(username);
-	}
 	
 
 	

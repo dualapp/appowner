@@ -2,13 +2,13 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml">
-	<ui:define name="content">
+	 
 	
 	<h:head>
     <title>profit and loss Form</title>
@@ -34,7 +34,7 @@
  //Uncomment below line to make look buttons as link
  //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
-function ShowNewPage(){
+function ShowNewPage3(){
  var callbackFunctionArray = new Array(Submit, Cancel);
  modalWin.ShowURL('createnewchartofaccount.xhtml',200,400,'Create New ',null,callbackFunctionArray);
  }
@@ -92,7 +92,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 </script>
     </h:head>
  
-    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    <h:form id="form2" enctype="multipart/form-data" prependId="false"> 
     <body>
     
                  <fieldset>
@@ -119,14 +119,14 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                  </table>
                  
 </fieldset>
- <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />
+ <input type="button" style="width: 150px" onclick="ShowNewPage3()" value="Create New" />
   
  <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="c" value="#{expenseBean.chartOfAccountList}">
+             id= "dataTable2" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="c" value="#{expenseBean.chartOfAccountList}">
 	<f:facet name="header">
            Chart Of Account
                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        <p:columnToggler datasource="dataTable2" trigger="toggler" />
         </f:facet>
         <p:column headerText="Organization">
                
@@ -145,10 +145,9 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
           </p:column>
         </p:dataTable>
         </body>
-        </h:form>
-        </ui:define>
-        </ui:composition>
- 
+     
+ </h:form>
+ </html>
  
  
  

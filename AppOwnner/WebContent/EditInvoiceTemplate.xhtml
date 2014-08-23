@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
-	
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
 	  <f:metadata>
 	<f:viewParam name="int_InvoiceTemplateID" value="#{templateBean.int_InvoiceTemplateID}"  />
 	 
@@ -17,7 +18,6 @@
 <h:body>
 
  <h:form>
- <fieldset>
     <h:panelGrid columns="2">
         <h:outputText value="Invoice Template" />
         <h:inputText value="#{templateBean.invoiceTemplate.str_InvoiceTemplateName}" />
@@ -34,19 +34,13 @@
         <h:inputText value="#{templateBean.invoiceTemplate.str_Description}" />
         
          </h:panelGrid>
- </fieldset> 
-  <br/>
-   <h:panelGroup style="display:block; text-align:right">
-     <tr>
-                <td><h:commandButton id="submit" value="Submit" action="#{templateBean.saveInvoiceTemplate}" ajax="false" /></td>
-                <td><h:commandButton id="cancel" value="Cancel" action="#{templateBean.cancelInvoice}" ajax="false"/></td>
-            </tr>
-    </h:panelGroup>
+ <h:commandButton  value="Submit"  action="#{templateBean.saveInvoiceTemplate}"/>
   
    
 </h:form>
 </h:body>
-</html>
+</ui:define>
+</ui:composition>
  
    
     

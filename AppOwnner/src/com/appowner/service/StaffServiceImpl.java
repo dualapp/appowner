@@ -48,8 +48,4 @@ public class StaffServiceImpl implements StaffService {
 	  {
 		  return  getStaffDao().listRoleMaster();  
 	  }
-		public Long getNoOfRoles()
-		{
-			 return  getStaffDao().getNoOfRoles();
-		}
 }

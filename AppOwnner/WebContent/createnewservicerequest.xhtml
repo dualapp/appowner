@@ -9,21 +9,43 @@
 	<ui:define name="content">
 <h:head>
     </h:head>
+    <a href="servicerequest.xhtml">>>Back To Service Request</a >
     <h:form>
     <h:body>
-    <table><tr><td><h:outputText value="Created by"/><h:inputText value="#{loginBean.userloginname}"/></td><td><h:outputText value="Organization"/><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
-    <tr><td><h:outputText value="Organization"/><h:inputText value="#{loginBean.str_ApartmentName}"/><h:outputText value="Block"/><h:inputText value=" #{loginBean.str_Block}"/></td></tr>
-   <tr><td><h:outputText value="Apartment"/><h:inputText value="#{loginBean.str_ApartmentName}"/><h:outputText value="Type"/><h:inputText value=" #{loginBean.str_Type}"/></td></tr>
+    <table><tr><td><h:outputText value="Created by"/></td>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><td><h:outputText value="Organization"/></td>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
+   <tr><td><h:outputText value="Flat Name"/></td> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
     
-    <tr><td><h:outputText value="Name"/><h:inputText value="#{loginBean.userloginname}"/><h:outputText value="Email"/><h:inputText value=" #{loginBean.str_Email}"/></td></tr>
-    <tr><td><h:outputText value="Mobile"/><h:inputText value="#{loginBean.str_Mobile}"/><h:outputText value="LandLine"/><h:inputText value=" #{loginBean.str_LandLineNo}"/></td></tr>
-   <tr><td><outputText value="Service Request Details"/></td></tr>
-    <tr><td><h:outputText value="Date Open"/><h:inputText value="#{loginBean.date_OpenDate}"/><h:outputText value="Date Closed"/><h:inputText value=" #{loginBean.date_ClosedDate}"/></td></tr>
-    <tr><td><h:outputText value="Status"/><h:inputText value="#{loginBean.str_status}"/><h:outputText value="VendorCategory"/><h:inputText value=" #{loginBean.str_VendorType}"/></td></tr>
-   <tr><td><h:outputText value="Title*"/><h:inputText value="loginBean.str_Title"/></td></tr>
-   <tr><td><h:outputText value="Description*"/></td><td><p:editor id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td></tr>
+    <tr><td><h:outputText value="Name"/></td> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Email"/></td>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
+    <tr><td><h:outputText value="Mobile"/></td>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <td><h:outputText value="LandLine"/></td>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+   <tr><td><h2><h:outputText value="Service Request Details"/></h2></td></tr>
+    <tr><td><h:outputText value="Date Open"/></td>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <td><h:outputText value="Date Closed"/></td>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><td><h:outputText value="Status"/></td> <td><h:inputText value="#{loginBean.str_Status}"/></td>   <td><h:outputText value="VendorCategory"/></td>  <td><p:selectOneMenu value="#{loginBean.str_VendorType}">
+    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></p:selectOneMenu>
+    </td></tr>
+   <tr><td><h:outputText value="Title*"/></td>  <td><h:inputText value="#{loginBean.str_Title}"/></td></tr>
+   </table>
+   <table>
+   <tr><td><h:outputText value="Description*"/></td>  <td></td><td><p:editor id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td></tr>
+   <tr><td> <h:commandButton style="width:100px" onClick="EnrollLaterClick()" value="Submit" action="#{loginBean.addServiceRequest()}"/></td><td> <h:commandButton style="width:100px" value="Cancel" action="#"/> </td></tr>
+                 
     </table>
+    <script>
+	 
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Do u want to sent Email to Manager');
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
     </h:body>
+    <a href="servicerequest.xhtml">>>Back To Service Request</a >
     </h:form>
 	</ui:define>
 </ui:composition>

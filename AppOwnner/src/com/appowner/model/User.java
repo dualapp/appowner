@@ -185,12 +185,5 @@ public class User implements Serializable{
 	public void setInt_activationbit(Integer int_activationbit) {
 		this.int_activationbit = int_activationbit;
 	}
-	@Column(name="SqareFeet")
-	private Double sqft;
-	public Double getSqft() {
-		return sqft;
-	}
-	public void setSqft(Double sqft) {
-		this.sqft = sqft;
-	}
+	
 }

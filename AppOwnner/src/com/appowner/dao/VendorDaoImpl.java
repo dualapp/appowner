@@ -20,6 +20,7 @@ import com.appowner.model.VendorServiceDetails;
 import com.appowner.model.VendorState;
 import com.appowner.model.WaterPayment;
 import com.appowner.model.WaterVendorTransaction;
+import com.appowner.model.WorkOrderCategory;
  
 @Repository
 public class VendorDaoImpl implements VendorDao{
@@ -287,7 +288,20 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<String> getStr_VendorTypeList() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setProjection(Projections.property("str_VendorType")).list();
+		return sessionFactory.getCurrentSession().createCriteria(WorkOrderCategory.class).setProjection(Projections.property("str_VendorCategoryType")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<WorkOrderCategory> getWorkOrderCategoryList() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createCriteria(WorkOrderCategory.class).list();
+	}
+
+	@Override
+	public void saveWorkOrderCategory(WorkOrderCategory workOrderCategory) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(workOrderCategory);
 	}
 
 	 

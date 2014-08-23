@@ -5,35 +5,24 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-
-
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIData;
-import javax.faces.component.html.HtmlDataTable;
-import javax.faces.component.html.HtmlInputHidden;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
+
+
 import javax.faces.event.ValueChangeEvent;
 
-import com.appowner.model.Complain;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.MessageTemplate;
 import com.appowner.model.TaxTemplate;
 import com.appowner.service.TemplateService;
-import com.appowner.util.Util;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class TemplateBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	//private static final String dueTemplate1="dueTemplate";
 	@ManagedProperty(value = "#{TemplateService}")
 	private TemplateService templateService;
 	public TemplateService getTemplateService() {
@@ -74,7 +63,12 @@ public class TemplateBean implements Serializable {
 	public void setStr_Calculation(String str_Calculation) {
 		this.str_Calculation = str_Calculation;
 	}
-	
+	public String getStr_Rate() {
+		return str_Rate;
+	}
+	public void setStr_Rate(String str_Rate) {
+		this.str_Rate = str_Rate;
+	}
 	public String getStr_TaxTemplate() {
 		return str_TaxTemplate;
 	}
@@ -83,7 +77,6 @@ public class TemplateBean implements Serializable {
 	}
 	private String str_Organisation;
 	public String getStr_Organisation() {
-		str_Organisation=Util.getApartmentName();
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
@@ -93,7 +86,7 @@ public class TemplateBean implements Serializable {
 	private String str_Accounts;
 	private String str_Frequency;
 	private String str_Calculation;
-	private Double str_Rate;
+	private String str_Rate;
 	private String str_TaxTemplate;
 	private List<String> ravenues;
 	public List<String> getRavenues() {
@@ -122,7 +115,7 @@ public class TemplateBean implements Serializable {
 		this.dueTemplate = dueTemplate;
 	}
 	public void getDueTemplate1()
-	{   System.out.println(int_DueTemplateID);
+	{
 		dueTemplate=getTemplateService().getDueTemplate(int_DueTemplateID);
 	}
 	public String addDueTemplate()
@@ -134,11 +127,10 @@ public class TemplateBean implements Serializable {
 		duetemplate.setStr_Calculation(getStr_Calculation());
 		duetemplate.setStr_DueTemplate(getStr_DueTemplate());
 		duetemplate.setStr_Frequency(getStr_Frequency());
-		duetemplate.setStr_Rate(str_Rate);
+		duetemplate.setStr_Rate(getStr_Rate());
 		duetemplate.setStr_TaxTemplate(getStr_TaxTemplate());
 		getTemplateService().saveDueTemplate(duetemplate);
-		//return "Due Template.xhtml?faces-redirect=true";
-		return null;
+		return "Due Template.xhtml";
 	   }
 		catch(Exception e)
 		{
@@ -147,17 +139,11 @@ public class TemplateBean implements Serializable {
 		return null;
 	}
 	
-	public Double getStr_Rate() {
-		return str_Rate;
-	}
-	public void setStr_Rate(Double str_Rate) {
-		this.str_Rate = str_Rate;
-	}
 	private List<DueTemplate> listDues;
 	
 	public List<DueTemplate> getListDues() {
 		listDues=new ArrayList<DueTemplate>();
-	  	listDues.addAll(getTemplateService().listDueTemplate(str_Accounts));
+		listDues.addAll(getTemplateService().listDueTemplate());
 		return listDues;
 	}
 	public void setListDues(List<DueTemplate> listDues) {
@@ -174,31 +160,6 @@ public class TemplateBean implements Serializable {
 		
 		return "Due Template.xhtml";
 	}
-  
-   
-	public String getSearch()
-    {
-		 listDues=new ArrayList<DueTemplate>();
-		  	listDues.addAll(getTemplateService().listDueTemplate(str_Accounts));
-			return "Due Template.xhtml";
-    }   
-	public String deleteDue(){
-		DueTemplate dueTemplate=new DueTemplate();
-		System.out.println(int_DueTemplateID);
-	dueTemplate.setInt_DueTemplateID(int_DueTemplateID);
-	getTemplateService().deleteDue(dueTemplate);
-		return "Due Template.xhtml?faces-redirect=true";
-	  
-	}
-	
-    public String cancelDue() {
-		return "Due Template.xhtml?faces-redirect=true";
-	}
-
-
-
-	
-	
 	//TAX TEMPLATE
 	private Integer int_TaxTemplateID;
 	public Integer getInt_TaxTemplateID() {
@@ -207,17 +168,16 @@ public class TemplateBean implements Serializable {
 	public void setInt_TaxTemplateID(Integer int_TaxTemplateID) {
 		this.int_TaxTemplateID = int_TaxTemplateID;
 	}
-	
-	public Double getInt_Percentage() {
+	public Integer getInt_Percentage() {
 		return int_Percentage;
 	}
-	public void setInt_Percentage(Double int_Percentage) {
+	public void setInt_Percentage(Integer int_Percentage) {
 		this.int_Percentage = int_Percentage;
 	}
-	public Double getInt_TaxExemption() {
+	public Integer getInt_TaxExemption() {
 		return int_TaxExemption;
 	}
-	public void setInt_TaxExemption(Double int_TaxExemption) {
+	public void setInt_TaxExemption(Integer int_TaxExemption) {
 		this.int_TaxExemption = int_TaxExemption;
 	}
 	public String getStr_TaxName() {
@@ -226,8 +186,8 @@ public class TemplateBean implements Serializable {
 	public void setStr_TaxName(String str_TaxName) {
 		this.str_TaxName = str_TaxName;
 	}
-	private Double int_Percentage;
-	private Double int_TaxExemption;
+	private Integer int_Percentage;
+	private Integer int_TaxExemption;
 	private String str_TaxName;
 	public String addTaxTemplate()
 	{ try{
@@ -237,7 +197,7 @@ public class TemplateBean implements Serializable {
 		taxtemplate.setStr_TaxName(getStr_TaxName());
 		taxtemplate.setInt_TaxExemption(getInt_TaxExemption());
 		getTemplateService().saveTaxTemplate(taxtemplate);
-		return "TaxTemplate.xhtml?faces-redirect=true";
+		return "TaxTemplate.xhtml";
 	}
 	catch(Exception e)
 	{
@@ -288,7 +248,12 @@ public class TemplateBean implements Serializable {
 	private Boolean bl_Show;
 
 	
-	
+	public List<String> getStr_DueInvoiceTemplate() {
+		return str_DueInvoiceTemplate;
+	}
+	public void setStr_DueInvoiceTemplate(List<String> str_DueInvoiceTemplate) {
+		this.str_DueInvoiceTemplate = str_DueInvoiceTemplate;
+	}
 	public Boolean getBl_Show() {
 		return bl_Show;
 	}
@@ -317,19 +282,8 @@ public class TemplateBean implements Serializable {
 	public void setStr_description(String str_description) {
 		this.str_description = str_description;
 	}
-	@SuppressWarnings("unused")
 	private String str_description;
-	
 	private List<String> str_DueInvoiceTemplate;
-	public List<String> getStr_DueInvoiceTemplate() {
-		
-		return str_DueInvoiceTemplate;
-		
-	}
-	public void setStr_DueInvoiceTemplate(List<String> str_DueInvoiceTemplate) {
-		this.str_DueInvoiceTemplate = str_DueInvoiceTemplate;
-	}
-	
 	private String str1_Frequency;
 	public String getStr1_Frequency() {
 		return str1_Frequency;
@@ -349,9 +303,9 @@ public class TemplateBean implements Serializable {
 	  invoicetemplate.setStr_MessageCategory(getStr_MessageCategory());
 	  invoicetemplate.setStr_MessageTemplate(getStr_MessageTemplate());
 	  invoicetemplate.setStr_Description(getStr_Description());
-	  invoicetemplate.setStr_DueInvoiceTemplate(Str1);
+	  invoicetemplate.setStr_DueInvoiceTemplate(str);
 	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
-	  return "InvoiceTemplate.xhtml?faces-redirect=true";
+	  return "InvoiceTemplate.xhtml";
 	}
 	catch(Exception e)
 	{
@@ -363,7 +317,7 @@ public class TemplateBean implements Serializable {
 	public List<String> getStr_MessageTemplate1() {
 		str_MessageTemplate1=new ArrayList<String>();
 		str_MessageTemplate1= getTemplateService().getMessageTemplate();
-		
+		System.out.println(str_MessageTemplate1);
 		return str_MessageTemplate1;
 	}
 	
@@ -415,13 +369,10 @@ public class TemplateBean implements Serializable {
 	        return dueTemplates;
 		
 	}
-     @SuppressWarnings("rawtypes")
-	 List list1=new ArrayList();
-	@SuppressWarnings("rawtypes")
+	List list1=new ArrayList();
 	public List getList1() {
 		return list1;
 	}
-	@SuppressWarnings("rawtypes")
 	public void setList1(List list1) {
 		this.list1 = list1;
 	}
@@ -432,18 +383,10 @@ public class TemplateBean implements Serializable {
 	public void setStr(String str) {
 		this.str = str;
 	}
-	private String Str1;
-	
-	public String getStr1() {
-		return Str1;
-	}
-	public void setStr1(String str1) {
-		Str1 = str1;
-	}
 	@SuppressWarnings("unchecked")
 	public void roleChangeListener(ValueChangeEvent event)
 	{   System.out.println("hi");
-		list1.addAll((List<String>)event.getNewValue());
+		list1.addAll((List<String>) event.getNewValue());
 		System.out.println(list1);
 		StringBuilder out = new StringBuilder();
 		for (Object o : list1)
@@ -452,9 +395,9 @@ public class TemplateBean implements Serializable {
 		  out.append(",");
 		}
 		str=out.toString();
-		
-		Str1 = str.substring(0, str.lastIndexOf(","));
-	System.out.println(Str1);
+		System.out.println(str);	
+			
+			
 		}
 	private String description;
 	public String getDescription() {
@@ -467,27 +410,16 @@ public class TemplateBean implements Serializable {
 	{
 		String str=(String)event.getNewValue();
 		description=getTemplateService().getDescription(str);
+		System.out.println(description);
 		return description;
 		
 	}
-	public String deleteInvoice(){
-		InvoiceTemplate invoice=new InvoiceTemplate();
-		System.out.println(int_DueTemplateID);
-		invoice.setInt_InvoiceTemplateID(int_InvoiceTemplateID);
-	getTemplateService().deleteInvoice(invoice);
-		return "Invoice Template.xhtml?faces-redirect=true";
-	  
-	}
-	
-    public String cancelInvoice() {
-		return "Invoice Template.xhtml?faces-redirect=true";
-	}	
+		
 	
 	//MESSAGE TEMPLATE
 	private Integer int_MessageTemplateID;
 	private String str_CreatedBy;
 	private String str_Email;
-	@SuppressWarnings("unused")
 	private String dat_Date;
 	private String str_Mode;
 	private String str_Category;
@@ -500,14 +432,12 @@ public class TemplateBean implements Serializable {
 		this.int_MessageTemplateID = int_MessageTemplateID;
 	}
 	public String getStr_CreatedBy() {
-		str_CreatedBy=Util.getUserName();
 		return str_CreatedBy;
 	}
 	public void setStr_CreatedBy(String str_CreatedBy) {
 		this.str_CreatedBy = str_CreatedBy;
 	}
 	public String getStr_Email() {
-		str_Email=Util.getEmail();
 		return str_Email;
 	}
 	public void setStr_Email(String str_Email) {
@@ -560,7 +490,7 @@ public class TemplateBean implements Serializable {
 		messagetemplate.setStr_Title(getStr_Title());
 		messagetemplate.setStr_Description(getStr_Description());
 		getTemplateService().saveMessageTemplate(messagetemplate);
-		return "MessageTemplate.xhtml?faces-redirect=true";
+		return "MessageTemplate.xhtml";
 		}
 		
 		catch (Exception e) {
@@ -571,7 +501,7 @@ public class TemplateBean implements Serializable {
 	private List<MessageTemplate> listMessages;
 	public List<MessageTemplate> getListMessages() {
 		listMessages=new ArrayList<MessageTemplate>();
-		listMessages.addAll(getTemplateService().listMessageTemplate(str_Mode,str_Category));
+		listMessages.addAll(getTemplateService().listMessageTemplate());
 		return listMessages;
 	}
 	public void setListMessages(List<MessageTemplate> listMessages) {
@@ -586,17 +516,11 @@ public class TemplateBean implements Serializable {
 	}
 	public void getMessageTemplate1()
 	{
-		messageTemplate=getTemplateService().getMessageTemplate(int_MessageTemplateID);
+		invoiceTemplate=getTemplateService().getInvoiceTemplate(int_MessageTemplateID);
 	}
 	public String saveMessageTemplate()
 	{
 		getTemplateService().updateMessageTemplate(messageTemplate);
-		return "MessageTemplate.xhtml?faces-redirect=true";
-	}
-	public String messageSerch()
-	{
-		listMessages=new ArrayList<MessageTemplate>();
-		listMessages.addAll(getTemplateService().listMessageTemplate(str_Mode,str_Category));
 		return "MessageTemplate.xhtml";
 	}
 }

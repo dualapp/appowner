@@ -9,10 +9,9 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 	  <f:metadata>
-	<f:viewParam name="personId" value="#{enquirybean.personId}"  />
+	<f:viewParam name="personId" value="#{cls_EnquiryUpdateBean.personId}"  />
 	 
-	<f:viewAction action="#{enquirybean.getPerson}" />
-	
+	<f:viewAction action="#{cls_EnquiryUpdateBean.getPerson}" />
 </f:metadata>
 
 <h:head>
@@ -20,56 +19,22 @@
 </h:head>
 <h:body>
 <h:form>
-    <table>
-    <tr>
+  <h:panelGrid columns="2">
     <h:outputText value="Name:"/>
-    <h:inputText value="#{enquirybean.person.personName}"/></tr><br></br>
+    <h:inputText value="#{cls_EnquiryUpdateBean.person.personName}"/>
     
-    <tr>
+ 
     <h:outputText value="Email:"/>
-    <h:inputText value="#{enquirybean.person.personEmail}"/></tr><br></br>
+    <h:inputText value="#{cls_EnquiryUpdateBean.person.personEmail}"/>
     
-    
-    <tr>
-            <td><h:outputLabel for="enquiry_selectedCountry" value=" Country * " /></td>
-            <td><p:selectOneMenu id="enquiry_selectedCountry" value="#{enquirybean.person.enquiry_selectedCountry}" valueChangeListener="#{enquirybean.countryChangeListener}" style="width:200px">
-               <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{enquirybean.enquiry_selectedCountries}" />
-                 <p:ajax event="change" update="enquiry_selectedState" process="enquiry_selectedCountry"/>
-            </p:selectOneMenu></td></tr>
-            
-            <tr>
-            <td><h:outputLabel for="enquiry_selectedState" value="State * " /></td>
-            <td><p:selectOneMenu id="enquiry_selectedState" value="#{enquirybean.person.enquiry_selectedState}"  valueChangeListener="#{enquirybean.stateChangeListener}" style="width:200px">
-                <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
-                 <f:selectItems value="#{enquirybean.stateByCountry}"/>
-               <p:ajax event="change" update="enquiry_selectedCity" process="enquiry_selectedState"/>    
-            </p:selectOneMenu></td>
-             </tr>
-            
-            <tr> 
-                 <td><h:outputLabel for="enquiry_selectedCity" value="City * " /></td>
-            <td><p:selectOneMenu id="enquiry_selectedCity" value="#{enquirybean.person.enquiry_selectedCity }" style="width:200px">
-                <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
-                  <f:selectItems  value ="#{enquirybean.cityListByState}"/>
-             
-            </p:selectOneMenu></td></tr>
-    <tr>
-    <h:outputText value="Zip-code:"/>
-    <h:inputText value="#{enquirybean.person.personZip}"/></tr>
-            
-            <tr>
+ 
     <h:outputText value="Message:"/>
-    <h:inputTextarea row="8" cols="17" id="personMessage" value="#{enquirybean.person.personMessage}"/></tr> 
-      
-            <tr>
-            <td> <h:commandButton  value="Submit"  action="#{enquirybean.savePerson}"/>
-             <h:button outcome="ViewEnquiry.xhtml" value="Cancel"  /></td>
-            
-            
-            </tr>
-   </table>
-  
+    <h:inputTextarea row="8" cols="17" id="personMessage" value="#{cls_EnquiryUpdateBean.person.personMessage}"/>
+    
+     
+   <h:commandButton  value="Submit"  action="#{cls_EnquiryUpdateBean.savePerson}"/>
+   <h:button outcome="ViewEnquiry.xhtml" value="Cancel"  />
+  </h:panelGrid>
   </h:form>
 </h:body>
 </ui:define>

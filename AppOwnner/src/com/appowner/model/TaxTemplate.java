@@ -17,7 +17,7 @@ public class TaxTemplate implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	private Integer int_TaxTemplateID;
-	@Column(name = "var_Organisation")
+	@Column(name = "int_ApartmentID")
 	private String str_Organisation;
 	@Column(name = "var_TaxName")
 	private String str_TaxName;
@@ -40,21 +40,19 @@ public class TaxTemplate implements Serializable {
 	public void setStr_TaxName(String str_TaxName) {
 		this.str_TaxName = str_TaxName;
 	}
-	
-	public Double getInt_Percentage() {
+	public Integer getInt_Percentage() {
 		return int_Percentage;
 	}
-	public void setInt_Percentage(Double int_Percentage) {
+	public void setInt_Percentage(Integer int_Percentage) {
 		this.int_Percentage = int_Percentage;
 	}
-	public Double getInt_TaxExemption() {
+	public Integer getInt_TaxExemption() {
 		return int_TaxExemption;
 	}
-	public void setInt_TaxExemption(Double int_TaxExemption) {
+	public void setInt_TaxExemption(Integer int_TaxExemption) {
 		this.int_TaxExemption = int_TaxExemption;
 	}
-
-	private Double int_Percentage;
+	private Integer int_Percentage;
 	@Column(name = "var_Frequency")
-	private Double int_TaxExemption;
+	private Integer int_TaxExemption;
 }

@@ -15,7 +15,7 @@
  
     <h:form id="form">
     <p:panel header="StaffRole Information : ">
-        <p:dataTable  id="staff" var="staff" value="#{staffRoleBean.listStaffRoles}" style="width: 50%">
+        <p:dataTable  id="staff" var="staff" value="#{staffRoleBean.listStaffRoles}" style="width: 20%">
           
             <p:column>
                 <f:facet name="header">
@@ -31,22 +31,20 @@
                  <f:converter converterId="com.appowner.bean.StringConverter" />  
                  </h:outputText>
             </p:column>
-             <h:outputText value="Action" />
-            <p:column rendered="#{staff.flag == 2}">
+            <p:column>
                 <f:facet name="header">
                     <h:outputText value="Action" />
                 </f:facet>
-           
-               
+              
                 
-                  <h:link outcome="update1.xhtml" >
+      <!--   <h:link outcome="update1.xhtml" >
                 <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
                 <f:param name="int_StaffID" value="#{staff.int_StaffID}"/>
                 </h:link>
                 <h:link outcome="update1.xhtml" >
                 <p:graphicImage height="50" width="50" value="images/delete.jpg"/> 
                 <f:param name="int_StaffID" value="#{staff.int_StaffID}"/>
-                </h:link>      
+                </h:link>    -->   
                
                </p:column>      
            

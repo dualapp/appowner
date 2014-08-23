@@ -35,7 +35,7 @@
 
 function ShowNewPage5(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewworkordercategory.xhtml',400,350,'Create New parking space',null,callbackFunctionArray);
+ modalWin.ShowURL('create new book a facility.xhtml',400,350,'Create New Book a Facility  ',null,callbackFunctionArray);
  }
  
  
@@ -102,14 +102,14 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                  </p:selectOneMenu><br/>
 	 &#150; &#150; <br/>
                 
-             <input type="button" style="width: 150px" onclick="ShowNewPage5()" value="Create New WorkOrder Category" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <h:commandButton style="width: 150px"  action="create new book a facility.xhtml" value="create new book a facility" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
 	   
 	
 	<br/>
-	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
+	<legend  style="background-color:#438eb9; color:#fff;">Book A Facility</legend>
                 
              <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable5" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{loginBean.bookAFacilityList}">
+             id= "dataTable5" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="Bf"  value="#{loginBean.bookAFacilityList}">
 	<f:facet name="header">
             Expand rows to see detailed information
             <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
@@ -117,11 +117,27 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
         </f:facet>
    
           <p:column headerText="Organization">
-                <h:outputText value="#{vendorBean.str_OrganizationName}" /> 
+                <h:outputText value="#{LoginBean.str_ApartmentName}" /> 
             
 	 </p:column>
-	  <p:column headerText="Organization">
-                <h:outputText value="#{ps.str_EventType}" /> 
+	  <p:column headerText="EventName">
+                <h:outputText value="#{Bf.str_EventName}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Facility">
+                <h:outputText value="#{Bf.str_FacilityType}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Start Date">
+                <h:outputText value="#{Bf.str_OpenDate}" /> 
+            
+	 </p:column>
+	 <p:column headerText="End Date">
+                <h:outputText value="#{Bf.str_CloseDate}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Event Type">
+                <h:outputText value="#{Bf.str_EventType}" /> 
             
 	 </p:column>
 	 </p:dataTable>

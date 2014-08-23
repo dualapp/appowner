@@ -4,14 +4,11 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
-import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Mail;
 import com.appowner.model.Option;
@@ -212,10 +209,8 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cls_CreateDocumentManagement> getListCreatedocument() {
-		List<Cls_CreateDocumentManagement> sss= getSessionFactory().getCurrentSession().createCriteria(Cls_CreateDocumentManagement.class).list();
-		System.out.println(sss);
-		return sss;
+	public List getListCreatedocument() {
+		return getSessionFactory().getCurrentSession().createCriteria(Cls_CreateDocumentManagement.class).list();
 	}
 
 	@Override
@@ -304,40 +299,6 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		List<String> list= (List<String>)getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_Email")).list();
          System.out.println(list);
          return list;
-	}
-	public String getDocumentName(Integer int_Document_CatID)
-	{
-		String hql="select Int_Document_CatNM from Cls_DocumentCategory where Int_Document_CatID=?";
-		String sss=(String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_Document_CatID).uniqueResult();
-		System.out.println(sss);
-		return sss;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Cls_CreateDocumentManagement> getSearchByName(String username) {
-		{   if(username==null)
-		{
-			
-			String  query = "{ CALL category() }";
-		
-			 List<Cls_CreateDocumentManagement> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_CreateDocumentManagement.class)
-			          ).list();
-		      System.out.println("kkk");   
-			 return kkk;
-		}
-		else
-		{
-			String  query = "{ CALL categorys('admin') }";
-			
-			 List<Cls_CreateDocumentManagement> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_CreateDocumentManagement.class)
-			          ).list();
-		      System.out.println("kkk");   
-			 return kkk;
-		}
-			
-			
-		}
 	}
 }
 

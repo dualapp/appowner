@@ -1,11 +1,9 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -36,7 +34,7 @@ public class cls_ContactBean implements Serializable {
 		this.contactService1 = contactService1;
 	}
 	
-	private String date;
+	private Date date;
 	private String str_PhoneNo;
 	private String str_Email;
 	//private Integer int_UserId;
@@ -115,12 +113,10 @@ public class cls_ContactBean implements Serializable {
 	 
 	
 	
-	public String getDate() {
-		java.util.Date d=new java.util.Date();
-		 SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
-		return ft.format(d);
+	public Date getDate() {
+		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -154,12 +150,13 @@ public class cls_ContactBean implements Serializable {
 	}
 	
 	
-	public String deleteContact(int a)
+	public String deleteContact(int ContactId)
 	 {
 		 cls_Contact contact=new cls_Contact();
 		 
-		 contact.setContactId(a);
-		getContactService().deleteContact1(contact);
+		 contact.setContactId(ContactId);
+		
+		 getContactService().deleteContact1(contact);
 		 return SUCCESS;
 	 }
 	

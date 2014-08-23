@@ -15,21 +15,21 @@
            
             <tr>
                 <td><h:outputLabel for="personName" value="Person Name : " /></td>
-                <td><p:inputText id="personName" value="#{enquirybean.personName}">
+                <td><p:inputText id="personName" value="#{cls_EnquiryBean.personName}">
                     <f:validateLength minimum="5" maximum="20" />
                 </p:inputText>
                 </td>
             </tr> 
             <tr>
                 <td><h:outputLabel for="personAddress" value="Person Address : " /></td>
-                <td><p:inputText id="personAddress" value="#{enquirybean.personAddress}">
+                <td><p:inputText id="personAddress" value="#{cls_EnquiryBean.personAddress}">
                     <f:validateLength minimum="5" maximum="20" />
                 </p:inputText>
                 </td>
             </tr> 
            <tr>
                 <td><h:outputLabel for="personEmail" value="Email  " /></td>
-                <td><h:inputText id="personEmail" label="Email"   value="#{enquirybean.personEmail}" required="true" validatorMessage=" PersonEmail is not valid" requiredMessage="Please enter person Email">
+                <td><h:inputText id="personEmail" label="Email"   value="#{cls_EnquiryBean.personEmail}" required="true" validatorMessage=" PersonEmail is not valid" requiredMessage="Please enter person Email">
                 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
  
                    
@@ -41,7 +41,7 @@
              
             <tr>
                 <td><h:outputLabel for="personPhone" value="Person Phone * " /></td>
-                <td><h:inputText id="personPhone"  label="Phone" value="#{enquirybean.personPhone}"   maxlength="11" required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number">
+                <td><h:inputText id="personPhone"  label="Phone" value="#{cls_EnquiryBean.personPhone}"   maxlength="11" required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number">
                     <f:validateLength minimum="10" />
                     <f:validateRegex pattern="^([+]?[\d]+)?$" />
                     <p:ajax event="blur" update="personPhone" />
@@ -52,47 +52,47 @@
             
             <tr>
             <td><h:outputLabel for="enquiry_selectedCountry" value=" Country * " /></td>
-            <td><p:selectOneMenu id="enquiry_selectedCountry" value="#{enquirybean.enquiry_selectedCountry}" valueChangeListener="#{enquirybean.countryChangeListener}" style="width:200px">
+            <td><p:selectOneMenu id="enquiry_selectedCountry" value="#{cls_EnquiryBean.enquiry_selectedCountry}" valueChangeListener="#{cls_EnquiryBean.countryChangeListener}" style="width:200px">
                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
                 
-                <f:selectItems value="#{enquirybean.enquiry_selectedCountries}" />
+                <f:selectItems value="#{cls_EnquiryBean.enquiry_selectedCountries}" />
                  <p:ajax event="change" update="enquiry_selectedState" process="enquiry_selectedCountry"/>
             </p:selectOneMenu></td></tr>
             
             <tr>
  
             <td><h:outputLabel for="enquiry_selectedState" value="State * " /></td>
-            <td><p:selectOneMenu id="enquiry_selectedState" value="#{enquirybean.enquiry_selectedState}"  valueChangeListener="#{enquirybean.stateChangeListener}" style="width:200px">
+            <td><p:selectOneMenu id="enquiry_selectedState" value="#{cls_EnquiryBean.enquiry_selectedState}"  valueChangeListener="#{cls_EnquiryBean.stateChangeListener}" style="width:200px">
                 <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
-                 <f:selectItems value="#{enquirybean.stateByCountry}"/>
+                 <f:selectItems value="#{cls_EnquiryBean.stateByCountry}"/>
                <p:ajax event="change" update="enquiry_selectedCity" process="enquiry_selectedState"/>    
             </p:selectOneMenu></td>
              </tr>
             <tr> 
                  <td><h:outputLabel for="enquiry_selectedCity" value="City * " /></td>
-            <td><p:selectOneMenu id="enquiry_selectedCity" value="#{enquirybean.enquiry_selectedCity }" style="width:200px">
+            <td><p:selectOneMenu id="enquiry_selectedCity" value="#{cls_EnquiryBean.enquiry_selectedCity }" style="width:200px">
                 <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
-                  <f:selectItems  value ="#{enquirybean.cityListByState}"/>
+                  <f:selectItems  value ="#{cls_EnquiryBean.cityListByState}"/>
              
             </p:selectOneMenu></td></tr>
             
                   
             <tr> 
             <td><h:outputLabel for="personZip" value="Zip " /></td>
-                <td><h:inputText id="personZip" label="ZipCode"   value="#{enquirybean.personZip}" required="true"  requiredMessage="Please enter person ZipCode">
+                <td><h:inputText id="personZip" label="ZipCode"   value="#{cls_EnquiryBean.personZip}" required="true"  requiredMessage="Please enter person ZipCode">
             </h:inputText></td></tr>
              
               
              
             <tr>
                 <td><h:outputLabel for="personEnquiry" value="Enquiry: " /></td>
-                <td><p:inputTextarea rows="8" cols="30" id="personEnquiry" value="#{enquirybean.personMessage}">
+                <td><p:inputTextarea rows="8" cols="30" id="personEnquiry" value="#{cls_EnquiryBean.personMessage}">
                     <f:validateLength maximum="200" />
                     </p:inputTextarea>
                 </td>
                 </tr>
             <tr>
-                <td><p:commandButton id="addPerson" value="Ask Enquiry"  action="#{enquirybean.addPerson}" ajax="false"/></td>     
+                <td><p:commandButton id="addPerson" value="Ask Enquiry"  action="#{cls_EnquiryBean.addPerson}" ajax="false"/></td>     
             </tr>
         </table>
       

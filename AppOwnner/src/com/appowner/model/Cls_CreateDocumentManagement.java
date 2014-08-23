@@ -28,22 +28,12 @@ public class Cls_CreateDocumentManagement{
 	private int int_Userid;
 	@Column
 	private int int_ApartmentID;
-	
+	private String Str_FirstName;
 	private String Dt_Date;
     private String str_FolderNM;
 	private String str_ApartmentName;
-	private String username;
 	
 	
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	public String getStr_ApartmentName() {
 	return str_ApartmentName;
 	}
@@ -52,7 +42,13 @@ public class Cls_CreateDocumentManagement{
 		this.str_ApartmentName = str_ApartmentName;
 	}
 
-	
+	public String getStr_FirstName() {
+		return Str_FirstName;
+	}
+
+	public void setStr_FirstName(String str_FirstName) {
+		Str_FirstName = str_FirstName;
+	}
 
 	public int getInt_ApartmentID() {
 		return int_ApartmentID;
@@ -101,19 +97,8 @@ public Integer getInt_DocumentID() {
 	public void setStr_FileNM(String str_FileNM) {
 		this.str_FileNM = str_FileNM;
 	}
-	private String Int_Document_CatNM;
-	
 
 	
-	
-
-	public String getInt_Document_CatNM() {
-		return Int_Document_CatNM;
-	}
-
-	public void setInt_Document_CatNM(String int_Document_CatNM) {
-		Int_Document_CatNM = int_Document_CatNM;
-	}
 
 	public Integer getInt_Document_CatID() {
 		return Int_Document_CatID;
@@ -159,36 +144,15 @@ public String getStr_FolderNM() {
 		return serialVersionUID;
 	}
 
-	/*public String getInt_Document_CatNM() {
+	public String getInt_Document_CatNM() {
 		return Int_Document_CatNM;
 	}
 
 	public void setInt_Document_CatNM(String int_Document_CatNM) {
 		Int_Document_CatNM = int_Document_CatNM;
 	}
-*/
-	
 
 	
-
-	
-
-	public Integer getSize() {
-		return Size;
-	}
-
-	public void setSize(Integer size) {
-		Size = size;
-	}
-
-
-	//private String Int_Document_CatNM;
-	
-	
-	private Integer Size;
-	private String Action;
-
-
 
 	public String getAction() {
 		return Action;
@@ -197,6 +161,19 @@ public String getStr_FolderNM() {
 	public void setAction(String action) {
 		Action = action;
 	}
+
+	public String getSize() {
+		return Size;
+	}
+
+	public void setSize(String size) {
+		Size = size;
+	}
+
+	private String Int_Document_CatNM;
+	
+	private String Action;
+	private String Size;
 
 
 }

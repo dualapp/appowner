@@ -8,9 +8,9 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 	 <f:metadata>
-	<f:viewParam name="int_ProductId" value="#{cls_AddDetailBean.int_ProductId}"  />
+	<f:viewParam name="int_ProductId" value="#{cls_AddDetailsBean.int_ProductId}"  />
 	 
-	<f:viewAction action="#{cls_AddDetailBean.getCls_ProductDetails}" />
+	<f:viewAction action="#{cls_AddDetailsBean.getCls_ProductDetails}" />
 </f:metadata>
 <h:head>
     <title>Edit</title>
@@ -25,24 +25,24 @@
  <td>
     <h:outputText value="Category:"/></td>
     <td>
-    <h:inputText value="#{cls_AddDetailBean.pro.var_Ad_CategoryName}"> </h:inputText></td>
+    <h:inputText value="#{cls_AddDetailsBean.pro.var_Ad_CategoryName}"> </h:inputText></td>
     </tr>
    
     <tr>
          <h:panelGroup id="sss1">
              <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
             <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
-             <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.pro.ch_Ad_Type}">
-            <f:selectItem itemLabel="My Community" itemValue="My Community" />
-            <f:selectItem itemLabel="Neighbourhood" itemValue="Negihbourhood" />
+             <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailsBean.pro.ch_Ad_Type}">
+            <f:selectItem itemLabel="My Community" itemValue="M" />
+            <f:selectItem itemLabel="Neighbourhood" itemValue="N" />
            
            </p:selectOneRadio>
         
         <p:outputLabel for="I" value="I want to" />
-        <p:selectOneRadio id="I" value="#{cls_AddDetailBean.pro.ch_Product_Type}">
-            <f:selectItem itemLabel="SELL" itemValue="Sell" />
-            <f:selectItem itemLabel="BUY" itemValue="Buy" />
-            <f:selectItem itemLabel="RENT" itemValue="Rent" />
+        <p:selectOneRadio id="I" value="#{cls_AddDetailsBean.pro.ch_Product_Type}">
+            <f:selectItem itemLabel="SELL" itemValue="S" />
+            <f:selectItem itemLabel="BUY" itemValue="B" />
+            <f:selectItem itemLabel="RENT" itemValue="R" />
         </p:selectOneRadio>
        
  </h:panelGrid>
@@ -52,7 +52,7 @@
            <td>
           <h:outputText value="Title"></h:outputText></td>
                         
-          <td><h:inputText  value="#{cls_AddDetailBean.pro.var_Title}" size="35">
+          <td><h:inputText  value="#{cls_AddDetailsBean.pro.var_Title}" size="35">
             </h:inputText>
             </td>
             </tr>
@@ -61,8 +61,8 @@
    
   <tr>
     <h:outputText value="Choose Your  File for upload "></h:outputText>
-   <td> <p:fileUpload value="#{cls_AddDetailBean.pro.var_ImageName}"
-        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
+   <td> <p:fileUpload value="#{cls_AddDetailsBean.pro.var_ImageName}"
+        fileUploadListener="#{cls_AddDetailsBean.handleFileUpload}" mode="advance" auto="true" dragDropSupport="false"
         sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
        </td>
        </tr>
@@ -70,7 +70,7 @@
 
 <tr>
                <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><p:inputTextarea rows="10" cols="30" value="#{cls_AddDetailBean.pro.var_Description}" >
+                <td><p:inputTextarea rows="10" cols="30" value="#{cls_AddDetailsBean.pro.var_Description}" >
               </p:inputTextarea>
                
                 
@@ -81,7 +81,7 @@
   
    
      
-   <h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveUser1}"/>
+   <h:commandButton  value="Submit"  action="#{cls_AddDetailsBean.saveUser1}"/>
    </td>
    </tr>
   </table>

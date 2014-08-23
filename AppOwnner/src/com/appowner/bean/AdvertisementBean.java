@@ -11,7 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.primefaces.event.RowEditEvent;
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.Company;
@@ -366,15 +365,6 @@ public class AdvertisementBean  implements Serializable{
 			        this.selected = selected;  
 			    }  
 			
-			    public String onEdit(RowEditEvent event)
-			    {
-			   PanelPrice panel=(PanelPrice)event.getObject();
-			  String str= panel.getStr_Panel();
-			  double str1=panel.getDoub_Price();
-			   System.out.println(str);
-			   System.out.println(str1);
-			     return null;
-			   }
 		}
 			
 		

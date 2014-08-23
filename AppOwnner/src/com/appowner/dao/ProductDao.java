@@ -1,11 +1,9 @@
 package com.appowner.dao;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
-import com.appowner.model.Notification;
 
 public interface ProductDao {
 
@@ -24,17 +22,6 @@ public interface ProductDao {
 
 	public List<Cls_ProductDetails> listPersons();
 
-	public Cls_ProductDetails searchByName1();
-
-	public List<Cls_ProductDetails> getDetails(char ch_Product_Type);
-
-	public void AddNotice(Notification p);
-
-	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type);
-
-	//public List<String> getAprtmentName();
-
-	
 	
 
 	

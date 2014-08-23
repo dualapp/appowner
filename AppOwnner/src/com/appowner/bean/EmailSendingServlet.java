@@ -37,12 +37,22 @@ public class EmailSendingServlet extends HttpServlet {
         String recipient = request.getParameter("recipient");
         String subject = request.getParameter("subject");
         String content = request.getParameter("content");
+        String Organization=request.getParameter("str_OrganizationName1");
+        String Block=request.getParameter("str_Block1");
+        String Flat=request.getParameter("str_Flat1");
+        String Title=request.getParameter("str_Title1");
+        String Category=request.getParameter("str_VendorType1");
+        String OpenDate=request.getParameter("str_OpenDate1");
+        System.out.println(Flat);
+        System.out.println(subject);
+        
+        
  
         String resultMessage = "";
  
         try {
             EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
-                    content);
+                    content,Organization,Block,Flat,Title,Category,OpenDate);
             resultMessage = "One e-mail has been sent to your Email-id !";
         } catch (Exception ex) {
             ex.printStackTrace();

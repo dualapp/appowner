@@ -8,70 +8,6 @@
 	<ui:define name="content">
 <h:head>
     <title>Message Template  Form</title>
-    <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
-    <style>
-     body
-        {
-          font-family: Verdana;
-            font-size: 10px;
-            }
-     
-    </style>
-    <script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading_home.gif");
- modalWin.SetCloseButtonImagePath("images/cross.png");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-
-function ShowNewPage(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('Create New Message Template.xhtml',470,600,'Create New Message Template',null,callbackFunctionArray);
- }
-
-	 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
-
-}
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Submit(msg){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function HideModalWindow() {
-    modalWin.HideModalPopUp();
-}
-
-</script>
    </h:head>
 <body  bgcolor="pink">
   <h:form id="form" prependId="false">
@@ -81,20 +17,19 @@ function HideModalWindow() {
      <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:150px">
-                  <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{templateBean.str_Organisation}"  itemValue="#{templateBean.str_Organisation}"/>
+              <td><p:selectOneMenu id="option" value="aaa"  style="width:150px">
+                   <f:selectItems value="aaa" />
                  </p:selectOneMenu>
              </td>
              <td><h:outputLabel value="Show:" /></td>
-              <td><p:selectOneMenu id="str_Mode" value="#{templateBean.str_Mode}"  style="width:150px">
+              <td><p:selectOneMenu id="option1" value="aaa"  style="width:150px">
                    <f:selectItem itemLabel="All" itemValue="All" />
                     <f:selectItem itemLabel="Sms" itemValue="Sms" />
                      <f:selectItem itemLabel="Email" itemValue="Email" />
                  </p:selectOneMenu>
              </td>
               <td><h:outputLabel value="Message Template Of:" /></td>
-              <td><p:selectOneMenu id="str_Category" value="#{templateBean.str_Category}"  style="width:150px">
+              <td><p:selectOneMenu id="option2" value="aaa"  style="width:150px">
                    <f:selectItem itemLabel="All" itemValue="All" />
                     <f:selectItem itemLabel="Ads" itemValue="Ads" />
                     <f:selectItem itemLabel="Dues" itemValue="Dues" />
@@ -107,11 +42,14 @@ function HideModalWindow() {
              </td>
               <td><h:outputText  value="Category" /></td>
                 &#150; &#150;&#150; &#150;&#150;
-                <h:commandButton  value="Go" action="#{templateBean.messageSerch}" update="message"/>
+                <h:commandButton  value="Go" />
                 </h:panelGroup>
                 </fieldset>
                 <br/>
-                <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+                 <button  onClick="window.open('Create New Message Template.xhtml',
+  'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
+  status=no,scrollbars=yes,resize=no');return false">
+Create New</button>&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
               <br/>
              <br/>
               
@@ -121,12 +59,12 @@ function HideModalWindow() {
   <h:form>
   <h:body>
         <h:outputText value="Message Template: " color="red"></h:outputText>
-        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" style="width: 80%" >
+        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" style="width: 20%" align="center">
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Organisation Name" />
+                    <h:outputText value="Created By" />
                 </f:facet>
-                <h:outputText value="#{message.str_Organisation}" />
+                <h:outputText value="#{message.str_CreatedBy}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
@@ -142,15 +80,9 @@ function HideModalWindow() {
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Title" />
+                    <h:outputText value="Description" />
                 </f:facet>
-                <h:outputText value="#{message.str_Title}" />
-            </p:column>
-              <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Created By" />
-                </f:facet>
-                <h:outputText value="#{message.str_CreatedBy}" />
+                <h:outputText value="#{message.str_Description}" />
             </p:column>
            <p:column>
                 <f:facet name="header">

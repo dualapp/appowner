@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import java.util.Date;
 
 
@@ -25,7 +24,7 @@ public class cls_Contact implements Serializable{
     private String str_Username;
 	@Column
 	private String str_Email;
-	private String date;
+	private Date date;
 
 	private Integer int_UserId;
 	public Integer getInt_UserId() {
@@ -37,11 +36,11 @@ public class cls_Contact implements Serializable{
 	}
 
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

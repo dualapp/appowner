@@ -2,7 +2,6 @@ package com.appowner.model;
 
 import java.io.Serializable;
 
-import javax.faces.component.html.HtmlInputHidden;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +17,9 @@ public class DueTemplate implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "int_DueTemplateID")
 	private Integer int_DueTemplateID;
-	
 	public Integer getInt_DueTemplateID() {
 		return int_DueTemplateID;
 	}
-
 	public void setInt_DueTemplateID(Integer int_DueTemplateID) {
 		this.int_DueTemplateID = int_DueTemplateID;
 	}
@@ -51,15 +48,12 @@ public class DueTemplate implements Serializable{
 	public void setStr_Calculation(String str_Calculation) {
 		this.str_Calculation = str_Calculation;
 	}
-	
-	public Double getStr_Rate() {
+	public String getStr_Rate() {
 		return str_Rate;
 	}
-
-	public void setStr_Rate(Double str_Rate) {
+	public void setStr_Rate(String str_Rate) {
 		this.str_Rate = str_Rate;
 	}
-
 	public String getStr_TaxTemplate() {
 		return str_TaxTemplate;
 	}
@@ -83,7 +77,7 @@ public class DueTemplate implements Serializable{
 	@Column(name = "var_Calculation")
 	private String str_Calculation;
 	@Column(name = "int_Rate")
-	private Double str_Rate;
+	private String str_Rate;
 	@Column(name = "var_TaxTemplate")
 	private String str_TaxTemplate;
 	

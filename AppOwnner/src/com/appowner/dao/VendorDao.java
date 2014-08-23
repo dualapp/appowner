@@ -8,6 +8,7 @@ import com.appowner.model.VendorCity;
 import com.appowner.model.VendorServiceDetails;
 import com.appowner.model.WaterPayment;
 import com.appowner.model.WaterVendorTransaction;
+import com.appowner.model.WorkOrderCategory;
 
  
 
@@ -86,5 +87,9 @@ public interface VendorDao {
 	public List<Vendor> getVendorListByName(String str_VendorName);
 
 	public List<String> getStr_VendorTypeList();
+
+	public List<WorkOrderCategory> getWorkOrderCategoryList();
+
+	public void saveWorkOrderCategory(WorkOrderCategory workOrderCategory);
 
 }
