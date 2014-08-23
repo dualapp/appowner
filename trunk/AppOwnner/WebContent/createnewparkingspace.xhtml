@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	</h:head>
+	 <h:form id="form4">
+	<h:body>
+	<br/>
+	<div>
+	<h:panelGroup  >
+	<p><h:outputLabel value="Organisation:" /> 
+               <h:outputLabel value="Organisation:" /> 
+              <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></p><br/>
+	<p><h:outputText value="parkingSlot"/>
+	<h:inputText value="#{expenseBean.str_ParkingSlot}"/></p>
+	<p><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}"   >
+	
+	</p:commandButton>  </p>
+	 <script>
+	 
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
+	</h:panelGroup>
+	</div>
+	</h:body>
+	 </h:form>
+ </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	  <f:metadata>
+	<f:viewParam name="int_ComplainID" value="#{updateBean.int_ComplainID}"  />
+	 
+	<f:viewAction action="#{updateBean.getComplain}" />
+</f:metadata>
+
+<h:head>
+    <title>Complain  Edition</title>
+</h:head>
+<h:body>
+<h:form>
+  <h:panelGrid columns="2">
+    <h:outputText value="Name:"/>
+    <h:inputText value="#{updateBean.cmp.str_UserName}"/>
+    
+    <h:outputText value="Complaint Type:"/>
+    <h:inputText value="#{updateBean.cmp.str_ComplainType}"/>
+     
+     <h:outputText value="Category:"/>
+    <h:inputText value="#{updateBean.cmp.str_VendorType}"/>
+    
+    
+    <h:outputText value="Assigned To:"/>
+    <h:inputText value="#{updateBean.cmp.str_VenderName}"  />
+    
+     <h:outputText value="Complaint Nature:"/>
+    <h:inputText value="#{updateBean.cmp.ch_Complain}"/>
+     
+    
+     
+     <h:outputText value="Description:"/>
+     <h:inputTextarea rows="8" cols="25"  value="#{updateBean.cmp.str_Description}"/>
+    
+     <h:commandButton  value="Submit"  action="#{updateBean.saveUser}"/>
+  </h:panelGrid>
+  </h:form>
+  </h:body>
+  </ui:define>
+  </ui:composition>
+  
+  
+ 
+ 
+  
+ 

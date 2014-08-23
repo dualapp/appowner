@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	
+<h:head>
+    <title>Create Invoice Form</title>
+</h:head>
+<body  bgcolor="pink">
+  <h:form id="form">
+  <a href="Invoice.xhtml">Back to Grid</a>
+   <fieldset>
+    <legend>
+   <h:commandButton value="Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>
+   <table>
+            <tr>
+             <h:panelGroup  id="performed9"  style="display:block; text-align:right">
+            <td><h:outputLabel value="Invoice Template" /></td>
+              <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
+                     <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
+                   <f:selectItems value="#{invoiceBean.listInvoiceName}" />
+                    <f:ajax event="change" execute="str_InvoiceTemplate" render="@all"/>
+                 </p:selectOneMenu>
+             </td>
+          &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
+          <h:panelGroup  id="performed"  rendered="#{! empty invoiceBean.str_InvoiceTemplate}" >
+          <td><h:outputLabel value="Included Charges"  /></td>
+       <td><p:dataTable id="due" var="due" value="#{invoiceBean.dueList}">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Due" />
+                </f:facet>
+                 <h:outputText value="#{due.str_DueTemplate}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Tax Applied" />
+                </f:facet>
+                 <h:outputText value="#{due.str_TaxTemplate}" />
+            </p:column>
+            </p:dataTable>
+          </td>
+          </h:panelGroup>
+          </h:panelGroup>
+          </tr>
+          </table>
+          </fieldset>
+          <br/>
+          <fieldset>
+    <legend>
+   <h:commandButton value="Due Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
+    <h:panelGroup id="performed3"  >
+           
+           <td><h:outputLabel value="Bill Period:" /></td>  &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
+              <td><p:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:250px">
+                   <f:selectItem itemLabel="JAN" itemValue="JAN"/>
+                     <f:selectItem itemLabel="FEB" itemValue="FEB"/>
+                       <f:selectItem itemLabel="MAR" itemValue="MAR"/>
+                        <f:selectItem itemLabel="APR" itemValue="APR"/>
+                          <f:selectItem itemLabel="MAY" itemValue="MAY"/>
+                     <f:selectItem itemLabel="JUN" itemValue="JUN"/>
+                       <f:selectItem itemLabel="JUL" itemValue="JUL"/>
+                        <f:selectItem itemLabel="AUG" itemValue="AUG"/>
+                          <f:selectItem itemLabel="SEP" itemValue="SEP"/>
+                     <f:selectItem itemLabel="OCT" itemValue="OCT"/>
+                       <f:selectItem itemLabel="NOV" itemValue="NOV"/>
+                        <f:selectItem itemLabel="DEC" itemValue="DEC"/>
+                 </p:selectOneMenu>
+             </td>
+            
+             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
+            <td><h:outputLabel value="Year:" /></td>
+              <td><p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:250px">
+                  <f:selectItem itemLabel="2014" itemValue="2014"/>
+                     <f:selectItem itemLabel="2015" itemValue="2015"/>
+                       <f:selectItem itemLabel="2016" itemValue="2016"/>
+                        <f:selectItem itemLabel="2017" itemValue="2017"/>
+                          <f:selectItem itemLabel="2018" itemValue="2018"/>
+                     <f:selectItem itemLabel="2019" itemValue="2019"/>
+                       <f:selectItem itemLabel="2020" itemValue="2020"/>
+                        </p:selectOneMenu>
+             </td>
+  </h:panelGroup>
+   <br/>
+    <h:panelGroup id="performed1"  >
+           
+            <td>  <h:outputText  value="Invoice Date*" /></td>
+             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
+           <td>  <p:inputText id="dat_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}" size="20"/> </td>
+          
+            
+             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
+             <td>  <h:outputText  value="Due Date*" /></td>
+           <td>  <p:calendar id="dat_DueDate" value="#{invoiceBean.dat_DueDate}" size="20"/> </td>
+          
+            
+  </h:panelGroup>
+  <tr><td><h3 align="left">Apartment Details</h3></td></tr>
+   <h:panelGroup id="performed6"  >
+           
+              <td><h:outputLabel value="Organisation:" /></td>
+              &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
+              <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}"  style="width:250px">
+                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="aaa" />
+                 </p:selectOneMenu>
+             </td>
+             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;  &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
+             <td><h:outputLabel value="Block:" /></td>
+              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}" style="width:250px">
+              <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="aaa" />
+                 </p:selectOneMenu>
+             </td>
+  </h:panelGroup>
+  <br/>
+   <h:panelGroup id="performed5"  >
+           
+              <td><h:outputLabel value="Apt.No:" /></td>
+              &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;  &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
+              <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" style="width:250px">
+              <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="aaa" />
+                 </p:selectOneMenu>
+             </td>
+             </h:panelGroup>
+  </fieldset>
+ <br/>          <tr>
+                 <td><p:commandButton id="submit" value="Submit" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" /></td>
+                 <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancel}" ajax="false"/></td>
+           </tr>
+          </h:form>
+          </body>
+          
+        </html>

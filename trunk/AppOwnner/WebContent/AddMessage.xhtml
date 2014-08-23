@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+<h:head><title>Message Form</title></h:head>
+<body bgcolor="orange">
+   
+   <H1>Message Form</H1>
+    <h:form>
+     <p:panel id="panel" header="">
+     <p:messages id="messages"/>
+        <table>
+           
+           
+           
+             <tr>
+                <td><h:outputLabel for="var_MessageSubject" value="Subject  : " /></td>
+                <td><p:inputText id="var_MessageSubject" value="#{cls_MessageTemplateBean.var_MessageSubject}" >
+                    <f:validateLength minimum="5" maximum="50" />
+                    <p:ajax event="blur" update="var_MessageSubject" />
+                </p:inputText>
+                </td>
+            </tr> 
+            
+            <tr>
+            <td><h:outputLabel for="messageMode" value="Message-mode: "></h:outputLabel></td> 
+            <td><h:selectOneMenu value="#{cls_MessageTemplateBean.messageMode}">
+   			<f:selectItem itemValue="E-Mail" itemLabel="E-Mail" />
+   			<f:selectItem itemValue="SMS" itemLabel="SMS" />
+   		</h:selectOneMenu></td></tr>
+   		
+   		    <tr>
+            <td><h:outputLabel for="messageCategory" value="Message-Category"></h:outputLabel></td> 
+            <td><p:selectOneMenu id="messageCategory" value="#{cls_MessageTemplateBean.messageCategory}" style="width:200px">
+            <f:selectItems value="#{cls_MessageTemplateBean.messageCategoryList}"  />
+            </p:selectOneMenu>
+   		 </td></tr>
+             
+           
+             <tr>
+                <td><h:outputLabel for="str_Email" value="User Email  " /></td>
+                <td><h:inputText id="str_Email" label="Email"   value="#{cls_MessageTemplateBean.str_Email}" required="true" validatorMessage=" UserEmail is not valid" requiredMessage="Please enter user Email">
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />       
+                    <p:ajax event="blur" update="str_EmailMsg" />
+              </h:inputText>
+                    <p:message id="str_EmailMsg" for="str_Email" display="icon"/>
+                </td>
+                </tr>
+                
+                 <tr>
+                <td><h:outputLabel for="var_MessageDetails" value="Message : " /></td>
+                <td><p:inputTextarea rows="8" cols="30" id="additionalInfo" value="#{cls_MessageTemplateBean.var_MessageDetails}">
+                    <f:validateLength maximum="250" />
+                    </p:inputTextarea>
+                </td>
+            </tr>
+             
+           
+            <tr>
+                <td><p:commandButton id="addMessageTemplate" value="Submit"  action="#{cls_MessageTemplateBean.addMessage}" ajax="false"/></td>     
+            </tr>
+        </table>
+        </p:panel>
+    </h:form>
+</body>
+</html>

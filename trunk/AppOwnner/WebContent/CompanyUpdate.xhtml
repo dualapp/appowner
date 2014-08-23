@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	  <f:metadata>
+	<f:viewParam name="int_CompanyID" value="#{advertisementBean.int_CompanyID}"  />
+	 
+	<f:viewAction action="#{advertisementBean.getCompany}" />
+</f:metadata>
+
+<h:head>
+    <title>Company Registration Edition </title>
+</h:head>
+<h:body>
+<h:form>
+ 
+    <h:outputText value="CompanyName:"/>
+    <h:inputText value="#{advertisementBean.cmp1.str_CompanyName}"/>
+    
+    <h:outputText value="CompanyAddress:"/>
+    <h:inputText value="#{advertisementBean.cmp1.str_CompanyAddress}"/>
+      <h:outputText value="City:"/>
+    <h:inputText value="#{advertisementBean.cmp1.str_City}"/>
+    <h:outputText value="State:"/>
+    <h:inputText value="#{advertisementBean.cmp1.str_State}"/>
+    <h:outputText value="Zipcode:"/>
+    <h:inputText value="#{advertisementBean.cmp1.int_Zipcode}"  required="true" validatorMessage="Zipcode must be 6"  requiredMessage="Zipcode  is required">
+        <f:validateLength minimum="6" />
+        </h:inputText>
+     <h:outputText value="MobileNo:"/>
+    <h:inputText value="#{advertisementBean.cmp1.str_Mobile}" required="true"  validatorMessage="MobileNo. must be 10" requiredMessage="MobileNo. is required">
+                     <f:validateLength minimum="10" />
+                    <f:validateRegex pattern="^([+]?[\d]+)?$" />
+                  </h:inputText>
+    
+    
+   
+    
+    <h:outputText value="CompanyType:"/>
+    <p:selectOneMenu id="options" value="#{advertisementBean.cmp1.str_CompanyType}">
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItem itemLabel="Software" itemValue="Software" />
+                <f:selectItem itemLabel="Sales" itemValue="sales" />
+                <f:selectItem itemLabel="productBased" itemValue="productBased" />
+                <f:selectItem itemLabel="Textile" itemValue="Textile" />
+                
+    </p:selectOneMenu>
+      <h:commandButton  value="Submit"  action="#{advertisementBean.saveCompany}"/>
+   
+  </h:form>
+
+ 
+</h:body>
+
+</ui:define>
+</ui:composition>

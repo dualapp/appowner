@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<f:metadata>
+	<f:viewParam name="int_UserId" value="#{administrationAccessBean.int_UserId}"  />
+	 
+	<f:viewAction action="#{roleManagementBean.getUserName}" />
+	 
+	 </f:metadata>
+	<h:head><title>Role Management</title>
+	<meta http-equiv="refresh" content="30">
+	</meta>
+	</h:head>
+      <body bgcolor="pink">
+	 
+	 
+	<h:form>
+ <h:messages style="color:red"/>
+	<fieldset class="repeat">
+	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
+	   
+	 
+	<h:selectManyCheckbox     value="#{administrationAccessBean.str_AssinedRoles}" valueChangeListener="#{administrationAccessBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
+  <f:selectItems value="#{roleManagementBean.str_Roles}" /><br/>
+   <!-- <f:ajax event="valueChange" update="@form" process="@form"/> --> 
+</h:selectManyCheckbox>
+ 
+<h4 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h4>
+ </fieldset>
+<br/><br/>
+ 
+ <h:commandButton value="AddOrUpdate Role"    action="#{administrationAccessBean.addRoleManagement}">
+   <f:ajax render="@all" execute="@all"/>
+  </h:commandButton> 
+
+	</h:form>
+	 </body>
+ 
+</ui:define>
+</ui:composition>

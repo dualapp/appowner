@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	  <f:metadata>
+	<f:viewParam name="personId" value="#{cls_EnquiryUpdateBean.personId}"  />
+	 
+	<f:viewAction action="#{cls_EnquiryUpdateBean.getPerson}" />
+</f:metadata>
+
+<h:head>
+    <title>JSFlive JSF 2.2 - Example 01</title>
+</h:head>
+<h:body>
+<h:form>
+  <h:panelGrid columns="2">
+    <h:outputText value="Name:"/>
+    <h:inputText value="#{cls_EnquiryUpdateBean.person.personName}"/>
+    
+ 
+    <h:outputText value="Email:"/>
+    <h:inputText value="#{cls_EnquiryUpdateBean.person.personEmail}"/>
+    
+ 
+    <h:outputText value="Message:"/>
+    <h:inputTextarea row="8" cols="17" id="personMessage" value="#{cls_EnquiryUpdateBean.person.personMessage}"/>
+    
+     
+   <h:commandButton  value="Submit"  action="#{cls_EnquiryUpdateBean.savePerson}"/>
+   <h:button outcome="ViewEnquiry.xhtml" value="Cancel"  />
+  </h:panelGrid>
+  </h:form>
+</h:body>
+</ui:define>
+</ui:composition>

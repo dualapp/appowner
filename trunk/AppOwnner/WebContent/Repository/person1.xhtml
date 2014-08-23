@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<f:metadata>
+	<f:viewParam name="int_CompanyID" value="#{updateBean.int_CompanyID}"  />
+	 
+	<f:viewAction action="#{updateBean.getCompany}" />
+</f:metadata>
+ <body bgcolor="pink">
+<h:form>
+<h:panelGrid columns="2">
+<p:panel  id="panel" header="View Company profile">
+<p:focus context="panel"/>
+<table>
+  <tr><td><h:outputText value="CompanyName:"/></td>  
+  <td><h:inputText value="#{updateBean.cmp1.str_CompanyName}"/></td>  
+    </tr>
+    <tr>
+    
+   <td> <h:outputText value="CompanyAddress:"/></td>
+  <td>  <h:inputText value="#{updateBean.cmp1.str_CompanyAddress}"/></td>
+    </tr>
+    <tr>
+     <td>  <h:outputText value="City:"/></td>
+   <td>  <h:inputText value="#{updateBean.cmp1.str_City}"/></td>  
+   </tr>
+   <tr>
+   <td>  <h:outputText value="State:"/></td>
+   <td>  <h:inputText value="#{updateBean.cmp1.str_State}"/></td>  	
+   </tr>
+   <tr>
+    <td> <h:outputText value="Zipcode:"/></td>
+   <td>  <h:inputText value="#{updateBean.cmp1.int_Zipcode}" />
+       </td>  
+        </tr>
+        <tr>
+   <td>   <h:outputText value="MobileNo:"/></td>
+   <td>  <h:inputText value="#{updateBean.cmp1.str_Mobile}" />
+                  </td>  
+    </tr>
+    
+   
+    <tr>
+  <td>   <h:outputText value="CompanyType:"/></td>  
+   <td>  <h:inputText id="options" value="#{updateBean.cmp1.str_CompanyType}"/>
+                
+                
+   </td>  
+    </tr>
+    </table>
+   </p:panel>  
+  </h:panelGrid>
+ 
+  </h:form>
+ 
+ <br/><br/>
+ <h:body>
+  
+  <h:form id="form1">
+        <h:outputText value="CompanyPerson Information : "></h:outputText>
+       <p:dataTable id="person" var="person1" value="#{updateBean.listCompanyPerson1}" style="width: 10%">
+           <p:column>
+                <f:facet name="header">
+                    <h:outputText value="CompanyPersonId" />
+                </f:facet>
+                <h:outputText value="#{person1.int_CompanyPersonID}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="CompanyPersonName" />
+                </f:facet>
+                <h:outputText value="#{person1.str_CompanyPersonName}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Designation" />
+                </f:facet>
+                <h:outputText     value="#{person1.str_Designation}" />
+                 
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="CompanyName" />
+                </f:facet>
+                <h:outputText value="#{person1.str_CompanyName}" />
+                 
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Email" />
+                </f:facet>
+                <h:outputText value="#{person1.str_Email}" />
+                 
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Mobile" />
+                </f:facet>
+                <h:outputText value="#{person1.str_MobileNo}" />
+                 
+            </p:column>
+            <p:column>
+               <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                 <h:link outcome="ContactPersonupdate.xhtml" >
+                <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
+                <f:param name="int_CompanyPersonID" value="#{person1.int_CompanyPersonID}"/>
+                </h:link>
+               </p:column>
+              
+               	   		 
+               	   		 
+               	   		 
+            </p:dataTable>
+</h:form>
+</h:body>
+</body>
+ </ui:define>
+ </ui:composition>
+
+

@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:define name="content">
+ <h:head><title>Vendor Registration</title></h:head>
+ <div><p><h:messages style="color:red"/></p></div>
+<body>
+
+    <h:form id="form" > 
+   
+   
+   <br/><center><legend    style="background-color:#438eb9; color:#fff;">vendor Registration</legend> </center>
+   <div>
+     <center>
+      <legend  align="left" style="background-color:#438eb9; color:#fff;">vendorPersonal Details</legend>
+        <table>
+         
+            <tr> <td><h:outputText value="Vendor CATEGORY: " /></td>
+                <td>
+        <p:selectOneMenu value="#{vendorBean.str_VendorType}">
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+               
+        </p:selectOneMenu>
+        </td>
+ </tr>
+          
+            <tr>
+                <td><h:outputLabel for="vendorName" value="vendor Name * " /></td>
+                <td><h:inputText id="vendorName"  label="Name" value="#{vendorBean.str_VendorName}" required="true" requiredMessage="Please enter vendor name">
+                
+                  <f:validateLength minimum="3" />
+                    <p:ajax event="blur" update="vendorNameMsg" />
+              </h:inputText>
+                    <p:message id="vendorNameMsg" for="vendorName" display="icon"/>
+                </td>
+           </tr>
+           
+             <tr>
+                <td><h:outputLabel for="vendorphone" value="vendor Phone * " /></td>
+                <td><h:inputText id="vendorphone"  label="Phone" value="#{vendorBean.str_VendorPhone}"   maxlength="11" required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number">
+                    <f:validateLength minimum="10" />
+                    <f:validateRegex pattern="^([+]?[\d]+)?$" />
+                    <p:ajax event="blur" update="vendorphoneMsg" />
+              </h:inputText>
+                    <p:message id="vendorphoneMsg" for="vendorphone" display="icon"/>
+                </td>
+           </tr>
+           
+           <tr>
+                <td><h:outputLabel for="vendoremail" value="Email  " /></td>
+                <td><h:inputText id="vendoremail" label="Email"   value="#{vendorBean.str_VendorEmail}" required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter vendor Email">
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+ 
+                   
+                    <p:ajax event="blur" update="vendoremailMsg" />
+              </h:inputText>
+                    <p:message id="vendoremailMsg" for="vendoremail" display="icon"/>
+                </td>
+           </tr> 
+           
+           <tr><td><h:outputText value="Contact Person Name"/></td><td><h:inputText value="#{vendorBean.str_ContactPersonName}" /></td></tr>
+         
+          </table>
+           <legend  align="left" style="background-color:#438eb9; color:#fff;">Permanent Address</legend>
+           <table> 
+           <tr> 
+            <td><h:outputLabel for="Address" value="Address Line1 " /></td>
+                <td><h:inputText id="Address" label="Address"   value="#{vendorBean.str_VendorAddress}" required="true"  requiredMessage="Please enter vendor Address">
+            </h:inputText></td></tr>
+            <tr>
+            <td><h:outputLabel for="str_VendorCountry" value=" Country  " /><font color="red">*</font></td>
+            <td><p:selectOneMenu id="str_VendorCountry" value="#{vendorBean.str_VendorCountry}"     valueChangeListener="#{vendorBean.countryChangeListener}" style="width:200px">
+                <!--c --> 
+               <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{vendorBean.str_VendorCountries}" />
+                 <p:ajax event="change" update="str_VendorState" process="str_VendorCountry"/>
+            </p:selectOneMenu></td></tr>
+            
+             <tr>
+ 
+            <td><h:outputLabel for="str_VendorState" value="State  " /><font color="red">*</font></td>
+            <td><p:selectOneMenu id="str_VendorState" value="#{vendorBean.str_VendorState}"     valueChangeListener="#{vendorBean.stateChangeListener}" style="width:200px">
+                <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorBean.str_VendorStates}"/>
+               <p:ajax event="change" update="str_VendorCity" process="str_VendorState"/>    
+            </p:selectOneMenu></td>
+             </tr>
+            <tr> 
+                 <td><h:outputLabel for="str_VendorCity" value="City * " /></td>
+            <td><p:selectOneMenu id="str_VendorCity" value="#{vendorBean.str_VendorCity}" style="width:200px">
+                <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
+             
+            </p:selectOneMenu></td></tr>
+            
+       
+                
+            <tr> 
+            <td><h:outputLabel for="Zip" value="Zip " /></td>
+                <td><h:inputText id="Zip" label="ZipCode"   value="#{vendorBean.str_ZipCode}" required="true"  requiredMessage="Please enter vendor ZipCode">
+            </h:inputText></td></tr></table>
+            <legend  align="left" style="background-color:#438eb9; color:#fff;">VendorService Details</legend>
+            <table>
+              
+              <tr><td> <h:commandButton value="Add Services" action="#{vendorBean.add}" immediate="true" execute="@this">
+               
+               <f:ajax render="@form" execute="@form"/>
+              </h:commandButton></td></tr>
+          
+              
+    <tr><td>
+    <c:forEach items="#{vendorBean.vendorServiceDetails}"   var="Service">
+                <h:outputText value="Service"/>
+	    <p:inputText value="#{ str_ServiceName}" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
+	     <h:outputText value="Price"/>
+	    <p:inputText value="#{ int_ServicePrice}" validatorMessage="Price should be  number only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
+	    <f:validateRegex pattern="^([+]?[\d]+)?$" /></p:inputText>
+	    <br/>
+	     </c:forEach> </td></tr></table>
+    
+	  
+	   <table><tr><td><h:outputText value="Is Vendor Active? " /></td>
+       <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
+           </tr>
+           <tr><td><h:outputText value="Is a Company? " /></td>
+       <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsACompany}" /></td>
+           </tr>
+             <tr><td> <h:outputText value="ServiceRate" /></td>
+           <td>
+        <p:rating value="#{vendorBean.int_VendorServiceRating}">
+           
+        </p:rating>
+         
+        </td>
+        </tr>
+        <tr>
+                <td><h:outputLabel for="vendorcomments" value="Comments  " /></td>
+                <td><p:inputTextarea rows="6" cols="33"  id="vendorcomments"  label="Comments" required="true" requiredMessage="Please enter vendor Comment" value="#{vendorBean.str_VendorComments}">
+                
+                   
+                    <p:ajax event="blur" update="vendorcommentsMsg" />
+               </p:inputTextarea>
+                    <p:message id="vendorcommentsMsg" for="vendorcomments" display="icon"/>
+                </td>
+           </tr>  
+             
+	   </table>
+	   <legend  align="left" style="background-color:#438eb9; color:#fff;">Vendor Bank Details</legend>
+	   <table>
+         
+            <tr>
+                <td><h:outputLabel for="vendorbankaccount" value="Account Number  " /></td>
+                <td><h:inputText id="vendorbankaccount" label="Account Number"   value="#{vendorBean.str_VendorBankAccount}"/>
+                
+              
+                </td>
+           </tr>
+           
+            
+             <tr>
+                <td><h:outputLabel for="vendorbankname" value="Bank Name  " /></td>
+                <td><h:inputText id="vendorbankname" label="BankName"   value="#{vendorBean.str_VendorBankName}"/>
+                
+              
+                </td>
+           </tr>
+             <tr>
+                <td><h:outputLabel for="vendorbankneftifsc" value="NEFT/IFSC Code  " /></td>
+                <td><h:inputText id="vendorbankneftifsc" label="Bank NEFT/IFSC Code"   value="#{vendorBean.str_VendorBankNeftOrIfsc}"/>
+                
+              
+                </td>
+           </tr>
+            <tr>
+                <td><h:outputLabel for="str_PanNo" value="Pan No " /></td>
+                <td><h:inputText id="str_PanNo" label="Pan No"   value="#{vendorBean.str_PanNo}"/>
+                
+              
+                </td>
+           </tr>
+           <tr>
+                <td><h:outputLabel for="str_ServiceTaxNo" value="Tax No " /></td>
+                <td><h:inputText id="str_ServiceTaxNo" label="Tax No"   value="#{vendorBean.str_ServiceTaxNo}"/>
+                
+              
+                </td>
+           </tr>
+           
+           <tr>
+                <td><h:outputLabel for="int_TdsCharge" value="TDS Charge " /></td>
+                <td><h:inputText id="int_TdsCharge" label="TDS Charge"   value="#{vendorBean.int_TdsCharge}"/>
+                
+              
+                </td>
+           </tr>
+            <tr>
+                <td><h:outputLabel for="bool_VisibleToPublic" value="Visible to public " /></td>
+                <td><p:selectBooleanCheckbox id="bool_VisibleToPublic" label="Visible to public"   value="#{vendorBean.bool_VisibleToPublic}"/>
+                
+              
+                </td>
+           </tr>
+            <tr>
+                <td><h:outputLabel for="Additional Info" value="Additional Info" /></td>
+                <td><p:inputTextarea rows="6" cols="33" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/>
+                
+              
+                </td>
+           </tr>
+           
+            </table>
+            
+           
+          
+            <h:commandButton value="Submit" action="#{vendorBean.saveVendor}"/> 
+             
+           </center>
+           
+           </div>
+           </h:form>
+            
+           </body>
+            </ui:define>
+            </ui:composition>
+            

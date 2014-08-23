@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>Accounting Form</title>
+    </h:head>
+    <h:body>
+    <h:form>
+    <fieldset>
+     <legend  style="background-color:#438eb9; color:#fff;">Trial Balance</legend>
+                 <h:outputText value="From Date"/>
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.date_Duration}">
+                  </p:calendar>&nbsp;&nbsp;
+                  <h:outputText value="To Date"/>
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.date_Duration}">
+                  </p:calendar>
+                  
+                 </fieldset>
+                 
+    </h:form>
+    <p:dataTable var="e" value="#{expenseBean.chartOfAccountList}">
+        <f:facet name="header">
+          Trial Balance
+        </f:facet>
+ 
+        <p:columnGroup type="header">
+            <p:row>
+                <p:column rowspan="2" headerText="Account Name" />
+                <p:column colspan="2" headerText="Statistics" />
+            </p:row>
+            <p:row>
+                <p:column headerText="Credit" />
+                <p:column headerText="Debit" />
+            </p:row>
+        </p:columnGroup>
+ 
+        <p:subTable var="stats" value="#{e.str_AccountType}">
+            <f:facet name="header">
+                <h:outputText value="#{e.str_AccountName}" />
+            </f:facet>
+            <p:column>
+                <h:outputText value="#{e.str_OrganizationName}" />
+            </p:column>
+            
+            <p:columnGroup type="footer">
+                <p:row>
+                    <p:column footerText="Totals: " style="text-align:right"/>
+                    <p:column footerText="#{e.str_AccountType}" />
+                    <p:column footerText="#{e.str_AccountType}" />
+                </p:row>
+            </p:columnGroup>
+        </p:subTable>
+    </p:dataTable>
+
+                
+    </h:body>
+    </ui:define>
+    </ui:composition>
+    
