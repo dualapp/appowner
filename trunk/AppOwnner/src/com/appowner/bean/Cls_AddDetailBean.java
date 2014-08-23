@@ -65,7 +65,7 @@ public class Cls_AddDetailBean implements Serializable {
 	
 	private String str_ApartmentName;
 	   public String getStr_ApartmentName() {
-		  str_ApartmentName=Util.getAppartmentName();
+		  str_ApartmentName=Util.getApartmentName();
 		   System.out.println(str_ApartmentName);
 			return str_ApartmentName;
 		}
@@ -199,12 +199,12 @@ public int getInt_Ad_categoryId() {
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
 		pro.setUsername(Util.getUserName());
-		pro.setApartementId(Util.getAppartmentId());
+		pro.setApartementId(Util.getUserId());
 		pro.setVar_FileName("image");
 		pro.setVar_ImageName(path1);
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
-		getProductDetailService().AddProduct1(pro);		
+		 getProductDetailService().AddProduct1(pro);		
 	}
 	
 		public void AddCategory(){
