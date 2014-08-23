@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title></title>
+
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="Person : "></h:outputText>
+        <p:dataTable id="Per" var="per" value="#{cls_AddDetailsBean.listDetails}" style="width: 30%">
+           
+            <p:column>
+            <f:facet name="header">
+               <h:outputText value="Category" />
+                </f:facet>
+                <h:outputText value="#{per.var_Ad_CategoryName}" />
+               </p:column>
+               
+             
+             
+              
+        </p:dataTable>
+        
+        
+         </h:form>
+        
+         
+</h:body>
+ </ui:define>
+ </ui:composition>

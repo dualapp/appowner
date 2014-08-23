@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  <f:metadata>
+	<f:viewParam name="msgId" value="#{cls_MessageUpdateBean.messageId}"  />
+	 
+	<f:viewAction action="#{cls_MessageUpdateBean.getMessage}" />
+</f:metadata>
+
+<h:head>
+    <title>JSFlive JSF 2.2 - Example 01</title>
+</h:head>
+<h:body>
+<h:form>
+  <h:panelGrid columns="2">
+    <h:outputText value="Message-Subject:"/>
+    <h:inputText value="#{cls_MessageUpdateBean.msg.var_MessageSubject}"/>
+    
+ 
+    <h:outputText value="Email:"/>
+    <h:inputText value="#{cls_MessageUpdateBean.msg.str_Email}"/>
+    
+ 
+    
+ 
+    <h:outputText value="Message-mode:"/>
+    <h:inputText value="#{cls_MessageUpdateBean.msg.MessageMode}"/>
+    
+    
+    <h:outputText value="Message-category:"/>
+    <h:inputText value="#{cls_MessageUpdateBean.msg.MessageCategory}"/>
+    
+    <h:outputText value="Message:"/>
+    <h:inputTextarea row="8" cols="17" id="var_MessageDetails" value="#{cls_MessageUpdateBean.msg.var_MessageDetails}"/>
+    
+     
+   <h:commandButton  value="Submit"  action="#{cls_MessageUpdateBean.saveMessage}"/>
+   <h:button outcome="ViewEnquiry.xhtml" value="Cancel"  />
+  </h:panelGrid>
+  </h:form>
+</h:body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<f:metadata>
+	<f:viewParam name="str_ApartmentName" value="#{userInformationBean.str_ApartmentName}"  />
+	 
+	<f:viewAction action="#{userInformationBean.getUserlist}" />
+</f:metadata>
+ <h:head>
+    <title>Welcome to Company page</title>
+</h:head>
+ <body bgcolor="yellow">
+ 
+<p:panel  id="panel" header="View User profile">
+<h:form id="form1">
+        
+       <p:dataTable id="person" var="person1" value="#{userInformationBean.userlist}" style="width: 50%">
+           <p:column>
+                <f:facet name="header">
+                    <h:outputText value="UserID" />
+                </f:facet>
+                <h:outputText value="#{person1.int_UserId}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="UserName" />
+                </f:facet>
+                <h:outputText value="#{person1.str_Username}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Email" />
+                </f:facet>
+                <h:outputText value="#{person1.str_Email}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ContactNo." />
+                </f:facet>
+                <h:outputText value="#{person1.str_PhoneNo}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Address" />
+                </f:facet>
+                <h:outputText value="#{person1.str_City}" />
+            </p:column>
+            
+         </p:dataTable>
+  
+               	   		 
+               	   		 
+               	   		 
+          
+</h:form>
+</p:panel>
+
+</body>
+</ui:define>
+</ui:composition>  
+ 

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<h:head>
+	</h:head>
+	<h:form>
+	
+	<body>
+	<a href="Expenses.xhtml">>>Back To expenses</a >
+	<h:messages/>
+	 
+	 
+	<table   cellspaceing="5" cesspadding="5" collspan="5" rowspan="5">
+        <tr><td> 
+               <h:outputLabel value="Organisation:" /> </td>
+             <td> <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td></tr>
+         <tr>
+          <th> Acc Name*</th>&nbsp;&nbsp; <th>  Type* </th>&nbsp;&nbsp;<th> Category*  </th> &nbsp;&nbsp; <th>  Date* </th>&nbsp;&nbsp;  <th>  Ammount* </th>&nbsp;&nbsp;<th>  Description </th>&nbsp;&nbsp;<th> Assets Category </th>&nbsp;&nbsp;<th>  Assets Name</th></tr> 
+          <tr><td> <p:selectOneMenu  valueChangeListener="#{expenseBean.accountListener}"  value="#{expenseBean.str_AccountName}"  style="width:100px">
+          <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
+          <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
+          </p:selectOneMenu>
+          </td> 
+  <td><p:selectOneMenu   value="#{expenseBean.str_ExcepenseType}" valueChangeListener="#{expenseBean.expenseTypeListener}"  style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
+                   
+                 </p:selectOneMenu>
+             </td>
+             
+               <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}" valueChangeListener="#{expenseBean.expenseCategoryListener}"   style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    
+                 </p:selectOneMenu>
+                 </td>
+                <td> 
+               <p:calendar     style="width:100px" navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
+                  </p:calendar>
+                   
+             </td>     
+             <td><h:inputText style="width:100px" value="#{expenseBean.int_Ammount}" valueChangeListener="#{expenseBean.amountListener}"/>  </td>
+              
+               <td><h:inputText  style="width:100px" value="#{expenseBean.str_Description}"  valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
+               <td><p:selectOneMenu id="assetcatname"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                 
+                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                   <p:ajax event="change" update="assetname" process="assetcatname"/>
+                 </p:selectOneMenu>
+             </td>
+             
+               <td><p:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
+                  
+                  
+                 </p:selectOneMenu>
+                 </td></tr>
+                 <!-- nextLine -->
+                  
+          <tr><td> <p:selectOneMenu  valueChangeListener="#{expenseBean.accountListener}"  value="#{expenseBean.str_AccountName}"  style="width:100px">
+          <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
+          <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
+          </p:selectOneMenu>
+          </td> 
+  <td><p:selectOneMenu   value="#{expenseBean.str_ExcepenseType}" valueChangeListener="#{expenseBean.expenseTypeListener}"  style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
+                   
+                 </p:selectOneMenu>
+             </td>
+             
+               <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}" valueChangeListener="#{expenseBean.expenseCategoryListener}"   style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    
+                 </p:selectOneMenu>
+                 </td>
+                <td> 
+               <p:calendar     style="width:100px" navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
+                  </p:calendar>
+                   
+             </td>     
+             <td><h:inputText style="width:100px" value="#{expenseBean.int_Ammount}" valueChangeListener="#{expenseBean.amountListener}"/>  </td>
+              
+               <td><h:inputText  style="width:100px" value="#{expenseBean.str_Description}"  valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
+               <td><p:selectOneMenu id="assetcatname1"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                 
+                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                   <p:ajax event="change" update="assetname1" process="assetcatname1"/>
+                 </p:selectOneMenu>
+             </td>
+             
+               <td><p:selectOneMenu  id="assetname1" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
+                  
+                  
+                 </p:selectOneMenu>
+                 </td></tr>
+                 
+              
+             <tr><td><h:commandButton action="#{expenseBean.addExpenses}" value="Submit">
+              <f:ajax render="@form" execute="@form" />
+              </h:commandButton>
+             </td> </tr>
+             
+             
+          </table>
+         
+          <a href="Expenses.xhtml">>>Back To expenses</a >
+	</body>
+	 
+	</h:form>
+ </ui:define>
+ </ui:composition>
+ 

@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Message Form</title>
+    <a href="index.xhtml">Please send your message</a>
+</h:head>
+<h:body>
+    <h:form>
+        
+        <p:dataTable id="Message" var="msg" value="#{cls_MessageTemplateBean.listMessage}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText  id="messageId" value="#{msg.MessageId}" />
+            </p:column>
+            
+            
+              
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Message-Subject :" />
+                </f:facet>
+                <h:outputText value="#{msg.var_MessageSubject}" />
+            </p:column>
+            
+            
+             
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Email" />
+                </f:facet>
+                <h:outputText value="#{msg.str_Email}" />
+            </p:column>
+            
+            
+            
+              <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Message-mode :" />
+                </f:facet>
+                <h:outputText value="#{msg.MessageMode}" />
+            </p:column>
+            
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Message-Category :" />
+                </f:facet>
+                <h:outputText value="#{msg.MessageCategory}" />
+            </p:column>
+            
+              
+           
+            
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Message :" />
+                </f:facet>
+                <h:outputText value="#{msg.var_MessageDetails}" />
+            </p:column>
+             
+             
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+                <p:commandButton value="delete" action="#{cls_MessageTemplateBean.deleteMessage(msg.messageId)}">
+                </p:commandButton>
+                <f:facet name="header">update</f:facet>
+	   			<h:link outcome="UpdateMessage.xhtml" value="Edit">
+	   				<f:param name="messageId" value="#{msg.messageId}" />
+	   		</h:link>
+               
+              </p:column> 
+          <!-- <p:commandButton value="update" action="#{cls_UpdateBean.editPerson(person.personId)}"   -->  
+             
+             
+             
+              <p:column>
+	   			
+	   		</p:column>
+        </p:dataTable>
+        
+        
+         </h:form>
+        <h:form>
+        
+        </h:form>
+        
+         
+</h:body>
+
+</html>

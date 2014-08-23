@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+ <h:head><title>User Registration</title></h:head>
+<body bgcolor="0099FF">
+    <h:form id="form" > 
+     <p:panel id="panel" header="New User Registration." style="margin-bottom:20px;"> 
+   <h:messages style="color:red"/>
+        <table>
+        <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+            <tr>
+            <td><h:outputLabel for="str_UserCountry" value="Country  " color="#F08080" /><font color="red" >*</font></td>
+            <td><p:selectOneMenu id="str_UserCountry" value="#{cls_UserBeanMain.str_UserCountry}" valueChangeListener="#{cls_UserBeanMain.countryChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select country!">
+                <!--c --> 
+               <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{cls_UserBeanMain.str_UserCountries}" />
+                <p:ajax event="change" update="str_UserCountry" process="str_UserCountry"/>
+                 <p:ajax event="change" update="str_UserState" process="str_UserCountry"/>
+                  
+            </p:selectOneMenu></td></tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+             <tr>
+            <td><h:outputLabel for="str_UserState" value="State" /><font color="red" >*</font></td>
+            <td><p:selectOneMenu id="str_UserState" value="#{cls_UserBeanMain.str_UserState}"   valueChangeListener="#{cls_UserBeanMain.stateChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select state!">
+                <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{cls_UserBeanMain.str_UserStates}"/>
+               <p:ajax event="change" update="str_UserCity" process="str_UserState"/>    
+            </p:selectOneMenu></td>
+             </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+            <tr> 
+                 <td><h:outputLabel for="str_UserCity" value="City " /><font color="red" >*</font></td>
+            <td><p:selectOneMenu id="str_UserCity" value="#{cls_UserBeanMain.str_UserCity}" valueChangeListener="#{cls_UserBeanMain.cityChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select City!">
+                <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{cls_UserBeanMain.str_UserCities}"/>
+                <p:ajax event="change" update="str_UserApartment" process="str_UserCity"/>
+            </p:selectOneMenu></td></tr>
+           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+            <tr> 
+                 <td><h:outputLabel for="str_UserApartment" value="Apartment" /><font color="red" >*</font></td>
+            <td><p:selectOneMenu id="str_UserApartment" value="#{cls_UserBeanMain.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px">
+                <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
+            </p:selectOneMenu></td><td>&#150; &#150;<h:commandButton value="If your appartment is not above! Click Here to Add" action="#{cls_UserBean.addApartment}" update="str_UserCountry" >
+            <p:ajax event="change" update="str_UserState"/>
+          </h:commandButton></td>
+          </tr>
+          
+            <tr>
+          </tr>
+          <tr>
+          </tr>      
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          <td><h:commandButton value="Join Us" action="#{cls_UserBean.getRegistration}">
+          </h:commandButton></td>
+          </tr>  
+          <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          
+             </table>
+           </p:panel>
+           </h:form>
+            
+           </body>
+   </html>

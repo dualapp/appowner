@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:define name="content">
+<h:head>
+    <title></title>
+</h:head>
+<body>
+    <h:form>
+        <tr><td> <h3><h:commandButton  value="Categories Name" style="width: 40%  height:100% " /></h3></td></tr>
+        <p:dataTable id="user" var="user" value="#{scriptBean.documentList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                <h:outputText value="Document Categories Name" />
+                </f:facet>
+                  <h:outputText value="#{user.int_Document_CatNM}" />  
+                
+             </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Type" />
+                </f:facet>
+                <h:outputText value="#{user.ch_Category_Status}" >
+                
+                 <f:converter converterId="com.appowner.bean.StringConverter1"/>
+                </h:outputText>
+                 </p:column>
+                <p:column>
+                    <f:facet name="header">
+                
+                    <h:outputText value="Action" />
+                </f:facet>
+                <h:outputText value="#{user.action}" />
+          
+            <h:link outcome="EditCategoriesName.xhtml" value="Edit" action="#{update.saveUser1}">
+	   			<f:param name="int_Document_CatID" value="#{user.int_Document_CatID}" />
+	   			</h:link>
+	   			<p:commandButton value="delete" action="#{update.deletedocument(user.int_Document_CatID)}" />
+	   			  </p:column>
+         </p:dataTable>
+        <tr>
+        <td>
+        <br />
+        <br />
+      <p:inputText   valueChangeListener="#{scriptBean.addDocumentListener}" value="#{scriptBean.str_DocumentName}" style="width: 40%" >
+            </p:inputText>
+           </td>
+             </tr> 
+                <br />
+        <br />         
+          <p:commandButton id="AddDocument" value="Add Categories" action="#{scriptBean.AddDocument}" ajax="false"/> 
+      
+         </h:form>
+       
+         
+</body>
+</ui:define>
+</ui:composition>

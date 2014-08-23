@@ -1,0 +1,234 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form styleClass="no-pdmg">
+		<ul class="nav nav-list">
+
+			<ui:repeat value="#{pc_sidebar.products}" var="prod" varStatus="index">
+				<li class="#{index.first ? 'active' : ''}"><a href="#" class="dropdown-toggle"> <i
+						class="icon-desktop"></i> <span class="menu-text"> 
+						#{prod.name} </span> <b class="arrow icon-angle-down"></b>
+				</a>
+					<ul class="submenu">
+						<ui:repeat value="#{pc_sidebar.products}" var="prod1" varStatus="ind"> 
+							<li class="#{ind.first ? 'active' : ''}"><a href="elements.html"> <i
+									class="icon-double-angle-right"></i> Elements
+							</a></li>
+						</ui:repeat>
+					</ul></li>
+			</ui:repeat>
+
+			 
+ 
+				
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text"> Master Tables</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			</li>
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text"> Accounting</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+					<li><a href="Expenses.xhtml"> <i
+							class="icon-double-angle-right"></i> Expense
+					</a></li>
+					
+					<li><a href="createExpenses.xhtml"> <i
+							class="icon-double-angle-right"></i> CreateExpense
+					</a></li>
+					 
+					
+					
+					</ul>
+			</li>
+
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text">Administrator </span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+
+				<ul class="submenu">
+					<li><a href="addcommitteemembers.xhtml"> <i
+							class="icon-double-angle-right"></i> Committee Member Registration
+					</a></li>
+					<li><a href="parkingspace.xhtml"> <i
+							class="icon-double-angle-right"></i> ParkingSpace
+					</a></li>
+                    <li><a href="organizationLogo.xhtml"> <i
+							class="icon-double-angle-right"></i> Organizationlogo
+					</a></li>
+					<li><a href="committeememberlist.xhtml"> <i
+							class="icon-double-angle-right"></i> View commiteMemberlist
+					</a></li>
+					<li><a href="addvendor.xhtml"> <i
+							class="icon-double-angle-right"></i> Vendor Registration
+					</a></li>
+					<li><a href="vendorlists.xhtml"> <i
+							class="icon-double-angle-right"></i> View Vendor List
+					</a></li>
+					<li><a href="waterpaymentlist.xhtml"> <i
+							class="icon-double-angle-right"></i> View WaterPaymentList
+					</a></li>
+					<li><a href="vendortransaction.xhtml"> <i
+							class="icon-double-angle-right"></i> VendorTransaction
+					</a></li>
+					<li><a href="addmaintainancestaff.xhtml"> <i
+							class="icon-double-angle-right"></i> MaintainanceStaff Registration
+					</a></li>
+					<li><a href="maintainancestafflist.xhtml"> <i
+							class="icon-double-angle-right"></i> View MaintainanceStaff List 
+					</a></li>
+					<li><a href="administrationaccess.xhtml"> <i
+							class="icon-double-angle-right"></i>  AdministrationAccess
+					</a></li>
+					<li><a href="rolemanagement.xhtml"> <i
+							class="icon-double-angle-right"></i> RoleManagement
+					</a></li>
+					
+				</ul></li>
+
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-edit"></i> <span class="menu-text"> AddVertisement </span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+
+				<ul class="submenu">
+					<li><a href="AddContact.xhtml"> <i
+							class="icon-double-angle-right"></i> Company
+					</a></li>
+
+					<li><a href="AddContact.xhtml"> <i
+							class="icon-double-angle-right"></i> ContactPerson
+					</a></li>
+
+					 
+				</ul></li>
+ <li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">ContactUs </span> <b
+					class="arrow icon-angle-down"></b>
+			</a></li>
+			<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">Communication </span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+
+				<ul class="submenu">
+					<li><a href="AddContact.xhtml"> <i
+							class="icon-double-angle-right"></i> ContactForm
+					</a></li>
+
+					<li><a href="AddEnquiry.xhtml"> <i
+							class="icon-double-angle-right"></i> EnquiryForm
+					</a></li>
+
+					<li><a href="ViewEnquiry.xhtml"> <i
+							class="icon-double-angle-right"></i> ViewEnquiryList
+					</a></li>
+
+					<li><a href="AddFeedback.xhtml"> <i
+							class="icon-double-angle-right"></i> FeedBackForm
+					</a></li>
+
+					 
+				</ul></li>
+
+
+<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">NoticeBoard</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+			<li><a href="Notice.xhtml"> <i
+							class="icon-double-angle-right"></i> AddNotice
+					</a></li>
+					 
+					<li><a href="noticeView.xhtml"> <i
+							class="icon-double-angle-right"></i>  NoticeView
+					</a></li>
+				
+					</ul>
+			
+			</li>
+			<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">Repository</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+			<li><a href="CreateDocument.xhtml"> <i
+							class="icon-double-angle-right"></i>  AddDocument
+					</a></li>
+					<li><a href="DocumentList.xhtml"> <i
+							class="icon-double-angle-right"></i>  View DocumentList
+					</a></li>
+					<li><a href="AddSubcription.xhtml"> <i
+							class="icon-double-angle-right"></i>  AddSubcription
+					</a></li>
+					<li><a href="SubcriptionOptionList.xhtml"> <i
+							class="icon-double-angle-right"></i> SubscriptionOptionList
+					</a></li>
+					<li><a href="ComplainView.xhtml"> <i
+							class="icon-double-angle-right"></i> complainlist
+					</a></li>
+					<li><a href="SubcriptionList.xhtml"> <i
+							class="icon-double-angle-right"></i> SubscriptionList
+					</a></li>
+					
+			</ul>
+			</li>
+			
+			
+<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">Complain</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+			
+			<li><a href="complain.xhtml"> <i
+							class="icon-double-angle-right"></i>  Complain Registration
+					</a></li>
+					<li><a href="ComplainView.xhtml"> <i
+							class="icon-double-angle-right"></i> View complainlist
+					</a></li>
+					
+			</ul>
+			</li>
+			<li class="active open"><a href="#" class="dropdown-toggle">
+					<i class="icon-file-alt"></i> <span class="menu-text"> Other
+						Pages <span class="badge badge-primary ">5</span>
+				</span> <b class="arrow icon-angle-down"></b>
+			</a>
+
+				<ul class="submenu">
+					<li class="active"><a href="faq.html"> <i
+							class="icon-double-angle-right"></i> FAQ
+					</a></li>
+
+					<li><a href="error-404.html"> <i
+							class="icon-double-angle-right"></i> Error 404
+					</a></li>
+
+					<li><a href="error-500.html"> <i
+							class="icon-double-angle-right"></i> Error 500
+					</a></li>
+
+					<li><a href="grid.html"> <i
+							class="icon-double-angle-right"></i> Grid
+					</a></li>
+
+					<li><a href="blank.html"> <i
+							class="icon-double-angle-right"></i> Blank Page
+					</a></li>
+				</ul></li>
+		</ul>
+		
+		
+		
+	</h:form>
+</ui:composition>
+
+

@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<head> 
+<link rel="stylesheet" type="text/css" href="./style/main.css" />
+ </head> 
+<body  bgcolor="pink">
+ <center>
+ <h:outputText value="Subcription Detail" styleClass="header">
+ </h:outputText> 
+    
+ </center>    
+ <h:form>
+ <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"  style="color:red">
+ </h:messages>        
+ <h:panelGrid columns="2">
+          
+  
+            <h:outputText value="Please Enter Subscription name :">
+            </h:outputText>            
+            <h:inputText id="subscriptname" value="#{scriptBean.subscriptname}" required="true" requiredMessage="Please Enter subscriptname!">
+            </h:inputText>
+            <h:outputText value="Please Enter price* :">
+            </h:outputText>            
+            <h:inputText id="price" value="#{scriptBean.price}" required="true" requiredMessage="Please Enter price!">
+            </h:inputText> 		
+            <h:commandButton id="addUser" value="Submit" action="#{scriptBean.addUser}" ajax="false"/> 
+             </h:panelGrid>    
+            </h:form> 
+</body>
+          
+</ui:define>
+</ui:composition>

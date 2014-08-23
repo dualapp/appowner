@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      template="include/templates/template.xhtml">
+	 <ui:define name="content">
+ <h:head>
+   
+ </h:head>
+    <body >
+        <p:layout fullPage="true">
+        
+         
+             
+
+             <p:layoutUnit   position="center" height="200" width="200">
+              <ui:include src="Accounting.xhtml" />
+                <h:panelGroup id="centerContentPanel" layout="block">
+                   <ui:include  src="#{navigationBean.pageName}"/> 
+                   
+                </h:panelGroup>
+            </p:layoutUnit>   
+            
+        </p:layout>
+    </body>             
+ 
+</ui:define>
+</ui:composition>

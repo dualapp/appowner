@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title> </title>
+    <a href="addcommitteemembers.xhtml">Add More Committee Members</a>
+</h:head>
+ <body>
+  <h:messages/>
+  <br/>
+ <h:form>
+ <legend   style="background-color:#438eb9; color:#fff;">Committee Members</legend>
+  
+<p:dataTable   rowStyleClass="background-color:#438eb9; color:#fff;"  var="committeemember" value="#{committeeMemberBean.committeememberlist}" style="width: 10%">
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText  value=" Member ID" />
+                </f:facet>
+                <h:outputText  id="int_MemberId" value="#{committeemember.int_MemberId}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Member Name" />
+                </f:facet>
+                <h:outputText  id="membername" value="#{committeemember.str_UserName}" />
+                </p:column>
+                <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ResponsibleFor" />
+                </f:facet>
+                <h:outputText  id="str_ResponsibleFor" value="#{committeemember.str_ResponsibleFor}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="DateOf Election" />
+                </f:facet>
+                <h:outputText  id="date_Electiondate" pattern="dd.MM.yy" value="#{committeemember.date_Electiondate}" >
+                 
+                </h:outputText>
+            </p:column>
+            <p:rowExpansion>
+            
+            </p:rowExpansion>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                    </f:facet>
+              <h:link outcome="editcommitteemember.xhtml" >
+	   			<p:graphicImage  height="50" width="50" alt="update" value="images/k1.png"/> 
+	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
+	   		</h:link>
+	   		 <h:link outcome="deletecommitteemember.xhtml"   
+	   		 onclick="return confirm('Are you sure you want to delete #{committeemember.str_UserName}?');" > 
+	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
+	   		</h:link>
+	   		
+	   		 <h:link outcome="rolemanagement.xhtml" id="sidlink"  target="_blank"  >
+	   			 <h:outputText value="addRole" styleClass="txtlink"/>
+	   				<f:param name="int_UserId" value="#{committeemember.int_UserId}" />
+	   		</h:link>
+            </p:column>
+            
+            
+            
+            </p:dataTable>
+           
+            </h:form>
+            </body>
+            
+</ui:define>
+</ui:composition>
