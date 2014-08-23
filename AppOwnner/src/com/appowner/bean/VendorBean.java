@@ -25,14 +25,61 @@ import com.appowner.model.VendorCity;
 import com.appowner.model.VendorCountry;
 import com.appowner.model.VendorServiceDetails;
 import com.appowner.model.VendorState;
+import com.appowner.model.WorkOrderCategory;
 import com.appowner.service.VendorService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
 public class VendorBean implements Serializable {
  private int int_ServiceId;
  private String str_VendorType;
+ private String str_VendorCategoryType;
+ private String str_OrganizationName;
+ private String str_StateName;
+	private String str_VendorCountry;
+	private String str_VendorAddress;
+	private List<Vendor> vendorList;
+	private String str_VendorName;
+	private String str_VendorPhone;
+	private int int_VendorId;
+	private String str_ZipCode;
+	private VendorServiceDetails str_VendorService;
+	private String str_VendorEmail;
+	private String str_VendorComments;
+	private int int_VendorServiceRating;
+	private int int_VendorExpense;
+	private boolean bool_IsVendorActive;
+	private boolean bool_IsACompany;
+	private String str_VendorBankAccount;
+	private String str_VendorBankName;
+	private String str_VendorBankNeftOrIfsc;
+	private String str_PanNo;
+	
+	private String str_ServiceTaxNo;
+	private String str_AdditionalInfo;
+	private Boolean bool_VisibleToPublic;
+	private int int_TdsCharge;
+	private String str_Website;
+	private List<WorkOrderCategory> workOrderCategoryList;
   
+
+	public String getStr_VendorCategoryType() {
+	return str_VendorCategoryType;
+}
+
+public void setStr_VendorCategoryType(String str_VendorCategoryType) {
+	this.str_VendorCategoryType = str_VendorCategoryType;
+}
+
+public String getStr_OrganizationName() {
+	str_OrganizationName=Util.getAppartmentName();
+	return str_OrganizationName;
+}
+
+public void setStr_OrganizationName(String str_OrganizationName) {
+	this.str_OrganizationName = str_OrganizationName;
+}
 
 	public String getStr_VendorType() {
 	return str_VendorType;
@@ -50,13 +97,38 @@ public void setInt_ServiceId(int int_ServiceId) {
 	this.int_ServiceId = int_ServiceId;
 }
 /*
- * get AllvendorType
+ * get All VendorCategoryType
  */
 public List<String> getStr_VendorTypeList() {
 	str_VendorTypeList=new ArrayList<String>();
 	str_VendorTypeList.addAll(getVendorservice().getStr_VendorTypeList());
 	System.out.println(str_VendorTypeList);
 	return str_VendorTypeList;
+}
+
+
+public void setWorkOrderCategoryList(
+		List<WorkOrderCategory> workOrderCategoryList) {
+	this.workOrderCategoryList = workOrderCategoryList;
+}
+
+
+public WorkOrderCategory getWorkOrderCategory() {
+	return workOrderCategory;
+}
+
+public void setWorkOrderCategory(WorkOrderCategory workOrderCategory) {
+	this.workOrderCategory = workOrderCategory;
+}
+/*
+ * get WorkOrderCategoryList
+ */
+ 
+public List<WorkOrderCategory> getWorkOrderCategoryList() {
+	workOrderCategoryList=new ArrayList<WorkOrderCategory>();
+	workOrderCategoryList.addAll(getVendorservice().getWorkOrderCategoryList());
+	System.out.println(workOrderCategoryList+"kalpana");
+	return workOrderCategoryList;
 }
 
 public void setStr_VendorTypeList(List<String> str_VendorTypeList) {
@@ -210,31 +282,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		this.list = list;
 	}
 
-	private String str_StateName;
-	private String str_VendorCountry;
-	private String str_VendorAddress;
-	private List<Vendor> vendorList;
-	private String str_VendorName;
-	private String str_VendorPhone;
-	private int int_VendorId;
-	private String str_ZipCode;
-	private VendorServiceDetails str_VendorService;
-	private String str_VendorEmail;
-	private String str_VendorComments;
-	private int int_VendorServiceRating;
-	private int int_VendorExpense;
-	private boolean bool_IsVendorActive;
-	private boolean bool_IsACompany;
-	private String str_VendorBankAccount;
-	private String str_VendorBankName;
-	private String str_VendorBankNeftOrIfsc;
-	private String str_PanNo;
 	
-	private String str_ServiceTaxNo;
-	private String str_AdditionalInfo;
-	private Boolean bool_VisibleToPublic;
-	private int int_TdsCharge;
-	private String str_Website;
 	public String getStr_PanNo() {
 		return str_PanNo;
 	}
@@ -796,6 +844,14 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 		return "vendorlists.xhtml";
 	}
+	}
+	private WorkOrderCategory workOrderCategory;
+	public void saveWorkOrderCategory()
+	{
+		workOrderCategory=new WorkOrderCategory();
+		
+		workOrderCategory.setStr_VendorCategoryType(str_VendorCategoryType);
+		getVendorservice().saveWorkOrderCategory(workOrderCategory);
 	}
 	public List<Vendor> getVendorList() {
 		vendorList = new ArrayList<Vendor>();
