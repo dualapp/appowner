@@ -88,18 +88,18 @@
              <br/>
              <br/>
              <p:button  value="Create New" outcome="Create New Invoice.xhtml"/>&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
-        <p:menuitem value="Record Payment" />
-        <p:menuitem value="Quick Payment" />
-        <p:menuitem value="Export To Excel" />
-         <p:menuitem value="Notify By Mail"/>
-        </p:menuButton>
+          <p:menuitem value="Record Payment" />
+          <p:menuitem value="Quick Payment" />
+           <p:menuitem value="Export To Excel" />
+           <p:menuitem value="Notify By Mail"/>
+          </p:menuButton>
        
              </h:form>
              </body>
              <h:form>
   <h:body>
-        <p:panel header="Invoice: " color="red">
-        <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}" style="width: 80%" align="center">
+         <h:outputText  value="Invoice: " color="red"></h:outputText>
+        <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}" style="width: 100%" align="center">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
@@ -110,7 +110,7 @@
                 <f:facet name="header">
                     <h:outputText value="InvoiceNo" />
                 </f:facet>
-                <h:outputText value="#{invoice.int_InvoiceTransactionID}" />
+                <h:outputText value="#{invoice.int_InvoiceNo}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
@@ -146,35 +146,35 @@
                 <f:facet name="header">
                     <h:outputText value="SubTotal" />
                 </f:facet>
-                <h:outputText value="#{invoice.str_Block}" />
+                <h:outputText value="#{invoice.subTotal}" />
             </p:column>
           
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Tax" />
                 </f:facet>
-                <h:outputText value="#{invoice.str_Block}" />
+                <h:outputText value="#{invoice.taxAmount}" />
             </p:column>
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="TotalDue" />
                 </f:facet>
-                <h:outputText value="#{invoice.str_Block}" />
+                <h:outputText value="#{invoice.totalDue}" />
             </p:column>
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Status" />
                 </f:facet>
-                <h:outputText value="#{invoice.str_Block}" />
+                <h:outputText value="#{invoice.str_Status}" />
             </p:column>
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Balance" />
                 </f:facet>
-                <h:outputText value="#{invoice.str_Block}" />
+                <h:outputText value="#{invoice.totalBalance}" />
             </p:column>
             </p:dataTable>
-            </p:panel>
+         
             </h:body>
              </h:form>  
           </ui:define>
