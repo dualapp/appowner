@@ -44,7 +44,9 @@
             <f:selectItem itemLabel="BUY" itemValue="Buy" />
             <f:selectItem itemLabel="RENT" itemValue="Rent" />
         </p:selectOneRadio>
-       
+       <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_image}"/>
+       </p:outputPanel>
  </h:panelGrid>
  </h:panelGroup>
   </tr>
@@ -63,14 +65,14 @@
     <h:outputText value="Choose Your  File for upload "></h:outputText>
    <td> <p:fileUpload value="#{cls_AddDetailBean.pro.var_ImageName}"
         fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  style="width:300px"/>
        </td>
        </tr>
    
 
 <tr>
                <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><p:inputTextarea rows="10" cols="30" value="#{cls_AddDetailBean.pro.var_Description}" >
+                <td><p:inputTextarea rows="10" cols="60" value="#{cls_AddDetailBean.pro.var_Description}" >
               </p:inputTextarea>
                
                 
