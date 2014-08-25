@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>Expenses  Form
+    
+    
+    </title>
+   
+</h:head>
+<body  bgcolor="pink">
+  <h:form id="form">
+   <p:growl id="msgs" showDetail="true" />
+  <br/>
+  <legend    style="background-color:#438eb9; color:#fff;"> </legend>
+  <fieldset>
+    <br/><center><legend    style="background-color:#438eb9; color:#fff;">Filter</legend> </center>
+       <table><tr>
+         
+              <td><h:outputLabel value="Organisation:" /></td>
+              <td><h:outputLabel value="Organisation:" /> </td>
+            <td>  <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu>
+             </td>
+            
+             <td><h:outputText  value="Status:" /></td>
+               <td><p:selectOneMenu   value="#{expenseBean.str_Status}"  style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Open" itemValue="Open"  />
+                    <f:selectItem itemLabel="Closed" itemValue="Closed"  />
+                   
+                 </p:selectOneMenu>
+             </td>
+              
+             <td><h:outputText  value="Pool in the last:" /></td>
+               <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  style="width:100px">
+                  <f:selectItem itemLabel="3 Month" itemValue="3 Month" />
+                   <f:selectItem itemLabel="6 Month" itemValue="6 Month"  />
+                    <f:selectItem itemLabel="12 Month" itemValue="12 Month"  />
+                   
+                    
+                 </p:selectOneMenu>
+                 </td><td><h:commandButton value="Go" action="#"/></td></tr>
+                           
+             
+             
+                 </table>
+                  
+            
+           
+             </fieldset>
+             
+             <br/>
+             <br/>
+             
+          <h:button outcome="createnewpool.xhtml" value="Create New"/> &#150; &#150;<h:button outcome="createExpenses"  value="View Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Edit Selected" />&#150; &#150;<h:button outcome="createExpenses"  value="Delete Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+        <p:menuitem value="Approved Selected" />
+        <p:menuitem value="Reject Selected" />
+        <p:menuitem value="View Chart" />
+         <p:menuitem value="View Summary"/>
+         <p:menuitem value="Export To Excel"/>
+        </p:menuButton>
+         
+             <legend  style="background-color:#438eb9; color:#fff;"> Pool</legend>
+              
+             <p:dataTable      resizableColumns="true" style="margin-bottom:20px" 
+              id="dataTable" rows="10"  paginator="true"  
+                 var="pool" value="#{expenseBean.poolList}"   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16"  >
+                 <f:facet name="header">
+            Expand rows to see detailed information
+            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        </f:facet>
+        <p:column   sortBy="#{pool.str_CreatedBy}"  headerText="Created By" footerText="created By" width="50">
+          
+               <h:outputText   value="#{pool.str_CreatedBy}" /> 
+               
+            </p:column>
+             <p:column   sortBy="#{pool.str_StartDate}"  headerText="Organization" footerText="Organization" width="50">
+          
+               <h:outputText   value="#{expenseBean.str_OrganizationName}" /> 
+               
+            </p:column>
+            <p:column   sortBy="#{pool.str_StartDate}"  headerText="Start Date" footerText="Start Date" width="50">
+          
+               <h:outputText   value="#{pool.str_StartDate}" /> 
+               
+            </p:column>
+             <p:column   sortBy="#{pool.str_EndDate}"  headerText="End Date" footerText="End Date" width="50">
+          
+               <h:outputText   value="#{pool.str_EndDate}" /> 
+               
+            </p:column>
+            <p:column   sortBy="#{pool.str_poolQuestion}"  headerText="Pool Question" footerText="pool Question" width="50">
+          
+               <h:outputText   value="#{pool.str_poolQuestion}" /> 
+               
+            </p:column>
+            <p:column   sortBy="#{pool.int_poolAudience}"  headerText="Audience" footerText="Audience" width="50">
+          
+               <h:outputText   value="#{pool.int_poolAudience}" /> 
+               
+            </p:column>
+            
+            
+         </p:dataTable>
+         </h:form>
+         </body>
+         </ui:define>
+         </ui:composition>
