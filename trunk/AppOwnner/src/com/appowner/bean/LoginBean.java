@@ -624,6 +624,14 @@ public class LoginBean {
 	public void setLinkddin_userloginpassword(String linkddin_userloginpassword) {
 		this.linkddin_userloginpassword = linkddin_userloginpassword;
 	}
+	  public void getDetails()
+	  	{
+	  		System.out.println(int_UserId);
+	  		user=getUserService().getUserList1(int_UserId);
+	  		//pro=getProductDetailService().editproduct(Int_ProductId);	
+	  		
+	  		
+	  	}
 
 	@ManagedProperty(value = "#{cls_UserService}")
 	private In_UserService userService;
@@ -814,7 +822,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		 str_ApartmentName1=user.getStr_Apartment();
 		 str_Flat1=user.getStr_Flat();
 		 str_Block1=user.getStr_Block();
-		 str_VendorType1=getStr_VendorType();;
+		 str_VendorType1=getStr_VendorType();
 		 str_Title1=getStr_Title();
 		 str_OpenDate1=getStr_OpenDate();
 		 return "workordercategory1.jsp";
@@ -853,6 +861,8 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 	      memberLog.setStr_LogOutTime(str_LoggedOutTime);
 	      getUserService().addMemberLog(memberLog);
 	      System.out.println(str_LoggedOutTime);
+	      
+	    
 	}
 	public String updateUser(){
 		user.setVar_FileName1(getPath2());
@@ -862,13 +872,14 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		return "updationconfirmation.xhtml";
 		}
 	//image uploading
-	public void handleFileUpload1(FileUploadEvent event) throws IOException {
+	public void handleFileUpload(FileUploadEvent event) throws IOException {
 		 System.out.println("hi");
 		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 		    System.out.println(name);
-		    File file= new File("C://myfinal project//9 august//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
+		    File file= new File("C://Users//Pankaj Singh/workspace10//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
+		    
 		   
 		    final UploadedFile uploadedFile = event.getFile();
 		    blb_image1=file.getAbsolutePath();
@@ -891,6 +902,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		    System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooo");
 		    System.out.println(path2);
 	}
+
 
 	public void facebookuserLogin()
 	{
