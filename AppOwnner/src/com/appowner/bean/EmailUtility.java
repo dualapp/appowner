@@ -41,10 +41,9 @@ public class EmailUtility {
  
         // creates a new e-mail message
         Message msg = new MimeMessage(session);
- 
+        
         msg.setFrom(new InternetAddress(userName));
-        InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
-        msg.setRecipients(Message.RecipientType.TO, toAddresses);
+        msg.setRecipients( Message.RecipientType.TO,InternetAddress.parse(toAddress));
         msg.setSubject(subject);
         msg.setSentDate(new Date());
         msg.setText(message);
