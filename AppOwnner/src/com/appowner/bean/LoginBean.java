@@ -78,6 +78,24 @@ public class LoginBean {
 		private String path2;
 		private String cropimage;
 		private String str_userRoleName;
+		private List<ServiceRequest> serviceRequestList;
+		 
+		 
+		  
+		public List<ServiceRequest> getServiceRequestList() {
+			serviceRequestList=new ArrayList<ServiceRequest>();
+			serviceRequestList.addAll(getUserService().getServiceRequestList());
+			return serviceRequestList;
+		}
+
+
+		public void setServiceRequestList(List<ServiceRequest> serviceRequestList) {
+			this.serviceRequestList = serviceRequestList;
+		}
+
+
+		 
+
 
 	 
 		public String getStr_userRoleName() {
