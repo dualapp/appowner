@@ -26,6 +26,14 @@
    <servlet-name>dum1</servlet-name>
    <url-pattern>/srv</url-pattern>
    </servlet-mapping>
+   <servlet>
+    <servlet-name>Servlet1</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   <servlet-name>Servlet1</servlet-name>
+   <url-pattern>/srv1</url-pattern>
+   </servlet-mapping>
     <!-- SMTP settings -->
     <context-param>
         <param-name>host</param-name>
@@ -39,12 +47,12 @@
  
     <context-param>
         <param-name>user</param-name>
-        <param-value>pankaj.singh1930@gmail.com</param-value>
+        <param-value>kalpana.j5599@gmail.com</param-value>
     </context-param>
  
     <context-param>
         <param-name>pass</param-name>
-        <param-value>pankajart</param-value>
+        <param-value>9040219579</param-value>
     </context-param>
  
     <!-- Filter for uploading files -->
