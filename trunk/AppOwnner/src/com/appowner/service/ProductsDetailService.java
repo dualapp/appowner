@@ -32,7 +32,37 @@ public interface ProductsDetailService {
 	public void AddNotice(Notification p);
 
 	public List<Cls_ProductDetails> getSearchByProducttype(
-			String ch_Product_Type, String ch_Ad_Type);
+			String ch_Product_Type, String ch_Ad_Type,String status);
+
+	public List<Cls_categoryDetail> listcategory();
+
+	public List<Cls_ProductDetails> listcategory1();
+
+	public void Deletedoc(Cls_ProductDetails category);
+
+	public String editproduct1(int int_Ad_categoryId);
+
+	public void edit(Cls_ProductDetails edit);
+
+	
+
+	public int editproductaa(Integer int_ProductId);
+
+	public Cls_ProductDetails updation(Integer int_ProductId);
+
+	public Cls_ProductDetails getEdit(Integer int_ProductId);
+
+	public String editproduct2(int prointcatid);
+
+	public void update(Cls_ProductDetails edit);
+
+	public void addContact(Cls_ProductDetails edit);
+
+	
+	
+
+	
+	
 
 	
 
