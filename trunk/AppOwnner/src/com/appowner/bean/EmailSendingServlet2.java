@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author www.codejava.net
  * 
  */
-@WebServlet("/EmailSendingServlet")
+@WebServlet("/EmailSendingServlet2")
 public class EmailSendingServlet2 extends HttpServlet {
     private String host;
     private String port;
