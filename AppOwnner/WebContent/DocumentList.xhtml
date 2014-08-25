@@ -26,13 +26,12 @@
                 <f:converter converterId="com.appowner.bean.StringConverter1"/>
                 </h:outputText>
             </p:column>
-           
-             <p:column rendered="#{p.flag == 2}">
-            <f:facet name="header">
-                
-                    <h:outputText value="Action" />
+             <f:facet name="header" value="Action"></f:facet>
+                <p:column  rendered="#{p.flag == 2}">
+                <f:facet name="header">
+                <h:outputText value="Action"  />
                 </f:facet>
-               
+                  
           
             <h:link outcome="CategoriesName.xhtml" value="Edit" action="#{update.saveUser1}" >
 	   			<f:param name="int_Document_CatID" value="#{p.int_Document_CatID}" />
