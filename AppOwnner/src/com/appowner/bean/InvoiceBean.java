@@ -101,7 +101,7 @@ public class InvoiceBean implements Serializable{
 	
 
 	public String getStr_Organisation() {
-		str_Organisation=Util.getApartmentName();
+		str_Organisation=Util.getAppartmentName();
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
@@ -498,7 +498,7 @@ public class InvoiceBean implements Serializable{
 	}
 	public List<String> organisationChangeListener(ValueChangeEvent event)
 	{   String str=(String)event.getNewValue();
-	    if(str==Util.getApartmentName())
+	    if(str==Util.getAppartmentName())
 	    {
 	    	return str_Blocks;
 	    }
