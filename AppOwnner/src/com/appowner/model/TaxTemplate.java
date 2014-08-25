@@ -40,19 +40,21 @@ public class TaxTemplate implements Serializable {
 	public void setStr_TaxName(String str_TaxName) {
 		this.str_TaxName = str_TaxName;
 	}
-	public Integer getInt_Percentage() {
+	
+	public Double getInt_Percentage() {
 		return int_Percentage;
 	}
-	public void setInt_Percentage(Integer int_Percentage) {
+	public void setInt_Percentage(Double int_Percentage) {
 		this.int_Percentage = int_Percentage;
 	}
-	public Integer getInt_TaxExemption() {
+	public Double getInt_TaxExemption() {
 		return int_TaxExemption;
 	}
-	public void setInt_TaxExemption(Integer int_TaxExemption) {
+	public void setInt_TaxExemption(Double int_TaxExemption) {
 		this.int_TaxExemption = int_TaxExemption;
 	}
-	private Integer int_Percentage;
+
+	private Double int_Percentage;
 	@Column(name = "var_Frequency")
-	private Integer int_TaxExemption;
+	private Double int_TaxExemption;
 }

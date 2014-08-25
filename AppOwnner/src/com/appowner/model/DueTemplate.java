@@ -51,12 +51,15 @@ public class DueTemplate implements Serializable{
 	public void setStr_Calculation(String str_Calculation) {
 		this.str_Calculation = str_Calculation;
 	}
-	public String getStr_Rate() {
+	
+	public Double getStr_Rate() {
 		return str_Rate;
 	}
-	public void setStr_Rate(String str_Rate) {
+
+	public void setStr_Rate(Double str_Rate) {
 		this.str_Rate = str_Rate;
 	}
+
 	public String getStr_TaxTemplate() {
 		return str_TaxTemplate;
 	}
@@ -80,7 +83,7 @@ public class DueTemplate implements Serializable{
 	@Column(name = "var_Calculation")
 	private String str_Calculation;
 	@Column(name = "int_Rate")
-	private String str_Rate;
+	private Double str_Rate;
 	@Column(name = "var_TaxTemplate")
 	private String str_TaxTemplate;
 	
