@@ -78,24 +78,6 @@ public class LoginBean {
 		private String path2;
 		private String cropimage;
 		private String str_userRoleName;
-		private List<ServiceRequest> serviceRequestList;
-		 
-		 
-		  
-		public List<ServiceRequest> getServiceRequestList() {
-			serviceRequestList=new ArrayList<ServiceRequest>();
-			serviceRequestList.addAll(getUserService().getServiceRequestList());
-			return serviceRequestList;
-		}
-
-
-		public void setServiceRequestList(List<ServiceRequest> serviceRequestList) {
-			this.serviceRequestList = serviceRequestList;
-		}
-
-
-		 
-
 
 	 
 		public String getStr_userRoleName() {
@@ -302,8 +284,6 @@ public class LoginBean {
 
 
 	public List<BookAFacility> getBookAFacilityList() {
-		bookAFacilityList=new ArrayList<BookAFacility>();
-		bookAFacilityList.addAll(getUserService().getBookAFacilityList());
 		return bookAFacilityList;
 	}
 
@@ -727,10 +707,12 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 			int_ApartmentId=user.getInt_ApartmentId();
 			int_UserId=user.getInt_UserId();
 			
+			
 			HttpSession session = Util.getSession();
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
+            session.setAttribute("ApartmentName", user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
 		 	String index="Adminwelcomepage.xhtml";
@@ -780,6 +762,22 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		return "layout.xhtml?error=yes";
 		}
 	}
+	public Integer getInt_UserId() {
+		return int_UserId;
+	}
+
+
+
+
+
+	public void setInt_UserId(Integer int_UserId) {
+		this.int_UserId = int_UserId;
+	}
+
+
+
+
+
 	public String logout() {
 	      HttpSession session = Util.getSession();
 	      session.invalidate();
@@ -859,7 +857,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 	public String updateUser(){
 		user.setVar_FileName1(getPath2());
 		user.setVar_ImageName1(getBlb_image1());
-		getUserService().update(user);
+		getUserService().updateUs(user);
 		//System.out.println(pro);
 		return "updationconfirmation.xhtml";
 		}
