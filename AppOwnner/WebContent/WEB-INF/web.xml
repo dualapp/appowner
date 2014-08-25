@@ -40,7 +40,7 @@
     </servlet>
     <servlet-mapping>
    <servlet-name>dum2</servlet-name>
-   <url-pattern>/srv</url-pattern>
+   <url-pattern>/srv2</url-pattern>
    </servlet-mapping>
     <!-- SMTP settings -->
     <context-param>
