@@ -83,7 +83,7 @@ public class ScriptBean implements Serializable{
 	    private int userId;
 	    private String str_ApartmentName;
 		   public String getStr_ApartmentName() {
-			  str_ApartmentName=Util.getApartmentName();
+			  str_ApartmentName=Util.getAppartmentName();
 			   System.out.println(str_ApartmentName);
 				return str_ApartmentName;
 			}
@@ -569,7 +569,7 @@ public void AddDocManagement()
 		    d.setStr_FileNM(path1);
 			System.out.println(path1);
 			d.setInt_Userid(getUserId());
-			d.setInt_ApartmentID(Util.AppartmentId());
+			d.setInt_ApartmentID(Util.getAppartmentId());
 			d.setUsername(Util.getUserName());
 			d.setStr_FolderNM("image");
 			d.setStr_ApartmentName(getStr_ApartmentName());
