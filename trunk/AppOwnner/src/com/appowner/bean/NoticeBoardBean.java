@@ -118,6 +118,71 @@ private	 String uploadedFileName;
 public void setUploadedFileName(String uploadedFileName) {
 	this.uploadedFileName = uploadedFileName;
 }
+private static List<String> mailids;
+
+
+
+
+
+public static String getMailids() {
+	
+	/*String[] stockArr = new String[mailids.size()];
+	stockArr = mailids.toArray(stockArr);
+	for(String s : stockArr)
+	{
+		return s;
+	
+	}
+	return null;
+	*/
+	/*String[] strArray = (String[]) mailids.toArray(new String[0]);
+			    System.out.println(ArrayUtils.toString(strArray));
+			 //   System.out.println(strarray);
+
+	return ArrayUtils.toString(strArray);*/
+	/*String[] strarray = new String[mailids.size()];
+		    mailids.toArray(strarray );
+		    for(String s : strarray)
+			{ System.out.println(s);
+				return s;
+			
+			}
+	*/
+	/*StringBuilder sb = new StringBuilder();
+	for (String s : mailids)
+	{
+	    sb.append(s);
+	    sb.append("\t");
+	}
+*/StringBuilder out = new StringBuilder();
+for (Object o : mailids)
+{
+  out.append(o.toString());
+  out.append(",");
+}
+return out.toString();
+	
+	
+	
+}
+public static void setMailids(List<String> mailids) {
+	NoticeBoardBean.mailids = mailids;
+}
+private static String subject="subject";
+private static String content="content";
+	
+public static String getSubject() {
+	return subject;
+}
+public static void setSubject(String subject) {
+	NoticeBoardBean.subject = subject;
+}
+public static String getContent() {
+	return content;
+}
+public static void setContent(String content) {
+	NoticeBoardBean.content = content;
+}
 	private Date dat_EntryDate;
 	public String addNotice()
 	{    try{
@@ -133,8 +198,16 @@ public void setUploadedFileName(String uploadedFileName) {
 	     notice.setBool_Staff(getBool_Staff());
 		  notice.setStr_Visible(getStr_Visible());
 		  getNoticeService().addNotice(notice);
-			
-		return "noticeView.xhtml";
+		  if(bool_SpecialNotice==true)
+			{
+				 mailids= getNoticeService().getmailids();
+				
+				subject="AppOwner.com";
+				content="hello";
+				return "notice.jsp";
+			}
+			return null;
+		
 	}
 	catch(DataAccessException e)
 	{e.printStackTrace();
