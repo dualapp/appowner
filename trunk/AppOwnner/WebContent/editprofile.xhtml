@@ -16,7 +16,7 @@
     <title>Edit</title>
 </h:head>
 <body bgcolor="pink">
-<h:form>
+ <h:form id="form" enctype="multipart/form-data" prependId="false"> 
   
  
  <table>
@@ -69,24 +69,15 @@
             <td><h:inputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" required="true"                requiredMessage="Please Enter Phone No!">
             </h:inputText> </td> </tr> 
              
-             <p:growl id="msgs" showDetail="true"/>
- 
-    <h:panelGrid id="ddd" columns="2">
-        <p:imageCropper value="#{cropperView.croppedImage}" image="#{loginBean.cropimage}" initialCoords="225,75,300,125"/>
-        <p:graphicImage id="cropped" value="#{cropperView.newFileName}"/>
-    </h:panelGrid>
- 
-    <p:commandButton value="Crop" action="#{cropperView.crop}" update="cropped msgs" icon="ui-icon-scissors"/>
-             
-            <!--  <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
+             <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
        <p:graphicImage height="150" width="150" value="#{loginBean.blb_image1}"/>
         
- </p:outputPanel> -->
+ </p:outputPanel>
              <tr>
     <h:outputText value="Choose Your  image for upload "></h:outputText>
    <td> <p:fileUpload value="#{loginBean.var_ImageName1}"
-        fileUploadListener="#{loginBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="ddd"  />
+        fileUploadListener="#{loginBean.handleFileUpload()}" mode="advance" auto="true" dragDropSupport="false"
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
        </td>
        </tr>
   
