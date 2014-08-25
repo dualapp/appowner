@@ -1,9 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      template="include/templates/template.xhtml">
+	<ui:define name="content">
       
 <h:head>
     <title>Accounting Form</title>
@@ -15,7 +17,8 @@
    <h:commandButton value="Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>
    <table>
             <tr>
-            <td><h:outputLabel value="Account" /></td>
+            <td><h:outputLabel value="Account" /> &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;</td>
+            
               <td><p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Accounts}"  style="width:250px">
                    <f:selectItems value="#{dueBean.str_Account}" />
                  </p:selectOneMenu>
@@ -36,7 +39,7 @@
    <table>
             <tr>
             <td> <h:outputText  value="Period*" /></td>
-           <td> <p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:300px">
+           <td> <p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:250px">
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
                        <f:selectItem itemLabel="MAR" itemValue="MAR"/>
@@ -53,7 +56,7 @@
             </tr>
          <tr>
             <td> <h:outputText  value="Year*" /></td>
-           <td> <p:selectOneMenu id="int_Year" value="#{dueBean.int_Year}"  style="width:300px">
+           <td> <p:selectOneMenu id="int_Year" value="#{dueBean.int_Year}"  style="width:250px">
                    <f:selectItem itemLabel="2014" itemValue="2014"/>
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
                        <f:selectItem itemLabel="2016" itemValue="2016"/>
@@ -66,11 +69,11 @@
                         </tr>
                         <tr>
                         <td>  <h:outputText  value="Initiated On*" /></td>
-           <td>  <p:inputText id="str_InitiatedOn" value="#{dueBean.str_InitiatedOn}" size="20"/> </td>
+           <td>  <p:inputText id="str_InitiatedOn" value="#{dueBean.str_InitiatedOn}" size="28"/> </td>
            </tr>
            <tr>
                         <td>  <h:outputText  value="Last Date*" /></td>
-           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}" size="20"/> </td>
+           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}" size="28"/> </td>
            </tr>
            </table>
            
@@ -114,19 +117,21 @@
    <table>
           <tr>
                         <td>  <h:outputText  value="Due Amount*" /></td>
-           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" size="20"/> </td>
+           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" size="28"/> </td>
            </tr>
            <tr>
                         <td>  <h:outputText  value="Total Due Amount*" /></td>
-           <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_TotalDueAmount}" size="20"/> </td>
+           <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_TotalDueAmount}" size="28"/> </td>
            </tr>
            </table>
            </fieldset>
            <br/>
-            <tr>
+            <h:panelGroup style="display:block; text-align:right"> 
+         <tr>
                 <td><p:commandButton id="submit" value="Submit" action="#{dueBean.addDueTransaction}" onclick="EnrollLaterClick()" ajax="false" /></td>
-                <td align="right"><p:commandButton id="cancel" value="Cancel" onclick="" ajax="false"/></td>
+                <td><p:commandButton id="cancel" value="Cancel" onclick="" ajax="false"/></td>
            </tr>
+           </h:panelGroup>
             <script>
         function EnrollNowClick() {
             PassValueToParentWindow();
@@ -139,4 +144,5 @@
      
           </h:form>
           </body>
-         </html>
+      </ui:define>
+      </ui:composition>
