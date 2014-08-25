@@ -13,50 +13,51 @@
 <body bgcolor="white">
   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
     <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+     <table>
+     
+   <tr> 
     
-   <table>
-  
-     <tr> 
-        <td><h:outputLabel value="Organisation"  /></td>
-            <td><p:selectOneMenu id="str_ApartmentName"  style="width:150px">
+     
+    <td>
+        <h:outputLabel value="Organisation"  />
+            <p:selectOneMenu id="str_ApartmentName"  style="width:150px">
              <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  />
-            
-            </p:selectOneMenu>
-            </td>
-            <td>&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;<h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
-            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:150px">
+           </p:selectOneMenu>
+           
+        </td>
+         <td>&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;</td>
+            <td><h:outputLabel for="var_Ad_CategoryName" value="Category" />
+            <p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:150px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
-                <f:selectItems value="#{cls_AddDetailBean.categories}"  />
-                 
-               	
+            <f:selectItems value="#{cls_AddDetailBean.categories}"  />
             </p:selectOneMenu>
-           </td>
-            </tr>
-         <tr>
+            
+      </td>
+      </tr> 
+          
+           
          <h:panelGroup id="sss1">
              <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
             <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
-             <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
+             <h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
             <f:selectItem itemLabel="My Community" itemValue="My Community" />
             <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
            
-           </p:selectOneRadio>
+           </h:selectOneRadio>
         
         <p:outputLabel for="I" value="I want to" />
-        <p:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
+        <h:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
             <f:selectItem itemLabel="SELL" itemValue="Sell" />
             <f:selectItem itemLabel="BUY" itemValue="Buy" />
             <f:selectItem itemLabel="RENT" itemValue="Rent" />
-        </p:selectOneRadio>
-        <p:outputPanel layout="block" id="aaa" >  
-       <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_image}"/>
-        
- </p:outputPanel>
+        </h:selectOneRadio>
+       </h:panelGrid>
+       </h:panelGroup>
  
- 
- </h:panelGrid>
- </h:panelGroup>
-  </tr>
+          
+         <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-100px 100px 0px 0px;" >  
+           <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_image}"/>
+          </p:outputPanel>  
           <tr>
            <td>
           <h:outputText value="Title"></h:outputText></td>
@@ -72,24 +73,24 @@
     <h:outputText value="Choose Your  File for upload "></h:outputText>
    <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
         fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa" style="width:150px" />
        </td>
        </tr>
-   
-
-<tr>
+       <br />
+       <br />
+ <tr>
                <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><p:inputTextarea rows="10" cols="30" value="#{cls_AddDetailBean.var_Description}" >
+                <td><p:inputTextarea rows="15" cols="80" value="#{cls_AddDetailBean.var_Description}" >
               </p:inputTextarea>
                
                 
             </td>
             </tr>
             <br/>
-            <tr>
-                <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" /></td> 
+           
+                <p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" /> 
                
-            </tr>
+            
   
                   </table>
            
