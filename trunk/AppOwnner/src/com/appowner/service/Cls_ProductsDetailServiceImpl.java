@@ -93,10 +93,76 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cls_ProductDetails> getSearchByProducttype(
-			String ch_Product_Type, String ch_Ad_Type) {
-		return getProductDao().getSearchByProducttype(ch_Product_Type,ch_Ad_Type);
+			String ch_Product_Type, String ch_Ad_Type,String status) {
+		return getProductDao().getSearchByProducttype(ch_Product_Type,ch_Ad_Type, status);
+	}
+
+	@Override
+	public List<Cls_categoryDetail> listcategory() {
+		return getProductDao().listcategory();
+	}
+
+	@SuppressWarnings({ "unchecked"})
+	@Override
+	public List<Cls_ProductDetails> listcategory1() {
+		return getProductDao().listcategory1();
+	}
+
+	@Override
+	public void Deletedoc(Cls_ProductDetails category) {
+		getProductDao().Deletedoc(category);
+		
+	}
+
+	
+
+	@Override
+	public void edit(Cls_ProductDetails edit) {
+		 getProductDao().edit( edit);
+		
+	}
+
+	
+	@Override
+	public int editproductaa(Integer int_ProductId) {
+		// TODO Auto-generated method stub
+		return  getProductDao().editproductaa(int_ProductId);
+	}
+
+	@Override
+	public Cls_ProductDetails updation(Integer int_ProductId) {
+		return  getProductDao().updation(int_ProductId);
+	}
+
+	@Override
+	public Cls_ProductDetails getEdit(Integer int_ProductId) {
+		return  getProductDao().getEdit( int_ProductId);
+	}
+
+	@Override
+	public String editproduct2(int prointcatid) {
+		return  getProductDao().editproduct2( prointcatid);
+	}
+
+	@Override
+	public String editproduct1(int int_Ad_categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Cls_ProductDetails edit) {
+		getProductDao().update( edit);
+		
+	}
+
+	@Override
+	public void addContact(Cls_ProductDetails edit) {
+		getProductDao().addContact( edit);
+		
 	}
 
 }
