@@ -498,6 +498,14 @@ public class Cls_UserBeanMain implements Serializable {
 	public void setInt_PinCode(int int_PinCode) {
 		this.int_PinCode = int_PinCode;
 	}
+	private double sqft;
+	public double getSqft() {
+		return sqft;
+	}
+	public void setSqft(double sqft) {
+		this.sqft = sqft;
+	}
+	
 	public String addApartment()
 	{
 		selectOneMenuBeanCityName=getSelectonemenubean().getCity();
@@ -534,6 +542,7 @@ public class Cls_UserBeanMain implements Serializable {
         usr.setInt_UserRole(getInt_UserRole());
         usr.setStr_Flat(getStr_Flat());
 		usr.setStr_Block(getStr_Block());
+		user.setSqft(sqft);
 		usr.setStr_PhoneNo(getStr_PhoneNo());
 		usr.setStr_UserRoleName(str_getRoleNameUser);
 		Integer activationbit1=0;
