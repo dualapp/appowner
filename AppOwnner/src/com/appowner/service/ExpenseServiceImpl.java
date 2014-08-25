@@ -13,8 +13,10 @@ import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
+import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
+import com.appowner.model.Pool;
 
 @Service("ExpenseService")
  @Transactional
@@ -192,6 +194,36 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public List<Assets> getAssetsList() {
 		// TODO Auto-generated method stub
 		return getExpenseDao().getAssetsList();
+	}
+
+	@Override
+	public void addFacility(FacilityNeeded facilityNeeded) {
+		// TODO Auto-generated method stub
+		getExpenseDao().addFacility(facilityNeeded);
+	}
+
+	@Override
+	public List<FacilityNeeded> getFacilityNeededList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getFacilityNeededList();
+	}
+
+	@Override
+	public List<String> getFacilityTypeList() {
+		// TODO Auto-generated method stub
+		return  getExpenseDao().getFacilityTypeList();
+	}
+
+	@Override
+	public void addPool(Pool pool) {
+		// TODO Auto-generated method stub
+		getExpenseDao().addPool(pool);
+	}
+
+	@Override
+	public List<Pool> getPoolList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getPoolList();
 	}
 
 }
