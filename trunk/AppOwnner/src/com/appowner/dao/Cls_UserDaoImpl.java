@@ -260,6 +260,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).list();
 		}
 
+		@Override
+		public List<ServiceRequest> getServiceRequestList() {
+			// TODO Auto-generated method stub
+			return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).list();
+		}
+
 		//@Override
 		//public void addUser(User user) {
 			// TODO Auto-generated method stub
