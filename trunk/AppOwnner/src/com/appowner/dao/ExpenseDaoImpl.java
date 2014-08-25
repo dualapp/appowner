@@ -13,9 +13,11 @@ import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
+import com.appowner.model.FacilityNeeded;
 import com.appowner.model.Notice;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
+import com.appowner.model.Pool;
 import com.appowner.model.UserApartment;
 
 @Repository
@@ -144,6 +146,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		getSessionFactory().getCurrentSession().save(ac);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getStr_AssetNameList(String str_AssetCategoryType) {
 		String hql="select str_AssetName from Assets where str_assetcat_name=?";
@@ -156,6 +159,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		getSessionFactory().getCurrentSession().save(assetcategory);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AssetCategory> getAssetCategoryList1() {
 		/*String  query = "{ CALL assetCategoryList() }";
@@ -179,12 +183,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ChartOfAccount> getChartOfAccountList() {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createCriteria(ChartOfAccount.class).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Character> getCh_AccountGroup() {
 		// TODO Auto-generated method stub
@@ -204,5 +210,37 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<Assets> getAssetsList() {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).list();
+	}
+
+	@Override
+	public void addFacility(FacilityNeeded facilityNeeded) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().save(facilityNeeded);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<FacilityNeeded> getFacilityNeededList() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getFacilityTypeList() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setProjection(Projections.property("str_FacilityName")).list();
+	}
+
+	@Override
+	public void addPool(Pool pool) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().save(pool);
+	}
+
+	@Override
+	public List<Pool> getPoolList() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(Pool.class).list();
 	}
 }
