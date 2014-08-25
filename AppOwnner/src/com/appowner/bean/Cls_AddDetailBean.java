@@ -20,8 +20,10 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
+import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.cls_Contact;
 import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -35,7 +37,7 @@ public class Cls_AddDetailBean implements Serializable {
 	private static final String SEARCHBYPRODUCTTYPE = "searchByProducttype";
 	private Integer Int_ProductId;
 	private String Ch_Product_Type;
-	
+	 
 	public String getCh_Product_Type() {
 		return Ch_Product_Type;
 	}
@@ -62,7 +64,16 @@ public class Cls_AddDetailBean implements Serializable {
 	 public int intdocID1;
 	 public String Aprtid; 
 	public String intdocid1;
+	private String Status;
+	public int prointcatid;
 	
+	
+	public int getProintcatid() {
+		return prointcatid;
+	}
+	public void setProintcatid(int prointcatid) {
+		this.prointcatid = prointcatid;
+	}
 	private String str_ApartmentName;
 	   public String getStr_ApartmentName() {
 		  str_ApartmentName=Util.getAppartmentName();
@@ -85,6 +96,12 @@ public class Cls_AddDetailBean implements Serializable {
 		}
 		
 	
+public String getStatus() {
+			return Status;
+		}
+		public void setStatus(String status) {
+			Status = status;
+		}
 public int getInt_Ad_categoryId() {
       return int_Ad_categoryId;
 	}
@@ -149,8 +166,7 @@ public int getInt_Ad_categoryId() {
 		Var_FileName = var_FileName;
 	}
 	public String getVar_ImageName()
-	{ System.out.println("hi");
-		System.out.println(Var_ImageName);
+	{ 
 		return Var_ImageName;
 	}
 	public void setVar_ImageName(String var_ImageName) {
@@ -177,6 +193,7 @@ public int getInt_Ad_categoryId() {
 	
 	private String intdocid3;
 	private int intdocID3;
+	
 	public void AddProduct(){
 		
 	    intdocid1=getVar_Ad_CategoryName();
@@ -194,6 +211,7 @@ public int getInt_Ad_categoryId() {
 		pro.setInt_Ad_categoryId(intdocID1);
 		
 		//pro.setInt_ApartmentId(Util.getAppartmentId());
+		
 		pro.setUserId(getUserId());
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
@@ -204,6 +222,8 @@ public int getInt_Ad_categoryId() {
 		pro.setVar_ImageName(path1);
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
+		pro.setStr_ApartmentName(str_ApartmentName);
+		pro.setStatus("Pending Approval");
 		getProductDetailService().AddProduct1(pro);		
 	}
 	
@@ -245,7 +265,7 @@ public int getInt_Ad_categoryId() {
 		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 		    System.out.println(name);
-		    File file= new File("D://Image\\"+ "images" + name);
+		    File file= new File("C://Image\\"+ "images" + name);
 		    final UploadedFile uploadedFile = event.getFile();
 		    blb_image=file.getAbsolutePath();
 		    System.out.println(blb_image);
@@ -267,24 +287,39 @@ public int getInt_Ad_categoryId() {
 	
 
 	//Edit
-	 private Cls_ProductDetails pro;
-
-	public Cls_ProductDetails getPro() {
-		return pro;
+	 private Cls_ProductDetails pro2;
+	 private String pro1;
+	 
+	 
+	 public String getPro1() {
+		return pro1;
 	}
+	public void setPro1(String pro1) {
+		this.pro1 = pro1;
+	}
+	public Cls_ProductDetails getPro() {
+			return pro2;
+		}
+		public void setPro(Cls_ProductDetails pro2) {
+			this.pro2 = pro2;
+		}
+
+
+	
 	public void getCls_ProductDetails(){
 		System.out.println(Int_ProductId);
-		pro=getProductDetailService().editproduct(Int_ProductId);
-	}
-	public void setPro(Cls_ProductDetails pro) {
-		this.pro = pro;
-	}
-	public String saveUser1(){
-		getProductDetailService().update1(pro);
-		System.out.println(pro);
-		return "";
-		}
-	
+		pro2=getProductDetailService().editproduct(Int_ProductId);
+	System.out.println("111111111111111111111111111111111111111111");
+		System.out.println(pro2.getInt_ProductId());
+		prointcatid=getProductDetailService().editproductaa(pro2.getInt_ProductId());
+		System.out.println("222222222222222222222222222");
+		System.out.println(prointcatid);
+		pro1=getProductDetailService().editproduct2(prointcatid);
+		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+		System.out.println(pro1);
+		Var_ImageName=pro2.getVar_ImageName();
+		 blb_images1="D://Image\\"+Var_ImageName;
+		 }
 	private List<Cls_ProductDetails> listPerson;
 	public List<Cls_ProductDetails> getListPerson() {
 		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
@@ -297,6 +332,44 @@ public int getInt_Ad_categoryId() {
 	public void setListPerson(List<Cls_ProductDetails> listPerson) {
 		this.listPerson = listPerson;
 	}
+	
+	
+	/*private String list3;
+	
+	
+	public String getList3() {
+		list3.add(listcategory);
+		list3.add(listcategory1);
+		return list3;
+	}
+	public void setList3(List<String> list3) {
+		this.list3 = list3;
+	}
+	*/
+	private List<Cls_ProductDetails>listcategory1;
+	
+	
+	public List<Cls_ProductDetails> getListcategory1() {
+		listcategory1= new ArrayList<Cls_ProductDetails>();
+		listcategory1.addAll(getProductDetailService().listcategory1());
+		
+		return listcategory1;
+	}
+	public void setListcategory1(List<Cls_ProductDetails> listcategory1) {
+		this.listcategory1 = listcategory1;
+	}
+    private List<Cls_categoryDetail>listcategory;
+	public List<Cls_categoryDetail> getListcategory() {
+		listcategory= new ArrayList<Cls_categoryDetail>();
+		listcategory.addAll(getProductDetailService().listcategory());
+		
+		return listcategory;
+	}
+	public void setListcategory(List<Cls_categoryDetail> listcategory) {
+		this.listcategory = listcategory;
+	}
+	
+	
 	
 	private Cls_ProductDetails product=new Cls_ProductDetails();
 
@@ -317,7 +390,7 @@ public int getInt_Ad_categoryId() {
 	
 	 public List<Cls_ProductDetails> getSearchByProducttype() {
 		 searchByProducttype=new ArrayList<Cls_ProductDetails>();
-		 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type));
+		 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type,Status));
 			return searchByProducttype;
 			
 			
@@ -326,7 +399,7 @@ public int getInt_Ad_categoryId() {
 		{
 			 searchByProducttype=new ArrayList<Cls_ProductDetails>();
 			 System.out.println(Ch_Product_Type);
-			 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type));
+			 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type,Status));
 			return "Ad_an_Post.xhtml?faces-redirect=true";
 		}
 		
@@ -357,6 +430,45 @@ public int getInt_Ad_categoryId() {
 			return null;
 		}
 	*/
+		
+		public String deleteDetail(int a)
+		{
+			System.out.println("hhhhhhhhhhhh");
+			System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+			System.out.println(a);
+			Cls_ProductDetails category=new Cls_ProductDetails();
+			//System.out.println(Int_Document_CatID);
+			category.setInt_ProductId(a);
+			getProductDetailService().Deletedoc(category);	
+			System.out.println("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			System.out.println(a);
+			return "Ad_an_Post.xhtml";
+
+		}
+		private Cls_ProductDetails edit ;
+		public void setEdit(Cls_ProductDetails edit) {
+			this.edit = edit;
+		}
+		public Cls_ProductDetails getEdit() {
+			return edit;
+		}
+		public void getedit()
+		{ 
+			
+			edit=new Cls_ProductDetails();
+		System.out.println(Int_ProductId);
+		edit =getProductDetailService().getEdit(Int_ProductId);
+			}
+		public String saveContact( ) {
+			 if(edit.getInt_ProductId()!=null)
+		
+				getProductDetailService().update(edit);
+			else		
+				getProductDetailService().addContact(edit);
+		      return "Ad_an_Post.xhtml";
+				 
+		}
+		
 	}
 	
 	
