@@ -16,7 +16,7 @@
     <legend>
    <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
      <h:panelGroup id="performed"  >
-           
+          &#150; &#150;&#150;&#150; &#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150;
              <tr> 
         <td><h:outputLabel value="Organisation"  /></td>
             <td><p:selectOneMenu id="str_ApartmentName"  style="width:150px">
@@ -25,9 +25,9 @@
             </p:selectOneMenu>
             </td>
             </tr>
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; 
+             &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; 
              <td><h:outputText  value="Intent" /></td>
-               <td><p:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Product_Type}" style="width:100px">
+               <td><p:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Product_Type}" style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
                   <f:selectItem itemLabel="Buy" itemValue="Buy"  />
                   <f:selectItem itemLabel="Sell" itemValue="Sell"  />
@@ -36,7 +36,7 @@
                  </p:selectOneMenu>
              </td>
              
-               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; 
+               &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; 
              <td><h:outputText  value="Status" /></td>
                <td><p:selectOneMenu id="option2"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
@@ -48,7 +48,7 @@
                  <br />
                  <br />
                  
-                   &#150; &#150;&#150; &#150;&#150; &#150;&#150;
+                  
                  <td><h:outputText  value="Posted in the last" /></td>
                <td><p:selectOneMenu id="option3" value="ghgf"  style="width:150px">
                   <f:selectItem itemLabel="10 days" itemValue="10 days"  />
@@ -61,40 +61,62 @@
              </h:panelGroup>
            
              <h:panelGroup id="aa">
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150;
+             &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
               <td><h:outputLabel value="Type" /></td>
               <td><p:selectOneMenu id="option4" value="#{cls_AddDetailBean.ch_Ad_Type}" style="width:150px">
               <f:selectItem itemLabel="All" itemValue="All"  />
               <f:selectItem itemLabel="My Community" itemValue="My Community"  />
               <f:selectItem itemLabel="Negihbourhood" itemValue="Neighbourhood"  />
                
-                 </p:selectOneMenu>
+                 </p:selectOneMenu> 
              </td>
-               &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
-               <p:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" >
-               </p:commandButton>
+                 &#150;&#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
+               <h:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" update="">
+               </h:commandButton>
              </h:panelGroup>
-              </fieldset>
-             
-             <p:button  value="Create New" outcome="Create_Detail.xhtml"/>&#150; &#150;<p:button  value="View Selected" outcome="ViewDetail.xhtml"/>&#150; &#150;<p:button  value="Edit Selected" outcome="EditDetails.xhtml" />&#150; &#150;<p:button  value="Refresh" icon="ui-icon-refresh"/>&#150; &#150;<p:menuButton value="Action">
-        <p:menuitem value="Approval Selected" />
+             <br />
+             <br />
+            &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
+             <h:button  value="Create New" outcome="Create_Detail.xhtml"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<h:button  value="View Selected" outcome="ViewDetail.xhtml"/> &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<h:button  value="Refresh" icon="ui-icon-refresh"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:menuButton value="Action">
+       
+       <p:menuitem value="Approval Selected" />
         <p:menuitem value="Reject Selected" />
         <p:menuitem value="Close Selected" />
-
+        <p:menuitem value="Send Email to Creator" />
+        <p:menuitem value="Send Sms to Creator" />
         </p:menuButton>
-       
+       </fieldset>
              </h:form>
+             
              </body>
+             <br />
+             <br />
              
              <h:form>
         <h:body>
         <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 100%">
-          
+          <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="I Want To" />
+                    
+                </f:facet>
+                <h:outputText value="#{per.ch_Product_Type}" />
+            </p:column>
+           <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Status" />
+                </f:facet>
+                              
+                <h:outputText value="#{per.status}" />
+                
+            </p:column>
             <p:column>
             <f:facet name="header">
                <h:outputText value="Category" />
                 </f:facet>
-                <h:outputText value="#{per.var_Ad_CategoryName}" />
+               <h:outputText value="#{per.var_Ad_CategoryName}" />
                </p:column>
             <p:column>
             <f:facet name="header">
@@ -103,13 +125,6 @@
                 <h:outputText value="#{per.ch_Ad_Type}" />
                </p:column>
             
-            <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="I Want To" />
-                </f:facet>
-                <h:outputText value="#{per.ch_Product_Type}" />
-            </p:column>
             
             <p:column>
             <f:facet name="header">  
@@ -121,23 +136,34 @@
              
             <p:column>
             <f:facet name="header">  
-              <h:outputText value="Date" />
+              <h:outputText value="Posted On " />
                 </f:facet>
                 <h:outputText value="#{per.dt_date}" />
             </p:column>
             
-              
               <p:column>
+            <f:facet name="header">  
+              <h:outputText value="Orgnization" />
+                </f:facet>
+                <h:outputText value="#{per.str_ApartmentName}" />
+            </p:column>
+              
+            
+             <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Created By" />
+                </f:facet>
+                <h:outputText value="#{per.username}" />
+            </p:column>
+             
+             <p:column>
             <f:facet name="header">
                 
                     <h:outputText value="Description" />
                 </f:facet>
                 <h:outputText value="#{per.var_Description}" />
             </p:column>
-            
-             
-             
-             
                 <p:column>
             <f:facet name="header">
                
@@ -147,10 +173,15 @@
 	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
 	   		</h:link>
 	   		   
-	   			<h:link outcome="viewproduct.xhtml" value="View">
+	   			<h:link outcome="ViewDetail.xhtml" value="View">
 	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
 	   		</h:link>
-	   		   
+	   		   <p:commandButton value="delete" action="#{cls_AddDetailBean.deleteDetail(per.int_ProductId)}" style="width:50px" onclick="return confirm('Are you sure you want to delete #{per.int_ProductId}?');" >  
+	   			<p:graphicImage  height="30" width="20" alt="delete" /> 
+	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
+	   		
+	   			
+	   			</p:commandButton>
 	   			
                 </p:column>
                </p:dataTable>
