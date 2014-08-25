@@ -9,8 +9,10 @@ import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
+import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
+import com.appowner.model.Pool;
 
 public interface ExpenseService {
 
@@ -69,6 +71,16 @@ public interface ExpenseService {
 	List<String> getAccountTypeList(Character c);
 
 	List<Assets> getAssetsList();
+
+	void addFacility(FacilityNeeded facilityNeeded);
+
+	List<FacilityNeeded> getFacilityNeededList();
+
+	List<String> getFacilityTypeList();
+
+	void addPool(Pool pool);
+
+	List<Pool> getPoolList();
 
 	 
 
