@@ -19,7 +19,6 @@ import java.util.List;
 
 
 
-
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -230,6 +229,27 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		}
 
 		@Override
+		public User getUserDetails(Integer int_UserId) {
+			 String hql="from User where int_UserId=?";
+				User Userinfo=(User) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_UserId).uniqueResult();
+				System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+				System.out.println(Userinfo);
+				return Userinfo;
+		}
+
+		public void updateUs(User user) {
+			sessionFactory.getCurrentSession().update(user);
+			
+		}
+
+		//@Override
+		//public void addUser(User user) {
+			// TODO Auto-generated method stub
+			
+		//}
+		
+
+		@Override
 		public void addMemberLog(MemberLog memberLog) {
 			sessionFactory.getCurrentSession().save(memberLog);
 		}
@@ -251,19 +271,6 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		public void addBookAFacility(BookAFacility bookAFacility) {
 			// TODO Auto-generated method stub
 			sessionFactory.getCurrentSession().save(bookAFacility);
-		}
-
-		@SuppressWarnings("unchecked")
-		@Override
-		public List<BookAFacility> getBookAFacilityList() {
-			// TODO Auto-generated method stub
-			return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).list();
-		}
-
-		@Override
-		public List<ServiceRequest> getServiceRequestList() {
-			// TODO Auto-generated method stub
-			return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).list();
 		}
 
 		//@Override
