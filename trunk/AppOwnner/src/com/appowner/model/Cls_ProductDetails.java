@@ -44,8 +44,16 @@ public class Cls_ProductDetails implements Serializable {
 	private int ApartementId;
 	private String username;
 	private Date dt_date;
+	private String Status;
 	
 	
+	
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
+	}
 	public Date getDt_date() {
 		return dt_date;
 	}
@@ -131,7 +139,15 @@ public class Cls_ProductDetails implements Serializable {
 	}
 	
 	 
+	private String str_ApartmentName;
+
+	public String getStr_ApartmentName() {
+		return str_ApartmentName;
+	}
+	public void setStr_ApartmentName(String str_ApartmentName) {
+		this.str_ApartmentName = str_ApartmentName;
+	}
 	
 
-}
+	}
 
