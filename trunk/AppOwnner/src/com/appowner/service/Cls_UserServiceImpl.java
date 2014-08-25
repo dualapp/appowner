@@ -166,6 +166,19 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	}
 
 	@Override
+	public User getUserList1(Integer int_UserId) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getUserDetails(int_UserId);
+	}
+
+	@Override
+	public void updateUs(User user) {
+		getIn_userdao().updateUs(user);
+		
+	}
+
+
+	@Override
 	public void addMemberLog(MemberLog memberLog) {
 		getIn_userdao().addMemberLog(memberLog);
 		
@@ -188,18 +201,6 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		getIn_userdao().addBookAFacility(bookAFacility);
 		
-	}
-
-	@Override
-	public List<BookAFacility> getBookAFacilityList() {
-		// TODO Auto-generated method stub
-		return getIn_userdao().getBookAFacilityList();
-	}
-
-	@Override
-	public List<ServiceRequest> getServiceRequestList() {
-		// TODO Auto-generated method stub
-		return getIn_userdao().getServiceRequestList();
 	}
 	}
 
