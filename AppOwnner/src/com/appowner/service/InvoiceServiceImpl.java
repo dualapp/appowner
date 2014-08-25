@@ -12,12 +12,12 @@ import com.appowner.model.InvoiceTransaction;
 @Transactional 
 public class InvoiceServiceImpl implements InvoiceService{
 	@Autowired
-	private InvoiceDao invoiceDao;
+	private  InvoiceDao invoiceDao;
 
-	public InvoiceDao getInvoiceDao() {
+	
+	public  InvoiceDao getInvoiceDao() {
 		return invoiceDao;
 	}
-
 	public void setInvoiceDao(InvoiceDao invoiceDao) {
 		this.invoiceDao = invoiceDao;
 	}
@@ -49,4 +49,16 @@ public class InvoiceServiceImpl implements InvoiceService{
 	{
 		return getInvoiceDao().getApartmentlist(str_Block);
 	}
+	  public double getTaxAmount(String str1)
+	  {   System.out.println(str1);
+		  return getInvoiceDao().getTaxAmount(str1);
+	  }
+	  public double getSqft(String str)
+	  {
+		  return getInvoiceDao().getSqft(str);
+	  }
+	  public String getmailid(String str_ApartmentNo)
+	  {
+		  return getInvoiceDao().getmailid(str_ApartmentNo);
+	  }
 }
