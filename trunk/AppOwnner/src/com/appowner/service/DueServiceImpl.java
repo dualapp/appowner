@@ -42,11 +42,11 @@ public class DueServiceImpl implements DueService{
 	}
 	public List<String> getBlockList(String str_Organisation)
 	{
-		return getDueDao().getBlockList(str_Organisation);
+		return ((DueServiceImpl) getDueDao()).getBlockList(str_Organisation);
 	}
 	public List<String> getApartmentlist(String str_Block)
 	{
-		return getDueDao().getApartmentlist(str_Block);
+		return ((DueServiceImpl) getDueDao()).getApartmentlist(str_Block);
 	}
 	
 
