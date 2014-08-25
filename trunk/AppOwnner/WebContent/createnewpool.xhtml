@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      template="include/templates/template.xhtml">
+	 <ui:define name="content">
+	 <h:head>
+	 </h:head>
+	  <a href="pools.xhtml">>>Back To Pool</a >
+	 <h:form>
+	 <h:body>
+	  <p:accordionPanel    activeIndex="">
+     
+        <p:tab title="Member Details">
+            
+             <ui:include src="/memberdetails.xhtml" />
+            
+  </p:tab>
+  </p:accordionPanel>
+  <table><tr>
+  <td><h:outputText value="Status"/></td>
+  <td><h:inputText value="Open"/></td>
+  <td><h:outputText value="End Date"/></td>
+  <td><h:inputText value="#{expenseBean.str_EndDate}"/></td></tr>
+  <tr><td><h:outputText value="Organization"/></td><td><h:inputText value="#{expenseBean.str_OrganizationName}"/></td>
+  <td><h:outputText value="Pool Audience"/></td><td><h:selectOneRadio id="Audience"
+                      value="#{expenseBean.int_PoolAudience}">
+        <f:selectItem   itemLabel="All Members" itemValue="1" />
+        <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
+        </h:selectOneRadio></td></tr>
+       <tr><td><h:outputText value="Pool QuestionS?*"/></td><td><p:inputTextarea rows="6" cols="33"    value="#{expenseBean.str_PoolQuestion}" /></td>
+        </tr> 
+  <tr><td><h:outputText value="Enter Choices*"/></td></tr>
+  <tr><td><h:outputText value="choise1*"/></td><td><h:inputText  value="#{expenseBean.str_Choise1}"/></td></tr>
+  <tr><td><h:outputText value="choise2*"/></td><td><h:inputText  value="#{expenseBean.str_Choise2}"/></td></tr>
+  <tr><td><h:outputText value="choise3"/></td><td><h:inputText  value="#{expenseBean.str_Choise3}"/></td></tr>
+   <tr><td><h:commandButton  value="submit" action="#{expenseBean.addPool}"/></td></tr>
+   </table>
+    
+   </h:body>
+   </h:form>
+   </ui:define>
+   </ui:composition>
+   

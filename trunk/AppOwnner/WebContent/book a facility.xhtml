@@ -18,7 +18,7 @@
 	 
 	<h:body>
 	<br/>
-	<h:outputLabel value="Organisation:" /> 
+ 
                <h:outputLabel value="Organisation:" /> 
               <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
@@ -26,7 +26,7 @@
                  </p:selectOneMenu><br/>
 	 &#150; &#150; <br/>
                 
-             <h:commandButton style="width: 150px"  action="create new book a facility.xhtml" value="create new book a facility" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <h:commandButton style="width: 150px"  action="createnewbookafacility.xhtml" value="createnewbookafacility" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
 	   
 	
 	<br/>
@@ -64,6 +64,11 @@
                 <h:outputText value="#{Bf.str_EventType}" /> 
             
 	 </p:column>
+	  <p:column headerText="Created By">
+                <h:outputText value="#{loginBean.userloginname}" /> 
+            
+	 </p:column>
+	 
 	 </p:dataTable>
 	 </h:body>
 	 </html>
