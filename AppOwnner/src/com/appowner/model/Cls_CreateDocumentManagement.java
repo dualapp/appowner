@@ -188,9 +188,7 @@ public String getStr_FolderNM() {
 	private Integer Size;
 	private String Action;
 
-
-
-	public String getAction() {
+   public String getAction() {
 		return Action;
 	}
 
