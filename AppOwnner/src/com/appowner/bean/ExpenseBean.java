@@ -48,8 +48,10 @@ import com.appowner.model.Assets;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.CommiteeMember;
 import com.appowner.model.Expense;
+import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
+import com.appowner.model.Pool;
 import com.appowner.service.ExpenseService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -1149,6 +1151,136 @@ public List<Assets> getAssetsList() {
 }
 public void setAssetsList(List<Assets> assetsList) {
 	this.assetsList = assetsList;
+}
+/*
+ * FacilityNeeded concept
+ */
+private String str_FacilityName;
+private List<FacilityNeeded>  facilityNeededList;
+private FacilityNeeded facilityNeeded;
+private List<String> facilityTypeList;
+public List<String> getFacilityTypeList() {
+	facilityTypeList=new ArrayList<String>();
+	facilityTypeList.addAll(getExpenseService().getFacilityTypeList());
+	return facilityTypeList;
+}
+public void setFacilityTypeList(List<String> facilityTypeList) {
+	this.facilityTypeList = facilityTypeList;
+}
+public String getStr_FacilityName() {
+	return str_FacilityName;
+}
+public void setStr_FacilityName(String str_FacilityName) {
+	this.str_FacilityName = str_FacilityName;
+}
+public List<FacilityNeeded> getFacilityNeededList() {
+	facilityNeededList=new ArrayList<FacilityNeeded>();
+	facilityNeededList.addAll(getExpenseService().getFacilityNeededList());
+	System.out.println(facilityNeededList);
+	return facilityNeededList;
+}
+public void setFacilityNeededList(List<FacilityNeeded> facilityNeededList) {
+	this.facilityNeededList = facilityNeededList;
+}
+public FacilityNeeded getFacilityNeeded() {
+	return facilityNeeded;
+}
+public void setFacilityNeeded(FacilityNeeded facilityNeeded) {
+	this.facilityNeeded = facilityNeeded;
+}
+public void addFacility()
+{
+	facilityNeeded=new FacilityNeeded();
+	facilityNeeded.setStr_FacilityName(str_FacilityName);
+	facilityNeeded.setInt_ApartmentId(Util.getAppartmentId());
+	getExpenseService().addFacility(facilityNeeded);
+}
+/*
+ * pool concept
+ */
+private String str_Choise1;
+private String str_Choise2;
+private String str_Choise3;
+private String str_PoolQuestion;
+private Integer int_PoolAudience;
+private Integer int_Vote;
+private String str_EndDate;
+private String str_StartDate;
+private List<Pool> poolList;
+private Pool pool;
+private String str_Status;
+public String getStr_Status() {
+	return str_Status;
+}
+public void setStr_Status(String str_Status) {
+	this.str_Status = str_Status;
+}
+public String getStr_Choise1() {
+	return str_Choise1;
+}
+public void setStr_Choise1(String str_Choise1) {
+	this.str_Choise1 = str_Choise1;
+}
+public String getStr_Choise2() {
+	return str_Choise2;
+}
+public void setStr_Choise2(String str_Choise2) {
+	this.str_Choise2 = str_Choise2;
+}
+public String getStr_Choise3() {
+	return str_Choise3;
+}
+public void setStr_Choise3(String str_Choise3) {
+	this.str_Choise3 = str_Choise3;
+}
+public String getStr_PoolQuestion() {
+	return str_PoolQuestion;
+}
+public void setStr_PoolQuestion(String str_PoolQuestion) {
+	this.str_PoolQuestion = str_PoolQuestion;
+}
+ 
+public String getStr_EndDate() {
+	return str_EndDate;
+}
+public void setStr_EndDate(String str_EndDate) {
+	this.str_EndDate = str_EndDate;
+}
+public List<Pool> getPoolList() {
+	poolList=new ArrayList<Pool>();
+	poolList.addAll(getExpenseService().getPoolList());
+	
+	return poolList;
+}
+public void setPoolList(List<Pool> poolList) {
+	this.poolList = poolList;
+}
+public Pool getPool() {
+	return pool;
+}
+public void setPool(Pool pool) {
+	this.pool = pool;
+}
+public Integer getInt_PoolAudience() {
+	return int_PoolAudience;
+}
+public void setInt_PoolAudience(Integer int_PoolAudience) {
+	this.int_PoolAudience = int_PoolAudience;
+}
+public void addPool()
+{
+	System.out.println("Poollllllllllllllllllllll");
+	pool=new Pool();
+	pool.setInt_OrganizationId(Util.getAppartmentId());
+	pool.setInt_poolAudience(int_PoolAudience);
+	pool.setInt_Vote(int_Vote);
+	pool.setStr_StartDate(str_StartDate);
+	pool.setStr_EndDate(str_EndDate);
+	pool.setStr_StartDate(str_StartDate);
+	pool.setStr_CreatedBy(Util.getUserName());
+	pool.setStr_poolQuestion(str_PoolQuestion);
+	pool.setStr_Status(str_Status);
+	getExpenseService().addPool(pool);
 }
 }
 
