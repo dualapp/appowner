@@ -53,6 +53,13 @@ public interface In_UserService {
 
 	public User validate1(String str_Email);
 
+	public User getUserList1(Integer int_UserId);
+
+	public void updateUs(User user);
+
+	//public void updateU(User user);
+
+
 	public void addMemberLog(MemberLog memberLog);
 
 	public List<MemberLog> getListMemberLog();
@@ -60,9 +67,5 @@ public interface In_UserService {
 	public void addServiceRequest(ServiceRequest serviceRequest);
 
 	public void addBookAFacility(BookAFacility bookAFacility);
-
-	public List<BookAFacility> getBookAFacilityList();
-
-	public List<ServiceRequest> getServiceRequestList();
 }
 
