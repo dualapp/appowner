@@ -12,9 +12,9 @@
 <body>
  <%System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");%>
 <div style="display:none;">
-<iframe id="ponyo_frame" name="ponyo_frame"></iframe>
+<iframe id="priya_frame" name="priya_frame"></iframe>
 
-    <form id="ponyo_form" action="srv" method="post">
+    <form id="priya_form" action="srv2" method="post">
     
         <table border="0" width="35%" align="center">
             <caption><h2>Send New E-mail</h2></caption>
@@ -106,7 +106,7 @@
          
     </form>
     <script>
-document.getElementById("ponyo_form").submit();
+document.getElementById("priya_form").submit();
 </script>
 </div>
     
