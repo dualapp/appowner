@@ -1,9 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	 template="include/templates/template.xhtml">
+	<ui:define name="content">
 	
 	
 <h:head>
@@ -28,13 +30,13 @@
              <br/>
             
              <h:form>
-       <h:panelGrid columns="1" style="font: 12px sans-serif;width:900px;height: 19px;;float:center;">
+       <h:panelGrid columns="3" style="font: 12px sans-serif;width:600px;height: 19px;;float:center;">
           <p:tabMenu autoDisplay="true" style="padding: 0px" >  
                 <p:menuitem  value="ACCOUNT TRANACTION"  >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
                          <h:commandLink value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}">
-                         <f:param name="navParam" value="/AccountsTransaction.xhtml" />
+                         <f:param name="navParam" value="/accountstransaction.xhtml" />
            </h:commandLink>
            </p:menuitem>
            </f:ajax>
@@ -47,9 +49,28 @@
            </h:commandLink>
            </p:menuitem>
            </f:ajax>
+                 </p:menuitem> 
+                  <p:menuitem  value="TRIAL BALANCE"  >
+                <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+                         <h:commandLink value="TRIAL BALANCE" action="#{navigationBean.navigateTo}">
+                         <f:param name="navParam" value="/trialbalance.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
                  </p:menuitem>  
+                  <p:menuitem  value="PROFIT AND LOSS"  >
+                <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+                         <h:commandLink value="PROFIT AND LOSS" action="#{navigationBean.navigateTo}">
+                         <f:param name="navParam" value="/profitandloss.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+                 </p:menuitem>   
          </p:tabMenu>
        </h:panelGrid>  
 </h:form>
 
-</html>
+</ui:define>
+</ui:composition>
