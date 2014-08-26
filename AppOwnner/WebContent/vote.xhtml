@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<f:metadata>
+	<f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
+	 
+	<f:viewAction action="#{expenseBean.getOnePool}" />
+	 </f:metadata>
+	<h:head>
+    <title>Pool Details</title>
+</h:head>
+<a href="pools.xhtml">>>Back To Pool</a >
+<h:form>
+<h:body bgcolor="pink">
+ <fieldset>
+ <legend>Pool Details</legend>
+ <table>
+ <tr>
+ <td>
+    <h:outputText value="Organization:"/></td>
+    <td>
+    <h:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
+    
+    <td><h:outputText value="Status:"/> </td>
+    <td>
+    <h:inputText value="#{expenseBean.pool.str_Status}"/></td>  
+    </tr>
+<tr>
+  
+    <td><h:outputText value="PoolAudience"/></td>
+    <td><h:inputText value="#{expenseBean.pool.int_poolAudience}"/></td>
+    <td><h:outputText   value="#{expenseBean.pool.str_EndDate}" /> </td>
+     
+    </tr>
+    <tr><td><h:outputText value="Pool Question?"/></td><td><p:inputTextarea style="Width:250%;height:100px;"  value="#{expenseBean.pool.str_poolQuestion}"/></td></tr>
+      <tr><td><h:selectOneRadio  id="votechoise"
+                      value="#{expenseBean.str_Choise1}">
+        <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise1}" itemValue="#{expenseBean.pool.str_Choise1}" />
+        <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise2}" itemValue="#{expenseBean.pool.str_Choise2}" />
+        <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise3}" itemValue="#{expenseBean.pool.str_Choise3}" />
+        
+        </h:selectOneRadio></td></tr>
+        <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea style="Width:250%;height:100px;"   value="#{expenseBean.str_Remark}" /></td>
+        </tr> 
+        <tr><td><h:commandButton  value="Vote" action="#{expenseBean.addVote()}"/></td></tr>
+      </table>
+      
+      </fieldset>
+     </h:body>
+     </h:form>
+     <a href="pools.xhtml">>>Back To Pool</a >
+     </ui:define>
+     </ui:composition>

@@ -68,47 +68,75 @@
         </p:menuButton>
          
              <legend  style="background-color:#438eb9; color:#fff;"> Pool</legend>
+             <p:dataTable id="dataTable1" widgetVar="dataTable"  emptyMessage="No Vendors found with given criteria"     resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"    var="pool" value="#{expenseBean.poolList}"   >
+                <f:facet name="header">
+             
+                <h:outputText  value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px"    placeholder="Enter keyword"/>
+            
+       </f:facet>
               
-             <p:dataTable      resizableColumns="true" style="margin-bottom:20px" 
-              id="dataTable" rows="10"  paginator="true"  
-                 var="pool" value="#{expenseBean.poolList}"   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="6,12,16"  >
                  <f:facet name="header">
-            Expand rows to see detailed information
+            
             <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        <p:columnToggler datasource="dataTable1" trigger="toggler" />
         </f:facet>
-        <p:column   sortBy="#{pool.str_CreatedBy}"  headerText="Created By" footerText="created By" width="50">
+        <p:column   sortBy="#{pool.str_CreatedBy}"  headerText="Created By" footerText="created By" width="150">
           
                <h:outputText   value="#{pool.str_CreatedBy}" /> 
                
             </p:column>
-             <p:column   sortBy="#{pool.str_StartDate}"  headerText="Organization" footerText="Organization" width="50">
+             <p:column   sortBy="#{pool.str_StartDate}"  headerText="Organization" footerText="Organization" width="150">
           
                <h:outputText   value="#{expenseBean.str_OrganizationName}" /> 
                
             </p:column>
-            <p:column   sortBy="#{pool.str_StartDate}"  headerText="Start Date" footerText="Start Date" width="50">
+            <p:column   sortBy="#{pool.str_StartDate}"  headerText="Start Date" footerText="Start Date" width="150">
           
                <h:outputText   value="#{pool.str_StartDate}" /> 
                
             </p:column>
-             <p:column   sortBy="#{pool.str_EndDate}"  headerText="End Date" footerText="End Date" width="50">
+             <p:column   sortBy="#{pool.str_EndDate}"  headerText="End Date" footerText="End Date" width="150">
           
                <h:outputText   value="#{pool.str_EndDate}" /> 
                
             </p:column>
-            <p:column   sortBy="#{pool.str_poolQuestion}"  headerText="Pool Question" footerText="pool Question" width="50">
+            <p:column   sortBy="#{pool.str_poolQuestion}"  headerText="Pool Question" footerText="pool Question" width="150">
           
                <h:outputText   value="#{pool.str_poolQuestion}" /> 
                
             </p:column>
-            <p:column   sortBy="#{pool.int_poolAudience}"  headerText="Audience" footerText="Audience" width="50">
+            <p:column   sortBy="#{pool.int_poolAudience}"  headerText="Audience" footerText="Audience" width="150">
           
                <h:outputText   value="#{pool.int_poolAudience}" /> 
                
             </p:column>
-            
+            <p:column   sortBy="#{pool.int_Vote}"  headerText="Total Votes" footerText="Total Votes" width="150">
+          
+               <h:outputText   value="#{pool.int_Vote}" /> 
+               
+            </p:column>
+           <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                    </f:facet>
+              <h:link outcome="editmaintainancestaff.xhtml" >
+	   			<p:graphicImage  height="20" width="20" alt="update" value="images/k1.png"/> 
+	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
+	   		</h:link>
+	   		 <h:link outcome="deletemaintainancestaff.xhtml"   
+	   		 onclick="return confirm('Are you sure you want to delete #{maintainancestaff.str_UserName}?');" > 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
+	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
+	   		</h:link>
+	   		
+	   		<h:commandButton  value="vote" action="vote" > 
+	   	 		<f:param name="int_PoolId" value="#{pool.int_PoolId}" />
+	   		</h:commandButton>
+	   		<h:link  value="View Vote" outcome="viewpool.xhtml" > 
+	   	 		<f:param name="int_PoolId" value="#{pool.int_PoolId}" />
+	   		</h:link>
+            </p:column> 
             
          </p:dataTable>
          </h:form>
