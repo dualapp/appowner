@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<f:metadata>
+	<f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
+	 
+	<f:viewAction action="#{expenseBean.getOnePool}" />
+	 </f:metadata>
+	<h:head>
+    <title>Pool Details</title>
+</h:head>
+<a href="pools.xhtml">>>Back To Pool</a >
+<h:form>
+<h:body bgcolor="pink">
+ <fieldset>
+ <legend>Pool Details</legend>
+ <table>
+ <tr>
+ <td>
+    <h:outputText value="Organization:"/></td>
+    <td>
+    <h:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
+    
+    <td><h:outputText value="Status:"/> </td>
+    <td>
+    <h:inputText value="#{expenseBean.pool.str_Status}"/></td>  
+    </tr>
+<tr>
+  
+    <td><h:outputText value="PoolAudience"/></td>
+    <td><h:inputText value="#{expenseBean.pool.int_poolAudience}"/></td>
+     
+    </tr>
+    </table></fieldset>
+   <p:fieldset legend="Poll Result" style="margin-bottom:20px">
+    
+<h2><h:outputText value="#{expenseBean.pool.str_poolQuestion}"/></h2> 
+  
+  
+<p:progressBar value="100" labelTemplate="#{expenseBean.pool.str_Choise1}{value}% vote" displayOnly="true"/><br/>
+  
+ <p:progressBar value="0" labelTemplate="#{expenseBean.pool.str_Choise2}{value}% vote" displayOnly="true"/>
+
+   </p:fieldset>
+   
+    </h:body>
+    </h:form>
+    <a href="pools.xhtml">>>Back To Pool</a >
+    </ui:define>
+    </ui:composition>
