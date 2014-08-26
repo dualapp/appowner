@@ -1,6 +1,7 @@
 package com.appowner.bean;
 import java.io.IOException;
  
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,13 +16,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author www.codejava.net
  * 
  */
+@SuppressWarnings("serial")
 @WebServlet("/EmailSendingServlet2")
 public class EmailSendingServlet2 extends HttpServlet {
     private String host;
     private String port;
     private String user;
     private String pass;
- 
+   
     public void init() {
         // reads SMTP server setting from web.xml file
         ServletContext context = getServletContext();
@@ -29,6 +31,7 @@ public class EmailSendingServlet2 extends HttpServlet {
         port = context.getInitParameter("port");
         user = context.getInitParameter("user");
         pass = context.getInitParameter("pass");
+        System.out.println(pass);
     }
  
     protected void doPost(HttpServletRequest request,
