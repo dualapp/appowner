@@ -52,6 +52,7 @@ import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
+import com.appowner.model.Vote;
 import com.appowner.service.ExpenseService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -1209,7 +1210,49 @@ private String str_StartDate;
 private List<Pool> poolList;
 private Pool pool;
 private String str_Status;
+private Integer int_PoolId;
+private String str_Remark;
+private Date date_StartDate;
+private Date date_EndDate;
+private String str_Choise;
+public String getStr_EndDate() {
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	str_EndDate=fmt.format(date_EndDate);
+	return str_EndDate;
+}
+public void setStr_EndDate(String str_EndDate) {
+	this.str_EndDate = str_EndDate;
+}
+public String getStr_StartDate() {
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	str_StartDate=fmt.format( date_StartDate);
+	
+	return str_StartDate;
+}
+public void setStr_StartDate(String str_StartDate) {
+	this.str_StartDate = str_StartDate;
+}
+public String getStr_Remark() {
+	return str_Remark;
+}
+public void setStr_Remark(String str_Remark) {
+	this.str_Remark = str_Remark;
+}
+public Integer getInt_Vote() {
+	return int_Vote;
+}
+public void setInt_Vote(Integer int_Vote) {
+	this.int_Vote = int_Vote;
+}
+ 
+public Integer getInt_PoolId() {
+	return int_PoolId;
+}
+public void setInt_PoolId(Integer int_PoolId) {
+	this.int_PoolId = int_PoolId;
+}
 public String getStr_Status() {
+	str_Status="open";
 	return str_Status;
 }
 public void setStr_Status(String str_Status) {
@@ -1240,12 +1283,7 @@ public void setStr_PoolQuestion(String str_PoolQuestion) {
 	this.str_PoolQuestion = str_PoolQuestion;
 }
  
-public String getStr_EndDate() {
-	return str_EndDate;
-}
-public void setStr_EndDate(String str_EndDate) {
-	this.str_EndDate = str_EndDate;
-}
+ 
 public List<Pool> getPoolList() {
 	poolList=new ArrayList<Pool>();
 	poolList.addAll(getExpenseService().getPoolList());
@@ -1262,6 +1300,7 @@ public void setPool(Pool pool) {
 	this.pool = pool;
 }
 public Integer getInt_PoolAudience() {
+	
 	return int_PoolAudience;
 }
 public void setInt_PoolAudience(Integer int_PoolAudience) {
@@ -1273,14 +1312,64 @@ public void addPool()
 	pool=new Pool();
 	pool.setInt_OrganizationId(Util.getAppartmentId());
 	pool.setInt_poolAudience(int_PoolAudience);
-	pool.setInt_Vote(int_Vote);
+	pool.setInt_Vote(0);
 	pool.setStr_StartDate(str_StartDate);
 	pool.setStr_EndDate(str_EndDate);
-	pool.setStr_StartDate(str_StartDate);
+	 pool.setStr_Status(str_Status);
 	pool.setStr_CreatedBy(Util.getUserName());
 	pool.setStr_poolQuestion(str_PoolQuestion);
+	pool.setStr_Choise1(str_Choise1);
+	pool.setStr_Choise2(str_Choise2);
+	pool.setStr_Choise3(str_Choise3);
 	pool.setStr_Status(str_Status);
-	getExpenseService().addPool(pool);
+	 
+	 
+		getExpenseService().addPool(pool);
+}
+public String getStr_Choise() {
+	return str_Choise;
+}
+public void setStr_Choise(String str_Choise) {
+	this.str_Choise = str_Choise;
+}
+public Date getDate_StartDate() {
+	
+	return date_StartDate;
+}
+public void setDate_StartDate(Date date_StartDate) {
+	this.date_StartDate = date_StartDate;
+}
+public Date getDate_EndDate() {
+	return date_EndDate;
+}
+public void setDate_EndDate(Date date_EndDate) {
+	this.date_EndDate = date_EndDate;
+}
+public void getOnePool()
+{   pool=new Pool();
+	pool=getExpenseService().getOnePool(int_PoolId);
+}
+private Vote vote;
+public Vote getVote() {
+	return vote;
+}
+public void setVote(Vote vote) {
+	this.vote = vote;
+}
+public void addVote()
+{
+	System.out.println("sumantaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	vote=new Vote();
+	vote.setInt_OrganizationId(Util.getAppartmentId());
+	vote.setInt_UserId(Util.getUserId());
+	vote.setStr_Remark(str_Remark);
+	vote.setStr_Choise(str_Choise);
+	getExpenseService().addVote(vote);
+	System.out.println();
+	 pool.setInt_Vote(1);
+	getExpenseService().UpdatePool(pool);
+	
+	 
 }
 }
 
