@@ -31,48 +31,15 @@ public class AccountingBean implements Serializable{
 		this.accountsService = accountsService;
 	}
 	private String account;
-	private List<SelectItem> accounts;
+	
 	public String getAccount() {
 		return account;
 	}
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public List<SelectItem> getAccounts() {
-		return accounts;
-	}
-	public void setAccounts(List<SelectItem> accounts) {
-		this.accounts = accounts;
-	}
-	@SuppressWarnings("unchecked")
-	@PostConstruct
-    public void init() {
-		 accounts = new ArrayList<SelectItem>();
-	  SelectItemGroup g1 = new SelectItemGroup("Asset");
-	  g1.setSelectItems(new SelectItem[] {
-			  new SelectItem("Accounts Receival","Accounts Receival"),
-			  new SelectItem("Bank", "Bank"), 
-			  new SelectItem("Cash", "Cash")
-			  });
-	  accounts.add(g1);
-       
-      SelectItemGroup g2 = new SelectItemGroup("Expense");
-      g2.setSelectItems(new SelectItem[] {
-    		  new SelectItem("Expense", "Expense"), 
-    		
-    		  });
-      accounts.add(g2);
-      SelectItemGroup g3 = new SelectItemGroup("Income");
-      g3.setSelectItems(new SelectItem[]{ new SelectItem("Income from Residents","Income from Residents")});
-       accounts.add(g3);
-       
-     
-        SelectItemGroup g4 = new SelectItemGroup("Liability");
-        g4.setSelectItems(new SelectItem[]{ new SelectItem("Opening Balance Adjustment","Opening Balance Adjustment"),new SelectItem("Tax Payable","Tax Payable")});
-         accounts.add(g4);
-         
-       
-}
+	
+	
 private String dat_FromDate;
 private String dat_ToDate;
 public String getDat_FromDate() {
@@ -185,26 +152,19 @@ public String addInvoiceManualJournal()
   }
 	return null;
 }
+private Date  dat_From;
+private Date dat_To;
+public Date getDat_From() {
+	return dat_From;
+}
+public void setDat_From(Date dat_From) {
+	this.dat_From = dat_From;
+}
+public Date getDat_To() {
+	return dat_To;
+}
+public void setDat_To(Date dat_To) {
+	this.dat_To = dat_To;
+}
 
-private Integer index;
-public Integer getIndex() {
-	return index;
-}
-public void setIndex(Integer index) {
-	this.index = index;
-}
-public String redirect(int a)
-{
-   if (a==1)
-   {
-      index=1;
-     return "AccountsTransaction.xhtml";
-   }
-   else if (a==2)
-   {
-    index =2;
-    return "Manual Journal.xhtml";
-   }
-   return "AccountsTransaction.xhtml";
-}
 }
