@@ -1,6 +1,7 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +20,24 @@ public class Pool implements Serializable{
 	private Integer int_OrganizationId;
 	@Column(name="var_PoolQuestion")
 	private String str_poolQuestion;
-	@Column(name="var_Startdate")
+	@Column 
 	private String str_StartDate;
-	@Column(name="var_EndDate")
+	@Column 
 	private String str_EndDate;
+	 
+	 
+	public String getStr_StartDate() {
+		return str_StartDate;
+	}
+	public void setStr_StartDate(String str_StartDate) {
+		this.str_StartDate = str_StartDate;
+	}
+	public String getStr_EndDate() {
+		return str_EndDate;
+	}
+	public void setStr_EndDate(String str_EndDate) {
+		this.str_EndDate = str_EndDate;
+	}
 	@Column(name="var_CreatedBy")
 	private String str_CreatedBy;
 	@Column(name="var_Status")
@@ -31,6 +46,14 @@ public class Pool implements Serializable{
 	private Integer int_poolAudience;
 	@Column 
 	private Integer int_userId;
+	@Column 
+	private Integer int_Vote;
+	@Column(name="var_Choise1")
+	private String str_Choise1;
+	@Column(name="var_Choise2")
+	private String str_Choise2;
+	@Column(name="var_Choise3")
+	private String str_Choise3;
 	
 	public Integer getInt_PoolId() {
 		return int_PoolId;
@@ -50,19 +73,7 @@ public class Pool implements Serializable{
 	public void setStr_poolQuestion(String str_poolQuestion) {
 		this.str_poolQuestion = str_poolQuestion;
 	}
-	public String getStr_StartDate() {
-		return str_StartDate;
-	}
-	public void setStr_StartDate(String str_StartDate) {
-		this.str_StartDate = str_StartDate;
-	}
 	 
-	public String getStr_EndDate() {
-		return str_EndDate;
-	}
-	public void setStr_EndDate(String str_EndDate) {
-		this.str_EndDate = str_EndDate;
-	}
 	public Integer getInt_userId() {
 		return int_userId;
 	}
@@ -93,8 +104,27 @@ public class Pool implements Serializable{
 	public void setInt_Vote(Integer int_Vote) {
 		this.int_Vote = int_Vote;
 	}
-	@Column 
-	private Integer int_Vote;
+	
+
+	public String getStr_Choise1() {
+		return str_Choise1;
+	}
+	public void setStr_Choise1(String str_Choise1) {
+		this.str_Choise1 = str_Choise1;
+	}
+	public String getStr_Choise2() {
+		return str_Choise2;
+	}
+	public void setStr_Choise2(String str_Choise2) {
+		this.str_Choise2 = str_Choise2;
+	}
+	public String getStr_Choise3() {
+		return str_Choise3;
+	}
+	public void setStr_Choise3(String str_Choise3) {
+		this.str_Choise3 = str_Choise3;
+	}
+	
 	
 	
 	
