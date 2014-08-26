@@ -1,6 +1,9 @@
 package com.appowner.dao;
 
+import java.util.Date;
 import java.util.List;
+
+
 
 
 import org.hibernate.SessionFactory;
@@ -40,6 +43,12 @@ public class AccountsDaoImpl implements AccountsDao{
 	public void addManualJournal(ManualJournal journal){
 		getSessionFactory().getCurrentSession().save(journal);
 	}
-	
+	public void addBalance(Date date, Integer id1, Integer id)
+	{   System.out.println(id);
+	System.out.println(date);
+	System.out.println(id1);
+		String hql="update  AccountsOpeningBalance  set dat_openingDate =?,int_ApartmentID=?  where int_Accounts_OpeningID =?";
+	    getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, date).setParameter(1, id1).setParameter(2, id).executeUpdate();
+	}
 	
 }

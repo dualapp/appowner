@@ -1,6 +1,9 @@
 package com.appowner.dao;
 
+import java.util.Date;
 import java.util.List;
+
+
 
 
 import com.appowner.model.AccountsOpeningBalance;
@@ -12,4 +15,6 @@ public interface AccountsDao {
 	public void saveAccounts(Integer int_Accounts_OpeningID, Double int_Credit);
 
 	public void addManualJournal(ManualJournal journal);
+	
+	public void addBalance(Date date, Integer id1, Integer id);
 }
