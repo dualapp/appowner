@@ -17,6 +17,7 @@ import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
+import com.appowner.model.Vote;
 
 @Service("ExpenseService")
  @Transactional
@@ -224,6 +225,25 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public List<Pool> getPoolList() {
 		// TODO Auto-generated method stub
 		return getExpenseDao().getPoolList();
+	}
+
+	@Override
+	public Pool getOnePool(Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getOnePool(int_PoolId);
+	}
+
+	@Override
+	public Integer addVote(Vote vote) {
+		// TODO Auto-generated method stub
+	 
+		return getExpenseDao().addVote(vote);
+	}
+
+	@Override
+	public void UpdatePool(Pool pool) {
+		// TODO Auto-generated method stub
+		getExpenseDao().UpdatePool(pool);
 	}
 
 }

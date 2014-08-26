@@ -13,6 +13,7 @@ import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
+import com.appowner.model.Vote;
 
 public interface ExpenseService {
 
@@ -81,6 +82,12 @@ public interface ExpenseService {
 	void addPool(Pool pool);
 
 	List<Pool> getPoolList();
+
+	Pool getOnePool(Integer int_PoolId);
+
+	Integer addVote(Vote vote);
+
+	void UpdatePool(Pool pool);
 
 	 
 
