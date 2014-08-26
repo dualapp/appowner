@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -41,4 +42,9 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		getAccountsDao().addManualJournal(journal);
 	}
+	public void addBalance(Date date, Integer id1, Integer id)
+	{
+		getAccountsDao().addBalance(date, id1,id);
+	}
+
 }
