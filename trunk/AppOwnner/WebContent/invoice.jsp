@@ -12,9 +12,9 @@
 <body>
  <%System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");%>
 <div style="display:none;">
-<iframe id="ponyo_form" name="ponyo_form"></iframe>
+<iframe id="ponyo_frame" name="ponyo_frame"></iframe>
 
-    <form id="ponyo_form" action="test" method="post">
+    <form id="ponyo_form" action="srv2" method="post">
     
         <table border="0" width="35%" align="center">
             <caption><h2>Send New E-mail</h2></caption>
@@ -22,7 +22,7 @@
                 <td width="50%">Recipient address </td>
                 <td><input type="text" name="recipient" size="50" value="<%=InvoiceBean.getMailid()%>"/></td>
             </tr>
-
+<%System.out.println("zzzzzzzzggggggggggggzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");%>
             <tr>
                 <td>Subject </td>
                 <td><input type="text" name="subject" size="50" value="<%=InvoiceBean.getSubject()%>"/></td>
@@ -99,6 +99,7 @@
                 <td>Type</td>
                 <td><textarea rows="10" cols="39" name="taxAmount" id='test'><%=InvoiceBean.getTax1()%></textarea> </td>
             </tr>
+            <%System.out.println("zzzzzzzzggggggggggggzzzzzzzzzzzzzjjjjjjzzzzzzzzzzzzzzzzzzz");%>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Send"/></td>
             </tr>
