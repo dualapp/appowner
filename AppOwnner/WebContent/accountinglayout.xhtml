@@ -8,26 +8,27 @@
 	xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core"
       template="include/templates/template.xhtml">
-	 <ui:define name="content">
+	<ui:define name="content">
+     
  <h:head>
    
  </h:head>
     <body >
         <p:layout fullPage="true">
-        
+       
          
-             
+            
 
              <p:layoutUnit   position="center" height="200" width="200">
-              <ui:include src="Accounting.xhtml" />
+              <ui:include src="accounting.xhtml" />
                 <h:panelGroup id="centerContentPanel" layout="block">
                    <ui:include  src="#{navigationBean.pageName}"/> 
                    
                 </h:panelGroup>
-            </p:layoutUnit>   
+            </p:layoutUnit> 
+         
             
         </p:layout>
     </body>             
- 
 </ui:define>
 </ui:composition>
