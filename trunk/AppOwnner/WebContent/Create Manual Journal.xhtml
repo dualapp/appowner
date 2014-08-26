@@ -50,14 +50,14 @@
             <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
             <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" style="width:200px">
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="#{accountingBean.accounts}" />
+                   <f:selectItems value="#{expenseBean.listAccountType}" />
                 </h:selectOneMenu>
                 
            </td>
              <td align="right">  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
             <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"  style="width:200px" >
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="#{accountingBean.accounts}" />
+                   <f:selectItems value="#{expenseBean.listAccountType}" />
                 </h:selectOneMenu>
                 
            </td>
