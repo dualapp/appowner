@@ -17,9 +17,9 @@
       <table>
        <h:panelGroup id="aaaa">
             <td>  <h:outputLabel for="account" value="Accounts*" /></td>
-           <td> <h:selectOneMenu id="account" value="#{accountingBean.account}" >
+           <td> <h:selectOneMenu id="account" value="#{accountingBean.account}" style="width:200px">
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="#{accountingBean.accounts}" />
+                   <f:selectItems value="#{expenseBean.listAccountType}" />
                 </h:selectOneMenu>
                 
            </td>
@@ -36,37 +36,42 @@
       <h:form>
   <h:body>
         <h:outputText value="Accounts Transactions: " color="red"></h:outputText>
-          <p:dataTable  id="account" var="accounts" value="#{accountsBean.listOpeningBalance}" style="width: 70%" resizableColumns="true">
-              <p:column >
-                <f:facet name="header" >
-                    <h:outputText value="Date" />
-                </f:facet>
-                <h:outputText value="#{accounts.dat_openingDate}"  />
-            </p:column>
-            <p:column >
-                <f:facet name="header" >
-                    <h:outputText value="Accounts" />
-                </f:facet>
-                <h:outputText value="#{accounts.str_AccountsHead}"  />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Debit" />
-                </f:facet>
-                <h:outputText value="#{accounts.int_Debit}"  size="30"/>
-                
-              
-            </p:column>
-           
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Credit" />
-                </f:facet>
-                <h:outputText value="#{accounts.int_Credit}"  size="30" />
-                 
-              
-            </p:column>
-      </p:dataTable>
+          <table cellpadding="0" cellspacing="0" style="width:598px;align:center; font-family:arial;font-size:14px;line-height:15px;border:1px solid #DADADA ;">
+    <tbody>
+    <tr>
+    <td style="width:440px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
+    <strong>Date</strong>
+    </td>
+    <td style="width:250px;background:#0E94F9;color:#fff;line-height:25px;" align="right">
+    <strong>Account</strong>
+    </td>
+    <td style="width:250px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
+    <strong>Type</strong>
+  
+    </td>
+   
+     <td style="width:250px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
+    <strong>Debit</strong>
+  
+    </td>
+     <td style="width:250px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
+    <strong>Credit</strong>
+  
+    </td>
+    </tr>
+     <tr>
+  
+   
+    <td colspan="3" style="border-bottom:1px solid #DADADA ;">
+    </td>
+    </tr>
+      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{accountsBean.dat_openingDate}</td>
+     
+      <td align="right" style="width:250px;">#{accountsBean.int_Debit}</td>
+     </tr>
+   
+    </tbody>
+    </table>
             </h:body>
             </h:form>
       </body>
