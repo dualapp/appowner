@@ -19,6 +19,7 @@ import javax.faces.event.ValueChangeListener;
 
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.service.AccountsService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @RequestScoped
@@ -32,9 +33,18 @@ public class AccountsBean implements Serializable{
 	public void setAccountsService(AccountsService accountsService) {
 		this.accountsService = accountsService;
 	}
+private String	str_Organisation;
+
+	public String getStr_Organisation() {
+		str_Organisation=Util.getAppartmentName();
+	return str_Organisation;
+}
+public void setStr_Organisation(String str_Organisation) {
+	this.str_Organisation = str_Organisation;
+}
 	private Integer int_Accounts_OpeningID;
 	private String str_Accounts;
-	private Double int_Debit;
+	private double int_Debit;
 	public Date getDat_openingDate() {
 		return dat_openingDate;
 	}
@@ -46,7 +56,7 @@ public class AccountsBean implements Serializable{
 	
 	
 	
-	private Double int_Credit;
+	private double int_Credit;
 	public Integer getInt_Accounts_OpeningID() {
 		return int_Accounts_OpeningID;
 	}
@@ -60,14 +70,54 @@ public class AccountsBean implements Serializable{
 		this.str_Accounts = str_Accounts;
 	}
 	
-	public Double getInt_Debit() {
+	
+	public double getInt_Debit() {
 		return int_Debit;
 	}
-	public void setInt_Debit(Double int_Debit) {
+	public void setInt_Debit(double int_Debit) {
 		this.int_Debit = int_Debit;
 	}
-	public Double getInt_Credit() {
+	public double getInt_Credit() {
 		return int_Credit;
+	}
+	public void setInt_Credit(double int_Credit) {
+		this.int_Credit = int_Credit;
+	}
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	public double getTotalAmount1() {
+		return totalAmount1;
+	}
+	public void setTotalAmount1(double totalAmount1) {
+		this.totalAmount1 = totalAmount1;
+	}
+	public double getAdjustmentBalance() {
+		return adjustmentBalance;
+	}
+	public void setAdjustmentBalance(double adjustmentBalance) {
+		this.adjustmentBalance = adjustmentBalance;
+	}
+	public double getAdjustmentBalance1() {
+		return adjustmentBalance1;
+	}
+	public void setAdjustmentBalance1(double adjustmentBalance1) {
+		this.adjustmentBalance1 = adjustmentBalance1;
+	}
+	public double getTotalAdjustBalance() {
+		return totalAdjustBalance;
+	}
+	public void setTotalAdjustBalance(double totalAdjustBalance) {
+		this.totalAdjustBalance = totalAdjustBalance;
+	}
+	public double getTotalAdjustBalance1() {
+		return totalAdjustBalance1;
+	}
+	public void setTotalAdjustBalance1(double totalAdjustBalance1) {
+		this.totalAdjustBalance1 = totalAdjustBalance1;
 	}
 	public List<AccountsOpeningBalance> getListOpeningBalance() {
 		listOpeningBalance=new ArrayList<AccountsOpeningBalance>();
@@ -136,92 +186,89 @@ public class AccountsBean implements Serializable{
 	public void setAccounts(AccountsOpeningBalance accounts) {
 		this.accounts = accounts;
 	}
-	@SuppressWarnings("unchecked")
+	
 	public void addAccountsHead()  
-	   {  
-		/*accounts=(AccountsOpeningBalance) updatedAccounts.getRowData();
-		System.out.println(getAccounts());
-	     System.out.println(accounts);
-	    // accounts.setInt_Debit(getInt_Debit());
-	   int_Debit=accounts.getInt_Debit();
-	    	System.out.println(int_Debit);
-	    	
-	    */	
+	   { System.out.println("gud"); 
+		
+		
+		
+	   Date  date=getDat_openingDate();
+	   Integer id1=Util.getAppartmentId();
+	    System.out.println(id);
+	     
+	      getAccountsService().addBalance(date,id1,id);
+	      
+		
 	    }
+	private static Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	private  static double credit;
+	public double getCredit() {
+		return credit;
+	}
+	public void setCredit(double credit) {
+		this.credit = credit;
+	}
+	private static double debit;
+public double getDebit() {
+		return debit;
+	}
+	public void setDebit(double debit) {
+		this.debit = debit;
+	}
 public void processValueChange(ValueChangeEvent event)  
 	        throws AbortProcessingException { 
 	accounts=(AccountsOpeningBalance) updatedAccounts.getRowData();
 	int_Accounts_OpeningID=accounts.getInt_Accounts_OpeningID();
+	id=accounts.getInt_Accounts_OpeningID();
 	System.out.println(int_Accounts_OpeningID);
+	System.out.println(id);
 	str_Accounts=accounts.getStr_AccountsHead();
 	System.out.println(str_Accounts);
 	//accounts.setInt_Accounts_OpeningID(int_Accounts_OpeningID);
 	System.out.println(accounts);
 	int_Debit=(Double) event.getNewValue();
-	accounts.setInt_Debit(int_Debit);
+	debit=(Double) event.getNewValue();
+	//accounts.setInt_Debit(int_Debit);
 	int_Credit=((Double) event.getOldValue());
+	credit=((Double) event.getOldValue());
 	System.out.println(int_Credit);
 	System.out.println(int_Debit);
-	getAccountsService().addAccounts(int_Accounts_OpeningID,int_Debit);    
-	     /*   if (int_Debit != event.getNewValue()) {  
-	        	
-	        	accounts.setInt_Debit(Double.parseDouble(event.getNewValue().toString()));  
-	               int_Debit=accounts.getInt_Debit();
-	            //   System.out.println(int_Debit);  
-	              // getAccountsService().addAccounts(accounts);          
-	        }  */
+	
+	getAccountsService().addAccounts(int_Accounts_OpeningID,int_Debit);  
+	
+	
+	
+	
 	    } 
 public void processValueChange1(ValueChangeEvent event)  
         throws AbortProcessingException {  
 	System.out.println("hi");
 	accounts=(AccountsOpeningBalance) updatedAccounts.getRowData();
 	int_Accounts_OpeningID=accounts.getInt_Accounts_OpeningID(); 
+	id=accounts.getInt_Accounts_OpeningID(); 
+	System.out.println(id);
 	int_Credit=(Double) event.getNewValue();
+	credit=(Double) event.getNewValue();
 	accounts.setInt_Credit(int_Credit);
 	getAccountsService().saveAccounts(int_Accounts_OpeningID,int_Credit);   
         }
-private Double totalAmount;
-public Double getTotalAmount() {
-	return totalAmount;
-}
-public void setTotalAmount(Double totalAmount) {
-	this.totalAmount = totalAmount;
-}
-private Double totalAmount1;
-public Double getTotalAmount1() {
-	return totalAmount1;
-}
-public void setTotalAmount1(Double totalAmount1) {
-	this.totalAmount1 = totalAmount1;
-}
-private Double adjustmentBalance;
-private Double adjustmentBalance1;
-public Double getAdjustmentBalance() {
-	return adjustmentBalance;
-}
-public void setAdjustmentBalance(Double adjustmentBalance) {
-	this.adjustmentBalance = adjustmentBalance;
-}
-public Double getAdjustmentBalance1() {
-	return adjustmentBalance1;
-}
-public void setAdjustmentBalance1(Double adjustmentBalance1) {
-	this.adjustmentBalance1 = adjustmentBalance1;
-}
-private Double totalAdjustBalance;
-private Double totalAdjustBalance1;
-public Double getTotalAdjustBalance() {
-	return totalAdjustBalance;
-}
-public void setTotalAdjustBalance(Double totalAdjustBalance) {
-	this.totalAdjustBalance = totalAdjustBalance;
-}
-public Double getTotalAdjustBalance1() {
-	return totalAdjustBalance1;
-}
-public void setTotalAdjustBalance1(Double totalAdjustBalance1) {
-	this.totalAdjustBalance1 = totalAdjustBalance1;
-}
+private double totalAmount;
+
+private double totalAmount1;
+
+private double adjustmentBalance;
+private double adjustmentBalance1;
+
+private double totalAdjustBalance;
+private double totalAdjustBalance1;
+
     }  
 	
 	
