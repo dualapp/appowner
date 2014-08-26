@@ -19,6 +19,7 @@ import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
 import com.appowner.model.UserApartment;
+import com.appowner.model.Vote;
 
 @Repository
 public class ExpenseDaoImpl implements ExpenseDao {
@@ -242,5 +243,23 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<Pool> getPoolList() {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createCriteria(Pool.class).list();
+	}
+
+	@Override
+	public Pool getOnePool(Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return (Pool) getSessionFactory().getCurrentSession().get(Pool.class, int_PoolId);
+	}
+
+	@Override
+	public Integer addVote(Vote vote) {
+		// TODO Auto-generated method stub
+		return (Integer) getSessionFactory().getCurrentSession().save(vote);
+	}
+
+	@Override
+	public void UpdatePool(Pool pool) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().update(pool);
 	}
 }
