@@ -6,7 +6,7 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
-    <title>Expenses  Form
+    <title>Pool
     
     
     </title>
@@ -120,15 +120,7 @@
                 <f:facet name="header">
                     <h:outputText value="Action" />
                     </f:facet>
-              <h:link outcome="editmaintainancestaff.xhtml" >
-	   			<p:graphicImage  height="20" width="20" alt="update" value="images/k1.png"/> 
-	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
-	   		</h:link>
-	   		 <h:link outcome="deletemaintainancestaff.xhtml"   
-	   		 onclick="return confirm('Are you sure you want to delete #{maintainancestaff.str_UserName}?');" > 
-	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
-	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
-	   		</h:link>
+             
 	   		
 	   		<h:commandButton  value="vote" action="vote" > 
 	   	 		<f:param name="int_PoolId" value="#{pool.int_PoolId}" />
