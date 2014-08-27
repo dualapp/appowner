@@ -318,7 +318,7 @@ public int getInt_Ad_categoryId() {
 		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		System.out.println(pro1);
 		Var_ImageName=pro2.getVar_ImageName();
-		 blb_images1="D://Image\\"+Var_ImageName;
+		 blb_images1="C://Image\\"+Var_ImageName;
 		 }
 	private List<Cls_ProductDetails> listPerson;
 	public List<Cls_ProductDetails> getListPerson() {
