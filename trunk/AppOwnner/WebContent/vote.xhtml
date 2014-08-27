@@ -35,10 +35,10 @@
   
     <td><h:outputText value="PoolAudience"/></td>
     <td><h:inputText value="#{expenseBean.pool.int_poolAudience}"/></td>
-    <td><h:outputText   value="#{expenseBean.pool.str_EndDate}" /> </td>
+    <td> <h:outputText value="End Date:"/></td><td><h:outputText   value="#{expenseBean.pool.str_EndDate}" /> </td>
      
     </tr>
-    <tr><td><h:outputText value="Pool Question?"/></td><td><p:inputTextarea style="Width:250%;height:100px;"  value="#{expenseBean.pool.str_poolQuestion}"/></td></tr>
+    <tr><td><h:outputText value="Pool Question?"/></td><td><p:inputTextarea   value="#{expenseBean.pool.str_poolQuestion}" style="Width:250%;height:100px;"/></td></tr>
       <tr><td><h:selectOneRadio  id="votechoise"
                       value="#{expenseBean.str_Choise1}">
         <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise1}" itemValue="#{expenseBean.pool.str_Choise1}" />
