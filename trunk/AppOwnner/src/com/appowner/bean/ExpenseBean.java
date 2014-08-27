@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -55,7 +57,7 @@ import com.appowner.model.Pool;
 import com.appowner.model.Vote;
 import com.appowner.service.ExpenseService;
 import com.appowner.util.Util;
-import com.ibm.icu.text.SimpleDateFormat;
+ 
 
 @ManagedBean
 @SessionScoped
@@ -1216,16 +1218,19 @@ private Date date_StartDate;
 private Date date_EndDate;
 private String str_Choise;
 public String getStr_EndDate() {
-	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-	str_EndDate=fmt.format(date_EndDate);
+	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	str_EndDate=dateFormat.format(getDate_EndDate());
+	System.out.println(str_EndDate+"nsddddddddddddddddddddddd");
 	return str_EndDate;
 }
 public void setStr_EndDate(String str_EndDate) {
 	this.str_EndDate = str_EndDate;
 }
 public String getStr_StartDate() {
-	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-	str_StartDate=fmt.format( date_StartDate);
+	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	Date d=new Date();
+	str_StartDate=dateFormat.format(d);
+	System.out.println(str_StartDate);
 	
 	return str_StartDate;
 }
@@ -1313,9 +1318,10 @@ public void addPool()
 	pool.setInt_OrganizationId(Util.getAppartmentId());
 	pool.setInt_poolAudience(int_PoolAudience);
 	pool.setInt_Vote(0);
-	pool.setStr_StartDate(str_StartDate);
-	pool.setStr_EndDate(str_EndDate);
-	 pool.setStr_Status(str_Status);
+	pool.setStr_StartDate(getStr_StartDate());
+	System.out.println(getStr_EndDate()+"seemaaaaaaaaaaa");
+	pool.setStr_EndDate(getStr_EndDate());
+    pool.setStr_Status(str_Status);
 	pool.setStr_CreatedBy(Util.getUserName());
 	pool.setStr_poolQuestion(str_PoolQuestion);
 	pool.setStr_Choise1(str_Choise1);
