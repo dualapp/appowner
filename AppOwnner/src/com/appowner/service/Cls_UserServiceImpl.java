@@ -202,6 +202,12 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		getIn_userdao().addBookAFacility(bookAFacility);
 		
 	}
+
+	@Override
+	public List<ServiceRequest> getServiceRequestList() {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getServiceRequestList();
+	}
 	}
 
 	 
