@@ -24,7 +24,13 @@
     </fieldset>
         
              <h:commandButton style="width: 150px"  action="createnewservicerequest.xhtml" value="create new Service request" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
-	   
+	   <p:menuButton value="Action">
+        <p:menuitem value="Assign Selected" />
+        <p:menuitem value="close Selected" />
+        <p:menuitem value="View Chart" />
+         <p:menuitem value="View Summary"/>
+         <p:menuitem value="Export To Excel"/>
+        </p:menuButton>
 	
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;">Service request</legend>
