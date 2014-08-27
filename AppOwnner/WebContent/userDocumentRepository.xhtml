@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>DocumentRepository</title>
+</h:head>
+ 
+<body  bgcolor="pink">
+
+    <h:form>
+    <h:commandButton  value="Document Repositery"  action="#{update.saveUser1}" style="width: 30%  height:100% " /> 
+   
+   
+     <h:inputText    value="#{scriptBean.username}" style="float:right !important;margin:0px 0px 3px 0px;"/> 
+    <h:commandButton  value="Search by Name"  action="#{scriptBean.getSearchByProducttype1}"   update="user"    style="float:right !important;margin:0px 0px 3px 0px;">
+    </h:commandButton>
+         
+        <br/>
+        <br/>
+        <p:dataTable id="user" var="user" value="#{scriptBean.searchByName}" style="width:90%">
+           <p:column>
+                <f:facet name="header">
+                <h:outputText value="Document Name"/>
+                </f:facet>
+                  <h:outputText   value="#{user.str_FileNM}" style="width:150%"/>  
+               </p:column>
+        <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Description" />
+                </f:facet>
+                <h:outputText value="#{user.str_Description}" style="width:120%"/>
+            </p:column>    
+            
+          
+           
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Size(in KB)" />
+                </f:facet>
+                <h:outputText value="#{user.size} kb" style="width:90%"/>
+            </p:column>  -->
+              <p:column>
+           <f:facet name="header">
+                
+                    <h:outputText value="Uploaded By" />
+                </f:facet>
+                <h:outputText value="#{user.username}" style="width:90%"/>
+            </p:column>
+            
+            <p:column>
+           <f:facet name="header">
+                
+                    <h:outputText value="Uploaded On" />
+                </f:facet>
+                <h:outputText value="#{user.str_ApartmentName}" style="width:90%"/>
+            </p:column> 
+            
+               <p:column>
+           <f:facet name="header">
+                
+                    <h:outputText value="Accessible to" />
+                </f:facet>
+                <h:outputText value="#{user.ch_Access}" style="width:90%"/>
+                </p:column>
+                 <p:column>
+           <f:facet name="header">
+                
+                    <h:outputText value="Category" />
+                </f:facet>
+                 <h:outputText value="#{user.int_Document_CatNM}" style="width:90%"/>
+            </p:column> 
+            
+           <p:column>
+           <f:facet name="header">
+                
+                    <h:outputText value="Action" />
+                </f:facet>
+                <h:outputText value="#{user.action}" style="width:90%"/>
+            </p:column> 
+              
+        </p:dataTable>
+        
+        <br />
+       
+         </h:form>
+              </body>
+          
+ </ui:define>
+ </ui:composition>
