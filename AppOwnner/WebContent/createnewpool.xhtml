@@ -15,7 +15,7 @@
 	  <a href="pools.xhtml">>>Back To Pool</a >
 	 <h:form>
 	 <h:body>
-	  <p:accordionPanel    activeIndex="">
+	  <p:accordionPanel   multiple="true" activeIndex="">
      
         <p:tab title="Member Details">
             
@@ -41,7 +41,7 @@
   <tr><td><h:outputText value="choise1*"/></td><td><h:inputText  value="#{expenseBean.str_Choise1}"/></td></tr>
   <tr><td><h:outputText value="choise2*"/></td><td><h:inputText  value="#{expenseBean.str_Choise2}"/></td></tr>
   <tr><td><h:outputText value="choise3"/></td><td><h:inputText  value="#{expenseBean.str_Choise3}"/></td></tr>
-   <tr><td><h:commandButton  value="submit" action="#{expenseBean.addPool}"/></td></tr>
+   <tr><td><h:commandButton style="width:100px" onclick="return confirm(' Email sent successfully');"  value="submit" action="#{expenseBean.addPool}"/></td></tr>
    </table>
     
    </h:body>
