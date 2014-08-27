@@ -64,7 +64,37 @@ public class LoginBean {
 	 private static String str_ApartmentName1;
 	 private static String str_Flat1;
 	 private static String str_VendorType1;
-	 private static String str_OpenDate1;
+	 public List<ServiceRequest> getServiceRequestList() {
+		 serviceRequestList=new ArrayList<ServiceRequest>();
+		 serviceRequestList.addAll(getUserService().getServiceRequestList());
+		return serviceRequestList;
+	}
+
+
+
+
+
+	public void setServiceRequestList(List<ServiceRequest> serviceRequestList) {
+		this.serviceRequestList = serviceRequestList;
+	}
+
+
+
+
+
+	public ServiceRequest getServiceRequest() {
+		return serviceRequest;
+	}
+
+
+
+
+
+	public void setServiceRequest(ServiceRequest serviceRequest) {
+		this.serviceRequest = serviceRequest;
+	}
+
+	private static String str_OpenDate1;
 	 private String str_EventName;
 	 private String str_StartTime;
 	 private String str_EndTime;
@@ -78,6 +108,7 @@ public class LoginBean {
 		private String path2;
 		private String cropimage;
 		private String str_userRoleName;
+		private List<ServiceRequest> serviceRequestList;
 
 	 
 		public String getStr_userRoleName() {
