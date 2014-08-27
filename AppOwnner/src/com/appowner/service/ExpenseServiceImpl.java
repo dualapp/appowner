@@ -246,4 +246,22 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().UpdatePool(pool);
 	}
 
+	@Override
+	public Number getChoise1Vote(String str_Choise1) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getChoise1Vote(str_Choise1);
+	}
+
+	@Override
+	public Number getChoise2Vote(String str_Choise2) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getChoise2Vote(str_Choise2);
+	}
+
+	@Override
+	public Number getChoise3Vote(String str_Choise3) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getChoise3Vote(str_Choise3);
+	}
+
 }
