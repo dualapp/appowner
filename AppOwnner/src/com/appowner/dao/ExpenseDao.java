@@ -84,4 +84,10 @@ public interface ExpenseDao {
 
 	void UpdatePool(Pool pool);
 
+	Number getChoise1Vote(String str_Choise1);
+
+	Number getChoise2Vote(String str_Choise2);
+
+	Number getChoise3Vote(String str_Choise3);
+
 }

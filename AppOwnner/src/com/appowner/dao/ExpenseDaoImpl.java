@@ -262,4 +262,26 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		getSessionFactory().getCurrentSession().update(pool);
 	}
+
+	@Override
+	public Number getChoise1Vote(String  str_Choise1) {
+		// TODO Auto-generated method stub
+		String hql="select count(*) from Vote  where str_Choise=?";
+		return (Number) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "gud").uniqueResult();
+		 
+	}
+
+	@Override
+	public Number  getChoise2Vote(String  str_Choise2) {
+		String hql="select count(*) from Vote  where str_Choise=?";
+		return (Number) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise2).uniqueResult();
+	 
+	}
+
+	@Override
+	public Number getChoise3Vote(String  str_Choise3) {
+		String hql="select count(*) from Vote  where str_Choise=?";
+		return   (Number) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise3).uniqueResult();
+		 
+	}
 }
