@@ -1,0 +1,90 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form styleClass="no-pdmg">
+		<ul class="nav nav-list">
+
+			<ui:repeat value="#{pc_sidebar.products}" var="prod" varStatus="index">
+				<li class="#{index.first ? 'active' : ''}"><a href="#" class="dropdown-toggle"> <i
+						class="icon-desktop"></i> <span class="menu-text"> 
+						#{prod.name} </span> <b class="arrow icon-angle-down"></b>
+				</a>
+					<ul class="submenu">
+						<ui:repeat value="#{pc_sidebar.products}" var="prod1" varStatus="ind"> 
+							<li class="#{ind.first ? 'active' : ''}"><a href="elements.html"> <i
+									class="icon-double-angle-right"></i> Elements
+							</a></li>
+						</ui:repeat>
+					</ul></li>
+			</ui:repeat>
+
+			 
+ 
+				
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text">Flats</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			</li>
+			
+			
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text">Communication</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			</li>
+
+ 
+			
+			<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">Repository</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+			<li><a href="CreateDocument.xhtml"> <i
+							class="icon-double-angle-right"></i>  AddDocument
+					</a></li>
+					<li><a href="DocumentList.xhtml"> <i
+							class="icon-double-angle-right"></i>  View DocumentList
+					</a></li>
+					
+					
+					
+					
+			</ul>
+			</li>
+			
+			
+<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">Complains of Users</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+			
+			<li><a href="complain.xhtml"> <i
+							class="icon-double-angle-right"></i>  Complain Registration
+					</a></li>
+					<li><a href="ComplainView.xhtml"> <i
+							class="icon-double-angle-right"></i> View complainlist
+					</a></li>
+					
+			</ul>
+			</li>
+			
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text">Help</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			</li>
+		
+		</ul>
+		
+		
+		
+	</h:form>
+</ui:composition>
+
+
