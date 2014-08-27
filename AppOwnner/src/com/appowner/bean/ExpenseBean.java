@@ -1318,6 +1318,7 @@ public void addPool()
 	pool.setInt_OrganizationId(Util.getAppartmentId());
 	pool.setInt_poolAudience(int_PoolAudience);
 	pool.setInt_Vote(0);
+	pool.setInt_userId(Util.getUserId());
 	pool.setStr_StartDate(getStr_StartDate());
 	System.out.println(getStr_EndDate()+"seemaaaaaaaaaaa");
 	pool.setStr_EndDate(getStr_EndDate());
@@ -1362,6 +1363,35 @@ public Vote getVote() {
 public void setVote(Vote vote) {
 	this.vote = vote;
 }
+private int number;
+
+public int getNumber() {
+    return number;
+}
+
+public int increment() {
+    return number++;
+}
+public Number getChoise1Vote()
+{
+	 Number count1=getExpenseService().getChoise1Vote(str_Choise1);
+	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
+	 return count1;
+	
+}
+public Number getChoise2Vote()
+{
+	 Number count2=getExpenseService().getChoise2Vote(str_Choise2);
+	 System.out.println(count2);
+	 return count2;
+	
+}
+public Number getChoise3Vote()
+{
+	  Number count3=getExpenseService().getChoise3Vote(str_Choise3);
+	 
+	  return count3;
+}
 public void addVote()
 {
 	System.out.println("sumantaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -1372,7 +1402,7 @@ public void addVote()
 	vote.setStr_Choise(str_Choise);
 	getExpenseService().addVote(vote);
 	System.out.println();
-	 pool.setInt_Vote(1);
+	 pool.setInt_Vote(increment());
 	getExpenseService().UpdatePool(pool);
 	
 	 
