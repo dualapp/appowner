@@ -128,7 +128,7 @@ public class LoginBean {
 
 
 		public String getCropimage() {
-			System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
+			System.out.println("+++++++++++++++++++++++iiiiiiiiiiiiiiiiiiiiiiii+++++++++++++++++++++");
 			System.out.println(cropimage);
 			return cropimage;//("")+File.separator+"images"+File.separator+"saphi"+File.separator+"crop"+File.separator+"images20140811143252.jpg";
 		}
@@ -813,7 +813,37 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		this.int_UserId = int_UserId;
 	}
 
-
+	//image uploading
+			public void handleFileUpload1(FileUploadEvent event) throws IOException {
+				 System.out.println("hi");
+				 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+				    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+				    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+				    System.out.println(name);
+				    File file= new File("C://Users//Pankaj Singh//workspace10//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
+				    
+				   
+				    final UploadedFile uploadedFile = event.getFile();
+				    blb_image1=file.getAbsolutePath();
+				    System.out.println("ppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+				    System.out.println(blb_image1);
+				    blb_images2=blb_image1.substring(55);
+				    cropimage="/"+blb_images2;
+				    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
+				    System.out.println(cropimage);
+			        System.out.println(file);
+				    InputStream is = event.getFile().getInputstream();
+				    OutputStream out = new FileOutputStream(file);
+				    byte buf[] = new byte[1024];
+				    int len;
+				    while ((len = is.read(buf)) > 0)
+				        out.write(buf, 0, len);
+				    is.close();
+				    out.close();
+				    path2=file.getName();
+				    System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+				    System.out.println(path2);
+			}
 
 
 
@@ -838,7 +868,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		serviceRequest.setStr_Flat(str_Flat);
 		serviceRequest.setStr_LandLineNum(str_LandLineNum);
 		serviceRequest.setStr_Mobile(str_Mobile);
-		serviceRequest.setStr_Status(str_Status);
+		serviceRequest.setStr_Status("open");
 		serviceRequest.setStr_Title(str_Title);
 		serviceRequest.setStr_UserType(str_UserType);
 		serviceRequest.setStr_VendorName(str_VendorName);
@@ -902,38 +932,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		//System.out.println(pro);
 		return "updationconfirmation.xhtml";
 		}
-	//image uploading
-	public void handleFileUpload(FileUploadEvent event) throws IOException {
-		 System.out.println("hi");
-		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-		    System.out.println(name);
-		    File file= new File("C://Users//Pankaj Singh/workspace10//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
-		    
-		   
-		    final UploadedFile uploadedFile = event.getFile();
-		    blb_image1=file.getAbsolutePath();
-		    System.out.println("ppppppppppppppppppppppppppppppppppppppppppppppppppppp");
-		    System.out.println(blb_image1);
-		    blb_images2=blb_image1.substring(49);
-		    cropimage="/"+blb_images2;
-		    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
-		    System.out.println(cropimage);
-	        System.out.println(file);
-		    InputStream is = event.getFile().getInputstream();
-		    OutputStream out = new FileOutputStream(file);
-		    byte buf[] = new byte[1024];
-		    int len;
-		    while ((len = is.read(buf)) > 0)
-		        out.write(buf, 0, len);
-		    is.close();
-		    out.close();
-		    path2=file.getName();
-		    System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooo");
-		    System.out.println(path2);
-	}
-
+	
 
 	public void facebookuserLogin()
 	{
