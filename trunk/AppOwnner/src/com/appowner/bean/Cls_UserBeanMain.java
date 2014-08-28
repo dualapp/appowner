@@ -542,9 +542,9 @@ public class Cls_UserBeanMain implements Serializable {
         usr.setInt_UserRole(getInt_UserRole());
         usr.setStr_Flat(getStr_Flat());
 		usr.setStr_Block(getStr_Block());
-		user.setSqft(sqft);
+		//user.setSqft(sqft);
 		usr.setStr_PhoneNo(getStr_PhoneNo());
-		usr.setStr_UserRoleName(str_getRoleNameUser);
+		usr.setStr_UserRoleName("admin");
 		Integer activationbit1=0;
 		System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
 		final String uuid = UUID.randomUUID().toString().replaceAll("-", "");
