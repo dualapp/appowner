@@ -10,7 +10,7 @@
 	<ui:define name="content">
      
  <h:head><title></title></h:head>
-
+<h:form>
     <p:growl id="msgs" showDetail="true"/>
  
     <h:panelGrid columns="2">
@@ -19,6 +19,6 @@
     </h:panelGrid>
  
     <p:commandButton value="Crop" action="#{cropperView.crop}" update="cropped msgs" icon="ui-icon-scissors"/>
-
+</h:form>
 </ui:define>
 </ui:composition>
