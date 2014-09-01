@@ -69,5 +69,7 @@ public interface In_UserService {
 	public void addBookAFacility(BookAFacility bookAFacility);
 
 	public List<ServiceRequest> getServiceRequestList();
+
+	public List<BookAFacility> getBookAFacilityList();
 }
 
