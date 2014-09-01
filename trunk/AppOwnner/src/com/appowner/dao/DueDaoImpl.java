@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
+import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.Vendor;
 
 @Repository
@@ -57,5 +58,17 @@ public class DueDaoImpl implements DueDao{
 		List<String> list=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).list();
 		System.out.println(list);
 		return list;
+	}
+	@SuppressWarnings("unchecked")
+	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo)
+	{   
+		String hql="from DueTransaction where str_ApartmentNo=?";
+		List<DueTransaction>   sss=(List<DueTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).list();
+		System.out.println(sss);
+		return sss;
+	}
+	public DueTransaction getUserDueTransaction(Integer int_DueTransactionID)
+	{
+		 return (DueTransaction)getSessionFactory().getCurrentSession().get(DueTransaction.class,int_DueTransactionID); 
 	}
 }
