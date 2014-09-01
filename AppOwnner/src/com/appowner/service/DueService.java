@@ -1,6 +1,5 @@
 package com.appowner.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.DueTransaction;
@@ -18,5 +17,9 @@ public interface DueService {
 	public List<String> getBlockList(String str_Organisation);
 
 	public List<String> getApartmentlist(String str_Block);
+
+	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo);
+
+	public DueTransaction getUserDueTransaction(Integer int_DueTransactionID);
 
 }

@@ -48,6 +48,14 @@ public class DueServiceImpl implements DueService{
 	{
 		return getDueDao().getApartmentlist(str_Block);
 	}
+	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo)
+	{
+		return getDueDao().listUserDueTransaction(str_ApartmentNo);
+	}
+	public DueTransaction getUserDueTransaction(Integer int_DueTransactionID)
+	{
+		return getDueDao().getUserDueTransaction(int_DueTransactionID);
+	}
 	
 
 }
