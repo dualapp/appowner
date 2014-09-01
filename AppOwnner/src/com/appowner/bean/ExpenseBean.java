@@ -1,6 +1,4 @@
 package com.appowner.bean;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,25 +8,20 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
@@ -36,24 +29,20 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.primefaces.event.CellEditEvent;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.event.ResizeEvent;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
-import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.ChartOfAccount;
-import com.appowner.model.CommiteeMember;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vote;
 import com.appowner.service.ExpenseService;
 import com.appowner.util.Util;
@@ -645,16 +634,7 @@ public String deleteParkingSlot()
 	getExpenseService().deleteParkingSlot(p);
 	return  "parkingspace.xhtml?faces-redirect=true";
 }
-public void onCellEdit(CellEditEvent event) {
-    Object oldValue = event.getOldValue();
-    Object newValue = event.getNewValue();
-     
-    if(newValue != null && !newValue.equals(oldValue)) {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-}
- 
+  
 public Parking getParking() {
 	return parking;
 }
@@ -1206,7 +1186,7 @@ private String str_Choise2;
 private String str_Choise3;
 private String str_PoolQuestion;
 private Integer int_PoolAudience;
-private Integer int_Vote;
+private Long long_Vote;
 private String str_EndDate;
 private String str_StartDate;
 private List<Pool> poolList;
@@ -1243,13 +1223,14 @@ public String getStr_Remark() {
 public void setStr_Remark(String str_Remark) {
 	this.str_Remark = str_Remark;
 }
-public Integer getInt_Vote() {
-	return int_Vote;
-}
-public void setInt_Vote(Integer int_Vote) {
-	this.int_Vote = int_Vote;
-}
  
+ 
+public Long getLong_Vote() {
+	return long_Vote;
+}
+public void setLong_Vote(Long long_Vote) {
+	this.long_Vote = long_Vote;
+}
 public Integer getInt_PoolId() {
 	return int_PoolId;
 }
@@ -1317,7 +1298,7 @@ public void addPool()
 	pool=new Pool();
 	pool.setInt_OrganizationId(Util.getAppartmentId());
 	pool.setInt_poolAudience(int_PoolAudience);
-	pool.setInt_Vote(0);
+	pool.setInt_Vote(long_Vote);
 	pool.setInt_userId(Util.getUserId());
 	pool.setStr_StartDate(getStr_StartDate());
 	System.out.println(getStr_EndDate()+"seemaaaaaaaaaaa");
@@ -1352,47 +1333,99 @@ public Date getDate_EndDate() {
 public void setDate_EndDate(Date date_EndDate) {
 	this.date_EndDate = date_EndDate;
 }
-public void getOnePool()
-{   pool=new Pool();
-	pool=getExpenseService().getOnePool(int_PoolId);
-}
+
 private Vote vote;
+private DataTable dataTable1;
+private int number;
 public Vote getVote() {
 	return vote;
 }
 public void setVote(Vote vote) {
 	this.vote = vote;
 }
-private int number;
+
 
 public int getNumber() {
     return number;
 }
 
+public DataTable getDataTable1() {
+	return dataTable1;
+}
+public void setDataTable1(DataTable dataTable1) {
+	this.dataTable1 = dataTable1;
+}
 public int increment() {
     return number++;
 }
-public Number getChoise1Vote()
+
+public Long getChoise1Vote()
 {
-	 Number count1=getExpenseService().getChoise1Vote(str_Choise1);
+	 Long count1=getExpenseService().getChoise1Vote(pool.getStr_Choise1(),int_PoolId);
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
-	 return count1;
-	
-}
-public Number getChoise2Vote()
-{
-	 Number count2=getExpenseService().getChoise2Vote(str_Choise2);
-	 System.out.println(count2);
-	 return count2;
-	
-}
-public Number getChoise3Vote()
-{
-	  Number count3=getExpenseService().getChoise3Vote(str_Choise3);
 	 
-	  return count3;
+	 Long res= count1*100/pool.getInt_Vote();
+	 return res;
+	
 }
-public void addVote()
+public Long getChoise2Vote()
+{
+	 Long count2=getExpenseService().getChoise2Vote(pool.getStr_Choise2(),int_PoolId);
+	 System.out.println(count2);
+	 Long res= count2*100/pool.getInt_Vote();
+	 return res;
+	
+}
+public Long getChoise3Vote()
+{
+	  Long count3=getExpenseService().getChoise3Vote(pool.getStr_Choise3(),int_PoolId);
+	  Long res= count3*100/pool.getInt_Vote();
+	  return res;
+}
+private static Pool pool1;
+private static Integer int_PoolId1;
+private Number totalVote;
+public Number getTotalVote() {
+	return totalVote;
+}
+public void setTotalVote(Number totalVote) {
+	this.totalVote = totalVote;
+}
+public static Integer getInt_PoolId1() {
+	return int_PoolId1;
+}
+public static void setInt_PoolId1(Integer int_PoolId1) {
+	ExpenseBean.int_PoolId1 = int_PoolId1;
+}
+public void processListener1()
+{   /*pool1=new Pool();
+	pool1=(Pool)dataTable1.getRowData();
+	int_PoolId1=pool1.getInt_PoolId();
+	 
+	System.out.println(int_PoolId1);
+	*/
+}
+public static Pool getPool1() {
+	return pool1;
+}
+public static void setPool1(Pool pool1) {
+	ExpenseBean.pool1 = pool1;
+}
+private String msg;
+private Integer  isVoted;
+public Integer getIsVoted() {
+	return isVoted;
+}
+public void setIsVoted(Integer isVoted) {
+	this.isVoted = isVoted;
+}
+public String getMsg() {
+	return msg;
+}
+public void setMsg(String msg) {
+	this.msg = msg;
+}
+public String addVote()
 {
 	System.out.println("sumantaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	vote=new Vote();
@@ -1400,13 +1433,110 @@ public void addVote()
 	vote.setInt_UserId(Util.getUserId());
 	vote.setStr_Remark(str_Remark);
 	vote.setStr_Choise(str_Choise);
-	getExpenseService().addVote(vote);
-	System.out.println();
-	 pool.setInt_Vote(increment());
-	getExpenseService().UpdatePool(pool);
+	System.out.println(int_PoolId+"poolId");
+	System.out.println(pool.getInt_userId()+"userId");
 	
-	 
+	vote.setInt_PoolId(int_PoolId);
+    isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+    System.out.println(isVoted+"voteId");
+	if(isVoted!=null)
+	{
+		System.out.println(isVoted+"voteId1");
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"u have already voted Thank u for participating!", "u have already voted Thank u for participating!"));
+		 return "vote.xhtml";
+	}
+	getExpenseService().addVote(vote);
+	System.out.println(int_PoolId);
+	 long_Vote= getExpenseService().getTotalVote(pool.getInt_PoolId());
+	pool.setInt_Vote(long_Vote);
+	System.out.println( long_Vote);
+	getExpenseService().UpdatePool(pool);
+ return "pools.xhtml";
 }
+public void getOnePool()
+{   pool=new Pool();
+	System.out.println(int_PoolId1+"sudhiiiiiiiiiiiiiiiii");
+	pool=getExpenseService().getOnePool(int_PoolId);
+	
+}
+private DataTable dataTable;
+
+
+
+
+	public DataTable getDataTable() {
+		return dataTable;
+	}
+
+	public void setDataTable(DataTable dataTable) {
+		this.dataTable = dataTable;
+	}
+
+	private  static ServiceRequest serviceRequest;
+	private static Integer serviceRequestId; 
+	  
+	public static Integer getServiceRequestId() {
+		return serviceRequestId;
+	}
+	 
+	public static void setServiceRequestId(Integer serviceRequestId) {
+		ExpenseBean.serviceRequestId = serviceRequestId;
+	}
+	 
+	public static ServiceRequest getServiceRequest() {
+		return serviceRequest;
+	}
+	public static void setServiceRequest(ServiceRequest serviceRequest) {
+		ExpenseBean.serviceRequest = serviceRequest;
+	}
+	public void processListener()
+	{
+		serviceRequest=(ServiceRequest)dataTable.getRowData();
+		serviceRequestId=serviceRequest.getInt_ServiceRequestId();
+		 
+		System.out.println(serviceRequestId);
+	}
+	public void assignRequestedService()
+	{
+	serviceRequest.setStr_Status("Progress");
+	System.out.println(serviceRequestId+"sudhaaaaaa");
+	serviceRequest.setInt_ServiceRequestId(serviceRequestId);
+
+	getExpenseService().updateStatusOfServiceRequest(serviceRequest);
+	}
+	public void closeRequestedService()
+	{
+		
+	serviceRequest.setStr_Status("RequestClosed");
+	   
+	getExpenseService().updateStatusOfServiceRequest(serviceRequest);
+	}
+	private ServiceRequest servicerequest1;
+  public ServiceRequest getServicerequest1() {
+		return servicerequest1;
+	}
+	public void setServicerequest1(ServiceRequest servicerequest1) {
+		this.servicerequest1 = servicerequest1;
+	}
+public void getOneServiceRequest()
+  {
+	  servicerequest1=getExpenseService().getOneServiceRequest(serviceRequestId);
+  }
+public void updateOneServiceRequest()
+{
+	getExpenseService().updateOneServiceRequest(serviceRequest);
+}
+public void deleteOneServiceRequest()
+{
+	servicerequest1.setInt_ServiceRequestId(serviceRequestId);
+	getExpenseService().deleteOneServiceRequest(servicerequest1);
+}
+	
 }
 
 
