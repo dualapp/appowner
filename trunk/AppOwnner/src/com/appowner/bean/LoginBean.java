@@ -64,37 +64,7 @@ public class LoginBean {
 	 private static String str_ApartmentName1;
 	 private static String str_Flat1;
 	 private static String str_VendorType1;
-	 public List<ServiceRequest> getServiceRequestList() {
-		 serviceRequestList=new ArrayList<ServiceRequest>();
-		 serviceRequestList.addAll(getUserService().getServiceRequestList());
-		return serviceRequestList;
-	}
-
-
-
-
-
-	public void setServiceRequestList(List<ServiceRequest> serviceRequestList) {
-		this.serviceRequestList = serviceRequestList;
-	}
-
-
-
-
-
-	public ServiceRequest getServiceRequest() {
-		return serviceRequest;
-	}
-
-
-
-
-
-	public void setServiceRequest(ServiceRequest serviceRequest) {
-		this.serviceRequest = serviceRequest;
-	}
-
-	private static String str_OpenDate1;
+	 private static String str_OpenDate1;
 	 private String str_EventName;
 	 private String str_StartTime;
 	 private String str_EndTime;
@@ -108,9 +78,27 @@ public class LoginBean {
 		private String path2;
 		private String cropimage;
 		private String str_userRoleName;
-		private List<ServiceRequest> serviceRequestList;
+		private static String block2;
+		
 
 	 
+		public static String getBlock2() {
+			return block2;
+			
+		}
+
+
+
+
+
+		public void setBlock2(String block2) {
+			this.block2 = block2;
+		}
+
+
+
+
+
 		public String getStr_userRoleName() {
 			return str_userRoleName;
 		}
@@ -128,7 +116,7 @@ public class LoginBean {
 
 
 		public String getCropimage() {
-			System.out.println("+++++++++++++++++++++++iiiiiiiiiiiiiiiiiiiiiiii+++++++++++++++++++++");
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println(cropimage);
 			return cropimage;//("")+File.separator+"images"+File.separator+"saphi"+File.separator+"crop"+File.separator+"images20140811143252.jpg";
 		}
@@ -315,7 +303,6 @@ public class LoginBean {
 
 
 	public List<BookAFacility> getBookAFacilityList() {
-		bookAFacilityList=getUserService().getBookAFacilityList();
 		return bookAFacilityList;
 	}
 
@@ -733,6 +720,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		str_userRoleName=user.getStr_UserRoleName();
 		System.out.println(user.getStr_Password());
 		str_Block=user.getStr_Block();
+		System.out.println(str_Block);
 		str_Flat=user.getStr_Flat();
 		int_UserId=user.getInt_UserId();
 		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjppppppppppppppppppppppppppppppppppppppppppppppppppppppppjjjjjjjjjjjjjjjjjjj");
@@ -754,9 +742,9 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
+            session.setAttribute("ApartmentName", user.getStr_Apartment());
             session.setAttribute("str_Block",str_Block);
             session.setAttribute("str_Flat",str_Flat);
-            session.setAttribute("ApartmentName", user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
 		 	String index="Adminwelcomepage.xhtml";
@@ -771,10 +759,11 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 				 
 	            session.setAttribute("username", userloginname);
 				session.setAttribute("ApartmentName", user.getStr_Apartment());
-				session.setAttribute("str_Block",str_Block);
-				session.setAttribute("str_Flat",str_Flat);
+				
 	            session.setAttribute("int_ApartmentId", int_ApartmentId);
 	            session.setAttribute("int_UserId", int_UserId);
+	            session.setAttribute("str_Block",str_Block);
+	            session.setAttribute("str_Flat",str_Flat);
 				System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 				System.out.println("hiiiiiiiiiiiii");
 				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -819,37 +808,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		this.int_UserId = int_UserId;
 	}
 
-	//image uploading
-			public void handleFileUpload1(FileUploadEvent event) throws IOException {
-				 System.out.println("hi");
-				 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-				    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-				    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-				    System.out.println(name);
-				    File file= new File("C://Users//Pankaj Singh//workspace10//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
-				    
-				   
-				    final UploadedFile uploadedFile = event.getFile();
-				    blb_image1=file.getAbsolutePath();
-				    System.out.println("ppppppppppppppppppppppppppppppppppppppppppppppppppppp");
-				    System.out.println(blb_image1);
-				    blb_images2=blb_image1.substring(55);
-				    cropimage="/"+blb_images2;
-				    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
-				    System.out.println(cropimage);
-			        System.out.println(file);
-				    InputStream is = event.getFile().getInputstream();
-				    OutputStream out = new FileOutputStream(file);
-				    byte buf[] = new byte[1024];
-				    int len;
-				    while ((len = is.read(buf)) > 0)
-				        out.write(buf, 0, len);
-				    is.close();
-				    out.close();
-				    path2=file.getName();
-				    System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooo");
-				    System.out.println(path2);
-			}
+
 
 
 
@@ -874,7 +833,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		serviceRequest.setStr_Flat(str_Flat);
 		serviceRequest.setStr_LandLineNum(str_LandLineNum);
 		serviceRequest.setStr_Mobile(str_Mobile);
-		serviceRequest.setStr_Status("open");
+		serviceRequest.setStr_Status(str_Status);
 		serviceRequest.setStr_Title(str_Title);
 		serviceRequest.setStr_UserType(str_UserType);
 		serviceRequest.setStr_VendorName(str_VendorName);
@@ -938,7 +897,38 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		//System.out.println(pro);
 		return "updationconfirmation.xhtml";
 		}
-	
+	//image uploading
+	public void handleFileUpload(FileUploadEvent event) throws IOException {
+		 System.out.println("hi");
+		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+		    System.out.println(name);
+		    File file= new File("C://Users//Pankaj Singh/workspace10//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
+		    
+		   
+		    final UploadedFile uploadedFile = event.getFile();
+		    blb_image1=file.getAbsolutePath();
+		    System.out.println("ppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+		    System.out.println(blb_image1);
+		    blb_images2=blb_image1.substring(49);
+		    cropimage="/"+blb_images2;
+		    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
+		    System.out.println(cropimage);
+	        System.out.println(file);
+		    InputStream is = event.getFile().getInputstream();
+		    OutputStream out = new FileOutputStream(file);
+		    byte buf[] = new byte[1024];
+		    int len;
+		    while ((len = is.read(buf)) > 0)
+		        out.write(buf, 0, len);
+		    is.close();
+		    out.close();
+		    path2=file.getName();
+		    System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+		    System.out.println(path2);
+	}
+
 
 	public void facebookuserLogin()
 	{
