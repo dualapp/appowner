@@ -45,13 +45,14 @@
                  </p:selectOneMenu></td>
             </tr>
             <tr>
-            <td><h:outputText  value="DueTemplate*" /></td>
+          
+           <td><h:outputText  value="DueTemplate*" /></td>
             <td><p:selectCheckboxMenu id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}" style="width:300px">
                <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
               <f:selectItems value="#{templateBean.dueTemplates}"/>
              
-             </p:selectCheckboxMenu>
-             </td>
+             </p:selectCheckboxMenu>  
+           </td>
             </tr>
            
           
