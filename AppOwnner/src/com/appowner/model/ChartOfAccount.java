@@ -62,5 +62,12 @@ public class ChartOfAccount implements Serializable {
 	public void setInt_ApartmentId(Integer int_ApartmentId) {
 		this.int_ApartmentId = int_ApartmentId;
 	}
-
+    private Character ch_Group;
+	public Character getCh_Group() {
+		return ch_Group;
+	}
+	public void setCh_Group(Character ch_Group) {
+		this.ch_Group = ch_Group;
+	}
+    
 }
