@@ -42,13 +42,24 @@ function ShowNewPage(){
  }
 function ShowNewPage1(clicked_id){
 	 var callbackFunctionArray = new Array(Submit, Cancel);
-     modalWin.ShowURL("EditDueTemplate.xhtml?int_DueTemplateID="+clicked_id+"",400,350,'Edit Due Template',null,callbackFunctionArray);
+    modalWin.ShowURL("editduetemplate1.xhtml?int_DueTemplateID="+clicked_id+"",400,350,'Edit Due Template',null,callbackFunctionArray);
 	 }
 function ShowNewPage2(clicked_id){
 	 var callbackFunctionArray = new Array(Submit, Cancel);
 	modalWin.ShowURL("viewduetemplate.xhtml?int_DueTemplateID="+clicked_id+"",400,350,'View Due Template',null,callbackFunctionArray);
 	 }
 	 
+function ShowNewPage3(){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 modalWin.ShowURL('EditDueTemplate.xhtml',470,600,'Create New Due Template',null,callbackFunctionArray);
+	 
+	 }
+function ShowNewPage4(){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 modalWin.ShowURL('viewduetemplate.xhtml',470,600,'Create New Due Template',null,callbackFunctionArray);
+	 
+	 }
+
  
 function ShowMessage() {
  modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
@@ -90,6 +101,7 @@ function HideModalWindow() {
 }
 
 
+
 </script>
 </h:body>
 <body  bgcolor="pink">
@@ -115,14 +127,14 @@ function HideModalWindow() {
                &#150; &#150;&#150; &#150;&#150;
              <td><h:outputText  value="Account" /></td>
                 &#150; &#150;&#150; &#150;&#150;
-                <h:commandButton id="priya" value="Go" action="#{templateBean.getSearch}" update="dueTemplate">
+                <h:commandButton id="priya" value="Go" action="#{templateBean.getSearch}" update="ggg">
                   </h:commandButton>
                 </h:panelGroup>
               
                 </fieldset>
                 <br/>
                 
-             <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150;<h:commandButton  value="Refresh" />
+             <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150;<input type="button" style="width: 100px" onclick="ShowNewPage3()" value="Edit Selected" />&#150; &#150; &#150; &#150;<input type="button" style="width: 100px" onclick="ShowNewPage4()" value="View Selected" />&#150; &#150; &#150; &#150;<h:commandButton  value="Refresh" />
              <br/>
              <br/>
      </h:form>   
@@ -130,11 +142,27 @@ function HideModalWindow() {
   <h:form>
 
   <h:body>
-        <h:outputText  value="Due Template: " color="red"></h:outputText>
        
-         <p:dataTable id="dueTemplate" var="dueTemplate" value="#{templateBean.listDues}"   style="width: 80%">
+        
+         <p:dataTable id="ggg" var="dueTemplate" value="#{templateBean.listDues}"  binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50">
+             <f:facet name="header">
+               DueTemplate
+           <h:commandLink>
+                <p:graphicImage value="images/xls.jpg" width="24"/>
+                <p:dataExporter type="xls" target="ggg" fileName="listDues" />
+            </h:commandLink>
             
-
+            
+        </f:facet>
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Select" />
+                </f:facet>
+                 <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{templateBean.processValueChange}">
+                 <p:ajax event="click"   partialSubmit="true"/>   
+                </h:selectBooleanCheckbox>
+           </p:column>
 
         
          
@@ -175,10 +203,7 @@ function HideModalWindow() {
                 </f:facet>
                 <h:outputText value="#{dueTemplate.str_TaxTemplate}" />
             </p:column>
-           
-                 
-                 
-                <p:column>
+            <p:column>
                 <f:facet name="header">
                     <h:outputText value="Action" />
                 </f:facet>
@@ -194,8 +219,13 @@ function HideModalWindow() {
                 
                
             </p:column>
-       </p:dataTable>  
-         
+                 
+                 
+               
+                
+               
+          </p:dataTable>
+      
                 
           </h:body>
           </h:form>
