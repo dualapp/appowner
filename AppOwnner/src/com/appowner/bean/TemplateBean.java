@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -17,10 +18,15 @@ import javax.faces.component.UIData;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.component.html.HtmlInputHidden;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.model.DualListModel;
+
+import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.Complain;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
@@ -30,7 +36,7 @@ import com.appowner.service.TemplateService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class TemplateBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//private static final String dueTemplate1="dueTemplate";
@@ -49,7 +55,7 @@ public class TemplateBean implements Serializable {
 	public void setInt_DueTemplateID(Integer int_DueTemplateID) {
 		this.int_DueTemplateID = int_DueTemplateID;
 	}
-
+   
 	public String getStr_DueTemplate() {
 		return str_DueTemplate;
 	}
@@ -115,6 +121,9 @@ public class TemplateBean implements Serializable {
 	}
 	private DueTemplate dueTemplate;
 
+	 private DualListModel<String> cities;
+	
+	
 	public DueTemplate getDueTemplate() {
 		return dueTemplate;
 	}
@@ -122,8 +131,16 @@ public class TemplateBean implements Serializable {
 		this.dueTemplate = dueTemplate;
 	}
 	public void getDueTemplate1()
+	{   
+	    System.out.println(id);
+	  
+	 
+	 
+		   dueTemplate=getTemplateService().getDueTemplate(id);
+	}
+	public void getDueTemplate2()
 	{   System.out.println(int_DueTemplateID);
-		dueTemplate=getTemplateService().getDueTemplate(int_DueTemplateID);
+	dueTemplate=getTemplateService().getDueTemplate(int_DueTemplateID);
 	}
 	public String addDueTemplate()
 	{
@@ -194,11 +211,38 @@ public class TemplateBean implements Serializable {
     public String cancelDue() {
 		return "Due Template.xhtml?faces-redirect=true";
 	}
-
-
+    private HtmlDataTable updatedAccounts;
+	public HtmlDataTable getUpdatedAccounts() {
+		return updatedAccounts;
+	}
+	public void setUpdatedAccounts(HtmlDataTable updatedAccounts) {
+		this.updatedAccounts = updatedAccounts;
+	}
+	private static Integer id;
+	public static Integer getId() {
+		return id;
+	}
+	public static void setId(Integer id) {
+		TemplateBean.id = id;
+	}
+	private DataTable dataTable;
+	public void processValueChange(ValueChangeEvent event)  
+	        throws AbortProcessingException { 
+		dueTemplate=(DueTemplate)dataTable.getRowData();
+		id=dueTemplate.getInt_DueTemplateID();
+		System.out.println(id);
+	}
+	
 
 	
 	
+	
+	public DataTable getDataTable() {
+		return dataTable;
+	}
+	public void setDataTable(DataTable dataTable) {
+		this.dataTable = dataTable;
+	}
 	//TAX TEMPLATE
 	private Integer int_TaxTemplateID;
 	public Integer getInt_TaxTemplateID() {
