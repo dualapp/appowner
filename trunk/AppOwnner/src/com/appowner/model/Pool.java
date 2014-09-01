@@ -47,7 +47,7 @@ public class Pool implements Serializable{
 	@Column 
 	private Integer int_userId;
 	@Column 
-	private Integer int_Vote;
+	private Long int_Vote;
 	@Column(name="var_Choise1")
 	private String str_Choise1;
 	@Column(name="var_Choise2")
@@ -98,14 +98,14 @@ public class Pool implements Serializable{
 	public void setInt_poolAudience(Integer int_poolAudience) {
 		this.int_poolAudience = int_poolAudience;
 	}
-	public Integer getInt_Vote() {
+	 
+
+	public Long getInt_Vote() {
 		return int_Vote;
 	}
-	public void setInt_Vote(Integer int_Vote) {
+	public void setInt_Vote(Long int_Vote) {
 		this.int_Vote = int_Vote;
 	}
-	
-
 	public String getStr_Choise1() {
 		return str_Choise1;
 	}
