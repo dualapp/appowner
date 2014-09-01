@@ -16,19 +16,20 @@
 	<table>
 	<tr><td> 
                <h:outputLabel value="Organisation:" /> </td>
-             <td> <p:selectOneMenu      editable="true"   style="width:200px">
-              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+             <td> <p:selectOneMenu  value="#{accountingBean.str_OrganizationName}"    editable="true"   style="width:200px">
+              <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true" /> 
+              <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}"  itemValue="#{accountingBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Type"/></td>
-	<td><p:selectOneMenu    value="#{expenseBean.str_AccountType}"   style="width:200px">
-	    <f:selectItem itemLabel="Select One" itemValue="" />  
+	<td><p:selectOneMenu    value="#{accountingBean.str_AccountType}"  style="width:200px">
+	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
 	    
-	   <f:selectItems   value="#{expenseBean.listAccountType}" /><br/> 
-	   
-                         </p:selectOneMenu></td></tr>
-	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText  style="width:100px" value="#{expenseBean.str_AccountName}"/></td></tr>
-	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveChartOfAccount}"   >
+	   <f:selectItems   value="#{accountingBean.listAccountType}" /><br/> 
+	   <p:ajax event="change" listener="#{accountingBean.accountchangeListener(ValueChangeEvent)}"/>
+                       </p:selectOneMenu></td></tr>
+	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText  style="width:200px" value="#{accountingBean.str_AccountName}"/></td></tr>
+	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{accountingBean.saveChartOfAccount}"   >
 	
 	</p:commandButton></td> </tr>  
 	</table>
