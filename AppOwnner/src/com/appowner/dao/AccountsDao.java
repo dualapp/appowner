@@ -6,7 +6,13 @@ import java.util.List;
 
 
 
+
+
+
+import javax.faces.model.SelectItem;
+
 import com.appowner.model.AccountsOpeningBalance;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.ManualJournal;
 
 public interface AccountsDao {
@@ -17,4 +23,13 @@ public interface AccountsDao {
 	public void addManualJournal(ManualJournal journal);
 	
 	public void addBalance(Date date, Integer id1, Integer id);
+	void saveChartOfAccount(ChartOfAccount chartOfAccount);
+
+	List<ChartOfAccount> getChartOfAccountList();
+
+	List<Character> getCh_AccountGroup();
+
+	List<String> getAccountTypeList(Character l);
+	public List<SelectItem> getAccounts();
+	public List<SelectItem> getAccount();
 }
