@@ -19,6 +19,8 @@ import java.util.List;
 
 
 
+
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -273,10 +275,18 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			sessionFactory.getCurrentSession().save(bookAFacility);
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public List<ServiceRequest> getServiceRequestList() {
 			// TODO Auto-generated method stub
 			return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).list();
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<BookAFacility> getBookAFacilityList() {
+			// TODO Auto-generated method stub
+			return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).list();
 		}
 
 		//@Override
