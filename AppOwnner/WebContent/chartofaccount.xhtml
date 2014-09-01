@@ -36,7 +36,7 @@
 
 function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewchartofaccount.xhtml',200,400,'Create New ',null,callbackFunctionArray);
+ modalWin.ShowURL('createnewchartofaccount.xhtml',400,400,'Create New ',null,callbackFunctionArray);
  }
  
  
@@ -79,16 +79,7 @@ function HideModalWindow() {
     modalWin.HideModalPopUp();
 }
 
-function ShowChildWindowValues(name,email,address,phone,zip) {
-    var displayString = "<b>Values Of Child Window</b> <br/><br/>Name : " + name;
-    displayString += "<br/><br/>Email : " + email;
-    displayString += "<br/><br/>Address : " + address;
-    displayString += "<br/><br/>Phone : " + phone;
-    displayString += "<br/><br/>Zip : " + zip;
-    var div = document.getElementById("divShowChildWindowValues");
-    div.style.display = "";
-    div.innerHTML = displayString;
-}
+
 </script>
     </h:head>
  
@@ -97,30 +88,38 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
     
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> ChartOf Accounts</legend>
- <table><tr><td>
-               <h:outputLabel value="Organisation:*" /> </td>
+ 
+  <h:panelGroup id="performed"  >
+ 
+               <td><h:outputLabel value="Organisation:*" /> </td>
               
-             <td> <p:selectOneMenu   style="width:100px">&nbsp;
-            <th>  <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" /> 
-               
-              </th> <td> <f:selectItem itemLabel="liability" itemValue="liability"   /> </td>
-                 </p:selectOneMenu> </td> &nbsp;&nbsp;
+              <td><p:selectOneMenu id="str_Organisation" value="#{expenseBean.str_OrganizationName}"   style="width:200px">
+                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                 </p:selectOneMenu>
+             </td>
+            &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
                  <td><h:outputLabel value="Account Type:*" /></td>
-                 <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
-       <f:selectItem itemLabel="Asset" itemValue="Asset"/>  
+                 <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"   style="width:200px">
+                  <f:selectItem itemLabel="Asset" itemValue="Asset"/>  
                   <f:selectItem itemLabel="liability" itemValue="liability"   />
                   <f:selectItem itemLabel="income" itemValue="income"   />
                   <f:selectItem itemLabel="expense" itemValue="expense"   />
                   
                  
                  </p:selectOneMenu>
-                 </td>&nbsp;&nbsp;<td><h:commandButton  style="width:200px" value="Go"/> </td></tr>
+                 </td>
+                 &#150; &#150; &#150; &#150;
+                 <td><h:commandButton  style="width:50px" value="Go"/> </td>
+               </h:panelGroup>
                
-                 </table>
                  
 </fieldset>
- <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />
-  
+<br/>
+<br/>
+ <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/>&#150; &#150; &#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/>
+  <br/>
+  <br/>
  <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
              id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="c" value="#{expenseBean.chartOfAccountList}">
 	<f:facet name="header">
