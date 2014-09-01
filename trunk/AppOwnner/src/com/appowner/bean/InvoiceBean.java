@@ -484,12 +484,14 @@ public class InvoiceBean implements Serializable{
 	public void setStr_BlockNo(List<String> str_BlockNo) {
 		this.str_BlockNo = str_BlockNo;
 	}
-	private double totalAmount;
+	private  double totalAmount;
 	
 
 	
 	
 
+	
+	
 	public double getTotalAmount() {
 		return totalAmount;
 	}
