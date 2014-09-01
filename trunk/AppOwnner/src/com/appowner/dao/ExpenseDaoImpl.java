@@ -18,6 +18,7 @@ import com.appowner.model.Notice;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.UserApartment;
 import com.appowner.model.Vote;
 
@@ -264,24 +265,61 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	}
 
 	@Override
-	public Number getChoise1Vote(String  str_Choise1) {
+	public Long getChoise1Vote(String  str_Choise1,Integer int_PoolId) {
 		// TODO Auto-generated method stub
-		String hql="select count(*) from Vote  where str_Choise=?";
-		return (Number) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "gud").uniqueResult();
+		String hql="select count(*) from Vote  where str_Choise=? and int_PoolId=?";
+		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise1).setParameter(1,int_PoolId).uniqueResult();
 		 
 	}
 
 	@Override
-	public Number  getChoise2Vote(String  str_Choise2) {
-		String hql="select count(*) from Vote  where str_Choise=?";
-		return (Number) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise2).uniqueResult();
+	public Long  getChoise2Vote(String  str_Choise2,Integer int_PoolId) {
+		String hql="select count(*) from Vote  where str_Choise=? and int_PoolId=?";
+		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise2).setParameter(1, int_PoolId).uniqueResult();
 	 
 	}
 
 	@Override
-	public Number getChoise3Vote(String  str_Choise3) {
-		String hql="select count(*) from Vote  where str_Choise=?";
-		return   (Number) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise3).uniqueResult();
+	public Long getChoise3Vote(String  str_Choise3,Integer int_PoolId) {
+		String hql="select count(*) from Vote  where str_Choise=? and int_PoolId=?";
+		return   (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise3).setParameter(1, int_PoolId).uniqueResult();
 		 
+	}
+
+	@Override
+	public void updateStatusOfServiceRequest(ServiceRequest serviceRequest) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().update(serviceRequest);
+	}
+
+	@Override
+	public ServiceRequest getOneServiceRequest(Integer serviceRequestId) {
+		// TODO Auto-generated method stub
+		
+		return (ServiceRequest) getSessionFactory().getCurrentSession().get(ServiceRequest.class,serviceRequestId);
+	}
+
+	@Override
+	public void updateOneServiceRequest(ServiceRequest serviceRequest) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().update(serviceRequest);
+	}
+
+	@Override
+	public void deleteOneServiceRequest(ServiceRequest servicerequest1) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().delete(servicerequest1);
+	}
+
+	@Override
+	public Long getTotalVote(Integer int_PoolId) {
+		String hql="select count(*) from Vote  where int_PoolId=?";
+		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_PoolId).uniqueResult();
+	}
+
+	@Override
+	public Integer isVoted( Integer int_UserId,Integer int_PoolId) {
+		String hql="select int_VoteId from Vote where int_UserId=? and int_PoolId=?";
+		return   (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_UserId).setParameter(1, int_PoolId).uniqueResult();
 	}
 }

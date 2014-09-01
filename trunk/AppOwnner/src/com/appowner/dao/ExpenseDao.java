@@ -12,6 +12,7 @@ import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vote;
 
 public interface ExpenseDao {
@@ -84,10 +85,22 @@ public interface ExpenseDao {
 
 	void UpdatePool(Pool pool);
 
-	Number getChoise1Vote(String str_Choise1);
+	Long getChoise1Vote(String str_Choise1, Integer int_PoolId);
 
-	Number getChoise2Vote(String str_Choise2);
+	Long getChoise2Vote(String str_Choise2,Integer int_PoolId);
 
-	Number getChoise3Vote(String str_Choise3);
+	Long getChoise3Vote(String str_Choise3,Integer int_PoolId);
+
+	void updateStatusOfServiceRequest(ServiceRequest serviceRequest);
+
+	ServiceRequest getOneServiceRequest(Integer serviceRequestId);
+
+	void updateOneServiceRequest(ServiceRequest serviceRequest);
+
+	void deleteOneServiceRequest(ServiceRequest servicerequest1);
+
+	Long getTotalVote(Integer int_PoolId);
+
+	Integer isVoted(Integer int_UserId,Integer int_PoolId);
 
 }
