@@ -17,6 +17,7 @@ import com.appowner.model.FacilityNeeded;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vote;
 
 @Service("ExpenseService")
@@ -247,21 +248,58 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public Number getChoise1Vote(String str_Choise1) {
+	public Long getChoise1Vote(String str_Choise1, Integer int_PoolId) {
 		// TODO Auto-generated method stub
-		return getExpenseDao().getChoise1Vote(str_Choise1);
+		return getExpenseDao().getChoise1Vote(str_Choise1,int_PoolId);
 	}
 
 	@Override
-	public Number getChoise2Vote(String str_Choise2) {
+	public Long getChoise2Vote(String str_Choise2, Integer int_PoolId) {
 		// TODO Auto-generated method stub
-		return getExpenseDao().getChoise2Vote(str_Choise2);
+		return getExpenseDao().getChoise2Vote(str_Choise2,int_PoolId);
 	}
 
 	@Override
-	public Number getChoise3Vote(String str_Choise3) {
+	public Long getChoise3Vote(String str_Choise3, Integer int_PoolId) {
 		// TODO Auto-generated method stub
-		return getExpenseDao().getChoise3Vote(str_Choise3);
+		return getExpenseDao().getChoise3Vote(str_Choise3,int_PoolId);
+	}
+
+	@Override
+	public void updateStatusOfServiceRequest(ServiceRequest serviceRequest) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateStatusOfServiceRequest(serviceRequest);
+	}
+
+	@Override
+	public ServiceRequest getOneServiceRequest(Integer serviceRequestId) {
+		// TODO Auto-generated method stub
+		
+		return getExpenseDao(). getOneServiceRequest(serviceRequestId);
+	}
+
+	@Override
+	public void updateOneServiceRequest(ServiceRequest serviceRequest) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateOneServiceRequest(serviceRequest);
+	}
+
+	@Override
+	public void deleteOneServiceRequest(ServiceRequest servicerequest1) {
+		// TODO Auto-generated method stub
+		getExpenseDao().deleteOneServiceRequest(servicerequest1);
+	}
+
+	@Override
+	public Long getTotalVote(Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao(). getTotalVote(int_PoolId);
+	}
+
+	@Override
+	public Integer isVoted(Integer int_UserId,Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().isVoted(int_UserId,int_PoolId);
 	}
 
 }
