@@ -25,7 +25,7 @@
   </p:accordionPanel>
   <table><tr>
   <td><h:outputText value="Status"/></td>
-  <td><h:inputText value="expenseBean.str_Status"/></td>
+  <td><h:inputText value="#{expenseBean.str_Status}"/></td>
   <td><h:outputText value="End Date"/></td>
   <td><p:calendar  required="true" requiredMessage="plz  enter End date" navigator="true"  display="inline" value="#{expenseBean.date_EndDate}"/></td></tr>
   <tr><td><h:outputText value="Organization"/></td><td><h:inputText value="#{expenseBean.str_OrganizationName}"/></td>
@@ -41,7 +41,7 @@
   <tr><td><h:outputText value="choise1*"/></td><td><h:inputText  value="#{expenseBean.str_Choise1}"/></td></tr>
   <tr><td><h:outputText value="choise2*"/></td><td><h:inputText  value="#{expenseBean.str_Choise2}"/></td></tr>
   <tr><td><h:outputText value="choise3"/></td><td><h:inputText  value="#{expenseBean.str_Choise3}"/></td></tr>
-   <tr><td><h:commandButton style="width:100px" onclick="return confirm(' Email sent successfully');"  value="submit" action="#{expenseBean.addPool}"/></td></tr>
+   <tr><td><h:commandButton style="width:100px" onclick="return confirm(' Poll created successfully');"  value="submit" action="#{expenseBean.addPool}"/></td></tr>
    </table>
     
    </h:body>

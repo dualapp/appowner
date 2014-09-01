@@ -8,8 +8,7 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 	<f:metadata>
-	<f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
-	 
+	 <f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
 	<f:viewAction action="#{expenseBean.getOnePool}" />
 	 </f:metadata>
 	<h:head>
@@ -51,9 +50,11 @@
 <h2><h:outputText value="*#{expenseBean.pool.str_poolQuestion}"/></h2> 
   
   
-<p:progressBar value="100" labelTemplate="#{expenseBean.pool.str_Choise1}{value}% vote" displayOnly="true"/><br/>
+<p:progressBar value="#{expenseBean.getChoise1Vote()}" labelTemplate="#{expenseBean.pool.str_Choise1}{value}% vote" displayOnly="true"/><br/>
   
- <p:progressBar value="0" labelTemplate="#{expenseBean.pool.str_Choise2}{value}% vote" displayOnly="true"/>
+ <p:progressBar value="#{expenseBean.getChoise2Vote()}" labelTemplate="#{expenseBean.pool.str_Choise2}{value}% vote" displayOnly="true"/><br/>
+
+ <p:progressBar value="#{expenseBean.getChoise3Vote()}" labelTemplate="#{expenseBean.pool.str_Choise3}{value}% vote" displayOnly="true"/>
 
    </p:fieldset>
    
