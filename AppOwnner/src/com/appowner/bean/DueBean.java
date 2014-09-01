@@ -8,15 +8,20 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
+
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
+
+import org.primefaces.component.datatable.DataTable;
 
 import com.appowner.model.DueTransaction;
 import com.appowner.service.DueService;
 import com.appowner.util.Util;
 
+
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class DueBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{DueService}")
@@ -101,12 +106,16 @@ public class DueBean implements Serializable{
 		this.str_Organisation = str_Organisation;
 	}
 	public String getStr_Block() {
+		str_Block=Util.getBlock();
+				System.out.println(str_Block);
 		return str_Block;
 	}
 	public void setStr_Block(String str_Block) {
 		this.str_Block = str_Block;
 	}
 	public String getStr_ApartmentNo() {
+		str_ApartmentNo=Util.getFlatNo();
+		System.out.println(str_ApartmentNo);
 		return str_ApartmentNo;
 	}
 	public void setStr_ApartmentNo(String str_ApartmentNo) {
@@ -196,5 +205,45 @@ public class DueBean implements Serializable{
 		str_BlockNo=new ArrayList<String>();
 		str_BlockNo.addAll(getDueService().getApartmentlist(str_Block));
 		return str_BlockNo;
+	}
+	private List<DueTransaction>   listUserDueTransaction;
+	public List<DueTransaction> getListUserDueTransaction() {
+		listUserDueTransaction=new ArrayList<DueTransaction>();
+		listUserDueTransaction.addAll(getDueService().listUserDueTransaction(str_ApartmentNo));
+		return listUserDueTransaction;
+	}
+	public void setListUserDueTransaction(
+			List<DueTransaction> listUserDueTransaction) {
+		this.listUserDueTransaction = listUserDueTransaction;
+	}
+	private DueTransaction template1;
+	public DueTransaction getTemplate1() {
+		return template1;
+	}
+	public void setTemplate1(DueTransaction template1) {
+		this.template1 = template1;
+	}
+	public void getUserDueTransaction()
+	{   
+		template1=getDueService().getUserDueTransaction(5);
+	 
+	}
+	private DataTable dataTable;
+	public void processValueChange1(ValueChangeEvent event)  
+	        throws AbortProcessingException 
+	{    System.out.println("hi");
+		template1=(DueTransaction)dataTable.getRowData();
+		int id=template1.getInt_DueTransactionID();
+		System.out.println(id);
+	}
+	public DataTable getDataTable() {
+		return dataTable;
+	}
+	public void setDataTable(DataTable dataTable) {
+		this.dataTable = dataTable;
+	}
+	public String reset()
+	{
+		return "userdues.xhtml";
 	}
 }
