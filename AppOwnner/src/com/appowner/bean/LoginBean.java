@@ -315,6 +315,7 @@ public class LoginBean {
 
 
 	public List<BookAFacility> getBookAFacilityList() {
+		bookAFacilityList=getUserService().getBookAFacilityList();
 		return bookAFacilityList;
 	}
 
@@ -731,6 +732,8 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		System.out.println(user);
 		str_userRoleName=user.getStr_UserRoleName();
 		System.out.println(user.getStr_Password());
+		str_Block=user.getStr_Block();
+		str_Flat=user.getStr_Flat();
 		int_UserId=user.getInt_UserId();
 		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjppppppppppppppppppppppppppppppppppppppppppppppppppppppppjjjjjjjjjjjjjjjjjjj");
 		System.out.println(str_userRoleName);
@@ -751,6 +754,8 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
+            session.setAttribute("str_Block",str_Block);
+            session.setAttribute("str_Flat",str_Flat);
             session.setAttribute("ApartmentName", user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
@@ -766,7 +771,8 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 				 
 	            session.setAttribute("username", userloginname);
 				session.setAttribute("ApartmentName", user.getStr_Apartment());
-				
+				session.setAttribute("str_Block",str_Block);
+				session.setAttribute("str_Flat",str_Flat);
 	            session.setAttribute("int_ApartmentId", int_ApartmentId);
 	            session.setAttribute("int_UserId", int_UserId);
 				System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
