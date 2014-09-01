@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.AccountsDao;
 import com.appowner.model.AccountsOpeningBalance;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.ManualJournal;
 
 @Service("AccountsService")
@@ -46,5 +47,46 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		getAccountsDao().addBalance(date, id1,id);
 	}
+	
+
+	@Override
+	public void saveChartOfAccount(ChartOfAccount chartOfAccount) {
+		// TODO Auto-generated method stub
+		getAccountsDao().saveChartOfAccount(chartOfAccount);
+	}
+
+	@Override
+	public List<ChartOfAccount> getChartOfAccountList() {
+		// TODO Auto-generated method stub
+		return getAccountsDao().getChartOfAccountList();
+	}
+
+	@Override
+	public List<Character> getCh_AccountGroup() {
+		// TODO Auto-generated method stub
+		return getAccountsDao().getCh_AccountGroup();
+	}
+
+	@Override
+	public List<String> getAccountTypeList(Character l){
+		// TODO Auto-generated method stub
+		return getAccountsDao().getAccountTypeList(l);
+	}
+
+	@Override
+	public List<String> getAccountTypeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public List<SelectItem> getAccounts()
+	{
+		return getAccountsDao().getAccounts();
+	}
+	public List<SelectItem> getAccount()
+	{
+		return getAccountsDao().getAccount();
+	}
+	
+
 
 }

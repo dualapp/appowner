@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.AccountsOpeningBalance;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.ManualJournal;
 
 public interface AccountsService {
@@ -22,5 +23,17 @@ public interface AccountsService {
 	
 
 	public void addBalance(Date date, Integer id1, Integer id);
+	List<String> getAccountTypeList();
+
+	void saveChartOfAccount(ChartOfAccount chartOfAccount);
+
+	List<ChartOfAccount> getChartOfAccountList();
+
+	List<Character> getCh_AccountGroup();
+
+	List<String> getAccountTypeList(Character c);
+
+	public List<SelectItem> getAccounts();
+	public List<SelectItem> getAccount();
 
 }
