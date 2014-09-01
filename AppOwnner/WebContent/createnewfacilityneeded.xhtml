@@ -8,22 +8,24 @@
       xmlns:p="http://primefaces.org/ui">
 	<h:head>
 	</h:head>
-	 <h:form id="form4">
+	 <h:form>
 	<h:body>
 	<br/>
-	<div>
+	 
 	<h:panelGroup  >
 	 
-               <h:outputLabel value="Organisation:" /> 
-              <p:selectOneMenu       style="width:100px">
+             <table><tr><td>  <h:outputLabel value="Organisation:" /> </td>
+             <td> <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu> <br/>
-	<p><h:outputText value="Facility Name"/>
-	<h:inputText value="#{expenseBean.str_FacilityName}"/></p>
-	 <p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.addFacility}"   >
+                 </p:selectOneMenu></td> </tr>
+                 
+	<tr><td><h:outputText value="Facility Name"/></td>
+	<td><h:inputText value="#{expenseBean.str_FacilityName}"/></td></tr>
+	<tr><td> <p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.addFacility}"   >
 	
-	</p:commandButton>   
+	</p:commandButton> </td></tr>
+	</table>  
 	 <script>
 	 
         function EnrollNowClick() {
@@ -39,7 +41,7 @@
  
     </script>
 	</h:panelGroup>
-	</div>
+ 
 	</h:body>
 	 </h:form>
  </html>

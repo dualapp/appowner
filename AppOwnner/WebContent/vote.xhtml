@@ -8,8 +8,7 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 	<f:metadata>
-	<f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
-	 
+	 <f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
 	<f:viewAction action="#{expenseBean.getOnePool}" />
 	 </f:metadata>
 	<h:head>
@@ -17,6 +16,7 @@
 </h:head>
 <a href="pools.xhtml">>>Back To Pool</a >
 <h:form>
+<p:growl id="msgs" showDetail="true" />
 <h:body bgcolor="pink">
  <p:accordionPanel    activeIndex="">
      
@@ -46,17 +46,17 @@
     <td> <h:outputText value="End Date:"/></td><td><h:outputText   value="#{expenseBean.pool.str_EndDate}" /> </td>
      
     </tr>
-    <tr><td><h:outputText value="Pool Question?"/></td><td><p:inputText   value="#{expenseBean.pool.str_poolQuestion}"  /></td></tr>
+    <tr><td><h:outputText value="Pool Question?"/></td><td><h:inputText value="#{expenseBean.pool.str_poolQuestion}"/></td></tr>
       <tr><td><h:selectOneRadio  id="votechoise"
-                      value="#{expenseBean.str_Choise1}">
+                      value="#{expenseBean.str_Choise}">
         <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise1}" itemValue="#{expenseBean.pool.str_Choise1}" />
         <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise2}" itemValue="#{expenseBean.pool.str_Choise2}" />
         <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise3}" itemValue="#{expenseBean.pool.str_Choise3}" />
         
         </h:selectOneRadio></td></tr>
-        <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea style="Width:250%;height:100px;"   value="#{expenseBean.str_Remark}" /></td>
+        <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea     value="#{expenseBean.str_Remark}" /></td>
         </tr> 
-        <tr><td><h:commandButton  value="Vote" action="#{expenseBean.addVote()}"/></td></tr>
+        <tr><td><h:commandButton  value="Vote" action="#{expenseBean.addVote}"/></td></tr>
       </table>
       
       </fieldset>

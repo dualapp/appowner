@@ -8,47 +8,131 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
-<h:head>
-    <title>ServiceRequest</title>
-    </h:head>
-    <h:form>
-    <h:body>
-    
+
+	
+	<h:head>
+
+	<title></title>
+	 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript">
+	 
+	 </script>
+
+ <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+    <script>
+
+ var modalWin = new CreateModalPopUpObject();
+ modalWin.SetLoadingImagePath("images/loading.gif");
+ modalWin.SetCloseButtonImagePath("images/remove.gif");
+ //Uncomment below line to make look buttons as link
+ //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
+function ShowNewPage1(){
+ var callbackFunctionArray = new Array(Submit, Cancel);
+ modalWin.ShowURL('editservicerequest.xhtml',400,350,'Edit service details',null,callbackFunctionArray);
+ }
+function ShowNewPage2(){
+ var callbackFunctionArray = new Array(Submit, Cancel);
+ modalWin.ShowURL('viewservicerequest.xhtml',400,350,'view service details',null,callbackFunctionArray);
+ }
+function ShowNewPage3(){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 modalWin.ShowURL('delectservicerequest.xhtml',200,150,'delete service',null,callbackFunctionArray);
+	 }
+ 
+ 
+function ShowMessage() {
+ modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
+ }
+  
+ function  ShowMessageWithAction(){
+    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
+    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
+ }
+
+function ShowMessageNoDragging(){
+ modalWin.Draggable=false;
+ modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
+
+}
+
+function Action1(){
+alert('Action1 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Action2(){
+alert('Action2 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Submit(msg){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function Cancel(){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function HideModalWindow() {
+    modalWin.HideModalPopUp();
+}
+
+function ShowChildWindowValues(name,email,address,phone,zip) {
+    var displayString = "<b>Values Of Child Window</b> <br/><br/>Name : " + name;
+    displayString += "<br/><br/>Email : " + email;
+    displayString += "<br/><br/>Address : " + address;
+    displayString += "<br/><br/>Phone : " + phone;
+    displayString += "<br/><br/>Zip : " + zip;
+    var div = document.getElementById("divShowChildWindowValues");
+    div.style.display = "";
+    div.innerHTML = displayString;
+}
+</script>
+
+ </h:head>
+    <body  bgcolor="pink">
+  <h:form>
+  
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> Service Request</legend>
  
-               <h:outputLabel value="Show Assets Of Organisation:" /> 
+               <h:outputLabel value="Organisation:" /> 
               <p:selectOneMenu       style="width:100px">&nbsp;
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
     </p:selectOneMenu>
     </fieldset>
         
-             <h:commandButton style="width: 150px"  action="createnewservicerequest.xhtml" value="create new Service request" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
-	   <p:menuButton value="Action">
-        <p:menuitem value="Assign Selected" />
-        <p:menuitem value="close Selected" />
+             <h:commandButton style="width: 150px"  action="createnewservicerequest.xhtml" value="create new" />&#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage1()" value="Edit Selected" />&#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage2()" value="View Selected" />&#150; &#150;<h:commandButton outcome="delectservicerequest.html"  onclick="return confirm('Are you sure you want to delete  Service');" value="Delete Selected" />
+	   &#150; &#150; <p:menuButton value="Action">
+        <p:menuitem value="Assign Selected" action="#{expenseBean.assignRequestedService}"/>
+        <p:menuitem value="close Selected" action="#{expenseBean.closeRequestedService}"/>
         <p:menuitem value="View Chart" />
-         <p:menuitem value="View Summary"/>
+         <p:menuitem value="View Summary" />
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
 	
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;">Service request</legend>
                 
-             <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable5" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="sr"  value="#{loginBean.serviceRequestList}">
-	<f:facet name="header">
-            Expand rows to see detailed information
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable5" trigger="toggler" />
-        </f:facet>
-   
-          	  <p:column headerText=" Id">
-                <h:outputText value="#{sr.int_ServiceRequestId}" /> 
-            
-	 </p:column>
+             <p:dataTable  resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  binding="#{expenseBean.dataTable}"     var="sr"  value="#{loginBean.serviceRequestList}">
+                
+	 
+        <p:column headerText="check">
+        <h:selectBooleanCheckbox value="string" valueChangeListener="#{expenseBean.processListener}">
+        <p:ajax event="click" partialSubmit="true"/>
+       </h:selectBooleanCheckbox>
+        </p:column>  	  
 	 <p:column headerText="Organization">
-                <h:outputText value="#{LoginBean.str_ApartmentName}" /> 
+                <h:outputText value="#{loginBean.str_ApartmentName}" /> 
             
 	 </p:column>
 	 
@@ -69,14 +153,14 @@
             
 	 </p:column>
 	 
-	 <p:column headerText="Status">
+	 <p:column headerText="Flat">
                 <h:outputText value="#{sr.str_Flat}" /> 
             
 	 </p:column>
 	 </p:dataTable>
-	 </h:body>
-     
+	 
     </h:form>
+    </body>
 	</ui:define>
-</ui:composition>
+	</ui:composition>
  

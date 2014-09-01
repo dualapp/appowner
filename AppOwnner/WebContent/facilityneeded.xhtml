@@ -34,7 +34,7 @@
  //Uncomment below line to make look buttons as link
  //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
-function ShowNewPage(){
+function ShowNewPage1(){
  var callbackFunctionArray = new Array(Submit, Cancel);
  modalWin.ShowURL('createnewfacilityneeded.xhtml',400,350,'Create New facility',null,callbackFunctionArray);
  }
@@ -94,16 +94,16 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
  </h:head>
 	 <h:form>
 	<h:body>
-	<table><tr><td>
-	  <h:outputLabel value="Organisation:" /> </td>
-            <td>  <p:selectOneMenu       style="width:100px">
+	 
+	  <h:outputLabel value="Organisation:" />  
+             <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></td> </tr>
+                 </p:selectOneMenu> <br/>
 	 
                 
-           <tr><td>  <h:commandButton style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" /></td></tr>
-	   </table>
+           <h:commandButton style="width: 150px" onclick="ShowNewPage1()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" /> 
+	   
 	
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;">Facility Needed</legend>

@@ -15,6 +15,7 @@
 <body  bgcolor="pink">
   <h:form id="form">
    <p:growl id="msgs" showDetail="true" />
+    
   <br/>
   <legend    style="background-color:#438eb9; color:#fff;"> </legend>
   <fieldset>
@@ -59,17 +60,18 @@
              <br/>
              <br/>
              
-          <h:button outcome="createnewpool.xhtml" value="Create New"/> &#150; &#150;<h:button outcome="createExpenses"  value="View Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Edit Selected" />&#150; &#150;<h:button outcome="createExpenses"  value="Delete Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Refresh" />&#150; &#150;<p:menuButton value="Action">
-        <p:menuitem value="Approved Selected" />
-        <p:menuitem value="Reject Selected" />
+          <h:button outcome="createnewpool.xhtml" value="Create New"/> &#150; &#150;<h:link outcome="vote.xhtml"  value="Vote Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Edit Selected" />&#150; &#150;<h:link outcome="viewpool.xhtml"  value="View Vote" />&#150; &#150;<h:button outcome="createExpenses"   value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+        <p:menuitem value="Vote Selected" action="#{expenseBean.addVote}" />
+        <p:menuitem value="View Vote"  action="#{expenseBean.getOnePool}"/>
         <p:menuitem value="View Chart" />
          <p:menuitem value="View Summary"/>
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
          
              <legend  style="background-color:#438eb9; color:#fff;"> Pool</legend>
-             <p:dataTable id="dataTable1" widgetVar="dataTable"  emptyMessage="No Vendors found with given criteria"     resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"    var="pool" value="#{expenseBean.poolList}"   >
+             <p:dataTable    id="dataTable1" widgetVar="dataTable"  emptyMessage="No Vendors found with given criteria"     resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"    var="pool" value="#{expenseBean.poolList}"   >
                 <f:facet name="header">
+                
              
                 <h:outputText  value="Search all fields:" />
                 <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px"    placeholder="Enter keyword"/>
@@ -81,6 +83,13 @@
             <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
         <p:columnToggler datasource="dataTable1" trigger="toggler" />
         </f:facet>
+        
+         <p:column headerText="check" width="150">
+        <h:selectBooleanCheckbox value="str" valueChangeListener="#{expenseBean.processListener1}">
+        <p:ajax event="click" partialSubmit="true"/>
+       </h:selectBooleanCheckbox>
+        </p:column>
+        
         <p:column   sortBy="#{pool.str_CreatedBy}"  headerText="Created By" footerText="created By" width="150">
           
                <h:outputText   value="#{pool.str_CreatedBy}" /> 
@@ -122,9 +131,9 @@
                     </f:facet>
              
 	   		
-	   		<h:commandButton  value="vote" action="vote" > 
+	   		<h:link  value="vote"     outcome="vote.xhtml" > 
 	   	 		<f:param name="int_PoolId" value="#{pool.int_PoolId}" />
-	   		</h:commandButton>
+	   		</h:link> 
 	   		<h:link  value="View Vote" outcome="viewpool.xhtml" > 
 	   	 		<f:param name="int_PoolId" value="#{pool.int_PoolId}" />
 	   		</h:link>
