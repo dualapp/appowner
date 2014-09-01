@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	  <f:metadata>
+	<f:viewParam name="int_InvoiceTemplateID" value="#{templateBean.int_InvoiceTemplateID}"  />
+	 
+	<f:viewAction action="#{dueBean.getUserDueTransaction}" />
+</f:metadata>
+<h:head>
+    <title>Company Registration Edition </title>
+     <style type="text/css">
+    td:nth-child(2) {
+    padding-right: 300px;
+}
+.more-padding-on-right {
+  padding-right: 10px;
+}​
+   </style>
+
+</h:head>
+
+
+ <h:form>
+ <a href="userdues.xhtml">Back To Dues</a>
+ <h:body>
+  <fieldset>
+      <legend  style="background-color:#438eb9; color:#fff;">Template</legend>
+      <h:panelGroup id="user">
+          <h:outputText value="Template"></h:outputText>
+        <table cellpadding="20" cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Account" />&#160; &#160; &#160; &#160; &#160; </td>
+         <td>   <h:inputText value="#{dueBean.template1.str_Accounts}" /></td>
+            <td > <h:outputText value="DueTemplate" /></td>
+         <td>   <h:inputText value="#{dueBean.template1.str_DueTemplate}" /></td>
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user1">
+        <h:outputText value="Due Details"></h:outputText>
+        <table cellpadding="20" cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Period" /> &#160; &#160; &#160; &#160; &#160;  &#160; </td>
+         <td>   <h:inputText value="#{dueBean.template1.str_Period}" /></td>
+            <td > <h:outputText value="Year" />&#160; &#160; &#160; &#160;  </td>
+         <td>   <h:inputText value="#{dueBean.template1.int_Year}" /></td>
+           </tr>
+            <tr>
+           <td> <h:outputText value="Initiated On" /></td>
+         <td>   <h:inputText value="#{dueBean.template1.str_InitiatedOn}" /></td>
+            <td > <h:outputText value="Last Date" />&#160; &#160; &#160; &#160;  </td>
+         <td>   <h:inputText value="#{dueBean.template1.dat_LastDate}" /></td>
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user2">
+        <h:outputText value="Apartment Details"></h:outputText>
+        <table cellpadding="20" cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Block" />&#160; &#160; &#160;&#160; &#160; &#160; &#160; </td>
+         <td >   <h:inputText value="#{dueBean.template1.str_Block}" /></td>
+          
+            
+           <td> <h:outputText value="Apartment No" /></td>
+         <td class="more-padding-on-right">  <h:inputText value="#{dueBean.template1.str_ApartmentNo}" /></td>
+          
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user3">
+        <h:outputText value="Amount Details"></h:outputText>
+        <table cellpadding="10" cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Due Amount" /></td>
+         <td >   <h:inputText value="#{dueBean.template1.dbl_DueAmount}" /></td>
+          </tr>
+            <tr>
+           <td > <h:outputText value=" Total Due Amount" /></td>
+           <td >   <h:inputText value="#{dueBean.template1.dbl_TotalDueAmount}" /></td>
+            <td> <h:outputText value=" Balance Amount" /></td>
+           <td >   <h:inputText value="#{dueBean.template1.dbl_TotalDueAmount}" /></td>
+           </tr>
+          <tr>
+            <td> <h:outputText value=" Paid Amount" /></td>
+           <td >   <h:inputText value="#{dueBean.template1.dbl_TotalDueAmount}" /></td>
+            <td> <h:outputText value="Status" /></td>
+           <td >   <h:inputText value="#{dueBean.template1.str_Status}" /></td>
+           </tr>
+           </table>
+           <table>
+           <tr>
+           <td><h:outputText value="payment History" />&#160; &#160; &#160; &#160; &#160; &#160; </td>
+         <td>  <p:inputTextarea value="" cols="30" row="5" /></td> 
+           </tr>
+        </table>
+      </h:panelGroup>
+       
+ 
+  
+   </fieldset>
+ </h:body>  
+</h:form>
+
+</ui:define>
+</ui:composition>
+ 
+   
+    
