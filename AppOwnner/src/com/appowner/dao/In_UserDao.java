@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.appowner.model.BookAFacility;
 import com.appowner.model.MemberLog;
+import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 
 //import org.apache.catalina.realm.JNDIRealm.User;
@@ -78,4 +79,8 @@ public interface In_UserDao {
 	public void addServiceRequest(ServiceRequest serviceRequest);
 
 	public void addBookAFacility(BookAFacility bookAFacility);
+
+	public List<ServiceRequest> getServiceRequestList();
+
+	public List<BookAFacility> getBookAFacilityList();
 }
