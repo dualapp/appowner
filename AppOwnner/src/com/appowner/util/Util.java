@@ -36,6 +36,17 @@ public class Util {
 	    	  HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	    	  return   (Integer) session.getAttribute("int_ApartmentId");
 	      }
+	     public static String getBlock()
+	      {
+	    	  HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	    	  return   (String) session.getAttribute("str_Block").toString();
+	      }
+	     public static String getFlatNo()
+	      {
+	    	  HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	    	  return   (String) session.getAttribute("str_Flat").toString();
+	      }
+	     
 	      public static Integer getUserId()
 	      {
 	        HttpSession session = getSession();
