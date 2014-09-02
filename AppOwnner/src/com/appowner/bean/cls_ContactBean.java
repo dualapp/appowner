@@ -194,8 +194,7 @@ public class cls_ContactBean implements Serializable {
 	}
 	
 	public void getContact1() {
-		contact=new cls_Contact();
-		System.out.println(contactId);
+		 
 			contact=getContactService().getContact(contactId);
 	} 
 	
