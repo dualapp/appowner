@@ -36,14 +36,7 @@ public class cls_ContactDaoImpl implements cls_ContactDao {
 		//return (List<cls_Contact>) getSessionFactory().getCurrentSession().createCriteria(cls_Contact.class).list();
 	}
 	
-	public cls_Contact getContact(Integer contactId) {
-		return (cls_Contact) getSessionFactory().getCurrentSession().get(cls_Contact.class, contactId);
-	}
-
-/*	public cls_Contact getDate(Date date) {
-		return (cls_Contact) getSessionFactory().getCurrentSession().get(cls_Contact.class, date);
-	}*/
-	
+	 
 	public void deleteContact1(cls_Contact contact) {
 		System.out.println(contact.getContactId());
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM cls_Contact WHERE contactid = "+contact.getContactId()).executeUpdate();
@@ -55,13 +48,10 @@ public class cls_ContactDaoImpl implements cls_ContactDao {
 		sessionFactory.getCurrentSession().update(contact);
 	}
 
-	/*@Override
-	public int getInt_UserId(String con1) {
-	System.out.println(con1);
-		String	hql1="select int_UserId from cls_Contact where str_Username=?";
-		int int_UserId=(Integer)getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, con1).uniqueResult();
-		 return int_UserId;
-	}*/
+	@Override
+	public cls_Contact getContact1(int contactId) {
+		return (cls_Contact) getSessionFactory().getCurrentSession().get(cls_Contact.class,contactId);
+	}
 
-
+	 
 }
