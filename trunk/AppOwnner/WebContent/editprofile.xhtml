@@ -16,7 +16,7 @@
     <title>Edit</title>
 </h:head>
 <body bgcolor="pink">
- <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+<h:form>
   
  
  <table>
@@ -76,7 +76,7 @@
              <tr>
     <h:outputText value="Choose Your  image for upload "></h:outputText>
    <td> <p:fileUpload value="#{loginBean.var_ImageName1}"
-        fileUploadListener="#{loginBean.handleFileUpload()}" mode="advance" auto="true" dragDropSupport="false"
+        fileUploadListener="#{loginBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
         sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
        </td>
        </tr>
