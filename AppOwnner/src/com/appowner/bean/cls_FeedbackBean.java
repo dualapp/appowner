@@ -114,10 +114,10 @@ public class cls_FeedbackBean implements Serializable {
 		
 	} 
 	
-	public String deleteFeedback(int a)
+	public String deleteFeedback()
 	 {
 		 cls_Feedback feedback=new cls_Feedback();		 
-		 feedback.setFeedbackId(a);
+		 feedback.setFeedbackId(feedbackId);
 		getFeedbackService().deleteFeedback1(feedback);
 		 return SUCCESS;
 	 }
