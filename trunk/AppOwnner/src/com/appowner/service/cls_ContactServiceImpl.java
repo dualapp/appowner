@@ -35,9 +35,7 @@ public class cls_ContactServiceImpl implements cls_ContactService {
 		return getContactDao().listContacts();
 	}
 
-	public cls_Contact getContact(Integer contactId) {
-		return contactDao.getContact(contactId);
-	}
+	 
 	
 /*	public cls_Contact getDate(Date date) {
 		return contactDao.getDate(date);
@@ -52,6 +50,11 @@ public class cls_ContactServiceImpl implements cls_ContactService {
 	public void update(cls_Contact contact) {
 		getContactDao().update(contact);
 		
+	}
+
+	@Override
+	public cls_Contact getContact1(int contactId) {
+		return contactDao.getContact1(contactId);
 	}
 
 /*	@Override
