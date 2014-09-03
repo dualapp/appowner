@@ -161,10 +161,10 @@ public class cls_ContactBean implements Serializable {
 	}
 	
 	
-	public String deleteContact(int a)
+	public String deleteContact()
 	 {
 		 cls_Contact contact=new cls_Contact();		 
-		 contact.setContactId(a);
+		 contact.setContactId(contactId);
 		getContactService().deleteContact1(contact);
 		 return SUCCESS;
 	 }
@@ -194,13 +194,11 @@ public class cls_ContactBean implements Serializable {
 	}
 	
 	public void getContact1() {
-		 
-			contact=getContactService().getContact(contactId);
+	 contact=getContactService().getContact1(contactId);
 	} 
 	
 	public String saveContact( ) {
 		System.out.println(contact);
-		contact=new cls_Contact();
 		if(contact.getContactId()!=null)
 	
 			getContactService().update(contact);
