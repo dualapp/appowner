@@ -12,16 +12,14 @@ public interface cls_ContactService {
 
 	public List<cls_Contact> listContacts();
 	
-	public cls_Contact getContact(Integer contactId);
-	
-	//public cls_Contact getDate(Date date);
+	 
 	
 	public void deleteContact1(cls_Contact contact);
 
 	public void update(cls_Contact contact);
 
-//	public int getInt_UserId(String con1);
+	public cls_Contact getContact1(int contactId);
 
-	
+ 
 
 }
