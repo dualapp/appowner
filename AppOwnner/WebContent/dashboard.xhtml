@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 template="include/templates/template.xhtml">
+	<ui:define name="content">
+<body>
+<div align="center" style="height:500px">
+    <h:form>
+        <p:growl id="msgs" showDetail="true" />
+ 
+        <p:dashboard id="board" model="#{dashboardBean.model}">
+            <p:ajax event="reorder" listener="#{dashboardBean.handleReorder}" update="msgs" />
+ 
+            <p:panel id="Events" header="Events">
+                <h:outputText value="Events Content" />
+            </p:panel>
+ 
+            <p:panel id="finance" header="Finance">
+                <h:outputText value="Finance Content" />
+            </p:panel>
+ 
+            <p:panel id="lifestyle" header="Lifestyle">
+                <h:outputText value="Lifestyle Content"  />
+            </p:panel>
+ 
+            <p:panel id="AppownerNews" header="AppownerNews">
+                <h:outputText value="New Of Appowner Content" />
+            </p:panel>
+ 
+            <p:panel id="Polls" header="Polls">
+                
+                 
+     <ui:include src="latestpoll.xhtml" />
+                
+            </p:panel>
+        </p:dashboard>
+ 
+        <div style="clear:both" />
+    </h:form>
+</div>
+
+</body>
+</ui:define>
+</ui:composition>

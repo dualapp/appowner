@@ -11,19 +11,22 @@
 	 <h:form id="form4">
 	<h:body>
 	<br/>
-	<div>
+	
 	<h:panelGroup  >
-	<p><h:outputLabel value="Organisation:" /> 
-               <h:outputLabel value="Organisation:" /> 
-              <p:selectOneMenu       style="width:100px">
+	<table>
+	<tr><td>
+	<h:outputLabel value="Organisation:" /> </td>
+              
+              <td><p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></p><br/>
-	<p><h:outputText value="parkingSlot"/>
-	<h:inputText value="#{expenseBean.str_ParkingSlot}"/></p>
-	<p><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}"   >
+                 </p:selectOneMenu></td></tr>
+                 
+<tr><td><h:outputText value="parkingSlot"/></td>
+	<td><h:inputText value="#{expenseBean.str_ParkingSlot}"/></td></tr>
+	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}"   >
 	
-	</p:commandButton>  </p>
+	</p:commandButton> </td></tr> 
 	 <script>
 	 
         function EnrollNowClick() {
@@ -38,8 +41,10 @@
         }
  
     </script>
+    
+    </table>
 	</h:panelGroup>
-	</div>
+ 
 	</h:body>
 	 </h:form>
  </html>
