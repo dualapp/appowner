@@ -302,4 +302,22 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().isVoted(int_UserId,int_PoolId);
 	}
 
+	@Override
+	public List<String> getOrganizationImages() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getOrganizationImages();
+	}
+
+	@Override
+	public List<ServiceRequest> getListServiceRequest() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getListServiceRequest();
+	}
+
+	@Override
+	public Pool getLatestPolls() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getLatestPolls();
+	}
+
 }

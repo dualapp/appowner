@@ -110,6 +110,12 @@ public interface ExpenseService {
 
 	Integer isVoted(Integer int_UserId,Integer int_PoolId);
 
+	List<String> getOrganizationImages();
+
+	List<ServiceRequest> getListServiceRequest();
+
+	Pool getLatestPolls();
+
 	 
 
 }
