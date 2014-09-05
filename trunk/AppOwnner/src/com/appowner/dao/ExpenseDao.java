@@ -103,4 +103,10 @@ public interface ExpenseDao {
 
 	Integer isVoted(Integer int_UserId,Integer int_PoolId);
 
+	List<String> getOrganizationImages();
+
+	List<ServiceRequest> getListServiceRequest();
+
+	Pool getLatestPolls();
+
 }
