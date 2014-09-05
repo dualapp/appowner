@@ -102,6 +102,16 @@ public class ExpenseBean  implements Serializable{
 	private Date date_AMCStartDate;
 	private Date  date_AMCEndDate;
 	private String str_PurchaseImg;
+	private List<String> images;
+	public List<String> getImages() {
+		images=new ArrayList<String>();
+		images.addAll(getExpenseService().getOrganizationImages());
+		System.out.println(images+"images");
+		return images;
+	}
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
 	public String getStr_PurchaseImg() {
 		return str_PurchaseImg;
 	}
@@ -686,12 +696,12 @@ public void setBlb_image(String blb_image) {
  * Upload Appartment Logo
  */
 public void  handleFileUpload(FileUploadEvent event) throws IOException {
-	 System.out.println("hi");
+	 System.out.println("hi kalpana");
 	 
 	   path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	    str_AppartmentLogo = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+	    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
     	if (file.mkdir()) {
     		System.out.println("Directory is created!");
@@ -734,12 +744,12 @@ public void setPath2(String path2) {
 	this.path2 = path2;
 }
 public void  handleFileUpload2(FileUploadEvent event) throws IOException {
-	 System.out.println("hi");
+	 System.out.println("hi sudha");
 	   path2 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	    str_Document_Upload = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 	     
-	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+	    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
    	if (file.mkdir()) {
    		System.out.println("Directory is created!");
@@ -752,6 +762,7 @@ public void  handleFileUpload2(FileUploadEvent event) throws IOException {
 	    //final UploadedFile uploadedFile = event.getFile();
 	    
 	    path2=file.getAbsolutePath();
+	    System.out.println(path2+"path2");
      
 	    InputStream is = event.getFile().getInputstream();
 	    OutputStream out = new FileOutputStream(file);
@@ -774,8 +785,8 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
     SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
     str_AppartmentImg = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
     
-    System.out.println(str_AppartmentImg);
-    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+   // System.out.println(str_AppartmentImg);
+    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
     if (!file.exists()) {
 	if (file.mkdir()) {
 		System.out.println("Directory is created!");
@@ -788,7 +799,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
    
     //final UploadedFile uploadedFile = event.getFile();
     path1=file.getAbsolutePath();
-    System.out.println(path1);
+    System.out.println(path1+"path");
     InputStream is = event.getFile().getInputstream();
     OutputStream out = new FileOutputStream(file);
     byte buf[] = new byte[1024];
@@ -832,12 +843,13 @@ public void addOrganizationLogo ()
 	}
 }
  
+ 
 
 public   void getOrganizationLogo()
 { ol=new OrganizationLogo();
   ol=getExpenseService().getOrganizationLogo(Util.getAppartmentId());
   System.out.println(ol+""+"hgxdddddddddddddddd");
-  File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+  File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
   if (!file.exists()) {
 	if (file.mkdir()) {
 		System.out.println("Directory is created!");
@@ -1434,11 +1446,23 @@ public String addVote()
 	vote.setStr_Remark(str_Remark);
 	vote.setStr_Choise(str_Choise);
 	System.out.println(int_PoolId+"poolId");
-	System.out.println(pool.getInt_userId()+"userId");
+//	System.out.println(pool.getInt_userId()+"userId");
 	
-	vote.setInt_PoolId(int_PoolId);
-    isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+	
+	 
+	if(pool!=null)
+	{
+		vote.setInt_PoolId(int_PoolId);
+		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+	}
+    
+	else
+	{
+		vote.setInt_PoolId(latestPolls.getInt_PoolId());
+		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
+		 
     System.out.println(isVoted+"voteId");
+	}
 	if(isVoted!=null)
 	{
 		System.out.println(isVoted+"voteId1");
@@ -1452,10 +1476,20 @@ public String addVote()
 	}
 	getExpenseService().addVote(vote);
 	System.out.println(int_PoolId);
+	if(pool!=null)
+	{
 	 long_Vote= getExpenseService().getTotalVote(pool.getInt_PoolId());
 	pool.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(pool);
+	}
+	else
+	{
+	long_Vote= getExpenseService().getTotalVote(latestPolls.getInt_PoolId());
+	latestPolls.setInt_Vote(long_Vote);
+	System.out.println( long_Vote);
+	getExpenseService().UpdatePool(latestPolls);
+	}
  return "pools.xhtml";
 }
 public void getOnePool()
@@ -1463,6 +1497,15 @@ public void getOnePool()
 	System.out.println(int_PoolId1+"sudhiiiiiiiiiiiiiiiii");
 	pool=getExpenseService().getOnePool(int_PoolId);
 	
+}
+private Pool latestPolls;
+public Pool getLatestPolls() {
+	latestPolls=new Pool();
+	latestPolls=getExpenseService().getLatestPolls();
+	return latestPolls;
+}
+public void setLatestPolls(Pool latestPolls) {
+	this.latestPolls = latestPolls;
 }
 private DataTable dataTable;
 
@@ -1514,7 +1557,7 @@ private DataTable dataTable;
 		
 	serviceRequest.setStr_Status("RequestClosed");
 	   
-	getExpenseService().updateStatusOfServiceRequest(serviceRequest);
+	getExpenseService().updateStatusOfServiceRequest(servicerequest1);
 	}
 	private ServiceRequest servicerequest1;
   public ServiceRequest getServicerequest1() {
