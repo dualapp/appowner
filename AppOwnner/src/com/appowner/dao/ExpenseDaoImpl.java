@@ -322,4 +322,27 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		String hql="select int_VoteId from Vote where int_UserId=? and int_PoolId=?";
 		return   (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_UserId).setParameter(1, int_PoolId).uniqueResult();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getOrganizationImages() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(OrganizationLogo.class).setProjection(Projections.property("str_Appartment_Img")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ServiceRequest> getListServiceRequest() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).list();
+	}
+
+	@Override
+	public Pool getLatestPolls() {
+		// TODO Auto-generated method stub
+		//String hql="from Pool WHERE int_PoolId = max(int_PoolId)";
+		String hql="from Pool order by int_PoolId desc limit 1,1;";
+		 
+		return  (Pool) getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+	}
 }
