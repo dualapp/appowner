@@ -97,6 +97,8 @@ function HideModalWindow() {
  <body bgcolor="yellow">
    
  <h:form  id="form">
+ <p:commandButton id="VendorBtn" icon="ui-icon-extlink" value="VendorList" type="button" />
+    <p:overlayPanel id="VendorPanel" for="VendorBtn" hideEffect="fade" dynamic="true" style="width:1000px">
  <legend  align="left" style="background-color:#438eb9; color:#fff;">
  
   <tr><td><p:selectOneMenu   value="#{vendorBean.str_VendorName }"   style="width:200px" >
@@ -124,7 +126,7 @@ function HideModalWindow() {
          <p:menuitem value="View Summary" action="#"/>
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
-    
+        
        <p:dataTable  widgetVar="carsTable"  emptyMessage="No Vendors found with given criteria" filteredValue="#{vendorBean.vendorList}"  id="DT" editable="true" resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="vendor" value="#{vendorBean.vendorList}"   >
                 <f:facet name="header">
              
@@ -141,7 +143,7 @@ function HideModalWindow() {
         
           <p:column   sortBy="#{vendor.str_VendorName}"  headerText="VendorName" footerText="Vendor Name" width="50">
            
-              <h:outputText   value="#{vendor.str_VendorName}" /> 
+             <a href="#"> <h:outputText   value="#{vendor.str_VendorName}" /> </a>
                
             </p:column>
             
@@ -182,6 +184,7 @@ function HideModalWindow() {
         
          
             </p:dataTable>
+            </p:overlayPanel>
              
             </h:form>
             </body>
