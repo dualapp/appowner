@@ -7,7 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 	<f:metadata>
 	 
-	<f:viewAction action="#{expenseBean.getOneServiceRequest}" />
+	<f:viewAction action="#{requestScopeBean.getOneServiceRequest}" />
 	 </f:metadata>
 	 <h:head>
     <title>Edit</title>
@@ -28,32 +28,32 @@
  <td>
     <h:outputText value="Service category:"/></td>
     <td>
-     <h:outputText value="#{expenseBean.servicerequest1.str_VendorType}"/></td>  
+     <h:outputText value="#{requestScopeBean.servicerequest1.str_VendorType}"/></td>  
     </tr>
     <tr>
  <td>
     <h:outputText value="Created On:"/></td>
     <td>
-     <h:outputText value="#{expenseBean.servicerequest1.str_OpenDate}"/></td>  
+     <h:outputText value="#{requestScopeBean.servicerequest1.str_OpenDate}"/></td>  
     </tr>
       <tr>
  <td>
     <h:outputText value="Title:"/></td>
     <td>
-     <h:outputText value="#{expenseBean.servicerequest1.str_Title}"/></td>  
+     <h:outputText value="#{requestScopeBean.servicerequest1.str_Title}"/></td>  
     </tr>
 
   <tr>
  <td>
     <h:outputText value="Status:"/></td>
     <td>
-    <h:outputText value="#{expenseBean.servicerequest1.str_Status}"/></td>  
+    <h:outputText value="#{requestScopeBean.servicerequest1.str_Status}"/></td>  
     </tr>
       <tr>
  <td>
     <h:outputText value="Flat:"/></td>
     <td>
-     <h:outputText value="#{expenseBean.servicerequest1.str_Flat}"/></td>  
+     <h:outputText value="#{requestScopeBean.servicerequest1.str_Flat}"/></td>  
     </tr>
     
 </table>
