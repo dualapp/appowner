@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_servicerequest")
 public class ServiceRequest implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column 
