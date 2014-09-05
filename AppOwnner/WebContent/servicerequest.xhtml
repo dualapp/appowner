@@ -113,8 +113,8 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
         
              <h:commandButton style="width: 150px"  action="createnewservicerequest.xhtml" value="create new" />&#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage1()" value="Edit Selected" />&#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage2()" value="View Selected" />&#150; &#150;<h:commandButton outcome="delectservicerequest.html"  onclick="return confirm('Are you sure you want to delete  Service');" value="Delete Selected" />
 	   &#150; &#150; <p:menuButton value="Action">
-        <p:menuitem value="Assign Selected" action="#{expenseBean.assignRequestedService}"/>
-        <p:menuitem value="close Selected" action="#{expenseBean.closeRequestedService}"/>
+        <p:menuitem value="Assign Selected" action="#{requestScopeBean.assignRequestedService}"/>
+        <p:menuitem value="close Selected" action="#{requestScopeBean.closeRequestedService}"/>
         <p:menuitem value="View Chart" />
          <p:menuitem value="View Summary" />
          <p:menuitem value="Export To Excel"/>
@@ -123,11 +123,11 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;">Service request</legend>
                 
-             <p:dataTable  resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  binding="#{expenseBean.dataTable}"     var="sr"  value="#{loginBean.serviceRequestList}">
+        <p:dataTable  resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  binding="#{requestScopeBean.dataTable}"     var="sr"  value="#{requestScopeBean.listServiceRequest}"> 
                 
 	 
         <p:column headerText="check">
-        <h:selectBooleanCheckbox value="string" valueChangeListener="#{expenseBean.processListener}">
+        <h:selectBooleanCheckbox value="string" valueChangeListener="#{requestScopeBean.processListener}">
         <p:ajax event="click" partialSubmit="true"/>
        </h:selectBooleanCheckbox>
         </p:column>  	  
