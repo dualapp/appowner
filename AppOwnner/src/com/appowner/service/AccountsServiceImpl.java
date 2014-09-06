@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.appowner.dao.AccountsDao;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
+import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 
 @Service("AccountsService")
@@ -63,14 +64,22 @@ public class AccountsServiceImpl implements AccountsService {
 
 	@Override
 	public List<Character> getCh_AccountGroup() {
-		// TODO Auto-generated method stub
+		
 		return getAccountsDao().getCh_AccountGroup();
+	}
+	public List<Character> getCh_AccountGroup1()
+	{
+		return getAccountsDao().getCh_AccountGroup1();
 	}
 
 	@Override
 	public List<String> getAccountTypeList(Character l){
-		// TODO Auto-generated method stub
+		
 		return getAccountsDao().getAccountTypeList(l);
+	}
+	public List<String> getAccountTypeList1(Character k)
+	{
+		return getAccountsDao().getAccountTypeList1(k);
 	}
 
 	@Override
@@ -86,7 +95,39 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getAccount();
 	}
-	
+	public String getAccountName(Integer id1)
+	{
+		return getAccountsDao().getAccountName( id1);
+	}
+	public double getCreditBalance(Integer id1)
+	{
+		return getAccountsDao().getCreditBalance(id1);
+	}
+
+	public double getDebitBalance(Integer id1)
+	{
+		return getAccountsDao().getDebitBalance(id1);
+	}
+	public int getAccountId(String str)
+	{
+		return getAccountsDao().getAccountId(str);
+	}
+	public String getAccountName1(Integer id1)
+	{
+		return getAccountsDao().getAccountName1(id1);
+	}
+
+	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts)
+	{
+		return getAccountsDao().listInvoiceTransaction(str_Accounts);
+	}
+	public String getStatus(String str_Accounts)
+	{
+		return getAccountsDao().getStatus(str_Accounts);
+	}
+
+
+
 
 
 }
