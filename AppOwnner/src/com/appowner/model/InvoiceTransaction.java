@@ -113,34 +113,37 @@ public class InvoiceTransaction implements Serializable{
 		this.int_InvoiceNo = int_InvoiceNo;
 	}
 	private String int_InvoiceNo;
-	private Double subTotal;
-	private Double taxAmount;
-	private Double totalDue;
-	public Double getSubTotal() {
+	private double subTotal;
+	private double taxAmount;
+	private double totalDue;
+	
+
+	public double getSubTotal() {
 		return subTotal;
 	}
-	public void setSubTotal(Double subTotal) {
+	public void setSubTotal(double subTotal) {
 		this.subTotal = subTotal;
 	}
-	public Double getTaxAmount() {
+	public double getTaxAmount() {
 		return taxAmount;
 	}
-	public void setTaxAmount(Double taxAmount) {
+	public void setTaxAmount(double taxAmount) {
 		this.taxAmount = taxAmount;
 	}
-	public Double getTotalDue() {
+	public double getTotalDue() {
 		return totalDue;
 	}
-	public void setTotalDue(Double totalDue) {
+	public void setTotalDue(double totalDue) {
 		this.totalDue = totalDue;
 	}
-	public Double getTotalBalance() {
+	public double getTotalBalance() {
 		return totalBalance;
 	}
-	public void setTotalBalance(Double totalBalance) {
+	public void setTotalBalance(double totalBalance) {
 		this.totalBalance = totalBalance;
 	}
 
-	private Double totalBalance;
+
+	private double totalBalance;
 	
 }
