@@ -3,10 +3,13 @@ package com.appowner.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -16,6 +19,8 @@ import javax.faces.component.html.HtmlDataTable;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.event.ValueChangeListener;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.service.AccountsService;
@@ -268,6 +273,96 @@ private double adjustmentBalance1;
 
 private double totalAdjustBalance;
 private double totalAdjustBalance1;
+private List<SelectItem> listAccountName;
+@PostConstruct
+public void init() {
+listAccountName= new ArrayList<SelectItem>();
+   
+    
+    ListIterator itr=getStr_AccountGroup().listIterator();
+     
+    while(itr.hasNext())
+    {
+    //	list=new ArrayList<String>();
+    	String accountGroup=(String) itr.next();
+    	System.out.println(accountGroup+"fdfggf");
+    	 accountTypeList=new ArrayList<String>();
+    	
+    	accountTypeList.addAll(getAccountsService().getAccountTypeList1(accountGroup.charAt(0)));
+    	 ListIterator itr1=accountTypeList.listIterator();
+    	 while(itr1.hasNext())
+    	 {
+    		 SelectItemGroup g1 = new SelectItemGroup(accountGroup);
+    		 accountGroup=null;
+    		 String str=(String) itr1.next();
+    		
+    		 
+    		 g1.setSelectItems(new SelectItem[] {new SelectItem(str)});
+    		 
+    		 listAccountName.add(g1);
+    	 }
+    	 
+    } 	
+}
+
+
+public List<SelectItem> getListAccountName() {
+
+    	 
+      
+	return listAccountName;
+}
+public void setListAccountName(List<SelectItem> listAccountName) {
+	this.listAccountName = listAccountName;
+}
+private List<String> str_AccountGroup;
+private Set<Character> ch_AccountGroup1;
+public Set<Character> getCh_AccountGroup1() {
+	ch_AccountGroup1=new HashSet<Character>();
+	
+	ch_AccountGroup1.addAll(getAccountsService().getCh_AccountGroup1());
+	return ch_AccountGroup1;
+}
+public void setCh_AccountGroup1(Set<Character> ch_AccountGroup1) {
+	this.ch_AccountGroup1 = ch_AccountGroup1;
+}
+public List<String> getStr_AccountGroup() {
+	str_AccountGroup=new ArrayList<String>();
+	Iterator itr=getCh_AccountGroup1().iterator();
+	while(itr.hasNext())
+	{
+		Character c=(Character) itr.next();
+		System.out.println(c.charValue());
+		if(c=='A')
+		{
+			str_AccountGroup.add("Asset");
+		}
+		else if(c=='L')
+		{
+			str_AccountGroup.add("Liability");
+			
+		}
+		else if(c=='R')
+		{
+			str_AccountGroup.add("Revenue");
+		}
+	 else
+		 
+		 str_AccountGroup.add("Expense");
+	}
+	
+	return str_AccountGroup;
+}
+public void setStr_AccountGroup(List<String> str_AccountGroup) {
+	this.str_AccountGroup = str_AccountGroup;
+}
+private List<String> accountTypeList;
+public List<String> getAccountTypeList() {
+	return accountTypeList;
+}
+public void setAccountTypeList(List<String> accountTypeList) {
+	this.accountTypeList = accountTypeList;
+}
 
     }  
 	

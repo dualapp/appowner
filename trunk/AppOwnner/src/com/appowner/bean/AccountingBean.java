@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -27,12 +28,14 @@ import javax.faces.model.SelectItemGroup;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.Assets;
 import com.appowner.model.ChartOfAccount;
+import com.appowner.model.DueTemplate;
+import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 import com.appowner.service.AccountsService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class AccountingBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{AccountsService}")
@@ -55,6 +58,25 @@ public class AccountingBean implements Serializable{
 	
 private String dat_FromDate;
 private String dat_ToDate;
+private String dat_FromDate1;
+public String getDat_FromDate1() {
+	java.util.Date d=new java.util.Date();
+	 SimpleDateFormat ft = 
+		      new SimpleDateFormat ("dd-MM-yyyy");
+	//String str=ft.format(d);
+	 Calendar c = Calendar.getInstance(); 
+	 c.setTime(d); 
+	 c.add(Calendar.DATE, -1);
+	 d= c.getTime();
+	 String str=ft.format(d);
+		
+		return str;
+	
+	
+}
+public void setDat_FromDate1(String dat_FromDate1) {
+	this.dat_FromDate1 = dat_FromDate1;
+}
 public String getDat_FromDate() {
 	java.util.Date d=new java.util.Date();
 	 SimpleDateFormat ft = 
@@ -340,7 +362,7 @@ public List<String> getStr_AccountGroup() {
 	while(itr.hasNext())
 	{
 		Character c=(Character) itr.next();
-		if(c=='A')
+		if(c.equals('A'))
 		{
 			str_AccountGroup.add("Asset");
 		}
@@ -407,10 +429,10 @@ public void setStr_AccountType(String str_AccountType) {
 }
 public void accountchangeListener(ValueChangeEvent event){
 	
-	System.out.println("hi");
+	
 	str_AccountType =(String) event.getNewValue();
 	System.out.println(str_AccountType);
-	System.out.println("hello");
+
 	
 }
 
@@ -427,5 +449,205 @@ public void saveChartOfAccount()
 	
 	
 }
+private String str_Accounts;
+public String getStr_Accounts() {
+	
+	str_Accounts=getAccountsService().getAccountName(id1);
 
+	if(str_Accounts.equals("Accounts Receivable"))
+	{
+		str_Accounts="Income from Residents";
+	       return str_Accounts;
+	 
+	}
+	  else if(str_Accounts.equals("Income from Resident"))
+	   {  
+		   str_Accounts="Accounts Receivable";
+	       return str_Accounts;
+	   }
+	   else
+	   {
+		  
+		   return str_Accounts;
+	   }
+}
+public void setStr_Accounts(String str_Accounts) {
+	this.str_Accounts = str_Accounts;
+}
+private double int_Credit;
+private double int_Debit;
+public double getInt_Credit() {
+	
+	
+	
+	int_Credit=getAccountsService().getCreditBalance(id1);
+	
+	return int_Credit;
+}
+public void setInt_Credit(double int_Credit) {
+	
+	this.int_Credit = int_Credit;
+}
+public double getInt_Debit() {
+	
+	int_Debit=getAccountsService().getDebitBalance(id1);
+	
+	return int_Debit;
+}
+public void setInt_Debit(double int_Debit) {
+	this.int_Debit = int_Debit;
+}
+private static Integer id1;
+public static Integer getId1() {
+	return id1;
+}
+public static void setId1(Integer id1) {
+	AccountingBean.id1 = id1;
+}
+private static String str;
+public static String getStr() {
+	return str;
+}
+public static void setStr(String str) {
+	AccountingBean.str = str;
+}
+public void accountchangeListener1(ValueChangeEvent event)
+{
+	
+	 str=(String)event.getNewValue();
+
+	id1=getAccountsService().getAccountId(str);
+/*	 if(str.equals("Accounts Receivable"))
+	   {
+		 str_Accounts="Income from Resident";
+		 System.out.println(str_Accounts+"bbbbbbbbb");
+	     return str_Accounts;
+	   }
+	   if(str.equals("Income from Resident"))
+	   {  
+		   str_Accounts="Accounts Receivable";
+		   System.out.println(str_Accounts+"accounts");
+	       return str_Accounts;
+	   }
+	   else
+	   {
+		   str_Accounts=str;
+		   System.out.println(str_Accounts+"bank");
+		   return str_Accounts;
+	   }  */
+
+}
+
+public String getSearch()
+{  
+	
+	
+  str_Accounts=getAccountsService().getAccountName1(id1);
+   if(str_Accounts.equals("Accounts Receivable"))
+   {  System.out.println("priya");
+     listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+	debit+=int_Debit;
+	ListIterator list=listInvoiceTransaction.listIterator();
+	while(list.hasNext())
+	{
+		Object obj=list.next();
+		InvoiceTransaction invoice=(InvoiceTransaction)obj;
+		double id=invoice.getSubTotal();
+		double tax=invoice.getTaxAmount();
+		str_Accounts="Income from Resident";
+		str_TaxName="Tax Payable";
+		income="Income";
+		date=invoice.getDat_InvoiceDate();
+			
+		    
+			debit+=id+tax;
+	}
+	 return "accountstransaction.xhtml";
+   }
+   else if(str_Accounts.equalsIgnoreCase("Income from Resident"))
+   {
+	   listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+		 return "accountstransaction.xhtml";  
+   }
+ 
+   return "accountstransaction.xhtml";  
+}
+private double debit=0.00;
+public double getDebit() {
+	return debit;
+}
+public void setDebit(double debit) {
+	this.debit = debit;
+}
+private List<InvoiceTransaction>  listInvoiceTransaction;
+public List<InvoiceTransaction> getListInvoiceTransaction() {
+	
+	listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+	debit+=int_Debit;
+	ListIterator list=listInvoiceTransaction.listIterator();
+	while(list.hasNext())
+	{
+		Object obj=list.next();
+		InvoiceTransaction invoice=(InvoiceTransaction)obj;
+		double id=invoice.getTotalBalance();
+		double tax=invoice.getTaxAmount();
+		type="Income";
+		
+			
+		    
+			debit+=id;
+	}
+	return listInvoiceTransaction;
+}
+public void setListInvoiceTransaction(
+		List<InvoiceTransaction> listInvoiceTransaction) {
+	this.listInvoiceTransaction = listInvoiceTransaction;
+}
+private double int_blank;
+private double int_blank1;
+public double getInt_blank() {
+	return int_blank;
+}
+public void setInt_blank(double int_blank) {
+	this.int_blank = int_blank;
+}
+public double getInt_blank1() {
+	return int_blank1;
+}
+public void setInt_blank1(double int_blank1) {
+	this.int_blank1 = int_blank1;
+}
+private String str_TaxName;
+public String getStr_TaxName() {
+	
+	return str_TaxName;
+}
+public void setStr_TaxName(String str_TaxName) {
+	this.str_TaxName = str_TaxName;
+}
+private String type;
+public String getType() {
+	
+	return type;
+}
+public void setType(String type) {
+	this.type = type;
+}
+private String date;
+public String getDate() {
+	return date;
+}
+public void setDate(String date) {
+	this.date = date;
+}
+private String income;
+public String getIncome() {
+	return income;
+}
+public void setIncome(String income) {
+	this.income = income;
+}
 }
