@@ -1,7 +1,22 @@
 package com.appowner.dao;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -21,6 +36,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
+import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 
 @Repository
@@ -55,8 +71,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	}
 	public void addBalance(Date date, Integer id1, Integer id)
 	{   System.out.println(id);
-	System.out.println(date);
-	System.out.println(id1);
+	
 		String hql="update  AccountsOpeningBalance  set dat_openingDate =?,int_ApartmentID=?  where int_Accounts_OpeningID =?";
 	    getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, date).setParameter(1, id1).setParameter(2, id).executeUpdate();
 	}
@@ -78,8 +93,15 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Character> getCh_AccountGroup() {
-		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setProjection(Projections.property("ch_Group")).list();
+				return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setProjection(Projections.property("ch_Group")).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Character> getCh_AccountGroup1() {
+		List<Character> ddd=(List<Character>) getSessionFactory().getCurrentSession().createCriteria(ChartOfAccount.class).setProjection(Projections.property("ch_Group")).list();
+		Collections.sort(ddd);
+		
+		return ddd;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -88,6 +110,16 @@ public class AccountsDaoImpl implements AccountsDao{
 		String hql="select str_Acct_GroupName from  AccountingGroup where ch_Group=?";
 		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, l).list();
 	 
+	}
+	@SuppressWarnings("unchecked")
+	public List<String> getAccountTypeList1(Character k)
+	{
+		String hql="select str_AccountName from  ChartOfAccount where ch_Group=?";
+		List<String> ddd=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,k).list();
+		Collections.sort(ddd);
+		
+		
+		return ddd;
 	}
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> getAccounts()
@@ -103,10 +135,91 @@ public class AccountsDaoImpl implements AccountsDao{
 		String hql="select str_Acct_GroupName from AccountingGroup  where ch_Group='R'";
 		List<SelectItem> ddd=(List<SelectItem>)getSessionFactory().getCurrentSession().createQuery(hql).list();
 		System.out.println(ddd.listIterator().hasNext());
-		System.out.println(ddd);
+		
 		return ddd;
 	}
+	public String getAccountName(Integer id1)
+	{
+		String hql="select str_AccountsHead from AccountsOpeningBalance where int_Accounts_OpeningID=2";
+		String sss=(String)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
 	
-
+		return sss;
+	}
+	public double getCreditBalance(Integer id1)
+	{   if(id1==null)
+	   {
+		String hql="select int_Credit from AccountsOpeningBalance where int_Accounts_OpeningID=2";
+		double sss=(double)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+		
+		return sss;
+	   }
+	   else
+	   {
+		   String hql="select int_Credit from AccountsOpeningBalance where int_Accounts_OpeningID=?";
+			double sss=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,id1).uniqueResult();
+			
+			return sss;
+	   }
+	}	
+	public double getDebitBalance(Integer id1)	{
+		if(id1==null)
+		{
+		String hql="select int_Debit from AccountsOpeningBalance where int_Accounts_OpeningID=2";
+		double sss=(double)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+		
+		return sss;
+	}
+		else{
+			String hql="select int_Debit from AccountsOpeningBalance where int_Accounts_OpeningID=?";
+			double sss=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,id1).uniqueResult();
+			
+			return sss;
+		}
+	}
+	public int getAccountId(String str)
+	{
+		String hql="select int_Accounts_OpeningID from AccountsOpeningBalance where str_AccountsHead=?";
+		Integer sss=(Integer)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).uniqueResult();
+		
+		return sss;
+	}
+	public String getAccountName1(Integer id1)
+	{
+		String hql="select str_AccountsHead from AccountsOpeningBalance where int_Accounts_OpeningID=?";
+		String sss=(String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, id1).uniqueResult();
+		
+		return sss;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts)
+	{ 
+		if(str_Accounts==null)
+	   {   
+		  return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+	   }
+		else if(str_Accounts.equalsIgnoreCase("Income from Resident"))
+		{  
+		  return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+		}
+		else if(str_Accounts.equalsIgnoreCase("Accounts Receivable"))
+		{
+			 return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+		}
+	else 
+	{   
+		String sss="from InvoiceTransaction where str_Status='paid'";
+		List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(sss).list();
+		
+		return ddd;
+		
+	}
+	}
+	public String getStatus(String str_Accounts)
+	{
+		String hql="Select str_Status from InvoiceTransaction where ";
+		return hql;
+	}
+	
 	
 }
