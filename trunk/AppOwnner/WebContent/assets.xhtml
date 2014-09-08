@@ -35,7 +35,34 @@
                  </p:selectOneMenu> 
                  <h:button value="go" ></h:button>
                  </fieldset>
-                 <h:button value="createNew"/>
+                 <h:button  outcome="createnewassets.xhtml" value="createNew"/>
+                 <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
+             id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.assetList}">
+	<f:facet name="header">
+           Assets Category
+            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="dataTable" trigger="toggler" />
+        </f:facet>
+   
+          <p:column headerText="Organization">
+               
+                   <h:outputText value="#{ps.str_OrganizationName}" />  
+          </p:column>
+          <p:column headerText="Assets Name">
+               
+                   <h:outputText value="#{ps.str_AssetName}" />  
+          </p:column>
+          <p:column headerText="Asset Category">
+               
+                   <h:outputText value="#{ps.str_assetcat_name}" />  
+          </p:column>
+          <p:column headerText="Vendor">
+               
+                   <h:outputText value="#{ps.str_VendorName}" />  
+          </p:column>
+          
+          </p:dataTable>
+          
                  </body>
                  </h:form>
                  </ui:define>
