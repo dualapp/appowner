@@ -36,12 +36,12 @@
                  <h:button value="go" ></h:button>
                  </fieldset>
                  <h:button  outcome="createnewassets.xhtml" value="createNew"/>
-                 <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.assetList}">
+                 <p:dataTable      style="margin-bottom:20px" 
+             id= "dataTable"  rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  var="ps"  value="#{expenseBean.assetList}">
 	<f:facet name="header">
            Assets Category
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
+            
         </f:facet>
    
           <p:column headerText="Organization">

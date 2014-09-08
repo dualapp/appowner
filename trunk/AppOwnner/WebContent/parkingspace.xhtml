@@ -108,12 +108,12 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
                 
-             <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable1" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.parkingSpaceList}">
+             <p:dataTable     resizableColumns="true" style="margin-bottom:20px" 
+             id= "dataTable1" rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  var="ps"  value="#{expenseBean.parkingSpaceList}">
 	<f:facet name="header">
             Expand rows to see detailed information
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable1" trigger="toggler" />
+            
         </f:facet>
    
           <p:column headerText="Organization">

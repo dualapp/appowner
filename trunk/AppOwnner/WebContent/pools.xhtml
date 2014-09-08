@@ -69,7 +69,8 @@
         </p:menuButton>
          
              <legend  style="background-color:#438eb9; color:#fff;"> Pool</legend>
-             <p:dataTable    id="dataTable1" widgetVar="dataTable"  emptyMessage="No Vendors found with given criteria"     resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"    var="pool" value="#{expenseBean.poolList}"   >
+             <p:dataTable    id="dataTable1" widgetVar="dataTable"  emptyMessage="No Vendors found with given criteria"     resizableColumns="true"    rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"   var="pool" value="#{expenseBean.poolList}"   >
                 <f:facet name="header">
                 
              
@@ -80,8 +81,7 @@
               
                  <f:facet name="header">
             
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable1" trigger="toggler" />
+             
         </f:facet>
         
          <p:column headerText="check" width="150">
