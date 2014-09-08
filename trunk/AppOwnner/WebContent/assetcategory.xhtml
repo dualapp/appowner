@@ -113,12 +113,12 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
        <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
        <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
    </p:contextMenu> 
-             <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="ps"  value="#{expenseBean.assetCategoryList}">
+             <p:dataTable     style="margin-bottom:20px" 
+             id= "dataTable"  rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  var="ps"  value="#{expenseBean.assetCategoryList}">
 	<f:facet name="header">
            Assets Category
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
+            
         </f:facet>
   <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" /> 
        <p:ajax event="rowEditCancel" listener="#{expenseBean.onRowCancel}" update=":form:msgs" />
