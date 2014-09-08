@@ -53,8 +53,20 @@ public interface ProductsDao {
 	public void update(Cls_ProductDetails edit);
 
 	public void addContact(Cls_ProductDetails edit);
+	public void update3(Cls_ProductDetails edit1);
 
-	//public List<String> getAprtmentName();
+	public void addContact1(Cls_ProductDetails edit1);
+
+	public Cls_ProductDetails getEdit1(Integer int_ProductId);
+
+
+	public void change(String str, Integer id);
+
+	public void saveall(Cls_ProductDetails updation);
+
+	public void valuechange(String str1, Integer id);
+
+	public void valuereject(String str2, Integer id);
 
 	
 	
