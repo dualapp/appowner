@@ -57,6 +57,8 @@ public interface AccountsService {
 
 	public String getStatus(String str_Accounts);
 
+	public List<Double> getTotalBalance();
+
 	
 
 }
