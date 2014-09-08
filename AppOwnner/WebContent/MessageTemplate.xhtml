@@ -27,7 +27,7 @@
 
 function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('Create New Message Template.xhtml',470,600,'Create New Message Template',null,callbackFunctionArray);
+ modalWin.ShowURL('createnewmessage Template.xhtml',470,600,'Create New Message Template',null,callbackFunctionArray);
  }
 
 	 
@@ -157,7 +157,7 @@ function HideModalWindow() {
                     <h:outputText value="Action" />
                 </f:facet>
                  
-                <h:link outcome="EditMessageTemplate.xhtml" >
+                <h:link outcome="editmessagetemplate.xhtml" >
                 <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
                 <f:param name="int_MessageTemplateID" value="#{message.int_MessageTemplateID}"/>
                 </h:link>
