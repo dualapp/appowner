@@ -56,11 +56,11 @@
              <h:panelGrid >
                  <table><tr> 
                    <td><p:inputTextarea rows="10" cols="63" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/>
-                 </td> <td> <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
-       <p:graphicImage height="150" width="150" value="#{expenseBean.path}"/></p:outputPanel></td ></tr><tr><td>
+                 </td> <td> <p:outputPanel layout="block" id="assetimg" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{expenseBean.path3}"/></p:outputPanel></td ></tr><tr><td>
        
-        <p:fileUpload fileUploadListener="#{expenseBean.handleFileUpload1}"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"  mode="advanced"  auto="true" 
-                fileLimit="3"  update="aaa"   style="width:500px"/>
+        <p:fileUpload fileUploadListener="#{expenseBean.handleFileUpload4}"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"  mode="advanced"  auto="true" 
+                fileLimit="3"  update="assetimg"   style="width:500px"/>
        </td></tr>
         
                  </table>
