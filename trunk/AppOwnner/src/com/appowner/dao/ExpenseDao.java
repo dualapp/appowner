@@ -109,4 +109,6 @@ public interface ExpenseDao {
 
 	Pool getLatestPolls();
 
+	List<Assets> getAssetList();
+
 }

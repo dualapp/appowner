@@ -345,4 +345,11 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		 
 		return  (Pool) getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Assets> getAssetList() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).list();
+	}
 }
