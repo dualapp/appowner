@@ -40,11 +40,17 @@ public class VendorDaoImpl implements VendorDao{
 		getSessionFactory().getCurrentSession().save(vendor);
 	}
 	@SuppressWarnings("unchecked")
-	public List<Vendor> vendorList(String str_VendorName) {
-		if(str_VendorName!=null)
+	public List<Vendor> vendorList(String str_VendorName,String str_VendorType) {
+		/*if(str_VendorName!=null)
 		{
 			String hql="from  Vendor where str_VendorName=?";
 			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorName).list();
+			
+		}*/
+		 if(str_VendorType!=null)
+		{
+			String hql="from  Vendor where str_VendorType=?";
+			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorType).list();
 			
 		}
 		return (List<Vendor>) getSessionFactory().getCurrentSession().createCriteria(Vendor.class).list();
