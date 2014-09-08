@@ -32,7 +32,7 @@ public class TemplateDaoImpl implements TemplateDao {
 	@SuppressWarnings("unchecked")
 	public List<String> listRavenues()
 	{
-	String hql=" select str_Acct_GroupName from AccountingGroup  where ch_Group='R'";
+	String hql=" select str_AccountName from ChartOfAccount  where str_AccountType='Income'";
 	 
 	List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).list();
 	return ravenueList; 
