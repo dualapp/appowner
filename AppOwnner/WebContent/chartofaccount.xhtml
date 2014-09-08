@@ -120,12 +120,12 @@ function HideModalWindow() {
  <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/>&#150; &#150; &#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/>
   <br/>
   <br/>
- <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="c" value="#{expenseBean.chartOfAccountList}">
+ <p:dataTable      resizableColumns="true" style="margin-bottom:20px" 
+             id= "dataTable"   rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"   var="c" value="#{expenseBean.chartOfAccountList}">
 	<f:facet name="header">
            Chart Of Account
-                       <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
+                        
         </f:facet>
         <p:column headerText="Organization">
                
