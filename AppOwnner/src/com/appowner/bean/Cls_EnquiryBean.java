@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
+import org.apache.commons.lang.RandomStringUtils;
 
 import org.springframework.dao.DataAccessException;
 
@@ -32,17 +33,10 @@ public class Cls_EnquiryBean implements Serializable {
 		private List<String> enquiry_selecteCities;
 		private String RandomnumberGenerator;
 		//StringBuilder sb;
-		public void getRandomNumberGenerator() {
-			int len = 0;
-			Random rnd = new Random();
-			String AB = "DualAppTechno";
-			// sb= new StringBuilder();
-			   for( int i = 0; i < 100; i++ ) 
-			   {
-			       int rand= rnd.nextInt(1000);
-			       personId=AB+rand;
-			   System.out.println(personId);
-			   }
+
+		public String getRandomNumberGenerator() {
+			personId=RandomStringUtils.randomAlphanumeric(16);
+			return personId;
 		}
 		
 		public void setRandomnumberGenerator(String randomnumberGenerator) {
