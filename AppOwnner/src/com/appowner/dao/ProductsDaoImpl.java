@@ -12,6 +12,7 @@ import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
+import com.appowner.model.cls_Contact;
 @Repository
 public class ProductsDaoImpl implements ProductsDao{
 	@Autowired
@@ -237,6 +238,53 @@ public class ProductsDaoImpl implements ProductsDao{
 		
 	}
 	
+	@Override
+	public void update3(Cls_ProductDetails edit1) {
+		sessionFactory.getCurrentSession().update(edit1);
+		
+	}
+
+	@Override
+	public void addContact1(Cls_ProductDetails edit1) {
+		getSessionFactory().getCurrentSession().save(edit1);
+		
+	}
+
+	@Override
+	public Cls_ProductDetails getEdit1(Integer int_ProductId) {
+		return (Cls_ProductDetails) getSessionFactory().getCurrentSession().get(Cls_ProductDetails.class, int_ProductId);
+	}
+
+
+	
+
+	@Override
+	public void change(String str, Integer id)
+	{
+		String hql="update Cls_ProductDetails set Status=? where Int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).setParameter(1,id).executeUpdate();
+	}
+
+	@Override
+	public void saveall(Cls_ProductDetails updation) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void valuechange(String str1, Integer id) {
+		String hql="update Cls_ProductDetails set Status=? where Int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str1).setParameter(1,id).executeUpdate();
+		
+	}
+
+	@Override
+	public void valuereject(String str2, Integer id) {
+		String hql="update Cls_ProductDetails set Status=? where Int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str2).setParameter(1,id).executeUpdate();
+			
+		
+	}
 }
 	
 	
