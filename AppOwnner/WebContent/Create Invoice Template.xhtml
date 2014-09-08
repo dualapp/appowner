@@ -16,7 +16,7 @@
    <h:commandButton value="Create Invoice Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
       <table>
             <tr>
-             <td> <h:outputLabel value="Organisation:" /></td>  
+             <td> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
           <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:300px">
                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
@@ -25,8 +25,8 @@
                  <tr></tr><tr></tr><tr></tr><tr></tr>
                  <tr>
                  <h:panelGroup>
-            <td>  <h:outputText  value="Invoice Template Name*" /></td>
-           <td>  <p:inputText id="str_InvoiceTemplateName" value="#{templateBean.str_InvoiceTemplateName}" size="25"/> </td>
+            <td>  <h:outputText  value="Invoice Template Name" /><font color="red" >*</font></td>
+           <td>  <p:inputText id="str_InvoiceTemplateName" value="#{templateBean.str_InvoiceTemplateName}" size="25" required="true" requiredMessage="InvoiceTemplate is not Empty"  />  </td>
           
            <td> &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:selectBooleanCheckbox id="bl_Show" value="#{templateBean.bl_Show}"/>Show Invoice no in Email</td>       
        
@@ -34,7 +34,7 @@
              </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
                <tr>
-            <td> <h:outputText  value="Frequency*" /></td>
+            <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}" style="width:300px">
                   <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
@@ -46,7 +46,7 @@
             </tr>
             <tr>
           
-           <td><h:outputText  value="DueTemplate*" /></td>
+           <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
             <td><p:selectCheckboxMenu id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}" style="width:300px">
                <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
               <f:selectItems value="#{templateBean.dueTemplates}"/>
