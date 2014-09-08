@@ -35,7 +35,7 @@ public class CropperView {
  
     public void crop() {
         if(croppedImage == null) {
-        	System.out.println("//////////////////////////");
+        	System.out.println("//////////////////////");
             return;
         }
          System.out.println("..................");
