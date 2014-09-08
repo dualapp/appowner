@@ -194,7 +194,28 @@ public class LoginBean {
 			Var_ImageName1 = var_ImageName1;
 		}
 
+		private static String ss="approved";
+	     public static String getSs() {
+			return ss;
+		}
+	    public static void setSs(String ss) {
+			LoginBean.ss = ss;
+		}
 
+	    private static String cls="Closed";
+	    public static String getCls() {
+		return cls;
+	    }
+	     public static void setCls(String cls) {
+		   LoginBean.cls = cls;
+	       }
+	    public static String res="Rejected";
+	    public static String getRes() {
+			return res;
+		}
+	   public static void setRes(String res) {
+			LoginBean.res = res;
+		}
 
 
 
