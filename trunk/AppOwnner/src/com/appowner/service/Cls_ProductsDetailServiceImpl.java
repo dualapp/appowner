@@ -160,12 +160,66 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	}
 
 	@Override
-	public void addContact(Cls_ProductDetails edit) {
+	public void addContact(Cls_ProductDetails edit1) {
+		getProductDao().addContact( edit1);
+		
+	}
+
+	public void update3(Cls_ProductDetails edit1) {
+		getProductDao().update( edit1);
+		
+	}
+
+	@Override
+	public void addContact1(Cls_ProductDetails edit) {
 		getProductDao().addContact( edit);
 		
 	}
 
-}
+	@Override
+	public Cls_ProductDetails getEdit1(Integer int_ProductId) {
+		return  getProductDao().getEdit1( int_ProductId);
+	}
+
+	
+	@Override
+	public void datachange(String str, Integer id)
+	{
+		  getProductDao().change( str,id);
+	}
+
+	@Override
+	public Cls_ProductDetails change(Integer int_ProductId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveall(Cls_ProductDetails updation) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void valuechange(String str1, Integer id) {
+		 getProductDao().valuechange( str1,id);
+		
+	
+	}
+
+	@Override
+	public void valuereject(String str2, Integer id) {
+		getProductDao().valuereject(str2,id);
+		
+	}
+
+	
+		
+	}
+
+	
+	
+
 	
 	
 	
