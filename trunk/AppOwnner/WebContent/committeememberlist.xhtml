@@ -15,7 +15,9 @@
  <h:form>
  <legend   style="background-color:#438eb9; color:#fff;">Committee Members</legend>
   
-<p:dataTable   rowStyleClass="background-color:#438eb9; color:#fff;"  var="committeemember" value="#{committeeMemberBean.committeememberlist}" style="width: 10%">
+<p:dataTable   rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  
+                    rowStyleClass="background-color:#438eb9; color:#fff;"  var="committeemember" value="#{committeeMemberBean.committeememberlist}" style="width: 20%">
             
             <p:column>
                 <f:facet name="header">
@@ -43,20 +45,18 @@
                  
                 </h:outputText>
             </p:column>
-            <p:rowExpansion>
             
-            </p:rowExpansion>
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Action" />
                     </f:facet>
               <h:link outcome="editcommitteemember.xhtml" >
-	   			<p:graphicImage  height="50" width="50" alt="update" value="images/k1.png"/> 
+	   			<p:graphicImage  height="20" width="2http://localhost:2353/AppOwnner/vendorlists.xhtml" alt="update" value="images/k1.png"/> 
 	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
 	   		</h:link>
 	   		 <h:link outcome="deletecommitteemember.xhtml"   
 	   		 onclick="return confirm('Are you sure you want to delete #{committeemember.str_UserName}?');" > 
-	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
 	   		</h:link>
 	   		
