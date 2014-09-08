@@ -26,6 +26,9 @@ import java.util.List;
 
 
 
+
+
+
 import javax.faces.model.SelectItem;
 
 import org.hibernate.SessionFactory;
@@ -215,10 +218,18 @@ public class AccountsDaoImpl implements AccountsDao{
 		
 	}
 	}
-	public String getStatus(String str_Accounts)
+	@SuppressWarnings("unchecked")
+	public List<Double> getTotalBalance()
 	{
-		String hql="Select str_Status from InvoiceTransaction where ";
-		return hql;
+		String sss="Select totalDue from InvoiceTransaction";
+        List<Double> ddd=(List<Double>)getSessionFactory().getCurrentSession().createQuery(sss).list();
+		
+		return ddd;
+	}
+	@Override
+	public String getStatus(String str_Accounts) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
