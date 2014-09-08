@@ -23,7 +23,7 @@ public class EmailUtility {
             String subject, String message) throws AddressException,
             MessagingException {
  
-        // sets SMTP server properties
+        // sets SMTP serve properties
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", port);
