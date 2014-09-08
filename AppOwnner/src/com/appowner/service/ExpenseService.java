@@ -116,6 +116,8 @@ public interface ExpenseService {
 
 	Pool getLatestPolls();
 
+	List<Assets> getAssetList();
+
 	 
 
 }
