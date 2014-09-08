@@ -108,7 +108,7 @@ public class Cls_UserBeanMain implements Serializable {
 		}
 		public  String EmailForm;
 	 
-	 /*to get value  city name from select one menu bean*/
+	 /*to get value  cityy name from select one menu bean*/
 	 public String selectOneMenuBeanCityName;
 	 
 	public String getStr_Username() {
