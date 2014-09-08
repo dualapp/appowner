@@ -23,7 +23,7 @@ public class EmailSendingServlet extends HttpServlet {
     private String pass;
  
     public void init() {
-        // reads SMTP server setting from web.xml file
+        // reads SMTP server setting from web.xml fil
         ServletContext context = getServletContext();
         host = context.getInitParameter("host");
         port = context.getInitParameter("port");
