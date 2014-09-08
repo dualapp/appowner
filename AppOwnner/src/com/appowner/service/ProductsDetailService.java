@@ -6,6 +6,7 @@ import java.util.List;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
+import com.appowner.model.cls_Person;
 
 public interface ProductsDetailService {
 
@@ -56,6 +57,22 @@ public interface ProductsDetailService {
 	public void update(Cls_ProductDetails edit);
 
 	public void addContact(Cls_ProductDetails edit);
+
+	public void update3(Cls_ProductDetails edit1);
+
+	public void addContact1(Cls_ProductDetails edit1);
+
+	public Cls_ProductDetails getEdit1(Integer int_ProductId);
+
+	public Cls_ProductDetails change(Integer int_ProductId);
+
+	public void datachange(String str, Integer id);
+
+	public void saveall(Cls_ProductDetails updation);
+
+	public void valuechange(String str1, Integer id);
+
+	public void valuereject(String str2, Integer id);
 
 	
 	
