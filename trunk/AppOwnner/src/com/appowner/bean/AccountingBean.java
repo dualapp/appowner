@@ -451,12 +451,13 @@ public void saveChartOfAccount()
 }
 private String str_Accounts;
 public String getStr_Accounts() {
-	
+	System.out.println(id1);
 	str_Accounts=getAccountsService().getAccountName(id1);
 
-	if(str_Accounts.equals("Accounts Receivable"))
-	{
+/*	if(str_Accounts.equals("Accounts Receivable"))
+	{   
 		str_Accounts="Income from Residents";
+		System.out.println("after");
 	       return str_Accounts;
 	 
 	}
@@ -469,7 +470,8 @@ public String getStr_Accounts() {
 	   {
 		  
 		   return str_Accounts;
-	   }
+	   }*/
+	 return str_Accounts;
 }
 public void setStr_Accounts(String str_Accounts) {
 	this.str_Accounts = str_Accounts;
@@ -517,7 +519,7 @@ public void accountchangeListener1(ValueChangeEvent event)
 	 str=(String)event.getNewValue();
 
 	id1=getAccountsService().getAccountId(str);
-/*	 if(str.equals("Accounts Receivable"))
+	/* if(str.equals("Accounts Receivable"))
 	   {
 		 str_Accounts="Income from Resident";
 		 System.out.println(str_Accounts+"bbbbbbbbb");
@@ -534,8 +536,8 @@ public void accountchangeListener1(ValueChangeEvent event)
 		   str_Accounts=str;
 		   System.out.println(str_Accounts+"bank");
 		   return str_Accounts;
-	   }  */
-
+	   } */ 
+   
 }
 
 public String getSearch()
@@ -547,22 +549,24 @@ public String getSearch()
    {  System.out.println("priya");
      listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
 	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
-	debit+=int_Debit;
+	
+    
+    
 	ListIterator list=listInvoiceTransaction.listIterator();
 	while(list.hasNext())
 	{
 		Object obj=list.next();
 		InvoiceTransaction invoice=(InvoiceTransaction)obj;
-		double id=invoice.getSubTotal();
-		double tax=invoice.getTaxAmount();
-		str_Accounts="Income from Resident";
+		
+		str_Accounts="Accounts Receivable";
 		str_TaxName="Tax Payable";
 		income="Income";
 		date=invoice.getDat_InvoiceDate();
 			
 		    
-			debit+=id+tax;
+		
 	}
+	 
 	 return "accountstransaction.xhtml";
    }
    else if(str_Accounts.equalsIgnoreCase("Income from Resident"))
@@ -571,34 +575,86 @@ public String getSearch()
 		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
 		 return "accountstransaction.xhtml";  
    }
+   else if(str_Accounts.equalsIgnoreCase("Tax Payable"))
+   {
+	   listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+		 return "accountstransaction.xhtml"; 
+   }
  
    return "accountstransaction.xhtml";  
 }
 private double debit=0.00;
-public double getDebit() {
-	return debit;
+private List<Double> debit1;
+public List<Double> getDebit1() {
+	debit1=getAccountsService().getTotalBalance();
+	return debit1;
+}
+public void setDebit1(List<Double> debit1) {
+	this.debit1 = debit1;
 }
 public void setDebit(double debit) {
 	this.debit = debit;
 }
+private double totalBalance;
+public double getDebit() {
+	debit+=int_Debit;
+	
+	if(str_Accounts.equalsIgnoreCase("Income from Resident"))
+	{ ListIterator list=listInvoiceTransaction.listIterator();
+	while(list.hasNext())
+	{
+		Object obj=list.next();
+		InvoiceTransaction invoice=(InvoiceTransaction)obj;
+		double balance1=invoice.getTotalBalance();
+		
+		debit=debit+balance1;
+		
+	}
+	return debit;
+	}
+	else if(str.equalsIgnoreCase("Accounts Receivable"))
+	{
+		 ListIterator list=listInvoiceTransaction.listIterator();
+			while(list.hasNext())
+			{
+				Object obj=list.next();
+				InvoiceTransaction invoice=(InvoiceTransaction)obj;
+				double balance1=invoice.getSubTotal();
+				System.out.println(balance1);
+				double tax=invoice.getTaxAmount();
+				System.out.println(tax);
+			 totalBalance=balance1+tax;
+			 System.out.println(totalBalance);
+				
+				
+			}
+			debit=debit+totalBalance;
+			System.out.println(debit);
+			return debit;
+	}
+	else
+	return debit;
+}
+
+
 private List<InvoiceTransaction>  listInvoiceTransaction;
 public List<InvoiceTransaction> getListInvoiceTransaction() {
 	
 	listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
 	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
-	debit+=int_Debit;
+	
 	ListIterator list=listInvoiceTransaction.listIterator();
 	while(list.hasNext())
 	{
 		Object obj=list.next();
 		InvoiceTransaction invoice=(InvoiceTransaction)obj;
-		double id=invoice.getTotalBalance();
-		double tax=invoice.getTaxAmount();
-		type="Income";
 		
+		type="Income";
+	
 			
 		    
-			debit+=id;
+			
 	}
 	return listInvoiceTransaction;
 }
@@ -650,4 +706,5 @@ public String getIncome() {
 public void setIncome(String income) {
 	this.income = income;
 }
+
 }
