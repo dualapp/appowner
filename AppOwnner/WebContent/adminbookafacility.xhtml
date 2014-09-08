@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      template="include/templates/template1.xhtml">
+	 <ui:define name="content">
+	<h:head>
+
+	<title></title>
+	 
+
+ </h:head>
+	 
+	<h:body>
+	<br/>
+	<h:outputLabel value="Organisation:" /> 
+               <h:outputLabel value="Organisation:" /> 
+              <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu><br/>
+	 &#150; &#150; <br/>
+                
+             <h:commandButton style="width: 150px"  action="create new book a facility.xhtml" value="create new book a facility" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+	   
+	
+	<br/>
+	<legend  style="background-color:#438eb9; color:#fff;">Book A Facility</legend>
+                
+             <p:dataTable    editable="true" resizableColumns="true" style="margin-bottom:20px" 
+             id= "dataTable5" rows="10" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"  var="Bf"  value="#{loginBean.bookAFacilityList}">
+	<f:facet name="header">
+            Expand rows to see detailed information
+            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="dataTable5" trigger="toggler" />
+        </f:facet>
+   
+          <p:column headerText="Organization">
+                <h:outputText value="#{LoginBean.str_ApartmentName}" /> 
+            
+	 </p:column>
+	  <p:column headerText="EventName">
+                <h:outputText value="#{Bf.str_EventName}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Facility">
+                <h:outputText value="#{Bf.str_FacilityType}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Start Date">
+                <h:outputText value="#{Bf.str_OpenDate}" /> 
+            
+	 </p:column>
+	 <p:column headerText="End Date">
+                <h:outputText value="#{Bf.str_CloseDate}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Event Type">
+                <h:outputText value="#{Bf.str_EventType}" /> 
+            
+	 </p:column>
+	 </p:dataTable>
+	 </h:body>
+	 </ui:define>
+	 </ui:composition>
+	 
+	 
