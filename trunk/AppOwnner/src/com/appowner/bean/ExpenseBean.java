@@ -106,6 +106,10 @@ public class ExpenseBean  implements Serializable{
 	public List<String> getImages() {
 		images=new ArrayList<String>();
 		images.addAll(getExpenseService().getOrganizationImages());
+		images.add("20140906151834.jpg");
+		images.add("20140906133428.jpg");
+		images.add("20140903103013.jpg");
+		images.add("20140903103000.jpg");
 		System.out.println(images+"images");
 		return images;
 	}
@@ -899,6 +903,8 @@ private Assets asset;
 private Boolean bool_Rentable;
 private AssetCategory assetcategory;
 private List<AssetCategory> assetCategoryList;
+private String path3;
+private List<Assets> assetList;
 
 public void setAssetCategoryList(List<AssetCategory> assetCategoryList) {
 	this.assetCategoryList = assetCategoryList;
@@ -921,6 +927,17 @@ public Assets getAsset() {
 }
 public void setAsset(Assets asset) {
 	this.asset = asset;
+}
+/*
+ * get asset,purchase,amc list
+ */
+public List<Assets> getAssetList() {
+	assetList= new ArrayList<Assets>();
+	assetList.addAll(getExpenseService().getAssetList());
+	return assetList;
+}
+public void setAssetList(List<Assets> assetList) {
+	this.assetList = assetList;
 }
 public String getStr_AssetImg() {
 	return str_AssetImg;
@@ -972,6 +989,54 @@ public void addAsset()
 	asset.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().addAsset(asset);
 	
+}
+/*
+ * Asset Image
+ */
+
+
+public void  handleFileUpload4(FileUploadEvent event) throws IOException {
+	 
+	   path3 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	    str_AssetImg = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+	    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+	    if (!file.exists()) {
+   	if (file.mkdir()) {
+   		System.out.println("Directory is created!");
+   	} else {
+   		System.out.println("Failed to create directory!");
+   	}
+    }
+	    file= new File(file,str_AssetImg);
+	    
+	    //final UploadedFile uploadedFile = event.getFile();
+	    
+	    path3=file.getAbsolutePath();
+	     
+     
+	    InputStream is = event.getFile().getInputstream();
+	    
+	    OutputStream out = new FileOutputStream(file);
+	    byte buf[] = new byte[1024];
+	    int len;
+	    while ((len = is.read(buf)) > 0)
+	        out.write(buf, 0, len);
+	    
+	    FacesMessage msg = new FacesMessage("Succesful",
+               event.getFile().getFileName() + " is uploaded.");
+           FacesContext.getCurrentInstance().addMessage(null, msg);
+	    is.close();
+	    out.close();
+	    
+	    
+	    
+}
+public String getPath3() {
+	return path3;
+}
+public void setPath3(String path3) {
+	this.path3 = path3;
 }
 public void saveAssetCategory()
 {
