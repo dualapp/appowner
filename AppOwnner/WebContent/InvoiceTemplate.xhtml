@@ -30,11 +30,11 @@
 
 function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('Create Invoice Template.xhtml',470,600,'Create Invoice Template',null,callbackFunctionArray);
+ modalWin.ShowURL('createinvoicetemplate.xhtml',470,600,'Create Invoice Template',null,callbackFunctionArray);
  }
 function ShowNewPage1(clicked_id){
 	 var callbackFunctionArray = new Array(Submit, Cancel);
-    modalWin.ShowURL("EditInvoiceTemplate.xhtml?int_InvoiceTemplateID="+clicked_id+"",400,350,'Edit Invoice Template',null,callbackFunctionArray);
+    modalWin.ShowURL("editinvoicetemplate.xhtml?int_InvoiceTemplateID="+clicked_id+"",400,350,'Edit Invoice Template',null,callbackFunctionArray);
 	 }
 function ShowNewPage2(clicked_id){
 	 var callbackFunctionArray = new Array(Submit, Cancel);
