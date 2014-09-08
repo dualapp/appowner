@@ -147,7 +147,13 @@ public class Cls_ProductDetails implements Serializable {
 	public void setStr_ApartmentName(String str_ApartmentName) {
 		this.str_ApartmentName = str_ApartmentName;
 	}
+	private boolean selected;
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+	public boolean isSelected() {
+	    return selected;
+	  }
 	
-
 	}
 
