@@ -757,6 +757,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		str_Block=user.getStr_Block();
 		str_Flat=user.getStr_Flat();
 		int_UserId=user.getInt_UserId();
+		str_EmailId=user.getStr_Email();
 		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjppppppppppppppppppppppppppppppppppppppppppppppppppppppppjjjjjjjjjjjjjjjjjjj");
 		System.out.println(str_userRoleName);
 		String admin1="admin";
@@ -779,6 +780,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
             session.setAttribute("str_Block",str_Block);
             session.setAttribute("str_Flat",str_Flat);
             session.setAttribute("ApartmentName", user.getStr_Apartment());
+            session.setAttribute("str_EmailId",str_EmailId);
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
 		 	String index="Adminwelcomepage.xhtml";
@@ -797,6 +799,7 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 				session.setAttribute("str_Flat",str_Flat);
 	            session.setAttribute("int_ApartmentId", int_ApartmentId);
 	            session.setAttribute("int_UserId", int_UserId);
+	            session.setAttribute("str_EmailId",str_EmailId);
 				System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 				System.out.println("hiiiiiiiiiiiii");
 				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
