@@ -189,7 +189,7 @@ public class TemplateBean implements Serializable {
 		
 		
 		
-		return "Due Template.xhtml";
+		return "duetemplate.xhtml";
 	}
   
    
@@ -197,19 +197,19 @@ public class TemplateBean implements Serializable {
     {
 		 listDues=new ArrayList<DueTemplate>();
 		  	listDues.addAll(getTemplateService().listDueTemplate(str_Accounts));
-			return "Due Template.xhtml";
+			return "duetemplate.xhtml";
     }   
 	public String deleteDue(){
 		DueTemplate dueTemplate=new DueTemplate();
 		System.out.println(int_DueTemplateID);
 	dueTemplate.setInt_DueTemplateID(int_DueTemplateID);
 	getTemplateService().deleteDue(dueTemplate);
-		return "Due Template.xhtml?faces-redirect=true";
+		return "duetemplate.xhtml?faces-redirect=true";
 	  
 	}
 	
     public String cancelDue() {
-		return "Due Template.xhtml?faces-redirect=true";
+		return "duetemplate.xhtml?faces-redirect=true";
 	}
     private HtmlDataTable updatedAccounts;
 	public HtmlDataTable getUpdatedAccounts() {
@@ -281,7 +281,7 @@ public class TemplateBean implements Serializable {
 		taxtemplate.setStr_TaxName(getStr_TaxName());
 		taxtemplate.setInt_TaxExemption(getInt_TaxExemption());
 		getTemplateService().saveTaxTemplate(taxtemplate);
-		return "TaxTemplate.xhtml?faces-redirect=true";
+		return "taxtemplate.xhtml?faces-redirect=true";
 	}
 	catch(Exception e)
 	{
@@ -312,7 +312,7 @@ public class TemplateBean implements Serializable {
 	public String saveTaxTemplate()
 	{
 		getTemplateService().updateTaxTemplate(taxTemplate);
-		return "TaxTemplate.xhtml";
+		return "taxtemplate.xhtml";
 	}
 	//INVOICE TEMPLATE
 	private Integer int_InvoiceTemplateID;
@@ -395,7 +395,7 @@ public class TemplateBean implements Serializable {
 	  invoicetemplate.setStr_Description(getStr_Description());
 	  invoicetemplate.setStr_DueInvoiceTemplate(Str1);
 	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
-	  return "InvoiceTemplate.xhtml?faces-redirect=true";
+	  return "invoicetemplate.xhtml?faces-redirect=true";
 	}
 	catch(Exception e)
 	{
@@ -441,7 +441,7 @@ public class TemplateBean implements Serializable {
 	public String saveInvoiceTemplate()
 	{
 		getTemplateService().updateInvoiceTemplate(invoiceTemplate);
-		return "InvoiceTemplate.xhtml";
+		return "invoicetemplate.xhtml";
 	}
 	private List<String> dueTemplates;
 	public List<String> getDueTemplates() {
@@ -519,12 +519,12 @@ public class TemplateBean implements Serializable {
 		System.out.println(int_DueTemplateID);
 		invoice.setInt_InvoiceTemplateID(int_InvoiceTemplateID);
 	getTemplateService().deleteInvoice(invoice);
-		return "Invoice Template.xhtml?faces-redirect=true";
+		return "invoicetemplate.xhtml?faces-redirect=true";
 	  
 	}
 	
     public String cancelInvoice() {
-		return "Invoice Template.xhtml?faces-redirect=true";
+		return "invoicetemplate.xhtml?faces-redirect=true";
 	}	
 	
 	//MESSAGE TEMPLATE
@@ -551,7 +551,7 @@ public class TemplateBean implements Serializable {
 		this.str_CreatedBy = str_CreatedBy;
 	}
 	public String getStr_Email() {
-		str_Email=LoginBean.getEmail();
+		str_Email=Util.getEmailId();
 		return str_Email;
 	}
 	public void setStr_Email(String str_Email) {
@@ -604,7 +604,7 @@ public class TemplateBean implements Serializable {
 		messagetemplate.setStr_Title(getStr_Title());
 		messagetemplate.setStr_Description(getStr_Description());
 		getTemplateService().saveMessageTemplate(messagetemplate);
-		return "MessageTemplate.xhtml?faces-redirect=true";
+		return "messagetemplate.xhtml?faces-redirect=true";
 		}
 		
 		catch (Exception e) {
@@ -635,12 +635,12 @@ public class TemplateBean implements Serializable {
 	public String saveMessageTemplate()
 	{
 		getTemplateService().updateMessageTemplate(messageTemplate);
-		return "MessageTemplate.xhtml?faces-redirect=true";
+		return "messagetemplate.xhtml?faces-redirect=true";
 	}
 	public String messageSerch()
 	{
 		listMessages=new ArrayList<MessageTemplate>();
 		listMessages.addAll(getTemplateService().listMessageTemplate(str_Mode,str_Category));
-		return "MessageTemplate.xhtml";
+		return "messagetemplate.xhtml";
 	}
 }
