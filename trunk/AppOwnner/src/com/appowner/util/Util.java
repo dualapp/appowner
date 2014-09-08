@@ -56,7 +56,10 @@ public class Util {
 	            return null;
 	      }
 
-		 
+	      public static String getEmail(){
+	    	   HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		        return  session.getAttribute("str_Email").toString();   
+	       } 
 		 
 
 }
