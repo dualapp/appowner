@@ -15,12 +15,9 @@
     <h:form  id="form">
  <p:growl id="msgs" showDetail="true" />
         <h:outputText value="WaterVendors Transaction Details : "></h:outputText>
-        <p:dataTable id="dataTable"   resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="watervendortransactionlist" value="#{vendorTransactionBean.waterVendortransaction1}" style="width: 100%">
-            <f:facet name="header">
-            Expand rows to see detailed information
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="dataTable" trigger="toggler" />
-        </f:facet>
+        <p:dataTable id="dataTable"      rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  var="watervendortransactionlist" value="#{vendorTransactionBean.waterVendortransaction1}" style="width: 100%">
+             
         <p:column   sortBy="#{watervendortransactionlist.int_TransactionId}"  headerText="Transaction ID" footerText="Transaction ID" width="200">
           
                 <h:outputText  id="int_tId" value="#{watervendortransactionlist.int_TransactionId}" /> 
