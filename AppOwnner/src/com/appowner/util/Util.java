@@ -12,12 +12,18 @@ public class Util {
 	          getExternalContext().
 	          getSession(false);
 	      }
+	 
 	       
 	      public static HttpServletRequest getRequest() {
 	       return (HttpServletRequest) FacesContext.
 	          getCurrentInstance().
 	          getExternalContext().getRequest();
 	      }
+	      public static String getEmailId()
+		     {
+		    	 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		    	  return   (String) session.getAttribute("str_EmailId").toString(); 
+		     }
 	 
 	      public static String getUserName()
 	      {
