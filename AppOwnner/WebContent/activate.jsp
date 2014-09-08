@@ -15,7 +15,7 @@
   String activationkey1=request.getParameter("activationkey");
   Class.forName("com.mysql.jdbc.Driver");
   System.out.println("11111111111111111111111111111111111111111111111111111111111");
-  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/appowner","root","root");
+  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db_appowner","root","root");
   PreparedStatement statement = con.prepareStatement("update tb_user set int_activationbit=? where str_activationkey=?");
   statement.setInt(1, 1);
   statement.setString(2,activationkey1);
