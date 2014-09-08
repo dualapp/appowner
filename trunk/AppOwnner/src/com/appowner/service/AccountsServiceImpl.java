@@ -125,7 +125,10 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getStatus(str_Accounts);
 	}
-
+	public List<Double> getTotalBalance()
+	{
+		return getAccountsDao().getTotalBalance();
+	}
 
 
 
