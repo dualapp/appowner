@@ -21,7 +21,7 @@ import com.appowner.model.User;
 import com.appowner.service.In_UserService;
 /*
  * Develope by Pankaj singh.
- * This class is for Adding new user and perform various operation...
+ * This class is for Adding new user and perform
  */
 @ManagedBean
 @ViewScoped
