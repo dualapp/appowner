@@ -10,13 +10,13 @@
 <h:head>
 
          </h:head>
-  <body bgcolor="pink">
+  <body >
     <h:form id="form1" >
      
        <p:messages id="messages"/>  
       <table>
             <tr>
-             <td> <h:outputLabel value="Organisation:" /></td>  
+             <td> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
           <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:300px">
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
@@ -24,20 +24,20 @@
                  </tr>
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
-          <td>  <h:outputText  value="Due Template*" /></td>
-           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="20"/> </td>
+          <td>  <h:outputText  value="Due Template" /><font color="red" >*</font></td>
+           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="20" required="true" requiredMessage="Due Template should not Empty"/> </td>
              </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
              <tr>
             
-            <td> <h:outputText  value="Account*" /></td>
+            <td> <h:outputText  value="Account" /><font color="red" >*</font></td>
            <td>  <p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:300px">
                    <f:selectItems value="#{templateBean.ravenues}" />
                  </p:selectOneMenu></td>
              </tr>
              <tr></tr><tr></tr><tr></tr><tr></tr>
           <tr>
-            <td> <h:outputText  value="Frequency*" /></td>
+            <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}"  style="width:300px">
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
@@ -47,7 +47,7 @@
             </tr>
             <tr></tr><tr></tr><tr></tr><tr></tr>
              <tr>
-            <td> <h:outputText  value="Calculation*" /></td>
+            <td> <h:outputText  value="Calculation" /><font color="red" >*</font></td>
              <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}"  style="width:300px">
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
@@ -57,13 +57,13 @@
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
               <tr>
-               <td> <h:outputText  value="Rate*"  /></td>
-           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="20"/></td> 
+               <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="20" required="true" requiredMessage="Should be a Number"/></td> 
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
              <tr>
             
-            <td> <h:outputText  value="Tax Template*" /></td>
+            <td> <h:outputText  value="Tax Template" /><font color="red" >*</font></td>
            <td>  <p:selectOneMenu id="str_TaxTemplate" value="#{templateBean.str_TaxTemplate}"  style="width:300px">
                    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"></f:selectItem>
                    <f:selectItems value="#{templateBean.str_TaxTemplates}"  />
@@ -72,11 +72,13 @@
              </tr>
                
          </table>
-            
-             <tr>
-                <td align="justify"><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()"  action="#{templateBean.addDueTemplate}" ajax="false"  /></td>
-                <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{dueBean.reset}" ajax="false"/></td>
+             <h:panelGroup style="display:block; text-align:right">
+     <tr> 
+     <td><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()"  action="#{templateBean.addDueTemplate}" ajax="false"  /></td>
+                <td><p:commandButton id="cancel" value="Cancel" action="#{dueBean.reset}" ajax="false"/></td>
             </tr>
+            </h:panelGroup>
+            
              <script >
         function EnrollNowClick() {
             PassValueToParentWindow();

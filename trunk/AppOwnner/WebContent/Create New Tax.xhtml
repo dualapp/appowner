@@ -25,13 +25,13 @@
                  </tr>
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
-            <td>  <h:outputText  value="Tax Name*" /></td>
-           <td>  <p:inputText id="str_TaxName" value="#{templateBean.str_TaxName}" size="25"/> </td>
+            <td>  <h:outputText  value="Tax Name" /><font color="red" >*</font></td>
+           <td>  <p:inputText id="str_TaxName" value="#{templateBean.str_TaxName}" size="25"  required="true" requiredMessage="TaxName should not Empty"/> </td>
              </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
              <tr>
-            <td>  <h:outputText  value="Percentage(%)*" /></td>
-           <td>  <p:inputText id="int_Percentage" value="#{templateBean.int_Percentage}" size="25"/> </td>
+            <td>  <h:outputText  value="Percentage(%)" /><font color="red" >*</font></td>
+           <td>  <p:inputText id="int_Percentage" value="#{templateBean.int_Percentage}" size="25"  required="true" requiredMessage="Percentage should be a Number "/> </td>
              </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
               <tr>
@@ -40,9 +40,12 @@
              </tr>
              </table>
              </fieldset>
-             
-                <td align="justify"><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()" action="#{templateBean.addTaxTemplate}" ajax="false" /></td>
-                <td align="right"><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" ajax="false"/></td>
+              <h:panelGroup style="display:block; text-align:right">
+     <tr> <td><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()" action="#{templateBean.addTaxTemplate}" ajax="false" /></td>
+                <td><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" ajax="false"/></td>
+            </tr>
+            </h:panelGroup>
+               
                 <script>
         function EnrollNowClick() {
             PassValueToParentWindow();

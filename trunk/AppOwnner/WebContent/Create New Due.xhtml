@@ -15,15 +15,15 @@
    <h:commandButton value="Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>
    <table>
             <tr>
-            <td><h:outputLabel value="Account" /> &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;</td>
+            <td><h:outputLabel value="Account" /> <font color="red" >*</font>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;</td>
             
-              <td><p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Accounts}"  style="width:250px">
-                   <f:selectItems value="#{dueBean.str_Account}" />
+              <td><p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Account}"  style="width:250px">
+                   <f:selectItems value="#{templateBean.ravenues}" />
                  </p:selectOneMenu>
              </td>
           </tr> 
           <tr>
-            <td><h:outputLabel value="Due Template" /></td>
+            <td><h:outputLabel value="Due Template" /><font color="red" >*</font></td>
               <td><p:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}"  style="width:250px">
                    <f:selectItems value="#{dueBean.str_DueTemplates}"/>
                  </p:selectOneMenu>
@@ -36,7 +36,7 @@
    <h:commandButton value="Due Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
    <table>
             <tr>
-            <td> <h:outputText  value="Period*" /></td>
+            <td> <h:outputText  value="Period" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:250px">
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
@@ -53,7 +53,7 @@
                  </p:selectOneMenu></td>
             </tr>
          <tr>
-            <td> <h:outputText  value="Year*" /></td>
+            <td> <h:outputText  value="Year" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="int_Year" value="#{dueBean.int_Year}"  style="width:250px">
                    <f:selectItem itemLabel="2014" itemValue="2014"/>
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
@@ -66,12 +66,12 @@
                         </td>
                         </tr>
                         <tr>
-                        <td>  <h:outputText  value="Initiated On*" /></td>
+                        <td>  <h:outputText  value="Initiated On" /><font color="red" >*</font></td>
            <td>  <p:inputText id="str_InitiatedOn" value="#{dueBean.str_InitiatedOn}" size="28"/> </td>
            </tr>
            <tr>
-                        <td>  <h:outputText  value="Last Date*" /></td>
-           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}" size="28"/> </td>
+                        <td>  <h:outputText  value="Last Date" /><font color="red" >*</font></td>
+           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}" size="28"  required="true" requiredMessage="Last date should not Empty"/> </td>
            </tr>
            </table>
            
@@ -81,7 +81,7 @@
    <h:commandButton value="Apartment Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
    <table>
    <tr>
-      <td><h:outputLabel value="Organisation:" /></td>
+      <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}"  style="width:250px">
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{dueBean.str_Organisation}" itemValue="#{dueBean.str_Organisation}"/>
@@ -89,8 +89,8 @@
              </td>
              </tr>
              <tr>
-             <td><h:outputLabel value="Block:" /></td>
-              <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"  style="width:250px">
+             <td><h:outputLabel value="Block" /><font color="red" >*</font></td>
+              <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"  style="width:250px"  required="true" requiredMessage="Block Should not Empty">
                      <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_Blocks}" />
                     <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
@@ -98,8 +98,8 @@
              </td>
              </tr>
              <tr>
-               <td><h:outputLabel value="Apt.No:" /></td>
-              <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:250px">
+               <td><h:outputLabel value="Apt.No" /><font color="red" >*</font></td>
+              <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:250px"  required="true" requiredMessage="ApartmentNo Should not Empty">
                    <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_BlockNo}" />
                  </p:selectOneMenu>
@@ -114,11 +114,11 @@
    <h:commandButton value="Amount Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
    <table>
           <tr>
-                        <td>  <h:outputText  value="Due Amount*" /></td>
+                        <td>  <h:outputText  value="Due Amount" /></td>
            <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" size="28"/> </td>
            </tr>
            <tr>
-                        <td>  <h:outputText  value="Total Due Amount*" /></td>
+                        <td>  <h:outputText  value="Total Due Amount" /></td>
            <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_TotalDueAmount}" size="28"/> </td>
            </tr>
            </table>
