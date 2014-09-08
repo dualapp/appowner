@@ -320,4 +320,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getLatestPolls();
 	}
 
+	@Override
+	public List<Assets> getAssetList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAssetList();
+	}
+
 }

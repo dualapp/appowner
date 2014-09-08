@@ -13,7 +13,7 @@ import com.appowner.model.WorkOrderCategory;
 public interface VendorService {
 	public void addVendor(Vendor vendor);
 
-	public List<Vendor> vendorList(String str_VendorName);
+	public List<Vendor> vendorList(String str_VendorName, String str_VendorType);
 	
 	public Vendor getVendor(int empid);
 	
