@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template1.xhtml"
                 xmlns:P="http://java.sun.com/jsf/html">
-	<ui:define name="content">
+	 
 	<h:head>
 
 	<title></title>
@@ -91,12 +91,12 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 </script>
 
  </h:head>
-	<h:form id="form">
+	<h:form  >
 	 
-   <p:growl id="msgs" showDetail="true"/>
+    
 	<h:body>
 	<br/>
-	<h:outputLabel value="Organisation:" /> 
+	 
                <h:outputLabel value="Organisation:" /> 
               <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
@@ -109,19 +109,15 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
-              <p:contextMenu for="dataTable" widgetVar="cMenu">   
-       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
-       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
-   </p:contextMenu> 
-             <p:dataTable     style="margin-bottom:20px" 
-             id= "dataTable"  rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+               
+             <p:dataTable     style="margin-bottom:100px" 
+                rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"  var="ps"  value="#{expenseBean.assetCategoryList}">
 	<f:facet name="header">
            Assets Category
             
         </f:facet>
-  <p:ajax event="rowEdit" listener="#{expenseBean.onRowEdit}" update=":form:msgs" /> 
-       <p:ajax event="rowEditCancel" listener="#{expenseBean.onRowCancel}" update=":form:msgs" />
+   
           <p:column headerText="Organization">
                
                    <h:outputText value="#{ps.str_OrganizationName}" /> 
@@ -150,5 +146,5 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	</h:body>
 	</h:form>
 
-</ui:define>
-</ui:composition>
+
+</html>
