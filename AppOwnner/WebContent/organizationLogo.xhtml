@@ -24,10 +24,10 @@
   
  
   
-     </table>   <table><tr><th><h:outputText value="Upload Appartment image:"/></th> 
+      <tr><th><h:outputText value="Upload Appartment image:"/></th> 
  <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
-  <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload1}" mode="advanced" dragDropSupport="false"
+  <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload1}" mode="advanced"  
            update="messages1" sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" />
  
     <p:growl id="messages1" showDetail="true" />
@@ -38,7 +38,7 @@
             <tr><th><h:outputText value="Upload Appartment Logo:"/></th> 
  <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
-   <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
+   <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload}" mode="advanced"  
            update="messages2" sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" />
  
     <p:growl id="messages2" showDetail="true" />
@@ -47,7 +47,7 @@
              </td></tr>
             <tr><th>Upload Document</th><td>
             
-            <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload2}" mode="advanced" dragDropSupport="false"
+            <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload2}" mode="advanced"  
            update="messages3" sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(doc|docx|xls|xlsx|pdf)$/" />
  
     <p:growl id="messages3" showDetail="true" />
@@ -55,8 +55,8 @@
              
                                   
                                   </td></tr>
-            </table>
-        <table><tr><th><h:outputText value="OrganizationTextLogo" /></th><td><h:inputText value="#{expenseBean.textLogo}"/></td></tr><br/>
+             
+         <tr><th><h:outputText value="OrganizationTextLogo" /></th><td><h:inputText value="#{expenseBean.textLogo}"/></td></tr><br/>
         <tr><th><h:outputText value="What is your association office timings? *"/></th> </tr><tr>
         <th><h:outputText value="From"/></th><td><p:selectOneMenu value="#{expenseBean.str_offcInTiming}" style="width:100px">
         
