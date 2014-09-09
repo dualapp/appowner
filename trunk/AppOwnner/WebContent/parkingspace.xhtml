@@ -91,11 +91,11 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 </script>
 
  </h:head>
-	 
+	 <h:form  >
 	<h:body>
 	<br/>
 	<h:outputLabel value="Organisation:" /> 
-               <h:outputLabel value="Organisation:" /> 
+               
               <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
@@ -109,7 +109,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
                 
              <p:dataTable     resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable1" rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+               rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"  var="ps"  value="#{expenseBean.parkingSpaceList}">
 	<f:facet name="header">
             Expand rows to see detailed information
@@ -146,6 +146,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
           
 	 </p:dataTable>
 	</h:body>
+	</h:form>
 	 
 
 </html>
