@@ -2,16 +2,15 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml">
-	<ui:define name="content">
-	
+	 
 	<h:head>
-    <title>profit and loss Form</title>
+    <title>Chart Of Account</title>
     
 	 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript">
 	 
@@ -83,13 +82,11 @@ function HideModalWindow() {
 </script>
     </h:head>
  
-    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    <h:form > 
     <body>
     
-                 <fieldset>
-                 <legend  style="background-color:#438eb9; color:#fff;"> ChartOf Accounts</legend>
- 
-  <h:panelGroup id="performed"  >
+                 
+ <div><table><tr>
  
                <td><h:outputLabel value="Organisation:*" /> </td>
               
@@ -98,7 +95,7 @@ function HideModalWindow() {
                   <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                  </p:selectOneMenu>
              </td>
-            &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
+            
                  <td><h:outputLabel value="Account Type:*" /></td>
                  <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"   style="width:200px">
                   <f:selectItem itemLabel="Asset" itemValue="Asset"/>  
@@ -109,24 +106,21 @@ function HideModalWindow() {
                  
                  </p:selectOneMenu>
                  </td>
-                 &#150; &#150; &#150; &#150;
+                 
                  <td><h:commandButton  style="width:50px" value="Go"/> </td>
-               </h:panelGroup>
+              </tr></table></div>
                
                  
-</fieldset>
+ 
 <br/>
 <br/>
- <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/>&#150; &#150; &#150; &#150;<input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/>
+<div><table> <tr><td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" /></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table></div>
   <br/>
   <br/>
- <p:dataTable      resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable"   rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+ <p:dataTable       style="margin-bottom:100px" 
+                rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"   var="c" value="#{expenseBean.chartOfAccountList}">
-	<f:facet name="header">
-           Chart Of Account
-                        
-        </f:facet>
+	 
         <p:column headerText="Organization">
                
                    <h:outputText value="#{c.str_OrganizationName}" /> 
@@ -145,8 +139,8 @@ function HideModalWindow() {
         </p:dataTable>
         </body>
         </h:form>
-        </ui:define>
-        </ui:composition>
+      </html>
+      
  
  
  
