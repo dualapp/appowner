@@ -106,10 +106,11 @@ public class ExpenseBean  implements Serializable{
 	public List<String> getImages() {
 		images=new ArrayList<String>();
 		images.addAll(getExpenseService().getOrganizationImages());
-		images.add("20140906151834.jpg");
-		images.add("20140906133428.jpg");
-		images.add("20140903103013.jpg");
-		images.add("20140903103000.jpg");
+		 
+		images.add("20140909095522.png");
+		images.add("20140909100413.jpg");
+		images.add("20140909100617.jpg");
+		images.add("20140909101141.jpg");
 		System.out.println(images+"images");
 		return images;
 	}
