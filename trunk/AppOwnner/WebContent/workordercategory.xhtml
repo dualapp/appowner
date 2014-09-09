@@ -91,7 +91,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 </script>
 
  </h:head>
-	 
+	 <h:form>
 	<h:body>
 	<br/>
 	<h:outputLabel value="Organisation:" /> 
@@ -106,16 +106,11 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	   
 	
 	<br/>
-	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
+	<legend  style="background-color:#438eb9; color:#fff;"> WorkOrder Category</legend>
                 
-             <p:dataTable     rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3" resizableColumns="true" style="margin-bottom:20px" 
-             id= "dataTable5"  var="ps"  value="#{vendorBean.workOrderCategoryList}">
-	<f:facet name="header">
-            Expand rows to see detailed information
-             
-        </f:facet>
-   
+             <p:dataTable    
+                var="ps"  value="#{vendorBean.workOrderCategoryList}">
+	 
           <p:column headerText="Organization">
                 <h:outputText value="#{vendorBean.str_OrganizationName}" /> 
             
@@ -126,5 +121,6 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	 </p:column>
 	 </p:dataTable>
 	 </h:body>
+	 </h:form>
 	 </html>
 	 
