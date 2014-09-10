@@ -8,13 +8,14 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 	
 <h:head>
-
+<script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
          </h:head>
   <body >
     <h:form id="form1" >
      
-       <p:messages id="messages"/>  
+      
       <table>
+      
             <tr>
              <td> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
           <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:300px">
@@ -25,7 +26,9 @@
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
           <td>  <h:outputText  value="Due Template" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="20" required="true" requiredMessage="Due Template should not Empty"/> </td>
+           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="25" required="true" requiredMessage="Due Template should not Empty"/></td>
+        <td>  <p:message for="str_DueTemplate" display="text"/></td> 
+         
              </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
              <tr>
@@ -58,7 +61,9 @@
               <tr></tr><tr></tr><tr></tr><tr></tr>
               <tr>
                <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="20" required="true" requiredMessage="Should be a Number"/></td> 
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="25" required="true" requiredMessage=" It Should be a Number"/></td>
+         <td><p:message for="str_Rate"  display="text" /></td>
+          
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
              <tr>
@@ -70,26 +75,33 @@
                      <f:selectItem itemLabel="None" itemValue="None" noSelectionOption="true"></f:selectItem>
                  </p:selectOneMenu></td>
              </tr>
-               
+          
          </table>
+        
              <h:panelGroup style="display:block; text-align:right">
      <tr> 
-     <td><p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()"  action="#{templateBean.addDueTemplate}" ajax="false"  /></td>
-                <td><p:commandButton id="cancel" value="Cancel" action="#{dueBean.reset}" ajax="false"/></td>
+     <td><p:commandButton id="submit" value="Submit" onclick="EnrollLater();EnrollLaterClick();"  action="#{templateBean.addDueTemplate}" ajax="false"  /></td>
+                <td><p:commandButton id="cancel" value="Cancel" onclick="EnrollLater1()" ajax="false"/></td>
             </tr>
             </h:panelGroup>
             
              <script >
-        function EnrollNowClick() {
-            PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
-           
+      
+        function EnrollLater(){
+        	
+        	modalWin.HideModalPopUp();
+        	EnrollLaterClick();
         }
+        function EnrollLater1()
+        {
+        	window.parent.modalWin.CallCallingWindowFunction(1);
+
+            }
         function EnrollLaterClick() {
             window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
-          
-           
         }
+       
+       
         
        
  

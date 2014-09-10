@@ -18,8 +18,8 @@
             <tr>
             <td>  <h:outputText  value="Created By" /></td>
             <td>  <p:inputText id="str_CreatedBy" value="#{templateBean.str_CreatedBy}" size="25"/> </td>
-          </tr>
-          <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+           </tr>
+           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
           
           <tr>
             <td>  <h:outputText  value="Email" /></td>
@@ -57,12 +57,14 @@
                 <tr>
             <td>  <h:outputText  value="Title" /><font color="red" >*</font></td>
             <td>  <p:inputText id="str_Title" value="#{templateBean.str_Title}" size="25"  required="true" requiredMessage="Title should not Empty"/><br/><font  size="2" color="red">30 Characters Maximum</font></td>
+                 <td><p:message for="str_Title" dispay="text"/></td>
           </tr> 
           
                  <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>  
                 <tr>
             <td>  <h:outputText  value="Description" /><font color="red" >*</font></td>
             <td>  <p:inputTextarea id="str_Description" rows="4" cols="30" value="#{templateBean.str_Description}" size="25"  required="true" requiredMessage="Description should not Empty"/><br/><font  size="2" color="red">1500 Characters Maximum</font> </td>
+            <td><p:message for="str_Description" dispay="text"/></td>
           </tr> 
           </table>
           </fieldset>
@@ -70,8 +72,8 @@
             <h:panelGroup style="display:block; text-align:right">
      <tr> 
      <td >
-     <p:commandButton id="submit" value="Submit" onclick="EnrollLaterClick()" action="#{templateBean.addMessageTemplate}" ajax="false" /></td>
-     <td ><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" ajax="false"/></td>
+     <p:commandButton id="submit" value="Submit" onclick="EnrollNowClick()" action="#{templateBean.addMessageTemplate}" ajax="false" /></td>
+     <td ><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" onclick="EnrollLater1()" ajax="false"/></td>
             </tr>
             </h:panelGroup>
             
@@ -79,11 +81,13 @@
          <script>
         function EnrollNowClick() {
             PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
         }
-        function EnrollLaterClick() {
-            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
-        }
+        function EnrollLater1()
+        {
+        	window.parent.modalWin.CallCallingWindowFunction(1);
+
+            }
         </script>
           </h:form>
           </body>
