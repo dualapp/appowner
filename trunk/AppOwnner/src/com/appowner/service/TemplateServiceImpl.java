@@ -29,25 +29,25 @@ public class TemplateServiceImpl implements TemplateService {
 	public void setTemplateDao(TemplateDao templateDao) {
 		this.templateDao = templateDao;
 	}
-	public void saveDueTemplate(DueTemplate dueTemplate)
+	public Integer saveDueTemplate(DueTemplate dueTemplate)
 	{
-		getTemplateDao().saveDueTemplate(dueTemplate);
+		return getTemplateDao().saveDueTemplate(dueTemplate);
 	}
 	public List<String> listRavenues()
 	{
 		return getTemplateDao().listRavenues();
 	}
-	public void saveTaxTemplate(TaxTemplate taxTemplate)
+	public Integer saveTaxTemplate(TaxTemplate taxTemplate)
 	{
-		getTemplateDao().saveTaxTemplate(taxTemplate);
+		return getTemplateDao().saveTaxTemplate(taxTemplate);
 	}
-	public void saveInvoiceTemplate(InvoiceTemplate invoiceTemplate)
+	public Integer saveInvoiceTemplate(InvoiceTemplate invoiceTemplate)
 	{
-		getTemplateDao().saveInvoiceTemplate(invoiceTemplate);
+		return getTemplateDao().saveInvoiceTemplate(invoiceTemplate);
 	}
-	public void saveMessageTemplate(MessageTemplate messageTemplate)
+	public Integer saveMessageTemplate(MessageTemplate messageTemplate)
 	{
-		getTemplateDao().saveMessageTemplate(messageTemplate);
+		return getTemplateDao().saveMessageTemplate(messageTemplate);
 	}
 	public List<DueTemplate>  listDueTemplate(String str_Accounts)
 	{
@@ -122,6 +122,14 @@ public class TemplateServiceImpl implements TemplateService {
 	  public void deleteInvoice(InvoiceTemplate invoice)
 	  {
 		  getTemplateDao().deleteInvoice(invoice);
+	  }
+	  public void deleteMessage(MessageTemplate message)
+	  {
+		  getTemplateDao().deleteMessage(message);
+	  }
+	  public void deleteTax(TaxTemplate tax)
+	  {
+		  getTemplateDao().deleteTax(tax); 
 	  }
 	  
 }
