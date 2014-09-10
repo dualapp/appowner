@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpSession;
 
@@ -907,6 +908,11 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		serviceRequest.setStr_OpenDate(str_OpenDate);
 		serviceRequest.setStr_CloseDate(str_CloseDate);
 		 getUserService().addServiceRequest(serviceRequest);
+		 FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Service Request Saved Successfully !", "Service Request Saved Successfully !"));
 		 //Email=user.getStr_Email();
 		 Email="devroutaray@gmail.com";
 		 subject="Service Request";
@@ -937,6 +943,11 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		bookAFacility.setStr_UserType(str_UserType);
 		getUserService().addBookAFacility(bookAFacility);
 		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Successfully  Book A Facility!", " Successfully  Book A Facility !"));
 	}
 	/*
 	 * add member login and logout info
