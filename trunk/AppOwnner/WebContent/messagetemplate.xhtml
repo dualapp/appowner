@@ -27,9 +27,24 @@
 
 function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewmessage Template.xhtml',470,600,'Create New Message Template',null,callbackFunctionArray);
+ modalWin.ShowURL('createnewmessagetemplate.xhtml',470,600,'Create New Message Template',null,callbackFunctionArray);
  }
-
+function ShowNewPage1(clicked_id){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+   modalWin.ShowURL("editmessagetemplate.xhtml?int_MessageTemplateID="+clicked_id+"",400,350,'Edit Message Template',null,callbackFunctionArray);
+	 }
+function ShowNewPage2(clicked_id){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	modalWin.ShowURL("viewmessagetemplate.xhtml?int_MessageTemplateID="+clicked_id+"",400,350,'View Message Template',null,callbackFunctionArray);
+	 }
+function ShowNewPage3(){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 modalWin.ShowURL('editmessagetemplate1.xhtml',470,600,'Edit Message Template',null,callbackFunctionArray);
+	 }
+function ShowNewPage4(){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 modalWin.ShowURL('viewmessagetemplate1.xhtml',470,600,'View Message Template',null,callbackFunctionArray);
+	 } 
 	 
  
 function ShowMessage() {
@@ -78,7 +93,7 @@ function HideModalWindow() {
   <fieldset>
     <legend>
    <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
-     <h:panelGroup id="performed"  >
+       <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:150px">
@@ -111,7 +126,7 @@ function HideModalWindow() {
                 </h:panelGroup>
                 </fieldset>
                 <br/>
-                <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+                <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; <input type="button" style="width: 150px" onclick="ShowNewPage3()"  value="Edit Selected" />&#150; &#150; <input type="button" style="width: 150px" onclick="ShowNewPage4()"  value="View Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
               <br/>
              <br/>
               
@@ -121,7 +136,18 @@ function HideModalWindow() {
   <h:form>
   <h:body>
         <h:outputText value="Message Template: " color="red"></h:outputText>
-        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" style="width: 80%" >
+        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50">
+					<f:facet name="header">
+               MessageTemplate
+               </f:facet>
+                <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Select" />
+                </f:facet>
+                 <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{templateBean.processValueChange2}">
+                 <p:ajax event="click"   partialSubmit="true"/>   
+                </h:selectBooleanCheckbox>
+           </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation Name" />
@@ -156,11 +182,15 @@ function HideModalWindow() {
                 <f:facet name="header">
                     <h:outputText value="Action" />
                 </f:facet>
-                 
-                <h:link outcome="editmessagetemplate.xhtml" >
-                <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
-                <f:param name="int_MessageTemplateID" value="#{message.int_MessageTemplateID}"/>
-                </h:link>
+                 <input type="button" id="#{message.int_MessageTemplateID}" style="width: 50px" onclick="ShowNewPage1(this.id)" value="Edit" />
+             <input type="button" id="#{message.int_MessageTemplateID}" style="width: 50px" onclick="ShowNewPage2(this.id)" value="View" />
+               <h:link outcome="deletemessage.xhtml"
+							onclick="return confirm('Are you sure you want to delete #{message.int_MessageTemplateID}?');">
+							<p:graphicImage height="20" width="20" alt="delete"
+								value="images/delete.jpg" />
+							<f:param name="int_MessageTemplateID"
+								value="#{message.int_MessageTemplateID}" />
+						</h:link>
                
             </p:column>
             </p:dataTable>
