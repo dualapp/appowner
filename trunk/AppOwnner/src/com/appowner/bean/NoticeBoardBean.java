@@ -283,7 +283,7 @@ public static void setContent(String content) {
 		            + event.getFile().getFileName().substring(
 		                  event.getFile().getFileName().lastIndexOf('.'));
 		    System.out.println(name);
-		    File file= new File("D:\\myUploads\\" + "images" + name);
+		      File file= new File("E:\\myUploads//" + "images" + name);
                System.out.println(file);
 		    InputStream is = event.getFile().getInputstream();
 		    OutputStream out = new FileOutputStream(file);
