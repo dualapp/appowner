@@ -37,7 +37,7 @@
                  </td>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
                  <td><h:outputText  value="Status:" /></td>
-               <td><p:selectOneMenu id="str_Status" value="#{invoiceBean.str_Status}"  style="width:150px">
+                 <td><p:selectOneMenu id="str_Status" value="#{invoiceBean.str_Status}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem  itemLabel="Paid" itemValue="Paid" />
                    <f:selectItem  itemLabel="Partial" itemValue="Partial" />
@@ -72,14 +72,14 @@
                  </td>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150;
                  <td><h:outputText  value="Year" /></td>
-               <td><p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:150px">
+               <td><h:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                   <f:selectItem  itemLabel="2013" itemValue="2013" />
                    <f:selectItem  itemLabel="2014" itemValue="2014" />
                     <f:selectItem  itemLabel="2015" itemValue="2015" />
                    <f:selectItem  itemLabel="2016" itemValue="2016" />
                     <f:selectItem  itemLabel="2017" itemValue="2017" />
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
             
              </h:panelGroup>
@@ -90,9 +90,9 @@
              <p:button  value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
           <p:menuitem value="Record Payment" />
           <p:menuitem value="Quick Payment" />
-           <p:menuitem value="Export To Excel" />
+           <p:menuitem value="Export To Excel" icon="images/xls.jpg" />
            <p:menuitem value="Notify By Mail"/>
-          </p:menuButton>
+         </p:menuButton>
        
              </h:form>
              </body>
