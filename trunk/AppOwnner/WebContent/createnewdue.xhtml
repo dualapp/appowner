@@ -8,7 +8,7 @@
 <h:head>
     <title>Accounting Form</title>
     </h:head>
-   <body  bgcolor="pink">
+   <body >
   <h:form id="form" prependId="false">
    <fieldset>
     <legend>
@@ -67,11 +67,12 @@
                         </tr>
                         <tr>
                         <td>  <h:outputText  value="Initiated On" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_InitiatedOn" value="#{dueBean.str_InitiatedOn}" size="28"/> </td>
+           <td>  <p:inputText id="str_InitiatedOn" value="#{dueBean.str_InitiatedOn}" size="25"/> </td>
            </tr>
            <tr>
                         <td>  <h:outputText  value="Last Date" /><font color="red" >*</font></td>
-           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}" size="28"  required="true" requiredMessage="Last date should not Empty"/> </td>
+           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}" size="25"  required="true" requiredMessage="Last date should not Empty"/> </td>
+           <td><p:message for="dat_LastDate" dispay="text"/></td>
            </tr>
            </table>
            
