@@ -37,7 +37,7 @@
 
 function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewduetemplate.xhtml',470,600,'Create New Due Template',null,callbackFunctionArray);
+ popupWindow=modalWin.ShowURL('createnewduetemplate.xhtml',470,600,'Create New Due Template',null,callbackFunctionArray);
  
  }
 function ShowNewPage1(clicked_id){
@@ -51,12 +51,12 @@ function ShowNewPage2(clicked_id){
 	 
 function ShowNewPage3(){
 	 var callbackFunctionArray = new Array(Submit, Cancel);
-	 modalWin.ShowURL('editduetemplate.xhtml',470,600,'Create New Due Template',null,callbackFunctionArray);
+	 modalWin.ShowURL('editduetemplate.xhtml',400,350,'Edit Due Template',null,callbackFunctionArray);
 	 
 	 }
 function ShowNewPage4(){
 	 var callbackFunctionArray = new Array(Submit, Cancel);
-	 modalWin.ShowURL('viewduetemplate.xhtml',470,600,'Create New Due Template',null,callbackFunctionArray);
+	 modalWin.ShowURL('viewduetemplate.xhtml',400,350,'View Due Template',null,callbackFunctionArray);
 	 
 	 }
 
@@ -65,33 +65,19 @@ function ShowMessage() {
  modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
  }
   
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
+ 
 
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
 
-}
 
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
 
 function Submit(msg){
+	
 modalWin.HideModalPopUp();
 modalWin.ShowMessage(msg,200,400,'User Information',null,null);
 }
 
 function Cancel(){
+	
 modalWin.HideModalPopUp();
 modalWin.ShowMessage(msg,200,400,'User Information',null,null);
 }

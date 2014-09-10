@@ -1,12 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
-	<ui:define name="content">
+	xmlns:f="http://java.sun.com/jsf/core">
+	
 	  <f:metadata>
 	<f:viewParam name="int_MessageTemplateID" value="#{templateBean.int_MessageTemplateID}"  />
 	 
@@ -27,7 +26,7 @@
 
         <h:outputText value="Mode" />
         <h:inputText value="#{templateBean.messageTemplate.str_Mode}" />
-     <h:outputText value="Category" />
+        <h:outputText value="Category" />
         <h:inputText value="#{templateBean.messageTemplate.str_Category}" />
          <h:outputText value="Title" />
         <h:inputText value="#{templateBean.messageTemplate.str_Title}" />
@@ -40,8 +39,7 @@
    
 </h:form>
 </h:body>
-</ui:define>
-</ui:composition>
+</html>
  
    
     
