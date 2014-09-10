@@ -25,9 +25,11 @@ public class TemplateDaoImpl implements TemplateDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	public void saveDueTemplate(DueTemplate dueTemplate)
+	public Integer saveDueTemplate(DueTemplate dueTemplate)
 	{
-		getSessionFactory().getCurrentSession().save(dueTemplate);
+		int rr=(Integer) getSessionFactory().getCurrentSession().save(dueTemplate);
+		System.out.println(rr);
+		return rr;
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> listRavenues()
@@ -37,17 +39,17 @@ public class TemplateDaoImpl implements TemplateDao {
 	List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).list();
 	return ravenueList; 
 	}
-	 public void saveTaxTemplate(TaxTemplate taxTemplate)
+	 public Integer saveTaxTemplate(TaxTemplate taxTemplate)
 	 {
-		 getSessionFactory().getCurrentSession().save(taxTemplate); 
+		return  (Integer) getSessionFactory().getCurrentSession().save(taxTemplate); 
 	 }
-	 public void saveInvoiceTemplate(InvoiceTemplate invoiceTemplate)
+	 public Integer saveInvoiceTemplate(InvoiceTemplate invoiceTemplate)
 	 {
-		 getSessionFactory().getCurrentSession().save(invoiceTemplate);  
+		return  (Integer) getSessionFactory().getCurrentSession().save(invoiceTemplate);  
 	 }
-	 public void saveMessageTemplate(MessageTemplate messageTemplate)
+	 public Integer saveMessageTemplate(MessageTemplate messageTemplate)
 	 {
-		 getSessionFactory().getCurrentSession().save(messageTemplate);  
+		return  (Integer) getSessionFactory().getCurrentSession().save(messageTemplate);  
 	 }
 	 @SuppressWarnings("unchecked")
 	public List<DueTemplate> listDueTemplate(String str_Accounts)
@@ -162,5 +164,13 @@ public class TemplateDaoImpl implements TemplateDao {
 	public void deleteInvoice(InvoiceTemplate invoice)
 	{
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM InvoiceTemplate WHERE int_InvoiceTemplateID="+invoice.getInt_InvoiceTemplateID()).executeUpdate();
+	}
+	public void deleteMessage(MessageTemplate message)
+	{
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM MessageTemplate WHERE int_MessageTemplateID = "+message.getInt_MessageTemplateID()).executeUpdate();
+	}
+	public void deleteTax(TaxTemplate tax)
+	{
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM TaxTemplate WHERE int_TaxTemplateID = "+tax.getInt_TaxTemplateID()).executeUpdate();
 	}
 }
