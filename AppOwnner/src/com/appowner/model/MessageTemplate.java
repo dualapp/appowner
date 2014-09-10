@@ -22,8 +22,8 @@ public class MessageTemplate implements Serializable {
 	@Column(name="var_Email")
 	private String str_Email;
 	@Column(name="dat_Date")
-	private String dat_Date;
-	public Integer getInt_MessageTemplateID() {
+	 private String dat_Date;
+	 public Integer getInt_MessageTemplateID() {
 		return int_MessageTemplateID;
 	}
 	public void setInt_MessageTemplateID(Integer int_MessageTemplateID) {
