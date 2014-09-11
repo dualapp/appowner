@@ -7,7 +7,7 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
-    <title>Ad_an_Post</title>
+    <title>Members</title>
    <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 
  <style>
@@ -21,81 +21,101 @@
     </style>
     
 </h:head>
-<body bgcolor="pink">
-  <h:form>
-  <p:messages/>
-  <fieldset>
-    <legend>
+
    <h:body>
 
 <script>
 
+ var modalWin = new CreateModalPopUpObject();
+ modalWin.SetLoadingImagePath("images/loading_home.gif");
+ modalWin.SetCloseButtonImagePath("images/cross.png");
+ //Uncomment below line to make look buttons as link
+ //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
-   var modalWin = new CreateModalPopUpObject();
-   modalWin.SetLoadingImagePath("images/loading_home.gif");
-   modalWin.SetCloseButtonImagePath("images/cross.png");
-   
- 
-  function ShowNewPage(){
+function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL(' Email_for_Ads.xhtml',470,600,'E-Mail',null,callbackFunctionArray);
-  }
+ modalWin.ShowURL('Member_Detail.xhtml',470,600,'Create New member',null,callbackFunctionArray);
  
-
-	 function Cancel(){
-	 modalWin.HideModalPopUp();
-	 modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-	 }
-
-	 function HideModalWindow() {
-	     modalWin.HideModalPopUp();
-	 }
+ }
 
  
-   
-    </script>
+function ShowMessage() {
+ modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
+ }
+  
+ 
+
+function Submit(msg){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function Cancel(){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function HideModalWindow() {
+    modalWin.HideModalPopUp();
+}
+
+
+
+</script>
      </h:body>
-     
+    <body bgcolor="pink">
+  <h:form>
+ 
+  <fieldset>
+    <legend> 
    <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
      <h:panelGroup id="performed"  >
-          &#150; &#150;&#150;&#150; &#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150;
+       
              <tr> 
-        <td><h:outputLabel value="Organisation"  /></td>
+             <td><h:outputLabel value="Organisation Type"  /></td>
+            <p:selectOneMenu id="str_Apartment"  style="width:150px">
+             <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  Value="#{cls_AddDetailBean.str_ApartmentName}"  />
+            
+            </p:selectOneMenu>
+            <td>&#150;&#150; &#150;&#150;&#150;&#150;&#150; &#150; &#150;&#150;&#150; &#150; &#150;&#150;&#150;  &#150; &#150;&#150;&#150; &#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150;</td>
+        <td><h:outputLabel value="Organisation Name"  /></td>
             <td><p:selectOneMenu id="str_ApartmentName"  style="width:150px">
              <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  Value="#{cls_AddDetailBean.str_ApartmentName}"  />
             
             </p:selectOneMenu>
             </td>
             </tr>
-             &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; 
-             <td><h:outputLabel value="Intent" /></td>
+             &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; 
+             <td><h:outputLabel value="Block" /></td>
                <td><p:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Product_Type}" style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
-                  <f:selectItem itemLabel="Buy" itemValue="Buy"  />
-                  <f:selectItem itemLabel="Sell" itemValue="Sell"  />
-                  <f:selectItem itemLabel="Rent" itemValue="Rent"  />
+                  <f:selectItem itemLabel="Block1" itemValue="Block1"  />
+                  <f:selectItem itemLabel="Block2" itemValue="Block2"  />
+                  <f:selectItem itemLabel="Block3" itemValue="Block3"  />
+                  <f:selectItem itemLabel="Block4" itemValue="Block4"  />
+                  <f:selectItem itemLabel="Block5" itemValue="Block5"  />
+                  <f:selectItem itemLabel="Block6" itemValue="Block6"  />
                     <p:ajax event="change" process="option1"/>
                  </p:selectOneMenu>
              </td>
-             
-               &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; 
-             <td><h:outputLabel  value="Status" /></td>
+            
+              
+             <td><h:outputLabel  value="Ownership  Status" /></td>
                <td><p:selectOneMenu id="option2"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
-                   <f:selectItem itemLabel="Open" itemValue="Open"  />
-                    <f:selectItem itemLabel="Pending Approval" itemValue="Pending Approval"  />
-                     <f:selectItem itemLabel="Closed" itemValue="Closed"  />
+                   <f:selectItem itemLabel="Owner" itemValue="Owner"  />
+                    <f:selectItem itemLabel="Tenlet" itemValue="Tenlet"  />
+                   
                       </p:selectOneMenu>
                  </td>
-                 <br />
-                 <br />
                  
-                     &#150; &#150; &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
-                 <td><h:outputLabel  value="Posted in the last" /></td>
+                 
+                   &#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150;  &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; 
+                 <td><h:outputLabel  value="Residency Status " /></td>
                <td><p:selectOneMenu id="option3" value="ghgf"  style="width:150px">
-                  <f:selectItem itemLabel="10 days" itemValue="10 days"  />
-                  <f:selectItem itemLabel="30 days" itemValue="30 days"  />
-                  <f:selectItem itemLabel="All days" itemValue="All days"  />
+                  <f:selectItem itemLabel="All" itemValue="All"  />
+                  <f:selectItem itemLabel="Resident" itemValue="Resident"  />
+                  <f:selectItem itemLabel="Non-Resident" itemValue="Non-Resident"  />
                    
                  </p:selectOneMenu>
              </td>
@@ -103,28 +123,26 @@
              </h:panelGroup>
            
              <h:panelGroup id="aa">
-             &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
-              <td><h:outputLabel value="Type" /></td>
+             &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
+              <td><h:outputLabel value="Validity" /></td>
               <td><p:selectOneMenu id="option4" value="#{cls_AddDetailBean.ch_Ad_Type}" style="width:150px">
               <f:selectItem itemLabel="All" itemValue="All"  />
-              <f:selectItem itemLabel="My Community" itemValue="My Community"  />
-              <f:selectItem itemLabel="Negihbourhood" itemValue="Neighbourhood"  />
-               
+              <f:selectItem itemLabel="Current" itemValue="Current"  />
+              <f:selectItem itemLabel="Past" itemValue="Past"  />
+               <f:selectItem itemLabel="Future" itemValue="Future"  />
                  </p:selectOneMenu> 
              </td>
-                 &#150;&#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
-               <h:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" update="">
+               <br />
+               <br />
+               <h:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" update=""  style=" float:right !important;margin:0px 30px 0px 0px;" >
                </h:commandButton>
              </h:panelGroup>
              <br />
              <br />
             &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
-             <h:button  value="Create New" outcome="Create_Detail.xhtml"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<h:button  value="View Selected" outcome="ViewDetail.xhtml"/> &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150;<h:button  value="Edit Selected " outcome="EditDetails.xhtml"/>&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <h:button  value="Refresh" icon="ui-icon-refresh"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:menuButton value="Action">
+             <input type="button"   value="Create New" onclick="ShowNewPage()"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<h:button  value="View Selected" outcome="ViewDetail.xhtml"/> &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150;<h:button  value="Edit Selected " outcome="EditDetails.xhtml"/>&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <h:button  value="Refresh" icon="ui-icon-refresh"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:menuButton value="Action">
        
-       <p:menuitem value="Approval Selected" action="#{cls_AddDetailBean.updation}"/>
-        <p:menuitem value="Reject Selected" action="#{cls_AddDetailBean.reject1}"/>
-        <p:menuitem value="Close Selected" action="#{cls_AddDetailBean.update}"/>
-        <p:menuitem value="Send Email to Creator" onclick="ShowNewPage()"/>
+       
        
         </p:menuButton>
        </fieldset>
@@ -136,9 +154,9 @@
              
              <h:form>
         <h:body>
-        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 100%" binding="#{cls_AddDetailBean.dataTable}">
-      
-    <p:column>
+        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}"  binding="#{cls_AddDetailBean.dataTable}"  style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50" >
+     <p:column>
   <f:facet name="header">
     <h:outputText value="Select " />
   </f:facet>
@@ -230,9 +248,11 @@
 	   		</p:commandButton>
 	   			
                 </p:column>
+                
                </p:dataTable>
               
                </h:body>
+               
                </h:form>
               
           </ui:define>
