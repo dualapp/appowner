@@ -14,17 +14,23 @@
 	<div>
 	<h:panelGroup>
 	<table>
-	<tr><td> 
-               <h:outputLabel value="Organisation:" /> </td>
+	<tr><th> 
+               <h:outputLabel value="Organisation:" /> </th>
              <td> <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu></td></tr>
-	<tr><td><h:outputText value="CategoryName"/></td>
-	<td><h:inputText value="#{expenseBean.str_AssetCategoryType}"/></td></tr>
-	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveAssetCategory}"   >
+	<tr><th><h:outputText value="CategoryName"/></th>
+	<td><h:inputText  required="true" requiredMessage="Plz Enter AssetCategoryName" id="AssetCategory" value="#{expenseBean.str_AssetCategoryType}">
+	<p:ajax event="blur" update="AssetCategoryMsg" />
+	</h:inputText>
+	</td>
+	<td> <p:message  id="AssetCategoryMsg" for="AssetCategory" display="text"/> </td>
+	</tr>
+	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveAssetCategory}" />
 	
-	</p:commandButton></td> </tr>  
+	  </td> </tr>  
+	  
 	</table>
 	 <script>
 	 

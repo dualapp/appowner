@@ -40,7 +40,7 @@
                 <td><h:inputText id="vendorName"  label="Name" value="#{vendorBean.str_VendorName}" required="true" requiredMessage="Please enter vendor name">
                 
                   <f:validateLength minimum="15" />
-                    
+                     <p:ajax event="blur" update="vendorNameMsg" />
               </h:inputText>
                    
                 </td>
@@ -52,11 +52,11 @@
                 <td><h:inputText id="vendorphone"  label="Phone" value="#{vendorBean.str_VendorPhone}"   maxlength="11" required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number">
                     <f:validateLength minimum="10" />
                     <f:validateRegex pattern="^([+]?[\d]+)?$" />
-                    
+                    <p:ajax event="blur" update="vendorPhoneMsg" />
               </h:inputText>
                    
                 </td>
-                <td>  <p:message id="vendorphoneMsg" for="vendorphone" display="text"/></td>
+                <td>  <p:message id="vendorPhoneMsg" for="vendorphone" display="text"/></td>
            </tr>
            
            <tr>
@@ -64,11 +64,11 @@
                 <td><h:inputText id="vendoremail" label="Email"   value="#{vendorBean.str_VendorEmail}" required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter vendor Email">
                 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
   
-                    
+                    <p:ajax event="blur" update="vendorEmailMsg" />
               </h:inputText>
                    
                 </td>
-                <td> <p:message id="vendoremailMsg" for="vendoremail" display="text"/></td>
+                <td> <p:message id="vendorEmailMsg" for="vendoremail" display="text"/></td>
            </tr> 
            
            <tr><td><h:outputText value="Contact Person Name"/></td><td><h:inputText value="#{vendorBean.str_ContactPersonName}" /></td></tr>
@@ -79,7 +79,10 @@
            <tr> 
             <td><h:outputLabel for="Address" value="Address Line1 " /></td>
                 <td><h:inputText id="Address" label="Address"   value="#{vendorBean.str_VendorAddress}" required="true"  requiredMessage="Please enter vendor Address">
-            </h:inputText></td></tr>
+             <p:ajax event="blur" update="AddressMsg" />
+            </h:inputText></td>
+             <td> <p:message id="AddressMsg" for="Address" display="text"/></td>
+            </tr>
             <tr>
             <td><h:outputLabel for="str_VendorCountry" value=" Country  " /><font color="red">*</font></td>
             <td><p:selectOneMenu id="str_VendorCountry" value="#{vendorBean.str_VendorCountry}"     valueChangeListener="#{vendorBean.countryChangeListener}" style="width:200px">
@@ -112,8 +115,9 @@
             <tr> 
             <td><h:outputLabel for="Zip" value="Zip " /></td>
                 <td><h:inputText id="Zip" label="ZipCode"   value="#{vendorBean.str_ZipCode}" required="true"  requiredMessage="Please enter vendor ZipCode">
+            <p:ajax event="blur" update="ZipMsg" />
             </h:inputText></td>
-            <td> <p:message for="Zip" display="text" /></td>
+            <td> <p:message id="ZipMsg" for="Zip" display="text" /></td>
             </tr></table>
             <legend  align="left" style="background-color:#438eb9; color:#fff;">VendorService Details</legend>
             <table>
@@ -224,13 +228,9 @@
               
                 </td>
            </tr>
-           
-            </table>
-            
-           
           
-            <h:commandButton value="Submit" action="#{vendorBean.saveVendor}"/> 
-             
+            </table>
+            <tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/></td></tr>
            </center>
            
            </div>

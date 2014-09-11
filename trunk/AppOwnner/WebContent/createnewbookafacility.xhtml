@@ -14,49 +14,71 @@
  </h:head>
  <a href="book a facility.xhtml">>>Back To book a facility</a >
     <h:form>
-    <h:messages style="color:red"/>
+   
     <h:body>
-    <table><tr><td><h:outputText value="Created by"/></td>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
-    <tr><td><h:outputText value="Organization"/></td>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
-   <tr><td><h:outputText value="Flat Name"/></td> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
+    <table><tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
+   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
     
-    <tr><td><h:outputText value="Name"/></td> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Email"/></td>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
-    <tr><td><h:outputText value="Mobile"/></td>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <td><h:outputText value="LandLine"/></td>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Email"/></td>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
+    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <td><h:outputText value="LandLine"/></td>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
    <tr><td><h2><h:outputText value="Booking Details"/></h2></td></tr>
-  <tr><td><h:outputText value="Event Name"/>  </td><td><h:inputText  required="true" requiredMessage="plz  Enter Event Name" style="width:400px" value="#{loginBean.str_EventName}"/></td></tr>
-   <tr><td><h:outputText value="Organization"/></td>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/>  </td>
-   <td><h:outputText value="Event Type"/></td> 
+  <tr><td><h:outputText value="Event Name"/>  </td><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name" style="width:400px" value="#{loginBean.str_EventName}">
+  <p:ajax event="blur" update="Eventname" />
+  </h:inputText>
+  </td>
+  
+  <td><p:message id="Eventname"  for="EventName" display="text"/></td>
+  </tr>
+   <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/>  </td>
+   <th><h:outputText value="Event Type"/></th> 
    <td><p:selectOneMenu value="#{loginBean.str_EventType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="Public" itemLabel="Public"/>
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </p:selectOneMenu></td></tr>
       
-    <tr><td><h:outputText value="Date Open"/></td>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <td><h:outputText value="Date Closed"/></td>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
-    <tr><td><h:outputText value="Start Time"/></td> 
-     <td><p:selectOneMenu   style="width:100px" required="true" requiredMessage="plz  Enter StartTime" value="#{loginBean.str_StartTime}">
+    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <td><h:outputText value="Date Closed"/></td>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><th><h:outputText value="Start Time"/></th> 
+     <td><p:selectOneMenu  id="STime" style="width:100px" required="true" requiredMessage="plz  Enter StartTime" value="#{loginBean.str_StartTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
+      <p:ajax event="blur" update="STimeMsg" />
       </p:selectOneMenu>
-      
+      <p:message id="STimeMsg"   for="STime" display="text"/>
     
-      </td> <td><h:outputText value="End Time"/></td>  <td><p:selectOneMenu   style="width:100px" required="true" requiredMessage="plz  Enter EndTime" value="#{loginBean.str_EndTime}">
+      </td>
+       
+       <th><h:outputText value="End Time"/></th>  <td><p:selectOneMenu id="ETime"  style="width:100px" required="true" requiredMessage="plz  Enter EndTime" value="#{loginBean.str_EndTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
     <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
-      </p:selectOneMenu></td></tr>
-     <tr><td><h:outputText value="Facility Needed"/></td>
-     <td><p:selectOneMenu  required="true" requiredMessage="plz  enter Facility Needed" style="width:100px" value="#{loginBean.str_FacilityType}">
+     <p:ajax event="blur" update="ETimeMsg" />
+      </p:selectOneMenu>
+      <p:message id="ETimeMsg"  for="ETime" display="text"/>
+      </td>
+       </tr>
+     <tr><th><h:outputText value="Facility Needed"/></th>
+     <td><p:selectOneMenu id="Facility" required="true" requiredMessage="plz  enter Facility Needed" style="width:100px" value="#{loginBean.str_FacilityType}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
+     <p:ajax event="blur" update="FacilityMsg" />
     </p:selectOneMenu>
-    </td><td><h:commandButton value="Check Availability" action="#"/></td>
+    <p:message id="FacilityMsg"  for="Facility" display="text"/>
+    </td>
+    
+    <th><h:commandButton value="Check Availability" action="#"/></th>
     </tr>
    </table>
    <table>
-   <tr><td><h:outputText value=" Facility Details*"/></td>  <td></td><td><p:editor  required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td></tr>
-   <tr><td> <h:commandButton style="width:100px" onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addBookAFacility()}"/></td><td> <h:commandButton style="width:100px" value="Cancel" action="#"/> </td></tr>
+   <tr><th><h:outputText value=" Facility Details*"/></th>  <td></td><td><p:editor   required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" >
+   
+   </p:editor>
+   </td>
+   <td><p:message id="editorMsg"  for="editor" display="text"/></td>
+   </tr>
+   <tr><td> <h:commandButton styleClass="btn"    onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addBookAFacility()}"/></td><td> <h:commandButton  styleClass="btn"  value="Cancel" action="#"/> </td></tr>
                  
     </table>
     <script>

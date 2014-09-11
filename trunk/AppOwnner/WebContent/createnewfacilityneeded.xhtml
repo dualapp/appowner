@@ -14,15 +14,20 @@
 	 
 	<h:panelGroup  >
 	 
-             <table><tr><td>  <h:outputLabel value="Organisation:" /> </td>
+             <table><tr><th>  <h:outputText  value="Organisation:" /> </th>
              <td> <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu></td> </tr>
                  
-	<tr><td><h:outputText value="Facility Name"/></td>
-	<td><h:inputText value="#{expenseBean.str_FacilityName}"/></td></tr>
-	<tr><td> <p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.addFacility}"   >
+	<tr><th><h:outputText value="Facility Name*"/></th>
+	<td><h:inputText  id="FacilityName" required="true" requiredMessage="Plz Enter Facility Name" value="#{expenseBean.str_FacilityName}">
+	<p:ajax event="blur" update="FacilityNameMsg" />
+	</h:inputText>
+	</td>
+	<td> <p:message  id="FacilityNameMsg" for="FacilityName" display="text"/> </td>
+	</tr>
+	<tr><td> <p:commandButton  styleClass="btn"  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.addFacility}"   >
 	
 	</p:commandButton> </td></tr>
 	</table>  

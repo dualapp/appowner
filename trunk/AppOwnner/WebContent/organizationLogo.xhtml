@@ -17,10 +17,10 @@
  <h:body>
  
   <table><tr><th>
-               <h:outputLabel value="Organisation:" /> </th>
+               <h:outputText value="Organisation:" /> </th>
               <td> <h:outputText value="#{expenseBean.str_OrganizationName}"/></td></tr>
                  
-       <tr><th><h:outputLabel value="Appartment Address:" /> </th><td><p:inputTextarea rows="6" cols="33"     value="#{expenseBean.str_ApptAddress}"/></td></tr><br/>
+       <tr><th><h:outputText value="Appartment Address:" /> </th><td><p:inputTextarea rows="6" cols="33"     value="#{expenseBean.str_ApptAddress}"/></td></tr><br/>
   
  
   
@@ -78,9 +78,9 @@
             <f:selectItem itemLabel="tuesdat" itemValue="tuesday" />
             <f:selectItem itemLabel="wednesday" itemValue="wednesday" />
              <f:selectItem itemLabel="thrusday" itemValue="thrusady" /></p:selectOneMenu></td></tr>
-              
+              <tr><td></td><td><h:commandButton styleClass="btn" value="Submit"  action="#{expenseBean.addOrganizationLogo}" /></td></tr>
                     </table>
-         <h:commandButton value="Submit"  action="#{expenseBean.addOrganizationLogo}" />
+         
             
  </h:body>
  </h:form>
