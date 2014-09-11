@@ -38,12 +38,10 @@ public class User implements Serializable{
 	private String str_LastName;
 	@Column
 	private String str_Email;
-	@Column
-	private String str_ConfirmEmail;
+	
 	@Column
 	private String str_Password;
-	@Column
-	private String str_ConfirmPassword;
+	
 	@Column
 	private Integer int_UserRole;
 	@Column
@@ -120,24 +118,14 @@ public class User implements Serializable{
 	public void setStr_Email(String str_Email) {
 		this.str_Email = str_Email;
 	}
-	public String getStr_ConfirmEmail() {
-		return str_ConfirmEmail;
-	}
-	public void setStr_ConfirmEmail(String str_ConfirmEmail) {
-		this.str_ConfirmEmail = str_ConfirmEmail;
-	}
+	
 	public String getStr_Password() {
 		return str_Password;
 	}
 	public void setStr_Password(String str_Password) {
 		this.str_Password = str_Password;
 	}
-	public String getStr_ConfirmPassword() {
-		return str_ConfirmPassword;
-	}
-	public void setStr_ConfirmPassword(String str_ConfirmPassword) {
-		this.str_ConfirmPassword = str_ConfirmPassword;
-	}
+	
 	public Integer getInt_UserRole() {
 		return int_UserRole;
 	}
