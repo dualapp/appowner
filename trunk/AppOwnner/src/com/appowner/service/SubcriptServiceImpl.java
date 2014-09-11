@@ -45,6 +45,12 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,6 +92,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
+
+
+
+
+
+
 
 
 
@@ -332,6 +344,41 @@ public   class SubcriptServiceImpl implements SubcriptService {
 	public List getSearchByName(String username) {
 		return getSubcriptDao().getSearchByName(username);
 	}
+
+	@Override
+	public void Deleted(Cls_CreateDocumentManagement category) {
+		 getSubcriptDao().Deleted(category);
+		
+	}
+
+	@Override
+	public Cls_CreateDocumentManagement editproduct(int Int_DocumentID) {
+		return getSubcriptDao().editproduct(Int_DocumentID);
+	}
+
+	@Override
+	public int editproductaa(int int_DocumentID) {
+		return getSubcriptDao().editproductaa(int_DocumentID);
+	}
+
+	@Override
+	public int editproductaa(Integer int_DocumentID) {
+		return getSubcriptDao().editproductaa(int_DocumentID);
+	}
+
+	@Override
+	public String editproduct2(int prointcatid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String editpro(int prointcatid) {
+		return getSubcriptDao().editpro(prointcatid);
+	}
+
+	
+	
 	
 
 	
