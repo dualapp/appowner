@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+     
+ <h:head><title>Member Details</title>
+  <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
+
+ <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+    
+</h:head>
+
+   <h:body>
+
+<script>
+
+ var modalWin = new CreateModalPopUpObject();
+ modalWin.SetLoadingImagePath("images/loading_home.gif");
+ modalWin.SetCloseButtonImagePath("images/cross.png");
+ //Uncomment below line to make look buttons as link
+ //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
+
+function ShowNewPage(){
+ var callbackFunctionArray = new Array(Submit, Cancel);
+ modalWin.ShowURL('email_information.xhtml',470,600,'Create New member',null,callbackFunctionArray);
+ 
+ }
+
+ 
+function ShowMessage() {
+ modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
+ }
+  
+ 
+
+function Submit(msg){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function Cancel(){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function HideModalWindow() {
+    modalWin.HideModalPopUp();
+}
+
+
+
+</script>
+ </h:body>
+ 
+<body bgcolor="white">
+<h:form>
+<table>
+<tr>
+                <td><h:outputLabel  value="First Name * " ><br/><small>Minimum 3 Characters</small></h:outputLabel></td>
+                <td><p:inputText id="Name1" value="#{cls_FeedbackBean.feedbackName}"  required="true" requiredMessage="Please enter your name">
+                
+</p:inputText>
+</td>
+</tr>
+
+
+<tr>
+                <td><h:outputLabel  value="Last Name * " /></td>
+                <td><p:inputText id="Name2" value="#{cls_FeedbackBean.feedbackName}" required="true" requiredMessage="Please enter your name">
+                
+</p:inputText>
+</td>
+</tr>
+
+
+<tr>
+                <td><h:outputLabel value="Mobile *  " ><br/><small>Must  be  10  Digit</small></h:outputLabel></td>
+                <td><p:inputText id="Name3" value="#{cls_FeedbackBean.feedbackName}" required="true" requiredMessage="Please enter your name">
+                
+</p:inputText>
+</td>
+</tr>
+
+
+
+</table>
+        <input type="button"  value="Next" onclick="ShowNewPage()" />
+</h:form>
+</body>
+ </html>
