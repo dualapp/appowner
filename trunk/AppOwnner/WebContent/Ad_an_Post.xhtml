@@ -136,7 +136,8 @@
              
              <h:form>
         <h:body>
-        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 100%" binding="#{cls_AddDetailBean.dataTable}">
+        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}"   binding="#{cls_AddDetailBean.dataTable}"    style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50">
       
     <p:column>
   <f:facet name="header">
