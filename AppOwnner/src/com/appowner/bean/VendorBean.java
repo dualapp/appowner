@@ -14,6 +14,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
 
 import org.hibernate.search.annotations.Factory;
@@ -721,7 +722,12 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	public String updateVendor() {
 		if (vendor.getInt_VendorId() != null) {
 			getVendorservice().update(vendor);
-			
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
 
 		} else
 			getVendorservice().addVendor(vendor);
@@ -836,13 +842,18 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 			vendorServiceDetails1.setInt_ServicePrice(int_ServicePrice);
 			vendorServiceDetails1.setInt_VendorId(vendorId);
 			getVendorservice().addServiceDetails(vendorServiceDetails1);
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
 
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor Added Successfully!", "Vendor added Successfully!"));
 		 
 		}
 
 		 
 
-		return "vendorlists.xhtml";
+		return "addvendor.xhtml";
 	}
 	}
 	private WorkOrderCategory workOrderCategory;
