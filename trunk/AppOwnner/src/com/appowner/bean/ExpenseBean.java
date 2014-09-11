@@ -1490,8 +1490,34 @@ public static void setPool1(Pool pool1) {
 	ExpenseBean.pool1 = pool1;
 }
 private String msg;
+public Boolean getDisabled() {
+	if(getIsVoted()==null)
+	 
+		disabled=false;
+	else
+		disabled=true;
+	 
+	return disabled;
+}
+public void setDisabled(Boolean disabled) {
+	this.disabled = disabled;
+}
+private Boolean disabled;
 private Integer  isVoted;
 public Integer getIsVoted() {
+	if(pool!=null)
+	{
+ 
+		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+		System.out.println(isVoted);
+	}
+    
+	else
+	{
+		 
+		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
+		 System.out.println(isVoted+"Vote");
+	}
 	return isVoted;
 }
 public void setIsVoted(Integer isVoted) {
@@ -1522,13 +1548,13 @@ public String addVote()
 	if(pool!=null)
 	{
 		vote.setInt_PoolId(int_PoolId);
-		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+		//isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
 	}
     
 	else
 	{
 		vote.setInt_PoolId(latestPolls.getInt_PoolId());
-		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
+		// isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
 		 
     System.out.println(isVoted+"voteId");
 	}
@@ -1541,7 +1567,7 @@ public String addVote()
 		
 		return null;
 	}
-	
+	 
 	getExpenseService().addVote(vote);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Vote Successfully!", "Vote Saved Successfully!"));
 	System.out.println(int_PoolId);
