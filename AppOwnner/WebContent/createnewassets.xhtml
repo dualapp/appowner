@@ -15,6 +15,7 @@
     </h:head>
  <a href="assets.xhtml">>>Back To Asset</a >
     <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    
     <body>
     
                  <fieldset>
@@ -28,25 +29,33 @@
                 
                  </p:selectOneMenu> </td>&nbsp;&nbsp;
                  <td><h:outputText value="Assets Category*"/></td>
-                 <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
+                 <td><p:selectOneMenu  id="AssetCategory" required="true" requiredMessage="plz Enter Assets Category "  value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                   
                  </p:selectOneMenu>
-                 </td></tr>
-                 <tr><td><h:outputText value="Assets Name*"/></td><td><h:inputText value="#{expenseBean.str_AssetName}"/></td>
+                 </td>
+                 <td><p:message   for="AssetCategory" display="text"/></td>
+                 </tr>
+                 <tr><td><h:outputText value="Assets Name*"/></td><td><h:inputText  id="AssetName" required="true" requiredMessage="plz Enter Asset Name" value="#{expenseBean.str_AssetName}"/>
+                 <td><p:message   for="AssetName" display="text"/></td>
+                 </td>
+                 
                  &nbsp;&nbsp;<td><h:outputText value="Location(Block)"/></td><td><p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px">&nbsp;
+              <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
                  </p:selectOneMenu> </td>
                  </tr>
                  <tr><td><h:outputText value="Rentable*"/></td>
-                 <td><p:selectOneRadio id="console" value="#{expenseBean.bool_Rentable}" >
+                 <td><p:selectOneRadio  id="Rantable" required="true" requiredMessage="plz Select Rentable"   value="#{expenseBean.bool_Rentable}" >
             
             <f:selectItem itemLabel="yes" itemValue="yes" />
             <f:selectItem itemLabel="No" itemValue="No" />
-        </p:selectOneRadio></td></tr>
+        </p:selectOneRadio></td>
+        <td><p:message   for="Rantable" display="text"/></td>
+        </tr>
                  </table>
                  
 </fieldset>
@@ -74,10 +83,14 @@
         <p:tab title="Purchase Details">
          <fieldset>
         <table>
-        <tr><td><h:outputText value="Purchase Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{expenseBean.date_PurchaseDate}"/>
-                   </td>&nbsp;&nbsp;&nbsp;&nbsp;<td><h:outputText value="Price"/></td><td><h:inputText value="#{expenseBean.dbl_Price}"/></td></tr>
-                   <tr><td><h:outputText value="Warrenty Start Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyStartDate}"/></td>&nbsp;&nbsp;&nbsp;&nbsp;
-                   <td><h:outputText value="Warrenty End Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyEndDate}"/></td></tr>
+        <tr><td><h:outputText value="Purchase Date"/></td><td><p:calendar  id="PDate" required="true" requiredMessage="Please enter Purchase Date" navigator="true" display="inline"   value="#{expenseBean.date_PurchaseDate}"/>
+      </td><td>  <p:message   for="PDate" display="text"/></td>
+                   <td><h:outputText value="Price"/></td><td><h:inputText value="#{expenseBean.dbl_Price}"/></td></tr>
+                   <tr><td><h:outputText value="Warrenty Start Date"/></td><td><p:calendar id="WSDate"  required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyStartDate}"/>
+                 </td><td>  <p:message   for="WSDate" display="text"/></td>
+                   <td><h:outputText value="Warrenty End Date"/></td><td><p:calendar  id="WEDate" required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyEndDate}"/>
+                   </td><td><p:message   for="WEDate" display="text"/></td>
+                   </tr>
                  <tr><td><h:outputText value="Vendor"/></td><td> <p:selectOneMenu id="str_VendorType" style="width:200px" valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}"  value="#{expenseBean.str_VendorType}"  >
             <f:selectItem itemLabel="Select One" itemValue="" />
              
@@ -107,8 +120,11 @@
         
          <fieldset>
         <table>
-        <tr><td><h:outputText value="AMC Start Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCStartDate}"/></td>&nbsp;&nbsp;&nbsp;&nbsp;
-        <td><h:outputText value="AMC End Date"/></td><td><p:calendar   required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCEndDate}"/></td></tr>
+        <tr><td><h:outputText value="AMC Start Date"/></td><td><p:calendar  id="StartDate" required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCStartDate}"/>
+       </td><td> <p:message   for="StartDate" display="text"/></td>
+        <td><h:outputText value="AMC End Date"/></td><td><p:calendar id="EndDate"  required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCEndDate}"/>
+        </td><td><p:message   for="EndDate" display="text"/></td>
+        </tr>
           <tr><td><h:outputText value="Vendor"/></td><td> <p:selectOneMenu id="str_VendorType1" style="width:200px"  value="#{expenseBean.str_VendorType}"  >
             <f:selectItem itemLabel="Select One" itemValue="" />
              

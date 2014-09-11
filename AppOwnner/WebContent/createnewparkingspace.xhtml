@@ -9,6 +9,7 @@
 	<h:head>
 	</h:head>
 	 <h:form id="form4">
+	 <h:messages style="color:red"/>
 	<h:body>
 	<br/>
 	
@@ -23,7 +24,9 @@
                  </p:selectOneMenu></td></tr>
                  
 <tr><td><h:outputText value="parkingSlot"/></td>
-	<td><h:inputText value="#{expenseBean.str_ParkingSlot}"/></td></tr>
+	<td><h:inputText  id="Parkingslot" required="true" requiredMessage="plz Enter ParkingSlot" value="#{expenseBean.str_ParkingSlot}"/></td>
+	<td><p:message   for="Parkingslot" display="text"/></td>
+	</tr>
 	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}"   >
 	
 	</p:commandButton> </td></tr> 

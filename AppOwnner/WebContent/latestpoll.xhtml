@@ -12,15 +12,18 @@
 	 </f:metadata>
 <h:body>
 <h:form>
+ 
 <table  >
 <tr><td><h:outputText value="Pool Question?"/></td><td><h:inputText value="#{expenseBean.latestPolls.str_poolQuestion}"/></td></tr>
       <tr><td><h:selectOneRadio  id="votechoise"
-                      value="#{expenseBean.str_Choise}">
+               required="true" requiredMessage="Plz select Choise"       value="#{expenseBean.str_Choise}">
         <f:selectItem   itemLabel="#{expenseBean.latestPolls.str_Choise1}" itemValue="#{expenseBean.latestPolls.str_Choise1}" />
         <f:selectItem   itemLabel="#{expenseBean.latestPolls.str_Choise2}" itemValue="#{expenseBean.latestPolls.str_Choise2}" />
         <f:selectItem   itemLabel="#{expenseBean.latestPolls.str_Choise3}" itemValue="#{expenseBean.latestPolls.str_Choise3}" />
         
-        </h:selectOneRadio></td></tr>
+        </h:selectOneRadio></td>
+        <td><p:message   for="votechoise" display="text"/></td>
+        </tr>
         <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea     value="#{expenseBean.str_Remark}" /></td>
         </tr> 
         <f:facet name="footer">
@@ -28,7 +31,7 @@
                <h:commandButton id="submit" value="Submit" />
             </h:panelGroup>
          </f:facet>
-        <tr><td><h:commandButton  styleClass="btn" value="Vote" action="#{expenseBean.addVote}"/></td></tr>
+        <tr><td><h:commandButton   styleClass="btn" value="Vote" action="#{expenseBean.addVote}"/></td></tr>
       </table>
 </h:form>
 </h:body>
