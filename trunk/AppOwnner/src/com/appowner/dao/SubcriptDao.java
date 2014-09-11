@@ -101,6 +101,14 @@ public interface SubcriptDao {
 
 	public List getSearchByName(String username);
 
+	public void Deleted(Cls_CreateDocumentManagement category);
+
+	public Cls_CreateDocumentManagement editproduct(int int_DocumentID);
+
+	public int editproductaa(Integer int_DocumentID);
+
+	public String editpro(int prointcatid);
+
 	
 	
 	
