@@ -86,10 +86,10 @@
              <tr>
              <td><h:outputText value="Email :">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText id="str_Email" value="#{cls_UserBean.str_Email}" required="true" validatorMessage=" User Email id is not valid. It should be like abc@gmail.com" requiredMessage="Please Enter Email!">
+             <td><h:inputText id="str_Email" value="#{cls_UserBeanMain.str_Email}" required="true" validatorMessage=" User Email id is not valid. It should be like abc@gmail.com" requiredMessage="Please Enter Email!">
              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-             <p:ajax event="blur" update="useremailMsg,out3" listener="#{cls_UserBean.dataChange2}" partialSubmit="true" />
-            </h:inputText> <h:outputText id="out3" value="#{cls_UserBean.value1}" /> &#150;<p:message id="useremailMsg" for="str_Email"/></td></tr>
+             <p:ajax event="blur" update="useremailMsg,out3" listener="#{cls_UserBeanMain.dataChange2}" partialSubmit="true" />
+            </h:inputText> <h:outputText id="out3" value="#{cls_UserBeanMain.value1}" /> &#150;<p:message id="useremailMsg" for="str_Email"/></td></tr>
              <tr>
             <td><h:outputText value="Confirm Email :">
             </h:outputText> <font color="red" >*</font> </td>          
@@ -100,10 +100,10 @@
             <tr>
             <td><h:outputText value="User name:">
             </h:outputText><font color="red" >*</font> </td>           
-            <td><h:inputText id="str_username" value="#{cls_UserBean.str_Username}" required="true" requiredMessage="Please Enter user name!">
-            <p:ajax event="blur" update="out2" listener="#{cls_UserBean.dataChange1}" partialSubmit="true"/>   
+            <td><h:inputText id="str_username" value="#{cls_UserBeanMain.str_Username}" required="true" requiredMessage="Please Enter user name!">
+            <p:ajax event="blur" update="out2" listener="#{cls_UserBeanMain.dataChange1}" partialSubmit="true"/>   
             </h:inputText>&#150;
-            <h:outputText id="out2" value="#{cls_UserBean.value}" />
+            <h:outputText id="out2" value="#{cls_UserBeanMain.value}" />
             </td>
             </tr>
             <tr>
