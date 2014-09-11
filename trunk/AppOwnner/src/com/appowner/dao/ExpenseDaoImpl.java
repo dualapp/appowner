@@ -340,10 +340,11 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public Pool getLatestPolls() {
 		// TODO Auto-generated method stub
-		//String hql="from Pool WHERE int_PoolId = max(int_PoolId)";
-		String hql="from Pool order by int_PoolId desc limit 1,1;";
+		String hql=" select max(int_PoolId) from Pool";
+		//String hql="from Pool order by int_PoolId desc limit 1,1;";
+		Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
 		 
-		return  (Pool) getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+		return  (Pool) getSessionFactory().getCurrentSession().get(Pool.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
