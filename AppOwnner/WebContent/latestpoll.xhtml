@@ -31,7 +31,7 @@
                <h:commandButton id="submit" value="Submit" />
             </h:panelGroup>
          </f:facet>
-        <tr><td><h:commandButton   styleClass="btn" value="Vote" action="#{expenseBean.addVote}"/></td></tr>
+        <tr><td><h:commandButton   disabled="#{expenseBean.disabled}" styleClass="btn" value="Vote"   action="#{expenseBean.addVote}"/></td></tr>
       </table>
 </h:form>
 </h:body>

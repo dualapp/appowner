@@ -11,24 +11,32 @@
     </h:head>
     <a href="servicerequest.xhtml">>>Back To Service Request</a >
     <h:form>
-    <h:messages style="color:red"/>
+     
     <h:body>
-    <table><tr><td><h:outputText value="Created by"/></td>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
-    <tr><td><h:outputText value="Organization"/></td>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
-   <tr><td><h:outputText value="Flat Name"/></td> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
+    <table><tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
+   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
     
-    <tr><td><h:outputText value="Name"/></td> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Email"/></td>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
-    <tr><td><h:outputText value="Mobile"/></td>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <td><h:outputText value="LandLine"/></td>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
-   <tr><td><h2><h:outputText value="Service Request Details"/></h2></td></tr>
-    <tr><td><h:outputText value="Date Open"/></td>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <td><h:outputText value="Date Closed"/></td>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
-    <tr><td><h:outputText value="Status"/></td> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <td><h:outputText value="VendorCategory"/></td>  <td><p:selectOneMenu value="#{loginBean.str_VendorType}">
+    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Email"/></td>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
+    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <td><h:outputText value="LandLine"/></td>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+   <tr><th><h2><h:outputText value="Service Request Details"/></h2></th></tr>
+    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <td><h:outputText value="Date Closed"/></td>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><th><h:outputText value="Status"/></th> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <td><h:outputText value="VendorCategory"/></td>  <td><p:selectOneMenu value="#{loginBean.str_VendorType}">
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></p:selectOneMenu>
     </td></tr>
-   <tr><td><h:outputText value="Title*"/></td>  <td><h:inputText required="true" requiredMessage="plz  enter Title" value="#{loginBean.str_Title}"/></td></tr>
+   <tr><th><h:outputText value="Title*"/></th>  <td><h:inputText id="Title" required="true" requiredMessage="plz  enter Title" value="#{loginBean.str_Title}">
+   <p:ajax event="blur" update="TitleMsg" />
+   </h:inputText>
+   
+   </td>
+   <td> <p:message  id="TitleMsg" for="Title" display="text"/> </td>
+   </tr>
    </table>
    <table>
-   <tr><td><h:outputText value="Description*"/></td>  <td></td><td><p:editor id="editor" required="true" requiredMessage="plz  Enter Description"  widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td></tr>
-   <tr><td> <h:commandButton style="width:100px" onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addServiceRequest()}"/></td><td> <h:commandButton style="width:100px" value="Cancel" action="#"/> </td></tr>
+   <tr><th><h:outputText value="Description*"/></th>  <td></td><td><p:editor id="editor" required="true" requiredMessage="plz  Enter Description"  widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td>
+    <td> <p:message  id="editorMsg" for="editor" display="text"/> </td>
+   </tr>
+   <tr><td> <h:commandButton  styleClass="btn" style="width:100px" onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addServiceRequest()}"/></td><td> <h:commandButton  styleClass="btn" style="width:100px" value="Cancel" action="#"/> </td></tr>
                  
     </table>
     <script>

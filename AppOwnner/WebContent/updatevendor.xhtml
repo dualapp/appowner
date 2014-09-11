@@ -26,52 +26,52 @@
  <p:focus context="panel"/>
  <table>
  <tr>
- <td>
-    <h:outputText value="Vendor Type:"/></td>
+ <th>
+    <h:outputText value="Vendor Type:"/></th>
     <td>
     <h:inputText value="#{vendorBean.vendor.str_VendorType}"/></td>
     </tr>
  <tr>
- <td>
-    <h:outputText value="Vendor Name:"/></td>
+ <th>
+    <h:outputText value="Vendor Name:"/></th>
     <td>
     <h:inputText value="#{vendorBean.vendor.str_VendorName}"/></td>
     </tr>
     <tr>
-    <td>
-    <h:outputText value="Vendor Phone:"/></td>
+    <th>
+    <h:outputText value="Vendor Phone:"/></th>
     <td>
     <h:inputText value="#{vendorBean.vendor. str_VendorPhone}"/></td>
     </tr>
     <tr>
- <td>
-    <h:outputText value="Vendor Email:"/></td>
+ <th>
+    <h:outputText value="Vendor Email:"/></th>
     <td>
     <h:inputText value="#{vendorBean.vendor.str_VendorEmail}"/></td>
     </tr>
    
   
     <tr>
- <td>
-    <h:outputText value="Vendor Bank Name:"/></td>
+ <th>
+    <h:outputText value="Vendor Bank Name:"/></th>
     <td>
     <h:inputText value="#{vendorBean.vendor.str_VendorBankName}"/></td>
     </tr>
     <tr>
- <td>
-    <h:outputText value="Vendor Expense:"/></td>
+ <th>
+    <h:outputText value="Vendor Expense:"/></th>
     <td>
     <h:inputText value="#{vendorBean.vendor.bool_IsVendorActive}"/></td>
     </tr>
      <tr>
- <td>
-    <h:outputText value="Comments:"/></td>
+ <th>
+    <h:outputText value="Comments:"/></th>
     <td>
     <h:inputText value="#{vendorBean.vendor.str_VendorComments}"/></td>
     </tr>
      
- <tr><td><h:commandButton  value="Submit"  action="#{vendorBean.updateVendor}"/>
-   <h:button outcome="vendorlists.xhtml" value="Cancel"  /></td></tr> 
+ <tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit"  action="#{vendorBean.updateVendor}"/></td>
+    <td><h:commandButton   styleClass="btn" id="Cancel"   value="Cancel"  /></td></tr> 
     </table>
     </p:panel>
     </h:panelGrid>
