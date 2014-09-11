@@ -1514,7 +1514,10 @@ public String addVote()
 	System.out.println(int_PoolId+"poolId");
 //	System.out.println(pool.getInt_userId()+"userId");
 	
-	
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
 	 
 	if(pool!=null)
 	{
@@ -1533,14 +1536,14 @@ public String addVote()
 	{
 		System.out.println(isVoted+"voteId1");
 		
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
+		
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"u have already voted Thank u for participating!", "u have already voted Thank u for participating!"));
-		 return "vote.xhtml";
+		
+		return null;
 	}
+	
 	getExpenseService().addVote(vote);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Vote Successfully!", "Vote Saved Successfully!"));
 	System.out.println(int_PoolId);
 	if(pool!=null)
 	{
@@ -1556,7 +1559,7 @@ public String addVote()
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(latestPolls);
 	}
- return "pools.xhtml";
+ return null;
 }
 public void getOnePool()
 {   pool=new Pool();
