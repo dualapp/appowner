@@ -32,6 +32,7 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserCity;
@@ -62,9 +63,23 @@ public class Cls_UserBeanMain implements Serializable {
 	    private static String subject="subject";
 	    private static String content="content";
 		private String str_getRoleNameUser;
+		public String value;
+	    public String value1;
 	    
 	    
-	    public static String getEl() {
+	    public String getValue() {
+			return value;
+		}
+		public void setValue(String value) {
+			this.value = value;
+		}
+		public String getValue1() {
+			return value1;
+		}
+		public void setValue1(String value1) {
+			this.value1 = value1;
+		}
+		public static String getEl() {
 			return el;
 		}
 		public static void setEl(String el) {
@@ -536,9 +551,11 @@ public class Cls_UserBeanMain implements Serializable {
 		usr.setStr_FirstName(getStr_FirstName());
 		usr.setStr_LastName(getStr_LastName());
 		usr.setStr_Email(getStr_Email());
-		usr.setStr_ConfirmEmail(getStr_ConfirmEmail());
+		System.out.println("llllllllllllllllllllllllllllllllpppppppppppppppppppp");
+		System.out.println(getStr_Email());
+		//usr.setStr_ConfirmEmail(getStr_ConfirmEmail());
 		usr.setStr_Password(getStr_Password());
-		usr.setStr_ConfirmPassword(getStr_ConfirmPassword());
+		//usr.setStr_ConfirmPassword(getStr_ConfirmPassword());
         usr.setInt_UserRole(getInt_UserRole());
         usr.setStr_Flat(getStr_Flat());
 		usr.setStr_Block(getStr_Block());
@@ -574,7 +591,38 @@ public class Cls_UserBeanMain implements Serializable {
 		return "EmailForm1.jsp";
 		
 	}
+	//for user id and email validation
 	
+	public void dataChange1()
+	{
+		user=getUserService().validate(getStr_Username());
+          if(user==null)
+        	{  
+        	  setValue("User name is available.");
+        	}
+   else    
+   { 
+	   setValue("This name is taken by someone try another.");
+   }
+		
+		
+	}
+	
+	public void dataChange2()
+	{
+		user=getUserService().validate1(getStr_Email());
+          if(user!=null)
+        	{  
+        	  setValue1(" Email id is already used give another email-id.");
+        	}
+          else    
+   	   { 
+   		   setValue1(" ");
+   	   }
+   
+		
+	}
+}
 
 	 
 	     
@@ -585,4 +633,3 @@ public class Cls_UserBeanMain implements Serializable {
 
  
 
-}
