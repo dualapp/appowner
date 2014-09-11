@@ -8,93 +8,81 @@
 	template="include/templates/template1.xhtml">
 	<ui:define name="content">
 	 <f:metadata>
-	<f:viewParam name="int_ProductId" value="#{cls_AddDetailBean.int_ProductId}"  />
+	<f:viewParam name="int_DocumentID" value="#{scriptBean.int_DocumentID}"  />
 	 
-	<f:viewAction action="#{cls_AddDetailBean.getCls_ProductDetails}" />
+	<f:viewAction action="#{scriptBean.getview}" />
 </f:metadata>
 <h:head>
-    <title>Edit</title>
+    <title>View</title>
 </h:head>
 <body bgcolor="pink">
 <h:form>
-  
- 
- <table>
- 
-  <tr>
-  
- <td>
-    <h:outputText value="Category Name"/></td>
-    <td>
-    <h:inputText value="#{cls_AddDetailBean.pro1}"> </h:inputText></td>
-    </tr>
-   
-    <tr>
-         <h:panelGroup id="sss1">
-             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-            <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
-             <h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.pro.ch_Ad_Type}">
-            <f:selectItem itemLabel="My Community" itemValue="My Community" />
-            <f:selectItem itemLabel="Neighbourhood" itemValue="Negihbourhood" />
-           
-           </h:selectOneRadio>
-        
-        <p:outputLabel for="I" value="I want to" />
-        <h:selectOneRadio id="I" value="#{cls_AddDetailBean.pro.ch_Product_Type}">
-            <f:selectItem itemLabel="SELL" itemValue="Sell" />
-            <f:selectItem itemLabel="BUY" itemValue="Buy" />
-            <f:selectItem itemLabel="RENT" itemValue="Rent" />
-       </h:selectOneRadio>
-       
- </h:panelGrid>
- </h:panelGroup>
-</tr>
-   
-  <p:outputPanel layout="block"  style=" float:right !important;margin:-100px 100px 50px 50px;">  
-       <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
-       </p:outputPanel>
-           <tr>
-           <td>
-          <h:outputText value="Title"></h:outputText></td>
-          <td><h:inputText  value="#{cls_AddDetailBean.pro.var_Title}" size="35">
-            </h:inputText>
-            </td>
-            </tr>
- 
-<br />
-<br />
-
+<table>
 <tr>
-               <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><p:inputTextarea rows="10" cols="50" value="#{cls_AddDetailBean.pro.var_Description}" >
-              </p:inputTextarea>
+<td>
+                 <h:outputText value="Category Name"/>
+      
+                 <h:outputText value="#{scriptBean.pro1}"   style="width:120%" > </h:outputText>
+               </td>
+               </tr>
+               <tr>
+               
+                <td>    <h:outputText value="Description" /></td>
+                
+             <td>   <h:outputText value="#{scriptBean.pro.str_Description}" style="width:120%"/>
+             
+            </td>
+           </tr>
+           
+     
+            <tr>
+                
+                <td>
+                 <h:outputText value="Size(in KB)" /></td>
+                 
+            
+           <td>     <h:outputText value="#{scriptBean.pro.size} kb" style="width:90%"/></td>
+           </tr>
+           
+            <tr>
+          
+            
+                
+                <td>
+                    <h:outputText value="Uploaded By" /></td>
+                    
+               
+            <td>    <h:outputText value="#{scriptBean.pro.username}" style="width:90%"/></td>
+            
+          
+          </tr>
+          
+              <tr>  
+                <td>
+                    <h:outputText value="Uploaded On" /></td>
+                    
+                
+            <td>    <h:outputText value="#{scriptBean.pro.str_ApartmentName}" style="width:90%"/> </td>
+           
+          </tr>
+            
+             
+             <tr>   
+                <td>
+                  <h:outputText value="Accessible to" /></td>
+               
+           <td>     <h:outputText value="#{scriptBean.pro.ch_Access}" style="width:90%"/></td>
+               
+             
+             
+           
                
                 
-            </td>
             </tr>
- 
-  </table>
-  </h:form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</table>
+</h:form>
 </body>
-
 
 </ui:define>
 </ui:composition>
