@@ -73,14 +73,14 @@
     <h:outputText value="Choose Your  File for upload "></h:outputText>
    <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
         fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa" style="width:150px" />
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa" style="width:250px" />
        </td>
        </tr>
        <br />
        <br />
  <tr>
                <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><p:inputTextarea rows="15" cols="80" value="#{cls_AddDetailBean.var_Description}" >
+                <td><p:inputTextarea rows="10" cols="50" value="#{cls_AddDetailBean.var_Description}" >
               </p:inputTextarea>
                
                 
