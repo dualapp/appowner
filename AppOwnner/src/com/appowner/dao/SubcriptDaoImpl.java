@@ -339,6 +339,39 @@ public class SubcriptDaoImpl implements SubcriptDao {
 			
 		}
 	}
+
+	@Override
+	public void Deleted(Cls_CreateDocumentManagement category) {
+		// TODO Auto-generated method stub
+		System.out.println("pip");
+		 getSessionFactory().getCurrentSession().createQuery("delete from Cls_CreateDocumentManagement where Int_DocumentID="+category.getInt_DocumentID()).executeUpdate();
+	}
+
+	@Override
+	public Cls_CreateDocumentManagement editproduct(int int_DocumentID) {
+		return(Cls_CreateDocumentManagement)getSessionFactory().getCurrentSession().get(Cls_CreateDocumentManagement.class,int_DocumentID);
+	}
+
+	@Override
+	public int editproductaa(Integer int_DocumentID) {
+		{
+			System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+			System.out.println(int_DocumentID);
+			String hql2="select Int_Document_CatID from Cls_CreateDocumentManagement where Int_DocumentID=?";
+			System.out.println("8888888888888888888888888888888888");
+			return (int) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, int_DocumentID).uniqueResult();
+					
+		}
+	}
+
+	@Override
+	public String editpro(int prointcatid) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(prointcatid);
+		String hql2="select Int_Document_CatNM from Cls_DocumentCategory where Int_Document_CatID=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (String) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, prointcatid).uniqueResult();
+	}
 }
 
 	
