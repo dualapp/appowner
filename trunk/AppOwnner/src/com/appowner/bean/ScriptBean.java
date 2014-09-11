@@ -33,7 +33,7 @@ import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ScriptBean implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
@@ -813,14 +813,63 @@ public void handleFileUpload(FileUploadEvent event) throws IOException {
 	    System.out.println(path1);
 }
 
+public String deletedocument1(int id)
+{
+	System.out.println(id);
+	Cls_CreateDocumentManagement document=new Cls_CreateDocumentManagement();
+	document.setInt_DocumentID(id);
+	getSubcriptService().Deleted(document);
+	return "DocumentRepository.xhtml";
+	
+}
+private Cls_CreateDocumentManagement pro2;
 
+public Cls_CreateDocumentManagement getPro2() {
+	return pro2;
+}
+public void setPro2(Cls_CreateDocumentManagement pro2) {
+	this.pro2 = pro2;
+}
+private int prointcatid;
 
+public int getProintcatid() {
+	return prointcatid;
+}
+public void setProintcatid(int prointcatid) {
+	this.prointcatid = prointcatid;
+}
+public void getview(){
+	System.out.println(Int_DocumentID);
+	pro2=getSubcriptService().editproduct(Int_DocumentID);
+System.out.println("111111111111111111111111111111111111111111");
+	System.out.println(pro2.getInt_ApartmentID());
+	prointcatid=getSubcriptService().editproductaa(pro2.getInt_DocumentID());
+	System.out.println("222222222222222222222222222");
+	System.out.println(prointcatid);
+	pro1=getSubcriptService().editpro(prointcatid);
+	System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+	System.out.println(pro1);
 
-
+}
+private String pro1;
+public String getPro1() {
+	return pro1;
+}
+public void setPro1(String pro1) {
+	this.pro1 = pro1;
 }
 
 
 
+private Cls_CreateDocumentManagement pro;
+public Cls_CreateDocumentManagement getPro() {
+	return pro2;
+}
+public void setPro(Cls_CreateDocumentManagement pro2) {
+	this.pro2 = pro2;
+}
+
+}
 
 
 
