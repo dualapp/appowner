@@ -34,7 +34,9 @@ xmlns:f="http://java.sun.com/jsf/core">
             <td><h:outputText value="First Name :">
             </h:outputText><font color="red" >*</font> </td>          
             <td><h:inputText id="str_FirstName" value="#{cls_UserBean.str_FirstName}"                required="true" requiredMessage="Please Enter First Name!">
-            </h:inputText></td></tr> 
+            </h:inputText></td>
+            <td><p:message for="str_FirstName" dispay="text"/></td>
+            </tr> 
             <tr>
             <td><h:outputText value="Last name :">
             </h:outputText> </td>           
