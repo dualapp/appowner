@@ -16,7 +16,7 @@
 </h:head>
 <a href="pools.xhtml">>>Back To Pool</a >
 <h:form>
-<p:growl id="msgs" showDetail="true" />
+ 
 <h:body bgcolor="pink">
  <p:accordionPanel    activeIndex="">
      
@@ -48,12 +48,14 @@
     </tr>
     <tr><td><h:outputText value="Pool Question?"/></td><td><h:inputText value="#{expenseBean.pool.str_poolQuestion}"/></td></tr>
       <tr><td><h:selectOneRadio  id="votechoise"
-                      value="#{expenseBean.str_Choise}">
+                     required="true" requiredMessage="plz  select Choise" value="#{expenseBean.str_Choise}">
         <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise1}" itemValue="#{expenseBean.pool.str_Choise1}" />
         <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise2}" itemValue="#{expenseBean.pool.str_Choise2}" />
         <f:selectItem   itemLabel="#{expenseBean.pool.str_Choise3}" itemValue="#{expenseBean.pool.str_Choise3}" />
         
-        </h:selectOneRadio></td></tr>
+        </h:selectOneRadio></td>
+        <td><p:message   for="votechoise" display="text"/></td>
+        </tr>
         <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea     value="#{expenseBean.str_Remark}" /></td>
         </tr> 
         <tr><td><h:commandButton  value="Vote" action="#{expenseBean.addVote}"/></td></tr>

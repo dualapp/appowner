@@ -14,6 +14,7 @@
 	 </h:head>
 	  <a href="pools.xhtml">>>Back To Pool</a >
 	 <h:form>
+	  
 	 <h:body>
 	  <p:accordionPanel   multiple="true" activeIndex="">
      
@@ -35,13 +36,13 @@
         <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
         </h:selectOneRadio></td></tr>
         
-       <tr><td><h:outputText value="Pool QuestionS?*"/></td><td><p:inputTextarea id="newPollQuestion" style="Width:250%;height:100px;"    value="#{expenseBean.str_PoolQuestion}" /></td>
+       <tr><td><h:outputText value="Pool QuestionS?*"/></td><td><p:inputTextarea id="newPollQuestion"  required="true" requiredMessage="plz  enter PollQuestion" style="Width:250%;height:100px;"    value="#{expenseBean.str_PoolQuestion}" /></td>
         </tr> 
   <tr><td><h:outputText value="Enter Choices*"/></td></tr>
-  <tr><td><h:outputText value="choise1*"/></td><td><h:inputText  value="#{expenseBean.str_Choise1}"/></td></tr>
-  <tr><td><h:outputText value="choise2*"/></td><td><h:inputText  value="#{expenseBean.str_Choise2}"/></td></tr>
+  <tr><td><h:outputText value="choise1*"/></td><td><h:inputText required="true" requiredMessage="plz  enter Choise1"  value="#{expenseBean.str_Choise1}"/></td></tr>
+  <tr><td><h:outputText value="choise2*"/></td><td><h:inputText required="true" requiredMessage="plz  enter Choise2"  value="#{expenseBean.str_Choise2}"/></td></tr>
   <tr><td><h:outputText value="choise3"/></td><td><h:inputText  value="#{expenseBean.str_Choise3}"/></td></tr>
-   <tr><td><h:commandButton style="width:100px" onclick="return confirm(' Poll created successfully');"  value="submit" action="#{expenseBean.addPool}"/></td></tr>
+   <tr><td><h:commandButton style="width:100px" onsubmit="return confirm(' Poll created successfully');"  value="submit" action="#{expenseBean.addPool}"/></td></tr>
    </table>
     
    </h:body>
