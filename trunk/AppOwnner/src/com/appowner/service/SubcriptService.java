@@ -44,6 +44,9 @@ import java.util.List;
 
 
 
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -153,6 +156,18 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 
 	public List<Cls_CreateDocumentManagement> getSearchByName(
 			String username);
+
+	public void Deleted(Cls_CreateDocumentManagement category);
+
+	public Cls_CreateDocumentManagement editproduct(int Int_DocumentID);
+
+	public int editproductaa(Integer int_DocumentID);
+
+	public int editproductaa(int int_DocumentID);
+
+	public String editproduct2(int prointcatid);
+
+	public String editpro(int prointcatid);
 
 	
 
