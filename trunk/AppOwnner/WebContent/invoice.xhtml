@@ -8,12 +8,23 @@
 	<ui:define name="content">
 <h:head>
     <title>Invoice  Form</title>
+    <script>
+    function triggerHiddenEvent(id) {
+    	
+    		
+       if(id='form:jjj')
+      alert("Please Check the CheckBox Befor click the QuickPayment");
+      else
+          alert(id);
+        
+      }
+    </script>
 </h:head>
 <body  bgcolor="pink">
-  <h:form>
+  <h:form id="form">
   <fieldset>
-    <legend>
-   <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
+    <legend>Filter</legend>  
+  
      <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
@@ -87,10 +98,13 @@
              </fieldset>
              <br/>
              <br/>
-             <p:button  value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+             <p:button  value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action" id="aa44">
           <p:menuitem value="Record Payment" />
-          <p:menuitem value="Quick Payment" />
-           <p:menuitem value="Export To Excel" icon="images/xls.jpg" />
+         
+           <p:menuitem id="jjj" value="Quick Payment"  onclick="triggerHiddenEvent(this.id); return false;" url="quickpayment.xhtml" icon="ui-icon-disk">
+           
+           </p:menuitem>
+           <p:menuitem value="Export To Excel" icon="ui-icon-arrowrefresh-1-w" style="width:150px"/>
            <p:menuitem value="Notify By Mail"/>
          </p:menuButton>
        
@@ -99,7 +113,15 @@
              <h:form>
   <h:body>
          <h:outputText  value="Invoice: " color="red"></h:outputText>
-        <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}" style="width: 100%" align="center">
+        <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}" binding="#{invoiceBean.dataTable}" style="width: 100%" align="center">
+         <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Select" />
+                </f:facet>
+                 <h:selectBooleanCheckbox id="hhh" value="aaa"  valueChangeListener="#{invoiceBean.processValueChange}" >
+                 <p:ajax event="click"   partialSubmit="true"/>   
+                </h:selectBooleanCheckbox>
+           </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
@@ -135,6 +157,7 @@
                     <h:outputText value="Apartment" />
                 </f:facet>
                 <h:outputText value="#{invoice.str_ApartmentNo}" />
+              
             </p:column>
              <p:column>
                 <f:facet name="header">
