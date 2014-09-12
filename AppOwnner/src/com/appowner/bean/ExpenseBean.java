@@ -1548,13 +1548,13 @@ public String addVote()
 	if(pool!=null)
 	{
 		vote.setInt_PoolId(int_PoolId);
-		//isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
 	}
     
 	else
 	{
 		vote.setInt_PoolId(latestPolls.getInt_PoolId());
-		// isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
+		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
 		 
     System.out.println(isVoted+"voteId");
 	}
