@@ -10,19 +10,23 @@ import java.util.ListIterator;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.primefaces.component.datatable.DataTable;
 
 import com.appowner.model.DueTemplate;
+import com.appowner.model.DueTransaction;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@ViewScoped
-public class InvoiceBean implements Serializable{
+@RequestScoped
+public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{InvoiceService}")
 			private InvoiceService invoiceService;
@@ -39,7 +43,14 @@ public class InvoiceBean implements Serializable{
 	private String dat_InvoiceDate;
 	private String str_Status;
 	private String int_InvoiceNo;
-	
+	public InvoiceBean()
+	{
+		
+	}
+	public InvoiceBean(String msg)
+	{
+		super(msg);
+	}
 	
 	public String getInt_InvoiceNo() {
 		return int_InvoiceNo;
@@ -48,6 +59,7 @@ public class InvoiceBean implements Serializable{
 		this.int_InvoiceNo = int_InvoiceNo;
 	}
 	public String getStr_Status() {
+		str_Status="hi";
 		return str_Status;
 	}
 	public void setStr_Status(String str_Status) {
@@ -418,8 +430,8 @@ public class InvoiceBean implements Serializable{
 	public void setListTax(List<String> listTax) {
 		this.listTax = listTax;
 	}
-	public List<String> selectRadioButton(ValueChangeEvent event)
-	{  
+	public List<String> selectRadioButton(ValueChangeEvent event) throws InvoiceBean
+	{  try{
 		select =( String )event.getNewValue();
         
          dueList=new ArrayList<String>();
@@ -447,7 +459,12 @@ public class InvoiceBean implements Serializable{
 	    	 dueList=new ArrayList<String>();
 	         return dueList;
 	    }
-	      
+	}
+	catch(Exception e)
+	{
+		throw new InvoiceBean("DueTemplate is not Present");
+	}
+//	return dueList;
 	}
 	private List<InvoiceTransaction> listInvoiceTransaction;
 	public List<InvoiceTransaction> getListInvoiceTransaction() {
@@ -585,7 +602,9 @@ public class InvoiceBean implements Serializable{
 	@SuppressWarnings("rawtypes")
 	public List<String> amountChangeListener(ValueChangeEvent event)
 	         
-			 {  String str=(String)event.getNewValue();
+			 {  try
+			 {
+		String str=(String)event.getNewValue();
 			    
 			    Double sqrt=getInvoiceService().getSqft(str);
 			    listDues=getInvoiceService().taxList(select);
@@ -632,6 +651,71 @@ public class InvoiceBean implements Serializable{
 		 
 			     }
 			     return transaction;
+			 }
+			 catch(Exception e)
+			 {
+				 e.printStackTrace();
+			 }
+			return transaction;
+			 
 }
-	
+	private String accountName;
+
+public String getAccountName() {
+		return accountName;
+	}
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+private List<String> listAccountName;
+public List<String> getListAccountName() {
+	listAccountName=new ArrayList<String>();
+	listAccountName.addAll(getInvoiceService().getAccountName());
+	return listAccountName;
+}
+public void setListAccountName(List<String> listAccountName) {
+	this.listAccountName = listAccountName;
+}
+private DataTable dataTable;
+public void processValueChange(ValueChangeEvent event)  
+        throws AbortProcessingException 
+{    System.out.println("hi");
+	InvoiceTransaction template1=(InvoiceTransaction)dataTable.getRowData();
+	 id=template1.getInt_InvoiceTransactionID();
+	System.out.println(id);
+}
+public DataTable getDataTable() {
+	return dataTable;
+}
+public void setDataTable(DataTable dataTable) {
+	this.dataTable = dataTable;
+}
+private static Integer id;
+public static Integer getId() {
+	return id;
+}
+public static void setId(Integer id) {
+	InvoiceBean.id = id;
+}
+public void savePayment()
+{
+	System.out.println("hihhh");
+	getInvoiceService().updatePayment(accountName,str_Status,id);
+}
+public String  cancelInvoice()
+{
+	return "invoice.xhtml";
+}
+public void check() throws InvoiceBean
+{  System.out.println("hi");
+   try
+   {
+	if(id==789)
+		System.out.println("hello");
+   }
+	catch(Exception e)
+	{
+	    throw new InvoiceBean("Please Check the CheckBox Befor click the QuickPayment");	
+	}
+}
 }
