@@ -28,8 +28,8 @@
     <script>
 
  var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading.gif");
- modalWin.SetCloseButtonImagePath("images/remove.gif");
+ modalWin.SetLoadingImagePath("images/loading_home.gif");
+ modalWin.SetCloseButtonImagePath("images/cross.png");
  //Uncomment below line to make look buttons as link
  //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
@@ -111,11 +111,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
              <p:dataTable     resizableColumns="true" style="margin-bottom:20px" 
                rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"  var="ps"  value="#{expenseBean.parkingSpaceList}">
-	<f:facet name="header">
-            Expand rows to see detailed information
-            
-        </f:facet>
-   
+	 
           <p:column headerText="Organization">
                 <h:outputText value="#{ps.str_OrganizationName}" /> 
                    
