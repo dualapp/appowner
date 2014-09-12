@@ -125,7 +125,7 @@
               <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}" style="width:200px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{invoiceBean.str_Blocks}" />
-                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
+                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block" partialSubmit="true" />
                  </p:selectOneMenu>
              </td>
   </h:panelGroup>
