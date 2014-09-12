@@ -10,7 +10,11 @@
 	template="include/templates/template.xhtml"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
- <h:head><title>Vendor Registration</title></h:head>
+ <h:head><title>Vendor Registration</title>
+ 
+ 
+  
+ </h:head>
   
  
 <body>
@@ -20,11 +24,11 @@
    
    <br/><center><legend    style="background-color:#438eb9; color:#fff;">vendor Registration</legend> </center>
    <div>
-     <center>
+     
       <legend  align="left" style="background-color:#438eb9; color:#fff;">vendorPersonal Details</legend>
         <table>
          
-            <tr> <td><h:outputText value="Vendor CATEGORY: " /></td>
+            <tr> <th><h:outputText value="Vendor Category: " /></th>
                 <td>
         <p:selectOneMenu value="#{vendorBean.str_VendorType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
@@ -36,31 +40,31 @@
  </tr>
           
             <tr>
-                <td><h:outputLabel for="vendorName" value="vendor Name * " /></td>
-                <td><h:inputText id="vendorName"  label="Name" value="#{vendorBean.str_VendorName}" required="true" requiredMessage="Please enter vendor name">
+                <th><h:outputText for="vendorName" value="vendor Name" /><font color="red">*</font></th>
+                <td><h:inputText id="vendorName"  label="Name" value="#{vendorBean.str_VendorName}" required="true" requiredMessage="vendor name Required">
                 
                   <f:validateLength minimum="15" />
                      <p:ajax event="blur" update="vendorNameMsg" />
               </h:inputText>
-                   
+                  
                 </td>
-                <td> <p:message id="vendorNameMsg" for="vendorName" display="text"/></td>
+                <td>  <p:tooltip id="toolTipFade"  trackMouse="true" for="vendorName" value="  vendor name Required" /><p:message id="vendorNameMsg" for="vendorName" display="text"/></td>
            </tr>
            
              <tr>
-                <td><h:outputLabel for="vendorphone" value="vendor Phone * " /></td>
-                <td><h:inputText id="vendorphone"  label="Phone" value="#{vendorBean.str_VendorPhone}"   maxlength="11" required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number">
+                <th><h:outputText for="vendorphone" value="vendor Phone  " /><font color="red">*</font></th>
+                <td><h:inputText id="vendorphone"  label="Phone" value="#{vendorBean.str_VendorPhone}"   maxlength="11" required="true"  validatorMessage="invalid mobile no" requiredMessage="vendor Phone Required">
                     <f:validateLength minimum="10" />
                     <f:validateRegex pattern="^([+]?[\d]+)?$" />
                     <p:ajax event="blur" update="vendorPhoneMsg" />
               </h:inputText>
                    
                 </td>
-                <td>  <p:message id="vendorPhoneMsg" for="vendorphone" display="text"/></td>
+                <td> <p:tooltip id="toolVendorPhone"  trackMouse="true" for="vendorphone" value="  vendor Phone Required" /> <p:message id="vendorPhoneMsg" for="vendorphone" display="text"/></td>
            </tr>
            
            <tr>
-                <td><h:outputLabel for="vendoremail" value="Email  " /></td>
+                <th><h:outputText for="vendoremail" value="Email  " /></th>
                 <td><h:inputText id="vendoremail" label="Email"   value="#{vendorBean.str_VendorEmail}" required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter vendor Email">
                 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
   
@@ -71,20 +75,20 @@
                 <td> <p:message id="vendorEmailMsg" for="vendoremail" display="text"/></td>
            </tr> 
            
-           <tr><td><h:outputText value="Contact Person Name"/></td><td><h:inputText value="#{vendorBean.str_ContactPersonName}" /></td></tr>
+           <tr><th><h:outputText value="Contact Person Name"/></th><td><h:inputText value="#{vendorBean.str_ContactPersonName}" /></td></tr>
          
           </table>
            <legend  align="left" style="background-color:#438eb9; color:#fff;">Permanent Address</legend>
            <table> 
            <tr> 
-            <td><h:outputLabel for="Address" value="Address Line1 " /></td>
+            <th><h:outputText for="Address" value="Address Line1 " /></th>
                 <td><h:inputText id="Address" label="Address"   value="#{vendorBean.str_VendorAddress}" required="true"  requiredMessage="Please enter vendor Address">
              <p:ajax event="blur" update="AddressMsg" />
             </h:inputText></td>
              <td> <p:message id="AddressMsg" for="Address" display="text"/></td>
             </tr>
             <tr>
-            <td><h:outputLabel for="str_VendorCountry" value=" Country  " /><font color="red">*</font></td>
+            <th><h:outputText for="str_VendorCountry" value=" Country  " /><font color="red">*</font></th>
             <td><p:selectOneMenu id="str_VendorCountry" value="#{vendorBean.str_VendorCountry}"     valueChangeListener="#{vendorBean.countryChangeListener}" style="width:200px">
                 <!--c --> 
                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
@@ -95,7 +99,7 @@
             
              <tr>
  
-            <td><h:outputLabel for="str_VendorState" value="State  " /><font color="red">*</font></td>
+            <th><h:outputText for="str_VendorState" value="State  " /><font color="red">*</font></th>
             <td><p:selectOneMenu id="str_VendorState" value="#{vendorBean.str_VendorState}"     valueChangeListener="#{vendorBean.stateChangeListener}" style="width:200px">
                 <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{vendorBean.str_VendorStates}"/>
@@ -103,7 +107,7 @@
             </p:selectOneMenu></td>
              </tr>
             <tr> 
-                 <td><h:outputLabel for="str_VendorCity" value="City * " /></td>
+                 <td><h:outputText for="str_VendorCity" value="City " /><font color="red">*</font></td>
             <td><p:selectOneMenu id="str_VendorCity" value="#{vendorBean.str_VendorCity}" style="width:200px">
                 <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
@@ -113,7 +117,7 @@
        
                 
             <tr> 
-            <td><h:outputLabel for="Zip" value="Zip " /></td>
+            <th><h:outputText for="Zip" value="Zip " /></th>
                 <td><h:inputText id="Zip" label="ZipCode"   value="#{vendorBean.str_ZipCode}" required="true"  requiredMessage="Please enter vendor ZipCode">
             <p:ajax event="blur" update="ZipMsg" />
             </h:inputText></td>
@@ -129,24 +133,24 @@
           
  
               
-    <tr><td>
+    
     <c:forEach items="#{vendorBean.vendorServiceDetails}"   var="Service">
-                <h:outputText value="Service"/>
-	    <p:inputText value="#{ str_ServiceName}" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
-	     <h:outputText value="Price"/>
-	    <p:inputText value="#{ int_ServicePrice}" validatorMessage="Price should be  number only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
-	    <f:validateRegex pattern="^([+]?[\d]+)?$" /></p:inputText>
-	    <br/>
-	     </c:forEach> </td></tr></table>
+          <tr>   <th>   <h:outputText value="Service"/></th>
+	   <td> <p:inputText value="#{ str_ServiceName}" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
+	   </td>
+	   <th>  <h:outputText value="Price"/></th>
+	   <td> <p:inputText value="#{ int_ServicePrice}" validatorMessage="Price should be  number only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
+	    <f:validateRegex pattern="^([+]?[\d]+)?$" /></p:inputText></td>
+	   </tr>  </c:forEach> </table>
     
 	  
-	   <table><tr><td><h:outputText value="Is Vendor Active? " /></td>
+	   <table><tr><th><h:outputText value="Is Vendor Active? " /></th>
        <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
            </tr>
-           <tr><td><h:outputText value="Is a Company? " /></td>
+           <tr><th><h:outputText value="Is a Company? " /></th>
        <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsACompany}" /></td>
            </tr>
-             <tr><td> <h:outputText value="ServiceRate" /></td>
+             <tr><th> <h:outputText value="ServiceRate" /></th>
            <td>
         <p:rating value="#{vendorBean.int_VendorServiceRating}">
            
@@ -155,7 +159,7 @@
         </td>
         </tr>
         <tr>
-                <td><h:outputLabel for="vendorcomments" value="Comments  " /></td>
+                <th><h:outputText for="vendorcomments" value="Comments  " /></th>
                 <td><p:inputTextarea rows="6" cols="33"  id="vendorcomments"  label="Comments" required="true" requiredMessage="Please enter vendor Comment" value="#{vendorBean.str_VendorComments}">
                 
                    
@@ -170,7 +174,7 @@
 	   <table>
          
             <tr>
-                <td><h:outputLabel for="vendorbankaccount" value="Account Number  " /></td>
+                <th><h:outputText for="vendorbankaccount" value="Account Number  " /></th>
                 <td><h:inputText id="vendorbankaccount" label="Account Number"   value="#{vendorBean.str_VendorBankAccount}"/>
                 
               
@@ -179,28 +183,28 @@
            
             
              <tr>
-                <td><h:outputLabel for="vendorbankname" value="Bank Name  " /></td>
+                <th><h:outputText for="vendorbankname" value="Bank Name  " /></th>
                 <td><h:inputText id="vendorbankname" label="BankName"   value="#{vendorBean.str_VendorBankName}"/>
                 
               
                 </td>
            </tr>
              <tr>
-                <td><h:outputLabel for="vendorbankneftifsc" value="NEFT/IFSC Code  " /></td>
+                <th><h:outputText for="vendorbankneftifsc" value="NEFT/IFSC Code  " /></th>
                 <td><h:inputText id="vendorbankneftifsc" label="Bank NEFT/IFSC Code"   value="#{vendorBean.str_VendorBankNeftOrIfsc}"/>
                 
               
                 </td>
            </tr>
             <tr>
-                <td><h:outputLabel for="str_PanNo" value="Pan No " /></td>
+                <th><h:outputText for="str_PanNo" value="Pan No " /></th>
                 <td><h:inputText id="str_PanNo" label="Pan No"   value="#{vendorBean.str_PanNo}"/>
                 
               
                 </td>
            </tr>
            <tr>
-                <td><h:outputLabel for="str_ServiceTaxNo" value="Tax No " /></td>
+                <th><h:outputText for="str_ServiceTaxNo" value="Tax No " /></th>
                 <td><h:inputText id="str_ServiceTaxNo" label="Tax No"   value="#{vendorBean.str_ServiceTaxNo}"/>
                 
               
@@ -208,21 +212,21 @@
            </tr>
            
            <tr>
-                <td><h:outputLabel for="int_TdsCharge" value="TDS Charge " /></td>
+                <th><h:outputText for="int_TdsCharge" value="TDS Charge " /></th>
                 <td><h:inputText id="int_TdsCharge" label="TDS Charge"   value="#{vendorBean.int_TdsCharge}"/>
                 
               
                 </td>
            </tr>
             <tr>
-                <td><h:outputLabel for="bool_VisibleToPublic" value="Visible to public " /></td>
+                <th><h:outputText for="bool_VisibleToPublic" value="Visible to public " /></th>
                 <td><p:selectBooleanCheckbox id="bool_VisibleToPublic" label="Visible to public"   value="#{vendorBean.bool_VisibleToPublic}"/>
                 
               
                 </td>
            </tr>
             <tr>
-                <td><h:outputLabel for="Additional Info" value="Additional Info" /></td>
+                <th><h:outputText for="Additional Info" value="Additional Info" /></th>
                 <td><p:inputTextarea rows="6" cols="33" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/>
                 
               
@@ -231,7 +235,7 @@
           
             </table>
             <tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/></td></tr>
-           </center>
+           
            
            </div>
            </h:form>
