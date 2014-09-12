@@ -22,7 +22,7 @@
         }
      
     </style>
-
+ 
 </h:head>
 
 
@@ -43,6 +43,7 @@ function ShowNewPage(){
  
 function ShowNewPage1(clicked_id){
 	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 alert(clicked_id);
      modalWin.ShowURL("editvendor.xhtml?int_VendorId="+clicked_id+"",400,350,'Editvendor',null,callbackFunctionArray);
 	 }
 function ShowNewPage2(clicked_id){
@@ -131,8 +132,7 @@ function HideModalWindow() {
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
         
-       <p:dataTable         id="DT"      rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"   var="vendor" value="#{vendorBean.vendorList}"   >
+       <p:dataTable         id="DT"      scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"     var="vendor" value="#{vendorBean.vendorList}"   >
                 
           <p:column      headerText="VendorName"   >
            
@@ -162,19 +162,21 @@ function HideModalWindow() {
             </p:column>
             
                         <p:column  headerText="action"    >
-                <input type="button" id="#{vendor.int_VendorId}" style="width: 50px" onclick="ShowNewPage1(this.id)" value="Edit" />
+                 
              <input type="button" id="#{vendor.int_VendorId}" style="width: 50px" onclick="ShowNewPage2(this.id)" value="View" />
-                
-                 	   		 
-	   		 <h:link outcome="deletevendor.xhtml"
+             
+	   	   <input type="image"  border="0"  id="#{vendor.int_VendorId}"  src="images/k1.png" height="20" width="20" alt="Edit"   onclick="ShowNewPage1(this.id)"   />
+      
+           <h:link outcome="deletevendor.xhtml"
 	   		 onclick="return confirm('Are you sure you want to delete #{vendor.str_VendorName}?');" >  
 	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
 	   		</h:link>
-	   	 
+	   		 
+	   		
             </p:column>    
              
-        
+       
          
             </p:dataTable>
              
