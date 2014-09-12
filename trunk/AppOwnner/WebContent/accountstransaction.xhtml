@@ -20,13 +20,13 @@
    <fieldset>
     <legend>
    <h:commandButton value="Account Transaction" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
-      <table>
+       <table>
        <h:panelGroup id="aaaa">
             <td>  <h:outputLabel for="account" value="Accounts*" /></td>
            <td> <p:selectOneMenu id="account" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}" style="width:200px">
                 
                    <f:selectItems value="#{accountsBean.listAccountName}" />
-                    <p:ajax event="change" partialSubmit="true"/>
+                    <p:ajax event="change" partialSubmit="true" />
                 </p:selectOneMenu>
                 
            </td>
@@ -97,8 +97,8 @@ style="width:600px">
      <td align="right" style="width:250px;">#{accountingBean.str_Accounts}
    </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
-     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
-    <td align="right" style="padding-right:5px;width:320px;">#{account.totalBalance}  </td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.int_blank}"/> </td>
+    <td align="right" style="padding-right:5px;width:320px;"> #{account.totalBalance} </td>
     </tr>
     <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
@@ -106,7 +106,7 @@ style="width:600px">
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
      <td align="right" style="width:250px;">#{accountingBean.str_Accounts}
    </td>
-    <td align="right" style="padding-right:5px;width:320px;"> #{accountingBean.type}</td>
+    <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.type}"/></td>
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
@@ -152,7 +152,7 @@ style="width:600px">
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Closing Balance</td>
      <td align="right" style="padding-right:5px;width:320px;"></td>
-    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.debit} </td>
+    <td align="right" style="padding-right:5px;width:320px;">96240.00 </td>
     </tr>  
    
    
