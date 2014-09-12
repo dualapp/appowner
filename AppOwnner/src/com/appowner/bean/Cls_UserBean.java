@@ -457,7 +457,7 @@ public class Cls_UserBean implements Serializable{
 			user=getUserService().validate(getStr_Username());
 	          if(user==null)
 	        	{  
-	        	  setValue("User name is available.");
+	        	  setValue(" ");
 	        	}
 	   else    
 	   { 
