@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core">
+	 
+	
+	
+<h:head>
+    <title>Create Invoice Form</title>
+    </h:head>
+   
+<body  >
+  <h:form >
+  <a href="invoice.xhtml">Back to Grid</a>
+   <fieldset >
+    <legend>Quick payment Details
+   </legend>
+   <table>
+    <tr>
+             <h:panelGroup  id="performed9"  style="display:block; text-align:right">
+            <td><h:outputLabel value="Account Name" /><font color="red" >*</font></td>
+              <td><p:selectOneMenu id="accountName" value="#{invoiceBean.accountName}"  style="width:300px" >
+                   
+                   <f:selectItems value="#{invoiceBean.listAccountName}" />
+                   
+                 </p:selectOneMenu>
+             </td>
+             </h:panelGroup>
+             </tr>
+             <tr>
+              <td><h:outputLabel value="Paid On" /><font color="red" >*</font></td>
+              <td> <p:inputText id="dat_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}" size="25"/> 
+             </td>
+             </tr>
+             <tr>
+            <td>  <h:outputText  value="Comments" /><font color="red" >*</font></td>
+            <td>  <p:inputTextarea id="str_Description" rows="4" cols="30" value="#{templateBean.str_Description}" size="25"  /></td>
+             </tr>
+   </table>
+   </fieldset>
+   <br/>
+   <h:panelGroup style="display:block; text-align:right">
+     <tr>
+                <td><h:commandButton id="submit" value="Confirm" action="#{invoiceBean.savePayment}" ajax="false" /></td>
+                <td><h:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
+            </tr>
+    </h:panelGroup>
+   </h:form>
+   </body>
+   </html>
+  
+   
