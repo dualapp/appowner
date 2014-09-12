@@ -29,6 +29,8 @@ import java.util.List;
 
 
 
+
+
 import javax.faces.model.SelectItem;
 
 import org.hibernate.SessionFactory;
@@ -41,6 +43,7 @@ import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
+import com.appowner.model.Vendor;
 
 @Repository
 public class AccountsDaoImpl implements AccountsDao{
@@ -142,11 +145,32 @@ public class AccountsDaoImpl implements AccountsDao{
 		return ddd;
 	}
 	public String getAccountName(Integer id1)
-	{
-		String hql="select str_AccountsHead from AccountsOpeningBalance where int_Accounts_OpeningID=2";
-		String sss=(String)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+	{   
+	    if(id1==null)
+	    {
+		String hql="select str_AccountsHead from AccountsOpeningBalance where int_Accounts_OpeningID=1";
+		String sss2=(String)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+		return sss2;
+	    }
+	    else
+	    {  
+	    	String str="select str_AccountsHead from AccountsOpeningBalance where int_Accounts_OpeningID=?";
+	    	String sss=(String)getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,id1).uniqueResult();
+	    	if(sss.equalsIgnoreCase("Income from Resident "))
+	    	{
+	    		String str1="select str_AccountsHead from AccountsOpeningBalance where int_Accounts_OpeningID=1";
+		    	String sss1=(String)getSessionFactory().getCurrentSession().createQuery(str1).uniqueResult();
+		    	return sss1;
+	    	}
+	    	else  if(sss.equalsIgnoreCase("Accounts Receivable"))
+	    	{
+	    		return "Income from Resident";
+	    	}
+	    	
+			return "Accounts Receivable";
+	    	
+	    }
 	
-		return sss;
 	}
 	public double getCreditBalance(Integer id1)
 	{   if(id1==null)
@@ -198,14 +222,17 @@ public class AccountsDaoImpl implements AccountsDao{
 	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts)
 	{ 
 		if(str_Accounts==null)
-	   {   
-		  return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+	   {  	return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
 	   }
 		else if(str_Accounts.equalsIgnoreCase("Income from Resident"))
 		{  
 		  return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
 		}
 		else if(str_Accounts.equalsIgnoreCase("Accounts Receivable"))
+		{
+			 return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+		}
+		else if(str_Accounts.equalsIgnoreCase("Tax Payable"))
 		{
 			 return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
 		}
