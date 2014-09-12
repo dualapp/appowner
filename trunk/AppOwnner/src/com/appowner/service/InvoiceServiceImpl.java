@@ -61,4 +61,12 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().getmailid(str_ApartmentNo);
 	  }
+	  public List<String> getAccountName()
+	  {
+		  return getInvoiceDao().getAccountName();
+	  }
+	  public void updatePayment(String accountName, String str_Status, Integer id)
+	  {
+		   getInvoiceDao().updatePayment(accountName,str_Status,id);
+	  }
 }
