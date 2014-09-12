@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -449,24 +450,24 @@ public void saveChartOfAccount()
 	
 	
 }
-private String str_Accounts;
-public String getStr_Accounts() {
+ private String str_Accounts;
+ public String getStr_Accounts() {
 	System.out.println(id1);
 	str_Accounts=getAccountsService().getAccountName(id1);
 
-/*	if(str_Accounts.equals("Accounts Receivable"))
+	/*if(str_Accounts.equals("Accounts Receivable"))
 	{   
 		str_Accounts="Income from Residents";
 		System.out.println("after");
 	       return str_Accounts;
-	 
 	}
-	  else if(str_Accounts.equals("Income from Resident"))
+	
+	   if(str_Accounts.equals("Income from Resident"))
 	   {  
 		   str_Accounts="Accounts Receivable";
 	       return str_Accounts;
 	   }
-	   else
+	else
 	   {
 		  
 		   return str_Accounts;
@@ -516,7 +517,7 @@ public static void setStr(String str) {
 public void accountchangeListener1(ValueChangeEvent event)
 {
 	
-	 str=(String)event.getNewValue();
+	str=(String)event.getNewValue();
 
 	id1=getAccountsService().getAccountId(str);
 	/* if(str.equals("Accounts Receivable"))
@@ -558,7 +559,7 @@ public String getSearch()
 		Object obj=list.next();
 		InvoiceTransaction invoice=(InvoiceTransaction)obj;
 		
-		str_Accounts="Accounts Receivable";
+	
 		str_TaxName="Tax Payable";
 		income="Income";
 		date=invoice.getDat_InvoiceDate();
@@ -601,7 +602,7 @@ public double getDebit() {
 	debit+=int_Debit;
 	
 	if(str_Accounts.equalsIgnoreCase("Income from Resident"))
-	{ ListIterator list=listInvoiceTransaction.listIterator();
+	 { ListIterator list=listInvoiceTransaction.listIterator();
 	while(list.hasNext())
 	{
 		Object obj=list.next();
@@ -613,7 +614,7 @@ public double getDebit() {
 	}
 	return debit;
 	}
-	else if(str.equalsIgnoreCase("Accounts Receivable"))
+	else if(str_Accounts.equalsIgnoreCase("Accounts Receivable"))
 	{
 		 ListIterator list=listInvoiceTransaction.listIterator();
 			while(list.hasNext())
@@ -638,25 +639,29 @@ public double getDebit() {
 }
 
 
+
 private List<InvoiceTransaction>  listInvoiceTransaction;
 public List<InvoiceTransaction> getListInvoiceTransaction() {
 	
-	listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+	listInvoiceTransaction=new CopyOnWriteArrayList<InvoiceTransaction>();
 	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
 	
 	ListIterator list=listInvoiceTransaction.listIterator();
 	while(list.hasNext())
 	{
-		Object obj=list.next();
-		InvoiceTransaction invoice=(InvoiceTransaction)obj;
-		
+		// Object obj=list.next();
+		InvoiceTransaction invoice=(InvoiceTransaction)list.next();
+		//InvoiceTransaction invoice=(InvoiceTransaction)obj;
+		double id=invoice.getSubTotal();
 		type="Income";
-	
-			
-		    
+	     id=0.00;
+	     invoice.setSubTotal(id);
+	     
+	     list.add(invoice);     
 			
 	}
-	return listInvoiceTransaction;
+	
+	return  listInvoiceTransaction;
 }
 public void setListInvoiceTransaction(
 		List<InvoiceTransaction> listInvoiceTransaction) {
