@@ -103,6 +103,21 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		String hql="select str_Email from User where str_Flat=?";
 		return (String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).uniqueResult();
 	}
+	@SuppressWarnings("unchecked")
+	public List<String> getAccountName()
+	{
+		String hql="select str_AccountName from ChartOfAccount where ch_Group='A'";
+		List<String> str=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).list();
+		String str1=str.remove(2);
+		
+		
+		return str;
+	}
+	public void updatePayment(String accountName, String str_Status, Integer id)
+	{
+		String hql="update InvoiceTransaction set str_Status=?,totalBalance=? where int_InvoiceTransactionID=?";
+		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,"Paid").setParameter(1,0.00).setParameter(2, id).executeUpdate();
+	}
 	
 	
 	
