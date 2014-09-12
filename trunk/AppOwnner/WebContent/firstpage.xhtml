@@ -7,11 +7,11 @@
 	 xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
  <h:head><title>User Registration</title></h:head>
-<body bgcolor="0099FF">
+<body bgcolor="#F08080">
     <h:form id="form" > 
      <p:panel id="panel" header="New User Registration." style="margin-bottom:20px;"> 
    <h:messages style="color:red"/>
-        <table>
+       <center><table>
         <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
             <tr>
@@ -48,31 +48,22 @@
             <td><p:selectOneMenu id="str_UserApartment" value="#{cls_UserBeanMain.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px">
                 <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
-            </p:selectOneMenu></td><td>&#150; &#150;<h:commandButton value="If your appartment is not above! Click Here to Add" action="#{cls_UserBean.addApartment}" update="str_UserCountry" >
+            </p:selectOneMenu></td>
+          </tr>
+          <tr></tr><tr></tr><tr></tr>
+          <tr>
+          <td colspan="2">&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<h:commandButton value="Join Us" action="#{cls_UserBean.getRegistration}">
+          </h:commandButton></td>
+          </tr>  <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr><td colspan="2"><h:commandButton value="Click Here to Add Your Appartment" action="#{cls_UserBean.addApartment}" update="str_UserCountry" >
             <p:ajax event="change" update="str_UserState"/>
-          </h:commandButton></td>
-          </tr>
-          
-            <tr>
-          </tr>
-          <tr>
-          </tr>      
-          <tr>
-          </tr>
-          <tr>
-          </tr>
-          <tr>
-          </tr>
-          <tr>
-          <td><h:commandButton value="Join Us" action="#{cls_UserBean.getRegistration}">
-          </h:commandButton></td>
-          </tr>  
+          </h:commandButton></td></tr>
           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
           
-             </table>
+             </table></center>
            </p:panel>
            </h:form>
             
