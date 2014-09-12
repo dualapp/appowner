@@ -10,6 +10,18 @@
 	 
 	<f:viewAction action="#{expenseBean.getLatestPolls}" />
 	 </f:metadata>
+	 
+	 <h:head>
+	  <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+	 </h:head>
 <h:body>
 <h:form>
  
@@ -26,14 +38,15 @@
         </tr>
         <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea     value="#{expenseBean.str_Remark}" /></td>
         </tr> 
-        <f:facet name="footer">
-            <h:panelGroup style="display:block; text-align:center">
-               <h:commandButton id="submit" value="Submit" />
-            </h:panelGroup>
-         </f:facet>
-        <tr><td><h:commandButton   disabled="#{expenseBean.disabled}" styleClass="btn" value="Vote"   action="#{expenseBean.addVote}"/></td></tr>
+         
+          
+         
+        <tr><td><h:commandButton      disabled="#{expenseBean.disabled}" styleClass="btn" value="Vote"   action="#{expenseBean.addVote}">
+        <f:ajax render="@form" execute="@form"/>
+        </h:commandButton>
+        </td> <td><p:link value="see past polls..." outcome="pools"/></td></tr>
       </table>
 </h:form>
 </h:body>
  
-</html>
+ </html>
