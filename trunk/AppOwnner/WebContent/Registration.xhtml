@@ -57,7 +57,8 @@ xmlns:f="http://java.sun.com/jsf/core">
             <tr>
             <td><h:outputText value="User name:">
             </h:outputText><font color="red" >*</font> </td>           
-            <td><h:inputText id="str_username" value="#{cls_UserBean.str_Username}" required="true" requiredMessage="Please Enter user name!">
+            <td><h:inputText id="str_username" value="#{cls_UserBean.str_Username}" required="true" validatorMessage="User Name must starts with a-z or 0-9 or - or _ with min 3 char and max 15 char!" requiredMessage="Please Enter User Name!">
+            <f:validateRegex pattern="^[a-z0-9_-]{3,15}$"/>
             <p:ajax event="blur" update="out2" listener="#{cls_UserBean.dataChange1}" partialSubmit="true"/>   
             </h:inputText>&#150;
             <h:outputText id="out2" value="#{cls_UserBean.value}" />
@@ -66,8 +67,8 @@ xmlns:f="http://java.sun.com/jsf/core">
    
             <tr>
             <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
-            <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Enter Password  it must be alphanumeric!">
-            <f:validateLength minimum="4" maximum="16"/>
+            <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="please Enter Password!" validatorMessage="it must contain one digit[0-9],one char[a-z],one char[A-Z],one symbol from the list[@#$%],with min 6 char and max 20 char!">
+            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"/>
             </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
              <tr>
             <td><h:outputText value="Confirm Password* :"></h:outputText><font color="red" >*</font></td>
