@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -50,4 +51,19 @@ public cls_Feedback getFeedback1(Integer feedbackId) {
 public void update(cls_Feedback feedback) {
 	sessionFactory.getCurrentSession().update(feedback);
 }
+
+@SuppressWarnings("unchecked")
+@Override
+public List<String> var_feedbacktopicnamelist() {
+	List<String> var_feedbacktopicnamelist= (List<String>) getSessionFactory().getCurrentSession().createCriteria(cls_Feedbacktopic.class).setProjection(Projections.property("var_feedbacktopicname")).list();   
+	 return  var_feedbacktopicnamelist ;
+}
+
+@SuppressWarnings("unchecked")
+@Override
+public List<String> var_satisfactionnamelist() {
+	List<String> var_satisfactionnamelist= (List<String>) getSessionFactory().getCurrentSession().createCriteria(cls_FeedbackSatisfaction.class).setProjection(Projections.property("var_satisfactionname")).list();   
+	 return  var_satisfactionnamelist ;
+}
+
 }
