@@ -1,31 +1,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
-	<ui:define name="content">
-<h:head> 
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+ 
  </h:head> 
-<body  bgcolor="pink">
+<body  bgcolor="">
  <h:form>
- <h:panelGrid columns="2">
-          
+ <center>  E-Mail </center>
+ 
             
-           
-            <h:outputText value="Please Enter Category name :"/>
-            <p:inputText id="CategoryName" value="#{cls_AddDetailsBean.var_Ad_CategoryName}" />       
-            <tr>
-            <td><p:commandButton   value="Submit" action="#{cls_AddDetailsBean.AddCategory}">
-            </p:commandButton></td>
-           
-            </tr>
-           
-             </h:panelGrid>    
-            </h:form> 
-</body>
-       </ui:define>
-       </ui:composition>
+          
+              <h:outputText  value="To" />
+              <p:inputTextarea rows="7" cols="40" value="#{cls_AddDetailBean.to}"> 
+              </p:inputTextarea>
+              <br />
+               <br />
+             <h:outputText  value="Category" />
+                <p:selectOneMenu id="option"    style="width:200px"  >
+                <f:selectItem itemLabel="Select" itemValue="Select"  />
+                  <f:selectItem itemLabel="Ads" itemValue="Ads"  />
+                 </p:selectOneMenu>
+               <br />
+             
+             <h:outputText  value="Title" />
+                <p:selectOneMenu id="option2" value="#{cls_AddDetailBean.msg1}"  valueChangeListener="#{cls_AddDetailBean.messageChangeListener1}"  required="true"  style="width:200px"  >
+                <f:selectItem itemLabel="Select" itemValue="Select"  />
+                  <f:selectItem itemLabel="Ads Reject" itemValue="s1"  />
+                  <f:selectItem itemLabel="Maintance got" itemValue="s2"  />
+                  <f:selectItem itemLabel="house rent came" itemValue="s3"  />
+                  <p:ajax event="change" update="msg" process="option2"/> 
+                 </p:selectOneMenu>
+                 <br />
+               <br />
+                 
+                <h:outputText  value="Message *"/>
+               <h:inputTextarea rows="7" cols="40" id="msg" value="#{cls_AddDetailBean.msg}"/>
+               <br />
+               <br />
+               
+             <h:commandButton  value="Send"  action="#{cls_AddDetailBean.send}"/>
+            <h:commandButton  value="Cancel"  action="#{cls_AddDetailBean.saveContact}"/>
+            
+            
+             </h:form> 
+             </body>
+       </html>
+       
