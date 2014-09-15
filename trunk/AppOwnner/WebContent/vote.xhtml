@@ -13,6 +13,11 @@
 	 </f:metadata>
 	<h:head>
     <title>Pool Details</title>
+    
+	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+	 
+ 
+  
 </h:head>
 <a href="pools.xhtml">>>Back To Pool</a >
 <h:form>
@@ -56,7 +61,7 @@
         </h:selectOneRadio></td>
         <td><p:message   for="votechoise" display="text"/></td>
         </tr>
-        <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea     value="#{expenseBean.str_Remark}" /></td>
+        <tr><th><h:outputText value="Remark"/></th><td><p:inputTextarea     value="#{expenseBean.str_Remark}" /></td>
         </tr> 
         <tr><td><h:commandButton  disabled="#{expenseBean.disabled}" value="Vote" action="#{expenseBean.addVote}"/></td></tr>
       </table>
