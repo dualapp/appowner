@@ -10,11 +10,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-
+import javax.persistence.Column;
 import org.springframework.dao.DataAccessException;
- 
-
-
 import com.appowner.model.cls_Feedback;
 import com.appowner.service.cls_FeedbackService;
 
@@ -36,9 +33,43 @@ public class cls_FeedbackBean implements Serializable {
 	private String feedbackName;
 	private String feedbackMsg;
 	private List<cls_Feedback> feedbackList;
-	
-	
-	
+    private Integer int_feedbacktopicid;
+	private String var_feedbacktopicname;
+ 	private Integer int_appartmentid;
+ 	private Integer int_satisfactionid;
+ 	private String var_satisfactionname;
+	 
+ 	public Integer getInt_satisfactionid() {
+		return int_satisfactionid;
+	}
+	public void setInt_satisfactionid(Integer int_satisfactionid) {
+		this.int_satisfactionid = int_satisfactionid;
+	}
+	public String getVar_satisfactionname() {
+		return var_satisfactionname;
+	}
+	public void setVar_satisfactionname(String var_satisfactionname) {
+		this.var_satisfactionname = var_satisfactionname;
+	}
+	 
+	public Integer getInt_feedbacktopicid() {
+		return int_feedbacktopicid;
+	}
+	public void setInt_feedbacktopicid(Integer int_feedbacktopicid) {
+		this.int_feedbacktopicid = int_feedbacktopicid;
+	}
+	public String getVar_feedbacktopicname() {
+		return var_feedbacktopicname;
+	}
+	public void setVar_feedbacktopicname(String var_feedbacktopicname) {
+		this.var_feedbacktopicname = var_feedbacktopicname;
+	}
+	public Integer getInt_appartmentid() {
+		return int_appartmentid;
+	}
+	public void setInt_appartmentid(Integer int_appartmentid) {
+		this.int_appartmentid = int_appartmentid;
+	}
 	public String getStr_Email() {
 		return str_Email;
 	}
@@ -65,13 +96,36 @@ public class cls_FeedbackBean implements Serializable {
 	}
 	public String getDate() {
 		java.util.Date d=new java.util.Date();
-		 SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
+		 SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy hh:mm:ss");
 		return ft.format(d);
 	}
 	public void setDate(String date) {
 		this.date = date;
 	}
+private List<String> var_satisfactionnames;
 	
+	public List<String> getVar_satisfactionnames() {
+		var_satisfactionnames=new ArrayList<String>();
+		var_satisfactionnames.addAll(getFeedbackService().var_satisfactionnamelist());
+		System.out.println(var_satisfactionnames);
+		return var_satisfactionnames;
+	}
+
+	public void setVar_satisfactionnames(List<String> var_satisfactionnames) {
+		this.var_satisfactionnames = var_satisfactionnames;
+	}
+    private List<String> var_feedbacktopicnames;
+	
+	public List<String> getVar_feedbacktopicnames() {
+		var_feedbacktopicnames=new ArrayList<String>();
+		var_feedbacktopicnames.addAll(getFeedbackService().var_feedbacktopicnamelist());
+		System.out.println(var_feedbacktopicnames);
+		return var_feedbacktopicnames;
+	}
+
+	public void setVar_feedbacktopicnamess(List<String> var_feedbacktopicnames) {
+		this.var_feedbacktopicnames = var_feedbacktopicnames;
+	}
 	public List<cls_Feedback> getFeedbackList() {
 		feedbackList= new ArrayList<cls_Feedback>();
 			feedbackList.addAll(getFeedbackService().listFeedbacks());		 
@@ -100,6 +154,8 @@ public class cls_FeedbackBean implements Serializable {
 			feedback.setDate(getDate());
 			feedback.setFeedbackId(getFeedbackId());
 		    feedback.setFeedbackName(getFeedbackName());
+		    feedback.setVar_feedbacktopicname(var_feedbacktopicname);
+		    feedback.setVar_satisfactionname(var_satisfactionname);
 		    feedback.setStr_Email(getStr_Email());		    
 		    feedback.setFeedbackMsg(getFeedbackMsg());
 		    getFeedbackService().addFeedback(feedback);
