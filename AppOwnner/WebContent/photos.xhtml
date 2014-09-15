@@ -8,24 +8,29 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml">
 	 
- 
-<p:commandButton type="button" onclick="PF('switcher').previous();"
-    icon="ui-icon-circle-triangle-w" id="prev"/>
-<p:commandButton type="button" onclick="PF('switcher').next();"
-    icon="ui-icon-circle-triangle-e" id="next"/>
- 
-<p:imageSwitch effect="wipe" widgetVar="switcher" id="manuelSwitcher"
-    slideshowAuto="false">
-    <ui:repeat value="#{expenseBean.images}" var="image" id="manuelSwitcherImages">
-     <p:graphicImage  height="200" width="200"   value="images/kalpnavilla/#{image}" id="image" />
-    </ui:repeat>
-</p:imageSwitch>
+  <h:head>
+	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+	 <style> 
+.div {
+    border: 2px solid #a1a1a1;
+    padding: 10px 40px; 
+    background: #dddddd;
+    
+    border-radius: 25px;
+}
+</style>
+	 </h:head>
+	 <h:form>
+	 <h:body>
+ <div class="div">
 <p:imageSwitch effect="shuffle">
      <ui:repeat value="#{expenseBean.images}" var="image" id="shuffleSwitcherImages">
      <p:graphicImage  height="200" width="200"   value="images/kalpnavilla/#{image}" id="image" />
     </ui:repeat>
 </p:imageSwitch>
- 
+ </div>
+ </h:body>
+ </h:form>
  
 <!-- <p:imageSwitch effect="fade" id="fadeEffect">
     <ui:repeat value="#{expenseBean.images}" var="image" id="fadeEffectImages">
