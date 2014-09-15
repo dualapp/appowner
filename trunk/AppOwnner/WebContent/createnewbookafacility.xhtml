@@ -16,14 +16,10 @@
     <h:form>
    
     <h:body>
-    <table><tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
-    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
-   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
-    
-    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Email"/></td>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
-    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <td><h:outputText value="LandLine"/></td>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+     <ui:include src="/memberdetails.xhtml" />
+     <table>
    <tr><td><h2><h:outputText value="Booking Details"/></h2></td></tr>
-  <tr><td><h:outputText value="Event Name"/>  </td><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name" style="width:400px" value="#{loginBean.str_EventName}">
+  <tr><th><h:outputText value="Event Name"/>  </th><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name" style="width:400px" value="#{loginBean.str_EventName}">
   <p:ajax event="blur" update="Eventname" />
   </h:inputText>
   </td>
@@ -38,7 +34,7 @@
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </p:selectOneMenu></td></tr>
       
-    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <td><h:outputText value="Date Closed"/></td>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputText value="Date Closed"/></th>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
     <tr><th><h:outputText value="Start Time"/></th> 
      <td><p:selectOneMenu  id="STime" style="width:100px" required="true" requiredMessage="plz  Enter StartTime" value="#{loginBean.str_StartTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
