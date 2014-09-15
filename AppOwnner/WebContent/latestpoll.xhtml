@@ -12,20 +12,21 @@
 	 </f:metadata>
 	 
 	 <h:head>
-	  <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
+	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+	 <style> 
+.div {
+    border: 2px solid #a1a1a1;
+    padding: 10px 40px; 
+    background: #dddddd;
+    
+    border-radius: 25px;
+}
+</style>
 	 </h:head>
 <h:body>
 <h:form>
- 
-<table  >
+ <div class="div">
+<table    >
 <tr><td><h:outputText value="Pool Question?"/></td><td><h:inputText value="#{expenseBean.latestPolls.str_poolQuestion}"/></td></tr>
       <tr><td><h:selectOneRadio  id="votechoise"
                required="true" requiredMessage="Plz select Choise"       value="#{expenseBean.str_Choise}">
@@ -40,12 +41,13 @@
         </tr> 
          
           
-         
+         <h:outputText value="#{expenseBean.disabled}"/>
         <tr><td><h:commandButton      disabled="#{expenseBean.disabled}" styleClass="btn" value="Vote"   action="#{expenseBean.addVote}">
-        <f:ajax render="@form" execute="@form"/>
+       
         </h:commandButton>
         </td> <td><p:link value="see past polls..." outcome="pools"/></td></tr>
       </table>
+      </div>
 </h:form>
 </h:body>
  
