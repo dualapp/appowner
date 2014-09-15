@@ -13,6 +13,17 @@ body {
 	line-height: 1.5
 }
 
+table, th, td {
+    
+    border-collapse: collapse;
+}
+th, td {
+    padding: 3px;
+    text-align: left;
+    
+    
+     
+}
 body.navbar-fixed {
 	padding-top: 45px
 }
