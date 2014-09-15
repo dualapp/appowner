@@ -12,6 +12,11 @@
 	
 	<h:head>
     <title>Asset</title>
+     
+	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+	 
+ 
+  
     </h:head>
  <a href="assets.xhtml">>>Back To Asset</a >
     <h:form id="form" enctype="multipart/form-data" prependId="false"> 
@@ -24,10 +29,10 @@
  <table><tr><th>
                <h:outputText value="  Organisation:*" /> </th>
               
-               <td><p:selectOneMenu   style="width:100px">&nbsp;
+               <td><p:selectOneMenu   style="width:100px"> 
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu> </td>&nbsp;&nbsp;
+                 </p:selectOneMenu> </td> 
                  <th><h:outputText value="Assets Category*"/></th>
                  <td><p:selectOneMenu  id="AssetCategory" required="true" requiredMessage="plz Enter Assets Category "  value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
@@ -44,7 +49,7 @@
                  <td><p:message  id="AssetNameMsg" for="AssetName" display="text"/></td>
                  </td>
                  
-                 &nbsp;&nbsp;<th><h:outputText value="Location(Block)"/></th><td><p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px">&nbsp;
+                <th><h:outputText value="Location(Block)"/></th><td><p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px">&nbsp;
               <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
@@ -71,8 +76,8 @@
                  </th> <td> <p:outputPanel layout="block" id="assetimg" style="width:200px;height:200px;margin-bottom:20px">  
        <p:graphicImage height="150" width="150" value="#{expenseBean.path3}"/></p:outputPanel></td ></tr><tr><td>
        
-        <p:fileUpload fileUploadListener="#{expenseBean.handleFileUpload4}"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"  mode="advanced"  auto="true" 
-                fileLimit="3"  update="assetimg"   style="width:500px"/>
+       <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload4}" multiple="true"  mode="advanced" dragDropSupport="false"
+            sizeLimit="100000"    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"></p:fileUpload>
        </td></tr>
         
                  </table>
