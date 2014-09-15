@@ -132,8 +132,15 @@ function HideModalWindow() {
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
         
-       <p:dataTable         id="DT"      scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"     var="vendor" value="#{vendorBean.vendorList}"   >
-                
+       <p:dataTable         id="DT"      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}  "
+                 paginator="true" rows="2" style="margin-bottom:20px"     var="vendor" value="#{vendorBean.vendorList}"   >
+               <f:facet name="header">
+                  <h:commandLink id="excel">
+       <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
+        <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="vendor" />
+    </h:commandLink>
+    </f:facet>
+                 
           <p:column      headerText="VendorName"   >
            
                <h:outputText   value="#{vendor.str_VendorName}" />  
@@ -161,7 +168,7 @@ function HideModalWindow() {
             
             </p:column>
             
-                        <p:column  headerText="action"    >
+                        <p:column  headerText="action"  exportable="false"  >
                  
              <input type="button" id="#{vendor.int_VendorId}" style="width: 50px" onclick="ShowNewPage2(this.id)" value="View" />
              
@@ -179,7 +186,25 @@ function HideModalWindow() {
        
          
             </p:dataTable>
-             
+              <h:commandLink id="excel">
+       <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
+        <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="vendor" />
+    </h:commandLink>
+ 
+    <h:commandLink id="pdf">
+       <p:graphicImage  height="20" width="20" alt="pdf" value="images/pdf.jpg"/>
+        <p:dataExporter type="pdf" pageOnly="true"  target="DT" fileName="vendor" />
+    </h:commandLink>
+ 
+    <h:commandLink id="csv">
+       <p:graphicImage  height="20" width="20" alt="cvs" value="images/k2.png"/>
+        <p:dataExporter type="csv"  pageOnly="true" target="DT" fileName="vendor" />
+    </h:commandLink>
+ 
+    <h:commandLink id="xml">
+       <p:graphicImage  height="20"  pageOnly="true" width="20" alt="xml" value="images/k2.png"/>
+        <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="vendor" />
+    </h:commandLink>
              
             </h:form>
             </body>
