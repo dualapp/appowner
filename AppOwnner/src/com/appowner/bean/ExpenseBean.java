@@ -1514,8 +1514,10 @@ public Integer getIsVoted() {
     
 	else
 	{
+		System.out.println(latestPolls.getInt_userId());
+		System.out.println(latestPolls.getInt_PoolId());
 		 
-		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
+		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),latestPolls.getInt_PoolId());
 		 System.out.println(isVoted+"Vote");
 	}
 	return isVoted;
@@ -1554,7 +1556,7 @@ public String addVote()
 	else
 	{
 		vote.setInt_PoolId(latestPolls.getInt_PoolId());
-		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),int_PoolId);
+		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),latestPolls.getInt_PoolId());
 		 
     System.out.println(isVoted+"voteId");
 	}
