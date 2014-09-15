@@ -9,28 +9,27 @@
 	<h:head>
 	</h:head>
 	<h:form id="form3">
-	<h:message/>
 	<h:body>
 	<br/>
 	<div>
 	<h:panelGroup>
 	<table>
-	<tr><th> 
-               <h:outputText  value="Organisation:" /> </th>
-             <td> <p:selectOneMenu  value="#{accountingBean.str_OrganizationName}"       style="width:200px">
+	<tr><td> 
+               <h:outputLabel value="Organisation:" /> </td>
+             <td> <p:selectOneMenu  value="#{accountingBean.str_OrganizationName}"    editable="true"   style="width:200px">
               <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true" /> 
               <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}"  itemValue="#{accountingBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu></td></tr>
-	<tr><th><h:outputText  value="Account Type"/></th>
-	<td><p:selectOneMenu    value="#{accountingBean.str_AccountType}"  style="width:200px">
+	<tr><td><h:outputLabel value="Account Type"/></td>
+	<td><p:selectOneMenu    value="#{accountingBean.str_AccountType}"  style="width:200px" valueChangeListener="#{accountingBean.accountchangeListener}">
 	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
 	    
 	   <f:selectItems   value="#{accountingBean.listAccountType}" /><br/> 
-	   <p:ajax event="change" listener="#{accountingBean.accountchangeListener(ValueChangeEvent)}"/>
+	   <p:ajax event="change" partialSubmit="true"/>
                        </p:selectOneMenu></td></tr>
-	<tr><th><h:outputText  value="Account Name"/></th><td><h:inputText  style="width:200px" value="#{accountingBean.str_AccountName}"/></td></tr>
-	<tr><td><p:commandButton  styleClass="btn"  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{accountingBean.saveChartOfAccount}"   >
+	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText  style="width:200px" value="#{accountingBean.str_AccountName}"/></td></tr>
+	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{accountingBean.saveChartOfAccount}"   >
 	
 	</p:commandButton></td> </tr>  
 	</table>
