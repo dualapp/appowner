@@ -51,6 +51,20 @@ public class cls_FeedbackServiceImpl implements cls_FeedbackService {
 	public void update(cls_Feedback feedback) {
 		getFeedbackDao().update(feedback);
 	}
+
+	@Override
+	public List<String> var_feedbacktopicnamelist() {
+		// TODO Auto-generated method stub
+		return getFeedbackDao().var_feedbacktopicnamelist();
+	}
+
+	@Override
+	public List<String> var_satisfactionnamelist() {
+		// TODO Auto-generated method stub
+		return getFeedbackDao().var_satisfactionnamelist();
+	}
+
+	 
 	
 	
 }
