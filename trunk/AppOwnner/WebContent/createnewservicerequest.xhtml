@@ -8,20 +8,22 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
+<link href="include/assets/css/ace.min.css" rel="stylesheet" />
     </h:head>
     <a href="servicerequest.xhtml">>>Back To Service Request</a >
     <h:form>
      
     <h:body>
-    <table><tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
-    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
-   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
+    <table>
+    <tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <th><h:outputText value="Organization"/></th> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <th><h:outputText value="Block"/></th>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
+   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <th><h:outputText value="Type"/></th> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
     
-    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Email"/></td>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
-    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <td><h:outputText value="LandLine"/></td>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <th><h:outputText value="Email"/></th>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
+    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <th><h:outputText value="LandLine"/></th>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
    <tr><th><h2><h:outputText value="Service Request Details"/></h2></th></tr>
-    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <td><h:outputText value="Date Closed"/></td>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
-    <tr><th><h:outputText value="Status"/></th> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <td><h:outputText value="VendorCategory"/></td>  <td><p:selectOneMenu value="#{loginBean.str_VendorType}">
+    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputText value="Date Closed"/></th>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><th><h:outputText value="Status"/></th> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <th><h:outputText value="VendorCategory"/></th>  <td><p:selectOneMenu value="#{loginBean.str_VendorType}">
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></p:selectOneMenu>
     </td></tr>
    <tr><th><h:outputText value="Title*"/></th>  <td><h:inputText id="Title" required="true" requiredMessage="plz  enter Title" value="#{loginBean.str_Title}">
