@@ -10,7 +10,7 @@
 <h:head><title>Feedback Form</title></h:head>
 <body bgcolor="navy blue">
    
-   <br/><center><legend    style="background-color:#438eb9; color:#fff;">Feedback Form</legend> </center> 
+   <br/><center><legend    style="background-color:#438eb9; color:#fff;">Share your feedback and help us to serve you better in future</legend> </center> 
     <h:form>
      
      <p:messages id="messages"/>
@@ -24,8 +24,20 @@
                 </p:inputText>
                 </td>
             </tr> 
+            
+             <tr>
+            <td><h:outputLabel for="var_feedbacktopicname" value=" Feedback Topic*: " /></td>
+            <td><p:selectOneMenu id="var_feedbacktopicname" value="#{cls_FeedbackBean.var_feedbacktopicname}" style="width:200px">
+               <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{cls_FeedbackBean.var_feedbacktopicnames}" />
+            </p:selectOneMenu></td></tr>
              
-           
+            <tr>
+            <td><h:outputLabel for="var_satisfactionname" value="Are you satisfied with our service?*: " /></td>
+            <td><p:selectOneMenu id="var_satisfactionname" value="#{cls_FeedbackBean.var_satisfactionname}" style="width:200px">
+               <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{cls_FeedbackBean.var_satisfactionnames}" />
+            </p:selectOneMenu></td></tr>
              <tr>
                 <td><h:outputLabel for="str_Email" value="User Email  " /></td>
                 <td><h:inputText id="str_Email" label="Email"   value="#{cls_FeedbackBean.str_Email}" required="true" validatorMessage=" UserEmail is not valid" requiredMessage="Please enter user Email">
