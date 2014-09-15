@@ -34,6 +34,19 @@
                 <h:outputText value="#{feedback.str_Email}" />
             </p:column>
             
+             <p:column>
+            <f:facet name="header">              
+                    <h:outputText value="Feedback Topic*:" />
+                </f:facet>
+                <h:outputText value="#{feedback.var_feedbacktopicname}" />
+            </p:column>
+            
+             <p:column>
+            <f:facet name="header">              
+                    <h:outputText value="Are you satisfied with our service?*: " />
+                </f:facet>
+                <h:outputText value="#{feedback.var_satisfactionname}" />
+            </p:column>
                     
                    
             <p:column>
