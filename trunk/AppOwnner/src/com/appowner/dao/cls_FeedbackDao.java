@@ -15,5 +15,9 @@ public interface cls_FeedbackDao {
 	public cls_Feedback getFeedback1(Integer feedbackId);
 
 	public void update(cls_Feedback feedback);
+
+	public List<String> var_feedbacktopicnamelist();
+
+	public List<String> var_satisfactionnamelist();
 	 
 }
