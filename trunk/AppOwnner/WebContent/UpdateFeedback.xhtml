@@ -16,21 +16,36 @@
 </h:head>
 <h:body>
 <h:form>
-  <h:panelGrid columns="2">
+   <table>
+    <tr>
     <h:outputText value="Name:"/>
-    <h:inputText value="#{cls_FeedbackBean.feedback.feedbackName}"/>
+    <h:inputText value="#{cls_FeedbackBean.feedback.feedbackName}"/></tr>
     
-     <h:outputText value="User Email:"/>
-    <h:inputText value="#{cls_FeedbackBean.feedback.str_Email}"/>
+     <tr><h:outputText value="User Email:"/>
+    <h:inputText value="#{cls_FeedbackBean.feedback.str_Email}"/></tr>
+    
+    <tr>
+            <td><h:outputLabel for="var_feedbacktopicname" value=" Feedback Topic*: " /></td>
+            <td><p:selectOneMenu id="var_feedbacktopicname" value="#{cls_FeedbackBean.feedback.var_feedbacktopicname}" style="width:200px">
+               <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{cls_FeedbackBean.var_feedbacktopicnames}" />
+            </p:selectOneMenu></td></tr>
+             
+            <tr>
+            <td><h:outputLabel for="var_satisfactionname" value="Are you satisfied with our service?*: " /></td>
+            <td><p:selectOneMenu id="var_satisfactionname" value="#{cls_FeedbackBean.feedback.var_satisfactionname}" style="width:200px">
+               <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{cls_FeedbackBean.var_satisfactionnames}" />
+            </p:selectOneMenu></td></tr>
     
  
-    <h:outputText value="Feedback Message:"/>
-    <h:inputTextarea row="8" cols="17" id="feedbackMsg" value="#{cls_FeedbackBean.feedback.feedbackMsg}"/>
+    <tr><td><h:outputText value="Feedback Message:"/>
+    <h:inputTextarea row="8" cols="17" id="feedbackMsg" value="#{cls_FeedbackBean.feedback.feedbackMsg}"/></td></tr>
     
      
-   <h:commandButton  value="Submit"  action="#{cls_FeedbackBean.saveFeedback}"/>
-   <h:button outcome="ViewFeedback.xhtml" value="Cancel"  />
-  </h:panelGrid>
+  <tr><td> <h:commandButton  value="Submit"  action="#{cls_FeedbackBean.saveFeedback}"/>
+   <h:button outcome="ViewFeedback.xhtml" value="Cancel"  /></td></tr>
+ </table>
   </h:form>
 </h:body>
 </ui:define>
