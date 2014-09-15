@@ -25,12 +25,31 @@ public class cls_Feedback implements Serializable{
 	private String str_Email;
 	@Column(name = "var_feedbackName")
 	private String feedbackName;
+	@Column(name="var_satisfactionname")
+	private String var_satisfactionname;
+	@Column(name="var_feedbacktopicname")
+	private String var_feedbacktopicname;
 	@Column(name = "var_feedbackmsg")
 	private String feedbackMsg;
 	@Column
 	private String date;
+	 
 	
 	
+	 
+	 
+	public String getVar_feedbacktopicname() {
+		return var_feedbacktopicname;
+	}
+	public void setVar_feedbacktopicname(String var_feedbacktopicname) {
+		this.var_feedbacktopicname = var_feedbacktopicname;
+	}
+	public String getVar_satisfactionname() {
+		return var_satisfactionname;
+	}
+	public void setVar_satisfactionname(String var_satisfactionname) {
+		this.var_satisfactionname = var_satisfactionname;
+	}
 	public String getDate() {
 		return date;
 	}
