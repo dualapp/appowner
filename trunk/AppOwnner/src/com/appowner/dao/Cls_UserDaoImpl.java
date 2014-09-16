@@ -1,6 +1,10 @@
 package com.appowner.dao;
 
+import java.util.Collection;
 import java.util.List;
+
+
+
 
 
 
@@ -28,6 +32,7 @@ import org.springframework.stereotype.Repository;
 
 import com.appowner.bean.Cls_UserBean;
 import com.appowner.model.BookAFacility;
+import com.appowner.model.DueTransaction;
 import com.appowner.model.MemberLog;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
@@ -287,6 +292,17 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		public List<BookAFacility> getBookAFacilityList() {
 			// TODO Auto-generated method stub
 			return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).list();
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public Collection<? extends User> getuserDetails(
+				Integer int_apartment_id) {
+			System.out.println("***********************************");
+			String hql="from User where int_ApartmentId=?";
+			List<User>   sss1=(List<User>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_apartment_id).list();
+			System.out.println(sss1);
+			return sss1;
 		}
 
 		//@Override
