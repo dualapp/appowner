@@ -1,6 +1,7 @@
 package com.appowner.service;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -213,6 +214,12 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	public List<BookAFacility> getBookAFacilityList() {
 		// TODO Auto-generated method stub
 		return getIn_userdao().getBookAFacilityList();
+	}
+
+	@Override
+	public Collection<? extends User> userDetails(Integer int_apartment_id) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getuserDetails(int_apartment_id);
 	}
 	}
 
