@@ -28,14 +28,14 @@
     <script>
 
  var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading.gif");
- modalWin.SetCloseButtonImagePath("images/remove.gif");
+ modalWin.SetLoadingImagePath("images/loading_home.gif");
+ modalWin.SetCloseButtonImagePath("images/cross.png");
  //Uncomment below line to make look buttons as link
  //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
 
 function ShowNewPage5(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewworkordercategory.xhtml',400,350,'Create New parking space',null,callbackFunctionArray);
+ modalWin.ShowURL('createnewworkordercategory.xhtml',400,350,'Create New WorkOrderCategory',null,callbackFunctionArray);
  }
  
  
@@ -115,7 +115,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                 <h:outputText value="#{vendorBean.str_OrganizationName}" /> 
             
 	 </p:column>
-	  <p:column headerText="Organization">
+	  <p:column headerText="Category Name">
                 <h:outputText value="#{ps.str_VendorCategoryType}" /> 
             
 	 </p:column>
