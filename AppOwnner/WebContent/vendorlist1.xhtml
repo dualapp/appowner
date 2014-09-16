@@ -10,18 +10,11 @@
 	<ui:define name="content">
 <h:head>
     <title> </title>
+    <link href="include/assets/css/ace.min.css" rel="stylesheet" />
     <a href="addvendor.xhtml">Add Vendor</a>
     <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 
- <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
+  
  
 </h:head>
 
@@ -196,7 +189,7 @@ function HideModalWindow() {
        
          
             </p:dataTable>
-            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" width="200">
+            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="400">
         <p:outputPanel id="multiVendorDetail" style="text-align:center;">
            <table>
              <th><h:outputText value="Name" /></th> <th><h:outputText value="Type" /></th>   <th><h:outputText value="Contact No" /></th>    
@@ -215,7 +208,7 @@ function HideModalWindow() {
             </table>
         </p:outputPanel>
     </p:dialog>
-    <p:dialog header="Vendor Details" widgetVar="multiVendorDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" width="200">
+    <p:dialog header="Vendor Details" widgetVar="multiVendorDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="400">
         <p:outputPanel id="multiVendorDetail1" style="text-align:center;">
            <table>
              <th><h:outputText value="Name" /></th> <th><h:outputText value="Type" /></th>   <th><h:outputText value="Contact No" /></th>    
