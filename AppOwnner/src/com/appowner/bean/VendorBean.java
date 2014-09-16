@@ -659,15 +659,26 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
  
 	}
 	public Vendor getVendor() {
-		FacesContext fc = FacesContext.getCurrentInstance();
+		/*FacesContext fc = FacesContext.getCurrentInstance();
 		// int_VendorId = getIdParam(fc);
 		
 		vendor=new Vendor();
 		
-		System.out.println(int_VendorId);
-		vendor = getVendorservice().getVendor(int_VendorId);
+		System.out.println(int_VendorId+"vid");
+		vendor = getVendorservice().getVendor(int_VendorId);*/
+		System.out.println(vendor+"vvv");
 		return vendor;
 	} 
+	private List<Vendor> selectedVendor;
+
+	public List<Vendor> getSelectedVendor() {
+		System.out.println(selectedVendor);
+		return selectedVendor;
+	}
+
+	public void setSelectedVendor(List<Vendor> selectedVendor) {
+		this.selectedVendor = selectedVendor;
+	}
 
 	public String getStr_VendorBankAccount() {
 		return str_VendorBankAccount;
@@ -719,6 +730,20 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	  getVendorservice().update(vendorServiceDetails1);
 	  return "viewvendor.xhtml";
   }
+  public String updateVendor(Vendor vendor) {
+		if (vendor.getInt_VendorId() != null) {
+			getVendorservice().update(vendor);
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+
+		} else
+			getVendorservice().addVendor(vendor);
+		return "vendorlists.xhtml";
+	}
 	public String updateVendor() {
 		if (vendor.getInt_VendorId() != null) {
 			getVendorservice().update(vendor);
@@ -868,7 +893,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		vendorList = new ArrayList<Vendor>();
 		System.out.println(str_VendorType+"vendorType");
 		vendorList.addAll(getVendorservice().vendorList(str_VendorName,str_VendorType));
-
+System.out.println(vendorList+"vlist");
 		return vendorList;
 	}
 
