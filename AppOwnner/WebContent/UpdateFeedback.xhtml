@@ -18,13 +18,15 @@
 <h:form>
    <table>
     <tr>
-    <h:outputText value="Name:"/>
-    <h:inputText value="#{cls_FeedbackBean.feedback.feedbackName}"/></tr>
-    
-     <tr><h:outputText value="User Email:"/>
-    <h:inputText value="#{cls_FeedbackBean.feedback.str_Email}"/></tr>
-    
-    <tr>
+                <td><h:outputLabel for="feedbackName" value="Name * : " /></td>
+                <td><p:inputText id="feedbackName" value="#{cls_FeedbackBean.feedback.feedbackName}" required="true" requiredMessage="Please enter your name">
+                    <f:validateLength minimum="5" maximum="35" />
+                    <p:ajax event="blur" update="feedbackName" />
+                </p:inputText>
+                </td>
+            </tr> 
+            
+             <tr>
             <td><h:outputLabel for="var_feedbacktopicname" value=" Feedback Topic*: " /></td>
             <td><p:selectOneMenu id="var_feedbacktopicname" value="#{cls_FeedbackBean.feedback.var_feedbacktopicname}" style="width:200px">
                <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true" />
@@ -37,10 +39,23 @@
                <f:selectItem itemLabel="Select Category" itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{cls_FeedbackBean.var_satisfactionnames}" />
             </p:selectOneMenu></td></tr>
-    
- 
-    <tr><td><h:outputText value="Feedback Message:"/>
-    <h:inputTextarea row="8" cols="17" id="feedbackMsg" value="#{cls_FeedbackBean.feedback.feedbackMsg}"/></td></tr>
+             <tr>
+                <td><h:outputLabel for="str_Email" value="User Email  " /></td>
+                <td><h:inputText id="str_Email" label="Email"   value="#{cls_FeedbackBean.feedback.str_Email}" required="true" validatorMessage=" UserEmail is not valid" requiredMessage="Please enter user Email">
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />       
+                    <p:ajax event="blur" update="str_EmailMsg" />
+              </h:inputText>
+                    <p:message id="str_EmailMsg" for="str_Email" display="icon"/>
+                </td>
+                </tr>
+                 
+                 <tr>
+                <td><h:outputLabel for="feedbackMsg" value="Feedback Message: " /></td>
+                <td><p:inputTextarea rows="8" cols="30" id="feedbackMsg" value="#{cls_FeedbackBean.feedback.feedbackMsg}">
+                    <f:validateLength maximum="200" />
+                    </p:inputTextarea>
+                </td>
+            </tr>
     
      
   <tr><td> <h:commandButton  value="Submit"  action="#{cls_FeedbackBean.saveFeedback}"/>
