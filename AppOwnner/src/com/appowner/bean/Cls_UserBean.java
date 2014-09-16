@@ -3,9 +3,15 @@ package com.appowner.bean;
 import java.io.Serializable;
 //package org.primefaces.showcase.view.ajax;
 
+
+
+
+
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+
 import java.util.ArrayList;
 //import java.util.Date;
 import java.util.List;
@@ -13,12 +19,17 @@ import java.util.UUID;
 
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
 
+import org.primefaces.component.datatable.DataTable;
 import org.springframework.dao.DataAccessException;
 
+import com.appowner.model.DueTransaction;
 import com.appowner.model.User;
 import com.appowner.service.In_UserService;
+import com.appowner.util.Util;
 /*
  * Develope by Pankaj singh.
  * This class is for Adding new user and perform
@@ -55,10 +66,16 @@ public class Cls_UserBean implements Serializable{
 	    public String value1;
 	    public String arrow;
 	    private String lastname;
+	    public Integer int_apartment_id;
 	    
-	    
-	    
-	    public String getLastname() {
+		public int getInt_getappartmentid() {
+			int_apartment_id=Util.getAppartmentId();
+			return int_getappartmentid;
+		}
+		public void setInt_getappartmentid(int int_getappartmentid) {
+			this.int_getappartmentid = int_getappartmentid;
+		}
+		public String getLastname() {
 			return lastname;
 		}
 		public void setLastname(String lastname) {
@@ -480,6 +497,41 @@ public class Cls_UserBean implements Serializable{
 	   	   }
 	   
 			
+		}
+		private List<User> ListUser1;
+		
+		
+		public List<User> getListUser1() {
+			ListUser1=new ArrayList<User>();
+			System.out.println("////////////////ggg/////////////////////");
+			System.out.println(Util.getAppartmentId());
+			ListUser1.addAll(getUserService().userDetails(Util.getAppartmentId()));
+			return ListUser1;
+		}
+		public void setListUser1(List<User> listUser1) {
+			ListUser1 = listUser1;
+		}
+		private User template1;
+		public User getTemplate1() {
+			return template1;
+		}
+		public void setTemplate1(User template1) {
+			this.template1 = template1;
+		}
+		
+		private DataTable dataTable;
+		public void processValueChange1(ValueChangeEvent event)  
+		        throws AbortProcessingException 
+		{    System.out.println("hi");
+			template1=(User)dataTable.getRowData();
+			
+		}
+		
+		public DataTable getDataTable() {
+			return dataTable;
+		}
+		public void setDataTable(DataTable dataTable) {
+			this.dataTable = dataTable;
 		}
 		public String returnStatement()
 		{
