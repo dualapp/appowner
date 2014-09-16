@@ -71,5 +71,7 @@ public interface In_UserService {
 	public List<ServiceRequest> getServiceRequestList();
 
 	public List<BookAFacility> getBookAFacilityList();
+
+	public Collection<? extends User> userDetails(Integer int_apartment_id);
 }
 
