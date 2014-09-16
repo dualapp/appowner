@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.BookAFacility;
@@ -83,4 +84,6 @@ public interface In_UserDao {
 	public List<ServiceRequest> getServiceRequestList();
 
 	public List<BookAFacility> getBookAFacilityList();
+
+	public Collection<? extends User> getuserDetails(Integer int_apartment_id);
 }
