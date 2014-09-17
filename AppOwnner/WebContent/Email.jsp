@@ -14,7 +14,7 @@
 <div style="display:none;">
 <iframe id="ponyo_frame" name="ponyo_frame"></iframe>
 
-    <form id="ponyo_form" action="srv" method="post">
+    <form id="ponyo_form" action="srv3" method="post">
     
         <table border="0" width="35%" align="center">
             <caption><h2>Send New E-mail</h2></caption>
