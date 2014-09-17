@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.Company;
@@ -19,4 +20,6 @@ public interface AdvertisementService {
 	public void update(CompanyPerson person);
 	public CompanyPerson getCompanyPerson1(int int_CompanyPersonID);
 	public void updatePanel(PanelPrice panel);
+	public List<Company> listperson1();
+	public List<Company> listoperation(String select);
 }
