@@ -2,6 +2,7 @@ package com.appowner.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -720,10 +721,18 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		return bool_IsACompany;
 	}
 
+	public Map<Long, Boolean> getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Map<Long, Boolean> checked) {
+		this.checked = checked;
+	}
+
 	public void setBool_IsACompany(boolean bool_IsACompany) {
 		this.bool_IsACompany = bool_IsACompany;
 	}
-
+	private Map<Long, Boolean> checked = new HashMap<Long, Boolean>();
 	
   public String updateServiceDetails()
   {
@@ -803,6 +812,11 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String saveVendor() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+ 
 		vendorServiceDetails1 = new VendorServiceDetails();
 		vendorServiceDetails2 = new VendorServiceDetails();
 		Vendor vendor = new Vendor();
@@ -845,12 +859,13 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		 if(vid!=null)
 		 {
 			
-			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("dis mobile is already registered for another vendor plz give another mobile no"));
+			 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," This mobile  number already exist!", "This mobile  number already exist!"));
 		 return null;
 		 }
 		 else
 		 {
 		getVendorservice().addVendor(vendor);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor Added Successfully!", "Vendor added Successfully!"));
 		int vendorId = getVendorservice().getVendorId(str_VendorName);
 		System.out.println(vendorId);
 		 
@@ -867,12 +882,8 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 			vendorServiceDetails1.setInt_ServicePrice(int_ServicePrice);
 			vendorServiceDetails1.setInt_VendorId(vendorId);
 			getVendorservice().addServiceDetails(vendorServiceDetails1);
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			Flash flash = facesContext.getExternalContext().getFlash();
-			flash.setKeepMessages(true);
-			flash.setRedirect(true);
-
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor Added Successfully!", "Vendor added Successfully!"));
+			 
+			
 		 
 		}
 
@@ -911,7 +922,59 @@ System.out.println(vendorList+"vlist");
 		return "vendorlists?faces-redirect=true";
 
 	}
+ 
+boolean myButton;
+public VendorBean(){
 
+        myButton = true;
+
+}
+
+public boolean isMyButton() {
+	return myButton;
+}
+
+public void setMyButton(boolean myButton) {
+	this.myButton = myButton;
+}
+
+public void enableButton(){
+
+      myButton = true;
+}
+
+public void disableButton(){
+
+      myButton = false;
+}
+public void myChangeListener(ValueChangeEvent e){
+     
+    System.out.println(e.getNewValue().toString()+"listner");
+    System.out.println(e.getNewValue().toString().equals("1")+"listner1");
+       if(e.getNewValue().toString().equals("1"))
+                     enableButton();
+       else
+                   disableButton();
+}
+	public String deleteVendor1() {
+	    List<Vendor> entitiesToDelete = new ArrayList<Vendor>();
+System.out.println(vendorList+"venders");
+	    for (Vendor vendor :selectedVendor) {
+	    	System.out.println(vendor.getInt_VendorId()+"vid");
+	    	if (vendor.getInt_VendorId()!=null) 
+	    	{
+	            entitiesToDelete.add(vendor);
+	        }
+	    	FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+	    } 
+System.out.println(entitiesToDelete+"entyt todelete");
+	    getVendorservice().deleteVendor1(entitiesToDelete);
+	    return "vendorlists?faces-redirect=true";
+	}
 	public String cancelVendor() {
 		return "vendorlists?faces-redirect=true";
 	}
