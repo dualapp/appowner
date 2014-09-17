@@ -1,23 +1,36 @@
 package com.appowner.bean;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
 
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.UploadedFile;
 import org.springframework.dao.DataAccessException;
 
+import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
 import com.appowner.service.AdvertisementService;
+import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
 @ViewScoped
@@ -142,6 +155,7 @@ public class AdvertisementBean  implements Serializable{
 		this.str_City = str_City;
 	}
 	public String getStr_State() {
+	
 		return str_State;
 	}
 	public void setStr_State(String str_State) {
@@ -374,9 +388,118 @@ public class AdvertisementBean  implements Serializable{
 			   System.out.println(str);
 			   System.out.println(str1);
 			     return null;
-			   }
+			     
+			    
+			  }
+			    private String blb_image;
+			    
+			    public String getBlb_image() {
+					return blb_image;
+				}
+				public void setBlb_image(String blb_image) {
+					this.blb_image = blb_image;
+				}
+				private List<Company>listperson;
+
+				public List<Company> getListperson() 
+				{
+					listperson= new ArrayList<Company>();
+					listperson.addAll(getAdvertisementService().listperson1());
+			    
+					return listperson;
+				}
+				public void setListperson(List<Company> listperson) {
+					this.listperson = listperson;
+				}
+				private String str_Description;
+				
+				public String getStr_Description() {
+					return str_Description;
+				}
+				public void setStr_Description(String str_Description) {
+					this.str_Description = str_Description;
+				}
+				private String var_ImageName;
+				
+				public String getVar_ImageName() {
+					return var_ImageName;
+				}
+				public void setVar_ImageName(String var_ImageName) {
+					this.var_ImageName = var_ImageName;
+				}
+				private String path1;
+				public String getPath1() {
+					return path1;
+				}
+				public void setPath1(String path1) {
+					this.path1 = path1;
+				}
+				public void handleFileUpload1(FileUploadEvent event) throws IOException {
+					 System.out.println("hi");
+					 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+					    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+					    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+					    System.out.println(name);
+					    File file= new File("D://Image\\"+ "images" + name);
+					    final UploadedFile uploadedFile = event.getFile();
+					    blb_image=file.getAbsolutePath();
+					    System.out.println(blb_image);
+					    
+				        System.out.println(file);
+					    InputStream is = event.getFile().getInputstream();
+					    OutputStream out = new FileOutputStream(file);
+					    byte buf[] = new byte[1024];
+					    int len;
+					    while ((len = is.read(buf)) > 0)
+					        out.write(buf, 0, len);
+					    is.close();
+					    out.close();
+					    path1=file.getName();
+					    System.out.println(path1);
+				}
+				
+				public List<Company> agency;
+				
+				
+				public List<Company> getAgency() {
+					return agency;
+				}
+				public void setAgency(List<Company> agency) {
+					this.agency = agency;
+				}
+				public String select;
+				
+				public String getSelect() {
+					return select;
+				}
+				public void setSelect(String select) {
+					this.select = select;
+				}
+				public List<String> selectinfo(ValueChangeEvent event)
+				{  
+					select =( String )event.getNewValue();
+					System.out.println(select);
+					agency=getAdvertisementService().listoperation(select);
+				/*	ListIterator list=agency.listIterator();
+					while(list.hasNext())
+					{
+						Object obj=list.next();
+						Company company=(Company)obj;
+						str_State=company.getStr_State();
+						System.out.println(str_State);
+						str_CompanyAddress=company.getStr_CompanyAddress();
+						System.out.println(str_CompanyAddress);
+						str_Mobile=company.getStr_Mobile();
+						str_City=company.getStr_City();
+						
+					}*/
+					System.out.println(agency);
+					return null;
 		}
-			
+
+
+		
+}
 		
 		
 	
