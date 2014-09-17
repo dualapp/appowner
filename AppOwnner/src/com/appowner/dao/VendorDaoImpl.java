@@ -2,6 +2,7 @@ package com.appowner.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -308,6 +309,17 @@ public class VendorDaoImpl implements VendorDao{
 	public void saveWorkOrderCategory(WorkOrderCategory workOrderCategory) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(workOrderCategory);
+	}
+
+	@Override
+	public void deleteVendor1(List<Vendor> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			Vendor v=(Vendor) itr.next();
+		sessionFactory.getCurrentSession().delete(v);
+		}
 	}
 
 	 
