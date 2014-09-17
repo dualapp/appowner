@@ -10,11 +10,11 @@
 	<ui:define name="content">
 <h:head>
     <title> </title>
-     <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+    <link href="include/assets/css/ace.min.css" rel="stylesheet" />
     <a href="addvendor.xhtml">Add Vendor</a>
     <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 
- <style>
+  <style>
      body
         {
             font-family: Verdana;
@@ -124,8 +124,10 @@ function HideModalWindow() {
 </table>
 </legend>
  <p:growl id="msgs" showDetail="true" />
-  <h:commandButton style="width: 150px"  action="addvendor.xhtml" value="create new" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
-	   <p:menuButton value="Action">
+  <p:commandButton  icon="ui-icon-plus"  action="addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
+   
+  </p:commandButton>
+	 &#150; &#150;  <p:menuButton value="Action">
         <p:menuitem value="Assign Selected"  action="#"/>
         <p:menuitem value="close Selected" action="#"/>
         <p:menuitem value="View Chart" action="#"/>
@@ -133,21 +135,20 @@ function HideModalWindow() {
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
          
-            <p:commandButton process="DT" update=":form:multiVendorDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiVendorDialog1').show()" />
-           
-        <p:commandButton process="DT" update=":form:multiVendorDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
-        
+          &#150; &#150;  <p:commandButton process="DT" update=":form:multiVendorDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiVendorDialog1').show()" />
+       &#150; &#150; <p:commandButton process="DT" update=":form:multiVendorDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
+       &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
+      
+      
+      
        <p:dataTable  editable="true"  resizableColumns="true" style="margin-bottom:20px" 
                rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"    id="DT"    var="vendor" value="#{vendorBean.vendorList}"   selection="#{vendorBean.selectedVendor}" rowKey="#{vendor.int_VendorId}"  >
-                
-          
-        <p:column    exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
-        
-                 <f:facet name="header">
-                <h:outputText value="All"/>      
-          
-             </f:facet>
+                 
+      
+           
+        <p:column  value="#{vendorBean.checked[vendor.int_VendorId]}"  exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+         
              </p:column>
         
          <p:column>
@@ -201,17 +202,53 @@ function HideModalWindow() {
             <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="400">
         <p:outputPanel id="multiVendorDetail" style="text-align:center;">
            <table>
-             <th><h:outputText value="Name" /></th> <th><h:outputText value="Type" /></th>   <th><h:outputText value="Contact No" /></th>    
                
             <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
-             
-               <tr> <td><h:inputText value="#{vendor1.str_VendorName}" /></td>
-                
-               <td> <h:inputText value="#{vendor1.str_VendorType}"  /></td>
-               <td> <h:inputText value="#{vendor1.str_VendorPhone}"  /></td>
-               </tr>
-              
-                
+             <tr>
+ <td>
+    <h:outputText value="Vendor Type:"/></td>
+    <td>
+    <h:inputText value="#{vendor1.str_VendorType}"/></td>
+    </tr>
+ <tr>
+ <td>
+    <h:outputText value="Vendor Name:"/></td>
+    <td>
+    <h:inputText value="#{vendor1.str_VendorName}"/></td>
+    </tr>
+    <tr>
+    <td>
+    <h:outputText value="Vendor Phone:"/></td>
+    <td>
+    <h:inputText value="#{vendor1.str_VendorPhone}"/></td>
+    </tr>
+    <tr>
+ <td>
+    <h:outputText value="Vendor Email:"/></td>
+    <td>
+    <h:inputText value="#{vendor1.str_VendorEmail}"/></td>
+    </tr>
+   
+  
+    <tr>
+ <td>
+    <h:outputText value="Vendor Bank Name:"/></td>
+    <td>
+    <h:inputText value="#{vendor1.str_VendorBankName}"/></td>
+    </tr>
+    <tr>
+ <td>
+    <h:outputText value="Vendor Expense:"/></td>
+    <td>
+    <h:inputText value="#{vendor1.bool_IsVendorActive}"/></td>
+    </tr>
+     <tr>
+ <td>
+    <h:outputText value="Comments:"/></td>
+    <td>
+    <h:inputText value="#{vendor1.str_VendorComments}"/></td>
+    </tr>
+      
             </ui:repeat>
              <tr><td><h:commandButton value="update" action="#{vendorBean.updateVendor(vendor1)}"/></td></tr>
             </table>
@@ -233,6 +270,28 @@ function HideModalWindow() {
                 
             </ui:repeat>
             </table>
+        </p:outputPanel>
+    </p:dialog>
+     <p:dialog  icon="ui-icon-alert" header="Delete Vendor" widgetVar="multiVendorDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="400">
+        <p:outputPanel id="multiVendorDetail2" style="text-align:center;">
+            
+            <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
+            <h:outputText value="Are you sure you want to delete #{vendor1.str_VendorName}?"/>
+            <br/>
+              <h:link outcome="deletevendor.xhtml" value="OK" >  
+	   			 
+	   				<f:param name="int_VendorId" value="#{vendor1.int_VendorId}" />
+	   		</h:link>
+	   		
+	   		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   		<h:link   value="Cancel" >  
+	   		  
+	   		</h:link>
+	   		<br/>
+	   		
+            </ui:repeat>
+            
+            
         </p:outputPanel>
     </p:dialog>
               <h:commandLink id="excel">
