@@ -31,7 +31,7 @@ import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean 
-@RequestScoped
+@SessionScoped
 public class Cls_AddDetailBean implements Serializable {
 	
 
@@ -518,8 +518,7 @@ public int getInt_Ad_categoryId() {
 	public static void setClose(String close) {
 		Cls_AddDetailBean.close = close;
 	}
-	public void processValueChange(ValueChangeEvent event)  
-        throws AbortProcessingException {
+	public void processValueChange(ValueChangeEvent event)  throws AbortProcessingException {
 	System.out.println("mukesh yadav");
 	product=(Cls_ProductDetails)dataTable.getRowData();
 	id=product.getInt_ProductId();
