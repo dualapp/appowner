@@ -414,6 +414,104 @@ public class Cls_UserBean implements Serializable{
 		public void setListUser(List<User> listUser) {
 			ListUser = listUser;
 		}
+		public String addnewUser()
+		{
+			try{
+				
+				User usr=new User();
+				String str=getStr_Password();
+				String str1=getStr_ConfirmPassword();
+				if (str_Password.equals(str_ConfirmPassword)&&str_Email.equals(str_ConfirmEmail))
+				{ 
+				usr.setStr_Country(Util.getStr_Country());
+				usr.setStr_State(Util.getStr_State());
+				usr.setStr_City(Util.getStr_City());
+				usr.setStr_Apartment(Util.getStr_Apartment());
+				//int_getappartmentid=getUserService().getAppartmenId(getUserapartment());
+				usr.setInt_ApartmentId(Util.getAppartmentId());
+				usr.setInt_UserId(getInt_UserId());
+				usr.setStr_FirstName(getStr_FirstName());
+				usr.setStr_LastName(getStr_LastName());
+				usr.setStr_Email(getStr_Email());
+				//usr.setStr_ConfirmEmail(getStr_ConfirmEmail());
+				usr.setStr_Password(getStr_Password());
+				//usr.setStr_ConfirmPassword(getStr_ConfirmPassword());
+		        usr.setInt_UserRole(getInt_UserRole());
+		        usr.setStr_Flat(getStr_Flat());
+				usr.setStr_Block(getStr_Block());
+				usr.setStr_PhoneNo(getStr_PhoneNo());
+				usr.setStr_Username(getStr_Username());
+				Integer activationbit2=0;
+				System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
+				final String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
+				
+				//System.out.println(uuid);
+				//String s= UUID.randomUUID().toString();
+				//System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnn");
+				//System.out.println(s);
+				usr.setStr_activationkey(uuid1);
+				usr.setInt_activationbit(0);
+				System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
+				getUserService().addUser(usr);
+				 el=getStr_Email();
+				 un=getStr_Username();
+				pd=getStr_Password();
+				fn=getStr_FirstName();
+				an=getUserapartment();
+				String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
+				subject="AppOwner.com";
+				content="Hello."+" "  +fn+
+					   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
+						+ "You are registered as the moderator for "+","  +an
+					  
+						+"UserName:  "+" "  +un+" "+"\n"
+					   + "Password:  "+" "  +pd+
+					    "\n Please Click here to Activate your Account "+" "+url ;
+						
+					
+				List<String> list=new ArrayList<String>();
+				list.add(el);
+				list.add(pd);
+				
+				return "EmailForm2.jsp";
+				}
+				else
+				{
+					
+					if(str_Password.equals(str_ConfirmPassword))
+					{
+						System.out.println("hello");
+						FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("email and confirm email should same"));
+						return "addnewuserbyadmin.xhtml";
+					}
+					if(str_Email.equals(str_ConfirmEmail))
+					{ 
+						
+								FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("password  and confirm password should same"));
+								return "addnewuserbyadmin.xhtml";
+					}
+					//else(email.equals(confirmemail)&&password.equals(confirmpassword))
+					//{ 
+						
+								FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("password,confirm password and email,confirm email should same"));
+								return "addnewuserbyadmin.xhtml";
+					//}
+											
+					
+				}
+				 
+			}
+			catch(DataAccessException e)
+			{e.printStackTrace();
+				
+			}
+			return ERROR;
+				
+			}
+			
+			
+			
+		
 		/*
 		 * reset method is for reset the value of adding new user form page..
 		 */
