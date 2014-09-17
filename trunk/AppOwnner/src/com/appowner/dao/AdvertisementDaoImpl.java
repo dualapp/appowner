@@ -3,9 +3,11 @@ package com.appowner.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
@@ -76,5 +78,18 @@ public class AdvertisementDaoImpl implements AdvertisementDao{
 	 {
 		 return (CompanyPerson)getSessionFactory().getCurrentSession().get(CompanyPerson.class,int_CompanyPersonID); 
 	 }
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Company> listperson() {
+		return getSessionFactory().getCurrentSession().createCriteria(Company.class).setProjection(Projections.property("str_CompanyName")).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Company> listoperation(String select) {
+		String str="from Company where str_CompanyName=?";
+		return (List<Company>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,select).list();
+		
+	}
+	
 
 }
