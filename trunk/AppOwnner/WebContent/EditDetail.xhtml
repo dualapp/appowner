@@ -12,6 +12,7 @@
 	 
 	<f:viewAction action="#{cls_AddDetailBean.getedit1}" />
 </f:metadata>
+<p:panel>
 <h:head>
     <title>Edit</title>
 </h:head>
@@ -83,37 +84,19 @@
             </td>
             </tr>
  <tr>
- <td>
+ 
+ 
+    <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml" style=" float:right !important;margin: 150px 0px 100px 0px;" /></td>
+     <td><h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveContact1}" style=" float:right !important;margin: 150px 10px 100px 0px;" >
+     </h:commandButton>
+     </td>
+     
   
-  <br /> 
-   <br /> 
-   <br /> 
-   <br />   
-   <h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveContact1}"/>
-   </td>
    </tr>
   </table>
   </h:form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
-
+</p:panel>
 
 </ui:define>
 </ui:composition>
