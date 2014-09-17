@@ -53,7 +53,7 @@ public class EmailSendingServlet1 extends HttpServlet {
         try {
             EmailUtility1.sendEmail(host, port, user, pass, recipient, subject,
                     content,Organization,Block,Flat,Title,Category,OpenDate);
-            resultMessage = "One e-mail has been sent to your Email-id !";
+            resultMessage = "account is added successfully !";
         } catch (Exception ex) {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
