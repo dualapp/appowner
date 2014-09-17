@@ -19,7 +19,7 @@
             <td><p:selectOneMenu id="str_CompanyName" value="#{advertisementBean.str_CompanyName}" style="width:200px" valueChangeListener="#{advertisementBean.selectinfo}" >
             <f:selectItem itemLabel="Select"  itemValue=""  />
             <f:selectItems value="#{advertisementBean.listperson}"  />
-             <f:ajax event="change" execute="str_CompanyName" />
+             <f:ajax event="change" execute="str_CompanyName"  render="@form"/> 
             </p:selectOneMenu>
             
       </td>
@@ -27,21 +27,46 @@
       </tr> 
        
       <tr>
-      <h:panelGroup id="jfgg" rendered="true">
-      <td><h:outputLabel value="Address:"/></td>
-      <td><h:inputText value="fff"/></td>
-      <td><h:outputLabel value="State"/></td>
-      <td><h:inputText value="fff"/></td>
-      <td><h:outputLabel value="City"/></td>
-      <td><h:inputText value="fff"/></td>
-      <td><h:outputLabel value="Mobile number"/></td>
-      <td><h:inputText value="fff"/></td>
-     
-      </h:panelGroup>
-      </tr>
+   
+                <h:panelGroup id="performed"  rendered="#{! empty advertisementBean.str_CompanyName }" >
+                <ui:repeat value="#{advertisementBean.agency}" var="agency">
+                <tr>
+                <td><h:outputLabel for="CompanyAddress1" value="CompanyAddress*: " />
+                <br />
+                <h:outputLabel for="CompanyAddress" value="Location "  /></td>
+                <td><p:inputText  id="CompanyAddress" value="#{agency.str_CompanyAddress}" style="width:200px" >
+               
+                  </p:inputText>
+               </td>
+           </tr>
+           <tr>
+                <td><h:outputLabel for="City" value="City "  /></td>
+                <td><p:inputText id="City" value="#{agency.str_City}" style="width:200px">
+                  </p:inputText>
+                  
+                </td>
+          </tr>
+     <tr>
+                <td><h:outputLabel for="State" value="State "  /></td>
+                <td><p:inputText id="State" value="#{agency.str_State}" style="width:200px">
+                  </p:inputText>
+                  
+                </td></tr>
+           
+           <tr>
+                <td><h:outputLabel for="MobileNo" value="MobileNo "  /></td>
+                <td><p:inputText id="MobileNo" value="#{agency.str_Mobile}" style="width:200px">
+                </p:inputText>
+                </td>
+                </tr>
+                </ui:repeat>
+               </h:panelGroup>
+            
+                </tr>
+                
      <tr> 
-             <td><h:outputLabel for="Add Type" value="Add Type" /></td>
-             <td><p:selectOneMenu id="Add_Type" value="#{advertisementBean.str_CompanyName}" style="width:200px">
+             <td><h:outputLabel for="Ads Type" value="Ads Type" /></td>
+             <td><p:selectOneMenu id="Add_Type"  style="width:200px">
             <f:selectItem itemLabel="Select"  itemValue="Select"  />
            <f:selectItem itemLabel="Monthly"  itemValue="Monthly"  />
            <f:selectItem itemLabel="Weekly"  itemValue="Weekly"  />
@@ -53,7 +78,7 @@
            
          <tr> 
              <td><h:outputLabel for="Position of Add" value="Position of Add" /></td>
-            <td> <p:selectOneMenu id="Add" value="#{advertisementBean.str_CompanyName}" style="width:200px">
+            <td> <p:selectOneMenu id="Add"  style="width:200px">
             <f:selectItem itemLabel="Select"  itemValue="Select"  />
            <f:selectItem itemLabel="Header"  itemValue="Header"  />
            <f:selectItem itemLabel="Left Part"  itemValue="Left Part"  />
@@ -75,15 +100,16 @@
        </tr>
        <tr>
          <td><h:outputLabel value="Enter Contents "></h:outputLabel></td>
-         <td><p:editor id="editor" widgetVar="editorWidget" value="#{advertisementBean.str_Description}" width="450" height="200" style="margin-bottom:20px;" ></p:editor></td>
+         <td><p:editor id="editor" widgetVar="editorWidget" value="#{advertisementBean.str_Description}" width="500" height="300" style="margin-bottom:20px;" ></p:editor></td>
          </tr>
-          <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px -70px 0px 0px;" >  
+         <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px 0px -500px 0px;" >  
            <p:graphicImage height="150" width="150" value="#{advertisementBean.blb_image}"/>
           </p:outputPanel>
+         
            <tr>
            
-               <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" float:right !important;margin: 0px 0px 50px 0px;" /> 
-               <p:button id="AddProduct1" value="Cancel" outcome="Create_Detail.xhtml" style=" float:right !important;margin: 0px 20px 100px 0px;" />
+               <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" width:60px;float:right !important;margin: 0px 0px 50px 0px;" /> 
+               <p:button id="AddProduct1" value="Cancel" outcome="agencies_Add.xhtml" style="  width:60px; float:right !important;margin: 0px 20px 100px 0px;" />
             </td>
   </tr>
                   </table>
