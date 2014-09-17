@@ -75,6 +75,8 @@ public interface ProductsDetailService {
 	public void valuereject(String str2, Integer id);
 
 	
+
+	
 	
 
 	
