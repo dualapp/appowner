@@ -35,8 +35,28 @@ public class Util {
 	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	        return  session.getAttribute("ApartmentName").toString();
 	      }
-	       
-	      
+	      public static String getStr_Country()
+	      {
+	    	  System.out.println("llllllllllll;;;;;;;;;;;;;'''''''''''''''");
+	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return  session.getAttribute("str_Country").toString();
+	      }
+	      public static String getStr_State()
+	      {
+	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return  session.getAttribute("str_State").toString();
+	      }
+	      public static String getStr_City()
+	      {
+	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return  session.getAttribute("str_City").toString();
+	      }
+	      public static String getStr_Apartment()
+	      {
+	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return  session.getAttribute("str_Apartment").toString();
+	      }
+	     
 	     public static Integer getAppartmentId()
 	      {
 	    	  HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
