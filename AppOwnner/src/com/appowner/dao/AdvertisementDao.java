@@ -19,4 +19,6 @@ public interface AdvertisementDao {
 		public void update(CompanyPerson person);
 		public CompanyPerson getCompanyPerson1(int int_CompanyPersonID);
 		public void updatePanel(PanelPrice panel);
+		public List<Company> listperson();
+		public List<Company> listoperation(String select);
 }
