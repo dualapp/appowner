@@ -92,4 +92,6 @@ public interface VendorDao {
 
 	public void saveWorkOrderCategory(WorkOrderCategory workOrderCategory);
 
+	public void deleteVendor1(List<Vendor> entitiesToDelete);
+
 }
