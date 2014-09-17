@@ -20,7 +20,7 @@
 <body>
 
     <h:form id="form" > 
-   
+   <p:growl id="msgs" showDetail="true" />
    
    <br/><center><legend    style="background-color:#438eb9; color:#fff;">vendor Registration</legend> </center>
    <div>
@@ -43,7 +43,7 @@
                 <th><h:outputText for="vendorName" value="vendor Name" /><font color="red">*</font></th>
                 <td><h:inputText id="vendorName"  label="Name" value="#{vendorBean.str_VendorName}" required="true" requiredMessage="vendor name Required">
                 
-                  <f:validateLength minimum="15" />
+                  <f:validateLength minimum="5" />
                      <p:ajax event="blur" update="vendorNameMsg" />
               </h:inputText>
                   
