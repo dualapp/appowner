@@ -27,6 +27,14 @@
    <url-pattern>/srv</url-pattern>
    </servlet-mapping>
    <servlet>
+    <servlet-name>dum2</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet4</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   <servlet-name>dum2</servlet-name>
+   <url-pattern>/srv5</url-pattern>
+   </servlet-mapping>
+   <servlet>
     <servlet-name>Servlet1</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet1</servlet-class>
     </servlet>
@@ -55,12 +63,12 @@
  
     <context-param>
         <param-name>user</param-name>
-        <param-value>kalpana.j5599@gmail.com</param-value>
+        <param-value>pankaj.singh1930@gmail.com</param-value>
     </context-param>
  
     <context-param>
         <param-name>pass</param-name>
-        <param-value>9040219579</param-value>
+        <param-value>pankajart</param-value>
     </context-param>
  
     <!-- Filter for uploading files -->
