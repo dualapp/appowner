@@ -8,7 +8,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template1.xhtml">
 	<ui:define name="content">
-     
+    <p:panel>
  <h:head><title></title></h:head>
 <body bgcolor="white">
   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
@@ -88,8 +88,8 @@
             </tr>
             <br/>
            
-                <p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" /> 
-               
+                <p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" float:right !important;margin: -30px 100px 50px 0px;" /> 
+                <p:button id="AddProduct1" value="Cancel" outcome="Create_Detail.xhtml" style=" float:right !important;margin: -30px -130px 0px 0px;" /> 
             
   
                   </table>
@@ -98,5 +98,6 @@
            </h:form>
 
            </body>
+     </p:panel>
            </ui:define>
   </ui:composition>
