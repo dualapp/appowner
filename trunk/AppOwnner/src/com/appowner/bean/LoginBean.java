@@ -782,6 +782,12 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
             session.setAttribute("str_Flat",str_Flat);
             session.setAttribute("ApartmentName", user.getStr_Apartment());
             session.setAttribute("str_EmailId",str_EmailId);
+            session.setAttribute("str_Country",user.getStr_Country());
+            System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqfff555555555555fffqqqqqqqqqqqqqqqqqqqqqqqq");
+			System.out.println(user.getStr_Country());
+            session.setAttribute("str_State",user.getStr_State());
+            session.setAttribute("str_City",user.getStr_City());
+            session.setAttribute("str_Apartment",user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
 		 	String index="Adminwelcomepage.xhtml";
@@ -801,8 +807,13 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 	            session.setAttribute("int_ApartmentId", int_ApartmentId);
 	            session.setAttribute("int_UserId", int_UserId);
 	            session.setAttribute("str_EmailId",str_EmailId);
-				System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-				System.out.println("hiiiiiiiiiiiii");
+	            session.setAttribute("str_Country",user.getStr_Country());
+	            
+	            session.setAttribute("str_State",user.getStr_State());
+	            session.setAttribute("str_City",user.getStr_City());
+	            session.setAttribute("str_Apartment",user.getStr_Apartment());
+				System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqffffffqqqqqqqqqqqqqqqqqqqqqqqq");
+				System.out.println(user.getStr_Country());
 				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				//get current date time with Date()
 				Date date = new Date();
