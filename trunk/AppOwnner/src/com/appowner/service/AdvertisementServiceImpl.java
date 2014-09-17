@@ -74,4 +74,18 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		{
 			getAdvertisementDao().updatePanel(panel);
 		}
+
+		
+		public  List<Company> listperson1() {
+			return getAdvertisementDao().listperson();
+			
+		}
+
+		
+		public List<Company> listoperation(String select) {
+			return getAdvertisementDao().listoperation(select);
+		}
+
+		
+		
 }
