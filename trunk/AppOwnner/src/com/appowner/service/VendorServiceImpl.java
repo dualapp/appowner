@@ -247,6 +247,12 @@ public void setVendordao(VendorDao vendordao) {
 		getVendordao().saveWorkOrderCategory(workOrderCategory);
 	}
 
+	@Override
+	public void deleteVendor1(List<Vendor> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getVendordao().deleteVendor1(entitiesToDelete);
+	}
+
 	 
 }
 	 
