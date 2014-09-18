@@ -15,7 +15,7 @@
      <tr>
     <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:250px">
-                   <f:selectItems value="aaa" />
+                   <f:selectItem itemValue="#{accountingBean.str_Organisation}"  itemLabel="#{accountingBean.str_Organisation}"/>
                  </p:selectOneMenu>
              </td>
      </tr>
@@ -50,14 +50,14 @@
             <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
             <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" style="width:200px">
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="#{expenseBean.listAccountType}" />
+                   <f:selectItems value="#{accountsBean.listAccountName}" />
                 </h:selectOneMenu>
                 
            </td>
              <td align="right">  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
             <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"  style="width:200px" >
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="#{expenseBean.listAccountType}" />
+                   <f:selectItems value="#{accountsBean.listAccountName}" />
                 </h:selectOneMenu>
                 
            </td>
