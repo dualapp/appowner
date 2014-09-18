@@ -99,9 +99,9 @@
              <br/>
              <br/>
              <p:button  value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action" id="aa44">
-          <p:menuitem value="Record Payment" />
+           <p:menuitem value="Record Payment" />
          
-           <p:menuitem id="jjj" value="Quick Payment"  onclick="triggerHiddenEvent(this.id); return false;" url="quickpayment.xhtml" icon="ui-icon-disk">
+           <p:menuitem id="hyg" value="Quick Payment"   onclick="triggerHiddenEvent(this.id); return false;" url="quickpayment.xhtml" icon="ui-icon-disk">
            
            </p:menuitem>
            <p:menuitem value="Export To Excel" icon="ui-icon-arrowrefresh-1-w" style="width:150px"/>
@@ -119,7 +119,7 @@
                     <h:outputText value="Select" />
                 </f:facet>
                  <h:selectBooleanCheckbox id="hhh" value="aaa"  valueChangeListener="#{invoiceBean.processValueChange}" >
-                 <p:ajax event="click"   partialSubmit="true"/>   
+                 <f:ajax event="change"   partialSubmit="true" render="@form"/>   
                 </h:selectBooleanCheckbox>
            </p:column>
             <p:column>
