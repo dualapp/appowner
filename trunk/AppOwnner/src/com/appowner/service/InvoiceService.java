@@ -30,5 +30,5 @@ public String getmailid(String str_ApartmentNo);
 
 public List<String> getAccountName();
 
-public void updatePayment(String accountName, String str_Status, Integer id);
+public void updatePayment(String accountName, String str_Status, Integer id, String dat_InvoiceDate);
 }
