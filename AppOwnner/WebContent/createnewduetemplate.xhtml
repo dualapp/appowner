@@ -26,8 +26,8 @@
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
           <td>  <h:outputText  value="Due Template" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="25" required="true" requiredMessage="Due Template should not Empty"/></td>
-        <td>  <p:message for="str_DueTemplate" display="text"/></td> 
+           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="25" /></td>
+        <td> <p:tooltip id="toolVendorPhone"  trackMouse="true" for="str_DueTemplate" value="It should not Empty" /> </td>
          
              </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
@@ -61,8 +61,8 @@
               <tr></tr><tr></tr><tr></tr><tr></tr>
               <tr>
                <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="25" required="true" requiredMessage=" It Should be a Number"/></td>
-         <td><p:message for="str_Rate"  display="text" /></td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="25"/></td>
+        <td> <p:tooltip id="toolVendorPhone1"  trackMouse="true" for="str_Rate" value="It Should be a Number" /> </td>
           
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
@@ -80,7 +80,7 @@
         
              <h:panelGroup style="display:block; text-align:right">
      <tr> 
-     <td><p:commandButton id="submit" value="Submit" onclick="EnrollLater()"  action="#{templateBean.addDueTemplate}" ajax="false"  /></td>
+     <td><p:commandButton id="submit" value="Submit" onclick="EnrollLater();"  action="#{templateBean.addDueTemplate}" ajax="false"  update="output" oncomplete="PF('dlg').show()"/></td>
                 <td><p:commandButton id="cancel" value="Cancel" onclick="EnrollLater1()" ajax="false"/></td>
             </tr>
             </h:panelGroup>
@@ -108,7 +108,12 @@
       
         
     </script>
-   
+    <p:dialog header="Values" resizable="false" showEffect="fade" widgetVar="dlg">
+        <p:panelGrid id="output" columns="2" columnClasses="label, value">
+            <h:outputText value="Simple:" />
+           
+            </p:panelGrid>
+            </p:dialog>
              </h:form>
              </body>
             </html>
