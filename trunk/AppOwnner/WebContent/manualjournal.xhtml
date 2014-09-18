@@ -31,7 +31,7 @@
 
 function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('Create Manual Journal.xhtml',600,700,'Create Manual Journal',null,callbackFunctionArray);
+ modalWin.ShowURL('createmanualjournal.xhtml',600,700,'Create Manual Journal',null,callbackFunctionArray);
  }
 function Submit(msg){
 	modalWin.HideModalPopUp();
@@ -58,4 +58,85 @@ function Submit(msg){
              <br/>
              </h:form>
              </body>
+             <h:form>
+
+  <h:body>
+       
+        
+         <p:dataTable id="ggg" var="journal" value="#{accountingBean.listManualJournal}"  binding="#{accountingBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50">
+             <f:facet name="header">
+              Manual Journal
+           <h:commandLink>
+                <p:graphicImage value="images/xls.jpg" width="24"/>
+                <p:dataExporter type="xls" target="ggg" fileName="listDues" />
+            </h:commandLink>
+            
+            
+        </f:facet>
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Select" />
+                </f:facet>
+                 <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{accountingBean.processValueChange}">
+                 <p:ajax event="click"   partialSubmit="true"/>   
+                </h:selectBooleanCheckbox>
+           </p:column>
+
+        
+         
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Organisation" />
+                </f:facet>
+                <h:outputText value="#{accountingBean.str_Organisation}"/>
+            </p:column>
+       
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Date" />
+                </f:facet>
+                <h:outputText value="#{journal.dat_Date}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value=" Debit Account" />
+                </f:facet>
+                <h:outputText value="#{journal.str_DebitAccount}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Credit Account" />
+                </f:facet>
+                <h:outputText value="#{journal.str_CreditAccount}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Debit Amount" />
+                </f:facet>
+                <h:outputText value="#{journal.dbl_DebitAmount}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Credit Account" />
+                </f:facet>
+                <h:outputText value="#{journal.dbl_CreditAmount}" />
+            </p:column>
+           
+                
+              
+               
+         
+                 
+                 
+               
+                
+               
+          </p:dataTable>
+      
+                
+          </h:body>
+          </h:form>
+       
+          
 </html>
