@@ -11,13 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_Manual_Journal")
-public class ManualJournal implements Serializable{
+public class ManualJournal implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer int_ManualJournalID;
-	@Column(name="var_Organisation")
-	private String str_Organisation;
+	@Column(name="var_OrganisationID")
+	private Integer str_OrganisationID;
 	
 	private String dat_Date;
 	@Column(name="var_Reference")
@@ -36,11 +36,13 @@ public class ManualJournal implements Serializable{
 	public void setInt_ManualJournalID(Integer int_ManualJournalID) {
 		this.int_ManualJournalID = int_ManualJournalID;
 	}
-	public String getStr_Organisation() {
-		return str_Organisation;
+	
+	
+	public Integer getStr_OrganisationID() {
+		return str_OrganisationID;
 	}
-	public void setStr_Organisation(String str_Organisation) {
-		this.str_Organisation = str_Organisation;
+	public void setStr_OrganisationID(Integer str_OrganisationID) {
+		this.str_OrganisationID = str_OrganisationID;
 	}
 	public String getDat_Date() {
 		return dat_Date;
