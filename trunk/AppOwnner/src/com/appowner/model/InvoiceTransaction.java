@@ -145,5 +145,20 @@ public class InvoiceTransaction implements Serializable{
 
 
 	private double totalBalance;
+	@Column(name="var_paymentAccount")
+	private String str_paymentAccount;
+	public String getStr_paymentAccount() {
+		return str_paymentAccount;
+	}
+	public void setStr_paymentAccount(String str_paymentAccount) {
+		this.str_paymentAccount = str_paymentAccount;
+	}
+	public String dat_PaymentDate;
+	public String getDat_PaymentDate() {
+		return dat_PaymentDate;
+	}
+	public void setDat_PaymentDate(String dat_PaymentDate) {
+		this.dat_PaymentDate = dat_PaymentDate;
+	}
 	
 }
