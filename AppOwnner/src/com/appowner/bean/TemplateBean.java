@@ -36,7 +36,7 @@ import com.appowner.service.TemplateService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class TemplateBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//private static final String dueTemplate1="dueTemplate";
