@@ -679,9 +679,11 @@ public void setListAccountName(List<String> listAccountName) {
 private DataTable dataTable;
 public void processValueChange(ValueChangeEvent event)  
         throws AbortProcessingException 
-{    System.out.println("hi");
+{    
+	System.out.println("hi");
 	InvoiceTransaction template1=(InvoiceTransaction)dataTable.getRowData();
 	 id=template1.getInt_InvoiceTransactionID();
+	 
 	System.out.println(id);
 }
 public DataTable getDataTable() {
@@ -689,6 +691,15 @@ public DataTable getDataTable() {
 }
 public void setDataTable(DataTable dataTable) {
 	this.dataTable = dataTable;
+}
+private Integer id1;
+public Integer getId1() {
+	id1=id;
+	System.out.println(id1+"juhu");
+	return id1;
+}
+public void setId1(Integer id1) {
+	this.id1 = id1;
 }
 private static Integer id;
 public static Integer getId() {
@@ -700,22 +711,11 @@ public static void setId(Integer id) {
 public void savePayment()
 {
 	System.out.println("hihhh");
-	getInvoiceService().updatePayment(accountName,str_Status,id);
+	getInvoiceService().updatePayment(accountName,str_Status,id,dat_InvoiceDate);
 }
-public String  cancelInvoice()
+ public String  cancelInvoice()
 {
 	return "invoice.xhtml";
 }
-public void check() throws InvoiceBean
-{  System.out.println("hi");
-   try
-   {
-	if(id==789)
-		System.out.println("hello");
-   }
-	catch(Exception e)
-	{
-	    throw new InvoiceBean("Please Check the CheckBox Befor click the QuickPayment");	
-	}
-}
+
 }
