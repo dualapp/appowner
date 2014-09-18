@@ -36,7 +36,7 @@
            <td>  <h:outputText  value="To:" /></td>
            <td>  <p:inputText id="german"   pattern="dd-MM-yyyy"  value="#{accountingBean.dat_ToDate}" size="20" locale="de" navigator="true"/> </td> 
              <td>
-               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch}" update="ggg">
+               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch}" update="ggg" >
                   </h:commandButton>
              </td> 
            </h:panelGroup>
@@ -65,6 +65,7 @@
     <strong>Debit</strong>
   
     </td>
+    
      <td style="width:250px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
     <strong>Credit</strong>
   
@@ -89,44 +90,126 @@
     <td colspan="5" style="border-bottom:1px solid #DADADA ;">
     </td>
     </tr>
+    <h:panelGroup id="fgggggg" rendered="#{accountingBean.income}">
+    <ui:repeat id="ggg1" value="#{accountingBean.listInvoiceTransaction1}" var="account1" varStatus="status">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account1.dat_PaymentDate}</td>
+     <td align="right" style="width:250px;">#{account1.str_paymentAccount}
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{account1.totalDue}</td>
+    </tr>
+     <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+    </ui:repeat>
+</h:panelGroup>
+ <h:panelGroup id="fgggggg1" rendered="#{! empty accountingBean.str}">
+    <ui:repeat id="ggg2" value="#{accountingBean.listManualJournal1}" var="journal" varStatus="status">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{journal.dat_Date}</td>
+     <h:panelGroup id="hygdtdf" rendered="#{journal.str_CreditAccount eq accountingBean.str}">
+     <td align="right" style="width:250px;"><h:outputText value="#{journal.str_DebitAccount}"/></td>
+     </h:panelGroup>
+     <h:panelGroup id="hjfdjjffd"  rendered="#{journal.str_DebitAccount eq accountingBean.str}">
+     <td align="right" style="width:250px;"><h:outputText rendered="true" value="#{journal.str_CreditAccount}"/></td>
+    </h:panelGroup>
+    <td align="right" style="padding-right:5px;width:320px;">Manual</td>
+    <h:panelGroup id="hfdfd" rendered="#{journal.str_DebitAccount eq accountingBean.str}">
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText  value="#{journal.dbl_DebitAmount}"/> </td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText  value="#{accountingBean.int_blank}"/> </td>
+     </h:panelGroup>
+     <h:panelGroup id="ejekej" rendered="#{journal.str_CreditAccount eq accountingBean.str}">
+      <td align="right" style="padding-right:5px;width:320px;"><h:outputText  value="#{accountingBean.int_blank}"/> </td> 
+    <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="true" value="#{journal.dbl_CreditAmount}"/></td>
+    </h:panelGroup>
+    </tr>
+     <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+    </ui:repeat>
+</h:panelGroup>
+     
     <ui:repeat id="ggg" value="#{accountingBean.listInvoiceTransaction}" var="account" varStatus="status" 
 
 style="width:600px"> 
-    
+    <h:panelGroup id="hhghhg"  rendered="#{accountingBean.str_Accounts eq 'Income from Resident'}">
     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
-     <td align="right" style="width:250px;">#{accountingBean.str_Accounts}
+     <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
      <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.int_blank}"/> </td>
-    <td align="right" style="padding-right:5px;width:320px;"> #{account.totalBalance} </td>
+    <td align="right" style="padding-right:5px;width:320px;"> #{account.totalDue} </td>
     </tr>
     <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td> 
     </tr>
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
-     <td align="right" style="width:250px;">#{accountingBean.str_Accounts}
+     <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.type}"/></td>
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
+    </h:panelGroup>
+      <h:panelGroup id="hhghhg1"  rendered="#{  accountingBean.str_Accounts eq 'Cash'|| accountingBean.str_Accounts eq 'Bank' || accountingBean.str_Accounts eq 'Expense'}">
+    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_PaymentDate}</td>
+     <td align="right" style="width:250px;">Accounts Receivable
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{account.totalDue}"/> </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank}</td>
+    </tr>
+    </h:panelGroup>
+    <h:panelGroup id="fgggggggg" rendered="#{accountingBean.str_Accounts eq 'Accounts Receivable' || accountingBean.str_Accounts eq 'Accounts Receivable1'}">
+   
+    
+  
+  
+   
     <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+   
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Income from Residents
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{account.subTotal} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    </tr>
+    <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Income from Residents
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
       <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{accountingBean.date}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
      <td align="right" style="width:250px;">#{accountingBean.str_TaxName}
    </td>
-    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.income}</td>
-     <td align="right" style="padding-right:5px;width:320px;"> </td>
-    <td align="right" style="padding-right:5px;width:320px;"> </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{account.taxAmount} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
+   </h:panelGroup>
     <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
- 
+    <h:panelGroup id="hghhhhh" rendered="#{accountingBean.str_Accounts eq 'Tax Payable'}">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Accounts Receivable
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    </tr>
+    </h:panelGroup>
  </ui:repeat>
  <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
@@ -139,10 +222,7 @@ style="width:600px">
      <td align="right" style="padding-right:5px;width:320px;"> </td>
     <td align="right" style="padding-right:5px;width:320px;"> </td>
     </tr>
-   
-  
-   
-    
+    <h:panelGroup id="jdsdsj" rendered="#{ accountingBean.str_Accounts != 'Income from Resident' &amp;&amp; accountingBean.str_Accounts != 'Accounts Receivable' &amp;&amp; accountingBean.str_Accounts != 'Accounts Receivable1'}">
     <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
@@ -151,11 +231,29 @@ style="width:600px">
      <td align="right" style="width:500px;">
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Closing Balance</td>
-     <td align="right" style="padding-right:5px;width:320px;"></td>
-    <td align="right" style="padding-right:5px;width:320px;">96240.00 </td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.str_Accounts != 'Income from Resident' &amp;&amp; accountingBean.str_Accounts != 'Accounts Receivable' &amp;&amp; accountingBean.str_Accounts != 'Accounts Receivable1'}" value="#{accountingBean.credit}"/> </td>
+    
+    <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="false"  value="#{accountingBean.debit}"/></td>
     </tr>  
+  </h:panelGroup>
    
+  
+  
+   <h:panelGroup  id="bbhh" rendered="#{accountingBean.str_Accounts eq 'Accounts Receivable' || accountingBean.str_Accounts eq 'Accounts Receivable1' || accountingBean.str_Accounts eq 'Income from Resident'}">
+    <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
    
+     <tr style="line-height:25px;"><td style="padding-left:10px;width:440px;"></td>
+     <td align="right" style="width:500px;">
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Closing Balance</td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.str_Accounts eq 'Accounts Receivable' ||accountingBean.str_Accounts eq 'Accounts Receivable1'}" value="#{accountingBean.debit}"/> </td>
+    
+    <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.str_Accounts eq 'Income from Resident'}"  value="#{accountingBean.debit}"/></td>
+    </tr>  
+  
+   </h:panelGroup>
    
     </tbody>
     </table>
