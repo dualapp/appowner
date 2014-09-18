@@ -23,6 +23,12 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.AccountsOpeningBalance;
@@ -56,4 +62,11 @@ public interface AccountsDao {
 	public String getStatus(String str_Accounts);
 	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts);
 	public List<Double> getTotalBalance();
+	public Character getChGroup(String str_AccountType);
+	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts);
+	public List<ManualJournal> getlistManualJournal();
+	public List<ManualJournal> getlistManualJournal1(String str_Accounts);
+	public ManualJournal getManualAccount(Integer id);
+	public double getDebitAmount(Integer id);
+	public double getCreditAmount(Integer id);
 }
