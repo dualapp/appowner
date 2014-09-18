@@ -121,6 +121,10 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().listInvoiceTransaction(str_Accounts);
 	}
+	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts)
+	{
+		return getAccountsDao().listInvoiceTransaction1(str_Accounts);
+	}
 	public String getStatus(String str_Accounts)
 	{
 		return getAccountsDao().getStatus(str_Accounts);
@@ -129,8 +133,28 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getTotalBalance();
 	}
-
-
-
-
+	public Character getChGroup(String str_AccountType)
+	{
+		return getAccountsDao().getChGroup(str_AccountType);	
+		}
+	public List<ManualJournal> getlistManualJournal()
+	{
+		return getAccountsDao().getlistManualJournal();
+	}
+	public List<ManualJournal> getlistManualJournal1(String str_Accounts)
+	{
+		return getAccountsDao().getlistManualJournal1(str_Accounts);
+	}
+	public ManualJournal getManualAccount(Integer id)
+	{
+		return (ManualJournal) getAccountsDao().getManualAccount(id);
+	}
+	public double getDebitAmount(Integer id)
+	{
+		return getAccountsDao().getDebitAmount(id);
+	}
+	public double getCreditAmount(Integer id)
+	{
+		return getAccountsDao().getCreditAmount(id);
+	}
 }
