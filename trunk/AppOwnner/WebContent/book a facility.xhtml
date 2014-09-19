@@ -15,7 +15,7 @@
 	 
 
  </h:head>
-	 <h:form>
+	 <h:form id="form">
 	<h:body>
 	<br/>
  
@@ -26,20 +26,24 @@
                  </p:selectOneMenu><br/>
 	 &#150; &#150; <br/>
                 
-              <h:link   outcome="createnewbookafacility.xhtm" value="create new" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
-	   
+              <h:commandButton   action="createnewbookafacility" value="create new" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+	    &#150; &#150; <p:menuButton value="Action">
+        <p:menuitem value="Assign Selected" action="#{requestScopeBean.assignRequestedService}"/>
+        <p:menuitem value="close Selected" action="#{requestScopeBean.closeRequestedService}"/>
+         <p:menuitem value="Notify By Email" process="Dt"  update=":form:bookedDetail1"    oncomplete="PF('bookedDialog1').show()" />
+        <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
+        <p:menuitem value="View Chart" />
+         <p:menuitem value="View Summary" />
+         <p:menuitem value="Export To Excel"/>
+        </p:menuButton>
 	
 	<br/>
 	<legend  style="background-color:#438eb9; color:#fff;">Book A Facility</legend>
                 
-             <p:dataTable      resizableColumns="true" style="margin-bottom:20px" 
+             <p:dataTable   id="Dt"   resizableColumns="true" style="margin-bottom:20px" 
                rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"  var="Bf"  value="#{loginBean.bookAFacilityList}">
-	<f:facet name="header">
-            Expand rows to see detailed information
-             
-        </f:facet>
-   
+        rowsPerPageTemplate="1,2,3"  var="Bf"  value="#{loginBean.bookAFacilityList}" selectionMode="single" selection="#{loginBean.bookAFacility}" rowKey="#{Bf.int_FacilityBookId}">
+	 
           <p:column headerText="Organization">
                 <h:outputText value="#{loginBean.str_ApartmentName}" /> 
             
@@ -70,6 +74,27 @@
 	 </p:column>
 	 
 	 </p:dataTable>
+	  <p:dialog header="Email" widgetVar="bookedDialog1" showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+        <p:outputPanel id="bookedDetail1" style="text-align:center;">
+            <fieldset>
+            <legend  style="background-color:#438eb9; color:#fff;">Email</legend>
+            <table>
+            <tr><th><h:outputText value="Select recipient"/></th>
+            <td><h:selectOneRadio id="Audience"
+                      value="#{expenseBean.int_PoolAudience}">
+        <f:selectItem   itemLabel="All Members" itemValue="1" />
+        <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
+        </h:selectOneRadio></td></tr>
+       <tr> <th><h:outputText value="To"/></th><br/>
+       <td><p:inputTextarea value="#{loginBean.str_EmailId}" readonly="true" rows="6" cols="33"/></td></tr>
+       <tr><th><h:outputText value="MESSAGE*"/></th><br/>
+        <td><p:inputTextarea value="#{loginBean.bookAFacility.str_FacilityType}" rows="6" cols="33"/></td></tr>
+       <tr><td><h:commandButton value="Send"/></td>  <td><h:commandButton value="Cancel"/></td></tr>
+        </table>
+        
+            </fieldset>
+            </p:outputPanel>
+            </p:dialog>
 	 </h:body>
 	 </h:form>
 	</ui:define>
