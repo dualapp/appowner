@@ -1263,9 +1263,11 @@ private String str_Choise1;
 private String str_Choise2;
 private String str_Choise3;
 private String str_PoolQuestion;
-private Integer int_PoolAudience;
+private String str_PoolAudience;
 private Long long_Vote;
 private String str_EndDate;
+ 
+
 private String str_StartDate;
 private List<Pool> poolList;
 private Pool pool;
@@ -1275,6 +1277,12 @@ private String str_Remark;
 private Date date_StartDate;
 private Date date_EndDate;
 private String str_Choise;
+public String getStr_PoolAudience() {
+	return str_PoolAudience;
+}
+public void setStr_PoolAudience(String str_PoolAudience) {
+	this.str_PoolAudience = str_PoolAudience;
+}
 public String getStr_EndDate() {
 	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	str_EndDate=dateFormat.format(getDate_EndDate());
@@ -1363,19 +1371,13 @@ public Pool getPool() {
 public void setPool(Pool pool) {
 	this.pool = pool;
 }
-public Integer getInt_PoolAudience() {
-	
-	return int_PoolAudience;
-}
-public void setInt_PoolAudience(Integer int_PoolAudience) {
-	this.int_PoolAudience = int_PoolAudience;
-}
+ 
 public void addPool()
 {
 	System.out.println("Poollllllllllllllllllllll");
 	pool=new Pool();
 	pool.setInt_OrganizationId(Util.getAppartmentId());
-	pool.setInt_poolAudience(int_PoolAudience);
+	pool.setStr_poolAudience(str_PoolAudience);
 	pool.setInt_Vote(0l);
 	pool.setInt_userId(Util.getUserId());
 	pool.setStr_StartDate(getStr_StartDate());
@@ -1538,16 +1540,16 @@ public Integer getIsVoted() {
 	if(onePoll!=null)
 	{
  
-		isVoted=getExpenseService().isVoted(onePoll.getInt_userId(),onePoll.getInt_PoolId());
+		isVoted=getExpenseService().isVoted(Util.getUserId(),onePoll.getInt_PoolId());
 		System.out.println(isVoted);
 	}
     
 	else
 	{
-		System.out.println(latestPolls.getInt_userId());
+		System.out.println(Util.getUserId());
 		System.out.println(latestPolls.getInt_PoolId());
 		 
-		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),latestPolls.getInt_PoolId());
+		 isVoted=getExpenseService().isVoted(Util.getUserId(),latestPolls.getInt_PoolId());
 		 System.out.println(isVoted+"Vote");
 	}
 	return isVoted;
@@ -1580,13 +1582,13 @@ public String addVote()
 	if(onePoll!=null)
 	{
 		vote.setInt_PoolId(onePoll.getInt_PoolId());
-		isVoted=getExpenseService().isVoted(onePoll.getInt_userId(),onePoll.getInt_PoolId());
+		isVoted=getExpenseService().isVoted(Util.getUserId(),onePoll.getInt_PoolId());
 	}
     
 	else
 	{
 		vote.setInt_PoolId(latestPolls.getInt_PoolId());
-		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),latestPolls.getInt_PoolId());
+		 isVoted=getExpenseService().isVoted( Util.getUserId(),latestPolls.getInt_PoolId());
 		 
     System.out.println(isVoted+"voteId");
 	}
@@ -1629,6 +1631,8 @@ private Pool latestPolls;
 public Pool getLatestPolls() {
 	latestPolls=new Pool();
 	latestPolls=getExpenseService().getLatestPolls();
+	
+	 
 	return latestPolls;
 }
 public void setLatestPolls(Pool latestPolls) {
