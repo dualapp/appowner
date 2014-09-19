@@ -26,37 +26,40 @@
   </p:tab>
   </p:accordionPanel>
  <fieldset>
- <legend>Pool Details</legend>
+ <legend  style="background-color:#438eb9; color:#fff;"> Pool Details</legend>
  <table>
  <tr>
- <td>
-    <h:outputText value="Organization:"/></td>
+ <th>
+    <h:outputText value="Organization:"/></th>
     <td>
     <h:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
     
-    <td><h:outputText value="Status:"/> </td>
+    <th><h:outputText value="Status:"/> </th>
     <td>
-    <h:inputText value="#{expenseBean.pool.str_Status}"/></td>  
+    <h:inputText value="#{expenseBean.onePoll.str_Status}"/></td>  
     </tr>
 <tr>
   
-    <td><h:outputText value="PoolAudience"/></td>
-    <td><h:inputText value="#{expenseBean.pool.int_poolAudience}"/></td>
+    <th><h:outputText value="PoolAudience"/></th>
+    <td><h:inputText value="#{expenseBean.onePoll.int_poolAudience}"/></td>
      
     </tr>
     </table></fieldset>
-  <p:fieldset legend="PollResult" toggleable="true" toggleSpeed="500">
+    <fieldset>
+    <legend  style="background-color:#438eb9; color:#fff;"> Pool Result</legend>
+   
     
-<h2><h:outputText value="*#{expenseBean.pool.str_poolQuestion}"/></h2> 
+<h2><h:outputText value="*#{expenseBean.onePoll.str_poolQuestion}"/></h2> 
   
   
-<p:progressBar value="#{expenseBean.getChoise1Vote()}" labelTemplate="#{expenseBean.pool.str_Choise1}{value}% vote" displayOnly="true"/><br/>
+<p:progressBar value="#{expenseBean.getChoise1Vote()}" labelTemplate="#{expenseBean.onePoll.str_Choise1}{value}% vote" displayOnly="true"/><br/>
   
- <p:progressBar value="#{expenseBean.getChoise2Vote()}" labelTemplate="#{expenseBean.pool.str_Choise2}{value}% vote" displayOnly="true"/><br/>
+ <p:progressBar value="#{expenseBean.getChoise2Vote()}" labelTemplate="#{expenseBean.onePoll.str_Choise2}{value}% vote" displayOnly="true"/><br/>
 
- <p:progressBar value="#{expenseBean.getChoise3Vote()}" labelTemplate="#{expenseBean.pool.str_Choise3}{value}% vote" displayOnly="true"/>
+ <p:progressBar value="#{expenseBean.getChoise3Vote()}" labelTemplate="#{expenseBean.onePoll.str_Choise3}{value}% vote" displayOnly="true"/>
 
-   </p:fieldset>
+    
+   </fieldset>
    
     </h:body>
     </h:form>
