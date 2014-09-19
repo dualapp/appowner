@@ -81,14 +81,14 @@
             <table>
             <tr><th><h:outputText value="Select recipient"/></th>
             <td><h:selectOneRadio id="Audience"
-                      value="#{expenseBean.int_PoolAudience}">
+                      value="#{expenseBean.str_PoolAudience}">
         <f:selectItem   itemLabel="All Members" itemValue="1" />
         <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
         </h:selectOneRadio></td></tr>
        <tr> <th><h:outputText value="To"/></th><br/>
        <td><p:inputTextarea value="#{loginBean.str_EmailId}" readonly="true" rows="6" cols="33"/></td></tr>
        <tr><th><h:outputText value="MESSAGE*"/></th><br/>
-        <td><p:inputTextarea value="#{loginBean.bookAFacility.str_FacilityType}" rows="6" cols="33"/></td></tr>
+        <td><p:inputTextarea   rows="6" cols="33"/></td></tr>
        <tr><td><h:commandButton value="Send"/></td>  <td><h:commandButton value="Cancel"/></td></tr>
         </table>
         
