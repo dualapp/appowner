@@ -958,9 +958,9 @@ public void myChangeListener(ValueChangeEvent e){
 }
 	public String deleteVendor1() {
 	    List<Vendor> entitiesToDelete = new ArrayList<Vendor>();
-System.out.println(vendorList+"venders");
+ 
 	    for (Vendor vendor :selectedVendor) {
-	    	System.out.println(vendor.getInt_VendorId()+"vid");
+	    	 
 	    	if (vendor.getInt_VendorId()!=null) 
 	    	{
 	            entitiesToDelete.add(vendor);
