@@ -18,7 +18,7 @@
     <h:body>
      <ui:include src="/memberdetails.xhtml" />
      <table>
-   <tr><td><h2><h:outputText value="Booking Details"/></h2></td></tr>
+   <legend  align="left" style="background-color:#438eb9; color:#fff;">Booking Details</legend>
   <tr><th><h:outputText value="Event Name"/>  </th><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name" style="width:400px" value="#{loginBean.str_EventName}">
   <p:ajax event="blur" update="Eventname" />
   </h:inputText>
