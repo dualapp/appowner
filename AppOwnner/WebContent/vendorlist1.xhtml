@@ -272,28 +272,7 @@ function HideModalWindow() {
             </table>
         </p:outputPanel>
     </p:dialog>
-     <p:dialog  icon="ui-icon-alert" header="Delete Vendor" widgetVar="multiVendorDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="400">
-        <p:outputPanel id="multiVendorDetail2" style="text-align:center;">
-            
-            <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
-            <h:outputText value="Are you sure you want to delete #{vendor1.str_VendorName}?"/>
-            <br/>
-              <h:link outcome="deletevendor.xhtml" value="OK" >  
-	   			 
-	   				<f:param name="int_VendorId" value="#{vendor1.int_VendorId}" />
-	   		</h:link>
-	   		
-	   		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	   		<h:link   value="Cancel" >  
-	   		  
-	   		</h:link>
-	   		<br/>
-	   		
-            </ui:repeat>
-            
-            
-        </p:outputPanel>
-    </p:dialog>
+      
               <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
         <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="vendor" />
