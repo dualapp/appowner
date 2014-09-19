@@ -20,4 +20,9 @@ void deleteOneServiceRequest(ServiceRequest servicerequest1);
 
 void updateStatusOfServiceRequest(ServiceRequest serviceRequest);
 
+void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete);
+
+List<ServiceRequest> getListServiceRequest(
+		Integer int_ApartmentId, String str_Status, String str_VendorType);
+
 }
