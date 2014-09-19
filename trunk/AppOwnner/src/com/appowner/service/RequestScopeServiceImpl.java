@@ -53,5 +53,17 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 		// TODO Auto-generated method stub
 		getRequestScopeDao().updateStatusOfServiceRequest(serviceRequest);
 	}
+	@Override
+	public void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getRequestScopeDao().deleteOneServiceRequest(entitiesToDelete);
+	}
+	@Override
+	public List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
+			String str_Status, String str_VendorType) {
+		return getRequestScopeDao().getListServiceRequest( int_ApartmentId,
+				str_Status,  str_VendorType);
+		 
+	}
 
 }
