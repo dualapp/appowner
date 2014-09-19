@@ -60,86 +60,90 @@
              <br/>
              <br/>
              
-          <h:button outcome="createnewpool.xhtml" value="Create New"/> &#150; &#150;<h:link outcome="vote.xhtml"  value="Vote Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Edit Selected" />&#150; &#150;<h:link outcome="viewpool.xhtml"  value="View Vote" />&#150; &#150;<h:button outcome="createExpenses"   value="Refresh" />&#150; &#150;<p:menuButton value="Action">
-        <p:menuitem value="Vote Selected" action="#{expenseBean.addVote}" />
-        <p:menuitem value="View Vote"  action="#{expenseBean.getOnePool}"/>
-        <p:menuitem value="View Chart" />
+          <h:button outcome="createnewpool.xhtml" value="Create New"/> &#150; &#150; &#150; &#150;   &#150; &#150;<h:button  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+        <p:menuitem value="Notify By Email" process="DT" update=":form:pollDetail"    oncomplete="PF('pollDialog').show()" />
+        <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
+        <p:menuitem value="Close Selected" />
          <p:menuitem value="View Summary"/>
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
          
-             <legend  style="background-color:#438eb9; color:#fff;"> Pool</legend>
-             <p:dataTable    id="dataTable1" widgetVar="dataTable"  emptyMessage="No Vendors found with given criteria"     resizableColumns="true"    rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"   var="pool" value="#{expenseBean.poolList}"   >
-                <f:facet name="header">
-                
-             
-                <h:outputText  value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px"    placeholder="Enter keyword"/>
-            
-       </f:facet>
+          
+       &#150; &#150; <h:commandButton   update="DT" process="DT" value="Vote Selected" action="vote">
+     
+       </h:commandButton>
+      &#150; &#150; <h:commandButton   update="DT" process="DT" value="View Selected Vote" action="viewpool">
+     
+       </h:commandButton>
+     
               
-                 <f:facet name="header">
-            
-             
-        </f:facet>
-        
-         <p:column headerText="check" width="150">
-        <h:selectBooleanCheckbox value="str" valueChangeListener="#{expenseBean.processListener1}">
-        <p:ajax event="click" partialSubmit="true"/>
-       </h:selectBooleanCheckbox>
-        </p:column>
-        
-        <p:column   sortBy="#{pool.str_CreatedBy}"  headerText="Created By" footerText="created By" width="150">
+             <p:dataTable sortMode="multiple"   id="DT" widgetVar="dataTable"  emptyMessage="No polls found with given criteria"     resizableColumns="true"    rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"   var="pool" value="#{expenseBean.poolList}" selectionMode="single" selection="#{expenseBean.onePoll}" rowKey="#{pool.int_PoolId}"  >
+                 
+                          
+        <p:column     headerText="Created By"    >
           
                <h:outputText   value="#{pool.str_CreatedBy}" /> 
                
             </p:column>
-             <p:column   sortBy="#{pool.str_StartDate}"  headerText="Organization" footerText="Organization" width="150">
+             <p:column      headerText="Organization"    >
           
                <h:outputText   value="#{expenseBean.str_OrganizationName}" /> 
                
             </p:column>
-            <p:column   sortBy="#{pool.str_StartDate}"  headerText="Start Date" footerText="Start Date" width="150">
+            <p:column     headerText="Start Date"  >
           
                <h:outputText   value="#{pool.str_StartDate}" /> 
                
             </p:column>
-             <p:column   sortBy="#{pool.str_EndDate}"  headerText="End Date" footerText="End Date" width="150">
+             <p:column      headerText="End Date"  >
           
                <h:outputText   value="#{pool.str_EndDate}" /> 
                
             </p:column>
-            <p:column   sortBy="#{pool.str_poolQuestion}"  headerText="Pool Question" footerText="pool Question" width="150">
+            <p:column      headerText="Pool Question"  >
           
                <h:outputText   value="#{pool.str_poolQuestion}" /> 
                
             </p:column>
-            <p:column   sortBy="#{pool.int_poolAudience}"  headerText="Audience" footerText="Audience" width="150">
+            <p:column     headerText="Audience"  >
           
                <h:outputText   value="#{pool.int_poolAudience}" /> 
                
             </p:column>
-            <p:column   sortBy="#{pool.int_Vote}"  headerText="Total Votes" footerText="Total Votes" width="150">
+            <p:column     headerText="Total Votes"  >
           
                <h:outputText   value="#{pool.int_Vote}" /> 
                
             </p:column>
-           <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Action" />
-                    </f:facet>
-             
-	   		
-	   		<h:link  value="vote"     outcome="vote.xhtml" > 
-	   	 		<f:param name="int_PoolId" value="#{pool.int_PoolId}" />
-	   		</h:link> 
-	   		<h:link  value="View Vote" outcome="viewpool.xhtml" > 
-	   	 		<f:param name="int_PoolId" value="#{pool.int_PoolId}" />
-	   		</h:link>
-            </p:column> 
+          
             
          </p:dataTable>
+           <p:dialog header="Email" widgetVar="pollDialog" showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+        <p:outputPanel id="pollDetail" style="text-align:center;">
+        <p:panelGrid    rendered="#{not empty expenseBean.onePoll}"  >
+                
+            <fieldset>
+            <legend  style="background-color:#438eb9; color:#fff;">Email</legend>
+            <table>
+            <tr><th><h:outputText value="Select recipient"/></th>
+            <td><h:selectOneRadio id="Audience"
+                      value="#{expenseBean.int_PoolAudience}">
+        <f:selectItem   itemLabel="All Members" itemValue="1" />
+        <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
+        </h:selectOneRadio></td></tr>
+       <tr> <th><h:outputText value="To"/></th><br/>
+       <td><p:inputTextarea value="#{loginBean.str_EmailId}" readonly="true" rows="6" cols="33"/></td></tr>
+       <tr><th><h:outputText value="MESSAGE*"/></th><br/>
+        <td><p:inputTextarea value="#{expenseBean.onePoll.str_poolQuestion}" rows="6" cols="33"/></td></tr>
+       <tr><td><h:commandButton value="Send"/></td>  <td><h:commandButton value="Cancel"/></td></tr>
+        </table>
+        
+            </fieldset>
+            </p:panelGrid>
+            </p:outputPanel>
+            </p:dialog>
+            
          </h:form>
          </body>
          </ui:define>
