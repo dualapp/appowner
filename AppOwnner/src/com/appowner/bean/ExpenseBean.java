@@ -1376,7 +1376,7 @@ public void addPool()
 	pool=new Pool();
 	pool.setInt_OrganizationId(Util.getAppartmentId());
 	pool.setInt_poolAudience(int_PoolAudience);
-	pool.setInt_Vote(long_Vote);
+	pool.setInt_Vote(0l);
 	pool.setInt_userId(Util.getUserId());
 	pool.setStr_StartDate(getStr_StartDate());
 	System.out.println(getStr_EndDate()+"seemaaaaaaaaaaa");
@@ -1439,25 +1439,41 @@ public int increment() {
 
 public Long getChoise1Vote()
 {
-	 Long count1=getExpenseService().getChoise1Vote(pool.getStr_Choise1(),int_PoolId);
+	 Long count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
+	 System.out.println(onePoll.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
+	 System.out.println(onePoll.getStr_Choise1());
+	 System.out.println(int_PoolId+"pid");
 	 
-	 Long res= count1*100/pool.getInt_Vote();
+	 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	 
+	 Long res= count1*100/onePoll.getInt_Vote();
+	 System.out.println(res+"result");
 	 return res;
 	
 }
 public Long getChoise2Vote()
 {
-	 Long count2=getExpenseService().getChoise2Vote(pool.getStr_Choise2(),int_PoolId);
+	System.out.println(onePoll.getInt_PoolId());
+	 Long count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
+	 System.out.println(onePoll.getStr_Choise2());
+	 System.out.println(int_PoolId+"pid");
 	 System.out.println(count2);
-	 Long res= count2*100/pool.getInt_Vote();
+	 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	 Long res= count2*100/onePoll.getInt_Vote();
+	 System.out.println(res+"result");
 	 return res;
 	
 }
 public Long getChoise3Vote()
-{
-	  Long count3=getExpenseService().getChoise3Vote(pool.getStr_Choise3(),int_PoolId);
-	  Long res= count3*100/pool.getInt_Vote();
+{System.out.println(onePoll.getInt_PoolId());
+	  Long count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
+	  System.out.println(onePoll.getStr_Choise3());
+		 System.out.println(int_PoolId+"pid");
+		 System.out.println(count3);
+		 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	  Long res= count3*100/onePoll.getInt_Vote();
+	  System.out.println(res+"result");
 	  return res;
 }
 private static Pool pool1;
@@ -1504,11 +1520,25 @@ public void setDisabled(Boolean disabled) {
 }
 private Boolean disabled;
 private Integer  isVoted;
+private List<Pool> selectedPolls;
+private Pool onePoll;
+public Pool getOnePoll() {
+	return onePoll;
+}
+public void setOnePoll(Pool onePoll) {
+	this.onePoll = onePoll;
+}
+public List<Pool> getSelectedPolls() {
+	return selectedPolls;
+}
+public void setSelectedPolls(List<Pool> selectedPolls) {
+	this.selectedPolls = selectedPolls;
+}
 public Integer getIsVoted() {
-	if(pool!=null)
+	if(onePoll!=null)
 	{
  
-		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+		isVoted=getExpenseService().isVoted(onePoll.getInt_userId(),onePoll.getInt_PoolId());
 		System.out.println(isVoted);
 	}
     
@@ -1547,10 +1577,10 @@ public String addVote()
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	 
-	if(pool!=null)
+	if(onePoll!=null)
 	{
-		vote.setInt_PoolId(int_PoolId);
-		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+		vote.setInt_PoolId(onePoll.getInt_PoolId());
+		isVoted=getExpenseService().isVoted(onePoll.getInt_userId(),onePoll.getInt_PoolId());
 	}
     
 	else
@@ -1573,12 +1603,12 @@ public String addVote()
 	getExpenseService().addVote(vote);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Vote Successfully!", "Vote Saved Successfully!"));
 	System.out.println(int_PoolId);
-	if(pool!=null)
+	if(onePoll!=null)
 	{
-	 long_Vote= getExpenseService().getTotalVote(pool.getInt_PoolId());
-	pool.setInt_Vote(long_Vote);
+	 long_Vote= getExpenseService().getTotalVote(onePoll.getInt_PoolId());
+	 onePoll.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
-	getExpenseService().UpdatePool(pool);
+	getExpenseService().UpdatePool(onePoll);
 	}
 	else
 	{
