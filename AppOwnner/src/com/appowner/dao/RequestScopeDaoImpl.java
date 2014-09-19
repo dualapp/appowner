@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
+import com.appowner.model.Vendor;
 
 @Repository
 public class RequestScopeDaoImpl implements RequestScopeDao {
@@ -62,4 +64,36 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 		getSessionFactory().getCurrentSession().update(serviceRequest);
 	}
 
+	@Override
+	public void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			ServiceRequest v=(ServiceRequest) itr.next();
+		sessionFactory.getCurrentSession().delete(v);
+		 
+	}
+
+	}
+
+	@Override
+	public List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
+			String str_Status, String str_VendorType) {
+		if(int_ApartmentId!=null&&str_Status!=null&&str_VendorType!=null)
+		{
+			if(str_Status.equalsIgnoreCase("All"))
+			{
+				String query="from ServiceRequest where  Str_VendorType=? AND int_ApartmentId=?";
+				
+				return sessionFactory.getCurrentSession().createQuery(query).setParameter(0,str_VendorType).setParameter(1, int_ApartmentId).list();
+			}
+			String query="from ServiceRequest where Str_Status=? AND Str_VendorType=? AND int_ApartmentId=?";
+		
+			return sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_VendorType).setParameter(2, int_ApartmentId).list();
+			
+		}
+		 
+		return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).list();
+		 
+	}
 }
