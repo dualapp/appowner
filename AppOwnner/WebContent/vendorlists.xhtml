@@ -147,7 +147,7 @@ function HideModalWindow() {
                  
       
            
-        <p:column  value="#{vendorBean.checked[vendor.int_VendorId]}"  exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+        <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
              </p:column>
         
@@ -199,52 +199,53 @@ function HideModalWindow() {
        
          
             </p:dataTable>
-            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="400">
+            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiVendorDetail" style="text-align:center;">
+          
            <table>
                
             <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
              <tr>
- <td>
-    <h:outputText value="Vendor Type:"/></td>
+ <th>
+    <h:outputText value="Vendor Type:"/></th>
     <td>
     <h:inputText value="#{vendor1.str_VendorType}"/></td>
     </tr>
  <tr>
- <td>
-    <h:outputText value="Vendor Name:"/></td>
+ <th>
+    <h:outputText value="Vendor Name:"/></th>
     <td>
     <h:inputText value="#{vendor1.str_VendorName}"/></td>
     </tr>
     <tr>
-    <td>
-    <h:outputText value="Vendor Phone:"/></td>
+    <th>
+    <h:outputText value="Vendor Phone:"/></th>
     <td>
     <h:inputText value="#{vendor1.str_VendorPhone}"/></td>
     </tr>
     <tr>
- <td>
-    <h:outputText value="Vendor Email:"/></td>
+ <th>
+    <h:outputText value="Vendor Email:"/></th>
     <td>
     <h:inputText value="#{vendor1.str_VendorEmail}"/></td>
     </tr>
    
   
     <tr>
- <td>
-    <h:outputText value="Vendor Bank Name:"/></td>
+ <th>
+    <h:outputText value="Vendor Bank Name:"/></th>
     <td>
     <h:inputText value="#{vendor1.str_VendorBankName}"/></td>
     </tr>
     <tr>
- <td>
-    <h:outputText value="Vendor Expense:"/></td>
+ <th>
+    <h:outputText value="Vendor Expense:"/></th>
     <td>
     <h:inputText value="#{vendor1.bool_IsVendorActive}"/></td>
     </tr>
      <tr>
- <td>
-    <h:outputText value="Comments:"/></td>
+ <th>
+    <h:outputText value="Comments:"/></th>
     <td>
     <h:inputText value="#{vendor1.str_VendorComments}"/></td>
     </tr>
@@ -252,48 +253,67 @@ function HideModalWindow() {
             </ui:repeat>
              <tr><td><h:commandButton value="update" action="#{vendorBean.updateVendor(vendor1)}"/></td></tr>
             </table>
+            
         </p:outputPanel>
     </p:dialog>
-    <p:dialog header="Vendor Details" widgetVar="multiVendorDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="400">
+    <p:dialog header="Vendor Details" widgetVar="multiVendorDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiVendorDetail1" style="text-align:center;">
            <table>
-             <th><h:outputText value="Name" /></th> <th><h:outputText value="Type" /></th>   <th><h:outputText value="Contact No" /></th>    
-               
+              
             <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
              
-               <tr> <td><h:outputText value="#{vendor1.str_VendorName}" /></td>
-                
-               <td> <h:outputText value="#{vendor1.str_VendorType}"  /></td>
-               <td> <h:outputText value="#{vendor1.str_VendorPhone}"  /></td>
-               </tr>
+                <tr>
+ <th>
+    <h:outputText value="Vendor Type:"/></th>
+    <td>
+    <h:outputText value="#{vendor1.str_VendorType}"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Vendor Name:"/></th>
+    <td>
+    <h:outputText value="#{vendor1.str_VendorName}"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Vendor Phone:"/></th>
+    <td>
+    <h:outputText value="#{vendor1.str_VendorPhone}"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Vendor Email:"/></th>
+    <td>
+   <h:outputText value="#{vendor1.str_VendorEmail}"/></td>
+    </tr>
+   
+  
+    <tr>
+ <th>
+    <h:outputText value="Vendor Bank Name:"/></th>
+    <td>
+    <h:outputText value="#{vendor1.str_VendorBankName}"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Vendor Expense:"/></th>
+    <td>
+    <h:outputText value="#{vendor1.bool_IsVendorActive}"/></td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="Comments:"/></th>
+    <td>
+    <h:outputText value="#{vendor1.str_VendorComments}"/></td>
+    </tr>
+      
                
                 
             </ui:repeat>
             </table>
         </p:outputPanel>
     </p:dialog>
-     <p:dialog  icon="ui-icon-alert" header="Delete Vendor" widgetVar="multiVendorDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="400">
-        <p:outputPanel id="multiVendorDetail2" style="text-align:center;">
-            
-            <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
-            <h:outputText value="Are you sure you want to delete #{vendor1.str_VendorName}?"/>
-            <br/>
-              <h:link outcome="deletevendor.xhtml" value="OK" >  
-	   			 
-	   				<f:param name="int_VendorId" value="#{vendor1.int_VendorId}" />
-	   		</h:link>
-	   		
-	   		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	   		<h:link   value="Cancel" >  
-	   		  
-	   		</h:link>
-	   		<br/>
-	   		
-            </ui:repeat>
-            
-            
-        </p:outputPanel>
-    </p:dialog>
+      
               <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
         <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="vendor" />
