@@ -42,8 +42,8 @@ public class Pool implements Serializable{
 	private String str_CreatedBy;
 	@Column(name="var_Status")
 	private String str_Status;
-	@Column 
-	private Integer int_poolAudience;
+	@Column (name="var_poolAudience")
+	private String str_poolAudience;
 	@Column 
 	private Integer int_userId;
 	@Column 
@@ -92,14 +92,14 @@ public class Pool implements Serializable{
 	public void setStr_Status(String str_Status) {
 		this.str_Status = str_Status;
 	}
-	public Integer getInt_poolAudience() {
-		return int_poolAudience;
-	}
-	public void setInt_poolAudience(Integer int_poolAudience) {
-		this.int_poolAudience = int_poolAudience;
-	}
 	 
 
+	public String getStr_poolAudience() {
+		return str_poolAudience;
+	}
+	public void setStr_poolAudience(String str_poolAudience) {
+		this.str_poolAudience = str_poolAudience;
+	}
 	public Long getInt_Vote() {
 		return int_Vote;
 	}
