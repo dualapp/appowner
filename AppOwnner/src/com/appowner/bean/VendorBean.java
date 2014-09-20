@@ -64,6 +64,7 @@ public class VendorBean implements Serializable {
 	private int int_TdsCharge;
 	private String str_Website;
 	private List<WorkOrderCategory> workOrderCategoryList;
+	private List<Vendor>selectedVendor1;
   
 
 	public String getStr_VendorCategoryType() {
@@ -1007,6 +1008,15 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Cancel Event", "Rate Reset");
 		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
+	public List<Vendor> getSelectedVendor1() {
+		System.out.println(selectedVendor1+"selectedVendor1");
+		return selectedVendor1;
+	}
+
+	public void setSelectedVendor1(List<Vendor> selectedVendor1) {
+		this.selectedVendor1 = selectedVendor1;
 	}
 	
 }

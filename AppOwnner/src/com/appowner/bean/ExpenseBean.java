@@ -36,6 +36,7 @@ import org.primefaces.event.RowEditEvent;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
+import com.appowner.model.BookAFacility;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
@@ -557,11 +558,12 @@ public void setExpense(Expense expense) {
 	this.expense = expense;
 }
 private List<Expense> expenseList;
+private List<Expense> selectedExpenses;
 
 
 public List<Expense> getExpenseList() {
 	expenseList=new ArrayList<Expense>();
-	expenseList.addAll(getExpenseService().getExpenseList());
+	expenseList.addAll(getExpenseService().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,Util.getAppartmentId()));
 	
 	return expenseList;
 }
@@ -601,6 +603,28 @@ public String updateOneExpense()
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Updated Successfully!", "Updated Successfully!"));
 	return "Expenses.xhtml";
+	
+}
+public String deleteSelectedExpenses()
+{
+List<Expense> entitiesToDelete = new ArrayList<Expense>();
+ 
+    for (Expense expense :selectedExpenses) {
+    	 
+    	if (expense.getStr_ExpenseId()!=null) 
+    	{
+            entitiesToDelete.add(expense);
+        }
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Expense deleted Successfully!", "Expense deleted Successfully!"));
+    } 
+ 
+    getExpenseService().deleteSelectedExpenses(entitiesToDelete);
+    return "Expense.xhtml?faces-redirect=true";
+
 	
 }
 public String deleteOneExpense()
@@ -934,7 +958,7 @@ public void setAsset(Assets asset) {
  */
 public List<Assets> getAssetList() {
 	assetList= new ArrayList<Assets>();
-	assetList.addAll(getExpenseService().getAssetList());
+	assetList.addAll(getExpenseService().getAssetList(str_AssetCategoryType,str_Block,Util.getAppartmentId()));
 	return assetList;
 }
 public void setAssetList(List<Assets> assetList) {
@@ -1709,6 +1733,12 @@ public void deleteOneServiceRequest()
 {
 	servicerequest1.setInt_ServiceRequestId(serviceRequestId);
 	getExpenseService().deleteOneServiceRequest(servicerequest1);
+}
+public List<Expense> getSelectedExpenses() {
+	return selectedExpenses;
+}
+public void setSelectedExpenses(List<Expense> selectedExpenses) {
+	this.selectedExpenses = selectedExpenses;
 }
 	
 }
