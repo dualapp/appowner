@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.RequestScopeDao;
+import com.appowner.model.BookAFacility;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
 
@@ -65,5 +66,25 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 				str_Status,  str_VendorType);
 		 
 	}
+	@Override
+	public void deleteOnefacility(List<BookAFacility> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getRequestScopeDao().deleteOnefacility(entitiesToDelete);
+	}
+	@Override
+	public void updateBookAFacility(BookAFacility bf1) {
+		// TODO Auto-generated method stub
+		getRequestScopeDao().updateBookAFacility(bf1);
+	}
+	@Override
+	public List<BookAFacility> getSelectedBookFacility(
+			Integer int_ApartmentId, String str_Status, String str_Period,
+			String str_FacilityType,String str_EventType) {
+		// TODO Auto-generated method stub
+		return getRequestScopeDao().getSelectedBookFacility(
+				int_ApartmentId,   str_Status,   str_Period,
+				  str_FacilityType,str_EventType);
+	}
+	 
 
 }
