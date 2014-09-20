@@ -23,7 +23,7 @@ public interface ExpenseDao {
 
 	void addExpenses(Expense expense);
 
-	List<Expense> getExpenseList();
+	List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId);
 
 	Expense getOneExpense(String str_ExpenseId);
 
@@ -109,6 +109,8 @@ public interface ExpenseDao {
 
 	Pool getLatestPolls();
 
-	List<Assets> getAssetList();
+	List<Assets> getAssetList(String str_AssetCategoryType, String str_Block, Integer int_ApartmentId);
+
+	void deleteSelectedExpenses(List<Expense> entitiesToDelete);
 
 }
