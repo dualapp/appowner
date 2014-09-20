@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projection;
@@ -14,6 +15,7 @@ import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.MessageTemplate;
 import com.appowner.model.TaxTemplate;
+import com.appowner.model.Vendor;
 
 @Repository
 public class TemplateDaoImpl implements TemplateDao {
@@ -172,5 +174,14 @@ public class TemplateDaoImpl implements TemplateDao {
 	public void deleteTax(TaxTemplate tax)
 	{
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM TaxTemplate WHERE int_TaxTemplateID = "+tax.getInt_TaxTemplateID()).executeUpdate();
+	}
+	public void deleteDue1(List<DueTemplate> delete)
+	{
+		ListIterator itr=delete.listIterator();
+		while(itr.hasNext())
+		{
+			DueTemplate v=(DueTemplate) itr.next();
+		sessionFactory.getCurrentSession().delete(v);
+		}
 	}
 }
