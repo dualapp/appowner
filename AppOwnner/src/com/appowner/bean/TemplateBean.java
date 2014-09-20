@@ -18,6 +18,7 @@ import javax.faces.component.UIData;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.component.html.HtmlInputHidden;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -32,6 +33,7 @@ import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.MessageTemplate;
 import com.appowner.model.TaxTemplate;
+import com.appowner.model.Vendor;
 import com.appowner.service.TemplateService;
 import com.appowner.util.Util;
 
@@ -199,12 +201,7 @@ public class TemplateBean implements Serializable {
 	}
   
    
-	public String getSearch()
-    {
-		 listDues=new ArrayList<DueTemplate>();
-		  	listDues.addAll(getTemplateService().listDueTemplate(str_Accounts));
-			return "duetemplate.xhtml";
-    }   
+	
 	public String deleteDue(){
 		DueTemplate dueTemplate=new DueTemplate();
 		System.out.println(int_DueTemplateID);
@@ -213,7 +210,25 @@ public class TemplateBean implements Serializable {
 		return "duetemplate.xhtml?faces-redirect=true";
 	  
 	}
-	
+	public String deleteDueTemplate() {
+	    List<DueTemplate> delete = new ArrayList<DueTemplate>();
+   
+	    for (DueTemplate template :selectedDueTemplate) {
+	    	
+	    	if (template.getInt_DueTemplateID()!=null) 
+	    	{
+	            delete.add(template);
+	        }
+	    	FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+	    } 
+System.out.println(delete+"entyt todelete");
+     getTemplateService().deleteDue1(delete);
+	    return "duetemplate.xhtml?faces-redirect=true";
+	}
     public String cancelDue() {
 		return "duetemplate.xhtml?faces-redirect=true";
 	}
@@ -238,16 +253,36 @@ public class TemplateBean implements Serializable {
 		id=dueTemplate.getInt_DueTemplateID();
 		System.out.println(id);
 	}
-	
+	private List<DueTemplate> selectedDueTemplate;
 
 	
 	
 	
+	public List<DueTemplate> getSelectedDueTemplate() {
+		return selectedDueTemplate;
+	}
+	public void setSelectedDueTemplate(List<DueTemplate> selectedDueTemplate) {
+		this.selectedDueTemplate = selectedDueTemplate;
+	}
 	public DataTable getDataTable() {
 		return dataTable;
 	}
 	public void setDataTable(DataTable dataTable) {
 		this.dataTable = dataTable;
+	}
+	public String saveDueTemplate(DueTemplate dueTemplate) {
+		if (dueTemplate.getInt_DueTemplateID() != null) {
+			getTemplateService().updateDueTemplate(dueTemplate);
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+
+		} else
+			getTemplateService().saveDueTemplate(dueTemplate);
+		return "duetemplate.xhtml";
 	}
 	//TAX TEMPLATE
 	private Integer int_TaxTemplateID;
