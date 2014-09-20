@@ -28,7 +28,7 @@
 <h:body>
 
 <script>
-
+7890
  var modalWin = new CreateModalPopUpObject();
  modalWin.SetLoadingImagePath("images/loading_home.gif");
  modalWin.SetCloseButtonImagePath("images/cross.png");
@@ -113,25 +113,21 @@ function HideModalWindow() {
                &#150; &#150;&#150; &#150;&#150;
              <td><h:outputText  value="Account" /></td>
                 &#150; &#150;&#150; &#150;&#150;
-                <h:commandButton id="priya" value="Go" action="#{templateBean.getSearch}" update="ggg">
+                <h:commandButton id="priya" value="Go" action="#{templateBean.getListDues()}" update="ggg">
                   </h:commandButton>
                 </h:panelGroup>
               
                 </fieldset>
                 <br/>
                 
-             <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150;<input type="button" style="width: 100px" onclick="ShowNewPage3()" value="Edit Selected" />&#150; &#150; &#150; &#150;<input type="button" style="width: 100px" onclick="ShowNewPage4()" value="View Selected" />&#150; &#150; &#150; &#150;<h:commandButton  value="Refresh" />
-             <br/>
-             <br/>
-     </h:form>   
-     </body>     
-  <h:form>
-
-  <h:body>
+             <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150; <p:commandButton process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
+       &#150; &#150; <p:commandButton process="ggg" update=":form:multiDueTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiDueTemplateDialog').show()" />
+       &#150; &#150;  <p:commandButton update="ggg" process="ggg" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" />
+     
        
-        
-         <p:dataTable id="ggg" var="dueTemplate" value="#{templateBean.listDues}"  binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
-        rowsPerPageTemplate="10,20,30,40,50">
+        <p:growl id="msgs" showDetail="true" />
+         <p:dataTable id="ggg" var="dueTemplate" value="#{templateBean.listDues}"  style="width: 100%" editable="true"  resizableColumns="true" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50"  selection="#{templateBean.selectedDueTemplate}" rowKey="#{dueTemplate.int_DueTemplateID}" >
              <f:facet name="header">
                DueTemplate
            <h:commandLink>
@@ -141,16 +137,11 @@ function HideModalWindow() {
             
             
         </f:facet>
-              <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Select" />
-                </f:facet>
-                 <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{templateBean.processValueChange}">
-                 <p:ajax event="click"   partialSubmit="true"/>   
-                </h:selectBooleanCheckbox>
-           </p:column>
+            
 
-        
+          <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+         
+             </p:column>
          
              <p:column>
                 <f:facet name="header">
@@ -214,11 +205,110 @@ function HideModalWindow() {
                 
                
           </p:dataTable>
+       <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiDueTemplateDetail" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{templateBean.selectedDueTemplate}" var="dueTemplate1">
+             <tr>
+ <th>
+    <h:outputText value="Due Template:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_DueTemplate}"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Accounts:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Accounts}"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Frequency:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Frequency}"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Calculation:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Calculation}"/></td>
+    </tr>
+   
+  
+    <tr>
+ <th>
+    <h:outputText value="Rate:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Rate}"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="TaxTemplate:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_TaxTemplate}"/></td>
+    </tr>
+    
       
+            </ui:repeat>
+             <tr><td><h:commandButton value="update" action="#{templateBean.saveDueTemplate(dueTemplate1)}"/></td></tr>
+            </table>
+            
+        </p:outputPanel>
+    </p:dialog>
+    <p:dialog header="View DueTemplate" widgetVar="multiDueTemplateDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiDueTemplateDetail1" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{templateBean.selectedDueTemplate}" var="dueTemplate1">
+             
+               <th>
+    <h:outputText value="Due Template:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_DueTemplate}" readonly="true"/></td>
+  
+ <tr>
+ <th>
+    <h:outputText value="Accounts:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Accounts}" readonly="true"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Frequency:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Frequency}" readonly="true"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Calculation:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Calculation}" readonly="true"/></td>
+    </tr>
+   
+  
+    <tr>
+ <th>
+    <h:outputText value="Rate:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_Rate}" readonly="true"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="TaxTemplate:"/></th>
+    <td>
+    <h:inputText value="#{dueTemplate1.str_TaxTemplate}" readonly="true"/></td>
+    </tr>
+               
                 
-          </h:body>
-          </h:form>
-       
+            </ui:repeat>
+            </table>
+        </p:outputPanel>
+    </p:dialog>
+        </h:form>
+        </body>
+        
           
                
                
