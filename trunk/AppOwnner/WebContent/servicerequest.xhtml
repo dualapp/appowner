@@ -104,8 +104,8 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
   
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> Service Request</legend>
- <table><tr><th>
-               <h:outputLabel value="Organisation:" /> </th>
+ <div><table><tr><th>
+               <h:outputText value="Organisation:" /> </th>
              <td> <p:selectOneMenu       style="width:100px">&nbsp;
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
     </p:selectOneMenu></td>
@@ -123,10 +123,19 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
    
      </tr>
     <tr><th><h:outputText value="Period"></h:outputText></th>
+    <td><p:selectOneMenu value="#{requestScopeBean.str_Period}">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
+            <f:selectItem  itemLabel="Lastweek" itemValue="Private" />
+             <f:selectItem  itemLabel="CurrentMonth" itemValue="Private" />
+              <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
+               <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
+                <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
+      </p:selectOneMenu></td>
      
      <td></td><td><h:commandButton update="DT" value="Go" action="#{requestScopeBean.getListServiceRequest}"/></td>
     </tr>
-    </table>
+    </table></div>
     </fieldset>
         
              <h:commandButton    action="createnewservicerequest.xhtml" value="create new" />  &#150; &#150;
