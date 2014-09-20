@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
+import com.appowner.model.BookAFacility;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
@@ -57,12 +59,17 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Expense> getExpenseList() {
+	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId) {
 		// TODO Auto-generated method stub
-		String  query = "{ CALL expenseList() }";
+		/*String  query = "{ CALL expenseList() }";
 		List<Expense> expense=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Expense.class)).list();
-		return expense;
-		//return getSessionFactory().getCurrentSession().createCriteria(Expense.class).list();
+		return expense;*/
+		
+		if( str_AssetName!=null&&str_AssetCategoryType!=null&&str_ExpenseCategory!=null&&str_ExcepenseType!=null&&int_ApartmentId!=null)
+		{
+			//pending
+		}
+		return getSessionFactory().getCurrentSession().createCriteria(Expense.class).list();
 	}
 
 	@Override
@@ -349,8 +356,26 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Assets> getAssetList() {
-		// TODO Auto-generated method stub
+	public List<Assets> getAssetList(String str_AssetCategoryType,
+			String str_Block, Integer int_ApartmentId) 
+			{
+		if(str_AssetCategoryType!=null&&str_Block!=null&&int_ApartmentId!=null)
+		{
+			String hql="from Assets where str_assetcat_name=? AND str_Block=? AND int_AppartmentId=?";
+			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).setParameter(1, str_Block).setParameter(2, int_ApartmentId).list();
+		}
 		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).list();
 	}
+
+	@Override
+	public void deleteSelectedExpenses(List<Expense> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			Expense ex=(Expense) itr.next();
+		sessionFactory.getCurrentSession().delete(ex);
+	}
+}
+
+
 }
