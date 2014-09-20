@@ -56,9 +56,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<Expense> getExpenseList() {
+	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId){
 		// TODO Auto-generated method stub
-		return getExpenseDao().getExpenseList();
+		return getExpenseDao().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,int_ApartmentId);
 	}
 
 	@Override
@@ -321,9 +321,17 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<Assets> getAssetList() {
-		// TODO Auto-generated method stub
-		return getExpenseDao().getAssetList();
+	public List<Assets> getAssetList(String str_AssetCategoryType,
+			String str_Block, Integer int_ApartmentId) {
+		return getExpenseDao().getAssetList(str_AssetCategoryType,str_Block,int_ApartmentId);
 	}
+
+	@Override
+	public void deleteSelectedExpenses(List<Expense> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getExpenseDao().deleteSelectedExpenses(entitiesToDelete);
+	}
+
+	 
 
 }
