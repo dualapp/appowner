@@ -91,13 +91,47 @@
     </td>
     </tr>
     <h:panelGroup id="fgggggg" rendered="#{accountingBean.income}">
-    <ui:repeat id="ggg1" value="#{accountingBean.listInvoiceTransaction1}" var="account1" varStatus="status">
+    <ui:repeat id="ggg3" value="#{accountingBean.listInvoiceTransaction1}" var="account1" varStatus="status">
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account1.dat_PaymentDate}</td>
      <td align="right" style="width:250px;">#{account1.str_paymentAccount}
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Income</td>
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{account1.totalDue}</td>
+    </tr>
+     <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+    </ui:repeat>
+ </h:panelGroup>
+ <h:panelGroup id="fggggggthg" rendered="#{accountingBean.str eq 'Bank' || accountingBean.str  eq 'Cash' || accountingBean.str  eq 'Expense'}">
+    <ui:repeat id="ggg1" value="#{accountingBean.listExpense}" var="expense" varStatus="status">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{expense.date_Duration}</td>
+     <h:panelGroup id="hjbffff" rendered="#{expense.str_ExpenseType eq accountingBean.str }">
+     <td align="right" style="width:250px;">#{expense.str_AccountName}
+   </td>
+   </h:panelGroup>
+    <h:panelGroup id="hjbffjhudrd" rendered="#{expense.str_ExpenseType != accountingBean.str &amp;&amp; expense.str_AccountName eq accountingBean.str}">
+     <td align="right" style="width:250px;">#{expense.str_ExpenseType}
+   </td>
+   </h:panelGroup>
+    <h:panelGroup id="hjbff" rendered="#{expense.str_ExpenseType eq accountingBean.str }">
+     <td align="right" style="width:250px;">#{expense.str_ExpenseCategory}
+   </td>
+   </h:panelGroup>
+    <h:panelGroup id="hjbffjhu" rendered="#{expense.str_ExpenseType != accountingBean.str &amp;&amp; expense.str_AccountName eq accountingBean.str}">
+     <td align="right" style="width:250px;">#{expense.str_ExpenseCategory}
+   </td>
+   </h:panelGroup>
+   
+    <h:panelGroup id="jjf" rendered="#{expense.str_ExpenseType eq accountingBean.str}">
+     <td align="right" style="padding-right:5px;width:320px;">#{expense.int_Ammount} </td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+     </h:panelGroup>
+     <h:panelGroup id="jjff" rendered="#{expense.str_ExpenseType != accountingBean.str &amp;&amp; expense.str_AccountName eq accountingBean.str}">
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank}</td>
+    <td align="right" style="padding-right:5px;width:320px;">#{expense.int_Ammount} </td>
+    </h:panelGroup>
     </tr>
      <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
@@ -231,9 +265,12 @@ style="width:600px">
      <td align="right" style="width:500px;">
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Closing Balance</td>
+    <h:panelGroup id="jmhbfggf" rendered="true" >
      <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.str_Accounts != 'Income from Resident' &amp;&amp; accountingBean.str_Accounts != 'Accounts Receivable' &amp;&amp; accountingBean.str_Accounts != 'Accounts Receivable1'}" value="#{accountingBean.credit}"/> </td>
-    
-    <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="false"  value="#{accountingBean.debit}"/></td>
+     </h:panelGroup>
+    <h:panelGroup id="mnhdfdff"   rendered="#{accountingBean.type1}">
+    <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.credit}"/></td>
+    </h:panelGroup>
     </tr>  
   </h:panelGroup>
    
