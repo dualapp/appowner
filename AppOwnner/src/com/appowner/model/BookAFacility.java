@@ -50,6 +50,14 @@ public class BookAFacility implements Serializable{
 	private String Str_UserType;
 	@Column (name="var_Flat")
 	private String Str_Flat;
+	@Column (name="var_Status")
+	private String Str_Status;
+	public String getStr_Status() {
+		return Str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		Str_Status = str_Status;
+	}
 	public Integer getInt_FacilityBookId() {
 		return int_FacilityBookId;
 	}
