@@ -34,4 +34,5 @@ public void deleteDue(DueTemplate dueTemplate);
 public void deleteInvoice(InvoiceTemplate invoice);
 public void deleteMessage(MessageTemplate message);
 public void deleteTax(TaxTemplate tax);
+public void deleteDue1(List<DueTemplate> delete);
 }
