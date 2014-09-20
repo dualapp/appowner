@@ -23,10 +23,9 @@
        <table><tr>
          
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu required="true" requiredMessage="plz  select  Organisation"   value="#{expenseBean.str_OrganizationName}"  style="width:100px">
-              
-                  <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{expenseBean.str_OrganizationNameList}"/>
+              <td><p:selectOneMenu     value="#{expenseBean.str_OrganizationName}"  style="width:100px">
+               
+                <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}"/>
                    
                  </p:selectOneMenu>
              </td>
@@ -54,29 +53,35 @@
              
             
              <tr> <td><h:outputLabel value="Duration:" /></td>
-              <td><p:selectOneMenu  styleClass=".ace-nav" value="aaa"    style=" width:100px">
-               <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.date_Duration}">
-                  </p:calendar>
-                   <f:selectItems value="aaa" />
-                 </p:selectOneMenu>
+              <td><p:selectOneMenu value="#{expenseBean.date_Duration}">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
+            <f:selectItem  itemLabel="Lastweek" itemValue="Private" />
+             <f:selectItem  itemLabel="CurrentMonth" itemValue="Private" />
+              <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
+               <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
+                <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
+      </p:selectOneMenu>
              </td>
                
              <td><h:outputText  value="Asset Category:" /></td>
-               <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}"  style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+               <td><p:selectOneMenu id="assetcatname"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
-                   <f:selectItems  itemLabel="Expense" value="#{expenseBean.str_AssetCatNameList}" />
-                 
-                   <f:selectItems value="" />
+                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                   <p:ajax event="change" update="assetname" process="assetcatname"/>
                  </p:selectOneMenu>
              </td>
                
              <td><h:outputText  value="Asset Name" /></td>
-               <td><p:selectOneMenu   value=""  style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="" />
+               <td><p:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
+                  
+                  
                  </p:selectOneMenu>
                  </td></tr>
+                 <tr><th><p:commandButton value="Go" action="#{expenseBean.getExpenseList}"/></th></tr>
                  </table>
                   
             
@@ -93,19 +98,23 @@
          <p:menuitem value="View Summary"/>
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
-        
-             
-              <br/>
+         &#150; &#150;  <p:commandButton process="DT" update=":form:multiExpenseDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiExpenseDialog1').show()" />
+       &#150; &#150; <p:commandButton process="DT" update=":form:multiExpenseDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiExpenseDialog').show()" />
+       &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteSelectedExpenses()}" icon="ui-icon-trash" value="Delete" />
+      
              <br/>
              
              
              <legend  style="background-color:#438eb9; color:#fff;"> Expense</legend>
               
-             <p:dataTable     style="margin-bottom:100px" 
-              id="dataTable" rows="10"  paginator="true"  
-                 var="Expenselist" value="#{expenseBean.expenseList}"   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="6,12,16"  >
-                
+             <p:dataTable     selection="#{expenseBean.selectedExpenses}" rowKey="#{Expenselist.str_ExpenseId}"
+              id="DT"    
+                 var="Expenselist" value="#{expenseBean.expenseList}"   resizableColumns="true" style="margin-bottom:20px" 
+               rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="3,6,12"  >
+                 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+          </p:column>
+        
  
           <p:column     headerText="Organization"   >
           
@@ -158,7 +167,116 @@
           
          
              </p:dataTable>
-             
+              <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiExpenseDetail" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{expenseBean.selectedExpenses}" var="ex">
+             <tr>
+ <th>
+    <h:outputText value="Organization Name:"/></th>
+    <td>
+    <h:inputText value="#{ex.str_OrganizationName}"/></td>  
+    </tr>
+  <tr>
+ <th>
+    <h:outputText value="AccountName:"/></th>
+    <td>
+    <h:inputText value="#{ex.str_AccountName}"/></td>  
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="ExpenseType:"/></th>
+    <td>
+    <h:inputText value="#{ex.str_ExpenseType}"/></td>  
+    </tr>
+      <tr>
+ <th>
+    <h:outputText value="ExpenseCategory:"/></th>
+    <td>
+    <h:inputText value="#{ex.str_ExpenseCategory}"/></td>  
+    </tr>
+    
+      <tr>
+ <th>
+    <h:outputText value="AssetCategoryType:"/></th>
+    <td>
+    <h:inputText value="#{ex.str_AssetCatType}"/></td>  
+    </tr>
+      <tr>
+ <th>
+    <h:outputText value="AssetsName:"/></th>
+    <td>
+    <h:inputText value="#{ex.str_AssetName}"/></td>  
+    </tr>
+      <tr>
+ <th>
+    <h:outputText value="Ammount:"/></th>
+    <td>
+    <h:inputText value="#{ex.int_Ammount}"/></td>  
+    </tr>
+      
+    <tr><td><h:commandButton value="Update" action="#{expenseBean.updateOneExpense}" /> 
+     </td>
+     </tr>
+             </ui:repeat>
+             </table>
+             </p:outputPanel>
+             </p:dialog>
+              <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiExpenseDetail1" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{expenseBean.selectedExpenses}" var="ex">
+            <tr>
+ <th>
+    <h:outputText value="Organization Name:"/></th>
+    <td>
+    <h:outputText value="#{.str_OrganizationName}"/></td>  
+    </tr>
+  <tr>
+ <th>
+    <h:outputText value="AccountName:"/></th>
+    <td>
+    <h:outputText value="#{ex.str_AccountName}"/></td>  
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="ExpenseType:"/></th>
+    <td>
+    <h:outputText value="#{ex.str_ExpenseType}"/></td>  
+    </tr>
+      <tr>
+ <th>
+    <h:outputText value="ExpenseCategory:"/></th>
+    <td>
+    <h:outputText value="#{ex.str_ExpenseCategory}"/></td>  
+    </tr>
+    
+      <tr>
+ <th>
+    <h:outputText value="AssetCategoryType:"/></th>
+    <td>
+    <h:outputText value="#{ex.str_AssetCatType}"/></td>  
+    </tr>
+      <tr>
+ <th>
+    <h:outputText value="AssetsName:"/></th>
+    <td>
+    <h:outputText value="#{ex.str_AssetName}"/></td>  
+    </tr>
+      <tr>
+ <th>
+    <h:outputText value="Ammount:"/></th>
+    <td>
+    <h:outputText value="#{ex.int_Ammount}"/></td>  
+    </tr>
+            </ui:repeat>
+            </table>
+            </p:outputPanel>
+            </p:dialog>
             </h:form>
            </body>
             

@@ -140,18 +140,25 @@ function HideModalWindow() {
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
       
       
-      
-       <p:dataTable  editable="true"  resizableColumns="true" style="margin-bottom:20px" 
+     
+       <p:dataTable     resizableColumns="true" style="margin-bottom:20px"
+       widgetVar="vendorsTable"
+                 emptyMessage="No cars found with given criteria" filteredValue="#{vendorBean.selectedVendor1}" 
                rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"    id="DT"    var="vendor" value="#{vendorBean.vendorList}"   selection="#{vendorBean.selectedVendor}" rowKey="#{vendor.int_VendorId}"  >
                  
-      
+       <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('vendorsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
            
         <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
              </p:column>
         
-         <p:column>
+         <p:column filterBy="#{vendor.str_VendorName}" filterMatchMode="contains">
             <f:facet name="header">
                 <h:outputText value="VendorName"/>      
           
@@ -161,14 +168,21 @@ function HideModalWindow() {
             </p:column>
             
           
-            <p:column      headerText="Type"   >
+            <p:column  filterBy="#{vendor.str_VendorType}"  filterMatchMode="contains">
           
+          <f:facet name="header">
+                <h:outputText value="Type"/>      
+          
+             </f:facet>
                 <h:outputText   value="#{vendor.str_VendorType}" /> 
                 
             
             </p:column>
-            <p:column      headerText="Email"  >
+            <p:column   filterBy="#{vendor.str_VendorEmail}"  filterMatchMode="contains"     >
+          <f:facet name="header">
+                <h:outputText value="Email"/>      
           
+             </f:facet>
                <h:outputText   value="#{vendor.str_VendorEmail}" /> 
                 
             

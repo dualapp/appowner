@@ -17,23 +17,27 @@
     
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> Assets</legend>
- 
-               <h:outputLabel value="Show Assets Of Organisation:" /> 
-              <p:selectOneMenu       style="width:100px">&nbsp;
+ <div>
+              <table><tr><th> <h:outputText value="Show Assets Of Organisation:" /> </th>
+            <td>  <p:selectOneMenu       style="width:100px">&nbsp;
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu> 
-                 <h:outputText value="In Bolck"/>&nbsp;
-                 <p:selectOneMenu       style="width:100px">
-              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                 </p:selectOneMenu> </td>
+                <th> <h:outputText value="In Bolck"/></th> 
+               <td>  <p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px"> 
+              <f:selectItem itemLabel="Select One" itemValue="" />
+              <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
-                 </p:selectOneMenu> 
-                  <h:outputText value="Of Category"/>
-                 <p:selectOneMenu       style="width:100px">
-              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
-                
-                 </p:selectOneMenu> 
-                 <h:button value="go" ></h:button>
+                 </p:selectOneMenu> </td>
+                 <th> <h:outputText value="Of Category"/></th>
+                <td> <p:selectOneMenu  id="AssetCategory"    value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                 
+                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                 
+                 </p:selectOneMenu></td>
+                <th> <p:commandButton value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
+                 </div>
                  </fieldset>
                  <h:button  outcome="createnewassets.xhtml" value="createNew"/>
                  <p:dataTable      style="margin-bottom:20px" 
