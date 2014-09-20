@@ -42,6 +42,8 @@ import java.util.List;
 
 
 
+
+
 import javax.faces.model.SelectItem;
 
 import org.hibernate.SessionFactory;
@@ -52,6 +54,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 import com.appowner.model.Vendor;
@@ -314,6 +317,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal1(String str_Accounts)
 	{   System.out.println(str_Accounts+"jamu");
+	    System.out.println(str_Accounts==null+"lll");
 		if(str_Accounts==null)
 		{
 	     String str="from ManualJournal where str_DebitAccount='Income from Resident' OR str_CreditAccount='Income from Resident'";
@@ -351,7 +355,15 @@ public class AccountsDaoImpl implements AccountsDao{
 		System.out.println(ddd);
 		return ddd;
 	}
-	
+	@SuppressWarnings("unchecked")
+	public List<Expense> getExpenseList(String str)
+	{
+		String str3="from Expense where str_ExpenseType='Expense'";
+		List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createQuery(str3).list();
+		 System.out.println(ddd);
+		
+		return ddd;
+	}
 	
 	
 }
