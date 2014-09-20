@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.BookAFacility;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vendor;
@@ -95,5 +96,44 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 		 
 		return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).list();
 		 
+	}
+
+	@Override
+	public void deleteOnefacility(List<BookAFacility> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			BookAFacility bf=(BookAFacility) itr.next();
+		sessionFactory.getCurrentSession().delete(bf);
+		 
+	}
+		
+	}
+
+	@Override
+	public void updateBookAFacility(BookAFacility bf1) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(bf1);
+	}
+
+	@Override
+	public List<BookAFacility> getSelectedBookFacility(
+			Integer int_ApartmentId, String str_Status, String str_OpenDate,
+			String str_FacilityType,String str_EventType) {
+		if(int_ApartmentId!=null&&str_Status!=null&&str_OpenDate!=null&&str_FacilityType!=null&&str_EventType!=null)
+		{
+			if(str_Status.equalsIgnoreCase("All"))
+			{
+				String query="from BookAFacility where  str_FacilityType=? AND int_ApartmentId=? AND str_OpenDate=? AND str_EventType=? ";
+				
+				return sessionFactory.getCurrentSession().createQuery(query).setParameter(0,str_FacilityType).setParameter(1, int_ApartmentId).setParameter(2,str_OpenDate).setParameter(3, str_EventType).list();
+			}
+			String query="from BookAFacility where Str_Status=? AND str_FacilityType=? AND int_ApartmentId=? AND str_OpenDate=? AND str_EventType=?";
+		
+			return sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_FacilityType).setParameter(2, int_ApartmentId).setParameter(3, str_OpenDate).setParameter(4, str_EventType).list();
+			
+		}
+		 
+		return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).list();
 	}
 }
