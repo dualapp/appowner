@@ -8,6 +8,7 @@ import javax.faces.model.SelectItem;
 
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 
@@ -73,6 +74,8 @@ public interface AccountsService {
 	public double getDebitAmount(Integer id);
 
 	public double getCreditAmount(Integer id);
+
+	public List<Expense> getExpenseList(String str);
 
 	
 

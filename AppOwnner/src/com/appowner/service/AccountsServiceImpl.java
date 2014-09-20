@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.appowner.dao.AccountsDao;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 
@@ -156,5 +157,9 @@ public class AccountsServiceImpl implements AccountsService {
 	public double getCreditAmount(Integer id)
 	{
 		return getAccountsDao().getCreditAmount(id);
+	}
+	public List<Expense> getExpenseList(String str)
+	{
+		return getAccountsDao().getExpenseList(str);
 	}
 }
