@@ -14,6 +14,7 @@ import com.appowner.model.User;
 //import org.apache.catalina.User;
 
 import com.appowner.model.UserApartment;
+import com.appowner.model.UserBlocks;
 //import org.apache.catalina.realm.JNDIRealm.User;
 import com.appowner.bean.Cls_UserBean;
 import com.appowner.model.*;
@@ -86,4 +87,6 @@ public interface In_UserDao {
 	public List<BookAFacility> getBookAFacilityList();
 
 	public Collection<? extends User> getuserDetails(Integer int_apartment_id);
+
+	public void addBlocks(UserBlocks us);
 }
