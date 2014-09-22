@@ -8,6 +8,21 @@ import java.io.Serializable;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -15,9 +30,11 @@ import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 //import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.UUID;
 
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -28,6 +45,8 @@ import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.DueTransaction;
 import com.appowner.model.User;
+import com.appowner.model.UserBlocks;
+import com.appowner.model.VendorServiceDetails;
 import com.appowner.service.In_UserService;
 import com.appowner.util.Util;
 /*
@@ -67,6 +86,7 @@ public class Cls_UserBean implements Serializable{
 	    public String arrow;
 	    private String lastname;
 	    public Integer int_apartment_id;
+	    
 	    
 		public int getInt_getappartmentid() {
 			int_apartment_id=Util.getAppartmentId();
@@ -621,6 +641,7 @@ public class Cls_UserBean implements Serializable{
 		public void processValueChange1(ValueChangeEvent event)  
 		        throws AbortProcessingException 
 		{    System.out.println("hi");
+		     
 			template1=(User)dataTable.getRowData();
 			
 		}
@@ -636,6 +657,81 @@ public class Cls_UserBean implements Serializable{
 			System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,");
 			return "login.xhtml";
 		}
+		//for adding blocks by user
+	    private String str_ServiceName;
+	    
+		public String getStr_ServiceName() {
+			return str_ServiceName;
+		}
+		public void setStr_ServiceName(String str_ServiceName) {
+			this.str_ServiceName = str_ServiceName;
+		}
+
+		private List<Object> list = new ArrayList<Object>();
+
+		
+
+		public List<Object> getList() {
+			return list;
+		}
+		public void setList(List<Object> list) {
+			this.list = list;
+		}
+
+		private String str_BlockName;
+		
+		public String getStr_BlockName() {
+			return str_BlockName;
+		}
+		public void setStr_BlockName(String str_BlockName) {
+			this.str_BlockName = str_BlockName;
+		}
+
+		private List<UserBlocks> userblock;
+		@PostConstruct
+	    public void init() {
+			userblock=new ArrayList<UserBlocks>();
+		}
+
+		public List<UserBlocks> getUserblock() {
+			return userblock;
+		}
+		public void setUserblock(List<UserBlocks> userblock) {
+			this.userblock = userblock;
+		}
+		public void addBloks() {
+			UserBlocks v1=new UserBlocks();
+			userblock.add(v1);
+			 
+		}
+		@SuppressWarnings("unchecked")
+		public void blockServiceDetailsListener(ValueChangeEvent event) {
+
+			 
+			list.add(event.getNewValue());
+			 
+
+		}
+		public String addBlock()
+		{
+			UserBlocks us=new UserBlocks();
+			ListIterator<Object> itr = list.listIterator();
+		    while (itr.hasNext()) {
+		    	
+		   Object servicename = itr.next();
+		   str_ServiceName = (String)servicename;
+		   us.setStr_BlockName(getStr_ServiceName());
+		   System.out.println("ooooooooooooooooooooooooooooooooo");
+		   System.out.println(us.toString());
+		   us.setInt_ApartmentId(Util.getAppartmentId());
+		   getUserService().addBlock(us);
+		    }
+		   
+		     
+			return "BlockAddedConfirmation.xhtml";
+		}
+		
+
 		
 
 	}
