@@ -9,6 +9,7 @@ import com.appowner.model.MemberLog;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
+import com.appowner.model.UserBlocks;
 
 /**
  * @author pankaj
@@ -73,5 +74,9 @@ public interface In_UserService {
 	public List<BookAFacility> getBookAFacilityList();
 
 	public Collection<? extends User> userDetails(Integer int_apartment_id);
+
+	//public void addBlock(UserBlocks us);
+
+	public void addBlock(UserBlocks us);
 }
 
