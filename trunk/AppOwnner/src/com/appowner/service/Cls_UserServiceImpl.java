@@ -16,6 +16,7 @@ import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 //import com.appowner.model.User.*;
 import com.appowner.model.UserApartment;
+import com.appowner.model.UserBlocks;
 
 /**
  * @author pankaj singh
@@ -220,6 +221,13 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	public Collection<? extends User> userDetails(Integer int_apartment_id) {
 		// TODO Auto-generated method stub
 		return getIn_userdao().getuserDetails(int_apartment_id);
+	}
+
+	@Override
+	public void addBlock(UserBlocks us) {
+		// TODO Auto-generated method stub
+		getIn_userdao().addBlocks(us);
+		
 	}
 	}
 
