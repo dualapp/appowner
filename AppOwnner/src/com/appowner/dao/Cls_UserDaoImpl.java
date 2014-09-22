@@ -25,6 +25,7 @@ import java.util.List;
 
 
 
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ import com.appowner.model.MemberLog;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
+import com.appowner.model.UserBlocks;
 import com.appowner.model.UserCity;
 import com.appowner.model.UserCountry;
 import com.appowner.model.UserState;
@@ -303,6 +305,10 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			List<User>   sss1=(List<User>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_apartment_id).list();
 			System.out.println(sss1);
 			return sss1;
+		}
+
+		public void addBlocks(UserBlocks us) {
+			sessionFactory.getCurrentSession().save(us);
 		}
 
 		//@Override
