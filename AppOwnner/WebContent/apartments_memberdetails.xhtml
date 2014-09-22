@@ -14,7 +14,15 @@
 <body  bgcolor="pink">
   <h:form>
   <br></br><br></br>
-           &#150; &#150;<p:button  value="Add new" outcome="addnewuserbyadmin.xhtml"/>&#150; &#150;<p:commandButton  value="Edit" />&#150; &#150;<p:commandButton  value="Delete" />&#150; &#150;<p:commandButton  value="Action" />
+           &#150; &#150;<p:button  value="Add new" icon="ui-icon-plus"  outcome="addnewuserbyadmin.xhtml"/>&#150; &#150;<p:commandButton  value="Edit" icon="ui-icon-pencil"/>&#150; &#150;<p:commandButton  value="Delete" icon="ui-icon-trash" />
+           <p:menuButton value="Action">
+        <p:menuitem value="Assign Selected"  action="#"/>
+        <p:menuitem value="close Selected" action="#"/>
+        <p:menuitem value="View Chart" action="#"/>
+         <p:menuitem value="View Summary" action="#"/>
+         <p:menuitem value="Export To Excel" action="#"/>
+        </p:menuButton>
+           
       
              </h:form>
              </body>
@@ -23,70 +31,53 @@
          <fieldset>
                 <h3><u>Member Details</u></h3>
         
-        <p:dataTable id="due" var="due" value="#{cls_UserBean.listUser1}" binding="#{cls_UserBean.dataTable}" style="width: 100%">
+        
+               <p:dataTable id="due" resizableColumns="true" rows="2"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  var="due" value="#{cls_UserBean.listUser1}" binding="#{cls_UserBean.dataTable}" scroll="true" style="margin-bottom:20px;width: 100%">
             
-         <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Select" />
-                </f:facet>
-                <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{cls_UserBean.processValueChange1}">
+          <p:column headerText="Select" width="50">
+                <h:selectBooleanCheckbox  value="aaa" valueChangeListener="#{cls_UserBean.processValueChange1}">
                  <p:ajax event="click"   partialSubmit="true"/>   
                 </h:selectBooleanCheckbox>
-            </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Apartment Name" />
-                </f:facet>
+            </p:column >
+             <p:column headerText="Apartment Name" width="150">
+                
                 <h:outputText value="#{due.str_Apartment}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="User Name" />
-                </f:facet>
+            <p:column headerText="User Name" width="100">
+                 
                 <h:outputText value="#{due.str_Username}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Role" />
-                </f:facet>
+             <p:column headerText="Role" width="50" >
                 <h:outputText value="#{due.str_UserRoleName}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Block" />
-                </f:facet>
+            <p:column headerText="Block" width="50" >
                 <h:outputText value="#{due.str_Block}" />
             </p:column>
          
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Mobile" />
-                </f:facet>
+           <p:column headerText="Mobile"  width="100">
                 <h:outputText value="#{due.str_PhoneNo}" />
             </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Ownership" />
-                </f:facet>
+            <p:column headerText="Ownership"  width="50">
                 <h:outputText value="#{due.int_UserRole}" />
             </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Name" />
-                </f:facet>
+             <p:column headerText="Name" width="100"  >
                 <h:outputText value="#{due.str_FirstName}" />&#150; &#150;<h:outputText value="#{due.str_LastName}" />
             </p:column>
-             <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Email" />
-                </f:facet>
+            <p:column headerText="Email" width="150">
                 <h:outputText value="#{due.str_Email}" />
             </p:column>
-          
+          <p:column headerText="Action" width="150">
+                 <input type="button" id="#{due.int_UserId}" style="width: 50px" onclick="ShowNewPage1(this.id)" value="Edit" />
+                 <input type="button" id="#{due.int_UserId}" style="width: 50px" onclick="ShowNewPage1(this.id)" value="Delete" />
+               
+               
+            </p:column>
             
             
             </p:dataTable>
           </fieldset>
+          
             </h:body>
             </h:form>
             
