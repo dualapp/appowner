@@ -20,7 +20,7 @@
   <legend    style="background-color:#438eb9; color:#fff;"> </legend>
   <fieldset>
     <br/><center><legend    style="background-color:#438eb9; color:#fff;">Filter</legend> </center>
-       <table><tr>
+       <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
          
               <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu     value="#{expenseBean.str_OrganizationName}"  style="width:100px">
@@ -87,11 +87,9 @@
             
            
              </fieldset>
-             
-             <br/>
-             <br/>
-             
-          <h:button outcome="createExpenses" value="Create New"/> &#150; &#150;<h:button outcome="createExpenses"  value="View Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Edit Selected" />&#150; &#150;<h:button outcome="createExpenses"  value="Delete Selected" />&#150; &#150;<h:button outcome="createExpenses"   value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+            <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+            <tr><td>
+          <h:button   outcome="createExpenses" value="Create New"/>   &#150; &#150;<h:button    value="Refresh" />&#150; &#150;<p:menuButton value="Action">
         <p:menuitem value="Approved Selected" />
         <p:menuitem value="Reject Selected" />
         <p:menuitem value="View Chart" />
@@ -102,14 +100,14 @@
        &#150; &#150; <p:commandButton process="DT" update=":form:multiExpenseDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiExpenseDialog').show()" />
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteSelectedExpenses()}" icon="ui-icon-trash" value="Delete" />
       
-             <br/>
+           </td></tr></table>
              
              
              <legend  style="background-color:#438eb9; color:#fff;"> Expense</legend>
               
              <p:dataTable     selection="#{expenseBean.selectedExpenses}" rowKey="#{Expenselist.str_ExpenseId}"
               id="DT"    
-                 var="Expenselist" value="#{expenseBean.expenseList}"   resizableColumns="true" style="margin-bottom:20px" 
+                 var="Expenselist" value="#{expenseBean.expenseList}"   resizableColumns="true" style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="3,6,12"  >
                  <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
@@ -234,7 +232,7 @@
  <th>
     <h:outputText value="Organization Name:"/></th>
     <td>
-    <h:outputText value="#{.str_OrganizationName}"/></td>  
+    <h:outputText value="#{ex.str_OrganizationName}"/></td>  
     </tr>
   <tr>
  <th>

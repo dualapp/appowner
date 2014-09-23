@@ -6,12 +6,20 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
-    <title>Pool
-    
-    
-    </title>
-   
-</h:head>
+
+	<title></title>
+	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+	 <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+
+ </h:head>
 <body  bgcolor="pink">
   <h:form id="form">
    <p:growl id="msgs" showDetail="true" />
@@ -20,17 +28,17 @@
   <legend    style="background-color:#438eb9; color:#fff;"> </legend>
   <fieldset>
     <br/><center><legend    style="background-color:#438eb9; color:#fff;">Filter</legend> </center>
-       <table><tr>
+       <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
          
-              <td><h:outputLabel value="Organisation:" /></td>
-              <td><h:outputLabel value="Organisation:" /> </td>
+              <th><h:outputText value="Organisation:" /></th>
+               
             <td>  <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu>
              </td>
             
-             <td><h:outputText  value="Status:" /></td>
+             <th><h:outputText  value="Status:" /></th>
                <td><p:selectOneMenu   value="#{expenseBean.str_Status}"  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
@@ -39,7 +47,7 @@
                  </p:selectOneMenu>
              </td>
               
-             <td><h:outputText  value="Pool in the last:" /></td>
+             <th><h:outputText  value="Pool in the last:" /></th>
                <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  style="width:100px">
                   <f:selectItem itemLabel="3 Month" itemValue="3 Month" />
                    <f:selectItem itemLabel="6 Month" itemValue="6 Month"  />
@@ -47,7 +55,7 @@
                    
                     
                  </p:selectOneMenu>
-                 </td><td><h:commandButton value="Go" action="#"/></td></tr>
+                 </td><th><h:commandButton value="Go" action="#"/></th></tr>
                            
              
              
@@ -56,28 +64,25 @@
             
            
              </fieldset>
-             
-             <br/>
-             <br/>
-             
-          <h:button outcome="createnewpool.xhtml" value="Create New"/> &#150; &#150; &#150; &#150;   &#150; &#150;<h:button  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+            <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>
+          <h:button outcome="createnewpool.xhtml"   value="Create New"/>&#150; &#150;<h:button  icon="ui-icon-refresh" value="Refresh" />&#150; &#150;<p:menuButton value="Action">
          <p:menuitem value="Notify by Email" process="DT"  update=":form:pollDetail"    oncomplete="PF('pollDialog').show()"/>
         <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
-        <p:menuitem value="Close Selected" />
+        <p:menuitem  update="DT" process="DT" onclick="return confirm('Are you sure you want to close ?');" action="#{expenseBean.deleteOnePoll1()}"    value="Close Selected"/>
          <p:menuitem value="View Summary"/>
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
          
           
-       &#150; &#150; <h:commandButton   update="DT" process="DT" value="Vote Selected" action="vote">
+       &#150; &#150; <p:commandButton icon="ui-icon-info"   update="DT" process="DT" value="Vote Selected" action="vote"/>
      
-       </h:commandButton>
-      &#150; &#150; <h:commandButton   update="DT" process="DT" value="View Selected Vote" action="viewpool">
+       
+      &#150; &#150; <p:commandButton icon="ui-icon-info"  update="DT" process="DT" value="View Selected Vote" action="viewpool"/>
      
-       </h:commandButton>
-     
-              
-             <p:dataTable sortMode="multiple"   id="DT" widgetVar="dataTable"  emptyMessage="No polls found with given criteria"     resizableColumns="true"    rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+       
+        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOnePoll1()}" icon="ui-icon-trash" value="Delete" />
+               </td></tr></table>
+             <p:dataTable sortMode="multiple"  style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  id="DT" widgetVar="dataTable"  emptyMessage="No polls found with given criteria"     resizableColumns="true"    rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"   var="pool" value="#{expenseBean.poolList}" selectionMode="single" selection="#{expenseBean.onePoll}" rowKey="#{pool.int_PoolId}"  >
                  
                           
@@ -109,6 +114,11 @@
             <p:column     headerText="Audience"  >
           
                <h:outputText   value="#{pool.str_poolAudience}" /> 
+               
+            </p:column>
+            <p:column     headerText="Status"  >
+          
+               <h:outputText   value="#{pool.str_Status}" /> 
                
             </p:column>
             <p:column     headerText="Total Votes"  >

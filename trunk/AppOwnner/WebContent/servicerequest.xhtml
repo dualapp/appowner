@@ -104,7 +104,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
   
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> Service Request</legend>
- <div><table><tr><th>
+ <div><table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
                <h:outputText value="Organisation:" /> </th>
              <td> <p:selectOneMenu       style="width:100px">&nbsp;
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
@@ -138,7 +138,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
     </table></div>
     </fieldset>
         
-             <h:commandButton    action="createnewservicerequest.xhtml" value="create new" />  &#150; &#150;
+           <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  <h:commandButton    action="createnewservicerequest.xhtml" value="create new" />  &#150; &#150;
 	   &#150; &#150; <p:menuButton value="Action">
         <p:menuitem value="Assign Selected"  process="DT" update=":form:pd2" icon="ui-icon-tick"   oncomplete="PF('pDialog2').show()" />
         <p:menuitem value="close Selected" process="DT" update=":form:pd3" icon="ui-icon-tick"   oncomplete="PF('pDialog3').show()"/>
@@ -149,11 +149,10 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	       &#150; &#150; <p:commandButton process="DT" update=":form:pd" icon="ui-icon-pencil" value="Edit " oncomplete="PF('pDialog').show()" />
 	       &#150; &#150; <p:commandButton process="DT" update=":form:pd1"  icon="ui-icon-search" value="View " oncomplete="PF('pDialog1').show()" />
 	     &#150; &#150;   <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{requestScopeBean.deleteServices()}" icon="ui-icon-trash" value="Delete" />
-	<br/>
-	<legend  style="background-color:#438eb9; color:#fff;">Service request</legend>
+	</td></tr></table>
                 
-        <p:dataTable id="DT" rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"   resizableColumns="true" style="margin-bottom:20px"     var="sr"  value="#{requestScopeBean.listServiceRequest}"  selection="#{requestScopeBean.selectedServices}" rowKey="#{sr.int_ServiceRequestId}"> 
+        <p:dataTable id="DT" rows="3"  style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"   resizableColumns="true"      var="sr"  value="#{requestScopeBean.listServiceRequest}"  selection="#{requestScopeBean.selectedServices}" rowKey="#{sr.int_ServiceRequestId}"> 
                 
 	 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
