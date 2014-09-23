@@ -377,5 +377,28 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	}
 }
 
+	@Override
+	public void deleteOnePoll(Pool onePoll) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(onePoll);
+	}
+
+	@Override
+	public void deleteOnefacility(List<Assets> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			Assets ex=(Assets) itr.next();
+		sessionFactory.getCurrentSession().delete(ex);
+		}
+		
+	}
+
+	@Override
+	public void updateOneasset(Assets asset) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(asset);
+	}
+
 
 }
