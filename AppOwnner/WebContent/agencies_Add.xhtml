@@ -31,7 +31,7 @@
                 <h:panelGroup id="performed"  rendered="#{! empty advertisementBean.str_CompanyName }" >
                 <ui:repeat value="#{advertisementBean.agency}" var="agency">
                 <tr>
-                <td><h:outputLabel for="CompanyAddress1" value="CompanyAddress*: " />
+                <td><h:outputLabel for="CompanyAddress1" value="CompanyAddress " />
                 <br />
                 <h:outputLabel for="CompanyAddress" value="Location "  /></td>
                 <td><p:inputText  id="CompanyAddress" value="#{agency.str_CompanyAddress}" style="width:200px" >
@@ -66,24 +66,24 @@
                 
      <tr> 
              <td><h:outputLabel for="Ads Type" value="Ads Type" /></td>
-             <td><p:selectOneMenu id="Add_Type"  style="width:200px">
-            <f:selectItem itemLabel="Select"  itemValue="Select"  />
-           <f:selectItem itemLabel="Monthly"  itemValue="Monthly"  />
-           <f:selectItem itemLabel="Weekly"  itemValue="Weekly"  />
-           <f:selectItem itemLabel="Daily"  itemValue="Daily"  />
+             <td><p:selectOneMenu id="Add_Type"  style="width:200px" value="#{advertisementBean.ads_type}" >
+            <f:selectItem itemLabel="Select"  itemValue=""  />
+           <f:selectItem itemLabel="Monthly"  itemValue="M"  />
+           <f:selectItem itemLabel="Weekly"  itemValue="W"  />
+           <f:selectItem itemLabel="Daily"  itemValue="D"  />
             </p:selectOneMenu>
             
      </td>
       </tr> 
            
          <tr> 
-             <td><h:outputLabel for="Position of Add" value="Position of Add" /></td>
-            <td> <p:selectOneMenu id="Add"  style="width:200px">
-            <f:selectItem itemLabel="Select"  itemValue="Select"  />
-           <f:selectItem itemLabel="Header"  itemValue="Header"  />
-           <f:selectItem itemLabel="Left Part"  itemValue="Left Part"  />
-           <f:selectItem itemLabel="Right part"  itemValue="Right part"  />
-           <f:selectItem itemLabel="bottom part"  itemValue="bottom part"  />
+             <td><h:outputLabel for="Position of Add"  value="Position of Add "    /></td>
+            <td> <p:selectOneMenu id="Add"  style="width:200px"  value="#{advertisementBean.str_addposition}">
+            <f:selectItem itemLabel="Select"  itemValue=""  />
+           <f:selectItem itemLabel="Header"  itemValue="H"  />
+           <f:selectItem itemLabel="Left Part"  itemValue="L"  />
+           <f:selectItem itemLabel="Right part"  itemValue="R"  />
+           <f:selectItem itemLabel="bottom part"  itemValue="b"  />
             </p:selectOneMenu>
             
      </td>
@@ -92,7 +92,7 @@
       
            
          <tr>
-         <td><h:outputLabel value="Choose Your photo for Display "></h:outputLabel></td>
+         <td><h:outputLabel value="Upload Your photo for Display "></h:outputLabel></td>
           <td> <p:fileUpload value="#{advertisementBean.var_ImageName}"
         fileUploadListener="#{advertisementBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
         sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="aaa"  style="width:250px" />
@@ -100,7 +100,7 @@
        </tr>
        <tr>
          <td><h:outputLabel value="Enter Contents "></h:outputLabel></td>
-         <td><p:editor id="editor" widgetVar="editorWidget" value="#{advertisementBean.str_Description}" width="500" height="300" style="margin-bottom:20px;" ></p:editor></td>
+         <td><p:editor id="editor" widgetVar="editorWidget" value="#{advertisementBean.str_content}" width="500" height="300" style="margin-bottom:20px;" ></p:editor></td>
          </tr>
          <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px 0px -500px 0px;" >  
            <p:graphicImage height="150" width="150" value="#{advertisementBean.blb_image}"/>
@@ -108,7 +108,7 @@
          
            <tr>
            
-               <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" width:60px;float:right !important;margin: 0px 0px 50px 0px;" /> 
+               <td><p:commandButton id="AddProduct" value="Submit"  action="#{advertisementBean.addagency}" style=" width:60px;float:right !important;margin: 0px 0px 50px 0px;" /> 
                <p:button id="AddProduct1" value="Cancel" outcome="agencies_Add.xhtml" style="  width:60px; float:right !important;margin: 0px 20px 100px 0px;" />
             </td>
   </tr>
