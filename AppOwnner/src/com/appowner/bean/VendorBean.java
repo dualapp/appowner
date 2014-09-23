@@ -966,14 +966,15 @@ public void myChangeListener(ValueChangeEvent e){
 	    	{
 	            entitiesToDelete.add(vendor);
 	        }
-	    	FacesContext facesContext = FacesContext.getCurrentInstance();
-			Flash flash = facesContext.getExternalContext().getFlash();
-			flash.setKeepMessages(true);
-			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+	    	
 	    } 
 System.out.println(entitiesToDelete+"entyt todelete");
 	    getVendorservice().deleteVendor1(entitiesToDelete);
+	    FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
 	    return "vendorlists?faces-redirect=true";
 	}
 	public String cancelVendor() {
