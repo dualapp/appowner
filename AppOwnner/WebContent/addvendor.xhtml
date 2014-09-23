@@ -23,10 +23,10 @@
    <p:growl id="msgs" showDetail="true" />
    
    <br/><center><legend    style="background-color:#438eb9; color:#fff;">vendor Registration</legend> </center>
-   <div>
+   
      
       <legend  align="left" style="background-color:#438eb9; color:#fff;">vendorPersonal Details</legend>
-        <table>
+        <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
          
             <tr> <th><h:outputText value="Vendor Category: " /></th>
                 <td>
@@ -79,7 +79,7 @@
          
           </table>
            <legend  align="left" style="background-color:#438eb9; color:#fff;">Permanent Address</legend>
-           <table> 
+           <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"> 
            <tr> 
             <th><h:outputText for="Address" value="Address Line1 " /></th>
                 <td><h:inputText id="Address" label="Address"   value="#{vendorBean.str_VendorAddress}" required="true"  requiredMessage="Please enter vendor Address">
@@ -124,7 +124,7 @@
             <td> <p:message id="ZipMsg" for="Zip" display="text" /></td>
             </tr></table>
             <legend  align="left" style="background-color:#438eb9; color:#fff;">VendorService Details</legend>
-            <table>
+            <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
               
               <tr><td> <h:commandButton value="Add Services" action="#{vendorBean.add}" immediate="true" execute="@this">
                
@@ -144,7 +144,7 @@
 	   </tr>  </c:forEach> </table>
     
 	  
-	   <table><tr><th><h:outputText value="Is Vendor Active? " /></th>
+	   <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"><tr><th><h:outputText value="Is Vendor Active? " /></th>
        <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
            </tr>
            <tr><th><h:outputText value="Is a Company? " /></th>
@@ -171,7 +171,7 @@
              
 	   </table>
 	   <legend  align="left" style="background-color:#438eb9; color:#fff;">Vendor Bank Details</legend>
-	   <table>
+	   <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
          
             <tr>
                 <th><h:outputText for="vendorbankaccount" value="Account Number  " /></th>
@@ -237,7 +237,7 @@
             <tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/></td></tr>
            
            
-           </div>
+           
            </h:form>
             
            </body>
