@@ -122,6 +122,12 @@ public interface ExpenseService {
 
 	void deleteSelectedExpenses(List<Expense> entitiesToDelete);
 
+	void deleteOnePoll(Pool onePoll);
+
+	void deleteOnefacility(List<Assets> entitiesToDelete);
+
+	void updateOneasset(Assets asset);
+
 	 
 
 }
