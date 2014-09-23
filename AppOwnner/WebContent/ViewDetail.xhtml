@@ -23,46 +23,45 @@
  
   <tr>
   
- <td>
-    <h:outputText value="Category Name"/></td>
-    <td>
-    <h:inputText value="#{cls_AddDetailBean.pro1}"> </h:inputText></td>
+ 
+    <td><h:outputText value="Category Name"/></td>
+    
+    <td><h:inputText value="#{cls_AddDetailBean.pro1}"> </h:inputText></td>
     </tr>
    
     <tr>
-         <h:panelGroup id="sss1">
-             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-            <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
-             <h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.pro.ch_Ad_Type}">
-            <f:selectItem itemLabel="My Community" itemValue="My Community" />
-            <f:selectItem itemLabel="Neighbourhood" itemValue="Negihbourhood" />
-           
-           </h:selectOneRadio>
+              
+             
+              <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+             <td><h:inputText  id="ch_Ad_Type" value="#{cls_AddDetailBean.pro.ch_Ad_Type}" >
+             </h:inputText>
+             </td>
+             </tr>
+          <tr> 
         
-        <p:outputLabel for="I" value="I want to" />
-        <h:selectOneRadio id="I" value="#{cls_AddDetailBean.pro.ch_Product_Type}">
-            <f:selectItem itemLabel="SELL" itemValue="Sell" />
-            <f:selectItem itemLabel="BUY" itemValue="Buy" />
-            <f:selectItem itemLabel="RENT" itemValue="Rent" />
-       </h:selectOneRadio>
-       
- </h:panelGrid>
- </h:panelGroup>
+        <td><p:outputLabel for="I" value="I want to" /></td>
+        <td><h:inputText  id="I" value="#{cls_AddDetailBean.pro.ch_Product_Type}" >
+        </h:inputText>
+        </td>
+        
+ 
+ 
+ 
 </tr>
+
    
-  <p:outputPanel layout="block"  style=" float:right !important;margin:-100px 100px 50px 50px;">  
+  <p:outputPanel layout="block"   style=" float:right !important;margin:-10px -100px -400px 0px;" >  
        <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
        </p:outputPanel>
            <tr>
            <td>
           <h:outputText value="Title"></h:outputText></td>
-          <td><h:inputText  value="#{cls_AddDetailBean.pro.var_Title}" size="35">
+          <td><h:inputText  value="#{cls_AddDetailBean.pro.var_Title}" >
             </h:inputText>
             </td>
             </tr>
  
-<br />
-<br />
+
 
 <tr>
                <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
@@ -74,6 +73,7 @@
             </tr>
  
   </table>
+  
   </h:form>
 
 
