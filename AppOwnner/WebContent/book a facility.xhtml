@@ -12,7 +12,15 @@
 	<h:head>
 
 	<title></title>
-	 
+	 <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
 
  </h:head>
 	 <h:form id="form">
@@ -20,7 +28,7 @@
 	<br/>
 	<fieldset>
   <legend  style="background-color:#438eb9; color:#fff;"> Book Facility</legend>
- <div><table><tr><th>
+ <div><table   style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
                <h:outputText value="Organisation:" /> </th>
              <td> <p:selectOneMenu  value="#{requestScopeBean.str_OrganizationName}"     style="width:100px">&nbsp;
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
@@ -63,8 +71,9 @@
     </table></div>
     </fieldset>
 	 &#150; &#150; <br/>
-                
-              <h:commandButton   action="createnewbookafacility" value="create new" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+           <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+           <tr><td>     
+              <h:commandButton    action="createnewbookafacility" value="create new" />&#150; &#150;<p:commandButton icon="ui-icon-refresh" value="Refresh" />
 	    &#150; &#150; <p:menuButton value="Action">
         <p:menuitem value="Assign Selected" action="#{requestScopeBean.assignRequestedService}"/>
         <p:menuitem value="close Selected" action="#{requestScopeBean.closeRequestedService}"/>
@@ -74,15 +83,13 @@
          <p:menuitem value="View Summary" />
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
-         &#150; &#150;  <p:commandButton process="DT" update=":form:bookDetail2" icon="ui-icon-search" value="View" oncomplete="PF('multiVendorDialog1').show()" />
+         &#150; &#150;  <p:commandButton process="DT" update=":form:bookDetail2" icon="ui-icon-info" value="View" oncomplete="PF('multiVendorDialog1').show()" />
        &#150; &#150; <p:commandButton process="DT" update=":form:bookDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{requestScopeBean.deleteBookedFacility()}" icon="ui-icon-trash" value="Delete" />
-      
-	
-	<br/>
-	<legend  style="background-color:#438eb9; color:#fff;">Book A Facility</legend>
-                
-             <p:dataTable   id="DT"   resizableColumns="true" style="margin-bottom:20px" 
+       </td></tr></table>
+	 
+	       
+             <p:dataTable   id="DT"   resizableColumns="true" style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"  var="Bf"  value="#{requestScopeBean.bookAFacilityList}"   selection="#{requestScopeBean.selectedBookAFacility}" rowKey="#{Bf.int_FacilityBookId}">
 	 
@@ -119,6 +126,7 @@
 	 </p:column>
 	 
 	 </p:dataTable>
+	 
 	  <p:dialog header="Email" widgetVar="bookedDialog1" showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
         <p:outputPanel id="bookedDetail1" style="text-align:center;">
             <fieldset>
@@ -137,7 +145,9 @@
        <tr><td><h:commandButton value="Send"/></td>  <td><h:commandButton value="Cancel"/></td></tr>
         </table>
         
+        
             </fieldset>
+            
             </p:outputPanel>
             </p:dialog>
             
