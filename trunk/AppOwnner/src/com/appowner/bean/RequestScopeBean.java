@@ -161,14 +161,15 @@ System.out.println(selectedServices+"venders");
     	{
             entitiesToDelete.add(service);
         }
-    	FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service deleted Successfully!", "Service deleted Successfully!"));
+    	
     } 
 System.out.println(entitiesToDelete+"entyt todelete");
 getRequestScopeService().deleteOneServiceRequest(entitiesToDelete);
+FacesContext facesContext = FacesContext.getCurrentInstance();
+Flash flash = facesContext.getExternalContext().getFlash();
+flash.setKeepMessages(true);
+flash.setRedirect(true);
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service deleted Successfully!", "Service deleted Successfully!"));
     return "servicerequest.xhtml?faces-redirect=true";
 }
  
@@ -222,14 +223,16 @@ System.out.println(selectedServices+"venders");
     	{
             entitiesToDelete.add(facility);
         }
-    	FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service deleted Successfully!", "Service deleted Successfully!"));
+    	
     } 
+    
 System.out.println(entitiesToDelete+"entyt todelete");
 getRequestScopeService().deleteOnefacility(entitiesToDelete);
+FacesContext facesContext = FacesContext.getCurrentInstance();
+Flash flash = facesContext.getExternalContext().getFlash();
+flash.setKeepMessages(true);
+flash.setRedirect(true);
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service deleted Successfully!", "Service deleted Successfully!"));
     return "servicerequest.xhtml?faces-redirect=true";
 }
 

@@ -104,6 +104,7 @@ public class ExpenseBean  implements Serializable{
 	private Date  date_AMCEndDate;
 	private String str_PurchaseImg;
 	private List<String> images;
+	private List<Assets>selectedAssets;
 	public List<String> getImages() {
 		images=new ArrayList<String>();
 		images.addAll(getExpenseService().getOrganizationImages());
@@ -953,6 +954,41 @@ public Assets getAsset() {
 public void setAsset(Assets asset) {
 	this.asset = asset;
 }
+public String deleteOneAsset1()
+{ 
+	 List<Assets> entitiesToDelete = new ArrayList<Assets>();
+	  
+	     for (Assets asset :selectedAssets) {
+	     	 
+	     	if (asset.getInt_asset_id()!=null) 
+	     	{
+	             entitiesToDelete.add(asset);
+	         }
+	     	
+	     } 
+	     
+	  
+	     getExpenseService().deleteOnefacility(entitiesToDelete);
+	 
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset deleted Successfully!", "asset deleted Successfully!"));
+	 return "assets.xhtml?faces-redirect=true";
+	
+}
+public String updateOneAsset(Assets asset)
+{
+	getExpenseService().updateOneasset( asset);
+	 
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Updated Successfully!", "Asset Updated Successfully!"));
+	return "assets.xhtml?faces-redirect=true";
+}
 /*
  * get asset,purchase,amc list
  */
@@ -1378,7 +1414,17 @@ public String getStr_PoolQuestion() {
 public void setStr_PoolQuestion(String str_PoolQuestion) {
 	this.str_PoolQuestion = str_PoolQuestion;
 }
- 
+public String deleteOnePoll1()
+{
+	getExpenseService().deleteOnePoll(onePoll);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Poll deleted Successfully!", "Poll deleted Successfully!"));
+	return "pools.xhtml";
+	
+}
  
 public List<Pool> getPoolList() {
 	poolList=new ArrayList<Pool>();
@@ -1739,6 +1785,12 @@ public List<Expense> getSelectedExpenses() {
 }
 public void setSelectedExpenses(List<Expense> selectedExpenses) {
 	this.selectedExpenses = selectedExpenses;
+}
+public List<Assets> getSelectedAssets() {
+	return selectedAssets;
+}
+public void setSelectedAssets(List<Assets> selectedAssets) {
+	this.selectedAssets = selectedAssets;
 }
 	
 }
