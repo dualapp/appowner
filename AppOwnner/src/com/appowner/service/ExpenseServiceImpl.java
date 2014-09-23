@@ -332,6 +332,24 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().deleteSelectedExpenses(entitiesToDelete);
 	}
 
+	@Override
+	public void deleteOnePoll(Pool onePoll) {
+		// TODO Auto-generated method stub
+		getExpenseDao().deleteOnePoll(onePoll);
+	}
+
+	@Override
+	public void deleteOnefacility(List<Assets> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getExpenseDao().deleteOnefacility( entitiesToDelete);
+	}
+
+	@Override
+	public void updateOneasset(Assets asset) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateOneasset(asset);
+	}
+
 	 
 
 }
