@@ -23,7 +23,7 @@
  <table>
  <tr>
   <td>&#150;&#150; &#150;&#150;&#150;&#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;<h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
-            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.edit1.var_Ad_CategoryName}" style="width:150px">
+            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.edit1.var_Ad_CategoryName}" style="width:230px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailBean.categories}"  />
                  
@@ -32,42 +32,40 @@
            </td>
             </tr>
    
-    <tr>
-         <h:panelGroup id="sss1">
-             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-            <h:outputLabel for="ch_Ad_Type" value="Ad Type" />
-             <h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.edit1.ch_Ad_Type}">
-            <f:selectItem itemLabel="My Community" itemValue="My Community" />
-            <f:selectItem itemLabel="Neighbourhood" itemValue="Negihbourhood" />
-           
-           </h:selectOneRadio>
+   <tr>
+              
+             
+              <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+             <td><h:inputText  id="ch_Ad_Type" value="#{cls_AddDetailBean.edit1.ch_Ad_Type}" size="30">
+             </h:inputText>
+             </td>
+             </tr>
+    
+    
+    
+        <tr> 
         
-        <p:outputLabel for="I" value="I want to" />
-        <h:selectOneRadio id="I" value="#{cls_AddDetailBean.edit1.ch_Product_Type}">
-            <f:selectItem itemLabel="SELL" itemValue="Sell" />
-            <f:selectItem itemLabel="BUY" itemValue="Buy" />
-            <f:selectItem itemLabel="RENT" itemValue="Rent" />
-        </h:selectOneRadio>
-       
- </h:panelGrid>
- </h:panelGroup>
-  </tr>
-   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-100px 100px 50px 50px;" >  
+        <td><p:outputLabel for="I" value="I want to" /></td>
+        <td><h:inputText  id="I" value="#{cls_AddDetailBean.edit1.ch_Product_Type}" size="30" >
+        </h:inputText>
+        </td>
+        </tr>
+        
+   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;" >  
            <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
           </p:outputPanel>  
   <tr>
            <td>
           <h:outputText value="Title"></h:outputText></td>
                         
-          <td><h:inputText  value="#{cls_AddDetailBean.edit1.var_Title}" size="35">
+          <td><h:inputText  value="#{cls_AddDetailBean.edit1.var_Title}" size="30">
             </h:inputText>
             </td>
             </tr>
-  <br />
-  <br />
+  
    
   <tr>
-    <h:outputText value="Choose Your  File for upload "></h:outputText>
+    <td><h:outputText value="Choose Your  File for upload "></h:outputText></td>
    <td> <p:fileUpload value="#{cls_AddDetailBean.edit1.var_ImageName}"
         fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
         sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="aaa" style="width:150px"/>
@@ -86,8 +84,8 @@
  <tr>
  
  
-    <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml" style=" float:right !important;margin: 150px 0px 100px 0px;" /></td>
-     <td><h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveContact1}" style=" float:right !important;margin: 150px 10px 100px 0px;" >
+    <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml" style=" float:right !important;margin: 0px -500px 100px 0px;" /></td>
+     <td><h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveContact1}" style=" float:right !important;margin: 0px -150px 100px 0px;" >
      </h:commandButton>
      </td>
      
