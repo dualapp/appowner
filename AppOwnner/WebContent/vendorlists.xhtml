@@ -11,7 +11,7 @@
 <h:head>
     <title> </title>
     <link href="include/assets/css/ace.min.css" rel="stylesheet" />
-    <a href="addvendor.xhtml">Add Vendor</a>
+    
     <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 
   <style>
@@ -101,30 +101,30 @@ function HideModalWindow() {
  <h:form  id="form">
  
     
- <legend  align="left" style="background-color:#438eb9; color:#fff;">
- <table>
+ <!--  <legend  align="left" style="background-color:#438eb9; color:#fff;">
+ <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
   <tr><td><p:selectOneMenu   value="#{vendorBean.str_VendorName }"   style="width:200px" >
             <f:selectItem itemLabel="Select Name" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{vendorBean.vendorNameList}" />
             </p:selectOneMenu>
-            <p:commandLink style="width:200px"  update="DT"  icon="ui-icon-search"    action="#{vendorBean.getVendorList()}">
-            <p:graphicImage  height="20" width="20" alt="search" value="images/search.jpg"/> 
-            </p:commandLink>
+            <p:commandButton   update="DT"   value="Search"  action="#{vendorBean.getVendorList()}"/>
+             
 </td>
  <td><p:selectOneMenu   value="#{vendorBean.str_VendorType }"   style="width:200px" >
             <f:selectItem itemLabel="Select Type" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
             </p:selectOneMenu>
-            <p:commandLink style="width:200px"  update="DT"  icon="ui-icon-search"    action="#{vendorBean.getVendorList()}">
-            <p:graphicImage  height="20" width="20" alt="search" value="images/search.jpg"/> 
-            </p:commandLink>
+            <h:commandButton    update="DT"    value="Search"   action="#{vendorBean.getVendorList()}"/>
+             
 </td>  </tr>
 </table>
-</legend>
+</legend>-->
  <p:growl id="msgs" showDetail="true" />
-  <p:commandButton  icon="ui-icon-plus"  action="addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
+ <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+ <tr><td>
+  <h:commandButton    icon="ui-icon-plus"  action="addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
    
   </p:commandButton>
 	 &#150; &#150;  <p:menuButton value="Action">
@@ -139,9 +139,8 @@ function HideModalWindow() {
        &#150; &#150; <p:commandButton process="DT" update=":form:multiVendorDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
       
-      
-     
-       <p:dataTable     resizableColumns="true" style="margin-bottom:20px"
+     </td></tr></table>
+       <p:dataTable     resizableColumns="true" style="width: 80%;margin-left: 1%;margin-right: 1%;"
        widgetVar="vendorsTable"
                  emptyMessage="No cars found with given criteria" filteredValue="#{vendorBean.selectedVendor1}" 
                rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -213,6 +212,7 @@ function HideModalWindow() {
        
          
             </p:dataTable>
+            
             <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiVendorDetail" style="text-align:center;">
           
