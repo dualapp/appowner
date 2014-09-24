@@ -83,7 +83,7 @@
         &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOnePoll1()}" icon="ui-icon-trash" value="Delete" />
                </td></tr></table>
              <p:dataTable sortMode="multiple"  style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  id="DT" widgetVar="dataTable"  emptyMessage="No polls found with given criteria"     resizableColumns="true"    rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"   var="pool" value="#{expenseBean.poolList}" selectionMode="single" selection="#{expenseBean.onePoll}" rowKey="#{pool.int_PoolId}"  >
+        rowsPerPageTemplate="1,2,3"  paginatorPosition="bottom" var="pool" value="#{expenseBean.poolList}" selectionMode="single" selection="#{expenseBean.onePoll}" rowKey="#{pool.int_PoolId}"  >
                  
                           
         <p:column     headerText="Created By"    >
