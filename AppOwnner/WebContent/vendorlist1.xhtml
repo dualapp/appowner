@@ -138,12 +138,32 @@ function HideModalWindow() {
           &#150; &#150;  <p:commandButton process="DT" update=":form:multiVendorDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiVendorDialog1').show()" />
        &#150; &#150; <p:commandButton process="DT" update=":form:multiVendorDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
-      
-     </td></tr></table>
-       <p:dataTable     resizableColumns="true" style="width: 80%;margin-left: 1%;margin-right: 1%;"
+        <h:commandLink id="excel">
+       <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
+        <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="vendor" />
+    </h:commandLink>
+ 
+    <h:commandLink id="pdf">
+       <p:graphicImage  height="20" width="20" alt="pdf" value="images/pdf.jpg"/>
+        <p:dataExporter type="pdf" pageOnly="true"  target="DT" fileName="vendor" />
+    </h:commandLink>
+ 
+    <h:commandLink id="csv">
+       <p:graphicImage  height="20" width="20" alt="cvs" value="images/cvs.png"/>
+        <p:dataExporter type="csv"  pageOnly="true" target="DT" fileName="vendor" />
+    </h:commandLink>
+ 
+    <h:commandLink id="xml">
+       <p:graphicImage  height="20"  pageOnly="true" width="20" alt="xml" value="images/xml.png"/>
+        <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="vendor" />
+    </h:commandLink>
+     
+     </td>
+     </tr></table>
+       <p:dataTable    paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px"
        widgetVar="vendorsTable"
                  emptyMessage="No cars found with given criteria" filteredValue="#{vendorBean.selectedVendor1}" 
-               rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+               rows="5"   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"    id="DT"    var="vendor" value="#{vendorBean.vendorList}"   selection="#{vendorBean.selectedVendor}" rowKey="#{vendor.int_VendorId}"  >
                  
        <f:facet name="header">
@@ -151,6 +171,7 @@ function HideModalWindow() {
                 <h:outputText value="Search all fields:" />
                 <p:inputText id="globalFilter" onkeyup="PF('vendorsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
             </p:outputPanel>
+            
         </f:facet>
            
         <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
@@ -328,25 +349,6 @@ function HideModalWindow() {
         </p:outputPanel>
     </p:dialog>
       
-              <h:commandLink id="excel">
-       <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
-        <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="vendor" />
-    </h:commandLink>
- 
-    <h:commandLink id="pdf">
-       <p:graphicImage  height="20" width="20" alt="pdf" value="images/pdf.jpg"/>
-        <p:dataExporter type="pdf" pageOnly="true"  target="DT" fileName="vendor" />
-    </h:commandLink>
- 
-    <h:commandLink id="csv">
-       <p:graphicImage  height="20" width="20" alt="cvs" value="images/k2.png"/>
-        <p:dataExporter type="csv"  pageOnly="true" target="DT" fileName="vendor" />
-    </h:commandLink>
- 
-    <h:commandLink id="xml">
-       <p:graphicImage  height="20"  pageOnly="true" width="20" alt="xml" value="images/k2.png"/>
-        <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="vendor" />
-    </h:commandLink>
              
             </h:form>
             </body>
