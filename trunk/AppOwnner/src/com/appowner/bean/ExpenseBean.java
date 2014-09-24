@@ -682,6 +682,13 @@ public void setParking(Parking parking) {
 	this.parking = parking;
 }
 private List<String> parkingSpaceList;
+private List<String> parkingSpaceList1;
+public String updateParkingSpace(Parking p)
+{
+	getExpenseService().updateParkingSpace( p);
+	return "parkingspace.xhtml";
+	
+}
  
 public List<String> getParkingSpaceList() {
 	parkingSpaceList=new ArrayList<String>();
@@ -1791,6 +1798,12 @@ public List<Assets> getSelectedAssets() {
 }
 public void setSelectedAssets(List<Assets> selectedAssets) {
 	this.selectedAssets = selectedAssets;
+}
+public List<String> getParkingSpaceList1() {
+	return parkingSpaceList1;
+}
+public void setParkingSpaceList1(List<String> parkingSpaceList1) {
+	this.parkingSpaceList1 = parkingSpaceList1;
 }
 	
 }
