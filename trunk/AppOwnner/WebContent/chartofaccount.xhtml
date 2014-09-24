@@ -82,11 +82,11 @@ function HideModalWindow() {
 </script>
     </h:head>
  
-    <h:form > 
+    <h:form id="form" > 
     <body>
     
                  
- <div><table><tr>
+  <table style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
  
                <td><h:outputLabel value="Organisation:*" /> </td>
               
@@ -108,18 +108,21 @@ function HideModalWindow() {
                  </td>
                  
                  <td><h:commandButton  style="width:50px" value="Go"/> </td>
-              </tr></table></div>
+              </tr></table> 
                
                  
  
 <br/>
 <br/>
-<div><table> <tr><td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" /></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table></div>
+ <table style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> <tr><td>    &#150; &#150;  <p:commandButton process="DT" update=":form:multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
   <br/>
   <br/>
- <p:dataTable       style="margin-bottom:100px" 
-                rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+ <p:dataTable   id="DT"     
+                rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"   var="c" value="#{expenseBean.chartOfAccountList}">
+        <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+         
+             </p:column>
 	 
         <p:column headerText="Organization">
                
@@ -137,6 +140,44 @@ function HideModalWindow() {
                     
           </p:column>
         </p:dataTable>
+         <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiChartOfAccountDetail" style="text-align:center;">
+        <table>
+	<tr><td> 
+               <h:outputLabel value="Organisation:" /> </td>
+             <td> <p:selectOneMenu  value="#{accountingBean.str_OrganizationName}"    editable="true"   style="width:200px">
+              <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true" /> 
+              <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}"  itemValue="#{accountingBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td></tr>
+	<tr><td><h:outputLabel value="Account Type"/></td>
+	<td><p:selectOneMenu    value="#{accountingBean.str_AccountType}"  style="width:200px" valueChangeListener="#{accountingBean.accountchangeListener}">
+	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
+	    
+	   <f:selectItems   value="#{accountingBean.listAccountType}" /><br/> 
+	   <p:ajax event="change" partialSubmit="true"/>
+                       </p:selectOneMenu></td></tr>
+	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText  style="width:200px" value="#{accountingBean.str_AccountName}"/></td></tr>
+	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{accountingBean.saveChartOfAccount}"   >
+	
+	</p:commandButton></td> </tr>  
+	</table>
+	 <script>
+	 
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
+         </p:outputPanel>
+         </p:dialog>
         </body>
         </h:form>
       </html>
