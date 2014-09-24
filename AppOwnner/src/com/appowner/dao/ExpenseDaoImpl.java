@@ -100,10 +100,10 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<String> getParkingSlotList() {
 		String  query = "{ CALL parkingSpaceList() }";
 		
-		@SuppressWarnings("unchecked")
-		List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
-		System.out.println(parkingSpaceList);
-		return parkingSpaceList;
+		 
+		/*List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
+		System.out.println(parkingSpaceList);*/
+		return getSessionFactory().getCurrentSession().createCriteria(Parking.class).list();
 	}
 
 	@Override
@@ -398,6 +398,12 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public void updateOneasset(Assets asset) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(asset);
+	}
+
+	@Override
+	public void updateParkingSpace(Parking p) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update( p);
 	}
 
 
