@@ -25,73 +25,10 @@
         }
      
     </style>
-    <script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading_home.gif");
- modalWin.SetCloseButtonImagePath("images/cross.png");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-
-function ShowNewPage2(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewparkingspace.xhtml',400,350,'Create New parking space',null,callbackFunctionArray);
- }
- 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
-
-}
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Submit(msg){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function HideModalWindow() {
-    modalWin.HideModalPopUp();
-}
-
-function ShowChildWindowValues(name,email,address,phone,zip) {
-    var displayString = "<b>Values Of Child Window</b> <br/><br/>Name : " + name;
-    displayString += "<br/><br/>Email : " + email;
-    displayString += "<br/><br/>Address : " + address;
-    displayString += "<br/><br/>Phone : " + phone;
-    displayString += "<br/><br/>Zip : " + zip;
-    var div = document.getElementById("divShowChildWindowValues");
-    div.style.display = "";
-    div.innerHTML = displayString;
-}
-</script>
+     
 
  </h:head>
-	 <h:form  >
+	 <h:form id="form" >
 	<h:body>
 	<br/>
 	<h:outputLabel value="Organisation:" /> 
@@ -100,18 +37,31 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu><br/>
-	 &#150; &#150; <br/>
+	 
                 
-             <input type="button" style="width: 150px" onclick="ShowNewPage2()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
-	   
+           <table style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
+	    <p:commandButton process="DT" update=":form:multiParkingSpaceDetail"   value="Create New" oncomplete="PF('multiParkingSpaceDialog').show()" />
 	
-	<br/>
+	 &#150; &#150;  <p:commandButton process="DT" update=":form:multiParkingSpaceDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiParkingSpaceDialog1').show()" />
+       &#150; &#150; <p:commandButton process="DT" update=":form:multiParkingSpaceDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiParkingSpaceDialog2').show()" />
+       &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
+       <h:commandButton  value="Refresh" />
+         
+     
+     </td>
+     </tr>
+     </table>
 	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
                 
-             <p:dataTable     resizableColumns="true" style="margin-bottom:20px" 
-               rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"  var="ps"  value="#{expenseBean.parkingSpaceList}">
+             <p:dataTable   id="DT"  
+               
+               rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  var="ps"  value= "#{expenseBean.parkingSpaceList}" selection="#{expenseBean.parkingSpaceList1}" rowKey="#{ps.int_ParkingId}"  >
 	 
+	 
+	  <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+         
+             </p:column>
           <p:column headerText="Organization">
                 <h:outputText value="#{ps.str_OrganizationName}" /> 
                    
@@ -128,19 +78,93 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
           
 	  
             
-            
-       <p:column>
-                <f:facet name="header">
-                    <h:outputText  value="Action" />
-                </f:facet>
-               <h:link outcome="deleteparkingspace.xhtml"
-	   		 onclick="return confirm('Are you sure you want to delete #{ps.str_OrganizationName}?');" > 
-	   		<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
-		<f:param name="int_ParkingId" value="#{ps.int_ParkingId}"/>  
-	   		 </h:link>
-	   		 </p:column>
-          
+       
 	 </p:dataTable>
+	  <p:dialog header="Create Parking Space" widgetVar="multiParkingSpaceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiParkingSpaceDetail" style="text-align:center;">
+        <table>
+	<tr><th>
+	<h:outputText  value="Organisation:" /> </th>
+              
+              <td><p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td></tr>
+                 
+<tr><th><h:outputText value="parkingSlot"/></th>
+	<td><h:inputText  id="Parkingslot" required="true" requiredMessage="plz Enter ParkingSlot" value="#{expenseBean.str_ParkingSlot}">
+	<p:ajax event="blur" update="ParkingSlotMsg" />
+	</h:inputText>
+	</td>
+	<td><p:message  id="ParkingSlotMsg" for="Parkingslot" display="text"/></td>
+	</tr>
+	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}" /> </td></tr> 
+	 <script>
+	 
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
+        }
+        function EnrollLaterClick() {
+         
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
+    
+    </table>
+    
+    
+           </p:outputPanel>
+           </p:dialog>
+             <p:dialog header="Edit Parking Space Details" widgetVar="multiParkingSpaceDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiParkingSpaceDetail2" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps1">
+             <tr>
+ <th>
+	<h:outputText  value="Organisation:" /> </th>
+    <td>
+    <h:inputText value="#{ps1.str_OrganizationName}"/></td>
+    </tr>
+    <tr>
+ <th>
+	<h:outputText  value="Parking slot:" /> </th>
+    <td>
+    <h:inputText value="#{ps1.str_ParkingSlot}"/></td>
+    </tr>
+    <tr><td><h:commandButton value="Update" action="#{expenseBean.updateParkingSpace(ps1)}"/></td></tr>
+    </ui:repeat>
+    </table>
+    </p:outputPanel>
+    </p:dialog>
+     <p:dialog header="  Parking Space Details" widgetVar="multiParkingSpaceDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiParkingSpaceDetail1" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps1">
+             <tr>
+ <th>
+	<h:outputText  value="Organisation:" /> </th>
+    <td>
+    <h:outputText value="#{ps1.str_OrganizationName}"/></td>
+    </tr>
+    <tr>
+ <th>
+	<h:outputText  value="Parking slot:" /> </th>
+    <td>
+    <h:outputText value="#{ps1.str_ParkingSlot}"/></td>
+    </tr>
+     
+    </ui:repeat>
+    </table>
+    </p:outputPanel>
+    </p:dialog>
 	</h:body>
 	</h:form>
 	 
