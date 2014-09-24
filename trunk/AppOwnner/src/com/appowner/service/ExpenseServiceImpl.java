@@ -350,6 +350,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().updateOneasset(asset);
 	}
 
+	@Override
+	public void updateParkingSpace(Parking p) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateParkingSpace( p);
+	}
+
 	 
 
 }
