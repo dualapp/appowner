@@ -119,4 +119,6 @@ public interface ExpenseDao {
 
 	void updateOneasset(Assets asset);
 
+	void updateParkingSpace(Parking p);
+
 }
