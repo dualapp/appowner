@@ -7,20 +7,21 @@
 	 xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core"
-      template="include/templates/template.xhtml">
+      template="include/templates/template1.xhtml">
 	<ui:define name="content">
      
  <h:head>
    
  </h:head>
-    <body >
-        <p:layout fullPage="true">
+    <h:body >
+      
+        <p:layout  style="min-width:400px;min-height:1000px;">
        
          
             
-
+             
              <p:layoutUnit   position="center" height="200" width="200">
-              <ui:include src="accounting.xhtml" />
+                <ui:include src="accounting.xhtml" />
                 <h:panelGroup id="centerContentPanel" layout="block">
                    <ui:include  src="#{navigationBean.pageName}"/> 
                    
@@ -29,6 +30,7 @@
          
             
         </p:layout>
-    </body>             
+     
+   </h:body>   
 </ui:define>
 </ui:composition>

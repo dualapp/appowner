@@ -1,11 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	 xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:f="http://java.sun.com/jsf/core">
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+      
+       
+     
 	
+     
 <h:head>
     <title>Accounting Form</title>
      <style type="text/css">
@@ -18,8 +24,8 @@
   <h:form id="form">
  
    <fieldset>
-    <legend>
-   <h:commandButton value="Account Transaction" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
+    <legend>Account Transaction</legend>
+  
        <table>
        <h:panelGroup id="aaaa">
             <td>  <h:outputLabel for="account" value="Accounts*" /></td>
@@ -43,6 +49,10 @@
       </table>
       </fieldset>
       </h:form>
+      <br/>
+      <h:commandButton  value="Refresh" />&#150; &#150; &#150; <h:commandButton  value="Export To Excel" />
+      <br/>
+      <br/>
       <h:form>
   <h:body>
    
@@ -292,10 +302,10 @@ style="width:600px">
   
    </h:panelGroup>
    
-    </tbody>
-    </table>
-            </h:body>
-            </h:form>
-      </body>
+   </tbody>
+   </table></h:body>
+   </h:form>
+   </body>
+  
+   </html>
    
-  </html>

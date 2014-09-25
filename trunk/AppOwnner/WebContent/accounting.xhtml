@@ -1,9 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+     
 	 
 	
 	
@@ -20,26 +24,29 @@
 </h:head>
 
   <h:form>
+  <table>
+  <tr>
   <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px">
                    <f:selectItems value="str_Organisation" />
                  </p:selectOneMenu>
              </td>
+             </tr></table>
              </h:form>
-             <br/>
+            
             
              <h:form>
-       <h:panelGrid columns="3" style="font: 12px sans-serif;width:600px;height: 19px;;float:center;">
+       <h:panelGrid columns="5" style="font: 12px sans-serif;width:600px;height: 19px;;float:center;">
           <p:tabMenu autoDisplay="true" style="padding: 0px" >  
-                <p:menuitem  value="ACCOUNT TRANACTION"  >
+                <p:menuitem  value="ACCOUNT TRANACTION"  > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
                          <h:commandLink value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}">
-                         <f:param name="navParam" value="/accountstransaction.xhtml" />
-           </h:commandLink>
+                         <f:param name="navParam" value="/accountstransaction.xhtml" action="#{navigationBean.navigateTo}"/>
+         </h:commandLink>
            </p:menuitem>
            </f:ajax>
-                 </p:menuitem>  
+             </p:menuitem>    
                 <p:menuitem  value="MANUAL JOURNAL"  >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
@@ -71,4 +78,4 @@
        </h:panelGrid>  
 </h:form>
 
-</html>
+</ui:composition>
