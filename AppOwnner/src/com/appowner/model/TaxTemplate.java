@@ -41,20 +41,26 @@ public class TaxTemplate implements Serializable {
 		this.str_TaxName = str_TaxName;
 	}
 	
-	public Double getInt_Percentage() {
+	
+	
+
+	public double getInt_Percentage() {
 		return int_Percentage;
 	}
-	public void setInt_Percentage(Double int_Percentage) {
+	public void setInt_Percentage(double int_Percentage) {
 		this.int_Percentage = int_Percentage;
 	}
-	public Double getInt_TaxExemption() {
+	public double getInt_TaxExemption() {
 		return int_TaxExemption;
 	}
-	public void setInt_TaxExemption(Double int_TaxExemption) {
+	public void setInt_TaxExemption(double int_TaxExemption) {
 		this.int_TaxExemption = int_TaxExemption;
 	}
 
-	private Double int_Percentage;
+
+
+
+	private double int_Percentage;
 	@Column(name = "var_Frequency")
-	private Double int_TaxExemption;
+	private double int_TaxExemption;
 }
