@@ -31,7 +31,7 @@ import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean 
-@SessionScoped
+@RequestScoped
 public class Cls_AddDetailBean implements Serializable {
 	
 
