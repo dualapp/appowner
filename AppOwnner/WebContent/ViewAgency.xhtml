@@ -5,110 +5,92 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
-<h:head>
-    <title>Contact Form</title>
-    <a href="index.xhtml">Add Contact</a>
+	
+	<h:head>
+    <title></title>
+    
 </h:head>
 <h:body>
     <h:form>
-        <h:outputText value="Contact : "></h:outputText>
-        <p:dataTable id="Contact" var="contact" value="#{cls_ContactBean.contactList}" style="width: 300%">
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="ID" />
-                </f:facet>
-                <h:outputText  id="contactId" value="#{contact.contactId}" />
-            </p:column>
+        
+        <p:dataTable id="agc" var="agc" value="#{advertisementBean.agencies}" style="width: 20%">
+            
           
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Name" />
+                    <h:outputText value="Agency Name" />
                 </f:facet>
-                <h:outputText value="#{contact.contactName}" />
+                <h:outputText value="#{agc.str_CompanyName}" />
             </p:column>
              
                <p:column>
             <f:facet name="header">  
-              <h:outputText value="Service" />
+              <h:outputText value="Location" />
                 </f:facet>
-                <h:outputText value="#{contact.contactService1}" />
+                <h:outputText value="#{agc.str_CompanyAddress}" />
             </p:column>
             
             
              <p:column>
             <f:facet name="header">  
-              <h:outputText value="Phone" />
+              <h:outputText value="Molile No" />
                 </f:facet>
-                <h:outputText value="#{contact.contactPhone}" />
+                <h:outputText value="#{agc.str_Mobile}" />
             </p:column>
             
             <p:column>
             <f:facet name="header">  
-              <h:outputText value="UserPhone" />
+              <h:outputText value="City" />
                 </f:facet>
-                <h:outputText value="#{contact.str_PhoneNo}" />
+                <h:outputText value="#{agc.str_City}" />
             </p:column>
             
              
             <p:column>
             <f:facet name="header">
                 
-                    <h:outputText value="Email" />
+                    <h:outputText value="State" />
                 </f:facet>
-                <h:outputText value="#{contact.str_Email}" />
+                <h:outputText value="#{agc.str_State}" />
             </p:column>
+            
+            
             
             <p:column>
             <f:facet name="header">  
-              <h:outputText value="UserId" />
+              <h:outputText value="Ads Type" />
                 </f:facet>
-                <h:outputText value="#{contact.int_UserId}" />
-            </p:column>
-            
-            <p:column>
-            <f:facet name="header">  
-              <h:outputText value="UserName" />
-                </f:facet>
-                <h:outputText value="#{contact.str_Username}" />
+                <h:outputText value="#{agc.ads_type}" />
             </p:column>
             
              <p:column>
             <f:facet name="header">  
-              <h:outputText value="AppartmentId" />
+              <h:outputText value="Position of Ads" />
                 </f:facet>
-                <h:outputText value="#{contact.int_ApartmentId}" />
+                <h:outputText value="#{agc.str_addposition}" />
             </p:column>        
                    
-            <p:column>
+           
+            <!-- <p:column>
             <f:facet name="header">
                 
-                    <h:outputText value="AdditionalInformation" />
+                    <h:outputText value="Enter Contents" />
                 </f:facet>
-                <h:outputText value="#{contact.additionalInfo}" />
+                <h:outputText value="#{agc.str_content}" />
             </p:column>
-            
-            <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="CurrentDate" />
-                </f:facet>
-                <h:outputText value="#{contact.date}" />
-            </p:column>
-             
+              -->
            
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Action" />
                     </f:facet>
-              <h:link outcome="UpdateContact.xhtml" >
-	   			<p:graphicImage  height="20" width="20" alt="update" value="images/k1.png"/> 
-	   				<f:param name="contactId" value="#{contact.contactId}" />
-	   		</h:link>
-	   		 <h:link outcome="deletecontact.xhtml"   
-	   		 onclick="return confirm('Are you sure you want to delete #{contact.contactName}?');" > 
-	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
-	   				<f:param name="contactId" value="#{contact.contactId}" />
-	   		</h:link>
+              <h:button  value ="View"  outcome="View_Agency.xhtml" >
+	   		<f:param name="int_agencyid" value="#{agc.int_agencyid}" />
+	   		</h:button>
+	   		 <p:commandButton value="delete" action="#{advertisementBean.deleteagency(agc.int_agencyid)}" style="width:50px" onclick="return confirm('Are you sure you want to delete #{agc.int_agencyid}?');" >  
+	   			<p:graphicImage  height="30" width="20" alt="delete" /> 
+	   				<f:param name="int_agencyid" value="#{agc.int_agencyid}" />
+	   		</p:commandButton>
             </p:column>
           <!-- <p:commandButton value="update" action="#{cls_UpdateBean.editPerson(person.personId)}"   -->  
              
