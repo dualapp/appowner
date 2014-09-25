@@ -11,6 +11,7 @@ import com.appowner.dao.ComplainDao;
 import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
+import com.appowner.model.agency_information;
 
 @Service("AdvertisementService")
 @Transactional 
@@ -87,5 +88,48 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		}
 
 		
+		public void addagencies(agency_information agency) {
+			 getAdvertisementDao().addagencies(agency);
+			
+		}
+
+		@Override
+		public int agency1(String agencyname1) {
+			return getAdvertisementDao().agency1( agencyname1);
+		}
+
+		@Override
+		public List<agency_information> agencies1() {
+			return getAdvertisementDao().agencies1();
+		}
+
+		@Override
+		public void Deleted(agency_information category) {
+			getAdvertisementDao().Deleted(category);
+			
+		}
+
+		@Override
+		public agency_information editproduct(Integer int_agencyid) {
+			return  getAdvertisementDao().editproduct( int_agencyid);
+			
+		}
+
+		@Override
+		public int editproductaa(Integer int_agencyid) {
+			return  getAdvertisementDao().editproductaa(int_agencyid);
+		}
+
+		@Override
+		public List<String> editproduct2(int prointcatid) {
+			return  getAdvertisementDao().editproduct2( prointcatid);
+		}
+
 		
-}
+
+	
+		}
+
+		
+		
+
