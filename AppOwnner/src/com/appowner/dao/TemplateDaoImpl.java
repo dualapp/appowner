@@ -184,4 +184,31 @@ public class TemplateDaoImpl implements TemplateDao {
 		sessionFactory.getCurrentSession().delete(v);
 		}
 	}
+	public void deleteInvoice1(List<InvoiceTemplate> delete)
+	{
+		ListIterator itr=delete.listIterator();
+		while(itr.hasNext())
+		{
+			InvoiceTemplate v=(InvoiceTemplate) itr.next();
+		sessionFactory.getCurrentSession().delete(v);
+		}
+	}
+	public void deleteMessage1(List<MessageTemplate> delete)
+	{
+		ListIterator itr=delete.listIterator();
+		while(itr.hasNext())
+		{
+			MessageTemplate v=(MessageTemplate) itr.next();
+		sessionFactory.getCurrentSession().delete(v);
+		}
+	}
+	public void deleteTax1(List<TaxTemplate> delete)
+	{
+		ListIterator itr=delete.listIterator();
+		while(itr.hasNext())
+		{
+			TaxTemplate v=(TaxTemplate) itr.next();
+		sessionFactory.getCurrentSession().delete(v);
+		}
+	}
 }
