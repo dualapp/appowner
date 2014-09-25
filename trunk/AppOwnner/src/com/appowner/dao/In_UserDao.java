@@ -89,4 +89,12 @@ public interface In_UserDao {
 	public Collection<? extends User> getuserDetails(Integer int_apartment_id);
 
 	public void addBlocks(UserBlocks us);
+
+	public Integer apartmentidget(String str_userapartment);
+
+	public Collection<? extends String> blocks(int aparmentid1);
+
+	public User edit(int userid);
+
+	public void updateUser1(User editlis);
 }
