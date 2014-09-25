@@ -117,4 +117,23 @@ public class DueTransaction implements Serializable{
 	public void setStr_Status(String str_Status) {
 		this.str_Status = str_Status;
 	}
+	private String int_InvoiceNo;
+
+	public String getInt_InvoiceNo() {
+		return int_InvoiceNo;
+	}
+	public void setInt_InvoiceNo(String int_InvoiceNo) {
+		this.int_InvoiceNo = int_InvoiceNo;
+	}
+    private Double int_paidAmount=0.00;
+
+	public Double getInt_paidAmount() {
+		return int_paidAmount;
+	}
+	public void setInt_paidAmount(Double int_paidAmount) {
+		this.int_paidAmount = int_paidAmount;
+	}
+
+	
+	
 }
