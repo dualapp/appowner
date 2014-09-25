@@ -82,11 +82,11 @@ function HideModalWindow() {
 </script>
     </h:head>
  
-    <h:form id="form" > 
+    <h:form  > 
     <body>
     
                  
-  <table style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
+  <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
  
                <td><h:outputLabel value="Organisation:*" /> </td>
               
@@ -114,15 +114,13 @@ function HideModalWindow() {
  
 <br/>
 <br/>
- <table style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> <tr><td>    &#150; &#150;  <p:commandButton process="DT" update=":form:multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
+ <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> <tr><td>    &#150; &#150;  <p:commandButton process="DT" update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
   <br/>
   <br/>
  <p:dataTable   id="DT"     
                 rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"   var="c" value="#{expenseBean.chartOfAccountList}">
-        <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
-             </p:column>
 	 
         <p:column headerText="Organization">
                
