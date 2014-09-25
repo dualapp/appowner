@@ -21,11 +21,12 @@ import org.primefaces.component.datatable.DataTable;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
 import com.appowner.model.InvoiceTransaction;
+import com.appowner.service.DueService;
 import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{InvoiceService}")
@@ -59,7 +60,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		this.int_InvoiceNo = int_InvoiceNo;
 	}
 	public String getStr_Status() {
-		str_Status="hi";
+		
 		return str_Status;
 	}
 	public void setStr_Status(String str_Status) {
@@ -319,6 +320,22 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		public static void setYear(Integer year) {
 			InvoiceBean.year = year;
 		}
+		@ManagedProperty(value = "#{DueService}")
+		private DueService dueService;
+public DueService getDueService() {
+	return dueService;
+}
+public void setDueService(DueService dueService) {
+	this.dueService = dueService;
+}
+private static  List<Integer> dueID=new ArrayList<Integer>();
+	
+	public static List<Integer> getDueID() {
+	return dueID;
+}
+public static void setDueID(List<Integer> dueID) {
+	InvoiceBean.dueID = dueID;
+}
 	public String addInvoiceTransaction()
 	{   
 		try{
@@ -339,6 +356,29 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 			invoice.setTotalBalance(getTotalDue());
 			invoice.setStr_Status("Due");
 			getInvoiceService().saveInvoiceTransaction(invoice);
+			DueTransaction due1=new DueTransaction();
+			 listDues=getInvoiceService().taxList(select);
+		       System.out.println(listDues); 
+		        
+		          String[] strArray = listDues.split(",");
+		        for (String str : strArray) {
+		        	  due1.setStr_DueTemplate(str);
+		        	  due1.setStr_InitiatedOn(getDat_InvoiceDate());
+		              due1.setDat_LastDate(dat_DueDate);
+		              due1.setStr_ApartmentNo(str_ApartmentNo);
+		              due1.setStr_Block(str_Block);
+		             due1.setDbl_TotalDueAmount(totalAmount);
+		              due1.setStr_Status("Due");
+		              due1.setStr_Period(str_BillPeriod);
+		              due1.setInt_Year(getInt_Year());
+		             due1.setInt_InvoiceNo(int_InvoiceNo);
+		             due1.setStr_Organisation(str_Organisation);
+		             due1.setDbl_DueAmount(totalAmount);
+		          Integer id=getDueService().saveDueTransaction(due1);  
+		          System.out.println(id);
+		          dueID.add(id);
+		        } 
+			
 			
 			  if(bl_Show==true)
 				{
@@ -438,11 +478,11 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	    if(select.equals(getSelect()))
 	    {
 	        listDues=getInvoiceService().taxList(select);
-	       
+	       System.out.println(listDues); 
 	        
 	        String[] strArray = listDues.split(",");
 	        for (String str : strArray) {
-	       
+	          
 	         listTax=new ArrayList<String>();
 	         listTax.addAll(getInvoiceService().getTaxList(str));
 	        
@@ -469,7 +509,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private List<InvoiceTransaction> listInvoiceTransaction;
 	public List<InvoiceTransaction> getListInvoiceTransaction() {
 		listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
-		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction());
+		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction(str_InvoiceTemplate,str_Block,str_ApartmentNo,str_Status,str_BillPeriod));
 		return listInvoiceTransaction;
 	}
 	public void setListInvoiceTransaction(
@@ -517,6 +557,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	}
 	public List<String> organisationChangeListener(ValueChangeEvent event)
 	{   String str=(String)event.getNewValue();
+	    System.out.println(str);
 	    if(str==Util.getAppartmentName())
 	    {
 	    	return str_Blocks;
@@ -525,6 +566,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	}
 	public List<String> blockChangeListener(ValueChangeEvent event)
 	{   str_Block=(String)event.getNewValue();
+	System.out.println(str_Block);
 		str_BlockNo=new ArrayList<String>();
 		str_BlockNo.addAll(getInvoiceService().getApartmentlist(str_Block));
 		return str_BlockNo;
@@ -604,7 +646,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	         
 			 {  try
 			 {
-		String str=(String)event.getNewValue();
+		         String str=(String)event.getNewValue();
 			    
 			    Double sqrt=getInvoiceService().getSqft(str);
 			    listDues=getInvoiceService().taxList(select);
@@ -676,46 +718,48 @@ public List<String> getListAccountName() {
 public void setListAccountName(List<String> listAccountName) {
 	this.listAccountName = listAccountName;
 }
-private DataTable dataTable;
-public void processValueChange(ValueChangeEvent event)  
-        throws AbortProcessingException 
-{    
-	System.out.println("hi");
-	InvoiceTransaction template1=(InvoiceTransaction)dataTable.getRowData();
-	 id=template1.getInt_InvoiceTransactionID();
-	 
-	System.out.println(id);
-}
-public DataTable getDataTable() {
-	return dataTable;
-}
-public void setDataTable(DataTable dataTable) {
-	this.dataTable = dataTable;
-}
-private Integer id1;
-public Integer getId1() {
-	id1=id;
-	System.out.println(id1+"juhu");
-	return id1;
-}
-public void setId1(Integer id1) {
-	this.id1 = id1;
-}
-private static Integer id;
-public static Integer getId() {
-	return id;
-}
-public static void setId(Integer id) {
-	InvoiceBean.id = id;
-}
-public void savePayment()
+
+
+public String savePayment(Integer id,String invoiceNo)
 {
-	System.out.println("hihhh");
+	System.out.println(invoiceNo);
 	getInvoiceService().updatePayment(accountName,str_Status,id,dat_InvoiceDate);
+	List<Integer> str=getDueService().getDueTemplate1(invoiceNo);
+	ListIterator list2=str.listIterator();
+	while(list2.hasNext())
+	{
+		Integer str1=(Integer)list2.next();
+		double ddd=getDueService().getDueAmount1(str1);
+		getDueService().updateDueTransaction(str_Status,str1,ddd);
+	}
+
+	return "invoice.xhtml";
 }
  public String  cancelInvoice()
 {
 	return "invoice.xhtml";
 }
-
+private List<InvoiceTransaction> selectedInvoice;
+public List<InvoiceTransaction> getSelectedInvoice() {
+	
+	return selectedInvoice;
+}
+public void setSelectedInvoice(List<InvoiceTransaction> selectedInvoice) {
+	this.selectedInvoice = selectedInvoice;
+}
+private InvoiceTransaction invoice1;
+public InvoiceTransaction getInvoice1() {
+	return invoice1;
+}
+public void setInvoice1(InvoiceTransaction invoice1) {
+	this.invoice1 = invoice1;
+}
+public void getInvoice()
+{
+	 invoice1=getInvoiceService().getInvoice(1);
+}
+public String cancel()
+{
+	return "invoice.xhtml";
+}
 }
