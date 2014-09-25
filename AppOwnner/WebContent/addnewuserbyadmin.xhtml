@@ -81,11 +81,16 @@
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText id="str_Flat" value="#{cls_UserBean.str_Flat}" required="true"                requiredMessage="Enter Flat Name!">
             </h:inputText></td><td><p:message for="str_Flat" display="text"/></td>  </tr> 
-             <tr>
-            <td><h:outputText value="Block :">
-            </h:outputText>  </td>          
-            <td><h:inputText id="str_Block" value="#{cls_UserBean.str_Block}">
-            </h:inputText></td><td><p:message for="str_Block" display="text"/></td></tr> 
+            <tr>
+            <td><h:outputLabel for="str_Block" value="Block :"/>
+            </td>          
+            <td><p:selectOneMenu id="str_Block" value="#{cls_UserBeanMain.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}" style="width:168px" required="true">
+            <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
+            <f:selectItems  value ="#{cls_UserBean.blocksNa}"/>
+             <p:ajax event="change" process="str_Block"/>
+             </p:selectOneMenu>  
+            </td></tr> 
+            
          
 
          
@@ -93,7 +98,7 @@
             <td><h:commandButton id="addUser" value="Add User" action="#{cls_UserBean.addnewUser}" ajax="false"/>
              </td></tr>
              <tr><td>
-            <h:commandButton id="reset" value="Reset" action="#{cls_UserBean.reset}" ajax="false"/>
+            <h:commandButton id="reset" value="   Reset  " action="#{cls_UserBean.reset}" ajax="false"/>
              </td></tr>
             </table>
             </p:panel>
