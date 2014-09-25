@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.DueTransaction;
@@ -10,9 +11,9 @@ public interface DueService {
 
 	public List<String> getDueTemplate();
 
-	public void saveDueTransaction(DueTransaction due);
+	public Integer saveDueTransaction(DueTransaction due);
 
-	public List<DueTransaction> listDueTransaction();
+	public List<DueTransaction> listDueTransaction(String str_DueTemplate, String str_Block, String str_ApartmentNo, String str_Period, String str_Status);
 
 	public List<String> getBlockList(String str_Organisation);
 
@@ -21,5 +22,19 @@ public interface DueService {
 	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo);
 
 	public DueTransaction getUserDueTransaction(Integer int_DueTransactionID);
+
+	public double getDueAmount(String str_Block, String str_DueTemplate);
+
+	public List <String> listRavenues();
+
+	
+
+	public List<Integer> getDueTemplate1(String invoiceNo);
+
+	public double getDueAmount1(Integer str1);
+
+	public void updateDueTransaction(String str_Status, Integer str1, double ddd);
+
+	
 
 }

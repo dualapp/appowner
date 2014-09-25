@@ -135,5 +135,17 @@ public class TemplateServiceImpl implements TemplateService {
 	  {
 		  getTemplateDao().deleteDue1(delete);
 	  }
+	  public void deleteInvoice1(List<InvoiceTemplate> delete)
+	  {
+		  getTemplateDao().deleteInvoice1(delete);
+	  }
+	  public void deleteMessage1(List<MessageTemplate> delete)
+	  {
+		  getTemplateDao().deleteMessage1(delete);
+	  }
+	  public void deleteTax1(List<TaxTemplate> delete)
+	  {
+		  getTemplateDao().deleteTax1(delete);
+	  }
 	  
 }
