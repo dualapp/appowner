@@ -3,25 +3,6 @@ package com.appowner.bean;
 import java.io.Serializable;
 //package org.primefaces.showcase.view.ajax;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -86,8 +67,29 @@ public class Cls_UserBean implements Serializable{
 	    public String arrow;
 	    private String lastname;
 	    public Integer int_apartment_id;
-	    
-	    
+	    private List<String> blocksNa;
+	    private User editlis;
+	    private int edituserid2;
+		public int getEdituserid2() {
+			return edituserid2;
+		}
+		public void setEdituserid2(int edituserid2) {
+			this.edituserid2 = edituserid2;
+		}
+		public User getEditlis() {
+			return editlis;
+		}
+		public void setEditlis(User editlis) {
+			this.editlis = editlis;
+		}
+		@SuppressWarnings("unchecked")
+		public List<String> getBlocksNa() {
+			blocksNa=(List<String>) getUserService().blocks(Util.getAppartmentId());
+			return blocksNa;
+		}
+		public void setBlocksNa(List<String> blocksNa) {
+			this.blocksNa = blocksNa;
+		}
 		public int getInt_getappartmentid() {
 			int_apartment_id=Util.getAppartmentId();
 			return int_getappartmentid;
@@ -731,7 +733,28 @@ public class Cls_UserBean implements Serializable{
 			return "BlockAddedConfirmation.xhtml";
 		}
 		
-
+		//@SuppressWarnings("unchecked")
+		public void editUser()
+		{
+			
+			System.out.println(int_UserId+"jjj");
+			editlis=getUserService().edit(int_UserId);
+			System.out.println("..............................................");
+			System.out.println(editlis.getStr_FirstName());
+			edituserid2=editlis.getInt_UserId();
+			
+		//	return "userEdituser.xhtml";
+		}
+		public String updateUser(int usereditid)
+		{
+			
+			
+			getUserService().updateUser(editlis);
+			return "userupdateconfirmation.xhtml";
+		}
+		
+		
+         
 		
 
 	}
