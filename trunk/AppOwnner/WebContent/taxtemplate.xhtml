@@ -113,28 +113,21 @@ function HideModalWindow() {
                 </fieldset>
                 <br/>
                 
-             <input type="button" style="width: 140px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<input type="button" style="width: 140px" onclick="ShowNewPage3()"  value="Edit Selected" />&#150; &#150;<input type="button" style="width: 140px" onclick="ShowNewPage4()"  value="View Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+             <input type="button" style="width: 140px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<p:commandButton process="tax" update=":form:multiTaxTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiTaxTemplateDialog1').show()" />
+       &#150; &#150; <p:commandButton process="tax" update=":form:multiTaxTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiTaxTemplateDialog').show()" />
+       &#150; &#150;  <p:commandButton update="tax" process="tax" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteTaxTemplate()}" icon="ui-icon-trash" value="Delete" />&#150; &#150;<h:commandButton  value="Refresh" />
                <br/>
              <br/>
               
-  </h:form>
-  </body>
   
-  <h:form>
-  <h:body>
-        <h:outputText value="Tax Template: " color="red"></h:outputText>
-        <p:dataTable id="tax" var="tax" value="#{templateBean.listTaxs}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50">
+         <p:growl id="msgs" showDetail="true" /> 
+        <p:dataTable id="tax" var="tax" value="#{templateBean.listTaxs}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50"
+         selection="#{templateBean.selectedTaxTemplate}" rowKey="#{tax.int_TaxTemplateID}" editable="true"  resizableColumns="true">
 					<f:facet name="header">
                TaxTemplate
                </f:facet>
-                <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Select" />
-                </f:facet>
-                 <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{templateBean.processValueChange3}">
-                 <p:ajax event="click"   partialSubmit="true"/>   
-                </h:selectBooleanCheckbox>
-           </p:column>
+               
+            <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>     
          <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation Name" />
@@ -178,9 +171,68 @@ function HideModalWindow() {
                
             </p:column>
             </p:dataTable>
-            </h:body>
-             </h:form>  
+              <p:dialog header="Edit TaxTemplate" widgetVar="multiTaxTemplateDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiTaxTemplateDetail" style="text-align:center;">
+          
+           <table>
                
-               
-              </ui:define>
-               </ui:composition>
+            <ui:repeat value="#{templateBean.selectedTaxTemplate}" var="taxTemplate1">
+             <tr>
+ <th>
+    <h:outputText value="Tax Template:"/></th>
+    <td>
+    <h:inputText value="#{taxTemplate1.str_TaxName}"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Tax Percentage:"/></th>
+    <td>
+    <h:inputText value="#{taxTemplate1.int_Percentage}"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="TaxExemption:"/></th>
+    <td>
+    <h:inputText value="#{taxTemplate1.int_TaxExemption}"/></td>
+    </tr>
+  
+
+      
+            </ui:repeat>
+             <tr><td><h:commandButton value="update" action="#{templateBean.saveTaxTemplate(taxTemplate1)}"/></td></tr>
+            </table>
+            
+        </p:outputPanel>
+    </p:dialog>
+    <p:dialog header="View TaxTemplate" widgetVar="multiTaxTemplateDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiTaxTemplateDetail1" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{templateBean.selectedTaxTemplate}" var="taxTemplate1">
+             
+              <tr>
+ <th>
+    <h:outputText value="Tax Template:"/></th>
+    <td>
+    <h:inputText value="#{taxTemplate1.str_TaxName}" readonly="true"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Tax Percentage:"/></th>
+    <td>
+    <h:inputText value="#{taxTemplate1.int_Percentage}" readonly="true"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="TaxExemption:"/></th>
+    <td>
+    <h:inputText value="#{taxTemplate1.int_TaxExemption}" readonly="true"/></td>
+    </tr>
+            </ui:repeat>
+            </table>
+        </p:outputPanel>
+    </p:dialog>
+           </h:form>
+           </body>
+           </ui:define>
+           </ui:composition>
