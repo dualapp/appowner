@@ -215,21 +215,18 @@
                 </f:facet>
                 <h:outputText value="#{per.var_Description}" />
             </p:column>
-                 <p:column>
+                <p:column>
             <f:facet name="header">
-               
-                    <h:outputText value="Update" />
-                 
-	   			 </f:facet>
-	   			<h:link outcome="EditDetail.xhtml" value="Edit">
-	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		</h:link>
-	        <p:commandButton value="delete" action="#{cls_AddDetailBean.deleteDetail(per.int_ProductId)}" style="width:50px" onclick="return confirm('Are you sure you want to delete #{per.int_ProductId}?');" >  
+              <h:outputText value="Update" />
+               </f:facet>
+	   			<h:button outcome="EditDetail.xhtml" value="Edit">
+	   		  <f:param name="int_ProductId" value="#{per.int_ProductId}" />
+	   		 </h:button>
+	         <h:button value="delete" action="#{cls_AddDetailBean.deleteDetail(per.int_ProductId)}" style="width:50px" onclick="return confirm('Are you sure you want to delete #{per.int_ProductId}?');" >  
 	   			<p:graphicImage  height="30" width="20" alt="delete" /> 
-	   				<f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		</p:commandButton>
-	   			
-                </p:column>
+	   			<f:param name="int_ProductId" value="#{per.int_ProductId}" />
+	   		</h:button>
+	   	     </p:column>
                </p:dataTable>
               
                </h:body>
