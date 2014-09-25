@@ -78,5 +78,13 @@ public interface In_UserService {
 	//public void addBlock(UserBlocks us);
 
 	public void addBlock(UserBlocks us);
+
+	public Integer apartmentidget(String str_userapartment);
+
+	public Collection<? extends String> blocks(int aparmentid1);
+
+	public User edit(int userid);
+
+	public void updateUser(User editlis);
 }
 
