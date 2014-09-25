@@ -86,7 +86,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<String> getParkingSlotList() {
+	public List<Parking> getParkingSlotList() {
 		// TODO Auto-generated method stub
 		return getExpenseDao().getParkingSlotList();
 	}
@@ -354,6 +354,24 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public void updateParkingSpace(Parking p) {
 		// TODO Auto-generated method stub
 		getExpenseDao().updateParkingSpace( p);
+	}
+
+	@Override
+	public void deleteParkingSpace(List<Parking> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getExpenseDao().deleteParkingSpace(entitiesToDelete);
+	}
+
+	@Override
+	public void delectAssetsCategory(List<AssetCategory> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getExpenseDao().delectAssetsCategory(entitiesToDelete); 
+	}
+
+	@Override
+	public void updateAssetCategory(AssetCategory ac) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateAssetCategory( ac);
 	}
 
 	 
