@@ -55,10 +55,12 @@ function HideModalWindow() {
 </script>
 </h:body>
 <body  bgcolor="pink">
-  <h:form>
+  <h:form id="form">
+  
   <fieldset>
     <legend>
    <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
+     
      <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
@@ -67,12 +69,13 @@ function HideModalWindow() {
                   <f:selectItem itemLabel="#{dueBean.str_Organisation}" itemValue="#{dueBean.str_Organisation}"/>
                  </p:selectOneMenu>
              </td>
+           <h:panelGroup id="hjhjjhd" rendered="#{dueBean.indicator}">
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
              <td><h:outputText  value="Block:" /></td>
-               <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"  style="width:150px">
+               <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"    onchange="submit()" style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_Blocks}" />
-                    <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
+                    <p:ajax event="click" update="str_ApartmentNo" process="str_Block" partialSubmit="true"/>
                  </p:selectOneMenu >
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
@@ -82,6 +85,23 @@ function HideModalWindow() {
                    <f:selectItems value="#{dueBean.str_BlockNo}" />
                  </p:selectOneMenu>
                  </td>
+                </h:panelGroup>
+                 <h:panelGroup id="hjhmmm" rendered="#{dueBean.indicator1}">
+                  <td><h:outputText  value="Block:" /></td>
+               <td><p:selectOneMenu id="str_Block1" value="#{dueBean.str_Block1}"   style="width:150px">
+               
+                   <f:selectItem itemLabel="#{dueBean.str_Block1}" itemValue="#{dueBean.str_Block1}"/>
+                  
+                  
+                 </p:selectOneMenu >
+             </td>
+               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
+             <td><h:outputText  value="Apartment:" /></td>
+               <td><p:selectOneMenu id="str_ApartmentNo1" value="#{dueBean.str_ApartmentNo1}"  style="width:150px">
+                   <f:selectItem itemLabel="#{dueBean.str_ApartmentNo1}" itemValue="#{dueBean.str_ApartmentNo1}"/>
+                 </p:selectOneMenu>
+                 </td>
+                 </h:panelGroup>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
                  <td><h:outputText  value="Status:" /></td>
                <td><p:selectOneMenu id="str_Status" value="#{dueBean.str_Status}"  style="width:150px">
@@ -101,7 +121,7 @@ function HideModalWindow() {
               <td><h:outputLabel value="Account:" /></td>
               <td> &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Accounts}"  style="width:150px">
                <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   <f:selectItems value="#{dueBean.str_Account}" />
+                   <f:selectItems value="#{templateBean.ravenues}" />
                  </p:selectOneMenu>
              </td>
                &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
@@ -115,7 +135,18 @@ function HideModalWindow() {
              <td><h:outputText  value="Period" /></td>
                <td><p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                   
+                   <f:selectItem itemLabel="JAN" itemValue="JAN"/>
+                     <f:selectItem itemLabel="FEB" itemValue="FEB"/>
+                       <f:selectItem itemLabel="MAR" itemValue="MAR"/>
+                        <f:selectItem itemLabel="APR" itemValue="APR"/>
+                          <f:selectItem itemLabel="MAY" itemValue="MAY"/>
+                     <f:selectItem itemLabel="JUN" itemValue="JUN"/>
+                       <f:selectItem itemLabel="JUL" itemValue="JUL"/>
+                        <f:selectItem itemLabel="AUG" itemValue="AUG"/>
+                          <f:selectItem itemLabel="SEP" itemValue="SEP"/>
+                     <f:selectItem itemLabel="OCT" itemValue="OCT"/>
+                       <f:selectItem itemLabel="NOV" itemValue="NOV"/>
+                        <f:selectItem itemLabel="DEC" itemValue="DEC"/>
                  </p:selectOneMenu>
                  </td>
                    &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150;
@@ -129,24 +160,203 @@ function HideModalWindow() {
                     <f:selectItem  itemLabel="2017" itemValue="2017" />
                  </p:selectOneMenu>
              </td>
-            
+          
              </h:panelGroup>
-           
+            &#150; &#150; &#150; &#150; &#150;
+            
+             <p:commandButton id="priya" value="Go" rendered="#{dueBean.indicator}" action="#{dueBean.getListDueTransaction()}" update="due"/>
+             
              </fieldset>
              <br/>
              <br/>
-            <input type="button" style="width: 140px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<p:commandButton  value="View Selected" />&#150; &#150;<p:commandButton  value="Edit Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" />&#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
+             <h:panelGroup id="jjhj" rendered="#{dueBean.indicator}">
+            <input type="button" style="width: 140px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<p:commandButton process="due" update=":form:multiDuesDetail" icon="ui-icon-search" value="View" style="width: 100px" oncomplete="PF('multiDuesDialog').show()" />&#150; &#150;<p:commandButton  value="Edit Selected" />&#150; &#150;<p:commandButton  value="Delete Selected" /> &#150; &#150;<p:commandButton  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
         <p:menuitem value="Notify By Mail" />
         <p:menuitem value="Notify By Sms" />
         <p:menuitem value="Export To Excel" />
          <p:menuitem value="View Sumary"/>
-        </p:menuButton>
-             </h:form>
-             </body>
-              <h:form>
-  <h:body>
-        <fieldset class="field_set">
-        <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}" style="width: 80%" align="center">
+        </p:menuButton></h:panelGroup>
+        <h:panelGroup id="nnmnmnm" rendered="#{dueBean.indicator1}">
+        <p:commandButton process="due1" update=":form:multiDuesDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDuesDialog1').show()" />
+            &#150; &#150;<p:commandButton  value="Refresh" /></h:panelGroup>
+            
+        <h:panelGroup id="jkdds" rendered="#{dueBean.indicator}">
+        <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}" style="width: 100%" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
+          selection="#{dueBean.selectedDue}" rowKey="#{due.int_DueTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">
+        <f:facet name="header">
+            Collections
+               </f:facet>
+                <p:column  exportable="false"  selectionMode="multiple" style="width:35px;text-align:center" /> 
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Organisation" />
+                </f:facet>
+                <h:outputText value="#{due.str_Organisation}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="DueTemplate" />
+                </f:facet>
+                <h:outputText value="#{due.str_DueTemplate}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Period" />
+                </f:facet>
+                <h:outputText value="#{due.str_Period}" />
+            </p:column>
+         
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Block" />
+                </f:facet>
+                <h:outputText value="#{due.str_Block}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Apartment" />
+                </f:facet>
+                <h:outputText value="#{due.str_ApartmentNo}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Last Date" />
+                </f:facet>
+                <h:outputText value="#{due.dat_LastDate}" >
+                 <f:convertDateTime pattern="dd-MM-yyyy" />
+                 </h:outputText>
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="TotalDue Amount" />
+                </f:facet>
+                <h:outputText value="#{due.dbl_TotalDueAmount}" />
+            </p:column>
+          
+            
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Status" />
+                </f:facet>
+                <h:outputText value="#{due.str_Status}" />
+            </p:column>
+            
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Paid Amount" />
+                </f:facet>
+                <h:outputText value="#{due.int_paidAmount}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Invoice No." />
+                </f:facet>
+                <h:outputText value="#{due.int_InvoiceNo}" />
+            </p:column>
+           <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Balance" />
+                </f:facet>
+                <h:outputText value="#{due.dbl_DueAmount}" />
+           </p:column>
+            </p:dataTable>
+              <p:dialog header="View Due" widgetVar="multiDuesDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiDuesDetail" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{dueBean.selectedDue}" var="due1">
+             <h:panelGroup id="user">
+           <h3><i>Template</i></h3>
+        <table cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Account:" />&#160; &#160; &#160; &#160; &#160; </td>
+         <td>   <h:inputText value="#{due1.str_Accounts}" /></td>
+            <td > <h:outputText value="DueTemplate:" /></td>
+         <td>   <h:inputText value="#{due1.str_DueTemplate}" /></td>
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user1">
+        <h3><i>Due Details</i></h3>
+        <table  cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Period:" /> &#160; &#160; &#160; &#160; &#160;  &#160; </td>
+         <td>   <h:inputText value="#{due1.str_Period}" /></td>
+            <td > <h:outputText value="Year" />&#160; &#160; &#160; &#160;  </td>
+         <td>   <h:inputText value="#{due1.int_Year}" /></td>
+           </tr>
+            <tr>
+           <td> <h:outputText value="Initiated On:" /></td>
+         <td>   <h:inputText value="#{due1.str_InitiatedOn}" /></td>
+            <td > <h:outputText value="Last Date" />&#160; &#160; &#160; &#160;  </td>
+         <td>   <h:inputText value="#{due1.dat_LastDate}" /></td>
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user2">
+        <h3><i>Apartment Details</i></h3>
+        <table  cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Block:" />&#160; &#160; &#160;&#160; &#160; &#160; &#160; </td>
+         <td >   <h:inputText value="#{due1.str_Block}" /></td>
+          
+            
+           <td> <h:outputText value="Apartment No:" /></td>
+         <td class="more-padding-on-right">  <h:inputText value="#{due1.str_ApartmentNo}" /></td>
+          
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user3">
+        <h3><i>Amount Details</i></h3>
+        <table  cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Due Amount:" /></td>
+         <td >   <h:inputText value="#{due1.dbl_DueAmount}" /></td>
+          </tr>
+            <tr>
+           <td > <h:outputText value=" Total Due Amount:" /></td>
+           <td >   <h:inputText value="#{due1.dbl_TotalDueAmount}" /></td>
+            <td> <h:outputText value=" Balance Amount" /></td>
+           <td >   <h:inputText value="#{due1.dbl_TotalDueAmount}" /></td>
+           </tr>
+          <tr>
+            <td> <h:outputText value=" Paid Amount:" /></td>
+           <td >   <h:inputText value="#{due1.dbl_TotalDueAmount}" /></td>
+            <td> <h:outputText value="Status:" /></td>
+           <td >   <h:inputText value="#{due1.str_Status}" /></td>
+           </tr>
+           </table>
+           <table>
+           <tr>
+           <td><h:outputText value="payment History:" />&#160; &#160; &#160; &#160; </td>
+         <td>  <p:inputTextarea value="" cols="30" row="5" /></td> 
+           </tr>
+        </table>
+      </h:panelGroup>
+       
+                
+            </ui:repeat>
+            </table>
+        </p:outputPanel>
+    </p:dialog>
+       </h:panelGroup>
+       <h:panelGroup id="jhhjjhjh"  rendered="#{dueBean.indicator1}">
+        <p:dataTable id="due1" var="due" value="#{dueBean.listUserDueTransaction}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50"   selection="#{dueBean.selectedDue}" rowKey="#{due.int_DueTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">>
+             <f:facet name="header">
+              
+           <h:commandLink>
+                <p:graphicImage value="images/xls.jpg" width="24"/>
+                <p:dataExporter type="xls" target="due1" fileName="listUserDueTransaction" />
+            </h:commandLink>
+             Collections
+               </f:facet>
+                <p:column  exportable="false"  selectionMode="multiple" style="width:35px;text-align:center" /> 
+            
+       
+        
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
@@ -217,9 +427,91 @@ function HideModalWindow() {
                 <h:outputText value="#{due.str_Block}" />
             </p:column>
             </p:dataTable>
-          </fieldset>
-            </h:body>
-            </h:form>
+             <p:dialog header="View Due" widgetVar="multiDuesDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiDuesDetail1" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{dueBean.selectedDue}" var="due1">
+             <h:panelGroup id="user">
+           <h3><i>Template</i></h3>
+        <table cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Account:" />&#160; &#160; &#160; &#160; &#160; </td>
+         <td>   <h:inputText value="#{due1.str_Accounts}" /></td>
+            <td > <h:outputText value="DueTemplate:" /></td>
+         <td>   <h:inputText value="#{due1.str_DueTemplate}" /></td>
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user1">
+        <h3><i>Due Details</i></h3>
+        <table  cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Period:" /> &#160; &#160; &#160; &#160; &#160;  &#160; </td>
+         <td>   <h:inputText value="#{due1.str_Period}" /></td>
+            <td > <h:outputText value="Year" />&#160; &#160; &#160; &#160;  </td>
+         <td>   <h:inputText value="#{due1.int_Year}" /></td>
+           </tr>
+            <tr>
+           <td> <h:outputText value="Initiated On:" /></td>
+         <td>   <h:inputText value="#{due1.str_InitiatedOn}" /></td>
+            <td > <h:outputText value="Last Date" />&#160; &#160; &#160; &#160;  </td>
+         <td>   <h:inputText value="#{due1.dat_LastDate}" /></td>
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user2">
+        <h3><i>Apartment Details</i></h3>
+        <table  cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Block:" />&#160; &#160; &#160;&#160; &#160; &#160; &#160; </td>
+         <td >   <h:inputText value="#{due1.str_Block}" /></td>
+          
+            
+           <td> <h:outputText value="Apartment No:" /></td>
+         <td class="more-padding-on-right">  <h:inputText value="#{due1.str_ApartmentNo}" /></td>
+          
+           </tr>
+        </table>
+      </h:panelGroup>
+       <h:panelGroup id="user3">
+        <h3><i>Amount Details</i></h3>
+        <table  cellspacing="10">
+           <tr>
+           <td> <h:outputText value="Due Amount:" /></td>
+         <td >   <h:inputText value="#{due1.dbl_DueAmount}" /></td>
+          </tr>
+            <tr>
+           <td > <h:outputText value=" Total Due Amount:" /></td>
+           <td >   <h:inputText value="#{due1.dbl_TotalDueAmount}" /></td>
+            <td> <h:outputText value=" Balance Amount" /></td>
+           <td >   <h:inputText value="#{due1.dbl_TotalDueAmount}" /></td>
+           </tr>
+          <tr>
+            <td> <h:outputText value=" Paid Amount:" /></td>
+           <td >   <h:inputText value="#{due1.dbl_TotalDueAmount}" /></td>
+            <td> <h:outputText value="Status:" /></td>
+           <td >   <h:inputText value="#{due1.str_Status}" /></td>
+           </tr>
+           </table>
+           <table>
+           <tr>
+           <td><h:outputText value="payment History:" />&#160; &#160; &#160; &#160; </td>
+         <td>  <p:inputTextarea value="" cols="30" row="5" /></td> 
+           </tr>
+        </table>
+      </h:panelGroup>
+       
+                
+            </ui:repeat>
+            </table>
+        </p:outputPanel>
+    </p:dialog>
+       </h:panelGroup>
+           </h:form>
+           </body>
+           
             
              
 </ui:define>
