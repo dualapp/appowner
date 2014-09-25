@@ -322,6 +322,24 @@ public class VendorDaoImpl implements VendorDao{
 		}
 	}
 
+	@Override
+	public void updateWorkOrder(WorkOrderCategory w) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(w);
+	}
+
+	@Override
+	public void deleteWorkOrder(List<WorkOrderCategory> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			WorkOrderCategory ex=(WorkOrderCategory) itr.next();
+		sessionFactory.getCurrentSession().delete(ex);
+		
+	}
+		
+	}
+
 	 
 	 
 }
