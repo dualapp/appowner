@@ -62,10 +62,21 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		return taxlist;
 	}
 	@SuppressWarnings("unchecked")
-	public List<InvoiceTransaction> listInvoiceTransaction()
+	public List<InvoiceTransaction> listInvoiceTransaction(String str_InvoiceTemplate, String str_Block, String str_ApartmentNo, String str_Status, String str_BillPeriod)
 	{
-		return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+		if(str_InvoiceTemplate==null && str_Block==null && str_ApartmentNo==null && str_Status==null && str_BillPeriod==null)
+		{
+		   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+	    }
+		else
+		{
+			String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND str_Status=?";
+			return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
+		          .setParameter(3, str_ApartmentNo).setParameter(4, str_Status).list();
+		}
+		
 	}
+	
 	@SuppressWarnings("unchecked")
 	public List<String> getBlockList(String str_Organisation)
 	{
@@ -117,6 +128,10 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	{
 		String hql="update InvoiceTransaction set str_Status=?,totalBalance=?,str_paymentAccount=?,dat_PaymentDate=? where int_InvoiceTransactionID=?";
 		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,"Paid").setParameter(1,0.00).setParameter(2,accountName).setParameter(3,dat_InvoiceDate).setParameter(4,id).executeUpdate();
+	}
+	public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID)
+	{
+		return (InvoiceTransaction) getSessionFactory().getCurrentSession().get(InvoiceTransaction.class, int_InvoiceTransactionID);
 	}
 	
 	
