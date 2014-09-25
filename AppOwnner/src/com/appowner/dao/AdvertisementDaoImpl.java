@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
+import com.appowner.model.agency_information;
 
 @Repository
 public class AdvertisementDaoImpl implements AdvertisementDao{
@@ -89,6 +90,57 @@ public class AdvertisementDaoImpl implements AdvertisementDao{
 		String str="from Company where str_CompanyName=?";
 		return (List<Company>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,select).list();
 		
+	}
+	@Override
+	public void addagencies(agency_information agency) {
+		getSessionFactory().getCurrentSession().save(agency);	
+	}
+	@Override
+	public int agency1(String agencyname1) {
+		String hql1="select int_CompanyID from Company  where str_CompanyName=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, agencyname1).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
+	}
+	@Override
+	public List<agency_information> agencies1() {
+		String  query = "{ CALL agency() }";
+		
+		 @SuppressWarnings("unchecked")
+		List<agency_information> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(agency_information.class)
+		).list();
+	      System.out.println("kkk");   
+		 return kkk;
+	}
+	@Override
+	public void Deleted(agency_information category) {
+		getSessionFactory().getCurrentSession().createQuery("delete from agency_information where   int_agencyid="+category.getInt_agencyid()).executeUpdate();
+		
+	}
+	@Override
+	public agency_information editproduct(Integer int_agencyid) {
+		return(agency_information)getSessionFactory().getCurrentSession().get(agency_information.class,int_agencyid);
+	}
+	@Override
+	public int editproductaa(Integer int_agencyid) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(int_agencyid);
+		String hql2="select int_CompanyID from agency_information where int_agencyid=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (int) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, int_agencyid).uniqueResult();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> editproduct2(int prointcatid) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(prointcatid);
+		String hql2=" from Company where int_CompanyID=?";
+		System.out.println("8888888888888888888888888888888888");
+		return   sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, prointcatid).list();
 	}
 	
 
