@@ -225,7 +225,7 @@ public class TemplateBean implements Serializable {
 			flash.setRedirect(true);
 			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
 	    } 
-System.out.println(delete+"entyt todelete");
+
      getTemplateService().deleteDue1(delete);
 	    return "duetemplate.xhtml?faces-redirect=true";
 	}
@@ -272,6 +272,7 @@ System.out.println(delete+"entyt todelete");
 	}
 	public String saveDueTemplate(DueTemplate dueTemplate) {
 		if (dueTemplate.getInt_DueTemplateID() != null) {
+			
 			getTemplateService().updateDueTemplate(dueTemplate);
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			Flash flash = facesContext.getExternalContext().getFlash();
@@ -378,11 +379,45 @@ System.out.println(delete+"entyt todelete");
 	{
 		return "taxtemplate.xhtml?faces-redirect=true";
 	}
-	 public void processValueChange3(ValueChangeEvent event)  
-		        throws AbortProcessingException { 
-	    	taxTemplate=(TaxTemplate)dataTable.getRowData();
-			id=taxTemplate.getInt_TaxTemplateID();
-			System.out.println(id);
+	private List<TaxTemplate> selectedTaxTemplate;
+	 public List<TaxTemplate> getSelectedTaxTemplate() {
+		return selectedTaxTemplate;
+	}
+	public void setSelectedTaxTemplate(List<TaxTemplate> selectedTaxTemplate) {
+		this.selectedTaxTemplate = selectedTaxTemplate;
+	}
+	public String saveTaxTemplate(TaxTemplate taxTemplate) {
+			if (taxTemplate.getInt_TaxTemplateID()!= null) {
+				getTemplateService().updateTaxTemplate(taxTemplate);
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+
+			} else
+				getTemplateService().saveTaxTemplate(taxTemplate);
+			return "taxtemplate.xhtml";
+		}
+	    public String deleteTaxTemplate() {
+		    List<TaxTemplate> delete = new ArrayList<TaxTemplate>();
+	   
+		    for (TaxTemplate template2 :selectedTaxTemplate) {
+		    	
+		    	if (template2.getInt_TaxTemplateID()!=null) 
+		    	{
+		            delete.add(template2);
+		        }
+		    	FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+		    } 
+
+	     getTemplateService().deleteTax1(delete);
+		    return "taxtemplate.xhtml?faces-redirect=true";
 		}
 	//INVOICE TEMPLATE
 	private Integer int_InvoiceTemplateID;
@@ -450,6 +485,14 @@ System.out.println(delete+"entyt todelete");
 	}
 	public void setStr1_Frequency(String str1_Frequency) {
 		this.str1_Frequency = str1_Frequency;
+	}
+	private List<InvoiceTemplate> selectedInvoiceTemplate;
+	public List<InvoiceTemplate> getSelectedInvoiceTemplate() {
+		return selectedInvoiceTemplate;
+	}
+	public void setSelectedInvoiceTemplate(
+			List<InvoiceTemplate> selectedInvoiceTemplate) {
+		this.selectedInvoiceTemplate = selectedInvoiceTemplate;
 	}
 	public String addInvoiceTemplate()
 	{ try{
@@ -619,7 +662,39 @@ System.out.println(delete+"entyt todelete");
 		id=invoiceTemplate.getInt_InvoiceTemplateID();
 		System.out.println(id);
 	}
-	
+    public String saveInvoiceTemplate(InvoiceTemplate invoiceTemplate) {
+		if (invoiceTemplate.getInt_InvoiceTemplateID()!= null) {
+			getTemplateService().updateInvoiceTemplate(invoiceTemplate);
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+
+		} else
+			getTemplateService().saveInvoiceTemplate(invoiceTemplate);
+		return "invoicetemplate.xhtml";
+	}
+    public String deleteInvoiceTemplate() {
+	    List<InvoiceTemplate> delete = new ArrayList<InvoiceTemplate>();
+   
+	    for (InvoiceTemplate template1 :selectedInvoiceTemplate) {
+	    	
+	    	if (template1.getInt_InvoiceTemplateID()!=null) 
+	    	{
+	            delete.add(template1);
+	        }
+	    	FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+	    } 
+
+     getTemplateService().deleteInvoice1(delete);
+	    return "invoicetemplate.xhtml?faces-redirect=true";
+	}
 	//MESSAGE TEMPLATE
 	private Integer int_MessageTemplateID;
 	private String str_CreatedBy;
@@ -739,12 +814,7 @@ System.out.println(delete+"entyt todelete");
 		getTemplateService().updateMessageTemplate(messageTemplate);
 		return "messagetemplate.xhtml?faces-redirect=true";
 	}
-	public String messageSerch()
-	{
-		listMessages=new ArrayList<MessageTemplate>();
-		listMessages.addAll(getTemplateService().listMessageTemplate(str_Mode,str_Category));
-		return "messagetemplate.xhtml";
-	}
+	
 	public String deleteMessage(){
 		MessageTemplate message=new MessageTemplate();
 		System.out.println(int_DueTemplateID);
@@ -757,11 +827,47 @@ System.out.println(delete+"entyt todelete");
 	{
 		return "messageTemplate.xhtml";
 	}
-	  public void processValueChange2(ValueChangeEvent event)  
-		        throws AbortProcessingException { 
-	    	messageTemplate=(MessageTemplate)dataTable.getRowData();
-			id=messageTemplate.getInt_MessageTemplateID();
-			System.out.println(id);
-		}
+	private List<MessageTemplate> selectedMessageTemplate;
+	 
 	
+	public List<MessageTemplate> getSelectedMessageTemplate() {
+		return selectedMessageTemplate;
+	}
+	public void setSelectedMessageTemplate(
+			List<MessageTemplate> selectedMessageTemplate) {
+		this.selectedMessageTemplate = selectedMessageTemplate;
+	}
+	public String saveMessageTemplate(MessageTemplate messageTemplate) {
+			if (messageTemplate.getInt_MessageTemplateID()!= null) {
+				getTemplateService().updateMessageTemplate(messageTemplate);
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+
+			} else
+				getTemplateService().saveTaxTemplate(taxTemplate);
+			return "messagetemplate.xhtml";
+		}
+	    public String deleteMessageTemplate() {
+		    List<MessageTemplate> delete = new ArrayList<MessageTemplate>();
+	   
+		    for (MessageTemplate template3 :selectedMessageTemplate) {
+		    	
+		    	if (template3.getInt_MessageTemplateID()!=null) 
+		    	{
+		            delete.add(template3);
+		        }
+		    	FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"MessageTemplate deleted Successfully!", "MessageTemplate deleted Successfully!"));
+		    } 
+
+	     getTemplateService().deleteMessage1(delete);
+		    return "messagetemplate.xhtml?faces-redirect=true";
+		}
 }
