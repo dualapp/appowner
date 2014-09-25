@@ -17,9 +17,9 @@
    
     <h:body>
      <ui:include src="/memberdetails.xhtml" />
-     <table>
+     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <legend  align="left" style="background-color:#438eb9; color:#fff;">Booking Details</legend>
-  <tr><th><h:outputText value="Event Name"/>  </th><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name" style="width:400px" value="#{loginBean.str_EventName}">
+  <tr><th><h:outputText value="Event Name"/>  </th><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name"  value="#{loginBean.str_EventName}">
   <p:ajax event="blur" update="Eventname" />
   </h:inputText>
   </td>
@@ -67,7 +67,7 @@
     <th><h:commandButton value="Check Availability" action="#"/></th>
     </tr>
    </table>
-   <table>
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr><th><h:outputText value=" Facility Details*"/></th>  <td></td><td><p:editor   required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" >
    
    </p:editor>
