@@ -22,6 +22,7 @@ import org.hibernate.search.annotations.Factory;
 import org.primefaces.event.RateEvent;
 import org.springframework.context.annotation.Scope;
 
+import com.appowner.model.Parking;
 import com.appowner.model.Vendor;
 import com.appowner.model.VendorCity;
 import com.appowner.model.VendorCountry;
@@ -64,6 +65,42 @@ public class VendorBean implements Serializable {
 	private int int_TdsCharge;
 	private String str_Website;
 	private List<WorkOrderCategory> workOrderCategoryList;
+	private List<WorkOrderCategory> workOrderCategoryList1;
+	
+	public List<WorkOrderCategory> getWorkOrderCategoryList1() {
+		return workOrderCategoryList1;
+	}
+	public  String deleteWorkOrder()
+	{
+		List<WorkOrderCategory> entitiesToDelete = new ArrayList<WorkOrderCategory>();
+		 
+	    for (WorkOrderCategory w :workOrderCategoryList1) {
+	    	 
+	    	if (w.getInt_WorkOrderCategoryId()!=null) 
+	    	{
+	            entitiesToDelete.add(w);
+	        }
+	    	FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Workorder deleted Successfully!", "Workorder deleted Successfully!"));
+	    } 
+	 
+	    getVendorservice().deleteWorkOrder(entitiesToDelete);
+		return "workordercategory.xhtml";
+	}
+	public String updateWorkOrder(WorkOrderCategory w)
+	{
+		getVendorservice().updateWorkOrder(w);
+		return "workordercategory.xhtml";
+	}
+
+	public void setWorkOrderCategoryList1(
+			List<WorkOrderCategory> workOrderCategoryList1) {
+		this.workOrderCategoryList1 = workOrderCategoryList1;
+	}
+
 	private List<Vendor>selectedVendor1;
   
 
