@@ -21,7 +21,15 @@ public class SelectOneMenuBean {
 	private String city;
 	public String apartment_Value;
 	private String apartment;
-	
+	private List<String> blocks_value;
+
+	public List<String> getBlocks_value() {
+		return blocks_value;
+	}
+
+	public void setBlocks_value(List<String> blocks_value) {
+		this.blocks_value = blocks_value;
+	}
 
 	public String getApartment() {
 		return apartment_Value;
@@ -78,6 +86,11 @@ public class SelectOneMenuBean {
 	public void getApartment(String str_userapartment) {
 		apartment_Value=str_userapartment;
 		
+	}
+	public void getBlocks(List<String> strBlocks)
+	{
+		
+		blocks_value=strBlocks;
 	}
 
 	
