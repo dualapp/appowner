@@ -1,12 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	 xmlns:c="http://java.sun.com/jsp/jstl/core"
-	 template="include/templates/template.xhtml">
-	<ui:define name="content">
+	>
 	
 	
 <h:head>
@@ -27,7 +26,7 @@
             <tr>
              <h:panelGroup  id="performed9"  style="display:block; text-align:right">
             <td><h:outputLabel value="Invoice Template" /></td>
-              <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:200px" valueChangeListener="#{invoiceBean.selectRadioButton}">
+              <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
                      <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
                     <f:ajax event="change" execute="str_InvoiceTemplate" render="@form"/>
@@ -66,7 +65,7 @@
     <h:panelGroup id="performed3"  >
            
            <td><h:outputLabel value="Bill Period:" /></td>  &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
-              <td><p:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:200px">
+              <td><p:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:250px">
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
                        <f:selectItem itemLabel="MAR" itemValue="MAR"/>
@@ -84,7 +83,7 @@
             
              &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
             <td><h:outputLabel value="Year:" /></td>
-              <td><p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:200px">
+              <td><p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:250px">
                   <f:selectItem itemLabel="2014" itemValue="2014"/>
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
                        <f:selectItem itemLabel="2016" itemValue="2016"/>
@@ -100,12 +99,12 @@
            
             <td>  <h:outputText  value="Invoice Date*" /></td>
              &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
-           <td>  <p:inputText id="dat_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}" size="25"/> </td>
+           <td>  <p:inputText id="dat_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}" size="20"/> </td>
           
             
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
+             &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
              <td>  <h:outputText  value="Due Date*" /></td>
-           <td>  <p:calendar id="dat_DueDate" value="#{invoiceBean.dat_DueDate}" size="25"/> </td>
+           <td>  <p:calendar id="dat_DueDate" value="#{invoiceBean.dat_DueDate}" size="20"/> </td>
           
             
   </h:panelGroup>
@@ -114,15 +113,15 @@
            
               <td><h:outputLabel value="Organisation:" /></td>
               &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
-              <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}" valueChangeListener="#{invoiceBean.organisationChangeListener}" style="width:200px">
+              <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}" valueChangeListener="#{invoiceBean.organisationChangeListener}" style="width:250px">
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                   <f:selectItem itemLabel="#{invoiceBean.str_Organisation}" itemValue="#{invoiceBean.str_Organisation}"/>
                     <p:ajax event="change" update="str_Block" process="str_Organisation"/>
                  </p:selectOneMenu>
              </td>
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;  &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
+             &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;  &#150; &#150; &#150;
              <td><h:outputLabel value="Block:" /></td>
-              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}" style="width:200px">
+              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}" style="width:250px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{invoiceBean.str_Blocks}" />
                     <p:ajax event="change" update="str_ApartmentNo" process="str_Block" partialSubmit="true" />
@@ -133,8 +132,8 @@
    <h:panelGroup id="performed5"  >
            
               <td><h:outputLabel value="Apt.No:" /></td>
-              &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150;  &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
-              <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" valueChangeListener="#{invoiceBean.amountChangeListener}" style="width:200px">
+              &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;  &#150; &#150; &#150; &#150; &#150; &#150; &#150;
+              <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" valueChangeListener="#{invoiceBean.amountChangeListener}" style="width:250px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                      <f:selectItems value="#{invoiceBean.str_BlockNo}" />
                        <f:ajax event="change" execute="@this" render="@form" />
@@ -180,14 +179,18 @@
     </tr>
  
    </ui:repeat>
-   
+   <tr>
+    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
     <tr>
     <td style="padding-left:5px;width:440px;line-height:20px;" align="right">SubTotal</td>
     <td align="right" style="width:250px;">#{invoiceBean.subTotal}</td>
     </tr>
     <tr></tr>
      <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px">  
-    
+    <tr>
+    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
     <tr style="line-height:25px;">
      <td align="right" style="padding-right:5px;width:320px;"></td></tr><tr style="line-height:20px;"><td align="right">#{dues.str_TaxTemplate} &nbsp;&nbsp;(#{invoiceBean.taxAmount}%)</td><td align="right">#{invoiceBean.taxAmount1}</td>
      </tr>
@@ -198,7 +201,7 @@
   </ui:repeat>
   <tr>
    <tr>
-    <td colspan="2" style="border-bottom:1px solid #DADADA ;"></td>
+    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
   <td style="height:20px;color:#E17009;" align="right">Total Due</td><td align="right" style="width:250px;color:#E17009;">#{invoiceBean.totalDue}</td><td align="right" style="padding-right:5px;width:320px;"></td>
   </tr>
@@ -220,6 +223,5 @@
           </h:form>
           </body>
           
-      </ui:define>
-      </ui:composition>
+      </html>
       

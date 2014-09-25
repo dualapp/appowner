@@ -6,26 +6,36 @@
       xmlns:p="http://primefaces.org/ui">
      
 <h:head>
-    <title>Accounting Form</title>
+   <title>Company Registration Edition </title>
+     <style type="text/css">
+    td:nth-child(2) {
+    padding-right:100px;
+}
+.more-padding-on-right {
+  padding-right: 30px;
+}
+ </style>
     </h:head>
    <body >
-  <h:form id="form" prependId="false">
+  <h:form id="form" >
    <fieldset>
     <legend>
    <h:commandButton value="Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table>
+   <table  cellspacing="10">
             <tr>
-            <td><h:outputLabel value="Account" /> <font color="red" >*</font>&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;</td>
+            <td><h:outputLabel value="Account" /> <font color="red" >*</font></td>
             
-              <td><p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Account}"  style="width:250px">
-                   <f:selectItems value="#{templateBean.ravenues}" />
+              <td class="more-padding-on-right"><p:selectOneMenu id="str_Account" value="#{dueBean.str_Account}" required="false" style="width:250px">
+               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                   <f:selectItems value="#{dueBean.ravenues}"  />
                  </p:selectOneMenu>
              </td>
           </tr> 
           <tr>
             <td><h:outputLabel value="Due Template" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}"  style="width:250px">
+              <td><p:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}" valueChangeListener="#{dueBean.templateChangeListener}"  style="width:250px">
                    <f:selectItems value="#{dueBean.str_DueTemplates}"/>
+                    <p:ajax event="change"  process="str_DueTemplate"/>
                  </p:selectOneMenu>
              </td>
           </tr> 
@@ -34,7 +44,7 @@
           <fieldset>
     <legend>
    <h:commandButton value="Due Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table>
+   <table  cellspacing="10">
             <tr>
             <td> <h:outputText  value="Period" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:250px">
@@ -80,7 +90,7 @@
           <fieldset>
     <legend>
    <h:commandButton value="Apartment Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table>
+   <table cellspacing="5" >
    <tr>
       <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}"  style="width:250px">
@@ -97,14 +107,17 @@
                     <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
                  </p:selectOneMenu>
              </td>
+              <td><p:message for="str_Block" dispay="text"/></td>
              </tr>
              <tr>
                <td><h:outputLabel value="Apt.No" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:250px"  required="true" requiredMessage="ApartmentNo Should not Empty">
+              <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}" valueChangeListener="#{dueBean.apartmentChangeListener}" style="width:250px"  required="true" requiredMessage="ApartmentNo Should not Empty">
                    <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_BlockNo}" />
+                    <p:ajax event="change" update="dbl_DueAmount,dbl_TotalDueAmount" process="str_ApartmentNo"/>
                  </p:selectOneMenu>
              </td>
+              <td><p:message for="str_ApartmentNo" dispay="text"/></td>
              </tr>
           
           </table>
@@ -113,15 +126,17 @@
            <fieldset>
     <legend>
    <h:commandButton value="Amount Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table>
+   <table  cellspacing="10" >
+   
           <tr>
-                        <td>  <h:outputText  value="Due Amount" /></td>
-           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" size="28"/> </td>
+           <td>  <h:outputText  value="Due Amount" /></td>
+           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" size="25" readonly="true"/> </td>
            </tr>
            <tr>
-                        <td>  <h:outputText  value="Total Due Amount" /></td>
-           <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_TotalDueAmount}" size="28"/> </td>
+           <td>  <h:outputText  value="Total Due Amount" /></td>
+           <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_DueAmount}" size="25" readonly="true"/> </td>
            </tr>
+         
            </table>
            </fieldset>
            <br/>
