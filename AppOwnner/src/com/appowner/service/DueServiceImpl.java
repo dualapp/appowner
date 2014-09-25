@@ -31,13 +31,16 @@ public class DueServiceImpl implements DueService{
 	{
 		return getDueDao().getDueTemplate();
 	}
-	public List<DueTransaction> listDueTransaction(){
-		return getDueDao().listDueTransaction();
+	public List<DueTransaction> listDueTransaction(String str_DueTemplate, String str_Block, String str_ApartmentNo, String str_Period, String str_Status)
+	{
+		return getDueDao().listDueTransaction(str_DueTemplate,str_Block,str_ApartmentNo,str_Period,str_Status);
 	}
 
 	
-	public void saveDueTransaction(DueTransaction due) {
-		getDueDao().saveDueTransaction(due);
+	public Integer saveDueTransaction(DueTransaction due)
+	{
+		 return getDueDao().saveDueTransaction(due);
+		
 		
 	}
 	public List<String> getBlockList(String str_Organisation)
@@ -56,6 +59,25 @@ public class DueServiceImpl implements DueService{
 	{
 		return getDueDao().getUserDueTransaction(int_DueTransactionID);
 	}
-	
+	public double getDueAmount(String str_Block, String str_DueTemplate)
+	{
+		return getDueDao().getDueAmount(str_Block,str_DueTemplate);
+	}
+	public List <String> listRavenues()
+	{
+		return getDueDao().listRavenues();
+	}
 
+	public List<Integer> getDueTemplate1(String invoiceNo)
+	{
+		return getDueDao().getDueTemplate1(invoiceNo);
+	}
+	public double getDueAmount1(Integer str1)
+	{
+		return getDueDao().getDueAmount1(str1);
+	}
+	public void updateDueTransaction(String str_Status, Integer str1, double ddd)
+	{
+		getDueDao().updateDueTransaction(str_Status,str1,ddd);
+	}
 }

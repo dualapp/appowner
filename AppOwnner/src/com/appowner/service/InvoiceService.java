@@ -16,7 +16,7 @@ public String taxList(String select);
 
 public List<String> getTaxList(String str);
 
-public List<InvoiceTransaction> listInvoiceTransaction();
+public List<InvoiceTransaction> listInvoiceTransaction(String str_InvoiceTemplate, String str_Block, String str_ApartmentNo, String str_Status, String str_BillPeriod);
 
 public List<String> getBlockList(String str_Organisation);
 
@@ -31,4 +31,6 @@ public String getmailid(String str_ApartmentNo);
 public List<String> getAccountName();
 
 public void updatePayment(String accountName, String str_Status, Integer id, String dat_InvoiceDate);
+
+public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID);
 }

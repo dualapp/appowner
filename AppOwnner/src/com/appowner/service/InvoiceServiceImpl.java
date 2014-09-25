@@ -37,9 +37,9 @@ public class InvoiceServiceImpl implements InvoiceService{
 	{
 		return getInvoiceDao().getTaxList(str);
 	}
-	public List<InvoiceTransaction> listInvoiceTransaction()
+	public List<InvoiceTransaction> listInvoiceTransaction(String str_InvoiceTemplate, String str_Block, String str_ApartmentNo, String str_Status, String str_BillPeriod)
 	{
-		return getInvoiceDao().listInvoiceTransaction();
+		return getInvoiceDao().listInvoiceTransaction(str_InvoiceTemplate,str_Block,str_ApartmentNo,str_Status,str_BillPeriod);
 	}
 	public List<String> getBlockList(String str_Organisation)
 	{
@@ -68,5 +68,9 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  public void updatePayment(String accountName, String str_Status, Integer id,String dat_InvoiceDate)
 	  {
 		   getInvoiceDao().updatePayment(accountName,str_Status,id,dat_InvoiceDate);
+	  }
+	  public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID)
+	  {
+		  return getInvoiceDao().getInvoice(int_InvoiceTransactionID);
 	  }
 }
