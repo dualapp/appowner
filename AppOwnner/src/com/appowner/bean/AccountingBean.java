@@ -521,7 +521,7 @@ public List<InvoiceTransaction> getListInvoiceTransaction1() {
 private String str_Accounts;
  public String getStr_Accounts() {
 	
-	str_Accounts=getAccountsService().getAccountName(id1);
+	 str_Accounts=getAccountsService().getAccountName(id1);
      System.out.println(str_Accounts+"priyaa");
 	
 	 return str_Accounts;
@@ -573,12 +573,12 @@ public void accountchangeListener1(ValueChangeEvent event)
  {
 	
 	str=(String)event.getNewValue();
-    
+    System.out.println(str+"kihg");
 	id1=getAccountsService().getAccountId(str);
 
 }
 
-public String getSearch()
+public void getSearch()
 {  
 	
 	
@@ -603,23 +603,23 @@ public String getSearch()
 	{
 		income="false";
 	}
-	 return "accountstransaction.xhtml";
+	
    }
    else if(str_Accounts.equalsIgnoreCase("Income from Resident"))
    {
 	   listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
 		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
-		 return "accountstransaction.xhtml";  
+		
    }
    else if(str_Accounts.equalsIgnoreCase("Tax Payable"))
    {
 	   listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
 		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
 		
-		 return "accountstransaction.xhtml"; 
+		
    }
  
-   return "accountstransaction.xhtml";  
+  
 }
 private double debit=0.00;
 private double credit=0.00;
@@ -627,11 +627,11 @@ public double getCredit() {
 	credit=int_Credit;
 	System.out.println(int_Debit+"anupam1");
 	System.out.println(credit+"anupam");
- ListIterator list2=listManualJournal1.listIterator();
+   ListIterator list2=listManualJournal1.listIterator();
 	  {  
 	    totalBalance=0.00;
 		 while(list2.hasNext())
-		 {
+		   {
 			 ManualJournal journal=(ManualJournal)list2.next();
 			 id=journal.getInt_ManualJournalID();
 			 System.out.println(id);
@@ -643,7 +643,7 @@ public double getCredit() {
 					
 					if(sss.equalsIgnoreCase(str))
 					{
-						double balance3=getAccountsService().getDebitAmount(id);
+			  	  		double balance3=getAccountsService().getDebitAmount(id);
 						totalBalance=totalBalance+balance3;
 						System.out.println(totalBalance+"123");
 					}
@@ -908,7 +908,7 @@ public double getDebit() {
 					System.out.println(tax);
 					  debit=balance1+tax;
 				
-				 System.out.println(debit+"priya");
+				  System.out.println(debit+"priya");
 			
 				}
 				else

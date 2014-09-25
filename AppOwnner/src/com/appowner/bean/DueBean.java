@@ -22,7 +22,7 @@ import com.appowner.util.Util;
 
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class DueBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{DueService}")
@@ -41,16 +41,44 @@ public class DueBean implements Serializable{
 	private String str_InitiatedOn;
 	private Date dat_LastDate;
 	private String str_Organisation;
-	public String getStr_Status() {
+ 	public String getStr_Status() {
 		return str_Status;
+	}
+	 private boolean indicator;
+	
+    	public boolean isIndicator() {
+		indicator=LoginBean.isDue();
+		System.out.println(indicator+"kunku");
+		return indicator;
+	}
+	public void setIndicator(boolean indicator) {
+		this.indicator = indicator;
 	}
 	public void setStr_Status(String str_Status) {
 		this.str_Status = str_Status;
 	}
 	private String str_Block;
+	private String str_Block1;
 	private String str_ApartmentNo;
-	private String str_Status;
-	private Double dbl_DueAmount;
+	private String str_ApartmentNo1;
+	 public String getStr_Block1() {
+		str_Block1=Util.getBlock();
+					
+		return str_Block1;
+	}
+	public void setStr_Block1(String str_Block1) {
+		this.str_Block1 = str_Block1;
+	}
+	public String getStr_ApartmentNo1() {
+		str_ApartmentNo1=Util.getFlatNo();
+	
+		return str_ApartmentNo1;
+	}
+	public void setStr_ApartmentNo1(String str_ApartmentNo1) {
+		this.str_ApartmentNo1 = str_ApartmentNo1;
+	}
+	  private String str_Status;
+	 private Double dbl_DueAmount;
 	private Double dbl_TotalDueAmount;
 	public Integer getInt_DueTransactionID() {
 		return int_DueTransactionID;
@@ -65,6 +93,7 @@ public class DueBean implements Serializable{
 		this.str_Accounts = str_Accounts;
 	}
 	public String getStr_DueTemplate() {
+		
 		return str_DueTemplate;
 	}
 	public void setStr_DueTemplate(String str_DueTemplate) {
@@ -107,16 +136,14 @@ public class DueBean implements Serializable{
 		this.str_Organisation = str_Organisation;
 	}
 	public String getStr_Block() {
-		str_Block=Util.getBlock();
-				System.out.println(str_Block);
+	
 		return str_Block;
 	}
 	public void setStr_Block(String str_Block) {
 		this.str_Block = str_Block;
 	}
 	public String getStr_ApartmentNo() {
-		str_ApartmentNo=Util.getFlatNo();
-		System.out.println(str_ApartmentNo);
+	
 		return str_ApartmentNo;
 	}
 	public void setStr_ApartmentNo(String str_ApartmentNo) {
@@ -151,6 +178,15 @@ public class DueBean implements Serializable{
 	public void setStr_DueTemplates(List<String> str_DueTemplates) {
 		this.str_DueTemplates = str_DueTemplates;
 	}
+	private List<String> ravenues;
+	public List<String> getRavenues() {
+		ravenues=new ArrayList<String>();
+		ravenues.addAll(getDueService().listRavenues());
+		return ravenues;
+	}
+	public void setRavenues(List<String> ravenues) {
+		this.ravenues = ravenues;
+	}
 	public String addDueTransaction()
 	{
 		try
@@ -158,6 +194,7 @@ public class DueBean implements Serializable{
 			DueTransaction due=new DueTransaction();
 			due.setStr_Accounts(getStr_Accounts());
 			due.setStr_DueTemplate(getStr_DueTemplate());
+			System.out.println(getStr_DueTemplate());
 			due.setStr_Period(getStr_Period());
 			due.setInt_Year(getInt_Year());
 			due.setStr_InitiatedOn(getStr_InitiatedOn());
@@ -166,7 +203,8 @@ public class DueBean implements Serializable{
 			due.setStr_Block(getStr_Block());
 			due.setStr_ApartmentNo(getStr_ApartmentNo());
 			due.setDbl_DueAmount(getDbl_DueAmount());
-			due.setDbl_TotalDueAmount(getDbl_TotalDueAmount());
+			due.setDbl_TotalDueAmount(getDbl_DueAmount());
+			due.setStr_Status("Due");
 			getDueService().saveDueTransaction(due);
 			return null;
 		}
@@ -178,7 +216,7 @@ public class DueBean implements Serializable{
 	}
 	public List<DueTransaction> getListDueTransaction() {
 		listDueTransaction=new ArrayList<DueTransaction>();
-		listDueTransaction.addAll(getDueService().listDueTransaction());
+		listDueTransaction.addAll(getDueService().listDueTransaction(str_DueTemplate,str_Block,str_ApartmentNo,str_Period,str_Status));
 		return listDueTransaction;
 	}
 	public void setListDueTransaction(List<DueTransaction> listDueTransaction) {
@@ -203,9 +241,23 @@ public class DueBean implements Serializable{
 	}
 	public List<String> blockChangeListener(ValueChangeEvent event)
 	{   str_Block=(String)event.getNewValue();
+	     System.out.println(str_Block);
 		str_BlockNo=new ArrayList<String>();
 		str_BlockNo.addAll(getDueService().getApartmentlist(str_Block));
 		return str_BlockNo;
+	}
+	public void templateChangeListener(ValueChangeEvent event)
+	{   String ddd=(String)event.getNewValue();
+	     System.out.println(ddd);
+		
+	}
+	public double apartmentChangeListener(ValueChangeEvent event)
+	{   str_Block=(String)event.getNewValue();
+	    
+	     dbl_DueAmount= getDueService().getDueAmount(str_Block,str_DueTemplate);
+	    
+		return dbl_DueAmount;
+		
 	}
 	private List<DueTransaction>   listUserDueTransaction;
 	public List<DueTransaction> getListUserDueTransaction() {
@@ -229,22 +281,24 @@ public class DueBean implements Serializable{
 		template1=getDueService().getUserDueTransaction(5);
 	 
 	}
-	private DataTable dataTable;
-	public void processValueChange1(ValueChangeEvent event)  
-	        throws AbortProcessingException 
-	{    System.out.println("hi");
-		template1=(DueTransaction)dataTable.getRowData();
-		int id=template1.getInt_DueTransactionID();
-		System.out.println(id);
-	}
-	public DataTable getDataTable() {
-		return dataTable;
-	}
-	public void setDataTable(DataTable dataTable) {
-		this.dataTable = dataTable;
-	}
+	
 	public String reset()
 	{
 		return "userdues.xhtml";
+	}
+	private List<DueTransaction> selectedDue;
+	 public List<DueTransaction> getSelectedDue() {
+		return selectedDue;
+	}
+	public void setSelectedDue(List<DueTransaction> selectedDue) {
+		this.selectedDue = selectedDue;
+	}
+	private boolean indicator1;
+	public boolean isIndicator1() {
+		indicator1=LoginBean.isDue1();
+		return indicator1;
+	}
+	public void setIndicator1(boolean indicator1) {
+		this.indicator1 = indicator1;
 	}
 }

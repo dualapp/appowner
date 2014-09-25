@@ -738,8 +738,23 @@ public List<MemberLog> getListMemberLog() {
 public void setListMemberLog(List<MemberLog> listMemberLog) {
 	this.listMemberLog = listMemberLog;
 }
+private static boolean due;
 
-
+	
+	
+	public static boolean isDue() {
+	return due;
+}
+public static void setDue(boolean due) {
+	LoginBean.due = due;
+}
+private static boolean due1;
+	public static boolean isDue1() {
+	return due1;
+}
+public static void setDue1(boolean due1) {
+	LoginBean.due1 = due1;
+}
 	public String userLogin()
 	{
 
@@ -772,8 +787,10 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		   {
 			int_ApartmentId=user.getInt_ApartmentId();
 			int_UserId=user.getInt_UserId();
-			
-			
+			due=admin1.equals(str_userRoleName);
+			due1=!admin1.equals(str_userRoleName);
+			System.out.println(due+"priya");
+			System.out.println(due1+"jhjh");
 			HttpSession session = Util.getSession();
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
@@ -797,7 +814,10 @@ public void setListMemberLog(List<MemberLog> listMemberLog) {
 		   {
 			   int_ApartmentId=user.getInt_ApartmentId();
 				int_UserId=user.getInt_UserId();
-				
+				due=admin1.equals(str_userRoleName);
+				due1=!admin1.equals(str_userRoleName);
+				 System.out.println(due+"priya1");
+				 System.out.println(due1+"hjhj");
 				HttpSession session = Util.getSession();
 				 
 	            session.setAttribute("username", userloginname);
