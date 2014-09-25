@@ -80,11 +80,15 @@ xmlns:f="http://java.sun.com/jsf/core">
              <td><h:inputText id="str_Flat" value="#{cls_UserBean.str_Flat}" required="true"                requiredMessage="Enter Flat Name!">
             </h:inputText></td><td><p:message for="str_Flat" display="text"/></td>  </tr> 
              <tr>
-            <td><h:outputText value="Block :">
-            </h:outputText>  </td>          
-            <td><h:inputText id="str_Block" value="#{cls_UserBean.str_Block}">
-            </h:inputText></td><td><p:message for="str_Block" display="text"/></td></tr> 
-         
+            <td><h:outputLabel for="str_Block" value="Block :"/>
+            </td>          
+            <td><p:selectOneMenu id="str_Block" value="#{cls_UserBeanMain.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}" style="width:200px" required="true">
+            <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
+            <f:selectItems  value ="#{selectOneMenuBean.blocks_value}"/>
+             <p:ajax event="change" process="str_Block"/>
+             </p:selectOneMenu>  
+            </td></tr> 
+            
             <tr>
  <td><h:outputText value="Country :">
             </h:outputText> <font color="red" >*</font></td>           
