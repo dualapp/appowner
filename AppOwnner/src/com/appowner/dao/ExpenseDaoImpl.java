@@ -96,8 +96,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> getParkingSlotList() {
+	public List<Parking> getParkingSlotList() {
 		String  query = "{ CALL parkingSpaceList() }";
 		
 		 
@@ -406,5 +407,31 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		sessionFactory.getCurrentSession().update( p);
 	}
 
+	@Override
+	public void deleteParkingSpace(List<Parking> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			Parking ex=(Parking) itr.next();
+		sessionFactory.getCurrentSession().delete(ex);
+		
+	}
+}
 
+	@Override
+	public void delectAssetsCategory(List<AssetCategory> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			AssetCategory ex=(AssetCategory) itr.next();
+		sessionFactory.getCurrentSession().delete(ex);
+		
+	}
+	}
+
+	@Override
+	public void updateAssetCategory(AssetCategory ac) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(ac);
+	}
 }

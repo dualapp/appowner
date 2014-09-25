@@ -33,7 +33,7 @@ public interface ExpenseDao {
 
 	void saveParking(Parking parking);
 
-	List<String> getParkingSlotList();
+	List<Parking> getParkingSlotList();
 
 	void addOrganizationLogo(OrganizationLogo ol);
 
@@ -120,5 +120,11 @@ public interface ExpenseDao {
 	void updateOneasset(Assets asset);
 
 	void updateParkingSpace(Parking p);
+
+	void deleteParkingSpace(List<Parking> entitiesToDelete);
+
+	void delectAssetsCategory(List<AssetCategory> entitiesToDelete);
+
+	void updateAssetCategory(AssetCategory ac);
 
 }
