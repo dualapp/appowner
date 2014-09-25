@@ -13,6 +13,7 @@
     <link href="include/assets/css/ace.min.css" rel="stylesheet" />
     
     <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
+    
 
   <style>
      body
@@ -122,12 +123,12 @@ function HideModalWindow() {
 </table>
 </legend>-->
  <p:growl id="msgs" showDetail="true" />
- <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+ <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr><td>
   <h:commandButton    icon="ui-icon-plus"  action="addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
    
   </p:commandButton>
-	 &#150; &#150;  <p:menuButton value="Action">
+	 &#150; &#150;  <p:menuButton  icon="ui-icon-gear" value="Action">
         <p:menuitem value="Assign Selected"  action="#"/>
         <p:menuitem value="close Selected" action="#"/>
         <p:menuitem value="View Chart" action="#"/>
@@ -160,7 +161,7 @@ function HideModalWindow() {
      
      </td>
      </tr></table>
-       <p:dataTable    paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px"
+       <p:dataTable    paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px"
        widgetVar="vendorsTable"
                  emptyMessage="No cars found with given criteria" filteredValue="#{vendorBean.selectedVendor1}" 
                rows="5"   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
