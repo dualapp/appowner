@@ -33,6 +33,9 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
+
+
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserCity;
@@ -65,9 +68,21 @@ public class Cls_UserBeanMain implements Serializable {
 		private String str_getRoleNameUser;
 		public String value;
 	    public String value1;
-	    
-	    
-	    public String getValue() {
+	    private int aparmentid1;
+	    private List<String> strBlocks;
+	    public List<String> getStrBlocks() {
+			return strBlocks;
+		}
+		public void setStrBlocks(List<String> strBlocks) {
+			this.strBlocks = strBlocks;
+		}
+		public int getAparmentid1() {
+			return aparmentid1;
+		}
+		public void setAparmentid1(int aparmentid1) {
+			this.aparmentid1 = aparmentid1;
+		}
+		public String getValue() {
 			return value;
 		}
 		public void setValue(String value) {
@@ -304,13 +319,26 @@ public class Cls_UserBeanMain implements Serializable {
        return cityListByState;
        }
     //this is  listener for apartment change
-    public void apartmentChangeListener(ValueChangeEvent event) {
+    @SuppressWarnings("unchecked")
+	public void apartmentChangeListener(ValueChangeEvent event) {
 	       
 	        str_userapartment=(String) event.getNewValue();
-	        System.out.println(" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-	        System.out.println( str_userapartment);
+	        aparmentid1=getUserService().apartmentidget( str_userapartment);
+	        System.out.println(" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx11111111111xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+	        System.out.println( aparmentid1);
+	        strBlocks=(List<String>) getUserService().blocks(aparmentid1);
+	        System.out.println("yyyyyyyyyyyyyyyyyyyyyygggggggggggggggggggyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+	        System.out.println( strBlocks);
 	        getSelectonemenubean().getApartment(str_userapartment);
+	        getSelectonemenubean().getBlocks(strBlocks);
+	        
 	    }
+    public void blockChangeListener(ValueChangeEvent event)
+    {
+    	
+    	System.out.println("blockssssssssssssssssssssssssssssssssssssssssssssssss");
+    	
+    }
     
     /**
      * Gets a {@code List of Country.
