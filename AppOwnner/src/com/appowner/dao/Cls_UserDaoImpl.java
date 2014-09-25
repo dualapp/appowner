@@ -26,6 +26,10 @@ import java.util.List;
 
 
 
+
+
+
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -309,6 +313,39 @@ public class Cls_UserDaoImpl implements In_UserDao {
 
 		public void addBlocks(UserBlocks us) {
 			sessionFactory.getCurrentSession().save(us);
+		}
+
+		public Integer apartmentidget(String str_userapartment) {
+			String hqlapartmentid="select int_ApartmentId from UserApartment where str_ApartmentName=?";
+			Integer apartmentida=(Integer) getSessionFactory().getCurrentSession().createQuery(hqlapartmentid).setParameter(0,str_userapartment).uniqueResult();
+			return apartmentida;
+		}
+
+		@Override
+		public Collection<? extends String> blocks(int aparmentid1) {
+			String hql5="select str_BlockName from UserBlocks where int_ApartmentId="+aparmentid1;
+			System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+			@SuppressWarnings("unchecked")
+			List<String> Blocks= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql5).list();
+			System.out.println(Blocks);
+			return Blocks;
+			// TODO Auto-generated method stub
+			//return null;
+		}
+
+		@Override
+		public User edit(int userid) {
+			String hql41="from User where int_UserId=?";
+			System.out.println("uuuuuuuuuuuuuuuuuuuueeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuuu");
+			User Userinfo=(User) getSessionFactory().getCurrentSession().createQuery(hql41).setParameter(0,userid).uniqueResult();
+			System.out.println("uuuuuuuuuuuuuuuuuuuuffffffffffuuuuuuuuuuuuuuuuuuuuuuuu");
+			System.out.println(Userinfo.getStr_Email());
+			return Userinfo;
+		}
+
+		public void updateUser1(User editlis) {
+			sessionFactory.getCurrentSession().update(editlis);
+			
 		}
 
 		//@Override
