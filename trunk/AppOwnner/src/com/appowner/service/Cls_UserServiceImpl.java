@@ -229,6 +229,30 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		getIn_userdao().addBlocks(us);
 		
 	}
+
+	@Override
+	public Integer apartmentidget(String str_userapartment) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().apartmentidget(str_userapartment);
+	}
+
+	@Override
+	public Collection<? extends String> blocks(int aparmentid1) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().blocks(aparmentid1);
+	}
+
+	@Override
+	public User edit(int userid) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().edit(userid);
+	}
+
+	@Override
+	public void updateUser(User editlis) {
+		// TODO Auto-generated method stub
+		getIn_userdao().updateUser1(editlis);
+	}
 	}
 
 	 
