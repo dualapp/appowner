@@ -122,32 +122,24 @@ function HideModalWindow() {
              </td>
               <td><h:outputText  value="Category" /></td>
                 &#150; &#150;&#150; &#150;&#150;
-                <h:commandButton  value="Go" action="#{templateBean.messageSerch}" update="message"/>
+                <h:commandButton  value="Go" action="#{templateBean.getListMessages()}" update="message"/>
                 </h:panelGroup>
                 </fieldset>
                 <br/>
-                <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; <input type="button" style="width: 150px" onclick="ShowNewPage3()"  value="Edit Selected" />&#150; &#150; <input type="button" style="width: 150px" onclick="ShowNewPage4()"  value="View Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
+                <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<p:commandButton process="message" update=":form:multiMessageTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiMessageTemplateDialog1').show()" />
+       &#150; &#150; <p:commandButton process="message" update=":form:multiMessageTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiMessageTemplateDialog').show()" />
+       &#150; &#150;  <p:commandButton update="message" process="message" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteMessageTemplate()}" icon="ui-icon-trash" value="Delete" />&#150; &#150;<h:commandButton  value="Refresh" />
               <br/>
              <br/>
               
-  </h:form>
-  </body>
-  
-  <h:form>
-  <h:body>
+         <p:growl id="msgs" showDetail="true" /> 
         <h:outputText value="Message Template: " color="red"></h:outputText>
-        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50">
+        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
+          selection="#{templateBean.selectedMessageTemplate}" rowKey="#{message.int_MessageTemplateID}" editable="true"  resizableColumns="true">
 					<f:facet name="header">
                MessageTemplate
                </f:facet>
-                <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Select" />
-                </f:facet>
-                 <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{templateBean.processValueChange2}">
-                 <p:ajax event="click"   partialSubmit="true"/>   
-                </h:selectBooleanCheckbox>
-           </p:column>
+                  <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>     
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation Name" />
@@ -194,9 +186,103 @@ function HideModalWindow() {
                
             </p:column>
             </p:dataTable>
-            </h:body>
-             </h:form>  
+             <p:dialog header="Edit MessageTemplate" widgetVar="multiMessageTemplateDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiMessageTemplateDetail" style="text-align:center;">
+          
+           <table>
                
-               
-              </ui:define>
-               </ui:composition>
+            <ui:repeat value="#{templateBean.selectedMessageTemplate}" var="messageTemplate1">
+             <tr>
+ <th>
+    <h:outputText value="Created By:"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_CreatedBy}"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Email:"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Email}"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Mode"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Mode}"/></td>
+    </tr>
+     <tr>
+    <th>
+    <h:outputText value="Category"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Category}"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Title"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Title}"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Description"/></th>
+    <td>
+     <h:inputTextarea cols="20" row="30"  value="#{messageTemplate1.str_Description}"/></td>
+    </tr>  
+
+      
+            </ui:repeat>
+             <tr><td><h:commandButton value="update" action="#{templateBean.saveMessageTemplate(messageTemplate1)}"/></td></tr>
+            </table>
+            
+        </p:outputPanel>
+    </p:dialog>
+    <p:dialog header="View MessageTemplate" widgetVar="multiMessageTemplateDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiMessageTemplateDetail1" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{templateBean.selectedMessageTemplate}" var="messageTemplate1">
+             
+              <tr>
+ <th>
+    <h:outputText value="Created By:"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_CreatedBy}" readonly="true"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Email:"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Email}" readonly="true"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Mode"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Mode}" readonly="true"/></td>
+    </tr>
+     <tr>
+    <th>
+    <h:outputText value="Category"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Category}" readonly="true"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Title"/></th>
+    <td>
+    <h:inputText value="#{messageTemplate1.str_Title}" readonly="true"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Description"/></th>
+    <td>
+     <h:inputTextarea cols="20" row="30"  value="#{messageTemplate1.str_Description}" readonly="true"/></td>
+    </tr>  
+            </ui:repeat>
+            </table>
+        </p:outputPanel>
+    </p:dialog>
+           </h:form>
+           </body>
+           </ui:define>
+           </ui:composition>

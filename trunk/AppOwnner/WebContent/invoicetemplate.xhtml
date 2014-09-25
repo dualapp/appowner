@@ -116,31 +116,26 @@ function HideModalWindow() {
 				<br />
 
 				<input type="button" style="width: 100px" onclick="ShowNewPage()"
-					value="Create New" />&#150; &#150; &#150; &#150;<input type="button" style="width: 100px" onclick="ShowNewPage3()" value="Edit Selected" />&#150; &#150; &#150; &#150;<input type="button" style="width: 100px" onclick="ShowNewPage4()" value="View Selected" />&#150; &#150; &#150; &#150;<input type="button" style="width: 100px" onclick="ShowNewPage5()" value="Delete Selected" /> &#150;  &#150;<h:commandButton
+					value="Create New" />&#150; &#150; &#150; &#150;<p:commandButton process="invoice" update=":form:multiInvoiceTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiInvoiceTemplateDialog1').show()" />
+       &#150; &#150; <p:commandButton process="invoice" update=":form:multiInvoiceTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiInvoiceTemplateDialog').show()" />
+       &#150; &#150;  <p:commandButton update="invoice" process="invoice" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteInvoiceTemplate()}" icon="ui-icon-trash" value="Delete" />
+     &#150;  &#150;<h:commandButton
 					value="Refresh" />
 
 				<br />
 				<br />
 
-			</h:form>
-		</body>
-
-		<h:form>
-			<h:body>
-				
+			
+				 <p:growl id="msgs" showDetail="true" />
 				<p:dataTable id="invoice" var="invoice"
-					value="#{templateBean.listInvoices}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50">
+					value="#{templateBean.listInvoices}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" editable="true"  resizableColumns="true"  selection="#{templateBean.selectedInvoiceTemplate}" rowKey="#{invoice.int_InvoiceTemplateID}" >
 					<f:facet name="header">
                InvoiceTemplate
                </f:facet>
-              <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Select" />
-                </f:facet>
-                 <h:selectBooleanCheckbox  value="aaa"  valueChangeListener="#{templateBean.processValueChange1}">
-                 <p:ajax event="click"   partialSubmit="true"/>   
-                </h:selectBooleanCheckbox>
-           </p:column>
+                 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+         
+             </p:column>
+          
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Organisation Name" />
@@ -179,9 +174,98 @@ function HideModalWindow() {
 
 					</p:column>
 				</p:dataTable>
-			</h:body>
+				  <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiInvoiceTemplateDetail" style="text-align:center;">
+          
+           <table>
+               
+            <ui:repeat value="#{templateBean.selectedInvoiceTemplate}" var="invoiceTemplate1">
+             <tr>
+ <th>
+    <h:outputText value="Invoice Template:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_InvoiceTemplateName}"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Frequency:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_Frequency}"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Message Category:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_MessageCategory}"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Message Template:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_MessageTemplate}"/></td>
+    </tr>
+   
+  
+    <tr>
+ <th>
+    <h:outputText value="Description:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_Description}"/></td>
+    </tr>
+    
+ 
+    
+      
+            </ui:repeat>
+             <tr><td><h:commandButton value="update" action="#{templateBean.saveInvoiceTemplate(invoiceTemplate1)}"/></td></tr>
+            </table>
+            
+        </p:outputPanel>
+    </p:dialog>
+    <p:dialog header="View InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiInvoiceTemplateDetail1" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{templateBean.selectedInvoiceTemplate}" var="invoiceTemplate1">
+          <tr>   
+               <th>
+    <h:outputText value="Invoice Template:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_InvoiceTemplateName}" readonly="true"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Frequency:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_Frequency}" readonly="true"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Message Category:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_MessageCategory}" readonly="true"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Message Template:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_MessageTemplate}" readonly="true"/></td>
+    </tr>
+   
+  
+    <tr>
+ <th>
+    <h:outputText value="Description:"/></th>
+    <td>
+    <h:inputText value="#{invoiceTemplate1.str_Description}" readonly="true"/></td>
+    </tr>
+               
+                
+            </ui:repeat>
+            </table>
+        </p:outputPanel>
+    </p:dialog>
 		</h:form>
-
-
-	</ui:define>
-</ui:composition>
+		</body>
+		</ui:define>
+		</ui:composition>
