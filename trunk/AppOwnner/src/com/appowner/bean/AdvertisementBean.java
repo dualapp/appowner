@@ -13,6 +13,7 @@ import java.util.ListIterator;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -29,6 +30,7 @@ import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
+import com.appowner.model.agency_information;
 import com.appowner.service.AdvertisementService;
 import com.ibm.icu.text.SimpleDateFormat;
 
@@ -46,6 +48,60 @@ public class AdvertisementBean  implements Serializable{
 	}
 	public void setAdvertisementService(AdvertisementService advertisementService) {
 		this.advertisementService = advertisementService;
+	}
+	private Integer int_agencyid;
+	
+	public Integer getInt_agencyid() {
+		return int_agencyid;
+	}
+	public void setInt_agencyid(Integer int_agencyid) {
+		this.int_agencyid = int_agencyid;
+	}
+	private String str_agencyname;
+	private String ads_type;
+	private String str_addposition;
+	private String str_content;
+	 private String var_image; 	
+	 private String cname;
+	 
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getVar_image() {
+		return var_image;
+	}
+	public void setVar_image(String var_image) {
+		this.var_image = var_image;
+	}
+	public String getStr_agencyname() {
+		return str_agencyname;
+	}
+	public void setStr_agencyname(String str_agencyname) {
+		this.str_agencyname = str_agencyname;
+	}
+	public String getAds_type() {
+		return ads_type;
+	}
+	public void setAds_type(String ads_type) {
+		this.ads_type = ads_type;
+	}
+	public String getStr_addposition() {
+		return str_addposition;
+	}
+	public void setStr_addposition(String str_addposition) {
+		this.str_addposition = str_addposition;
+	}
+	public String getStr_content() {
+		return str_content;
+	}
+	public void setStr_content(String str_content) {
+		this.str_content = str_content;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	private Integer int_CompanyPersonID;
 	public Integer getInt_CompanyPersonID() {
@@ -480,7 +536,8 @@ public class AdvertisementBean  implements Serializable{
 					select =( String )event.getNewValue();
 					System.out.println(select);
 					agency=getAdvertisementService().listoperation(select);
-				/*	ListIterator list=agency.listIterator();
+				/*	getStr_City();
+						ListIterator list=agency.listIterator();
 					while(list.hasNext())
 					{
 						Object obj=list.next();
@@ -490,15 +547,126 @@ public class AdvertisementBean  implements Serializable{
 						str_CompanyAddress=company.getStr_CompanyAddress();
 						System.out.println(str_CompanyAddress);
 						str_Mobile=company.getStr_Mobile();
-						str_City=company.getStr_City();
-						
+						str_City=company.
 					}*/
+                			
+					
+					
+					
 					System.out.println(agency);
 					return null;
 		}
+				public String agencyname1;
+				public int agencyid1;
+				public void addagency()
+				{  
+					agencyname1=getStr_CompanyName();
+					System.out.println(agencyname1);
+					agencyid1=getAdvertisementService().agency1(agencyname1);
+					agency_information agency=new agency_information();
+					agency.setInt_CompanyID(agencyid1);
+					agency.setAds_type(getAds_type());
+					agency.setStr_addposition(getStr_addposition());
+					agency.setStr_CompanyName(getStr_CompanyName());
+					agency.setVar_ImageName(path1);
+					agency.setStr_content(getStr_content());
+					
+					getAdvertisementService().addagencies(agency);
+					
+					
+}
+				
+				private List<agency_information>agencies;
 
+				public List<agency_information> getAgencies()
+				{
+					agencies=new ArrayList<agency_information>();
+					agencies.addAll(getAdvertisementService().agencies1());
+					System.out.println(agencies);
+					return agencies;
+				}
+				public void setAgencies(List<agency_information> agencies) {
+					this.agencies = agencies;
+			
+				}
+				
+				public String deleteagency(Integer id)
+				{
+					System.out.println(id);
+					agency_information category=new agency_information();
+					//System.out.println(Int_Document_CatID);
+					category.setInt_agencyid(id);
+					getAdvertisementService().Deleted(category);	
+					System.out.println("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+					
+					return "ViewAgency.xhtml";
 
-		
+				}
+				public String Var_ImageName;
+				 private String blb_images1;
+				 
+				public String getBlb_images1() {
+					return blb_images1;
+				}
+				public void setBlb_images1(String blb_images1) {
+					this.blb_images1 = blb_images1;
+				}
+				private agency_information pro2;
+				 private List<String> pro1;
+				 
+				 
+				 
+				public List<String> getPro1() {
+					return pro1;
+				}
+				public void setPro1(List<String> pro1) {
+					this.pro1 = pro1;
+				}
+				public agency_information getPro() {
+						return pro2;
+					}
+					public void setPro(agency_information pro2) {
+						this.pro2 = pro2;
+					}
+				public void agencydetail(){
+					System.out.println(int_agencyid);
+					pro2=getAdvertisementService().editproduct(int_agencyid);
+				System.out.println("111111111111111111111111111111111111111111");
+					System.out.println(pro2.getInt_agencyid());
+					prointcatid=getAdvertisementService().editproductaa(pro2.getInt_agencyid());
+					System.out.println("222222222222222222222222222");
+					System.out.println(prointcatid);
+					pro1=getAdvertisementService().editproduct2(prointcatid);
+					Var_ImageName=pro2.getVar_ImageName();
+					 blb_image="D://Image\\"+Var_ImageName;
+					 System.out.println(blb_image);
+					ListIterator list=pro1.listIterator();
+					while(list.hasNext())
+					{
+						Company company=(Company)list.next();
+						str_City=company.getStr_City();
+						str_State=company.getStr_State();
+						str_Mobile=company.getStr_Mobile();
+						str_CompanyAddress=company.getStr_CompanyAddress();
+						str_MobileNo=company.getStr_Mobile();
+						System.out.println(str_Mobile);
+						System.out.println(str_City);
+					}
+					System.out.println(pro1);
+					
+					 }	
+				
+				public int prointcatid;
+
+				public int getProintcatid() {
+					return prointcatid;
+				}
+				public void setProintcatid(int prointcatid) {
+					this.prointcatid = prointcatid;
+				}
+				
+				
+			
 }
 		
 		
