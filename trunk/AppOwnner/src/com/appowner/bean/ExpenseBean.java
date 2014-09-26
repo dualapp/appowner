@@ -1549,7 +1549,7 @@ public void setDate_EndDate(Date date_EndDate) {
 }
 
 private Vote vote;
-private DataTable dataTable1;
+ 
 private int number;
 public Vote getVote() {
 	return vote;
@@ -1563,12 +1563,7 @@ public int getNumber() {
     return number;
 }
 
-public DataTable getDataTable1() {
-	return dataTable1;
-}
-public void setDataTable1(DataTable dataTable1) {
-	this.dataTable1 = dataTable1;
-}
+ 
 public int increment() {
     return number++;
 }
@@ -1772,18 +1767,12 @@ public Pool getLatestPolls() {
 public void setLatestPolls(Pool latestPolls) {
 	this.latestPolls = latestPolls;
 }
-private DataTable dataTable;
+ 
 
 
 
 
-	public DataTable getDataTable() {
-		return dataTable;
-	}
-
-	public void setDataTable(DataTable dataTable) {
-		this.dataTable = dataTable;
-	}
+	 
 
 	private  static ServiceRequest serviceRequest;
 	private static Integer serviceRequestId; 
@@ -1802,13 +1791,7 @@ private DataTable dataTable;
 	public static void setServiceRequest(ServiceRequest serviceRequest) {
 		ExpenseBean.serviceRequest = serviceRequest;
 	}
-	public void processListener()
-	{
-		serviceRequest=(ServiceRequest)dataTable.getRowData();
-		serviceRequestId=serviceRequest.getInt_ServiceRequestId();
-		 
-		System.out.println(serviceRequestId);
-	}
+	 
 	public void assignRequestedService()
 	{
 	serviceRequest.setStr_Status("Progress");
