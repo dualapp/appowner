@@ -9,6 +9,16 @@
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head><title>Organization Setting</title>
+<style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+     
 </h:head>
   
    <h:form id="form4">           
@@ -17,9 +27,26 @@
     <h3 style="margin-top:0">OrganizationSettings</h3>
     
      
-    <p:accordionPanel style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  multiple="true" activeIndex="">
+    <p:accordionPanel  multiple="true" activeIndex="">
      
+     <p:tab title="Role setting">
      
+     <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/Adminrolemanagement.xhtml" />
+           </h:panelGrid>
+     <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/administrationaccess.xhtml" />
+           </h:panelGrid>
+    <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/addmaintainancestaff.xhtml" />
+           </h:panelGrid>
+           <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/addcommitteemembers.xhtml" />
+           </h:panelGrid>
+           
+           
+           
+   </p:tab>  
      <p:tab title="parking space">
     <h:panelGrid columns="1" cellpadding="10">
            <ui:include src="/parkingspace.xhtml" />
