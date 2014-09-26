@@ -29,13 +29,13 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
+import com.appowner.model.BookAFacility;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
@@ -103,6 +103,7 @@ public class ExpenseBean  implements Serializable{
 	private Date  date_AMCEndDate;
 	private String str_PurchaseImg;
 	private List<String> images;
+	private List<Assets>selectedAssets;
 	public List<String> getImages() {
 		images=new ArrayList<String>();
 		images.addAll(getExpenseService().getOrganizationImages());
@@ -557,11 +558,12 @@ public void setExpense(Expense expense) {
 	this.expense = expense;
 }
 private List<Expense> expenseList;
+private List<Expense> selectedExpenses;
 
 
 public List<Expense> getExpenseList() {
 	expenseList=new ArrayList<Expense>();
-	expenseList.addAll(getExpenseService().getExpenseList());
+	expenseList.addAll(getExpenseService().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,Util.getAppartmentId()));
 	
 	return expenseList;
 }
@@ -601,6 +603,28 @@ public String updateOneExpense()
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Updated Successfully!", "Updated Successfully!"));
 	return "Expenses.xhtml";
+	
+}
+public String deleteSelectedExpenses()
+{
+List<Expense> entitiesToDelete = new ArrayList<Expense>();
+ 
+    for (Expense expense :selectedExpenses) {
+    	 
+    	if (expense.getStr_ExpenseId()!=null) 
+    	{
+            entitiesToDelete.add(expense);
+        }
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Expense deleted Successfully!", "Expense deleted Successfully!"));
+    } 
+ 
+    getExpenseService().deleteSelectedExpenses(entitiesToDelete);
+    return "Expense.xhtml?faces-redirect=true";
+
 	
 }
 public String deleteOneExpense()
@@ -649,6 +673,26 @@ public String deleteParkingSlot()
 	getExpenseService().deleteParkingSlot(p);
 	return  "parkingspace.xhtml?faces-redirect=true";
 }
+private String deleteParkingSpace()
+{
+	List<Parking> entitiesToDelete = new ArrayList<Parking>();
+	 
+    for (Parking parking :parkingSpaceList1) {
+    	 
+    	if (parking.getInt_ParkingId()!=null) 
+    	{
+            entitiesToDelete.add(parking);
+        }
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Parking Space deleted Successfully!", "Parking Space deleted Successfully!"));
+    } 
+ 
+    getExpenseService().deleteParkingSpace(entitiesToDelete);
+	return "parkingspace.xhtml";
+}
   
 public Parking getParking() {
 	return parking;
@@ -656,15 +700,25 @@ public Parking getParking() {
 public void setParking(Parking parking) {
 	this.parking = parking;
 }
-private List<String> parkingSpaceList;
+private List<Parking> parkingSpaceList;
+private List<Parking> parkingSpaceList1;
+
+public String updateParkingSpace(Parking p)
+{
+	System.out.println("updateeeeeeee");
+	getExpenseService().updateParkingSpace( p);
+	System.out.println("updat");
+	return "parkingspace.xhtml";
+	
+}
  
-public List<String> getParkingSpaceList() {
-	parkingSpaceList=new ArrayList<String>();
+public List<Parking> getParkingSpaceList() {
+	parkingSpaceList=new ArrayList<Parking>();
 	parkingSpaceList.addAll(getExpenseService().getParkingSlotList());
  
 	return parkingSpaceList;
 }
-public void setParkingSpaceList(List<String> parkingSpaceList) {
+public void setParkingSpaceList(List<Parking> parkingSpaceList) {
 	this.parkingSpaceList = parkingSpaceList;
 }
  
@@ -862,7 +916,7 @@ public   void getOrganizationLogo()
 		System.out.println("Failed to create directory!");
 	}
 }
- // path="/images"+"/"+Util.getAppartmentName()+"/"+ol.getStr_Appartment_Img();
+  path="/images"+"/"+Util.getAppartmentName()+"/"+ol.getStr_Appartment_Img();
   System.out.println(path1);
   path1="/images"+"/"+Util.getAppartmentName()+"/"+ol.getStr_Appartment_Logo();
   if(ol==null)
@@ -878,7 +932,7 @@ public void setTextLogo(String textLogo) {
  
 
 public String getPath() {
-	//getOrganizationLogo();
+	getOrganizationLogo();
 	System.out.println(path);
 	 
 	return path;
@@ -904,6 +958,41 @@ private Assets asset;
 private Boolean bool_Rentable;
 private AssetCategory assetcategory;
 private List<AssetCategory> assetCategoryList;
+private List<AssetCategory> assetCategoryList1;
+public String updateAssetCategory(AssetCategory ac)
+{
+	getExpenseService().updateAssetCategory( ac);
+	return "assetcategory.xhtml";
+}
+public String deleteAssetsCategory()
+{
+	 List<AssetCategory> entitiesToDelete = new ArrayList<AssetCategory>();
+	  
+     for (AssetCategory ac :assetCategoryList1) {
+     	 
+     	if (ac.getInt_assetcatId()!=null) 
+     	{
+             entitiesToDelete.add(ac);
+         }
+     	
+     } 
+     
+  
+     getExpenseService().delectAssetsCategory(entitiesToDelete);
+ 
+FacesContext facesContext = FacesContext.getCurrentInstance();
+Flash flash = facesContext.getExternalContext().getFlash();
+flash.setKeepMessages(true);
+flash.setRedirect(true);
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset deleted Successfully!", "asset deleted Successfully!"));
+return "assetcategory.xhtml";
+}
+public List<AssetCategory> getAssetCategoryList1() {
+	return assetCategoryList1;
+}
+public void setAssetCategoryList1(List<AssetCategory> assetCategoryList1) {
+	this.assetCategoryList1 = assetCategoryList1;
+}
 private String path3;
 private List<Assets> assetList;
 
@@ -929,12 +1018,47 @@ public Assets getAsset() {
 public void setAsset(Assets asset) {
 	this.asset = asset;
 }
+public String deleteOneAsset1()
+{ 
+	 List<Assets> entitiesToDelete = new ArrayList<Assets>();
+	  
+	     for (Assets asset :selectedAssets) {
+	     	 
+	     	if (asset.getInt_asset_id()!=null) 
+	     	{
+	             entitiesToDelete.add(asset);
+	         }
+	     	
+	     } 
+	     
+	  
+	     getExpenseService().deleteOnefacility(entitiesToDelete);
+	 
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset deleted Successfully!", "asset deleted Successfully!"));
+	 return "assets.xhtml?faces-redirect=true";
+	
+}
+public String updateOneAsset(Assets asset)
+{
+	getExpenseService().updateOneasset( asset);
+	 
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Updated Successfully!", "Asset Updated Successfully!"));
+	return "assets.xhtml?faces-redirect=true";
+}
 /*
  * get asset,purchase,amc list
  */
 public List<Assets> getAssetList() {
 	assetList= new ArrayList<Assets>();
-	assetList.addAll(getExpenseService().getAssetList());
+	assetList.addAll(getExpenseService().getAssetList(str_AssetCategoryType,str_Block,Util.getAppartmentId()));
 	return assetList;
 }
 public void setAssetList(List<Assets> assetList) {
@@ -1263,9 +1387,11 @@ private String str_Choise1;
 private String str_Choise2;
 private String str_Choise3;
 private String str_PoolQuestion;
-private Integer int_PoolAudience;
+private String str_PoolAudience;
 private Long long_Vote;
 private String str_EndDate;
+ 
+
 private String str_StartDate;
 private List<Pool> poolList;
 private Pool pool;
@@ -1275,6 +1401,12 @@ private String str_Remark;
 private Date date_StartDate;
 private Date date_EndDate;
 private String str_Choise;
+public String getStr_PoolAudience() {
+	return str_PoolAudience;
+}
+public void setStr_PoolAudience(String str_PoolAudience) {
+	this.str_PoolAudience = str_PoolAudience;
+}
 public String getStr_EndDate() {
 	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	str_EndDate=dateFormat.format(getDate_EndDate());
@@ -1346,7 +1478,17 @@ public String getStr_PoolQuestion() {
 public void setStr_PoolQuestion(String str_PoolQuestion) {
 	this.str_PoolQuestion = str_PoolQuestion;
 }
- 
+public String deleteOnePoll1()
+{
+	getExpenseService().deleteOnePoll(onePoll);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Poll deleted Successfully!", "Poll deleted Successfully!"));
+	return "pools.xhtml";
+	
+}
  
 public List<Pool> getPoolList() {
 	poolList=new ArrayList<Pool>();
@@ -1363,20 +1505,14 @@ public Pool getPool() {
 public void setPool(Pool pool) {
 	this.pool = pool;
 }
-public Integer getInt_PoolAudience() {
-	
-	return int_PoolAudience;
-}
-public void setInt_PoolAudience(Integer int_PoolAudience) {
-	this.int_PoolAudience = int_PoolAudience;
-}
+ 
 public void addPool()
 {
 	System.out.println("Poollllllllllllllllllllll");
 	pool=new Pool();
 	pool.setInt_OrganizationId(Util.getAppartmentId());
-	pool.setInt_poolAudience(int_PoolAudience);
-	pool.setInt_Vote(long_Vote);
+	pool.setStr_poolAudience(str_PoolAudience);
+	pool.setInt_Vote(0l);
 	pool.setInt_userId(Util.getUserId());
 	pool.setStr_StartDate(getStr_StartDate());
 	System.out.println(getStr_EndDate()+"seemaaaaaaaaaaa");
@@ -1439,25 +1575,41 @@ public int increment() {
 
 public Long getChoise1Vote()
 {
-	 Long count1=getExpenseService().getChoise1Vote(pool.getStr_Choise1(),int_PoolId);
+	 Long count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
+	 System.out.println(onePoll.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
+	 System.out.println(onePoll.getStr_Choise1());
+	 System.out.println(int_PoolId+"pid");
 	 
-	 Long res= count1*100/pool.getInt_Vote();
+	 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	 
+	 Long res= count1*100/onePoll.getInt_Vote();
+	 System.out.println(res+"result");
 	 return res;
 	
 }
 public Long getChoise2Vote()
 {
-	 Long count2=getExpenseService().getChoise2Vote(pool.getStr_Choise2(),int_PoolId);
+	System.out.println(onePoll.getInt_PoolId());
+	 Long count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
+	 System.out.println(onePoll.getStr_Choise2());
+	 System.out.println(int_PoolId+"pid");
 	 System.out.println(count2);
-	 Long res= count2*100/pool.getInt_Vote();
+	 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	 Long res= count2*100/onePoll.getInt_Vote();
+	 System.out.println(res+"result");
 	 return res;
 	
 }
 public Long getChoise3Vote()
-{
-	  Long count3=getExpenseService().getChoise3Vote(pool.getStr_Choise3(),int_PoolId);
-	  Long res= count3*100/pool.getInt_Vote();
+{System.out.println(onePoll.getInt_PoolId());
+	  Long count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
+	  System.out.println(onePoll.getStr_Choise3());
+		 System.out.println(int_PoolId+"pid");
+		 System.out.println(count3);
+		 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	  Long res= count3*100/onePoll.getInt_Vote();
+	  System.out.println(res+"result");
 	  return res;
 }
 private static Pool pool1;
@@ -1504,20 +1656,34 @@ public void setDisabled(Boolean disabled) {
 }
 private Boolean disabled;
 private Integer  isVoted;
+private List<Pool> selectedPolls;
+private Pool onePoll;
+public Pool getOnePoll() {
+	return onePoll;
+}
+public void setOnePoll(Pool onePoll) {
+	this.onePoll = onePoll;
+}
+public List<Pool> getSelectedPolls() {
+	return selectedPolls;
+}
+public void setSelectedPolls(List<Pool> selectedPolls) {
+	this.selectedPolls = selectedPolls;
+}
 public Integer getIsVoted() {
-	if(pool!=null)
+	if(onePoll!=null)
 	{
  
-		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+		isVoted=getExpenseService().isVoted(Util.getUserId(),onePoll.getInt_PoolId());
 		System.out.println(isVoted);
 	}
     
 	else
 	{
-		System.out.println(latestPolls.getInt_userId());
+		System.out.println(Util.getUserId());
 		System.out.println(latestPolls.getInt_PoolId());
 		 
-		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),latestPolls.getInt_PoolId());
+		 isVoted=getExpenseService().isVoted(Util.getUserId(),latestPolls.getInt_PoolId());
 		 System.out.println(isVoted+"Vote");
 	}
 	return isVoted;
@@ -1547,16 +1713,16 @@ public String addVote()
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	 
-	if(pool!=null)
+	if(onePoll!=null)
 	{
-		vote.setInt_PoolId(int_PoolId);
-		isVoted=getExpenseService().isVoted(pool.getInt_userId(),int_PoolId);
+		vote.setInt_PoolId(onePoll.getInt_PoolId());
+		isVoted=getExpenseService().isVoted(Util.getUserId(),onePoll.getInt_PoolId());
 	}
     
 	else
 	{
 		vote.setInt_PoolId(latestPolls.getInt_PoolId());
-		 isVoted=getExpenseService().isVoted(latestPolls.getInt_userId(),latestPolls.getInt_PoolId());
+		 isVoted=getExpenseService().isVoted( Util.getUserId(),latestPolls.getInt_PoolId());
 		 
     System.out.println(isVoted+"voteId");
 	}
@@ -1573,12 +1739,12 @@ public String addVote()
 	getExpenseService().addVote(vote);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Vote Successfully!", "Vote Saved Successfully!"));
 	System.out.println(int_PoolId);
-	if(pool!=null)
+	if(onePoll!=null)
 	{
-	 long_Vote= getExpenseService().getTotalVote(pool.getInt_PoolId());
-	pool.setInt_Vote(long_Vote);
+	 long_Vote= getExpenseService().getTotalVote(onePoll.getInt_PoolId());
+	 onePoll.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
-	getExpenseService().UpdatePool(pool);
+	getExpenseService().UpdatePool(onePoll);
 	}
 	else
 	{
@@ -1599,6 +1765,8 @@ private Pool latestPolls;
 public Pool getLatestPolls() {
 	latestPolls=new Pool();
 	latestPolls=getExpenseService().getLatestPolls();
+	
+	 
 	return latestPolls;
 }
 public void setLatestPolls(Pool latestPolls) {
@@ -1675,6 +1843,24 @@ public void deleteOneServiceRequest()
 {
 	servicerequest1.setInt_ServiceRequestId(serviceRequestId);
 	getExpenseService().deleteOneServiceRequest(servicerequest1);
+}
+public List<Expense> getSelectedExpenses() {
+	return selectedExpenses;
+}
+public void setSelectedExpenses(List<Expense> selectedExpenses) {
+	this.selectedExpenses = selectedExpenses;
+}
+public List<Assets> getSelectedAssets() {
+	return selectedAssets;
+}
+public void setSelectedAssets(List<Assets> selectedAssets) {
+	this.selectedAssets = selectedAssets;
+}
+public List<Parking> getParkingSpaceList1() {
+	return parkingSpaceList1;
+}
+public void setParkingSpaceList1(List<Parking> parkingSpaceList1) {
+	this.parkingSpaceList1 = parkingSpaceList1;
 }
 	
 }
