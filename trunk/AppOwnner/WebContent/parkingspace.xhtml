@@ -29,6 +29,7 @@
 
  </h:head>
 	 <h:form   >
+	  <p:growl id="msgs" showDetail="true" />
 	<h:body>
 	<br/>
 	<h:outputLabel value="Organisation:" /> 
@@ -51,7 +52,7 @@
      </td>
      </tr>
      </table>
-	<legend  style="background-color:#438eb9; color:#fff;"> Parking Space</legend>
+	 
                 
              <p:dataTable   id="DT"  
                
@@ -124,22 +125,22 @@
           
            <table>
                
-            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps1">
+            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
              <tr>
  <th>
 	<h:outputText  value="Organisation:" /> </th>
     <td>
-    <h:inputText value="#{ps1.str_OrganizationName}"/></td>
+    <h:inputText value="#{ps2.str_OrganizationName}"/></td>
     </tr>
     <tr>
  <th>
 	<h:outputText  value="Parking slot:" /> </th>
     <td>
-    <h:inputText value="#{ps1.str_ParkingSlot}"/></td>
+    <h:inputText value="#{ps2.str_ParkingSlot}"/></td>
     </tr>
      
     </ui:repeat>
-     <tr><td><h:commandButton value="update"  action="#{expenseBean.updateParkingSpace(ps1)}"/></td> <td><h:commandButton action="parkingspace" value="Cancel"/></td></tr>
+     <tr><td><h:commandButton value="update"  action="#{expenseBean.updateParkingSpace(ps2)}"/></td> <td><h:commandButton action="parkingspace" value="Cancel"/></td></tr>
             </table>
     </p:outputPanel>
     </p:dialog>
@@ -148,18 +149,18 @@
           
            <table>
                
-            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps1">
+            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
              <tr>
  <th>
 	<h:outputText  value="Organisation:" /> </th>
     <td>
-    <h:outputText value="#{ps1.str_OrganizationName}"/></td>
+    <h:outputText value="#{ps2.str_OrganizationName}"/></td>
     </tr>
     <tr>
  <th>
 	<h:outputText  value="Parking slot:" /> </th>
     <td>
-    <h:outputText value="#{ps1.str_ParkingSlot}"/></td>
+    <h:outputText value="#{ps2.str_ParkingSlot}"/></td>
     </tr>
      
     </ui:repeat>
