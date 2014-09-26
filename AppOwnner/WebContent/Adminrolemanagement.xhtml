@@ -15,6 +15,15 @@
 	<h:head><title>Role Management</title>
 	<meta http-equiv="refresh" content="30">
 	</meta>
+	<style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
 	</h:head>
       <body bgcolor="pink">
 	 
@@ -22,7 +31,7 @@
 	<h:form>
  <h:messages style="color:red"/>
 	<fieldset class="repeat">
-	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
+	<legend class="medium" style="background-color:#438eb9; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
 	   
 	 
 	<h:selectManyCheckbox     value="#{administrationAccessBean.str_AssinedRoles}" valueChangeListener="#{administrationAccessBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
