@@ -543,7 +543,7 @@ public String addExpenses()
 	Flash flash = facesContext.getExternalContext().getFlash();
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Updated Successfully!"));
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
 		}
 		else
 			return "Expenses.xhtml";
@@ -593,7 +593,7 @@ public void getOneExpense()
 /*
  * Update One Expense Object
  */
-public String updateOneExpense()
+public String updateOneExpense(Expense expense)
 {
 	getExpenseService().updateOneExpense(expense);
 	System.out.println("nbcsjjjjjjjjjjjjjjjzn");
@@ -623,7 +623,7 @@ List<Expense> entitiesToDelete = new ArrayList<Expense>();
     } 
  
     getExpenseService().deleteSelectedExpenses(entitiesToDelete);
-    return "Expense.xhtml?faces-redirect=true";
+    return "Expenses.xhtml?faces-redirect=true";
 
 	
 }
@@ -962,6 +962,11 @@ private List<AssetCategory> assetCategoryList1;
 public String updateAssetCategory(AssetCategory ac)
 {
 	getExpenseService().updateAssetCategory( ac);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Updated Successfully!", "  Updated Successfully!"));
 	return "assetcategory.xhtml";
 }
 public String deleteAssetsCategory()
@@ -984,7 +989,7 @@ FacesContext facesContext = FacesContext.getCurrentInstance();
 Flash flash = facesContext.getExternalContext().getFlash();
 flash.setKeepMessages(true);
 flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset deleted Successfully!", "asset deleted Successfully!"));
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," AssetCategory deleted Successfully!", "AssetCategory deleted Successfully!"));
 return "assetcategory.xhtml";
 }
 public List<AssetCategory> getAssetCategoryList1() {
@@ -1113,6 +1118,11 @@ public void addAsset()
 	asset.setStr_VendorType(str_VendorType);
 	asset.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().addAsset(asset);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Added Successfully!", "Asset Added Successfully!"));
 	
 }
 /*
