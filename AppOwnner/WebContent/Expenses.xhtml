@@ -103,8 +103,7 @@
            </td></tr></table>
              
              
-             <legend  style="background-color:#438eb9; color:#fff;"> Expense</legend>
-              
+            
              <p:dataTable     selection="#{expenseBean.selectedExpenses}" rowKey="#{Expenselist.str_ExpenseId}"
               id="DT"    
                  var="Expenselist" value="#{expenseBean.expenseList}"   resizableColumns="true" style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
@@ -215,7 +214,7 @@
     <h:inputText value="#{ex.int_Ammount}"/></td>  
     </tr>
       
-    <tr><td><h:commandButton value="Update" action="#{expenseBean.updateOneExpense}" /> 
+    <tr><td><h:commandButton value="Update" action="#{expenseBean.updateOneExpense(ex)}" /> 
      </td>
      </tr>
              </ui:repeat>
