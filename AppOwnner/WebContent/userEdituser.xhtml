@@ -16,7 +16,8 @@
 <body bgcolor="pink">
 <h:form>
   
- 
+  <p:panel id="panel" header="Edit User" color="blue" style="margin-bottom:20px;"> 
+   <h3><u>User Details</u></h3>
  <table>
  
   
@@ -45,7 +46,7 @@
             <tr>
             <td><h:outputLabel for="str_Block" value="Block :"/>
             </td>          
-            <td><p:selectOneMenu id="str_Block" value="#{cls_UserBeanMain.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}" style="width:168px" required="true">
+            <td><p:selectOneMenu id="str_Block" value="#{cls_UserBean.editlis.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}" style="width:168px" required="true">
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
             <f:selectItems  value ="#{cls_UserBean.blocksNa}"/>
              <p:ajax event="change" process="str_Block"/>
@@ -61,6 +62,11 @@
             </h:outputText>  </td>          
             <td><h:inputText value="#{cls_UserBean.editlis.str_Username}" required="true"   requiredMessage="Please ente the User Name!">
             </h:inputText></td></tr> 
+              <tr>
+            <td><h:outputText value="User role:">
+            </h:outputText>  </td>          
+            <td><h:inputText value="#{cls_UserBean.editlis.int_UserRole}" required="true"   requiredMessage="Please ente the User Name!">
+            </h:inputText></td></tr> 
  <tr>
  <td>
   
@@ -70,6 +76,7 @@
    </td>
    </tr>
   </table>
+  </p:panel>
  </h:form>
  
 </body>
