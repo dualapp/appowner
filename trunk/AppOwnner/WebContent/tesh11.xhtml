@@ -3,24 +3,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
-<title>AppOwner</title>
-<meta charset="utf-8"></meta>
-<link rel="stylesheet" href="css/reset.css" type="text/css" media="all"></link>
-<link rel="stylesheet" href="css/layout.css" type="text/css" media="all"></link>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all"></link>
-<script type="text/javascript" src="js/maxheight.js"></script>
-<script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
-<script type="text/javascript" src="js/script.js"></script>
-<!--[if lt IE 7]>
-<link rel="stylesheet" href="css/ie6.css" type="text/css" media="screen">
-<script type="text/javascript" src="js/ie_png.js"></script>
-<script type="text/javascript">ie_png.fix('.png');</script>
-<![endif]-->
-<!--[if lt IE 9]>
-<script type="text/javascript" src="js/html5.js"></script>
-<![endif]-->
-</head>
+
 <h:head>
 <title>AppOwner</title>
 <meta charset="utf-8"></meta>
@@ -39,7 +22,7 @@
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
 </h:head>
-<h:head><title></title></h:head>
+ 
 <h:body id="page1" onLoad="new ElementMaxHeight();">
 <!-- START PAGE SOURCE -->
 <div class="tail-bottom">
@@ -70,8 +53,13 @@
         <h1><a href="firstpage.xhtml">Create Account </a></h1>
       </form>
     </header>
-             
-            <ui:include src="test12layout.xhtml"/>         
+          <div class="wrapper indent">
+      <section id="content">
+            <ui:include src="test12layout.xhtml"/>       
+            </section>
+            </div>
+            
+            
        
     <footer>
       <div class="footerlink">
