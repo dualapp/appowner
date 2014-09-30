@@ -1537,6 +1537,11 @@ public void addPool()
 	 
 	 
 		getExpenseService().addPool(pool);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Poll Created Successfully!", "Poll Created Successfully!"));
 }
 public String getStr_Choise() {
 	return str_Choise;
@@ -1767,11 +1772,32 @@ public void getOnePool()
 	
 }
 private Pool latestPolls;
+private Boolean render;
+public Boolean getRender() {
+	if(onePoll==null)
+	{
+		render=false;
+	}
+	else
+		render=true;
+	return render;
+}
+public void setRender(Boolean render) {
+	this.render = render;
+}
 public Pool getLatestPolls() {
 	latestPolls=new Pool();
 	latestPolls=getExpenseService().getLatestPolls();
+	if(getExpenseService().getLatestPolls()==null)
+		   
+		render=false;
+	else
+	{
+		 render=true;
+	latestPolls=getExpenseService().getLatestPolls();
 	
-	 
+	}
+	 System.out.println(render+"renderd");
 	return latestPolls;
 }
 public void setLatestPolls(Pool latestPolls) {
@@ -1855,6 +1881,7 @@ public List<Parking> getParkingSpaceList1() {
 public void setParkingSpaceList1(List<Parking> parkingSpaceList1) {
 	this.parkingSpaceList1 = parkingSpaceList1;
 }
+
 	
 }
 
