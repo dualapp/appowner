@@ -7,6 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	 template="include/templates/template.xhtml">
+	   
 	  <h:head>
 	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
 	 <style> 
@@ -32,7 +33,7 @@
                 <h:outputText value="Events Content" />
             </p:panel>
              
-  <p:panel    id="LatestPolls" header="LatestPolls">
+  <p:panel    id="LatestPolls"  rendered="#{expenseBean.render}" header="LatestPolls">
   
                 
                  

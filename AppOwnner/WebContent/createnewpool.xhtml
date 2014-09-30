@@ -47,8 +47,8 @@
   <tr><th><h:outputText value="Organization"/></th><td><h:inputText value="#{expenseBean.str_OrganizationName}"/></td>
   <th><h:outputText value="Pool Audience"/></th><td><h:selectOneRadio id="Audience"
                       value="#{expenseBean.str_PoolAudience}">
-        <f:selectItem   itemLabel="All Members" itemValue="1" />
-        <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
+        <f:selectItem   itemLabel="All Members" itemValue="All Members" />
+        <f:selectItem   itemLabel="Admin And Committees" itemValue="Admin And Committees" />
         </h:selectOneRadio></td></tr>
         
        <tr><th><h:outputText value="Pool QuestionS?*"/></th><td><p:inputTextarea id="newPollQuestion"  required="true" requiredMessage="plz  enter PollQuestion" style="Width:250%;height:100px;"    value="#{expenseBean.str_PoolQuestion}" >
