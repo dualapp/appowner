@@ -27,14 +27,14 @@ public class CommitteeMemberDaoImpl  implements CommitteeMemberDao{
 	@Override
 	public List<String> getStr_CommitteeRoles() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(CommitteeRole.class).setProjection(Projections.property("str_Committee_Role_Name")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(CommitteeRole.class).setCacheable(true).setProjection(Projections.property("str_Committee_Role_Name")).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getStr_UserNames() {
 		 
-		return getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_Username")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(User.class).setCacheable(true).setProjection(Projections.property("str_Username")).list();
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class CommitteeMemberDaoImpl  implements CommitteeMemberDao{
 	@Override
 	public List<CommiteeMember> getCommitteememberlist() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class) .list();
+		return getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class).setCacheable(true) .list();
 	}
 
 	@Override

@@ -30,14 +30,14 @@ public class AdministrationAccessDaoImpl implements AdministrationAccessDao{
 	@Override
 	public List<RoleAssignment> getRoleAssignmentList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(RoleAssignment.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(RoleAssignment.class).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Integer> getUserIds() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(RoleAssignment.class).setProjection(Projections.property("int_UserId")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(RoleAssignment.class).setCacheable(true).setProjection(Projections.property("int_UserId")).list();
 	}
 
 	@Override
@@ -60,14 +60,14 @@ public class AdministrationAccessDaoImpl implements AdministrationAccessDao{
 	@Override
 	public List<String> getAllCommitteeMembers() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class).setProjection(Projections.property("str_UserName")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class).setCacheable(true).setProjection(Projections.property("str_UserName")).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getAllMaintainanceMembers() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(MaintainanceStaff.class).setProjection(Projections.property("str_UserName")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(MaintainanceStaff.class).setCacheable(true).setProjection(Projections.property("str_UserName")).list();
 	}
 
 	@Override
@@ -107,14 +107,14 @@ public Integer getUserId(String name) {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getRoleMaster() {
-		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setProjection(Projections.property("str_RoleName")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setCacheable(true).setProjection(Projections.property("str_RoleName")).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AdministrationAccess> getListAdministrationAccess() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(AdministrationAccess.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(AdministrationAccess.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -127,14 +127,14 @@ public Integer getUserId(String name) {
 	@Override
 	public List<Integer> getRoleIds() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(AdministrationAccess.class).setProjection(Projections.property("Int_RoleID")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(AdministrationAccess.class).setCacheable(true).setProjection(Projections.property("Int_RoleID")).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Integer> getRoleMasterIds() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setProjection(Projections.property("int_RoleID")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setCacheable(true).setProjection(Projections.property("int_RoleID")).list();
 	}
 	
 	

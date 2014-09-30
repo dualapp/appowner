@@ -41,14 +41,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<String> getOrgationNameList() {
 		 
-		return  getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).setProjection(Projections.property("str_ApartmentName")).list();
+		return  getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).setCacheable(true).setProjection(Projections.property("str_ApartmentName")).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getAssetCategoryList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(AssetCategory.class).setProjection(Projections.property("str_assetcat_name")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(AssetCategory.class).setCacheable(true).setProjection(Projections.property("str_assetcat_name")).list();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		{
 			//pending
 		}
-		return getSessionFactory().getCurrentSession().createCriteria(Expense.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		 
 		/*List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
 		System.out.println(parkingSpaceList);*/
-		return getSessionFactory().getCurrentSession().createCriteria(Parking.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(Parking.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		List<Expense> expense=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(AssetCategory.class)).list();
 		*/
 		
-		return getSessionFactory().getCurrentSession().createCriteria(AssetCategory.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(AssetCategory.class).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -197,14 +197,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<ChartOfAccount> getChartOfAccountList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(ChartOfAccount.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(ChartOfAccount.class).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Character> getCh_AccountGroup() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setProjection(Projections.property("ch_Group")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setCacheable(true).setProjection(Projections.property("ch_Group")).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -219,7 +219,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<Assets> getAssetsList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -232,14 +232,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<FacilityNeeded> getFacilityNeededList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getFacilityTypeList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setProjection(Projections.property("str_FacilityName")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setCacheable(true).setProjection(Projections.property("str_FacilityName")).list();
 	}
 
 	@Override
@@ -251,7 +251,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<Pool> getPoolList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(Pool.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(Pool.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -335,14 +335,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<String> getOrganizationImages() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(OrganizationLogo.class).setProjection(Projections.property("str_Appartment_Img")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(OrganizationLogo.class).setCacheable(true).setProjection(Projections.property("str_Appartment_Img")).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ServiceRequest> getListServiceRequest() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -365,7 +365,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 			String hql="from Assets where str_assetcat_name=? AND str_Block=? AND int_AppartmentId=?";
 			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).setParameter(1, str_Block).setParameter(2, int_ApartmentId).list();
 		}
-		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).setCacheable(true).list();
 	}
 
 	@Override
