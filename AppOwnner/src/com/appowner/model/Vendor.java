@@ -3,6 +3,7 @@ package com.appowner.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+  @Cacheable(true)
+ @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
+ 
 @Table(name = "tb_VendorManagement")
  
 public class Vendor implements Serializable 

@@ -3,6 +3,7 @@ package com.appowner.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
+@Cacheable(true)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="tb_watervendortransaction")
 public class WaterVendorTransaction implements Serializable {
 	/**
