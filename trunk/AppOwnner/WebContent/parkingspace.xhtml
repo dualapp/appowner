@@ -93,11 +93,11 @@
                  </p:selectOneMenu></td></tr>
                  
 <tr><th><h:outputText value="parkingSlot"/></th>
-	<td><h:inputText  id="Parkingslot" required="true" requiredMessage="plz Enter ParkingSlot" value="#{expenseBean.str_ParkingSlot}">
-	<p:ajax event="blur" update="ParkingSlotMsg" />
+	<td><h:inputText  id="Parkingslot"     value="#{expenseBean.str_ParkingSlot}">
+	 
 	</h:inputText>
 	</td>
-	<td><p:message  id="ParkingSlotMsg" for="Parkingslot" display="text"/></td>
+	 
 	</tr>
 	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}" /> </td></tr> 
 	 <script>
