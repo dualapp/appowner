@@ -49,7 +49,7 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 	@Override
 	public List<MaintainanceStaff> getMaintainanceStaffList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(MaintainanceStaff.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(MaintainanceStaff.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 	@Override
 	public List<String> getStr_Roles() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setProjection(Projections.property("str_RoleName")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(RoleManagement.class).setCacheable(true).setProjection(Projections.property("str_RoleName")).list();
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 	@Override
 	public List<RoleManagement> getRoleManagementList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(RoleAssignment.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(RoleAssignment.class).setCacheable(true).list();
 	}
 
 	@Override
