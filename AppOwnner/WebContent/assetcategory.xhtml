@@ -159,11 +159,11 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                 
                  </p:selectOneMenu></td></tr>
 	<tr><th><h:outputText value="CategoryName"/></th>
-	<td><h:inputText  required="true" requiredMessage="Plz Enter AssetCategoryName" id="AssetCategory" value="#{expenseBean.str_AssetCategoryType}">
-	<p:ajax event="blur" update="AssetCategoryMsg" />
+	<td><h:inputText    id="AssetCategory" value="#{expenseBean.str_AssetCategoryType}">
+	 
 	</h:inputText>
 	</td>
-	<td> <p:message  id="AssetCategoryMsg" for="AssetCategory" display="text"/> </td>
+	   <p:tooltip id="toolTipAssetCategory"  trackMouse="true" for="AssetCategory" value="  AssetCategory Required" />  
 	</tr>
 	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveAssetCategory}" />
 	
