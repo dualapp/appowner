@@ -54,7 +54,7 @@ public class VendorDaoImpl implements VendorDao{
 			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorType).list();
 			
 		}
-		return (List<Vendor>) getSessionFactory().getCurrentSession().createCriteria(Vendor.class).list();
+		return (List<Vendor>) getSessionFactory().getCurrentSession().createCriteria(Vendor.class).setCacheable(true).list();
 	}
 	
 	public void deleteVendor(Vendor vendor) {
@@ -76,7 +76,7 @@ public class VendorDaoImpl implements VendorDao{
 		@Override
 		public List<String> cityList() {
 		 
-			 List<String> cityList= getSessionFactory().getCurrentSession().createCriteria(VendorCity.class).setProjection(Projections.property("str_CityName")).list();
+			 List<String> cityList= getSessionFactory().getCurrentSession().createCriteria(VendorCity.class).setCacheable(true).setProjection(Projections.property("str_CityName")).list();
 			  System.out.println("hello");
 			  System.out.println( cityList.listIterator().hasNext());
 			  return  cityList;
@@ -88,7 +88,7 @@ public class VendorDaoImpl implements VendorDao{
 		 
 		// String hql=" select str_CityName from VendorCity where str_StateName=str_StateName";
 	 
-		List<String> countryList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(VendorCountry.class).setProjection(Projections.property("str_CountryName")).list();
+		List<String> countryList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(VendorCountry.class).setCacheable(true).setProjection(Projections.property("str_CountryName")).list();
 		  System.out.println( ( countryList).listIterator().hasNext());
 		  return  countryList ;
 	}
@@ -97,7 +97,7 @@ public class VendorDaoImpl implements VendorDao{
 	public List<String> stateList() {
 
 		@SuppressWarnings("unchecked")
-		List<String> stateList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(VendorState.class).setProjection(Projections.property("str_StateName")).list();
+		List<String> stateList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(VendorState.class).setCacheable(true).setProjection(Projections.property("str_StateName")).list();
 		  System.out.println( ( stateList).listIterator().hasNext());
 		  return  stateList ;
 		 
@@ -183,7 +183,7 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<WaterVendorTransaction> getWaterVendortransaction() {
 		 
-		return  sessionFactory.getCurrentSession().createCriteria(WaterVendorTransaction.class).list();
+		return  sessionFactory.getCurrentSession().createCriteria(WaterVendorTransaction.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -217,7 +217,7 @@ public class VendorDaoImpl implements VendorDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<WaterPayment> getWaterPaymentList() {
-		return sessionFactory.getCurrentSession().createCriteria(WaterPayment.class).list();
+		return sessionFactory.getCurrentSession().createCriteria(WaterPayment.class).setCacheable(true).list();
 	}
 
 	@Override
@@ -262,7 +262,7 @@ public class VendorDaoImpl implements VendorDao{
 		 
 			return  sessionFactory.getCurrentSession().createCriteria(WaterPayment.class).list();	
 		 
-		List<WaterPayment> l=(List<WaterPayment>) sessionFactory.getCurrentSession().createCriteria(WaterPayment.class).add(Restrictions.between("date_Date", date_FromDate,date_ToDate)).add(Restrictions.eq("str_VendorType", str_VendorType)).list(); 
+		List<WaterPayment> l=(List<WaterPayment>) sessionFactory.getCurrentSession().createCriteria(WaterPayment.class).setCacheable(true).add(Restrictions.between("date_Date", date_FromDate,date_ToDate)).add(Restrictions.eq("str_VendorType", str_VendorType)).list(); 
 		 
 		return  l;
 	}
@@ -271,7 +271,7 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<String> getStr_VendorTypes() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setProjection(Projections.property("str_VendorType")).list();
+		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setCacheable(true).setProjection(Projections.property("str_VendorType")).list();
 	}
 
 	@SuppressWarnings("unchecked")

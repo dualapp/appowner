@@ -29,14 +29,14 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 	@Override
 	public List<ServiceRequest> getListServiceRequest() {
 		// TODO Auto-generated method stub
-		return (List<ServiceRequest>)getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).list();
+		return (List<ServiceRequest>)getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Pool> getPollList() {
 		// TODO Auto-generated method stub
-		List<Pool> poolList=getSessionFactory().getCurrentSession().createCriteria(Pool.class).list();
+		List<Pool> poolList=getSessionFactory().getCurrentSession().createCriteria(Pool.class).setCacheable(true).list();
 		System.out.println(poolList+"poollist");
 		return poolList;
 	}
@@ -94,7 +94,7 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 			
 		}
 		 
-		return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).list();
+		return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).setCacheable(true).list();
 		 
 	}
 
@@ -134,6 +134,7 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 			
 		}
 		 
-		return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).list();
+		return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).setCacheable(true).list();
 	}
 }
+
