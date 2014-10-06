@@ -940,9 +940,8 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	}
 	public List<Vendor> getVendorList() {
 		vendorList = new ArrayList<Vendor>();
-		System.out.println(str_VendorType+"vendorType");
 		vendorList.addAll(getVendorservice().vendorList(str_VendorName,str_VendorType));
-System.out.println(vendorList+"vlist");
+ 
 		return vendorList;
 	}
 
