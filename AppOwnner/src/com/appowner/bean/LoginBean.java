@@ -957,16 +957,19 @@ public static void setDue1(boolean due1) {
 		 return "workordercategory1.jsp";
 		
 	}
-	public void addBookAFacility()
+	public String addBookAFacility()
 	{
 		bookAFacility=new BookAFacility();
-		bookAFacility.setInt_UserId(int_UserId);
+		//bookAFacility.setStr_Username(userloginname);
+		//bookAFacility.setInt_UserId(int_UserId);
 		bookAFacility.setInt_ApartmentId(int_ApartmentId);
+		bookAFacility.setStr_EventName(str_EventName);
 		bookAFacility.setStr_EmailId(str_EmailId);
 		bookAFacility.setStr_EndTime(str_EndTime);
 		bookAFacility.setStr_EventType(str_EventType);
 		bookAFacility.setStr_FacilityType(str_FacilityType);
 		bookAFacility.setStr_Flat(str_Flat);
+		bookAFacility.setStr_Status(str_Status);
 		bookAFacility.setStr_Mobile(str_Mobile);
 		bookAFacility.setStr_OpenDate(str_OpenDate);
 		bookAFacility.setStr_CloseDate(str_CloseDate);
@@ -979,6 +982,7 @@ public static void setDue1(boolean due1) {
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Successfully  Book A Facility!", " Successfully  Book A Facility !"));
+  return "book a facility.xhtml";
 	}
 	/*
 	 * add member login and logout info
@@ -989,7 +993,8 @@ public static void setDue1(boolean due1) {
 			memberLog.setInt_ApartmentId(int_ApartmentId);
 			memberLog.setInt_UserId(int_UserId);
 			memberLog.setStr_Block(user.getStr_Block());
-			memberLog.setStr_UserEmailId(user.getStr_Email());
+			memberLog.setStr_UserEmailId(user.getStr_Email()
+					);
 			memberLog.setStr_LoggedInTime(str_LoggedInTime);
 	      
 	      memberLog.setStr_LogOutTime(str_LoggedOutTime);

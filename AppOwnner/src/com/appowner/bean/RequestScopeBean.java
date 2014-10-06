@@ -160,6 +160,7 @@ System.out.println(selectedServices+"venders");
     	if (service.getInt_ServiceRequestId()!=null) 
     	{
             entitiesToDelete.add(service);
+            System.out.println(service.getInt_ServiceRequestId());
         }
     	
     } 
@@ -233,7 +234,7 @@ Flash flash = facesContext.getExternalContext().getFlash();
 flash.setKeepMessages(true);
 flash.setRedirect(true);
 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service deleted Successfully!", "Service deleted Successfully!"));
-    return "servicerequest.xhtml?faces-redirect=true";
+    return "book a facility.xhtml?faces-redirect=true";
 }
 
 public List<BookAFacility> getSelectedBookAFacility() {
