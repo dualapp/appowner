@@ -13,6 +13,7 @@
  
  </h:head>
  <h:form   enctype="multipart/form-data"  >
+ <p:growl id="msgs" showDetail="true" />
   
  <br/>
  <h:body>
@@ -44,6 +45,16 @@
   
   
              </td></tr>
+              <tr><th>Upload Document</th><td>
+            
+            <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload2}" mode="advanced" dragDropSupport="false"
+           update="messages3" sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(doc|docx|xls|xlsx|pdf)$/" />
+ 
+    <p:growl id="messages3" showDetail="true" />
+            
+             
+                                  
+                                  </td></tr>
             
         <tr><th><h:outputText value="OrganizationTextLogo" /></th><td><h:inputText value="#{expenseBean.textLogo}"/></td></tr><br/>
         <tr><th><h:outputText value="What is your association office timings? *"/></th> </tr><tr>
