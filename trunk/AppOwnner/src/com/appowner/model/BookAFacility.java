@@ -24,6 +24,7 @@ public class BookAFacility implements Serializable{
 	private Integer int_FacilityBookId;
 	@Column(name="var_StartTime")
 	private String  str_StartTime;
+	
 	@Column(name="var_EndTime")
 	private String  str_EndTime;
 	@Column(name="var_EventType")
@@ -58,6 +59,14 @@ public class BookAFacility implements Serializable{
 	private String Str_Flat;
 	@Column (name="var_Status")
 	private String Str_Status;
+	@Column(name="str_CreatedBy")
+	private String  str_CreatedBy;
+	public String getStr_CreatedBy() {
+		return str_CreatedBy;
+	}
+	public void setStr_CreatedBy(String str_CreatedBy) {
+		this.str_CreatedBy = str_CreatedBy;
+	}
 	public String getStr_Status() {
 		return Str_Status;
 	}
