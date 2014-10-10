@@ -434,4 +434,22 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(ac);
 	}
+
+	@Override
+	public void updateFacility(FacilityNeeded fn1) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(fn1);
+	}
+
+	@Override
+	public void deletefacilityNeeded(List<FacilityNeeded> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			FacilityNeeded fn=(FacilityNeeded) itr.next();
+		sessionFactory.getCurrentSession().delete(fn);
+		
+	}
+	}
 }

@@ -127,4 +127,8 @@ public interface ExpenseDao {
 
 	void updateAssetCategory(AssetCategory ac);
 
+	void updateFacility(FacilityNeeded fn1);
+
+	void deletefacilityNeeded(List<FacilityNeeded> entitiesToDelete);
+
 }
