@@ -84,8 +84,8 @@
          <p:menuitem value="View Summary" />
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
-         &#150; &#150;  <p:commandButton process="DT" update=":form:bookDetail2" icon="ui-icon-info" value="View" oncomplete="PF('multiVendorDialog1').show()" />
-       &#150; &#150; <p:commandButton process="DT" update=":form:bookDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
+         &#150; &#150;  <p:commandButton process="DT" update=":form:bookDetail2" icon="ui-icon-info" value="View" oncomplete="PF('bookDialog2').show()" />
+       &#150; &#150; <p:commandButton process="DT" update=":form:bookDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('bookDialog3').show()" />
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{requestScopeBean.deleteBookedFacility()}" icon="ui-icon-trash" value="Delete" />
        <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
@@ -112,7 +112,7 @@
 	       
              <p:dataTable   id="DT"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                rows="3"  paginatorPosition="bottom" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"  var="Bf"  value="#{requestScopeBean.bookAFacilityList}"   selection="#{requestScopeBean.selectedBookAFacility}" rowKey="#{Bf.int_UserId}">
+        rowsPerPageTemplate="1,2,3"  var="Bf"  value="#{requestScopeBean.bookAFacilityList}"   selection="#{requestScopeBean.selectedBookAFacility}" rowKey="#{Bf.int_FacilityBookId}">
 	 
 	 
 	 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
@@ -142,7 +142,7 @@
             
 	 </p:column>
 	  <p:column headerText="Created By">
-                <h:outputText value="#{loginBean.userloginname}" /> 
+                <h:outputText value="#{Bf.str_CreatedBy}"/> 
             
 	 </p:column>
 	 
@@ -205,7 +205,7 @@
  <th>
     <h:outputText value="Close Date:"/></th>
     <td>
-      <h:outputText value="#{bf1.str_closeDate}" />   </td>
+      <h:outputText value="#{bf1.str_CloseDate}" />   </td>
     </tr>
     
        <tr>
@@ -219,7 +219,7 @@
  <th>
     <h:outputText value="Created By:"/></th>
     <td>
-      <h:outputText value="#{loginBean.userloginname}" />   </td>
+      <h:outputText value="#{bf1.str_CreatedBy}" />   </td>
     </tr>
             
             </ui:repeat>
@@ -261,7 +261,7 @@
  <th>
     <h:outputText value="Close Date:"/></th>
     <td>
-     <h:inputText value="#{bf1.str_closeDate}" />   </td>
+     <h:inputText value="#{bf1.str_CloseDate}" />   </td>
     </tr>
     
        <tr>
@@ -275,7 +275,7 @@
  <th>
     <h:outputText value="Created By:"/></th>
     <td>
-      <h:inputText value="#{Bf.str_Username}" />   </td>
+      <h:inputText value="#{bf1.str_CreatedBy}" />   </td>
     </tr>
             </ui:repeat>
             
