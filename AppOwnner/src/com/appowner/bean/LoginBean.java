@@ -960,8 +960,8 @@ public static void setDue1(boolean due1) {
 	public String addBookAFacility()
 	{
 		bookAFacility=new BookAFacility();
-		//bookAFacility.setStr_Username(userloginname);
-		//bookAFacility.setInt_UserId(int_UserId);
+		bookAFacility.setStr_CreatedBy(userloginname);
+		bookAFacility.setInt_UserId(int_UserId);
 		bookAFacility.setInt_ApartmentId(int_ApartmentId);
 		bookAFacility.setStr_EventName(str_EventName);
 		bookAFacility.setStr_EmailId(str_EmailId);
