@@ -70,12 +70,12 @@
           <p:column headerText="Action" width="150">
           <h:link outcome="userEdituser.xhtml">
 							 
-							<p:graphicImage height="20" width="20" alt="delete"
-								value="images/delete.jpg" />
+							<p:graphicImage height="25" width="50" alt="delete"
+								value="images/imags.jpg" />
 							<f:param name="int_UserId"
 								value="#{due.int_UserId}"/>
 						</h:link>
-                <h:commandButton value="Delete" action="#{cls_UserBean.deleteUser1(due.int_UserId)}" >
+                <h:commandButton value="Delete" action="#{cls_UserBean.deleteUser(due.str_Username)}" >
           </h:commandButton>
                
                
