@@ -243,9 +243,15 @@ public List<BookAFacility> getSelectedBookAFacility() {
 public void setSelectedBookAFacility(List<BookAFacility> selectedBookAFacility) {
 	this.selectedBookAFacility = selectedBookAFacility;
 }
-public void updateBookAFacility(BookAFacility bf1)
+public String updateBookAFacility(BookAFacility bf1)
 {
 	getRequestScopeService().updateBookAFacility(bf1);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Successfully Updated !", "Successfully Updated"));
+	    return "book a facility.xhtml?faces-redirect=true";
 }
 public String getStr_FacilityType() {
 	return str_FacilityType;
