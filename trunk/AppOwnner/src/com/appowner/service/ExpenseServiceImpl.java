@@ -374,6 +374,18 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().updateAssetCategory( ac);
 	}
 
+	@Override
+	public void updateFacility(FacilityNeeded fn1) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateFacility(fn1);
+	}
+
+	@Override
+	public void deletefacilityNeeded(List<FacilityNeeded> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getExpenseDao().deletefacilityNeeded(entitiesToDelete);
+	}
+
 	 
 
 }
