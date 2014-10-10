@@ -1047,6 +1047,7 @@ public String deleteOneAsset1()
 	 return "assets.xhtml?faces-redirect=true";
 	
 }
+
 public String updateOneAsset(Assets asset)
 {
 	getExpenseService().updateOneasset( asset);
@@ -1056,7 +1057,7 @@ public String updateOneAsset(Assets asset)
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Updated Successfully!", "Asset Updated Successfully!"));
-	return "assets.xhtml?faces-redirect=true";
+	return "assets.xhtml";
 }
 /*
  * get asset,purchase,amc list
@@ -1354,6 +1355,13 @@ private String str_FacilityName;
 private List<FacilityNeeded>  facilityNeededList;
 private FacilityNeeded facilityNeeded;
 private List<String> facilityTypeList;
+private List<FacilityNeeded> selectedFacilities;
+public List<FacilityNeeded> getSelectedFacilities() {
+	return selectedFacilities;
+}
+public void setSelectedFacilities(List<FacilityNeeded> selectedFacilities) {
+	this.selectedFacilities = selectedFacilities;
+}
 public List<String> getFacilityTypeList() {
 	facilityTypeList=new ArrayList<String>();
 	facilityTypeList.addAll(getExpenseService().getFacilityTypeList());
@@ -1371,11 +1379,21 @@ public void setStr_FacilityName(String str_FacilityName) {
 public List<FacilityNeeded> getFacilityNeededList() {
 	facilityNeededList=new ArrayList<FacilityNeeded>();
 	facilityNeededList.addAll(getExpenseService().getFacilityNeededList());
-	System.out.println(facilityNeededList);
+	 
 	return facilityNeededList;
 }
 public void setFacilityNeededList(List<FacilityNeeded> facilityNeededList) {
 	this.facilityNeededList = facilityNeededList;
+}
+public String updateFacility(FacilityNeeded fn1)
+{  getExpenseService().updateFacility(fn1);
+
+FacesContext facesContext = FacesContext.getCurrentInstance();
+Flash flash = facesContext.getExternalContext().getFlash();
+flash.setKeepMessages(true);
+flash.setRedirect(true);
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Updated Successfully!", " Updated Successfully!"));
+return "facilityneeded.xhtml";
 }
 public FacilityNeeded getFacilityNeeded() {
 	return facilityNeeded;
@@ -1383,13 +1401,43 @@ public FacilityNeeded getFacilityNeeded() {
 public void setFacilityNeeded(FacilityNeeded facilityNeeded) {
 	this.facilityNeeded = facilityNeeded;
 }
-public void addFacility()
+public String addFacility()
 {
 	facilityNeeded=new FacilityNeeded();
 	facilityNeeded.setStr_FacilityName(str_FacilityName);
 	facilityNeeded.setInt_ApartmentId(Util.getAppartmentId());
 	getExpenseService().addFacility(facilityNeeded);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   added Successfully!", " added Successfully!"));
+	return "facilityneeded.xhtml";
 }
+public String deletefacilityNeeded()
+{
+	 List<FacilityNeeded> entitiesToDelete = new ArrayList<FacilityNeeded>();
+	  
+     for (FacilityNeeded fn :selectedFacilities) {
+     	 
+     	if (fn.getInt_FacilityId()!=null) 
+     	{
+             entitiesToDelete.add(fn);
+         }
+     	
+     } 
+     
+  
+     getExpenseService().deletefacilityNeeded(entitiesToDelete);
+ 
+FacesContext facesContext = FacesContext.getCurrentInstance();
+Flash flash = facesContext.getExternalContext().getFlash();
+flash.setKeepMessages(true);
+flash.setRedirect(true);
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   deleted Successfully!", " deleted Successfully!"));
+return "facilityneeded.xhtml";
+}
+
 /*
  * pool concept
  */
