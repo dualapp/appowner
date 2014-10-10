@@ -136,6 +136,10 @@ public interface ExpenseService {
 
 	void updateAssetCategory(AssetCategory ac);
 
+	void updateFacility(FacilityNeeded fn1);
+
+	void deletefacilityNeeded(List<FacilityNeeded> entitiesToDelete);
+
 	 
 
 }
