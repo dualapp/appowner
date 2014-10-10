@@ -552,12 +552,12 @@ public class Cls_UserBean implements Serializable{
 		/*
 		 * deleteUser method is to delete user..
 		 */
-		public void deleteUser(int int_UserId)
+		public String deleteUser(String str_Username)
 		{
 			//System.out.println(userid);
-			User usr=new User();
-			usr.setInt_UserId(int_UserId);
-			getUserService().deleteUser(usr);
+			
+			getUserService().deleteUser2(str_Username);
+			return "userDeleteuserconfirmation.xhtml";
 		}
 		/*
 		 * addApartment is to adding aparmtne.
