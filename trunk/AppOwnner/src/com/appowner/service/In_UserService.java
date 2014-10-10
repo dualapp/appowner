@@ -23,7 +23,7 @@ public interface In_UserService {
 	
 	public User getUser(int int_UserId);
 	
-	public void deleteUser(User user);
+	public void deleteUser(int int_UserId);
 	//public void editEmployee(Employee employee);
 
 	public List<User> validateEmployee(Cls_UserBean user);
@@ -86,5 +86,7 @@ public interface In_UserService {
 	public User edit(int userid);
 
 	public void updateUser(User editlis);
+
+	public void deleteUser2(String str_Username);
 }
 
