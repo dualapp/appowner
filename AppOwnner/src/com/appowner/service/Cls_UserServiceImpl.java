@@ -253,6 +253,20 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		getIn_userdao().updateUser1(editlis);
 	}
+
+	@Override
+	public void deleteUser(int int_UserId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteUser2(String str_Username) {
+		getIn_userdao().deleteUser2(str_Username);
+		
+	}
+
+	
 	}
 
 	 
