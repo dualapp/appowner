@@ -97,4 +97,10 @@ public interface In_UserDao {
 	public User edit(int userid);
 
 	public void updateUser1(User editlis);
+
+	public void deleteUser2(String str_Username);
+
+	//public void deleteUser1(int int_UserId);
+
+	
 }
