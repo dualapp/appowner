@@ -86,11 +86,11 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 			{
 				String query="from ServiceRequest where  Str_VendorType=? AND int_ApartmentId=?";
 				
-				return sessionFactory.getCurrentSession().createQuery(query).setParameter(0,str_VendorType).setParameter(1, int_ApartmentId).list();
+				return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0,str_VendorType).setParameter(1, int_ApartmentId).list();
 			}
 			String query="from ServiceRequest where Str_Status=? AND Str_VendorType=? AND int_ApartmentId=?";
 		
-			return sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_VendorType).setParameter(2, int_ApartmentId).list();
+			return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0, str_Status).setParameter(1,str_VendorType).setParameter(2, int_ApartmentId).list();
 			
 		}
 		 
