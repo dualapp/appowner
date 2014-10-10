@@ -16,10 +16,13 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.component.datatable.DataTable;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 import com.appowner.model.BookAFacility;
@@ -297,14 +300,46 @@ public void init() {
 	 
     eventModel = new DefaultScheduleModel();
     eventModel.addEvent(new DefaultScheduleEvent("Birth Day Party",nextDay9Am(),nextDay11Am() ));
+    eventModel.addEvent(new DefaultScheduleEvent("Election",theDayAfter3Pm(),fourDaysLater3pm() ));
     
  
+}
+private ScheduleEvent event = new DefaultScheduleEvent();
+public void addEvent(ActionEvent actionEvent) {
+    if(event.getId() == null)
+        eventModel.addEvent(event);
+    else
+        eventModel.updateEvent(event);
+     
+    event = new DefaultScheduleEvent();
+}
+public void onEventSelect(SelectEvent selectEvent) {
+    event = (ScheduleEvent) selectEvent.getObject();
+}
+public void onDateSelect(SelectEvent selectEvent) {
+    setEvent(new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject()));
 }
 private Calendar today() {
     Calendar calendar = Calendar.getInstance();
     calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 0, 0, 0);
 
     return calendar;
+}
+private Date theDayAfter3Pm() {
+    Calendar t = (Calendar) today().clone();
+    t.set(Calendar.DATE, t.get(Calendar.DATE) + 2);     
+    t.set(Calendar.AM_PM, Calendar.PM);
+    t.set(Calendar.HOUR, 3);
+     
+    return t.getTime();
+}
+private Date fourDaysLater3pm() {
+    Calendar t = (Calendar) today().clone(); 
+    t.set(Calendar.AM_PM, Calendar.PM);
+    t.set(Calendar.DATE, t.get(Calendar.DATE) + 4);
+    t.set(Calendar.HOUR, 3);
+     
+    return t.getTime();
 }
 private Date nextDay9Am() {
     Calendar t = (Calendar) today().clone();
@@ -322,6 +357,12 @@ private Date nextDay11Am() {
     t.set(Calendar.HOUR, 11);
      
     return t.getTime();
+}
+public ScheduleEvent getEvent() {
+	return event;
+}
+public void setEvent(ScheduleEvent event) {
+	this.event = event;
 }
 }
 
