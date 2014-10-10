@@ -24,8 +24,7 @@
 
  </h:head>
 	 <h:form id="form">
-	 
-   <p:growl id="msgs" showDetail="true" />
+	 <p:growl id="msgs" showDetail="true" />
 	<h:body>
 	<br/>
 	<fieldset>
@@ -85,8 +84,8 @@
          <p:menuitem value="View Summary" />
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
-         &#150; &#150;  <p:commandButton process="DT" update=":form:bookDetail2" icon="ui-icon-info" value="View" oncomplete="PF('multiVendorDialog1').show()" />
-       &#150; &#150; <p:commandButton process="DT" update=":form:bookDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
+         &#150; &#150;  <p:commandButton process="DT" update=":form:bookDetail2" icon="ui-icon-info" value="View" oncomplete="PF('bookDialog2').show()" />
+       &#150; &#150; <p:commandButton process="DT" update=":form:bookDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('bookDialog3').show()" />
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{requestScopeBean.deleteBookedFacility()}" icon="ui-icon-trash" value="Delete" />
        <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
@@ -143,7 +142,7 @@
             
 	 </p:column>
 	  <p:column headerText="Created By">
-                <h:outputText value="#" /> 
+                <h:outputText value="#{Bf.str_CreatedBy}"/> 
             
 	 </p:column>
 	 
@@ -206,7 +205,7 @@
  <th>
     <h:outputText value="Close Date:"/></th>
     <td>
-      <h:outputText value="#{bf1.str_closeDate}" />   </td>
+      <h:outputText value="#{bf1.str_CloseDate}" />   </td>
     </tr>
     
        <tr>
@@ -220,7 +219,7 @@
  <th>
     <h:outputText value="Created By:"/></th>
     <td>
-      <h:outputText value="#{loginBean.userloginname}" />   </td>
+      <h:outputText value="#{bf1.str_CreatedBy}" />   </td>
     </tr>
             
             </ui:repeat>
@@ -262,7 +261,7 @@
  <th>
     <h:outputText value="Close Date:"/></th>
     <td>
-     <h:inputText value="#{bf1.str_closeDate}" />   </td>
+     <h:inputText value="#{bf1.str_CloseDate}" />   </td>
     </tr>
     
        <tr>
@@ -276,7 +275,7 @@
  <th>
     <h:outputText value="Created By:"/></th>
     <td>
-      <h:inputText value="#{loginBean.userloginname}" />   </td>
+      <h:inputText value="#{bf1.str_CreatedBy}" />   </td>
     </tr>
             </ui:repeat>
             
