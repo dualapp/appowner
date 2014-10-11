@@ -49,6 +49,7 @@ public class Expense implements Serializable{
 	@Column
 	private Integer int_Ammount;
 	
+	
 	 
 	public String getStr_ExpenseId() {
 		return str_ExpenseId;
