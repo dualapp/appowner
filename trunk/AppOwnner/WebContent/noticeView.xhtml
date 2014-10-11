@@ -7,6 +7,11 @@
 	<ui:define name="content">
 	<h:head>
     <title>Welcome to Contact Page</title>
+    <script>
+    .customTitleBar > .ui-panel-titlebar {
+        background: #BBBBBB;
+        }
+    </script>
 </h:head>
 <body>
     <h:form>
@@ -14,40 +19,31 @@
           
        <legend  align="left" style="background-color:#438eb9; color:#fff;"> NotificationList</legend>
                              
-       <p:dataTable   var="notice" value="#{noticeBoardBean.listOfNotice}" style="width: 80%"> 
-           
-          
+       <p:dataGrid    var="notice" value="#{noticeBoardBean.listOfNotice}" columns="3" layout="grid" paginator="true" id="cars"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
        
-         <p:column>
-        <f:facet name="header">
-                    <h:outputText value="Subject" />
-                </f:facet>
-         
-            <h:outputText value="#{notice.str_Subject}"/>
-          </p:column>
-          <p:column>
-           <f:facet name="header">
-                    <h:outputText value="Expired By" />
-                </f:facet>
-         
+           
+          <p:panel header="#{notice.dat_EntryDate}" style="width: 400px; height: 200px;"  styleClass="customTitleBar">
+            <h:panelGrid columns="1" style="width:100%">
+             
+                 <h4>#{notice.str_Subject}</h4>      
+                   <h:outputText value="Dear All,"/> 
+                  <h:outputText value="#{notice.str_Description}"/> 
                  <h:outputText value="#{notice.dat_ExpireOn}">
                    <f:convertDateTime pattern="dd-MM-yyyy"/>
                    </h:outputText>
-         </p:column>
-         <p:column>
-                   <h:outputText value="Visible To:#{notice.str_Visible}"/>
-           </p:column>
-           <p:column>
-          <f:facet name="header">
-                    <h:outputText value="Posted On" />
-                </f:facet>
-         
-                  <h:outputText value="#{notice.dat_EntryDate}">
-                   <f:convertDateTime pattern="dd-MM-yyyy"  />
+                    <h:outputText value="#{notice.dat_EntryDate}">
+                   <f:convertDateTime pattern="dd-MMM-yyyy"  />
                </h:outputText>
+ 
               
-         </p:column>
-           </p:dataTable>
+            </h:panelGrid>
+        </p:panel> 
+       
+        
+          </p:dataGrid>
        
      
       

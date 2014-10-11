@@ -12,44 +12,73 @@
     </h:head>
     <h:form>
     <body>
-    <h:outputLabel value="Organisation:" /> 
+   
                <h:outputLabel value="Organisation:" /> 
-              <p:selectOneMenu       style="width:100px">
+              <p:selectOneMenu       style="width:200px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu><br/>
+                 <br/>
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> Profit And Loss</legend>
                  <h:outputText value="From Date"/>
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_From}">
-                  </p:calendar>&nbsp;&nbsp;
+                  </p:calendar>&nbsp; &nbsp;
                   <h:outputText value="To Date"/>
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_To}">
-                  </p:calendar>
-                  <p:button value="go"/>
+                  </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <p:button value="Go"/>
                  </fieldset>
                  
                  
     </body>
-    </h:form>
-    <h:form>
-    <p:dataTable var="c" value="#{expenseBean.chartOfAccountList}" sortBy="#{c.str_AccountName}">
+    <br/>
+    <br/>
+       <p:dataTable var="e" value="#{expenseBean.chartOfAccountList}">
+        <f:facet name="header">
+          Profit anf Loss
+        </f:facet>
+       
+        <p:columnGroup type="header">
         
-        <p:column headerText="AccountName"  >
-            <h:outputText value="#{c.str_AccountName}" />
-        </p:column>
-        <p:column headerText="Amounts"  >
-            <h:outputText value="#" />
-        </p:column>
-         
+            <p:row>
+                <p:column  headerText="Account Name" />
+                 <p:column  rowspan="3" headerText="Amount" />
+            </p:row>
+           
+           
+        </p:columnGroup>
+        <p:subTable var="stats" value="#{e.str_AccountType}" width="300">
+            <f:facet name="header">
+                <h:outputText value="#{e.str_AccountType}"  rendered="false"/>
+            </f:facet>
+            <p:column>
+                <h:outputText value="#{e.str_AccountName}" />
+            </p:column>
+             <p:column>
+                <h:outputText value="#{accountingBean.int_Credit}" />
+            </p:column>
+            <p:column>
+                <h:outputText value="#{accountingBean.int_Credit}" />
+            </p:column>
+        </p:subTable>
+         <p:columnGroup type="footer">
+                <p:row>
+                    <p:column footerText="Totals: " style="text-align:right"/>
+                    <p:column footerText="#{e.str_AccountType}" />
+                    <p:column footerText="#{e.str_AccountType}" />
+                </p:row>
+            </p:columnGroup>
+        </p:dataTable>
+    
         <p:summaryRow>
-            <p:column colspan="1" style="text-align:right">
+            <p:column colspan="3" style="text-align:right">
                 <h:outputText value="Total Profit:" />
             </p:column>
             <p:column>
                 
             </p:column>
         </p:summaryRow>
-    </p:dataTable>
+   
 </h:form>
 </html>
