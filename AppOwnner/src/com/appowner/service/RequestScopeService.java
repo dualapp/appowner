@@ -6,6 +6,7 @@ import java.util.List;
 import com.appowner.model.BookAFacility;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
+import com.appowner.model.cls_Event;
 
 public interface RequestScopeService {
 
@@ -33,5 +34,7 @@ void updateBookAFacility(BookAFacility bf1);
 List<BookAFacility> getSelectedBookFacility(
 		Integer int_ApartmentId, String str_Status, String str_Period,
 		String str_FacilityType, String str_EventType);
+
+List<cls_Event> getEventList();
 
 }

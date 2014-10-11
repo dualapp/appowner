@@ -10,6 +10,7 @@ import com.appowner.dao.RequestScopeDao;
 import com.appowner.model.BookAFacility;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
+import com.appowner.model.cls_Event;
 
 @Service("RequestScopeService")
 @Transactional
@@ -84,6 +85,11 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 		return getRequestScopeDao().getSelectedBookFacility(
 				int_ApartmentId,   str_Status,   str_Period,
 				  str_FacilityType,str_EventType);
+	}
+	@Override
+	public List<cls_Event> getEventList() {
+		// TODO Auto-generated method stub
+		return getRequestScopeDao().getEventList();
 	}
 	 
 
