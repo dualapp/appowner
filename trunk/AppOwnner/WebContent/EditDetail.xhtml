@@ -22,7 +22,7 @@
  
  <table>
  <tr>
-  <td>&#150;&#150; &#150;&#150;&#150;&#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;<h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
+  <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
             <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.edit1.var_Ad_CategoryName}" style="width:230px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailBean.categories}"  />
@@ -35,7 +35,7 @@
    <tr>
               
              
-              <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+              <td><h:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
              <td><h:inputText  id="ch_Ad_Type" value="#{cls_AddDetailBean.edit1.ch_Ad_Type}" size="30">
              </h:inputText>
              </td>
@@ -45,7 +45,7 @@
     
         <tr> 
         
-        <td><p:outputLabel for="I" value="I want to" /></td>
+        <td><h:outputLabel for="I" value="I want to" /></td>
         <td><h:inputText  id="I" value="#{cls_AddDetailBean.edit1.ch_Product_Type}" size="30" >
         </h:inputText>
         </td>
@@ -56,7 +56,7 @@
           </p:outputPanel>  
   <tr>
            <td>
-          <h:outputText value="Title"></h:outputText></td>
+          <h:outputLabel value="Title"></h:outputLabel></td>
                         
           <td><h:inputText  value="#{cls_AddDetailBean.edit1.var_Title}" size="30">
             </h:inputText>
@@ -65,7 +65,7 @@
   
    
   <tr>
-    <td><h:outputText value="Choose Your  File for upload "></h:outputText></td>
+    <td><h:outputLabel value="Choose Your  File for upload "></h:outputLabel></td>
    <td> <p:fileUpload value="#{cls_AddDetailBean.edit1.var_ImageName}"
         fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
         sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="aaa" style="width:150px"/>
@@ -74,7 +74,7 @@
    
 
 <tr>
-               <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+               <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
                 <td><p:inputTextarea rows="10" cols="60" value="#{cls_AddDetailBean.edit1.var_Description}" >
               </p:inputTextarea>
                
@@ -85,7 +85,7 @@
  
  
     <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml" style=" float:right !important;margin: 0px -500px 100px 0px;" /></td>
-     <td><h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveContact1}" style=" float:right !important;margin: 0px -150px 100px 0px;" >
+     <td><h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveContact1}" style=" float:right !important;margin: 0px -100px 100px 0px;" >
      </h:commandButton>
      </td>
      
