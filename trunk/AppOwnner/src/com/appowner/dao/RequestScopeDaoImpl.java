@@ -11,6 +11,7 @@ import com.appowner.model.BookAFacility;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vendor;
+import com.appowner.model.cls_Event;
 
 @Repository
 public class RequestScopeDaoImpl implements RequestScopeDao {
@@ -135,6 +136,13 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 		}
 		 
 		return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).setCacheable(true).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<cls_Event> getEventList() {
+		//String hql="select str_EventTitle,dat_StartDate,dat_EndDate,str_UserName from cls_Event";
+		return sessionFactory.getCurrentSession().createCriteria(cls_Event.class).setCacheable(true).list();
 	}
 }
 
