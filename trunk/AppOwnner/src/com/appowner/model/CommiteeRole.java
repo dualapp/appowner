@@ -29,12 +29,7 @@ public class CommiteeRole implements Serializable {
 	public void setStr_Commitee_RoleName(String str_Commitee_RoleName) {
 		this.str_Commitee_RoleName = str_Commitee_RoleName;
 	}
-	public String getCh_Commitee_Type() {
-		return ch_Commitee_Type;
-	}
-	public void setCh_Commitee_Type(String ch_Commitee_Type) {
-		this.ch_Commitee_Type = ch_Commitee_Type;
-	}
+	
 	public Integer getIsActive() {
 		return isActive;
 	}
@@ -56,11 +51,24 @@ public class CommiteeRole implements Serializable {
 	@Column(name="var_Commitee_Role_Name")
 	private String str_Commitee_RoleName;
 	@Column(name="ch_Commitee_Role_Type")
-	private String ch_Commitee_Type;
+	private char ch_Commitee_Type;
+	public char getCh_Commitee_Type() {
+		return ch_Commitee_Type;
+	}
+	public void setCh_Commitee_Type(char ch_Commitee_Type) {
+		this.ch_Commitee_Type = ch_Commitee_Type;
+	}
 	@Column(name="isActive")
 	private Integer isActive;
 	@Column(name="isDelete")
 	private Integer isDelete;
 	@Column(name="int_Apartment_ID")
 	private Integer int_ApartmentID;
+	private Integer flag;
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
 }

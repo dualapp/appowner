@@ -2,6 +2,7 @@ package com.appowner.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+@Cacheable(true)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="tb_Role_Master")
 public class RoleMaster implements Serializable {
@@ -55,4 +60,19 @@ public class RoleMaster implements Serializable {
 	private Integer isDelete;
 	@Column(name="int_Apartment_ID")
 	private Integer int_ApartmentID;
+	private Integer flag;
+	public Integer getFlag() {
+		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+	@Column(name="ch_RoleMaster_Type")
+	private char ch_RoleMasterType;
+	public char getCh_RoleMasterType() {
+		return ch_RoleMasterType;
+	}
+	public void setCh_RoleMasterType(char ch_RoleMasterType) {
+		this.ch_RoleMasterType = ch_RoleMasterType;
+	}
 }

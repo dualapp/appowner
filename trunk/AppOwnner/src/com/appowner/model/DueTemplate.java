@@ -3,6 +3,7 @@ package com.appowner.model;
 import java.io.Serializable;
 
 import javax.faces.component.html.HtmlInputHidden;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+@Cacheable(true)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="tb_DueTemplate")
 public class DueTemplate implements Serializable{
