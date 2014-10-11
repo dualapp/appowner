@@ -61,7 +61,7 @@
           </p:outputPanel>  
           <tr>
            <td>
-          <h:outputText value="Title"></h:outputText></td>
+          <h:outputLabel value="Title"></h:outputLabel></td>
                         
           <td><h:inputText  value="#{cls_AddDetailBean.var_Title}" size="35">
             </h:inputText>
@@ -71,7 +71,7 @@
   <br />
    
   <tr>
-    <h:outputText value="Choose Your  File for upload "></h:outputText>
+    <h:outputLabel value="Choose Your  File for upload "></h:outputLabel>
    <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
         fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
         sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa" style="width:250px" />
@@ -80,7 +80,7 @@
        <br />
        <br />
  <tr>
-               <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+               <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
                 <td><p:inputTextarea rows="10" cols="50" value="#{cls_AddDetailBean.var_Description}" >
               </p:inputTextarea>
                
