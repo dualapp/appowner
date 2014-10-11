@@ -12,49 +12,65 @@
     <h:form>
     <fieldset>
      <legend  style="background-color:#438eb9; color:#fff;">Trial Balance</legend>
-                 <h:outputText value="From Date"/>
+                 <h:outputText value="As On"/>&nbsp; &nbsp;
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_From}">
-                  </p:calendar>&nbsp;&nbsp;
-                  <h:outputText value="To Date"/>
+                  </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                 
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_To}">
                   </p:calendar>
                   
                  </fieldset>
                  
-    </h:form>
+   
+    <br/>
+    <br/>
+    
     <p:dataTable var="e" value="#{expenseBean.chartOfAccountList}">
         <f:facet name="header">
           Trial Balance
         </f:facet>
- 
+       
         <p:columnGroup type="header">
+        
             <p:row>
-                <p:column rowspan="2" headerText="Account Name" />
-                <p:column colspan="2" headerText="Statistics" />
+                <p:column rowspan="2" headerText="Account" />
+               
             </p:row>
             <p:row>
                 <p:column headerText="Credit" />
                 <p:column headerText="Debit" />
             </p:row>
         </p:columnGroup>
- 
-        <p:subTable var="stats" value="#{e.str_AccountType}">
-            <f:facet name="header">
-                <h:outputText value="#{e.str_AccountName}" />
-            </f:facet>
-            <p:column>
-                <h:outputText value="#{e.str_OrganizationName}" />
-            </p:column>
+       
+        <p:subTable var="stats" value="#{e.str_AccountType}" width="300">
             
-            <p:columnGroup type="footer">
+            <f:facet name="header">
+                <h:outputText value="#{e.str_AccountType}"  />
+            </f:facet>
+                
+            <p:column>
+                <h:outputText value="#{e.str_AccountName}" />
+            </p:column>
+             <p:column>
+                <h:outputText value="#{accountingBean.int_Credit}" />
+            </p:column>
+            <p:column>
+                <h:outputText value="#{accountingBean.int_Credit}" />
+            </p:column>
+           
+        </p:subTable>
+       
+         <p:columnGroup type="footer">
                 <p:row>
                     <p:column footerText="Totals: " style="text-align:right"/>
                     <p:column footerText="#{e.str_AccountType}" />
                     <p:column footerText="#{e.str_AccountType}" />
                 </p:row>
             </p:columnGroup>
-        </p:subTable>
-    </p:dataTable>
+        </p:dataTable>
+   
+      </h:form>  
+    
 
                 
     </h:body>
