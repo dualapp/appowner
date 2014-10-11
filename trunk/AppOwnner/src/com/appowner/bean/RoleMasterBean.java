@@ -16,6 +16,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.dao.DataAccessException;
 
+import com.appowner.model.CommiteeRole;
 import com.appowner.model.Notice;
 import com.appowner.model.RoleMaster;
 import com.appowner.service.ComplainService;
@@ -80,30 +81,21 @@ public class RoleMasterBean implements Serializable {
 	public void setListRoleMaster(List<RoleMaster> listRoleMaster) {
 		this.listRoleMaster = listRoleMaster;
 	}
-private List<RoleMaster> master; 
-	
-	
-	
-	public List<RoleMaster> getMaster() {
-	return master;
-}
-public void setMaster(List<RoleMaster> master) {
-	this.master = master;
-}
+
+	private List<RoleMaster> master1;
+public List<RoleMaster> getMaster1() {
+		return master1;
+	}
+	public void setMaster1(List<RoleMaster> master1) {
+		this.master1 = master1;
+	}
 	@PostConstruct
     public void init() {
-	master=new ArrayList<RoleMaster>();
+		master1=new ArrayList<RoleMaster>();
 	}
-	public void add() {
-		RoleMaster master1=new RoleMaster();
-	     master.add(master1);
-		 
-	}
-	@SuppressWarnings("unchecked")
-	private List list=new ArrayList();
+private List<Object> list=new ArrayList();
 	
-   
-	public List getList() {
+    public List getList() {
 		return list;
 	}
 	public void setList(List list) {
@@ -113,9 +105,10 @@ public void setMaster(List<RoleMaster> master) {
 
 		
 		list.add(event.getNewValue());
+		System.out.println(list);
 		
 	}
-	private RoleMaster master2=new RoleMaster();;
+	private RoleMaster master2;
 	
 	
 	
@@ -134,15 +127,25 @@ public void setMaster(List<RoleMaster> master) {
         	Object o=itr.next();
         	  
         	str_RoleName=(String)o;
-        
-        	master2.setStr_RoleName(str_RoleName);
+           System.out.println(str_RoleName);
+        master2.setStr_RoleName(str_RoleName);
+        	master2.setCh_RoleMasterType('C');
+        	master2.setFlag(2);
         	getStaffService().addMaster(master2);
         	
         }
         return "RoleMaster.xhtml";
     }
 
-	
+  public void 	getRoleMaster()
+  {
+	 master2= getStaffService().getRoleMaster(int_RoleID);
+  }
+  public String saveRoleMaster()
+  {
+	  getStaffService().updateRoleMaster(master2);
+	return null; 
+  }
 	
 	
 }

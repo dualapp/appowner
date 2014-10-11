@@ -14,12 +14,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 
+import com.appowner.model.DueTemplate;
 import com.appowner.model.Staff;
 import com.appowner.service.ComplainService;
 import com.appowner.service.StaffService;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class StaffRoleBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -80,7 +81,7 @@ public class StaffRoleBean implements Serializable {
 	public List<Staff> getListStaffRoles() {
 		ListStaffRoles=new ArrayList<Staff>();
 		ListStaffRoles.addAll( getStaffService().listStaffRoles());
-		System.out.println(ListStaffRoles);
+	
 		return ListStaffRoles;
 	}
 	public void setListStaffRoles(List<Staff> listStaffRoles) {
@@ -95,15 +96,7 @@ public class StaffRoleBean implements Serializable {
 	public void setStaff(List<Staff> staff) {
 		this.staff= staff;
 	}
-	@PostConstruct
-    public void init() {
-	staff=new ArrayList<Staff>();
-	}
-	public void add() {
-		Staff s=new Staff();
-	     staff.add(s);
-		 
-	}
+	
 	private List<Object> list=new ArrayList();
 	
     public List getList() {
@@ -118,7 +111,7 @@ public class StaffRoleBean implements Serializable {
 		list.add(event.getNewValue());
 		
 	}
-	private Staff staff1=new Staff();;
+	private Staff staff1;
 	
 	public Staff getStaff1() {
 		return staff1;
@@ -151,6 +144,19 @@ public class StaffRoleBean implements Serializable {
 	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
-   
-	
+	public void getStaffRole()
+	{   System.out.println(int_StaffID);
+	    staff1=getStaffService().getStaffRole(int_StaffID);
+	}
+	public String saveStaff( ) {
+		 
+		//System.out.println(emp.getEmpId());
+		
+		getStaffService().updateStaffRole(staff1);
+			
+		
+		
+		
+		return null;
+	}
 }
