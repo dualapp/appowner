@@ -570,8 +570,7 @@ public class AdvertisementBean  implements Serializable{
 					agency.setStr_CompanyName(getStr_CompanyName());
 					agency.setVar_ImageName(path1);
 					agency.setStr_content(getStr_content());
-					
-					getAdvertisementService().addagencies(agency);
+				    getAdvertisementService().addagencies(agency);
 					
 					
 }
