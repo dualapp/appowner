@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>paymentlist</title>
+    <a href="waterpaymentlist.xhtml">List of Payments</a>
+</h:head>
+ <body bgcolor="yellow">
+ 
+ <h:messages/>
+  
+    <h:form method="post">
+          <div>  <legend  align="left" style="background-color:#438eb9; color:#fff;">
+           <h:outputText value="VendorType"/>
+       <p:selectOneMenu id="str_VendorType"  value="#{waterPaymentBean.str_VendorType}" style="width:200px" >
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem itemLabel="Electrician" itemValue="Electrician" />
+            <f:selectItem itemLabel="WaterSupplier" itemValue="WaterSupplier" />
+            <f:selectItem itemLabel="MilkProvider" itemValue="MilkProvider" />
+             <f:selectItem itemLabel="IronMan" itemValue="IronMan" />
+            </p:selectOneMenu> 
+        <h:outputText value="From Date"/>
+         <p:calendar  navigator="true" display="inline" value="#{ waterPaymentBean.date_FromDate}">
+         </p:calendar>
+         <h:outputText value="ToDate"/>
+          <p:calendar  navigator="true" display="inline" value="#{waterPaymentBean.date_ToDate}">
+          </p:calendar> 
+         <h:commandButton  style="width:200px" update="dataTable" icon="ui-icon-search" value="Search"   action="#{waterPaymentBean.getWaterPaymentList()}">
+       </h:commandButton> </legend> 
+         </div>
+      
+        
+    
+     <br/><br/><br/>
+           
+        <p:dataTable id="dataTable"    rows="3"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3" var="waterpaymentlist" value="#{waterPaymentBean.waterPaymentList}" style="width: 100%">
+             
+        
+          <p:column   sortBy="#{waterpaymentlist.int_WaterPaymentId}"  headerText="Payment ID" footerText="Payment ID" width="200">
+           
+              <h:outputText  id="int_WaterPaymentId" value="#{waterpaymentlist.int_WaterPaymentId}" />
+              
+                
+            </p:column>
+            <p:column   sortBy="#{waterpaymentlist.str_VendorType}"  headerText="Vendor Type" footerText="Vendor Type" width="200">
+           
+              <h:outputText  id="str_VendorType" value="#{waterpaymentlist.str_VendorType}" />
+              
+                
+            </p:column>
+            <p:column   sortBy="#{waterpaymentlist.str_VendorName}"  headerText="Vendor Name" footerText="Vendor Name" width="200">
+           
+             <h:outputText  id="str_VendorName" value="#{waterpaymentlist.str_VendorName}" />
+              
+                
+            </p:column>
+            <p:column   sortBy="#{waterpaymentlist.int_NoOfTankers}"  headerText="No Of Tankers" footerText="No Of Tankers" width="200">
+           
+              <h:outputText  id="int_NoOfTankers" value="#{waterpaymentlist.int_NoOfTankers}" />
+              
+                
+            </p:column>
+            
+             <p:column   sortBy="#{waterpaymentlist.dbl_PricePerTanker}"  headerText="price per Tanker" footerText="price per Tanker" width="200">
+           
+              <h:outputText  id="dbl_PricePerTanker" value="#{waterpaymentlist.dbl_PricePerTanker}" />
+              
+                
+            </p:column>
+            <p:column   sortBy="#{waterpaymentlist.dbl_TotalPrice}"  headerText="Total Price" footerText="Total Price" width="200">
+           
+               <h:outputText  id="dbl_TotalPrice" value="#{waterpaymentlist.dbl_TotalPrice}" />
+              
+                
+            </p:column>
+            <p:column   sortBy="#{waterpaymentlist.date_FromDate}"  headerText="From Date" footerText="From Date" width="200">
+           
+              <h:outputText  id="date_FromDate" pattern="MM/dd/yyyy" value="#{waterpaymentlist.date_FromDate}" />
+              
+            </p:column>
+            <p:column   sortBy="#{waterpaymentlist.date_ToDate}"  headerText="To Date" footerText="To Date" width="200">
+           
+              <h:outputText  id="date_ToDate"   value="#{waterpaymentlist.date_ToDate}" >
+                 <f:convertDateTime pattern="dd/MM/yy"/>
+                 </h:outputText>
+              
+            </p:column>
+            <p:column   sortBy="#{waterpaymentlist.date_Date}"  headerText="Payment Date" footerText="Payment Date" width="200">
+           
+             <h:outputText  id="date_Date" pattern="MM/dd/yyyy" value="#{waterpaymentlist.date_Date}" />
+                 
+              
+            </p:column>
+            
+          
+            
+             <p:column headerText="Action" footerText="action" width="200">
+                 
+                    
+             <h:link outcome="waterpaymentview.xhtml" value="View">
+             <f:param name="int_WaterPaymentId" value="#{waterpaymentlist.int_WaterPaymentId}" />
+            </h:link>
+	   		<h:link outcome="editwaterpayment.xhtml">
+	   			<p:graphicImage  height="20" width="20" alt="Edit" value="images/k1.png"/> 
+	   				<f:param name="int_WaterPaymentId" value="#{waterpaymentlist.int_WaterPaymentId}" />
+	   		</h:link>
+	   		 <h:link outcome="deletewaterpayment.xhtml"
+	   		 onclick="return confirm('Are you sure you want to delete #{waterpaymentlist.str_VendorName}?');" > 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
+	   				<f:param name="int_WaterPaymentId" value="#{waterpaymentlist.int_WaterPaymentId}" />
+	   		</h:link>
+            </p:column>
+            
+            
+</p:dataTable>
+</h:form>
+</body>
+</ui:define>
+</ui:composition>

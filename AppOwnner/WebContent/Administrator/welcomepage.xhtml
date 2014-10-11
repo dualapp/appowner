@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../include/templates/template.xhtml">
+	<ui:define name="content">
+	
+         <h:head>
+         <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+         </h:head>
+
+<html>
+ <body>
+<table>
+   <tr> 
+     <td style="border-width:1px; border-color:Black ; border-style :groove ;" width="900"><ui:include src="News1.xhtml" />
+     </td>
+     <td align="right" style="border-width:1px; border-color:Black ; border-style :groove ;" width="100">
+     
+     <ui:include src="dashboard.xhtml" />
+     
+     </td>
+    </tr></table>
+</body>
+<!-- <div align="left" style="width:100;height:100;border:solid;border-width:2;">
+<ui:include src="News1.xhtml" />
+</div>
+
+<div style="width:1024;height:200;">
+<div style="width:300;height:200;border:solid;border-width:2;float:left;"></div>
+<div style="width:300;height:200;border:solid;border-width:2;float:right;"></div>
+</div>
+
+<div align="right" style="height:100;width:100;border:solid">
+<ui:include src="latesteventimages.xhtml" />
+</div> -->
+</html>
+
+         
+        
+         
+            
+           <!--  <form action="" id="q1">
+             
+             <table>
+             <tr>
+             <td id="q2"><ui:include src="News1.xhtml" /></td>
+             <td><ui:include src="latesteventimages.xhtml" /></td>
+                </tr>
+                </table>
+           
+            
+             </form> -->
+             
+            
+       
+               
+            
+</ui:define>
+</ui:composition>
+

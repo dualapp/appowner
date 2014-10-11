@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:head>
+    <title>profit and loss Form</title>
+    </h:head>
+    <h:form>
+    <body>
+    <h:outputLabel value="Organisation:" /> 
+               <h:outputLabel value="Organisation:" /> 
+              <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu><br/>
+                 <fieldset>
+                 <legend  style="background-color:#438eb9; color:#fff;"> Profit And Loss</legend>
+                 <h:outputText value="From Date"/>
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_From}">
+                  </p:calendar>&nbsp;&nbsp;
+                  <h:outputText value="To Date"/>
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_To}">
+                  </p:calendar>
+                  <p:button value="go"/>
+                 </fieldset>
+                 
+                 
+    </body>
+    </h:form>
+    <h:form>
+    <p:dataTable var="c" value="#{expenseBean.chartOfAccountList}" sortBy="#{c.str_AccountName}">
+        
+        <p:column headerText="AccountName"  >
+            <h:outputText value="#{c.str_AccountName}" />
+        </p:column>
+        <p:column headerText="Amounts"  >
+            <h:outputText value="#" />
+        </p:column>
+         
+        <p:summaryRow>
+            <p:column colspan="1" style="text-align:right">
+                <h:outputText value="Total Profit:" />
+            </p:column>
+            <p:column>
+                
+            </p:column>
+        </p:summaryRow>
+    </p:dataTable>
+</h:form>
+</html>

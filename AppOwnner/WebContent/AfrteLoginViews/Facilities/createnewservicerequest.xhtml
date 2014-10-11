@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+<link href="include/assets/css/ace.min.css" rel="stylesheet" />
+<style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+    </h:head>
+    <a href="servicerequest.xhtml">>>Back To Service Request</a >
+    <h:form>
+     
+    <h:body>
+    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+    <tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <th><h:outputText value="Organization"/></th> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <th><h:outputText value="Block"/></th>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
+   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <th><h:outputText value="Type"/></th> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
+    
+    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.userloginname}"/></td>   <th><h:outputText value="Email"/></th>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
+    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <th><h:outputText value="LandLine"/></th>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+   <tr><th><h6><h:outputText value="Service Request Details"/></h6></th></tr>
+    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputText value="Date Closed"/></th>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><th><h:outputText value="Status"/></th> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <th><h:outputText value="VendorCategory"/></th>  <td><p:selectOneMenu value="#{loginBean.str_VendorType}">
+    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></p:selectOneMenu>
+    </td></tr>
+   <tr><th><h:outputText value="Title*"/></th>  <td><h:inputText id="Title" required="true" requiredMessage="plz  enter Title" value="#{loginBean.str_Title}">
+   <p:ajax event="blur" update="TitleMsg" />
+   </h:inputText>
+   
+   </td>
+   <td> <p:message  id="TitleMsg" for="Title" display="text"/> </td>
+   </tr>
+   </table>
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr><th><h:outputText value="Description*"/></th>  <td></td><td><p:editor id="editor" required="true" requiredMessage="plz  Enter Description"  widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td>
+    <td> <p:message  id="editorMsg" for="editor" display="text"/> </td>
+   </tr>
+   <tr><td> <h:commandButton  styleClass="btn" style="width:100px" onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addServiceRequest()}"/></td><td> <h:commandButton  styleClass="btn" style="width:100px" value="Cancel" action="#"/> </td></tr>
+                 
+    </table>
+    <script>
+	 
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
+           
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Do u want to sent Email to Manager');
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
+    </h:body>
+    <a href="servicerequest.xhtml">>>Back To Service Request</a >
+    </h:form>
+	</ui:define>
+</ui:composition>
+ 

@@ -1,0 +1,291 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../include/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:define name="content">
+	<h:head>
+
+	<title></title>
+	 <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+
+ </h:head>
+	 <h:form id="form">
+	 <p:growl id="msgs" showDetail="true" />
+	<h:body>
+	<br/>
+	<fieldset>
+  <legend  style="background-color:#438eb9; color:#fff;"> Book Facility</legend>
+ <div><table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
+               <h:outputText value="Organisation:" /> </th>
+             <td> <p:selectOneMenu  value="#{requestScopeBean.str_OrganizationName}"     style="width:100px">&nbsp;
+              <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
+    </p:selectOneMenu></td>
+   <th><h:outputText value="Falility"/></th>  <td><p:selectOneMenu id="Facility" value="#{requestScopeBean.str_FacilityType}"  style="width:100px" >
+    <f:selectItem itemLabel="Select One" itemValue="" />
+     <f:selectItems value="#{expenseBean.facilityTypeList}"/>
+     
+    </p:selectOneMenu>
+    </td>
+    <th><h:outputText value="Status"></h:outputText></th>
+    <td> <p:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
+              <f:selectItem itemLabel="All"  itemValue="All" />
+              <f:selectItem itemLabel="open"  itemValue="open" />
+              <f:selectItem itemLabel="Pending Aproval"  itemValue="Pending Aproval" />
+              <f:selectItem itemLabel="Closed"  itemValue="RequestClosed" />
+            </p:selectOneMenu>
+            </td>
+   
+     </tr>
+    <tr><th><h:outputText value="Period"></h:outputText></th>
+    <td><p:selectOneMenu value="#{requestScopeBean.str_Period}">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
+            <f:selectItem  itemLabel="Lastweek" itemValue="Private" />
+             <f:selectItem  itemLabel="CurrentMonth" itemValue="Private" />
+              <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
+               <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
+                <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
+      </p:selectOneMenu></td>
+    <th><h:outputText value="Event Type"/></th> 
+   <td><p:selectOneMenu value="#{requestScopeBean.str_EventType}">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem   itemValue="Public" itemLabel="Public"/>
+            <f:selectItem  itemLabel="Private" itemValue="Private" />
+      </p:selectOneMenu></td> 
+     
+     <td></td><td><h:commandButton update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
+    </tr>
+    </table></div>
+    </fieldset>
+	  
+           <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+           <tr><td>     
+              <h:commandButton    action="createnewbookafacility" value="create new" />&#150; &#150;<p:commandButton icon="ui-icon-refresh" value="Refresh" />
+	    &#150; &#150; <p:menuButton value="Action">
+        <p:menuitem value="Assign Selected" action="#{requestScopeBean.assignRequestedService}"/>
+        <p:menuitem value="close Selected" action="#{requestScopeBean.closeRequestedService}"/>
+         <p:menuitem value="Notify By Email" process="DT"  update=":form:bookedDetail1"    oncomplete="PF('bookedDialog1').show()" />
+        <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
+        <p:menuitem value="View Chart" />
+         <p:menuitem value="View Summary" />
+         <p:menuitem value="Export To Excel"/>
+        </p:menuButton>
+         &#150; &#150;  <p:commandButton process="DT" update=":form:bookDetail2" icon="ui-icon-info" value="View" oncomplete="PF('bookDialog2').show()" />
+       &#150; &#150; <p:commandButton process="DT" update=":form:bookDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('bookDialog3').show()" />
+       &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{requestScopeBean.deleteBookedFacility()}" icon="ui-icon-trash" value="Delete" />
+       <h:commandLink id="excel">
+       <p:graphicImage  height="20" width="20" alt="excel" value="images/excel.jpg"/>
+        <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+ 
+    <h:commandLink id="pdf">
+       <p:graphicImage  height="20" width="20" alt="pdf" value="images/pdf.jpg"/>
+        <p:dataExporter type="pdf"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+ 
+    <h:commandLink id="csv">
+       <p:graphicImage  height="20" width="20" alt="cvs" value="images/cvs.png"/>
+        <p:dataExporter type="csv"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+ 
+    <h:commandLink id="xml">
+       <p:graphicImage  height="20"    width="20" alt="xml" value="images/xml.png"/>
+        <p:dataExporter type="xml"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+     
+       </td></tr></table>
+	 
+	       
+             <p:dataTable   id="DT"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
+               rows="3"  paginatorPosition="bottom" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="1,2,3"  var="Bf"  value="#{requestScopeBean.bookAFacilityList}"   selection="#{requestScopeBean.selectedBookAFacility}" rowKey="#{Bf.int_FacilityBookId}">
+	 
+	 
+	 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+            </p:column>
+          <p:column headerText="Organization">
+                <h:outputText value="#{loginBean.str_ApartmentName}" /> 
+            
+	 </p:column>
+	  <p:column headerText="EventName">
+                <h:outputText value="#{Bf.str_EventName}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Facility">
+                <h:outputText value="#{Bf.str_FacilityType}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Start Date">
+                <h:outputText value="#{Bf.str_OpenDate}" /> 
+            
+	 </p:column>
+	 <p:column headerText="End Date">
+                <h:outputText value="#{Bf.str_CloseDate}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Event Type">
+                <h:outputText value="#{Bf.str_EventType}" /> 
+            
+	 </p:column>
+	  <p:column headerText="Created By">
+                <h:outputText value="#{Bf.str_CreatedBy}"/> 
+            
+	 </p:column>
+	 
+	 </p:dataTable>
+	 
+	  <p:dialog header="Email" widgetVar="bookedDialog1" showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+        <p:outputPanel id="bookedDetail1" style="text-align:center;">
+            <fieldset>
+            <legend  style="background-color:#438eb9; color:#fff;">Email</legend>
+            <table>
+            <tr><th><h:outputText value="Select recipient"/></th>
+            <td><h:selectOneRadio id="Audience"
+                      value="#{expenseBean.str_PoolAudience}">
+        <f:selectItem   itemLabel="All Members" itemValue="1" />
+        <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
+        </h:selectOneRadio></td></tr>
+       <tr> <th><h:outputText value="To"/></th><br/>
+       <td><p:inputTextarea value="#{loginBean.str_EmailId}" readonly="true" rows="6" cols="33"/></td></tr>
+       <tr><th><h:outputText value="MESSAGE*"/></th><br/>
+        <td><p:inputTextarea   rows="6" cols="33"/></td></tr>
+       <tr><td><h:commandButton value="Send"/></td>  <td><h:commandButton value="Cancel"/></td></tr>
+        </table>
+        
+        
+            </fieldset>
+            
+            </p:outputPanel>
+            </p:dialog>
+            
+             <p:dialog header="BookedFacility Details" widgetVar="bookDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="bookDetail2" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{requestScopeBean.selectedBookAFacility}" var="bf1">
+               <tr>
+ <th>
+    <h:outputText value="Organization:"/></th>
+    <td>
+    <h:outputText value="#{loginBean.str_ApartmentName}" /></td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="Event Name:"/></th>
+    <td>
+      <h:outputText value="#{bf1.str_EventName}" /> </td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="Facility:"/></th>
+    <td>
+     <h:outputText value="#{bf1.str_FacilityType}" />  </td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Open Date:"/></th>
+    <td>
+      <h:outputText value="#{bf1.str_OpenDate}" />   </td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Close Date:"/></th>
+    <td>
+      <h:outputText value="#{bf1.str_CloseDate}" />   </td>
+    </tr>
+    
+       <tr>
+ <th>
+    <h:outputText value="Event Type:"/></th>
+    <td>
+      <h:outputText value="#{bf1.str_EventType}" />    </td>
+    </tr>
+    
+      <tr>
+ <th>
+    <h:outputText value="Created By:"/></th>
+    <td>
+      <h:outputText value="#{bf1.str_CreatedBy}" />   </td>
+    </tr>
+            
+            </ui:repeat>
+            </table>
+            </p:outputPanel>
+            </p:dialog>
+            
+             <p:dialog header="Edit BookedFacility Details" widgetVar="bookDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="bookDetail3" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{requestScopeBean.selectedBookAFacility}" var="bf1">
+            
+             <tr>
+ <th>
+    <h:outputText value="Organization:"/></th>
+    <td>
+    <h:inputText value="#{loginBean.str_ApartmentName}" /></td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="Event Name:"/></th>
+    <td>
+      <h:inputText value="#{bf1.str_EventName}" /> </td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="Facility:"/></th>
+    <td>
+     <h:inputText value="#{bf1.str_FacilityType}" />  </td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Open Date:"/></th>
+    <td>
+      <h:inputText value="#{bf1.str_OpenDate}" />   </td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Close Date:"/></th>
+    <td>
+     <h:inputText value="#{bf1.str_CloseDate}" />   </td>
+    </tr>
+    
+       <tr>
+ <th>
+    <h:outputText value="Event Type:"/></th>
+    <td>
+      <h:inputText  value="#{bf1.str_EventType}" />    </td>
+    </tr>
+    
+      <tr>
+ <th>
+    <h:outputText value="Created By:"/></th>
+    <td>
+      <h:inputText value="#{bf1.str_CreatedBy}" />   </td>
+    </tr>
+            </ui:repeat>
+            
+           <tr><td><h:commandButton value="update" action="#{requestScopeBean.updateBookAFacility(bf1)}"/></td> <td><h:commandButton action="book a facility.xhtml" value="Cancel"/></td></tr>
+            </table>
+            </p:outputPanel>
+            </p:dialog>
+	 </h:body>
+	 </h:form>
+	</ui:define>
+	</ui:composition>
+	
+	 
