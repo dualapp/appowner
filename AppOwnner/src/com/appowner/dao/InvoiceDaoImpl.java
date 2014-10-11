@@ -28,7 +28,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	@SuppressWarnings("unchecked")
 	public List<String> getInvoiceName()
 	{
-		List<String> invoiceList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).setProjection(Projections.property("str_InvoiceTemplateName")).list();
+		List<String> invoiceList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).setCacheable(true).setProjection(Projections.property("str_InvoiceTemplateName")).list();
 		
 		  return  invoiceList;
 	}
@@ -66,12 +66,12 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	{
 		if(str_InvoiceTemplate==null && str_Block==null && str_ApartmentNo==null && str_Status==null && str_BillPeriod==null)
 		{
-		   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).list();
+		   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
 	    }
 		else
 		{
 			String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND str_Status=?";
-			return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
+			return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
 		          .setParameter(3, str_ApartmentNo).setParameter(4, str_Status).list();
 		}
 		

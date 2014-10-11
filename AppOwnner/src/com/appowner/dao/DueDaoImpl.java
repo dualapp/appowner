@@ -25,14 +25,14 @@ public class DueDaoImpl implements DueDao{
 	@SuppressWarnings("unchecked")
 	public List<String> getAccountsList()
 	{
-		List<String> accountList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).setProjection(Projections.property("str_Accounts")).list();
+		List<String> accountList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).setCacheable(true).setProjection(Projections.property("str_Accounts")).list();
 		return accountList;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<String> getDueTemplate()
 	{
-		List<String> dueTemplateList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).setProjection(Projections.property("str_DueTemplate")).list();
+		List<String> dueTemplateList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).setCacheable(true).setProjection(Projections.property("str_DueTemplate")).list();
 		return dueTemplateList;
 	}
 	public Integer saveDueTransaction(DueTransaction due)
@@ -44,7 +44,7 @@ public class DueDaoImpl implements DueDao{
 	{
 		if(str_DueTemplate==null && str_Block==null && str_ApartmentNo==null && str_Period==null && str_Status==null)
 		{
-		return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).list();
+		return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
 		}
 		else
 		{

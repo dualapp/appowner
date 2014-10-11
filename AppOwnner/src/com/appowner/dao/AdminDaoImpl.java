@@ -34,7 +34,7 @@ public class AdminDaoImpl implements AdminDao{
 	 @SuppressWarnings("unchecked")
 	 public List<UserApartment> listApartment()
 	 {
-		 return (List<UserApartment>) getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).list();	 
+		 return (List<UserApartment>) getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).setCacheable(true).list();	 
 	 }
 	 public Long count(String ApartmentName)
 	 {

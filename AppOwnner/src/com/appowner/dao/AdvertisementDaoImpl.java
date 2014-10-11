@@ -38,7 +38,7 @@ public class AdvertisementDaoImpl implements AdvertisementDao{
 	 @SuppressWarnings("unchecked")
 	public List<PanelPrice> listPanelPrice()
 	 {
-		 return (List<PanelPrice>) getSessionFactory().getCurrentSession().createCriteria(PanelPrice.class).list();
+		 return (List<PanelPrice>) getSessionFactory().getCurrentSession().createCriteria(PanelPrice.class).setCacheable(true).list();
 	 }
 	 
 	 @SuppressWarnings("unchecked")

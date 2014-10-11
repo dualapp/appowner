@@ -37,19 +37,19 @@ public class ComplainDaoImpl implements ComplainDao {
 	 @SuppressWarnings("unchecked")
 	public List<Complain> listComplain()
 	 {
-		 return (List<Complain>) getSessionFactory().getCurrentSession().createCriteria(Complain.class).list();
+		 return (List<Complain>) getSessionFactory().getCurrentSession().createCriteria(Complain.class).setCacheable(true).list();
 	 }
 	 @SuppressWarnings("unchecked")
 	public List<Contact> listContact()
 	 {
-		 return (List<Contact>) getSessionFactory().getCurrentSession().createCriteria(Contact.class).list();
+		 return (List<Contact>) getSessionFactory().getCurrentSession().createCriteria(Contact.class).setCacheable(true).list();
 	 }
 	
 	
 	 @SuppressWarnings("unchecked")
 	public List<String> vendorList()
 	{
-		List<String> vendorList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(Vendor.class).setProjection(Projections.property("str_VendorType")).list();
+		List<String> vendorList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(Vendor.class).setCacheable(true).setProjection(Projections.property("str_VendorType")).list();
 		  System.out.println( (vendorList).listIterator().hasNext());
 		  System.out.println(vendorList);
 		  return  vendorList;
@@ -59,7 +59,7 @@ public class ComplainDaoImpl implements ComplainDao {
 	 {
 		 System.out.println(str_VendorType);
 			String hql=" select str_VendorName from Vendor  where str_VendorType=?";
-			List<String> nameList=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_VendorType).list();
+			List<String> nameList=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_VendorType).list();
 			 
 			
 			return nameList; 
@@ -67,7 +67,7 @@ public class ComplainDaoImpl implements ComplainDao {
 	  @SuppressWarnings("unchecked")
 	public List<String> blockList()
 	  {
-		  List<String> blockList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_Block")).list();
+		  List<String> blockList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(User.class).setCacheable(true).setProjection(Projections.property("str_Block")).list();
 		  System.out.println( (blockList).listIterator().hasNext());
 		  System.out.println(blockList);
 		  return  blockList;
@@ -77,7 +77,7 @@ public class ComplainDaoImpl implements ComplainDao {
 	  {
 		  System.out.println(Block);
 			String hql=" select str_Flat from User  where str_Block=?";
-			List<String> flatList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Block).list();
+			List<String> flatList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Block).list();
 			 
 		
 			System.out.println(flatList);
@@ -87,7 +87,7 @@ public class ComplainDaoImpl implements ComplainDao {
 	public List<String> renterListFlat(String Flat) {
 		  System.out.println(Flat);
 			String hql=" select str_Username from User  where str_Flat=?";
-			List<String> renterList= (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Flat).list();
+			List<String> renterList= (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Flat).list();
 			 
 			System.out.println(renterList);
 			return renterList;    
