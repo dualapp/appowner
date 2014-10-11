@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -28,6 +29,7 @@ import org.primefaces.model.ScheduleModel;
 import com.appowner.model.BookAFacility;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vendor;
+import com.appowner.model.cls_Event;
 import com.appowner.service.In_UserService;
 import com.appowner.service.RequestScopeService;
 import com.appowner.util.Util;
@@ -288,6 +290,7 @@ public void setToday(String today) {
 }
 //Schedule Event
 private ScheduleModel eventModel;
+private List<cls_Event> eventList;
 public ScheduleModel getEventModel() {
 	return eventModel;
 }
@@ -299,8 +302,17 @@ public void init() {
 	Date date = new Date();
 	 
     eventModel = new DefaultScheduleModel();
-    eventModel.addEvent(new DefaultScheduleEvent("Birth Day Party",nextDay9Am(),nextDay11Am() ));
-    eventModel.addEvent(new DefaultScheduleEvent("Election",theDayAfter3Pm(),fourDaysLater3pm() ));
+    
+    ListIterator<cls_Event> itr=getEventList().listIterator();
+    while(itr.hasNext())
+    {
+    	  event1=itr.next();
+    	String ename=event1.getStr_EventTitle();
+    	String user=event1.getStr_UserName();
+    	Date sDate=event1.getDat_StartDate();
+    	Date eDate=event1.getDat_EndDate();
+    	 eventModel.addEvent(new DefaultScheduleEvent(ename,sDate,eDate, user));
+    }
     
  
 }
@@ -363,6 +375,21 @@ public ScheduleEvent getEvent() {
 }
 public void setEvent(ScheduleEvent event) {
 	this.event = event;
+}
+private cls_Event event1;
+public List<cls_Event> getEventList() {
+	eventList=new ArrayList<cls_Event>();
+	eventList.addAll(getRequestScopeService().getEventList());
+	return eventList;
+}
+public void setEventList(List<cls_Event> eventList) {
+	this.eventList = eventList;
+}
+public cls_Event getEvent1() {
+	return event1;
+}
+public void setEvent1(cls_Event event1) {
+	this.event1 = event1;
 }
 }
 
