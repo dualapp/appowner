@@ -56,6 +56,7 @@ public class ExpenseBean  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String str_AssetCategoryType;
+	private String str_Name ;
 	public String getStr_AssetCategoryType() {
 		return str_AssetCategoryType;
 	}
@@ -666,7 +667,8 @@ public String saveParking()
 }
  
 public String deleteParkingSlot()
-{System.out.println("HBNNNNNNNNNNNNNNNNNNNNNNNNNm");
+{
+	System.out.println("HBNNNNNNNNNNNNNNNNNNNNNNNNNm");
 	Parking p=new Parking();
 	System.out.println(int_ParkingId+"kalpana");
 	p.setInt_ParkingId(int_ParkingId);
@@ -760,7 +762,7 @@ public void  handleFileUpload(FileUploadEvent event) throws IOException {
 	   path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	    str_AppartmentLogo = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-	    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
     	if (file.mkdir()) {
     		System.out.println("Directory is created!");
@@ -808,7 +810,7 @@ public void  handleFileUpload2(FileUploadEvent event) throws IOException {
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	    str_Document_Upload = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 	     
-	    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
    	if (file.mkdir()) {
    		System.out.println("Directory is created!");
@@ -845,7 +847,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
     str_AppartmentImg = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
     
    // System.out.println(str_AppartmentImg);
-    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
     if (!file.exists()) {
 	if (file.mkdir()) {
 		System.out.println("Directory is created!");
@@ -899,7 +901,14 @@ public void addOrganizationLogo ()
 	ol.setStr_Appartment_Img(getStr_AppartmentImg());
      
 	getExpenseService().addOrganizationLogo(ol);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Added Successfully!", "  Added Successfully!"));
+	 
 	}
+	 
 }
  
  
@@ -908,7 +917,7 @@ public   void getOrganizationLogo()
 { ol=new OrganizationLogo();
   ol=getExpenseService().getOrganizationLogo(Util.getAppartmentId());
   System.out.println(ol+""+"hgxdddddddddddddddd");
-  File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+  File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
   if (!file.exists()) {
 	if (file.mkdir()) {
 		System.out.println("Directory is created!");
@@ -1174,13 +1183,19 @@ public String getPath3() {
 public void setPath3(String path3) {
 	this.path3 = path3;
 }
-public void saveAssetCategory()
+public String saveAssetCategory()
 {
 	assetcategory=new AssetCategory();
 	assetcategory.setStr_assetcat_name(str_AssetCategoryType);
 	assetcategory.setStr_OrganizationName(str_OrganizationName);
 	
 	getExpenseService().saveAssetCategory(assetcategory);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Added Successfully!", " Added Successfully!"));
+	return"assetcategory.xhtml";
 }
 /*
  * chart of accounts concept
@@ -1335,6 +1350,11 @@ public void saveChartOfAccount()
 	chartOfAccount.setStr_OrganizationName(str_OrganizationName);
 	chartOfAccount.setStr_AccountType(str_AccountType);
 	getExpenseService().saveChartOfAccount(chartOfAccount);
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Added Successfully!", " Added Successfully!"));
 	
 	
 }
@@ -1928,6 +1948,13 @@ public List<Parking> getParkingSpaceList1() {
 }
 public void setParkingSpaceList1(List<Parking> parkingSpaceList1) {
 	this.parkingSpaceList1 = parkingSpaceList1;
+}
+public String getStr_Name() {
+	str_Name="../../";
+	return str_Name;
+}
+public void setStr_Name(String str_Name) {
+	this.str_Name = str_Name;
 }
 
 	
