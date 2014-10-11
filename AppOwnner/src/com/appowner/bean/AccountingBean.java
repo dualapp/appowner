@@ -39,6 +39,7 @@ import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 import com.appowner.service.AccountsService;
+import com.appowner.service.TemplateService;
 import com.appowner.util.Util;
 
 @ManagedBean
@@ -274,7 +275,7 @@ public void setInt_AccountId(Integer int_AccountId) {
 	this.int_AccountId = int_AccountId;
 }
 public String getStr_OrganizationName() {
-	str_OrganizationName="priya";
+	str_OrganizationName=Util.getAppartmentName();
 	return str_OrganizationName;
 }
 public void setStr_OrganizationName(String str_OrganizationName) {
@@ -388,7 +389,7 @@ public void init() {
     {
     //	list=new ArrayList<String>();
     	String accountGroup=(String) itr.next();
-    	System.out.println(accountGroup+"fdfggf");
+    
     	 accountTypeList=new ArrayList<String>();
     	
     	accountTypeList.addAll(getAccountsService().getAccountTypeList(accountGroup.charAt(0)));
@@ -582,7 +583,7 @@ public void getSearch()
 {  
 	
 	
-   str_Accounts=getAccountsService().getAccountName1(id1);
+  str_Accounts=getAccountsService().getAccountName1(id1);
   
    if(str_Accounts.equals("Accounts Receivable"))
    { 
@@ -686,7 +687,7 @@ public double getCredit() {
 
 	
 	
-	
+	try{
 	if(str_Accounts.equalsIgnoreCase(str))
 	{    
 	   if(str_Accounts.equalsIgnoreCase("Bank") || str_Accounts.equalsIgnoreCase("Cash"))
@@ -755,9 +756,16 @@ public double getCredit() {
 			
 		  }
 	return credit;	
-	}	
+	}
+	
 	else
 	System.out.println(credit+"huy");
+	return credit;
+	}
+	catch(Exception e)
+	{
+		e.getMessage();
+	}
 	return credit;
 }
 public void setCredit(double credit) {
@@ -1088,5 +1096,49 @@ public List<Expense> getListExpense() {
 }
 public void setListExpense(List<Expense> listExpense) {
 	this.listExpense = listExpense;
+}
+@ManagedProperty(value = "#{TemplateService}")
+private TemplateService templateService;
+public TemplateService getTemplateService() {
+	return templateService;
+}
+public void setTemplateService(TemplateService templateService) {
+	this.templateService = templateService;
+}
+private List<String> income1;
+public String getIncome1() {
+	income1=new ArrayList<String>();
+	income1.addAll(getTemplateService().listRavenues());
+	StringBuilder out = new StringBuilder();
+	for (Object o : income1)
+	{
+	  out.append(o.toString());
+	  out.append(",");
+	}
+	String str4=out.toString();
+	return  str4.substring(0, str4.lastIndexOf(","));
+	
+}
+
+public String getAsset() {
+	asset=new ArrayList<String>();
+	asset.addAll(getAccountsService().listAssets());
+	StringBuilder out = new StringBuilder();
+	for (Object o : asset)
+	{
+	  out.append(o.toString());
+	  out.append(",");
+	}
+	String str5=out.toString();
+	return  str5.substring(0, str5.lastIndexOf(","));
+	
+}
+public void setIncome1(List<String> income1) {
+	this.income1 = income1;
+}
+
+private List<String> asset;
+public void setAsset(List<String> asset) {
+	this.asset = asset;
 }
 }
