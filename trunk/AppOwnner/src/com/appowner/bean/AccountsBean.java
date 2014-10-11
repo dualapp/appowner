@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -279,7 +280,7 @@ public void init() {
 listAccountName= new ArrayList<SelectItem>();
    
     
-    ListIterator itr=getStr_AccountGroup().listIterator();
+    Iterator<String> itr=(getStr_AccountGroup()).iterator();
      
     while(itr.hasNext())
     {
@@ -315,7 +316,7 @@ public List<SelectItem> getListAccountName() {
 public void setListAccountName(List<SelectItem> listAccountName) {
 	this.listAccountName = listAccountName;
 }
-private List<String> str_AccountGroup;
+private Set<String> str_AccountGroup;
 private Set<Character> ch_AccountGroup1;
 public Set<Character> getCh_AccountGroup1() {
 	ch_AccountGroup1=new HashSet<Character>();
@@ -326,8 +327,8 @@ public Set<Character> getCh_AccountGroup1() {
 public void setCh_AccountGroup1(Set<Character> ch_AccountGroup1) {
 	this.ch_AccountGroup1 = ch_AccountGroup1;
 }
-public List<String> getStr_AccountGroup() {
-	str_AccountGroup=new ArrayList<String>();
+public Set<String> getStr_AccountGroup() {
+	str_AccountGroup=new TreeSet<String>();
 	Iterator itr=getCh_AccountGroup1().iterator();
 	while(itr.hasNext())
 	{
@@ -353,7 +354,8 @@ public List<String> getStr_AccountGroup() {
 	
 	return str_AccountGroup;
 }
-public void setStr_AccountGroup(List<String> str_AccountGroup) {
+
+public void setStr_AccountGroup(Set<String> str_AccountGroup) {
 	this.str_AccountGroup = str_AccountGroup;
 }
 private List<String> accountTypeList;

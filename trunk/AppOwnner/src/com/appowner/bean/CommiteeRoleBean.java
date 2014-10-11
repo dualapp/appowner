@@ -136,10 +136,21 @@ public void setRole2(CommiteeRole role2) {
         	str_Commitee_RoleName=(String)o;
         
         	role2.setStr_Commitee_RoleName(str_Commitee_RoleName);
-        
+            role2.setCh_Commitee_Type('C');
+            role2.setFlag(2);
         	getStaffService().addRole(role2);
         	
         }
         return "CommiteeRole.xhtml";
     }
+	public void getCommiteeRole()
+	{
+		role2=getStaffService().getCommiteeRole(int_Commitee_RoleID);
+		
+	}
+	public String saveCommiteeRole()
+	{
+		getStaffService().updateCommiteeRole(role2);
+		return null;
+	}
 }
