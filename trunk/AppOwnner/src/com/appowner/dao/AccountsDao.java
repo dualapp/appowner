@@ -30,6 +30,7 @@ import java.util.List;
 
 
 
+
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.AccountsOpeningBalance;
@@ -72,4 +73,5 @@ public interface AccountsDao {
 	public double getDebitAmount(Integer id);
 	public double getCreditAmount(Integer id);
 	public List<Expense> getExpenseList(String str);
+	public List<String> listAssets();
 }

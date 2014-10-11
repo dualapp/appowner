@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.appowner.model.CommiteeRole;
+import com.appowner.model.Complain;
 import com.appowner.model.RoleMaster;
 import com.appowner.model.Staff;
 
@@ -35,26 +36,48 @@ public class StaffDaoImpl implements StaffDao{
 	 @SuppressWarnings("unchecked")
 		public List<Staff> listStaffRoles()
 		  {
-			 return (List<Staff>) getSessionFactory().getCurrentSession().createCriteria(Staff.class).list(); 
+			 return (List<Staff>) getSessionFactory().getCurrentSession().createCriteria(Staff.class).setCacheable(true).list(); 
 		  }
 		  @SuppressWarnings("unchecked")
 		public List<CommiteeRole> listCommiteeRoles()
 		  {
-			  return (List<CommiteeRole>) getSessionFactory().getCurrentSession().createCriteria(CommiteeRole.class).list(); 
+			  return (List<CommiteeRole>) getSessionFactory().getCurrentSession().createCriteria(CommiteeRole.class).setCacheable(true).list(); 
 		  }
 		  @SuppressWarnings("unchecked")
 		public List<RoleMaster> listRoleMaster()
 		  {
-			  return (List<RoleMaster>) getSessionFactory().getCurrentSession().createCriteria(RoleMaster.class).list();  
+			  return (List<RoleMaster>) getSessionFactory().getCurrentSession().createCriteria(RoleMaster.class).setCacheable(true).list();  
 		  }
 		@Override
 		public Long getNoOfRoles() {
 			String hql="Select Count(*) from Staff";
-			Long count=(Long)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+			Long count=(Long)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).uniqueResult();
 			System.out.println(count);
 			
 			return count;
 		}
-		
-		
+		public Staff getStaffRole(Integer int_StaffID)
+		{
+			 return (Staff)getSessionFactory().getCurrentSession().get(Staff.class,int_StaffID);
+		}
+		public void updateStaffRole(Staff staff1)
+		{
+			getSessionFactory().getCurrentSession().update(staff1);
+		}
+		public RoleMaster getRoleMaster(Integer int_RoleID)
+		{
+			return (RoleMaster)getSessionFactory().getCurrentSession().get(RoleMaster.class,int_RoleID);
+		}
+		public void updateRoleMaster(RoleMaster master2)
+		{
+			getSessionFactory().getCurrentSession().update(master2);
+		}
+		public CommiteeRole getCommiteeRole(Integer int_Commitee_RoleID)
+		{
+			return (CommiteeRole)getSessionFactory().getCurrentSession().get(CommiteeRole.class,int_Commitee_RoleID);
+		}
+		public void updateCommiteeRole(CommiteeRole role2)
+		{
+			getSessionFactory().getCurrentSession().update(role2);
+		}
 }
