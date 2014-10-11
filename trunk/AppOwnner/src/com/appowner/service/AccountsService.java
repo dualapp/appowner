@@ -77,6 +77,8 @@ public interface AccountsService {
 
 	public List<Expense> getExpenseList(String str);
 
+	public List<String> listAssets();
+
 	
 
 }

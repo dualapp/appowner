@@ -52,4 +52,31 @@ public class StaffServiceImpl implements StaffService {
 		{
 			 return  getStaffDao().getNoOfRoles();
 		}
+		public Staff getStaffRole(Integer int_StaffID)
+		{
+			return getStaffDao().getStaffRole(int_StaffID);
+		}
+		
+		public void updateStaffRole(Staff staff1)
+		{
+			getStaffDao().updateStaffRole(staff1);
+		}
+		public RoleMaster getRoleMaster(Integer int_RoleID)
+		{
+			return getStaffDao().getRoleMaster(int_RoleID);
+		}
+		public void updateRoleMaster(RoleMaster master2)
+		{
+			getStaffDao().updateRoleMaster(master2);
+		}
+		public CommiteeRole getCommiteeRole(Integer int_Commitee_RoleID)
+		{
+			return getStaffDao().getCommiteeRole(int_Commitee_RoleID);
+		}
+		
+		public void updateCommiteeRole(CommiteeRole role2)
+		{
+			getStaffDao().updateCommiteeRole(role2);
+		}
+		
 }
