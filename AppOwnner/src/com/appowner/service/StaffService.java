@@ -14,4 +14,11 @@ public interface StaffService {
 	    public List<CommiteeRole> listCommiteeRoles();
 	    public List<RoleMaster> listRoleMaster();
 		public Long getNoOfRoles();
+		public Staff getStaffRole(Integer int_StaffID);
+		public void updateStaffRole(Staff staff1);
+		public RoleMaster getRoleMaster(Integer int_RoleID);
+		public void updateRoleMaster(RoleMaster master2);
+		public CommiteeRole getCommiteeRole(Integer int_Commitee_RoleID);
+		public void updateCommiteeRole(CommiteeRole role2);
+		
 }

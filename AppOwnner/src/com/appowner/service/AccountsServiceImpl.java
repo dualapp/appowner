@@ -162,4 +162,8 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getExpenseList(str);
 	}
+	public List<String> listAssets()
+	{
+		return getAccountsDao().listAssets();
+	}
 }
