@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
     <title> </title>
@@ -44,12 +44,12 @@
                     <h:outputText value="Action" />
                     </f:facet>
               <h:link outcome="editcommitteemember.xhtml" >
-	   			<p:graphicImage  height="50" width="50" alt="update" value="images/k1.png"/> 
+	   			<p:graphicImage  height="50" width="50" alt="update" value="#{expenseBean.str_Name}images/k1.png"/> 
 	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
 	   		</h:link>
 	   		 <h:link outcome="deletecommitteemember.xhtml"   
 	   		 onclick="return confirm('Are you sure you want to delete #{committeemember.str_UserName}?');" > 
-	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   			<p:graphicImage  height="50" width="50" alt="delete" value="#{expenseBean.str_Name}images/k2.png"/> 
 	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
 	   		</h:link>
 	   		
