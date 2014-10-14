@@ -807,8 +807,8 @@ public static void setDue1(boolean due1) {
             session.setAttribute("str_Apartment",user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
-		 	String index="Adminwelcomepage.xhtml";
-		  return index;
+		 	//String index="AfrteLoginViews/Administrator/Adminwelcomepage.xhtml";
+		  return "/AfrteLoginViews/Administrator/Adminwelcomepage.xhtml";
 		   }
 		   else
 		   {
@@ -854,14 +854,14 @@ public static void setDue1(boolean due1) {
 				str_LoggedInTime=dateFormat.format(date);
 				if(session==null)
 				  memberLog();
-			 String index1= "welcomepage.xhtml";
-			 return index1;
+			 
+			 return "/AfrteLoginViews/Administrator/welcomepage.xhtml";
 		   }
 		}
  
 		else
 		{FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password id invalid!"));
-		return "layout.xhtml?error=yes";
+		return "/AfrteLoginViews/Administrator/layout.xhtml?error=yes";
 		}
 	}
 	public Integer getInt_UserId() {
@@ -918,7 +918,7 @@ public static void setDue1(boolean due1) {
 	    Date date = new Date();
 	      str_LoggedOutTime=dateFormat.format(date);
 	      memberLog();
-	      return "layout.xhtml";
+	      return "/AfrteLoginViews/Administrator/layout.xhtml";
 	   }
 	private ServiceRequest serviceRequest;
 	public String addServiceRequest()
@@ -982,7 +982,7 @@ public static void setDue1(boolean due1) {
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Successfully  Book A Facility!", " Successfully  Book A Facility !"));
-  return "book a facility.xhtml";
+  return "/AfrteLoginViews/Facilities/facilityneeded.xhtml";
 	}
 	/*
 	 * add member login and logout info
