@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
     <title>Create New Book Facility</title>
@@ -16,7 +16,7 @@
     <h:form>
    
     <h:body>
-     <ui:include src="/memberdetails.xhtml" />
+     <ui:include src="/AfrteLoginViews/Communication/memberdetails.xhtml" />
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <legend  align="left" style="background-color:#438eb9; color:#fff;">Booking Details</legend>
   <tr><th><h:outputText value="Event Name"/>  </th><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name"  value="#{loginBean.str_EventName}">
