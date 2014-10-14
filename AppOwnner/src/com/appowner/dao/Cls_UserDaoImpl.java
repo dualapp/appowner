@@ -38,9 +38,15 @@ import java.util.List;
 
 
 
+
+
+
+import javax.mail.Session;
 import javax.management.Query;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -360,15 +366,24 @@ public class Cls_UserDaoImpl implements In_UserDao {
 
 		@Override
 		public void deleteUser2(String str_Usernam) {
-			System.out.println("ooooooooooooooooooooooooooooooopppppppppppppp");
-			
+			//System.out.println("ooooooooooooowwwwwwwwwwwwwwwoooooooooooopppppppppppppp");
+			String hqluserid="select int_UserId from User where str_Username=?";
+			Integer userida=(Integer) getSessionFactory().getCurrentSession().createQuery(hqluserid).setParameter(0,str_Usernam).uniqueResult();
+			//return apartmentida;
+			/*
 				System.out.println(str_Usernam);
 				String hql="delete from User where str_Username=str_Username";
 				@SuppressWarnings("unused")
 				int row =sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
 				// String hql = "delete from Insurance insurance where id = 2";  
 				       
-
+                    */
+			//String srt=str_Usernam;
+			User u=(User) sessionFactory.getCurrentSession().get(User.class,userida);
+			getSessionFactory().getCurrentSession().delete(u);
+			//tx.commit();
+			System.out.println("bnbnbnnnn");
+			//SessionFactory factory=new Configuration().configure(application-context-servlet.xml).buildSessionFactory();
 				
 			}
 			
