@@ -1949,12 +1949,20 @@ public List<Parking> getParkingSpaceList1() {
 public void setParkingSpaceList1(List<Parking> parkingSpaceList1) {
 	this.parkingSpaceList1 = parkingSpaceList1;
 }
+private String str_Path;
 public String getStr_Name() {
 	str_Name="../../";
 	return str_Name;
 }
 public void setStr_Name(String str_Name) {
 	this.str_Name = str_Name;
+}
+public String getStr_Path() {
+	str_Path="././";
+	return str_Path;
+}
+public void setStr_Path(String str_Path) {
+	this.str_Path = str_Path;
 }
 
 	
