@@ -99,7 +99,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Parking> getParkingSlotList() {
-		String  query = "{ CALL parkingSpaceList() }";
+		//String  query = "{ CALL parkingSpaceList() }";
 		
 		 
 		/*List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
