@@ -6,60 +6,139 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
+	 <h:head>
+	 <link href="#{expenseBean.str_Name}include/assets/css/ace.min.css" rel="stylesheet" />
+	 
+	 </h:head>
 	
-         <h:head>
-         <link href="include/assets/css/ace.min.css" rel="stylesheet" />
-         </h:head>
-
-<html>
- <body>
-<table>
-   <tr> 
-     <td style="border-width:1px; border-color:Black ; border-style :groove ;" width="900"><ui:include src="News1.xhtml" />
-     </td>
-     <td align="right" style="border-width:1px; border-color:Black ; border-style :groove ;" width="100">
-     
-     <ui:include src="dashboard.xhtml" />
-     
-     </td>
-    </tr></table>
-</body>
-<!-- <div align="left" style="width:100;height:100;border:solid;border-width:2;">
-<ui:include src="News1.xhtml" />
-</div>
-
-<div style="width:1024;height:200;">
-<div style="width:300;height:200;border:solid;border-width:2;float:left;"></div>
-<div style="width:300;height:200;border:solid;border-width:2;float:right;"></div>
-</div>
-
-<div align="right" style="height:100;width:100;border:solid">
-<ui:include src="latesteventimages.xhtml" />
-</div> -->
-</html>
-
-         
-        
-         
-            
-           <!--  <form action="" id="q1">
-             
-             <table>
-             <tr>
-             <td id="q2"><ui:include src="News1.xhtml" /></td>
-             <td><ui:include src="latesteventimages.xhtml" /></td>
-                </tr>
-                </table>
-           
-            
-             </form> -->
-             
-            
-       
-               
-            
-</ui:define>
+	<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title">Welcome to AppOwner World</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	 
+	<br/>
+	 <div id="page">
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/Notices.png" height="42" width="42"></img> Notice Board</div>
+		<hr/>
+		<table cellpadding="0" cellspacing="0" border="0" width="99%" align="center">
+				<tbody>
+					<tr>
+						<td>							
+							<table cellpadding="0" cellspacing="0" border="0" width="95%" align="left">
+							<tbody>
+								<tr>
+									<td class="gsTitle"><b>This is the post by the admin</b></td>						
+								</tr>
+								<tr>
+									<td class="gsContent">Ledads are the individuals or representatives of organizations who show interest in your products or services.</td>						
+								</tr>
+								<tr>
+									<td>
+										<table cellpadding="0" cellspacing="0" border="0" width="100%">
+										<tbody>
+											<tr>
+												<td align="left"><i>Posted By: Admin</i></td>
+												<td align="right"><i>Date: 20th June 2014</i></td>
+											</tr>
+										</tbody>	
+										</table>	
+									</td>
+								</tr>
+								<tr><td><hr></hr></td></tr>
+								<tr>
+									<td class="gsTitle"><b>This is the post by the admin</b></td>						
+								</tr>
+								<tr>
+									<td class="gsContent">Leads are the individuals or representatives of organizations who show interest in your products or services.</td>						
+								</tr>
+								<tr>
+									<td>
+										<table cellpadding="0" cellspacing="0" border="0" width="100%">
+										<tbody>
+											<tr>
+												<td align="left"><i>Posted By: Admin</i></td>
+												<td align="right"><i>Date: 20th June 2014</i></td>
+											</tr>
+										</tbody>	
+										</table>	
+									</td>
+								</tr>
+								<tr><td><hr></hr></td></tr>
+								<tr>
+									<td class="gsTitle"><b>This is the post by the admin</b></td>						
+								</tr>
+								<tr>
+									<td class="gsContent">Leads are the individuals or representatives of organizations who show interest in your products or services.</td>						
+								</tr>
+								<tr>
+									<td>
+										<table cellpadding="0" cellspacing="0" border="0" width="100%">
+										<tbody>
+											<tr>
+												<td align="left"><i>Posted By: Admin</i></td>
+												<td align="right"><i>Date: 20th June 2014</i></td>
+											</tr>
+										</tbody>	
+										</table>	
+									</td>
+								</tr>
+							</tbody>
+							</table>
+						</td>						
+					</tr>
+				</tbody>
+		</table>														
+	</div>
+	<div ></div>
+	<div style="clear: all;"></div>
+	<div id="page1">
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/accounts.jpg" height="42" width="42"></img>Accounts</div>
+		<hr/>
+		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
+				<tbody>
+					<tr>
+						<td> 
+							
+						</td>						
+					</tr>
+				</tbody>
+		</table>														
+	</div>
+	<div style="clear: all;"></div>
+	<div id="page1">
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Polls</div>
+		<hr/>
+		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
+				<tbody>
+					<tr>
+						<td> 
+							<ui:include src="/AfrteLoginViews/Communication/latestpoll.xhtml" />
+						</td>						
+					</tr>
+				</tbody>
+		</table>														
+	</div>
+	  
+	<div id="page1">
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/events.jpg" height="42" width="42"></img>Eventss</div>
+		<hr/>
+		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
+				<tbody>
+					<tr>
+						<td> 
+						  <ui:include src="/AfrteLoginViews/Communication/schedulevent.xhtml" /> 	
+						</td>						
+					</tr>
+				</tbody>
+		</table>														
+	</div>
+	</ui:define>
 </ui:composition>
 
