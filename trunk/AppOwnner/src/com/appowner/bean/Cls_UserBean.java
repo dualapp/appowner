@@ -576,7 +576,7 @@ public class Cls_UserBean implements Serializable{
 	
 		public String getRegistration() {
 			System.out.println("heeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-			return "Registration.xhtml";
+			return "NewRegistration.xhtml";
 		}
 		public void setRegistration(String registration) {
 			Registration = registration;
