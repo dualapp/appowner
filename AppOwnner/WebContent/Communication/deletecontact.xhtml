@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:define name="content">
+	  <f:metadata>
+	<f:viewParam name="contactId" value="#{cls_ContactBean.contactId}"  />
+	 
+	<f:viewAction action="#{cls_ContactBean.deleteContact}" />
+</f:metadata>
+<h:head>
+		<title>Contact delete</title>
+	</h:head>
+	
+	<h:body>
+		<h:form>
+			 
+			<p:commandButton action="#{cls_ContactBean.deleteContact}" value="Delete" />
+			<p:commandButton action="#{cls_ContactBean.cancelContact}" value="Cancel" />
+		</h:form>
+		</h:body>
+		
+</ui:define>
+</ui:composition>
