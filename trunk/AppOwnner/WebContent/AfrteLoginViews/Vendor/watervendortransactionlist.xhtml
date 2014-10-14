@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
     
@@ -71,12 +71,12 @@
             <p:column headerText="Action"   >
                  
 	   		<h:link outcome="editwatervendortransaction.xhtml">
-	   			<p:graphicImage  height="50" width="50" alt="Edit" value="images/k1.png"/> 
+	   			<p:graphicImage  height="50" width="50" alt="Edit" value="#{expenseBean.str_Name}images/k1.png"/> 
 	   				<f:param name="int_TransactionId" value="#{watervendortransactionlist.int_TransactionId}" />
 	   		</h:link>
 	   		 <h:link outcome="deletewatervendortransaction.xhtml"
 	   		 onclick="return confirm('Are you sure you want to delete #{watervendortransactionlist.str_VendorName}?');" > 
-	   			<p:graphicImage  height="50" width="50" alt="delete" value="images/k2.png"/> 
+	   			<p:graphicImage  height="50" width="50" alt="delete" value="#{expenseBean.str_Name}images/k2.png"/> 
 	   				<f:param name="int_TransactionId" value="#{watervendortransactionlist.int_TransactionId}" />
 	   		</h:link>
             </p:column>

@@ -7,17 +7,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../include/templates/template.xhtml"
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
- <h:head><title>Vendor Registration</title>
- 
- 
   
- </h:head>
-  
- 
-<body>
 
     <h:form id="form" > 
    <p:growl id="msgs" showDetail="true" />
@@ -25,7 +18,9 @@
    <br/><center><legend    style="background-color:#438eb9; color:#fff;"><h5>vendor Registration</h5></legend> </center>
    
      
-      <legend  align="left" style="background-color:#438eb9; color:#fff;"><h6>vendorPersonal Details</h6></legend>
+       
+       <div id="page">
+		 <legend    style="background-color:#438eb9; color:#fff;"><h6>vendorPersonal details</h6></legend> 
         <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
          
             <tr> <th><h:outputText value="Vendor Category: " /></th>
@@ -236,11 +231,12 @@
             </table>
             <tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/></td></tr>
            
+           </div>
            
            
            </h:form>
             
-           </body>
+          
             </ui:define>
             </ui:composition>
             
