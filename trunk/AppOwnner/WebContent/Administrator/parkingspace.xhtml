@@ -32,7 +32,9 @@
 	  <p:growl id="msgs" showDetail="true" />
 	<h:body>
 	<br/>
-	<h:outputLabel value="Organisation:" /> 
+	<div id="page3">
+           <div class="gsTitleDiv">Parking Space<br/><hr/></div> 
+	<h:outputText value="Organisation:" /> 
                
               <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
@@ -81,6 +83,7 @@
             
        
 	 </p:dataTable>
+	 </div>
 	  <p:dialog header="Create Parking Space" widgetVar="multiParkingSpaceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiParkingSpaceDetail" style="text-align:center;">
         <table>
