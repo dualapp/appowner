@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 <h:head>
     <title> </title>
@@ -124,10 +124,10 @@ function HideModalWindow() {
 </legend>-->
  <p:growl id="msgs" showDetail="true" />
   
-		<div class="gsTitleDiv">vendors<br/><hr/></div>
+		<div id="page3"><div class="gsTitleDiv">vendors<br/><hr/></div>
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr><td>
-  <h:commandButton    icon="ui-icon-plus"  action="AfrteLoginViews/Vendor/addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
+  <h:commandButton    icon="ui-icon-plus"  action="/AfrteLoginViews/Vendor/addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
    
   </p:commandButton>
 	 &#150; &#150;  <p:menuButton  icon="ui-icon-gear" value="Action">
@@ -162,7 +162,8 @@ function HideModalWindow() {
     </h:commandLink>
      
      </td>
-     </tr></table>
+     </tr></table> 
+      
        <p:dataTable    paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px"
        widgetVar="vendorsTable"
                  emptyMessage="No cars found with given criteria" filteredValue="#{vendorBean.selectedVendor1}" 
@@ -236,6 +237,7 @@ function HideModalWindow() {
        
          
             </p:dataTable>
+            </div>
              
            
             
