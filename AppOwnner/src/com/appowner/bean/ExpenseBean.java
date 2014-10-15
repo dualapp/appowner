@@ -1145,7 +1145,7 @@ public void  handleFileUpload4(FileUploadEvent event) throws IOException {
 	   path3 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	    str_AssetImg = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-	    File file=new File("D:\\javanew\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
    	if (file.mkdir()) {
    		System.out.println("Directory is created!");
@@ -1653,7 +1653,7 @@ public int increment() {
 
 public Long getChoise1Vote()
 {
-	 Long count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
+	  count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
 	 System.out.println(onePoll.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
 	 System.out.println(onePoll.getStr_Choise1());
@@ -1666,10 +1666,26 @@ public Long getChoise1Vote()
 	 return res;
 	
 }
+public Long getCount1() {
+	return count1;
+}
+public void setCount1(Long count1) {
+	this.count1 = count1;
+}
+public Long getCount3() {
+	return count3;
+}
+public void setCount3(Long count3) {
+	this.count3 = count3;
+}
+private Long count2;
+private Long count1;
+private Long count3;
+
 public Long getChoise2Vote()
 {
 	System.out.println(onePoll.getInt_PoolId());
-	 Long count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
+	  count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
 	 System.out.println(onePoll.getStr_Choise2());
 	 System.out.println(int_PoolId+"pid");
 	 System.out.println(count2);
@@ -1679,9 +1695,15 @@ public Long getChoise2Vote()
 	 return res;
 	
 }
+public Long getCount2() {
+	return count2;
+}
+public void setCount2(Long count2) {
+	this.count2 = count2;
+}
 public Long getChoise3Vote()
 {System.out.println(onePoll.getInt_PoolId());
-	  Long count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
+	   count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
 	  System.out.println(onePoll.getStr_Choise3());
 		 System.out.println(int_PoolId+"pid");
 		 System.out.println(count3);
