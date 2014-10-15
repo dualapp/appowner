@@ -14,7 +14,9 @@
 </h:head>
 <form>
 <h:body>
-<h:outputLabel value="Organisation:" /> 
+<div id="page3">
+ <div class="gsTitleDiv">Maintainance Staff <br/><hr/></div>
+<h:outputText value="Organisation:" /> 
               
               <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
@@ -67,6 +69,7 @@
                
             </p:column>
         </p:dataTable>
+        </div>
 </h:body>
 </form>
 </ui:define>
