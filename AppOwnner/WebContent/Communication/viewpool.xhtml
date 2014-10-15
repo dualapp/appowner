@@ -25,8 +25,9 @@
             
   </p:tab>
   </p:accordionPanel>
- <fieldset>
- <legend  style="background-color:#438eb9; color:#fff;"> Pool Details</legend>
+ <div id="page3">
+             
+ <div class="gsTitleDiv">Pool Details<br/><hr/></div>  
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
  <tr>
  <th>
@@ -44,22 +45,24 @@
     <td><h:inputText value="#{expenseBean.onePoll.str_poolAudience}"/></td>
      
     </tr>
-    </table></fieldset>
-    <fieldset>
-    <legend  style="background-color:#438eb9; color:#fff;"> Pool Result</legend>
+    </table> 
+    </div>
+    <div id="page3">
+            
+  <div class="gsTitleDiv">Pool Result<br/><hr/></div> 
    
     
 <h2><h:outputText value="*#{expenseBean.onePoll.str_poolQuestion}"/></h2> 
+ #{expenseBean.onePoll.str_Choise1}  #{expenseBean.getCount1()} Vote
   
-  
-<p:progressBar value="#{expenseBean.getChoise1Vote()}" labelTemplate="#{expenseBean.onePoll.str_Choise1}{value}% vote" displayOnly="true"/><br/>
-  
- <p:progressBar value="#{expenseBean.getChoise2Vote()}" labelTemplate="#{expenseBean.onePoll.str_Choise2}{value}% vote" displayOnly="true"/><br/>
-
- <p:progressBar value="#{expenseBean.getChoise3Vote()}" labelTemplate="#{expenseBean.onePoll.str_Choise3}{value}% vote" displayOnly="true"/>
+<p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
+  #{expenseBean.onePoll.str_Choise2}  #{expenseBean.getCount2()} Vote
+ <p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
+#{expenseBean.onePoll.str_Choise3}  #{expenseBean.getCount3()} Vote
+ <p:progressBar style="width: 30%;" value="#{expenseBean.getChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/>
 
     
-   </fieldset>
+    </div>
    
     </h:body>
     </h:form>
