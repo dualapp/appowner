@@ -15,8 +15,8 @@
  <body bgcolor="yellow">
   <h:messages/>
  <h:form>
-  <fieldset>
-    <legend  align="left" style="background-color:#438eb9; color:#fff;">Maintainance Staff</legend>
+  <div id="page3">
+           <div class="gsTitleDiv">Maintainance Staff <br/><hr/></div> 
   <p:dataTable id="maintainancestaff" var="maintainancestaff" value="#{maintainanceStaffBean.maintainanceStaffList}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
@@ -71,7 +71,8 @@
 	   		</h:link>
             </p:column>
             </p:dataTable>
-            </fieldset>
+            
+           </div>
             </h:form>
             </body>
             
