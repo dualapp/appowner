@@ -94,7 +94,8 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	 <h:form>
 	  <p:growl id="msgs" showDetail="true" />
 	<h:body>
-	<br/>
+	 <div id="page3">
+           <div class="gsTitleDiv">Work Order Category<br/><hr/></div> 
 	<h:outputText value="Organisation:" /> 
                 
               <p:selectOneMenu       style="width:100px">
@@ -137,6 +138,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
             
 	 </p:column>
 	 </p:dataTable>
+	 </div>
 	 <p:dialog header="Create Work Order" widgetVar="multiWorkOrderDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiWorkOrderDetail" style="text-align:center;">
         <table>

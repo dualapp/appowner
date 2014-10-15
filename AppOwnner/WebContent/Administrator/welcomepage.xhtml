@@ -8,11 +8,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
-	 <h:head>
-	 <link href="#{expenseBean.str_Name}include/assets/css/ace.min.css" rel="stylesheet" />
-	 
-	 </h:head>
-	
+	<body>
+	<form>
 	<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
@@ -23,7 +20,6 @@
 		</tbody>
 	</table>
 	 
-	<br/>
 	 <div id="page">
 		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/Notices.png" height="42" width="42"></img> Notice Board</div>
 		<hr/>
@@ -137,8 +133,12 @@
 						</td>						
 					</tr>
 				</tbody>
-		</table>														
+		</table>	
+		 
+															
 	</div>
+	</form>
+	</body>
 	</ui:define>
 </ui:composition>
 
