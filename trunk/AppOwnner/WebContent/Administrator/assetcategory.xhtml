@@ -95,7 +95,8 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	  <p:growl id="msgs" showDetail="true" />
     
 	<h:body>
-	<br/>
+	<div id="page3">
+           <div class="gsTitleDiv">Assets Catecory<br/><hr/></div> 
 	 
                <h:outputText value="Organisation:" /> 
               <p:selectOneMenu       style="width:100px">
@@ -170,6 +171,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	  </td> </tr>  
 	  
 	</table>
+	
 	 <script>
 	 
         function EnrollNowClick() {
@@ -223,9 +225,9 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
               
              </p:outputPanel>
              </p:dialog>
-             
+             </div>
 	</h:body>
+	
 	</h:form>
-
-
+	 
 </html>

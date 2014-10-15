@@ -15,6 +15,8 @@
  <a href="servicerequest.xhtml">>>Back To Service Request</a >
     <h:form>
     <h:body>
+    <div id="page3">
+           <div class="gsTitleDiv">Create New Book A Facility<br/><hr/></div> 
     <table><tr><td><h:outputText value="Created by"/></td>  <td><h:inputText value="#{loginBean.userloginname}"/></td>   <td><h:outputText value="Organization"/></td> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
     <tr><td><h:outputText value="Organization"/></td>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <td><h:outputText value="Block"/></td>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
    <tr><td><h:outputText value="Flat Name"/></td> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <td><h:outputText value="Type"/></td> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
@@ -43,11 +45,13 @@
       </tr>
    <tr><td><h:outputText value="Title*"/></td>  <td><h:inputText value="#{loginBean.str_Title}"/></td></tr>
    </table>
+    
    <table>
    <tr><td><h:outputText value=" Facility Details*"/></td>  <td></td><td><p:editor id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td></tr>
    <tr><td> <h:commandButton style="width:100px" onClick="EnrollLaterClick()" value="Submit" action="#{loginBean.addBookAFacility()}"/></td><td> <h:commandButton style="width:100px" value="Cancel" action="#"/> </td></tr>
                  
     </table>
+    </div>
     <script>
 	 
         function EnrollNowClick() {
