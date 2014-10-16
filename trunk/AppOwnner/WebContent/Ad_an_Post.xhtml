@@ -14,7 +14,7 @@
      body
         {
             font-family: Verdana;
-            font-size: 25px;
+            font-size: 40px;
          
         }
      
@@ -58,7 +58,7 @@
      
    <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
      <h:panelGroup id="performed"  >
-           &#150;&#150; &#150; &#150;&#150;&#150;  &#150; &#150;&#150;&#150; &#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150;
+         &#150; &#150;  &#150;&#150; &#150; &#150;&#150;&#150;  &#150; &#150;&#150;&#150; &#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150;
              <tr> 
         <td><h:outputLabel value="Organisation"  /></td>
             <td><p:selectOneMenu id="str_ApartmentName"  style="width:150px">
@@ -113,13 +113,13 @@
                  </p:selectOneMenu> 
              </td>
                 &#150;&#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
-               <h:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" update="">
-               </h:commandButton>
+               <p:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" update="" style="width:40px; height:20px">
+               </p:commandButton>
              </h:panelGroup>
              <br />
              <br />
-            &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
-             <h:button  value="Create New" outcome="Create_Detail.xhtml"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<h:button  value="View Selected" outcome="ViewDetail.xhtml"/> &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150;<h:button  value="Edit Selected " outcome="EditDetails.xhtml"/>&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <h:button  value="Refresh" icon="ui-icon-refresh"/>&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:menuButton value="Action">
+          &#150;&#150; &#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150;&#150;
+             <p:button  value="Create New" outcome="Create_Detail.xhtml" style="width:80px; height:30px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:button  value="View Selected" outcome="ViewDetail.xhtml" style="width:80px; height:30px" /> <!--&#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; <p:button  value="Edit Selected " outcome="EditDetails.xhtml"/> -->&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <p:button  value="Refresh" icon="ui-icon-refresh" style="width:80px; height:30px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:menuButton value="Action" style="width:80px; height:30px">
        
        <p:menuitem value="Approval Selected" action="#{cls_AddDetailBean.updation}"/>
         <p:menuitem value="Reject Selected" action="#{cls_AddDetailBean.reject1}"/>
@@ -136,7 +136,7 @@
              
              <h:form>
         <h:body>
-        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 100%" binding="#{cls_AddDetailBean.dataTable}">
+        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}"  binding="#{cls_AddDetailBean.dataTable}">
       
     <p:column>
   <f:facet name="header">
@@ -219,13 +219,15 @@
             <f:facet name="header">
               <h:outputText value="Update" />
                </f:facet>
-	   			<h:button outcome="EditDetail.xhtml" value="Edit">
+	   			<p:button outcome="EditDetail.xhtml" value="Edit" style="width:80px; height:30px" >
 	   		  <f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		 </h:button>
-	         <h:button value="delete" action="#{cls_AddDetailBean.deleteDetail(per.int_ProductId)}" style="width:50px" onclick="return confirm('Are you sure you want to delete #{per.int_ProductId}?');" >  
+	   		 </p:button>
+	   		
+	   		  
+	         <p:button value="delete" action="#{cls_AddDetailBean.deleteDetail(per.int_ProductId)}" style="width:80px; height:30px"  onclick="return confirm('Are you sure you want to delete #{per.int_ProductId}?');" >  
 	   			<p:graphicImage  height="30" width="20" alt="delete" /> 
 	   			<f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		</h:button>
+	   		</p:button>
 	   	     </p:column>
                </p:dataTable>
               
