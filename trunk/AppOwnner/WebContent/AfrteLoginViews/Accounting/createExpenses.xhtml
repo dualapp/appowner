@@ -1,20 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template1.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
-	<h:head>
-	</h:head>
+	 
 	<h:form>
 	
-	<body>
+	 
 	<a href="Expenses.xhtml">>>Back To expenses</a >
 	 
-	 
+	 <div id="page3">
+  <div class="gsTitleDiv">Filter<br/><hr/></div> 
 	 
 	<table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
         <tr><th> 
@@ -24,7 +24,7 @@
                 
                  </p:selectOneMenu></td></tr>
          <tr>
-          <th> Acc Name*</th>&nbsp;&nbsp; <th>  Type* </th>&nbsp;&nbsp;<th> Category*  </th> &nbsp;&nbsp; <th>  Date* </th>&nbsp;&nbsp;  <th>  Ammount* </th>&nbsp;&nbsp;<th>  Description </th>&nbsp;&nbsp;<th> Assets Category </th>&nbsp;&nbsp;<th>  Assets Name</th></tr> 
+          <th> Acc Name*</th>  <th>  Type* </th> <th> Category*  </th>   <th>  Date* </th>   <th>  Ammount* </th> <th>  Description </th> <th> Assets Category </th> <th>  Assets Name</th></tr> 
           <tr><td> <p:selectOneMenu  valueChangeListener="#{expenseBean.accountListener}"  value="#{expenseBean.str_AccountName}"  style="width:100px">
           <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
           <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
@@ -127,9 +127,9 @@
              
              
           </table>
-         
+         </div>
           <a href="Expenses.xhtml">>>Back To expenses</a >
-	</body>
+	 
 	 
 	</h:form>
  </ui:define>
