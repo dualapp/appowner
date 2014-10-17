@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.DueTemplate;
@@ -38,4 +39,5 @@ public void deleteDue1(List<DueTemplate> delete);
 public void deleteInvoice1(List<InvoiceTemplate> delete);
 public void deleteMessage1(List<MessageTemplate> delete);
 public void deleteTax1(List<TaxTemplate> delete);
+
 }
