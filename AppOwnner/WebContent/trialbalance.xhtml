@@ -3,10 +3,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 <h:head>
-    <title>Accounting Form</title>
+    <title>TrialBalance Form</title>
     </h:head>
     <h:body>
     <h:form>
@@ -17,58 +18,145 @@
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                  
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_To}">
-                  </p:calendar>
-                  
+                  </p:calendar>&nbsp; &nbsp; &nbsp;
+                   <h:commandButton value="Go"/>
                  </fieldset>
                  
    
-    <br/>
-    <br/>
-    
-    <p:dataTable var="e" value="#{expenseBean.chartOfAccountList}">
-        <f:facet name="header">
-          Trial Balance
-        </f:facet>
-       
-        <p:columnGroup type="header">
-        
-            <p:row>
-                <p:column rowspan="2" headerText="Account" />
-               
-            </p:row>
-            <p:row>
-                <p:column headerText="Credit" />
-                <p:column headerText="Debit" />
-            </p:row>
-        </p:columnGroup>
-       
-        <p:subTable var="stats" value="#{e.str_AccountType}" width="300">
-            
-            <f:facet name="header">
-                <h:outputText value="#{e.str_AccountType}"  />
-            </f:facet>
-                
-            <p:column>
-                <h:outputText value="#{e.str_AccountName}" />
-            </p:column>
-             <p:column>
-                <h:outputText value="#{accountingBean.int_Credit}" />
-            </p:column>
-            <p:column>
-                <h:outputText value="#{accountingBean.int_Credit}" />
-            </p:column>
-           
-        </p:subTable>
-       
-         <p:columnGroup type="footer">
-                <p:row>
-                    <p:column footerText="Totals: " style="text-align:right"/>
-                    <p:column footerText="#{e.str_AccountType}" />
-                    <p:column footerText="#{e.str_AccountType}" />
-                </p:row>
-            </p:columnGroup>
-        </p:dataTable>
    
+   
+   <br/>
+      <h:commandButton  value="Refresh" />&#150; &#150; &#150; <h:commandButton  value="Export To Excel" />
+      <br/>
+      <br/>
+    <p:dataTable var="e" value="aaa">
+        <f:facet name="header">
+        <table>
+        <tr>
+          <th style="width:50%">Account</th><th style="width:25%">Debit</th><th style="width:25%">Credit</th>
+          </tr>
+          </table>
+        </f:facet>
+      
+             <p:column>
+                 <table>
+             <tr>
+                <td>
+                   
+                    <p:column>
+                      <p:dataTable value="#{accountingBean.asset}" var="timeSlot">
+                      <f:facet name="header">
+                              <h:outputText value="Asset"  />
+                      </f:facet>
+                      <p:column width="50%">
+                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
+                        </p:column>
+                         <p:column width="25%">
+                 
+                     <h:outputText value="#{timeSlot.debit_closingBalance}" /><br/>
+               
+            </p:column>
+            <p:column width="25%">
+                <h:outputText value="#{timeSlot.credit_closingBalance}" />
+            </p:column>
+                        </p:dataTable>
+                     </p:column> 
+                    
+                  
+                </td>
+                </tr>
+                <tr>
+                <td>
+                   
+                    <p:column>
+                      <p:dataTable value="#{accountingBean.income1}" var="timeSlot">
+                      <f:facet name="header">
+										<h:outputText value="Income" />
+									</f:facet>
+                      <p:column width="50%">
+                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
+                        </p:column>
+                         <p:column>
+                <h:outputText value="#{timeSlot.debit_closingBalance}" />
+            </p:column>
+            <p:column >
+                <h:outputText value="#{timeSlot.credit_closingBalance}" />
+            </p:column>
+                        </p:dataTable>
+                     </p:column> 
+                    
+                  
+                </td>
+                </tr>
+                <tr>
+                 <td>
+                   
+                    <p:column>
+                      <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
+                      <f:facet name="header">
+										<h:outputText value="Expense" />
+									</f:facet>
+                      <p:column width="50%">
+                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
+                        </p:column>
+                         <p:column>
+                <h:outputText value="#{timeSlot.debit_closingBalance}" />
+            </p:column>
+            <p:column>
+                <h:outputText value="#{timeSlot.credit_closingBalance}" />
+            </p:column>
+                        </p:dataTable>
+                     </p:column> 
+                    
+                  
+                </td>
+                </tr>
+                <tr>
+                 <td>
+                   
+                    <p:column>
+                      <p:dataTable value="#{accountingBean.liability}" var="timeSlot">
+                      <f:facet name="header">
+										<h:outputText value="Liability" />
+									</f:facet>
+                      <p:column width="50%">
+                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
+                        </p:column>
+                         <p:column>
+                <h:outputText value="#{timeSlot.debit_closingBalance}" />
+            </p:column>
+            <p:column>
+                <h:outputText value="#{timeSlot.credit_closingBalance}" />
+            </p:column>
+                        </p:dataTable>
+                     </p:column> 
+                    
+                  
+                </td>
+                </tr>
+                  
+               <table>
+                  <tr> 
+            
+                    <th  width="45%">Totals:</th>
+                     <th  width="10%">#{accountingBean.debitNetTotal}</th>
+                   <th  width="20%">#{accountingBean.creditNetTotal}</th>
+              
+               
+                </tr>
+                
+                </table>
+               
+                </table>
+             </p:column>
+          
+           
+            
+           
+       
+     
+   </p:dataTable>
+  
       </h:form>  
     
 
