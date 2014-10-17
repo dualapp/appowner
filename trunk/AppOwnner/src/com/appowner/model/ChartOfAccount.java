@@ -75,5 +75,20 @@ public class ChartOfAccount implements Serializable {
 	public void setCh_Group(Character ch_Group) {
 		this.ch_Group = ch_Group;
 	}
+	private double debit_closingBalance;
+	private double credit_closingBalance;
+	public double getDebit_closingBalance() {
+		return debit_closingBalance;
+	}
+	public void setDebit_closingBalance(double debit_closingBalance) {
+		this.debit_closingBalance = debit_closingBalance;
+	}
+	public double getCredit_closingBalance() {
+		return credit_closingBalance;
+	}
+	public void setCredit_closingBalance(double credit_closingBalance) {
+		this.credit_closingBalance = credit_closingBalance;
+	}
+	
     
 }
