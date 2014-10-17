@@ -77,8 +77,16 @@ public interface AccountsService {
 
 	public List<Expense> getExpenseList(String str);
 
-	public List<String> listAssets();
+	public List<ChartOfAccount> listAssets();
 
+	public List<String> group();
+
+	public void updateClosingBalance(double debit, double credit, String str);
+	public List<ChartOfAccount> listExpense();
+	public List<ChartOfAccount> listLiability();
+	public List<ChartOfAccount> listEquity();
+
+	public List<ChartOfAccount> listRavenues();
 	
 
 }

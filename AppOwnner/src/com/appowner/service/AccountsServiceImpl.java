@@ -162,8 +162,32 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getExpenseList(str);
 	}
-	public List<String> listAssets()
+	public List<ChartOfAccount> listAssets()
 	{
 		return getAccountsDao().listAssets();
+	}
+	public List<String> group()
+	{
+		return getAccountsDao().group();
+	}
+	public void updateClosingBalance(double debit, double credit, String str)
+	{
+		getAccountsDao().updateClosingBalance(debit,credit,str);
+	}
+	public List<ChartOfAccount> listExpense()
+	{
+		return getAccountsDao().listExpense();
+	}
+	public List<ChartOfAccount> listLiability()
+	{
+		return getAccountsDao().listLiability();
+	}
+	public List<ChartOfAccount> listEquity()
+	{
+		return getAccountsDao().listEquity();
+	}
+	public List<ChartOfAccount> listRavenues()
+	{
+		return getAccountsDao().listRavenues();
 	}
 }
