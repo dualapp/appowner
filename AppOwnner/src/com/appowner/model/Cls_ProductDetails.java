@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name = "tb_ad_products")
-public class Cls_ProductDetails implements Serializable {
+ public class Cls_ProductDetails implements Serializable {
 
 	/**
 	 * mukesh
