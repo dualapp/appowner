@@ -95,7 +95,7 @@
          <td><h:outputLabel value="Upload Your photo for Display "></h:outputLabel></td>
           <td> <p:fileUpload value="#{advertisementBean.var_ImageName}"
         fileUploadListener="#{advertisementBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="aaa"  style="width:250px" >
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" multiple="true" update="aaa,did,app" style="width:250px" >
         </p:fileUpload>
        </td>
        </tr>
@@ -104,9 +104,14 @@
          <td><p:editor id="editor" widgetVar="editorWidget" value="#{advertisementBean.str_content}" width="500" height="300" style="margin-bottom:20px;" ></p:editor></td>
          </tr>
          <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px 0px -1000px 0px;" >  
-           <p:graphicImage height="150" width="150" value="#{advertisementBean.blb_image}"/>
+           <p:graphicImage height="100" width="100" value="#{advertisementBean.blb_image}"/>
           </p:outputPanel>
-         
+         <p:outputPanel layout="block" id="did"  style=" float:right !important;margin:0px 100px -8000px 0px;" >  
+           <p:graphicImage height="100" width="100" value="#{advertisementBean.blb_image2}"/>
+          </p:outputPanel>
+         <p:outputPanel layout="block" id="app"  style=" float:right !important;margin:0px 200px -6000px 0px;" >  
+           <p:graphicImage height="100" width="100" value="#{advertisementBean.blb_image3}"/>
+          </p:outputPanel>
            <tr>
            
                <td><p:commandButton id="AddProduct" value="Submit"  action="#{advertisementBean.addagency}" style=" width:60px;float:right !important;margin: 0px 0px 50px 0px;" /> 
