@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -17,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 import javax.servlet.http.HttpServletResponse;
@@ -27,11 +29,12 @@ import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.DueTemplate;
 import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean 
-@RequestScoped
+@ViewScoped
 public class Cls_AddDetailBean implements Serializable {
 	
 
@@ -61,7 +64,7 @@ public class Cls_AddDetailBean implements Serializable {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-	public boolean isSelected() {
+ 	 public boolean isSelected() {
 	    return selected;
 	  }
 	private String Var_Title;
@@ -320,7 +323,7 @@ public int getInt_Ad_categoryId() {
 	
 	public void getCls_ProductDetails(){
 		System.out.println(Int_ProductId);
-		pro2=getProductDetailService().editproduct(id);
+		pro2=getProductDetailService().editproduct(Int_ProductId);
 	System.out.println("111111111111111111111111111111111111111111");
 		System.out.println(pro2.getInt_ProductId());
 		prointcatid=getProductDetailService().editproductaa(pro2.getInt_ProductId());
@@ -581,8 +584,9 @@ public int getInt_Ad_categoryId() {
 	public void setStr(String str) {
 		this.str = str;
 	}
-	public void updation(){
+	public void updation(Integer id1){
 	   System.out.println(approval);
+	   System.out.println(id1);
 	   str=LoginBean.getSs();
 	   System.out.println(str); 
 	   getProductDetailService().datachange(str,id);
@@ -678,13 +682,15 @@ msg="The ad you have posted is of commercial nature, hence it cannot be approved
         {
             
         	 msg="Thanks for your payment on time";
+        	 return msg;
         }
         else
-        	
+        {	
         	 msg="dfdfdfdfdf";
 		 
 		 return msg;
-		
+        }
+		return msg;
 	}
 		
 	 
@@ -692,7 +698,7 @@ msg="The ad you have posted is of commercial nature, hence it cannot be approved
 
 	public String getTo() {
 		
-		to=Util.getEmail();
+		to="priya.das080@gmail.com";
 		System.out.println(to);
 		return to;
 	}
@@ -725,19 +731,73 @@ public static void setMessage(String message) {
 		Cls_AddDetailBean.recipient = recipient;
 	}
 	private static String recipient="recipient";
-	
+	private static String subject="subject";
+	public static String getSubject() {
+		return subject;
+	}
+	public static void setSubject(String subject) {
+		Cls_AddDetailBean.subject = subject;
+	}
 	public String send()
 	{
 		recipient=getTo();
 		content=msg;
+		subject="Appowner.com";
+		System.out.println(recipient);
+		System.out.println(content);
+		return "Email.jsp";
+	}
+	private String msg2;
+	
+	public String getMsg2() {
+		msg2="This is to inform you that your ad posting in Shaffi Paradise is now approved.";
+		return msg2;
+	}
+	public void setMsg2(String msg2) {
+		this.msg2 = msg2;
+	}
+	public String send1(Integer id1)
+	{    System.out.println("huyt");
+		recipient=getTo();
+		approval="approved";
+		System.out.println(id1);
+		content=msg2;
+		subject="Appowner.com";
 		System.out.println(recipient);
 		System.out.println(content);
 		return "Email.jsp";
 	}
 	
 	
-	   
-		  }  
+private List<Cls_ProductDetails> selectedAll;
+
+public List<Cls_ProductDetails> getSelectedAll() {
+	return selectedAll;
+}
+public void setSelectedAll(List<Cls_ProductDetails> selectedAll) {
+	this.selectedAll = selectedAll;
+}
+
+
+public String editdetail(Cls_ProductDetails ProductDetails)
+{
+	System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjlllllllllllllllll");
+	if (ProductDetails.getInt_ProductId() != null) {
+		
+		getProductDetailService().updatedetails(ProductDetails);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+		
+	} 
+	return "Ad_an_Post.xhtml";
+}
+	
+	
+}  
    	
 	
 	
