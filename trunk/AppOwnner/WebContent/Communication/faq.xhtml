@@ -6,11 +6,20 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
-	<h:head>
-	</h:head>
+	<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="28" width="28"></img> <span class="title">FAQ'S</span>
+				</td>
+			</tr>
+		</tbody>
+	</table> 
 	<h:form>
 	<h:body>
-	<h3>Admin And Committee</h3>
+	
+	<div id="page3">
+           <div class="gsTitleDiv">Admin And Committee<br/><hr/></div>  
 	 
     <p:accordionPanel multiple="true" activeIndex="">
         <p:tab title="Apartment">
@@ -161,8 +170,9 @@
         
         </p:tab>
         </p:accordionPanel>
-         
-       <h2> <h:outputText value="General"/></h2>
+         </div>
+      <div id="page3">
+           <div class="gsTitleDiv">General<br/><hr/></div>
      
         <p:accordionPanel multiple="true" activeIndex="">
              
@@ -223,7 +233,7 @@
             
         </p:tab>
         </p:accordionPanel>
-         
+         </div>
 	</h:body>
 	</h:form>
 
