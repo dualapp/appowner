@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -8,26 +7,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
-<h:head>
-    <title> </title>
-    <link href="include/assets/css/ace.min.css" rel="stylesheet" />
-    
-    <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
-    
-
-  <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
- 
-</h:head>
-
-
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title"> Vendor</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 <h:body>
 
 <script>
@@ -124,7 +112,7 @@ function HideModalWindow() {
 </legend>-->
  <p:growl id="msgs" showDetail="true" />
   
-		<div id="page3"><div class="gsTitleDiv">vendors<br/><hr/></div>
+		<div id="page3"><div class="gsTitleDiv">List Of vendors<br/><hr/></div>
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr><td>
   <h:commandButton    icon="ui-icon-plus"  action="/AfrteLoginViews/Vendor/addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
