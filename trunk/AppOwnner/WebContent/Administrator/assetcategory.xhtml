@@ -11,7 +11,7 @@
 	 
 	<h:head>
 
-	<title></title>
+	 
 	 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript">
 	 
 	 </script>
@@ -93,8 +93,6 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
  </h:head>
 	<h:form  >
 	  <p:growl id="msgs" showDetail="true" />
-    
-	<h:body>
 	<div id="page3">
            <div class="gsTitleDiv">Assets Catecory<br/><hr/></div> 
 	 
@@ -103,7 +101,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu><br/>
-	 <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
+	 <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
 	    <p:commandButton process="DT" update="multiAssetCategoryDetail"   value="Create New" oncomplete="PF('multiAssetCategoryDialog').show()" />
 	
 	 &#150; &#150;  <p:commandButton process="DT" update="multiAssetCategoryDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiAssetCategorylDialog1').show()" />
@@ -119,7 +117,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	 
              <p:dataTable      id="DT"  
                
-               rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+               rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"  var="ac"  value="#{expenseBean.assetCategoryList}" selection="#{expenseBean.assetCategoryList1}" rowKey="#{ac.int_assetcatId}">
 	 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
@@ -226,8 +224,6 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
              </p:outputPanel>
              </p:dialog>
              </div>
-	</h:body>
-	
-	</h:form>
+             </h:form>
 	 
 </html>
