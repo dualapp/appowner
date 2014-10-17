@@ -68,6 +68,10 @@ public interface ProductsDao {
 
 	public void valuereject(String str2, Integer id);
 
+	public void updatedetails(Cls_ProductDetails productDetails);
+
+	public void save1(Cls_ProductDetails productDetails);
+
 
 	
 	
