@@ -121,7 +121,7 @@ public void setInt_ManualJournalID(Integer int_ManualJournalID) {
 	this.int_ManualJournalID = int_ManualJournalID;
 }
 public String getStr_Organisation() {
-	str_Organisation=Util.getAppartmentName();
+	str_Organisation="priya";
 	return str_Organisation;
 }
 public void setStr_Organisation(String str_Organisation) {
@@ -275,7 +275,7 @@ public void setInt_AccountId(Integer int_AccountId) {
 	this.int_AccountId = int_AccountId;
 }
 public String getStr_OrganizationName() {
-	str_OrganizationName=Util.getAppartmentName();
+	//str_OrganizationName=Util.getAppartmentName();
 	return str_OrganizationName;
 }
 public void setStr_OrganizationName(String str_OrganizationName) {
@@ -309,9 +309,42 @@ public AccountingGroup getAccountGroup() {
 public void setAccountGroup(AccountingGroup accountGroup) {
 	this.accountGroup = accountGroup;
 }
+private double debitNetTotal=0.00;
+private double creditNetTotal=0.00;
+
+public double getDebitNetTotal() {
+	return debitNetTotal;
+}
+public void setDebitNetTotal(double debitNetTotal) {
+	this.debitNetTotal = debitNetTotal;
+}
+public double getCreditNetTotal() {
+	return creditNetTotal;
+}
+public void setCreditNetTotal(double creditNetTotal) {
+	this.creditNetTotal = creditNetTotal;
+}
+private double totalIncome;
+public double getTotalIncome() {
+	return totalIncome;
+}
+public void setTotalIncome(double totalIncome) {
+	this.totalIncome = totalIncome;
+}
 public List<ChartOfAccount> getChartOfAccountList() {
 	chartOfAccountList=new ArrayList<ChartOfAccount>();
 	chartOfAccountList.addAll(getAccountsService().getChartOfAccountList());
+	ListIterator list=chartOfAccountList.listIterator();
+	while(list.hasNext())
+	{
+		ChartOfAccount account=(ChartOfAccount)list.next();
+		double ddd=account.getDebit_closingBalance();
+		debitNetTotal=debitNetTotal+ddd;
+		double ddd1=account.getCredit_closingBalance();
+		creditNetTotal=creditNetTotal+ddd1;
+		
+	}
+			
 	return chartOfAccountList;
 }
 public void setChartOfAccountList(List<ChartOfAccount> chartOfAccountList) {
@@ -523,7 +556,7 @@ private String str_Accounts;
  public String getStr_Accounts() {
 	
 	 str_Accounts=getAccountsService().getAccountName(id1);
-     System.out.println(str_Accounts+"priyaa");
+     System.out.println(str_Accounts+"priyaa11");
 	
 	 return str_Accounts;
 }
@@ -564,7 +597,7 @@ private  String str;
 
 public String getStr() {
 	
-	
+	System.out.println(str+"vandana");
 	return str;
 }
 public void setStr(String str) {
@@ -576,7 +609,7 @@ public void accountchangeListener1(ValueChangeEvent event)
 	str=(String)event.getNewValue();
     System.out.println(str+"kihg");
 	id1=getAccountsService().getAccountId(str);
-
+     
 }
 
 public void getSearch()
@@ -584,7 +617,7 @@ public void getSearch()
 	
 	
   str_Accounts=getAccountsService().getAccountName1(id1);
-  
+     getDebit();
    if(str_Accounts.equals("Accounts Receivable"))
    { 
      listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
@@ -625,149 +658,9 @@ public void getSearch()
 private double debit=0.00;
 private double credit=0.00;
 public double getCredit() {
-	credit=int_Credit;
-	System.out.println(int_Debit+"anupam1");
-	System.out.println(credit+"anupam");
-   ListIterator list2=listManualJournal1.listIterator();
-	  {  
-	    totalBalance=0.00;
-		 while(list2.hasNext())
-		   {
-			 ManualJournal journal=(ManualJournal)list2.next();
-			 id=journal.getInt_ManualJournalID();
-			 System.out.println(id);
-			
-					 ManualJournal  account=(ManualJournal) getAccountsService().getManualAccount(id);
-					
-					 String sss=account.getStr_DebitAccount();
-					 String sss1=account.getStr_CreditAccount();
-					
-					if(sss.equalsIgnoreCase(str))
-					{
-			  	  		double balance3=getAccountsService().getDebitAmount(id);
-						totalBalance=totalBalance+balance3;
-						System.out.println(totalBalance+"123");
-					}
-					else
-					{
-					    double balance4=getAccountsService().getCreditAmount(id);
-					    credit=credit+balance4;
-					    System.out.println(credit+"jjj");
-					}
-					
-				}
-		 totalBalance=totalBalance+int_Debit;
-		
-		System.out.println(credit+"ji");
-			 }
-	ListIterator list4=listExpense.listIterator();
-	{
-		while(list4.hasNext())
-		{
-			Expense expense=(Expense)list4.next();
-			String account=expense.getStr_AccountName();
-			String account1=expense.getStr_ExpenseType();
-			if(account.equalsIgnoreCase(str))
-			{
-			  double balance5=expense.getInt_Ammount();
-			   System.out.println(balance5);
-			
-			   credit=credit+balance5;
-			}
-			else if(account1.equalsIgnoreCase(str))
-			{
-				double balance6=expense.getInt_Ammount();
-				   System.out.println(balance6);
-				
-				   totalBalance=totalBalance+balance6;
-				   System.out.println(totalBalance+"kjihu");
-			}
-		 }
-	}
-
-	
-	
-	try{
-	if(str_Accounts.equalsIgnoreCase(str))
-	{    
-	   if(str_Accounts.equalsIgnoreCase("Bank") || str_Accounts.equalsIgnoreCase("Cash"))
-	   {
-		 ListIterator list=listInvoiceTransaction.listIterator();
-		 {
-			 while(list.hasNext())
-			 {
-				 InvoiceTransaction invoice1=(InvoiceTransaction)list.next();
-				 Double balance2=invoice1.getTotalDue();
-				System.out.println(balance2+"kji");
-				totalBalance=totalBalance+balance2;
-				 System.out.println(totalBalance+"kkk");
-				 
-			 }
-		
-			 if(totalBalance>credit)
-			 {
-				 credit=totalBalance-credit; 
-			 }
-			 else
-			 {
-				 credit=credit-totalBalance;
-			 }
-			 System.out.println(totalBalance+"priya");
-			 System.out.println(credit+"jjs");
-			 if(totalBalance>credit)
-			 {
-				
-				 type1="false";
-				 System.out.println(type1+"kunku");
-			 }
-			 else
-			 { 
-				 type1="true";
-				
-				 System.out.println(type1+"kunku1");
-			 }
-		 }
-		
-	
-	return credit;
-	}
-	  
-	   if(totalBalance>credit)
-		 {
-			 credit=totalBalance-credit; 
-		 }
-		 else
-		 {
-			 credit=credit-totalBalance;
-		 }
-		 System.out.println(totalBalance+"priya");
-		 System.out.println(credit+"jjs");
-		 if(totalBalance>credit)
-		 {
-			
-			 type1="false";
-			 System.out.println(type1+"kunku2");
-			
-		 }
-		 else
-		  { 
-			 type1="true";
-			  System.out.println(type1+"kunku3");
-			
-		  }
-	return credit;	
-	}
-	
-	else
-	System.out.println(credit+"huy");
-	return credit;
-	}
-	catch(Exception e)
-	{
-		e.getMessage();
-	}
 	return credit;
 }
+
 public void setCredit(double credit) {
 	this.credit = credit;
 }
@@ -775,6 +668,13 @@ public void setDebit(double debit) {
 	this.debit = debit;
 }
 private String type1;
+private Boolean type2;
+public Boolean getType2() {
+	return type2;
+}
+public void setType2(Boolean type2) {
+	this.type2 = type2;
+}
 public String getType1() {
 	return type1;
 }
@@ -785,44 +685,10 @@ public void setType1(String type1) {
 private double totalBalance;
 public double getDebit() {
 	debit=int_Debit;
+	credit=int_Credit;
 	System.out.println(debit+"huy");
-	System.out.println(int_Credit+"huy1");
-	/* ListIterator list2=listManualJournal1.listIterator();
-	 {  System.out.println(debit+"phy");
-	    totalBalance=0.00;
-		 while(list2.hasNext())
-		 {
-			 ManualJournal journal=(ManualJournal)list2.next();
-			 id=journal.getInt_ManualJournalID();
-			 System.out.println(id);
-			
-					 ManualJournal  account=(ManualJournal) getAccountsService().getManualAccount(id);
-					
-					 String sss=account.getStr_DebitAccount();
-					 String sss1=account.getStr_CreditAccount();
-					
-					if(sss.equalsIgnoreCase(str))
-					{
-						double balance3=getAccountsService().getDebitAmount(id);
-						totalBalance=totalBalance+balance3;
-						System.out.println(totalBalance+"123");
-					}
-					else
-					{
-					    double balance4=getAccountsService().getCreditAmount(id);
-					    totalBalance=totalBalance-balance4;
-					    System.out.println(totalBalance+"jjj");
-					}
-					
-				}
-		
-			 }
-			
-
-	 debit=debit+totalBalance;
-	 System.out.println(debit+"pp");
+	System.out.println(credit+"huy1");
 	
-*/
 	if(str_Accounts.equalsIgnoreCase("Income from Resident"))
 	 {  System.out.println(str_Accounts != str);
 		if(str==null)
@@ -834,11 +700,20 @@ public double getDebit() {
 		InvoiceTransaction invoice=(InvoiceTransaction)obj;
 		double balance1=invoice.getTotalDue();
 		
-		   debit=debit+balance1;
-		System.out.println(debit+"juhy");
+		   credit=credit+balance1;
+		System.out.println(credit+"juhy");
+		  if(debit>credit)
+		  {
+		     type1="true";
+		     type2=false;
 	     }
-	       debit=debit+int_Credit;
+		  else
+		  {
+			  type1="false";
+			  type2=true;
+		  }
 	     return debit;
+	     }
 	    }
 	   else if(str.equalsIgnoreCase("Income from Resident"))
 	   {
@@ -849,9 +724,11 @@ public double getDebit() {
 		Object obj=list.next();
 		InvoiceTransaction invoice=(InvoiceTransaction)obj;
 		double balance1=invoice.getTotalDue();
+		totalBalance=invoice.getTaxAmount();
+		System.out.println(totalBalance);
+		credit=credit+balance1;
 		
-		totalBalance=totalBalance+balance1;
-		System.out.println(totalBalance+"huy");
+		System.out.println(credit+"huy");
 	     } 
 	   }
 	 ListIterator list2=listManualJournal1.listIterator();
@@ -871,31 +748,43 @@ public double getDebit() {
 					if(sss.equalsIgnoreCase(str))
 					{
 						double balance3=getAccountsService().getDebitAmount(id);
-						debit=debit+balance3;
-						System.out.println(debit+"123");
+						credit=credit+balance3;
+						System.out.println(credit+"123");
 					}
 					else
 					{
 					    double balance4=getAccountsService().getCreditAmount(id);
-					    totalBalance=totalBalance+balance4;
-					    System.out.println(totalBalance+"jjj");
+					    debit=debit+balance4;
+					    System.out.println(debit+"jjj");
 					}
 					
 				}
 		
 			 }
-	  if(totalBalance>debit)
+	  if(credit>debit)
       {
-		 debit=totalBalance-debit;
+		 credit=credit-debit;
+		 type1="false";
+		
+		 type2=true;
+		 totalBalance=credit-totalBalance;
+		 debit=0.00;
+	 getAccountsService().updateClosingBalance(debit,totalBalance,str);	
 		 System.out.println(debit+"pp");
+		 return credit;
       }
       else
       {
-    	  debit=debit-totalBalance;
-			 System.out.println(debit+"pp1");  
+    	  debit=debit-credit;
+    	  type1="true";
+ 		 type2=false;
+ 		 credit=0.00;
+ 		 getAccountsService().updateClosingBalance(debit,credit,str);	
+ 		 System.out.println(debit+"pp1"); 
+ 		 return debit;
       }
-		
-	return debit;		
+	 
+	
 
 	
 	
@@ -945,8 +834,8 @@ public double getDebit() {
 					 InvoiceTransaction invoice1=(InvoiceTransaction)list1.next();
 					 Double balance2=invoice1.getTotalDue();
 					
-					 totalBalance=totalBalance+balance2;
-					 System.out.println(totalBalance+"huyt");
+					 credit=credit+balance2;
+					 System.out.println(credit+"huyt");
 					 
 				 }
 			 }
@@ -973,8 +862,9 @@ public double getDebit() {
 							else
 							{
 							    double balance4=getAccountsService().getCreditAmount(id);
-							    totalBalance=totalBalance+balance4;
-							    System.out.println(totalBalance+"jjj");
+							    credit=credit+balance4;
+							    System.out.println(credit+"jjj");
+							    System.out.println(debit+"jnjkjkkj");
 							}
 							
 						}
@@ -983,31 +873,225 @@ public double getDebit() {
 					
 			
 	
-			  if(totalBalance>debit)
+			  if(credit>debit)
 	          {
-				 debit=totalBalance-debit;
+				 credit=credit-debit;
+				 type1="false";
+				 type2=true;
+				 debit=0.00;
 				 System.out.println(debit+"pp");
+				 System.out.println(credit+"ppp1");
+				 getAccountsService().updateClosingBalance(debit,credit,str);	
+				 return credit;
 	          }
 	          else
 	          {
-	        	  debit=debit-totalBalance;
-	 			 System.out.println(debit+"pp1");  
+	        	  debit=debit-credit;
+	        	  type1="true";
+	        	  type2=false;
+	        	  credit=0.00;
+	 			 System.out.println(debit+"pp1");
+	 			 getAccountsService().updateClosingBalance(debit,credit,str);	
+	 			 return debit;
 	          }
 				
-				
-				return debit;
+			  
 			
 		
 	}		
 		
 	
-	else
+	else if(str_Accounts.equalsIgnoreCase(str))
+	{
+	 ListIterator list2=listManualJournal1.listIterator();
+	  {  
+	  //  totalBalance=0.00;
+		  while(list2.hasNext())
+		   {
+			 ManualJournal journal=(ManualJournal)list2.next();
+			 id=journal.getInt_ManualJournalID();
+			 System.out.println(id);
+			
+					 ManualJournal  account=(ManualJournal) getAccountsService().getManualAccount(id);
+					
+					 String sss=account.getStr_DebitAccount();
+					 String sss1=account.getStr_CreditAccount();
+					
+					if(sss.equalsIgnoreCase(str))
+					{
+			  	  		double balance3=getAccountsService().getDebitAmount(id);
+						debit=debit+balance3;
+						System.out.println(debit+"123");
+					}
+					else
+					{
+					    double balance4=getAccountsService().getCreditAmount(id);
+					    credit=credit+balance4;
+					    System.out.println(credit+"jjj");
+					}
+					
+				}
+		
+		
+		
+			 }
+	ListIterator list4=listExpense.listIterator();
+	{
+		while(list4.hasNext())
+		{
+			Expense expense=(Expense)list4.next();
+			String account=expense.getStr_AccountName();
+			String account1=expense.getStr_ExpenseType();
+			if(account.equalsIgnoreCase(str))
+			{
+			  double balance5=expense.getInt_Ammount();
+			   System.out.println(balance5);
+			
+			   credit=credit+balance5;
+			}
+			else if(account1.equalsIgnoreCase(str))
+			{
+				double balance6=expense.getInt_Ammount();
+				   System.out.println(balance6);
+				
+				   debit=debit+balance6;
+				   System.out.println(debit+"kjihu");
+			}
+		 }
+	}
+
 	
-	return debit;
+try{	
+	
+	if(str_Accounts.equalsIgnoreCase(str))
+	{  
+	  System.out.println(str_Accounts.equalsIgnoreCase(str)+"jiuynnnnnnnnnnnnnnn");
+	   if(str_Accounts.equalsIgnoreCase("Bank") || str_Accounts.equalsIgnoreCase("Cash"))
+	   {
+		 ListIterator list=listInvoiceTransaction.listIterator();
+		 System.out.println("plsssssssssss");
+		 {
+			 while(list.hasNext())
+			 {
+				 InvoiceTransaction invoice1=(InvoiceTransaction)list.next();
+				 Double balance2=invoice1.getTotalDue();
+				 totalBalance=invoice1.getTaxAmount();
+				System.out.println(balance2+"kji");
+				debit=debit+balance2;
+				 System.out.println(debit+"kkk");
+				 
+			 }
+			
+			 if(debit>credit)
+			 {
+				 debit=debit-credit; 
+				 type1="true";
+				 type2=false;
+				 credit=0.00;
+				 getAccountsService().updateClosingBalance(debit,credit,str);	
+				 return debit;
+			 }
+			 else
+			 {
+				 credit=credit-debit;
+				 type1="false";
+				 type2=true;
+				 debit=0.00;
+				 getAccountsService().updateClosingBalance(debit,credit,str);	
+				 return credit;
+			 }
+			 
+			
+		 }
+		
+	}
+	   if(str_Accounts.equalsIgnoreCase("Tax Payable"))
+	   {
+		 ListIterator list=listInvoiceTransaction.listIterator();
+		 System.out.println("Excuse me");
+		 {
+			 while(list.hasNext())
+			 {
+				 InvoiceTransaction invoice1=(InvoiceTransaction)list.next();
+				
+				 totalBalance=invoice1.getTaxAmount();
+				 System.out.println(totalBalance+"huytjjjjjj");
+				
+			 }
+			
+			 if(debit>credit)
+			 {
+				 debit=debit-credit; 
+				 type1="true";
+				 type2=false;
+				 double  debit1=0.00;
+				 if(debit<totalBalance)
+				 {
+					 
+					 credit=totalBalance-debit;
+					
+				 getAccountsService().updateClosingBalance(debit1,credit,str);	
+				 return debit;
+				 }
+				 else
+				 {
+					 debit1=debit-totalBalance;
+					 credit=0.00;
+					 getAccountsService().updateClosingBalance(debit1,credit,str);	
+					 return debit;
+				 }
+			 }
+			 else
+			 {
+				 credit=credit-debit;
+				 type1="false";
+				 type2=true;
+				 debit=0.00;
+				 double credit1=0.00;
+				 credit1=totalBalance+credit;
+				 getAccountsService().updateClosingBalance(debit,credit1,str);	
+				 return credit;
+			 }
+			 
+			
+		 }
+		
+	}
+	   if(debit>credit)
+		 {
+			 debit=debit-credit; 
+			 System.out.println(debit);
+			 type1="true";
+			 type2=false;
+			 credit=0.00;
+			 System.out.println(type1+"jjfd");
+			 System.out.println(type2+"hygtf");
+			 getAccountsService().updateClosingBalance(debit,credit,str);	
+			 return debit;
+		 }
+		 else
+		 {
+			 credit=credit-debit;
+			 type1="false";
+			 type2=true;
+			 debit=0.00;
+			 System.out.println(type2+"jhhj");
+			 getAccountsService().updateClosingBalance(debit,credit,str);	
+			 return credit;
+		 }
+   
+     
+	}
+	}
+	catch(Exception e)
+	{
+		e.getMessage();
+	}
+}
+return debit;
 	
 }
-
-
+	
 
 private List<InvoiceTransaction>  listInvoiceTransaction;
 public List<InvoiceTransaction> getListInvoiceTransaction() {
@@ -1024,7 +1108,7 @@ public List<InvoiceTransaction> getListInvoiceTransaction() {
 		
 		double id=invoice.getSubTotal();
 		type="Income";
-	  
+	    totalIncome=totalIncome+id;
 	}
 	
 	return  listInvoiceTransaction;
@@ -1105,40 +1189,62 @@ public TemplateService getTemplateService() {
 public void setTemplateService(TemplateService templateService) {
 	this.templateService = templateService;
 }
-private List<String> income1;
-public String getIncome1() {
-	income1=new ArrayList<String>();
-	income1.addAll(getTemplateService().listRavenues());
-	StringBuilder out = new StringBuilder();
-	for (Object o : income1)
-	{
-	  out.append(o.toString());
-	  out.append(",");
-	}
-	String str4=out.toString();
-	return  str4.substring(0, str4.lastIndexOf(","));
+private List<ChartOfAccount> income1;
+public List<ChartOfAccount> getIncome1() {
+	income1=new ArrayList<ChartOfAccount>();
+	income1.addAll(getAccountsService().listRavenues());
+	getChartOfAccountList();
+	
+	return income1;
 	
 }
 
-public String getAsset() {
-	asset=new ArrayList<String>();
+public List<ChartOfAccount> getAsset() {
+	asset=new ArrayList<ChartOfAccount>();
 	asset.addAll(getAccountsService().listAssets());
-	StringBuilder out = new StringBuilder();
-	for (Object o : asset)
-	{
-	  out.append(o.toString());
-	  out.append(",");
-	}
-	String str5=out.toString();
-	return  str5.substring(0, str5.lastIndexOf(","));
 	
+	return asset;
 }
-public void setIncome1(List<String> income1) {
+
+
+public void setIncome1(List<ChartOfAccount> income1) {
 	this.income1 = income1;
 }
+private List<ChartOfAccount> asset;
 
-private List<String> asset;
-public void setAsset(List<String> asset) {
+public void setAsset(List<ChartOfAccount> asset) {
 	this.asset = asset;
 }
+private List<ChartOfAccount> expense;
+public List<ChartOfAccount> getExpense() {
+	expense=new ArrayList<ChartOfAccount>();
+	expense.addAll(getAccountsService().listExpense());
+	return expense;
 }
+
+private List<ChartOfAccount> liability;
+private List<ChartOfAccount> equity;
+public List<ChartOfAccount> getLiability() {
+	liability=new ArrayList<ChartOfAccount>();
+	liability.addAll(getAccountsService().listLiability());
+	
+	return liability;
+}
+
+public List<ChartOfAccount> getEquity() {
+	equity=new ArrayList<ChartOfAccount>();
+	equity.addAll(getAccountsService().listEquity());
+	return equity;
+}
+public void setExpense(List<ChartOfAccount> expense) {
+	this.expense = expense;
+}
+public void setLiability(List<ChartOfAccount> liability) {
+	this.liability = liability;
+}
+public void setEquity(List<ChartOfAccount> equity) {
+	this.equity = equity;
+}
+
+}
+
