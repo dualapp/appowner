@@ -136,7 +136,7 @@ public class ProductsDaoImpl implements ProductsDao{
 			
 			 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
 			          ).list();
-		      System.out.println("kkk");   
+		     System.out.println(kkk.listIterator().hasNext());
 			 return kkk;	
 		}
 		else
@@ -145,7 +145,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		
 		 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
 		          ).list();
-	      System.out.println("kkk");   
+		 System.out.println(kkk.listIterator().hasNext()+"priya");
 		 return kkk;
 		
 	}
@@ -283,6 +283,18 @@ public class ProductsDaoImpl implements ProductsDao{
 		String hql="update Cls_ProductDetails set Status=? where Int_ProductId=?";
 		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str2).setParameter(1,id).executeUpdate();
 			
+		
+	}
+
+	@Override
+	public void updatedetails(Cls_ProductDetails productDetails) {
+		 sessionFactory.getCurrentSession().update(productDetails);
+		
+	}
+
+	@Override
+	public void save1(Cls_ProductDetails productDetails) {
+		sessionFactory.getCurrentSession().update(productDetails);
 		
 	}
 
