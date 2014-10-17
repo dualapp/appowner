@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -6,23 +7,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
-<h:head>
-    <title>Expenses  Form
-    
-    
-    </title>
-   
-</h:head>
-<body  bgcolor="pink">
+ 
+<body>
   <h:form id="form">
    <p:growl id="msgs" showDetail="true" />
-  <br/>
-  <legend    style="background-color:#438eb9; color:#fff;"> </legend>
-  <fieldset>
-    <br/><center><legend    style="background-color:#438eb9; color:#fff;">Filter</legend> </center>
+  <div id="page3">
+  <div class="gsTitleDiv">Filter<br/><hr/></div> 
        <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
          
-              <td><h:outputLabel value="Organisation:" /></td>
+              <th><h:outputText value="Organisation:" /></th>
               <td><p:selectOneMenu     value="#{expenseBean.str_OrganizationName}"  style="width:100px">
                
                 <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}"/>
@@ -30,7 +23,7 @@
                  </p:selectOneMenu>
              </td>
             
-             <td><h:outputText  value="Expense Type:" /></td>
+             <th><h:outputText  value="Expense Type:" /></th>
                <td><p:selectOneMenu   value="#{expenseBean.str_ExcepenseType}"  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
@@ -40,7 +33,7 @@
                  </p:selectOneMenu>
              </td>
               
-             <td><h:outputText  value="Expense Category:" /></td>
+             <th><h:outputText  value="Expense Category:" /></th>
                <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
@@ -52,7 +45,7 @@
              <br/>
              
             
-             <tr> <td><h:outputLabel value="Duration:" /></td>
+             <tr> <th><h:outputText value="Duration:" /></th>
               <td><p:selectOneMenu value="#{expenseBean.date_Duration}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
@@ -64,7 +57,7 @@
       </p:selectOneMenu>
              </td>
                
-             <td><h:outputText  value="Asset Category:" /></td>
+             <th><h:outputText  value="Asset Category:" /></th>
                <td><p:selectOneMenu id="assetcatname"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
@@ -73,7 +66,7 @@
                  </p:selectOneMenu>
              </td>
                
-             <td><h:outputText  value="Asset Name" /></td>
+             <th><h:outputText  value="Asset Name" /></th>
                <td><p:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                   <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
@@ -83,10 +76,9 @@
                  </td></tr>
                  <tr><th><p:commandButton value="Go" action="#{expenseBean.getExpenseList}"/></th></tr>
                  </table>
-                  
-            
-           
-             </fieldset>
+                  </div>
+                  <div id="page3">
+             <div class="gsTitleDiv">Expense<br/><hr/></div>
             <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr><td>
           <h:button   outcome="createExpenses" value="Create New"/>   &#150; &#150;<h:button    value="Refresh" />&#150; &#150;<p:menuButton value="Action">
@@ -99,11 +91,10 @@
          &#150; &#150;  <p:commandButton process="DT" update=":form:multiExpenseDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiExpenseDialog1').show()" />
        &#150; &#150; <p:commandButton process="DT" update=":form:multiExpenseDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiExpenseDialog').show()" />
        &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteSelectedExpenses()}" icon="ui-icon-trash" value="Delete" />
-      
-           </td></tr></table>
-             
-             
-            
+        </td>
+        </tr>
+        </table>
+        
              <p:dataTable     selection="#{expenseBean.selectedExpenses}" rowKey="#{Expenselist.str_ExpenseId}"
               id="DT"    
                  var="Expenselist" value="#{expenseBean.expenseList}"   resizableColumns="true" style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
@@ -134,33 +125,7 @@
                 
             </p:column>
            
-             <p:column headerText="Action" >
-                 
-                   
-          
-          
-       
-                <h:link outcome="editexpense.xhtml" >
-                
-	   			<p:graphicImage  height="20" width="20" alt="Edit" value="images/k1.png"/> 
-	   			
-	   				<f:param name="str_ExpenseId" value="#{Expenselist.str_ExpenseId}" />
-	   				
-	   		</h:link  >
-	   		<h:link outcome="viewExpense.xhtml"  id="sidlink"  target="_blank" >
-                  <h:outputText value="view" styleClass="txtlink"/>
-	   				<f:param name="str_ExpenseId" value="#{Expenselist.str_ExpenseId}"/>
-	   			 
-	   		</h:link  >
-	   		
-	   		 
-	   		<h:link outcome="deleteExpense.xhtml"
-	   		 onclick="return confirm('Are you sure you want to delete #{Expenselist.str_ExpenseId}?');" >  
-	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
-	   				<f:param name="str_ExpenseId" value="#{Expenselist.str_ExpenseId}" />
-	   		</h:link>
-	   		 
-            </p:column>
+              
           
          
              </p:dataTable>
@@ -274,9 +239,8 @@
             </table>
             </p:outputPanel>
             </p:dialog>
+            </div>
             </h:form>
-           </body>
-            
-             
-</ui:define>
-</ui:composition>
+            </body>
+            </ui:define>
+            </ui:composition>

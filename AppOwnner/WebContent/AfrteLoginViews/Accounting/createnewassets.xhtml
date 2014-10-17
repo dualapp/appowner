@@ -1,0 +1,182 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+	
+	<h:head>
+    <title>Asset</title>
+     
+	 <link href="#{expenseBean.str_Name}include/assets/css/ace.min.css" rel="stylesheet" />
+	 
+ 
+  
+    </h:head>
+ <a href="assets.xhtml">>>Back To Asset</a >
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    
+    <body>
+     
+             
+		<div id="page3"><div class="gsTitleDiv">Assets<br/><hr/></div>
+ <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
+               <h:outputText value="  Organisation:*" /> </th>
+              
+               <td><p:selectOneMenu   style="width:100px"> 
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu> </td> 
+                 <th><h:outputText value="Assets Category*"/></th>
+                 <td><p:selectOneMenu  id="AssetCategory" required="true" requiredMessage="plz Enter Assets Category "  value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                 
+                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                  <p:ajax event="blur" update="AssetCategoryMsg" />
+                 </p:selectOneMenu>
+                 </td>
+                 <td><p:message id="AssetCategoryMsg"  for="AssetCategory" display="text"/></td>
+                 </tr>
+                 <tr><th><h:outputText value="Assets Name*"/></th><td><h:inputText    id="AssetName" required="true" requiredMessage="plz Enter Asset Name" value="#{expenseBean.str_AssetName}">
+                 <p:ajax event="blur" update="AssetNameMsg" />
+                 </h:inputText>
+                  <p:message  id="AssetNameMsg" for="AssetName" display="text"/> 
+                 </td>
+                 
+                <th><h:outputText value="Location(Block)"/></th><td><p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px"> 
+              <f:selectItem itemLabel="Select One" itemValue="" />
+              <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
+                
+                 </p:selectOneMenu> </td>
+                 </tr>
+                 <tr><th><h:outputText value="Rentable*"/></th>
+                 <td><p:selectOneRadio  id="Rantable" required="true" requiredMessage="plz Select Rentable"   value="#{expenseBean.bool_Rentable}" >
+            
+            <f:selectItem itemLabel="yes" itemValue="yes" />
+            <f:selectItem itemLabel="No" itemValue="No" />
+             <p:ajax event="blur" update="RantableMsg" />
+        </p:selectOneRadio></td>
+        <td><p:message id="RantableMsg"  for="Rantable" display="text"/></td>
+        </tr>
+                 </table>
+                 
+                 
+ 
+ 
+                 <div class="gsTitleDiv">OtherDetails<br/><hr/></div>  
+                 <h:panelGroup id="sss1">
+             <h:panelGrid >
+                 <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr> 
+                   <th>Additional Info</th><td><p:inputTextarea rows="10" cols="63" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/></td>
+                   <td> <p:outputPanel layout="block" id="assetimg" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{expenseBean.getPath3()}"/></p:outputPanel></td ></tr><tr><td>
+       
+       <p:fileUpload  style="width:70%; " update="assetimg" fileUploadListener="#{expenseBean.handleFileUpload4}" multiple="true"  mode="advanced" dragDropSupport="false"
+            sizeLimit="100000"    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"></p:fileUpload>
+       </td></tr>
+        
+                 </table>
+                 
+                 </h:panelGrid>
+                 </h:panelGroup>
+                  
+                
+                 <p:accordionPanel  multiple="true" activeIndex="">
+    
+        <p:tab title="Purchase Details">
+         <fieldset>
+        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        <tr><th><h:outputText value="Purchase Date"/></th><td><p:calendar  id="PDate" required="true" requiredMessage="Please enter Purchase Date" navigator="true" display="inline"   value="#{expenseBean.date_PurchaseDate}">
+        <p:ajax event="blur" update="PDateMsg" />
+        </p:calendar>
+        <p:message id="PDateMsg"  for="PDate" display="text"/>
+      </td> 
+                   <th> <h:outputText value="Price"/></th> <td><h:inputText value="#{expenseBean.dbl_Price}"/></td></tr>
+                   <tr><th><h:outputText value="Warrenty Start Date"/></th><td><p:calendar id="WSDate"  required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyStartDate}">
+                   <p:ajax event="blur" update="WSDateMsg" />
+                   </p:calendar>
+                 <p:message  id="WSDateMsg" for="WSDate" display="text"/> 
+                 </td>
+                   <th><h:outputText value="Warrenty End Date"/></th><td><p:calendar  id="WEDate" required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyEndDate}">
+                   <p:ajax event="blur" update="WEDateMsg" />
+                   </p:calendar>
+                   <p:message id="WEDateMsg"   for="WEDate" display="text"/>
+                   </td> 
+                   </tr>
+                 <tr><th><h:outputText value="VendorType"/></th><td> <p:selectOneMenu id="str_VendorType" style="width:200px" valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}"  value="#{expenseBean.str_VendorType}"  >
+            <f:selectItem itemLabel="Select One" itemValue="" />
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+              <p:ajax event="change" update="str_VendorName1" process="str_VendorType"/> 
+               
+        </p:selectOneMenu>
+        </td>
+ </tr>
+ <tr>
+ 
+ 
+            <th><h:outputText for="str_VendorName1" value="Select Vendor Name* " /></th>
+            <td><p:selectOneMenu id="str_VendorName1"  style="width:200px" value="#{expenseBean.str_VendorName}"  >
+                <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
+                  
+            </p:selectOneMenu></td>
+             </tr>
+             <tr><th><h:outputText value="SellerNameAndDetails"/></th><td><p:inputTextarea rows="10" cols="63" label="SellerNameAndDetails"   value="#{expenseBean.str_SellerNameAnddetails}"/>
+                  </td></tr>
+                  
+                  </table>
+           </fieldset>
+        </p:tab>
+        <p:tab title="AMC Details">
+        
+         <fieldset>
+        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        <tr><th><h:outputText value="AMC Start Date"/></th><td><p:calendar  id="StartDate" required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCStartDate}">
+        <p:ajax event="blur" update="StartDateMsg" />
+        </p:calendar>
+       </td><td> <p:message id="StartDateMsg"  for="StartDate" display="text"/></td>
+        <th><h:outputText value="AMC End Date"/></th><td><p:calendar id="EndDate"  required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCEndDate}">
+        <p:ajax event="blur" update="EndDateMsg" />
+        </p:calendar>
+        </td><td><p:message id="EndDateMsg"  for="EndDate" display="text"/></td>
+        </tr>
+          <tr><th><h:outputText value="VendorType"/></th><td> <p:selectOneMenu id="str_VendorType1" style="width:200px"  value="#{expenseBean.str_VendorType}"  >
+            <f:selectItem itemLabel="Select One" itemValue="" />
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+              <p:ajax event="change" update="str_VendorName2" process="str_VendorType1"/> 
+               
+        </p:selectOneMenu>
+        </td>
+ </tr>
+ <tr>
+ 
+ 
+            <th><h:outputText for="str_VendorName2" value="Select Vendor Name* " /></th>
+            <td><p:selectOneMenu id="str_VendorName2"  style="width:200px" value="#{expenseBean.str_VendorName}"  >
+                <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
+                  
+            </p:selectOneMenu></td><th><h:outputText value="Same as Purchase Vendor? " /></th>
+       <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
+             </tr>
+        </table>
+        
+        </fieldset>
+        </p:tab>
+        
+        
+         </p:accordionPanel>
+              <tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{expenseBean.addAsset()}"/></td><td> <h:commandButton styleClass="btn" value="Cancel"/> </td></tr>
+           
+           </div>  
+                 
+</body>
+</h:form>
+<a href="assets.xhtml">>>Back To Asset</a >
+</ui:define>
+</ui:composition>
