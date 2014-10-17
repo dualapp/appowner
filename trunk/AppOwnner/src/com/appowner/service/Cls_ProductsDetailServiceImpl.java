@@ -213,6 +213,18 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 		
 	}
 
+	@Override
+	public void updatedetails(Cls_ProductDetails productDetails) {
+		getProductDao().updatedetails(productDetails);
+		
+	}
+
+	@Override
+	public void save1(Cls_ProductDetails productDetails) {
+		getProductDao().save1(productDetails);
+		
+	}
+
 	
 	
 		
