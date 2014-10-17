@@ -74,7 +74,7 @@
     <h:outputLabel value="Choose Your  File for upload "></h:outputLabel>
    <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
         fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa" style="width:250px" />
+        sizeLimit="100000"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"  update="aaa" style="width:250px" />
        </td>
        </tr>
        <br />
@@ -89,8 +89,8 @@
             </tr>
             <br/>
            
-                <p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" float:right !important;margin: -30px 100px 50px 0px;" /> 
-                <p:button id="AddProduct1" value="Cancel" outcome="Create_Detail.xhtml" style=" float:right !important;margin: -30px -130px 0px 0px;" /> 
+                <p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" float:right !important;margin: -30px 100px 500px 0px;" /> 
+                <p:button id="AddProduct1" value="Cancel" outcome="Create_Detail.xhtml" style=" float:right !important;margin: -30px 30px 1000px 0px;" /> 
             
   
                   </table>
