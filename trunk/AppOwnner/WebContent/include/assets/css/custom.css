@@ -218,7 +218,7 @@ font-family: "Open Sans light", sans-serif;
 font-size: 20px;
 color: #438eb9;
 margin-left: 10px;
-padding-bottom: 5px;
+padding-bottom: 1px;
 font-family: "Open Sans light", sans-serif;
 }
 .gsContent {
@@ -240,8 +240,9 @@ font-size: 11px;
 }
 
 #page {
-width: 500px;
+width: 60%;
 float: left;
+ 
 margin-left: 10px;
 position: relative;
 overflow: auto;
@@ -253,9 +254,10 @@ border-radius: 4px;
 background-color: #ffffff;
 }
 #page1 {
-width: 500px;
+width: 35%;
 float: right;
 margin-left: 10px;
+ 
 position: relative;
 overflow: auto;
 margin-top: 10px;
@@ -265,8 +267,27 @@ box-shadow: 0px 0px 20px 3px #d3d3d3;
 border-radius: 4px;
 background-color: #ffffff;
 }
-#page3 {
+.ui-selectonemenu .ui-selectonemenu-trigger {
+border-radius: 10px 0;
+    
+		 
+		  
+}
+.ui-inputfield {
+margin: 0;
+font:size:1em;
+outline: medium none;
+padding: 3px;
  
+ 
+ 
+ box-sizing: border-box;
+    
+font-weight: normal;
+}
+
+#page3 {
+  
 margin-left: 15px;
 position: relative;
 overflow: auto;
@@ -278,6 +299,7 @@ padding-bottom: 20px;
 box-shadow: 0px 0px 20px 3px #d3d3d3;
 border-radius: 4px;
 background-color: #ffffff;
+
 }
  
 
