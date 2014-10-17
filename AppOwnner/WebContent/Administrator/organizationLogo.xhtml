@@ -19,7 +19,7 @@
  <h:body>
  <div id="page3">
            <div class="gsTitleDiv">OrganizationLogo<br/><hr/></div> 
-  <table><tr><th>
+  <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px"><tr><th>
                <h:outputText value="Organisation:" /> </th>
               <td> <h:outputText value="#{expenseBean.str_OrganizationName}"/></td></tr>
                  
@@ -30,7 +30,7 @@
          <tr><th><h:outputText value="Upload Appartment image:"/></th> 
  <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
-  <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload1}" multiple="true"  mode="advanced" dragDropSupport="false"
+  <p:fileUpload  style="width:60%; " fileUploadListener="#{expenseBean.handleFileUpload1}" multiple="true"  mode="advanced" dragDropSupport="false"
             sizeLimit="100000"    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"></p:fileUpload>
  
      
@@ -40,7 +40,7 @@
             <tr><th><h:outputText value="Upload Appartment Logo:"/></th> 
  <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
-   <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload}"    mode="advanced" dragDropSupport="false"
+   <p:fileUpload style="width:60%; " fileUploadListener="#{expenseBean.handleFileUpload}"    mode="advanced" dragDropSupport="false"
             sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"></p:fileUpload>
   
   
@@ -48,7 +48,7 @@
              </td></tr>
               <tr><th>Upload Document</th><td>
             
-            <p:fileUpload  fileUploadListener="#{expenseBean.handleFileUpload2}" mode="advanced" dragDropSupport="false"
+            <p:fileUpload style="width:60%; " fileUploadListener="#{expenseBean.handleFileUpload2}" mode="advanced" dragDropSupport="false"
            update="messages3" sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(doc|docx|xls|xlsx|pdf)$/" />
  
     <p:growl id="messages3" showDetail="true" />
