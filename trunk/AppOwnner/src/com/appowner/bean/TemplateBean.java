@@ -91,7 +91,7 @@ public class TemplateBean implements Serializable {
 	}
 	private String str_Organisation;
 	public String getStr_Organisation() {
-		str_Organisation=Util.getAppartmentName();
+		//str_Organisation=Util.getAppartmentName();
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
