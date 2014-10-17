@@ -7,22 +7,19 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
-<h:head>
-<link href="include/assets/css/ace.min.css" rel="stylesheet" />
-<style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
-    </h:head>
+ 
     <a href="servicerequest.xhtml">>>Back To Service Request</a >
     <h:form>
      
-    <h:body>
+    <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title">Create New Service Request</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
     <div id="page3">
            <div class="gsTitleDiv">Service  Details<br/><hr/></div>
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -49,7 +46,7 @@
    </table>
    
    
-   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr><th><h:outputText value="Description*"/></th>  <td></td><td><p:editor id="editor" required="true" requiredMessage="plz  Enter Description"  widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td>
     <td> <p:message  id="editorMsg" for="editor" display="text"/> </td>
    </tr>
@@ -71,7 +68,7 @@
         }
  
     </script>
-    </h:body>
+     
     <a href="servicerequest.xhtml">>>Back To Service Request</a >
     </h:form>
 	</ui:define>
