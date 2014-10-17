@@ -8,18 +8,23 @@ body {
 	background-color: #e4e6e9;
 	min-height: 100%;
 	font-family: Verdana;
-    font-size: 13px;
+    font-size: 10px;
 	color: #393939;
 	line-height: 1.5
 }
-
+dropdown {
+		border-radius: 10px 0;
+		width:105px
+	}
 table, th, td {
     
     border-collapse: collapse;
+     
 }
 th, td {
     padding: 3px;
-    text-align: left;
+    font-size: 10px;
+    text-align: left
     
     
      
@@ -67,18 +72,14 @@ body.breadcrumbs-fixed {
 }
 
 .main-content {
-	margin-left: 200px;
+	 
 	margin-right: 10px; 
 	margin-top: 10px;
 	min-height: 100%;
 	padding: 5;
 	position: relative;
     overflow: auto;
-	 border-top:2px solid #438eb9;
-	  border-left:2px solid #438eb9;
-	   border-right:2px solid #438eb9;
-				border-bottom:2px solid #438eb9;
-				box-shadow: 0px 0px 20px 3px #d3d3d3;
+	 
 }
 .sidebar-space-maincontent{
 	margin-left: 190px;
@@ -5268,7 +5269,8 @@ button.btn:active {
 
 label {
 	font-weight: normal;
-	font-size: 14px
+	font-family:vardana;
+	font-size: 12px
 }
 
 .form-group>label[class*="col-"] {
@@ -5293,8 +5295,9 @@ textarea,input[type="text"],input[type="password"],input[type="datetime"],input[
 	border: 1px solid #d5d5d5;
 	padding: 5px 4px;
 	line-height: 1.2;
-	font-size: 14px;
-	font-family: inherit;
+	 
+	font-size: 1em;
+	font-family: vardana;
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
 	-webkit-transition-duration: .1s;
@@ -5414,7 +5417,7 @@ input[disabled]:hover {
 
 input[readonly] {
 	color: #939192;
-	background: #f5f5f5 !important;
+	 
 	cursor: default
 }
 
@@ -11494,7 +11497,8 @@ ul.attachment-list>li {
 }
 
 .fc-header-title>h2 {
-	font-size: 22px;
+	font-size: 12px;
+	 
 	color: #65a0ce
 }
 
