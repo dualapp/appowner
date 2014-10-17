@@ -35,7 +35,7 @@ import com.appowner.service.AdvertisementService;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AdvertisementBean  implements Serializable{
 	 
 	private static final long serialVersionUID = 1L;
@@ -490,6 +490,16 @@ public class AdvertisementBean  implements Serializable{
 				public void setPath1(String path1) {
 					this.path1 = path1;
 				}
+				private String blb_image1;
+				
+				
+				public String getBlb_image1() {
+					blb_image1="aaa";
+					return blb_image1;
+				}
+				public void setBlb_image1(String blb_image1) {
+					this.blb_image1 = blb_image1;
+				}
 				public void handleFileUpload1(FileUploadEvent event) throws IOException {
 					 System.out.println("hi");
 					 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
@@ -499,10 +509,15 @@ public class AdvertisementBean  implements Serializable{
 					    File file= new File("D://Image\\"+ "images" + name);
 					    final UploadedFile uploadedFile = event.getFile();
 					    blb_image=file.getAbsolutePath();
+					   
+					  
+					   
+					    blb_image2=file.getAbsolutePath();
+					    blb_image3=file.getAbsolutePath();
 					    System.out.println(blb_image);
-					    
-				        System.out.println(file);
-					    InputStream is = event.getFile().getInputstream();
+					   
+					   System.out.println(file);
+				       InputStream is = event.getFile().getInputstream();
 					    OutputStream out = new FileOutputStream(file);
 					    byte buf[] = new byte[1024];
 					    int len;
@@ -512,8 +527,32 @@ public class AdvertisementBean  implements Serializable{
 					    out.close();
 					    path1=file.getName();
 					    System.out.println(path1);
+					   
 				}
+				private String blb_image3;
 				
+				public String getBlb_image3() {
+					return blb_image3;
+				}
+				public void setBlb_image3(String blb_image3) {
+					this.blb_image3 = blb_image3;
+				}
+				private String blb_image2;
+				
+				public String getBlb_image2() {
+					return blb_image2;
+				}
+				public void setBlb_image2(String blb_image2) {
+					this.blb_image2 = blb_image2;
+				}
+				private String path2;
+				
+				public String getPath2() {
+					return path2;
+				}
+				public void setPath2(String path2) {
+					this.path2 = path2;
+				}
 				public List<Company> agency;
 				
 				
