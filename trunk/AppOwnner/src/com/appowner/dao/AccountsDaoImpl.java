@@ -47,6 +47,16 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
 import javax.faces.model.SelectItem;
 
 import org.hibernate.SessionFactory;
@@ -209,9 +219,9 @@ public class AccountsDaoImpl implements AccountsDao{
 	    	    	  return s;
 	    		 }
 	    	}
-	    	
+	    return sss;	
 	    }
-		return null;
+		
 	
 	}
 	public double getCreditBalance(Integer id1)
@@ -371,12 +381,59 @@ public class AccountsDaoImpl implements AccountsDao{
 		return ddd;
 	}
 	@SuppressWarnings("unchecked")
-	public List<String> listAssets()
+	public List<ChartOfAccount> listAssets()
 	{
-		String hql=" select str_AccountName from ChartOfAccount  where ch_Group='A'";
+		String hql="from ChartOfAccount  where ch_Group='A'";
 		 
-		List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).list();
+		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 		return ravenueList; 
 	}
+	@SuppressWarnings("unchecked")
+	public List<String> group()
+	{
+		String hql="select ch_Group from ChartOfAccount";
+		List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).list();
+		return ravenueList;
+	}
+	public void updateClosingBalance(double debit, double credit, String str)
+	{
+		String hql="update  ChartOfAccount  set debit_closingBalance =?,credit_closingBalance=?  where str_AccountName =?";
+	      
+		  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,debit).setParameter(1,credit).setParameter(2, str).executeUpdate();
+	}
+	@SuppressWarnings("unchecked")
+	public List<ChartOfAccount> listExpense()
+	{
+		String hql="from ChartOfAccount  where ch_Group='E'";
+		 
+		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		return ravenueList; 
+	}
+	@SuppressWarnings("unchecked")
+	public List<ChartOfAccount> listLiability()
+	{
+		String hql="from ChartOfAccount  where ch_Group='L'";
+		 
+		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		return ravenueList; 	
+	}
+	@SuppressWarnings("unchecked")
+	public List<ChartOfAccount> listEquity()
+	{
+		String hql="from ChartOfAccount  where ch_Group='Q'";
+		 
+		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		return ravenueList; 
+	}
+	@SuppressWarnings("unchecked")
+	public List<ChartOfAccount> listRavenues()
+	{
+
+		String hql=" from ChartOfAccount  where ch_Group='R'";
+		 
+		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		return ravenueList; 
+	}
+	
 	
 }
