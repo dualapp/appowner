@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+	<f:metadata>
+	 <f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
+	<f:viewAction action="#{expenseBean.getOnePool}" />
+	 </f:metadata>
+	<h:head>
+    <title>Pool Details</title>
+</h:head>
+<a href="pools.xhtml">>>Back To Pool</a >
+<h:form>
+<h:body bgcolor="pink">
+ <p:accordionPanel style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"   activeIndex="">
+     
+        <p:tab title="Member Details">
+            
+             <ui:include src="/AfrteLoginViews/Communication/memberdetails.xhtml" />
+            
+  </p:tab>
+  </p:accordionPanel>
+ <div id="page3">
+             
+ <div class="gsTitleDiv">Pool Details<br/><hr/></div>  
+ <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+ <tr>
+ <th>
+    <h:outputText value="Organization:"/></th>
+    <td>
+    <h:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
+    
+    <th><h:outputText value="Status:"/> </th>
+    <td>
+    <h:inputText value="#{expenseBean.onePoll.str_Status}"/></td>  
+    </tr>
+<tr>
+  
+    <th><h:outputText value="PoolAudience"/></th>
+    <td><h:inputText value="#{expenseBean.onePoll.str_poolAudience}"/></td>
+     
+    </tr>
+    </table> 
+    </div>
+    <div id="page3">
+            
+  <div class="gsTitleDiv">Pool Result<br/><hr/></div> 
+   
+    
+<h2><h:outputText value="*#{expenseBean.onePoll.str_poolQuestion}"/></h2> 
+ #{expenseBean.onePoll.str_Choise1}  #{expenseBean.getCount1()} Vote
+  
+<p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
+  #{expenseBean.onePoll.str_Choise2}  #{expenseBean.getCount2()} Vote
+ <p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
+#{expenseBean.onePoll.str_Choise3}  #{expenseBean.getCount3()} Vote
+ <p:progressBar style="width: 30%;" value="#{expenseBean.getChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/>
+
+    
+    </div>
+   
+    </h:body>
+    </h:form>
+    <a href="pools.xhtml">>>Back To Pool</a >
+    </ui:define>
+    </ui:composition>
