@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<h:head>
+    <title>Welcome to Apartment Information</title>
+</h:head>
+<body>
+    <h:form>
+                        
+       <p:dataTable   var="apartment" value="#{userInformationBean.listApartment}" style="width: 80%"> 
+        <p:column>
+        <f:facet name="header">
+                    <h:outputText value="ApartmentName" />
+                </f:facet>
+         
+             <h:outputText value="#{apartment.str_ApartmentName}"/>
+          </p:column>
+          <p:column>
+           <f:facet name="header">
+                    <h:outputText value="Address" />
+                </f:facet>
+         
+                 <h:outputText value="#{apartment.str_Address}">
+                  
+                   </h:outputText>
+         </p:column>
+         <p:column>
+          <f:facet name="header">
+                    <h:outputText value="No of Units" />
+                </f:facet>
+         
+                  <h:outputText value="#{apartment.int_NoOfFlates}">
+               </h:outputText>
+              
+         </p:column>
+           <p:column>
+          <f:facet name="header">
+                    <h:outputText value="Pincode" />
+                </f:facet>
+         
+                  <h:outputText value="#{apartment.int_PinCode}">
+               </h:outputText>
+              
+         </p:column>
+           <p:column>
+          <f:facet name="header">
+                    <h:outputText value="No Of Users" />
+                </f:facet>
+                  <h:link outcome="UserView.xhtml">
+                  <h:outputText value="#{apartment.int_NoOfUser}"/>
+                  
+                  
+                   <h:outputText value="View" />
+                    <f:param name="str_ApartmentName" value="#{apartment.str_ApartmentName}"/>
+                    </h:link>
+              
+              
+         </p:column>
+         
+        
+           </p:dataTable>
+         
+        
+     
+      
+     
+    </h:form>
+</body>
+</ui:define>
+</ui:composition> 
+          

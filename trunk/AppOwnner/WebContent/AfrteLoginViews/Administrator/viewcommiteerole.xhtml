@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	  <f:metadata>
+	<f:viewParam name="int_Commitee_RoleID" value="#{commiteeRoleBean.int_Commitee_RoleID}"  />
+	 
+	<f:viewAction action="#{commiteeRoleBean.getCommiteeRole}" />
+</f:metadata>
+<h:body>
+
+ <h:form>
+    <h:panelGrid columns="2">
+       
+    <h:outputText value="CommiteeRoleName:"/>
+    
+    <h:inputText value="#{commiteeRoleBean.role2.str_Commitee_RoleName}" readonly="true"/>
+  
+
+      
+         </h:panelGrid>
+       
+  
+   
+</h:form>
+</h:body>
+	</html>

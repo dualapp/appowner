@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+
+<h:head><title>Welcome to Advertisement</title></h:head>
+ <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
+
+ <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+
+
+
+
+<h:body>
+
+<script>
+
+ var modalWin = new CreateModalPopUpObject();
+ modalWin.SetLoadingImagePath("images/loading_home.gif");
+ modalWin.SetCloseButtonImagePath("images/cross.png");
+ //Uncomment below line to make look buttons as link
+ //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
+
+
+function ShowNewPage1(clicked_id){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+    modalWin.ShowURL("editstaffrole.xhtml?int_StaffID="+clicked_id+"",200,250,'Edit StaffRole',null,callbackFunctionArray);
+	 }
+function ShowNewPage2(clicked_id){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	modalWin.ShowURL("viewstaffrole.xhtml?int_StaffID="+clicked_id+"",200,250,'View StaffRole',null,callbackFunctionArray);
+	 }
+	 
+
+function Submit(msg){
+	
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function Cancel(){
+	
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+
+
+
+</script>
+</h:body>
+ <body bgcolor="pink">
+ 
+    <h:form id="form">
+    <p:panel header="StaffRole Information : ">
+        <p:dataTable  id="staff" var="staff" value="#{staffRoleBean.listStaffRoles}" style="width: 50%">
+          
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Maintenance Staff Role Name" />
+                </f:facet>
+                <h:outputText value="#{staff.str_StaffName}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Type" />
+                </f:facet>
+                <h:outputText value="#{staff.ch_StaffType}">
+                 <f:converter converterId="com.appowner.bean.StringConverter" />  
+                 </h:outputText>
+            </p:column>
+            
+            <p:column rendered="#{staff.flag == 2}">
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+            <input type="button" id="#{staff.int_StaffID}" style="width: 50px"  onclick="ShowNewPage1(this.id)" value="Edit"/>
+              
+               
+               
+             <input type="button" id="#{staff.int_StaffID}" style="width: 50px" onclick="ShowNewPage2(this.id)" value="View" />
+         
+       
+               
+                
+                  
+               </p:column>      
+           
+           
+          
+            
+        </p:dataTable>
+        
+        <p:spacer height=" 50px;"/>
+
+        
+     
+     </p:panel> 
+     <p:spacer height="40px;"/>
+          <p:panel  header="Add New Maintance Staff Roles " visible="true">
+          <br/>
+         
+	    <p:inputText value="#{staffRoleBean.str_StaffName}" valueChangeListener="#{staffRoleBean.staffchangeListener}"/>
+	    
+          <br/>      
+         <br/>
+                
+               
+       <p:column>
+	      <p:commandButton id="submit" value="Add Maintance Staff Role" action="#{staffRoleBean.addStaff}" ajax="false" /> 
+	    </p:column>
+       </p:panel>  
+    </h:form>
+   
+</body>
+
+</ui:define>
+</ui:composition>
+
+

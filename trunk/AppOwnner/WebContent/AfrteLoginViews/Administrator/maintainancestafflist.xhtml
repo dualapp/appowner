@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title> </title>
+    <a href="addmaintainancestaff.xhtml">Add More Maintainance Staff</a>
+</h:head>
+<br/><br/><br/>
+ <body bgcolor="yellow">
+  <h:messages/>
+ <h:form>
+  <div id="page3">
+           <div class="gsTitleDiv">Maintainance Staff <br/><hr/></div> 
+  <p:dataTable id="maintainancestaff" var="maintainancestaff" value="#{maintainanceStaffBean.maintainanceStaffList}" style="width: 10%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value=" maintainancestaff ID" />
+                </f:facet>
+                <h:outputText  id="int_maintainancestaff" value="#{maintainancestaff.int_MaintainanceStaffID}" />
+            </p:column>
+            
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value=" maintainancestaff Name" />
+                </f:facet>
+                <h:outputText  id="int_maintainancestaffname" value="#{maintainancestaff.str_UserName}" />
+            </p:column>
+            
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value=" maintainancestaff RoleName" />
+                </f:facet>
+                <h:outputText  id="int_maintainancestaffrolename" value="#{maintainancestaff.str_RoleName}" />
+            </p:column>
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value=" maintainancestaff Mobile" />
+                </f:facet>
+                <h:outputText  id="int_maintainancestaffmobile" value="#{maintainancestaff.str_Mobile}" />
+            </p:column>
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value=" maintainancestaff Email" />
+                </f:facet>
+                <h:outputText  id="int_maintainancestaffEmail" value="#{maintainancestaff.str_Email}" />
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                    </f:facet>
+              <h:link outcome="editmaintainancestaff.xhtml" >
+	   			<p:graphicImage  height="50" width="50" alt="update" value="#{expenseBean.str_Name}images/k1.png"/> 
+	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
+	   		</h:link>
+	   		 <h:link outcome="deletemaintainancestaff.xhtml"   
+	   		 onclick="return confirm('Are you sure you want to delete #{maintainancestaff.str_UserName}?');" > 
+	   			<p:graphicImage  height="50" width="50" alt="delete" value="#{expenseBean.str_Name}images/k2.png"/> 
+	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
+	   		</h:link>
+	   		
+	   		<h:link outcome="rolemanagement.xhtml"   id="sidlink"  target="_blank">
+	   			  <h:outputText value="addRole" styleClass="txtlink"/> 
+	   				<f:param name="int_UserId" value="#{maintainancestaff.int_UserId}" />
+	   		</h:link>
+            </p:column>
+            </p:dataTable>
+            
+           </div>
+            </h:form>
+            </body>
+            
+
+</ui:define>
+</ui:composition>

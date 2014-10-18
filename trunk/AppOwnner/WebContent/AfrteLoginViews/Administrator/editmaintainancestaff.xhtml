@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	<f:metadata>
+	<f:viewParam name="int_MaintainanceStaffID" value="#{maintainanceStaffBean.int_MaintainanceStaffID}"  />
+	 
+	<f:viewAction action="#{maintainanceStaffBean.getOneMaintainanceStaff}" />
+	 </f:metadata>
+	<h:head>
+    <title>Edit</title>
+</h:head>
+<body bgcolor="pink">
+<h:form>
+  <h:panelGrid columns="2">
+  <p:panel  id="panel" header="EditmaintainanceStaff  Details">
+ <p:focus context="panel"/>
+ <table>
+ 
+  <tr>
+ <td>
+    <h:outputText value="Staff  Name:"/></td>
+    <td>
+    <h:inputText value="#{maintainanceStaffBean.maintainanceStaff.str_UserName}"/></td>  
+    </tr>
+     <tr>
+ <td>
+    <h:outputText value="MaintainanceStaff Role:"/></td>
+    <td>
+    <h:inputText value="#{maintainanceStaffBean.maintainanceStaff.str_RoleName}"/></td>  
+    </tr>
+     <tr>
+ <td>
+    <h:outputText value="MaintainanceStaff Mobile No:"/></td>
+    <td>
+    <h:inputText value="#{maintainanceStaffBean.maintainanceStaff.str_Mobile}"/></td>  
+    </tr>
+     <tr>
+ <td>
+    <h:outputText value="MaintainanceStaff Email:"/></td>
+    <td>
+    <h:inputText value="#{maintainanceStaffBean.maintainanceStaff.str_Email}"/></td>  
+    </tr>
+    <tr><td><h:commandLink value="Update" action="#{maintainanceStaffBean.updateMaintainanceStaff}"/></td></tr>
+    </table>
+    </p:panel>
+    </h:panelGrid>
+    </h:form>
+    </body>
+ </ui:define>
+ </ui:composition>
