@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template1.xhtml">
+	<ui:define name="content">
+	<h:head>
+    <title>Welcome to Contact Page</title>
+    <script>
+    .customTitleBar > .ui-panel-titlebar {
+        background: #BBBBBB;
+        }
+    </script>
+</h:head>
+<body>
+    <h:form>
+       
+          
+       <legend  align="left" style="background-color:#438eb9; color:#fff;"> NotificationList</legend>
+                             
+       <p:dataGrid    var="notice" value="#{noticeBoardBean.listOfNotice}" columns="3" layout="grid" paginator="true" id="cars"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+       
+           
+          <p:panel header="#{notice.dat_EntryDate}" style="width: 400px; height: 200px;"  styleClass="customTitleBar">
+            <h:panelGrid columns="1" style="width:100%">
+             
+                 <h4>#{notice.str_Subject}</h4>      
+                   <h:outputText value="Dear All,"/> 
+                  <h:outputText value="#{notice.str_Description}"/> 
+                 <h:outputText value="#{notice.dat_ExpireOn}">
+                   <f:convertDateTime pattern="dd-MM-yyyy"/>
+                   </h:outputText>
+                    <h:outputText value="#{notice.dat_EntryDate}">
+                   <f:convertDateTime pattern="dd-MMM-yyyy"  />
+               </h:outputText>
+ 
+              
+            </h:panelGrid>
+        </p:panel> 
+       
+        
+          </p:dataGrid>
+       
+     
+      
+     
+    </h:form>
+</body>
+</ui:define>
+</ui:composition>
