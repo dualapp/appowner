@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head><title>Maintainance Staff  Registration</title></h:head>
+<body bgcolor="pink">
+    <h:form id="form" ><br/> 
+    <fieldset>
+     <legend  align="left" style="background-color:#438eb9; color:#fff;">Maintainance Staff Registration</legend>
+     <center>
+  <div>  <table >
+         <th><h3>FullName</h3></th> <th><h3> RoleName</h3></th><th><h3>Email</h3></th><th><h3>Mobile</h3></th> 
+      
+   <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
+            </h:inputText></td>
+            <td>   <p:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+            
+            <f:selectItem itemLabel="Select One" itemValue="" /> 
+            <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
+            </p:selectOneMenu></td>
+             <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
+              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
+             </td> 
+            <td> <h:inputText value="#{maintainanceStaffBean.str_Mobile}"   required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number" maxlength="11" valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
+             
+              
+   <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
+            </h:inputText></td>
+            <td>   <p:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+            
+            <f:selectItem itemLabel="Select One" itemValue="" /> 
+            <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
+            </p:selectOneMenu></td>
+             <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
+              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
+             </td> 
+            <td> <h:inputText value="#{maintainanceStaffBean.str_Mobile}"   required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number" maxlength="11" valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
+               
+   <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
+            </h:inputText></td>
+            <td>   <p:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+            
+            <f:selectItem itemLabel="Select One" itemValue="" /> 
+            <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
+            </p:selectOneMenu></td>
+             <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
+              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
+             </td> 
+            <td> <h:inputText value="#{maintainanceStaffBean.str_Mobile}"   required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number" maxlength="11" valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
+               
+   <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
+            </h:inputText></td>
+            <td>   <p:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+            
+            <f:selectItem itemLabel="Select One" itemValue="" /> 
+            <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
+            </p:selectOneMenu></td>
+             <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
+              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
+             </td> 
+            <td> <h:inputText value="#{maintainanceStaffBean.str_Mobile}"   required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number" maxlength="11" valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
+               
+   <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
+            </h:inputText></td>
+            <td>   <p:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+            
+            <f:selectItem itemLabel="Select One" itemValue="" /> 
+            <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
+            </p:selectOneMenu></td>
+             <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" VendorEmail is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
+              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
+             </td> 
+            <td> <h:inputText value="#{maintainanceStaffBean.str_Mobile}"   required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number" maxlength="11" valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
+            <tr><td><h:commandButton value="Add CommiteeMembers" action="#{maintainanceStaffBean.addMaintainanceStaff}" ></h:commandButton></td></tr>
+            
+ </table>
+ </div>
+ </center>
+ </fieldset>
+ </h:form>
+ </body>
+ </ui:define>
+ </ui:composition>
+ 

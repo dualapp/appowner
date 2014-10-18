@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+
+  <f:metadata>
+	<f:viewParam name="int_TransactionId" value="#{vendorTransactionBean.int_TransactionId}"  />
+	 
+	<f:viewAction action="#{vendorTransactionBean.getWaterVendorTransaction}" />
+	 
+</f:metadata>
+
+<h:head>
+    <title> update</title>
+</h:head>
+<body bgcolor="pink">
+<h:form>
+  <h:panelGrid columns="2">
+  <p:panel  id="panel" header="Edit Transaction Details">
+ <p:focus context="panel"/>
+ <table>
+ <tr>
+ <td>
+    <h:outputText value="Vendor Name:"/></td>
+    <td>
+    <h:inputText value="#{vendorTransactionBean.waterVendorTransaction.str_VendorName}"/></td>
+    </tr>
+    <tr>
+ <td>
+    <h:outputText value="Vendor Type:"/></td>
+    <td>
+    <h:inputText value="#{vendorTransactionBean.waterVendorTransaction.str_VendorType}"/></td>
+    </tr>
+    <tr>
+ <td>
+    <h:outputText value="No Of Tankers:"/></td>
+    <td>
+    <h:inputText value="#{vendorTransactionBean.waterVendorTransaction.int_NoOfTankers}"/></td>
+    </tr>
+    <tr>
+ <td>
+    <h:outputText value="WaterCapacity:"/></td>
+    <td>
+    <h:inputText value="#{vendorTransactionBean.waterVendorTransaction.int_WaterCapacity}"/></td>
+    </tr>
+    <tr>
+ <td>
+    <h:outputText value="WaterPrice:"/></td>
+    <td>
+    <h:inputText value="#{vendorTransactionBean.waterVendorTransaction.int_WaterPrice}"/></td>
+    </tr>
+     
+    <tr>
+ <td>
+    <h:outputText value="Driver Name:"/></td>
+    <td>
+    <h:inputText value="#{vendorTransactionBean.waterVendorTransaction.str_DriverName}"/></td>
+    </tr>
+    <tr><td> <h:commandButton value="Submit" action="#{vendorTransactionBean.updateWaterVendorTransaction}"/></td>
+   <td> <h:commandButton value="Cancel" action="#{vendorTransactionBean.cancel}"/></td> </tr> 
+    </table>
+    </p:panel>
+    </h:panelGrid>
+    </h:form>
+   </body>
+   </ui:define>
+   </ui:composition>
+    

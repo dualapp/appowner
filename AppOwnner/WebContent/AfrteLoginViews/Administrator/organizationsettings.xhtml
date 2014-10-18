@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head><title>Organization Setting</title>
+<style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+     
+</h:head>
+  
+   <h:form id="formk">           
+    
+ 
+   <div id="page3">  <div class="gsTitleDiv">ORGANIZATIONSETTINGS <br/><hr/></div> 
+    
+     
+    <p:accordionPanel  multiple="true" activeIndex="">
+     
+     
+     <p:tab title="parking space">
+    <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/AfrteLoginViews/Administrator/parkingspace.xhtml" />
+           </h:panelGrid>
+   </p:tab>  
+   <p:tab title="Work OrderCategory">
+    <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/AfrteLoginViews/Administrator/workordercategory.xhtml" />
+           </h:panelGrid>
+   </p:tab>  
+        <p:tab title="OrganizationLogo">
+            
+             <ui:include src="/AfrteLoginViews/Administrator/organizationLogo.xhtml" />
+            
+  </p:tab> 
+  
+   
+        <p:tab title="AssetsCategory">
+         <h:panelGrid columns="1" cellpadding="10">
+        <ui:include src="/AfrteLoginViews/Administrator/assetcategory.xhtml" />
+        </h:panelGrid>
+            
+   </p:tab> 
+    <p:tab title="ChartOfAccount">
+    <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/AfrteLoginViews/Administrator/chartofaccount.xhtml" />
+           </h:panelGrid>
+   </p:tab> 
+   
+   
+   
+    </p:accordionPanel>
+    </div>
+  </h:form>
+   
+ 
+  
+    
+  
+</ui:define>
+</ui:composition>

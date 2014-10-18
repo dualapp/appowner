@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+	
+<h:head>
+    <title> AdministrationAccess</title>
+</h:head>
+<body bgcolor="pink">
+
+<h:form>
+ <h:messages style="color:red"/>
+	<fieldset  >
+	<legend  align="left" style="background-color:#438eb9; color:#fff;">Permanent Address</legend>
+	<table> 
+	<tr><h2 align="center">Administrators</h2></tr> 
+        <tr>  <td><h3 align="center">Members Name</h3></td>
+          <ui:repeat value="#{administrationAccessBean.str_RoleMasters}" var="roles" varStatus="status">  
+            <th><h:outputText value="#{roles}"  /> 
+	  </th>
+	   
+	  </ui:repeat>
+	   <th> Action </th>
+	  
+	  <ui:repeat value="#{administrationAccessBean.users}" var="admins" varStatus="status">
+	  <tr>
+	  <th><h:outputText value="#{admins.str_Username}"  /></th>
+	      
+	   <ui:repeat value="#{administrationAccessBean.rolemasterList}" var="roles1" varStatus="status"> 
+	  <!--   
+	   <td> <p:graphicImage  height="20" width="20" alt="notAssigned" value="images/cross.png"/>  
+	    </td>  <td>  <p:graphicImage  height="20" width="20" alt="delete" value="images/tick.png"/>    </td> --> 
+	    <div> <h:outputText value="#{roles1}" /> </div>
+	  </ui:repeat>
+  <td>  <h:link outcome="Adminrolemanagement.xhtml"   id="sidlink"  target="_blank">
+  
+	   			  <h:outputText value="addRole" styleClass="txtlink"/> 
+	   				 <f:param name="int_UserId" value="#{admins.int_UserId}" />
+	   		</h:link>   </td> 
+	   		
+	   		 
+	  </tr>
+	  
+	  </ui:repeat>
+	  
+	  </tr>
+	  </table>
+	  
+            
+	
+	</fieldset>
+	</h:form>
+	</body>
+</ui:define>
+</ui:composition>
