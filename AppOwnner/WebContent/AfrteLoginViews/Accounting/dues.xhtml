@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 	<ui:define name="content">
 <h:head>
     <title>Dues  Form</title>
@@ -70,7 +70,7 @@ function HideModalWindow() {
                  </p:selectOneMenu>
              </td>
            <h:panelGroup id="hjhjjhd" rendered="#{dueBean.indicator}">
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;
+             &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
              <td><h:outputText  value="Block:" /></td>
                <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"    onchange="submit()" style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
@@ -78,7 +78,7 @@ function HideModalWindow() {
                     <p:ajax event="click" update="str_ApartmentNo" process="str_Block" partialSubmit="true"/>
                  </p:selectOneMenu >
              </td>
-               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
+               &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
              <td><h:outputText  value="Apartment:" /></td>
                <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
@@ -87,6 +87,7 @@ function HideModalWindow() {
                  </td>
                 </h:panelGroup>
                  <h:panelGroup id="hjhmmm" rendered="#{dueBean.indicator1}">
+                  &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
                   <td><h:outputText  value="Block:" /></td>
                <td><p:selectOneMenu id="str_Block1" value="#{dueBean.str_Block1}"   style="width:150px">
                
@@ -95,7 +96,7 @@ function HideModalWindow() {
                   
                  </p:selectOneMenu >
              </td>
-               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
+               &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
              <td><h:outputText  value="Apartment:" /></td>
                <td><p:selectOneMenu id="str_ApartmentNo1" value="#{dueBean.str_ApartmentNo1}"  style="width:150px">
                    <f:selectItem itemLabel="#{dueBean.str_ApartmentNo1}" itemValue="#{dueBean.str_ApartmentNo1}"/>
@@ -119,20 +120,21 @@ function HideModalWindow() {
              <h:panelGroup id="aa">
             
               <td><h:outputLabel value="Account:" /></td>
-              <td> &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;<p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Accounts}"  style="width:150px">
+              <td> &#150; &#150; &#150; &#150; &#150; &#150; <p:selectOneMenu id="str_Accounts" value="#{dueBean.str_Accounts}"  style="width:150px">
                <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{templateBean.ravenues}" />
                  </p:selectOneMenu>
              </td>
-               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
+               &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
              <td><h:outputText  value="Template:" /></td>
+              
                <td><p:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_DueTemplates}"/>
                  </p:selectOneMenu>
              </td>
-               &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;
-             <td><h:outputText  value="Period" /></td>
+               &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;  &#150;
+             <td><h:outputText  value="Period:" /></td>
                <td><p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
@@ -149,7 +151,7 @@ function HideModalWindow() {
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
                  </p:selectOneMenu>
                  </td>
-                   &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150;&#150;
+                   &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; 
                  <td><h:outputText  value="Year" /></td>
                <td><p:selectOneMenu id="int_Year" value="#{dueBean.int_Year}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
@@ -165,7 +167,7 @@ function HideModalWindow() {
             &#150; &#150; &#150; &#150; &#150;
             
              <p:commandButton id="priya" value="Go" rendered="#{dueBean.indicator}" action="#{dueBean.getListDueTransaction()}" update="due"/>
-             
+              <p:commandButton id="priya1" value="Go" rendered="#{dueBean.indicator1}" action="#{dueBean.getListUserDueTransaction}" update="due1"/>
              </fieldset>
              <br/>
              <br/>
