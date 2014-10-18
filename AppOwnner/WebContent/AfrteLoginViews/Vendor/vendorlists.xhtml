@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/#{expenseBean.templateIndicator}">
 	<ui:define name="content">
 <h:head>
     <title> </title>
@@ -126,7 +126,7 @@ function HideModalWindow() {
 		<div id="page3"><div class="gsTitleDiv">vendors<br/><hr/></div>
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr><td>
-  <h:commandButton    icon="ui-icon-plus"  action="/AfrteLoginViews/Vendor/addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
+  <h:commandButton  rendered="#{expenseBean.isEnable}"  icon="ui-icon-plus"  action="/AfrteLoginViews/Vendor/addvendor.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
    
   </p:commandButton>
 	 &#150; &#150;  <p:menuButton  icon="ui-icon-gear" value="Action">
