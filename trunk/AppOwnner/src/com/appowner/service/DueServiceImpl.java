@@ -51,9 +51,10 @@ public class DueServiceImpl implements DueService{
 	{
 		return getDueDao().getApartmentlist(str_Block);
 	}
-	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo)
+	public List<DueTransaction> listUserDueTransaction(String str_Block1, String str_ApartmentNo1, String str_Status, String str_Period, String str_DueTemplate)
+
 	{
-		return getDueDao().listUserDueTransaction(str_ApartmentNo);
+		return getDueDao().listUserDueTransaction(str_Block1,str_ApartmentNo1,str_Status,str_Period,str_DueTemplate);
 	}
 	public DueTransaction getUserDueTransaction(Integer int_DueTransactionID)
 	{

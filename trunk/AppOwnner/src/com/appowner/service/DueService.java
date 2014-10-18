@@ -19,7 +19,7 @@ public interface DueService {
 
 	public List<String> getApartmentlist(String str_Block);
 
-	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo);
+	public List<DueTransaction> listUserDueTransaction(String str_Block1, String str_ApartmentNo1, String str_Status, String str_Period, String str_DueTemplate);
 
 	public DueTransaction getUserDueTransaction(Integer int_DueTransactionID);
 
