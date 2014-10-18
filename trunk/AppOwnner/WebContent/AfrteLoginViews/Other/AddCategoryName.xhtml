@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head> 
+ </h:head> 
+<body  bgcolor="pink">
+ <h:form>
+ <h:panelGrid columns="2">
+          
+            
+           
+            <h:outputText value="Please Enter Category name :"/>
+            <p:inputText id="CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" />       
+            <tr>
+            <td><p:commandButton   value="Submit" action="#{cls_AddDetailBean.AddCategory}">
+            </p:commandButton></td>
+           
+            </tr>
+           
+             </h:panelGrid>    
+            </h:form> 
+</body>
+          
+</ui:define>
+</ui:composition>
