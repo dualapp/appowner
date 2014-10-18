@@ -47,10 +47,25 @@ public class DueBean implements Serializable{
 	 private boolean indicator;
 	
     	public boolean isIndicator() {
-		indicator=LoginBean.isDue();
-		System.out.println(indicator+"kunku");
+		indicator=LoginBean.isAdmin();
+		
 		return indicator;
 	}
+    	private String indicator2;
+	
+		
+	public String getIndicator2() {
+		if(LoginBean.isAdmin())
+		{
+		indicator2="template1.xhtml";
+			return indicator2;
+		}
+		else
+			return "template.xhtml";
+		}
+		public void setIndicator2(String indicator2) {
+			this.indicator2 = indicator2;
+		}
 	public void setIndicator(boolean indicator) {
 		this.indicator = indicator;
 	}
@@ -71,7 +86,7 @@ public class DueBean implements Serializable{
 	}
 	public String getStr_ApartmentNo1() {
 		str_ApartmentNo1=Util.getFlatNo();
-	
+	System.out.println(str_ApartmentNo1+"priya");
 		return str_ApartmentNo1;
 	}
 	public void setStr_ApartmentNo1(String str_ApartmentNo1) {
@@ -262,7 +277,7 @@ public class DueBean implements Serializable{
 	private List<DueTransaction>   listUserDueTransaction;
 	public List<DueTransaction> getListUserDueTransaction() {
 		listUserDueTransaction=new ArrayList<DueTransaction>();
-		listUserDueTransaction.addAll(getDueService().listUserDueTransaction(str_ApartmentNo));
+		listUserDueTransaction.addAll(getDueService().listUserDueTransaction(str_Block1,str_ApartmentNo1,str_Status,str_Period,str_DueTemplate));
 		return listUserDueTransaction;
 	}
 	public void setListUserDueTransaction(
@@ -295,7 +310,7 @@ public class DueBean implements Serializable{
 	}
 	private boolean indicator1;
 	public boolean isIndicator1() {
-		indicator1=LoginBean.isDue1();
+		indicator1=LoginBean.isUser1();
 		return indicator1;
 	}
 	public void setIndicator1(boolean indicator1) {
