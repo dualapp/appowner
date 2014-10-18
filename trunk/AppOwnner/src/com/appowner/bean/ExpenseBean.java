@@ -1652,6 +1652,33 @@ public int increment() {
 }
 private Boolean rendered;
 private Boolean rendered1;
+private String templateIndicator;
+private Boolean isEnable;
+public Boolean getIsEnable() {
+	if(LoginBean.isDue())
+	 
+		isEnable=true;
+	 
+	else
+		isEnable=false;
+	return isEnable;
+}
+public void setIsEnable(Boolean isEnable) {
+	this.isEnable = isEnable;
+}
+public String getTemplateIndicator() {
+	if(LoginBean.isDue())
+	 
+		templateIndicator="template1.xhtml";
+	 
+	else
+		templateIndicator="template.xhtml";
+	return templateIndicator;
+}
+public void setTemplateIndicator(String templateIndicator) {
+	this.templateIndicator = templateIndicator;
+}
+
 public Long getLatestChoise1Vote()
 {
 	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
@@ -2057,6 +2084,7 @@ public String getStr_Path() {
 public void setStr_Path(String str_Path) {
 	this.str_Path = str_Path;
 }
+
 
 
 	
