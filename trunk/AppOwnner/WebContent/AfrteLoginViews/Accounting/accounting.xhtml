@@ -28,7 +28,7 @@
   <tr>
   <td><h:outputLabel value="Organisation:" /></td>
               <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px">
-                   <f:selectItems value="str_Organisation" />
+                   <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}" itemValue="#{accountingBean.str_OrganizationName}" />
                  </p:selectOneMenu>
              </td>
              </tr></table>

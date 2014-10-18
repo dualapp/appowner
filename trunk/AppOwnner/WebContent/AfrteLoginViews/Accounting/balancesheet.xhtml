@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<h:head>
+    <title>BalanceSheet Form</title>
+    </h:head>
+    <h:body>
+    <h:form>
+    <fieldset>
+     <legend  style="background-color:#438eb9; color:#fff;">Balance Sheet</legend>
+                 <h:outputText value="As On"/>&nbsp; &nbsp;
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_From}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                 
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_To}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp;
+                   <h:commandButton value="Go"/>
+                 </fieldset>
+                 
+   
+   
+   
+   <br/>
+      <h:commandButton  value="Refresh" />&#150; &#150; &#150; <h:commandButton  value="Export To Excel" />
+      <br/>
+      <br/>
+       <p:dataTable var="e" value="#{expenseBean.chartOfAccountList}">
+        <f:facet name="header">
+          Balance Sheet
+        </f:facet>
+       
+        <p:columnGroup type="header">
+        
+            <p:row>
+                <p:column rowspan="2" headerText="Account Name" />
+               
+            
+                <p:column headerText="Amount" />
+               
+            </p:row>
+        </p:columnGroup>
+       
+        <p:subTable var="stats" value="#{accountingBean.asset}" width="300">
+           
+            <f:facet name="header">
+              
+              
+                <h:outputText value="#{e.str_AccountType}"  />
+               
+            </f:facet>
+           
+             <p:column>
+            
+                <h:outputText value="#{e.str_AccountName}" />
+               
+             </p:column>
+          
+           
+             <p:column>
+                <h:outputText value="#{accountingBean.int_Credit}" />
+            </p:column>
+           
+           
+        </p:subTable>
+       
+         <p:columnGroup type="footer">
+                <p:row>
+                    <p:column footerText="Totals: " style="text-align:right"/>
+                    <p:column footerText="#{e.str_AccountType}" />
+                   
+                </p:row>
+            </p:columnGroup>
+      </p:dataTable>
+      </h:form>
+      </h:body>
+      </html>
+      

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+<h:head>
+<script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
+         </h:head>
+  <body >
+    <h:form id="form1" >
+     
+      
+      <table>
+      
+            <tr>
+             <td> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
+          <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:300px">
+                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                  <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
+                 </p:selectOneMenu></td>   
+                 </tr>
+                 <tr></tr><tr></tr><tr></tr><tr></tr>
+           <tr>
+          <td>  <h:outputText  value="Due Template" /><font color="red" >*</font></td>
+           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="25" /></td>
+        <td> <p:tooltip id="toolVendorPhone"  trackMouse="true" for="str_DueTemplate" value="It should not Empty" /> </td>
+         
+             </tr>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+             <tr>
+            
+            <td> <h:outputText  value="Account" /><font color="red" >*</font></td>
+           <td>  <p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:300px">
+                   <f:selectItems value="#{templateBean.ravenues}" />
+                 </p:selectOneMenu></td>
+             </tr>
+             <tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr>
+            <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
+           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}"  style="width:300px">
+                   <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
+                     <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
+                       <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
+                        <f:selectItem itemLabel="One Time" itemValue="One Time"/>
+                 </p:selectOneMenu></td>
+            </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr>
+             <tr>
+            <td> <h:outputText  value="Calculation" /><font color="red" >*</font></td>
+             <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}"  style="width:300px">
+                   <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
+                     <f:selectItem itemLabel="Flat" itemValue="Flat"/>
+                       <f:selectItem itemLabel="None" itemValue="None"/>
+                </p:selectOneRadio>
+                </td>
+              </tr>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+              <tr>
+               <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="25"/></td>
+        <td> <p:tooltip id="toolVendorPhone1"  trackMouse="true" for="str_Rate" value="It Should be a Number" /> </td>
+          
+              </tr>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+             <tr>
+            
+            <td> <h:outputText  value="Tax Template" /><font color="red" >*</font></td>
+           <td>  <p:selectOneMenu id="str_TaxTemplate" value="#{templateBean.str_TaxTemplate}"  style="width:300px">
+                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"></f:selectItem>
+                   <f:selectItems value="#{templateBean.str_TaxTemplates}"  />
+                     <f:selectItem itemLabel="None" itemValue="None" noSelectionOption="true"></f:selectItem>
+                 </p:selectOneMenu></td>
+             </tr>
+          
+         </table>
+        
+             <h:panelGroup style="display:block; text-align:right">
+     <tr> 
+     <td><p:commandButton id="submit" value="Submit" onclick="EnrollLater();"  action="#{templateBean.addDueTemplate}" ajax="false"  update="output" oncomplete="PF('dlg').show()"/></td>
+                <td><p:commandButton id="cancel" value="Cancel" onclick="EnrollLater1()" ajax="false"/></td>
+            </tr>
+            </h:panelGroup>
+            
+             <script >
+      
+        function EnrollLater(){
+        	
+        	modalWin.HideModalPopUp();
+        	EnrollLaterClick();
+        }
+        function EnrollLater1()
+        {
+        	window.parent.modalWin.CallCallingWindowFunction(1);
+
+            }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
+        }
+       
+       
+        
+       
+ 
+      
+        
+    </script>
+    <p:dialog header="Values" resizable="false" showEffect="fade" widgetVar="dlg">
+        <p:panelGrid id="output" columns="2" columnClasses="label, value">
+            <h:outputText value="Simple:" />
+           
+            </p:panelGrid>
+            </p:dialog>
+             </h:form>
+             </body>
+            </html>
+              
+              
+              
+        
+           
+            
