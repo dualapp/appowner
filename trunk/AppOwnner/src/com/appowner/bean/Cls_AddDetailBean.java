@@ -698,7 +698,7 @@ msg="The ad you have posted is of commercial nature, hence it cannot be approved
 
 	public String getTo() {
 		
-		to="priya.das080@gmail.com";
+		to="im.mukeshkumar89@gmail.com";
 		System.out.println(to);
 		return to;
 	}
@@ -756,11 +756,11 @@ public static void setMessage(String message) {
 	public void setMsg2(String msg2) {
 		this.msg2 = msg2;
 	}
-	public String send1(Integer id1)
+	public String send1()
 	{    System.out.println("huyt");
 		recipient=getTo();
 		approval="approved";
-		System.out.println(id1);
+		//System.out.println(id1);
 		content=msg2;
 		subject="Appowner.com";
 		System.out.println(recipient);
