@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
+<h:head>
+    <title>Create Message Template Form</title>
+</h:head>
+<body  bgcolor="pink">
+  <h:form id="form" prependId="false">
+  
+   <fieldset>
+    <legend>
+   <h:commandButton value="Create Message Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
+      <table>
+            <tr>
+            <td>  <h:outputText  value="Created By" /></td>
+            <td>  <p:inputText id="str_CreatedBy" value="#{templateBean.str_CreatedBy}" size="25"/> </td>
+           </tr>
+           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          
+          <tr>
+            <td>  <h:outputText  value="Email" /></td>
+            <td>  <p:inputText id="str_Email" value="#{templateBean.str_Email}" size="25"/> </td>
+          </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+           <tr>
+            <td>  <h:outputText  value="Date" /></td>
+            <td>  <p:inputText id="dat_Date" value="#{templateBean.dat_Date}" size="25" readonly="true"/> </td>
+          </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr>
+             <td> <h:outputLabel value="Mode" /></td>  
+          <td><p:selectOneMenu id="str_Mode" value="#{templateBean.str_Mode}"  style="width:300px">
+                   <f:selectItem itemLabel="Email" itemValue="Email" />
+                    <f:selectItem itemLabel="Sms" itemValue="Sms" />
+                 </p:selectOneMenu></td>   
+                 </tr>
+                   <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+                 <tr>
+                  <td><h:outputLabel value="Category:" /></td>
+              <td><p:selectOneMenu id="str_Category" value="#{templateBean.str_Category}" style="width:150px">
+                  
+                    <f:selectItem itemLabel="Ads" itemValue="Ads" />
+                    <f:selectItem itemLabel="Accounts" itemValue="Accounts" />
+                     <f:selectItem itemLabel="Maintenance" itemValue="Maintenance" />
+                     <f:selectItem itemLabel="Parking" itemValue="Parking" />
+                      <f:selectItem itemLabel="Meeting" itemValue="Meeting" />
+                       <f:selectItem itemLabel="Others" itemValue="Others" />
+                        <f:selectItem itemLabel="Welcome New User" itemValue="Welcome New User" />
+                 </p:selectOneMenu>
+             </td>
+                 </tr>
+                   <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+                <tr>
+            <td>  <h:outputText  value="Title" /><font color="red" >*</font></td>
+            <td>  <p:inputText id="str_Title" value="#{templateBean.str_Title}" size="25"  required="true" requiredMessage="Title should not Empty"/><br/><font  size="2" color="red">30 Characters Maximum</font></td>
+                 <td><p:message for="str_Title" dispay="text"/></td>
+          </tr> 
+          
+                 <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>  
+                <tr>
+            <td>  <h:outputText  value="Description" /><font color="red" >*</font></td>
+            <td>  <p:inputTextarea id="str_Description" rows="4" cols="30" value="#{templateBean.str_Description}" size="25"  required="true" requiredMessage="Description should not Empty"/><br/><font  size="2" color="red">1500 Characters Maximum</font> </td>
+            <td><p:message for="str_Description" dispay="text"/></td>
+          </tr> 
+          </table>
+          </fieldset>
+          <br/>
+            <h:panelGroup style="display:block; text-align:right">
+     <tr> 
+     <td >
+     <p:commandButton id="submit" value="Submit" onclick="EnrollNowClick()" action="#{templateBean.addMessageTemplate}" ajax="false" /></td>
+     <td ><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" onclick="EnrollLater1()" ajax="false"/></td>
+            </tr>
+            </h:panelGroup>
+            
+          
+         <script>
+        function EnrollNowClick() {
+            PassValueToParentWindow();
+           
+        }
+        function EnrollLater1()
+        {
+        	window.parent.modalWin.CallCallingWindowFunction(1);
+
+            }
+        </script>
+          </h:form>
+          </body>
+</html>
