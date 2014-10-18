@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
+	  <f:metadata>
+	<f:viewParam name="int_InvoiceTemplateID" value="#{templateBean.int_InvoiceTemplateID}"  />
+	 
+	<f:viewAction action="#{templateBean.getInvoiceTemplate1}" />
+</f:metadata>
+<h:head>
+    <title>Company Registration Edition </title>
+</h:head>
+<h:body>
+
+ <h:form>
+ <fieldset>
+    <h:panelGrid columns="2">
+        <h:outputText value="Invoice Template" />
+        <h:inputText value="#{templateBean.invoiceTemplate.str_InvoiceTemplateName}" />
+
+        
+
+        <h:outputText value="Frequency" />
+        <h:inputText value="#{templateBean.invoiceTemplate.str_Frequency}" readonly="true"/>
+       <h:outputText value="Message Category" />
+        <h:inputText value="#{templateBean.invoiceTemplate.str_MessageCategory}" readonly="true"/>
+        <h:outputText value="Message Template" />
+        <h:inputText value="#{templateBean.invoiceTemplate.str_MessageTemplate}" readonly="true"/>
+       <h:outputText value="Description" />
+        <h:inputText value="#{templateBean.invoiceTemplate.str_Description}" readonly="true"/>
+        
+         </h:panelGrid>
+ 
+  
+   </fieldset>
+</h:form>
+</h:body>
+</html>
+ 
+   
+    
