@@ -67,8 +67,8 @@ public class DueDaoImpl implements DueDao{
 		return list;
 	}
 	@SuppressWarnings("unchecked")
-	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo)
-	{   
+	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo, String str_ApartmentNo1, String str_Status, String str_Period, String str_DueTemplate)
+	{   System.out.println(str_ApartmentNo+"kil");
 		String hql="from DueTransaction where str_ApartmentNo=?";
 		List<DueTransaction>   sss=(List<DueTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).list();
 		System.out.println(sss);
