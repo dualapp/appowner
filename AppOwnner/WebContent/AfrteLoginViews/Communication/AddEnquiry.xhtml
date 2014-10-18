@@ -1,20 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml"
-                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	template="include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head><title>Enquiry Form</title></h:head>
 <body >
-   
-   <H1>Enquiry Form</H1>
+   <br/><center><legend    style="background-color:#438eb9; color:#fff;">Enqueryt Form</legend> </center>
     <h:form>
-     <p:panel id="panel" header="">
+      
      <p:messages id="messages"/>
         <table>
            
@@ -83,8 +78,8 @@
             
                   
             <tr> 
-            <td><h:outputLabel for="enquiry_zip" value="Zip " /></td>
-                <td><h:inputText id="enquiry_zip" label="ZipCode"   value="#{cls_EnquiryBean.enquiry_zip}" required="true"  requiredMessage="Please enter person ZipCode">
+            <td><h:outputLabel for="personZip" value="Zip " /></td>
+                <td><h:inputText id="personZip" label="ZipCode"   value="#{cls_EnquiryBean.personZip}" required="true"  requiredMessage="Please enter person ZipCode">
             </h:inputText></td></tr>
              
               
@@ -100,8 +95,8 @@
                 <td><p:commandButton id="addPerson" value="Ask Enquiry"  action="#{cls_EnquiryBean.addPerson}" ajax="false"/></td>     
             </tr>
         </table>
-        </p:panel>
+      
     </h:form>
 </body>
 </ui:define>
-</ui:composition>
+</ui:composition> 

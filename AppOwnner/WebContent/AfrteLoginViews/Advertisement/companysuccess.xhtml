@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -8,14 +7,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="include/templates/template.xhtml">
 	<ui:define name="content">
-
   <h:head>
     <title>Welcome to Company page</title>
 </h:head>
 <h:body>
     <h:form id="form1">
-        <h:outputText value="Company Information : "></h:outputText>
-        <p:dataTable  id="company" var="company" value="#{companyBean.listCompany}" style="width: 20%">
+        <legend  align="left" style="background-color:#438eb9; color:#fff;">Company Information </legend>
+        <p:dataTable  id="company" var="company" value="#{advertisementBean.listCompany}" style="width: 80%">
          <p:column>
                 <f:facet name="header">
                     <h:outputText value="ID" />

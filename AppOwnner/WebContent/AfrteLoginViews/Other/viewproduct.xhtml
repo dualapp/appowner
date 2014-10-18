@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+	 <f:metadata>
+	<f:viewParam name="int_ProductId" value="#{cls_AddDetailBean.int_ProductId}"  />
+	 
+	<f:viewAction action="#{cls_AddDetailBean.getCls_ProductDetails}" />
+</f:metadata>
+<h:head>
+    <title>Edit</title>
+</h:head>
+<body bgcolor="pink">
+<h:form>
+  
+ 
+ <table>
+ 
+  <tr>
+ <td>
+    <h:outputText value="Category:"/></td>
+    <td>
+    <h:inputText value="#{cls_AddDetailBean.pro.var_Ad_CategoryName}"> </h:inputText></td>
+    </tr>
+   
+    <tr>
+         <h:panelGroup id="sss1">
+             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+            <p:outputLabel for="ch_Ad_Type" value="Ad Type" />
+             <p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.pro.ch_Ad_Type}">
+            <f:selectItem itemLabel="My Community" itemValue="My Community" />
+            <f:selectItem itemLabel="Neighbourhood" itemValue="Negihbourhood" />
+           
+           </p:selectOneRadio>
+        
+        <p:outputLabel for="I" value="I want to" />
+        <p:selectOneRadio id="I" value="#{cls_AddDetailBean.pro.ch_Product_Type}">
+            <f:selectItem itemLabel="SELL" itemValue="Sell" />
+            <f:selectItem itemLabel="BUY" itemValue="Buy" />
+            <f:selectItem itemLabel="RENT" itemValue="Rent" />
+        </p:selectOneRadio>
+       <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
+       <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_image}"/>
+       </p:outputPanel>
+ </h:panelGrid>
+ </h:panelGroup>
+  </tr>
+  <tr>
+           <td>
+          <h:outputText value="Title"></h:outputText></td>
+                        
+          <td><h:inputText  value="#{cls_AddDetailBean.pro.var_Title}" size="35">
+            </h:inputText>
+            </td>
+            </tr>
+  <br />
+  <br />
+   
+  <tr>
+    <h:outputText value="Choose Your  File for upload "></h:outputText>
+   <td> <p:fileUpload value="#{cls_AddDetailBean.pro.var_ImageName}"
+        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  style="width:300px"/>
+       </td>
+       </tr>
+   
+
+<tr>
+               <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><p:inputTextarea rows="10" cols="60" value="#{cls_AddDetailBean.pro.var_Description}" >
+              </p:inputTextarea>
+               
+                
+            </td>
+            </tr>
+ 
+  </table>
+  </h:form>
+  </body>
+
+
+</ui:define>
+</ui:composition>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template1.xhtml">
+	<ui:define name="content">
+	 <f:metadata>
+	<f:viewParam name="int_ProductId" value="#{cls_AddDetailBean.int_ProductId}"  />
+	 
+	<f:viewAction action="#{cls_AddDetailBean.getCls_ProductDetails}" />
+</f:metadata>
+<h:head>
+    <title>Edit</title>
+</h:head>
+<body bgcolor="pink">
+<h:form>
+  
+ 
+ <table>
+ 
+  <tr>
+  
+ 
+    <td><h:outputText value="Category Name"/></td>
+    
+    <td><h:inputText value="#{cls_AddDetailBean.pro1}"> </h:inputText></td>
+    </tr>
+   
+    <tr>
+              
+             
+              <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+             <td><h:inputText  id="ch_Ad_Type" value="#{cls_AddDetailBean.pro.ch_Ad_Type}" >
+             </h:inputText>
+             </td>
+             </tr>
+          <tr> 
+        
+        <td><p:outputLabel for="I" value="I want to" /></td>
+        <td><h:inputText  id="I" value="#{cls_AddDetailBean.pro.ch_Product_Type}" >
+        </h:inputText>
+        </td>
+        
+ 
+ 
+ 
+</tr>
+
+   
+  <p:outputPanel layout="block"   style=" float:right !important;margin:-10px -100px -400px 0px;" >  
+       <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
+       </p:outputPanel>
+           <tr>
+           <td>
+          <h:outputText value="Title"></h:outputText></td>
+          <td><h:inputText  value="#{cls_AddDetailBean.pro.var_Title}" >
+            </h:inputText>
+            </td>
+            </tr>
+ 
+
+
+<tr>
+               <td><h:outputText  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><p:inputTextarea rows="10" cols="50" value="#{cls_AddDetailBean.pro.var_Description}" >
+              </p:inputTextarea>
+               
+                
+            </td>
+            </tr>
+ 
+  </table>
+  
+  </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</ui:define>
+</ui:composition>

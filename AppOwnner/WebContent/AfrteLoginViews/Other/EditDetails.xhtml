@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template1.xhtml">
+	<ui:define name="content">
+	 <f:metadata>
+	<f:viewParam name="int_ProductId" value="#{cls_AddDetailBean.int_ProductId}"  />
+	 
+	<f:viewAction action="#{cls_AddDetailBean.getedit}" />
+</f:metadata>
+<h:head>
+    <title>Edit</title>
+</h:head>
+<body bgcolor="pink">
+<h:form>
+  
+ <a href="Ad_an_Post.xhtml">Back To Ads and post</a> 
+ <table>
+ <tr>
+  <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
+            <td><p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.edit.var_Ad_CategoryName}" style="width:230px">
+            <f:selectItem itemLabel="Category"  itemValue=""  />
+                <f:selectItems value="#{cls_AddDetailBean.categories}"  />
+                </p:selectOneMenu>
+           </td>
+            </tr>
+   <tr>
+              
+             
+              <td><h:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+             <td><h:inputText  id="ch_Ad_Type" value="#{cls_AddDetailBean.edit.ch_Ad_Type}" size="30">
+             </h:inputText>
+             </td>
+             </tr>
+    
+    
+    
+        <tr> 
+        
+        <td><h:outputLabel for="I" value="I want to" /></td>
+        <td><h:inputText  id="I" value="#{cls_AddDetailBean.edit.ch_Product_Type}" size="30" >
+        </h:inputText>
+        </td>
+        </tr>
+        
+ 
+ 
+   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
+           <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
+          </p:outputPanel>  
+  <tr>
+           <td>
+          <h:outputLabel value="Title"></h:outputLabel></td>
+                        
+          <td><h:inputText  value="#{cls_AddDetailBean.edit.var_Title}" size="30">
+            </h:inputText>
+            </td>
+            </tr>
+ 
+  <tr>
+    <td><h:outputLabel value="Choose Your  File for upload "></h:outputLabel></td>
+   <td> <p:fileUpload value="#{cls_AddDetailBean.edit.var_ImageName}"
+        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="aaa" style="width:150px"/>
+       </td>
+       </tr>
+   
+
+<tr>
+               <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><p:inputTextarea rows="10" cols="60" value="#{cls_AddDetailBean.edit.var_Description}" >
+              </p:inputTextarea>
+               
+                
+            </td>
+            </tr>
+ <tr>
+ 
+  
+     <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml" style=" float:right !important;margin: 0px -500px 100px 0px;">
+    </h:commandButton>
+     </td>
+     <td><h:commandButton  value="Submit"  action="#{cls_AddDetailBean.saveContact}" style=" float:right !important;margin: 0px -100px 100px 0px;" /></td>
+  </tr>
+  </table>
+  </h:form>
+</body>
+</ui:define>
+</ui:composition>
