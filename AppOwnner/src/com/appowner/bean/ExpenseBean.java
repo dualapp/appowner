@@ -675,7 +675,7 @@ public String deleteParkingSlot()
 	getExpenseService().deleteParkingSlot(p);
 	return  "parkingspace.xhtml?faces-redirect=true";
 }
-private String deleteParkingSpace()
+public String deleteParkingSpace()
 {
 	List<Parking> entitiesToDelete = new ArrayList<Parking>();
 	 
@@ -1650,9 +1650,27 @@ public int getNumber() {
 public int increment() {
     return number++;
 }
+private Boolean rendered;
+private Boolean rendered1;
+public Long getLatestChoise1Vote()
+{
+	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
+	 System.out.println(latestPolls.getInt_PoolId());
+	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
+	 System.out.println(latestPolls.getStr_Choise1());
+	 System.out.println(int_PoolId+"pid");
+	 
+	 System.out.println(latestPolls.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	 
+	 Long res= count1*100/latestPolls.getInt_Vote();
+	 System.out.println(res+"result");
+	 return res;
+	
+}
+
 
 public Long getChoise1Vote()
-{
+{ 
 	  count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
 	 System.out.println(onePoll.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -1682,6 +1700,19 @@ private Long count2;
 private Long count1;
 private Long count3;
 
+public Long getLatestChoise2Vote()
+{
+	System.out.println(latestPolls.getInt_PoolId());
+	  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
+	 System.out.println(latestPolls.getStr_Choise2());
+	 System.out.println(int_PoolId+"pid");
+	 System.out.println(count2);
+	 System.out.println(latestPolls.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	 Long res= count2*100/latestPolls.getInt_Vote();
+	 System.out.println(res+"result");
+	 return res;
+	
+}
 public Long getChoise2Vote()
 {
 	System.out.println(onePoll.getInt_PoolId());
@@ -1700,6 +1731,17 @@ public Long getCount2() {
 }
 public void setCount2(Long count2) {
 	this.count2 = count2;
+}
+public Long getLatestChoise3Vote()
+{System.out.println(latestPolls.getInt_PoolId());
+	   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
+	  System.out.println(latestPolls.getStr_Choise3());
+		 System.out.println(int_PoolId+"pid");
+		 System.out.println(count3);
+		 System.out.println(latestPolls.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	  Long res= count3*100/latestPolls.getInt_Vote();
+	  System.out.println(res+"result");
+	  return res;
 }
 public Long getChoise3Vote()
 {System.out.println(onePoll.getInt_PoolId());
@@ -1781,7 +1823,7 @@ public Integer getIsVoted() {
 	else
 	{
 		System.out.println(Util.getUserId());
-		System.out.println(latestPolls.getInt_PoolId());
+ 
 		 
 		 isVoted=getExpenseService().isVoted(Util.getUserId(),latestPolls.getInt_PoolId());
 		 System.out.println(isVoted+"Vote");
@@ -1863,6 +1905,32 @@ public void getOnePool()
 }
 private Pool latestPolls;
 private Boolean render;
+public Boolean getRendered() {
+	if(getIsVoted()==null)
+		 
+		rendered=true;
+	else
+		rendered=false;
+	  
+	return rendered;
+}
+public void setRendered(Boolean rendered) {
+	this.rendered = rendered;
+}
+public Boolean getRendered1() {
+	if(getIsVoted()==null)
+		 
+		rendered1=false;
+	else
+		rendered1=true;
+	 
+	 
+	return rendered1;
+}
+public void setRendered1(Boolean rendered1) {
+	 
+	this.rendered1 = rendered1;
+}
 public Boolean getRender() {
 	if(onePoll==null)
 	{
@@ -1986,6 +2054,7 @@ public String getStr_Path() {
 public void setStr_Path(String str_Path) {
 	this.str_Path = str_Path;
 }
+
 
 	
 }
