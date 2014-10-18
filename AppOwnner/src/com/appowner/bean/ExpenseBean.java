@@ -1813,6 +1813,7 @@ public void setSelectedPolls(List<Pool> selectedPolls) {
 	this.selectedPolls = selectedPolls;
 }
 public Integer getIsVoted() {
+	getLatestPolls();
 	if(onePoll!=null)
 	{
  
@@ -1906,6 +1907,8 @@ public void getOnePool()
 private Pool latestPolls;
 private Boolean render;
 public Boolean getRendered() {
+	 
+			 
 	if(getIsVoted()==null)
 		 
 		rendered=true;
