@@ -93,7 +93,7 @@ public class VendorBean implements Serializable {
 	public String updateWorkOrder(WorkOrderCategory w)
 	{
 		getVendorservice().updateWorkOrder(w);
-		return "workordercategory.xhtml";
+		return "null";
 	}
 
 	public void setWorkOrderCategoryList1(
