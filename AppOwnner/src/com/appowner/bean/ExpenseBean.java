@@ -1655,7 +1655,7 @@ private Boolean rendered1;
 private String templateIndicator;
 private Boolean isEnable;
 public Boolean getIsEnable() {
-	if(LoginBean.isDue())
+	if(LoginBean.isAdmin())
 	 
 		isEnable=true;
 	 
@@ -1667,7 +1667,7 @@ public void setIsEnable(Boolean isEnable) {
 	this.isEnable = isEnable;
 }
 public String getTemplateIndicator() {
-	if(LoginBean.isDue())
+	if(LoginBean.isAdmin())
 	 
 		templateIndicator="template1.xhtml";
 	 
