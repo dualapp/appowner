@@ -705,12 +705,12 @@ public void setParking(Parking parking) {
 private List<Parking> parkingSpaceList;
 private List<Parking> parkingSpaceList1;
 
-public String updateParkingSpace(Parking p)
+public  void updateParkingSpace(Parking p)
 {
 	System.out.println("updateeeeeeee");
 	getExpenseService().updateParkingSpace( p);
 	System.out.println("updat");
-	return "parkingspace.xhtml";
+	 
 	
 }
  
@@ -968,7 +968,7 @@ private Boolean bool_Rentable;
 private AssetCategory assetcategory;
 private List<AssetCategory> assetCategoryList;
 private List<AssetCategory> assetCategoryList1;
-public String updateAssetCategory(AssetCategory ac)
+public void updateAssetCategory(AssetCategory ac)
 {
 	getExpenseService().updateAssetCategory( ac);
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -976,7 +976,7 @@ public String updateAssetCategory(AssetCategory ac)
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Updated Successfully!", "  Updated Successfully!"));
-	return "assetcategory.xhtml";
+	 
 }
 public String deleteAssetsCategory()
 {
