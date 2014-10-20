@@ -95,15 +95,14 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	 <h:form id="form">
 	<h:body>
 	 <div id="page3"><div class="gsTitleDiv"> Facility Needed<br/><hr/></div> 
-	 <table><tr><th> <h:outputText value="Organisation:" />  </th>
+	 <table><tr><td> <h:outputText value="Organisation:" />   
              <p:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></tr>
-	 
-                
-           <p:commandButton style="width: 150px" onclick="ShowNewPage1()" value="Create New" />&#150; &#150;<h:commandButton  value="View Selected" />&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" /> 
-	    <tr><td>
+                 </p:selectOneMenu></td></tr>
+	  
+                <tr><td> <p:commandButton  process="DT" update=":form:multiFacilityDetail1"    oncomplete="PF('multiFacilityDialog1').show()"  value="Create New" />
+            &#150; &#150; <h:commandButton   value="Refresh" />
 	
 	 &#150; &#150;  <p:commandButton process="DT" update=":form:multiFacilityDetail2" icon="ui-icon-search" value="View" oncomplete="PF('multiFacilityDialog2').show()" />
        &#150; &#150; <p:commandButton process="DT" update=":form:multiFacilityDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiFacilityDialog3').show()" />
@@ -150,6 +149,30 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	   
         
 	 </p:dataTable>
+	 <p:dialog header=" Create New" widgetVar="multiFacilityDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiFacilityDetail1" style="text-align:center;">
+           <table><tr><th>  <h:outputText  value="Organisation:" /> </th>
+             <td> <p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td> </tr>
+                 
+	<tr><th><h:outputText value="Facility Name*"/></th>
+	<td><h:inputText  id="FacilityName" required="true" requiredMessage="Plz Enter Facility Name" value="#{expenseBean.str_FacilityName}">
+	<p:ajax event="blur" update="FacilityNameMsg" />
+	</h:inputText>
+	</td>
+	<td> <p:message  id="FacilityNameMsg" for="FacilityName" display="text"/> </td>
+	</tr>
+	<tr><td> <p:commandButton  styleClass="btn"  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.addFacility}"   >
+	
+	</p:commandButton> </td></tr>
+	</table>  
+	  
+             </p:outputPanel>
+             </p:dialog>
+	 
+	 
 	 <p:dialog header="  Facility Details" widgetVar="multiFacilityDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="100" width="200">
         <p:outputPanel id="multiFacilityDetail2" style="text-align:center;">
            <table>
