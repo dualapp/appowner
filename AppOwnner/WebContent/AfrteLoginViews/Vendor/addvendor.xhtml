@@ -31,7 +31,7 @@
 		 <div class="gsTitleDiv">vendorPersonal details<br/><hr/></div>  
         <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
          
-            <tr> <th><h:outputText value="Vendor Category: " /></th>
+            <tr> <th  ><h:outputText value="Vendor Category: " /></th>
                 <td>
         <p:selectOneMenu value="#{vendorBean.str_VendorType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
@@ -43,8 +43,8 @@
  </tr>
           
             <tr>
-                <th><h:outputText for="vendorName" value="vendor Name" /><font color="red">*</font></th>
-                <td><h:inputText id="vendorName"  label="Name" value="#{vendorBean.str_VendorName}" required="true" requiredMessage="vendor name Required">
+                <th  ><h:outputText for="vendorName" value="vendor Name" /><font color="red">*</font></th>
+                <td  ><h:inputText id="vendorName"  label="Name" value="#{vendorBean.str_VendorName}" required="true" requiredMessage="vendor name Required">
                 
                   <f:validateLength minimum="5" />
                      <p:ajax event="blur" update="vendorNameMsg" />
@@ -80,10 +80,7 @@
            
            <tr><th><h:outputText value="Contact Person Name"/></th><td><h:inputText value="#{vendorBean.str_ContactPersonName}" /></td></tr>
          
-          </table></div>
-          <div id="page3">
-           <div class="gsTitleDiv">Permanent Address<br/><hr/></div>  
-           <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"> 
+           
            <tr> 
             <th><h:outputText for="Address" value="Address Line1 " /></th>
                 <td><h:inputText id="Address" label="Address"   value="#{vendorBean.str_VendorAddress}" required="true"  requiredMessage="Please enter vendor Address">
@@ -143,14 +140,14 @@
     <c:forEach items="#{vendorBean.vendorServiceDetails}"   var="Service">
           <tr>   <th>   <h:outputText value="Service"/></th>
 	   <td> <p:inputText value="#{ str_ServiceName}" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
-	   </td>
-	   <th>  <h:outputText value="Price"/></th>
+	   </td></tr>
+	   <tr><th>  <h:outputText value="Price"/></th>
 	   <td> <p:inputText value="#{ int_ServicePrice}" validatorMessage="Price should be  number only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
 	    <f:validateRegex pattern="^([+]?[\d]+)?$" /></p:inputText></td>
-	   </tr>  </c:forEach> </table>
+	   </tr>  </c:forEach> 
     
 	  
-	   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"><tr><th><h:outputText value="Is Vendor Active? " /></th>
+	    <tr><th><h:outputText value="Is Vendor Active? " /></th>
        <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
            </tr>
            <tr><th><h:outputText value="Is a Company? " /></th>
