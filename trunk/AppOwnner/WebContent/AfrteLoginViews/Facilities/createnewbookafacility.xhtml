@@ -30,24 +30,24 @@
            <div class="gsTitleDiv">Booking Details<br/><hr/></div> 
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    
-  <tr><th class="gsTitle"><h:outputText value="Event Name"/>  </th><td class="gsContent"><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name"  value="#{loginBean.str_EventName}">
+  <tr><th><h:outputText value="Event Name"/>  </th><td><h:inputText id="EventName" required="true" requiredMessage="plz  Enter Event Name"  value="#{loginBean.str_EventName}">
   <p:ajax event="blur" update="Eventname" />
   </h:inputText>
   </td>
   
   <td><p:message id="Eventname"  for="EventName" display="text"/></td>
   </tr>
-   <tr><th class="gsTitle"><h:outputText value="Organization"/></th>  <td class="gsContent"><h:inputText value="#{loginBean.str_ApartmentName}"/>  </td> 
-   <th class="gsTitle"><h:outputText value="Event Type"/></th> 
-   <td class="gsContent"><p:selectOneMenu value="#{loginBean.str_EventType}">
+   <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/>  </td>
+   <th><h:outputText value="Event Type"/></th> 
+   <td><p:selectOneMenu value="#{loginBean.str_EventType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="Public" itemLabel="Public"/>
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </p:selectOneMenu></td></tr>
       
-    <tr><th class="gsTitle"><h:outputText value="Date Open"/></th>  <td class="gsContent"><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th class="gsTitle"><h:outputText value="Date Closed"/></th>  <td class="gsContent"><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
-    <tr><th class="gsTitle"><h:outputText value="Start Time"/></th> 
-     <td class="gsContent"><p:selectOneMenu  id="STime"   required="true" requiredMessage="plz  Enter StartTime" value="#{loginBean.str_StartTime}">
+    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputText value="Date Closed"/></th>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><th><h:outputText value="Start Time"/></th> 
+     <td><p:selectOneMenu  id="STime" style="width:100px" required="true" requiredMessage="plz  Enter StartTime" value="#{loginBean.str_StartTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
@@ -57,7 +57,7 @@
     
       </td>
        
-       <th class="gsTitle"><h:outputText value="End Time"/></th>  <td class="gsContent"><p:selectOneMenu id="ETime"    required="true" requiredMessage="plz  Enter EndTime" value="#{loginBean.str_EndTime}">
+       <th><h:outputText value="End Time"/></th>  <td><p:selectOneMenu id="ETime"  style="width:100px" required="true" requiredMessage="plz  Enter EndTime" value="#{loginBean.str_EndTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
     <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
@@ -66,8 +66,8 @@
       <p:message id="ETimeMsg"  for="ETime" display="text"/>
       </td>
        </tr>
-     <tr><th class="gsTitle"><h:outputText value="Facility Needed"/></th>
-     <td class="gsContent"><p:selectOneMenu id="Facility" required="true" requiredMessage="plz  enter Facility Needed"   value="#{loginBean.str_FacilityType}">
+     <tr><th><h:outputText value="Facility Needed"/></th>
+     <td><p:selectOneMenu id="Facility" required="true" requiredMessage="plz  enter Facility Needed" style="width:100px" value="#{loginBean.str_FacilityType}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
      <p:ajax event="blur" update="FacilityMsg" />
@@ -75,18 +75,18 @@
     <p:message id="FacilityMsg"  for="Facility" display="text"/>
     </td>
     
-    <th class="gsTitle"><h:commandButton value="Check Availability" action="#"/></th>
+    <th><h:commandButton value="Check Availability" action="#"/></th>
     </tr>
    </table>
    
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-   <tr><th class="gsTitle"><h:outputText value=" Facility Details*"/></th>  <td></td><td class="gsContent"><p:editor   required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" >
+   <tr><th><h:outputText value=" Facility Details*"/></th>  <td></td><td><p:editor   required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" >
    
    </p:editor>
    </td>
    <td><p:message id="editorMsg"  for="editor" display="text"/></td>
    </tr>
-   <tr><td class="gsContent"> <h:commandButton styleClass="btn"    onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addBookAFacility()}"/></td><td> <h:commandButton  styleClass="btn"  value="Cancel" action="#"/> </td></tr>
+   <tr><td> <h:commandButton styleClass="btn"    onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addBookAFacility()}"/></td><td> <h:commandButton  styleClass="btn"  value="Cancel" action="#"/> </td></tr>
                  
     </table>
     
