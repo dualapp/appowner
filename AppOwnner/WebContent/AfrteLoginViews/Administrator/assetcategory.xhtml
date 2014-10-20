@@ -170,20 +170,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	  
 	</table>
 	
-	 <script>
 	 
-        function EnrollNowClick() {
-            PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
-           
-        }
-        function EnrollLaterClick() {
-            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
-            window.opener.reload(true);
-            window.close();
-        }
- 
-    </script>
         </p:outputPanel>
         </p:dialog>
         <p:dialog header="Edit AssetsCatgory Details" widgetVar="multiAssetCategoryDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">

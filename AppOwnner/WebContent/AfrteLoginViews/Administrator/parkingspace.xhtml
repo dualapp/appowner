@@ -103,20 +103,7 @@
 	 
 	</tr>
 	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}" /> </td></tr> 
-	 <script>
-	 
-        function EnrollNowClick() {
-            PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
-           
-        }
-        function EnrollLaterClick() {
-         
-            window.opener.reload(true);
-            window.close();
-        }
- 
-    </script>
+	  
     
     </table>
     
