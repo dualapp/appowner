@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+      <f:metadata>
+	 <f:viewAction action="#{expenseBean.getLatestPolls}" />
+	 </f:metadata>
+	 
+<h:form> 
+<center>
+<h5><h:outputText value="*#{expenseBean.latestPolls.str_poolQuestion}"/>?</h5>
+<h5> #{expenseBean.latestPolls.getInt_Vote()}  <h:outputText value="People Have Taken Part In This Poll:"/></h5>
+  </center>
+ 
+  #{expenseBean.latestPolls.str_Choise1} Got: #{expenseBean.getCount1()} Vote 
+  
+ <p:progressBar  style="width: 50%;" value="#{expenseBean.getLatestChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/> <br/><br/>
+   #{expenseBean.latestPolls.str_Choise2} Got: #{expenseBean.getCount2()} Vote <br/><br/>
+  <p:progressBar  style="width: 50%;"  value="#{expenseBean.getLatestChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/> <br/>
+  #{expenseBean.latestPolls.str_Choise3} Got: #{expenseBean.getCount3()} Vote  <br/><br/>
+   <p:progressBar style="width: 50%;" value="#{expenseBean.getLatestChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/>  
+  <p:link value="see past polls..." outcome="/AfrteLoginViews/Communication/pools.xhtml"/> 
+ 
+    </h:form>
+    
+  </html>

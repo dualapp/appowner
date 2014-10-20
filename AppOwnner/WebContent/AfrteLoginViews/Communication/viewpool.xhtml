@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/#{expenseBean.templateIndicator}">
 	<ui:define name="content">
 	<f:metadata>
 	 <f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
@@ -52,13 +52,13 @@
   <div class="gsTitleDiv">Pool Result<br/><hr/></div> 
    
     
-<h2><h:outputText value="*#{expenseBean.onePoll.str_poolQuestion}"/></h2> 
- #{expenseBean.onePoll.str_Choise1}  #{expenseBean.getCount1()} Vote
+<h2><h:outputText value="*#{expenseBean.onePoll.str_poolQuestion}"/>?</h2> 
+ #{expenseBean.onePoll.str_Choise1} Got:  #{expenseBean.getCount1()} Vote
   
 <p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
-  #{expenseBean.onePoll.str_Choise2}  #{expenseBean.getCount2()} Vote
+  #{expenseBean.onePoll.str_Choise2} Got: #{expenseBean.getCount2()} Vote
  <p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
-#{expenseBean.onePoll.str_Choise3}  #{expenseBean.getCount3()} Vote
+#{expenseBean.onePoll.str_Choise3} Got: #{expenseBean.getCount3()} Vote
  <p:progressBar style="width: 30%;" value="#{expenseBean.getChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/>
 
     
