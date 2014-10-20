@@ -108,19 +108,40 @@
 		</table>														
 	</div>
 	<div style="clear: all;"></div>
+	<p:outputPanel id="poll" rendered="#{expenseBean.rendered}" style="text-align:center;"> 
 	<div id="page1">
-		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Polls</div>
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Opinion Polls</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
 					<tr>
 						<td> 
-							<ui:include src="/AfrteLoginViews/Communication/latestpoll.xhtml" />
+							<ui:include rendered="#{expenseBean.getRendered()}" src="/AfrteLoginViews/Communication/latestpoll.xhtml" />
 						</td>						
 					</tr>
 				</tbody>
-		</table>														
+		</table>	
+												
 	</div>
+	</p:outputPanel>
+	<div style="clear: all;"></div>
+	
+	<p:outputPanel id="pollResult" rendered="#{expenseBean.getRendered1()}" style="text-align:center;"> 
+       <div    id="page1">
+           
+  <div    class="gsTitleDiv">Opinion Pool Results<br/><hr/></div> 
+		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
+				<tbody>
+					<tr>
+						<td> 
+						 <ui:include rendered="#{expenseBean.rendered1}" src="/AfrteLoginViews/Communication/latestpollresult.xhtml" /> 
+						</td>						
+					</tr>
+				</tbody>
+		</table>	
+    </div>
+   </p:outputPanel>
+       
 	  
 	<div id="page1">
 		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/events.jpg" height="42" width="42"></img>Eventss</div>
@@ -129,7 +150,7 @@
 				<tbody>
 					<tr>
 						<td> 
-						  <ui:include src="/AfrteLoginViews/Communication/schedulevent.xhtml" /> 	
+						  <ui:include   src="/AfrteLoginViews/Communication/schedulevent.xhtml" /> 	
 						</td>						
 					</tr>
 				</tbody>

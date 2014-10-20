@@ -6,25 +6,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core">
 	 
-	<h:head>
-    <title>Chart Of Account</title>
-    
-	 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript">
 	 
-	 </script>
-
- <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
     <script>
 
  var modalWin = new CreateModalPopUpObject();
@@ -80,13 +64,13 @@ function HideModalWindow() {
 
 
 </script>
-    </h:head>
+     
  
-    <h:form  > 
-    <body>
-    
-                 
-  <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
+    <h:form>
+    <div id="page3">
+           <div class="gsTitleDiv">Chart Of Account<br/><hr/></div> 
+       
+  <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
  
                <td><h:outputLabel value="Organisation:*" /> </td>
               
@@ -114,11 +98,11 @@ function HideModalWindow() {
  
 <br/>
 <br/>
- <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> <tr><td>    &#150; &#150;  <p:commandButton process="DT" update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
+ <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> <tr><td>    &#150; &#150;  <p:commandButton process="DT" update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="View Selected"/></td>&#150; &#150; &#150; &#150;<td><input type="button" style="width: 150px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
   <br/>
   <br/>
  <p:dataTable   id="DT"     
-                rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="1,2,3"   var="c" value="#{expenseBean.chartOfAccountList}">
          
 	 
@@ -176,7 +160,7 @@ function HideModalWindow() {
     </script>
          </p:outputPanel>
          </p:dialog>
-        </body>
+</div>
         </h:form>
       </html>
       
