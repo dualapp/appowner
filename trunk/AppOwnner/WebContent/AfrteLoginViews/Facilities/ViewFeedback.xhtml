@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>Feedback Form</title>
+    <a href="AddFeedback.xhtml">Add Feedback</a>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="Feedback : "></h:outputText>
+        <p:dataTable id="Feedback" var="feedback" value="#{cls_FeedbackBean.feedbackList}" style="width: 300%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText  id="feedbackId" value="#{feedback.feedbackId}" />
+            </p:column>
+          
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Name" />
+                </f:facet>
+                <h:outputText value="#{feedback.feedbackName}" />
+            </p:column>
+             
+            <p:column>
+            <f:facet name="header">              
+                    <h:outputText value="Email" />
+                </f:facet>
+                <h:outputText value="#{feedback.str_Email}" />
+            </p:column>
+            
+             <p:column>
+            <f:facet name="header">              
+                    <h:outputText value="Feedback Topic*:" />
+                </f:facet>
+                <h:outputText value="#{feedback.var_feedbacktopicname}" />
+            </p:column>
+            
+             <p:column>
+            <f:facet name="header">              
+                    <h:outputText value="Are you satisfied with our service?*: " />
+                </f:facet>
+                <h:outputText value="#{feedback.var_satisfactionname}" />
+            </p:column>
+                    
+                   
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="Feedback Message:" />
+                </f:facet>
+                <h:outputText value="#{feedback.feedbackMsg}" />
+            </p:column>
+            
+            <p:column>
+            <f:facet name="header">
+                
+                    <h:outputText value="CurrentDate" />
+                </f:facet>
+                <h:outputText value="#{feedback.date}" />
+            </p:column>
+             
+           
+              <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Action" />
+                    </f:facet>
+              <h:link outcome="UpdateFeedback.xhtml" >
+	   			<p:graphicImage  height="20" width="20" alt="update" value="images/k1.png"/> 
+	   				<f:param name="feedbackId" value="#{feedback.feedbackId}" />
+	   		</h:link>
+	   		 <h:link outcome="DeleteFeedback.xhtml"   
+	   		 onclick="return confirm('Are you sure you want to delete #{feedback.feedbackName}?');" > 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="images/k2.png"/> 
+	   				<f:param name="feedbackId" value="#{feedback.feedbackId}" />
+	   		</h:link>
+            </p:column>
+          <!-- <p:commandButton value="update" action="#{cls_UpdateBean.editPerson(person.personId)}"   -->  
+             
+             
+             
+              <p:column>
+	   			
+	   		</p:column>
+        </p:dataTable>
+        
+        
+         </h:form>
+        <h:form>
+        
+        </h:form>
+        
+         
+</h:body>
+
+</ui:define>
+</ui:composition>
