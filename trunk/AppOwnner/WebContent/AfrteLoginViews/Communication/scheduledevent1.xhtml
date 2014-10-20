@@ -6,25 +6,25 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml"
-                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 	
          <h:head>
-	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
+	 <link href="#{expenseBean.str_Name}include/assets/css/ace.min.css" rel="stylesheet" />
 	  
 	 </h:head>
          <h:body>
 	<h:form>
     <p:growl id="messages" showDetail="true" />
-     
+     <div id="page3">
     
    <p:schedule id="schedule"   value="#{requestScopeBean.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
   
   <p:ajax event="dateSelect" listener="#{requestScopeBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
        <p:ajax event="eventSelect" listener="#{requestScopeBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
         </p:schedule>
-         <p><p:link value="Back To Home..." outcome="welcomepage"/></p>
+        </div>
+         <p><a href="../../AfrteLoginViews/Administrator/welcomepage.xhtml" >Back To Home...</a></p>
          
   
     <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip" resizable="false">
