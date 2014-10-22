@@ -25,9 +25,9 @@ th, td {
     font-size: 10px;
 color: #555;
 padding-bottom: 5px;
-font-family: "Open Sans light", sans-serif;
-    
-    
+font-family: Verdana;
+  padding: 5px;
+  text-align: left;
      
 }
 body.navbar-fixed {
@@ -5290,10 +5290,12 @@ td>label,th>label,label.inline {
 
 textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"]
 	{
-	font-size: 15px;
-color: #555;
-padding-top: 1px;
-padding-bottom: 5px;
+	border: 1px solid #ccc;
+float: left;
+height: 20px;
+margin-bottom: 3px;
+margin-top: 3px;
+width: 175px;
 }
 
 textarea:hover,input[type="text"]:hover,input[type="password"]:hover,input[type="datetime"]:hover,input[type="datetime-local"]:hover,input[type="date"]:hover,input[type="month"]:hover,input[type="time"]:hover,input[type="week"]:hover,input[type="number"]:hover,input[type="email"]:hover,input[type="url"]:hover,input[type="search"]:hover,input[type="tel"]:hover,input[type="color"]:hover

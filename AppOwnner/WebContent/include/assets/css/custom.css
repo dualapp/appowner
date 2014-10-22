@@ -278,10 +278,8 @@ margin: 0;
 font:size:1em;
 outline: medium none;
 padding: 3px;
- 
- 
- 
- box-sizing: border-box;
+width: 175px;
+box-sizing: border-box;
     
 font-weight: normal;
 }
