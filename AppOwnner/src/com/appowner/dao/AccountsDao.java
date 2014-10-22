@@ -67,10 +67,10 @@ public interface AccountsDao {
 	public int getAccountId(String str);
 	public String getAccountName1(Integer id1);
 	public String getStatus(String str_Accounts);
-	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts);
+	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts, Date dat_From, Date dat_ToDate);
 	public List<Double> getTotalBalance();
 	public Character getChGroup(String str_AccountType);
-	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts);
+	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts, Date dat_FromDate, Date dat_ToDate);
 	public List<ManualJournal> getlistManualJournal();
 	public List<ManualJournal> getlistManualJournal1(String str_Accounts);
 	public ManualJournal getManualAccount(Integer id);

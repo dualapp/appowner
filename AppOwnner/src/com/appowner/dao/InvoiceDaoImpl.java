@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -124,10 +125,10 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		
 		return str;
 	}
-	public void updatePayment(String accountName, String str_Status, Integer id,String dat_InvoiceDate)
+	public void updatePayment(String accountName, String str_Status, Integer id,Date dat_InvoiceDate)
 	{
 		String hql="update InvoiceTransaction set str_Status=?,totalBalance=?,str_paymentAccount=?,dat_PaymentDate=? where int_InvoiceTransactionID=?";
-		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,"Paid").setParameter(1,0.00).setParameter(2,accountName).setParameter(3,dat_InvoiceDate).setParameter(4,id).executeUpdate();
+		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,"Paid").setParameter(1,0.00).setParameter(2,accountName).setDate(3,dat_InvoiceDate).setParameter(4,id).executeUpdate();
 	}
 	public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID)
 	{

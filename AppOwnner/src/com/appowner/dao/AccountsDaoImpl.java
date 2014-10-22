@@ -4,63 +4,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import javax.faces.model.SelectItem;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -70,7 +18,6 @@ import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
-import com.appowner.model.Vendor;
 
 @Repository
 public class AccountsDaoImpl implements AccountsDao{
@@ -271,39 +218,60 @@ public class AccountsDaoImpl implements AccountsDao{
 	}
 	
 	@SuppressWarnings("unchecked")
-	 public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts)
-	{ 
+	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts, Date dat_From, Date dat_ToDate)
+	{    System.out.println(str_Accounts+"kamini");
 		if(str_Accounts==null)
-	   {  	
+	   {  	System.out.println(dat_From+"priya");
 			return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
 	   }
-		else if(str_Accounts.equalsIgnoreCase("Income from Resident"))
+		else if(str_Accounts.equalsIgnoreCase("Income from Resident")) 
 		{  
-		  return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+		 if(dat_From!=null|| dat_ToDate!=null)
+		 {
+			 
+		 
+		  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
+		  System.out.println(ddd.listIterator().hasNext()+"jiuyre");
+		  return ddd;
+		 }
 		}
 		else if(str_Accounts.equalsIgnoreCase("Accounts Receivable"))
-		{   // String str="From InvoiceTransaction where str_Status='paid'";
-			//listInvoiceTransaction1(String str_Accounts)
-			 return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+		{   
+			 if(dat_From!=null || dat_ToDate!=null)
+			 {
+				 List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
+				  System.out.println(ddd.listIterator().hasNext()+"jiuyre11111111111");
+				  return ddd;
+				 }
 		}
-		else if(str_Accounts.equalsIgnoreCase("Tax Payable"))
-		{
-			 return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+	   else if(str_Accounts.equalsIgnoreCase("Tax Payable")) 
+		{    
+		  if(dat_From!=null || dat_ToDate!=null)
+		  {
+			
+			  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
+			  System.out.println(ddd.listIterator().hasNext()+"jiuyre22222222222");
+			  return ddd;
+		  }
 		}
-	else 
-	{   
-		String sss="from InvoiceTransaction where str_Status='paid' and str_paymentAccount=?";
-		List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(sss).setCacheable(true).setParameter(0,str_Accounts).list();
 		
-		return ddd;
+	   else 
+	    { 
+		   System.out.println("jihytfff");
+		   
+		  String sss="from InvoiceTransaction where str_Status='paid' and str_paymentAccount=?";
+		  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(sss).setCacheable(true).setParameter(0,str_Accounts).list();
 		
-	}
+		   return ddd;
+		
+	    }
+		return null;
 	}
 	@SuppressWarnings("unchecked")
-	 public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts)
+	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts, Date dat_FromDate, Date dat_ToDate)
 	{ 
-		String sss="from InvoiceTransaction where str_Status='Paid'";
-		List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(sss).setCacheable(true).list();
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("str_Status", "Paid")).add(Restrictions.between("dat_InvoiceDate", dat_FromDate,dat_ToDate)).list();
 		
 		return ddd;
 	}
@@ -332,8 +300,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	 }
 	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal1(String str_Accounts)
-	{   System.out.println(str_Accounts+"jamu");
-	    System.out.println(str_Accounts==null+"lll");
+	{   
 		if(str_Accounts==null)
 		{
 	     String str="from ManualJournal where str_DebitAccount='Income from Resident' OR str_CreditAccount='Income from Resident'";
