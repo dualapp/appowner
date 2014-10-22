@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().getAccountName();
 	  }
-	  public void updatePayment(String accountName, String str_Status, Integer id,String dat_InvoiceDate)
+	  public void updatePayment(String accountName, String str_Status, Integer id,Date dat_InvoiceDate)
 	  {
 		   getInvoiceDao().updatePayment(accountName,str_Status,id,dat_InvoiceDate);
 	  }

@@ -2,6 +2,7 @@ package com.appowner.service;
 
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import com.appowner.model.InvoiceTransaction;
@@ -30,7 +31,7 @@ public String getmailid(String str_ApartmentNo);
 
 public List<String> getAccountName();
 
-public void updatePayment(String accountName, String str_Status, Integer id, String dat_InvoiceDate);
+public void updatePayment(String accountName, String str_Status, Integer id, Date dat_InvoiceDate);
 
 public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID);
 }
