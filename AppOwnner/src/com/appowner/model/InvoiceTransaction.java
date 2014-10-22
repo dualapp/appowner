@@ -32,7 +32,7 @@ public class InvoiceTransaction implements Serializable{
 	private String str_BillPeriod;
 	
 	private Integer int_Year;
-	private String dat_InvoiceDate;
+	private Date dat_InvoiceDate;
 	private Date dat_DueDate;
 	@Column(name="int_Organisation")
 	private String str_Organisation;
@@ -72,15 +72,16 @@ public class InvoiceTransaction implements Serializable{
 		this.int_Year = int_Year;
 	}
 	
-	public String getDat_InvoiceDate() {
+	
+	
+	
+	
+	public Date getDat_InvoiceDate() {
 		return dat_InvoiceDate;
 	}
-	public void setDat_InvoiceDate(String dat_InvoiceDate) {
+	public void setDat_InvoiceDate(Date dat_InvoiceDate) {
 		this.dat_InvoiceDate = dat_InvoiceDate;
 	}
-	
-	
-	
 	public String getStr_Organisation() {
 		return str_Organisation;
 	}
