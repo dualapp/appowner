@@ -32,7 +32,7 @@ public class DueTransaction implements Serializable{
 	
 	private Integer int_Year;
 	@Column(name="dat_InitiatedOn")
-	private String str_InitiatedOn;
+	private Date str_InitiatedOn;
 	private Date dat_LastDate;
 	@Column(name="int_Organisation")
 	private String str_Organisation;
@@ -71,10 +71,11 @@ public class DueTransaction implements Serializable{
 	public void setInt_Year(Integer int_Year) {
 		this.int_Year = int_Year;
 	}
-	public String getStr_InitiatedOn() {
+	
+	public Date getStr_InitiatedOn() {
 		return str_InitiatedOn;
 	}
-	public void setStr_InitiatedOn(String str_InitiatedOn) {
+	public void setStr_InitiatedOn(Date str_InitiatedOn) {
 		this.str_InitiatedOn = str_InitiatedOn;
 	}
 	public Date getDat_LastDate() {
