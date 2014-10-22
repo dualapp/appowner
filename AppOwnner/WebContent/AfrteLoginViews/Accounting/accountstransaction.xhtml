@@ -13,11 +13,7 @@
 
 
     <title>Accounting Form</title>
-   <script>
-        $(function() {
-            $("#german1").datepicker();
-        });
-    </script>
+   
   
  
   </h:head>
@@ -38,12 +34,16 @@
                 
            </td>
            <td>  <h:outputText  value="From:" /></td>
-           <td>  <p:inputText id="german1"  value="#{accountingBean.dat_FromDate}" size="20"   >
-          </p:inputText>
+           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.dat_FromDate}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" >
+            <p:ajax event="change" partialSubmit="true" />
+        </p:calendar>
            </td>
               
            <td>  <h:outputText  value="To:" /></td>
-           <td>  <p:inputText id="german"   pattern="dd-MM-yyyy"  value="#{accountingBean.dat_ToDate}" size="20" locale="de" navigator="true"/> </td> 
+           <td>  <p:calendar id="german"   pattern="dd-MM-yyyy"  value="#{accountingBean.dat_ToDate}" size="20" locale="de" navigator="true" valueChangeListener="#{accountingBean.datechangeListener1}">
+            <p:ajax event="change" partialSubmit="true" />
+            </p:calendar>
+            </td> 
              <td>
                <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch}" update="ggg" >
                   </h:commandButton>

@@ -46,7 +46,7 @@
                     <p:column>
                       <p:dataTable value="#{accountingBean.asset}" var="timeSlot">
                       <f:facet name="header">
-                              <h:outputText value="Asset"  />
+                              <h:outputText value="Asset" style="float:left" />
                       </f:facet>
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
@@ -71,7 +71,7 @@
                     <p:column>
                       <p:dataTable value="#{accountingBean.income1}" var="timeSlot">
                       <f:facet name="header">
-										<h:outputText value="Income" />
+										<h:outputText value="Income" style="float:left"/>
 									</f:facet>
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
@@ -94,7 +94,7 @@
                     <p:column>
                       <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
                       <f:facet name="header">
-										<h:outputText value="Expense" />
+										<h:outputText value="Expense" style="float:left"/>
 									</f:facet>
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
@@ -117,7 +117,7 @@
                     <p:column>
                       <p:dataTable value="#{accountingBean.liability}" var="timeSlot">
                       <f:facet name="header">
-										<h:outputText value="Liability" />
+										<h:outputText value="Liability" style="float:left"/>
 									</f:facet>
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
@@ -138,9 +138,9 @@
                <table>
                   <tr> 
             
-                    <th  width="45%">Totals:</th>
-                     <th  width="10%">#{accountingBean.debitNetTotal}</th>
-                   <th  width="20%">#{accountingBean.creditNetTotal}</th>
+                    <th  width="40%">Totals:</th>
+                     <th  width="20%" align="left">#{accountingBean.debitNetTotal}</th>
+                   <th  width="20%" align="left">#{accountingBean.creditNetTotal}</th>
               
                
                 </tr>
