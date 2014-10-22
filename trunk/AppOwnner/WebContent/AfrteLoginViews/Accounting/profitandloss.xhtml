@@ -8,7 +8,8 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 	
 	<h:head>
-    <title>profit and loss Form</title>
+        <title>Profit And Loss</title>
+        <script name="jquery/jquery.js" library="primefaces"></script>
     </h:head>
     <h:form>
     <body>
@@ -22,12 +23,12 @@
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> Profit And Loss</legend>
                  <h:outputText value="From:"/>
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_From}">
-                  </p:calendar>&nbsp; &nbsp;
+                  <p:calendar value="#{accountingBean.dat_From}" navigator="true"  required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy" />
+                  &nbsp; &nbsp;
                   <h:outputText value="To :"/>
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_To}">
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
-                  <h:commandButton value="Go"/>
+                  <h:commandButton value="Go"  action="#{accountingBean.getListInvoiceTransaction()}" update="ggg"/>
                  </fieldset>
                  
                  
@@ -57,18 +58,18 @@
                 <td>
                    
                     <p:column>
-                      <p:dataTable value="#{accountingBean.listInvoiceTransaction}" var="timeSlot">
-                      <f:facet name="header">
-                              <h:outputText value="Income"  />
+                      <p:dataTable id="ggg" value="#{accountingBean.listInvoiceTransaction}" var="timeSlot">
+                      <f:facet name="header" >
+                              <h:outputText value="Income" style="float:left" />
                       </f:facet>
                       <p:column width="50%">
                         <h:outputText value="Income From Resident"/><br/>
                         
                         </p:column>
                          <p:column>
-                <h:outputText value="#{accountingBean.totalIncome}" /><br/>
+                <h:outputText  value="#{accountingBean.totalIncome}" style="float:right"/><br/>
                 <p:separator/>
-                 <h:outputText value="INCOME TOTALS: #{accountingBean.totalIncome}" />
+                 <h:outputText value="INCOME TOTALS: #{accountingBean.totalIncome}" style="float:right"/>
             </p:column>
            
                         </p:dataTable>
@@ -83,16 +84,16 @@
                     <p:column>
                       <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
                       <f:facet name="header">
-                              <h:outputText value="Expense"  />
+                              <h:outputText value="Expense" style="float:left" />
                       </f:facet>
                       <p:column width="50%">
                         <h:outputText value="Expense"/><br/>
                         
                         </p:column>
                          <p:column>
-                <h:outputText value="#{accountingBean.debitNetTotal}" /><br/>
+                <h:outputText value="#{accountingBean.debitNetTotal}" style="float:right" /><br/>
                 <p:separator/>
-                 <h:outputText value="EXPENSE TOTALS: #{accountingBean.debitNetTotal}" />
+                 <h:outputText value="EXPENSE TOTALS: #{accountingBean.debitNetTotal}" style="float:right"/>
             </p:column>
            
                         </p:dataTable>
