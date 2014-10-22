@@ -24,12 +24,13 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	{
 		getNoticeBoardDao().addNotice(notice);
 	}
-	  public List<Notice> listNotices()
+	  public List<Notice> listNotices(String str_Visible)
 	  {
-		  return  getNoticeBoardDao().listNotices();  
+		  return  getNoticeBoardDao().listNotices(str_Visible);  
 	  }
 	  public List<String> getmailids()
 	  {
 		  return  getNoticeBoardDao().getmailids();  
 	  }
+	 
 }

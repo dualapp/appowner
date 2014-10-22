@@ -3,6 +3,8 @@ package com.appowner.service;
 import java.util.Collection;
 import java.util.List;
 
+import org.primefaces.model.ScheduleEvent;
+
 import com.appowner.model.BookAFacility;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
@@ -36,5 +38,9 @@ List<BookAFacility> getSelectedBookFacility(
 		String str_FacilityType, String str_EventType);
 
 List<cls_Event> getEventList();
+
+void addEvent(cls_Event event);
+
+void updateEvent(cls_Event event);
 
 }
