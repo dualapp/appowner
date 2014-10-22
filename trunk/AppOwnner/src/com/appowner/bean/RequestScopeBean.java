@@ -131,21 +131,32 @@ public ServiceRequest processListener()
 	System.out.println(serviceRequestId);
 	return servicerequest1;
 }
-public void assignRequestedService(ServiceRequest serviceRequest)
+public String assignRequestedService(ServiceRequest serviceRequest)
 {
 	 
 serviceRequest.setStr_Status("Progress");
  
 getRequestScopeService().updateStatusOfServiceRequest(serviceRequest);
- 
+FacesContext facesContext = FacesContext.getCurrentInstance();
+Flash flash = facesContext.getExternalContext().getFlash();
+flash.setKeepMessages(true);
+flash.setRedirect(true);
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service assigned Successfully!", "Service assigned Successfully!"));
+    return "servicerequest.xhtml?faces-redirect=true";
 }
-public void closeRequestedService(ServiceRequest serviceRequest)
+public String closeRequestedService(ServiceRequest serviceRequest)
 {
 	 
 serviceRequest.setStr_Status("RequestClosed");
  
    
 getRequestScopeService().updateStatusOfServiceRequest(serviceRequest);
+FacesContext facesContext = FacesContext.getCurrentInstance();
+Flash flash = facesContext.getExternalContext().getFlash();
+flash.setKeepMessages(true);
+flash.setRedirect(true);
+facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service closed Successfully!", "Service closed Successfully!"));
+    return "servicerequest.xhtml?faces-redirect=true";
 }
 private ServiceRequest servicerequest1;
 public ServiceRequest getServicerequest1() {
@@ -317,15 +328,39 @@ public void init() {
  
 }
 private ScheduleEvent event = new DefaultScheduleEvent();
-public void addEvent(ActionEvent actionEvent) {
-    if(event.getId() == null)
-        eventModel.addEvent(event);
-    else
-        eventModel.updateEvent(event);
-     
-    event = new DefaultScheduleEvent();
+private String str_EventTitle;
+private Date dat_StartDate;
+public String getStr_EventTitle() {
+	return str_EventTitle;
+}
+public void setStr_EventTitle(String str_EventTitle) {
+	this.str_EventTitle = str_EventTitle;
+}
+public Date getDat_StartDate() {
+	return dat_StartDate;
+}
+public void setDat_StartDate(Date dat_StartDate) {
+	this.dat_StartDate = dat_StartDate;
+}
+public Date getDat_EndDate() {
+	return dat_EndDate;
+}
+public void setDat_EndDate(Date dat_EndDate) {
+	this.dat_EndDate = dat_EndDate;
+}
+private Date dat_EndDate;
+
+public void addEvent() {
+	System.out.println("kalpana");
+	event1=new cls_Event();
+	event1.setStr_EventTitle(str_EventTitle);
+	event1.setStr_UserName(Util.getUserName());
+	event1.setDat_StartDate(dat_StartDate);
+	event1.setDat_EndDate(dat_EndDate);
+         getRequestScopeService().addEvent(event1);
 }
 public void onEventSelect(SelectEvent selectEvent) {
+	System.out.println(selectEvent.toString()+"kk");
     event = (ScheduleEvent) selectEvent.getObject();
 }
 public void onDateSelect(SelectEvent selectEvent) {

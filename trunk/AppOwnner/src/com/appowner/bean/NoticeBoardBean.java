@@ -225,7 +225,12 @@ public static void setContent(String content) {
 	@SuppressWarnings("unchecked")
 	public List<Notice> getListOfNotice() throws ParseException {
 		listOfNotice=new ArrayList<Notice>();
-		listOfNotice.addAll(getNoticeService().listNotices());
+		if(LoginBean.isAdmin())
+		 str_Visible="Only Owner of this Complex";
+		else
+			str_Visible="Only Member of this Complex";
+		listOfNotice.addAll(getNoticeService().listNotices(str_Visible));
+		 
 		  /*ListIterator itr=listOfNotice.listIterator();
 		   while(itr.hasNext())
 		   {
