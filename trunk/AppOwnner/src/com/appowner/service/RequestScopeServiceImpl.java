@@ -2,6 +2,7 @@ package com.appowner.service;
 
 import java.util.List;
 
+import org.primefaces.model.ScheduleEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,6 +91,16 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 	public List<cls_Event> getEventList() {
 		// TODO Auto-generated method stub
 		return getRequestScopeDao().getEventList();
+	}
+	@Override
+	public void addEvent(cls_Event event) {
+		// TODO Auto-generated method stub
+		  getRequestScopeDao().addEvent(event);
+	}
+	@Override
+	public void updateEvent(cls_Event event) {
+		// TODO Auto-generated method stub
+		  getRequestScopeDao().updateEvent(event);
 	}
 	 
 
