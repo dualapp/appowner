@@ -118,13 +118,16 @@ public class AccountsServiceImpl implements AccountsService {
 		return getAccountsDao().getAccountName1(id1);
 	}
 
-	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts)
+	public List<InvoiceTransaction> listInvoiceTransaction(
+			String str_Accounts, Date dat_From, Date dat_ToDate)
 	{
-		return getAccountsDao().listInvoiceTransaction(str_Accounts);
+		return getAccountsDao().listInvoiceTransaction(str_Accounts,dat_From,dat_ToDate);
 	}
-	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts)
+	public List<InvoiceTransaction> listInvoiceTransaction1(
+			String str_Accounts, Date dat_FromDate, Date dat_ToDate)
+
 	{
-		return getAccountsDao().listInvoiceTransaction1(str_Accounts);
+		return getAccountsDao().listInvoiceTransaction1(str_Accounts,dat_FromDate,dat_ToDate);
 	}
 	public String getStatus(String str_Accounts)
 	{

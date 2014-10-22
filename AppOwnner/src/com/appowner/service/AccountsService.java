@@ -54,7 +54,7 @@ public interface AccountsService {
 	
 
 	public List<InvoiceTransaction> listInvoiceTransaction(
-			String str_Accounts);
+			String str_Accounts, Date dat_From, Date dat_ToDate);
 
 	public String getStatus(String str_Accounts);
 
@@ -63,7 +63,7 @@ public interface AccountsService {
 	public Character getChGroup(String str_AccountType);
 
 	public List<InvoiceTransaction> listInvoiceTransaction1(
-			String str_Accounts);
+			String str_Accounts, Date dat_FromDate, Date dat_ToDate);
 
 	public List<ManualJournal> getlistManualJournal();
 
