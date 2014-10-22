@@ -1,13 +1,11 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -22,7 +20,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UISelectItems;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -31,10 +28,7 @@ import javax.faces.model.SelectItemGroup;
 import org.primefaces.component.datatable.DataTable;
 
 import com.appowner.model.AccountingGroup;
-import com.appowner.model.Assets;
 import com.appowner.model.ChartOfAccount;
-import com.appowner.model.DueTemplate;
-import com.appowner.model.DueTransaction;
 import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
@@ -71,9 +65,14 @@ public class AccountingBean  extends RuntimeException implements Serializable{
 	{
 		super(msg);
 	}
-	
-private String dat_FromDate;
-private String dat_ToDate;
+private Date dat_FromDate;	
+public void setDat_FromDate(Date dat_FromDate) {
+	this.dat_FromDate = dat_FromDate;
+}
+private Date dat_ToDate;
+public void setDat_ToDate(Date dat_ToDate) {
+	this.dat_ToDate = dat_ToDate;
+}
 private String dat_FromDate1;
 public String getDat_FromDate1() {
 	java.util.Date d=new java.util.Date();
@@ -93,25 +92,22 @@ public String getDat_FromDate1() {
 public void setDat_FromDate1(String dat_FromDate1) {
 	this.dat_FromDate1 = dat_FromDate1;
 }
-public String getDat_FromDate() {
-	java.util.Date d=new java.util.Date();
-	 SimpleDateFormat ft = 
-		      new SimpleDateFormat ("dd-MM-yyyy");
-	String str=ft.format(d);
+public Date getDat_FromDate() {
+	dat_FromDate=new java.util.Date();
 	
-	return str;
+	Calendar cal = Calendar.getInstance();
+	cal.add(Calendar.MONTH, -1);
+	dat_FromDate = cal.getTime();
+    
+	return dat_FromDate;
 }
-public void setDat_FromDate(String dat_FromDate) {
-	this.dat_FromDate = dat_FromDate;
-}
-public String getDat_ToDate() {
-	
+
+public Date getDat_ToDate() {
+	dat_ToDate=new java.util.Date();
    return dat_ToDate;
 	
 }
-public void setDat_ToDate(String dat_ToDate) {
-	this.dat_ToDate = dat_ToDate;
-}
+
 //MANUAL JOURNAL
 private Integer int_ManualJournalID;
 public Integer getInt_ManualJournalID() {
@@ -121,7 +117,7 @@ public void setInt_ManualJournalID(Integer int_ManualJournalID) {
 	this.int_ManualJournalID = int_ManualJournalID;
 }
 public String getStr_Organisation() {
-	str_Organisation="priya";
+	str_Organisation=Util.getAppartmentName();
 	return str_Organisation;
 }
 public void setStr_Organisation(String str_Organisation) {
@@ -237,7 +233,7 @@ public static void setId(Integer id) {
 }
 public void processValueChange(ValueChangeEvent event)  
         throws AbortProcessingException 
-{    System.out.println("hi");
+{  
 	ManualJournal journal=new ManualJournal();
 	journal=(ManualJournal)dataTable.getRowData();
 	id=journal.getInt_ManualJournalID();
@@ -246,12 +242,27 @@ public void processValueChange(ValueChangeEvent event)
 private Date  dat_From;
 private Date dat_To;
 public Date getDat_From() {
+	Calendar cal = Calendar.getInstance();
+	cal.set(Calendar.DAY_OF_MONTH, 1);
+	dat_From = cal.getTime();
+
 	return dat_From;
 }
 public void setDat_From(Date dat_From) {
 	this.dat_From = dat_From;
 }
-public Date getDat_To() {
+public Date getDat_To() throws ParseException {
+	dat_To=new java.util.Date();
+	 Calendar c = Calendar.getInstance(); 
+	 c.setTime(dat_To); 
+    int d1=c.getWeekYear();
+   
+    
+     
+    String str=31+"-"+12+"-"+d1;
+    SimpleDateFormat ft = 
+		      new SimpleDateFormat ("dd-MM-yyyy");
+    dat_To=ft.parse(str);
 	return dat_To;
 }
 public void setDat_To(Date dat_To) {
@@ -376,15 +387,14 @@ public List<SelectItem> getCars() {
 	return cars;
 }
 
-/*
 
-@PostConstruct
+
+/*?@PostConstruct
 public void init(){ 
 	Object[] st1=getList().toArray();
 	List s=Arrays.asList(st1);
 	
 	SelectItem[] st2=new SelectItem[0];
-	
 	
 	  
 
@@ -400,8 +410,8 @@ public void init(){
  
 }
 
+*/ 
  
- */
 public Character getCh_Group() {
 	return ch_Group;
 }
@@ -444,7 +454,7 @@ public void init() {
     }  
  }  
 	
-  
+ 
 
 public List<String> getStr_AccountGroup() {
 	
@@ -520,9 +530,9 @@ public void accountchangeListener(ValueChangeEvent event){
 	
 	
 	str_AccountType =(String) event.getNewValue();
-	System.out.println(str_AccountType);
+	
 	ch_Group=getAccountsService().getChGroup(str_AccountType);
-	System.out.println(ch_Group);
+	
 }
 
 public void saveChartOfAccount()
@@ -542,7 +552,7 @@ public void saveChartOfAccount()
 public List<InvoiceTransaction> getListInvoiceTransaction1() {
 	
 	listInvoiceTransaction1=new ArrayList<InvoiceTransaction>();
-	listInvoiceTransaction1.addAll(getAccountsService().listInvoiceTransaction1(str_Accounts));
+	listInvoiceTransaction1.addAll(getAccountsService().listInvoiceTransaction1(str_Accounts,dat_FromDate,dat_ToDate));
 	return listInvoiceTransaction1;
 	
 }
@@ -556,7 +566,7 @@ private String str_Accounts;
  public String getStr_Accounts() {
 	
 	 str_Accounts=getAccountsService().getAccountName(id1);
-     System.out.println(str_Accounts+"priyaa11");
+   
 	
 	 return str_Accounts;
 }
@@ -597,7 +607,7 @@ private  String str;
 
 public String getStr() {
 	
-	System.out.println(str+"vandana");
+	
 	return str;
 }
 public void setStr(String str) {
@@ -607,11 +617,20 @@ public void accountchangeListener1(ValueChangeEvent event)
  {
 	
 	str=(String)event.getNewValue();
-    System.out.println(str+"kihg");
+   
 	id1=getAccountsService().getAccountId(str);
      
 }
-
+public void datechangeListener(ValueChangeEvent event)
+{
+	dat_FromDate=(Date)event.getNewValue();
+	
+}
+public void datechangeListener1(ValueChangeEvent event)
+{
+	dat_ToDate=(Date)event.getNewValue();
+	
+}
 public void getSearch()
 {  
 	
@@ -621,7 +640,7 @@ public void getSearch()
    if(str_Accounts.equals("Accounts Receivable"))
    { 
      listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
-	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts,dat_FromDate,dat_ToDate));
 	
     
     
@@ -642,13 +661,13 @@ public void getSearch()
    else if(str_Accounts.equalsIgnoreCase("Income from Resident"))
    {
 	   listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
-		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts,dat_FromDate,dat_ToDate));
 		
    }
    else if(str_Accounts.equalsIgnoreCase("Tax Payable"))
-   {
+   {   
 	   listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
-		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+		listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts,dat_FromDate,dat_ToDate));
 		
 		
    }
@@ -667,21 +686,23 @@ public void setCredit(double credit) {
 public void setDebit(double debit) {
 	this.debit = debit;
 }
-private String type1;
-private Boolean type2;
-public Boolean getType2() {
-	return type2;
-}
-public void setType2(Boolean type2) {
-	this.type2 = type2;
-}
-public String getType1() {
+private boolean type1;
+private boolean type2;
+
+
+
+ public boolean isType1() {
 	return type1;
 }
-public void setType1(String type1) {
+public void setType1(boolean type1) {
 	this.type1 = type1;
 }
-
+public boolean isType2() {
+	return type2;
+}
+public void setType2(boolean type2) {
+	this.type2 = type2;
+}
 private double totalBalance;
 public double getDebit() {
 	debit=int_Debit;
@@ -689,7 +710,7 @@ public double getDebit() {
 	System.out.println(debit+"huy");
 	System.out.println(credit+"huy1");
 	
-	if(str_Accounts.equalsIgnoreCase("Income from Resident"))
+	 if(str_Accounts.equalsIgnoreCase("Income from Resident"))
 	 {  System.out.println(str_Accounts != str);
 		if(str==null)
 	    {
@@ -704,13 +725,13 @@ public double getDebit() {
 		System.out.println(credit+"juhy");
 		  if(debit>credit)
 		  {
-		     type1="true";
+		     type1=true;
 		     type2=false;
 	     }
 		  else
 		  {
-			  type1="false";
-			  type2=true;
+			  type1=true;
+			  type2=false;
 		  }
 	     return debit;
 	     }
@@ -764,7 +785,7 @@ public double getDebit() {
 	  if(credit>debit)
       {
 		 credit=credit-debit;
-		 type1="false";
+		 type1=false;
 		
 		 type2=true;
 		 totalBalance=credit-totalBalance;
@@ -776,7 +797,7 @@ public double getDebit() {
       else
       {
     	  debit=debit-credit;
-    	  type1="true";
+    	  type1=true;
  		 type2=false;
  		 credit=0.00;
  		 getAccountsService().updateClosingBalance(debit,credit,str);	
@@ -803,7 +824,7 @@ public double getDebit() {
 					System.out.println(balance1);
 					double tax=invoice.getTaxAmount();
 					System.out.println(tax);
-					  debit=balance1+tax;
+					  debit=debit+balance1+tax;
 				
 				  System.out.println(debit+"priya");
 			
@@ -876,7 +897,7 @@ public double getDebit() {
 			  if(credit>debit)
 	          {
 				 credit=credit-debit;
-				 type1="false";
+				 type1=false;
 				 type2=true;
 				 debit=0.00;
 				 System.out.println(debit+"pp");
@@ -887,7 +908,7 @@ public double getDebit() {
 	          else
 	          {
 	        	  debit=debit-credit;
-	        	  type1="true";
+	        	  type1=true;
 	        	  type2=false;
 	        	  credit=0.00;
 	 			 System.out.println(debit+"pp1");
@@ -983,18 +1004,18 @@ try{
 			 }
 			
 			 if(debit>credit)
-			 {
+			 {   System.out.println("sagarika");
 				 debit=debit-credit; 
-				 type1="true";
+				 type1=true;
 				 type2=false;
 				 credit=0.00;
 				 getAccountsService().updateClosingBalance(debit,credit,str);	
 				 return debit;
 			 }
 			 else
-			 {
+			 {   System.out.println("malay");
 				 credit=credit-debit;
-				 type1="false";
+				 type1=false;
 				 type2=true;
 				 debit=0.00;
 				 getAccountsService().updateClosingBalance(debit,credit,str);	
@@ -1020,9 +1041,9 @@ try{
 			 }
 			
 			 if(debit>credit)
-			 {
+			 {   System.out.println("sai");
 				 debit=debit-credit; 
-				 type1="true";
+				 type1=true;
 				 type2=false;
 				 double  debit1=0.00;
 				 if(debit<totalBalance)
@@ -1042,9 +1063,9 @@ try{
 				 }
 			 }
 			 else
-			 {
+			 {   System.out.println("simran");
 				 credit=credit-debit;
-				 type1="false";
+				 type1=false;
 				 type2=true;
 				 debit=0.00;
 				 double credit1=0.00;
@@ -1056,12 +1077,12 @@ try{
 			
 		 }
 		
-	}
+	 }
 	   if(debit>credit)
-		 {
+		 {   System.out.println("swadhin");
 			 debit=debit-credit; 
 			 System.out.println(debit);
-			 type1="true";
+			 type1=true;
 			 type2=false;
 			 credit=0.00;
 			 System.out.println(type1+"jjfd");
@@ -1070,9 +1091,9 @@ try{
 			 return debit;
 		 }
 		 else
-		 {
+		  {   System.out.println("rosy");
 			 credit=credit-debit;
-			 type1="false";
+			 type1=false;
 			 type2=true;
 			 debit=0.00;
 			 System.out.println(type2+"jhhj");
@@ -1097,7 +1118,7 @@ private List<InvoiceTransaction>  listInvoiceTransaction;
 public List<InvoiceTransaction> getListInvoiceTransaction() {
 	
 	listInvoiceTransaction=new CopyOnWriteArrayList<InvoiceTransaction>();
-	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts));
+	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts,dat_FromDate,dat_ToDate));
 	
 	ListIterator list=listInvoiceTransaction.listIterator();
 	
