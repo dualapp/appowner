@@ -20,8 +20,9 @@
     
    <p:schedule id="schedule"   value="#{requestScopeBean.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
   
-  <p:ajax event="dateSelect" listener="#{requestScopeBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+  
        <p:ajax event="eventSelect" listener="#{requestScopeBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+       <p:ajax event="dateSelect" listener="#{requestScopeBean.onDateSelect}" update="eventDetails1" oncomplete="PF('eventDialog1').show();" />
         </p:schedule>
         </div>
          <p><a href="../../AfrteLoginViews/Administrator/welcomepage.xhtml" >Back To Home...</a></p>
@@ -30,27 +31,50 @@
     <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip" resizable="false">
         <h:panelGrid id="eventDetails" columns="2">
             <h:outputLabel for="title" value="Title:" />
-            <p:inputText id="title" value="#{requestScopeBean.event1.str_EventTitle}" required="true" />
-            <h:outputLabel for="CreatedBy" value="CreatedBy:" />
-            <p:inputText id="CreatedBy" value="#{requestScopeBean.event1.str_UserName}" required="true" />
+            <p:inputText id="title"   value="#{requestScopeBean.event.title}"  />
+             
  
             <h:outputLabel for="from" value="From:" />
-            <p:inputMask id="from" value="#{requestScopeBean.event1.dat_StartDate}" mask="9999/99/99">
-                 
+            <p:inputMask id="from"    value="#{requestScopeBean.event.startDate}" mask="99/99/9999">
+                  <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
             </p:inputMask>
  
             <h:outputLabel for="to" value="To:" />
-            <p:inputMask id="to" value="#{requestScopeBean.event1.dat_EndDate}" mask="9999/99/99">
-               
+            <p:inputMask id="to"   value="#{requestScopeBean.event.endDate}" mask="99/99/9999">
+                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
             </p:inputMask>
  
             <h:outputLabel for="allDay" value="All Day:" />
-            <h:selectBooleanCheckbox id="allDay" value="#{requestScopeBean.event.allDay}" />
+            <h:selectBooleanCheckbox id="allDay"   value="#{requestScopeBean.event.allDay}" />
  
             <p:commandButton type="reset" value="Reset" />
-            <p:commandButton id="addButton" value="Save" actionListener="#{requestScopeBean.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+            <p:commandButton id="addButton" value="Save" action="#{requestScopeBean.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
         </h:panelGrid>
     </p:dialog>    
+    <p:dialog widgetVar="eventDialog1" header="Add Event" showEffect="clip" hideEffect="clip" resizable="false">
+        <h:panelGrid id="eventDetails1" columns="2">
+            <h:outputLabel for="title1" value="Title:" />
+            <p:inputText id="title1"   value="#{requestScopeBean.str_EventTitle}" required="true" />
+             
+ 
+            <h:outputLabel for="from1" value="From:" />
+            <p:inputMask id="from1"    value="#{requestScopeBean.dat_StartDate}" mask="99/99/9999">
+                  <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
+            </p:inputMask>
+ 
+            <h:outputLabel for="to1" value="To:" />
+            <p:inputMask id="to1"   value="#{requestScopeBean.dat_EndDate}" mask="99/99/9999">
+                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
+            </p:inputMask>
+ 
+            <h:outputLabel for="allDay1" value="All Day:" />
+            <h:selectBooleanCheckbox id="allDay1"   value="#{requestScopeBean.event.allDay}" />
+ 
+            <p:commandButton type="reset" value="Reset" />
+            <p:commandButton id="addButton1" value="Save" action="#{requestScopeBean.addEvent()}"   />
+        </h:panelGrid>
+    </p:dialog>    
+     
     </h:form>
     </h:body>
          </ui:define>

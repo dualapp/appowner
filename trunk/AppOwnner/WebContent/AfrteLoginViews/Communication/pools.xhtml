@@ -103,16 +103,12 @@
         rowsPerPageTemplate="1,2,3"  paginatorPosition="bottom" var="pool" value="#{expenseBean.poolList}" selectionMode="single" selection="#{expenseBean.onePoll}" rowKey="#{pool.int_PoolId}"  >
                  
                           
-        <p:column     headerText="Created By"    >
+         <p:column      headerText="Pool Question"  >
           
-               <h:outputText   value="#{pool.str_CreatedBy}" /> 
+               <h:outputText   value="#{pool.str_poolQuestion}" /> 
                
             </p:column>
-             <p:column      headerText="Organization"    >
-          
-               <h:outputText   value="#{expenseBean.str_OrganizationName}" /> 
-               
-            </p:column>
+            
             <p:column     headerText="Start Date"  >
           
                <h:outputText   value="#{pool.str_StartDate}" /> 
@@ -123,16 +119,8 @@
                <h:outputText   value="#{pool.str_EndDate}" /> 
                
             </p:column>
-            <p:column      headerText="Pool Question"  >
-          
-               <h:outputText   value="#{pool.str_poolQuestion}" /> 
-               
-            </p:column>
-            <p:column     headerText="Audience"  >
-          
-               <h:outputText   value="#{pool.str_poolAudience}" /> 
-               
-            </p:column>
+            
+            
             <p:column     headerText="Status"  >
           
                <h:outputText   value="#{pool.str_Status}" /> 
