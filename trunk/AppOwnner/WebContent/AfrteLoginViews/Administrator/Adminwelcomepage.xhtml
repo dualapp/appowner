@@ -23,74 +23,7 @@
 	 <div id="page">
 		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/Notices.png" height="42" width="42"></img> Notice Board</div>
 		<hr/>
-		<table cellpadding="0" cellspacing="0" border="0" width="99%" align="center">
-				<tbody>
-					<tr>
-						<td>							
-							<table cellpadding="0" cellspacing="0" border="0" width="95%" align="left">
-							<tbody>
-								<tr>
-									<td class="gsTitle"><b>This is the post by the admin</b></td>						
-								</tr>
-								<tr>
-									<td class="gsContent">Ledads are the individuals or representatives of organizations who show interest in your products or services.</td>						
-								</tr>
-								<tr>
-									<td>
-										<table cellpadding="0" cellspacing="0" border="0" width="100%">
-										<tbody>
-											<tr>
-												<td align="left"><i>Posted By: Admin</i></td>
-												<td align="right"><i>Date: 20th June 2014</i></td>
-											</tr>
-										</tbody>	
-										</table>	
-									</td>
-								</tr>
-								<tr><td><hr></hr></td></tr>
-								<tr>
-									<td class="gsTitle"><b>This is the post by the admin</b></td>						
-								</tr>
-								<tr>
-									<td class="gsContent">Leads are the individuals or representatives of organizations who show interest in your products or services.</td>						
-								</tr>
-								<tr>
-									<td>
-										<table cellpadding="0" cellspacing="0" border="0" width="100%">
-										<tbody>
-											<tr>
-												<td align="left"><i>Posted By: Admin</i></td>
-												<td align="right"><i>Date: 20th June 2014</i></td>
-											</tr>
-										</tbody>	
-										</table>	
-									</td>
-								</tr>
-								<tr><td><hr></hr></td></tr>
-								<tr>
-									<td class="gsTitle"><b>This is the post by the admin</b></td>						
-								</tr>
-								<tr>
-									<td class="gsContent">Leads are the individuals or representatives of organizations who show interest in your products or services.</td>						
-								</tr>
-								<tr>
-									<td>
-										<table cellpadding="0" cellspacing="0" border="0" width="100%">
-										<tbody>
-											<tr>
-												<td align="left"><i>Posted By: Admin</i></td>
-												<td align="right"><i>Date: 20th June 2014</i></td>
-											</tr>
-										</tbody>	
-										</table>	
-									</td>
-								</tr>
-							</tbody>
-							</table>
-						</td>						
-					</tr>
-				</tbody>
-		</table>														
+		 	<ui:include   src="/AfrteLoginViews/Communication/noticeboard.xhtml"/>			
 	</div>
 	<div ></div>
 	<div style="clear: all;"></div>
@@ -129,7 +62,7 @@
 	<p:outputPanel id="pollResult" rendered="#{expenseBean.getRendered1()}" style="text-align:center;"> 
        <div    id="page1">
            
-  <div    class="gsTitleDiv">Opinion Poll Results<br/><hr/></div> 
+  <div    class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Opinion Poll Results<br/><hr/></div> 
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
 					<tr>
