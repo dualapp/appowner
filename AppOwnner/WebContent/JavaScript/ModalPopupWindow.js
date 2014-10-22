@@ -19,6 +19,7 @@ function ModalPopupWindow() {
 
     function Maximisze() {
         if (!maximize) {
+        	
             maximize = true;
             ResizePopUp(window.screen.availHeight - 200, window.screen.availWidth - 50);
         } else {
