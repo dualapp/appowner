@@ -13,42 +13,66 @@
 <body bgcolor="#F08080">
     <h:form id="a_form" > 
     <p:panel id="panel" header="Add your Appartment/Complex" color="blue" style="margin-bottom:20px;"> 
-   <h3><u>Login Information</u></h3>
-        <table>
-        <tr></tr> <tr></tr> <tr></tr>
-                    <tr>
-            <td><h:outputText value="User name:">
-            </h:outputText><font color="red" >*</font> </td>           
-            <td><h:inputText id="str_username" value="#{cls_UserBeanMain.str_Username}" required="true" validatorMessage="Must starts with alphanumeric[0-9 or a-z] min 3 char and max 15 char!" requiredMessage="Enter user name!">
-            <f:validateRegex pattern="^[a-z0-9]{3,15}$"/>
-            <p:ajax event="blur" update="out2" listener="#{cls_UserBeanMain.dataChange1}" partialSubmit="true"/>   
-            </h:inputText>&#150;
-            <h:outputText id="out2" value="#{cls_UserBeanMain.value}" />
-            </td><td><p:message for="str_username" display="text"/></td>
+   <h3><u>Login Information</u></h3><br></br>
+        <table cellpadding ="5" cellspacing="2" border="1" width="100%" bgcolor="#F08080">
+        	<tr>
+            	<td>
+            		<h:outputText value="User Name:"></h:outputText><font color="red" >*</font>
+            	</td>           
+            	<td>
+            		<h:inputText id="str_username" value="#{cls_UserBeanMain.str_Username}" required="true" validatorMessage="Must starts with alphanumeric[0-9 or a-z] min 3 char and max 15 char!" requiredMessage="Enter user name!">
+            		<f:validateRegex pattern="^[a-z0-9]{3,15}$"/>
+            		<p:ajax event="blur" update="out2" listener="#{cls_UserBeanMain.dataChange1}" partialSubmit="true"/>   
+            		</h:inputText>&#150;
+            		<h:outputText id="out2" value="#{cls_UserBeanMain.value}" />
+            	</td>
+            	<td width="30%"><p:message for="str_username" display="text"/></td>
             </tr>
             <tr>
-             <td><h:outputText value="Password :"></h:outputText><font color="red" >*</font></td>            
-             <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBeanMain.str_Password}"                required="true" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 20 char!" requiredMessage="Enter Password!">
-             <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,20})"/>
-            </h:inputSecret></td><td><p:message for="str_Password" display="text"/></td></tr>
+             	<td>
+             		<h:outputText value="Password :"></h:outputText><font color="red" >*</font>
+             	</td>            
+             	<td>
+             		<h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBeanMain.str_Password}"                required="true" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 20 char!" requiredMessage="Enter Password!">
+             		<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,20})"/>
+           			</h:inputSecret></td><td><p:message for="str_Password" display="text"/>
+           		</td>
+           		<td>&nbsp;</td>
+           	</tr>
             <tr>
-             <td><h:outputText value="Confirm Password :"></h:outputText> <font color="red" >*</font></td>
-              <td><h:inputSecret id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBeanMain.str_ConfirmPassword}" required="true"                requiredMessage="Enter Confirm Password!">
-             <f:validateLength minimum="4" maximum="16"/>
-             </h:inputSecret> </td><td><p:message for="str_ConfirmPassword" display="text"/></td></tr> 
-              <tr>
-            <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
-        <td><h:selectOneRadio id="options" value="#{cls_UserBeanMain.int_UserRole}">
-            <f:selectItem itemLabel="Tenant" itemValue="1" />
-            <f:selectItem itemLabel="Owner" itemValue="2" />
-            </h:selectOneRadio> </td> <td><p:message for="options" display="text"/></td></tr>
-            <tr><td colspan="2" align="left">
-           <h3><u>General Information</u></h3></td></tr>
+             	<td>
+             		<h:outputText value="Confirm Password :"></h:outputText> <font color="red" >*</font>
+             	</td>
+              	<td>
+              		<h:inputSecret id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBeanMain.str_ConfirmPassword}" required="true"                requiredMessage="Enter Confirm Password!">
+             		<f:validateLength minimum="4" maximum="16"/></h:inputSecret>
+             	</td>
+             	<td>
+             		<p:message for="str_ConfirmPassword" display="text"/>
+             	</td>
+             </tr> 
+             <tr>
+                <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
+                <td><h:selectOneRadio id="options" value="#{cls_UserBeanMain.int_UserRole}">
+                    <f:selectItem itemLabel="Tenant" itemValue="1" />
+                    <f:selectItem itemLabel="Owner" itemValue="2" />
+                    </h:selectOneRadio> </td> 
+                <td><p:message for="options" display="text"/>
+                </td>
+            </tr>
             <tr>
-            <td><h:outputText value="First Name :">
-            </h:outputText> <font color="red" >*</font></td>          
-            <td><h:inputText id="str_FirstName" value="#{cls_UserBeanMain.str_FirstName}"                required="true" requiredMessage="Please Enter First Name!">
-            </h:inputText> </td> <td><p:message for="str_FirstName" display="text"/></td></tr> 
+                <td colspan="2" align="left">
+                 <br></br> <h3><u>General Information</u></h3><br></br></td></tr>
+           <tr>
+                <td><h:outputText value="First Name :">
+                   </h:outputText> <font color="red" >*</font>
+               </td>          
+               <td><h:inputText id="str_FirstName" value="#{cls_UserBeanMain.str_FirstName}"                required="true" requiredMessage="Please Enter First Name!">
+                   </h:inputText>
+            </td>
+            <td><p:message for="str_FirstName" display="text"/>
+            </td>
+        </tr> 
             <tr>
              <td><h:outputText value="Last name :">
             </h:outputText> </td>           
@@ -73,8 +97,8 @@
             </h:outputText><font color="red" >*</font> </td>            
              <td><h:inputText id="str_PhoneNo" value="#{cls_UserBeanMain.str_PhoneNo}" required="true"                requiredMessage="Enter Phone No!">
             </h:inputText> </td>  <td><p:message for="str_PhoneNo" display="text"/></td></tr>
-             <tr><td colspan="2" align="left">
-           <h3><u>Apartment Information</u></h3></td></tr>
+             <tr><td colspan="3" align="left"><br></br>
+           <h3><u>Apartment Information</u></h3><br></br></td></tr>
                        <tr>
  <td><h:outputText value="Apartment Name/Complex Name :"></h:outputText><font color="red" >*</font> </td>          
  <td> <h:inputText id="str_ApartmentName" value="#{cls_UserBeanMain.str_ApartmentName}" required="true" requiredMessage="Enter Apartment Name!">
@@ -115,38 +139,15 @@
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText id="city" value="#{selectOneMenuBean.city}" readonly="true" required="true" requiredMessage="Enter Last Name!">
             </h:inputText></td></tr>
-            <tr>
-          </tr>
-          <tr>
-          </tr>
-          <tr>
-          </tr> 
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr>
-           
-            </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
             
-            <tr></tr><tr></tr>
-            <tr></tr>
-            <tr></tr>
-  
+            
                			
             <tr> 			
            <td> <h:commandButton id="addUser" value="Add Apartment/Complex" action="#{cls_UserBeanMain.addApartment}" ajax="false"/>
            </td> </tr>
            <tr>
             <td><h:commandButton id="reset" value="Reset" action="#{cls_UserBeanMain.reset}" ajax="false"/></td></tr>   
-          
-             </table>
+  </table>
            </p:panel>
            </h:form>
             
