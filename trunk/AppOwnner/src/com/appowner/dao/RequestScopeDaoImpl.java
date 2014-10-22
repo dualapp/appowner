@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
+import org.primefaces.model.ScheduleEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -143,6 +144,20 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 	public List<cls_Event> getEventList() {
 		//String hql="select str_EventTitle,dat_StartDate,dat_EndDate,str_UserName from cls_Event";
 		return sessionFactory.getCurrentSession().createCriteria(cls_Event.class).setCacheable(true).list();
+	}
+
+	@Override
+	public void addEvent(cls_Event event) {
+		// TODO Auto-generated method stub
+		   sessionFactory.getCurrentSession().save(event);
+	}
+
+	@Override
+	public void updateEvent(cls_Event event) {
+		
+		 sessionFactory.getCurrentSession().update(event);
+	 
+		 
 	}
 }
 

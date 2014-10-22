@@ -302,7 +302,7 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<WorkOrderCategory> getWorkOrderCategoryList() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(WorkOrderCategory.class).list();
+		return sessionFactory.getCurrentSession().createCriteria(WorkOrderCategory.class).setCacheable(true).list();
 	}
 
 	@Override
