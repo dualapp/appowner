@@ -38,7 +38,7 @@ public class DueBean implements Serializable{
 	private String str_DueTemplate;
 	private String str_Period;
 	private Integer int_Year;
-	private String str_InitiatedOn;
+	private Date str_InitiatedOn;
 	private Date dat_LastDate;
 	private String str_Organisation;
  	public String getStr_Status() {
@@ -126,15 +126,14 @@ public class DueBean implements Serializable{
 	public void setInt_Year(Integer int_Year) {
 		this.int_Year = int_Year;
 	}
-	public String getStr_InitiatedOn() {
-		java.util.Date d=new java.util.Date();
-		 SimpleDateFormat ft = 
-			      new SimpleDateFormat ("dd-MM-yyyy");
-		String str=ft.format(d);
+	public Date getStr_InitiatedOn() {
+		str_InitiatedOn=new java.util.Date();
+		 
 		
-		return str;
+		return str_InitiatedOn;
 	}
-	public void setStr_InitiatedOn(String str_InitiatedOn) {
+	
+	public void setStr_InitiatedOn(Date str_InitiatedOn) {
 		this.str_InitiatedOn = str_InitiatedOn;
 	}
 	public Date getDat_LastDate() {

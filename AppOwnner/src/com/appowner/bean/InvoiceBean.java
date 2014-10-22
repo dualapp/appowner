@@ -41,7 +41,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private String str_InvoiceTemplate;
 	private String str_BillPeriod;
 	private Integer int_Year;
-	private String dat_InvoiceDate;
+	private Date dat_InvoiceDate;
 	private String str_Status;
 	private String int_InvoiceNo;
 	public InvoiceBean()
@@ -99,20 +99,19 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		this.int_Year = int_Year;
 	}
 
-	public String getDat_InvoiceDate() {
-		java.util.Date d=new java.util.Date();
-		 SimpleDateFormat ft = 
-			      new SimpleDateFormat ("dd-MM-yyyy");
-		String str=ft.format(d);
+	public Date getDat_InvoiceDate() {
+		dat_InvoiceDate=new java.util.Date();
+		
 		getDate3();
-		return str;
+		return dat_InvoiceDate;
 	}
-	public void setDat_InvoiceDate(String dat_InvoiceDate) {
-		this.dat_InvoiceDate = dat_InvoiceDate;
-	}
+	
 	
 	
 
+	public void setDat_InvoiceDate(Date dat_InvoiceDate) {
+		this.dat_InvoiceDate = dat_InvoiceDate;
+	}
 	public String getStr_Organisation() {
 		str_Organisation="roopVilla";
 		return str_Organisation;
@@ -189,7 +188,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	}
 	 private static String InvoiceNo="invoiceNo";
 	   
-	    private static String Date="date";
+	    private static java.util.Date Date;
 	    private static Double amount;
 	    private static Double tax;
 	    private static Double due;
@@ -239,14 +238,15 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	
 
 		
-		public static String getDate() {
-			return Date;
-		}
-		public static void setDate(String date) {
-			Date = date;
-		}
+		
 	
 		
+		public static java.util.Date getDate() {
+			return Date;
+		}
+		public static void setDate(java.util.Date date) {
+			Date = date;
+		}
 		public static Double getAmount() {
 			return amount;
 		}
@@ -343,7 +343,7 @@ public static void setDueID(List<Integer> dueID) {
 			invoice.setStr_InvoiceTemplate(getStr_InvoiceTemplate());
 			invoice.setStr_BillPeriod(getStr_BillPeriod());
 			invoice.setInt_Year(getInt_Year());
-			invoice.setDat_InvoiceDate(getDat_InvoiceDate());
+			invoice.setDat_InvoiceDate(dat_InvoiceDate);
 			invoice.setDat_DueDate(dat_DueDate);
 			invoice.setStr_Organisation(getStr_Organisation());
 			invoice.setStr_Block(getStr_Block());
@@ -363,7 +363,7 @@ public static void setDueID(List<Integer> dueID) {
 		          String[] strArray = listDues.split(",");
 		        for (String str : strArray) {
 		        	  due1.setStr_DueTemplate(str);
-		        	  due1.setStr_InitiatedOn(getDat_InvoiceDate());
+		               due1.setStr_InitiatedOn(getDat_InvoiceDate());	
 		              due1.setDat_LastDate(dat_DueDate);
 		              due1.setStr_ApartmentNo(str_ApartmentNo);
 		              due1.setStr_Block(str_Block);
