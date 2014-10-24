@@ -199,7 +199,9 @@ style="width:600px">
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
     </h:panelGroup>
+       
       <h:panelGroup id="hhghhg1"  rendered="#{  accountingBean.str_Accounts eq 'Cash'|| accountingBean.str_Accounts eq 'Bank' || accountingBean.str_Accounts eq 'Expense'}">
+      
     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_PaymentDate}</td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
@@ -207,6 +209,7 @@ style="width:600px">
      <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{account.totalDue}"/> </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank}</td>
     </tr>
+   
     </h:panelGroup>
     <h:panelGroup id="fgggggggg" rendered="#{accountingBean.str_Accounts eq 'Accounts Receivable' || accountingBean.str_Accounts eq 'Accounts Receivable1'}">
    
@@ -277,9 +280,10 @@ style="width:600px">
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Closing Balance</td>
     <h:panelGroup id="jmhbfggf" rendered="true" >
-      <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type1}"  value="#{accountingBean.debit}" /></td>
-      <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type2}"  value="#{accountingBean.debit}" /></td>
-     </h:panelGroup>
+       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type1}" value="#{accountingBean.debit}" /></td> 
+       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type2}" value="#{accountingBean.debit}" /></td>
+    
+    </h:panelGroup> 
    </tr>
   </h:panelGroup>
    
