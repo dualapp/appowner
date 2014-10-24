@@ -145,9 +145,9 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getlistManualJournal();
 	}
-	public List<ManualJournal> getlistManualJournal1(String str_Accounts)
+	public List<ManualJournal> getlistManualJournal1(String str_Accounts, Date dat_FromDate, Date dat_ToDate)
 	{
-		return getAccountsDao().getlistManualJournal1(str_Accounts);
+		return getAccountsDao().getlistManualJournal1(str_Accounts,dat_FromDate,dat_ToDate);
 	}
 	public ManualJournal getManualAccount(Integer id)
 	{
@@ -161,9 +161,9 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getCreditAmount(id);
 	}
-	public List<Expense> getExpenseList(String str)
+	public List<Expense> getExpenseList(String str, Date dat_FromDate, Date dat_ToDate)
 	{
-		return getAccountsDao().getExpenseList(str);
+		return getAccountsDao().getExpenseList(str,dat_FromDate,dat_ToDate);
 	}
 	public List<ChartOfAccount> listAssets()
 	{
