@@ -1,6 +1,7 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ public class ManualJournal implements Serializable {
 	@Column(name="var_OrganisationID")
 	private Integer str_OrganisationID;
 	
-	private String dat_Date;
+	private Date dat_Date;
 	@Column(name="var_Reference")
 	private String str_Reference;
 	@Column(name="var_Notes")
@@ -49,10 +50,11 @@ public class ManualJournal implements Serializable {
 	public void setStr_OrganisationID(Integer str_OrganisationID) {
 		this.str_OrganisationID = str_OrganisationID;
 	}
-	public String getDat_Date() {
+	
+	public Date getDat_Date() {
 		return dat_Date;
 	}
-	public void setDat_Date(String dat_Date) {
+	public void setDat_Date(Date dat_Date) {
 		this.dat_Date = dat_Date;
 	}
 	public String getStr_Reference() {
