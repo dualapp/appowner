@@ -14,10 +14,10 @@
     <fieldset>
      <legend  style="background-color:#438eb9; color:#fff;">Trial Balance</legend>
                  <h:outputText value="As On"/>&nbsp; &nbsp;
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_From}">
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_From}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                  
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" display="inline"   value="#{accountingBean.dat_To}">
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
                   </p:calendar>&nbsp; &nbsp; &nbsp;
                    <h:commandButton value="Go"/>
                  </fieldset>
