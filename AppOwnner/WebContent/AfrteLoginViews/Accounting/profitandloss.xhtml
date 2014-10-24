@@ -23,12 +23,14 @@
                  <fieldset>
                  <legend  style="background-color:#438eb9; color:#fff;"> Profit And Loss</legend>
                  <h:outputText value="From:"/>
-                  <p:calendar value="#{accountingBean.dat_From}" navigator="true"  required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy" />
+                  <p:calendar value="#{accountingBean.dat_From}" navigator="true"  required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener}">
+                    <p:ajax event="change" partialSubmit="true" />
+                    </p:calendar>
                   &nbsp; &nbsp;
                   <h:outputText value="To :"/>
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
-                  <h:commandButton value="Go"  action="#{accountingBean.getListInvoiceTransaction()}" update="ggg"/>
+                  <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" update="ggg"/>
                  </fieldset>
                  
                  
@@ -58,7 +60,7 @@
                 <td>
                    
                     <p:column>
-                      <p:dataTable id="ggg" value="#{accountingBean.listInvoiceTransaction}" var="timeSlot">
+                      <p:dataTable id="ggg" value="sss" var="timeSlot">
                       <f:facet name="header" >
                               <h:outputText value="Income" style="float:left" />
                       </f:facet>
