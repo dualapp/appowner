@@ -67,7 +67,7 @@ public interface AccountsService {
 
 	public List<ManualJournal> getlistManualJournal();
 
-	public List<ManualJournal> getlistManualJournal1(String str_Accounts);
+	public List<ManualJournal> getlistManualJournal1(String str_Accounts, Date dat_FromDate, Date dat_ToDate);
 
 	public ManualJournal getManualAccount(Integer id);
 
@@ -75,7 +75,7 @@ public interface AccountsService {
 
 	public double getCreditAmount(Integer id);
 
-	public List<Expense> getExpenseList(String str);
+	public List<Expense> getExpenseList(String str, Date dat_FromDate, Date dat_ToDate);
 
 	public List<ChartOfAccount> listAssets();
 
