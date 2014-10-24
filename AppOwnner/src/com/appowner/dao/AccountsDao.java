@@ -72,11 +72,11 @@ public interface AccountsDao {
 	public Character getChGroup(String str_AccountType);
 	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts, Date dat_FromDate, Date dat_ToDate);
 	public List<ManualJournal> getlistManualJournal();
-	public List<ManualJournal> getlistManualJournal1(String str_Accounts);
+	public List<ManualJournal> getlistManualJournal1(String str_Accounts, Date dat_FromDate, Date dat_ToDate);
 	public ManualJournal getManualAccount(Integer id);
 	public double getDebitAmount(Integer id);
 	public double getCreditAmount(Integer id);
-	public List<Expense> getExpenseList(String str);
+	public List<Expense> getExpenseList(String str, Date dat_FromDate, Date dat_ToDate);
 	public List<ChartOfAccount> listAssets();
 	public List<String> group();
 	public void updateClosingBalance(double debit, double credit, String str);
