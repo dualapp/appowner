@@ -30,7 +30,7 @@
       <div id="page3">
 		 <div class="gsTitleDiv">Vendor personal details<br/><hr/></div>  
         <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
-         
+         <tbody>
             <tr> <th  ><h:outputText value="Vendor Category: " /></th>
                 <td>
         <p:selectOneMenu value="#{vendorBean.str_VendorType}">
@@ -123,12 +123,14 @@
             <p:ajax event="blur" update="ZipMsg" />
             </h:inputText></td>
             <td> <p:message id="ZipMsg" for="Zip" display="text" /></td>
-            </tr></table>
+            </tr>
+            </tbody>
+            </table>
             </div>
             <div id="page3">
              <div class="gsTitleDiv">Vendor service details<br/><hr/></div> 
             <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
-              
+              <tbody>
               <tr><td> <h:commandButton value="Add Services" action="#{vendorBean.add}" immediate="true" execute="@this">
                
                <f:ajax render="@form" execute="@form"/>
@@ -172,13 +174,13 @@
                     <p:message id="vendorcommentsMsg" for="vendorcomments" display="icon"/>
                 </td>
            </tr>  
-             
+             </tbody>
 	   </table>
 	   </div>
 	   <div id="page3">
 	   <div class="gsTitleDiv">Vendor bank details<br/><hr/></div>
 	   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
-         
+         <tbody>
             <tr>
                 <th><h:outputText for="vendorbankaccount" value="Account Number  " /></th>
                 <td><h:inputText id="vendorbankaccount" placeholder="Account Number"   value="#{vendorBean.str_VendorBankAccount}"/>
@@ -238,7 +240,7 @@
               
                 </td>
            </tr>
-          
+          </tbody>
             </table>
             </div>
              
