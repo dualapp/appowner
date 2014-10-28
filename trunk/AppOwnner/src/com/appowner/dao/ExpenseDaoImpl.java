@@ -230,9 +230,10 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<FacilityNeeded> getFacilityNeededList() {
-		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setCacheable(true).list();
+	public List<FacilityNeeded> getFacilityNeededList(int firstRow, int rowPerPage) {
+		 
+		 System.out.println(firstRow+"100");
+		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setFirstResult(firstRow).setMaxResults(rowPerPage).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -451,5 +452,13 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		sessionFactory.getCurrentSession().delete(fn);
 		
 	}
+	}
+
+	 
+
+	@Override
+	public Integer count() {
+		// TODO Auto-generated method stub
+		return (Integer) sessionFactory.getCurrentSession().createCriteria(FacilityNeeded.class).setProjection(Projections.rowCount()).uniqueResult();
 	}
 }
