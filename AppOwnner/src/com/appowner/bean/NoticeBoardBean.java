@@ -11,15 +11,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.dao.DataAccessException;
 
+import com.appowner.model.FacilityNeeded;
 import com.appowner.model.Notice;
 import com.appowner.service.NoticeBoardService;
 
@@ -220,17 +224,112 @@ public static void setContent(String content) {
 	{
 		
 	}
+	private int rowPerPage=5;
+	private Integer pageCurrent;
+	 
+	private Integer totalRows;
+	 
+	private int firstRow;
+	private Integer[] pages ;
+	private int pageRange = 10; 
+	private int totalPages;
+
+	public int getTotalPages() {
+		return totalPages;
+	}
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+	public Integer getTotalRows() {
+		return totalRows;
+	}
+	public void setTotalRows(Integer totalRows) {
+		this.totalRows = totalRows;
+	}
+    public Integer getPageCurrent() {
+		 
+		return pageCurrent;
+	}
+	public void setPageCurrent(Integer pageCurrent) {
+		this.pageCurrent = pageCurrent;
+	}
+	public int getrowPerPage() {
+		 
+		return rowPerPage;
+	}
+	public void setrowPerPage(int rowPerPage) {
+		this.rowPerPage = rowPerPage;
+	}
+	 
+	 
+	public int getFirstRow() {
+	    return firstRow;
+	}
+	 
+	public void setFirstRow(Integer firstRow) {
+		this.firstRow = firstRow;
+	}
+	 /*
+	  * paging Actions
+	  */
+	public void pageFirst() {
+	    page(0);
+	}
+
+	public void pageNext() {
+	    page(firstRow + rowPerPage);
+	}
+
+	public void pagePrevious() {
+	    page(firstRow - rowPerPage);
+	}
+
+	public void pageLast() {
+	    page(totalRows - ((totalRows % rowPerPage != 0) ? totalRows % rowPerPage : rowPerPage));
+	}
+	private void page(int firstRow) {
+	    this.firstRow = firstRow;
+	    loadListOfNotice(); // Load requested page.
+	}
+	public void page(ActionEvent event) {
+	    page(((Integer) ((UICommand) event.getComponent()).getValue() - 1) * rowPerPage);
+	}
 	
+	
+	 
+	 
 	private List<Notice> listOfNotice;
-	@SuppressWarnings("unchecked")
-	public List<Notice> getListOfNotice() throws ParseException {
+	
+	private void loadListOfNotice()
+	{
 		listOfNotice=new ArrayList<Notice>();
 		if(LoginBean.isAdmin())
 		 str_Visible="Only Owner of this Complex";
 		else
 			str_Visible="Only Member of this Complex";
-		listOfNotice.addAll(getNoticeService().listNotices(str_Visible));
+		listOfNotice.addAll(getNoticeService().listNotices(firstRow, rowPerPage,str_Visible));
 		 
+		totalRows=getNoticeService().count();
+		 
+		  
+		 System.out.println(totalRows+"totalrows");
+		 totalPages = (totalRows / rowPerPage) + ((totalRows % rowPerPage != 0) ? 1 : 0); 
+		 pageCurrent=(totalRows / rowPerPage) - ((totalRows - 0) / rowPerPage) + 1;
+		 int pagesLength = Math.min(pageRange, totalPages);    
+	     pages = new Integer[pagesLength];  
+	     int firstPage = Math.min(Math.max(0, pageCurrent - (pageRange / 2)), totalPages - pagesLength);  
+	     // Create pages (page numbers for page links).  
+	     for (int i = 0; i < pagesLength; i++) {  
+	         pages[i] = ++firstPage;  
+	     }   
+	}
+	@SuppressWarnings("unchecked")
+	public List<Notice> getListOfNotice() {
+		if (listOfNotice== null) {
+			loadListOfNotice(); // Preload page for the 1st view.
+	    }
+	    return listOfNotice;
+		
 		  /*ListIterator itr=listOfNotice.listIterator();
 		   while(itr.hasNext())
 		   {
@@ -262,8 +361,7 @@ public static void setContent(String content) {
 		   }
 		  */ 
 		  
-		return listOfNotice;
-			
+	 
 	}
 	public void setListOfNotice(List<Notice> listOfNotice) {
 		this.listOfNotice = listOfNotice;
