@@ -22,8 +22,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
@@ -39,6 +41,7 @@ import com.appowner.model.BookAFacility;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
+import com.appowner.model.Notice;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
@@ -1396,10 +1399,111 @@ public String getStr_FacilityName() {
 public void setStr_FacilityName(String str_FacilityName) {
 	this.str_FacilityName = str_FacilityName;
 }
-public List<FacilityNeeded> getFacilityNeededList() {
-	facilityNeededList=new ArrayList<FacilityNeeded>();
-	facilityNeededList.addAll(getExpenseService().getFacilityNeededList());
+/*
+ * paging concept
+ */
+private int rowPerPage=5;
+private Integer pageCurrent;
+ 
+private Integer totalRows;
+ 
+private int firstRow;
+private Integer[] pages ;
+private int pageRange = 10; 
+private int totalPages;
+
+public int getTotalPages() {
+	return totalPages;
+}
+public void setTotalPages(int totalPages) {
+	this.totalPages = totalPages;
+}
+public Integer getTotalRows() {
+	return totalRows;
+}
+public void setTotalRows(Integer totalRows) {
+	this.totalRows = totalRows;
+}
+public Integer getPageCurrent() {
 	 
+	return pageCurrent;
+}
+public void setPageCurrent(Integer pageCurrent) {
+	this.pageCurrent = pageCurrent;
+}
+public int getrowPerPage() {
+	 
+	return rowPerPage;
+}
+public void setrowPerPage(int rowPerPage) {
+	this.rowPerPage = rowPerPage;
+}
+ 
+ 
+public int getFirstRow() {
+    return firstRow;
+}
+ 
+public void setFirstRow(Integer firstRow) {
+	this.firstRow = firstRow;
+}
+public Integer[] getPages() {
+	return pages;
+}
+public void setPages(Integer[] pages) {
+	this.pages = pages;
+}
+ /*
+  * paging Actions
+  */
+public void pageFirst() {
+    page(0);
+}
+
+public void pageNext() {
+    page(firstRow + rowPerPage);
+}
+
+public void pagePrevious() {
+    page(firstRow - rowPerPage);
+}
+
+public void pageLast() {
+    page(totalRows - ((totalRows % rowPerPage != 0) ? totalRows % rowPerPage : rowPerPage));
+}
+private void page(int firstRow) {
+    this.firstRow = firstRow;
+    loadFacilityNeededList(); // Load requested page.
+}
+public void page(ActionEvent event) {
+    page(((Integer) ((UICommand) event.getComponent()).getValue() - 1) * rowPerPage);
+}
+
+
+ 
+private void loadFacilityNeededList()
+{
+	facilityNeededList=new ArrayList<FacilityNeeded>();
+	facilityNeededList.addAll(getExpenseService().getFacilityNeededList(firstRow, rowPerPage));
+	
+	 totalRows=getExpenseService().count();
+	  
+	 System.out.println(totalRows+"totalrows");
+	 totalPages = (totalRows / rowPerPage) + ((totalRows % rowPerPage != 0) ? 1 : 0); 
+	 pageCurrent=(totalRows / rowPerPage) - ((totalRows - 0) / rowPerPage) + 1;
+	 int pagesLength = Math.min(pageRange, totalPages);    
+     pages = new Integer[pagesLength];  
+     int firstPage = Math.min(Math.max(0, pageCurrent - (pageRange / 2)), totalPages - pagesLength);  
+     // Create pages (page numbers for page links).  
+     for (int i = 0; i < pagesLength; i++) {  
+         pages[i] = ++firstPage;  
+     }   
+}
+public List<FacilityNeeded> getFacilityNeededList() {
+	
+	if (facilityNeededList== null) {
+		loadFacilityNeededList(); // Preload page for the 1st view.
+    }
 	return facilityNeededList;
 }
 public void setFacilityNeededList(List<FacilityNeeded> facilityNeededList) {
@@ -2085,8 +2189,7 @@ public void setStr_Path(String str_Path) {
 	this.str_Path = str_Path;
 }
 
-
-
+ 
 	
 }
 

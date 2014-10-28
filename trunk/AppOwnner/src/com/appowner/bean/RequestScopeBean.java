@@ -278,6 +278,7 @@ public void setStr_FacilityType(String str_FacilityType) {
 public List<BookAFacility> getBookAFacilityList() {
 	bookAFacilityList=new ArrayList<BookAFacility>();
 	bookAFacilityList.addAll(getRequestScopeService().getSelectedBookFacility(Util.getAppartmentId(),str_Status,str_Period,str_FacilityType,str_EventType));
+	System.out.println(bookAFacilityList.size()+"size");
 	return bookAFacilityList;
 }
 public void setBookAFacilityList(List<BookAFacility> bookAFacilityList) {
@@ -351,13 +352,28 @@ public void setDat_EndDate(Date dat_EndDate) {
 private Date dat_EndDate;
 
 public void addEvent() {
-	System.out.println("kalpana");
+	if(event.getId() == null)
+	{
+		System.out.println(event.getId() == null);
 	event1=new cls_Event();
 	event1.setStr_EventTitle(str_EventTitle);
 	event1.setStr_UserName(Util.getUserName());
 	event1.setDat_StartDate(dat_StartDate);
 	event1.setDat_EndDate(dat_EndDate);
          getRequestScopeService().addEvent(event1);
+	}
+    else
+    {
+    	event1.setStr_EventTitle(str_EventTitle);
+    	event1.setStr_UserName(Util.getUserName());
+    	event1.setDat_StartDate(dat_StartDate);
+    	event1.setDat_EndDate(dat_EndDate);
+     
+    	getRequestScopeService().updateEvent(event1);
+    }
+     
+    event = new DefaultScheduleEvent();
+	
 }
 public void onEventSelect(SelectEvent selectEvent) {
 	System.out.println(selectEvent.toString()+"kk");
