@@ -6,7 +6,8 @@
 	 xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core"
-      template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+      template="#{expenseBean.str_Name}include/templates/template1.xhtml"
+                xmlns:t="http://primefaces.org/ui">
 	 <ui:define name="content">
 
 
@@ -126,13 +127,37 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
     <h:commandLink id="xml">
        <p:graphicImage  height="20"  pageOnly="true" width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.png"/>
         <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="FaciliyiNeeded" />
-    </h:commandLink>
+    </h:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <h:commandButton value="first" action="#{expenseBean.pageFirst}"
+                                             disabled="#{expenseBean.firstRow == 0}">
+                                              <f:ajax render="@form" execute="@form"/>
+                                              </h:commandButton>
+                            <h:commandButton value="prev" action="#{expenseBean.pagePrevious}"
+                                             disabled="#{expenseBean.firstRow == 0}" >
+                                              <f:ajax render="@form" execute="@form"/>
+                                              </h:commandButton>
+                            <h:commandButton value="next" action="#{expenseBean.pageNext}"
+                                             disabled="#{expenseBean.firstRow + expenseBean.rowPerPage >= expenseBean.totalRows}" >
+                                             </h:commandButton>
+                            <h:commandButton value="last" action="#{expenseBean.pageLast}"
+                                             disabled="#{expenseBean.firstRow + expenseBean.rowPerPage >= expenseBean.totalRows}" >
+                                              <f:ajax render="@form" execute="@form"/>
+                                              </h:commandButton>
+                            <h:outputLabel for="rowsPerPage" value="Rows per page" />
+                            <h:inputText id="rowsPerPage" value="#{expenseBean.rowPerPage}" size="3" maxlength="3"/>
+                            
+                            <h:commandButton value="Set" action="#{expenseBean.pageFirst}" >
+                             <f:ajax render="@form" execute="@form"/>
+                             </h:commandButton>
+                            <h:message for="rowsPerPage" errorStyle="color: red;" />
+                             
+               
                   </td></tr></table>
-	 
+	           
+               
                 
-             <p:dataTable      paginatorPosition="bottom"    resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
-               rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="3,6,12"    id="DT" var="fn"  value="#{expenseBean.facilityNeededList}" selection="#{expenseBean.selectedFacilities}" rowKey="#{fn.int_FacilityId}">
+             <p:dataTable    resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
+                
+           id="DT" var="fn"  value="#{expenseBean.facilityNeededList}" selection="#{expenseBean.selectedFacilities}" rowKey="#{fn.int_FacilityId}">
 	 
    <p:column    exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
@@ -140,8 +165,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
           <p:column headerText="Organization">
                 <h:outputText value="#{expenseBean.str_OrganizationName}" /> 
                    
-               
-          </p:column>
+               </p:column>
            
           <p:column headerText="Facility Name">
                <h:outputText value="#{fn.str_FacilityName}" /> 
@@ -150,6 +174,8 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	   
         
 	 </p:dataTable>
+	 
+                           
 	 <p:dialog header=" Create New" widgetVar="multiFacilityDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiFacilityDetail1" style="text-align:center;">
            <table><tr><th>  <h:outputText  value="Organisation:" /> </th>
@@ -159,7 +185,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                  </p:selectOneMenu></td> </tr>
                  
 	<tr><th><h:outputText value="Facility Name*"/></th>
-	<td><h:inputText  id="FacilityName" required="true" requiredMessage="Plz Enter Facility Name" value="#{expenseBean.str_FacilityName}">
+	<td><h:inputText  id="FacilityName"   value="#{expenseBean.str_FacilityName}">
 	<p:ajax event="blur" update="FacilityNameMsg" />
 	</h:inputText>
 	</td>
