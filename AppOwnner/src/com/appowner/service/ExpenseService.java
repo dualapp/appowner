@@ -76,7 +76,7 @@ public interface ExpenseService {
 
 	void addFacility(FacilityNeeded facilityNeeded);
 
-	List<FacilityNeeded> getFacilityNeededList();
+	List<FacilityNeeded> getFacilityNeededList(int firstRow, int rowPerPage);
 
 	List<String> getFacilityTypeList();
 
@@ -139,6 +139,8 @@ public interface ExpenseService {
 	void updateFacility(FacilityNeeded fn1);
 
 	void deletefacilityNeeded(List<FacilityNeeded> entitiesToDelete);
+ 
+	Integer count();
 
 	 
 

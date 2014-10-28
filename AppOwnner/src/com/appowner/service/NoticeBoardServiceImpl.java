@@ -24,13 +24,19 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	{
 		getNoticeBoardDao().addNotice(notice);
 	}
-	  public List<Notice> listNotices(String str_Visible)
+	  public List<Notice> listNotices(int firstRow, int rowPerPage,String str_Visible)
 	  {
-		  return  getNoticeBoardDao().listNotices(str_Visible);  
+		  return  getNoticeBoardDao().listNotices( firstRow,  rowPerPage,str_Visible);  
 	  }
 	  public List<String> getmailids()
 	  {
 		  return  getNoticeBoardDao().getmailids();  
 	  }
+	 
+	@Override
+	public Integer count() {
+		// TODO Auto-generated method stub
+		return getNoticeBoardDao().count();
+	}
 	 
 }

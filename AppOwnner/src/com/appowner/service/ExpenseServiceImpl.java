@@ -205,9 +205,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<FacilityNeeded> getFacilityNeededList() {
-		// TODO Auto-generated method stub
-		return getExpenseDao().getFacilityNeededList();
+	public List<FacilityNeeded> getFacilityNeededList(int firstRow, int rowPerPage)
+	{
+		// 
+		return getExpenseDao().getFacilityNeededList(firstRow,rowPerPage);
 	}
 
 	@Override
@@ -386,6 +387,15 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().deletefacilityNeeded(entitiesToDelete);
 	}
 
+	 
+
+	@Override
+	public Integer count() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().count();
+	}
+
+	 
 	 
 
 }

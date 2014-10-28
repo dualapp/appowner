@@ -26,21 +26,21 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 		getSessionFactory().getCurrentSession().save(notice);	
 	}
 	@SuppressWarnings("unchecked")
-	public List<Notice> listNotices(String str_Visible)
+	public List<Notice> listNotices(int firstRow, int rowPerPage,String str_Visible)
 	{
 	  /*{   String  query = "{ CALL expireCalculation() }";
 				
 	  List<Notice> notice = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Notice.class)
 	          ).list();
          */
-	  
+	  System.out.println(firstRow+"k22");
 		if(str_Visible.equalsIgnoreCase("Only Owner of this Complex"))
 		
-			return (List<Notice>) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setCacheable(true).list();   
+			return (List<Notice>) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setFirstResult(firstRow).setMaxResults(rowPerPage).list();   
 		else
 		{
 			String hql="from Notice where str_Visible=?";
-			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Visible).setCacheable(true).list();   
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setFirstResult(firstRow).setMaxResults(rowPerPage).setParameter(0, str_Visible).list();   
 		}
 	}
 	
@@ -51,5 +51,11 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 				
 						    return list1;
 			 }
+		 
+		@Override
+		public Integer count() {
+			// TODO Auto-generated method stub
+			return  (Integer) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setProjection(Projections.rowCount()).uniqueResult();
+		}
 	 
 }
