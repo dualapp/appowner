@@ -11,7 +11,7 @@ xmlns:f="http://java.sun.com/jsf/core">
  <h:form id="form" bgcolor="red">
  <p:panel id="panel"  header="User Pessonal Details." style="margin-bottom:50px;" > 
  <h:message style="red"/>
- <h3><u>Login Information</u></h3>
+ <h3><u>Login Information</u></h3><br></br>
 <table>
                 <tr>
             <td><h:outputText value="User name:">
@@ -40,8 +40,8 @@ xmlns:f="http://java.sun.com/jsf/core">
             <f:selectItem itemLabel="Tenant" itemValue="1" />
             <f:selectItem itemLabel="Owner" itemValue="2" />
             </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
-            <tr><td colspan="2" align="left">
-           <h3><u>General Information</u></h3></td></tr>
+            <tr><td colspan="2" align="left"><br></br>
+           <h3><u>General Information</u></h3><br></br></td></tr>
             <tr>
             <td><h:outputText value="First Name :">
             </h:outputText><font color="red" >*</font> </td>          
@@ -71,18 +71,18 @@ xmlns:f="http://java.sun.com/jsf/core">
             </h:outputText><font color="red" >*</font></td>            
             <td><h:inputText id="str_PhoneNo" value="#{cls_UserBean.str_PhoneNo}" required="true"                requiredMessage="Enter Phone No!">
             </h:inputText> </td><td><p:message for="str_PhoneNo" display="text"/></td> </tr> 
-            <tr><td colspan="2" align="left">
-           <h3><u>Apartment Information</u></h3></td></tr>
+            <tr><td colspan="2" align="left"><br></br>
+           <h3><u>Apartment Information</u></h3><br></br></td></tr>
        
              <tr>
              <td><h:outputText value="Flat No:">
-            </h:outputText><font color="red" >*</font></td>            
+            </h:outputText><font color="red" >*</font></td>         
              <td><h:inputText id="str_Flat" value="#{cls_UserBean.str_Flat}" required="true"                requiredMessage="Enter Flat Name!">
             </h:inputText></td><td><p:message for="str_Flat" display="text"/></td>  </tr> 
              <tr>
             <td><h:outputLabel for="str_Block" value="Block :"/>
             </td>          
-            <td><p:selectOneMenu id="str_Block" value="#{cls_UserBeanMain.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}" style="width:200px" required="true">
+            <td><p:selectOneMenu id="str_Block" value="#{cls_UserBeanMain.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}" style="width:162px">
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
             <f:selectItems  value ="#{selectOneMenuBean.blocks_value}"/>
              <p:ajax event="change" process="str_Block"/>
