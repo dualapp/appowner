@@ -4,7 +4,6 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
 <title>AppOwner</title>
 <meta charset="utf-8"></meta>
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all"></link>
@@ -20,12 +19,10 @@
 <![endif]-->
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
-<![endif]-->
-</h:head>
- 
+<![endif]--> 
 <h:body id="page1" onLoad="new ElementMaxHeight();">
 <!-- START PAGE SOURCE -->
-<div class="tail-bottom">
+<div>
   <div id="main">
     <header>
       <div class="nav-box">
@@ -43,59 +40,25 @@
             <li><a href="sitemap.html">SiteMap</a></li>
           </ul>
         </nav>
-      </div>
-      <h1><a href="#">BizSolutions</a></h1>
-      <form action="#" id="search-form">
-        <fieldset>
-          <input type="text"></input>
-          <a href="#"><img src="images/button-search.gif"></img></a>
-        </fieldset>
-        <h1><a href="firstpage.xhtml">Create Account </a></h1>
-      </form>
+      </div>      
     </header>
-         <table>
-         <tr>
-         <td >
-               <ui:include src="userlogin.xhtml"/>  
+    <div id="page5">
+          <ui:include src="userlogin.xhtml"/> </div>
            
-           </td>
-           <td >
-               <ui:include src="test.xhtml"/>  
-           
-           </td>
-           
-           <td>
-               <ui:include src="otheruserlogin.xhtml"/>
-               </td>  
-           </tr>
-       
-            </table> 
-             <font color="white" size="500">fff
-             </font><br></br><font color="white" size="500">fff
-             </font><br></br>
-<font color="white" size="500">fff
-             </font> <br></br>
-             <font color="white" size="500">fff
-             </font> <br></br>
-              <font color="white" size="500">fff
-             </font><br></br>
-              <font color="white" size="500">fff
-             </font><br></br>
-              <font color="white" size="500">fff
-             </font><br></br>
-              <font color="white" size="500">fff
-             </font><br></br>
-              <font color="white" size="500">fff
-             </font>  
-             <footer>
-      <div class="footerlink">
+                  <div id="page4"> 
+                <ui:include src="otheruserlogin.xhtml"/>   </div>
+             
+         <table></table>
+            
+  <footer>
+      <div id="page3">
         <p class="lf">Copyright 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
         <p class="rf"><a href="http://all-free-download.com/free-website-templates/">Free CSS Templates</a> by <a href="http://www.templatemonster.com/">TemplateMonster</a></p>
         <div style="clear:both;"></div>
       </div>
     </footer>
-  </div>
-</div>
+        </div>
+        </div>
 <!-- END PAGE SOURCE -->
 </h:body>
 </html>
