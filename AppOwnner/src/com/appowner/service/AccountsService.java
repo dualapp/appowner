@@ -87,6 +87,8 @@ public interface AccountsService {
 	public List<ChartOfAccount> listEquity();
 
 	public List<ChartOfAccount> listRavenues();
+
+	public List<Expense> expenseList(Date dat_FromDate,Date dat_ToDate);
 	
 
 }
