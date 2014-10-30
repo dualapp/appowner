@@ -193,4 +193,8 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().listRavenues();
 	}
+	public List<Expense> expenseList(Date dat_FromDate,Date dat_ToDate)
+	{
+		return getAccountsDao().expenseList(dat_FromDate,dat_ToDate);
+	}
 }
