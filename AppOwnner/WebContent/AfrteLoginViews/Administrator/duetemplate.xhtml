@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
-<h:head>
+    <h:head>
     <title>Due Template  Form</title>
      
 
@@ -90,53 +90,79 @@ function HideModalWindow() {
 
 </script>
 </h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/due.jpg" height="60" width="70"></img> <span class="title">Due Template</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 <body  bgcolor="pink">
   <h:form id="form" prependId="false">
-  <fieldset>
-    <legend>
-   <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
+ <div id="page3">
+   <table   style="width: 70%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr> 
      <h:panelGroup id="performed"  >
            
-              <td><h:outputLabel value="Organisation:" /></td>
+              <th><h:outputText value="Organisation:" /></th>
               <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"   style="width:150px">
                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}" />
                  </p:selectOneMenu>
              </td>
-             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150;
-             <td><h:outputText  value="Due Template Of:" /></td>
+             &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150;&#150;&#150;
+             <th><h:outputText  value="Due Template Of:" /></th>
                <td><p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                     <f:selectItems value="#{templateBean.ravenues}" />
                  </p:selectOneMenu>
              </td>
                &#150; &#150;&#150; &#150;&#150;
-             <td><h:outputText  value="Account" /></td>
+             <th><h:outputText  value="Account" /></th>
                 &#150; &#150;&#150; &#150;&#150;
-                <h:commandButton id="priya" value="Go" action="#{templateBean.getListDues()}" update="ggg">
-                  </h:commandButton>
+              <td><h:commandButton id="priya" value="Go" action="#{templateBean.getListDues()}" update="ggg">
+                  </h:commandButton></td>
                 </h:panelGroup>
               
-                </fieldset>
-                <br/>
+              
+               </tr>
+               </table>
+               </div>
+                <div id="page3"> 
+	  <div class="gsTitleDiv">List Of DueTemplate<br/><hr/></div>
+           <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
                 
-             <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150; <p:commandButton process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
+         <tr><td> <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; &#150; &#150; <p:commandButton process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
        &#150; &#150; <p:commandButton process="ggg" update=":form:multiDueTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiDueTemplateDialog').show()" />
        &#150; &#150;  <p:commandButton update="ggg" process="ggg" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" />
+        <h:commandLink id="excel">
+       <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
+        <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+ 
+    <h:commandLink id="pdf">
+       <p:graphicImage  height="20" width="20" alt="pdf" value="#{expenseBean.str_Name}images/pdf.jpg"/>
+        <p:dataExporter type="pdf"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+ 
+    <h:commandLink id="csv">
+       <p:graphicImage  height="20" width="20" alt="cvs" value="#{expenseBean.str_Name}images/csv.jpg"/>
+        <p:dataExporter type="csv"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+ 
+    <h:commandLink id="xml">
+       <p:graphicImage  height="20"    width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.jpg"/>
+        <p:dataExporter type="xml"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+     
+       </td></tr></table>
      
        
         <p:growl id="msgs" showDetail="true" />
          <p:dataTable id="ggg" var="dueTemplate" value="#{templateBean.listDues}"  style="width: 100%" editable="true"  resizableColumns="true" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
         rowsPerPageTemplate="10,20,30,40,50"  selection="#{templateBean.selectedDueTemplate}" rowKey="#{dueTemplate.int_DueTemplateID}" >
-             <f:facet name="header">
-               DueTemplate
-           <h:commandLink>
-                <p:graphicImage value="images/xls.jpg" width="24"/>
-                <p:dataExporter type="xls" target="ggg" fileName="listDues" />
-            </h:commandLink>
-            
-            
-        </f:facet>
             
 
           <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
@@ -205,6 +231,7 @@ function HideModalWindow() {
                 
                
           </p:dataTable>
+          </div>
        <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiDueTemplateDetail" style="text-align:center;">
           
