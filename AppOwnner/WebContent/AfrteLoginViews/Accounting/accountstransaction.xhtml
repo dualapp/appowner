@@ -29,7 +29,7 @@
            <td> <p:selectOneMenu id="account" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}" style="width:200px">
                 
                    <f:selectItems value="#{accountsBean.listAccountName}" />
-                    <p:ajax event="change" partialSubmit="true" />
+                    <p:ajax event="change" partialSubmit="true" immediate="true" />
                 </p:selectOneMenu>
                 
            </td>
@@ -45,19 +45,23 @@
             </p:calendar>
             </td> 
              <td>
-               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch}" update="ggg" >
-                  </h:commandButton>
+               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch()}" update="ggg" >
+                </h:commandButton>
              </td> 
            </h:panelGroup>
       </table>
       </fieldset>
    
    </body>
-      <br/>
-      <h:commandButton  value="Refresh" />&#150; &#150; &#150; <h:commandButton  value="Export To Excel" />
-      <br/>
-      <br/>
-     
+   <br/>
+      <div class="showButtons">
+					<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
+					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
+			</div>
+			
+    
+     <br/>
+    
   
    
         <h:outputText value="Accounts Transactions: " color="red"></h:outputText>
@@ -202,7 +206,7 @@ style="width:600px">
        
       <h:panelGroup id="hhghhg1"  rendered="#{  accountingBean.str_Accounts eq 'Cash'|| accountingBean.str_Accounts eq 'Bank' || accountingBean.str_Accounts eq 'Expense'}">
       
-    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_PaymentDate}</td>
+    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
@@ -280,8 +284,8 @@ style="width:600px">
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Closing Balance</td>
     <h:panelGroup id="jmhbfggf" rendered="true" >
-       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type1}" value="#{accountingBean.debit}" /></td> 
-       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type2}" value="#{accountingBean.debit}" /></td>
+       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type1}" value="#{accountingBean.totalBalance}" /></td> 
+       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type2}" value="#{accountingBean.totalBalance}" /></td>
     
     </h:panelGroup> 
    </tr>
