@@ -5,9 +5,11 @@ html {
 
 body {
 	padding-bottom: 0;
+	direction: ltr;
+	background: #fff;
 	background-color: #e4e6e9;
 	min-height: 100%;
-	font-family: Verdana;
+font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
     font-size: 10px;
 	color: #393939;
 	line-height: 1.5
@@ -25,7 +27,7 @@ th, td {
     font-size: 10px;
 color: #555;
 padding-bottom: 5px;
-font-family: Verdana;
+font-family: Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
   padding: 5px;
   text-align: left;
      
@@ -45,7 +47,7 @@ body.breadcrumbs-fixed {
 }
 
 .main-container:after {
-	background-color: #FFF;
+	background-color:#ffffff;
 	bottom: 0;
 	content: "";
 	display: block;
