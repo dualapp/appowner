@@ -11,29 +11,16 @@
       xmlns:t="http://primefaces.org/ui">
 	   
 	   <h:form>
-	  <table><tr><td><p:commandButton value="first" action="#{noticeBoardBean.pageFirst}"
-                                             disabled="#{noticeBoardBean.firstRow == 0}" >
-                                              <f:ajax render="@form" execute="@form"/>
-                                              </p:commandButton>
+	  <table><tr><td> 
                             <h:commandButton value="prev" action="#{noticeBoardBean.pagePrevious}"
-                                             disabled="#{noticeBoardBean.firstRow == 0}" >
-                                              <f:ajax render="@form" execute="@form"/>
-                                              </h:commandButton>
+                                             disabled="#{noticeBoardBean.firstRow == 0}" />
+                                              
+                                              
                             <h:commandButton value="next" action="#{noticeBoardBean.pageNext}"
-                                             disabled="#{noticeBoardBean.firstRow + noticeBoardBean.rowPerPage >= noticeBoardBean.totalRows}" >
-                                              <f:ajax render="@form" execute="@form"/>
-                                              </h:commandButton>
-                            <h:commandButton value="last" action="#{noticeBoardBean.pageLast}"
-                                             disabled="#{noticeBoardBean.firstRow + noticeBoardBean.rowPerPage >= noticeBoardBean.totalRows}" >
-                                              <f:ajax render="@form" execute="@form"/>
-                                              </h:commandButton>
-                              <h:outputLabel for="rowPerPage" value="Rows per page" />
-                            <h:inputText id="rowPerPage" value="#{noticeBoardBean.rowPerPage}" size="3" maxlength="3" />
-                            <h:commandButton value="Set" action="#{noticeBoardBean.pageFirst}" >
-                             <f:ajax render="@form" execute="@form"/>
-                             </h:commandButton>
-                            <h:message for="rowsPerPage" errorStyle="color: red;" />
-                            <h:outputText value="Page #{noticeBoardBean.pageCurrent} Of #{noticeBoardBean.totalPages}" />
+                                             disabled="#{noticeBoardBean.firstRow + noticeBoardBean.rowPerPage >= noticeBoardBean.totalRows}"/>
+                                              
+                                             
+                             
                             </td></tr></table>
                             <hr/>
 	   <c:forEach items="#{noticeBoardBean.listOfNotice}"   var="notice">
