@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 
 public class NavigationBean implements Serializable{
 
-	private String pageName;
+	private String pageName="/AfrteLoginViews/Accounting/accountstransaction.xhtml";
 	public String getPageName() {
 		return pageName;
 	}

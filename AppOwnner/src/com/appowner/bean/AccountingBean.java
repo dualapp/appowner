@@ -66,7 +66,20 @@ public class AccountingBean  extends RuntimeException implements Serializable{
 	{
 		super(msg);
 	}
-private Date dat_FromDate;	
+	private Date cal;
+public Date getCal() {
+	Calendar cal1 = Calendar.getInstance();
+
+
+	cal1.add(Calendar.MONTH,-1);
+	cal=cal1.getTime();
+		return cal;
+	}
+	public void setCal(Date cal) {
+		this.cal = cal;
+	}
+private Date dat_FromDate=cal;
+
 public void setDat_FromDate(Date dat_FromDate) {
 	this.dat_FromDate = dat_FromDate;
 }
@@ -94,12 +107,7 @@ public void setDat_FromDate1(String dat_FromDate1) {
 	this.dat_FromDate1 = dat_FromDate1;
 }
 public Date getDat_FromDate() {
-	dat_FromDate=new java.util.Date();
 	
-	Calendar cal = Calendar.getInstance();
-	cal.add(Calendar.MONTH, -1);
-	dat_FromDate = cal.getTime();
-    
 	return dat_FromDate;
 }
 
@@ -286,7 +294,7 @@ public void setInt_AccountId(Integer int_AccountId) {
 	this.int_AccountId = int_AccountId;
 }
 public String getStr_OrganizationName() {
-	//str_OrganizationName=Util.getAppartmentName();
+	str_OrganizationName=Util.getAppartmentName();
 	return str_OrganizationName;
 }
 public void setStr_OrganizationName(String str_OrganizationName) {
@@ -661,7 +669,7 @@ public void getSearch()
    }
    getListInvoiceTransaction();
    getListManualJournal1();
-   getExpenseList();
+   
   getDebit();
   
 }
