@@ -21,7 +21,7 @@
   <h:form id="form">
     <body  bgcolor="pink"> 
    <fieldset>
-    <legend>Account Transaction</legend>
+     <legend  style="background-color:#438eb9; color:#fff;">Account Transaction</legend>
   
        <table>
        <h:panelGroup id="aaaa">
@@ -45,7 +45,7 @@
             </p:calendar>
             </td> 
              <td>
-               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch()}" update="ggg" >
+               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch()}" update="content" >
                 </h:commandButton>
              </td> 
            </h:panelGroup>
@@ -63,7 +63,7 @@
      <br/>
     
   
-   
+   <div id="content" class="ui-widget">
         <h:outputText value="Accounts Transactions: " color="red"></h:outputText>
           <table  cellpadding="0" cellspacing="0" style="width:1000px;align:center; font-family:arial;font-size:14px;line-height:15px;border:1px solid #DADADA ;">
     <tbody>
@@ -297,7 +297,7 @@ style="width:600px">
    
    </tbody>
    </table>
-  
+  </div>
  </h:form>
 
   
