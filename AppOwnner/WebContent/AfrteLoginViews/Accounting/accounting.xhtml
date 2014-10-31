@@ -39,12 +39,12 @@
             
             
              <h:form>
-       <h:panelGrid columns="5" style="font: 12px sans-serif;width:900px;height: 19px;;float:center;">
+       <h:panelGrid columns="5" style="font: 15px sans-serif;width:1100px;height: 19px;;float:center;">
           <p:tabMenu autoDisplay="true" style="padding: 0px" >  
                 <p:menuitem  value="ACCOUNT TRANACTION"  > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}">
+                         <h:commandLink value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/accountstransaction.xhtml" action="#{navigationBean.navigateTo}"/>
          </h:commandLink>
            </p:menuitem>
@@ -53,7 +53,7 @@
                 <p:menuitem  value="MANUAL JOURNAL"  >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="MANUAL JOURNAL" action="#{navigationBean.navigateTo}">
+                         <h:commandLink value="MANUAL JOURNAL" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/manualjournal.xhtml" />
            </h:commandLink>
            </p:menuitem>
@@ -62,7 +62,7 @@
          <p:menuitem  value="TRIAL BALANCE"  >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="TRIAL BALANCE" action="#{navigationBean.navigateTo}">
+                         <h:commandLink value="TRIAL BALANCE" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/trialbalance.xhtml" />
                          </h:commandLink>
                          </p:menuitem>
@@ -71,7 +71,7 @@
         <p:menuitem  value="PROFIT AND LOSS"  >
              <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="PROFIT AND LOSS" action="#{navigationBean.navigateTo}">
+                         <h:commandLink value="PROFIT AND LOSS" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/profitandloss.xhtml" />
                          </h:commandLink>
                          </p:menuitem>
@@ -80,7 +80,7 @@
             <p:menuitem  value="BALANCE SHEET"  > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="BALANCE SHEET" action="#{navigationBean.navigateTo}">
+                         <h:commandLink value="BALANCE SHEET" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/balancesheet.xhtml" action="#{navigationBean.navigateTo}"/>
          </h:commandLink>
            </p:menuitem>

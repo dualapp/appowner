@@ -50,12 +50,14 @@ function Submit(msg){
 	</h:body> 
 
   <h:form id="form" prependId="false">
- 
+  <fieldset>
+     <legend  style="background-color:#438eb9; color:#fff;">Manual Journal</legend>
   <input type="button" style="width: 140px" onclick="ShowNewPage()" value="Create New" />&#150; &#150; <button  onClick="window.open('EditDueTemplate.xhtml',
   'Sample','toolbar=yes,width=500,height=500,left=500,top=200, 
   status=no,scrollbars=yes,resize=no');return false">View Selected</button>&#150; &#150;<h:commandButton  value="Delete Selected" />&#150; &#150;<h:commandButton  value="Refresh" />
              <br/>
              <br/>
+             </fieldset>
              </h:form>
             
             
