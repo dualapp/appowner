@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://primefaces.org/ui">
+	<ui:define name="content">
+	<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title">Integrated SMS Gateway</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<h:form>
+	<h:body>
+	 
+	<div id="page">
+	<div class="gsTitle"> <center> <b> Broadcast Message</b></center><hr/></div>
+	<div class="ui-grid-row"> <table  align="center">
+	<tr><td>
+ <h:selectOneRadio value="#{user.favColor1}" layout="pageDirection">
+   <f:selectItem itemValue="Red" itemLabel="All users" /> 
+   <f:selectItem itemValue="Green" itemLabel="Only users who lives here" /> 
+   <f:selectItem itemValue="Blue" itemLabel="Only prime contacts" /> 
+   <f:selectItem itemValue="Blue" itemLabel="All owners" />
+   <f:selectItem itemValue="Blue" itemLabel="All tenants" />
+   <f:selectItem itemValue="Blue" itemLabel="Only prime contacts" />
+   <f:selectItem itemValue="Blue" itemLabel="Association committee" />
+   <f:selectItem itemValue="Blue" itemLabel="All residents of block" />
+   <f:selectItem itemValue="Blue" itemLabel="All members of  subgroup" />
+</h:selectOneRadio></td></tr>
+ 
+ <tr><td>
+
+<p:selectBooleanCheckbox value="#{vendorBean.bool_IsACompany}" /><h:outputText value="Including managers"/></td></tr> 
+ </table> </div>
+ 
+<div class="ui-grid-row"><table  >
+<tr><td><h:selectOneRadio value="#{user.favColor1}"  >
+    	<f:selectItem itemValue="Red" itemLabel="General Sms" />  
+   	 <f:selectItem itemValue="Green" itemLabel="Essential Sms"  />  
+   	 	 <f:selectItem itemValue="Green" itemLabel="Flash"/>  
+   <f:selectItem itemValue="Blue" itemLabel="Email" /> 
+</h:selectOneRadio></td></tr></table> </div>
+</div>
+<div id="page">
+<div class="gsTitle"> <center> <b> Send SMS/Email/Flash to the Residents selected above</b></center>
+	<table>
+<tr><td><h:selectOneRadio value="#{user.favColor1}"  >
+    	<f:selectItem itemValue="Red" itemLabel="General Sms" />  
+   	 <f:selectItem itemValue="Green" itemLabel="Essential Sms"  />  
+   	 	 <f:selectItem itemValue="Green" itemLabel="Flash"/>  
+   <f:selectItem itemValue="Blue" itemLabel="Email" /> 
+</h:selectOneRadio></td></tr></table> 
+	<hr/></div>
+<div id="page">
+ <div class="gsTitle"> <center> <b> Select Template</b></center></div>
+            <h:selectOneRadio id="myRadio" value="#{broadCastMessage.type}"
+                label="Select one or two" layout="pageDirection">
+
+                <f:selectItem itemValue="one" itemLabel="Meeting" />
+                <f:selectItem itemValue="two" itemLabel="Event" />
+
+                 <p:ajax   event="click" immediate="true"  render="parentPanel panelOne panelTwo" update="parentPanel panelOne panelTwo"  />
+
+            </h:selectOneRadio></div>
+             <div id="page">
+           <div class="gsTitle"> <center> <b> Template</b></center></div>
+             <p:outputPanel id="parentPanel">
+                <p:panel id="panelOne" rendered="#{broadCastMessage.checkType('one')}">
+                 <table><tr><td><h:inputText value="General"/>Meeting on<p:calendar />At</td></tr></table>
+                </p:panel>
+
+                <p:panel id="panelTwo" rendered="#{broadCastMessage.checkType('two')}">
+                    <div id="divTwo">Event Template</div>
+                     <div id="divTwo1">Event Template</div>
+                </p:panel>
+            </p:outputPanel>
+            </div>
+</div>
+ <div style="clear:both;"/>
+       <div id="page2">
+      <div class="gsTitle"> <center> <b> SMS Gateway</b></center></div>
+<table><tr><td><font color="blue">Accessible to: Admin Team</font></td></tr>
+
+<tr><td>Sophisticated Broadcast application using email and SMS</td></tr>
+<tr><td>2 way SMS. Tickets can be raised by sending an SMS</td></tr>
+<tr><td>Various options to select Recipients - all residents, residents of a particular block, owners only, tenants only, owners who live here, management committee only, etc.</td></tr>
+<tr><td>Broadcast E-mails, SMS can be scheduled for delivery at a later date/time. E.g., SMS alert can be scheduled to be sent to residents an hour before a General Body Meeting, for better turn out</td></tr>
+<tr><td>Only for Premium ADDAs : Essential SMS can be sent by Management Committee - and will reach users even if they are registered under DnD Registry. Read More..</td></tr>
+      </table>
+       </div>
+</h:body> 
+</h:form>
+	</ui:define>
+</ui:composition>
+ 
