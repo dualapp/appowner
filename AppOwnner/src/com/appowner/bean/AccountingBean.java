@@ -66,19 +66,8 @@ public class AccountingBean  extends RuntimeException implements Serializable{
 	{
 		super(msg);
 	}
-	private Date cal;
-public Date getCal() {
-	Calendar cal1 = Calendar.getInstance();
 
-
-	cal1.add(Calendar.MONTH,-1);
-	cal=cal1.getTime();
-		return cal;
-	}
-	public void setCal(Date cal) {
-		this.cal = cal;
-	}
-private Date dat_FromDate=cal;
+private Date dat_FromDate;
 
 public void setDat_FromDate(Date dat_FromDate) {
 	this.dat_FromDate = dat_FromDate;
@@ -107,7 +96,12 @@ public void setDat_FromDate1(String dat_FromDate1) {
 	this.dat_FromDate1 = dat_FromDate1;
 }
 public Date getDat_FromDate() {
-	
+	dat_FromDate= new java.util.Date();
+	Calendar cal1 = Calendar.getInstance();
+
+
+	cal1.add(Calendar.MONTH,-1);
+	dat_FromDate=cal1.getTime();
 	return dat_FromDate;
 }
 
@@ -354,6 +348,7 @@ public List<ChartOfAccount> getChartOfAccountList() {
 	chartOfAccountList=new ArrayList<ChartOfAccount>();
 	chartOfAccountList.addAll(getAccountsService().getChartOfAccountList());
 	ListIterator list=chartOfAccountList.listIterator();
+	debitNetTotal=0.00;
 	while(list.hasNext())
 	{
 		ChartOfAccount account=(ChartOfAccount)list.next();
@@ -644,7 +639,7 @@ public void getSearch()
 	
 	
  str_Accounts=getAccountsService().getAccountName1(id1);
- 
+ System.out.println(str_Accounts+"juhy");
 	
    if(str_Accounts.equals("Accounts Receivable"))
    {
@@ -669,7 +664,7 @@ public void getSearch()
    }
    getListInvoiceTransaction();
    getListManualJournal1();
-   
+   getListExpense();
   getDebit();
   
 }
