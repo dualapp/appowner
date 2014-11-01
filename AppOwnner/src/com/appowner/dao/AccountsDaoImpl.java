@@ -358,22 +358,28 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<Expense> getExpenseList(String str, Date dat_FromDate, Date dat_ToDate)
 	{  System.out.println(str+"huiop");
-		if(str!="Expense")
-		{
-			
-			
-			 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_AccountName", str)).add(Restrictions.eq("str_ExpenseType","Expense")).list();
+	    if(str==null)
+	    {
+	    	List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_AccountName", str)).add(Restrictions.eq("str_ExpenseType","Expense")).list();
 	         System.out.println(ddd.listIterator().hasNext()+"jikoooooooooooooooo");
 	          return ddd;
+	    }
+	    else if(str.equalsIgnoreCase("Expense"))
+		{
+			List<Expense> ddd1=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_ExpenseType","Expense")).list();
+			System.out.println(ddd1.listIterator().hasNext()+"jikoooooooooooooooojjjjjjjjjjjjjjjjj");
+			return ddd1;
+			
+			
 	    }
 			
 		
 		else 
-	  {
-					List<Expense> ddd1=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_ExpenseType","Expense")).list();
-					System.out.println(ddd1.listIterator().hasNext()+"jikoooooooooooooooojjjjjjjjjjjjjjjjj");
-					return ddd1;
-	  } 
+	   {
+			 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_AccountName", str)).add(Restrictions.eq("str_ExpenseType","Expense")).list();
+	         System.out.println(ddd.listIterator().hasNext()+"jikoooooooooooooooo");
+	          return ddd;
+	   } 
 		
       
 }
