@@ -47,7 +47,8 @@ body.breadcrumbs-fixed {
 }
 
 .main-container:after {
-	background-color:#ffffff;
+	background-color: #e9eaed;
+    color: #141823;
 	bottom: 0;
 	content: "";
 	display: block;
