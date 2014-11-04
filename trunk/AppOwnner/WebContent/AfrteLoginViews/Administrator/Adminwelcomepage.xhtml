@@ -42,7 +42,7 @@
 		</table>														
 	</div>
 	<div style="clear: all;"></div>
-	<p:outputPanel id="poll" rendered="#{expenseBean.rendered}" style="text-align:center;"> 
+	<p:outputPanel id="poll" rendered="#{expenseBean.rendered}" > 
 	<div id="page1">
 		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Opinion Polls</div>
 		<hr/>
@@ -60,7 +60,7 @@
 	</p:outputPanel>
 	<div style="clear: all;"></div>
 	
-	<p:outputPanel id="pollResult" rendered="#{expenseBean.getRendered1()}" style="text-align:center;"> 
+	<p:outputPanel id="pollResult" rendered="#{expenseBean.getRendered1()}"> 
        <div id="page1">
            
   <div    class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Opinion Poll Results<br/><hr/></div> 
@@ -75,7 +75,22 @@
 		</table>	
     </div>
    </p:outputPanel>
-       
+   <div style="clear: all;"></div>
+       <div id="page1">
+		<div class="gsTitleDiv"> Latest photo</div>
+		<hr/>
+		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
+				<tbody>
+					<tr>
+						<td> 
+						  <ui:include   src="/AfrteLoginViews/Communication/photos.xhtml" /> 	
+						</td>						
+					</tr>
+				</tbody>
+		</table>	
+		 
+															
+	</div>
 	  
 	<div id="page1">
 		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/events.jpg" height="42" width="42"></img>Eventss</div>
