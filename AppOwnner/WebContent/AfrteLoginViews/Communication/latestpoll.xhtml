@@ -15,7 +15,7 @@
   
 <table>
 <tr><td></td><td><h5><h:outputText value="#{expenseBean.latestPolls.str_poolQuestion}"/>?</h5></td></tr>
-      <tr><td><h:selectOneRadio  id="votechoise"
+      <tr><td><h:selectOneRadio  id="votechoise" layout="pageDirection"
                required="true" requiredMessage="Plz select Choise"       value="#{expenseBean.str_Choise}">
         <f:selectItem   itemLabel="#{expenseBean.latestPolls.str_Choise1}" itemValue="#{expenseBean.latestPolls.str_Choise1}" />
         <f:selectItem   itemLabel="#{expenseBean.latestPolls.str_Choise2}" itemValue="#{expenseBean.latestPolls.str_Choise2}" />

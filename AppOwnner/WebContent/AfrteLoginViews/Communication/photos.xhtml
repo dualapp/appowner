@@ -22,13 +22,13 @@
 	 </h:head>
 	 <h:form>
 	 <h:body>
- <div class="div">
+  
 <p:imageSwitch effect="shuffle">
      <ui:repeat value="#{expenseBean.images}" var="image" id="shuffleSwitcherImages">
-     <p:graphicImage  height="200" width="200"   value="images/kalpnavilla/#{image}" id="image" />
+     <p:graphicImage  height="250" width="250"   value="#{expenseBean.str_Name}images/kalpnavilla/#{image}" id="image" />
     </ui:repeat>
 </p:imageSwitch>
- </div>
+ 
  </h:body>
  </h:form>
  
