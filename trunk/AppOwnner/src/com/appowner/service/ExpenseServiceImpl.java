@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.appowner.bean.BroadCastMessage;
 import com.appowner.dao.ExpenseDao;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
+import com.appowner.model.BroadCastMessage1;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
+import com.appowner.model.MessageType;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
@@ -393,6 +396,30 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public Integer count() {
 		// TODO Auto-generated method stub
 		return getExpenseDao().count();
+	}
+
+	@Override
+	public List<String> getMessageTempTypeList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getMessageTempTypeList();
+	}
+
+	@Override
+	public List<MessageType> getMessageTypeList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getMessageTypeList();
+	}
+
+	@Override
+	public void addBroadCastMessage(BroadCastMessage1 broadCastMessage) {
+		// TODO Auto-generated method stub
+		getExpenseDao().addBroadCastMessage(broadCastMessage);
+	}
+
+	@Override
+	public String getSubject(String str_MessageType) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getSubject(str_MessageType);
 	}
 
 	 
