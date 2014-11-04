@@ -38,9 +38,11 @@ import com.appowner.model.AccountingGroup;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.BookAFacility;
+import com.appowner.model.BroadCastMessage1;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
+import com.appowner.model.MessageType;
 import com.appowner.model.Notice;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
@@ -52,7 +54,7 @@ import com.appowner.util.Util;
  
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ExpenseBean  implements Serializable{
 
 	
@@ -2189,11 +2191,111 @@ public void setStr_Path(String str_Path) {
 	this.str_Path = str_Path;
 }
 
+ /*
+  * Sms gate way
+  */
  
+ 
+private String str_MessageType="Event";
+private String str_MessageTempType;
+private String str_Subject;
+ 
+private String str_Date;
+
+private List<String> messageTempTypeList;
+private List<MessageType> messageTypeList;
+
+public String getStr_MessageType() {
+	System.out.println(str_MessageType+"messagetype");
+	return str_MessageType;
+}
+public void setStr_MessageType(String str_MessageType) {
+	this.str_MessageType = str_MessageType;
+}
+public String getStr_MessageTempType() {
+	return str_MessageTempType;
+}
+public void setStr_MessageTempType(String str_MessageTempType) {
+	this.str_MessageTempType = str_MessageTempType;
+}
+public String getStr_Subject() {
+	str_Subject=getExpenseService().getSubject(getStr_MessageType());
+	return str_Subject;
+}
+public void setStr_Subject(String str_Subject) {
+	this.str_Subject = str_Subject;
+}
+ 
+public String getStr_Date() {
+	return str_Date;
+}
+public void setStr_Date(String str_Date) {
+	this.str_Date = str_Date;
+}
+ 
+ 
+public List<String> getMessageTempTypeList() {
+	messageTempTypeList=new ArrayList<String>();
+	messageTempTypeList.addAll(getExpenseService().getMessageTempTypeList());
+	return messageTempTypeList;
+}
+ 
+public List<String> getMessageTypeList1() {
+messageTypeList1=new ArrayList<String>();
+	
+	 
+	ListIterator itr=getMessageTypeList().listIterator();
+	while(itr.hasNext())
+	{
+		MessageType  messageType=(MessageType) itr.next();
+		String m=messageType.getStr_MessageType();
+		messageTypeList1.add(m);
+		
+	}
+	return messageTypeList1;
+}
+public Boolean checkType(String type1) {
+	System.out.println(type1+"type1");
+    Boolean tmp =getStr_MessageType().equalsIgnoreCase(type1);
+     
+    return tmp;
+}
+public String getSubject()
+{
+	
+	
+	return str_Subject;
 	
 }
-
-
-
+public void setMessageTypeList1(List<String> messageTypeList1) {
+	this.messageTypeList1 = messageTypeList1;
+}
+private List<String> messageTypeList1;
+ 
+ 
+public List<MessageType> getMessageTypeList() {
+	 
+	messageTypeList=new ArrayList<MessageType>();
+	messageTypeList.addAll(getExpenseService().getMessageTypeList());
+	 
+	return messageTypeList;
+}
+public void setMessageTypeList(List<MessageType> messageTypeList) {
+	this.messageTypeList = messageTypeList;
+}
+private BroadCastMessage1  broadCastMessage;
+public void addBroadCastMessage()
+{
+	broadCastMessage=new BroadCastMessage1();
+	broadCastMessage.setStr_MessageTempType(str_MessageTempType);
+	broadCastMessage.setStr_MessageType(str_MessageType);
+	broadCastMessage.setStr_Subject(str_Subject);
+	broadCastMessage.setStr_Date(str_Date);
+	broadCastMessage.setStr_Description(str_Description);
+	
+	getExpenseService().addBroadCastMessage(broadCastMessage);
+}
+	
+}
 
 

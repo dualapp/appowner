@@ -9,13 +9,17 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.bean.BroadCastMessage;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.BookAFacility;
+import com.appowner.model.BroadCastMessage1;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
+import com.appowner.model.MessageTemplateMaster;
+import com.appowner.model.MessageType;
 import com.appowner.model.Notice;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
@@ -460,5 +464,32 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public Integer count() {
 		// TODO Auto-generated method stub
 		return (Integer) sessionFactory.getCurrentSession().createCriteria(FacilityNeeded.class).setProjection(Projections.rowCount()).uniqueResult();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getMessageTempTypeList() {
+		// TODO Auto-generated method stub
+		System.out.println(sessionFactory.getCurrentSession().createCriteria(MessageTemplateMaster.class).setCacheable(true).setProjection(Projections.property("str_MessageTempType")).list()+"kalpana");
+		return sessionFactory.getCurrentSession().createCriteria(MessageTemplateMaster.class).setCacheable(true).setProjection(Projections.property("str_MessageTempType")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MessageType> getMessageTypeList() {
+		// TODO Auto-generated method stub
+		System.out.println(sessionFactory.getCurrentSession().createCriteria(MessageType.class).setCacheable(true).list()+"kalpana1");
+		return sessionFactory.getCurrentSession().createCriteria(MessageType.class).setCacheable(true).list();
+	}
+
+	@Override
+	public void addBroadCastMessage(BroadCastMessage1 broadCastMessage) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(broadCastMessage);
+	}
+
+	@Override
+	public String getSubject(String str_MessageType) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_Subject from MessageType where str_MessageType=?").setParameter(0, str_MessageType).uniqueResult();
 	}
 }
