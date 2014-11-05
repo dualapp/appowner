@@ -27,7 +27,7 @@
 <tr><td>2 way SMS. Tickets can be raised by sending an SMS</td></tr>
 <tr><td>Various options to select Recipients - all residents, residents of a particular block, owners only, tenants only, owners who live here, management committee only, etc.</td></tr>
 <tr><td>Broadcast E-mails, SMS can be scheduled for delivery at a later date/time. E.g., SMS alert can be scheduled to be sent to residents an hour before a General Body Meeting, for better turn out</td></tr>
-<tr><td>Only for Premium ADDAs : Essential SMS can be sent by Management Committee - and will reach users even if they are registered under DnD Registry. Read More..</td></tr>
+<tr><td>Only for Premium ADDAs : Essential SMS can be sent by Management Committee - and will reach users even if they are registered under DnD Registry. <font color="blue"><a href="#">Read More..</a></font></td></tr>
       </table>
        </div>
        <div style="clear:all;"/>
@@ -73,48 +73,79 @@
  <f:selectItems value="#{expenseBean.messageTempTypeList}"/>
  </h:selectOneRadio></td></tr></table>
  <hr/>
- <div id="page1">
- <div class="gsTitleDiv">Select Template</div>
- <h:selectOneRadio id="myRadio1" value="#{expenseBean.str_MessageType}">
+ 
+ <p:panelGrid id="parentPanel" columns="2" styleClass="panelNoBorder">
+ 
+         <p:row>  
+            
+   
+    <p:column>
+    <div class="gsTitleDiv">Select Template</div>
+ <h:selectOneRadio id="myRadio1" value="#{expenseBean.str_MessageType}"  >
                  
  <f:selectItems value="#{expenseBean.messageTypeList1}"/>
                 <p:ajax   event="click" immediate="true"
-                    render="parentPanel panelOne panelTwo panelThree paneFour" update="parentPanel panelOne panelTwo panelThree paneFour"/>
+                    render="parentPanel panelOne panelTwo" update="parentPanel panelOne panelTwo "/>
 
-            </h:selectOneRadio></div>
-             <p:outputPanel id="parentPanel">
- 
- 
- <div class="gsTitleDiv"> Template</div>
-  
-           
-                <p:panel id="panelOne" rendered="#{expenseBean.checkType('Meeting')}">
+            </h:selectOneRadio> 
+    </p:column>
+     
+    <p:column>
+    <div class="gsTitleDiv"> Template</div>
+        
+            <p:panel id="panelOne"    rendered="#{expenseBean.checkType('Meeting')}">
+             <div class="gsTitleDiv">Meeting <br/><hr/></div>
                     
-                    <h:inputText value='#{expenseBean.str_Subject}'/>
-                     
+            <table>
+            <tr><th></th><td><h:inputText value='#{expenseBean.str_Subject}'/></td></tr>  
+            <tr> <th>Meeting On</th> <td> <p:calendar/></td></tr>
+                     <tr> <th> At</th>
+                     <td> 
+     <p:selectOneMenu id="ETime"  style="width:100px" required="true" requiredMessage="plz  Enter EndTime" value="#{loginBean.str_EndTime}">
+    <f:selectItem itemLabel="Select One" itemValue="" />
+    <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
+     <f:selectItem  itemLabel="7.30" itemValue="7.30" />
+     <p:ajax event="blur" update="ETimeMsg" />
+      </p:selectOneMenu> 
+      <p:message id="ETimeMsg"  for="ETime" display="text"/> 
+      </td></tr>
+      <tr><th><h:outputText value="MESSAGE*"/></th> 
+        <td><p:inputTextarea   value="#{expenseBean.str_Description}" rows="6" cols="33"/></td></tr>
+          <tr><th>Venue</th><td> <h:inputText value="#{expenseBean.str_Venue}"/> </td></tr>
+          </table>
                 </p:panel>
 
-                <p:panel id="panelTwo" rendered="#{expenseBean.checkType('Event')}">
-                    <div id="divTwo"> 
-                    
-                    <h:inputText value='#{expenseBean.str_Subject}'/></div>
-                </p:panel>
-                <p:panel id="panelThree" rendered="#{expenseBean.checkType('Poll')}">
-                    <div id="divThree"> 
-                    
-                    <h:inputText value='#{expenseBean.str_Subject}'/></div>
-                </p:panel>
-                <p:panel id="paneFour" rendered="#{expenseBean.checkType('ServiceRequest')}">
-                    <div id="divFour"> 
-                    
-                    <h:inputText value='#{expenseBean.str_Subject}'/></div>
-                </p:panel>
-                
-            </p:outputPanel>
+                <p:panel id="panelTwo"    rendered="#{expenseBean.checkType('Event')}">
+                  <div class="gsTitleDiv">Event <br/><hr/></div>
+                  <table><tr><th>
+                  <h:outputLabel for="title" value="Title:" /></th>
+                    <td><p:inputText id="title" value="#{requestScopeBean.event.title}" required="true" /></td></tr>
             
  
-<h:commandButton value="add" action="#{expenseBean.addBroadCastMessage()}"/>
-  </div>
+          <tr><th>  <h:outputLabel for="from" value="From:" /></th>
+            <td><p:inputMask id="from" value="#{requestScopeBean.event.startDate}" mask="9999/99/99">
+                 
+            </p:inputMask></td></tr>
+ 
+         <tr><th>    <h:outputLabel for="to" value="To:" /></th>
+           <td> <p:inputMask id="to" value="#{requestScopeBean.event.endDate}" mask="9999/99/99">
+               
+            </p:inputMask></td></tr>
+ 
+           <tr><th>  <h:outputLabel for="allDay" value="All Day:" /></th>
+          <td>  <h:selectBooleanCheckbox id="allDay" value="#{requestScopeBean.event.allDay}" /></td></tr>
+          </table>
+ 
+                </p:panel>
+                </p:column>
+                     
+         </p:row>
+        
+    
+</p:panelGrid>
+ &nbsp; &nbsp;<tr><td><h:commandButton value="Send" action="#{expenseBean.addBroadCastMessage()}"/></td>  <td><h:commandButton value="Cancel"/></td></tr>
+ 
+</div>
 </h:body> 
 </h:form>
 	</ui:define>
