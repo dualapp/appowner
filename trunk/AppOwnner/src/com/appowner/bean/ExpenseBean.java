@@ -2199,11 +2199,15 @@ public void setStr_Path(String str_Path) {
 private String str_MessageType="Event";
 private String str_MessageTempType;
 private String str_Subject;
- 
+private String str_Venue;
 private String str_Date;
 
 private List<String> messageTempTypeList;
 private List<MessageType> messageTypeList;
+public void addTemplateMessage()
+{
+	
+}
 
 public String getStr_MessageType() {
 	System.out.println(str_MessageType+"messagetype");
@@ -2294,6 +2298,12 @@ public void addBroadCastMessage()
 	broadCastMessage.setStr_Description(str_Description);
 	
 	getExpenseService().addBroadCastMessage(broadCastMessage);
+}
+public String getStr_Venue() {
+	return str_Venue;
+}
+public void setStr_Venue(String str_Venue) {
+	this.str_Venue = str_Venue;
 }
 	
 }
