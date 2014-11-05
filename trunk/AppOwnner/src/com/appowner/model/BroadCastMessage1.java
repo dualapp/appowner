@@ -29,6 +29,8 @@ public class BroadCastMessage1 implements Serializable {
 	private Integer int_MessageTempId;
 	@Column(name="var_MessageType")
 	private String str_MessageType;
+	@Column(name="var_Venue")
+	private String str_Venue;
 	@Column(name="var_MessageTempType")
 	private String str_MessageTempType;
 	@Column(name="var_Subject")
