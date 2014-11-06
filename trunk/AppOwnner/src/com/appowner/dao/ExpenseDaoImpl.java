@@ -5,22 +5,19 @@ import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
-import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.appowner.bean.BroadCastMessage;
 import com.appowner.model.AccountingGroup;
+import com.appowner.model.AddTemplateMessage;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
-import com.appowner.model.BookAFacility;
 import com.appowner.model.BroadCastMessage1;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.FacilityNeeded;
 import com.appowner.model.MessageTemplateMaster;
 import com.appowner.model.MessageType;
-import com.appowner.model.Notice;
 import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
@@ -490,6 +487,26 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public String getSubject(String str_MessageType) {
 		// TODO Auto-generated method stub
-		return (String) sessionFactory.getCurrentSession().createQuery("select str_Subject from MessageType where str_MessageType=?").setParameter(0, str_MessageType).uniqueResult();
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_Subject from AddTemplateMessage where str_MessageType=?").setParameter(0, str_MessageType).uniqueResult();
+	}
+
+	@Override
+	public void addTemplateMessage(AddTemplateMessage atm) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(atm);
+	}
+
+	@Override
+	public Integer getInt_MessageTypeId(String str_MessageType) {
+		// TODO Auto-generated method stub
+		return (Integer) sessionFactory.getCurrentSession().createQuery("select int_MessageTypeId from MessageType where str_MessageType=?").setParameter(0, str_MessageType).uniqueResult();
+		
+	}
+
+	@Override
+	public String getStr_Venue(Integer int_MessageTypeId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_Venue from AddTemplateMessage where int_MessageTypeId=?").setParameter(0, int_MessageTypeId).uniqueResult();
+		
 	}
 }
