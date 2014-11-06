@@ -35,6 +35,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 
 import com.appowner.model.AccountingGroup;
+import com.appowner.model.AddTemplateMessage;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.BookAFacility;
@@ -2201,11 +2202,26 @@ private String str_MessageTempType;
 private String str_Subject;
 private String str_Venue;
 private String str_Date;
-
+private Integer int_MessageTypeId;
+public Integer getInt_MessageTypeId() {
+	int_MessageTypeId=getExpenseService().getInt_MessageTypeId(getStr_MessageType());
+	System.out.println(int_MessageTypeId);
+	return int_MessageTypeId;
+}
+public void setInt_MessageTypeId(Integer int_MessageTypeId) {
+	this.int_MessageTypeId = int_MessageTypeId;
+}
 private List<String> messageTempTypeList;
 private List<MessageType> messageTypeList;
+private AddTemplateMessage atm;
 public void addTemplateMessage()
 {
+	atm=new AddTemplateMessage();
+atm.setInt_MessageTypeId(int_MessageTypeId);
+atm.setStr_MessageType(str_MessageType);
+atm.setStr_Subject(str_Subject);
+atm.setStr_Description(str_Description);
+getExpenseService().addTemplateMessage(atm);
 	
 }
 
@@ -2226,6 +2242,7 @@ public String getStr_Subject() {
 	str_Subject=getExpenseService().getSubject(getStr_MessageType());
 	return str_Subject;
 }
+
 public void setStr_Subject(String str_Subject) {
 	this.str_Subject = str_Subject;
 }
@@ -2264,13 +2281,7 @@ public Boolean checkType(String type1) {
      
     return tmp;
 }
-public String getSubject()
-{
-	
-	
-	return str_Subject;
-	
-}
+ 
 public void setMessageTypeList1(List<String> messageTypeList1) {
 	this.messageTypeList1 = messageTypeList1;
 }
@@ -2300,6 +2311,9 @@ public void addBroadCastMessage()
 	getExpenseService().addBroadCastMessage(broadCastMessage);
 }
 public String getStr_Venue() {
+	System.out.println(getInt_MessageTypeId()+"id");
+	str_Venue=getExpenseService().getStr_Venue(getInt_MessageTypeId());
+	System.out.println(str_Venue);
 	return str_Venue;
 }
 public void setStr_Venue(String str_Venue) {
