@@ -517,8 +517,9 @@ font-size: 11px;
 
 #page {
 width: 100%;
-float: none; 
-margin-left: 0 px;
+float: none;
+ 
+margin-left:0px;
 position: relative;
 overflow: auto;
 margin-top: 10px;
