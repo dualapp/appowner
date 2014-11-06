@@ -96,15 +96,15 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	 
 	 <div id="page3">
            <div class="gsTitleDiv">Work Order Category<br/><hr/></div> 
-	<h:outputText value="Organisation:" /> 
-                
-              <p:selectOneMenu       style="width:100px">
+	 
+             <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+             <tr><td><h:outputText value="Organisation:" /> 
+               
+              <p:selectOneMenu >
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu> 
-	 
-                
-             <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
+                 </p:selectOneMenu></td></tr>
+             <tr><td>  
 	    <p:commandButton process="DT" update="multiWorkOrderDetail"   value="Create New" oncomplete="PF('multiWorkOrderDialog').show()" />
 	
 	 &#150; &#150;  <p:commandButton process="DT" update="multiWorkOrderDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiWorkOrderDialog1').show()" />
