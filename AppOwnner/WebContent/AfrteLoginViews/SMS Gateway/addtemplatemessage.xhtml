@@ -27,7 +27,9 @@
                  
      <f:selectItems value="#{expenseBean.messageTypeList1}"/>
             </p:selectOneMenu></td></tr>
- <tr><th>Template Message</th><td><p:editor   required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget"   width="550" height="280" style="margin-bottom:20px;"     value="#{expenseBean.str_Description}" /></td></tr>
+            <tr><th>Subject</th><td><h:inputText value="#{expenseBean.str_Subject}"/></td></tr>
+            <tr><th>Template Message</th><td><p:editor   required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget"   width="550" height="280" style="margin-bottom:20px;"     value="#{expenseBean.str_Description}" /></td></tr>
+ <tr><th>Venue</th><td><h:inputText value="#{expenseBean.str_Venue}"/></td></tr>
  <tr><td><h:commandButton value="Add" action="#{expenseBean.addTemplateMessage}"/></td></tr>
  </table>
  </div>
