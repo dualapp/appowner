@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Popup contact form</title>
+<link href="../../js/element.css" rel="stylesheet"/>
+<script src="../../JavaScript/csspopup1.js"></script>
+</head>
+<!-- Body Starts Here -->
+<body id="body" style="overflow:visible;">
+<div id="abc">
+<!-- Popup Div Starts Here -->
+<div id="popupContact">
+<!-- Contact Us Form -->
+<form action="#" id="form" method="post" name="form">
+<img id="close" src="#" onclick ="div_hide()"/>
+<h2>Contact Us</h2>
+<hr/>
+<input id="name" name="name" placeholder="Name" type="text"></input>
+<input id="email" name="email" placeholder="Email" type="text"/>
+
+<textarea id="msg" name="message" placeholder="Message"></textarea>
+
+<a href="javascript:%20check_empty()" id="submit">Send</a>
+
+</form>
+
+</div>
+
+<!-- Popup Div Ends Here -->
+
+</div>
+
+<!-- Display Popup Button -->
+<h1>Click Button To Popup Form Using Javascript</h1>
+<button id="popup" onclick="div_show()" value="Popup">
+</button>
+
+</body>
+<!-- Body Ends Here -->
+</html>
