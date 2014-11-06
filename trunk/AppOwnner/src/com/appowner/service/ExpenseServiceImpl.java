@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.bean.BroadCastMessage;
 import com.appowner.dao.ExpenseDao;
+import com.appowner.model.AddTemplateMessage;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.BroadCastMessage1;
@@ -420,6 +421,25 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public String getSubject(String str_MessageType) {
 		// TODO Auto-generated method stub
 		return getExpenseDao().getSubject(str_MessageType);
+	}
+
+	@Override
+	public void addTemplateMessage(AddTemplateMessage atm) {
+		// TODO Auto-generated method stub
+		getExpenseDao().addTemplateMessage(atm);
+	}
+
+	@Override
+	public Integer getInt_MessageTypeId(String str_MessageType) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getInt_MessageTypeId(str_MessageType);
+	}
+
+	@Override
+	public String getStr_Venue(Integer int_MessageTypeId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getStr_Venue(int_MessageTypeId);
+		  
 	}
 
 	 
