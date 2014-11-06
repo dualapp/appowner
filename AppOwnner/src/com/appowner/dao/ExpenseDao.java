@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import com.appowner.bean.BroadCastMessage;
+import com.appowner.model.AddTemplateMessage;
 import com.appowner.model.AssetCategory;
 import com.appowner.model.Assets;
 import com.appowner.model.BroadCastMessage1;
@@ -145,5 +146,11 @@ public interface ExpenseDao {
 	void addBroadCastMessage(BroadCastMessage1 broadCastMessage);
 
 	String getSubject(String str_MessageType);
+
+	void addTemplateMessage(AddTemplateMessage atm);
+
+	Integer getInt_MessageTypeId(String str_MessageType);
+
+	String getStr_Venue(Integer int_MessageTypeId);
 
 }
