@@ -41,7 +41,7 @@ import com.appowner.util.Util;
 @ViewScoped
 public class TemplateBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	//private static final String dueTemplate1="dueTemplate";
+	
 	@ManagedProperty(value = "#{TemplateService}")
 	private TemplateService templateService;
 	public TemplateService getTemplateService() {
@@ -91,7 +91,7 @@ public class TemplateBean implements Serializable {
 	}
 	private String str_Organisation;
 	public String getStr_Organisation() {
-		//str_Organisation=Util.getAppartmentName();
+		str_Organisation=Util.getAppartmentName();
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
@@ -121,55 +121,51 @@ public class TemplateBean implements Serializable {
 	public void setStr_TaxTemplates(List<String> str_TaxTemplates) {
 		this.str_TaxTemplates = str_TaxTemplates;
 	}
-	private DueTemplate dueTemplate;
+	private DueTemplate dueTemplate1=new DueTemplate();
 
 	
 	
 	
-	public DueTemplate getDueTemplate() {
-		return dueTemplate;
+	
+	public void setDueTemplate1(DueTemplate dueTemplate1) {
+		this.dueTemplate1 = dueTemplate1;
 	}
-	public void setDueTemplate(DueTemplate dueTemplate) {
-		this.dueTemplate = dueTemplate;
+	
+	public DueTemplate getDueTemplate1() {
+		return dueTemplate1;
 	}
-	public void getDueTemplate1()
-	{   
-	    System.out.println(id);
+	public void getDueTemplate2(int id1)
+	{  System.out.println(id1+"jdskjfd");
+	   dueTemplate1=getTemplateService().getDueTemplate(id1);
 	  
-	 
-	 
-		   dueTemplate=getTemplateService().getDueTemplate(id);
 	}
-	public void getDueTemplate2()
-	{   System.out.println(int_DueTemplateID);
-	dueTemplate=getTemplateService().getDueTemplate(int_DueTemplateID);
-	}
-	 FacesContext facesContext = FacesContext.getCurrentInstance();
+	 
 	public String addDueTemplate()
-	{
+	{  
 		try{
-		DueTemplate duetemplate=new DueTemplate();
-		duetemplate.setStr_Organisation(getStr_Organisation());
-		duetemplate.setStr_Accounts(getStr_Accounts());
-		duetemplate.setStr_Calculation(getStr_Calculation());
-		duetemplate.setStr_DueTemplate(getStr_DueTemplate());
-		duetemplate.setStr_Frequency(getStr_Frequency());
-		duetemplate.setStr_Rate(str_Rate);
-		duetemplate.setStr_TaxTemplate(getStr_TaxTemplate());
-		Integer yes=getTemplateService().saveDueTemplate(duetemplate);
-		if(yes!=0)
-			{
-			 FacesContext facesContext = FacesContext.getCurrentInstance();
-	           facesContext.addMessage(null, new FacesMessage("Informatin Saved Successfully!!!!!!!!!!!"));
-	           return "infomation.xhtml?faces-redirect=true";
-			}
+		DueTemplate duetemplate3=new DueTemplate();
 		
-	   }
-		catch(Exception e)
-		{
-			e.printStackTrace();
+		duetemplate3.setStr_Organisation(getStr_Organisation());
+		
+		duetemplate3.setStr_Accounts(getStr_Accounts());
+		duetemplate3.setStr_Calculation(getStr_Calculation());
+		duetemplate3.setStr_DueTemplate(getStr_DueTemplate());
+		duetemplate3.setStr_Frequency(getStr_Frequency());
+		duetemplate3.setStr_Rate(str_Rate);
+		duetemplate3.setStr_TaxTemplate(getStr_TaxTemplate());
+		getTemplateService().saveDueTemplate(duetemplate3);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate  added Successfully!", "  DueTemplate added Successfully!"));
+		return "duetemplate.xhtml";
 		}
-		  return "infomation.xhtml?faces-redirect=true";
+		catch(Exception e)
+				{
+			            e.printStackTrace();
+				}
+		return "duetemplate.xhtml";
 	}
 	
 	public Double getStr_Rate() {
@@ -192,7 +188,7 @@ public class TemplateBean implements Serializable {
 		 
 		//System.out.println(emp.getEmpId());
 		
-		getTemplateService().updateDueTemplate(dueTemplate);
+		getTemplateService().updateDueTemplate(dueTemplate1);
 			
 		
 		
@@ -223,7 +219,7 @@ public class TemplateBean implements Serializable {
 			Flash flash = facesContext.getExternalContext().getFlash();
 			flash.setKeepMessages(true);
 			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
 	    } 
 
      getTemplateService().deleteDue1(delete);
@@ -232,13 +228,7 @@ public class TemplateBean implements Serializable {
     public String cancelDue() {
 		return "duetemplate.xhtml?faces-redirect=true";
 	}
-    private HtmlDataTable updatedAccounts;
-	public HtmlDataTable getUpdatedAccounts() {
-		return updatedAccounts;
-	}
-	public void setUpdatedAccounts(HtmlDataTable updatedAccounts) {
-		this.updatedAccounts = updatedAccounts;
-	}
+   
 	private static Integer id;
 	public static Integer getId() {
 		return id;
@@ -246,13 +236,7 @@ public class TemplateBean implements Serializable {
 	public static void setId(Integer id) {
 		TemplateBean.id = id;
 	}
-	private DataTable dataTable;
-	public void processValueChange(ValueChangeEvent event)  
-	        throws AbortProcessingException { 
-		dueTemplate=(DueTemplate)dataTable.getRowData();
-		id=dueTemplate.getInt_DueTemplateID();
-		System.out.println(id);
-	}
+	
 	private List<DueTemplate> selectedDueTemplate;
 
 	
@@ -264,12 +248,7 @@ public class TemplateBean implements Serializable {
 	public void setSelectedDueTemplate(List<DueTemplate> selectedDueTemplate) {
 		this.selectedDueTemplate = selectedDueTemplate;
 	}
-	public DataTable getDataTable() {
-		return dataTable;
-	}
-	public void setDataTable(DataTable dataTable) {
-		this.dataTable = dataTable;
-	}
+	
 	public String saveDueTemplate(DueTemplate dueTemplate) {
 		if (dueTemplate.getInt_DueTemplateID() != null) {
 			
@@ -656,12 +635,7 @@ public class TemplateBean implements Serializable {
     public String cancelInvoice() {
 		return "invoicetemplate.xhtml?faces-redirect=true";
 	}
-    public void processValueChange1(ValueChangeEvent event)  
-	        throws AbortProcessingException { 
-    	invoiceTemplate=(InvoiceTemplate)dataTable.getRowData();
-		id=invoiceTemplate.getInt_InvoiceTemplateID();
-		System.out.println(id);
-	}
+   
     public String saveInvoiceTemplate(InvoiceTemplate invoiceTemplate) {
 		if (invoiceTemplate.getInt_InvoiceTemplateID()!= null) {
 			getTemplateService().updateInvoiceTemplate(invoiceTemplate);
@@ -771,19 +745,15 @@ public class TemplateBean implements Serializable {
 		messagetemplate.setStr_Mode(getStr_Mode());
 		messagetemplate.setStr_Title(getStr_Title());
 		messagetemplate.setStr_Description(getStr_Description());
-	Integer yes=getTemplateService().saveMessageTemplate(messagetemplate);
-		if(yes!=0)
-		{
-		 FacesContext facesContext = FacesContext.getCurrentInstance();
-         facesContext.addMessage(null, new FacesMessage("Informatin Saved Successfully!!!!!!!!!!!"));
-         return "infomation.xhtml?faces-redirect=true";
-		}
-		}
+	     getTemplateService().saveMessageTemplate(messagetemplate);
 		
-		catch (Exception e) {
+		return "messagetemplate.xhtml";
+	   }
+		catch(Exception e)
+				{
 			e.printStackTrace();
-		}
-		return "infomation.xhtml?faces-redirect=true";
+				}
+		return "messagetemplate.xhtml";
 	}
 	private List<MessageTemplate> listMessages;
 	public List<MessageTemplate> getListMessages() {
@@ -794,7 +764,7 @@ public class TemplateBean implements Serializable {
 	public void setListMessages(List<MessageTemplate> listMessages) {
 		this.listMessages = listMessages;
 	}
-	private MessageTemplate messageTemplate;
+	private MessageTemplate messageTemplate=new MessageTemplate();
 	public MessageTemplate getMessageTemplate() {
 		return messageTemplate;
 	}
@@ -805,12 +775,12 @@ public class TemplateBean implements Serializable {
 	{   System.out.println(int_MessageTemplateID);
 		messageTemplate=getTemplateService().getMessageTemplate(int_MessageTemplateID);
 	}
-	public void getMessageTemplate2()
-	{   System.out.println(int_MessageTemplateID);
-		messageTemplate=getTemplateService().getMessageTemplate(id);
+	public void getMessageTemplate2(int id1)
+	{   System.out.println(id1);
+		messageTemplate=getTemplateService().getMessageTemplate(id1);
 	}
 	public String saveMessageTemplate()
-	{
+	{   System.out.println("hujy");
 		getTemplateService().updateMessageTemplate(messageTemplate);
 		return "messagetemplate.xhtml?faces-redirect=true";
 	}
