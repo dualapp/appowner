@@ -28,12 +28,13 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	@SuppressWarnings("unchecked")
 	public List<Notice> listNotices(int firstRow, int rowPerPage,String str_Visible)
 	{
-	  /*{   String  query = "{ CALL expireCalculation() }";
+	  {   String  query = "{ CALL expireCalculation() }";
 				
 	  List<Notice> notice = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Notice.class)
 	          ).list();
-         */
-	  System.out.println(firstRow+"k22");
+	 
+	  }   
+	System.out.println(firstRow+"k22");
 		if(str_Visible.equalsIgnoreCase("Only Owner of this Complex"))
 		
 			return (List<Notice>) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setFirstResult(firstRow).setMaxResults(rowPerPage).list();   
@@ -55,7 +56,7 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 		@Override
 		public Integer count() {
 			// TODO Auto-generated method stub
-			return  (Integer) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setProjection(Projections.rowCount()).uniqueResult();
+			return  (Integer) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setCacheable(true).setProjection(Projections.rowCount()).uniqueResult();
 		}
 	 
 }
