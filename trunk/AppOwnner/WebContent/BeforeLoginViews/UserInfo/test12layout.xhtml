@@ -6,12 +6,12 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	 xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
- <h:head><title>User Registration</title>
-  <link rel="stylesheet" type="text/css" href="../../include/assets/css/ace.min.css" />
-  
+ <h:head><title>User Registration 
+ </title>
+ <link rel="stylesheet" href="css/style.css" type="text/css" media="all"></link>
  </h:head>
-<body bgcolor="#F08080">
-    <h:form id="form" >
+<body bgcolor="red"><center>
+    <h:form id="form" ><center>
    <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
@@ -22,8 +22,8 @@
 		</tbody>
 	</table>   
    <div id="page">
-   <h:messages style="color:red"/>   		
-   <table cellpadding="20" cellspacing="20" border="1" width="95%" class="src" align="center">
+   	
+   <table >
    		<tr>
         	<td ><h:outputLabel for="str_UserCountry" class="gsContent" value="Country" color="#F08080" /><font color="red" >*</font></td>
             <td><p:selectOneMenu id="str_UserCountry" value="#{cls_UserBeanMain.str_UserCountry}" valueChangeListener="#{cls_UserBeanMain.countryChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select country!">
@@ -34,7 +34,8 @@
                 <p:ajax event="change" update="str_UserCountry" process="str_UserCountry"/>
                  <p:ajax event="change" update="str_UserState" process="str_UserCountry"/>                  
             	</p:selectOneMenu>
-            </td>
+            </td><td><p:message for="str_UserCountry" display="text"/>
+                </td>
         </tr>
         <tr>
             <td><h:outputLabel for="str_UserState" class="gsContent" value="State" /><font color="red" >*</font></td>
@@ -42,7 +43,8 @@
                 <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{cls_UserBeanMain.str_UserStates}"/>
                <p:ajax event="change" update="str_UserCity" process="str_UserState"/>    
-            </p:selectOneMenu></td>
+            </p:selectOneMenu></td><td><p:message for="str_UserState" display="text"/>
+                </td>
          </tr>
          <tr> 
          	<td><h:outputLabel for="str_UserCity" class="gsContent" value="City " /><font color="red" >*</font></td>
@@ -50,7 +52,8 @@
                 <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserCities}"/>
                 <p:ajax event="change" update="str_UserApartment" process="str_UserCity"/>
-            </p:selectOneMenu></td>
+            </p:selectOneMenu></td><td><p:message for="str_UserCity" display="text"/>
+                </td>
           </tr>
           <tr> 
             <td><h:outputLabel for="str_UserApartment" class="gsContent" value="Apartment" /><font color="red" >*</font></td>
@@ -58,10 +61,11 @@
                 <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
                  <p:ajax event="change" process="str_UserApartment"/>
-            </p:selectOneMenu></td>
+            </p:selectOneMenu></td><td><p:message for="str_UserApartment" display="text"/>
+                </td>
           </tr>
           <tr><td colspan="2"><br/><br/></td></tr>           
-          <tr><td colspan="2" align="center"><h:commandButton value="Join Us"  class="btn" action="#{cls_UserBean.getRegistration}">
+          <tr><td colspan="2"><h:commandButton value="Join Us"  class="btn" action="#{cls_UserBean.getRegistration}">
               </h:commandButton>&#150;&#150;
               <h:commandButton value="Click Here to Add Your Appartment" class="btn" action="#{cls_UserBean.addApartment}" update="str_UserCountry" >
             <p:ajax event="change" update="str_UserState"/>
@@ -69,7 +73,7 @@
           <tr><td colspan="2"><br/><br/></td></tr>    
           
    </table>
-   </div>
-   </h:form>            
+   </div></center>
+   </h:form> </center>        
    </body>
    </html>
