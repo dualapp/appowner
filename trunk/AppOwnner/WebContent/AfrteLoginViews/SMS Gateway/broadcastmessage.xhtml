@@ -19,7 +19,7 @@
 	<h:form>
 	<h:body>
 	 
-  <div id="page">
+  <div id="page3">
       <div class="gsTitle"> <center> <b> SMS Gateway</b></center></div>
 <table><tr><td><font color="blue">Accessible to: Admin Team</font></td></tr>
 
@@ -31,9 +31,9 @@
       </table>
        </div>
        <div style="clear:all;"/>
-	<div id="page1">
+	<div id="page3">
 	<div class="gsTitle"> <center> <b> Broadcast Message</b></center><hr/></div>
-	<div class="ui-grid-row"> <table  align="center">
+	<div class="ui-grid-row"> <table>
 	<tr><td>
  <h:selectOneRadio value="# " layout="pageDirection">
    <f:selectItem itemValue="Red" itemLabel="All users" /> 
@@ -65,7 +65,7 @@
  
 </div>
 <div style="clear:both"/>
-<div id="page1">
+<div id="page3">
 
  <table> <tr><td>
  <h:selectOneRadio id="myRadio" value="#{expenseBean.str_MessageTempType}">
@@ -85,7 +85,7 @@
                  
  <f:selectItems value="#{expenseBean.messageTypeList1}"/>
                 <p:ajax   event="click" immediate="true"
-                    render="parentPanel panelOne panelTwo" update="parentPanel panelOne panelTwo "/>
+                    render="parentPanel panelOne panelTwo" update="parentPanel panelOne panelTwo"/>
 
             </h:selectOneRadio> 
     </p:column>
@@ -97,7 +97,7 @@
              <div class="gsTitleDiv">Meeting <br/><hr/></div>
                     
             <table>
-            <tr><th></th><td><h:inputText value='#{expenseBean.str_Subject}'/></td></tr>  
+            <tr><th>Title</th><td><h:inputText value='#{expenseBean.str_Subject}'/></td></tr>  
             <tr> <th>Meeting On</th> <td> <p:calendar/></td></tr>
                      <tr> <th> At</th>
                      <td> 
@@ -119,7 +119,7 @@
                   <div class="gsTitleDiv">Event <br/><hr/></div>
                   <table><tr><th>
                   <h:outputLabel for="title" value="Title:" /></th>
-                    <td><p:inputText id="title" value="#{requestScopeBean.event.title}" required="true" /></td></tr>
+                    <td><p:inputText id="title" value="#{expenseBean.str_Subject}" required="true" /></td></tr>
             
  
           <tr><th>  <h:outputLabel for="from" value="From:" /></th>
@@ -131,7 +131,9 @@
            <td> <p:inputMask id="to" value="#{requestScopeBean.event.endDate}" mask="9999/99/99">
                
             </p:inputMask></td></tr>
- 
+            <tr><th><h:outputText value="MESSAGE*"/></th> 
+        <td><p:inputTextarea   value="#{expenseBean.str_Description}" rows="6" cols="33"/></td></tr>
+         <tr><th>Venue</th><td> <h:inputText value="#{expenseBean.str_Venue}"/> </td></tr>
            <tr><th>  <h:outputLabel for="allDay" value="All Day:" /></th>
           <td>  <h:selectBooleanCheckbox id="allDay" value="#{requestScopeBean.event.allDay}" /></td></tr>
           </table>
