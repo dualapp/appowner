@@ -330,38 +330,7 @@ public static void setContent(String content) {
 	    }
 	    return listOfNotice;
 		
-		  /*ListIterator itr=listOfNotice.listIterator();
-		   while(itr.hasNext())
-		   {
-			   Object obj=itr.next();
-			   Notice notice=(Notice)obj;
-			   dat_EntryDate=notice.getDat_EntryDate();
-			   System.out.println(dat_EntryDate);
-			   int_ExpireDay=notice.getInt_ExpireDay();
-			   System.out.println(int_ExpireDay);
-			   @SuppressWarnings("deprecation")
-			int month = dat_EntryDate.getMonth() +1;
-					   @SuppressWarnings("deprecation")
-					int day = dat_EntryDate.getDate();
-					   @SuppressWarnings("deprecation")
-					int year=dat_EntryDate.getYear();
-							   System.out.println(month);
-					   System.out.println(day);
-					   System.out.println(year);
-				int day1=dat_EntryDate.getDate()+int_ExpireDay;
-				System.out.println(day1);
-				String date = year + "/" + month + "/" + day1;
-			    java.util.Date dat_ExpireOn = null;
-
-			  
-			      SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-			      dat_ExpireOn = formatter.parse(date);
-			      System.out.println("utilDate:" + dat_ExpireOn);
-			    
-		   }
-		  */ 
-		  
-	 
+		
 	}
 	public void setListOfNotice(List<Notice> listOfNotice) {
 		this.listOfNotice = listOfNotice;

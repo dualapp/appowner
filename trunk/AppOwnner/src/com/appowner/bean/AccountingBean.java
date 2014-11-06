@@ -386,13 +386,13 @@ public void setList(List<SelectItem> list) {
 }
 public List<SelectItem> getCars() {
 //	cars=new ArrayList<SelectItem>();
-	//cars.addAll(getAccountsService().getAccounts());
+//	cars.addAll(getAccountsService().getAccounts());
 	return cars;
 }
 
 
 
-/*?@PostConstruct
+@PostConstruct
 public void init(){ 
 	Object[] st1=getList().toArray();
 	List s=Arrays.asList(st1);
@@ -413,7 +413,7 @@ public void init(){
  
 }
 
-*/ 
+
  
 public Character getCh_Group() {
 	return ch_Group;
@@ -422,7 +422,7 @@ public void setCh_Group(Character ch_Group) {
 	this.ch_Group = ch_Group;
 }
 
-@PostConstruct
+/*@PostConstruct
 public void init() {
      
     
@@ -528,7 +528,7 @@ public String getStr_AccountType() {
 }
 public void setStr_AccountType(String str_AccountType) {
 	this.str_AccountType = str_AccountType;
-} 
+} */
 public void accountchangeListener(ValueChangeEvent event){
 	
 	
