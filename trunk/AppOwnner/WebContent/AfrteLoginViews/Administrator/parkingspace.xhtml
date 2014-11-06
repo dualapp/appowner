@@ -34,15 +34,16 @@
 	<br/>
 	<div id="page3">
            <div class="gsTitleDiv">Parking Space<br/><hr/></div> 
-	<h:outputText value="Organisation:" /> 
-               
-              <p:selectOneMenu       style="width:100px">
-              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
-                
-                 </p:selectOneMenu><br/>
 	 
                 
-           <table style="overflow:hidden;border:0pt none;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
+           <table style="overflow:hidden;border:0pt none;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+           <tr><td><h:outputText value="Organisation:" /> 
+               
+              <p:selectOneMenu >
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td></tr>
+           <tr><td>  
 	    <p:commandButton process="DT" update="multiParkingSpaceDetail"   value="Create New" oncomplete="PF('multiParkingSpaceDialog').show()" />
 	
 	 &#150; &#150;  <p:commandButton process="DT" update="multiParkingSpaceDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiParkingSpaceDialog1').show()" />
