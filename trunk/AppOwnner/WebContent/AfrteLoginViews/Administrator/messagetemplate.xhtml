@@ -8,91 +8,13 @@
 	<ui:define name="content">
 <h:head>
     <title>Message Template  Form</title>
-    <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
-    <style>
-     body
-        {
-          font-family: Verdana;
-            font-size: 10px;
-            }
-     
-    </style>
-    <script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading_home.gif");
- modalWin.SetCloseButtonImagePath("images/cross.png");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-
-function ShowNewPage(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewmessagetemplate.xhtml',470,600,'Create New Message Template',null,callbackFunctionArray);
- }
-function ShowNewPage1(clicked_id){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-   modalWin.ShowURL("editmessagetemplate.xhtml?int_MessageTemplateID="+clicked_id+"",400,350,'Edit Message Template',null,callbackFunctionArray);
-	 }
-function ShowNewPage2(clicked_id){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-	modalWin.ShowURL("viewmessagetemplate.xhtml?int_MessageTemplateID="+clicked_id+"",400,350,'View Message Template',null,callbackFunctionArray);
-	 }
-function ShowNewPage3(){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-	 modalWin.ShowURL('editmessagetemplate1.xhtml',470,600,'Edit Message Template',null,callbackFunctionArray);
-	 }
-function ShowNewPage4(){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-	 modalWin.ShowURL('viewmessagetemplate1.xhtml',470,600,'View Message Template',null,callbackFunctionArray);
-	 } 
-	 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
-
-}
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Submit(msg){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function HideModalWindow() {
-    modalWin.HideModalPopUp();
-}
-
-</script>
+   
    </h:head>
    <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/message.jpg" height="60" width="70"></img> <span class="title">MessageTemplate</span>
+					<img src="#{expenseBean.str_Name}images/message.jpg" height="50" width="50"></img> <span class="title">MessageTemplate</span>
 				</td>
 			</tr>
 		</tbody>
@@ -105,20 +27,20 @@ function HideModalWindow() {
        <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:150px">
+              <td><p:selectOneMenu id="str_Organisation1" value="#{templateBean.str_Organisation}"  style="width:150px">
                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{templateBean.str_Organisation}"  itemValue="#{templateBean.str_Organisation}"/>
                  </p:selectOneMenu>
              </td>
              <td><h:outputLabel value="Show:" /></td>
-              <td><p:selectOneMenu id="str_Mode" value="#{templateBean.str_Mode}"  style="width:150px">
+              <td><p:selectOneMenu id="str_Mode1" value="#{templateBean.str_Mode}"  style="width:150px">
                    <f:selectItem itemLabel="All" itemValue="All" />
                     <f:selectItem itemLabel="Sms" itemValue="Sms" />
                      <f:selectItem itemLabel="Email" itemValue="Email" />
                  </p:selectOneMenu>
              </td>
               <td><h:outputLabel value="Message Template Of:" /></td>
-              <td><p:selectOneMenu id="str_Category" value="#{templateBean.str_Category}"  style="width:150px">
+              <td><p:selectOneMenu id="str_Category1" value="#{templateBean.str_Category}"  style="width:150px">
                    <f:selectItem itemLabel="All" itemValue="All" />
                     <f:selectItem itemLabel="Ads" itemValue="Ads" />
                     <f:selectItem itemLabel="Dues" itemValue="Dues" />
@@ -141,23 +63,23 @@ function HideModalWindow() {
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr>
          <td>
-                <input type="button" style="width: 150px" onclick="ShowNewPage()" value="Create New" />&#150; &#150;<p:commandButton process="message" update=":form:multiMessageTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiMessageTemplateDialog1').show()" />
-       &#150; &#150; <p:commandButton process="message" update=":form:multiMessageTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiMessageTemplateDialog').show()" />
-       &#150; &#150;  <p:commandButton update="message" process="message" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteMessageTemplate()}" icon="ui-icon-trash" value="Delete" />&#150; &#150;<h:commandButton  value="Refresh" />
+              <p:commandButton style="width:120px;height:25px" process="message" update=":form:multiMessageTemplateDetail2" icon="ui-icon-pencil" value="Create New" oncomplete="PF('multiMessageTemplateDialog2').show()" />&#150; &#150; &#150; &#150; &#150; &#150;<p:commandButton process="message" style="width:120px;height:25px" update=":form:multiMessageTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiMessageTemplateDialog1').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="message" update=":form:multiMessageTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiMessageTemplateDialog').show()" />
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="message" process="message" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteMessageTemplate()}" icon="ui-icon-trash" value="Delete" />&#150; &#150;  &#150; &#150;<p:commandButton style="width:120px;height:25px"  value="Refresh" icon="ui-icon-refresh"/>
               <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
-    </h:commandLink>
+    </h:commandLink>&#150;
  
     <h:commandLink id="pdf">
        <p:graphicImage  height="20" width="20" alt="pdf" value="#{expenseBean.str_Name}images/pdf.jpg"/>
         <p:dataExporter type="pdf"    target="DT" fileName="BookDetails" />
-    </h:commandLink>
+    </h:commandLink>&#150;
  
     <h:commandLink id="csv">
        <p:graphicImage  height="20" width="20" alt="cvs" value="#{expenseBean.str_Name}images/csv.jpg"/>
         <p:dataExporter type="csv"    target="DT" fileName="BookDetails" />
-    </h:commandLink>
+    </h:commandLink>&#150;
  
     <h:commandLink id="xml">
        <p:graphicImage  height="20"    width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.jpg"/>
@@ -170,57 +92,159 @@ function HideModalWindow() {
               
          <p:growl id="msgs" showDetail="true" /> 
       
-        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
+        <p:dataTable id="message" var="message" value="#{templateBean.listMessages}"  style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
           selection="#{templateBean.selectedMessageTemplate}" rowKey="#{message.int_MessageTemplateID}" editable="true"  resizableColumns="true">
 					
                   <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>     
             <p:column>
                 <f:facet name="header">
+                <center>
                     <h:outputText value="Organisation Name" />
+                    </center>
                 </f:facet>
-                <h:outputText value="#{message.str_Organisation}" />
+                <center>
+                <h:outputText value="#{templateBean.str_Organisation}" />
+                </center>
             </p:column>
-            <p:column>
+            <p:column >
                 <f:facet name="header">
+                <center>
                     <h:outputText value="Mode" />
+                    </center>
                 </f:facet>
+                 <center>
                 <h:outputText value="#{message.str_Mode}" />
+                </center>
             </p:column>
             <p:column>
                 <f:facet name="header">
+                 <center>
                     <h:outputText value="Category" />
+                    </center>
                 </f:facet>
+                 <center>
                 <h:outputText value="#{message.str_Category}" />
+                </center>
             </p:column>
             <p:column>
                 <f:facet name="header">
+                 <center>
                     <h:outputText value="Title" />
+                    </center>
                 </f:facet>
+                 <center>
                 <h:outputText value="#{message.str_Title}" />
+                </center>
             </p:column>
               <p:column>
                 <f:facet name="header">
+                 <center>
                     <h:outputText value="Created By" />
+                    </center>
                 </f:facet>
+                 <center>
                 <h:outputText value="#{message.str_CreatedBy}" />
+                </center>
             </p:column>
            <p:column>
                 <f:facet name="header">
+                <center>
+                
                     <h:outputText value="Action" />
+                    </center>
                 </f:facet>
-                 <input type="button" id="#{message.int_MessageTemplateID}" style="width: 50px" onclick="ShowNewPage1(this.id)" value="Edit" />
-             <input type="button" id="#{message.int_MessageTemplateID}" style="width: 50px" onclick="ShowNewPage2(this.id)" value="View" />
+                <center>
+              <h:panelGroup layout="block" id="mainDiv" style="float:center">
+               <p:commandLink   process="message"  update=":form:multiMessageTemplateDetail3" oncomplete="PF('multiMessageTemplateDialog3').show()" action="#{templateBean.getMessageTemplate2(message.int_MessageTemplateID)}">
+                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
+              </p:commandLink>
+               &#150; 
+               
+               
+              <p:commandLink   process="message"  update=":form:multiMessageTemplateDetail4" oncomplete="PF('multiMessageTemplateDialog4').show()" action="#{templateBean.getMessageTemplate2(message.int_MessageTemplateID)}">
+                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink>
+               &#150;
                <h:link outcome="deletemessage.xhtml"
 							onclick="return confirm('Are you sure you want to delete #{message.int_MessageTemplateID}?');">
 							<p:graphicImage height="20" width="20" alt="delete"
-								value="images/delete.jpg" />
+								value="#{expenseBean.str_Name}images/delete.jpg" />
 							<f:param name="int_MessageTemplateID"
 								value="#{message.int_MessageTemplateID}" />
 						</h:link>
-               
+               </h:panelGroup>
+               </center>
             </p:column>
             </p:dataTable>
             </div>
+             <p:dialog header="Create New MessageTemplate" widgetVar="multiMessageTemplateDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="500">
+        <p:outputPanel id="multiMessageTemplateDetail2" style="text-align:center;">
+         <table>
+            <tr>
+            <td>  <h:outputText  value="Created By" /></td>
+            <td>  <p:inputText id="str_CreatedBy" value="#{templateBean.str_CreatedBy}" size="25"/> </td>
+           </tr>
+           <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          
+          <tr>
+            <td>  <h:outputText  value="Email" /></td>
+            <td>  <p:inputText id="str_Email" value="#{templateBean.str_Email}" size="25"/> </td>
+          </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+           <tr>
+            <td>  <h:outputText  value="Date" /></td>
+            <td>  <p:inputText id="dat_Date" value="#{templateBean.dat_Date}" size="25" readonly="true"/> </td>
+          </tr>
+            <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr>
+             <td> <h:outputLabel value="Mode" /></td>  
+          <td><p:selectOneMenu id="str_Mode" value="#{templateBean.str_Mode}"  style="width:300px">
+                   <f:selectItem itemLabel="Email" itemValue="Email" />
+                    <f:selectItem itemLabel="Sms" itemValue="Sms" />
+                 </p:selectOneMenu></td>   
+                 </tr>
+                   <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+                 <tr>
+                  <td><h:outputLabel value="Category:" /></td>
+              <td><p:selectOneMenu id="str_Category" value="#{templateBean.str_Category}" style="width:150px">
+                  
+                    <f:selectItem itemLabel="Ads" itemValue="Ads" />
+                    <f:selectItem itemLabel="Accounts" itemValue="Accounts" />
+                     <f:selectItem itemLabel="Maintenance" itemValue="Maintenance" />
+                     <f:selectItem itemLabel="Parking" itemValue="Parking" />
+                      <f:selectItem itemLabel="Meeting" itemValue="Meeting" />
+                       <f:selectItem itemLabel="Others" itemValue="Others" />
+                        <f:selectItem itemLabel="Welcome New User" itemValue="Welcome New User" />
+                 </p:selectOneMenu>
+             </td>
+                 </tr>
+                   <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+                <tr>
+            <td>  <h:outputText  value="Title" /><font color="red" >*</font></td>
+            <td>  <p:inputText id="str_Title" value="#{templateBean.str_Title}" size="25"  required="true" requiredMessage="Title should not Empty"/><br/><font  size="2" color="red">30 Characters Maximum</font></td>
+                 <td><h:message for="str_Title" dispay="text"/></td>
+          </tr> 
+          
+                 <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>  
+                <tr>
+            <td>  <h:outputText  value="Description" /><font color="red" >*</font></td>
+            <td>  <p:inputTextarea id="str_Description" rows="4" cols="30" value="#{templateBean.str_Description}" size="25"  required="true" requiredMessage="Description should not Empty"/><br/><font  size="2" color="red">1500 Characters Maximum</font> </td>
+            <td><p:message for="str_Description" dispay="text"/></td>
+          </tr> 
+          </table>
+         
+          <br/>
+            <h:panelGroup style="display:block; text-align:right">
+     <tr> 
+     <td >
+     <p:commandButton id="submit" value="Submit" onclick="EnrollNowClick()" action="#{templateBean.addMessageTemplate}" ajax="false" /></td>
+     <td ><p:commandButton id="cancel" value="Cancel" action="#{complainBean.reset}" onclick="EnrollLater1()" ajax="false"/></td>
+            </tr>
+            </h:panelGroup>
+            
+        </p:outputPanel>
+        </p:dialog>
+        
              <p:dialog header="Edit MessageTemplate" widgetVar="multiMessageTemplateDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiMessageTemplateDetail" style="text-align:center;">
           
@@ -271,6 +295,56 @@ function HideModalWindow() {
             
         </p:outputPanel>
     </p:dialog>
+    <p:dialog header="Edit MessageTemplate" widgetVar="multiMessageTemplateDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+        <p:outputPanel id="multiMessageTemplateDetail3" style="text-align:center;">
+          
+           <table>
+               
+         
+             <tr>
+ <th>
+    <h:outputText value="Created By:"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_CreatedBy}"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Email:"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Email}"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Mode"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Mode}"/></td>
+    </tr>
+     <tr>
+    <th>
+    <h:outputText value="Category"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Category}"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Title"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Title}"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Description"/></th>
+    <td>
+     <h:inputTextarea cols="20" row="30"  value="#{templateBean.messageTemplate.str_Description}"/></td>
+    </tr>  
+
+      
+           
+             <tr><td><h:commandButton value="update" action="#{templateBean.saveMessageTemplate()}"/></td></tr>
+            </table>
+            
+        </p:outputPanel>
+    </p:dialog>
     <p:dialog header="View MessageTemplate" widgetVar="multiMessageTemplateDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiMessageTemplateDetail1" style="text-align:center;">
            <table>
@@ -314,6 +388,52 @@ function HideModalWindow() {
      <h:inputTextarea cols="20" row="30"  value="#{messageTemplate1.str_Description}" readonly="true"/></td>
     </tr>  
             </ui:repeat>
+            </table>
+        </p:outputPanel>
+    </p:dialog>
+    <p:dialog header="View MessageTemplate" widgetVar="multiMessageTemplateDialog4"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiMessageTemplateDetail4" style="text-align:center;">
+           <table>
+              
+            
+             
+              <tr>
+ <th>
+    <h:outputText value="Created By:"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_CreatedBy}" readonly="true"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Email:"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Email}" readonly="true"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Mode"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Mode}" readonly="true"/></td>
+    </tr>
+     <tr>
+    <th>
+    <h:outputText value="Category"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Category}" readonly="true"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Title"/></th>
+    <td>
+    <h:inputText value="#{templateBean.messageTemplate.str_Title}" readonly="true"/></td>
+    </tr>
+      <tr>
+    <th>
+    <h:outputText value="Description"/></th>
+    <td>
+     <h:inputTextarea cols="20" row="30"  value="#{templateBean.messageTemplate.str_Description}" readonly="true"/></td>
+    </tr>  
+           
             </table>
         </p:outputPanel>
     </p:dialog>
