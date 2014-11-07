@@ -39,40 +39,40 @@
   </tr>
    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/>  </td>
    <th><h:outputText value="Event Type"/></th> 
-   <td><p:selectOneMenu value="#{loginBean.str_EventType}">
+   <td><h:selectOneMenu value="#{loginBean.str_EventType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="Public" itemLabel="Public"/>
             <f:selectItem  itemLabel="Private" itemValue="Private" />
-      </p:selectOneMenu></td></tr>
+      </h:selectOneMenu></td></tr>
       
     <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputText value="Date Closed"/></th>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
     <tr><th><h:outputText value="Start Time"/></th> 
-     <td><p:selectOneMenu  id="STime" style="width:100px" required="true" requiredMessage="plz  Enter StartTime" value="#{loginBean.str_StartTime}">
+     <td><h:selectOneMenu  id="STime"   required="true" requiredMessage="plz  Enter StartTime" value="#{loginBean.str_StartTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
       <p:ajax event="blur" update="STimeMsg" />
-      </p:selectOneMenu>
+      </h:selectOneMenu>
       <p:message id="STimeMsg"   for="STime" display="text"/>
     
       </td>
        
        <th><h:outputText value="End Time"/></th>  <td>
-     <p:selectOneMenu id="ETime"  style="width:100px" required="true" requiredMessage="plz  Enter EndTime" value="#{loginBean.str_EndTime}">
+     <h:selectOneMenu id="ETime"    required="true" requiredMessage="plz  Enter EndTime" value="#{loginBean.str_EndTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
     <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
      <p:ajax event="blur" update="ETimeMsg" />
-      </p:selectOneMenu>
+      </h:selectOneMenu>
       <p:message id="ETimeMsg"  for="ETime" display="text"/>
       </td>
        </tr>
      <tr><th><h:outputText value="Facility Needed"/></th>
-     <td><p:selectOneMenu id="Facility" required="true" requiredMessage="plz  enter Facility Needed" style="width:100px" value="#{loginBean.str_FacilityType}">
+     <td><h:selectOneMenu id="Facility" required="true" requiredMessage="plz  enter Facility Needed"   value="#{loginBean.str_FacilityType}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
      <p:ajax event="blur" update="FacilityMsg" />
-    </p:selectOneMenu>
+    </h:selectOneMenu>
     <p:message id="FacilityMsg"  for="Facility" display="text"/>
     </td>
     

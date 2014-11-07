@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	<link href="include/assets/css/ace.min.css" rel="stylesheet" />
+	</h:head>
+	 <h:form id="form4">
+	  <p:growl id="msgs" showDetail="true" />
+	 <h:messages style="color:red"/>
+	 
+	<table>
+	<tr><th>
+	<h:outputText  value="Organisation:" /> </th>
+              
+              <td><p:selectOneMenu       style="width:100px">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </p:selectOneMenu></td></tr>
+                 
+<tr><th><h:outputText value="parkingSlot"/></th>
+	<td><h:inputText  id="Parkingslot" required="true" requiredMessage="plz Enter ParkingSlot" value="#{expenseBean.str_ParkingSlot}">
+	<p:ajax event="blur" update="ParkingSlotMsg" />
+	</h:inputText>
+	</td>
+	<td><p:message  id="ParkingSlotMsg" for="Parkingslot" display="text"/></td>
+	</tr>
+	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}" /> </td></tr> 
+	  
+    </table>
+	 
+  
+	 </h:form>
+ </html>
