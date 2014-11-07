@@ -25,29 +25,29 @@
  <div id="page3">  
   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
                <h:outputText value="Organisation:" /> </th>
-             <td> <p:selectOneMenu  value="#{requestScopeBean.str_OrganizationName}">&nbsp;
+             <td> <h:selectOneMenu  value="#{requestScopeBean.str_OrganizationName}">&nbsp;
              <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
-    </p:selectOneMenu></td>
-   <th><h:outputText value="Falility"/></th>  <td><p:selectOneMenu id="Facility" value="#{requestScopeBean.str_FacilityType}"  >
+    </h:selectOneMenu></td>
+   <th><h:outputText value="Falility"/></th>  <td><h:selectOneMenu id="Facility" value="#{requestScopeBean.str_FacilityType}"  >
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
      
-    </p:selectOneMenu>
+    </h:selectOneMenu>
     </td>
     <th><h:outputText value="Status"></h:outputText></th>
-    <td> <p:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
+    <td> <h:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
     <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="All"  itemValue="All" />
               <f:selectItem itemLabel="open"  itemValue="open" />
               <f:selectItem itemLabel="Pending Aproval"  itemValue="Pending Aproval" />
               <f:selectItem itemLabel="Closed"  itemValue="RequestClosed" />
-            </p:selectOneMenu>
+            </h:selectOneMenu>
             </td>
    
      </tr>
     <tr><th><h:outputText value="Period"></h:outputText></th>
-    <td><p:selectOneMenu value="#{requestScopeBean.str_Period}">
+    <td><h:selectOneMenu value="#{requestScopeBean.str_Period}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
             <f:selectItem  itemLabel="Lastweek" itemValue="Private" />
@@ -55,13 +55,13 @@
               <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
                <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
                 <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
-      </p:selectOneMenu></td>
+      </h:selectOneMenu></td>
     <th><h:outputText value="Event Type"/></th> 
-   <td><p:selectOneMenu value="#{requestScopeBean.str_EventType}">
+   <td><h:selectOneMenu value="#{requestScopeBean.str_EventType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="Public" itemLabel="Public"/>
             <f:selectItem  itemLabel="Private" itemValue="Private" />
-      </p:selectOneMenu></td> 
+      </h:selectOneMenu></td> 
      
      <td></td><td><h:commandButton update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
     </tr>

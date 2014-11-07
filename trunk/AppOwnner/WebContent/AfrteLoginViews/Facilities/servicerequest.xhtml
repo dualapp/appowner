@@ -114,27 +114,27 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                  <div id="page3"> 
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
                <h:outputText value="Organisation:" /> </th>
-             <td> <p:selectOneMenu value="#{requestScopeBean.str_OrganizationName}">&nbsp;
+             <td> <h:selectOneMenu value="#{requestScopeBean.str_OrganizationName}">&nbsp;
              <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
-    </p:selectOneMenu></td>
-   <th><h:outputText value="VendorCategory"/></th>  <td><p:selectOneMenu value="#{requestScopeBean.str_VendorType}">
+    </h:selectOneMenu></td>
+   <th><h:outputText value="VendorCategory"/></th>  <td><h:selectOneMenu value="#{requestScopeBean.str_VendorType}">
    <f:selectItem itemLabel="Select One" itemValue="" />
-    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></p:selectOneMenu>
+    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></h:selectOneMenu>
     </td>
     <th><h:outputText value="Status"></h:outputText></th>
-    <td> <p:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
+    <td> <h:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
     <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="All"  itemValue="All" />
               <f:selectItem itemLabel="open"  itemValue="open" />
               <f:selectItem itemLabel="Assigned"  itemValue="Progress" />
               <f:selectItem itemLabel="Closed"  itemValue="RequestClosed" />
-            </p:selectOneMenu>
+            </h:selectOneMenu>
             </td>
    
      </tr>
     <tr><th><h:outputText value="Period"></h:outputText></th>
-    <td><p:selectOneMenu style="" value="#{requestScopeBean.str_Period}">
+    <td><h:selectOneMenu style="" value="#{requestScopeBean.str_Period}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
             <f:selectItem  itemLabel="Lastweek" itemValue="Private" />
@@ -142,7 +142,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
               <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
                <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
                 <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
-      </p:selectOneMenu></td>
+      </h:selectOneMenu></td>
      
      <td></td><td><h:commandButton update="DT" value="Go" action="#{requestScopeBean.getListServiceRequest}"/></td>
     </tr>

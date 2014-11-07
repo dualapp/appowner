@@ -32,8 +32,8 @@
     <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <th><h:outputText value="LandLine"/></th>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
      
     <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputText value="Date Closed"/></th>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
-    <tr><th><h:outputText value="Status"/></th> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <th><h:outputText value="VendorCategory"/></th>  <td><p:selectOneMenu value="#{loginBean.str_VendorType}">
-    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></p:selectOneMenu>
+    <tr><th><h:outputText value="Status"/></th> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <th><h:outputText value="VendorCategory"/></th>  <td><h:selectOneMenu value="#{loginBean.str_VendorType}">
+    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></h:selectOneMenu>
     </td></tr>
    <tr><th><h:outputText value="Title*"/></th>  <td><h:inputText id="Title" required="true" requiredMessage="plz  enter Title" value="#{loginBean.str_Title}">
    <p:ajax event="blur" update="TitleMsg" />

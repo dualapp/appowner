@@ -23,13 +23,13 @@
 	  <div id="page3">
  <table>
  <tr><th>Template Type</th>
- <td><p:selectOneMenu   id="myRadio1" value="#{expenseBean.str_MessageType}"  >
+ <td><h:selectOneMenu   id="myRadio1" value="#{expenseBean.str_MessageType}"  >
                  
      <f:selectItems value="#{expenseBean.messageTypeList1}"/>
-            </p:selectOneMenu></td></tr>
-            <tr><th>Subject</th><td><h:inputText value="#{expenseBean.str_Subject}"/></td></tr>
+            </h:selectOneMenu></td></tr>
+            <tr><th>Subject</th><td><h:inputText value="#{expenseBean.str_Subject1}"/></td></tr>
             <tr><th>Template Message</th><td><p:editor   required="true" requiredMessage="plz  enter Details" id="editor" widgetVar="editorWidget"   width="550" height="280" style="margin-bottom:20px;"     value="#{expenseBean.str_Description}" /></td></tr>
- <tr><th>Venue</th><td><h:inputText value="#{expenseBean.str_Venue}"/></td></tr>
+ <tr><th>Venue</th><td><h:inputText value="#{expenseBean.str_Venue1}"/></td></tr>
  <tr><td><h:commandButton value="Add" action="#{expenseBean.addTemplateMessage}"/></td></tr>
  </table>
  </div>

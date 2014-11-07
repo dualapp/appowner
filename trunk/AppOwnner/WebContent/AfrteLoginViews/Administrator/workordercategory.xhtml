@@ -100,10 +100,10 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
              <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
              <tr><td><h:outputText value="Organisation:" /> 
                
-              <p:selectOneMenu >
+              <h:selectOneMenu >
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></td></tr>
+                 </h:selectOneMenu></td></tr>
              <tr><td>  
 	    <p:commandButton process="DT" update="multiWorkOrderDetail"   value="Create New" oncomplete="PF('multiWorkOrderDialog').show()" />
 	
@@ -144,10 +144,10 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
         <table>
 	<tr><th> 
                <h:outputText value="Organisation:" /> </th>
-             <td> <p:selectOneMenu       style="width:100px">
+             <td> <h:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{vendorBean.str_OrganizationName}"  itemValue="#{vendorBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></td></tr>
+                 </h:selectOneMenu></td></tr>
 	<tr><th><h:outputText value="CategoryName"/></th>
 	<td><h:inputText id="CategoryName" required="true" requiredMessage="plz Enter Category Name" value="#{vendorBean.str_VendorCategoryType}">
 	<p:ajax event="blur" update="CategoryNameMsg" />

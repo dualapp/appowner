@@ -29,7 +29,7 @@
 
  </h:head>
 	 <h:form   >
-	  <p:growl id="msgs" showDetail="true" />
+	  
 	<h:body>
 	<br/>
 	<div id="page3">
@@ -39,10 +39,10 @@
            <table style="overflow:hidden;border:0pt none;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr><td><h:outputText value="Organisation:" /> 
                
-              <p:selectOneMenu >
+              <h:selectOneMenu >
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></td></tr>
+                 </h:selectOneMenu></td></tr>
            <tr><td>  
 	    <p:commandButton process="DT" update="multiParkingSpaceDetail"   value="Create New" oncomplete="PF('multiParkingSpaceDialog').show()" />
 	
@@ -81,9 +81,7 @@
           </p:column>
           
 	  
-            
-       
-	 </p:dataTable>
+            </p:dataTable>
 	 </div>
 	  <p:dialog header="Create Parking Space" widgetVar="multiParkingSpaceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiParkingSpaceDetail" style="text-align:center;">
@@ -91,17 +89,17 @@
 	<tr><th>
 	<h:outputText  value="Organisation:" /> </th>
               
-              <td><p:selectOneMenu       style="width:100px">
+              <td><h:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></td></tr>
+                 </h:selectOneMenu></td></tr>
                  
 <tr><th><h:outputText value="parkingSlot"/></th>
-	<td><h:inputText  id="Parkingslot"   required="true"  value="#{expenseBean.str_ParkingSlot}">
-	 
+	<td><h:inputText  id="Parkingslot"   required="true"  requiredMessage="please enter parking slot" value="#{expenseBean.str_ParkingSlot}">
+	  <p:ajax event="blur" update="ParkingslotMsg" />
 	</h:inputText>
 	</td>
-	 
+	 <td><p:message id="ParkingslotMsg" for="Parkingslot" display="text"/></td>
 	</tr>
 	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}" /> </td></tr> 
 	  
