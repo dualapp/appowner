@@ -30,6 +30,12 @@ public class AddTemplateMessage implements Serializable {
 	private String str_Description;
 	@Column(name="var_Venue")
 	private String str_Venue;
+	public String getStr_Venue() {
+		return str_Venue;
+	}
+	public void setStr_Venue(String str_Venue) {
+		this.str_Venue = str_Venue;
+	}
 	@Column 
 	private Integer int_MessageTypeId;
 	public Integer getInt_AddTemplateMessageId() {

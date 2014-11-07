@@ -60,7 +60,8 @@ public class ExpenseBean  implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
-	
+	@ManagedProperty(value="#{ExpenseService}")
+	private ExpenseService expenseService;
 	private String str_AssetCategoryType;
 	private String str_Name ;
 	public String getStr_AssetCategoryType() {
@@ -83,8 +84,7 @@ public class ExpenseBean  implements Serializable{
 	private String str_AccountName;
 	private List<String> str_OrganizationNameList;
 	private List<String> str_AssetCatNameList;
-	@ManagedProperty(value="#{ExpenseService}")
-	private ExpenseService expenseService;
+	
 	private String str_WelcomeMsg;
 	private String str_ApptAddress;
 	private String blb_image;
@@ -2200,7 +2200,9 @@ public void setStr_Path(String str_Path) {
 private String str_MessageType="Event";
 private String str_MessageTempType;
 private String str_Subject;
+private String str_Subject1;
 private String str_Venue;
+private String str_Venue1;
 private String str_Date;
 private Integer int_MessageTypeId;
 public Integer getInt_MessageTypeId() {
@@ -2219,8 +2221,9 @@ public void addTemplateMessage()
 	atm=new AddTemplateMessage();
 atm.setInt_MessageTypeId(int_MessageTypeId);
 atm.setStr_MessageType(str_MessageType);
-atm.setStr_Subject(str_Subject);
+atm.setStr_Subject(str_Subject1);
 atm.setStr_Description(str_Description);
+atm.setStr_Venue(str_Venue1);
 getExpenseService().addTemplateMessage(atm);
 	
 }
@@ -2239,7 +2242,7 @@ public void setStr_MessageTempType(String str_MessageTempType) {
 	this.str_MessageTempType = str_MessageTempType;
 }
 public String getStr_Subject() {
-	str_Subject=getExpenseService().getSubject(getStr_MessageType());
+	
 	return str_Subject;
 }
 
@@ -2311,14 +2314,22 @@ public void addBroadCastMessage()
 	getExpenseService().addBroadCastMessage(broadCastMessage);
 }
 public String getStr_Venue() {
-	System.out.println(getInt_MessageTypeId()+"id");
-	str_Venue=getExpenseService().getStr_Venue(getInt_MessageTypeId());
-	System.out.println(str_Venue);
 	return str_Venue;
 }
-public void setStr_Venue(String str_Venue) {
-	this.str_Venue = str_Venue;
+
+ 
+public String getStr_Subject1() {
+	str_Subject1=getExpenseService().getSubject(getStr_MessageType());
+	return str_Subject1;
 }
+ 
+public String getStr_Venue1() {
+	System.out.println(getInt_MessageTypeId()+"id");
+	str_Venue1=getExpenseService().getStr_Venue(getInt_MessageTypeId());
+	System.out.println(str_Venue1);
+	return str_Venue1;
+}
+ 
 	
 }
 
