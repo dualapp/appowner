@@ -81,25 +81,17 @@
              <h:panelGroup style="display:block; text-align:right">
      <tr> 
      <td><p:commandButton id="submit" value="Submit" onclick="EnrollLater();"  action="#{templateBean.addDueTemplate}" ajax="false"  update="output" oncomplete="PF('dlg').show()"/></td>
-                <td><p:commandButton id="cancel" value="Cancel" onclick="EnrollLater1()" ajax="false"/></td>
+                <td><p:commandButton id="cancel" value="Cancel" onclick="closeSelf()" ajax="false"/></td>
             </tr>
             </h:panelGroup>
             
-             <script >
       
-        function EnrollLater(){
-        	
-        	modalWin.HideModalPopUp();
-        	EnrollLaterClick();
-        }
-        function EnrollLater1()
-        {
-        	window.parent.modalWin.CallCallingWindowFunction(1);
-
-            }
-        function EnrollLaterClick() {
-            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
-        }
+             <script type="text/javascript">
+             function closeSelf(){
+                 self.close();
+                 return true;
+             }
+             </script>
        
        
         
@@ -107,7 +99,7 @@
  
       
         
-    </script>
+  
    
              </h:form>
              </body>
