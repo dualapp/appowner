@@ -159,7 +159,7 @@ function HideModalWindow() {
 			
 				 <p:growl id="msgs" showDetail="true" />
 				<p:dataTable id="invoice" var="invoice"
-					value="#{templateBean.listInvoices}" binding="#{templateBean.dataTable}" style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" editable="true"  resizableColumns="true"  selection="#{templateBean.selectedInvoiceTemplate}" rowKey="#{invoice.int_InvoiceTemplateID}" >
+					value="#{templateBean.listInvoices}"  style="width: 100%"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" editable="true"  resizableColumns="true"  selection="#{templateBean.selectedInvoiceTemplate}" rowKey="#{invoice.int_InvoiceTemplateID}" >
 					 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>
          
             
