@@ -11,6 +11,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 
@@ -23,6 +27,7 @@ import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
+@FacesConverter(value="categoryConverter")
 public class DueBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{DueService}")
@@ -315,4 +320,5 @@ public class DueBean implements Serializable{
 	public void setIndicator1(boolean indicator1) {
 		this.indicator1 = indicator1;
 	}
+	
 }
