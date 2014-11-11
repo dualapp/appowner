@@ -6,26 +6,19 @@
       xmlns:p="http://primefaces.org/ui">
      
 <h:head>
-   <title>Company Registration Edition </title>
-     <style type="text/css">
-    td:nth-child(2) {
-    padding-right:100px;
-}
-.more-padding-on-right {
-  padding-right: 30px;
-}
- </style>
+   <title>Dues Form</title>
+    
     </h:head>
    <body >
   <h:form id="form" >
    <fieldset>
     <legend>
    <h:commandButton value="Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table  cellspacing="10">
+   <table>
             <tr>
             <td><h:outputLabel value="Account" /> <font color="red" >*</font></td>
             
-              <td class="more-padding-on-right"><p:selectOneMenu id="str_Account" value="#{dueBean.str_Account}" required="false" style="width:250px">
+              <td><p:selectOneMenu id="str_Account" value="#{dueBean.str_Account}"  style="width:250px">
                <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.ravenues}"  />
                  </p:selectOneMenu>
