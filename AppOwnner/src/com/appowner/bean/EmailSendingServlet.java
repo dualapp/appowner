@@ -37,8 +37,7 @@ public class EmailSendingServlet extends HttpServlet {
         String recipient = request.getParameter("recipient");
         String subject = request.getParameter("subject");
         String content = request.getParameter("content");
-           System.out.println(recipient+"jjfg");
-           System.out.println(content+"hbhjf");
+          
         String resultMessage = "";
  
         try {
