@@ -17,13 +17,13 @@
 	<h:panelGroup  >
 	 
              <table><tr><th>  <h:outputText  value="Organisation:" /> </th>
-             <td> <h:selectOneMenu       style="width:100px">
+             <td> <h:selectOneMenu>
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td> </tr>
                  
 	<tr><th><h:outputText value="Facility Name*"/></th>
-	<td><h:inputText  id="FacilityName" required="true" requiredMessage="Plz Enter Facility Name" value="#{expenseBean.str_FacilityName}">
+	<td><h:inputText  id="FacilityName" required="true" requiredMessage="Enter Facility" value="#{expenseBean.str_FacilityName}">
 	<p:ajax event="blur" update="FacilityNameMsg" />
 	</h:inputText>
 	</td>
