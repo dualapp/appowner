@@ -326,21 +326,18 @@ public class TemplateBean implements Serializable {
 	public void setListTaxs(List<TaxTemplate> listTaxs) {
 		this.listTaxs = listTaxs;
 	}
-	private TaxTemplate taxTemplate;
+	private TaxTemplate taxTemplate=new TaxTemplate();
 	public TaxTemplate getTaxTemplate() {
 		return taxTemplate;
 	}
 	public void setTaxTemplate(TaxTemplate taxTemplate) {
 		this.taxTemplate = taxTemplate;
 	}
-	public void getTaxTemplate1()
+	public void getTaxTemplate1(int id1)
 	{
-		taxTemplate=getTemplateService().getTaxTemplate(int_TaxTemplateID);
+		taxTemplate=getTemplateService().getTaxTemplate(id1);
 	}
-	public void getTaxTemplate2()
-	{
-		taxTemplate=getTemplateService().getTaxTemplate(id);
-	}
+	
 	public String saveTaxTemplate()
 	{
 		getTemplateService().updateTaxTemplate(taxTemplate);
@@ -531,9 +528,9 @@ public class TemplateBean implements Serializable {
 	public void setInvoiceTemplate(InvoiceTemplate invoiceTemplate) {
 		this.invoiceTemplate = invoiceTemplate;
 	}
-	public void getInvoiceTemplate1()
+	public void getInvoiceTemplate1(int id1)
 	{
-		invoiceTemplate=getTemplateService().getInvoiceTemplate(int_InvoiceTemplateID);
+		invoiceTemplate=getTemplateService().getInvoiceTemplate(id1);
 	}
 	public void getInvoiceTemplate2()
 	{   System.out.println(id);
