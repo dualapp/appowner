@@ -9,31 +9,40 @@
 	
 <h:head>
     <title>Create Invoice Form</title>
-   <style type="text/css">
-.customLblWidth150px  {
-    width: 750px;
-}
-</style>
+  
 </h:head>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/invoice1.jpg" height="50" width="50"></img> <span class="title">Invoice</span> 
+				</td>
+				<td align="left"><a href="invoice.xhtml">Back to Grid</a></td>
+			</tr>
+		</tbody>
+	</table>
 <body  bgcolor="pink">
   <h:form >
-  <a href="invoice.xhtml">Back to Grid</a>
+ 
    <div id="page3"> 
-    <div class="gsTitleDiv">Template<br/></div>
-   <table>
+    <div class="gsTitleDiv">Template<br/><hr/></div>
+  <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
-             <h:panelGroup  id="performed9"  style="display:block; text-align:right">
-            <td><h:outputLabel value="Invoice Template" /></td>
-              <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
+            
+            <td><h:outputLabel value="Invoice Template:" /></td>
+            <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
                      <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
                     <f:ajax event="change" execute="str_InvoiceTemplate" render="@form"/>
                  </p:selectOneMenu>
              </td>
-         <p:spacer width="140" height="20"/>
+          <h:panelGroup  id="performed7"  rendered="#{! empty invoiceBean.str_InvoiceTemplate}" >
+          <td/>
+          </h:panelGroup>
+          
           <h:panelGroup  id="performed"  rendered="#{! empty invoiceBean.str_InvoiceTemplate}" >
           <td><h:outputLabel value="Included Charges"  /></td>
-       <td><p:dataTable id="due" var="due" value="#{invoiceBean.dueList}" style="width:500px">
+          <td><p:dataTable id="due" var="due" value="#{invoiceBean.dueList}" style="width:500px">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Due" />
@@ -52,15 +61,16 @@
             </p:dataTable>
           </td>
           </h:panelGroup>
-          </h:panelGroup>
+        
           </tr>
           </table>
        </div>
-          <br/>
+         
            <div id="page3"> 
-    <div class="gsTitleDiv">Due Details<br/></div>
+    <div class="gsTitleDiv">Due Details<br/><hr/></div>
+    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
     <h:panelGroup id="performed3"  >
-           
+          <tr>
            <td><h:outputLabel value="Bill Period:" /></td> <p:spacer width="45" height="20"/>
               <td><p:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:250px">
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
@@ -90,13 +100,16 @@
                        <f:selectItem itemLabel="2020" itemValue="2020"/>
                         </p:selectOneMenu>
              </td>
+             </tr>
   </h:panelGroup>
-   <br/>
+ <tr>
+ 
+  
     <h:panelGroup id="performed1"  >
            
             <td>  <h:outputLabel  value="Invoice Date*" /></td>
               <p:spacer width="35" height="20"/>
-           <td>  <p:calendar id="dat_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}" size="70"/> </td>
+           <td>  <p:calendar id="dat_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}" pattern="dd/MM/yyyy" size="70"/> </td>
           
             
            <p:spacer width="150" height="20"/>
@@ -105,11 +118,13 @@
           
             
   </h:panelGroup>
+ </tr>
+ </table>
   </div>
   <div id="page3"> 
 	  <div class="gsTitleDiv">Apartment Details<br/><hr/></div>
- 
-   <h:panelGroup id="performed6"  >
+  <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+  <tr>
            
               <td><h:outputLabel value="Organisation:" /></td>
              <p:spacer width="45" height="20"/>
@@ -127,8 +142,8 @@
                     <p:ajax event="change" update="str_ApartmentNo" process="str_Block" partialSubmit="true" />
                  </p:selectOneMenu>
              </td>
-  </h:panelGroup>
-  <br/>
+ </tr>
+ <tr>
    <h:panelGroup id="performed5"  >
            
               <td><h:outputLabel value="Apartment.No:" /></td>
@@ -141,17 +156,21 @@
              </td>
              </h:panelGroup>
  
-  
+  </tr>
+  </table>
   <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo}">
     <div id="page3"> 
     <div class="gsTitleDiv">Invoice Details<br/></div>
-    <table cellpadding="0" cellspacing="0" style="width:598px;align:center; font-family:arial;font-size:14px;line-height:15px;border:1px solid #DADADA ;">
+   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;border:1px solid #DADADA ;">
     <tbody>
     <tr>
     <td style="width:440px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
     <strong>Item</strong>
     </td>
-    <td style="width:250px;background:#0E94F9;color:#fff;line-height:25px;" align="right">
+     <td style="width:200px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
+    <strong></strong>
+    </td>
+    <td style="width:350px;background:#0E94F9;color:#fff;line-height:25px;" align="right">
     <strong>Amount</strong>
     </td>
     <td style="width:220px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
@@ -160,69 +179,75 @@
     <span style="font-size:10px;">(Tax calculated below)</span>
     </td>
     </tr>
-     <tr>
-  
-   
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;">
-    </td>
-    </tr>
+    
      <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px"> 
     
-    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{dues.str_DueTemplate}</td>
+    <tr style="line-height:20px;"><td style="padding-left:5px;width:440px;">#{dues.str_DueTemplate}</td>
     <td align="right" style="width:250px;"><ui:repeat value="#{invoiceBean.totalAmounts}" var="account">
    
     <h:outputText value="#{account}" /><br/>
   
      </ui:repeat>
    </td>
+   <td/>
     <td align="right" style="padding-right:5px;width:320px;">#{dues.str_TaxTemplate} </td>
     </tr>
     <tr>
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
+    <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
  
    </ui:repeat>
-   <tr>
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
-    <tr>
-    <td style="padding-left:5px;width:440px;line-height:20px;" align="right">SubTotal</td>
-    <td align="right" style="width:250px;">#{invoiceBean.subTotal}</td>
+  
+    <tr style="line-height:25px;">
+     <td align="left" style="width:200px;"/>
+  
+    <td style="padding-left:10px;width:200px;line-height:30px;color:#E17009;">SubTotal</td>
+    <td align="right" style="width:250px;color:#E17009;">#{invoiceBean.subTotal}</td>
     </tr>
     <tr></tr>
      <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px">  
     <tr>
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
+    <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
-    <tr style="line-height:25px;">
-     <td align="right" style="padding-right:5px;width:320px;"></td></tr><tr style="line-height:20px;"><td align="right">#{dues.str_TaxTemplate} &nbsp;&nbsp;(#{invoiceBean.taxAmount}%)</td><td align="right">#{invoiceBean.taxAmount1}</td>
+     <tr style="line-height:25px;">
+    
+     <td align="right" style="padding-right:5px;width:320px;"></td>
      </tr>
-     
+     <tr style="line-height:25px;">
+     <td align="right" style="width:200px;"/>
+     <td align="right">#{dues.str_TaxTemplate} &nbsp;(#{invoiceBean.taxAmount}%)</td>
+     <td align="right">#{invoiceBean.taxAmount1}</td>
+     </tr>
+   </ui:repeat>  
   
    
    
-  </ui:repeat>
+ 
   <tr>
    <tr>
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
+    <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
+  <td/>
   <td style="height:20px;color:#E17009;" align="right">Total Due</td><td align="right" style="width:250px;color:#E17009;">#{invoiceBean.totalDue}</td><td align="right" style="padding-right:5px;width:320px;"></td>
   </tr>
     </tbody>
     </table>
+   
     <tr>
-  <td align="right"> &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:selectBooleanCheckbox id="bl_Show" value="#{invoiceBean.bl_Show}"/>Send Invoice </td> 
+  <td align="right"><p:spacer width="40" height="20"/><h:selectBooleanCheckbox id="bl_Show" value="#{invoiceBean.bl_Show}"/>Send Invoice </td> 
      </tr>
+   
      </div>
      </h:panelGroup>
    
- <br/> 
+ 
   <h:panelGroup style="display:block; text-align:right"> 
          <tr>
                  <td><p:commandButton id="submit" value="Submit" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" /></td>
                  <td><p:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancel}" ajax="false"/></td>
            </tr>
-           </h:panelGroup>
+  </h:panelGroup>
+          
            </div>
           </h:form>
           </body>
