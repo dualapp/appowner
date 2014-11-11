@@ -208,7 +208,7 @@ public static void setContent(String content) {
 				
 				subject="AppOwner.com";
 				content="hello";
-				return "notice.jsp";
+				return "/AfrteLoginViews/Communication/notice.jsp";
 			}
 			return null;
 		

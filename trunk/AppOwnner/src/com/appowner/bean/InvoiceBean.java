@@ -11,6 +11,7 @@ import java.util.ListIterator;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
@@ -26,7 +27,7 @@ import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{InvoiceService}")
@@ -739,12 +740,13 @@ public String savePayment(Integer id,String invoiceNo)
 {
 	return "invoice.xhtml";
 }
-private List<InvoiceTransaction> selectedInvoice;
-public List<InvoiceTransaction> getSelectedInvoice() {
+private InvoiceTransaction selectedInvoice;
+
+public InvoiceTransaction getSelectedInvoice() {
 	
 	return selectedInvoice;
 }
-public void setSelectedInvoice(List<InvoiceTransaction> selectedInvoice) {
+public void setSelectedInvoice(InvoiceTransaction selectedInvoice) {
 	this.selectedInvoice = selectedInvoice;
 }
 private InvoiceTransaction invoice1;
@@ -755,11 +757,12 @@ public void setInvoice1(InvoiceTransaction invoice1) {
 	this.invoice1 = invoice1;
 }
 public void getInvoice()
-{
-	 invoice1=getInvoiceService().getInvoice(1);
+{       System.out.println(int_InvoiceTransactionID+"jhjhjd");
+	 invoice1=getInvoiceService().getInvoice(selectedInvoice.getInt_InvoiceTransactionID());
 }
 public String cancel()
 {
 	return "invoice.xhtml";
 }
+
 }

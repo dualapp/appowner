@@ -79,9 +79,9 @@ public class UserInformationBean implements Serializable{
 	   		{   Object o=list.next();
 	   			UserApartment name = (UserApartment)o;
 	   			String name1=name.getStr_ApartmentName();
-	   			System.out.println(name1);
+	   			
 	   			Long count=(Long)getAdminService().count(name1);
-	   			System.out.println(count);
+	   			
 	   			name.setInt_NoOfUser(count);
 	   			
 	   		}
@@ -99,7 +99,7 @@ public class UserInformationBean implements Serializable{
 		public List<User> getUserlist() {
 			userlist=new ArrayList<User>();
 			userlist.addAll(getAdminService().getUserlist(str_ApartmentName));
-			System.out.println(userlist);
+			
 			return userlist;
 		}
 		public void setUserlist(List<User> userlist) {
