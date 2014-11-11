@@ -7,15 +7,20 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
-	 
+	 <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title">Create New Booking</span>
+				</td>
+				<td> <a href="Expenses.xhtml">>>Back To expenses</a ></td>
+			</tr>
+		</tbody>
+	</table>
 	<h:form>
-	
-	 
-	<a href="Expenses.xhtml">>>Back To expenses</a >
 	 
 	 <div id="page3">
-  <div class="gsTitleDiv">Filter<br/><hr/></div> 
-	 
+   
 	<table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
         <tr><th> 
                <h:outputLabel value="Organisation:" /> </th>
@@ -31,7 +36,7 @@
           </p:selectOneMenu>
           </td> 
   <td><p:selectOneMenu id="ExpenseType"   value="#{expenseBean.str_ExcepenseType}" valueChangeListener="#{expenseBean.expenseTypeListener}"  style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"   />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
                      <p:ajax event="blur" update="ExpenseTypeMsg" />
@@ -40,7 +45,7 @@
              </td>
              
                <td><p:selectOneMenu id="ExpenseCategory"  value="#{expenseBean.str_ExpenseCategory}" valueChangeListener="#{expenseBean.expenseCategoryListener}"   style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"   />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <p:ajax event="blur" update="ExpenseCategoryMsg" />
                  </p:selectOneMenu>
@@ -60,7 +65,7 @@
               
                <td><h:inputText  style="width:100px" value="#{expenseBean.str_Description}"  valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
                <td><p:selectOneMenu id="assetcatname"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"   />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                    <p:ajax event="change" update="assetname" process="assetcatname"/>
@@ -68,7 +73,7 @@
              </td>
              
                <td><p:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"   />
                   <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
                   
                   
@@ -82,7 +87,7 @@
           </p:selectOneMenu>
           </td> 
   <td><p:selectOneMenu   value="#{expenseBean.str_ExcepenseType}" valueChangeListener="#{expenseBean.expenseTypeListener}"  style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"   />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
                    
@@ -90,13 +95,13 @@
              </td>
              
                <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}" valueChangeListener="#{expenseBean.expenseCategoryListener}"   style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"  />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
                  </p:selectOneMenu>
                  </td>
                 <td> 
-               <p:calendar     style="width:100px" navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
+               <p:calendar      navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
                   </p:calendar>
                    
              </td>     
@@ -104,7 +109,7 @@
               
                <td><h:inputText  style="width:100px" value="#{expenseBean.str_Description}"  valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
                <td><p:selectOneMenu id="assetcatname1"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"   />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                    <p:ajax event="change" update="assetname1" process="assetcatname1"/>
@@ -112,7 +117,7 @@
              </td>
              
                <td><p:selectOneMenu  id="assetname1" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" style="width:100px">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="All"   />
                   <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
                   
                   
@@ -128,7 +133,7 @@
              
           </table>
          </div>
-          <a href="Expenses.xhtml">>>Back To expenses</a >
+         
 	 
 	 
 	</h:form>
