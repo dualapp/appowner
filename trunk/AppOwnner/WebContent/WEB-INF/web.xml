@@ -32,7 +32,7 @@
     </servlet>
     <servlet-mapping>
    <servlet-name>dum2</servlet-name>
-   <url-pattern>/srv5</url-pattern>
+   <url-pattern>/srv3</url-pattern>
    </servlet-mapping>
    <servlet>
     <servlet-name>Servlet1</servlet-name>
