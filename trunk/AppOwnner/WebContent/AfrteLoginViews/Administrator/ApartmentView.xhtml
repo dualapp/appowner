@@ -3,15 +3,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 	<h:head>
     <title>Welcome to Apartment Information</title>
 </h:head>
 <body>
     <h:form>
-                        
-       <p:dataTable   var="apartment" value="#{userInformationBean.listApartment}" style="width: 80%"> 
+       <div id="page3">
+         <div class="gsTitleDiv">Welcome to Apartment Information<br/><hr/></div>                 
+       <p:dataTable   var="apartment" value="#{userInformationBean.listApartment}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> 
         <p:column>
         <f:facet name="header">
                     <h:outputText value="ApartmentName" />
@@ -52,7 +53,7 @@
                 </f:facet>
                   <h:link outcome="UserView.xhtml">
                   <h:outputText value="#{apartment.int_NoOfUser}"/>
-                  
+                  <p:spacer width="40" height="20"/>
                   
                    <h:outputText value="View" />
                     <f:param name="str_ApartmentName" value="#{apartment.str_ApartmentName}"/>
@@ -65,7 +66,7 @@
            </p:dataTable>
          
         
-     
+     </div>
       
      
     </h:form>
