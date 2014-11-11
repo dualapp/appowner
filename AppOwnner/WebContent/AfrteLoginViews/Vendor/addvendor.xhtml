@@ -43,15 +43,15 @@
  </tr>
           
             <tr>
-                <th><h:outputText for="vendorName" value="vendor Name" /><font color="red">*</font></th>
-                <td><p:inputText id="vendorName"  placeholder="Name"  value="#{vendorBean.str_VendorName}" required="true" requiredMessage="vendor name Required">
+                <th width="20%"><h:outputText for="vendorName" value="vendor Name" /><font color="red">*</font></th>
+                <td width="30%"><p:inputText id="vendorName"  placeholder="Name"  value="#{vendorBean.str_VendorName}" required="true" requiredMessage="vendor name Required">
                 
                   <f:validateLength minimum="5" />
                      <p:ajax event="blur" update="vendorNameMsg" />
               </p:inputText>
                   
                 </td>
-                <td>  <p:tooltip id="toolTipFade"  showEvent="focus" hideEvent="blur"   for="vendorName" value="  vendor name Required" /><p:message id="vendorNameMsg" for="vendorName" display="text"/></td>
+                <td width="50%" align="left">  <p:tooltip id="toolTipFade"  showEvent="focus" hideEvent="blur"   for="vendorName" value="  vendor name Required" /><p:message id="vendorNameMsg" for="vendorName" display="text"/></td>
            </tr>
            
              <tr>
@@ -132,10 +132,12 @@
             <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
                
            
-              <tr><th></th><td> <h:commandButton value="Add Services" action="#{vendorBean.add}" immediate="true" execute="@this">
+              <tr><th width="20%"></th><td width="30%"> <h:commandButton value="Add Services" action="#{vendorBean.add}" immediate="true" execute="@this">
                
                <f:ajax render="@form" execute="@form"/>
-              </h:commandButton></td></tr>
+              </h:commandButton></td>
+              <td width="50%"></td>
+              </tr>
           
  
               
@@ -182,20 +184,20 @@
 	   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
            
             <tr>
-                <th><h:outputText for="vendorbankaccount" value="Account Number  " /></th>
-                <td><p:inputText id="vendorbankaccount" placeholder="Account Number"   value="#{vendorBean.str_VendorBankAccount}"/>
-                
-              
+                <th width="20%"><h:outputText for="vendorbankaccount" value="Account Number  " /></th>
+                <td width="30%"><p:inputText id="vendorbankaccount" placeholder="Account Number"   value="#{vendorBean.str_VendorBankAccount}"/>
                 </td>
+              <td width="50%"></td>
+                
            </tr>
            
             
              <tr>
                 <th><h:outputText for="vendorbankname" value="Bank Name  " /></th>
                 <td><p:inputText id="vendorbankname" placeholder="BankName"   value="#{vendorBean.str_VendorBankName}"/>
-                
-              
+                 
                 </td>
+                  
            </tr>
              <tr>
                 <th><h:outputText for="vendorbankneftifsc" value="NEFT/IFSC Code  " /></th>
@@ -203,6 +205,7 @@
                 
               
                 </td>
+              
            </tr>
             <tr>
                 <th><h:outputText for="str_PanNo" value="Pan No " /></th>
@@ -210,35 +213,38 @@
                 
               
                 </td>
+         
            </tr>
            <tr>
                 <th><h:outputText for="str_ServiceTaxNo" value="Tax No " /></th>
                 <td><p:inputText id="str_ServiceTaxNo" placeholder="Tax No"   value="#{vendorBean.str_ServiceTaxNo}"/>
-                
+               
               
                 </td>
+              
            </tr>
            
            <tr>
                 <th><h:outputText for="int_TdsCharge" value="TDS Charge " /></th>
                 <td><p:inputText id="int_TdsCharge" placeholder="TDS Charge"   value="#{vendorBean.int_TdsCharge}"/>
-                
               
                 </td>
+               
            </tr>
             <tr>
                 <th><h:outputText for="bool_VisibleToPublic" value="Visible to public " /></th>
                 <td><p:selectBooleanCheckbox id="bool_VisibleToPublic" label="Visible to public"   value="#{vendorBean.bool_VisibleToPublic}"/>
                 
-              
                 </td>
+             
            </tr>
             <tr>
                 <th><h:outputText for="Additional Info" value="Additional Info" /></th>
                 <td><p:inputTextarea rows="6" cols="33" placeholder="Additional Info"  style="width:175px; height:45px; border:solid 1px #cccccc; margin:3px 0 3px 5px; float:left;"  value="#{vendorBean.str_AdditionalInfo}"/>
-                
+                 
               
                 </td>
+               
            </tr>
           
             </table>
@@ -254,4 +260,4 @@
           
             </ui:define>
             </ui:composition>
-                          
+           
