@@ -11,7 +11,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/started.jpg" height="28" width="28"></img> <span class="title">Polls</span>
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title">Poll</span>
 				</td>
 			</tr>
 		</tbody>
@@ -29,14 +29,14 @@
          
               <th><h:outputText value="Organisation:" /></th>
                
-            <td>  <h:selectOneMenu      >
+            <td>  <h:selectOneMenu       style="width:100px">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu>
              </td>
             
              <th><h:outputText  value="Status:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_Status}" >
+               <td><h:selectOneMenu   value="#{expenseBean.str_Status}"  style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
                     <f:selectItem itemLabel="Closed" itemValue="Closed"  />
@@ -45,7 +45,7 @@
              </td>
               
              <th><h:outputText  value="Pool in the last:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}" >
+               <td><h:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  style="width:100px">
                   <f:selectItem itemLabel="3 Month" itemValue="3 Month" />
                    <f:selectItem itemLabel="6 Month" itemValue="6 Month"  />
                     <f:selectItem itemLabel="12 Month" itemValue="12 Month"  />

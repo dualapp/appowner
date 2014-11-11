@@ -14,20 +14,20 @@
 	 <h:messages style="color:red"/>
 	 
 	<table>
-	<tr><th>
+	<tr><th width="20%">
 	<h:outputText  value="Organisation:" /> </th>
               
-              <td><p:selectOneMenu       style="width:100px">
+              <td width="30%"><h:selectOneMenu  >
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu></td></tr>
+                 </h:selectOneMenu></td><th width="20%"></th></tr>
                  
 <tr><th><h:outputText value="parkingSlot"/></th>
 	<td><h:inputText  id="Parkingslot" required="true" requiredMessage="plz Enter ParkingSlot" value="#{expenseBean.str_ParkingSlot}">
 	<p:ajax event="blur" update="ParkingSlotMsg" />
 	</h:inputText>
 	</td>
-	<td><p:message  id="ParkingSlotMsg" for="Parkingslot" display="text"/></td>
+	<th><p:message  id="ParkingSlotMsg" for="Parkingslot" display="text"/></th>
 	</tr>
 	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}" /> </td></tr> 
 	  
