@@ -7,10 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/#{expenseBean.templateIndicator}">
 	<ui:define name="content">
-	<f:metadata>
-	 <f:viewParam name="int_PoolId" value="#{expenseBean.int_PoolId}"  />
-	<f:viewAction action="#{expenseBean.getOnePool}" />
-	 </f:metadata>
+	 
 	<h:head>
     <title>Pool Details</title>
 </h:head>
