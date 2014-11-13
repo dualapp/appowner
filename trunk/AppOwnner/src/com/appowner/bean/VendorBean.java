@@ -1013,8 +1013,20 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
 	    return "vendorlists?faces-redirect=true";
 	}
-	public String cancelVendor() {
-		return "vendorlists?faces-redirect=true";
+	public void cancelVendor() {
+		str_VendorEmail=null;
+		str_VendorAddress=null;
+		str_ContactPersonName=null;
+		str_VendorType=null;
+		str_VendorName=null;
+		str_VendorPhone= null;
+		str_ServiceName=null;
+		int_ServicePrice="0.0";
+		str_VendorCountry=null;
+		str_VendorState=null;
+		str_VendorCity=null;
+		str_ZipCode=null;
+		
 	}
 /**
  * get particular vendor according to vendor id
