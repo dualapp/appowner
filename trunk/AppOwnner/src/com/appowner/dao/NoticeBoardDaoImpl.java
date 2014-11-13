@@ -28,12 +28,12 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	@SuppressWarnings("unchecked")
 	public List<Notice> listNotices(int firstRow, int rowPerPage,String str_Visible)
 	{
-	  {   String  query = "{ CALL expireCalculation() }";
+	 /* {   String  query = "{ CALL expireCalculation() }";
 				
 	  List<Notice> notice = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Notice.class)
 	          ).list();
 	 
-	  }   
+	  }   */
 	System.out.println(firstRow+"k22");
 		if(str_Visible.equalsIgnoreCase("Only Owner of this Complex"))
 		
