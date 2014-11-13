@@ -55,7 +55,7 @@ import com.appowner.util.Util;
  
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ExpenseBean  implements Serializable{
 
 	
@@ -423,7 +423,16 @@ public Integer getStartIndex() {
 	public void setInt_UpTosize(Integer int_UpTosize) {
 		this.int_UpTosize = int_UpTosize;
 	}
-	private List<String> str_AssetNameList;
+private List<String>  str_AssetNameList;
+private String str_AssetName1;
+private String str_AssetCategoryType1;
+public String getStr_AssetCategoryType1() {
+	return str_AssetCategoryType1;
+}
+public void setStr_AssetCategoryType1(String str_AssetCategoryType1) {
+	this.str_AssetCategoryType1 = str_AssetCategoryType1;
+}
+private List<String>  str_AssetNameList1;
 private List assetNameList=new ArrayList();
 private List assetCatnameList=new ArrayList();
 private List dateList=new ArrayList();
@@ -436,8 +445,23 @@ private List ammountList=new ArrayList();
  * get assetName By assetCategory
  */
 public List<String> getStr_AssetNameList() {
-	//str_AssetNameList=new ArrayList<String>();
+	
+	 
+		str_AssetNameList=new ArrayList<String>();
+		 
+	 
+	 str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType));
+	 System.out.println(str_AssetNameList);
+	 
 	return str_AssetNameList;
+}
+public List<String> getStr_AssetNameList1() {
+	str_AssetNameList1=new ArrayList<String>();
+	  
+	 str_AssetNameList1.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType1));
+	 System.out.println(str_AssetNameList1);
+	 
+	return str_AssetNameList1;
 }
 public void setStr_AssetNameList(List<String> str_AssetNameList) {
 	this.str_AssetNameList = str_AssetNameList;
@@ -449,8 +473,23 @@ public void assetNameListener(ValueChangeEvent  event)
 {
 	randomId();
 	
-	assetNameList.add(event.getNewValue());
+	 
+		 str_AssetName=(String) event.getNewValue();
+		 System.out.println(str_AssetName+"assetname");
+		 
+		 assetNameList.add(str_AssetName);
+	 
+	 
+	//assetNameList.add(event.getNewValue());
 	
+}
+public void assetNameListener1(ValueChangeEvent  event)
+{
+	randomId();
+	 
+		 str_AssetName1=(String) event.getNewValue();
+		 assetNameList.add(str_AssetName1);
+	  
 }
 public String getStr_ExpenseId() {
 	return str_ExpenseId;
@@ -458,22 +497,18 @@ public String getStr_ExpenseId() {
 public void setStr_ExpenseId(String str_ExpenseId) {
 	this.str_ExpenseId = str_ExpenseId;
 }
-public List<String> assetCatNameListener(ValueChangeEvent  event)
-{
-	
-	if ((event.getNewValue() != str_AssetCategoryType)) {
-		str_AssetNameList = null;
-		// str_VendorCity = null;
 
-	}
- 
-	str_AssetCategoryType=(String) event.getNewValue();
-str_AssetNameList=new ArrayList<String>();
-str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType));
-System.out.println(str_AssetNameList);
+public void assetCatNameListener(ValueChangeEvent  event)
+{  
 	
-assetCatnameList.add(event.getNewValue());
-return str_AssetNameList;
+   assetCatnameList.add(event.getNewValue());
+ 
+}
+public void assetCatNameListener1(ValueChangeEvent  event)
+{
+	 
+   assetCatnameList.add(event.getNewValue());
+ 
 }
 public void dateListener(ValueChangeEvent  event)
 {
@@ -507,8 +542,9 @@ private Expense expense;
 public String addExpenses()
 {     
 	//ListIterator itr=IDS.listIterator();
-	 
-	ListIterator  assetName=str_AssetNameList.listIterator();
+	 System.out.println(assetNameList+"seema");
+	 System.out.println(assetCatnameList+"sudha");
+	ListIterator  assetName=assetNameList.listIterator();
 	ListIterator assetCategory=assetCatnameList.listIterator();
 	ListIterator expensetype=expenseTypeList.listIterator();
 	ListIterator expensecategory=expenseCategoryList.listIterator();
@@ -518,7 +554,9 @@ public String addExpenses()
 	ListIterator accountlist=accountList.listIterator();
 	 
 	while(assetName.hasNext() || assetCategory.hasNext()||expensetype.hasNext()||expensecategory.hasNext()||dateduration.hasNext()||ammountlist.hasNext()||descriptionlist.hasNext()||accountlist.hasNext())
-	{
+	{ 
+		
+		System.out.println(assetName.hasNext()+"check");
 		if(assetName.hasNext()==true && dateduration.hasNext()==true)
 		{
 		str_AssetName=(String)assetName.next();
@@ -546,17 +584,31 @@ public String addExpenses()
 	expense.setInt_AppartmentId(Util.getAppartmentId());
 	
 	getExpenseService().addExpenses(expense);
+		}
+		else
+			return "Expenses.xhtml";
+	}
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	Flash flash = facesContext.getExternalContext().getFlash();
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
-		}
-		else
-			return "Expenses.xhtml";
-	
-	}
 	return "Expenses.xhtml";
+}
+public void resetExpenses()
+{
+	 str_AccountName=null;
+	str_ExcepenseType=null;
+	str_ExpenseCategory=null;
+	date_Duration=null;
+	str_Description=null;
+	int_Ammount=null;
+	str_AssetCategoryType=null;
+	str_AssetCategoryType1=null;
+	str_AssetName=null;
+	str_AssetName1=null; 
+	 
+	 
 }
 public Expense getExpense() {
 	return expense;
@@ -2328,6 +2380,12 @@ public String getStr_Venue1() {
 	str_Venue1=getExpenseService().getStr_Venue(getInt_MessageTypeId());
 	System.out.println(str_Venue1);
 	return str_Venue1;
+}
+public String getStr_AssetName1() {
+	return str_AssetName1;
+}
+public void setStr_AssetName1(String str_AssetName1) {
+	this.str_AssetName1 = str_AssetName1;
 }
  
 	
