@@ -173,7 +173,7 @@ public void setInt_MaintainanceStaffID(Integer int_MaintainanceStaffID) {
 		ListIterator itr4 = list4.listIterator();
 		while(itr1.hasNext()||itr2.hasNext()||itr3.hasNext()||itr4.hasNext())
 		{
-			if(itr1.hasNext()==true)
+			if(itr1.hasNext()==true&&itr2.hasNext()==true)
 			{
 			str_UserName=(String) itr1.next();
 			str_RoleName=(String) itr2.next();
