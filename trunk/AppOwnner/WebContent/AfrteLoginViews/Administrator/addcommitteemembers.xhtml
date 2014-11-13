@@ -8,6 +8,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
+	<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/committee.png" height="50" width="50"></img> <span class="title">Committee Member Registration</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 <h:head><title>Committee Member Registration</title>
 </h:head>
 <body bgcolor="pink">
@@ -17,45 +26,45 @@
     
      <br/>
      
-   <legend  align="left" style="background-color:#438eb9; color:#fff;">Committee Member Registration</legend>
+    
      <center>
      <div style="color:#0000FF">
     <table >
          <tr>
           <th><h3> UserName</h3></th> <th><h3> CommitteeRoles</h3></th><th><h3> Responsible for</h3></th><th><h3> Date of Election(Optional)</h3></th></tr> 
       
-   <tr><td>   <p:selectOneMenu value="#{committeeMemberBean.str_UserName}" required="true" requiredMessage="plz enter member Name" valueChangeListener="#{committeeMemberBean.userNameListener}" style="width:200px">
+   <tr><td>   <h:selectOneMenu value="#{committeeMemberBean.str_UserName}" required="true" requiredMessage="plz enter member Name" valueChangeListener="#{committeeMemberBean.userNameListener}" style="width:200px">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItems value="#{committeeMemberBean.str_UserNames}" />
-            </p:selectOneMenu></td>
-            <td>   <p:selectOneMenu  style="width:200px" value="#{committeeMemberBean.str_CommitteeRole}" required="true" requiredMessage="plz enter member Role"  valueChangeListener="#{committeeMemberBean.committeeRoleListener}">
+            </h:selectOneMenu></td>
+            <td>   <h:selectOneMenu  style="width:200px" value="#{committeeMemberBean.str_CommitteeRole}" required="true" requiredMessage="plz enter member Role"  valueChangeListener="#{committeeMemberBean.committeeRoleListener}">
             
             <f:selectItem itemLabel="Select One" itemValue="" /> 
             <f:selectItems value="#{committeeMemberBean.str_CommitteeRoles}" />
-            </p:selectOneMenu></td>
+            </h:selectOneMenu></td>
              <td><h:inputText value="#{committeeMemberBean.str_ResponsibleFor}"   valueChangeListener="#{committeeMemberBean.responsibleForListener}" style=" width:200px"/></td> 
             <td><p:calendar     navigator="true" display="inline"   value="#{committeeMemberBean.date_ElectionDate}" valueChangeListener="#{committeeMemberBean.electionDateListener}"/> </td></tr>
-            <tr><td>   <p:selectOneMenu value="#{committeeMemberBean.str_UserName}"    valueChangeListener="#{committeeMemberBean.userNameListener}" style="width:200px">
+            <tr><td>   <h:selectOneMenu value="#{committeeMemberBean.str_UserName}"    valueChangeListener="#{committeeMemberBean.userNameListener}" style="width:200px">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItems value="#{committeeMemberBean.str_UserNames}" />
-            </p:selectOneMenu></td>
-            <td>   <p:selectOneMenu  style="width:200px" value="#{committeeMemberBean.str_CommitteeRole}"      valueChangeListener="#{committeeMemberBean.committeeRoleListener}">
+            </h:selectOneMenu></td>
+            <td>   <h:selectOneMenu  style="width:200px" value="#{committeeMemberBean.str_CommitteeRole}"      valueChangeListener="#{committeeMemberBean.committeeRoleListener}">
             
             <f:selectItem itemLabel="Select One" itemValue="" /> 
             <f:selectItems value="#{committeeMemberBean.str_CommitteeRoles}" />
-            </p:selectOneMenu></td>
+            </h:selectOneMenu></td>
              <td><h:inputText value="#{committeeMemberBean.str_ResponsibleFor}"   valueChangeListener="#{committeeMemberBean.responsibleForListener}" style=" width:200px"/></td> 
             <td><p:calendar     navigator="true" display="inline"   value="#{committeeMemberBean.date_ElectionDate}" valueChangeListener="#{committeeMemberBean.electionDateListener}"/> </td></tr>
             
-             <tr><td>   <p:selectOneMenu value="#{committeeMemberBean.str_UserName}"    valueChangeListener="#{committeeMemberBean.userNameListener}" style="width:200px">
+             <tr><td>   <h:selectOneMenu value="#{committeeMemberBean.str_UserName}"    valueChangeListener="#{committeeMemberBean.userNameListener}" style="width:200px">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItems value="#{committeeMemberBean.str_UserNames}" />
-            </p:selectOneMenu></td>
-            <td>   <p:selectOneMenu  style="width:200px" value="#{committeeMemberBean.str_CommitteeRole}"    valueChangeListener="#{committeeMemberBean.committeeRoleListener}">
+            </h:selectOneMenu></td>
+            <td>   <h:selectOneMenu  style="width:200px" value="#{committeeMemberBean.str_CommitteeRole}"    valueChangeListener="#{committeeMemberBean.committeeRoleListener}">
             
             <f:selectItem itemLabel="Select One" itemValue="" /> 
             <f:selectItems value="#{committeeMemberBean.str_CommitteeRoles}" />
-            </p:selectOneMenu></td>
+            </h:selectOneMenu></td>
              <td><h:inputText value="#{committeeMemberBean.str_ResponsibleFor}"   valueChangeListener="#{committeeMemberBean.responsibleForListener}" style=" width:200px"/></td> 
             <td><p:calendar     navigator="true" display="inline"   value="#{committeeMemberBean.date_ElectionDate}" valueChangeListener="#{committeeMemberBean.electionDateListener}"/> </td></tr>
              

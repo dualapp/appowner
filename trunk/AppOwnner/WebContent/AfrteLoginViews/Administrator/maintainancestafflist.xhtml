@@ -9,14 +9,14 @@
 	<ui:define name="content">
 <h:head>
     <title> </title>
-    <a href="addmaintainancestaff.xhtml">Add More Maintainance Staff</a>
+     &#150; &#150; &#150; &#150;<h4><a href="addmaintainancestaff.xhtml"> Add More Maintainance Staff</a></h4>
 </h:head>
 <br/><br/><br/>
  <body bgcolor="yellow">
   <h:messages/>
  <h:form>
   <div id="page3">
-           <div class="gsTitleDiv">Maintainance Staff <br/><hr/></div> 
+           <div class="gsTitleDiv">Maintainance Staff  On AppOwner<br/><hr/></div> 
   <p:dataTable id="maintainancestaff" var="maintainancestaff" value="#{maintainanceStaffBean.maintainanceStaffList}"  >
             <p:column>
                 <f:facet name="header">
@@ -55,18 +55,15 @@
                 <f:facet name="header">
                     <h:outputText value="Action" />
                     </f:facet>
-              <h:link outcome="editmaintainancestaff.xhtml" >
-	   			<p:graphicImage  height="50" width="50" alt="update" value="#{expenseBean.str_Name}images/k1.png"/> 
-	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
-	   		</h:link>
+               
 	   		 <h:link outcome="deletemaintainancestaff.xhtml"   
 	   		 onclick="return confirm('Are you sure you want to delete #{maintainancestaff.str_UserName}?');" > 
-	   			<p:graphicImage  height="50" width="50" alt="delete" value="#{expenseBean.str_Name}images/k2.png"/> 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg"/> 
 	   				<f:param name="int_MaintainanceStaffID" value="#{maintainancestaff.int_MaintainanceStaffID}" />
 	   		</h:link>
 	   		
-	   		<h:link outcome="rolemanagement.xhtml"   id="sidlink"  target="_blank">
-	   			  <h:outputText value="addRole" styleClass="txtlink"/> 
+	   		<h:link outcome="rolemanagement.xhtml" >
+	   			 <p:graphicImage  height="20" width="20" alt="add/update role" value="#{expenseBean.str_Name}images/edit.jpg"/>
 	   				<f:param name="int_UserId" value="#{maintainancestaff.int_UserId}" />
 	   		</h:link>
             </p:column>
