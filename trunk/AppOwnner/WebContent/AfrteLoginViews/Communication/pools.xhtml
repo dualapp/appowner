@@ -52,7 +52,7 @@
                    
                     
                  </h:selectOneMenu>
-                 </td><th><h:commandButton value="Go" action="#"/></th></tr>
+                 </td><th><h:commandButton value="Go" icon="ui-icon-search" action="#"/></th></tr>
                            
              
              </table>
@@ -62,8 +62,8 @@
             
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr><td> 
-           <h:commandButton  action="createnewpool.xhtml" rendered="#{expenseBean.isEnable}"  value="Create New"/>&#150; &#150;<p:commandButton  icon="ui-icon-refresh" value="Refresh" />&#150; &#150;
-           <p:menuButton value="Action">
+           <p:button  outcome="createnewpool.xhtml" rendered="#{expenseBean.isEnable}"  style="width:120px;height:25px" icon="ui-icon-plus" value="Create New"/>&#150; &#150;<p:commandButton  icon="ui-icon-refresh" value="Refresh" />&#150; &#150;
+           <p:menuButton style="width:120px;height:25px"  value="Action">
          <p:menuitem value="Notify by Email" process="DT"  update=":form:pollDetail"    oncomplete="PF('pollDialog').show()"/>
         <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
         <p:menuitem  update="DT" process="DT" onclick="return confirm('Are you sure you want to close ?');" action="#{expenseBean.deleteOnePoll1()}"    value="Close Selected"/>
@@ -72,13 +72,13 @@
         </p:menuButton>
          
           
-       &#150; &#150; <h:commandButton update="DT" process="DT" value="Vote Selected" action="vote.xhtml"/>
+        <p:button  style="width:120px;height:25px" update="DT" process="DT" icon="ui-icon-info" value="Vote Selected" outcome="vote.xhtml"/>
+     ,
+       
+      &#150; &#150; <p:button  style="width:120px;height:25px" icon="ui-icon-info" update="DT" process="DT" value="View Selected Vote" outcome="viewpool.xhtml"/>
      
        
-      &#150; &#150; <h:commandButton update="DT" process="DT" value="View Selected Vote" action="viewpool"/>
-     
-       
-        &#150; &#150;  <p:commandButton  rendered="#{expenseBean.isEnable}" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOnePoll1()}" icon="ui-icon-trash" value="Delete" />
+        &#150; &#150;  <p:button  style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOnePoll1()}" icon="ui-icon-trash" value="Delete" />
                <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="Polls" />
