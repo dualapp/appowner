@@ -18,33 +18,33 @@
                  <legend  style="background-color:#438eb9; color:#fff;"> Assets</legend>
  <div>
               <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th> <h:outputText value="Show Assets Of Organisation:" /> </th>
-            <td>  <p:selectOneMenu       style="width:100px"> ;
+            <td>  <h:selectOneMenu       style="width:100px"> ;
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
-                 </p:selectOneMenu> </td>
+                 </h:selectOneMenu> </td>
                 <th> <h:outputText value="In Bolck"/></th> 
-               <td>  <p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px"> 
+               <td>  <h:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px"> 
               <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
-                 </p:selectOneMenu> </td>
+                 </h:selectOneMenu> </td>
                  <th> <h:outputText value="Of Category"/></th>
-                <td> <p:selectOneMenu  id="AssetCategory"    value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
+                <td> <h:selectOneMenu  id="AssetCategory"    value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                  
-                 </p:selectOneMenu></td>
-                <th> <p:commandButton value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
+                 </h:selectOneMenu></td>
+                <th> <p:commandButton   style="width:50px;height:25px"  value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
                  </div>
                  </fieldset>
                  
                 
                  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>
-  <h:commandButton   icon="ui-icon-plus"   action="/AfrteLoginViews/Accounting/createnewassets.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
+  <p:button   icon="ui-icon-plus"   outcome="/AfrteLoginViews/Accounting/createnewassets.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
    
   </p:commandButton>
-	 &#150; &#150;  <p:menuButton value="Action">
+	 &#150; &#150;  <p:menuButton style="width:120px;height:25px" value="Action">
         <p:menuitem value="Assign Selected"  action="#"/>
         <p:menuitem value="close Selected" action="#"/>
         <p:menuitem value="View Chart" action="#"/>
@@ -52,9 +52,9 @@
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
          
-          &#150; &#150;  <p:commandButton process="DT" update=":form:multiAssetDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiAssetDialog1').show()" />
-       &#150; &#150; <p:commandButton process="DT" update=":form:multiAssetDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiAssetDialog').show()" />
-       &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOneAsset1()}" icon="ui-icon-trash" value="Delete" />
+          &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":form:multiAssetDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiAssetDialog1').show()" />
+       &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="DT" update=":form:multiAssetDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiAssetDialog').show()" />
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOneAsset1()}" icon="ui-icon-trash" value="Delete" />
                  <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="Assets" />
