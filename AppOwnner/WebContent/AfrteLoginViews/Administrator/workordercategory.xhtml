@@ -105,12 +105,12 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                 
                  </h:selectOneMenu></td></tr>
              <tr><td>  
-	    <p:commandButton process="DT" update="multiWorkOrderDetail"   value="Create New" oncomplete="PF('multiWorkOrderDialog').show()" />
+	    <p:commandButton  icon="ui-icon-plus"  style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail"   value="Create New" oncomplete="PF('multiWorkOrderDialog').show()" />
 	
-	 &#150; &#150;  <p:commandButton process="DT" update="multiWorkOrderDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiWorkOrderDialog1').show()" />
-       &#150; &#150; <p:commandButton process="DT" update="multiWorkOrderDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiWorkOrderDialog2').show()" />
-       &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteWorkOrder()}" icon="ui-icon-trash" value="Delete" />
-       <h:commandButton  value="Refresh" />
+	 &#150; &#150;  <p:commandButton style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail1" icon="ui-icon-info" value="View" oncomplete="PF('multiWorkOrderDialog1').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiWorkOrderDialog2').show()" />
+       &#150; &#150;  <p:commandButton style="width:120px;height:25px"  update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteWorkOrder()}" icon="ui-icon-trash" value="Delete" />
+       <p:commandButton  style="width:120px;height:25px" value="Refresh" />
          
      
      </td>
