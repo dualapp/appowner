@@ -44,12 +44,12 @@
                 
                  </h:selectOneMenu></td></tr>
            <tr><td>  
-	    <p:commandButton process="DT" update="multiParkingSpaceDetail"   value="Create New" oncomplete="PF('multiParkingSpaceDialog').show()" />
+	    <p:commandButton style="width:120px;height:25px" process="DT" update="multiParkingSpaceDetail"    icon="ui-icon-plus"  value="Create New" oncomplete="PF('multiParkingSpaceDialog').show()" />
 	
-	 &#150; &#150;  <p:commandButton process="DT" update="multiParkingSpaceDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiParkingSpaceDialog1').show()" />
-       &#150; &#150; <p:commandButton process="DT" update="multiParkingSpaceDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiParkingSpaceDialog2').show()" />
-       &#150; &#150;  <p:commandButton update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteParkingSpace}" icon="ui-icon-trash" value="Delete" />
-       <h:commandButton  value="Refresh" />
+	 &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update="multiParkingSpaceDetail1" icon="ui-icon-info" value="View" oncomplete="PF('multiParkingSpaceDialog1').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update="multiParkingSpaceDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiParkingSpaceDialog2').show()" />
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteParkingSpace}" icon="ui-icon-trash" value="Delete" />
+       <p:commandButton  style="width:120px;height:25px"  value="Refresh" />
          
      
      </td>
