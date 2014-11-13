@@ -1031,7 +1031,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 /**
  * get particular vendor according to vendor id
  */
-	public void getVendor1() {
+	public void getVendor1(Integer int_VendorId) {
 
 		vendor = getVendorservice().getVendor(int_VendorId);
 		//System.out.println(vendor.getStr_VendorName());
