@@ -7,22 +7,30 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
+	<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/committee.png" height="50" width="50"></img> <span class="title">Maintainance Staff  Registration</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 <h:head><title>Maintainance Staff  Registration</title></h:head>
 <body bgcolor="pink">
     <h:form id="form" ><br/> 
-    <fieldset>
-     <legend  align="left" style="background-color:#438eb9; color:#fff;">Maintainance Staff Registration</legend>
+     
      <center>
   <div>  <table >
          <th><h3>FullName</h3></th> <th><h3> RoleName</h3></th><th><h3>Email</h3></th><th><h3>Mobile</h3></th> 
       
    <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
             </h:inputText></td>
-            <td>   <p:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+            <td>   <h:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
             
             <f:selectItem itemLabel="Select One" itemValue="" /> 
             <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
-            </p:selectOneMenu></td>
+            </h:selectOneMenu></td>
              <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" Email is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
               <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
              </td> 
@@ -30,11 +38,11 @@
              
                <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}"    valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
             </h:inputText></td>
-            <td>   <p:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}"    valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+            <td>   <h:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}"    valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
             
             <f:selectItem itemLabel="Select One" itemValue="" /> 
             <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
-            </p:selectOneMenu></td>
+            </h:selectOneMenu></td>
              <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
              </h:inputText>
              </td> 
@@ -45,7 +53,7 @@
  </table>
  </div>
  </center>
- </fieldset>
+ 
  </h:form>
  </body>
  </ui:define>

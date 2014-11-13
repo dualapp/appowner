@@ -7,20 +7,15 @@
 	<ui:define name="content">
 <h:head>
     <title> </title>
-    <a href="addcommitteemembers.xhtml">Add More Committee Members</a>
+    <h4><a href="addcommitteemembers.xhtml"><b>Add More Committee Members </b></a></h4>
 </h:head>
  <body bgcolor="yellow">
   <h:messages/>
  <h:form>
  <div id="page3">
-           <div class="gsTitleDiv">Committe Member<br/><hr/></div> 
+           <div class="gsTitleDiv">Committe Member On AppOwner<br/><hr/></div> 
   <p:dataTable id="committeemember" var="committeemember" value="#{committeeMemberBean.committeememberlist}"  >
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" Member ID" />
-                </f:facet>
-                <h:outputText  id="int_MemberId" value="#{committeemember.int_MemberId}" />
-            </p:column>
+             
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Member Name" />
@@ -45,18 +40,16 @@
                 <f:facet name="header">
                     <h:outputText value="Action" />
                     </f:facet>
-              <h:link outcome="editcommitteemember.xhtml" >
-	   			<p:graphicImage  height="50" width="50" alt="update" value="#{expenseBean.str_Name}images/k1.png"/> 
-	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
-	   		</h:link>
+              
 	   		 <h:link outcome="deletecommitteemember.xhtml"   
 	   		 onclick="return confirm('Are you sure you want to delete #{committeemember.str_UserName}?');" > 
-	   			<p:graphicImage  height="50" width="50" alt="delete" value="#{expenseBean.str_Name}images/k2.png"/> 
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg"/> 
 	   				<f:param name="int_MemberId" value="#{committeemember.int_MemberId}" />
 	   		</h:link>
 	   		
-	   		 <h:link outcome="rolemanagement.xhtml" id="sidlink"  target="_blank"  >
-	   			 <h:outputText value="addRole" styleClass="txtlink"/>
+	   		 <h:link outcome="rolemanagement.xhtml" >
+	   			  
+	   			 <p:graphicImage  height="20" width="20" alt="Update Role" value="#{expenseBean.str_Name}images/edit.jpg"/>
 	   				<f:param name="int_UserId" value="#{committeemember.int_UserId}" />
 	   		</h:link>
             </p:column>

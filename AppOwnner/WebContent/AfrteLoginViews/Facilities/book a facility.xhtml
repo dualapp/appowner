@@ -13,7 +13,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50" class="src"></img> <span class="title">Book A Facility</span>
+					<img src="#{expenseBean.str_Name}images/facility.png" height="50" width="50"></img> <span class="title">Book A Facility</span>
 				</td>
 			</tr> 
 		</tbody>
@@ -83,22 +83,22 @@
          &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":form:bookDetail2" icon="ui-icon-info" value="View" oncomplete="PF('bookDialog2').show()" />
        &#150; &#150; <p:commandButton style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}" process="DT" update=":form:bookDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('bookDialog3').show()" />
        &#150; &#150;  <p:commandButton style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{requestScopeBean.deleteBookedFacility()}" icon="ui-icon-trash" value="Delete" />
-       <h:commandLink id="excel">
+      &#150; &#150; <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
     </h:commandLink>
  
-    <h:commandLink id="pdf">
+    &#150; &#150;<h:commandLink id="pdf">
        <p:graphicImage  height="20" width="20" alt="pdf" value="#{expenseBean.str_Name}images/pdf.jpg"/>
         <p:dataExporter type="pdf"    target="DT" fileName="BookDetails" />
     </h:commandLink>
  
-    <h:commandLink id="csv">
+   &#150; &#150; <h:commandLink id="csv">
        <p:graphicImage  height="20" width="20" alt="cvs" value="#{expenseBean.str_Name}images/cvs.png"/>
         <p:dataExporter type="csv"    target="DT" fileName="BookDetails" />
     </h:commandLink>
  
-    <h:commandLink id="xml">
+   &#150; &#150; <h:commandLink id="xml">
        <p:graphicImage  height="20"    width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.png"/>
         <p:dataExporter type="xml"    target="DT" fileName="BookDetails" />
     </h:commandLink>

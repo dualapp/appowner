@@ -73,28 +73,27 @@
          
           
         <p:button  style="width:120px;height:25px" update="DT" process="DT" icon="ui-icon-info" value="Vote Selected" outcome="vote.xhtml"/>
-     ,
-       
+    
       &#150; &#150; <p:button  style="width:120px;height:25px" icon="ui-icon-info" update="DT" process="DT" value="View Selected Vote" outcome="viewpool.xhtml"/>
      
        
         &#150; &#150;  <p:button  style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOnePoll1()}" icon="ui-icon-trash" value="Delete" />
-               <h:commandLink id="excel">
+              &#150; &#150; <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="Polls" />
     </h:commandLink>
  
-    <h:commandLink id="pdf">
+    &#150; &#150;<h:commandLink id="pdf">
        <p:graphicImage  height="20" width="20" alt="pdf" value="#{expenseBean.str_Name}images/pdf.jpg"/>
         <p:dataExporter type="pdf" pageOnly="true"  target="DT" fileName="Polls" />
     </h:commandLink>
  
-    <h:commandLink id="csv">
+   &#150; &#150; <h:commandLink id="csv">
        <p:graphicImage  height="20" width="20" alt="cvs" value="#{expenseBean.str_Name}images/cvs.png"/>
         <p:dataExporter type="csv"  pageOnly="true" target="DT" fileName="Polls" />
     </h:commandLink>
  
-    <h:commandLink id="xml">
+   &#150; &#150; <h:commandLink id="xml">
        <p:graphicImage  height="20"  pageOnly="true" width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.png"/>
         <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="Polls" />
     </h:commandLink>
