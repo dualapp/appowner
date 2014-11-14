@@ -3,6 +3,7 @@ package com.appowner.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+@Cacheable(true)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "tb_userblock")
+@Table(name = "tb_blockDetails")
 public class UserBlocks implements Serializable{
 	/**
 	 * 
@@ -28,6 +33,11 @@ public class UserBlocks implements Serializable{
 	//private UserCity userCity;
 	@Column(name="var_BlockName")
 	private String str_BlockName;
+	@Column 
+	private Integer int_SetupId;
+	@Column 
+	private Integer int_NoOfHouses;
+	
 	public Integer getInt_BlockId() {
 		return int_BlockId;
 	}
