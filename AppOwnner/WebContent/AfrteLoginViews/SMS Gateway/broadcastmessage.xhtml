@@ -93,7 +93,7 @@
     <p:column>
     <div class="gsTitleDiv"> Template</div>
         
-            <p:panel id="panelOne"    rendered="#{expenseBean.checkType('Meeting')}">
+            <p:panel id="panelOne"  style="border:none;"  rendered="#{expenseBean.checkType('Meeting')}">
              <div class="gsTitleDiv">Meeting <br/><hr/></div>
                     
             <table>
@@ -115,7 +115,7 @@
           </table>
                 </p:panel>
 
-                <p:panel id="panelTwo"    rendered="#{expenseBean.checkType('Event')}">
+                <p:panel id="panelTwo" style="border:none;"   rendered="#{expenseBean.checkType('Event')}">
                   <div class="gsTitleDiv">Event <br/><hr/></div>
                   <table><tr><th>
                   <h:outputLabel for="title" value="Title:" /></th>
