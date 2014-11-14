@@ -11,6 +11,14 @@ body {
 	line-height:1em;
 	color:#5c5c5c;
 }
+.gsTitleDiv {
+font-size:10px;
+color: #438eb9;
+margin-top:5px;
+ 
+padding-bottom: 1px;
+font-family: "Open Sans light", sans-serif;
+}
 html {
 	min-width:1000px;
 }

@@ -71,3 +71,17 @@ box-shadow: 0px 0px 0px 0px white;
 border-radius: 4px;
 background-color: #ffffff;
 }
+#page8 {
+width: 80%;
+float: center;
+ 
+margin-left: 100px;
+position: relative;
+overflow: auto;
+margin-top: 25px;
+padding-top: 3px;
+padding-bottom: 3px;
+box-shadow: 0px 0px 0px 0px white;
+border-radius: 4px;
+background-color: #ffffff;
+}
