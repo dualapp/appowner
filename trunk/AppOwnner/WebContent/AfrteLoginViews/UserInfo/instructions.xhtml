@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../../include/templates/template1.xhtml">
+	<ui:define name="content">
+<h:head><title>User Registration</title>
+ <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
+</h:head>
+<body bgcolor="#F08080">  
+ <h:form id="form" bgcolor="red">
+ <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
+		
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/members.png" height="50" width="50"></img> <span class="title">Community SetUp</span>
+				</td>
+			</tr>
+		
+	</table>
+ <h:message style="red"/>
+ <div id="page3">
+ <div class="gsTitleDiv">Instructions</div>
+ <p:panel id="panel"  style="border:2%;"> 
+ In the next screen, you will see the existing information of your Community.
+  Please correct it if you notice any discrepancies.
+Unless the Community Setup is complete, the changes made will not be saved.
+Please press "Cancel Setup" in House details page during the setup to discard all the changes that you have made.
+Notifications in Maintenance dues will not be triggered for the wrong data which is getting corrected in the Community Setup.
+ </p:panel>
+ <h:commandButton value="Next>>" action="#"/><h:commandButton value=">>Back" action="#"/>
+ </div>
+ </h:form>
+ </body>
+ </ui:define>
+ </ui:composition>

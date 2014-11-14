@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../../include/templates/template1.xhtml">
+	<ui:define name="content">
+<h:head><title>User Registration</title>
+ <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
+</h:head>
+<body bgcolor="#F08080">  
+ <h:form id="form" bgcolor="red">
+ <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
+		
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/members.png" height="50" width="50"></img> <span class="title">House Details</span>
+				</td>
+			</tr>
+		
+	</table>
+ <h:message style="red"/>
+ <div id="page3">
+ <div class="gsTitleDiv">Instructions</div>
+ <p:panel id="panel"  style="border:none;">
+You can make changes by double clicking on the house detail.
+Once completed, this setup will take some time. Request you to be patient.
+Removing a house may result in a member not associatedto any house. In the next screen, you will be prompted to assign house number to such members.
+Unless the Community Setup is complete, the changes that are made will not be saved.
+ </p:panel>
+ <p:panel id="panel"  style="border:none;">
+ </p:panel>
+ </div>
+ <p:panel id="panel"  style="border:none;">
+ <table><tr><td>  
+	    <p:commandButton style="width:120px;height:25px" process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /></td>
+	    <td><p:commandButton value="back"/></td><td><p:commandButton value="Next>>"/></td>
+	    </tr></table>
+ 
+ </p:panel>
+  
+ <p:dialog header="Add New House" widgetVar="houseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="houseDetail" style="text-align:center;">
+       <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+	<tr><th> 
+               <h:outputText value="House No" /> </th>
+             
+	<td><h:inputText    id="HouseNo" value="#{apartmentDetailsBean.str_HouseNo}"/></td>
+	 
+	</tr>
+	<tr><th><h:outputText value="Size of House (Sqft.)" /> </th>
+             
+	<td><h:inputText    id="size" value="#{apartmentDetailsBean.int_HouseSize}"/></td></tr>
+	<tr><th><h:outputText value="Type Of House" /> </th>
+	<td><p:selectOneMenu  value="#{apartmentDetailsBean.str_TypeOfHouse}"    > 
+              <f:selectItem itemLabel="Select One" itemValue="" />
+              
+                 </p:selectOneMenu></td></tr>
+	<tr><th><h:outputText value="No Of Bed Room" /> </th>
+             
+	<td><h:inputText    id="NoOfBedRoom" value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
+	<tr><th><h:outputText value="No Of Balconies" /> </th>
+             
+	<td><h:inputText    id="HouseType" value="#{apartmentDetailsBean.int_NoOfBalconies}"/></td></tr>
+	<tr><th><h:outputText value="Type Of House" /> </th>
+          <td><p:selectOneMenu  id="HouseType" value="#{apartmentDetailsBean.is_Rented}"    > 
+              <f:selectItem itemLabel="Select One" itemValue="" />
+              
+                 </p:selectOneMenu></td>   
+	 </tr>
+	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveAssetCategory}" />
+	 </td>
+	 </tr>
+	 </table>
+	 </p:outputPanel>
+	 </p:dialog>
+ </h:form>
+ </body>
+ </ui:define>
+ </ui:composition>
