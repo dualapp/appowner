@@ -90,5 +90,4 @@ public class ChartOfAccount implements Serializable {
 		this.credit_closingBalance = credit_closingBalance;
 	}
 	
-    
 }
