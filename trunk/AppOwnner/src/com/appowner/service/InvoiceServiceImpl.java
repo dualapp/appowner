@@ -66,12 +66,18 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().getAccountName();
 	  }
-	  public void updatePayment(String accountName, String str_Status, Integer id,Date dat_InvoiceDate)
+	  public void updatePayment(String accountName, double totalBalance, double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate, Date payment_Date, Integer payment_No)
+
 	  {
-		   getInvoiceDao().updatePayment(accountName,str_Status,id,dat_InvoiceDate);
+		   getInvoiceDao().updatePayment(accountName,totalBalance,dueBalance,str_Status,id,dat_InvoiceDate,payment_Date,payment_No);
 	  }
 	  public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID)
 	  {
 		  return getInvoiceDao().getInvoice(int_InvoiceTransactionID);
 	  }
+	  public double getAmount(Integer id)
+	  {
+		  return getInvoiceDao().getAmount(id);
+	  }
+	 
 }
