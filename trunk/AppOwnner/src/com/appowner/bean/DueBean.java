@@ -1,24 +1,21 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
-import javax.faces.event.AbortProcessingException;
+
 import javax.faces.event.ValueChangeEvent;
 
-import org.primefaces.component.datatable.DataTable;
+
+
+
 
 import com.appowner.model.DueTransaction;
 import com.appowner.service.DueService;
@@ -26,8 +23,8 @@ import com.appowner.util.Util;
 
 
 @ManagedBean
-@ViewScoped
-@FacesConverter(value="categoryConverter")
+@SessionScoped
+
 public class DueBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{DueService}")
@@ -213,7 +210,7 @@ public class DueBean implements Serializable{
 			DueTransaction due=new DueTransaction();
 			due.setStr_Accounts(getStr_Accounts());
 			due.setStr_DueTemplate(getStr_DueTemplate());
-			System.out.println(getStr_DueTemplate());
+			
 			due.setStr_Period(getStr_Period());
 			due.setInt_Year(getInt_Year());
 			due.setStr_InitiatedOn(getStr_InitiatedOn());
@@ -278,9 +275,10 @@ public class DueBean implements Serializable{
 		return dbl_DueAmount;
 		
 	}
-	private List<DueTransaction>   listUserDueTransaction;
+	 private List<DueTransaction>   listUserDueTransaction;
 	public List<DueTransaction> getListUserDueTransaction() {
 		listUserDueTransaction=new ArrayList<DueTransaction>();
+	
 		listUserDueTransaction.addAll(getDueService().listUserDueTransaction(str_Block1,str_ApartmentNo1,str_Status,str_Period,str_DueTemplate));
 		return listUserDueTransaction;
 	}
@@ -288,28 +286,19 @@ public class DueBean implements Serializable{
 			List<DueTransaction> listUserDueTransaction) {
 		this.listUserDueTransaction = listUserDueTransaction;
 	}
-	private DueTransaction template1;
-	public DueTransaction getTemplate1() {
-		return template1;
-	}
-	public void setTemplate1(DueTransaction template1) {
-		this.template1 = template1;
-	}
-	public void getUserDueTransaction()
-	{   
-		template1=getDueService().getUserDueTransaction(5);
-	 
-	}
+	
+	
 	
 	public String reset()
 	{
 		return "userdues.xhtml";
 	}
-	private List<DueTransaction> selectedDue;
-	 public List<DueTransaction> getSelectedDue() {
+	private DueTransaction selectedDue;
+	
+	public DueTransaction getSelectedDue() {
 		return selectedDue;
 	}
-	public void setSelectedDue(List<DueTransaction> selectedDue) {
+	public void setSelectedDue(DueTransaction selectedDue) {
 		this.selectedDue = selectedDue;
 	}
 	private boolean indicator1;
@@ -320,5 +309,20 @@ public class DueBean implements Serializable{
 	public void setIndicator1(boolean indicator1) {
 		this.indicator1 = indicator1;
 	}
-	
+	public String select()
+	{  System.out.println("hhhhhh");
+		return "viewuserdues.xhtml";
+		
+	}
+	 public Object getAsObject(FacesContext context, UIComponent component, String value)
+	    {
+	        return value;
+	    }
+
+	    public String getAsString(FacesContext context, UIComponent component, Object value)
+	    {
+	        return value.toString();
+	    }
+
 }
+
