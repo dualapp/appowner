@@ -25,7 +25,7 @@
 
   <h:form>
   <div id="page3">
-   <table   style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr> 
   <th><h:outputText value="Organisation:" /></th>
               <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px">
@@ -39,7 +39,7 @@
             
             
              <h:form>
-       <h:panelGrid columns="5" style="font: 15px sans-serif;width:1100px;height: 19px;;float:center;">
+       <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
           <p:tabMenu autoDisplay="true" style="padding: 0px" >  
                 <p:menuitem  value="ACCOUNT TRANACTION"  > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
@@ -88,7 +88,7 @@
              </p:menuitem>    
            
          </p:tabMenu>
-       </h:panelGrid>  
+      </table>
 </h:form>
 
 </ui:composition>
