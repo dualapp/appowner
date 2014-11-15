@@ -38,6 +38,18 @@ public class UserBlocks implements Serializable{
 	@Column 
 	private Integer int_NoOfHouses;
 	
+	public Integer getInt_SetupId() {
+		return int_SetupId;
+	}
+	public void setInt_SetupId(Integer int_SetupId) {
+		this.int_SetupId = int_SetupId;
+	}
+	public Integer getInt_NoOfHouses() {
+		return int_NoOfHouses;
+	}
+	public void setInt_NoOfHouses(Integer int_NoOfHouses) {
+		this.int_NoOfHouses = int_NoOfHouses;
+	}
 	public Integer getInt_BlockId() {
 		return int_BlockId;
 	}

@@ -24,17 +24,80 @@ public class HouseDetails  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public Integer getInt_HouseId() {
+		return int_HouseId;
+	}
+	public void setInt_HouseId(Integer int_HouseId) {
+		this.int_HouseId = int_HouseId;
+	}
+	 
+	public String getStr_HouseNo() {
+		return str_HouseNo;
+	}
+	public void setStr_HouseNo(String str_HouseNo) {
+		this.str_HouseNo = str_HouseNo;
+	}
+	public Integer getInt_HouseSize() {
+		return int_HouseSize;
+	}
+	public void setInt_HouseSize(Integer int_HouseSize) {
+		this.int_HouseSize = int_HouseSize;
+	}
+	 
+	public Integer getInt_NoOfBathRooms() {
+		return int_NoOfBathRooms;
+	}
+	public void setInt_NoOfBathRooms(Integer int_NoOfBathRooms) {
+		this.int_NoOfBathRooms = int_NoOfBathRooms;
+	}
+	public Integer getInt_NoOfBalconies() {
+		return int_NoOfBalconies;
+	}
+	public void setInt_NoOfBalconies(Integer int_NoOfBalconies) {
+		this.int_NoOfBalconies = int_NoOfBalconies;
+	}
+	public Integer getInt_NoOfUsers() {
+		return int_NoOfUsers;
+	}
+	public void setInt_NoOfUsers(Integer int_NoOfUsers) {
+		this.int_NoOfUsers = int_NoOfUsers;
+	}
+	public Integer getInt_BlockId() {
+		return int_BlockId;
+	}
+	public void setInt_BlockId(Integer int_BlockId) {
+		this.int_BlockId = int_BlockId;
+	}
+	public Integer getInt_ApartmentId() {
+		return int_ApartmentId;
+	}
+	public void setInt_ApartmentId(Integer int_ApartmentId) {
+		this.int_ApartmentId = int_ApartmentId;
+	}
+	 
+	public String getStr_TypeOfHouse() {
+		return str_TypeOfHouse;
+	}
+	public void setStr_TypeOfHouse(String str_TypeOfHouse) {
+		this.str_TypeOfHouse = str_TypeOfHouse;
+	}
+	public Boolean getIs_Rented() {
+		return is_Rented;
+	}
+	public void setIs_Rented(Boolean is_Rented) {
+		this.is_Rented = is_Rented;
+	}
 	@Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column 
 	private Integer int_HouseId;
-	@Column 
-	private Integer int_HouseNo;
+	@Column (name="var_HouseNo")
+	private String str_HouseNo;
 	@Column 
 	private Integer int_HouseSize;
      
     @Column 
-    private Integer int_NoOfBedRooms;
+    private Integer int_NoOfBathRooms;
     @Column 
     private Integer int_NoOfBalconies;
     @Column 
@@ -44,7 +107,7 @@ public class HouseDetails  implements Serializable{
     @Column 
     private Integer int_ApartmentId;
     @Column(name="var_TypeOfHouse")
-	private String str_CommunitySetupType;
+	private String str_TypeOfHouse;
     @Column 
 	private Boolean  is_Rented;
 }
