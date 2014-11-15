@@ -30,18 +30,56 @@ Once completed, this setup will take some time. Request you to be patient.
 Removing a house may result in a member not associatedto any house. In the next screen, you will be prompted to assign house number to such members.
 Unless the Community Setup is complete, the changes that are made will not be saved.
  </p:panel>
- <p:panel id="panel"  style="border:none;">
- </p:panel>
- </div>
- <p:panel id="panel"  style="border:none;">
- <table><tr><td>  
-	    <p:commandButton style="width:120px;height:25px" process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /></td>
-	    <td><p:commandButton value="back"/></td><td><p:commandButton value="Next>>"/></td>
+  <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
+	    &#150; &#150;  <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
+	    &#150; &#150;  <p:commandButton  style="width:120px;height:25px" value="Back"/>
+	     &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Next"/>
+	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="BolkUpload"/></td>
 	    </tr></table>
- 
- </p:panel>
+	    <p:panel id="panell"     style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
+	    <ui:repeat value="#{apartmentDetailsBean.blockNameList}" var="block" varStatus="status">
+	    <p:commandButton    style="width:120px;height:25px;" value="#{block}" action="#{apartmentDetailsBean.getListHouseDetails()}"/> &#150; &#150;
+	    </ui:repeat>
+	    
+	    </p:panel>
+	     
+ <p:dataTable id="DT" rows="3"  selectionMode="single" selection="#{apartmentDetailsBean.housedetails}" rowKey="#{houseDetails.int_HouseId}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetails"  value="#{apartmentDetailsBean.listHouseDetails}">
+           
+                
+	  
+	 <p:column headerText="House No.">
+                <h:outputText value="#{houseDetails.str_HouseNo}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Size Of House(sqft)">
+                <h:outputText value="#{houseDetails.int_HouseSize}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Type Of House">
+                <h:outputText value="#{houseDetails.str_TypeOfHouse}" /> 
+            
+	 </p:column>
+	 <p:column headerText="No Of BathRooms">
+                <h:outputText value="#{houseDetails.int_NoOfBathRooms}" /> 
+            
+	 </p:column>
+	  <p:column headerText="No Of Balconies">
+                <h:outputText value="#{houseDetails.int_NoOfBalconies}" /> 
+            
+	 </p:column>
+	  <p:column headerText="Rented">
+                <h:outputText value="#{houseDetails.is_Rented}" /> 
+            
+	 </p:column>
+	 <p:column headerText="No. Of Users">
+                <h:outputText value="#{houseDetails.int_NoOfUsers}" /> 
+            
+	 </p:column>
+	</p:dataTable>
   
- <p:dialog header="Add New House" widgetVar="houseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+ </div>
+  
+ <p:dialog header="Add New House" widgetVar="houseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="400">
         <p:outputPanel id="houseDetail" style="text-align:center;">
        <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 	<tr><th> 
@@ -54,23 +92,29 @@ Unless the Community Setup is complete, the changes that are made will not be sa
              
 	<td><h:inputText    id="size" value="#{apartmentDetailsBean.int_HouseSize}"/></td></tr>
 	<tr><th><h:outputText value="Type Of House" /> </th>
-	<td><p:selectOneMenu  value="#{apartmentDetailsBean.str_TypeOfHouse}"    > 
-              <f:selectItem itemLabel="Select One" itemValue="" />
+	<td><h:selectOneMenu  value="#{apartmentDetailsBean.str_TypeOfHouse}" > 
+	 <f:selectItem itemLabel="Select One" itemValue="" />
+              <f:selectItem itemLabel="1BHK" itemValue="1BHK" />
+              <f:selectItem itemLabel="2BHK" itemValue="2BHK" />
+              <f:selectItem itemLabel="3BHK" itemValue="3BHK" />
+              <f:selectItem itemLabel="SingleBuilding" itemValue="SingleBuilding" />
               
-                 </p:selectOneMenu></td></tr>
-	<tr><th><h:outputText value="No Of Bed Room" /> </th>
+                 </h:selectOneMenu></td></tr>
+	<tr><th><h:outputText value="No Of BathRoom" /> </th>
              
-	<td><h:inputText    id="NoOfBedRoom" value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
+	<td><h:inputText    id="NoOfBathRoom" value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
 	<tr><th><h:outputText value="No Of Balconies" /> </th>
              
 	<td><h:inputText    id="HouseType" value="#{apartmentDetailsBean.int_NoOfBalconies}"/></td></tr>
 	<tr><th><h:outputText value="Type Of House" /> </th>
-          <td><p:selectOneMenu  id="HouseType" value="#{apartmentDetailsBean.is_Rented}"    > 
+          <td><h:selectOneMenu  id="isRented" value="#{apartmentDetailsBean.is_Rented}"> 
               <f:selectItem itemLabel="Select One" itemValue="" />
+              <f:selectItem itemLabel="Yes" itemValue="Yes" />
+              <f:selectItem itemLabel="No" itemValue="No" />
               
-                 </p:selectOneMenu></td>   
+                 </h:selectOneMenu></td>   
 	 </tr>
-	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveAssetCategory}" />
+	<tr><td><h:commandButton   styleClass="btn" id="Cancel"  value="Cancel"    action="housedetails.xhtml" /></td><td><h:commandButton   styleClass="btn" id="submit"  value="Confirm"     action="#{apartmentDetailsBean.saveHouseDetails}" />
 	 </td>
 	 </tr>
 	 </table>

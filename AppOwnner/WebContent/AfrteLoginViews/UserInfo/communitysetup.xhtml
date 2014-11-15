@@ -24,12 +24,12 @@
  <h:message style="red"/>
  <div id="page3">
  <p:panel id="panel"  style="border:none;"> 
-  <table><tr><th>Wish to neatly organize your Community information ?
-
-Community setup is the only place where you can organize, maintain And manage house
-information in few minutes. You can add, remove or update information related to houses, blocks
-and members associated.</th></tr>
-<tr><th width="30%">What is type of Community*</th><td width="70%"><h:selectManyCheckbox     value="#{apartmentDetailsBean.str_CommunityType}"  styleClass="nostyle">
+  <h3><p>Wish to neatly organize your Community information ?</p></h3>
+<p>Community setup is the only place where you can organize, maintain And manage house
+information in few minutes.</p><p> You can add, remove or update information related to houses, blocks
+and members associated.</p> 
+  <table>
+<tr><th width="30%">What is type of Community*</th><td width="70%"><h:selectManyCheckbox   valueChangeListener="#{apartmentDetailsBean.communityTypeListener}"  value="#{apartmentDetailsBean.communityTypeList}"  styleClass="nostyle">
 <f:selectItem itemValue="Apartment" itemLabel="Apartment" /> 
    <f:selectItem itemValue="Villa" itemLabel="Villa" /> 
    <f:selectItem itemValue="Plots" itemLabel="Plots" /> 

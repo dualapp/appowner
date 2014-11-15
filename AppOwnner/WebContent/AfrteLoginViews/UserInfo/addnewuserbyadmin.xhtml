@@ -89,18 +89,22 @@
             <tr>
             <td><h:outputLabel for="str_Block" value="Block :"/>
             </td>          
-            <td><h:selectOneMenu id="str_Block" value="#{cls_UserBeanMain.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}"   required="true">
+            <td><h:selectOneMenu id="str_Block" value="#{apartmentDetailsBean.str_BlockName}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}"   required="true">
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
-            <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
-             <p:ajax event="change" process="str_Block"/>
+            <f:selectItems value="#{apartmentDetailsBean.blockNameList}"/>
+             <p:ajax event="change" update="str_House" process="str_Block"/>
              </h:selectOneMenu>  
             </td></tr> 
             
           <tr>
-             <td><h:outputText value="Flat No:">
+             <td><h:outputText value="House:">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText id="str_Flat" value="#{cls_UserBean.str_Flat}" required="true"                requiredMessage="Enter Flat Name!">
-            </h:inputText></td><td><p:message for="str_Flat" display="text"/></td>  </tr> 
+             <td><h:selectOneMenu id="str_House" value="#{apartmentDetailsBean.str_HouseNo}" required="true"     requiredMessage="Enter Flat Name!">
+            <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
+            
+            <f:selectItems value="#{apartmentDetailsBean.houseNoList}"/>
+            </h:selectOneMenu>
+             </td><td><p:message for="str_House" display="text"/></td>  </tr> 
 
          
              <tr> 			
@@ -115,7 +119,8 @@
             </div>
              <hr/>
  <div id="page3">
- <p:panel id="panelOne"  style="border:none;" rendered="true">
+ #{apartmentDetailsBean.render}
+ <p:panel id="panelOne"  style="border:none;" rendered="#{apartmentDetailsBean.render}">
  <div class="gsTitleDiv">House Details of Single Building, A2</div><hr/>
         <table><tr>
     <td width="20%"><h:outputText value="Size of house:"/><h:outputText value="1200"/></td>
@@ -131,7 +136,7 @@
    <td width="20%"> <h:outputText value="Occupancy Status:"/><h:outputText value="Vacant"/></td>
    </tr></table>
   </p:panel>
-  <p:panel id="panelTwo"  style="border:none;" rendered="true">
+  <p:panel id="panelTwo"  style="border:none;" rendered="#{apartmentDetailsBean.render}">
  <div class="gsTitleDiv">Registered Primary Owner Details</div><hr/>
         <table><tr>
     <td width="20%"><h:outputText value="Name:"/><h:outputText value="1200"/></td>
@@ -148,7 +153,7 @@
     <td width="20%"> <h:outputText value="Uplaod Files:"/><h:outputText value="Vacant"/></td>
    </tr></table>
   </p:panel>
-  <p:panel id="panelthree"  style="border:none;" rendered="true">
+  <p:panel id="panelThree"  style="border:none;" rendered="#{apartmentDetailsBean.render}">
  <div class="gsTitleDiv">Tenant Details</div><hr/>
        <table><tr>
     <td width="20%"><h:outputText value="Name:"/><h:outputText value="1200"/></td>
