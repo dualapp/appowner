@@ -1,7 +1,6 @@
 package com.appowner.model;
 
 import java.io.Serializable;
-
 import java.util.Date;
 
 import javax.persistence.Cacheable;
@@ -141,7 +140,8 @@ public class DueTransaction implements Serializable{
 	public void setInt_paidAmount(Double int_paidAmount) {
 		this.int_paidAmount = int_paidAmount;
 	}
-
+	
+    
 	
 	
 }

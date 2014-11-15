@@ -35,7 +35,7 @@ public class InvoiceTransaction implements Serializable{
 	private Date dat_InvoiceDate;
 	private Date dat_DueDate;
 	@Column(name="int_Organisation")
-	private String str_Organisation;
+	private Integer int_Organisation;
 	@Column(name="var_Block")
 	private String str_Block;
 	@Column(name="var_ApartmentNo")
@@ -82,11 +82,12 @@ public class InvoiceTransaction implements Serializable{
 	public void setDat_InvoiceDate(Date dat_InvoiceDate) {
 		this.dat_InvoiceDate = dat_InvoiceDate;
 	}
-	public String getStr_Organisation() {
-		return str_Organisation;
+	
+	public Integer getInt_Organisation() {
+		return int_Organisation;
 	}
-	public void setStr_Organisation(String str_Organisation) {
-		this.str_Organisation = str_Organisation;
+	public void setInt_Organisation(Integer int_Organisation) {
+		this.int_Organisation = int_Organisation;
 	}
 	public String getStr_Block() {
 		return str_Block;
@@ -166,5 +167,32 @@ public class InvoiceTransaction implements Serializable{
 	public void setDat_PaymentDate(String dat_PaymentDate) {
 		this.dat_PaymentDate = dat_PaymentDate;
 	}
-	
+	private Integer Payment_No;
+	public Integer getPayment_No() {
+		return Payment_No;
+	}
+	public void setPayment_No(Integer payment_No) {
+		Payment_No = payment_No;
+	}
+	private Integer int_Admin_ID;
+	public Integer getInt_Admin_ID() {
+		return int_Admin_ID;
+	}
+	public void setInt_Admin_ID(Integer int_Admin_ID) {
+		this.int_Admin_ID = int_Admin_ID;
+	}
+	private Date Payment_Date;
+	public Date getPayment_Date() {
+		return Payment_Date;
+	}
+	public void setPayment_Date(Date payment_Date) {
+		Payment_Date = payment_Date;
+	}
+	private double dueBalance;
+	public double getDueBalance() {
+		return dueBalance;
+	}
+	public void setDueBalance(double dueBalance) {
+		this.dueBalance = dueBalance;
+	}
 }
