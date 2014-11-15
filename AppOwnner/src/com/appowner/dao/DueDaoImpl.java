@@ -46,6 +46,10 @@ public class DueDaoImpl implements DueDao{
 		{
 		return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
 		}
+		else if(str_DueTemplate.isEmpty())
+		{
+			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
+		}
 		else
 		{
 			String str="From DueTransaction where str_DueTemplate=? AND str_Period=? AND str_Block=? AND str_ApartmentNo=? AND str_Status=?";
@@ -69,7 +73,7 @@ public class DueDaoImpl implements DueDao{
 	@SuppressWarnings("unchecked")
 	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo, String str_ApartmentNo1, String str_Status, String str_Period, String str_DueTemplate)
 	{   System.out.println(str_ApartmentNo+"kil");
-		String hql="from DueTransaction where str_ApartmentNo=?";
+		String hql="from DueTransaction where str_Block=?";
 		List<DueTransaction>   sss=(List<DueTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).list();
 		System.out.println(sss);
 		return sss;

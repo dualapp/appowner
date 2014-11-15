@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.Account;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
@@ -448,7 +449,15 @@ public class AccountsDaoImpl implements AccountsDao{
 	    }
 	return null;
 	}
-	
+	public void addAccount(Account account)
+	{
+		getSessionFactory().getCurrentSession().save(account);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Account> listAccounts()
+	{
+		return (List<Account>)getSessionFactory().getCurrentSession().createCriteria(Account.class).setCacheable(true).list();
+	}
 }
 			 
 		       
