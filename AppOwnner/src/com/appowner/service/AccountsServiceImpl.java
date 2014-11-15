@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.AccountsDao;
+import com.appowner.model.Account;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
@@ -196,5 +197,14 @@ public class AccountsServiceImpl implements AccountsService {
 	public List<Expense> expenseList(Date dat_FromDate,Date dat_ToDate)
 	{
 		return getAccountsDao().expenseList(dat_FromDate,dat_ToDate);
+	}
+	public void addAccount(Account account)
+	{
+		getAccountsDao().addAccount(account);
+	}
+	public List<Account> listAccounts()
+	{
+		return getAccountsDao().listAccounts();
+		
 	}
 }

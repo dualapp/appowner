@@ -31,7 +31,11 @@ public String getmailid(String str_ApartmentNo);
 
 public List<String> getAccountName();
 
-public void updatePayment(String accountName, String str_Status, Integer id, Date dat_InvoiceDate);
+public void updatePayment(String accountName, double totalBalance, double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate, Date payment_Date, Integer payment_No);
 
 public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID);
+
+public double getAmount(Integer id);
+
+
 }

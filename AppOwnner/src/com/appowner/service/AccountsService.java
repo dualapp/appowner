@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import com.appowner.model.Account;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
@@ -89,6 +90,10 @@ public interface AccountsService {
 	public List<ChartOfAccount> listRavenues();
 
 	public List<Expense> expenseList(Date dat_FromDate,Date dat_ToDate);
+
+	public void addAccount(Account account);
+
+	public List<Account> listAccounts();
 	
 
 }
