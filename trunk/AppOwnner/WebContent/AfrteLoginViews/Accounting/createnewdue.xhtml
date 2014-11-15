@@ -1,46 +1,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
+	<ui:define name="content">
      
 <h:head>
    <title>Dues Form</title>
+     <style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:250px;
+          }
+          select
+          {
+           height:25px;
+           weight:250px;
+          }
+      </style>	
     
     </h:head>
+   
    <body >
+    <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/dues.png" height="60" width="70"></img> <span class="title">Dues</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
   <h:form id="form" >
-   <fieldset>
-    <legend>
-   <h:commandButton value="Template" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table>
+   <div id="page3"> 
+   <div class="gsTitleDiv">Template<br/><hr/></div>
+   
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
             <tr>
-            <td><h:outputLabel value="Account" /> <font color="red" >*</font></td>
+            <td><h:outputLabel value="Account" /> <font color="red" >*</font></td> 
             
-              <td><p:selectOneMenu id="str_Account" value="#{dueBean.str_Account}"  style="width:250px">
+              <td ><h:selectOneMenu id="str_Account" value="#{dueBean.str_Accounts}" required="false" >
                <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.ravenues}"  />
-                 </p:selectOneMenu>
+                 
+                 </h:selectOneMenu>
              </td>
           </tr> 
           <tr>
             <td><h:outputLabel value="Due Template" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}" valueChangeListener="#{dueBean.templateChangeListener}"  style="width:250px">
+              <td><h:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}" valueChangeListener="#{dueBean.templateChangeListener}" >
                    <f:selectItems value="#{dueBean.str_DueTemplates}"/>
                     <p:ajax event="change"  process="str_DueTemplate"/>
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
           </tr> 
           </table>
-          </fieldset>
-          <fieldset>
-    <legend>
-   <h:commandButton value="Due Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table  cellspacing="10">
+         </div>
+          <div id="page3"> 
+           <div class="gsTitleDiv">Due Details<br/><hr/></div>
+  
+   <table >
             <tr>
-            <td> <h:outputText  value="Period" /><font color="red" >*</font></td>
-           <td> <p:selectOneMenu id="str_Period" value="#{dueBean.str_Period}"  style="width:250px">
+            <td> <h:outputText  value="Period" /><font color="red" >*</font></td> 
+           <td> <h:selectOneMenu id="str_Period" value="#{dueBean.str_Period}" >
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
                        <f:selectItem itemLabel="MAR" itemValue="MAR"/>
@@ -53,11 +79,11 @@
                      <f:selectItem itemLabel="OCT" itemValue="OCT"/>
                        <f:selectItem itemLabel="NOV" itemValue="NOV"/>
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
-                 </p:selectOneMenu></td>
+                 </h:selectOneMenu></td>
             </tr>
          <tr>
             <td> <h:outputText  value="Year" /><font color="red" >*</font></td>
-           <td> <p:selectOneMenu id="int_Year" value="#{dueBean.int_Year}"  style="width:250px">
+           <td> <h:selectOneMenu id="int_Year" value="#{dueBean.int_Year}" >
                    <f:selectItem itemLabel="2014" itemValue="2014"/>
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
                        <f:selectItem itemLabel="2016" itemValue="2016"/>
@@ -65,73 +91,71 @@
                           <f:selectItem itemLabel="2018" itemValue="2018"/>
                      <f:selectItem itemLabel="2019" itemValue="2019"/>
                        <f:selectItem itemLabel="2020" itemValue="2020"/>
-                        </p:selectOneMenu>
+                        </h:selectOneMenu>
                         </td>
                         </tr>
                         <tr>
                         <td>  <h:outputText  value="Initiated On" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_InitiatedOn" value="#{dueBean.str_InitiatedOn}" size="25"/> </td>
+           <td>  <p:calendar id="str_InitiatedOn" value="#{dueBean.str_InitiatedOn}" pattern="dd-MM-yyyy" navigator="true"/> </td>
            </tr>
            <tr>
                         <td>  <h:outputText  value="Last Date" /><font color="red" >*</font></td>
-           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}" size="25"  required="true" requiredMessage="Last date should not Empty"/> </td>
+           <td>  <p:calendar id="dat_LastDate" value="#{dueBean.dat_LastDate}"  pattern="dd-MM-yyyy"  navigator="true" required="true" requiredMessage="Last date should not Empty"/> </td>
            <td><p:message for="dat_LastDate" dispay="text"/></td>
            </tr>
            </table>
-           
-             </fieldset>
-          <fieldset>
-    <legend>
-   <h:commandButton value="Apartment Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table cellspacing="5" >
+           </div>
+            <div id="page3"> 
+           <div class="gsTitleDiv">Apartment Details<br/><hr/></div>
+  
+   <table  >
    <tr>
       <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}"  style="width:250px">
+              <td><h:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}" >
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{dueBean.str_Organisation}" itemValue="#{dueBean.str_Organisation}"/>
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
              </tr>
              <tr>
              <td><h:outputLabel value="Block" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"  style="width:250px"  required="true" requiredMessage="Block Should not Empty">
+              <td><h:selectOneMenu id="str_Block" value="#{dueBean.str_Block}" valueChangeListener="#{dueBean.blockChangeListener}"   required="true" requiredMessage="Block Should not Empty">
                      <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_Blocks}" />
                     <p:ajax event="change" update="str_ApartmentNo" process="str_Block"/>
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
               <td><p:message for="str_Block" dispay="text"/></td>
              </tr>
              <tr>
                <td><h:outputLabel value="Apt.No" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}" valueChangeListener="#{dueBean.apartmentChangeListener}" style="width:250px"  required="true" requiredMessage="ApartmentNo Should not Empty">
+              <td><h:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}" valueChangeListener="#{dueBean.apartmentChangeListener}"  required="true" requiredMessage="ApartmentNo Should not Empty">
                    <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_BlockNo}" />
                     <p:ajax event="change" update="dbl_DueAmount,dbl_TotalDueAmount" process="str_ApartmentNo"/>
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
               <td><p:message for="str_ApartmentNo" dispay="text"/></td>
              </tr>
           
           </table>
-          </fieldset>
-           <br/>
-           <fieldset>
-    <legend>
-   <h:commandButton value="Amount Details" style="background-color:#c00; color:#fff;" width="300"/> </legend>
-   <table  cellspacing="10" >
+         </div>
+          <div id="page3"> 
+    <div class="gsTitleDiv">Amount Details<br/><hr/></div>     
+ 
+   <table  >
    
           <tr>
            <td>  <h:outputText  value="Due Amount" /></td>
-           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" size="25" readonly="true"/> </td>
+           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}"  readonly="true"/> </td>
            </tr>
            <tr>
            <td>  <h:outputText  value="Total Due Amount" /></td>
-           <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_DueAmount}" size="25" readonly="true"/> </td>
+           <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_DueAmount}"  readonly="true"/> </td>
            </tr>
          
            </table>
-           </fieldset>
+           
            <br/>
             <h:panelGroup style="display:block; text-align:right"> 
          <tr>
@@ -139,16 +163,12 @@
                 <td><p:commandButton id="cancel" value="Cancel" onclick="" ajax="false"/></td>
            </tr>
            </h:panelGroup>
-            <script>
-        function EnrollNowClick() {
-            PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
-        }
-        function EnrollLaterClick() {
-            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
-        }
-        </script>
-     
+</div>
+
+          
+       
+         
           </h:form>
           </body>
-     </html>
+   </ui:define>
+   </ui:composition>

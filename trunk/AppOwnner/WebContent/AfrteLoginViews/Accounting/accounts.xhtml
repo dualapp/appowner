@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+<h:head>
+    <title>Invoice  Form</title>
+   <style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:200px;
+          }
+          select
+          {
+           height:25px;
+           weight:200px;
+          }
+      </style>	
+      
+</h:head>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/account.jpg" height="50" width="50"></img> <span class="title">Account</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<body  bgcolor="pink">
+  <h:form id="form">
+  <div id="page3">
+    <div class="gsTitleDiv">All Acounts<br/><hr/></div>
+      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr><td>  <p:commandButton  style="width:120px;height:25px" icon="ui-icon-pencil" value="Add Acount"  oncomplete="PF('multiAccountDialog').show()"/>&#150; &#150;<p:commandButton  style="width:120px;height:25px" oncomplete="PF('multiAccountDialog1').show()"  icon="ui-icon-search" value="Transfer Funds"  />
+								&#150; &#150;
+           <h:commandLink id="excel">
+       <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
+        <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
+    </h:commandLink>&#150;
+ 
+    <h:commandLink id="pdf">
+       <p:graphicImage  height="20" width="20" alt="pdf" value="#{expenseBean.str_Name}images/pdf.jpg"/>
+        <p:dataExporter type="pdf"    target="DT" fileName="BookDetails" />
+    </h:commandLink>&#150;
+ 
+    <h:commandLink id="csv">
+       <p:graphicImage  height="20" width="20" alt="cvs" value="#{expenseBean.str_Name}images/csv.jpg"/>
+        <p:dataExporter type="csv"    target="DT" fileName="BookDetails" />
+    </h:commandLink>&#150;
+ 
+    <h:commandLink id="xml">
+       <p:graphicImage  height="20"    width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.jpg"/>
+        <p:dataExporter type="xml"    target="DT" fileName="BookDetails" />
+    </h:commandLink>
+     
+      </td>
+      </tr>
+      </table>
+     <p:panel header="Account Name"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    styleClass="customTitleBar">
+     <p:dataGrid   id="account" var="account" value="#{accountsBean.listAccounts}"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
+         rowKey="#{account.int_account_ID}" editable="true"  resizableColumns="true" columns="1" layout="block">
+            <h:panelGrid columns="2" style="width:100%"> 
+            
+                   
+                <h:outputText value="#{account.str_acount_Name}" />
+            
+                <h:outputText value="#{account.dou_opening_Balance}" />
+                <h:outputText value="Account NO:#{account.str_account_No}" />
+                <h:outputText value="IFSC Code:#{account.str_IFSC_Code}" />
+      </h:panelGrid>
+      </p:dataGrid>
+      </p:panel>
+      <p:dialog header="Add New Bank Account" widgetVar="multiAccountDialog"  id="multiAccountDetail"   showEffect="explode" hideEffect="explode" resizable="false" height="500" width="600">
+      <table>
+      <tr>
+      <td>Please Note:</td>
+      </tr>
+      <tr>
+      <td colspan="2"><font color="red">This is NOT an actual bank account.</font> This feature is provided to help communities to organise their finances. This action is not linked to your real bank accounts.</td>
+      
+      </tr>
+      <tr>
+      <td><h:outputText value="Society Account Name: " /><font color="red">*</font></td>
+     
+      <td><h:outputText value="Account No:  " /><font color="red">*</font></td>
+      </tr>
+      <tr>
+    <td>  <p:inputText value="#{accountsBean.str_acount_Name}"/></td>
+     <td>  <p:inputText value="#{accountsBean.str_account_No}"/></td>
+      </tr>
+      
+      <tr>
+      <td><h:outputText value="Account Type: " /><font color="red">*</font></td>
+      <td><h:outputText value="Bank: " /><font color="red">*</font></td>
+      </tr>
+      <tr>
+        <td><h:selectOneMenu id="str_account_Type" value="#{accountsBean.str_account_Type}" >
+                   <f:selectItem itemLabel="Savings" itemValue="Savings"/>
+                  <f:selectItem itemLabel="Current" itemValue="Current"/>
+                   <f:selectItem itemLabel="Fixed" itemValue="Fixed"/>
+                    <f:selectItem itemLabel="Recurring" itemValue="Recurring"/>
+                 </h:selectOneMenu></td>
+    
+      <td><p:inputText value="#{accountsBean.str_Bank}"/></td>
+      </tr>
+      <tr>
+      <td><h:outputText value="Branch: " /><font color="red">*</font></td>
+       <td><h:outputText value="City: " /><font color="red">*</font></td>
+      </tr>
+      <tr>
+       <td><p:inputText value="#{accountsBean.str_Branch}"/></td>
+    
+      <td><p:inputText value="#{accountsBean.str_City}"/></td>
+      </tr>
+      <tr>
+      <td><h:outputText value="Opening Balance: " /><font color="red">*</font></td>
+     <td><h:outputText value="IFSC Code: " /><font color="red">*</font></td>
+      </tr>
+      <tr>
+       <td><p:inputText value="#{accountsBean.dou_opening_Balance}"/></td>
+      
+      <td><p:inputText value="#{accountsBean.str_IFSC_Code}"/></td>
+      </tr>
+      <tr>
+      <td><p:selectBooleanCheckbox id="bl_Show" value=""/>Make it default</td>       
+      
+      </tr>
+      <tr><td colspan="2"><p:separator/></td></tr>
+      <h:panelGroup style="display:block; text-align:right"> 
+         <tr>
+                 <td><p:commandButton id="submit" value="Submit" action="#{accountsBean.addAccounts}" ajax="false" />
+                 <p:commandButton id="cancel" value="Cancel" action="#{accountsBean.cancel}" ajax="false"/></td>
+           </tr>
+  </h:panelGroup>
+      </table>
+         </p:dialog>
+         <p:dialog header="Transfer Funds" widgetVar="multiAccountDialog1"  id="multiAccountDetail1"   showEffect="explode" hideEffect="explode" resizable="false" height="400" width="700">
+          <table>
+      <tr>
+      <td>Please Note:</td>
+      </tr>
+      <tr>
+      <td colspan="4"><font color="red">This is NOT an actual transfer.</font>This feature is provided to help communities to organise their finances. This action is not linked to your real bank accounts.</td>
+      
+      </tr>
+      <tr>
+      <td colspan="4"><p:separator/></td>
+      </tr>
+      <tr>
+      <td><h:outputText value="Enter Amount: " /><font color="red">*</font></td>
+      <td><p:inputText value="#{accountsBean.dob_transfer_Amount}" placeholder="Enter Amount"/></td>
+      <td><h:outputText value="Transfer Date:  " /><font color="red">*</font></td>
+        <td><p:calendar value="#{accountsBean.dat_transfer_Date}" placeholder="Transfer Date"/></td>
+      </tr>
+     
+       <tr>
+       <td><h:outputText value="From Account:  " /><font color="red">*</font></td>
+        <td><p:inputText value="#{accountsBean.from_Account}" placeholder="Choose source"/></td>
+        <td><h:outputText value="To Account:  " /><font color="red">*</font></td>
+        <td><p:inputText value="#{accountsBean.to_Acconut}" placeholder="Choose Receipiant"/></td>
+      </tr>
+      
+       <tr>
+       <td><h:outputText value="Add Notes:  " /><font color="red">*</font></td>
+        <td><p:inputTextarea value="#{accountsBean.str_Notes}" placeholder="Why are you transferring this amount" /></td>
+      </tr>
+       <tr>
+      <td colspan="4"><p:separator/></td>
+      </tr>
+      <tr>
+                 <td><p:commandButton id="submit1" value="transfer" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" /></td>
+                 </tr>
+      </table>
+         </p:dialog>
+   </div>
+   </h:form>
+   </body>
+</ui:define>
+</ui:composition>
+
+	 
+	
+	

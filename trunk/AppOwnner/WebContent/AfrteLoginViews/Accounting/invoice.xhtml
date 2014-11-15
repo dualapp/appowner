@@ -21,6 +21,7 @@
            weight:250px;
           }
       </style>	
+      
 </h:head>
 <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
@@ -129,16 +130,12 @@
           <div id="page3"> 
 	  <div class="gsTitleDiv">List Of Invoice<br/><hr/></div>
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-          <tr><td>  <p:button  style="width:120px;height:25px" icon="ui-icon-pencil" value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<p:button  style="width:120px;height:25px" update="invoice" process="invoice" outcome="viewinvoice.xhtml"   icon="ui-icon-search" value="View"  />
-								&#150; &#150;<p:commandButton  style="width:120px;height:25px" icon="ui-icon-trash" value="Delete Selected" />&#150; &#150;<p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"  value="Refresh" />&#150; &#150;<p:menuButton style="width:120px;height:25px"  value="Action" id="aa44">
-           <p:menuitem value="Record Payment" />
+          <tr><td>  <p:button  style="width:120px;height:25px" icon="ui-icon-pencil" value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<h:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" action="viewinvoice.xhtml"   icon="ui-icon-search" value="View"  />
+								&#150; &#150;<p:commandButton  style="width:120px;height:25px" icon="ui-icon-trash" value="Delete Selected" />&#150; &#150; <p:button  style="width:120px;height:25px" id="jjj"  update="invoice" process="invoice" outcome="#{invoiceBean.cancel()}"   icon="ui-icon-search" value="Make Payment"  >
+								
+								 </p:button>
+								&#150; &#150;<p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"  value="Refresh" />
          
-           <p:menuitem id="hyg" value="Quick Payment"  icon="ui-icon-disk" update=":form:multiVendorDetail" oncomplete="PF('multiVendorDialog').show()">
-           
-           </p:menuitem>
-           <p:menuitem value="Export To Excel" icon="ui-icon-arrowrefresh-1-w" style="width:150px"/>
-           <p:menuitem value="Notify By Mail"/>
-         </p:menuButton>
            <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
@@ -172,7 +169,7 @@
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
                 </f:facet>
-                <h:outputText value="#{invoice.str_Organisation}" />
+                <h:outputText value="#{invoiceBean.str_Organisation}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
@@ -180,12 +177,7 @@
                 </f:facet>
                 <h:outputText value="#{invoice.int_InvoiceNo}" />
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Period" />
-                </f:facet>
-                <h:outputText value="#{invoice.str_BillPeriod}" />
-            </p:column>
+            
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="End Date" />
@@ -242,59 +234,43 @@
                 </f:facet>
                 <h:outputText value="#{invoice.totalBalance}" />
             </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Balance" />
+                </f:facet>
+               <center>
+             
+             
+               
+              <p:commandLink   process="invoice"  update=":form:multiInvoiceDetail1" oncomplete="PF('multiDueInvoiceDialog1').show()" action="#{invoiceBean.getInvoice(invoice.int_InvoiceTransactionID)}">
+                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink>
+               &#150;
+          <h:link outcome="dues.xhtml"
+	   		 onclick="return confirm('Are you sure you want to delete #{dueTemplate.int_DueTemplateID}?');" >  
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
+	   				<f:param name="int_InvoiceTransactionID" value="#{invoice.int_InvoiceTransactionID}" />
+	   		</h:link>
+	   		 </center>
+            </p:column>
             </p:dataTable>
             </div>
-          <p:dialog header="Quick payment Details" widgetVar="multiVendorDialog"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
-      <p:outputPanel id="multiVendorDetail" style="text-align:center;"> 
-         <ui:repeat value="#{invoiceBean.selectedInvoice}" var="invoice1">
-        <table>
-       
-    <tr>
-            
-             <td><h:outputLabel value="Account Name" /><font color="red" >*</font></td>
-              <td><h:selectOneMenu id="accountName" value="#{invoiceBean.accountName}"  style="width:200px" >
-                    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
-                   <f:selectItems value="#{invoiceBean.listAccountName}" />
-                   
-                </h:selectOneMenu>
-             </td>
-           
-             </tr>
-             <tr>
-              <td><h:outputLabel value="Paid On" /><font color="red" >*</font></td>
-              <td> <p:inputText id="dat1_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}" size="25"/> 
-             </td>
-             </tr>
-             <tr>
-            <td>  <h:outputText  value="Comments" /><font color="red" >*</font></td>
-            <td>  <p:inputTextarea id="str_Description" rows="4" cols="30" value="#{templateBean.str_Description}" size="25"  /></td>
-             </tr>
-           
-   </table>
-   </ui:repeat>
-    <br/>
-   <h:panelGroup style="display:block; text-align:right">
-     <tr>
-                <td><h:commandButton id="submit" value="Confirm" action="#{invoiceBean.savePayment(invoice1.int_InvoiceTransactionID,invoice1.int_InvoiceNo)}" update="invoice" oncomplete="PF('multiVendorDialog').hide()"/></td>
-                <td><h:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
-            </tr>
-    </h:panelGroup>
-       </p:outputPanel>
-        </p:dialog>
-         <p:dialog header="View Invoice" widgetVar="multiInvoiceDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="600">
-        <p:outputPanel id="multiInvoiceDetail1" style="text-align:center;">
-           <table>
+            <p:dialog header="View Invoice" widgetVar="multiInvoiceDialog1"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
+      <p:outputPanel id="multiInvoiceDetail1" style="text-align:center;">   
+      
+ <div id="page3">
+  
+   <div class="gsTitleDiv">Template<br/><hr/></div>
               
-            <ui:repeat value="#{invoiceBean.selectedInvoice}" var="invoice1">
-              <legend style="background-color:#438eb9; color:#fff;">Template
-   </legend>
-   <table cellpadding="20" cellspacing="10">
+         
+            
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
            
             <td><h:outputLabel value="Invoice Template" /></td>
             
               <td>
-              <h:outputText value="#{invoice1.str_InvoiceTemplate}"/>
+              <h:outputText value="#{invoiceBean.invoice1.str_InvoiceTemplate}"/>
              </td>
             <td><h:outputLabel value="Included Charges"  /></td>
             <td><p:dataTable id="due" var="due" value="#{invoiceBean.dueList}" style="width:500px">
@@ -318,51 +294,61 @@
   
   </tr>
   </table>
- 
+ </div>
+  <div id="page3">
   
-    <legend style="background-color:#438eb9; color:#fff;">Due Details
-   </legend>
-   <table cellpadding="20" cellspacing="10">
+   <div class="gsTitleDiv">Due Details<br/><hr/></div>
+    
+  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr>
       <td><h:outputLabel value="Bill Period:" /></td>
-      <td><h:outputText value="#{invoice1.str_BillPeriod}"/></td>
+      <td><h:outputText value="#{invoiceBean.invoice1.str_BillPeriod}"/></td>
        <td><h:outputLabel value="Year:" /></td>
-       <td><h:outputText value="#{invoice1.int_Year}"/></td>
+       <td><h:outputText value="#{invoiceBean.invoice1.int_Year}"/></td>
       </tr>
       <tr>
        <td>  <h:outputText  value="Invoice Date" /></td>
             
-           <td>  <h:outputText id="dat_InvoiceDate" value="#{invoice1.dat_InvoiceDate}" size="25"/> </td>
+           <td>  <h:outputText id="dat_InvoiceDate1" value="#{invoiceBean.invoice1.dat_InvoiceDate}" /> </td>
            <td>  <h:outputText  value="Due Date" /></td>
-           <td>  <h:outputText id="dat_DueDate" value="#{invoice1.dat_DueDate}" size="25"/> </td>
+           <td>  <h:outputText id="dat_DueDate1" value="#{invoiceBean.invoice1.dat_DueDate}"/> </td>
           
       </tr>
        <tr><th colspan="3">Apartment Details</th></tr>
        <tr>
        <td><h:outputLabel value="Block:" /></td>
-       <td><h:outputText value="#{invoice1.str_Block}"/></td>
+       <td><h:outputText value="#{invoiceBean.invoice1.str_Block}"/></td>
        <td><h:outputLabel value="Apt.No:" /></td>
-       <td><h:outputText value="#{invoice1.str_ApartmentNo}"/></td>
+       <td><h:outputText value="#{invoiceBean.invoice1.str_ApartmentNo}"/></td>
        </tr>
    </table>
+ </div>
  
-    <legend style="background-color:#438eb9; color:#fff;">Invoice Details
-   </legend>
-   <table>
+   <div id="page3"> 
+   <div class="gsTitleDiv">Invoice Details<br/><hr/></div>
+   
+  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
        <tr>
         <td><h:outputLabel value="InvoiceNo.:" /></td>
-       <td><h:outputText value="#{invoice1.int_InvoiceNo}"/></td>
+       <td><h:outputText value="#{invoiceBean.invoice1.int_InvoiceNo}"/></td>
         <td><h:outputLabel value="Status:" /></td>
-         <td><h:outputText value="#{invoice1.str_Status}"/></td>
+         <td><h:outputText value="#{invoiceBean.invoice1.str_Status}"/></td>
        </tr>
        <tr>
-        <table cellpadding="0" cellspacing="0" style="width:598px;align:center; font-family:arial;font-size:14px;line-height:15px;border:1px solid #DADADA ;">
+       </tr>
+       
+     
+  
+   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;border:1px solid #DADADA ;">
     <tbody>
     <tr>
     <td style="width:440px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
     <strong>Item</strong>
     </td>
-    <td style="width:250px;background:#0E94F9;color:#fff;line-height:25px;" align="right">
+     <td style="width:200px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
+    <strong></strong>
+    </td>
+    <td style="width:350px;background:#0E94F9;color:#fff;line-height:25px;" align="right">
     <strong>Amount</strong>
     </td>
     <td style="width:220px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
@@ -371,74 +357,155 @@
     <span style="font-size:10px;">(Tax calculated below)</span>
     </td>
     </tr>
-     <tr>
-  
-   
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;">
-    </td>
-    </tr>
-     <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px"> 
     
-    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{dues.str_DueTemplate}</td>
-    <td align="right" style="width:250px;">#{invoiceBean.totalAmounts}"
+     <ui:repeat value="#{invoiceBean.transaction2}" var="dues" varStatus="status" style="width:600px"> 
+    
+    <tr style="line-height:20px;"><td style="padding-left:5px;width:440px;">#{dues.str_DueTemplate}</td>
+     <td align="left" style="width:200px;"/>
+    <td align="right" style="width:250px;"><ui:repeat value="#{invoiceBean.totalAmounts}" var="account">
+   
+    <h:outputText value="#{account}" /><br/>
+  
+     </ui:repeat>
    </td>
+  
     <td align="right" style="padding-right:5px;width:320px;">#{dues.str_TaxTemplate} </td>
     </tr>
     <tr>
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
+    <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
  
    </ui:repeat>
-   
-    <tr>
-    <td style="padding-left:5px;width:440px;line-height:20px;" align="right">SubTotal</td>
-    <td align="right" style="width:250px;">#{invoiceBean.subTotal}</td>
+  
+    <tr style="line-height:25px;">
+     <td align="left" style="width:200px;"/>
+  
+    <td style="padding-left:10px;width:200px;line-height:30px;color:#E17009;">SubTotal</td>
+    <td align="right" style="width:250px;color:#E17009;">#{invoiceBean.subTotal}</td>
     </tr>
     <tr></tr>
-     <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px">  
+     <ui:repeat value="#{invoiceBean.transaction2}" var="dues" varStatus="status" style="width:600px">  
+    <tr>
+    <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+     <tr style="line-height:25px;">
     
-    <tr style="line-height:25px;">
-     <td align="right" style="padding-right:5px;width:320px;"></td></tr><tr style="line-height:20px;"><td align="right">#{dues.str_TaxTemplate} &nbsp;&nbsp;(#{invoiceBean.taxAmount}%)</td><td align="right">#{invoiceBean.taxAmount1}</td>
+     <td align="right" style="padding-right:5px;width:320px;"></td>
      </tr>
-     
+     <tr style="line-height:25px;">
+     <td align="right" style="width:200px;"/>
+     <td align="right">#{dues.str_TaxTemplate} &nbsp;(#{invoiceBean.taxAmount}%)</td>
+     <td align="right">#{invoiceBean.taxAmount1}</td>
+     </tr>
+   </ui:repeat>  
   
    
    
-  </ui:repeat>
+ 
   <tr>
    <tr>
-    <td colspan="3" style="border-bottom:1px solid #DADADA ;"></td>
+    <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
+  <td/>
   <td style="height:20px;color:#E17009;" align="right">Total Due</td><td align="right" style="width:250px;color:#E17009;">#{invoiceBean.totalDue}</td><td align="right" style="padding-right:5px;width:320px;"></td>
   </tr>
     </tbody>
+    </table>
    
-   </table>
-    </tr>
    
-     <table>
+    
+   
+   
+ 
+  
+         
+   
+    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
        <tr><th colspan="3">Payment Details</th></tr>
        <tr>
         <td><h:outputLabel value="Paid Amount:" /></td>
-       <td><h:outputText value="#{invoice1.totalDue}"/></td>
+       <td><h:outputText value="#{invoiceBean.selectedInvoice.totalDue}"/></td>
         <td><h:outputLabel value="Balance Amount:" /></td>
-       <td><h:outputText value="#{invoice1.totalBalance}"/></td>
+       <td><h:outputText value="#{invoiceBean.selectedInvoice.totalBalance}"/></td>
        </tr>
        </table>
-   </table>
-   <br/> <br/>
-  <h:panelGroup style="display:block; text-align:left"> 
+ 
+  </table>
+  </div>
+ 
+       <h:panelGroup style="display:block; text-align:left"> 
          <tr>
                  
-                 <td><p:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancel}" ajax="false"/></td>
+           <td><a href="invoice.xhtml">>>Back to Grid</a></td>
            </tr>
            </h:panelGroup>
-            </ui:repeat>
+          
             
-            </table>
-        </p:outputPanel>
+           
+          
+         
+          
+            
+      </p:outputPanel>
+      </p:dialog>
+      
+          <p:dialog header="Quick payment Details" widgetVar="multiVendorDialog"   showEffect="fade" hideEffect="explode" resizable="false" height="400" width="400">
+      <p:outputPanel id="multiVendorDetail" style="text-align:center;"> 
+         <ui:repeat value="#{invoiceBean.selectedInvoice}" var="invoice1">
+        <table>
        
-    </p:dialog>
+    <tr>
+            
+             <td><h:outputLabel value="Account Name" /><font color="red" >*</font></td>
+              <td><h:selectOneMenu id="accountName" value="#{invoiceBean.accountName}" valueChangeListener="#{invoiceBean.changeAccount}" >
+                    <f:selectItem itemLabel="Cash" itemValue="Cash" />
+                       <f:selectItem itemLabel="Cheque" itemValue="Cheque" /> 
+                         <f:selectItem itemLabel="Demand Draft" itemValue="Demand Draft" /> 
+                           <f:selectItem itemLabel="Online" itemValue="Online" />
+                    <f:ajax event="change" execute="accountName" render="@form"/>
+                </h:selectOneMenu>
+             </td>
+           
+             </tr>
+              <h:panelGroup  id="performedsd"  rendered="#{! empty invoiceBean.accountName}" >
+              <tr >
+              <td><h:outputLabel value="Payment No" /><font color="red" >*</font></td>
+              <td> <p:inputText id="admin1" value="#{invoiceBean.payment_No}"  /> 
+             </td>
+             </tr>
+             </h:panelGroup>
+             <tr>
+              <td><h:outputLabel value="Payment Date" /><font color="red" >*</font></td>
+              <td> <p:calendar id="dat1_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}"  pattern="dd-MM-yyyy"/> 
+             </td>
+             </tr>
+              <tr>
+              <td><h:outputLabel value="Received By" /><font color="red" >*</font></td>
+              <td> <p:inputText id="admin" value="#{invoiceBean.createdBy}" /> 
+             </td>
+             </tr>
+              <tr>
+              <td><h:outputLabel value="Amount" /><font color="red" >*</font></td>
+              <td> <p:inputText id="admin2" value="#{invoiceBean.totalAmount}" /> 
+             </td>
+             </tr>
+             <tr>
+            <td>  <h:outputText  value="Comments" /><font color="red" >*</font></td>
+            <td>  <p:inputTextarea id="str_Description" rows="4" cols="30" value="#{templateBean.str_Description}"  /></td>
+             </tr>
+           
+   </table>
+   </ui:repeat>
+    <br/>
+   <h:panelGroup style="display:block; text-align:right">
+     <tr>
+                <td><h:commandButton id="submit" value="Confirm" action="#{invoiceBean.savePayment(invoice1.int_InvoiceTransactionID,invoice1.int_InvoiceNo)}" update="invoice" oncomplete="PF('multiVendorDialog').hide()"/></td>
+                <td><h:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
+            </tr>
+    </h:panelGroup>
+       </p:outputPanel>
+        </p:dialog>
+        
         </h:form>
         </body>
         </ui:define>
