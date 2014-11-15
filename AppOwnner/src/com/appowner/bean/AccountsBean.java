@@ -23,6 +23,7 @@ import javax.faces.event.ValueChangeListener;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
+import com.appowner.model.Account;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.service.AccountsService;
 import com.appowner.util.Util;
@@ -366,6 +367,152 @@ public void setAccountTypeList(List<String> accountTypeList) {
 	this.accountTypeList = accountTypeList;
 }
 
+
+
+//ACCOUNT
+private Integer int_account_ID;
+private String str_acount_Name;
+private String str_account_No;
+private String str_account_Type;
+private String str_Bank;
+private String str_Branch;
+private String str_City;
+private double dou_opening_Balance;
+private String str_IFSC_Code;
+public Integer getInt_account_ID() {
+	return int_account_ID;
+}
+public void setInt_account_ID(Integer int_account_ID) {
+	this.int_account_ID = int_account_ID;
+}
+public String getStr_acount_Name() {
+	return str_acount_Name;
+}
+public void setStr_acount_Name(String str_acount_Name) {
+	this.str_acount_Name = str_acount_Name;
+}
+public String getStr_account_No() {
+	return str_account_No;
+}
+public void setStr_account_No(String str_account_No) {
+	this.str_account_No = str_account_No;
+}
+public String getStr_account_Type() {
+	return str_account_Type;
+}
+public void setStr_account_Type(String str_account_Type) {
+	this.str_account_Type = str_account_Type;
+}
+public String getStr_Bank() {
+	return str_Bank;
+}
+public void setStr_Bank(String str_Bank) {
+	this.str_Bank = str_Bank;
+}
+public String getStr_Branch() {
+	return str_Branch;
+}
+public void setStr_Branch(String str_Branch) {
+	this.str_Branch = str_Branch;
+}
+public String getStr_City() {
+	return str_City;
+}
+public void setStr_City(String str_City) {
+	this.str_City = str_City;
+}
+public double getDou_opening_Balance() {
+	return dou_opening_Balance;
+}
+public void setDou_opening_Balance(double dou_opening_Balance) {
+	this.dou_opening_Balance = dou_opening_Balance;
+}
+public String getStr_IFSC_Code() {
+	return str_IFSC_Code;
+}
+public void setStr_IFSC_Code(String str_IFSC_Code) {
+	this.str_IFSC_Code = str_IFSC_Code;
+}
+public String addAccounts()
+{
+	try
+	{
+		Account account=new Account();
+		account.setInt_account_ID(int_account_ID);
+		account.setDou_opening_Balance(dou_opening_Balance);
+		account.setStr_account_No(str_account_No);
+		account.setStr_account_Type(str_account_Type);
+		account.setStr_acount_Name(str_acount_Name);
+		account.setStr_Bank(str_Bank);
+		account.setStr_Branch(str_Branch);
+		account.setStr_City(str_City);
+		account.setStr_IFSC_Code(str_IFSC_Code);
+		getAccountsService().addAccount(account); 
+		return "accounts.xhtml";
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return "accounts.xhtml";
+}
+public String cancel()
+{
+	return "accounts.xhtml";
+}
+private List<Account> listAccounts;
+
+public List<Account> getListAccounts() {
+	listAccounts=new ArrayList<Account>();
+	listAccounts.addAll(getAccountsService().listAccounts());
+	return listAccounts;
+}
+public void setListAccounts(List<Account> listAccounts) {
+	this.listAccounts = listAccounts;
+}
+//TRANSFER AMOUNT
+private Integer int_Transfer_ID;
+private double  dob_transfer_Amount;
+private Date dat_transfer_Date;
+private String from_Account;
+private String to_Acconut;
+private String str_Notes;
+public Integer getInt_Transfer_ID() {
+	return int_Transfer_ID;
+}
+public void setInt_Transfer_ID(Integer int_Transfer_ID) {
+	this.int_Transfer_ID = int_Transfer_ID;
+}
+public double getDob_transfer_Amount() {
+	return dob_transfer_Amount;
+}
+public void setDob_transfer_Amount(double dob_transfer_Amount) {
+	this.dob_transfer_Amount = dob_transfer_Amount;
+}
+public Date getDat_transfer_Date() {
+	return dat_transfer_Date;
+}
+public void setDat_transfer_Date(Date dat_transfer_Date) {
+	this.dat_transfer_Date = dat_transfer_Date;
+}
+public String getFrom_Account() {
+	return from_Account;
+}
+public void setFrom_Account(String from_Account) {
+	this.from_Account = from_Account;
+}
+public String getTo_Acconut() {
+	return to_Acconut;
+}
+public void setTo_Acconut(String to_Acconut) {
+	this.to_Acconut = to_Acconut;
+}
+public String getStr_Notes() {
+	return str_Notes;
+}
+public void setStr_Notes(String str_Notes) {
+	this.str_Notes = str_Notes;
+}
     }  
 	
 	

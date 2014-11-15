@@ -45,6 +45,14 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private Date dat_InvoiceDate;
 	private String str_Status;
 	private String int_InvoiceNo;
+	private Integer int_Admin_ID;
+	public Integer getInt_Admin_ID() {
+		int_Admin_ID=Util.getUserId();
+		return int_Admin_ID;
+	}
+	public void setInt_Admin_ID(Integer int_Admin_ID) {
+		this.int_Admin_ID = int_Admin_ID;
+	}
 	public InvoiceBean()
 	{
 		
@@ -103,10 +111,16 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	public Date getDat_InvoiceDate() {
 		dat_InvoiceDate=new java.util.Date();
 		
-		getDate3();
+		
 		return dat_InvoiceDate;
 	}
-	
+	private double dueBalance;
+	public double getDueBalance() {
+		return dueBalance;
+	}
+	public void setDueBalance(double dueBalance) {
+		this.dueBalance = dueBalance;
+	}
 	
 	
 
@@ -114,7 +128,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		this.dat_InvoiceDate = dat_InvoiceDate;
 	}
 	public String getStr_Organisation() {
-		str_Organisation="roopVilla";
+		str_Organisation=Util.getAppartmentName();
 		return str_Organisation;
 	}
 	public void setStr_Organisation(String str_Organisation) {
@@ -334,6 +348,14 @@ private static  List<Integer> dueID=new ArrayList<Integer>();
 	public static List<Integer> getDueID() {
 	return dueID;
 }
+	private Integer int_Organisation;
+public Integer getInt_Organisation() {
+	int_Organisation=Util.getAppartmentId();
+		return int_Organisation;
+	}
+	public void setInt_Organisation(Integer int_Organisation) {
+		this.int_Organisation = int_Organisation;
+	}
 public static void setDueID(List<Integer> dueID) {
 	InvoiceBean.dueID = dueID;
 }
@@ -345,15 +367,18 @@ public static void setDueID(List<Integer> dueID) {
 			invoice.setStr_BillPeriod(getStr_BillPeriod());
 			invoice.setInt_Year(getInt_Year());
 			invoice.setDat_InvoiceDate(dat_InvoiceDate);
+		     
 			invoice.setDat_DueDate(dat_DueDate);
-			invoice.setStr_Organisation(getStr_Organisation());
+			invoice.setInt_Admin_ID(getInt_Admin_ID());
+			
+			invoice.setInt_Organisation(getInt_Organisation());
 			invoice.setStr_Block(getStr_Block());
 			invoice.setStr_ApartmentNo(getStr_ApartmentNo());
 			invoice.setInt_InvoiceNo(randomId());
 			invoice.setSubTotal(getSubTotal());
 			invoice.setTaxAmount(getTaxAmount2());
 			invoice.setTotalDue(getTotalDue());
-		
+		    invoice.setDueBalance(dueBalance);
 			invoice.setTotalBalance(getTotalDue());
 			invoice.setStr_Status("Due");
 			getInvoiceService().saveInvoiceTransaction(invoice);
@@ -505,12 +530,14 @@ public static void setDueID(List<Integer> dueID) {
 	{
 		throw new InvoiceBean("DueTemplate is not Present");
 	}
-//	return dueList;
+
 	}
 	private List<InvoiceTransaction> listInvoiceTransaction;
 	public List<InvoiceTransaction> getListInvoiceTransaction() {
 		listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+		System.out.println(str_InvoiceTemplate+"priya");
 		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction(str_InvoiceTemplate,str_Block,str_ApartmentNo,str_Status,str_BillPeriod));
+		System.out.println(listInvoiceTransaction);
 		return listInvoiceTransaction;
 	}
 	public void setListInvoiceTransaction(
@@ -525,6 +552,14 @@ public static void setDueID(List<Integer> dueID) {
 	}
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
+	}
+	private String CreatedBy;
+	public String getCreatedBy() {
+		CreatedBy=Util.getUserName();
+		return CreatedBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		CreatedBy = createdBy;
 	}
 	private List<String> str_Blocks;
 	public List<String> getStr_Blocks() {
@@ -620,7 +655,7 @@ public static void setDueID(List<Integer> dueID) {
 	public void setTaxAmount2(double taxAmount2) {
 		this.taxAmount2 = taxAmount2;
 	}
-	private List<String> transaction=new ArrayList<String>();
+	private List<String> transaction;
 	
 	public List<String> getTransaction() {
 		return transaction;
@@ -628,7 +663,7 @@ public static void setDueID(List<Integer> dueID) {
 	public void setTransaction(List<String> transaction) {
 		this.transaction = transaction;
 	}
-	private List<Double> totalAmounts=new ArrayList<Double>();
+	private List<Double> totalAmounts;
 	public List<Double> getTotalAmounts() {
 		return totalAmounts;
 	}
@@ -642,7 +677,80 @@ public static void setDueID(List<Integer> dueID) {
 	public void setTaxAmounts(List<Double> taxAmounts) {
 		this.taxAmounts = taxAmounts;
 	}
+	private List<String> transaction2;
+	public List<String> getTransaction2() {
+		return transaction2;
+	}
+	public void setTransaction2(List<String> transaction2) {
+		this.transaction2 = transaction2;
+	}
 	@SuppressWarnings("rawtypes")
+	public List<String> amountCalculation(String fff,String ddd)
+	{
+		 {  try
+		 {
+	       
+		    
+		    Double sqrt=getInvoiceService().getSqft(ddd);
+		    listDues=getInvoiceService().taxList(fff);
+	       
+	        
+	        String[] strArray = listDues.split(",");
+	        transaction2=new ArrayList<String>();
+	        for (String str1 : strArray) {
+	       
+	         listTax=new ArrayList<String>();
+	         listTax.addAll(getInvoiceService().getTaxList(str1));
+	       
+	       
+	          transaction2.addAll(listTax);
+	        }
+		     ListIterator list=transaction2.listIterator();
+		     totalAmounts=new ArrayList<Double>();
+		     subTotal=0.00;
+		     totalDue=0.00;
+		     taxAmount2=0.00;
+		     while(list.hasNext())
+		     {
+		    	 Object obj=list.next();
+		    	 DueTemplate template=(DueTemplate)obj;
+		    	 String str2=template.getStr_TaxTemplate();
+		    	 System.out.println(str2);
+		    	
+		    	
+		    	
+		    	 taxAmount=getInvoiceService().getTaxAmount(str2);
+		    	 totalAmount=template.getStr_Rate()*sqrt;
+		    	 System.out.println(totalAmount+"jjff");
+		    	 taxAmount1=(taxAmount*totalAmount)/100;
+		    	 taxAmounts.add(taxAmount1);
+		    	 subTotal=subTotal+totalAmount;
+		    	 System.out.println(subTotal+"jhj");
+				 taxAmount2=taxAmount2+taxAmount1;
+			     totalDue=subTotal+taxAmount2;
+		    	 
+			    	  totalAmounts.add(totalAmount);
+			    	  System.out.println(totalAmounts+"jffd");
+			  		StringBuilder out = new StringBuilder();
+			  		for (Object o : totalAmounts)
+			  		{
+			  		  out.append(o.toString());
+			  		  out.append(",");
+			  		
+			  		}
+			  	
+	 
+		     }
+		     return transaction2;
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		return transaction2;
+		 }
+		 	
+	}
 	public List<String> amountChangeListener(ValueChangeEvent event)
 	         
 			 {  try
@@ -654,6 +762,7 @@ public static void setDueID(List<Integer> dueID) {
 		       
 		        
 		        String[] strArray = listDues.split(",");
+		        transaction=new ArrayList<String>();
 		        for (String str1 : strArray) {
 		       
 		         listTax=new ArrayList<String>();
@@ -663,6 +772,10 @@ public static void setDueID(List<Integer> dueID) {
 		         transaction.addAll(listTax);
 		        }
 			     ListIterator list=transaction.listIterator();
+			     totalAmounts=new ArrayList<Double>();
+			     subTotal=0.00;
+			     totalDue=0.00;
+			     taxAmount2=0.00;
 			     while(list.hasNext())
 			     {
 			    	 Object obj=list.next();
@@ -673,11 +786,14 @@ public static void setDueID(List<Integer> dueID) {
 			    	
 			    	
 			    	 taxAmount=getInvoiceService().getTaxAmount(str2);
+			    	 System.out.println(taxAmount+"jkkjjk");
 			    	 totalAmount=template.getStr_Rate()*sqrt;
-			    	 System.out.println(totalAmount);
+			    	 System.out.println(totalAmount+"hjhjhj");
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
+			    	 System.out.println(taxAmount1+"jjkjk");
 			    	 taxAmounts.add(taxAmount1);
 			    	 subTotal=subTotal+totalAmount;
+			    	 System.out.println(subTotal+"jhjj");
 					 taxAmount2=taxAmount2+taxAmount1;
 				     totalDue=subTotal+taxAmount2;
 			    	 
@@ -719,12 +835,37 @@ public List<String> getListAccountName() {
 public void setListAccountName(List<String> listAccountName) {
 	this.listAccountName = listAccountName;
 }
-
+private Date Payment_Date;
+public Date getPayment_Date() {
+	return Payment_Date;
+}
+public void setPayment_Date(Date payment_Date) {
+	Payment_Date = payment_Date;
+}
 
 public String savePayment(Integer id,String invoiceNo)
-{
-	System.out.println(invoiceNo);
-	getInvoiceService().updatePayment(accountName,str_Status,id,dat_InvoiceDate);
+{  
+	double amount=getInvoiceService().getAmount(id);
+	System.out.println(amount+"jjk");
+	System.out.println(totalAmount+"jjjj");
+	System.out.println(select1+"jkkjds");
+	if(select1.equalsIgnoreCase("Full"))
+	{ 
+	
+		totalAmount=amount;
+	}
+	System.out.println(totalAmount+"hjhjjh");
+	if(totalAmount==amount)
+	{  Double amount1=amount-totalAmount;
+		str_Status="Paid";
+	 getInvoiceService().updatePayment(accountName,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No);
+	}
+	else if(totalAmount<amount)
+	{
+		str_Status="Partial Due";
+		Double amount1=amount-totalAmount;
+		 getInvoiceService().updatePayment(accountName,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No);
+	}
 	List<Integer> str=getDueService().getDueTemplate1(invoiceNo);
 	ListIterator list2=str.listIterator();
 	while(list2.hasNext())
@@ -756,13 +897,59 @@ public InvoiceTransaction getInvoice1() {
 public void setInvoice1(InvoiceTransaction invoice1) {
 	this.invoice1 = invoice1;
 }
-public void getInvoice()
-{       System.out.println(int_InvoiceTransactionID+"jhjhjd");
-	 invoice1=getInvoiceService().getInvoice(selectedInvoice.getInt_InvoiceTransactionID());
-}
-public String cancel()
+public void getInvoice(int id1)
 {
-	return "invoice.xhtml";
+	invoice1=getInvoiceService().getInvoice(id1);
 }
 
+public String cancel()
+
+{   System.out.println("jjj");
+	return "quickpayment.xhtml";
+}
+
+private List<String> dueList3;
+
+public List<String> getDueList3(String fff,String ddd) {
+	
+	 listDues=getInvoiceService().taxList(fff);
+	
+	 String[] strArray = listDues.split(",");
+	 dueList3=new ArrayList<String>();
+     for (String str : strArray) {
+       
+      listTax=new ArrayList<String>();
+      listTax.addAll(getInvoiceService().getTaxList(str));
+     
+    
+     
+      dueList3.addAll(listTax);
+      amountCalculation(fff,ddd);
+     }
+	
+	return dueList3;
+}
+public void setDueList3(List<String> dueList3) {
+	this.dueList3 = dueList3;
+}
+private Integer Payment_No;
+public Integer getPayment_No() {
+	return Payment_No;
+}
+public void setPayment_No(Integer payment_No) {
+	Payment_No = payment_No;
+}
+public String select1;
+public String getSelect1() {
+	return select1;
+}
+public void setSelect1(String select1) {
+	this.select1 = select1;
+}
+public String changeAccount(ValueChangeEvent event)
+{    
+	select1=(String)event.getNewValue();
+	System.out.println(select1+"jkkjjskd");
+	return null;
+}
 }
