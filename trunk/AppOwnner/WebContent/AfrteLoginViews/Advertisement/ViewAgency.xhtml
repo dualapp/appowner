@@ -3,13 +3,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 	
-	<h:head>
-    <title></title>
-    
-</h:head>
+	<h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/adv3.jpg" height="45" width="45"></img> <span class="title"> Advertisement Detail </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 <h:body>
     <h:form>
         
@@ -71,34 +77,33 @@
             </p:column>        
                    
            
-            <!-- <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="Enter Contents" />
-                </f:facet>
-                <h:outputText value="#{agc.str_content}" />
-            </p:column>
-              -->
-           
+            
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Action" />
                     </f:facet>
-              <h:button  value ="View"  outcome="View_Agency.xhtml" >
-	   		<f:param name="int_agencyid" value="#{agc.int_agencyid}" />
-	   		</h:button>
-	   		 <p:commandButton value="delete" action="#{advertisementBean.deleteagency(agc.int_agencyid)}" style="width:50px" onclick="return confirm('Are you sure you want to delete #{agc.int_agencyid}?');" >  
-	   			<p:graphicImage  height="30" width="20" alt="delete" /> 
-	   				<f:param name="int_agencyid" value="#{agc.int_agencyid}" />
-	   		</p:commandButton>
-            </p:column>
+              
+	   		<h:link outcome="View_Agency.xhtml" >
+	   			<f:param name="int_agencyid" value="#{agc.int_agencyid}" />
+	   			<p:graphicImage height="20" width="20" alt="View"
+								value="#{expenseBean.str_Name}images/view.jpg"  />
+	   			</h:link>
+	   			<h:link outcome="deleteadv.xhtml"
+							onclick="return confirm('Are you sure you want to delete #{agc.int_agencyid}?');">
+							<p:graphicImage height="20" width="20" alt="delete"
+								value="#{expenseBean.str_Name}images/delete.jpg"  />
+							<f:param name="int_agencyid"
+								value="#{agc.int_agencyid}" />
+						</h:link>
+						
+	   		 </p:column>
+	   		 
+            
           <!-- <p:commandButton value="update" action="#{cls_UpdateBean.editPerson(person.personId)}"   -->  
              
              
              
-              <p:column>
-	   			
-	   		</p:column>
+              
         </p:dataTable>
         
         
@@ -107,7 +112,7 @@
         
         </h:form>
         
-         
+         </h:body>
 </h:body>
 
 </ui:define>
