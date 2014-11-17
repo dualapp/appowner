@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+    <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> User details</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="page3" >
+ 
+	
+<body bgcolor="white">
+  <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" >
+    <a href="Ad_an_Post.xhtml">Back To Ads and post</a> 
+    
+   <table    style="overflow:hidden;border:0pt none;width:60%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+    
+      <tr> 
+    <td>
+        <p:outputLabel value="Organisation"  /></td>
+         <td>   <p:selectOneMenu id="str_ApartmentName"  style="width:270px">
+             <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  />
+           </p:selectOneMenu>
+           
+        </td>
+        <td> 
+            <p:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
+         <td>   <p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:270px">
+            <f:selectItem itemLabel="Category"  itemValue=""  />
+            <f:selectItems value="#{cls_AddDetailBean.categories}"  />
+            </p:selectOneMenu>
+            
+      </td>
+      </tr> 
+          
+           
+        
+            <tr> 
+            <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+             <td><h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
+            <f:selectItem itemLabel="My Community" itemValue="My Community" />
+            <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
+          </h:selectOneRadio>
+        </td>
+        </tr>
+       <tr> 
+        <td><p:outputLabel for="I" value="I want to" /></td>
+        <td><h:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
+            <f:selectItem itemLabel="SELL" itemValue="Sell" />
+            <f:selectItem itemLabel="BUY" itemValue="Buy" />
+            <f:selectItem itemLabel="RENT" itemValue="Rent" />
+        </h:selectOneRadio>
+      </td>
+      </tr>
+ 
+         
+         <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -155px -400px 0px;" >  
+           <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_image}"/>
+          </p:outputPanel> 
+          
+          <tr>
+           <td>
+          <p:outputLabel value="Title"></p:outputLabel></td>
+                        
+          <td><h:inputText  value="#{cls_AddDetailBean.var_Title}"  style="width:300px">
+            </h:inputText>
+            </td>
+            </tr>
+  
+
+             <tr><th><p:outputLabel value="Choose Image for Upload"/></th>
+           
+              
+                 <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
+                        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advanced" dragDropSupport="false" style="width:300px"
+                  multiple="true"  sizeLimit="100000" fileLimit="3"  update="aaa"/>
+                 </td>
+                 </tr>
+                
+ 
+ 
+ 
+  
+       
+ <tr>
+               <td><p:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><h:inputTextarea rows="60" cols="50" value="#{cls_AddDetailBean.var_Description}" style="width:300px" >
+              </h:inputTextarea>
+               
+                
+            </td>
+            </tr>
+            
+           <tr>
+                <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" float:left !important;margin: px 0px 0px `0px;" /></td> 
+               <td> <p:button id="AddProduct1" value="Cancel" outcome="Create_Detail.xhtml" style=" float:left !important;margin: 0px -50px px 0px;" /></td>
+               </tr>
+                
+           </table>
+           </h:form>
+           </body>
+          
+           </div>
+           
+           
+           
+     </h:body>
+     
+           </ui:define>
+  </ui:composition>
