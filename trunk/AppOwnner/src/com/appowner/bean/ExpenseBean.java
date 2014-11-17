@@ -55,7 +55,7 @@ import com.appowner.util.Util;
  
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ExpenseBean  implements Serializable{
 
 	
