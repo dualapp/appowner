@@ -23,4 +23,8 @@ public interface ApartmentDetailsService {
 
 	List<String> getHouseNoList(String str_BlockName);
 
+	HouseDetails getHouseDetailByHouseNo(String str_HouseNo);
+
+	List<HouseDetails> getListHouseDetails();
+
 }
