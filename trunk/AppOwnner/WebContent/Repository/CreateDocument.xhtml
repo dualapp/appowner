@@ -6,22 +6,33 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
- <h:head><title></title></h:head>
-<body bgcolor="pink">
-  <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
-    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
-    <br/>
-   <center><legend    style="background-color:#438eb9; color:#fff;">You could frequentlty needed content like Socity Rule Regulation</legend> </center>
-    
-   <table>
-   <tr>
-   <td>
+ 
+  
+   <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/doc.jpg" height="40" width="40"></img> <span class="title"> Create document </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+  
    
-   <h:outputText value="Choose Your  File for upload "></h:outputText></td>
-   <td> <p:fileUpload value="#{scriptBean.str_FileNM}"
-                        fileUploadListener="#{scriptBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
+  
+   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+    <div id="page3">
+   <table   style="overflow:hidden;border:0pt none;width:60%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+  
+   <tr>
+   <td><p:outputLabel value="Choose Your  File for upload"/></td> 
+ 
+    <td><p:fileUpload value="#{scriptBean.str_FileNM}"
+                        fileUploadListener="#{scriptBean.handleFileUpload}" mode="advanced" dragDropSupport="false" style="width:350px"
                   multiple="true"  sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
  
 
@@ -31,17 +42,17 @@
 </tr>
           <tr>
            <td>
-          <h:outputText value="Description of the document">
-            </h:outputText></td>            
-          <td>  <h:inputText  value="#{scriptBean.str_Description}" style="width:250px">
-            </h:inputText>
+          <p:outputLabel value="Description of the document">
+           </p:outputLabel></td>            
+          <td>  <h:inputTextarea  value="#{scriptBean.str_Description}" style="width:250px">
+            </h:inputTextarea>
             </td>
             </tr>
              
             
        
              <tr>
-                 <td><h:outputLabel for="int_Document_CatNM" value="Document    Category" /></td>
+                 <td><h:outputText for="int_Document_CatNM" value="Document    Category" /></td>
             <td><p:selectOneMenu  value="#{scriptBean.int_Document_CatNM}" style="width:250px">
             <f:selectItem itemLabel="Select   Document   Category"  itemValue=""  />
                 <f:selectItems value="#{scriptBean.int_Document_CatNM1}"  />
@@ -52,8 +63,8 @@
             </tr>   
             <tr> 
              
-                 <td><h:outputLabel for="ch_Access" value="Accessible to" /></td>
-            <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:150px">
+                 <td><p:outputLabel for="ch_Access" value="Accessible to" /></td>
+            <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:250px">
              <f:selectItem itemLabel="All Members"  itemValue="All Members"  />
             <f:selectItem itemLabel="Owners"  itemValue="Owners"  />
                 <f:selectItem itemLabel="Committee"  itemValue="Committee"  />
@@ -68,13 +79,16 @@
                <h:selectBooleanCheckbox value="#{scriptBean.bit_emailsend}" /> Notify via Email
       </td></tr> 
    		
-            <tr><td> <p:commandButton value="Upload Document" action="#{scriptBean.document}" ajax="false"/> 
-               <p:commandButton value="Back to Document List" action="#{scriptBean.document}" />
+            <tr><td> <p:commandButton value="Upload Document" action="#{scriptBean.document}" ajax="false" style="width:150px"/> 
+              
                </td></tr> 
-              </table>
-             
-           </h:form>
-
-           </body>
+          </table>
+          </div>
+          </h:form>
+          
+           
+           
+</h:body>
+         
    </ui:define>
    </ui:composition>
