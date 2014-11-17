@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+	<p:panel>
+    <h:body>
+    
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/add.jpg" height="50" width="50"></img> <span class="title">Agencies Advertisement</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+   <div id="page3">
+   <table   style="width: 40%;margin-left: 1%;margin-right: 1%;margin-bottom:8px">
+    
+      <tr> 
+        <td width="30%"><h:outputLabel for="str_CompanyName" value="Agency Name" /></td>
+            <td width="50%"><h:selectOneMenu id="str_CompanyName" value="#{advertisementBean.str_CompanyName}" style="width:200px" valueChangeListener="#{advertisementBean.selectinfo}" >
+            <f:selectItem itemLabel="Select"  itemValue=""  />
+            <f:selectItems value="#{advertisementBean.listperson}"  />
+             <f:ajax event="change" execute="str_CompanyName"  render="@form"/> 
+            </h:selectOneMenu>
+            </td>
+       <td width="20%"></td>
+      </tr> 
+       
+      <tr>
+   
+                <h:panelGroup id="performed"  rendered="#{! empty advertisementBean.str_CompanyName }" >
+                <ui:repeat value="#{advertisementBean.agency}" var="agency">
+                <tr>
+                <td><h:outputLabel for="CompanyAddress1" value="CompanyAddress " />
+                <br />
+                <h:outputLabel for="CompanyAddress" value="Location "  /></td>
+                <td><h:inputText  id="CompanyAddress" value="#{agency.str_CompanyAddress}" style="width:200px" >
+               
+                  </h:inputText>
+               </td>
+               <td></td>
+           </tr>
+           <tr>
+                <td><h:outputLabel for="City" value="City "  /></td>
+                <td><h:inputText id="City" value="#{agency.str_City}" style="width:200px">
+                  </h:inputText>
+                  
+                </td>
+                <td></td>
+          </tr>
+     <tr>
+                <td><h:outputLabel for="State" value="State "  /></td>
+                <td><h:inputText id="State" value="#{agency.str_State}" style="width:200px">
+                  </h:inputText>
+                  
+                </td>
+                <td></td>
+                </tr>
+           
+           <tr>
+                <td><h:outputLabel for="MobileNo" value="MobileNo "  /></td>
+                <td><h:inputText id="MobileNo" value="#{agency.str_Mobile}" style="width:200px">
+                </h:inputText>
+                </td>
+                <td></td>
+                </tr>
+                </ui:repeat>
+               </h:panelGroup>
+            
+                </tr>
+                
+     <tr> 
+             <td><h:outputLabel for="Ads Type" value="Ads Type" /></td>
+             <td><h:selectOneMenu id="Add_Type"   value="#{advertisementBean.ads_type}" style="width:200px">
+            <f:selectItem itemLabel="Select"  itemValue=""  />
+           <f:selectItem itemLabel="Monthly"  itemValue="Monthly"  />
+           <f:selectItem itemLabel="Weekly"  itemValue="Weekly"  />
+           <f:selectItem itemLabel="Daily"  itemValue="Daily"  />
+            </h:selectOneMenu>
+            <h:selectOneMenu id="Add1"  style="width:70px" >
+            <f:selectItem itemLabel="1"  itemValue="1"  />
+           <f:selectItem itemLabel="2"  itemValue="2"  />
+           <f:selectItem itemLabel="3"  itemValue="3"  />
+           </h:selectOneMenu>
+     </td>
+     
+      </tr> 
+           
+         <tr> 
+             <td><h:outputLabel for="Position of Add"  value="Position of Add "    /></td>
+            <td> <h:selectOneMenu id="Add"  style="width:200px"  value="#{advertisementBean.str_addposition}">
+            <f:selectItem itemLabel="Select"  itemValue=""  />
+           <f:selectItem itemLabel="Header"  itemValue="Header"  />
+           <f:selectItem itemLabel="Left Part"  itemValue="Left Part"  />
+           <f:selectItem itemLabel="Right part"  itemValue="Right part"  />
+           <f:selectItem itemLabel="bottom part"  itemValue="bottom part"  />
+            </h:selectOneMenu>
+            
+     </td>
+     <td></td>
+      </tr>
+       <tr>
+       <td><h:outputText value="Upload Your photo for Display "></h:outputText></td>
+   <td> <p:fileUpload value="#{advertisementBean.var_ImageName}"
+                        fileUploadListener="#{advertisementBean.handleFileUpload1}" mode="advanced" dragDropSupport="false" style="width:350px"
+                  multiple="true"  sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="aaa"/>
+                 </td>
+                 <td></td>
+                  </tr>
+                <tr>
+         <td><h:outputLabel value="Exiting URL "></h:outputLabel></td>
+         <td><h:inputText id="url" value="" style="width:350px"/></td> 
+         </tr> 
+                  
+        <tr><th><h:outputLabel value="Upload Vedio"/></th> 
+ <td><h:outputText value="You Can Upload Vedio Maximum 10 MB"/></td></tr>
+  <tr><td></td><td>
+    <p:fileUpload value="#{advertisementBean.str_vedio}"
+                        fileUploadListener="#{advertisementBean.handleFileUpload2}" mode="advanced" dragDropSupport="false" style="width:350px"
+                  multiple="true"  sizeLimit="100000" fileLimit="3" />
+                 </td>
+                  </tr>
+              
+         
+                  
+       <tr>
+         <td><h:outputLabel value="Enter Contents "></h:outputLabel></td>
+         <td><p:editor id="editor" widgetVar="editorWidget" value="#{advertisementBean.str_content}" width="350" height="240" style="margin-bottom:20px;" ></p:editor></td>
+         <td></td>
+         </tr>
+         <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px 0px -1000px 0px;" >  
+           <p:graphicImage height="100" width="100" value="#{advertisementBean.blb_image}"/>
+          </p:outputPanel>
+         
+         
+           <tr>
+               <td><p:button id="AddProduct" value="Next"   outcome="Make_Payment.xhtml" style=" width:60px;float:right !important;margin: 0px 75px 50px 0px;" /></td> 
+               <td><p:button id="AddProduct1" value="Cancel"  outcome="agencies_Advertisement.xhtml" style=" width:60px;float:right !important;margin: 0px 600px 50px 0px;" /> 
+            </td>
+            <td></td>
+  </tr>
+  
+  </table>
+  </div>
+  </h:form>
+  </h:body>
+  </p:panel>
+  </ui:define>
+  </ui:composition>
+  
