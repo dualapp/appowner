@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 	 <f:metadata>
 	<f:viewParam name="int_Document_CatID" value="#{update.int_Document_CatID}"  />
@@ -21,6 +21,8 @@
     <title>JSFlive JSF 2.2 - Example 01</title>
 </h:head>
 <body  bgcolor="pink">
+<div id="page3">
+   <table   style="width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:8px">
 <h:form>
    
    
@@ -29,13 +31,15 @@
     <h:inputText value="#{update.cat.int_Document_CatNM}"/>
     
 
-  
+  <br />
    
      
    <h:commandButton  value="Submit"  action="#{update.saveUser1}"/>
    
   
   </h:form>
+  </table>
+  </div>
 </body>
 </ui:define>
 </ui:composition>
