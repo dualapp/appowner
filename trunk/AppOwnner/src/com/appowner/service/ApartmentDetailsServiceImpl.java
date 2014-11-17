@@ -68,4 +68,16 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		return getApartmentDetailsDao().getHouseNoList( str_BlockName);
 	}
 
+	@Override
+	public HouseDetails getHouseDetailByHouseNo(String str_HouseNo) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getHouseDetailByHouseNo(str_HouseNo);
+	}
+
+	@Override
+	public List<HouseDetails> getListHouseDetails() {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getListHouseDetails();
+	}
+
 }
