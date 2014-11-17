@@ -7,6 +7,7 @@ import java.util.ListIterator;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 
@@ -17,7 +18,7 @@ import com.appowner.service.ApartmentDetailsService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ApartmentDetailsBean  implements Serializable{
 
 	/**
@@ -188,6 +189,14 @@ public class ApartmentDetailsBean  implements Serializable{
 		return listBlockDetails;
 	}
 	public HouseDetails getHousedetails() {
+		System.out.println(str_HouseNo+"hno");
+		housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);
+		System.out.println(housedetails+"Hdetails");
+		if(housedetails==null)
+			render=false;
+			 
+		else
+			render=true;
 		return housedetails;
 	}
 	public void setHousedetails(HouseDetails housedetails) {
@@ -198,7 +207,15 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	private List<String> houseNoList;
 	public List<HouseDetails> getListHouseDetails() {
+		System.out.println(str_BlockName+"BBBBBBBBBBlock");
 		listHouseDetails=new ArrayList<HouseDetails>();
+		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails());
+		 
+		return listHouseDetails;
+	}
+	public List<HouseDetails> getListHouseDetails1(String str_BlockName) {
+		listHouseDetails=new ArrayList<HouseDetails>();
+		System.out.println(str_BlockName+"BLOKKKKKKKKKKKKKKK");
 		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName));
 		System.out.println(listHouseDetails+"klap");
 		return listHouseDetails;
@@ -232,17 +249,26 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setHouseNoList(List<String> houseNoList) {
 		this.houseNoList = houseNoList;
 	}
-	public Boolean getRender() {
-		System.out.println(houseNoList+"hlistttttttttttttt");
-		if(getHouseNoList()==null)
+	public void getHouseDetailByHouseNo()
+	{
+		System.out.println(str_HouseNo+"hno");
+		housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);
+		System.out.println(housedetails+"Hdetails");
+		/*if(housedetails==null)
 			render=false;
 			 
 		else
-			render=true;
+			render=true;*/
+		 
+		
+	}
+	public Boolean getRender(String hno)
+	{ 
+		System.out.println(hno+"hno");
+		render= getStr_HouseNo()==hno;
+		System.out.println(render+"temp");
 		return render;
 	}
-	public void setRender(Boolean render) {
-		this.render = render;
-	}
+	 
 
 }
