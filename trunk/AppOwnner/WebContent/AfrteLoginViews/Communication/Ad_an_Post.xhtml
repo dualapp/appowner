@@ -4,8 +4,23 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
+	
+	 <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Buy And Sell </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+  <body bgcolor="white">
+  <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" prependId="false">
 <h:head>
     <title>Ad_an_Post</title>
    <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
@@ -21,11 +36,10 @@
     </style>
     
 </h:head>
-<body bgcolor="pink">
-  <h:form id="form"  enctype="multipart/form-data">
+
   <p:messages/>
-  <fieldset>
-    <legend>
+ 
+   
    <h:body>
 
 <script>
@@ -56,9 +70,10 @@
     </script>
      </h:body>
      
-   <h:commandButton value="Filter" style="background-color:#c00; color:#fff;" width="300"/> </legend>  
-     <h:panelGroup id="performed"  >
-         &#150; &#150;  &#150;&#150; &#150; &#150;&#150;&#150;  &#150; &#150;&#150;&#150; &#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150;
+   <div id="page3" >
+   
+     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        
              <tr> 
         <td><h:outputLabel value="Organisation"  /></td>
             <td><p:selectOneMenu id="str_ApartmentName"  style="width:150px">
@@ -66,8 +81,8 @@
             
             </p:selectOneMenu>
             </td>
-            </tr>
-             &#150; &#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; 
+          
+        
              <td><h:outputLabel  value="Intent" /></td>
                <td><p:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Product_Type}" style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
@@ -78,7 +93,7 @@
                  </p:selectOneMenu>
              </td>
              
-             &#150;&#150; &#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150;
+         
              <td><h:outputLabel value="Status" /></td>
                <td><p:selectOneMenu id="option2"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
@@ -87,10 +102,10 @@
                      <f:selectItem itemLabel="Closed" itemValue="Closed"  />
                       </p:selectOneMenu>
                  </td>
-                 <br />
-                 <br />
+               </tr>
+               <tr>
                  
-                   
+                
                  <td><h:outputLabel  value="Posted in the last" /></td>
                <td><p:selectOneMenu id="option3" value="ghgf"  style="width:150px">
                   <f:selectItem itemLabel="10 days" itemValue="10 days"  />
@@ -100,10 +115,10 @@
                  </p:selectOneMenu>
              </td>
             
-             </h:panelGroup>
            
-             <h:panelGroup id="aa">
-              &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;&#150; &#150;&#150; &#150; 
+           
+           
+             
               <td><h:outputLabel value="Type" /></td>
               <td><p:selectOneMenu id="option4" value="#{cls_AddDetailBean.ch_Ad_Type}" style="width:150px">
               <f:selectItem itemLabel="All" itemValue="All"  />
@@ -112,36 +127,31 @@
                
                  </p:selectOneMenu> 
              </td>
-                &#150;&#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; &#150; &#150;&#150;
-               <p:commandButton  value="Go" action="#{cls_AddDetailBean.getSearchByProducttype1}" update="" style="width:40px; height:20px">
-               </p:commandButton>
-             </h:panelGroup>
-             <br />
-             <br />
-          &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
-             <p:button  value="Create New" outcome="Create_Detail.xhtml" style="width:110px; height:32px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:commandButton process="per" update=":form:multiVendorDetail3" icon="ui-icon-search" value="View Selected" oncomplete="PF('multiVendorDialog3').show()" style="width:110px; height:32px" /> &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; <p:commandButton process="per" update=":form:multiVendorDetail4"  value="Edit Selected" oncomplete="PF('multiVendorDialog4').show()" style="width:110px; height:32px"/>&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <p:button  value="Refresh" icon="ui-icon-refresh" style="width:110px; height:32px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:menuButton value="Action" style="width:110px; height:35px">
+          
+           <td>    <p:commandButton  value="Go" action="#{cls_AddDetailBean.getDetails()}"  style="width:40px; height:20px" update="">
+               </p:commandButton></td>
+           
+          </tr>
+          </table>
+          </div>
+       
+            
+     
+            
+             
+         <div id="page3" >
+           <div class="gsTitleDiv"> Buy And Sell<br/><hr/></div> 
+            <p:button  value="Create New" outcome="Create_Detail.xhtml" style="width:110px; height:32px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:commandButton process="per" update=":form:multiVendorDetail3" icon="ui-icon-search" value="View Selected" oncomplete="PF('multiVendorDialog3').show()" style="width:110px; height:32px" /> &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; <p:commandButton process="per" update=":form:multiVendorDetail4"  value="Edit Selected" oncomplete="PF('multiVendorDialog4').show()" style="width:110px; height:32px"/>&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <p:button  value="Refresh" icon="ui-icon-refresh" style="width:110px; height:32px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:menuButton value="Action" style="width:110px; height:35px">
        
        <p:menuitem value="Approval Selected" update=":form:multiVendorDetail1" oncomplete="PF('multiVendorDialog1').show()" />
-        <p:menuitem value="Reject Selected" action="#{cls_AddDetailBean.reject1}" />
-        <p:menuitem value="Close Selected" action="#{cls_AddDetailBean.update}"/>
+        <p:menuitem value="Reject Selected" update=":form:multiVendorDetail8" oncomplete="PF('multiVendorDialog8').show()"  />
+        <p:menuitem value="Close Selected" update=":form:multiVendorDetail9" oncomplete="PF('multiVendorDialog9').show()"/>
         <p:menuitem value="Send Email to Creator" update=":form:multiVendorDetail" oncomplete="PF('multiVendorDialog').show()"/>
        
-        </p:menuButton>
-       </fieldset>
-            
-             <br />
-             <br />
-             
-            
-        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}"   style="width:1000px"   resizableColumns="true" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
-        rowsPerPageTemplate="10,20,30,40,50" selection="#{cls_AddDetailBean.selectedAll}" rowKey="#{per.int_ProductId}" >
-      <f:facet name="header">
-             Buy And Sell
-           <h:commandLink>
-                <p:graphicImage value="images/xls.jpg" width="24"/>
-                <p:dataExporter type="xls" target="ggg" fileName="listDues" />
-            </h:commandLink>
-           </f:facet>
+        </p:menuButton>  
+        <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  resizableColumns="true" rows="5" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50" selection="#{cls_AddDetailBean.selectedAll}" rowKey="#{per.int_ProductId}"  >
+      
            
     <p:column exportable="false"  selectionMode="multiple" style="width:50px;text-align:center" >
   </p:column>
@@ -151,7 +161,7 @@
                     <h:outputText value="I Want To" />
                     
                 </f:facet>
-                <h:outputText value="#{per.ch_Product_Type}"  style="width:30px" />
+                <h:outputText value="#{per.ch_Product_Type}"   resizableColumns="true" rows="5" />
             </p:column>
            <p:column>
             <f:facet name="header">
@@ -183,14 +193,14 @@
                 <h:outputText value="#{per.var_Title}" style="width:30px" />
             </p:column>
             
-             
+            <!-- 
             <p:column>
             <f:facet name="header">  
               <h:outputText value="Posted On " />
                 </f:facet>
                 <h:outputText value="#{per.dt_date}" style="width:30px"/>
             </p:column>
-            
+            -->
               <p:column>
             <f:facet name="header">  
               <h:outputText value="Orgnization" />
@@ -218,15 +228,26 @@
             <f:facet name="header">
               <h:outputText value="Action" />
                </f:facet>
-	   			<p:button outcome="EditDetail.xhtml" value="Edit" style="width:80px; height:30px" >
-	   		  <f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		 </p:button>
-	   	      <p:button value="delete" action="#{cls_AddDetailBean.deleteDetail(per.int_ProductId)}" style="width:80px; height:30px"  onclick="return confirm('Are you sure you want to delete #{per.int_ProductId}?');" >  
-	   			<p:graphicImage  height="30" width="20" alt="delete" /> 
-	   			<f:param name="int_ProductId" value="#{per.int_ProductId}" />
-	   		</p:button>
+	   			 <p:commandLink  process="per" update=":form:multiVendorDetail5"   oncomplete="PF('multiVendorDialog5').show()"  action="#{cls_AddDetailBean.getedit1(per.int_ProductId)}" >
+	   		      <p:graphicImage height="20" width="20" alt="delete"
+								value="#{expenseBean.str_Name}images/edit.jpg" />
+								
+								</p:commandLink>
+								<p:commandLink  process="per" update=":form:multiVendorDetail6"   oncomplete="PF('multiVendorDialog6').show()"  action="#{cls_AddDetailBean.getedit1(per.int_ProductId)}" >
+	   		      <p:graphicImage height="20" width="20" alt="delete"
+								value="#{expenseBean.str_Name}images/view.jpg" />
+								
+								</p:commandLink>
+	   	      <h:link outcome="deletedetail.xhtml"
+							onclick="return confirm('Are you sure you want to delete #{per.int_ProductId}?');">
+							<p:graphicImage height="20" width="20" alt="delete"
+								value="#{expenseBean.str_Name}images/delete.jpg" />
+							<f:param name="int_ProductId"
+								value="#{per.int_ProductId}" />
+						</h:link>
 	   	     </p:column>
                </p:dataTable>
+               </div>
                <p:dialog header="Email" widgetVar="multiVendorDialog"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
       <p:outputPanel id="multiVendorDetail" style="text-align:center;"> 
          <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
@@ -263,7 +284,7 @@
               </td>
               </tr>
              <tr>  
-             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send1(per1)}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
+             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send1()}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
             <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml"/></td>
             </tr>
    </table>
@@ -289,7 +310,7 @@
               </td>
               </tr>
              <tr>  
-             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send1(Int_ProductId)}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
+             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send1}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
            
             </tr>
    </table>
@@ -297,6 +318,33 @@
   
        </p:outputPanel>
         </p:dialog>
+        <p:dialog header="Ads Close" widgetVar="multiVendorDialog9"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
+      <p:outputPanel id="multiVendorDetail9" style="text-align:center;"> 
+         <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
+        <table>
+        
+       
+   <tr>
+                       <td><h:outputText  value="To" /></td>  
+             <td> <p:inputTextarea rows="7" cols="40" value="#{cls_AddDetailBean.to}"> 
+              </p:inputTextarea>
+              </td>
+             </tr>
+             <tr>
+               <td><h:outputText  value="Message *"/></td>
+               <td><h:inputTextarea rows="7" cols="40" id="msg5" value="#{cls_AddDetailBean.msg4}"/>
+              </td>
+              </tr>
+             <tr>  
+             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send4}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
+           
+            </tr>
+   </table>
+   </ui:repeat>
+  
+       </p:outputPanel>
+        </p:dialog>
+        
         
         <p:dialog header="View Details" widgetVar="multiVendorDialog3"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="600">
       <p:outputPanel id="multiVendorDetail3" style="text-align:center;"> 
@@ -331,9 +379,10 @@
 </tr>
 
    
-  <p:outputPanel layout="block"   style=" float:right !important;margin:-10px -100px -400px 0px;" >  
-       <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
-       </p:outputPanel>
+  <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
+           <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
+          </p:outputPanel>  
+  
            <tr>
            <td>
           <h:outputLabel value="Title"></h:outputLabel></td>
@@ -341,7 +390,13 @@
             </h:inputText>
             </td>
             </tr>
- 
+ <tr>
+    <td><h:outputLabel value="Choose Your  File for upload "></h:outputLabel></td>
+   <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
+        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="false" dragDropSupport="false"
+        sizeLimit="100000"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" update="aaa" style="width:300px"/>
+       </td>
+       </tr>
 
 
 <tr>
@@ -364,7 +419,7 @@
         <table>
         <tr>
         <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
-            <td><h:selectOneMenu id="var_Ad_CategoryName" value="#{per1.var_Ad_CategoryName}" style="width:230px">
+            <td><h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:230px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailBean.categories}"  />
                 </h:selectOneMenu>
@@ -406,8 +461,8 @@
   <tr>
     <td><h:outputLabel value="Choose Your  File for upload "></h:outputLabel></td>
    <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
-        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" update="aaa" style="width:150px"/>
+        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advance" auto="false" dragDropSupport="false"
+        sizeLimit="100000"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" update="aaa" style="width:300px"/>
        </td>
        </tr>
    
@@ -432,9 +487,178 @@
   </ui:repeat>
   </p:outputPanel>
   </p:dialog>
+  <p:dialog header="Edit Details" widgetVar="multiVendorDialog5"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="600">
+      <p:outputPanel id="multiVendorDetail5" style="text-align:center;"> 
+         <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
+        <table>
+        <tr>
+        <td><h:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
+            <td><h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:230px">
+            <f:selectItem itemLabel="Category"  itemValue=""  />
+                <f:selectItems value="#{cls_AddDetailBean.categories}"  />
+                </h:selectOneMenu>
+           </td>
+            </tr>
+   <tr>
+              
+             
+              <td><h:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+             <td><h:inputText  id="ch_Ad_Type" value="#{per1.ch_Ad_Type}" size="30">
+             </h:inputText>
+             </td>
+             </tr>
+    
+    
+    
+        <tr> 
+        
+        <td><h:outputLabel for="I" value="I want to" /></td>
+        <td><h:inputText  id="I" value="#{per1.ch_Product_Type}" size="30" >
+        </h:inputText>
+        </td>
+        </tr>
+        
+ 
+ 
+   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
+           <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
+          </p:outputPanel>  
+  <tr>
+           <td>
+          <h:outputLabel value="Title"></h:outputLabel></td>
+                        
+          <td><h:inputText  value="#{per1.var_Title}" size="30">
+            </h:inputText>
+            </td>
+            </tr>
+ 
+  <tr>
+    <td><h:outputLabel value="Choose Your  File for upload "></h:outputLabel></td>
+   <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
+        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advanced" dragDropSupport="false" auto="false" 
+        sizeLimit="100000"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" update="aaa" style="width:300px"/>
+       </td>
+       </tr>
+   
+
+<tr>
+               <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><p:inputTextarea rows="10" cols="60" value="#{per1.var_Description}" >
+              </p:inputTextarea>
+               
+                
+            </td>
+            </tr>
+            <tr>
+ 
   
+     <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml" style=" float:right !important;margin: 0px -500px 100px 0px;">
+    </h:commandButton>
+     </td>
+     <td><h:commandButton value="update" action="#{cls_AddDetailBean.editdetail(per1)}" style=" float:right !important;margin: 0px -100px 100px 0px;" /></td>
+  </tr>
+            </table>
+            </ui:repeat>
+            </p:outputPanel>
+            </p:dialog>
+            
+  <p:dialog header="View Details" widgetVar="multiVendorDialog6"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="600">
+      <p:outputPanel id="multiVendorDetail6" style="text-align:center;"> 
+         <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
+        <table>
+        <tr>
+  
+ 
+    <td><h:outputLabel value="Category Name"/></td>
+    
+    <td><h:inputText value="#{per1.var_Ad_CategoryName}"> </h:inputText></td>
+    </tr>
+   <tr>
+              
+             
+              <td><h:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+             <td><h:inputText  id="ch_Ad_Type" value="#{per1.ch_Ad_Type}" size="30">
+             </h:inputText>
+             </td>
+             </tr>
+    
+    
+    
+        <tr> 
+        
+        <td><h:outputLabel for="I" value="I want to" /></td>
+        <td><h:inputText  id="I" value="#{per1.ch_Product_Type}" size="30" >
+        </h:inputText>
+        </td>
+        </tr>
+        
+ 
+ 
+   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
+           <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
+          </p:outputPanel>  
+  <tr>
+           <td>
+          <h:outputLabel value="Title"></h:outputLabel></td>
+                        
+          <td><h:inputText  value="#{per1.var_Title}" size="30">
+            </h:inputText>
+            </td>
+            </tr>
+ 
+  <tr>
+    <td><h:outputLabel value="Choose Your  File for upload "></h:outputLabel></td>
+   <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
+        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advanced" dragDropSupport="false" auto="false" 
+        sizeLimit="100000"   allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" update="aaa" style="width:300px"/>
+       </td>
+       </tr>
+   
+
+<tr>
+               <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><p:inputTextarea rows="10" cols="60" value="#{per1.var_Description}" >
+              </p:inputTextarea>
+               
+                
+            </td>
+            </tr>
+            </table>
+            </ui:repeat>
+            </p:outputPanel>
+            </p:dialog>
+            <p:dialog header="Ads Approval" widgetVar="multiVendorDialog8"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
+      <p:outputPanel id="multiVendorDetail8" style="text-align:center;"> 
+         <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
+        <table>
+        
+       
+   <tr>
+                       <td><h:outputText  value="To" /></td>  
+             <td> <p:inputTextarea rows="7" cols="40" value="#{cls_AddDetailBean.to}"> 
+              </p:inputTextarea>
+              </td>
+             </tr>
+             <tr>
+               <td><h:outputText  value="Message *"/></td>
+               <td><h:inputTextarea rows="7" cols="40" id="msg7" value="#{cls_AddDetailBean.msg3}"/>
+              </td>
+              </tr>
+             <tr>  
+             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send2}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
+           
+            </tr>
+   </table>
+   </ui:repeat>
+  
+       </p:outputPanel>
+        </p:dialog>
+        
               </h:form>
               </body>
+             
+              </h:body>
+              
               
           </ui:define>
           </ui:composition>
