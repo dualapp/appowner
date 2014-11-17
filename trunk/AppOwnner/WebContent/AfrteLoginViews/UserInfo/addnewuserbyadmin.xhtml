@@ -6,6 +6,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="../../include/templates/template1.xhtml">
 	<ui:define name="content">
+	 
+	 
 <h:head><title>User Registration</title>
  <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
 </h:head>
@@ -39,8 +41,8 @@
    
             <tr>
             <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
-            <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 20 char!">
-            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,20})"/>
+            <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 10 char!">
+            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,10})"/>
             </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
              <tr>
             <td><h:outputText value="Confirm Password* :"></h:outputText><font color="red" >*</font></td>
@@ -103,14 +105,17 @@
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
             
             <f:selectItems value="#{apartmentDetailsBean.houseNoList}"/>
+             
+                  <p:ajax  event="change" immediate="true"
+                  process="str_House" update="parentPanel" render="parentPanel" execute="parentPanel"/>
             </h:selectOneMenu>
              </td><td><p:message for="str_House" display="text"/></td>  </tr> 
 
          
              <tr> 			
-            <td><h:commandButton id="addUser" value="Add User" action="#{cls_UserBean.addnewUser}" ajax="false"/>
+            <td><h:commandButton id="addUser" value="Add User" action="#{cls_UserBean.addnewUser}"  />
              </td><td>
-            <h:commandButton id="reset" value="   Reset  " action="#{cls_UserBean.reset}" ajax="false"/>
+            <h:commandButton id="reset" value="   Reset  " action="#{cls_UserBean.reset}"  />
              </td></tr>
             
             </table>
@@ -118,60 +123,66 @@
             </p:panel>
             </div>
              <hr/>
- <div id="page3">
- #{apartmentDetailsBean.render}
- <p:panel id="panelOne"  style="border:none;" rendered="#{apartmentDetailsBean.render}">
- <div class="gsTitleDiv">House Details of Single Building, A2</div><hr/>
+ 
+ 
+
+ <p:panel id="parentPanel"  style="border:none;" rendered="#{apartmentDetailsBean.getRender(apartmentDetailsBean.str_HouseNo)}">
+  #{apartmentDetailsBean.getRender(apartmentDetailsBean.str_HouseNo)}
+ <div id="page3"> 
+ <p:panel id="panelOne"  style="border:none;">
+ <div class="gsTitleDiv">House Details of  #{apartmentDetailsBean.str_BlockName}, #{apartmentDetailsBean.str_HouseNo}</div><hr/>
         <table><tr>
-    <td width="20%"><h:outputText value="Size of house:"/><h:outputText value="1200"/></td>
+    <th width="10%"><h:outputText value="Size of house:"/></th><td><h:outputText value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td>
    
-   <td width="20%"> <h:outputText value="Type of house:"/><h:outputText value="2 BHK"/></td>
+   <th width="10%"> <h:outputText value="Type of house:"/></th><td><h:outputText value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}"/></td>
    
-  <td width="20%">  <h:outputText value="No of Bathrooms:"/><h:outputText value="2"/></td>
+  <th width="10%">  <h:outputText value="No of Bathrooms:"/></th><td><h:outputText value="#{apartmentDetailsBean.housedetails.int_NoOfBathRooms}"/></td>
    
-   <td width="20%"> <h:outputText value="No of Balconies:"/><h:outputText value="2"/></td>
+   <th width="10%"> <h:outputText value="No of Balconies:"/></th><td><h:outputText value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td>
    
-   <td width="20%"> <h:outputText value="Intercom no:"/><h:outputText value="2"/></td>
+   <th width="10%"> <h:outputText value="Intercom no:"/></th><td><h:outputText value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
    
-   <td width="20%"> <h:outputText value="Occupancy Status:"/><h:outputText value="Vacant"/></td>
+   <th width="10%"> <h:outputText value="Occupancy Status:"/></th><td><h:outputText value="#{apartmentDetailsBean.housedetails.is_Rented}"/></td>
    </tr></table>
   </p:panel>
-  <p:panel id="panelTwo"  style="border:none;" rendered="#{apartmentDetailsBean.render}">
+  <p:panel id="panelTwo"  style="border:none;"  >
  <div class="gsTitleDiv">Registered Primary Owner Details</div><hr/>
         <table><tr>
-    <td width="20%"><h:outputText value="Name:"/><h:outputText value="1200"/></td>
+    <th width="10%"><h:outputText value="Name:"/></th><td><h:outputText value="1100"/></td>
    
-   <td width="20%"> <h:outputText value="Email:"/><h:outputText value="2 BHK"/></td>
+   <th width="10%"> <h:outputText value="Email:"/></th><td><h:outputText value="2 BHK"/></td>
    
-  <td width="20%">  <h:outputText value="Mobile No:"/><h:outputText value="2"/></td>
+  <th width="10%">  <h:outputText value="Mobile No:"/></th><td><h:outputText value="2"/></td>
    
-   <td width="20%"> <h:outputText value="Land Line No:"/><h:outputText value="2"/></td>
+   <th width="10%"> <h:outputText value="Land Line No:"/></th><td><h:outputText value="2"/></td>
    
-   <td width="20%"> <h:outputText value="Alternate No:"/><h:outputText value="2"/></td>
+   <th width="10%"> <h:outputText value="Alternate No:"/></th><td><h:outputText value="2"/></td>
    
-   <td width="20%"> <h:outputText value="Postal Address:"/><h:outputText value="Vacant"/></td>
-    <td width="20%"> <h:outputText value="Uplaod Files:"/><h:outputText value="Vacant"/></td>
+   <th width="10%"> <h:outputText value="Postal Address:"/></th><td><h:outputText value="Vacant"/></td>
+    <th width="10%"> <h:outputText value="Uplaod Files:"/></th><td><h:outputText value="Vacant"/></td>
    </tr></table>
   </p:panel>
-  <p:panel id="panelThree"  style="border:none;" rendered="#{apartmentDetailsBean.render}">
+  <p:panel id="panelThree"  style="border:none;">
  <div class="gsTitleDiv">Tenant Details</div><hr/>
        <table><tr>
-    <td width="20%"><h:outputText value="Name:"/><h:outputText value="1200"/></td>
+    <th width="10%"><h:outputText value="Name:"/></th><td><h:outputText value="1100"/></td>
    
-   <td width="20%"> <h:outputText value="Email:"/><h:outputText value="2 BHK"/></td>
+   <th width="10%"> <h:outputText value="Email:"/></th><td><h:outputText value="2 BHK"/></td>
    
-  <td width="20%">  <h:outputText value="Mobile No:"/><h:outputText value="2"/></td>
+  <th width="10%">  <h:outputText value="Mobile No:"/></th><td><h:outputText value="2"/></td>
    
-   <td width="20%"> <h:outputText value="Land Line No:"/><h:outputText value="2"/></td>
-    <td width="20%"> <h:outputText value=" Altername No:"/><h:outputText value="2"/></td>
+   <th width="10%"> <h:outputText value="Land Line No:"/></th><td><h:outputText value="2"/></td>
+    <th width="10%"> <h:outputText value=" Altername No:"/></th><td><h:outputText value="2"/></td>
    
-   <td width="20%"> <h:outputText value="Rental Agrement:"/><h:outputText value="2"/></td>
+   <th width="10%"> <h:outputText value="Rental Agrement:"/></th><td><h:outputText value="2"/></td>
    
-   <td width="20%"> <h:outputText value="Postal Address:"/><h:outputText value="Vacant"/></td>
-    <td width="20%"> <h:outputText value="Uplaod Files:"/><h:outputText value="Vacant"/></td>
+   <th width="10%"> <h:outputText value="Postal Address:"/></th><td><h:outputText value="Vacant"/></td>
+    <th width="10%"> <h:outputText value="Uplaod Files:"/></th><td><h:outputText value="Vacant"/></td>
    </tr></table>
   </p:panel>
-    </div>
+   </div>
+  </p:panel>
+   
             </h:form>
             </body>
             </ui:define>

@@ -34,16 +34,16 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	    &#150; &#150;  <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
 	    &#150; &#150;  <p:commandButton  style="width:120px;height:25px" value="Back"/>
 	     &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Next"/>
-	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="BolkUpload"/></td>
+	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Bulk Upload"/></td>
 	    </tr></table>
-	    <p:panel id="panell"     style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
+	    <p:panel id="panell"   process=":form:DT"  update=":form:DT"  style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
 	    <ui:repeat value="#{apartmentDetailsBean.blockNameList}" var="block" varStatus="status">
-	    <p:commandButton    style="width:120px;height:25px;" value="#{block}" action="#{apartmentDetailsBean.getListHouseDetails()}"/> &#150; &#150;
+	    <h:commandButton   process=":form:DT"   update=":form:DT"  style="width:120px;height:25px;" value="#{block}" action="#{apartmentDetailsBean.getListHouseDetails1(block)}"/> &#150; &#150;
 	    </ui:repeat>
 	    
 	    </p:panel>
 	     
- <p:dataTable id="DT" rows="3"  selectionMode="single" selection="#{apartmentDetailsBean.housedetails}" rowKey="#{houseDetails.int_HouseId}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetails"  value="#{apartmentDetailsBean.listHouseDetails}">
+ <p:dataTable id="DT" rows="3"       style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetails"  value="#{apartmentDetailsBean.getListHouseDetails1(block)}">
            
                 
 	  
