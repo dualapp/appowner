@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+	<p:panel>
+    <h:body>
+    
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/rus.jpg" height="40" width="40"></img> <span class="title">Make Payment</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+    <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+   <div id="page3">
+   <table   style="width: 40%;margin-left: 1%;margin-right: 1%;margin-bottom:8px">
+    
+      <tr> 
+        <td><p:outputLabel for="str_CompanyName" value="Payment Type" /></td>
+            <td><h:selectOneMenu id="str_CompanyName" value="#{advertisementBean.str_CompanyName}"  valueChangeListener="#{advertisementBean.selectinfo}" >
+            <f:selectItem itemLabel="Select"  itemValue="Select"  />
+            <f:selectItem itemLabel="Chaque"  itemValue="Chaque"  />
+            <f:selectItem itemLabel="Online"  itemValue="Online"  />
+            <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
+            </h:selectOneMenu>
+            
+      </td>
+       
+      </tr> 
+       
+     <tr>
+                <td><p:outputLabel for="bank" value="Bank Name "  /></td>
+                <td><h:inputText id="bank" value="#{agency.str_State}" >
+                  </h:inputText>
+                  
+                </td></tr>
+                <tr>
+                <td><p:outputLabel for="pay" value="Payment Date "  /></td>
+                <td><h:inputText id="pay" value="#{agency.str_State}" >
+                  </h:inputText>
+                  
+                </td></tr>
+           <tr>
+           
+               <td><p:commandButton id="AddProduct" value="Submit"  action="#{advertisementBean.addagency}" style=" width:60px;float:right !important;margin: 0px 75px 50px 0px;" /></td> 
+               <td><p:button id="AddProduct1" value="Cancel"  outcome="agencies_Advertisement.xhtml" style=" width:60px;float:right !important;margin: 0px 600px 50px 0px;" /> 
+            </td>
+  </tr>
+  
+  </table>
+  </div>
+  </h:form>
+  </h:body>
+  </p:panel>
+  </ui:define>
+  </ui:composition>
+  
