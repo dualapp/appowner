@@ -46,14 +46,22 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<HouseDetails> getListHouseDetails(String str_BlockName) {
-		if(str_BlockName==null)
-		 
-		return sessionFactory.getCurrentSession().createCriteria(HouseDetails.class).setCacheable(true).list();
-		 else
-		 return sessionFactory.getCurrentSession().createQuery("from HouseDetails where str_BlockName=?").setParameter(0, str_BlockName).list();
+	public List<HouseDetails> getListHouseDetails(String str_BlockName)
+	{ 
+		if(str_BlockName!=null)
+		{
+			 System.out.println(str_BlockName+"blockname");
+			 Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId from UserBlocks where  str_BlockName=?").setParameter(0, str_BlockName).uniqueResult();
+		 return sessionFactory.getCurrentSession().createQuery("from HouseDetails where int_BlockId=?").setCacheable(true).setParameter(0, id).list();
+	
+		}
+		else
+		{
+	 
+			return sessionFactory.getCurrentSession().createCriteria(HouseDetails.class).setCacheable(true).list();
 	}
-
+	}
+ 
 	@Override
 	public void saveHouseDetails(HouseDetails housedetails) {
 		
@@ -74,6 +82,19 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		// TODO Auto-generated method stub
 		Integer blockId=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId  from UserBlocks where str_BlockName=?").setParameter(0, str_BlockName).uniqueResult();
 		return sessionFactory.getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_BlockId=?").setParameter(0, blockId).list();
+	}
+
+	@Override
+	public HouseDetails getHouseDetailByHouseNo(String str_HouseNo) {
+		// TODO Auto-generated method stub
+		return (HouseDetails) sessionFactory.getCurrentSession().createQuery("from HouseDetails where str_HouseNo=?").setParameter(0, str_HouseNo).uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HouseDetails> getListHouseDetails() {
+		// TODO Auto-generated method stub
+		  	return sessionFactory.getCurrentSession().createCriteria(HouseDetails.class).setCacheable(true).list();
 	}
 
 }
