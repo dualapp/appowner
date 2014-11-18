@@ -12,6 +12,7 @@ import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
 import com.appowner.model.agency_information;
+import com.appowner.model.cls_MakePayment;
 
 @Repository
 public class AdvertisementDaoImpl implements AdvertisementDao{
@@ -141,6 +142,39 @@ public class AdvertisementDaoImpl implements AdvertisementDao{
 		String hql2=" from Company where int_CompanyID=?";
 		System.out.println("8888888888888888888888888888888888");
 		return   sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, prointcatid).list();
+	}
+	@Override
+	public void deleted(agency_information detail) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM agency_information WHERE int_agencyid="+detail.getInt_agencyid()).executeUpdate();
+		
+	}
+	@Override
+	public void payment(cls_MakePayment pay) {
+		getSessionFactory().getCurrentSession().save(pay);
+		
+	}
+	@Override
+	public int adv(String intdocid1) {
+		String hql1="select int_agencyid from agency_information  where ads_type=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, intdocid1).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
+	
+	}
+	@Override
+	public int adv1(String intdocid1) {
+		String hql1="select int_agencyid from agency_information  where str_CompanyName=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid1=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, intdocid1).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid1);
+		 return cid1;
 	}
 	
 
