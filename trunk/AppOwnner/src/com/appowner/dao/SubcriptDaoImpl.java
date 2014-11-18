@@ -17,6 +17,7 @@ import com.appowner.model.Mail;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
 import com.appowner.model.User;
+import com.appowner.model.cls_Feedback;
 
 /**
  * @author mukesh
@@ -371,6 +372,24 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		String hql2="select Int_Document_CatNM from Cls_DocumentCategory where Int_Document_CatID=?";
 		System.out.println("8888888888888888888888888888888888");
 		return (String) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, prointcatid).uniqueResult();
+	}
+
+	@Override
+	public void deleteInvoice(Subcript detail) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Subcript WHERE subcriptID="+detail.getSubcriptID()).executeUpdate();
+		
+	}
+
+	@Override
+	public void deleted(Cls_DocumentCategory detail) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Cls_DocumentCategory WHERE Int_Document_CatID="+detail.getInt_Document_CatID()).executeUpdate();
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List document() {
+		return (List<cls_Feedback>) getSessionFactory().getCurrentSession().createCriteria(Cls_CreateDocumentManagement.class).list();
 	}
 }
 
