@@ -225,6 +225,26 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 		
 	}
 
+	@Override
+	public void deleteInvoice(Cls_ProductDetails detail) {
+		getProductDao().deleteInvoice( detail);
+		
+	}
+
+	@Override
+	public List<Cls_ProductDetails> listDetail(String ch_Product_Type,
+			String ch_Ad_Type, String status) {
+		return getProductDao().listDetail(ch_Product_Type,ch_Ad_Type,status);
+	}
+
+	@Override
+	public void updated(int int_Ad_categoryId) {
+		getProductDao().updated( int_Ad_categoryId);
+		
+	}
+
+	
+
 	
 	
 		
