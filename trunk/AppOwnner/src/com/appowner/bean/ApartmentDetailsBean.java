@@ -13,6 +13,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.CommunitySetup;
 import com.appowner.model.HouseDetails;
+import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
 import com.appowner.service.ApartmentDetailsService;
 import com.appowner.util.Util;
@@ -180,6 +181,8 @@ public class ApartmentDetailsBean  implements Serializable{
 		//housedetails.setInt_NoOfUsers(int_NoOfUsers);
 		housedetails.setIs_Rented(is_Rented);
 		housedetails.setStr_TypeOfHouse(str_TypeOfHouse);
+		housedetails.setInt_ApartmentId(Util.getAppartmentId());
+		housedetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 		getApartmentDetailsService().saveHouseDetails(housedetails);
 		return "housedetails.xhtml";
 	}
@@ -192,11 +195,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		System.out.println(str_HouseNo+"hno");
 		housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);
 		System.out.println(housedetails+"Hdetails");
-		if(housedetails==null)
-			render=false;
-			 
-		else
-			render=true;
+		 
 		return housedetails;
 	}
 	public void setHousedetails(HouseDetails housedetails) {
@@ -249,26 +248,33 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setHouseNoList(List<String> houseNoList) {
 		this.houseNoList = houseNoList;
 	}
-	public void getHouseDetailByHouseNo()
+	 
+	public Integer getNoOfUsers()
 	{
-		System.out.println(str_HouseNo+"hno");
-		housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);
-		System.out.println(housedetails+"Hdetails");
-		/*if(housedetails==null)
-			render=false;
-			 
-		else
-			render=true;*/
-		 
+		return int_HouseSize;
 		
 	}
-	public Boolean getRender(String hno)
+	private User u;
+	public User getU() {
+
+		u=new User();
+		u=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo);
+		 
+		return u;
+	}
+	public void setU(User u) {
+		this.u = u;
+	}
+	public Boolean getRender()
 	{ 
-		System.out.println(hno+"hno");
-		render= getStr_HouseNo()==hno;
-		System.out.println(render+"temp");
+		 
 		return render;
 	}
-	 
-
+	
+	public void houseNoChangeListener(ValueChangeEvent event)
+	{
+		str_HouseNo=(String) event.getNewValue();
+		render=true;
+	}
+ 
 }
