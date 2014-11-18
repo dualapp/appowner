@@ -33,8 +33,17 @@ public class Cls_CreateDocumentManagement{
     private String str_FolderNM;
 	private String str_ApartmentName;
 	private String username;
+	private String str_FirstName;
 	
 	
+
+	public String getStr_FirstName() {
+		return str_FirstName;
+	}
+
+	public void setStr_FirstName(String str_FirstName) {
+		this.str_FirstName = str_FirstName;
+	}
 
 	public String getUsername() {
 		return username;
@@ -195,6 +204,6 @@ public String getStr_FolderNM() {
 	public void setAction(String action) {
 		Action = action;
 	}
-
+	 
 
 }
