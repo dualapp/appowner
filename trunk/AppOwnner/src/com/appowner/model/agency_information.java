@@ -27,6 +27,20 @@ public class agency_information implements Serializable{
 	private String str_City;
 	private String str_State;
     private String str_Mobile;
+    private String str_Url;
+    public String getStr_vedio() {
+		return str_vedio;
+	}
+	public void setStr_vedio(String str_vedio) {
+		this.str_vedio = str_vedio;
+	}
+	public String getStr_Url() {
+		return str_Url;
+	}
+	public void setStr_Url(String str_Url) {
+		this.str_Url = str_Url;
+	}
+	private String  str_vedio;
 	
 	public String getStr_CompanyAddress() {
 		return str_CompanyAddress;
