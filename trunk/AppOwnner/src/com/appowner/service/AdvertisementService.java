@@ -7,6 +7,7 @@ import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
 import com.appowner.model.agency_information;
+import com.appowner.model.cls_MakePayment;
 
 public interface AdvertisementService {
 	public void addCompany(Company company);
@@ -30,6 +31,10 @@ public interface AdvertisementService {
 	public agency_information editproduct(Integer int_agencyid);
 	public int editproductaa(Integer int_agencyid);
 	public List<String> editproduct2(int prointcatid);
+	public void deleted(agency_information detail);
+	public void payment(cls_MakePayment pay);
+	public int adv(String intdocid1);
+	public int adv1(String intdocid1);
 	
 	
 }
