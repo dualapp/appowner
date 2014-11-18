@@ -28,12 +28,13 @@ import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.agency_information;
 import com.appowner.service.SubcriptService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ScriptBean implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
@@ -474,7 +475,7 @@ public void AddDocManagement()
 		private SubcriptService subcriptService;
 		
 		@SuppressWarnings("rawtypes")
-		public SubcriptService getSubcriptService() {
+		public SubcriptService<?> getSubcriptService() {
 			return subcriptService;
 		}
 		@SuppressWarnings("rawtypes")
@@ -503,7 +504,7 @@ public void AddDocManagement()
 			 
 			 getSubcriptService().addUsers(usr);
 			
-			return "SubcriptionList.xhtml";
+			return "";
 			}
 			
 		}private String path1;
@@ -819,7 +820,7 @@ public String deletedocument1(int id)
 	Cls_CreateDocumentManagement document=new Cls_CreateDocumentManagement();
 	document.setInt_DocumentID(id);
 	getSubcriptService().Deleted(document);
-	return "DocumentRepository.xhtml";
+	return "DocumentList.xhtml";
 	
 }
 private Cls_CreateDocumentManagement pro2;
@@ -869,7 +870,39 @@ public void setPro(Cls_CreateDocumentManagement pro2) {
 	this.pro2 = pro2;
 }
 
+
+public String deleted(){
+	Subcript detail=new Subcript();
+	System.out.println(subcriptID);
+	detail.setSubcriptID(subcriptID);
+	getSubcriptService().deleteInvoice(detail);
+	return "SubcriptionList.xhtml?faces-redirect=true";
+  
 }
+
+public String delete(){
+	Cls_DocumentCategory detail=new Cls_DocumentCategory();
+	System.out.println(Int_Document_CatID);
+	detail.setInt_Document_CatID(Int_Document_CatID);
+	getSubcriptService().deleted(detail);
+	return "DocumentList.xhtml?faces-redirect=true";
+  
+}
+private List<Cls_CreateDocumentManagement>listdoc;
+public List<Cls_CreateDocumentManagement> getListdoc(){
+	listdoc=new ArrayList<Cls_CreateDocumentManagement>();
+	listdoc.addAll(getSubcriptService().document());
+	System.out.println(listdoc);
+	
+	return listdoc;
+}
+public void setListdoc(List<Cls_CreateDocumentManagement> listdoc) {
+	this.listdoc = listdoc;
+}
+
+
+}
+
 
 
 
