@@ -12,6 +12,7 @@ import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
 import com.appowner.model.agency_information;
+import com.appowner.model.cls_MakePayment;
 
 @Service("AdvertisementService")
 @Transactional 
@@ -123,6 +124,28 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		@Override
 		public List<String> editproduct2(int prointcatid) {
 			return  getAdvertisementDao().editproduct2( prointcatid);
+		}
+
+		@Override
+		public void deleted(agency_information detail) {
+			getAdvertisementDao().deleted( detail);
+			
+		}
+
+		@Override
+		public void payment(cls_MakePayment pay) {
+			getAdvertisementDao().payment( pay);
+			
+		}
+
+		@Override
+		public int adv(String intdocid1) {
+			return getAdvertisementDao().adv( intdocid1);
+		}
+
+		@Override
+		public int adv1(String intdocid1) {
+			return getAdvertisementDao().adv1( intdocid1);
 		}
 
 		
