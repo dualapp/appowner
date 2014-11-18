@@ -377,6 +377,25 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().editpro(prointcatid);
 	}
 
+	@Override
+	public void deleteInvoice(Subcript detail) {
+		 getSubcriptDao().deleteInvoice(detail);
+		
+		
+	}
+
+	@Override
+	public void deleted(Cls_DocumentCategory detail) {
+		 getSubcriptDao().deleted(detail);
+		
+	}
+
+	@Override
+	public List document() {
+		return getSubcriptDao().document();
+		
+	}
+
 	
 	
 	
