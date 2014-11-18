@@ -30,6 +30,7 @@ import org.primefaces.model.UploadedFile;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.DueTemplate;
+import com.appowner.model.InvoiceTemplate;
 import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -538,12 +539,12 @@ public int getInt_Ad_categoryId() {
 	public void setEdit1(Cls_ProductDetails edit1) {
 		this.edit1 = edit1;
 	}
-	public void getedit1()
+	public void getedit1(int id1)
 	{ 
 		
 	edit1=new Cls_ProductDetails();
 	System.out.println(Int_ProductId);
-	edit1 =getProductDetailService().getEdit1(Int_ProductId);
+	edit1 =getProductDetailService().getEdit1(id1);
 	Var_ImageName=edit1.getVar_ImageName();
 	 blb_images1="D://Image\\"+Var_ImageName;
 	 System.out.println(blb_images1);
@@ -778,12 +779,17 @@ public void setSelectedAll(List<Cls_ProductDetails> selectedAll) {
 	this.selectedAll = selectedAll;
 }
 
+private Cls_categoryDetail cat;
 
 public String editdetail(Cls_ProductDetails ProductDetails)
 {
 	System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjlllllllllllllllll");
+	System.out.println(var_Ad_CategoryName+"jgfgf");
+	int_Ad_categoryId=getProductDetailService().getdocid2(var_Ad_CategoryName);
+	System.out.println(int_Ad_categoryId+"jkfkjfdkj");
 	if (ProductDetails.getInt_ProductId() != null) {
-		
+		ProductDetails.setInt_Ad_categoryId(int_Ad_categoryId);
+		ProductDetails.setVar_Ad_CategoryName(var_Ad_CategoryName);
 		getProductDetailService().updatedetails(ProductDetails);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -797,6 +803,72 @@ public String editdetail(Cls_ProductDetails ProductDetails)
 }
 	
 	
+public String deletedetail(){
+	Cls_ProductDetails detail=new Cls_ProductDetails();
+	System.out.println(Int_ProductId);
+	detail.setInt_ProductId(Int_ProductId);;
+	getProductDetailService().deleteInvoice(detail);
+	return "Ad_an_Post.xhtml?faces-redirect=true";
+  
+}
+
+public String cancel() {
+	return "Ad_an_Post.xhtml?faces-redirect=true";
+}
+
+private List<Cls_ProductDetails> details;
+
+public List<Cls_ProductDetails> getDetails()
+{
+	details=new ArrayList<Cls_ProductDetails>();
+	details.addAll(getProductDetailService().listDetail(Ch_Product_Type,Ch_Ad_Type,Status));
+	return details;
+}
+public void setDetails(List<Cls_ProductDetails> details) {
+	this.details = details;
+}
+
+
+private String msg3;
+
+public String getMsg3() {
+	msg3="This is to inform you that your ad posting in Shaffi Paradise is now Rejected.";
+	return msg3;
+}
+public void setMsg3(String msg3) {
+	this.msg3 = msg3;
+}
+public String send2()
+{    System.out.println("huyt");
+	recipient=getTo();
+	approval="approved";
+	//System.out.println(id1);
+	content=msg3;
+	subject="Appowner.com";
+	System.out.println(recipient);
+	System.out.println(content);
+	return "Email.jsp";
+}
+private String msg4;
+
+public String getMsg4() {
+	msg4="This is to inform you that your ad posting in Shaffi Paradise is now close.";
+	return msg4;
+}
+public void setMsg4(String msg4) {
+	this.msg4 = msg4;
+}
+public String send4()
+{    System.out.println("huyt");
+	recipient=getTo();
+	approval="approved";
+	//System.out.println(id1);
+	content=msg4;
+	subject="Appowner.com";
+	System.out.println(recipient);
+	System.out.println(content);
+	return "Email.jsp";
+}
 }  
    	
 	
