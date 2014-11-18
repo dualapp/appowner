@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.appowner.dao.ApartmentDetailsDao;
 import com.appowner.model.CommunitySetup;
 import com.appowner.model.HouseDetails;
+import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
 @Service("ApartmentDetailsService")
 @Transactional
@@ -78,6 +79,18 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	public List<HouseDetails> getListHouseDetails() {
 		// TODO Auto-generated method stub
 		return getApartmentDetailsDao().getListHouseDetails();
+	}
+
+	@Override
+	public Integer getBlockId(String str_BlockName) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getBlockId(str_BlockName);
+	}
+
+	@Override
+	public User primaryOwnerDetailsByHouseNo(String str_HouseNo) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().primaryOwnerDetailsByHouseNo(str_HouseNo);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.appowner.model.CommunitySetup;
 import com.appowner.model.HouseDetails;
+import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
 
 public interface ApartmentDetailsService {
@@ -26,5 +27,9 @@ public interface ApartmentDetailsService {
 	HouseDetails getHouseDetailByHouseNo(String str_HouseNo);
 
 	List<HouseDetails> getListHouseDetails();
+
+	Integer getBlockId(String str_BlockName);
+
+	User primaryOwnerDetailsByHouseNo(String str_HouseNo);
 
 }
