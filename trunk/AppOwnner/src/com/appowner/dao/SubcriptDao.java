@@ -109,6 +109,14 @@ public interface SubcriptDao {
 
 	public String editpro(int prointcatid);
 
+	public void deleteInvoice(Subcript detail);
+
+	public void deleted(Cls_DocumentCategory detail);
+
+	public List document();
+
+	
+
 	
 	
 	
