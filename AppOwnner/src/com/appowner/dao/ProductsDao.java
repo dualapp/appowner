@@ -72,6 +72,13 @@ public interface ProductsDao {
 
 	public void save1(Cls_ProductDetails productDetails);
 
+	public void deleteInvoice(Cls_ProductDetails detail);
+
+	public List<Cls_ProductDetails> listDetail(String ch_Product_Type, String ch_Ad_Type,
+			String status);
+
+	public void updated(int int_Ad_categoryId);
+
 
 	
 	
