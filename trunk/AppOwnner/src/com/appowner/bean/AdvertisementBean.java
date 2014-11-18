@@ -26,16 +26,19 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.dao.DataAccessException;
 
+import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Company;
 import com.appowner.model.CompanyPerson;
 import com.appowner.model.PanelPrice;
 import com.appowner.model.agency_information;
+import com.appowner.model.cls_MakePayment;
 import com.appowner.service.AdvertisementService;
+import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class AdvertisementBean  implements Serializable{
 	 
 	private static final long serialVersionUID = 1L;
@@ -63,7 +66,69 @@ public class AdvertisementBean  implements Serializable{
 	private String str_content;
 	 private String var_image; 	
 	 private String cname;
+	 private String str_Url;
+	    private String  str_vedio;
 	 
+	public String getStr_Url() {
+			return str_Url;
+		}
+		public void setStr_Url(String str_Url) {
+			this.str_Url = str_Url;
+		}
+		
+		
+		
+		private Integer int_paymentid;
+		public Integer getInt_paymentid() {
+			return int_paymentid;
+		}
+		public void setInt_paymentid(Integer int_paymentid) {
+			this.int_paymentid = int_paymentid;
+		}
+		public String getStr_bankname() {
+			return str_bankname;
+		}
+		public void setStr_bankname(String str_bankname) {
+			this.str_bankname = str_bankname;
+		}
+		public String getStr_paymenttype() {
+			return str_paymenttype;
+		}
+		public void setStr_paymenttype(String str_paymenttype) {
+			this.str_paymenttype = str_paymenttype;
+		}
+		public Date getDate() {
+			return date;
+		}
+		public void setDate(Date date) {
+			this.date = date;
+		}
+		public String getStr_checkNo() {
+			return str_checkNo;
+		}
+		public void setStr_checkNo(String str_checkNo) {
+			this.str_checkNo = str_checkNo;
+		}
+		
+		public Date getStr_checkdate() {
+			return str_checkdate;
+		}
+		public void setStr_checkdate(Date str_checkdate) {
+			this.str_checkdate = str_checkdate;
+		}
+		private String str_bankname;
+		private String str_paymenttype;
+		private Date date;;
+		private String str_checkNo;
+		private Date str_checkdate;
+		
+		
+		public String getStr_vedio() {
+			return str_vedio;
+		}
+		public void setStr_vedio(String str_vedio) {
+			this.str_vedio = str_vedio;
+		}
 	public String getCname() {
 		return cname;
 	}
@@ -506,17 +571,11 @@ public class AdvertisementBean  implements Serializable{
 					    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 					    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 					    System.out.println(name);
-					    File file= new File("D://Image\\"+ "images" + name);
+					    File file= new File("D://Image\\"+ "Image" + name);
 					    final UploadedFile uploadedFile = event.getFile();
 					    blb_image=file.getAbsolutePath();
-					   
-					  
-					   
-					    blb_image2=file.getAbsolutePath();
-					    blb_image3=file.getAbsolutePath();
-					    System.out.println(blb_image);
-					   
-					   System.out.println(file);
+					     System.out.println(blb_image);
+					     System.out.println(file);
 				       InputStream is = event.getFile().getInputstream();
 					    OutputStream out = new FileOutputStream(file);
 					    byte buf[] = new byte[1024];
@@ -562,18 +621,19 @@ public class AdvertisementBean  implements Serializable{
 				public void setAgency(List<Company> agency) {
 					this.agency = agency;
 				}
-				public String select;
+				public  static  String select;
 				
-				public String getSelect() {
+				
+				public static String getSelect() {
 					return select;
 				}
-				public void setSelect(String select) {
-					this.select = select;
+				public static void setSelect(String select) {
+					AdvertisementBean.select = select;
 				}
 				public List<String> selectinfo(ValueChangeEvent event)
 				{  
 					select =( String )event.getNewValue();
-					System.out.println(select);
+					System.out.println(select+"jhdsjdf");
 					agency=getAdvertisementService().listoperation(select);
 				/*	getStr_City();
 						ListIterator list=agency.listIterator();
@@ -598,7 +658,9 @@ public class AdvertisementBean  implements Serializable{
 				public String agencyname1;
 				public int agencyid1;
 				public void addagency()
+				
 				{  
+					System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiii");
 					agencyname1=getStr_CompanyName();
 					System.out.println(agencyname1);
 					agencyid1=getAdvertisementService().agency1(agencyname1);
@@ -609,11 +671,22 @@ public class AdvertisementBean  implements Serializable{
 					agency.setStr_CompanyName(getStr_CompanyName());
 					agency.setVar_ImageName(path1);
 					agency.setStr_content(getStr_content());
+					agency.setStr_Url(getStr_Url());
+					agency.setStr_vedio(path1);
 				    getAdvertisementService().addagencies(agency);
 					
 					
-}
+}               private String blb_vedio1;
+
 				
+				public String getBlb_vedio1()
+				{
+					blb_vedio1="aa1";	
+	          return blb_vedio1;
+}
+         public void setBlb_vedio1(String blb_vedio1) {
+	        this.blb_vedio1 = blb_vedio1;
+}
 				private List<agency_information>agencies;
 
 				public List<agency_information> getAgencies()
@@ -703,9 +776,123 @@ public class AdvertisementBean  implements Serializable{
 					this.prointcatid = prointcatid;
 				}
 				
+				public String cancel1()
+				{
+					return"View_Agency.xhtml?faces-redirect=true";
+				}
+				public String deleteagencies()
+				{
+					agency_information detail=new agency_information();
+					System.out.println(int_agencyid);
+					detail.setInt_agencyid(int_agencyid);
+					getAdvertisementService().deleted(detail);
+					return "ViewAgency.xhtml?faces-redirect=true";
+				}
 				
-			
+				public void handleFileUpload2(FileUploadEvent event) throws IOException {
+					 System.out.println("hi");
+					 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+					    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+					    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+					    System.out.println(name);
+					    File file= new File("D://Image\\"+ "vedio" + name);
+					    final UploadedFile uploadedFile = event.getFile();
+					    blb_vedio1=file.getAbsolutePath();
+					     System.out.println(blb_vedio1);
+					     System.out.println(file);
+				       InputStream is = event.getFile().getInputstream();
+					    OutputStream out = new FileOutputStream(file);
+					    byte buf[] = new byte[1024];
+					    int len;
+					    while ((len = is.read(buf)) > 0)
+					        out.write(buf, 0, len);
+					    is.close();
+					    out.close();
+					    path1=file.getName();
+					    System.out.println(path1);
+					   
+				}
+				private Date checkdate;
+				private Date str_paymentDate;
+				
+				
+				
+				public Date getStr_paymentDate() {
+					return str_paymentDate;
+				}
+				public void setStr_paymentDate(Date str_paymentDate) {
+					this.str_paymentDate = str_paymentDate;
+				}
+				public Date getCheckdate() {
+					return checkdate;
+				}
+				public void setCheckdate(Date checkdate) {
+					this.checkdate = checkdate;
+				}
+				public String intdocid1;
+				
+				public String getIntdocid1() {
+					return intdocid1;
+				}
+				public void setIntdocid1(String intdocid1) {
+					this.intdocid1 = intdocid1;
+				}
+				public int  intdocid2;
+				
+				public int getIntdocid2() {
+					return intdocid2;
+				}
+				public void setIntdocid2(int intdocid2) {
+					this.intdocid2 = intdocid2;
+				}
+				public void payment()
+				{
+					
+					intdocid2=getAdvertisementService().adv1(select);
+					cls_MakePayment pay=new cls_MakePayment();
+                    pay.setInt_agencyid(intdocid2);    
+					pay.setStr_paymenttype(getStr_paymenttype());
+					pay.setStr_bankname(getStr_bankname());
+				    pay.setStr_checkNo(getStr_checkNo());
+					pay.setCheckdate(getCheckdate());
+					
+					pay.setApartementId(Util.getAppartmentId());
+					pay.setStr_paymentDate(str_paymentDate);
+					
+					
+					
+					getAdvertisementService().payment(pay);
+					
+				}
+				
+				
+public String select1;
+				
+				public String getSelect1() {
+					return select1;
+				}
+				public void setSelect1(String select1) {
+					this.select1 = select1;
+				}
+				public String selectinfo1(ValueChangeEvent event)
+				{  
+					select1 =( String )event.getNewValue();
+					System.out.println(select1+"jhnhjj");
+					return  "";
+				}
+				public String selectinfo2(ValueChangeEvent event)
+				{  
+					select1 =( String )event.getNewValue();
+					System.out.println(select1+"jhnhjjbnbnbn");
+					return  select1;
+				}
+				
 }
+
+
+
+
+
 		
 		
 	
