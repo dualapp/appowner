@@ -47,6 +47,7 @@ import java.util.List;
 
 
 
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -168,6 +169,12 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 	public String editproduct2(int prointcatid);
 
 	public String editpro(int prointcatid);
+
+	public void deleteInvoice(Subcript detail);
+
+	public void deleted(Cls_DocumentCategory detail);
+
+	public List<Cls_CreateDocumentManagement> document();
 
 	
 
