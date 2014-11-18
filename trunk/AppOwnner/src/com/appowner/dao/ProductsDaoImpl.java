@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.DueTemplate;
 import com.appowner.model.Notification;
 import com.appowner.model.cls_Contact;
 @Repository
@@ -141,7 +142,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		}
 		else
 		{
-			String  query = "{ CALL details('Buy','Neighbourhood','Pending Approvl') }";
+			String  query = "{ CALL details('Buy','Neighbourhood','Pending Approval') }";
 		
 		 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
 		          ).list();
@@ -295,6 +296,36 @@ public class ProductsDaoImpl implements ProductsDao{
 	@Override
 	public void save1(Cls_ProductDetails productDetails) {
 		sessionFactory.getCurrentSession().update(productDetails);
+		
+	}
+
+	@Override
+	public void deleteInvoice(Cls_ProductDetails detail) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Cls_ProductDetails WHERE Int_ProductId="+detail.getInt_ProductId()).executeUpdate();
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cls_ProductDetails> listDetail(String ch_Product_Type,
+			String ch_Ad_Type, String status) {
+		{   if(ch_Product_Type==null&&ch_Ad_Type==null&&status==null)
+	     {
+		    return (List<Cls_ProductDetails>) getSessionFactory().getCurrentSession().createCriteria(Cls_ProductDetails.class).setCacheable(true).list();
+	     }
+	 else
+	 {
+		 String hql="from Cls_ProductDetails  where ch_Product_Type=? and ch_Ad_Type=? and status=?";
+		    return (List<Cls_ProductDetails>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,ch_Product_Type).setParameter(1,ch_Ad_Type).setParameter(2,status).setCacheable(true).list();
+	 }
+		 
+	 }
+	}
+
+	@Override
+	public void updated(int int_Ad_categoryId) {
+		String hql="update  Cls_categoryDetail set var_Ad_CategoryName=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_Ad_categoryId).executeUpdate();
 		
 	}
 
