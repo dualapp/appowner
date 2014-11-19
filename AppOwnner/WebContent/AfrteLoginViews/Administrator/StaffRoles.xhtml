@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 
 <h:head><title>Welcome to Advertisement</title></h:head>
@@ -83,11 +83,12 @@ modalWin.ShowMessage(msg,200,400,'User Information',null,null);
                  <f:converter converterId="com.appowner.bean.StringConverter" />  
                  </h:outputText>
             </p:column>
-            
-            <p:column rendered="#{staff.flag == 2}">
-                <f:facet name="header">
+            <p:column>
+            <f:facet name="header">
                     <h:outputText value="Action" />
                 </f:facet>
+            <p:column rendered="#{staff.flag == 2}">
+              
             <input type="button" id="#{staff.int_StaffID}" style="width: 50px"  onclick="ShowNewPage1(this.id)" value="Edit"/>
               
                
@@ -100,7 +101,7 @@ modalWin.ShowMessage(msg,200,400,'User Information',null,null);
                   
                </p:column>      
            
-           
+           </p:column>
           
             
         </p:dataTable>

@@ -44,7 +44,7 @@
                 <f:facet name="header">
                     <h:outputText value="Debit" />
                 </f:facet>
-                <h:inputText  value="#{accounts.int_Debit}"  size="30" valueChangeListener="#{accountsBean.processValueChange}">
+                <h:inputText  value="#{accounts.int_Debit}"  size="30" valueChangeListener="#{accountsBean.processValueChange}" >
                 <f:ajax event="blur" update="priya"  partialSubmit="true"/>   
                 </h:inputText>
             </p:column>
