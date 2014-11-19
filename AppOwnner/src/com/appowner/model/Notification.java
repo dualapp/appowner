@@ -10,55 +10,114 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_ad_notification")
+@Table(name = "tb_notification")
 public class Notification implements Serializable {
 
 	/**
-	 * mukesh
+	 * priya
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	
 	private Integer Int_NotificationId;
-	@Column
-	private String str_Intent;
-	@Column
-	private String str_Status;
-	@Column
-	private String str_Posted;
-	@Column
-	private String str_Type;
+	
 	public Integer getInt_NotificationId() {
 		return Int_NotificationId;
 	}
 	public void setInt_NotificationId(Integer int_NotificationId) {
 		Int_NotificationId = int_NotificationId;
 	}
-	public String getStr_Intent() {
-		return str_Intent;
+	public boolean isVisibility() {
+		return visibility;
 	}
-	public void setStr_Intent(String str_Intent) {
-		this.str_Intent = str_Intent;
-	}
-	public String getStr_Status() {
-		return str_Status;
-	}
-	public void setStr_Status(String str_Status) {
-		this.str_Status = str_Status;
-	}
-	public String getStr_Posted() {
-		return str_Posted;
-	}
-	public void setStr_Posted(String str_Posted) {
-		this.str_Posted = str_Posted;
-	}
-	public String getStr_Type() {
-		return str_Type;
-	}
-	public void setStr_Type(String str_Type) {
-		this.str_Type = str_Type;
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
 	}
 	
 	
+	public String getSmsemail_notification() {
+		return smsemail_notification;
+	}
+	public void setSmsemail_notification(String smsemail_notification) {
+		this.smsemail_notification = smsemail_notification;
+	}
+	public String getInvoice_generate() {
+		return invoice_generate;
+	}
+	public void setInvoice_generate(String invoice_generate) {
+		this.invoice_generate = invoice_generate;
+	}
+	public String getBefore_due_date() {
+		return before_due_date;
+	}
+	public void setBefore_due_date(String before_due_date) {
+		this.before_due_date = before_due_date;
+	}
+	public String getDefaulter() {
+		return defaulter;
+	}
+	public void setDefaulter(String defaulter) {
+		this.defaulter = defaulter;
+	}
+	public String getCc_email() {
+		return cc_email;
+	}
+	public void setCc_email(String cc_email) {
+		this.cc_email = cc_email;
+	}
+
+
+	private boolean visibility;
+	
+	private String  smsemail_notification;
+	
+	private String invoice_generate; 
+	private String before_due_date;
+	private String defaulter;
+	private String cc_email;
+	private boolean sms;
+	public boolean isSms() {
+		return sms;
+	}
+	public void setSms(boolean sms) {
+		this.sms = sms;
+	}
+	public boolean isSms1() {
+		return sms1;
+	}
+	public void setSms1(boolean sms1) {
+		this.sms1 = sms1;
+	}
+	public boolean isEmail() {
+		return email;
+	}
+	public void setEmail(boolean email) {
+		this.email = email;
+	}
+	public boolean isEmail1() {
+		return email1;
+	}
+	public void setEmail1(boolean email1) {
+		this.email1 = email1;
+	}
+	public boolean isGrace_period() {
+		return grace_period;
+	}
+	public void setGrace_period(boolean grace_period) {
+		this.grace_period = grace_period;
+	}
+	public Integer getDue_days() {
+		return due_days;
+	}
+	public void setDue_days(Integer due_days) {
+		this.due_days = due_days;
+	}
+
+
+	private boolean sms1;
+	private boolean email;
+	private boolean email1;
+	private boolean grace_period;
+	private Integer due_days;
 }
