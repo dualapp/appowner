@@ -3,6 +3,12 @@ package com.appowner.bean;
 import java.io.Serializable;
 //package org.primefaces.showcase.view.ajax;
 
+
+
+
+
+
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,9 +31,11 @@ import org.primefaces.component.datatable.DataTable;
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.DueTransaction;
+import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.VendorServiceDetails;
+import com.appowner.service.ApartmentDetailsService;
 import com.appowner.service.In_UserService;
 import com.appowner.util.Util;
 /*
@@ -70,6 +78,21 @@ public class Cls_UserBean implements Serializable{
 	    private List<String> blocksNa;
 	    private User editlis;
 	    private int edituserid2;
+	    @ManagedProperty(value="#{ApartmentDetailsService}")
+		private ApartmentDetailsService apartmentDetailsService;
+		public ApartmentDetailsService getApartmentDetailsService() {
+			return apartmentDetailsService;
+		}
+		public void setApartmentDetailsService(
+				ApartmentDetailsService apartmentDetailsService) {
+			this.apartmentDetailsService = apartmentDetailsService;
+		}
+		public String getStr_HouseNo() {
+			return str_HouseNo;
+		}
+		public void setStr_HouseNo(String str_HouseNo) {
+			this.str_HouseNo = str_HouseNo;
+		}
 		public int getEdituserid2() {
 			return edituserid2;
 		}
@@ -459,8 +482,8 @@ public class Cls_UserBean implements Serializable{
 				usr.setStr_Password(getStr_Password());
 				//usr.setStr_ConfirmPassword(getStr_ConfirmPassword());
 		        usr.setInt_UserRole(getInt_UserRole());
-		        usr.setStr_Flat(getStr_Flat());
-				usr.setStr_Block(getStr_Block());
+		        usr.setStr_Flat(str_HouseNo);
+				usr.setStr_Block(str_BlockName);
 				usr.setStr_PhoneNo(getStr_PhoneNo());
 				usr.setStr_Username(getStr_Username());
 				Integer activationbit2=0;
@@ -755,7 +778,63 @@ public class Cls_UserBean implements Serializable{
 		
 		
          
+		public List<String> getBlockNameList() {
+			blockNameList=new ArrayList<String>();
+			
+			blockNameList.addAll(getApartmentDetailsService().getBlockNameList());
+			return blockNameList;
+		}
+		public void setBlockNameList(List<String> blockNameList) {
+			this.blockNameList = blockNameList;
+		}
+		private Boolean render;
+		public List<String> getHouseNoList() {
+			houseNoList=new ArrayList<String>();
+			houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_BlockName));
+			
+			 
+			return houseNoList;
+		}
+		public void setHouseNoList(List<String> houseNoList) {
+			this.houseNoList = houseNoList;
+		}
+		private String str_HouseNo;
+		private List<String> houseNoList;
+		private List<String> blockNameList;
+		private User u;
+		private HouseDetails housedetails;
+		public HouseDetails getHousedetails() {
+			System.out.println(str_HouseNo+"hno");
+			housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);
+			System.out.println(housedetails+"Hdetails");
+			 
+			return housedetails;
+		}
+		public void setHousedetails(HouseDetails housedetails) {
+			this.housedetails = housedetails;
+		}
+		public User getU() {
+
+			u=new User();
+			u=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo);
+			 
+			return u;
+		}
+		public void setU(User u) {
+			this.u = u;
+		}
+		public Boolean getRender()
+		{ 
+			 
+			return render;
+		}
 		
+		public void houseNoChangeListener(ValueChangeEvent event)
+		{
+			str_HouseNo=(String) event.getNewValue();
+			render=true;
+		}
+	 
 
 	}
 
