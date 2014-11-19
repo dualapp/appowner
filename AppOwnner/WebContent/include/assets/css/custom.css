@@ -222,7 +222,7 @@ font-family: "Open Sans light", sans-serif;
 font-size: 15px;
  font-weight: bold;
  text-align:left;
-text-shadow:  red 0.1em 0.1em 0.2em ;
+text-shadow: 0 0 0.2em #8F7 ;
   
 margin-left: 10px;
 padding-bottom: 1px;
