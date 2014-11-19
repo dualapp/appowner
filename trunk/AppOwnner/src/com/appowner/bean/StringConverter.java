@@ -19,12 +19,36 @@ public class StringConverter  implements Converter {
 	      UIComponent component, Object value) 
 	   {
 		   Character c= ((Character) value).charValue();
-		   System.out.println(c);
+		  
 		     if(c=='G')
 		     {
 		    	String str=c.toString();
 		    	String str1=str.concat("eneric");
 		    	return str1;
+		     }
+		     else if(c=='A')
+		     {
+		    	 String str=c.toString();
+			    	String str1=str.concat("sset");
+			    	return str1; 
+		     }
+		     else if(c=='R')
+		     {
+		    	 String str=c.toString();
+			    	String str1=str.concat("evenue");
+			    	return str1; 
+		     }
+		     else if(c=='L')
+		     {
+		    	 String str=c.toString();
+			    	String str1=str.concat("iability");
+			    	return str1; 
+		     }
+		     else if(c=='E')
+		     {
+		    	 String str=c.toString();
+			    	String str1=str.concat("xpense");
+			    	return str1; 
 		     }
 		     else
 		     {String str3=c.toString();
