@@ -24,7 +24,7 @@ public class AccountingGroup implements Serializable {
 	@Column(name="var_Acct_GroupName")
 	private String str_Acct_GroupName;
 	private Character ch_Group;
-	private Boolean bl_Default;
+	private Integer bl_Default;
 	public Integer getInt_Acct_GroupID() {
 		return int_Acct_GroupID;
 	}
@@ -43,10 +43,11 @@ public class AccountingGroup implements Serializable {
 	public void setCh_Group(Character ch_Group) {
 		this.ch_Group = ch_Group;
 	}
-	public Boolean getBl_Default() {
+	
+	public Integer getBl_Default() {
 		return bl_Default;
 	}
-	public void setBl_Default(Boolean bl_Default) {
+	public void setBl_Default(Integer bl_Default) {
 		this.bl_Default = bl_Default;
 	}
 	public Integer getInt_ApartmentID() {
