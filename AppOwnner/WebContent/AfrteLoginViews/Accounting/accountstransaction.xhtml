@@ -28,7 +28,7 @@
             <td>  <h:outputLabel for="account" value="Accounts*" /></td>
            <td> <p:selectOneMenu id="account" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}" style="width:200px">
                 
-                   <f:selectItems value="#{accountingBean.cars}" />
+                   <f:selectItems value="#{accountsBean.listAccountName}" />
                     <p:ajax event="change" partialSubmit="true" immediate="true" />
                 </p:selectOneMenu>
                 
