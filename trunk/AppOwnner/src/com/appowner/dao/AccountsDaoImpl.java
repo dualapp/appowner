@@ -458,6 +458,58 @@ public class AccountsDaoImpl implements AccountsDao{
 	{
 		return (List<Account>)getSessionFactory().getCurrentSession().createCriteria(Account.class).setCacheable(true).list();
 	}
+	@SuppressWarnings("unchecked")
+	public List<String> listAccount()
+	{
+		String hql="select str_acount_Name from Account";
+		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<AccountingGroup>  getAsset()
+	{
+		String hql=" from  AccountingGroup where ch_Group='A' ";
+		return (List<AccountingGroup>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<AccountingGroup> getRevenues()
+	{String hql="from  AccountingGroup where ch_Group='R' ";
+	return (List<AccountingGroup>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<AccountingGroup> getLiabilities()
+	{
+		String hql=" from  AccountingGroup where ch_Group='L' ";
+		return (List<AccountingGroup>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<AccountingGroup> getExpense()
+	
+	{
+		String hql="from  AccountingGroup where ch_Group='E' ";
+		return (List<AccountingGroup>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<AccountingGroup> getGroups(char d)
+	{   System.out.println(d+"jjjn");
+		String hql="from  AccountingGroup where ch_Group=? ";
+		return (List<AccountingGroup>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, d).setCacheable(true).list();
+	}
+	public void addAccountGroup(AccountingGroup account)
+	{
+		getSessionFactory().getCurrentSession().save(account);
+	}
+	public void deleteGroup(AccountingGroup account)
+	{
+		 sessionFactory.getCurrentSession().createQuery("DELETE FROM AccountingGroup WHERE int_Acct_GroupID = "+account.getInt_Acct_GroupID()).executeUpdate();
+	}
+	public void saveOpeningAccount(AccountsOpeningBalance balance)
+	{
+		getSessionFactory().getCurrentSession().save(balance);
+	}
 }
 			 
 		       
