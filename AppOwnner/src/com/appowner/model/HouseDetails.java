@@ -81,12 +81,14 @@ public class HouseDetails  implements Serializable{
 	public void setStr_TypeOfHouse(String str_TypeOfHouse) {
 		this.str_TypeOfHouse = str_TypeOfHouse;
 	}
-	public Boolean getIs_Rented() {
+	 
+	public String getIs_Rented() {
 		return is_Rented;
 	}
-	public void setIs_Rented(Boolean is_Rented) {
+	public void setIs_Rented(String is_Rented) {
 		this.is_Rented = is_Rented;
 	}
+
 	@Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column 
@@ -109,5 +111,5 @@ public class HouseDetails  implements Serializable{
     @Column(name="var_TypeOfHouse")
 	private String str_TypeOfHouse;
     @Column 
-	private Boolean  is_Rented;
+	private String  is_Rented;
 }

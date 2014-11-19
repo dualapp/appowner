@@ -19,7 +19,7 @@ import com.appowner.service.ApartmentDetailsService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ApartmentDetailsBean  implements Serializable{
 
 	/**
@@ -58,7 +58,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	private String str_BlockName;
 	private Integer int_NoOfBalconies;
 	private Integer int_NoOfBedRooms;
-	private Boolean is_Rented;
+	private String is_Rented;
 	private String str_TypeOfHouse;
 	private String str_HouseNo;
 	public Integer getInt_NoOfBalconies() {
@@ -73,10 +73,11 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setInt_NoOfBedRooms(Integer int_NoOfBedRooms) {
 		this.int_NoOfBedRooms = int_NoOfBedRooms;
 	}
-	public Boolean getIs_Rented() {
+	 
+	public String getIs_Rented() {
 		return is_Rented;
 	}
-	public void setIs_Rented(Boolean is_Rented) {
+	public void setIs_Rented(String is_Rented) {
 		this.is_Rented = is_Rented;
 	}
 	public String getStr_TypeOfHouse() {
@@ -126,7 +127,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	
 	private CommunitySetup cs;
-	private List<String> blockNameList;
+ 
 	private Integer int_TotalNoOfHouses;
 	public Integer getInt_TotalNoOfHouses() {
 		return int_TotalNoOfHouses;
@@ -191,20 +192,11 @@ public class ApartmentDetailsBean  implements Serializable{
 		listBlockDetails.addAll(getApartmentDetailsService().getListBlockDetails());
 		return listBlockDetails;
 	}
-	public HouseDetails getHousedetails() {
-		System.out.println(str_HouseNo+"hno");
-		housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);
-		System.out.println(housedetails+"Hdetails");
-		 
-		return housedetails;
-	}
-	public void setHousedetails(HouseDetails housedetails) {
-		this.housedetails = housedetails;
-	}
+	 
 	public void setListBlockDetails(List<UserBlocks> listBlockDetails) {
 		this.listBlockDetails = listBlockDetails;
 	}
-	private List<String> houseNoList;
+	 
 	public List<HouseDetails> getListHouseDetails() {
 		System.out.println(str_BlockName+"BBBBBBBBBBlock");
 		listHouseDetails=new ArrayList<HouseDetails>();
@@ -217,6 +209,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		System.out.println(str_BlockName+"BLOKKKKKKKKKKKKKKK");
 		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName));
 		System.out.println(listHouseDetails+"klap");
+		 
 		return listHouseDetails;
 	}
 	public void setListHouseDetails(List<HouseDetails> listHouseDetails) {
@@ -228,53 +221,8 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setCommunityTypeList(List<CommunitySetup> communityTypeList) {
 		CommunityTypeList = communityTypeList;
 	}
-	public List<String> getBlockNameList() {
-		blockNameList=new ArrayList<String>();
-		
-		blockNameList.addAll(getApartmentDetailsService().getBlockNameList());
-		return blockNameList;
-	}
-	public void setBlockNameList(List<String> blockNameList) {
-		this.blockNameList = blockNameList;
-	}
-	private Boolean render;
-	public List<String> getHouseNoList() {
-		houseNoList=new ArrayList<String>();
-		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_BlockName));
-		
-		 
-		return houseNoList;
-	}
-	public void setHouseNoList(List<String> houseNoList) {
-		this.houseNoList = houseNoList;
-	}
 	 
-	public Integer getNoOfUsers()
-	{
-		return int_HouseSize;
-		
-	}
-	private User u;
-	public User getU() {
-
-		u=new User();
-		u=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo);
-		 
-		return u;
-	}
-	public void setU(User u) {
-		this.u = u;
-	}
-	public Boolean getRender()
-	{ 
-		 
-		return render;
-	}
-	
-	public void houseNoChangeListener(ValueChangeEvent event)
-	{
-		str_HouseNo=(String) event.getNewValue();
-		render=true;
-	}
+	 
+	 
  
 }
