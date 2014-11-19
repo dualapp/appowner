@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.AccountsDao;
 import com.appowner.model.Account;
+import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
@@ -93,7 +94,7 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getAccounts();
 	}
-	public List<SelectItem> getAccount()
+	public List<SelectItem>  getAccount()
 	{
 		return getAccountsDao().getAccount();
 	}
@@ -207,4 +208,44 @@ public class AccountsServiceImpl implements AccountsService {
 		return getAccountsDao().listAccounts();
 		
 	}
+	public List<String> listAccount()
+	{
+		return getAccountsDao().listAccount();
+	}
+	public List<AccountingGroup>  getAsset()
+	{
+		return getAccountsDao().getAsset();
+	}
+
+	public List<AccountingGroup> getRevenues()
+	{
+		return (List<AccountingGroup>)getAccountsDao().getRevenues();
+	}
+
+	public List<AccountingGroup> getLiabilities()
+	{
+		return (List<AccountingGroup>)getAccountsDao().getLiabilities();
+	}
+
+	public List<AccountingGroup> getExpense()
+	{
+		return (List<AccountingGroup>)getAccountsDao().getExpense();
+	}
+	public List<AccountingGroup> getGroups(char d)
+	{
+		return (List<AccountingGroup>)getAccountsDao().getGroups(d);
+	}
+	public void addAccountGroup(AccountingGroup account)
+	{
+		getAccountsDao().addAccountGroup(account);
+	}
+	public void deleteGroup(AccountingGroup account)
+	{
+		getAccountsDao().deleteGroup(account);
+	}
+	public void saveOpeningAccount(AccountsOpeningBalance balance)
+	{
+		getAccountsDao().saveOpeningAccount(balance);
+	}
+
 }

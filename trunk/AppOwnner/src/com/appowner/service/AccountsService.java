@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.Account;
+import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
@@ -94,6 +95,26 @@ public interface AccountsService {
 	public void addAccount(Account account);
 
 	public List<Account> listAccounts();
+
+	public List<String> listAccount();
+
+	public List<AccountingGroup>  getAsset();
+
+	public List<AccountingGroup> getRevenues();
+
+	public List<AccountingGroup> getLiabilities();
+
+	public List<AccountingGroup> getExpense();
+
+	public List<AccountingGroup> getGroups(char d);
+
+	public void addAccountGroup(AccountingGroup account);
+
+	public void deleteGroup(AccountingGroup account);
+
+	public void saveOpeningAccount(AccountsOpeningBalance balance);
+
+	
 	
 
 }
