@@ -70,7 +70,7 @@
                    
                 <h:outputText value="#{account.str_acount_Name}" />
             
-                <h:outputText value="#{account.dou_opening_Balance}" />
+                <h:outputText value="Balance:#{account.dou_opening_Balance}" />
                 <h:outputText value="Account NO:#{account.str_account_No}" />
                 <h:outputText value="IFSC Code:#{account.str_IFSC_Code}" />
       </h:panelGrid>
@@ -134,7 +134,7 @@
       <tr><td colspan="2"><p:separator/></td></tr>
       <h:panelGroup style="display:block; text-align:right"> 
          <tr>
-                 <td><p:commandButton id="submit" value="Submit" action="#{accountsBean.addAccounts}" ajax="false" />
+                 <td><p:commandButton id="submit" value="Submit" action="#{accountsBean.addAccounts}" ajax="false" /><p:spacer width="5%" height="5%"/>
                  <p:commandButton id="cancel" value="Cancel" action="#{accountsBean.cancel}" ajax="false"/></td>
            </tr>
   </h:panelGroup>
@@ -161,9 +161,14 @@
      
        <tr>
        <td><h:outputText value="From Account:  " /><font color="red">*</font></td>
-        <td><p:inputText value="#{accountsBean.from_Account}" placeholder="Choose source"/></td>
+        <td><h:selectOneMenu id="from_Account" value="#{accountsBean.from_Account}" placeholder="Choose source">
+         <f:selectItems value="#{accountsBean.accountName}"/>
+      </h:selectOneMenu>
+        </td>
         <td><h:outputText value="To Account:  " /><font color="red">*</font></td>
-        <td><p:inputText value="#{accountsBean.to_Acconut}" placeholder="Choose Receipiant"/></td>
+        <td><h:selectOneMenu id="to_Acconut" value="#{accountsBean.to_Acconut}" placeholder="Choose Receipiant">
+          <f:selectItems value="#{accountsBean.accountName}"/>
+      </h:selectOneMenu> </td>
       </tr>
       
        <tr>
@@ -174,7 +179,7 @@
       <td colspan="4"><p:separator/></td>
       </tr>
       <tr>
-                 <td><p:commandButton id="submit1" value="transfer" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" /></td>
+                 <td><p:commandButton id="submit1" value="Transfer" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" /></td>
                  </tr>
       </table>
          </p:dialog>
