@@ -24,6 +24,7 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
 import com.appowner.model.Account;
+import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.service.AccountsService;
 import com.appowner.util.Util;
@@ -234,8 +235,8 @@ public void processValueChange(ValueChangeEvent event)
 	accounts=(AccountsOpeningBalance) updatedAccounts.getRowData();
 	int_Accounts_OpeningID=accounts.getInt_Accounts_OpeningID();
 	id=accounts.getInt_Accounts_OpeningID();
-	System.out.println(int_Accounts_OpeningID);
-	System.out.println(id);
+	System.out.println(int_Accounts_OpeningID+"hjh");
+	System.out.println(id+"hjhjhj");
 	str_Accounts=accounts.getStr_AccountsHead();
 	System.out.println(str_Accounts);
 	//accounts.setInt_Accounts_OpeningID(int_Accounts_OpeningID);
@@ -295,7 +296,7 @@ listAccountName= new ArrayList<SelectItem>();
     	 while(itr1.hasNext())
     	 {
     		 SelectItemGroup g1 = new SelectItemGroup(accountGroup);
-    		 accountGroup=null;
+    		 accountGroup="";
     		 String str=(String) itr1.next();
     		
     		 
@@ -323,6 +324,7 @@ public Set<Character> getCh_AccountGroup1() {
 	ch_AccountGroup1=new HashSet<Character>();
 	
 	ch_AccountGroup1.addAll(getAccountsService().getCh_AccountGroup1());
+	System.out.println(ch_AccountGroup1+"hhjjhjh");
 	return ch_AccountGroup1;
 }
 public void setCh_AccountGroup1(Set<Character> ch_AccountGroup1) {
@@ -448,6 +450,7 @@ public String addAccounts()
 		account.setStr_City(str_City);
 		account.setStr_IFSC_Code(str_IFSC_Code);
 		getAccountsService().addAccount(account); 
+		
 		return "accounts.xhtml";
 	}
 	catch(Exception e)
@@ -513,6 +516,329 @@ public String getStr_Notes() {
 public void setStr_Notes(String str_Notes) {
 	this.str_Notes = str_Notes;
 }
+private List<String> accountName;
+public List<String> getAccountName() {
+	accountName=new ArrayList<String>();
+	accountName.addAll(getAccountsService().listAccount());
+	return accountName;
+}
+public void setAccountName(List<String> accountName) {
+	this.accountName = accountName;
+}
+private List<AccountingGroup> asset;
+private List<AccountingGroup> revenues;
+private List<AccountingGroup> liabilities;
+private List<AccountingGroup>  expense;
+public List<AccountingGroup> getAsset() {
+	asset=new ArrayList<AccountingGroup>();
+	asset.addAll(getAccountsService().getAsset());
+	ListIterator list=asset.listIterator();
+	while(list.hasNext())
+	{
+		AccountingGroup account=(AccountingGroup)list.next();
+		group=account.getCh_Group();
+	}
+	return asset;
+}
+
+public void setAsset(List<AccountingGroup> asset) {
+	this.asset = asset;
+}
+public List<AccountingGroup> getRevenues() {
+	revenues=new ArrayList<AccountingGroup>();
+	revenues.addAll(getAccountsService().getRevenues());
+	ListIterator list=revenues.listIterator();
+	while(list.hasNext())
+	{
+		AccountingGroup account=(AccountingGroup)list.next();
+		group1=account.getCh_Group();
+	}
+	return revenues;
+}
+
+public List<AccountingGroup> getLiabilities() {
+	liabilities=new ArrayList<AccountingGroup>();
+	liabilities.addAll(getAccountsService().getLiabilities());
+	ListIterator list=liabilities.listIterator();
+	while(list.hasNext())
+	{
+		AccountingGroup account=(AccountingGroup)list.next();
+		group2=account.getCh_Group();
+	}
+	return liabilities;
+}
+
+public List<AccountingGroup> getExpense() {
+	expense=new ArrayList<AccountingGroup>();
+	expense.addAll(getAccountsService().getExpense());
+	ListIterator list=expense.listIterator();
+	while(list.hasNext())
+	{
+		AccountingGroup account=(AccountingGroup)list.next();
+		group3=account.getCh_Group();
+	}
+	return expense;
+}
+
+public void setRevenues(List<AccountingGroup> revenues) {
+	this.revenues = revenues;
+}
+public void setLiabilities(List<AccountingGroup> liabilities) {
+	this.liabilities = liabilities;
+}
+public void setExpense(List<AccountingGroup> expense) {
+	this.expense = expense;
+}
+private String accounthead;
+public String getAccounthead() {
+	return accounthead;
+}
+public void setAccounthead(String accounthead) {
+	this.accounthead = accounthead;
+}
+public char group;
+ public char getGroup() {
+	return group;
+}
+public void setGroup(char group) {
+	this.group = group;
+}
+private char group1;
+private char group2;
+private char group3;
+public char getGroup1() {
+	return group1;
+}
+public void setGroup1(char group1) {
+	this.group1 = group1;
+}
+public char getGroup2() {
+	return group2;
+}
+public void setGroup2(char group2) {
+	this.group2 = group2;
+}
+public char getGroup3() {
+	return group3;
+}
+public void setGroup3(char group3) {
+	this.group3 = group3;
+}
+private  static char group4;
+
+public static char getGroup4() {
+	return group4;
+}
+public static void setGroup4(char group4) {
+	AccountsBean.group4 = group4;
+}
+public String getAccountsHead(char d)
+ {  System.out.println(d+"jdfjjf");
+ group4=d;
+ System.out.println(group4+"jbjj");
+ // groups.addAll(getAccountsService().getGroups(d));
+	 return "addaccountshead.xhtml";
+ }
+public String addAccountHead()
+{   System.out.println("jhujhuj");
+	AccountingGroup account=new AccountingGroup();
+	account.setStr_Acct_GroupName(accounthead);
+	System.out.println(group4+"vhhh");
+	account.setCh_Group(group4);
+	account.setBl_Default(1);
+	account.setInt_ApartmentID(Util.getAppartmentId());
+	getAccountsService().addAccountGroup(account);
+	return "addaccountshead.xhtml";
+}
+private List<AccountingGroup>  groups;
+public List<AccountingGroup> getGroups() {
+	groups=new ArrayList<AccountingGroup>();
+	groups.addAll(getAccountsService().getGroups(group4));
+	return groups;
+}
+public void setGroups(List<AccountingGroup> groups) {
+	this.groups = groups;
+}
+public String deleteGroup(int id)
+{   System.out.println("hjhhjj");
+	AccountingGroup account=new AccountingGroup();
+	account.setInt_Acct_GroupID(id);
+	getAccountsService().deleteGroup(account);
+	return "addaccountshead.xhtml";
+	
+}
+//CUSTOMIZE SETTING 
+private Integer int_customize_ID;
+private String str_PAN_No;
+private String str_Tax_No;
+private String str_Socity_Regd_No;
+private String str_Address;
+private String str_Term_Condition;
+private String str_Customization;
+private String str_Contact_Name;
+private String str_Contact_Number;
+private String str_Contact_Email;
+public Integer getInt_customize_ID() {
+	return int_customize_ID;
+}
+public void setInt_customize_ID(Integer int_customize_ID) {
+	this.int_customize_ID = int_customize_ID;
+}
+public String getStr_PAN_No() {
+	return str_PAN_No;
+}
+public void setStr_PAN_No(String str_PAN_No) {
+	this.str_PAN_No = str_PAN_No;
+}
+public String getStr_Tax_No() {
+	return str_Tax_No;
+}
+public void setStr_Tax_No(String str_Tax_No) {
+	this.str_Tax_No = str_Tax_No;
+}
+public String getStr_Socity_Regd_No() {
+	return str_Socity_Regd_No;
+}
+public void setStr_Socity_Regd_No(String str_Socity_Regd_No) {
+	this.str_Socity_Regd_No = str_Socity_Regd_No;
+}
+public String getStr_Address() {
+	return str_Address;
+}
+public void setStr_Address(String str_Address) {
+	this.str_Address = str_Address;
+}
+public String getStr_Term_Condition() {
+	return str_Term_Condition;
+}
+public void setStr_Term_Condition(String str_Term_Condition) {
+	this.str_Term_Condition = str_Term_Condition;
+}
+public String getStr_Customization() {
+	return str_Customization;
+}
+public void setStr_Customization(String str_Customization) {
+	this.str_Customization = str_Customization;
+}
+public String getStr_Contact_Name() {
+	return str_Contact_Name;
+}
+public void setStr_Contact_Name(String str_Contact_Name) {
+	this.str_Contact_Name = str_Contact_Name;
+}
+public String getStr_Contact_Number() {
+	return str_Contact_Number;
+}
+public void setStr_Contact_Number(String str_Contact_Number) {
+	this.str_Contact_Number = str_Contact_Number;
+}
+public String getStr_Contact_Email() {
+	return str_Contact_Email;
+}
+public void setStr_Contact_Email(String str_Contact_Email) {
+	this.str_Contact_Email = str_Contact_Email;
+}
+
+
+
+
+//NOTIFICATION SETTING
+private Integer Int_NotificationId;
+
+private boolean visibility;
+
+private String  smsemail_notification;
+
+private String invoice_generate; 
+private String before_due_date;
+private String defaulter;
+private String cc_email;
+public Integer getInt_NotificationId() {
+	return Int_NotificationId;
+}
+public void setInt_NotificationId(Integer int_NotificationId) {
+	Int_NotificationId = int_NotificationId;
+}
+public boolean isVisibility() {
+	return visibility;
+}
+public void setVisibility(boolean visibility) {
+	this.visibility = visibility;
+}
+public String getSmsemail_notification() {
+	return smsemail_notification;
+}
+public void setSmsemail_notification(String smsemail_notification) {
+	this.smsemail_notification = smsemail_notification;
+}
+public String getInvoice_generate() {
+	return invoice_generate;
+}
+public void setInvoice_generate(String invoice_generate) {
+	this.invoice_generate = invoice_generate;
+}
+public String getBefore_due_date() {
+	return before_due_date;
+}
+public void setBefore_due_date(String before_due_date) {
+	this.before_due_date = before_due_date;
+}
+public String getDefaulter() {
+	return defaulter;
+}
+public void setDefaulter(String defaulter) {
+	this.defaulter = defaulter;
+}
+public String getCc_email() {
+	return cc_email;
+}
+public void setCc_email(String cc_email) {
+	this.cc_email = cc_email;
+}
+private boolean sms;
+private boolean sms1;
+private boolean email;
+private boolean email1;
+private boolean grace_period;
+private Integer due_days;
+public boolean isSms() {
+	return sms;
+}
+public void setSms(boolean sms) {
+	this.sms = sms;
+}
+public boolean isSms1() {
+	return sms1;
+}
+public void setSms1(boolean sms1) {
+	this.sms1 = sms1;
+}
+public boolean isEmail() {
+	return email;
+}
+public void setEmail(boolean email) {
+	this.email = email;
+}
+public boolean isEmail1() {
+	return email1;
+}
+public void setEmail1(boolean email1) {
+	this.email1 = email1;
+}
+public boolean isGrace_period() {
+	return grace_period;
+}
+public void setGrace_period(boolean grace_period) {
+	this.grace_period = grace_period;
+}
+public Integer getDue_days() {
+	return due_days;
+}
+public void setDue_days(Integer due_days) {
+	this.due_days = due_days;
+}
+
+
     }  
 	
 	

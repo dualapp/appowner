@@ -28,6 +28,7 @@ import javax.faces.model.SelectItemGroup;
 import org.primefaces.component.datatable.DataTable;
 
 import com.appowner.model.AccountingGroup;
+import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
@@ -36,6 +37,7 @@ import com.appowner.service.AccountsService;
 import com.appowner.service.ExpenseService;
 import com.appowner.service.TemplateService;
 import com.appowner.util.Util;
+import com.sun.faces.renderkit.SelectItemsIterator;
 
 @ManagedBean
 @RequestScoped
@@ -375,9 +377,11 @@ public void setCars(List<SelectItem> cars) {
 public void setCar(String car) {
 	this.car = car;
 }
+
 public List<SelectItem> getList() {
 	list=new ArrayList<SelectItem>();
 	list.addAll(getAccountsService().getAccount());
+	
 	return list;
 }
 
@@ -385,19 +389,18 @@ public void setList(List<SelectItem> list) {
 	this.list = list;
 }
 public List<SelectItem> getCars() {
-//	cars=new ArrayList<SelectItem>();
-//	cars.addAll(getAccountsService().getAccounts());
+
 	return cars;
 }
 
 
 
-@PostConstruct
+/*@PostConstruct
 public void init(){ 
 	Object[] st1=getList().toArray();
-	List s=Arrays.asList(st1);
+
 	
-	SelectItem[] st2=new SelectItem[0];
+	SelectItem[] st2=new SelectItem[]{option};
 	
 	  
 
@@ -413,16 +416,16 @@ public void init(){
  
 }
 
-
+*/
  
-public Character getCh_Group() {
+ public Character getCh_Group() {
 	return ch_Group;
 }
 public void setCh_Group(Character ch_Group) {
 	this.ch_Group = ch_Group;
 }
 
-/*@PostConstruct
+@PostConstruct
 public void init() {
      
     
@@ -528,7 +531,7 @@ public String getStr_AccountType() {
 }
 public void setStr_AccountType(String str_AccountType) {
 	this.str_AccountType = str_AccountType;
-} */
+} 
 public void accountchangeListener(ValueChangeEvent event){
 	
 	
@@ -536,7 +539,7 @@ public void accountchangeListener(ValueChangeEvent event){
 	
 	ch_Group=getAccountsService().getChGroup(str_AccountType);
 	
-}
+} 
 
 public void saveChartOfAccount()
 {
@@ -548,6 +551,13 @@ public void saveChartOfAccount()
 	chartOfAccount.setStr_AccountType(str_AccountType);
 	chartOfAccount.setCh_Group(ch_Group);
 	getAccountsService().saveChartOfAccount(chartOfAccount);
+	AccountsOpeningBalance balance=new AccountsOpeningBalance();
+	balance.setInt_Debit(int_Debit);
+	balance.setInt_Credit(int_Credit);
+	balance.setInt_ApartmentID(Util.getAppartmentId());
+	balance.setStr_AccountsHead(str_AccountName);
+	getAccountsService().saveOpeningAccount(balance);
+	
 	
 	
 }
