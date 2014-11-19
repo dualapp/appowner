@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="../../include/templates/template.xhtml">
 	<ui:define name="content">
  <h:head><title>User Registration</title></h:head>
  <h:head><title>User Registration</title></h:head>
@@ -17,81 +17,188 @@
 </h:head>
 <body bgcolor="pink">
 <h:form>
-  
+  <div id="page3">
  
  <table>
  
-  
- 
+   
+            <tr><td width ="50%"> <p:outputPanel layout="block" id="aaa" style="width:150px;height:150px; border: 2px solid #a1a1a1; background: #ffffff;border-radius: 25px;">  
+      
+      <p:graphicImage  value="#{loginBean.blb_image1}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....." value=""/></td></tr>
+             
+  <tr>
+    <th><h:outputText value="Choose Your  image for upload "/> </th>
+   <td> <p:fileUpload value="#{loginBean.var_ImageName1}"
+        fileUploadListener="#{loginBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
+        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
+       </td>
+       </tr></table>
+       <table>
            
+   <tr><td colspan="2" align="left">
+           <div class="gsTitleDiv">Contact Information</div></td></tr> 
+           <tr>
+ <td width="20%">
+    <h:outputText value="First name:"/></td>
+    <td width="40%">
+    <h:inputText value="#{loginBean.user.str_FirstName}"> </h:inputText></td>
+     
+ <td  width="20%">
+    <h:outputText value="First name:"/></td>
+    <td width="20%">
+    <h:inputText value="#{loginBean.user.str_LastName}"> </h:inputText></td>
+    </tr>
    <tr>
  <td><h:outputText value="Country :">
             </h:outputText> <font color="red" >*</font></td>           
            <td> <h:inputText value="#{loginBean.user.str_Country}"  required="true" requiredMessage="Please Enter Last Name!">
-            </h:inputText> </td></tr>
-            <tr>
+            </h:inputText> </td> 
             <td><h:outputText value="State :">
             </h:outputText><font color="red" >*</font> </td>           
            <td> <h:inputText value="#{loginBean.user.str_State}"  required="true" requiredMessage="Please Enter Last Name!">
             </h:inputText></td> </tr>
             <tr>
-             <td><h:outputText value="City :">
-            </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText value="#{loginBean.user.str_City}"  required="true" requiredMessage="Please Enter Last Name!">
-            </h:inputText></td></tr>
-            <tr>
+             <td><h:outputText value="City :"/>
+            </td>            
+             <td><h:inputText value="#{loginBean.user.str_City}"  required="true" requiredMessage="Please Enter City Name!"/>
+             </td> 
             <td><h:outputText value="Apartment :">
             </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText value="#{loginBean.user.str_City}"  required="true" requiredMessage="Please Enter Apartment/Complex name!">
-            </h:inputText></td> </tr>
-           <tr>
- <td>
-    <h:outputText value="First name:"/></td>
-    <td>
-    <h:inputText value="#{loginBean.user.str_FirstName}"> </h:inputText></td>
-    </tr>
+            <td><h:inputText value="#{loginBean.user.str_City}"  required="true" requiredMessage="Please Enter Apartment/Complex name!"/>
+            </td> </tr>
            
+             <tr>
+           <td> <h:outputText value="Phone No* :"/>
+            </td>            
+            <td><h:inputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" required="true"                requiredMessage="Please Enter Phone No!"/>
+              </td>
+              <td> <h:outputText value="FaceBook Profile* :"/></td>
+          
+            <td><h:inputText id="str_fb" value="#{loginBean.facebook_userloginname}" required="true"                requiredMessage="Please Enter Phone No!"/>
+         <br/> www.facebook.com/</td>
+               </tr> 
+             <tr>
+           <td> <h:outputText value="Email"/>
+            </td>            
+            <td><h:outputText id="str_email" value="#{loginBean.user.str_Email}" required="true"                requiredMessage="Please Enter Phone No!"/>
+            </td>  
+           
+           <td> <h:outputText value="LinkedIn Profile :"/></td>
+          
+            <td><h:inputText id="str_lkndin" value="#{loginBean.facebook_userloginname}" required="true"                requiredMessage="Please Enter Phone No!"/>
+        <br/> www.linkedin.com/ </td></tr> 
+          <tr>
+           <td> <h:outputText value="Personal Blog"/>
+            </td>            
+            <td><h:inputText id="str_pb" value="something" required="true"                requiredMessage="Please Enter Phone No!"/>
+          <br/> http()s):// </td>  
+           
+           <td> <h:outputText value="Twitter Profile:"/></td>
+          
+            <td><h:inputText id="str_tw" value="#{loginBean.facebook_userloginname}" required="true"                requiredMessage="Please Enter Phone No!"/>
+       <br/>  www.twitter.com/ </td></tr> 
             
+             <tr><td colspan="2" align="left">
+           <div class="gsTitleDiv">House Information</div></td></tr>
    
                <tr>
-             <td><h:outputText value="Flat No:">
-            </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText value="#{loginBean.user.str_Flat}" required="true"                requiredMessage="Please Enter Flat Name!">
-            </h:inputText></td> </tr> 
+             <td><h:outputText value="Flat No:"/>
+             </td>            
+             <td><h:inputText value="#{loginBean.user.str_Flat}" required="true"                requiredMessage="Please Enter Flat Name!"/>
+             </td>  
+            <td><h:outputText value="Block :"/>
+             </td>          
+            <td><h:inputText value="#{loginBean.user.str_Block}"/>
+             </td></tr> 
+     <tr><td colspan="2" align="left">
+           <div class="gsTitleDiv">Soclial Profile Information</div></td>
+           </tr> 
+          <tr>
+             <td><h:outputText value="Gender:"/>
+             </td>            
+             <td><h:selectOneRadio value="# "  >
+<f:selectItem itemValue="Male" itemLabel="Male" />
+<f:selectItem itemValue="Female" itemLabel="Female" />
+</h:selectOneRadio>
+             </td>  
+            <td><h:outputText value="Date Of Birth:"/>
+             </td>          
+            <td><h:inputText value="#{loginBean.str_OpenDate}"/>
+             </td></tr>
+              
+          <tr>
+             <td><h:outputText value="Blood Group:"/>
+             </td>            
+             <td><h:selectOneMenu value="# "  >
+<f:selectItem itemValue="Male" itemLabel="A+"/>
+<f:selectItem itemValue="Male" itemLabel="AB+"/>
+<f:selectItem itemValue="Female" itemLabel="O+"/>
+<f:selectItem itemValue="Female" itemLabel="B+"/>
+<f:selectItem itemValue="Male" itemLabel="B+"/>
+<f:selectItem itemValue="Female" itemLabel="AB-"/>
+</h:selectOneMenu>
+             </td>  
+            <td><h:outputText value="Marital Status"/>
+             </td>          
+            <td><h:selectOneMenu value="# "  >
+<f:selectItem itemValue="Male" itemLabel="No Anwser"/>
+<f:selectItem itemValue="Male" itemLabel="Single"/>
+<f:selectItem itemValue="Female" itemLabel="Married"/>
+<f:selectItem itemValue="Female" itemLabel="Others"/>
+</h:selectOneMenu>
+             </td></tr>
              <tr>
-            <td><h:outputText value="Block :">
-            </h:outputText>  </td>          
-            <td><h:inputText value="#{loginBean.user.str_Block}">
-            </h:inputText></td></tr> 
-             <tr>
-           <td> <h:outputText value="Phone No* :">
-            </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" required="true"                requiredMessage="Please Enter Phone No!">
-            </h:inputText> </td> </tr> 
+             <td><h:outputText value="Nativ State and City:"/>
+             </td>            
+             <td>
+             <h:selectOneMenu id="str_VendorCountry" value="#{vendorBean.str_VendorCountry}"     valueChangeListener="#{vendorBean.countryChangeListener}">
+                <!--c --> 
+               <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{vendorBean.str_VendorCountries}" />
+                 <p:ajax event="change" update="str_VendorState" process="str_VendorCountry"/>
+            </h:selectOneMenu><h:selectOneMenu id="str_VendorState" value="#{vendorBean.str_VendorState}"     valueChangeListener="#{vendorBean.stateChangeListener}"  >
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorBean.str_VendorStates}"/>
+               <p:ajax event="change" update="str_VendorCity" process="str_VendorState"/>    
+            </h:selectOneMenu>
+            <h:selectOneMenu id="str_VendorCity" value="#{vendorBean.str_VendorCity}"  >
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
              
-             <p:outputPanel layout="block" id="aaa" style="width:200px;height:200px;margin-bottom:20px">  
-       <p:graphicImage height="150" width="150" value="#{loginBean.blb_image1}"/>
-        
- </p:outputPanel>
-             <tr>
-    <h:outputText value="Choose Your  image for upload "></h:outputText>
-   <td> <p:fileUpload value="#{loginBean.var_ImageName1}"
-        fileUploadListener="#{loginBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
-       </td>
-       </tr>
-  
-   
-
- <tr>
+            </h:selectOneMenu>
+             </td>  
+            <td><h:outputText value="Hobbies:"/>
+             </td>          
+            <td><h:inputTextarea value=""/>
+             </td></tr>
+              <tr>
+             <td><h:outputText value="Proffession:"/>
+             </td>            
+             <td><h:selectOneMenu value="# "  >
+<f:selectItem itemValue="Male" itemLabel="ArmedForce"/>
+<f:selectItem itemValue="Male" itemLabel="Artist"/>
+<f:selectItem itemValue="Female" itemLabel="Softwarw Developer"/>
+<f:selectItem itemValue="Female" itemLabel="Doctor"/>
+<f:selectItem itemValue="Male" itemLabel="Lecture"/>
+<f:selectItem itemValue="Female" itemLabel="Police"/>
+</h:selectOneMenu>
+             </td>  
+            <td><h:outputText value="Intrested In"/>
+             </td>          
+            <td><h:selectManyCheckbox value="# "  layout="pageDirection" styleClass="nostyle">
+<f:selectItem itemValue="Male" itemLabel="Meeting Others"/>
+<f:selectItem itemValue="Male" itemLabel="Sharing Stuff"/>
+<f:selectItem itemValue="Female" itemLabel="Organizing Events"/>
+</h:selectManyCheckbox>
+             </td></tr>
+ <tr><td></td>
  <td>
-  
-   
-     
-   <h:commandButton  value="Updat"  action="#{loginBean.updateUser}"/>
+   <h:commandButton  value="Save Changes"  action="#{loginBean.updateUser}"/>
    </td>
    </tr>
   </table>
+  </div>
  </h:form>
  
 </body>
