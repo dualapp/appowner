@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+     
+	 
+	
+	
+<h:head>
+    <title>Accounting Form</title>
+    <style>
+           .ui-menubar {
+    background: orange !important;
+}
+    .affaires .ui-menuitem-text{color:blue;}
+    
+    .affaires .ui-menu-child{background: pink;}
+</style>
+</h:head>
+
+  <h:form>
+  <div id="page3">
+   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr> 
+  <th><h:outputText value="Organisation:" /></th>
+              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px">
+                   <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}" itemValue="#{accountingBean.str_OrganizationName}" />
+                 </p:selectOneMenu>
+             </td>
+            </tr>
+            </table>
+            </div>
+             </h:form>
+            
+            
+             <h:form>
+       <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+          <p:tabMenu autoDisplay="true" style="padding: 0px" >  
+                <p:menuitem  value="CUSTOMIZE"  > 
+                <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+                         <h:commandLink value="CUSTOMIZE" action="#{navigationBean.navigateTo1}" style="width:200px;height:30px">
+                         <f:param name="navParam1" value="/AfrteLoginViews/Administrator/customize.xhtml" action="#{navigationBean.navigateTo}"/>
+         </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+             </p:menuitem>    
+                <p:menuitem  value="NOTIFICATION"  >
+                <f:ajax  render=":centerContentPanel" execute="@this">
+                         <p:menuitem update=":centerContentPanel" > 
+                         <h:commandLink value="NOTIFICATION" action="#{navigationBean.navigateTo1}" style="width:200px;height:30px">
+                         <f:param name="navParam1" value="/AfrteLoginViews/Administrator/notification.xhtml" />
+           </h:commandLink>
+           </p:menuitem>
+           </f:ajax>
+                 </p:menuitem> 
+       
+           
+         </p:tabMenu>
+      </table>
+</h:form>
+
+</ui:composition>

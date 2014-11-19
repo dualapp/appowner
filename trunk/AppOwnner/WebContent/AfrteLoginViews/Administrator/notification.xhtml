@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+   <h:head>
+<title>Popup contact form</title>
+<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:250px;
+          }
+          select
+          {
+           height:25px;
+           weight:250px;
+          }
+      </style>	
+ 
+ 
+</h:head> 
+  <h:form id="form" prependId="false">
+  <br/>
+   <fieldset>
+     <center>
+     <legend   style="background-color:#438eb9; color:#fff;"> Money Manager </legend></center>
+   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr>
+    <td ><h:outputText  value="Dues visibility" /></td> 
+   <td><h:outputText   value="Visibility of dues to residents can be disabled and enabled from here. By default the dues are visible to residents. Once disabled from here residents won't be allowed to see their dues and update payments." /></td>
+   </tr>
+    <tr>
+    <td></td> 
+   <td><h:outputText   value="Currently the resident's visibility is turned on." /></td>
+   </tr>
+   <tr>
+    <td></td> 
+   <td><p:selectBooleanCheckbox  id="visibility"  value="#{accountsBean.visibility}" />Turn it off</td>
+   </tr>
+    <tr>
+    <td></td> 
+   <td><hr/></td>
+   </tr>
+   <tr>
+    <td><h:outputText value="Send SMS/ Email Notifications to Residents"/></td> 
+   <td><p:selectOneRadio id="smsemail_notification"  value="#{accountsBean.smsemail_notification}" >
+        <f:selectItem itemLabel="Yes" itemValue="Yes" />
+         <f:selectItem itemLabel="No" itemValue="No" />        
+        </p:selectOneRadio>        
+              
+   </td>
+   </tr>
+    <tr>
+    <td></td> 
+   <td><hr/></td>
+   </tr>
+    <tr>
+    <td><h:outputText value="For Invoice Generation"/></td> 
+   <td><p:selectOneRadio id="invoice_generate"  value="#{accountsBean.invoice_generate}" >
+        <f:selectItem itemLabel="Yes" itemValue="Yes" />
+         <f:selectItem itemLabel="No" itemValue="No" />        
+        </p:selectOneRadio>        
+              
+   </td>
+   </tr>
+    <tr>
+    <td></td> 
+   <td>
+   <p:selectBooleanCheckbox  id="sms"  value="#{accountsBean.sms}" />Via SMS
+   <p:selectBooleanCheckbox  id="email"  value="#{accountsBean.email}" />Via Email</td>
+   </tr>
+    <tr>
+    <td></td> 
+   <td><hr/></td>
+   </tr>
+   
+    <tr>
+    <td><h:outputText value="Before Due Date"/></td> 
+   <td><p:selectOneRadio id="before_due_date"  value="#{accountsBean.before_due_date}" >
+        <f:selectItem itemLabel="Yes" itemValue="Yes" />
+         <f:selectItem itemLabel="No" itemValue="No" />        
+        </p:selectOneRadio>        
+              
+   </td>
+   </tr>
+   <tr>
+   <td></td>
+   <td><h:inputText value="#{accountsBean.due_days}" placeholder="0"/><h:outputText value="days before due date" /></td>
+   </tr>
+   <tr>
+    <td></td> 
+   <td><p:selectBooleanCheckbox  id="grace_period"  value="#{accountsBean.grace_period}" />Include Grace Period
+   <p:selectBooleanCheckbox  id="sms1"  value="#{accountsBean.sms1}" />Via SMS
+   <p:selectBooleanCheckbox  id="email1"  value="#{accountsBean.email1}" />Via Email</td>
+   </tr>
+    <tr>
+    <td></td> 
+   <td><hr/></td>
+   </tr>
+     <tr>
+    <td><h:outputText value="For Defaulters"/></td> 
+   <td><p:selectOneRadio id="defaulter"  value="#{accountsBean.defaulter}" >
+        <f:selectItem itemLabel="Yes" itemValue="Yes" />
+         <f:selectItem itemLabel="No" itemValue="No" />        
+        </p:selectOneRadio>        
+              
+   </td>
+   </tr>
+    <tr>
+    <td></td> 
+   <td><hr/></td>
+   </tr>
+    <tr>
+    <td><h:outputText value="Enable CC to Admins for all emails"/></td> 
+   <td><p:selectOneRadio id="cc_email"  value="#{accountsBean.cc_email}" >
+        <f:selectItem itemLabel="Yes" itemValue="Yes" />
+         <f:selectItem itemLabel="No" itemValue="No" />        
+        </p:selectOneRadio>        
+              
+   </td>
+   </tr>
+   </table>
+  </fieldset>
+   </h:form>
+   </html>

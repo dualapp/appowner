@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+   <h:head>
+<title>Popup contact form</title>
+<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:250px;
+          }
+          select
+          {
+           height:25px;
+           weight:250px;
+          }
+      </style>	
+ 
+ 
+</h:head> 
+  <h:form id="form" prependId="false">
+  <br/>
+   <fieldSet>
+     <center>
+     <legend   style="background-color:#438eb9; color:#fff;"> Money Manager </legend></center>
+   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr>
+   <td width="25%"><h:outputText  value="Permanent Account No: (PAN)" /></td> 
+   <td><h:inputText id="str_PAN_No"  value="#{accountsBean.str_PAN_No}" style="width:300px;height:25px"/></td>
+   </tr> 
+   <tr>
+   <td><h:outputText  value="Service Tax Regn. No." /></td>
+   <td><h:inputText id="str_Tax_No"  value="#{accountsBean.str_Tax_No}" style="width:300px;height:25px"/></td>
+   </tr> 
+   <tr>
+   <td><h:outputText  value="Society Regn. No." /></td>
+   <td><h:inputText  id="str_Socity_Regd_No"  value="#{accountsBean.str_Socity_Regd_No}" style="width:300px;height:25px"/></td>
+   </tr> 
+   <tr>
+   <td><h:outputText  value="Address" /></td>
+   <td><h:inputTextarea cols="55" rows="5" id="str_Address"  value="#{accountsBean.str_Address}" /></td>
+   </tr> 
+   <tr>
+   <td><h:outputText  value="Terms &amp;Conditions" /></td>
+   <td><p:editor id="str_Term_Condition"  value="#{accountsBean.str_Term_Condition}"  style="width:600px;"/></td>
+   </tr> 
+   <tr>
+           <td><h:outputText  value="Customization" /></td>
+           <th align="left">&#150; &#150;<p:fileUpload fileUploadListener="#{noticeBoardBean.handleFileUpload}" value="#{accountsBean.str_Customization}" mode="advanced"  auto="true" 
+            sizeLimit="100000" fileLimit="3"  style="width:600px;height:100px"/> 
+                 
+          </th>
+             </tr>
+  
+   
+  
+   <tr>
+   <td><h:outputText  value="Contact Details" /></td>
+   <td> <h:outputText  value="Contact Person"/> <p:spacer width="170" height="20"/><h:outputText  value="Contact Number " /> <p:spacer width="165" height="20"/><h:outputText  value="Contact Email " /></td>
+   
+  
+   </tr> 
+   <tr>
+  <td></td>
+    <td><h:inputText id="str_Contact_Name"  value="#{accountsBean.str_Contact_Name}"  style="width:250px;height:25px"/><p:spacer width="40" height="20"/>
+    <h:inputText id="str_Contact_Number"  value="#{accountsBean.str_Contact_Number}"  style="width:250px;height:25px"/><p:spacer width="40" height="20"/>
+    <h:inputText id="str_Contact_Email"  value="#{accountsBean.str_Contact_Email}"  style="width:250px;height:25px"/>
+   
+    
+    </td>
+   </tr>
+   <tr>
+   <td><h:outputText  value="Reset" /></td>
+   <td><h:outputText  value="Reset money manager information: This will reset all the information about pending payments, Invoices, Payment Details, Transaction Logs, receipts, balance amounts, payable, receivables, payment history, bank account details etc.. All the houses will carry zero pending amount. This will delete the records of assets that are being used in accounting reports. Read More  " /></td>
+   </tr> 
+   <tr>
+   <td></td>
+   <td><h:commandButton  value="Yes!I am sure to Reset  " /></td>
+   </tr> 
+ </table>
+ </fieldSet>
+   </h:form>
+</html>
