@@ -2,6 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	 xmlns:corejsf="http://corejsf.com"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="../../include/templates/template.xhtml">
 	<ui:define name="content">
@@ -16,76 +17,85 @@
     <title>Edit</title>
 </h:head>
 <body bgcolor="pink">
-<h:form>
+<h:form method="post"
+              enctype="multipart/form-data">
+<p:growl id="msgs" showDetail="true" />
   <div id="page3">
  
  <table>
  
    
-            <tr><td width ="50%"> <p:outputPanel layout="block" id="aaa" style="width:150px;height:150px; border: 2px solid #a1a1a1; background: #ffffff;border-radius: 25px;">  
+            <tr><td width ="50%"> <p:outputPanel layout="block" id="aaa">  
       
-      <p:graphicImage  value="#{loginBean.blb_image1}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....." value=""/></td></tr>
+      <p:graphicImage width="150px" height="150px" value="#{expenseBean.getPath3()}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....."  value="hi"/></td></tr>
              
   <tr>
-    <th><h:outputText value="Choose Your  image for upload "/> </th>
-   <td> <p:fileUpload value="#{loginBean.var_ImageName1}"
-        fileUploadListener="#{loginBean.handleFileUpload1}" mode="advance" auto="true" dragDropSupport="false"
-        sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="aaa"  />
-       </td>
-       </tr></table>
+   <td>  <!-- inputFile tag to upload file -->
+		Upload File 
+		<h:inputFile id="file" 
+		             label="file"
+			         value="#" 
+			         required="true" 
+			         requiredMessage="File not selected !!">
+             
+		</h:inputFile>
+		<h:message style="color: red" for="file" /><br />
+ 
+		<h:commandButton id="submit"  update="aaa"
+		                fileUploadListener="#{expenseBean.handleFileUpload4}"
+			             value="upload file" /><br/></td></tr></table>
+        <div class="gsTitleDiv">Contact Information<br/><hr/></div>
        <table>
-           
-   <tr><td colspan="2" align="left">
-           <div class="gsTitleDiv">Contact Information</div></td></tr> 
+        
            <tr>
- <td width="20%">
+ <td width="15%">
     <h:outputText value="First name:"/></td>
-    <td width="40%">
+    <td width="30%">
     <h:inputText value="#{loginBean.user.str_FirstName}"> </h:inputText></td>
      
- <td  width="20%">
+ <td  width="15%">
     <h:outputText value="First name:"/></td>
-    <td width="20%">
+    <td width="30%">
     <h:inputText value="#{loginBean.user.str_LastName}"> </h:inputText></td>
     </tr>
    <tr>
  <td><h:outputText value="Country :">
-            </h:outputText> <font color="red" >*</font></td>           
-           <td> <h:inputText value="#{loginBean.user.str_Country}"  required="true" requiredMessage="Please Enter Last Name!">
-            </h:inputText> </td> 
-            <td><h:outputText value="State :">
-            </h:outputText><font color="red" >*</font> </td>           
-           <td> <h:inputText value="#{loginBean.user.str_State}"  required="true" requiredMessage="Please Enter Last Name!">
-            </h:inputText></td> </tr>
+            </h:outputText></td>           
+           <td> <h:inputText value="#{loginBean.user.str_Country}" />
+            </td> 
+            <td><h:outputText value="State :"/>
+              </td>           
+           <td> <h:inputText value="#{loginBean.user.str_State}" />
+            </td> </tr>
             <tr>
              <td><h:outputText value="City :"/>
             </td>            
-             <td><h:inputText value="#{loginBean.user.str_City}"  required="true" requiredMessage="Please Enter City Name!"/>
+             <td><h:inputText value="#{loginBean.user.str_City}"/>
              </td> 
-            <td><h:outputText value="Apartment :">
-            </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText value="#{loginBean.user.str_City}"  required="true" requiredMessage="Please Enter Apartment/Complex name!"/>
+            <td><h:outputText value="Apartment :"/>
+            </td>            
+            <td><h:inputText value="#{loginBean.user.str_City}" />
             </td> </tr>
            
              <tr>
            <td> <h:outputText value="Phone No* :"/>
             </td>            
-            <td><h:inputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" required="true"                requiredMessage="Please Enter Phone No!"/>
+            <td><h:inputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" />
               </td>
               <td> <h:outputText value="FaceBook Profile* :"/></td>
           
-            <td><h:inputText id="str_fb" value="#{loginBean.facebook_userloginname}" required="true"                requiredMessage="Please Enter Phone No!"/>
+            <td><h:inputText id="str_fb" value="#{loginBean.facebook_userloginname}"  />
          <br/> www.facebook.com/</td>
                </tr> 
              <tr>
            <td> <h:outputText value="Email"/>
             </td>            
-            <td><h:outputText id="str_email" value="#{loginBean.user.str_Email}" required="true"                requiredMessage="Please Enter Phone No!"/>
+            <td><h:outputText id="str_email" value="#{loginBean.user.str_Email}"  />
             </td>  
            
            <td> <h:outputText value="LinkedIn Profile :"/></td>
           
-            <td><h:inputText id="str_lkndin" value="#{loginBean.facebook_userloginname}" required="true"                requiredMessage="Please Enter Phone No!"/>
+            <td><h:inputText id="str_lkndin" value="#{loginBean.facebook_userloginname}"  />
         <br/> www.linkedin.com/ </td></tr> 
           <tr>
            <td> <h:outputText value="Personal Blog"/>
@@ -95,41 +105,64 @@
            
            <td> <h:outputText value="Twitter Profile:"/></td>
           
-            <td><h:inputText id="str_tw" value="#{loginBean.facebook_userloginname}" required="true"                requiredMessage="Please Enter Phone No!"/>
+            <td><h:inputText id="str_tw" value="#{loginBean.facebook_userloginname}" />
        <br/>  www.twitter.com/ </td></tr> 
             
-             <tr><td colspan="2" align="left">
-           <div class="gsTitleDiv">House Information</div></td></tr>
-   
-               <tr>
-             <td><h:outputText value="Flat No:"/>
-             </td>            
-             <td><h:inputText value="#{loginBean.user.str_Flat}" required="true"                requiredMessage="Please Enter Flat Name!"/>
-             </td>  
-            <td><h:outputText value="Block :"/>
+             
+           </table>
+          
+   <table>
+   <div class="gsTitleDiv">House Information<br/><hr/></div>
+    <tr> 
+            
+            <td width="10%"><h:outputText value="Block :"/>
              </td>          
-            <td><h:inputText value="#{loginBean.user.str_Block}"/>
-             </td></tr> 
-     <tr><td colspan="2" align="left">
-           <div class="gsTitleDiv">Soclial Profile Information</div></td>
-           </tr> 
+            <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}"  >
+            <f:selectItem itemLabel="#{loginBean.user.str_Block}"  itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{cls_UserBean.blockNameList}"/>
+             <p:ajax event="change" update="str_House" process="str_Block"/>
+             </h:selectOneMenu>
+             </td>
+              <td width="10%"><h:outputText value="Flat No:"/>
+             </td>
+             <td width="10%"><h:selectOneMenu id="str_House" value="#{loginBean.str_Flat}"   valueChangeListener="#{cls_UserBean.houseNoChangeListener}">
+            <f:selectItem itemLabel="#{loginBean.user.str_Flat}"  itemValue="" noSelectionOption="true" />
+            
+            <f:selectItems value="#{cls_UserBean.houseNoList}"/>
+             
+                  <p:ajax  event="change" immediate="true"
+                   update="@form" render="parentPanel"  />
+            </h:selectOneMenu>
+             </td>  
+             <td width="10%"><h:selectOneRadio value="#{cls_UserBean.userRole}">
+   <f:selectItem itemValue="#{cls_UserBean.userRole}" itemLabel="#{cls_UserBean.userRole}" />
+   </h:selectOneRadio>
+             </td>
+             <td width="10%"><h:selectOneRadio value="Residing">
+   <f:selectItem itemValue="Residing" itemLabel="Residing" />
+   </h:selectOneRadio>
+             </td>
+             </tr> 
+             </table>
+             <div class="gsTitleDiv">Soclial Profile Information<br/><hr/></div>
+       <table>
           <tr>
-             <td><h:outputText value="Gender:"/>
+             <td width="15%"><h:outputText value="Gender:"/>
              </td>            
-             <td><h:selectOneRadio value="# "  >
+             <td width="30%"><h:selectOneRadio value="Male"  >
 <f:selectItem itemValue="Male" itemLabel="Male" />
 <f:selectItem itemValue="Female" itemLabel="Female" />
 </h:selectOneRadio>
              </td>  
-            <td><h:outputText value="Date Of Birth:"/>
+            <td width="15%"><h:outputText value="Date Of Birth:"/>
              </td>          
-            <td><h:inputText value="#{loginBean.str_OpenDate}"/>
+            <td width="30%"><h:inputText value="#{loginBean.str_OpenDate}"/>
              </td></tr>
               
           <tr>
              <td><h:outputText value="Blood Group:"/>
              </td>            
-             <td><h:selectOneMenu value="# "  >
+             <td><h:selectOneMenu value="O+"  >
 <f:selectItem itemValue="Male" itemLabel="A+"/>
 <f:selectItem itemValue="Male" itemLabel="AB+"/>
 <f:selectItem itemValue="Female" itemLabel="O+"/>
@@ -140,7 +173,7 @@
              </td>  
             <td><h:outputText value="Marital Status"/>
              </td>          
-            <td><h:selectOneMenu value="# "  >
+            <td><h:selectOneMenu value="Single"  >
 <f:selectItem itemValue="Male" itemLabel="No Anwser"/>
 <f:selectItem itemValue="Male" itemLabel="Single"/>
 <f:selectItem itemValue="Female" itemLabel="Married"/>
@@ -148,34 +181,15 @@
 </h:selectOneMenu>
              </td></tr>
              <tr>
-             <td><h:outputText value="Nativ State and City:"/>
-             </td>            
-             <td>
-             <h:selectOneMenu id="str_VendorCountry" value="#{vendorBean.str_VendorCountry}"     valueChangeListener="#{vendorBean.countryChangeListener}">
-                <!--c --> 
-               <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
-                
-                <f:selectItems value="#{vendorBean.str_VendorCountries}" />
-                 <p:ajax event="change" update="str_VendorState" process="str_VendorCountry"/>
-            </h:selectOneMenu><h:selectOneMenu id="str_VendorState" value="#{vendorBean.str_VendorState}"     valueChangeListener="#{vendorBean.stateChangeListener}"  >
-                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{vendorBean.str_VendorStates}"/>
-               <p:ajax event="change" update="str_VendorCity" process="str_VendorState"/>    
-            </h:selectOneMenu>
-            <h:selectOneMenu id="str_VendorCity" value="#{vendorBean.str_VendorCity}"  >
-                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
-                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
-             
-            </h:selectOneMenu>
-             </td>  
+             <td></td><td></td>
             <td><h:outputText value="Hobbies:"/>
              </td>          
-            <td><h:inputTextarea value=""/>
+            <td><h:inputTextarea value="Sleeping"/>
              </td></tr>
               <tr>
              <td><h:outputText value="Proffession:"/>
              </td>            
-             <td><h:selectOneMenu value="# "  >
+             <td><h:selectOneMenu value="Softwarw Developer"  >
 <f:selectItem itemValue="Male" itemLabel="ArmedForce"/>
 <f:selectItem itemValue="Male" itemLabel="Artist"/>
 <f:selectItem itemValue="Female" itemLabel="Softwarw Developer"/>
