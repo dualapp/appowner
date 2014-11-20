@@ -266,6 +266,12 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		
 	}
 
+	@Override
+	public int getUserRole(Integer userId) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getUserRole(userId);
+	}
+
 	
 	}
 

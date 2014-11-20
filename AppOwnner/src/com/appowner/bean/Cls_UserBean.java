@@ -803,6 +803,21 @@ public class Cls_UserBean implements Serializable{
 		private List<String> blockNameList;
 		private User u;
 		private HouseDetails housedetails;
+		private String userRole;
+		public void setUserRole(String userRole) {
+			this.userRole = userRole;
+		}
+		public String getUserRole()
+		{ 
+			int_UserRole=getUserService().getUserRole(Util.getUserId());
+			if(int_UserRole==1)
+				userRole="Tenant";
+			 else
+				 userRole="Owner";
+				 
+			return userRole ;
+			
+		}
 		public HouseDetails getHousedetails() {
 			System.out.println(str_HouseNo+"hno");
 			housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);

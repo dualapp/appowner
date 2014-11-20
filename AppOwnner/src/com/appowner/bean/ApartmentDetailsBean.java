@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.CommunitySetup;
@@ -155,7 +158,11 @@ public class ApartmentDetailsBean  implements Serializable{
 		 cs.setStr_CommunitySetupType(str_CommunityType);
 		cs.setInt_NoOfBlocks(int_NoOfBlock);
 		getApartmentDetailsService().saveCommunitySetup(cs);
-		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
 		}
 		return "blockdetails.xhtml";
 	}
@@ -166,7 +173,12 @@ public class ApartmentDetailsBean  implements Serializable{
 		ub.setStr_BlockName(str_BlockName);
 		ub.setInt_ApartmentId(Util.getAppartmentId());
 		getApartmentDetailsService().saveBlockDetails(ub);
-		return "housedetails.xhtml";
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
+		return "blockdetails.xhtml";
 	}
 	private HouseDetails housedetails;
 	public String saveHouseDetails()
@@ -185,6 +197,11 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
 		housedetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 		getApartmentDetailsService().saveHouseDetails(housedetails);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
 		return "housedetails.xhtml";
 	}
 	public List<UserBlocks> getListBlockDetails() {
@@ -203,6 +220,16 @@ public class ApartmentDetailsBean  implements Serializable{
 		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails());
 		 
 		return listHouseDetails;
+	}
+	private List<String> blockNameList;
+	public List<String> getBlockNameList() {
+		blockNameList=new ArrayList<String>();
+		
+		blockNameList.addAll(getApartmentDetailsService().getBlockNameList());
+		return blockNameList;
+	}
+	public void setBlockNameList(List<String> blockNameList) {
+		this.blockNameList = blockNameList;
 	}
 	public List<HouseDetails> getListHouseDetails1(String str_BlockName) {
 		listHouseDetails=new ArrayList<HouseDetails>();

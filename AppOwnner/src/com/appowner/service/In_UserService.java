@@ -88,5 +88,7 @@ public interface In_UserService {
 	public void updateUser(User editlis);
 
 	public void deleteUser2(String str_Username);
+
+	public int getUserRole(Integer userId);
 }
 
