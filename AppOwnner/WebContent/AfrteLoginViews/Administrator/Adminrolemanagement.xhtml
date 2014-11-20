@@ -24,12 +24,12 @@
  <h:messages style="color:red"/>
 	<fieldset class="repeat">
 	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
-	   
-	 
-	<h:selectManyCheckbox     value="#{administrationAccessBean.str_AssinedRoles}" valueChangeListener="#{administrationAccessBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
+	   <h:panelGroup layout="block" styleClass="selection">
+    <p:selectManyCheckbox layout="pageDirection"   value="#{administrationAccessBean.str_AssinedRoles}" valueChangeListener="#{administrationAccessBean.roleChangeListener}"   styleClass="nostyle">
   <f:selectItems value="#{roleManagementBean.str_Roles}" /><br/>
    <!-- <f:ajax event="valueChange" update="@form" process="@form"/> --> 
-</h:selectManyCheckbox>
+</p:selectManyCheckbox>
+</h:panelGroup>
  
 <h4 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h4>
  </fieldset>
