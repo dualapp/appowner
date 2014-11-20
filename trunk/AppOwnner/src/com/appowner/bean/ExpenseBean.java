@@ -1199,6 +1199,7 @@ public void addAsset()
 
 
 public void  handleFileUpload4(FileUploadEvent event) throws IOException {
+	System.out.println("seemooooooooooooooooooo");
 	 
 	   path3 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");

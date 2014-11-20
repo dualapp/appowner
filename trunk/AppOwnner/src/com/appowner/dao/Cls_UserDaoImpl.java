@@ -41,6 +41,7 @@ import java.util.List;
 
 
 
+
 import javax.mail.Session;
 import javax.management.Query;
 
@@ -386,6 +387,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			//SessionFactory factory=new Configuration().configure(application-context-servlet.xml).buildSessionFactory();
 				
 			}
+
+		@Override
+		public int getUserRole(Integer userId) {
+			// TODO Auto-generated method stub
+			return (int) getSessionFactory().getCurrentSession().createQuery("select int_UserRole from User where int_UserId=?").setParameter(0, userId).uniqueResult();
+		}
 			
 			
 		}
