@@ -51,6 +51,13 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -102,12 +109,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
+
+
+
+
+
+
 import com.appowner.dao.SubcriptDao;
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.UserBlocks;
+import com.appowner.model.cls_Group;
+import com.appowner.model.cls_hobby;
 
  
 @SuppressWarnings("rawtypes")
@@ -396,7 +413,97 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		
 	}
 
-	
+	@Override
+	public void groupadd(cls_Group group) {
+		getSubcriptDao().groupadd( group); 
+		
+	}
+
+	@Override
+	public List getgroupNames() {
+		return getSubcriptDao().getgroupNames();
+		
+	}
+
+	@Override
+	public List<String> listgroup()	{
+		return getSubcriptDao().listgroup();
+	}
+
+	@Override
+	public void hobby(cls_hobby hb) {
+		getSubcriptDao().hobby( hb);
+		
+	}
+
+	@Override
+	public List getCategories() {
+		return getSubcriptDao().getCategories();
+	}
+
+	@Override
+	public List getCategories2() {
+		return getSubcriptDao().getCategories2();
+	}
+
+	@Override
+	public List cityList(String enquiry_selectedState) {
+		return getSubcriptDao().cityList( enquiry_selectedState);
+	}
+
+	@Override
+	public cls_Group getEdit1(int id1) {
+		return getSubcriptDao().getEdit1( id1);
+	}
+
+	@Override
+	public void update3(cls_Group edit1) {
+		 getSubcriptDao().update3(edit1);
+		
+	}
+
+	@Override
+	public void addContact1(cls_Group edit1) {
+		getSubcriptDao().addContact1( edit1);
+		
+	}
+
+	@Override
+	public List cityList() {
+		return getSubcriptDao().cityList();
+	}
+
+	@Override
+	public List getlist() {
+		return getSubcriptDao().getlist();
+	}
+
+	@Override
+	public cls_Group alldata(int int_GroupId) {
+		return getSubcriptDao().alldata(int_GroupId);	
+		}
+
+	@Override
+	public cls_Group getEdit5(int int_GroupId) {
+		return getSubcriptDao().getEdit5( int_GroupId);
+	}
+
+	@Override
+	public void deleteInvoice(cls_Group detail) {
+		getSubcriptDao().deleteInvoice( detail);
+		
+	}
+
+	@Override
+	public List Categories() {
+		return getSubcriptDao().Categories();
+	}
+
+	@Override
+	public List Categor() {
+		return getSubcriptDao().Categor();
+	}
+
 	
 	
 
