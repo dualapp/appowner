@@ -7,6 +7,8 @@ import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.cls_Group;
+import com.appowner.model.cls_hobby;
 
 /**
  * @author mukesh
@@ -114,6 +116,40 @@ public interface SubcriptDao {
 	public void deleted(Cls_DocumentCategory detail);
 
 	public List document();
+
+	public void groupadd(cls_Group group);
+
+	public List getgroupNames();
+
+	public List<String> listgroup();
+
+	public void hobby(cls_hobby hb);
+
+	public List getCategories();
+
+	public List getCategories2();
+
+	public List cityList(String enquiry_selectedState);
+
+	public cls_Group getEdit1(int id1);
+
+	public void update3(cls_Group edit1);
+
+	public void addContact1(cls_Group edit1);
+
+	public List<String> cityList();
+
+	public List getlist();
+
+	public cls_Group alldata(int int_GroupId);
+
+	public cls_Group getEdit5(int int_GroupId);
+
+	public void deleteInvoice(cls_Group detail);
+
+	public List Categories();
+
+	public List Categor();
 
 	
 
