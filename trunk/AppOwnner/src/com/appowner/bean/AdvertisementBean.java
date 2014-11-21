@@ -67,7 +67,15 @@ public class AdvertisementBean  implements Serializable{
 	 private String var_image; 	
 	 private String cname;
 	 private String str_Url;
-	    private String  str_vedio;
+	 private int int_till;
+	 
+	    public int getInt_till() {
+		return int_till;
+	}
+	public void setInt_till(int int_till) {
+		this.int_till = int_till;
+	}
+		private String  str_vedio;
 	 
 	public String getStr_Url() {
 			return str_Url;
@@ -673,6 +681,7 @@ public class AdvertisementBean  implements Serializable{
 					agency.setStr_content(getStr_content());
 					agency.setStr_Url(getStr_Url());
 					agency.setStr_vedio(path1);
+					agency.setInt_till(getInt_till());
 				    getAdvertisementService().addagencies(agency);
 					
 					
@@ -866,7 +875,7 @@ public class AdvertisementBean  implements Serializable{
 				}
 				
 				
-public String select1;
+             public String select1;
 				
 				public String getSelect1() {
 					return select1;
@@ -887,11 +896,11 @@ public String select1;
 					return  select1;
 				}
 				
+					
+
+
+
 }
-
-
-
-
 
 		
 		
