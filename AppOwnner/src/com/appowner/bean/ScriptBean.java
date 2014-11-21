@@ -18,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.persistence.Column;
 
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.dao.DataAccessException;
@@ -26,9 +27,14 @@ import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
+import com.appowner.model.Company;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.User;
+import com.appowner.model.UserBlocks;
 import com.appowner.model.agency_information;
+import com.appowner.model.cls_Group;
+import com.appowner.model.cls_hobby;
 import com.appowner.service.SubcriptService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -900,6 +906,492 @@ public void setListdoc(List<Cls_CreateDocumentManagement> listdoc) {
 	this.listdoc = listdoc;
 }
 
+
+
+// Group Details///////////////////////////
+private int int_GroupId;
+private String str_GroupNm;
+private  String str_Groupaddress;
+private String  str_groupPrivate;
+private String str_GroupDescription;
+private char isCh_EmailAllow;
+private int ApartementId;
+
+
+
+public String getStr_GroupDescription() {
+	return str_GroupDescription;
+}
+public void setStr_GroupDescription(String str_GroupDescription) {
+	this.str_GroupDescription = str_GroupDescription;
+}
+public int getInt_GroupId() {
+	return int_GroupId;
+}public void setInt_GroupId(int int_GroupId) {
+	this.int_GroupId = int_GroupId;
+}public String getStr_GroupNm() {
+	return str_GroupNm;
+}public void setStr_GroupNm(String str_GroupNm) {
+	this.str_GroupNm = str_GroupNm;
+}public String getStr_Groupaddress() {
+	return str_Groupaddress;
+}public void setStr_Groupaddress(String str_Groupaddress) {
+	this.str_Groupaddress = str_Groupaddress;
+}public String getStr_groupPrivate() {
+	return str_groupPrivate;
+}
+public void setStr_groupPrivate(String str_groupPrivate) {
+	this.str_groupPrivate = str_groupPrivate;
+}
+
+
+
+public char getIsCh_EmailAllow() {
+	return isCh_EmailAllow;
+}
+public void setIsCh_EmailAllow(char isCh_EmailAllow) {
+	this.isCh_EmailAllow = isCh_EmailAllow;
+}
+public int getApartementId() {
+	return ApartementId;
+}
+public void setApartementId(int apartementId) {
+	ApartementId = apartementId;
+}
+
+
+
+public String group()
+{
+	cls_Group group=new cls_Group();
+	group.setStr_GroupNm(getStr_GroupNm());
+	group.setStr_Groupaddress(getStr_Groupaddress());
+	group.setStr_GroupDescription(getStr_GroupDescription());
+	group.setStr_groupPrivate(getStr_groupPrivate());
+	System.out.println(isCh_EmailAllow+"uhujhju");
+	group.setIsCh_EmailAllow(isCh_EmailAllow);
+	group.setInt_ApartmentID(Util.getAppartmentId());
+	group.setUserId(Util.getUserId());
+	getSubcriptService().groupadd(group);
+	return "Create-SubGroup.xhtml";
+	
+	
+}
+private List<String> groupNames;
+@SuppressWarnings("unchecked")
+public List<String> getGroupNames() {
+	groupNames=new ArrayList<String>();
+	groupNames.addAll( getSubcriptService().getgroupNames());
+	System.out.println(groupNames);
+	
+	return optionNames;
+}
+
+public void setGroupNames(List<String> groupNames) {
+	this.groupNames = groupNames;
+}
+public   boolean select;
+
+
+
+public boolean isSelect() {
+	return select;
+}
+public void setSelect(boolean select) {
+	this.select = select;
+}
+
+public List<String> group;
+
+public boolean selectingroup(ValueChangeEvent event)
+{  
+	str_group =(boolean) event.getNewValue();
+	System.out.println(str_group+"jhdsjdf");
+	group= getSubcriptService().listgroup();
+	System.out.println(group+"jhjjh");
+	return str_group ;
+	}
+
+
+
+
+public List<String> getGroup() {
+	return group;
+}
+public void setGroup(List<String> group) {
+	this.group = group;
+}
+
+private boolean str_group;
+public boolean isStr_group() {
+	return str_group;
+}
+public void setStr_group(boolean str_group) {
+	this.str_group = str_group;
+}
+
+
+
+public String select1;
+
+public String getSelect1() {
+	return select1;
+}
+public void setSelect1(String select1) {
+	this.select1 = select1;
+}
+public String selectinfo1(ValueChangeEvent event)
+{  
+	select1 =( String )event.getNewValue();
+	System.out.println(select1+"jhnhjj");
+	return  "";
+}
+private boolean str_owner;
+
+
+
+public boolean isSelect2() {
+	return select2;
+}
+public void setSelect2(boolean select2) {
+	this.select2 = select2;
+}
+public boolean isStr_owner() {
+	return str_owner;
+}
+public void setStr_owner(boolean str_owner) {
+	this.str_owner = str_owner;
+}
+
+public boolean select2;
+
+
+public String selectinfo2(ValueChangeEvent event)
+{  
+	str_owner =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+private boolean str_residence;
+
+public boolean isStr_residence() {
+	return str_residence;
+}
+public void setStr_residence(boolean str_residence) {
+	this.str_residence = str_residence;
+}
+public String selectinfo3(ValueChangeEvent event)
+{  
+	str_residence =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+private int hobbyid;
+
+private String HobbyName;
+public int getHobbyid() {
+	return hobbyid;
+}
+public void setHobbyid(int hobbyid) {
+	this.hobbyid = hobbyid;
+}
+public String getHobbyName() {
+	return HobbyName;
+}
+public void setHobbyName(String hobbyName) {
+	HobbyName = hobbyName;
+}
+public String hobbies()
+{
+	cls_hobby hb=new cls_hobby();
+	hb.setHobbyName(getHobbyName());
+	getSubcriptService().hobby(hb);
+	return "";
+}
+
+public boolean Filter;
+
+
+
+public boolean isFilter() {
+	return Filter;
+}
+public void setFilter(boolean filter) {
+	Filter = filter;
+}
+public String selectinfo4(ValueChangeEvent event)
+{  
+	Filter =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+
+private List<String>Categories;
+public List<String> getCategories() 
+{
+Categories=new ArrayList<String>();
+Categories.addAll(getSubcriptService().getCategories());
+System.out.println(Categories);
+return Categories;
+}
+public void setCategories(List<String> categories) {
+	this.Categories = categories;
+
+}
+
+public boolean str_hobby;
+public boolean isStr_hobby() {
+	return str_hobby;
+}
+public void setStr_hobby(boolean str_hobby) {
+	this.str_hobby = str_hobby;
+}
+
+public String selectinfo6(ValueChangeEvent event)
+{  
+	str_hobby =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+
+public boolean var_hobby;
+
+public boolean isVar_hobby() {
+	return var_hobby;
+}
+public void setVar_hobby(boolean var_hobby) {
+	this.var_hobby = var_hobby;
+}
+public String selectinfo7(ValueChangeEvent event)
+{  
+	var_hobby =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+
+
+public boolean martial;
+public boolean isMartial() {
+	return martial;
+}
+public void setMartial(boolean martial) {
+	this.martial = martial;
+}
+public String selectinfo8(ValueChangeEvent event)
+{  
+	martial =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+
+
+private List<String>Categories2;
+public List<String> getCategories2() 
+{
+Categories2=new ArrayList<String>();
+Categories2.addAll(getSubcriptService().getCategories2());
+System.out.println(Categories2);
+return Categories2;
+}
+public void setCategories2(List<String> categories2) {
+	this.Categories2 = categories2;
+
+}
+
+
+public boolean str_stat;
+public boolean isStr_stat() {
+	return str_stat;
+}
+public void setStr_stat(boolean str_stat) {
+	this.str_stat = str_stat;
+}
+
+
+
+public String selectinfo9(ValueChangeEvent event)
+{  
+	str_stat =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+
+public String  enquiry_selectedState;
+
+public String enquiry_selectedCity;
+private List<String> enquiry_selecteCities;
+private List<String> cityList;
+public List<String> cityListByState;
+
+
+
+
+public List<String> getCityList() {
+	return cityList;
+}
+public void setCityList(List<String> cityList) {
+	this.cityList = cityList;
+}
+public List<String> getCityListByState() {
+	return cityListByState;
+}
+public List<String> getEnquiry_selecteCities() {
+	if(enquiry_selectedState!=null)
+	   {
+		   return cityListByState;
+	   }
+	   else
+		   
+		   return new ArrayList<String>();
+
+	
+}
+public void setEnquiry_selecteCities(List<String> enquiry_selecteCities) {
+	this.enquiry_selecteCities = enquiry_selecteCities;
+}
+public String getEnquiry_selectedState() {
+	return enquiry_selectedState;
+}
+public String getEnquiry_selectedCity() {
+	return enquiry_selectedCity;
+}
+public void setEnquiry_selectedCity(String enquiry_selectedCity) {
+	this.enquiry_selectedCity = enquiry_selectedCity;
+}
+public void setEnquiry_selectedState(String enquiry_selectedState) {
+	this.enquiry_selectedState = enquiry_selectedState;
+}
+public void setCityListByState(List<String> cityListByState) {
+	this.cityListByState = cityListByState;
+}
+
+public List<String> stateChangeListener(ValueChangeEvent event)
+{  
+      enquiry_selectedState=(String)event.getNewValue();
+      System.out.println(enquiry_selectedState);
+		cityListByState=new ArrayList<String>();
+		cityListByState.addAll(getSubcriptService().cityList(enquiry_selectedState));
+           System.out.println(cityListByState);
+           return cityListByState;
+	}
+	 
+private cls_Group edit1 ;
+
+
+public cls_Group getEdit1() {
+	return edit1;
+}
+public void setEdit1(cls_Group edit1) {
+	this.edit1 = edit1;
+}
+public void getedit1()
+{ 
+	
+edit1=new cls_Group();
+System.out.println(int_GroupId);
+
+edit1 =getSubcriptService().getEdit5(int_GroupId);
+System.out.println(edit1);
+}
+
+
+public String saveContact1( )
+{
+	 if(edit1.getInt_GroupId()!=null)
+	 
+		 getSubcriptService().update3(edit1);
+	else		
+		getSubcriptService().addContact1(edit1);
+     return "Sub-GroupDetail.xhtml";
+		 
+}
+
+
+private List<cls_Group> userlist;
+
+	
+
+public List<cls_Group> getUserlist() {
+	userlist=new ArrayList<cls_Group>();
+	userlist.addAll(getSubcriptService().getlist());
+	System.out.println(userlist);
+	return userlist;
+}
+public void setUserlist(List<cls_Group> userlist) {
+	this.userlist = userlist; 
+}
+
+
+
+private cls_Group groups;
+public cls_Group getGroups() {
+	
+	return groups;
+}
+public void setGroups(cls_Group groups) {
+	this.groups = groups;
+}
+
+
+public void Subgroup()
+{
+	groups=getSubcriptService().alldata(int_GroupId);
+}
+
+
+public String deletedetail(){
+	cls_Group detail=new cls_Group();
+	System.out.println(int_GroupId);
+	detail.setInt_GroupId(int_GroupId);
+	getSubcriptService().deleteInvoice(detail);
+	return "Create-SubGroup.xhtml?faces-redirect=true";
+  
+}
+
+public String cancel() {
+	return "Sub-GroupDetail.xhtml?faces-redirect=true";
+	
+	
+}
+
+private List<String>categories8;
+public List<String> getCategories8() 
+{
+	categories8=new ArrayList<String>();
+	categories8.addAll(getSubcriptService().Categories());
+System.out.println(categories8);
+return categories8;
+}
+public void setCategories8(List<String> categories8) {
+	this.categories8 = categories8;
+}
+
+private List<String>categories9;
+public List<String> getCategories9() 
+{
+	categories9=new ArrayList<String>();
+	categories9.addAll(getSubcriptService().Categor());
+System.out.println(categories9);
+return categories9;
+}
+public void setCategories9(List<String> categories9) {
+	this.categories9 = categories9;
+}
+
+
+private boolean male;
+public boolean isMale() {
+	return male;
+}
+public void setMale(boolean male) {
+	this.male = male;
+}
+public String selectinfoq(ValueChangeEvent event)
+{  
+	male =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
 
 }
 
