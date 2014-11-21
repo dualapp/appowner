@@ -48,12 +48,29 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.UserBlocks;
 //import com.mukesh.bean.ScriptBean;
+import com.appowner.model.cls_Group;
+import com.appowner.model.cls_hobby;
 
 /**
  * @author mukesh
@@ -176,6 +193,42 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 
 	public List<Cls_CreateDocumentManagement> document();
 
+	public void groupadd(cls_Group group);
+
+	public List<String> getgroupNames();
+
+	public List<String> listgroup();
+
+	public void hobby(cls_hobby hb);
+
+	public List<String> getCategories();
+
+	public List<String> getCategories2();
+
+	public List<String> cityList(String enquiry_selectedState);
+
+	public cls_Group getEdit1(int id1);
+
+	public void update3(cls_Group edit1);
+
+	public void addContact1(cls_Group edit1);
+	
+	public List< String> cityList();
+
+	public List<cls_Group> getlist();
+
+	public cls_Group alldata(int int_GroupId);
+
+	public cls_Group getEdit5(int int_GroupId);
+
+	public void deleteInvoice(cls_Group detail);
+
+	public List< String> Categories();
+
+	public List<String> Categor();
+
+	
+	
 	
 
 	
