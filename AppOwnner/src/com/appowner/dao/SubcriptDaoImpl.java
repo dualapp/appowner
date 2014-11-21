@@ -13,11 +13,18 @@ import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
+import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Company;
 import com.appowner.model.Mail;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
 import com.appowner.model.User;
+import com.appowner.model.UserBlocks;
 import com.appowner.model.cls_Feedback;
+import com.appowner.model.cls_Group;
+import com.appowner.model.cls_PersonCity;
+import com.appowner.model.cls_PersonState;
+import com.appowner.model.cls_hobby;
 
 /**
  * @author mukesh
@@ -391,6 +398,113 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	public List document() {
 		return (List<cls_Feedback>) getSessionFactory().getCurrentSession().createCriteria(Cls_CreateDocumentManagement.class).list();
 	}
+
+	@Override
+	public void groupadd(cls_Group group) {
+		 getSessionFactory().getCurrentSession().save(group);
+	}
+
+	@Override
+	public List getgroupNames() {
+		return getSessionFactory().getCurrentSession().createCriteria( UserBlocks.class).setProjection(Projections.property("str_BlockName")).list();
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> listgroup()
+	{
+		String hql2="select str_BlockName from UserBlocks";		
+		System.out.println("8888888888888888888888888888888888");
+		return  sessionFactory.getCurrentSession().createQuery(hql2).list();
+	}
+
+	@Override
+	public void hobby(cls_hobby hb) {
+		getSessionFactory().getCurrentSession().save(hb);
+		
+	}
+
+	@Override
+	public List getCategories() {
+		return getSessionFactory().getCurrentSession().createCriteria(cls_hobby.class).setProjection(Projections.property("HobbyName")).list();
+	}
+
+	@Override
+	public List getCategories2() {
+		return getSessionFactory().getCurrentSession().createCriteria(cls_PersonState.class).setProjection(Projections.property("str_StateName")).list();
+	}
+
+	@Override
+	public List cityList(String enquiry_selectedState) {
+		String	hql1="select int_stateId from cls_PersonState where str_StateName=?";
+		int stateId=(int) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, enquiry_selectedState).uniqueResult();
+		 System.out.println(stateId);
+			String hql2="select str_CityName from cls_PersonCity where int_StateId=?";
+			
+			List<String> cityList= sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, stateId).list();
+			System.out.println(cityList);
+			System.out.println( ( cityList).listIterator().hasNext());
+			return cityList;
+	}
+
+	@Override
+	public cls_Group getEdit1(int id1) {
+		return (cls_Group) getSessionFactory().getCurrentSession().get(cls_Group.class, id1);
+	}
+
+	@Override
+	public void update3(cls_Group edit1) {
+		sessionFactory.getCurrentSession().update(edit1);
+	}
+
+	@Override
+	public void addContact1(cls_Group edit1) {
+		sessionFactory.getCurrentSession().save(edit1);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> cityList() {
+		 
+		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(cls_PersonCity.class).setProjection(Projections.property("str_CityName")).list();
+		return cityList;
+	}
+
+	@Override
+	public List getlist() {
+		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).list();
+		return cityList;
+	}
+
+	@Override
+	public cls_Group alldata(int int_GroupId) {
+		String	hql1="from cls_Group where int_GroupId=?";
+		return (cls_Group) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, int_GroupId).uniqueResult();
+	}
+
+	@Override
+	public cls_Group getEdit5(int int_GroupId) {
+		return (cls_Group) getSessionFactory().getCurrentSession().get(cls_Group.class, int_GroupId);
+	}
+
+	@Override
+	public void deleteInvoice(cls_Group detail) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM cls_Group  WHERE int_GroupId="+detail.getInt_GroupId()).executeUpdate();
+		
+	}
+
+	@Override
+	public List Categories() {
+		return getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).setProjection(Projections.property("str_groupPrivate")).list();
+	}
+
+	@Override
+	public List Categor() {
+		return getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).setProjection(Projections.property("isCh_EmailAllow")).list();
+	}
+
 }
 
 	
