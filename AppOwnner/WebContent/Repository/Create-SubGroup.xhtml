@@ -32,37 +32,23 @@
                    <h:link value="Create a Sub-Group"  outcome="Sub_Group.xhtml"/><br /> 
                   </td>
  </tr>
+ <tr>
+ <td>  <p:dataGrid    var="notice" value="#{scriptBean.userlist}" columns="1" layout="block"  id="cars">
+    <h:panelGrid columns="1" style="width:100%">
+             
+                 
+                  
+                  <h:link value="#{notice.str_GroupNm}" outcome="Sub-GroupDetail.xhtml?int_GroupId=#{notice.int_GroupId}"/> 
+                 <h:outputText value="#{notice.str_GroupDescription}"/>
+                  <h:outputText value="  Members: 1 | Topics: 0 | Polls: 0" />
+                   
+ 
+              
+            </h:panelGrid>
+   </p:dataGrid>
+ </td>
+ </tr>
   
-   <tr>
-                   <td><p:outputLabel value="Book Readers"/><br /> 
-                  People who love to read books and are interested in book reading and discussing sessions are welcome to this club.
-                   Members: 0 | Topics: 0 | Polls: 0</td>
- </tr>
-          <tr>
-                   <td><h:link value="Cricket"  outcome="Sub-GroupDetail.xhtml"/><br /> 
-                  allow under to join in public Members: 1 | Topics: 0 | Polls: 0</td>
- </tr>
- <tr>
-                   <td><p:outputLabel value="Health And Fitness"/><br /> 
-                  Young at heart and energetic folks are welcome to join this club for yoga sessions, gym partners, morning walk, activities and events.
-                  Members: 0 | Topics: 0 | Polls: 0</td>
- </tr>
- <tr>
-                   <td><p:outputLabel value="Music"/><br /> 
-                  People who love to read books and are interested in book reading and discussing sessions are welcome to this club.
-                   Members: 0 | Topics: 0 | Polls: 0</td>
- </tr>
- <tr>
-                   <td><h:link value="Old Age" outcome="Sub-GroupDetail.xhtml"/><br /> 
-                  all old age people will be here Members: 1 | Topics: 0 | Polls: 0</td>
- </tr>      
-         
-           <tr>
-                   <td><p:outputLabel value="Travel And Trekking"/><br /> 
-                  People who love to explore nature. Join for trekking trips, events and meet ups.
-                   Members: 0 | Topics: 0 | Polls: 0</td>
- </tr>      
-           
             
        
             </table>
