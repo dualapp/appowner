@@ -30,7 +30,7 @@
            <td>
           <p:outputLabel value="Sub-Group Name">
            </p:outputLabel></td>            
-          <td>  <h:inputTextarea  value="#{scriptBean.str_Description}" style="width:300px">
+          <td>  <h:inputTextarea  value="#{scriptBean.str_GroupNm}" style="width:300px">
             </h:inputTextarea>
             </td>
             </tr>
@@ -39,7 +39,7 @@
            <td>
           <p:outputLabel value="Sub-Group  Address">
            </p:outputLabel></td>            
-          <td>  <h:inputTextarea  value="#{scriptBean.str_Description}" style="width:300px">
+          <td>  <h:inputTextarea  value="#{scriptBean.str_Groupaddress}" style="width:300px">
             </h:inputTextarea>
             </td>
             </tr>
@@ -47,7 +47,7 @@
            <td>
           <p:outputLabel value="Sub-Group  Description">
            </p:outputLabel></td>            
-          <td>  <h:inputTextarea  value="#{scriptBean.str_Description}" style="height:70px;width:300px">
+          <td>  <h:inputTextarea  value="#{scriptBean.str_GroupDescription}" style="height:70px;width:300px">
             </h:inputTextarea>
             </td>
             </tr>
@@ -56,10 +56,10 @@
               <tr> 
              
                  <td><p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
-                 <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:250px">
+                 <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.str_groupPrivate}" style="width:250px">
 
-               <f:selectItem itemLabel="Open--AnyOne in Shaffi paradise Can join "  itemValue="O"  />
-                <f:selectItem itemLabel="Private--You Control Membership"  itemValue="C"  />
+               <f:selectItem itemLabel="Open "  itemValue="Open"  />
+                <f:selectItem itemLabel="Private"  itemValue="Private"  />
                  
             </h:selectOneMenu>
             
@@ -69,7 +69,7 @@
              <tr> 
              
                  <td><p:outputLabel for="Allow" value="Allow email from non Sub-Group member:" /></td>
-            <td><h:selectOneMenu id="Allow" value="#{scriptBean.ch_Access}" style="width:100px">
+            <td><h:selectOneMenu id="Allow" value="#{scriptBean.isCh_EmailAllow}" style="width:100px">
 
             <f:selectItem itemLabel="Allow "  itemValue="A"  />
                 <f:selectItem itemLabel="Disallow"  itemValue="D"  />
@@ -78,7 +78,7 @@
             
              </td>
             </tr>
-            <tr><td> <p:commandButton value="Create Sub-Group" action="#{scriptBean.document}" ajax="false" style="width:150px"/> 
+            <tr><td> <p:commandButton value="Create Sub-Group" action="#{scriptBean.group}" ajax="false" style="width:150px"/> 
               
                </td></tr> 
           </table>
