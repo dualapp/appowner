@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml"
+                xmlns:e="http://java.sun.com/jsf/html">
+	<ui:define name="content">
+ 
+  
+   <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/doc.jpg" height="40" width="40"></img> <span class="title">Invite Members  </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+  
+   
+  
+  <h:form>
+  
+    <div id="page3">
+   <table   style="overflow:hidden;border:0pt none;width:60%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+  
+   
+            <tr>
+       
+                 <td><p:outputLabel for="ch_Access" value="Invite to Members" /></td>
+            <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:250px">
+             <f:selectItem itemLabel="Select a Group"  itemValue=""  />
+            <f:selectItem itemLabel="Cricket"  itemValue="C"  />
+               <f:selectItem itemLabel="Old Age"  itemValue="O"  />
+                  
+            </p:selectOneMenu>
+            
+</td>
+            </tr>
+            <tr>
+           <td>
+          <p:outputLabel value="Enter Name(Optional)">
+           </p:outputLabel></td>            
+          <td>  <h:inputTextarea  value="#{scriptBean.str_Description}"  style="width:250px">
+            </h:inputTextarea>
+            </td>
+            </tr>
+            <tr>
+           <td>
+          <p:outputLabel value="More Search Filters">
+           </p:outputLabel></td> 
+           </tr>   
+          <tr>
+          
+               
+               <td><p:selectBooleanCheckbox id="str_group"  value="#{scriptBean.str_group}" valueChangeListener="#{scriptBean.selectingroup}" > 
+                <f:ajax event="change" execute="str_group"  render="@form"/>
+                </p:selectBooleanCheckbox> 
+                &#150; &#150; &#150;
+                <p:outputLabel  value="Choose specific Block(s)" /></td>
+         
+           </tr>
+            <tr>
+            <h:panelGroup id="performed"  rendered="#{scriptBean.str_group eq 'true'}">
+                <ui:repeat value="#{scriptBean.group}" var="group">
+                <td><p:selectManyCheckbox id="pp" value="#{scriptBean.group}">
+               <f:selectItem itemValue="#{group}" itemLabel= "#{group}"    />
+                </p:selectManyCheckbox>
+              </td>
+              </ui:repeat>
+              </h:panelGroup>
+                </tr>
+                <tr>
+                
+              <td><p:selectBooleanCheckbox  id="str_owner" value="#{scriptBean.str_owner}" valueChangeListener="#{scriptBean.selectinfo2}" > 
+               <f:ajax event="change" execute="str_owner"  render="@form"/>
+               </p:selectBooleanCheckbox>
+                &#150; &#150; &#150;
+               <p:outputLabel  value="Owner or Tenant" /> 
+               </td></tr>
+               <tr>
+                <h:panelGroup id="performed1"  rendered="#{scriptBean.str_owner eq 'true'}">
+               
+                <td><p:selectManyCheckbox id="basic2">
+                   <f:selectItem itemLabel="Owner" itemValue="Owner" />
+                    <f:selectItem itemLabel="Talent" itemValue="Talent" />
+                    </p:selectManyCheckbox>
+              </td>
+             
+              </h:panelGroup>
+                </tr> 
+               <tr>
+           
+             <td> <p:selectBooleanCheckbox id="str_residence" value="#{scriptBean.str_residence}" valueChangeListener="#{scriptBean.selectinfo3}"> 
+               <f:ajax event="change" execute="str_residence"  render="@form"/>
+               </p:selectBooleanCheckbox>
+                &#150; &#150; &#150;
+               <p:outputLabel value="Residing or Non-Residing" />
+           </td></tr>
+           <tr>
+                <h:panelGroup id="performed2"  rendered="#{scriptBean.str_residence eq 'true'}">
+               
+                    <td><p:selectManyCheckbox id="basic3">
+                    <f:selectItem itemLabel="Residing" itemValue="Residing" />
+                     <f:selectItem itemLabel="Non-Residing" itemValue="Non-Residing" />
+                     </p:selectManyCheckbox>
+                     </td>
+                  </h:panelGroup>
+                  </tr>  
+                 <tr>
+               
+              <td> <p:selectBooleanCheckbox id="str_hobby" value="#{scriptBean.str_hobby}" valueChangeListener="#{scriptBean.selectinfo6}" > 
+                 <f:ajax event="change" execute="str_hobby"  render="@form"/>
+                 </p:selectBooleanCheckbox>
+                  &#150; &#150; &#150;
+                 <p:outputLabel  value="Filter by Profession" />
+                 </td>
+                 </tr>
+                <tr>
+                <h:panelGroup id="performed4"  rendered="#{scriptBean.str_hobby eq 'true'}">
+             <td><p:outputLabel for="var_Ad_CategoryName" value="Profession" />
+            <p:selectOneMenu id="var_Ad_CategoryName" value="#{scriptBean.hobbyName }" style="width:200px">
+            <f:selectItem itemLabel="--Select Profession---"  itemValue=""  />
+            <f:selectItems value="#{scriptBean.categories}"  />
+            </p:selectOneMenu>
+               
+     </td>
+     </h:panelGroup>
+     </tr>
+     
+     
+     
+     
+      <tr>
+         
+         
+             <td> <p:selectBooleanCheckbox id="var_hobby" value="#{scriptBean.var_hobby}" valueChangeListener="#{scriptBean.selectinfo7}"> 
+               <f:ajax event="change" execute="var_hobby"  render="@form"/>
+               </p:selectBooleanCheckbox>
+                &#150; &#150; &#150;
+               <p:outputLabel   value="Filter by hobbies" />
+         </td>
+         </tr>
+      <tr>
+      <h:panelGroup id="performed9"  rendered="#{scriptBean.var_hobby eq 'true'}">
+      <td><p:outputLabel   value="hobby(ies)" />
+       <h:inputText id="bank"   style="width:200px">
+      </h:inputText>
+      </td>
+      </h:panelGroup>
+      </tr>
+      
+      <tr>
+         
+         <td><p:selectBooleanCheckbox id="martial" value="#{scriptBean.martial}" valueChangeListener="#{scriptBean.selectinfo8}"> 
+            <f:ajax event="change" execute="martial"  render="@form"/>
+            </p:selectBooleanCheckbox>
+             &#150; &#150; &#150; 
+            <p:outputLabel   value="Filter by Martial Status" /> 
+      </td></tr> 
+      <tr>
+                <h:panelGroup id="performed0"  rendered="#{scriptBean.martial eq 'true'}">
+               
+                    <td><p:selectManyCheckbox id="basic0">
+                    <f:selectItem itemLabel="Married" itemValue="married" />
+                     <f:selectItem itemLabel="Single" itemValue="Single" />
+                     </p:selectManyCheckbox>
+                     </td>
+                  </h:panelGroup>
+                  </tr> 
+                  
+                  
+                  
+                  
+                   <tr>
+                
+                 <td><p:selectBooleanCheckbox id="str_stat" value="#{scriptBean.str_stat}" valueChangeListener="#{scriptBean.selectinfo9}" > 
+                 <f:ajax event="change" execute="str_stat"  render="@form"/>
+                 </p:selectBooleanCheckbox>
+                  &#150; &#150; &#150;
+                 <p:outputLabel  value="Filter by Native State,City" />
+                 </td>
+                 </tr>
+                <tr>
+                <h:panelGroup id="performed7"  rendered="#{scriptBean.str_stat eq 'true'}">
+             <td><p:outputLabel for="var_Ad_CategoryName2" value="Chosse State" />
+            <p:selectOneMenu id="var_Ad_CategoryName2"     style="width:200px"   valueChangeListener="#{scriptBean.stateChangeListener}" >
+            <f:selectItem itemLabel="--Select State---"  itemValue=""  />
+            <f:selectItems value="#{scriptBean.categories2}"  />
+            <f:ajax event="change" execute="enquiry_selectedCity"  render="@form"/>
+         </p:selectOneMenu>
+               
+     </td>
+     </h:panelGroup>
+     </tr>
+     <tr>
+       <h:panelGroup id="performed00"  rendered="#{scriptBean.str_stat eq 'true'}">
+             <td><p:outputLabel for="enquiry_selectedCity" value="Chosse City" />
+            <p:selectOneMenu id="enquiry_selectedCity" value="#{scriptBean.enquiry_selectedCity }" style="width:200px">
+                <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
+                  <f:selectItems  value ="#{scriptBean.cityListByState}"/>
+            
+            </p:selectOneMenu>
+            </td>
+            </h:panelGroup>
+            </tr>
+            
+            
+      <tr>
+          <td>
+               <p:selectBooleanCheckbox id="male" value="#{scriptBean.male}" valueChangeListener="#{scriptBean.selectinfoq}"> 
+               <f:ajax event="change" execute="male"  render="@form"/>
+               </p:selectBooleanCheckbox>
+                &#150; &#150; &#150;
+               <p:outputLabel  value="Filter by Gender" />
+      </td></tr> 
+     <tr>
+              <h:panelGroup id="performed092"  rendered="#{scriptBean.male eq 'true'}">
+                   <td><p:selectManyCheckbox id="basic099">
+                    <f:selectItem itemLabel="Male" itemValue="Make" />
+                     <f:selectItem itemLabel="Female" itemValue="female" />
+                     </p:selectManyCheckbox>
+                     </td>
+                  </h:panelGroup>
+                  </tr> 
+   		
+            <tr><td> <p:commandButton value="Search" action="#{scriptBean.document}" ajax="false" style="width:150px"/> 
+              
+               </td></tr> 
+          
+          </table>
+          </div>
+          
+          </h:form>
+         
+          
+           
+           
+</h:body>
+         
+   </ui:define>
+   </ui:composition>
