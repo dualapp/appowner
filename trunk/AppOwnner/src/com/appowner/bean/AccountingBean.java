@@ -15,11 +15,14 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -30,6 +33,7 @@ import org.primefaces.component.datatable.DataTable;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
 import com.appowner.model.ChartOfAccount;
+import com.appowner.model.DueTemplate;
 import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
@@ -40,7 +44,7 @@ import com.appowner.util.Util;
 import com.sun.faces.renderkit.SelectItemsIterator;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AccountingBean  extends RuntimeException implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{AccountsService}")
@@ -176,6 +180,14 @@ public Double getStr_CreditAmount() {
 public void setStr_CreditAmount(Double str_CreditAmount) {
 	this.str_CreditAmount = str_CreditAmount;
 }
+private char account1;
+
+public char getAccount1() {
+	return account1;
+}
+public void setAccount1(char account1) {
+	this.account1 = account1;
+}
 private String str_Organisation;
 private Date dat_Date;
 private String str_Reference;
@@ -184,7 +196,14 @@ private String str_DebitAccount;
 private String str_CreditAccount;
 private Double str_DebitAmount;
 private Double str_CreditAmount;
-public void addInvoiceManualJournal() throws AccountingBean
+private ManualJournal selectedjournal;
+public ManualJournal getSelectedjournal() {
+	return selectedjournal;
+}
+public void setSelectedjournal(ManualJournal selectedjournal) {
+	this.selectedjournal = selectedjournal;
+}
+public String addInvoiceManualJournal() throws AccountingBean
 { try{
 	ManualJournal journal=new ManualJournal();
     journal.setStr_OrganisationID(Util.getAppartmentId());
@@ -201,14 +220,45 @@ public void addInvoiceManualJournal() throws AccountingBean
     
     	 getAccountsService().addManualJournal(journal);
    
-   
+   return "accountinglayout.xhtml";
     
     }
   catch(Exception e)
   {
 	throw new  AccountingBean("CreditAmount Should be Same as DebitAmount");
   }
-	
+
+}
+public String addManualJournal(ManualJournal journal) {
+	System.out.println("jhvvnjhhhhhhhhhhhhhhhhhh");
+	if (journal.getInt_ManualJournalID()!= null) {
+		
+		 getAccountsService().updateManualJournal(journal);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+
+	} else
+		getAccountsService().addManualJournal(journal);
+	return "accountinglayout.xhtml";
+}
+public String deleteManualJournal() {
+	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	ManualJournal journal=new ManualJournal();
+	Integer id=selectedjournal.getInt_ManualJournalID();
+	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
+   
+
+   getAccountsService().deleteManualJournal(id);
+    return "accountinglayout.xhtml?faces-redirect=true";
 }
 private List<ManualJournal> listManualJournal;
 public List<ManualJournal> getListManualJournal() {
@@ -317,7 +367,7 @@ public ChartOfAccount getChartOfAccount() {
 public void setChartOfAccount(ChartOfAccount chartOfAccount) {
 	this.chartOfAccount = chartOfAccount;
 }
-private List<String> accountTypeList;
+
 public AccountingGroup getAccountGroup() {
 	return accountGroup;
 }
@@ -367,56 +417,7 @@ public void setChartOfAccountList(List<ChartOfAccount> chartOfAccountList) {
 	this.chartOfAccountList = chartOfAccountList;
 }
 private Character ch_Group;
-private List<SelectItem> list;
-private String car;  
-private List<SelectItem> cars;
 
-public void setCars(List<SelectItem> cars) {
-	this.cars = cars;
-}
-public void setCar(String car) {
-	this.car = car;
-}
-
-public List<SelectItem> getList() {
-	list=new ArrayList<SelectItem>();
-	list.addAll(getAccountsService().getAccount());
-	
-	return list;
-}
-
-public void setList(List<SelectItem> list) {
-	this.list = list;
-}
-public List<SelectItem> getCars() {
-
-	return cars;
-}
-
-
-
-/*@PostConstruct
-public void init(){ 
-	Object[] st1=getList().toArray();
-
-	
-	SelectItem[] st2=new SelectItem[]{option};
-	
-	  
-
-   SelectItemGroup g1 = new SelectItemGroup("Income");
-    g1.setSelectItems(st2);
-  
-    cars = new ArrayList<SelectItem>();
-    cars.add(g1);
-   
-   
- 
-     
- 
-}
-
-*/
  
  public Character getCh_Group() {
 	return ch_Group;
@@ -425,107 +426,7 @@ public void setCh_Group(Character ch_Group) {
 	this.ch_Group = ch_Group;
 }
 
-@PostConstruct
-public void init() {
-     
-    
-	listAccountType= new ArrayList<SelectItem>();
-   
-    
-    ListIterator itr=getStr_AccountGroup().listIterator();
-     
-    while(itr.hasNext())
-    {
-    //	list=new ArrayList<String>();
-    	String accountGroup=(String) itr.next();
-    
-    	 accountTypeList=new ArrayList<String>();
-    	
-    	accountTypeList.addAll(getAccountsService().getAccountTypeList(accountGroup.charAt(0)));
-    	 ListIterator itr1=accountTypeList.listIterator();
-    	 while(itr1.hasNext())
-    	 {
-    		 SelectItemGroup g1 = new SelectItemGroup(accountGroup);
-    		 accountGroup=null;
-    		 String str=(String) itr1.next();
-    		
-    		 
-    		 g1.setSelectItems(new SelectItem[] {new SelectItem(str)});
-    		 
-    		 listAccountType.add(g1);
-    	 }
-    	 
-    	
-    	 
-    }  
- }  
-	
- 
 
-public List<String> getStr_AccountGroup() {
-	
-	Iterator itr=getCh_AccountGroup().iterator();
-	while(itr.hasNext())
-	{
-		Character c=(Character) itr.next();
-		if(c.equals('A'))
-		{
-			str_AccountGroup.add("Asset");
-		}
-		else if(c=='L')
-		{
-			str_AccountGroup.add("Liability");
-			
-		}
-		else if(c=='R')
-		{
-			str_AccountGroup.add("Revenue");
-		}
-		else if(c=='Q')
-		{
-			str_AccountGroup.add("Qeity");
-		}
-		else
-			str_AccountGroup.add("Expense");
-	
-	}
-	return str_AccountGroup;
-}  
-public void setStr_AccountGroup(List<String> str_AccountGroup) {
-	this.str_AccountGroup = str_AccountGroup;
-}
-private List<SelectItem> listAccountType;
- 
-public List<SelectItem> getListAccountType() {
-	
-	return listAccountType;
-}
-public void setListAccountType(List<SelectItem> listAccountType) {
-	this.listAccountType = listAccountType;
-}  
-private List<String> str_AccountGroup;
-private Set<Character> ch_AccountGroup;
-public Set<Character> getCh_AccountGroup() {
-	ch_AccountGroup=new HashSet<Character>();
-	str_AccountGroup=new ArrayList<String>();
-	ch_AccountGroup.addAll(getAccountsService().getCh_AccountGroup());
-	 
-	return ch_AccountGroup;
-}
-public void setCh_AccountGroup(Set<Character> ch_AccountGroup) {
-	this.ch_AccountGroup = ch_AccountGroup;
-}
-public List<String> getAccountTypeList() {
-	
-	
-	accountTypeList=new ArrayList<String>();
-	
-	
-	return accountTypeList;
-}
-public void setAccountTypeList(List<String> accountTypeList) {
-	this.accountTypeList = accountTypeList;
-}
 public String getStr_AccountType() {
 	return str_AccountType;
 }
@@ -561,6 +462,7 @@ public void saveChartOfAccount()
 	
 	
 }
+//ACCOUNT TRANSACTION
  private List<InvoiceTransaction>  listInvoiceTransaction1;
 public List<InvoiceTransaction> getListInvoiceTransaction1() {
 	
@@ -569,9 +471,17 @@ public List<InvoiceTransaction> getListInvoiceTransaction1() {
 	return listInvoiceTransaction1;
 	
 }
-	
+private List<String> listAccountsName;	
 
- public void setListInvoiceTransaction1(
+ public List<String> getListAccountsName() {
+	 listAccountsName=new ArrayList<String>();
+	 listAccountsName.addAll(getAccountsService().getAccountTypeList1());
+	return listAccountsName;
+}
+public void setListAccountsName(List<String> listAccountsName) {
+	this.listAccountsName = listAccountsName;
+}
+public void setListInvoiceTransaction1(
 		List<InvoiceTransaction> listInvoiceTransaction1) {
 	this.listInvoiceTransaction1 = listInvoiceTransaction1;
 }
@@ -579,7 +489,7 @@ private String str_Accounts;
  public String getStr_Accounts() {
 	
 	 str_Accounts=getAccountsService().getAccountName(id1);
-   
+   System.out.println(str_Accounts+"vhhjhj");
 	
 	 return str_Accounts;
 }
@@ -630,12 +540,15 @@ public void accountchangeListener1(ValueChangeEvent event)
  {
 	
 	str=(String)event.getNewValue();
-    System.out.println(str+"love");
+    System.out.println(str+"lovejjjjjjjjjjjjjjjjj");
 	id1=getAccountsService().getAccountId(str);
-	
+	System.out.println(id1+"jhjhj");
 }
+
+
+
 public void datechangeListener(ValueChangeEvent event)
-{
+{   System.out.println("jhjhjj");
 	dat_FromDate=(Date)event.getNewValue();
 	
 }
@@ -647,7 +560,7 @@ public void datechangeListener1(ValueChangeEvent event)
 public void getSearch()
 {  
 	
-	
+	System.out.println("hjjjjjjjjjjjjjjjjjjjjhjjjjjjjjjjjjj");
  str_Accounts=getAccountsService().getAccountName1(id1);
  System.out.println(str_Accounts+"juhy");
 	
@@ -1366,6 +1279,9 @@ public double getNetProfit2() {
 }
 public void setNetProfit2(double netProfit2) {
 	this.netProfit2 = netProfit2;
+}
+public String reset(){
+	return "manualjournal.xhtml";
 }
 }
 

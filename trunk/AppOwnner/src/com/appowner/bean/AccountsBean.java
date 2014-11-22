@@ -1,7 +1,14 @@
 package com.appowner.bean;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -14,18 +21,20 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlDataTable;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
-import javax.faces.event.ValueChangeListener;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
+
+import org.primefaces.event.FileUploadEvent;
 
 import com.appowner.model.Account;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
+import com.appowner.model.customize;
 import com.appowner.service.AccountsService;
 import com.appowner.util.Util;
 
@@ -276,98 +285,7 @@ private double adjustmentBalance1;
 
 private double totalAdjustBalance;
 private double totalAdjustBalance1;
-private List<SelectItem> listAccountName;
-@PostConstruct
-public void init() {
-listAccountName= new ArrayList<SelectItem>();
-   
-    
-    Iterator<String> itr=(getStr_AccountGroup()).iterator();
-     
-    while(itr.hasNext())
-    {
-    //	list=new ArrayList<String>();
-    	String accountGroup=(String) itr.next();
-    	System.out.println(accountGroup+"fdfggf");
-    	 accountTypeList=new ArrayList<String>();
-    	
-    	accountTypeList.addAll(getAccountsService().getAccountTypeList1(accountGroup.charAt(0)));
-    	 ListIterator itr1=accountTypeList.listIterator();
-    	 while(itr1.hasNext())
-    	 {
-    		 SelectItemGroup g1 = new SelectItemGroup(accountGroup);
-    		 accountGroup="";
-    		 String str=(String) itr1.next();
-    		
-    		 
-    		 g1.setSelectItems(new SelectItem[] {new SelectItem(str)});
-    		 
-    		 listAccountName.add(g1);
-    	 }
-    	 
-    } 	
-}
 
-
-public List<SelectItem> getListAccountName() {
-
-    	 
-      
-	return listAccountName;
-}
-public void setListAccountName(List<SelectItem> listAccountName) {
-	this.listAccountName = listAccountName;
-}
-private Set<String> str_AccountGroup;
-private Set<Character> ch_AccountGroup1;
-public Set<Character> getCh_AccountGroup1() {
-	ch_AccountGroup1=new HashSet<Character>();
-	
-	ch_AccountGroup1.addAll(getAccountsService().getCh_AccountGroup1());
-	System.out.println(ch_AccountGroup1+"hhjjhjh");
-	return ch_AccountGroup1;
-}
-public void setCh_AccountGroup1(Set<Character> ch_AccountGroup1) {
-	this.ch_AccountGroup1 = ch_AccountGroup1;
-}
-public Set<String> getStr_AccountGroup() {
-	str_AccountGroup=new TreeSet<String>();
-	Iterator itr=getCh_AccountGroup1().iterator();
-	while(itr.hasNext())
-	{
-		Character c=(Character) itr.next();
-		System.out.println(c.charValue());
-		if(c=='A')
-		{
-			str_AccountGroup.add("Asset");
-		}
-		else if(c=='L')
-		{
-			str_AccountGroup.add("Liability");
-			
-		}
-		else if(c=='R')
-		{
-			str_AccountGroup.add("Revenue");
-		}
-	 else
-		 
-		 str_AccountGroup.add("Expense");
-	}
-	
-	return str_AccountGroup;
-}
-
-public void setStr_AccountGroup(Set<String> str_AccountGroup) {
-	this.str_AccountGroup = str_AccountGroup;
-}
-private List<String> accountTypeList;
-public List<String> getAccountTypeList() {
-	return accountTypeList;
-}
-public void setAccountTypeList(List<String> accountTypeList) {
-	this.accountTypeList = accountTypeList;
-}
 
 
 
@@ -738,16 +656,82 @@ public String getStr_Contact_Email() {
 public void setStr_Contact_Email(String str_Contact_Email) {
 	this.str_Contact_Email = str_Contact_Email;
 }
-
-
-
+private String blb_image;
+public String getBlb_image() {
+	return blb_image;
+}
+public void setBlb_image(String blb_image) {
+	this.blb_image = blb_image;
+}
+	//FILE UPLOAD CONCEPT
+	 public void handleFileUpload(FileUploadEvent event) throws IOException {
+		 System.out.println("hi");
+		 String path = FacesContext.getCurrentInstance().getExternalContext()
+		            .getRealPath("/");
+		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		    String name = fmt.format(new Date())
+		            + event.getFile().getFileName().substring(
+		                  event.getFile().getFileName().lastIndexOf('.'));
+		    System.out.println(name);
+		      File file= new File("E:\\myUploads//" + "images" + name);
+             System.out.println(file);
+             blb_image=file.getAbsolutePath();
+		    InputStream is = event.getFile().getInputstream();
+		    OutputStream out = new FileOutputStream(file);
+		    byte buf[] = new byte[1024];
+		    int len;
+		    str_Customization=file.getName();
+		    while ((len = is.read(buf)) > 0)
+		        out.write(buf, 0, len);
+		    is.close();
+		    out.close();
+		    
+		
+	    
+	    }
+public String addCustomized()
+{
+	try
+	{
+		customize customer=new customize();
+		customer.setInt_customize_ID(int_customize_ID);
+		customer.setStr_PAN_No(str_PAN_No);
+		customer.setStr_Tax_No(str_Tax_No);
+		customer.setStr_Socity_Regd_No(str_Socity_Regd_No);
+		customer.setStr_Address(str_Address);
+		customer.setStr_Term_Condition(str_Term_Condition);
+		customer.setStr_Customization(str_Customization);
+		customer.setStr_Contact_Name(str_Contact_Name);
+		customer.setStr_Contact_Number(str_Contact_Number);
+		customer.setStr_Contact_Email(str_Contact_Email);
+		getAccountsService().addCustomized(customer);
+		return "customized.xhtml";
+	}
+	catch(Exception e)
+	{
+	e.printStackTrace();
+	
+	}
+	return "customized.xhtml";
+}
+public void reset()
+{
+	this.setStr_PAN_No("");
+	this.setStr_Socity_Regd_No("");
+	this.setStr_Tax_No("");
+	this.setStr_Term_Condition("");
+	this.setStr_Contact_Email("");
+	this.setStr_Contact_Name("");
+	this.setStr_Contact_Number("");
+	this.setStr_Address("");
+}
 
 //NOTIFICATION SETTING
 private Integer Int_NotificationId;
 
 private boolean visibility;
 
-private String  smsemail_notification;
+private String  smsemail_notification="true";
 
 private String invoice_generate; 
 private String before_due_date;
@@ -795,10 +779,10 @@ public String getCc_email() {
 public void setCc_email(String cc_email) {
 	this.cc_email = cc_email;
 }
-private boolean sms;
-private boolean sms1;
-private boolean email;
-private boolean email1;
+private boolean sms=true;
+private boolean sms1=true;
+private boolean email=true;
+private boolean email1=true;
 private boolean grace_period;
 private Integer due_days;
 public boolean isSms() {
@@ -836,6 +820,29 @@ public Integer getDue_days() {
 }
 public void setDue_days(Integer due_days) {
 	this.due_days = due_days;
+}
+public void processValueChange2(ValueChangeEvent event)
+{
+	System.out.println("jjkjk");
+}
+public void addNotification()
+{
+	
+}
+private List<SelectItem> listAccountName1;
+public List<SelectItem> getListAccountName1() {
+	return listAccountName1;
+}
+public void setListAccountName1(List<SelectItem> listAccountName1) {
+	this.listAccountName1 = listAccountName1;
+}
+
+private List<String> accountTypeList;
+public List<String> getAccountTypeList() {
+	return accountTypeList;
+}
+public void setAccountTypeList(List<String> accountTypeList) {
+	this.accountTypeList = accountTypeList;
 }
 
 
