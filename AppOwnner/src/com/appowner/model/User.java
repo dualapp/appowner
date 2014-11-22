@@ -3,12 +3,14 @@ package com.appowner.model;
 import java.io.Serializable;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -69,7 +71,15 @@ public class User implements Serializable{
 	@Column Integer int_activationbit;
 	@Column 
 	private Integer int_ApartmentId;
-	@JoinColumn(name = "int_ApartmentId", insertable = false, updatable=false)
+	//@JoinColumn(name = "int_ApartmentId", insertable = false, updatable=false)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)  
+	 private UserExtraInfo userExtraInfo;  
+	public UserExtraInfo getUserExtraInfo() {
+		return userExtraInfo;
+	}
+	public void setUserExtraInfo(UserExtraInfo userExtraInfo) {
+		this.userExtraInfo = userExtraInfo;
+	}
 	public Integer getInt_ApartmentId() {
 		return int_ApartmentId;
 	}

@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -21,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -28,11 +30,16 @@ import com.appowner.model.BookAFacility;
 import com.appowner.model.MemberLog;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
+import com.appowner.model.UserExtraInfo;
 import com.appowner.service.In_UserService;
 import com.appowner.util.Util;
-@ManagedBean
+@ManagedBean(name = "loginBean")
 @SessionScoped
-public class LoginBean {
+public class LoginBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String userloginpassword;
 	private String userloginname;
 	private String facebook_userloginname;
@@ -66,7 +73,71 @@ public class LoginBean {
 	 private static String str_Flat1;
 	 private static String str_VendorType1;
 	 private static String ss="approved";
-     public static String getSs() {
+	 private String str_BloodGroup;
+	 private String str_MaritalStatus;
+	 private String str_Hobbies;
+	 private String str_Proffession;
+	 private String str_IntrestedIn;
+	 private String str_TwitterId;
+	 private String str_PersonalBlog;
+	 private Boolean bool_Gender;
+	 private Date date_DateOfBirth;
+	 
+     public String getStr_BloodGroup() {
+		return str_BloodGroup;
+	}
+	public void setStr_BloodGroup(String str_BloodGroup) {
+		this.str_BloodGroup = str_BloodGroup;
+	}
+	public String getStr_MaritalStatus() {
+		return str_MaritalStatus;
+	}
+	public void setStr_MaritalStatus(String str_MaritalStatus) {
+		this.str_MaritalStatus = str_MaritalStatus;
+	}
+	public String getStr_Hobbies() {
+		return str_Hobbies;
+	}
+	public void setStr_Hobbies(String str_Hobbies) {
+		this.str_Hobbies = str_Hobbies;
+	}
+	public String getStr_Proffession() {
+		return str_Proffession;
+	}
+	public void setStr_Proffession(String str_Proffession) {
+		this.str_Proffession = str_Proffession;
+	}
+	public String getStr_IntrestedIn() {
+		return str_IntrestedIn;
+	}
+	public void setStr_IntrestedIn(String str_IntrestedIn) {
+		this.str_IntrestedIn = str_IntrestedIn;
+	}
+	public String getStr_TwitterId() {
+		return str_TwitterId;
+	}
+	public void setStr_TwitterId(String str_TwitterId) {
+		this.str_TwitterId = str_TwitterId;
+	}
+	public String getStr_PersonalBlog() {
+		return str_PersonalBlog;
+	}
+	public void setStr_PersonalBlog(String str_PersonalBlog) {
+		this.str_PersonalBlog = str_PersonalBlog;
+	}
+	public Boolean getBool_Gender() {
+		return bool_Gender;
+	}
+	public void setBool_Gender(Boolean bool_Gender) {
+		this.bool_Gender = bool_Gender;
+	}
+	public Date getDate_DateOfBirth() {
+		return date_DateOfBirth;
+	}
+	public void setDate_DateOfBirth(Date date_DateOfBirth) {
+		this.date_DateOfBirth = date_DateOfBirth;
+	}
+	public static String getSs() {
 		return ss;
 	}
     public static void setSs(String ss) {
@@ -878,7 +949,7 @@ public static void setUser1(boolean user1) {
 	}
 
 	//image uploading
-			public void handleFileUpload1(FileUploadEvent event) throws IOException {
+			/*public void handleFileUpload1(FileUploadEvent event) throws IOException {
 				 System.out.println("hi");
 				 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 				    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -909,7 +980,7 @@ public static void setUser1(boolean user1) {
 				    System.out.println(path2);
 			}
 
-
+*/
 
 	public String logout() {
 	      HttpSession session = Util.getSession();
@@ -1004,7 +1075,21 @@ public static void setUser1(boolean user1) {
 	      
 	    
 	}
+	private UserExtraInfo userExtraInfo;
 	public String updateUser(){
+		userExtraInfo=new UserExtraInfo();
+		userExtraInfo.setBool_gender(bool_Gender);
+		userExtraInfo.setDate_DateOfBirth(getDate_DateOfBirth());
+		userExtraInfo.setStr_BloodGroup(str_BloodGroup);
+		userExtraInfo.setInt_UserID(Util.getUserId());
+		userExtraInfo.setStr_FaceBookId(facebook_userloginname);
+		userExtraInfo.setStr_Hobbies(str_Hobbies);
+		userExtraInfo.setStr_IntrestedIn(str_IntrestedIn);
+		userExtraInfo.setStr_IntrestedIn(getLinkddin_userloginname());
+		userExtraInfo.setStr_MaritalStatus(str_MaritalStatus);
+		userExtraInfo.setStr_PersonalBlog(str_PersonalBlog);
+		userExtraInfo.setStr_TwitterId(str_TwitterId);
+		user.setUserExtraInfo(userExtraInfo);
 		user.setVar_FileName1(getPath2());
 		user.setVar_ImageName1(getBlb_image1());
 		getUserService().updateUs(user);
@@ -1025,6 +1110,97 @@ public static void setUser1(boolean user1) {
 		
 		
 	}
+	public UserExtraInfo getUserExtraInfo() {
+		return userExtraInfo;
+	}
+	public void setUserExtraInfo(UserExtraInfo userExtraInfo) {
+		this.userExtraInfo = userExtraInfo;
+	}
+	//file Upload
+	private Part part;
+	public String getPath() {
+		System.out.println(path+"path1");
+		if(path==null)
+		{
+			path="/images/profilepic.png";
+		}
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 
+	private String statusMessage;
+    private String path;
+	 public void uploadFile() throws IOException {
+ 
+		// Extract file name from content-disposition header of file part
+		//String fileName = getFileName(part);
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		String fileName= fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
+		System.out.println("***** fileName: " + fileName);
+ 
+		//String basePath = "D:" + File.separator + "temp" + File.separator;
+		//File outputFilePath = new File(basePath + fileName);
+		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		System.out.println(basePath);
+		File outputFilePath = new File(basePath+fileName);
+		path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
+		System.out.println(path+"path");
+		// Copy uploaded file to destination path
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		try {
+			inputStream = part.getInputStream();
+			outputStream = new FileOutputStream(outputFilePath);
+ 
+			int read = 0;
+			final byte[] bytes = new byte[1024];
+			while ((read = inputStream.read(bytes)) != -1) {
+				outputStream.write(bytes, 0, read);
+			}
+ 
+			statusMessage = "File upload successfull !!";
+		} catch (IOException e) {
+			e.printStackTrace();
+			statusMessage = "File upload failed !!";
+		} finally {
+			if (outputStream != null) {
+				outputStream.close();
+			}
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+	 
+	} 
+	 
+ 
+	public Part getPart() {
+		return part;
+	}
+	public void setPart(Part part) {
+		this.part = part;
+	}
+	public String getStatusMessage() {
+		return statusMessage;
+	}
+	public void setStatusMessage(String statusMessage) {
+		this.statusMessage = statusMessage;
+	}
+	// Extract file name from content-disposition header of file part
+	private String getFileName(Part part) {
+		final String partHeader = part.getHeader("content-disposition");
+		System.out.println("***** partHeader: " + partHeader);
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename")) {
+				return content.substring(content.indexOf('=') + 1).trim()
+						.replace("\"", "");
+			}
+		}
+		return null;
+	}
+
+	 
 }
 
