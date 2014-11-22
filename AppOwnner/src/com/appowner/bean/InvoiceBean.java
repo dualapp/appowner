@@ -8,11 +8,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 
@@ -22,6 +25,7 @@ import org.primefaces.component.datatable.DataTable;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
 import com.appowner.model.InvoiceTransaction;
+import com.appowner.model.ManualJournal;
 import com.appowner.service.DueService;
 import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
@@ -951,5 +955,20 @@ public String changeAccount(ValueChangeEvent event)
 	select1=(String)event.getNewValue();
 	System.out.println(select1+"jkkjjskd");
 	return null;
+}
+public String deleteInvoice() {
+	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	ManualJournal journal=new ManualJournal();
+	Integer id=selectedInvoice.getInt_InvoiceTransactionID();
+	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
+   
+
+		getInvoiceService().deleteInvoice(id);
+    return "invoice.xhtml?faces-redirect=true";
 }
 }

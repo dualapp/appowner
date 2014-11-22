@@ -194,7 +194,7 @@ public static void setContent(String content) {
 		  notice.setStr_Subject(getStr_Subject());
 		notice.setBool_Flash(getBool_Flash());
 		notice.setStr_Document(uploadedFileName);
-		 System.out.println(uploadedFileName);
+		
 		  notice.setStr_Description(getStr_Description());
 		  System.out.println(str_Description);
 		  notice.setInt_ExpireDay(getInt_ExpireDay());
