@@ -245,6 +245,10 @@ padding-bottom: 5px;
 color: #3B5998;
 font-size: 11px;
 }
+.selection tr {
+   float: left;
+    width: 33%;
+} 
 .panelNoBorder, .panelNoBorder tr, .panelNoBorder td{
 border: hidden;
 border-color: white;
