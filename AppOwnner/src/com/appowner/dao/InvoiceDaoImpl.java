@@ -145,6 +145,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		String hql="select totalDue from InvoiceTransaction where int_InvoiceTransactionID=?";
 		return (double) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,id).uniqueResult();
 	}
-	
+	public void deleteInvoice(Integer id)
+	{
+		getSessionFactory().getCurrentSession().createQuery("DELETE FROM InvoiceTransaction WHERE int_InvoiceTransactionID = "+id).executeUpdate();
+	}
 	
 }

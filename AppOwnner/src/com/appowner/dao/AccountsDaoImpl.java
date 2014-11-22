@@ -19,6 +19,7 @@ import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
+import com.appowner.model.customize;
 
 @Repository
 public class AccountsDaoImpl implements AccountsDao{
@@ -93,10 +94,10 @@ public class AccountsDaoImpl implements AccountsDao{
 	 
 	}
 	@SuppressWarnings("unchecked")
-	public List<String> getAccountTypeList1(Character k)
-	{
-		String hql="select str_AccountName from  ChartOfAccount where ch_Group=?";
-		List<String> ddd=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,k).list();
+	public List<String> getAccountTypeList1()
+	{  
+		String hql="select str_AccountName from  ChartOfAccount ";
+		List<String> ddd=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 		Collections.sort(ddd);
 		
 		
@@ -160,9 +161,10 @@ public class AccountsDaoImpl implements AccountsDao{
 	    		String str6="select str_paymentAccount from InvoiceTransaction where str_paymentAccount=?";
 	    		List<String> Other=getSessionFactory().getCurrentSession().createQuery(str6).setCacheable(true).setParameter(0, sss).list();
 	    		System.out.println(Other.listIterator().hasNext()+"gyhtfr");
+	    		System.out.println(Other+"hvhjhj");
 	    		 for(String s:Other)
 	    		 {
-	    	      if(Other==null)
+	    	      if(s==null)
 	    		       return sss;
 	    	      else 
 	    	    	  return s;
@@ -208,7 +210,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	{
 		String hql="select int_Accounts_OpeningID from AccountsOpeningBalance where str_AccountsHead=?";
 		Integer sss=(Integer)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str).uniqueResult();
-		
+		System.out.println(sss+"jhjkkj");
 		return sss;
 	}
 	public String getAccountName1(Integer id1)
@@ -285,7 +287,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts, Date dat_FromDate, Date dat_ToDate)
 	{ 
-		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		
 		List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("str_Status", "Paid")).add(Restrictions.between("dat_InvoiceDate", dat_FromDate,dat_ToDate)).list();
 		System.out.println(ddd.listIterator().hasNext()+"amulya");
 		return ddd;
@@ -509,6 +511,19 @@ public class AccountsDaoImpl implements AccountsDao{
 	public void saveOpeningAccount(AccountsOpeningBalance balance)
 	{
 		getSessionFactory().getCurrentSession().save(balance);
+	}
+	public void addCustomized(customize customer)
+	{
+		getSessionFactory().getCurrentSession().save(customer);
+	}
+	public void updateManualJournal(ManualJournal journal)
+	{
+		getSessionFactory().getCurrentSession().update(journal);
+	}
+	public void deleteManualJournal(Integer id)
+	{   System.out.println(id+"gcccccccccccccccccccccc");
+		getSessionFactory().getCurrentSession().createQuery("DELETE FROM ManualJournal WHERE int_ManualJournalID = "+id).executeUpdate();
+		System.out.println("hjujjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 	}
 }
 			 
