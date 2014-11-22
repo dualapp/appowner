@@ -17,6 +17,7 @@ import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
+import com.appowner.model.customize;
 
 @Service("AccountsService")
 @Transactional 
@@ -80,9 +81,9 @@ public class AccountsServiceImpl implements AccountsService {
 		
 		return getAccountsDao().getAccountTypeList(l);
 	}
-	public List<String> getAccountTypeList1(Character k)
+	public List<String> getAccountTypeList1()
 	{
-		return getAccountsDao().getAccountTypeList1(k);
+		return getAccountsDao().getAccountTypeList1();
 	}
 
 	@Override
@@ -154,6 +155,10 @@ public class AccountsServiceImpl implements AccountsService {
 	public ManualJournal getManualAccount(Integer id)
 	{
 		return (ManualJournal) getAccountsDao().getManualAccount(id);
+	}
+	public void updateManualJournal(ManualJournal journal)
+	{
+		getAccountsDao().updateManualJournal(journal);
 	}
 	public double getDebitAmount(Integer id)
 	{
@@ -246,6 +251,14 @@ public class AccountsServiceImpl implements AccountsService {
 	public void saveOpeningAccount(AccountsOpeningBalance balance)
 	{
 		getAccountsDao().saveOpeningAccount(balance);
+	}
+	public void addCustomized(customize customer)
+	{
+		getAccountsDao().addCustomized(customer);
+	}
+	public void deleteManualJournal(Integer id)
+	{
+		getAccountsDao().deleteManualJournal(id);
 	}
 
 }
