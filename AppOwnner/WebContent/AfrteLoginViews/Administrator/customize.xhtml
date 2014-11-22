@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
    <h:head>
-<title>Popup contact form</title>
+<title>Customized form</title>
 <style type="text/css">
          input[type=text] 
           {
@@ -22,7 +22,7 @@
  
  
 </h:head> 
-  <h:form id="form" prependId="false">
+  <h:form id="form" enctype="multipart/form-data">
   <br/>
    <fieldSet>
      <center>
@@ -50,8 +50,9 @@
    </tr> 
    <tr>
            <td><h:outputText  value="Customization" /></td>
-           <th align="left">&#150; &#150;<p:fileUpload fileUploadListener="#{noticeBoardBean.handleFileUpload}" value="#{accountsBean.str_Customization}" mode="advanced"  auto="true" 
-            sizeLimit="100000" fileLimit="3"  style="width:600px;height:100px"/> 
+           <th align="left">&#150; &#150;
+         <p:fileUpload fileUploadListener="#{accountsBean.handleFileUpload}" value="#{accountsBean.str_Customization}" mode="advanced"  auto="true" 
+            sizeLimit="100000" fileLimit="3"  style="width:600px;" /> 
                  
           </th>
              </tr>
@@ -79,9 +80,17 @@
    </tr> 
    <tr>
    <td></td>
-   <td><h:commandButton  value="Yes!I am sure to Reset  " /></td>
+   <td><h:commandButton  value="Yes!I am sure to Reset  " action="#{accountsBean.reset}" /></td>
+   </tr> 
+   <tr>
+    
    </tr> 
  </table>
+ <h:panelGroup style="display:block; text-align:right">
+   <td></td>
+   <td><h:commandButton  value="Cancel " />&#150; &#150;
+   <h:commandButton id="Submit"  value="Save &amp;  update" action="#{accountsBean.addCustomized}" ajax="false"/></td>
+   </h:panelGroup>
  </fieldSet>
    </h:form>
 </html>

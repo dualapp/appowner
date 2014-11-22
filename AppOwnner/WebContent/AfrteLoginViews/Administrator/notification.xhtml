@@ -19,14 +19,19 @@
            weight:250px;
           }
       </style>	
- 
+ <script>
+ function action()
+ {
+    alert("hi");
+	 }
+ </script>
  
 </h:head> 
   <h:form id="form" prependId="false">
   <br/>
    <fieldset>
      <center>
-     <legend   style="background-color:#438eb9; color:#fff;"> Money Manager </legend></center>
+     <legend   style="background-color:#438eb9; color:#fff;"> Notification </legend></center>
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr>
     <td ><h:outputText  value="Dues visibility" /></td> 
@@ -38,7 +43,9 @@
    </tr>
    <tr>
     <td></td> 
-   <td><p:selectBooleanCheckbox  id="visibility"  value="#{accountsBean.visibility}" />Turn it off</td>
+   <td><p:selectBooleanCheckbox  id="visibility"  value="#{accountsBean.visibility}" valueChangeListener="#{accountsBean.processValueChange2}" >
+     <f:ajax event="blur" process="visibility"  partialSubmit="true"/>   </p:selectBooleanCheckbox>
+   Turn it off</td>
    </tr>
     <tr>
     <td></td> 
@@ -123,6 +130,11 @@
    </td>
    </tr>
    </table>
+   <h:panelGroup style="display:block; text-align:right">
+   <td></td>
+   <td><h:commandButton  value="Cancel " />&#150; &#150;
+   <h:commandButton id="Submit"  value="Save &amp;  update" action="#{accountsBean.addNotification}" ajax="false"/></td>
+   </h:panelGroup>
   </fieldset>
    </h:form>
    </html>
