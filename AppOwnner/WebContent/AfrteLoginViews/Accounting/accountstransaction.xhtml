@@ -25,16 +25,20 @@
   
       <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
        <h:panelGroup id="aaaa">
-            <td>  <h:outputLabel for="account" value="Accounts*" /></td>
-           <td> <p:selectOneMenu id="account" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}" style="width:200px">
+         <td>  <h:outputLabel for="account" value="Accounts*" /></td>
+          
+              
                 
-                   <f:selectItems value="#{accountsBean.listAccountName}" />
-                    <p:ajax event="change" partialSubmit="true" immediate="true" />
+          
+           
+           <td> <p:selectOneMenu id="account1" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}"  style="width:220px">
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                    <p:ajax event="change" partialSubmit="true"   />
                 </p:selectOneMenu>
                 
            </td>
            <td>  <h:outputText  value="From:" /></td>
-           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.dat_FromDate}" size="30"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" >
+           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.dat_FromDate}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" >
             <p:ajax event="change" partialSubmit="true" />
         </p:calendar>
            </td>
@@ -45,7 +49,7 @@
             </p:calendar>
             </td> 
              <td>
-               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch()}" update="ggg" >
+               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch}" >
                 </h:commandButton>
              </td> 
            </h:panelGroup>
@@ -55,7 +59,7 @@
    
    <br/>
      
-					<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
+			&#150; &#150;  &#150; &#150;		<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
 					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
 		
 			
@@ -64,7 +68,7 @@
     
 
    <div id="content" class="ui-widget">
-     <h1>Account Transactions:</h1>
+  <h1>  &#150; &#150;  &#150; &#150; Account Transactions:</h1>
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px:border:1px solid #DADADA ;">
     <tbody>
     <tr>

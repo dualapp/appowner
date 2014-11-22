@@ -12,12 +12,13 @@
         <script name="jquery/jquery.js" library="primefaces"></script>
     </h:head>
     <h:form>
+       <div id="page3">
     <body>
    
               
-                 <fieldset>
-                 <legend  style="background-color:#438eb9; color:#fff;"> Profit And Loss</legend>
-                 <h:outputText value="From:"/>
+        
+             <div class="gsTitleDiv">Profit And Loss<br/><hr/></div>
+              &#150; &#150;  &#150; &#150;   <h:outputText value="From:"/>
                   <p:calendar value="#{accountingBean.dat_From}" navigator="true"  required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener}">
                     <p:ajax event="change" partialSubmit="true" />
                     </p:calendar>
@@ -26,13 +27,14 @@
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
                   <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" update="ggg"/>
-                 </fieldset>
+             
                  
                  
     </body>
     <br/>
    
-      <h:commandButton  value="Refresh" />&#150; &#150; &#150; <h:commandButton  value="Export To Excel" />&#150; &#150; &#150;<h:commandButton  value="View Chart" />
+      	&#150; &#150;  &#150; &#150;		<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
+					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
       <br/>
       <br/>
   
@@ -113,7 +115,7 @@
                 </p:column>
         </p:dataTable>
     
-      
+     </div>
    
 </h:form>
 </html>

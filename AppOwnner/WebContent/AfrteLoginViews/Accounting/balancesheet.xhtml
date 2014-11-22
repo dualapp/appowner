@@ -11,21 +11,23 @@
     </h:head>
     <h:body>
     <h:form>
-    <fieldset>
-     <legend  style="background-color:#438eb9; color:#fff;">Balance Sheet</legend>
-                 <h:outputText value="As On"/>&nbsp; &nbsp;
+   
+       <div id="page3">
+       <div class="gsTitleDiv">Balance Sheet<br/><hr/></div>
+              &#150; &#150;  &#150; &#150;   <h:outputText value="As On"/>&nbsp; &nbsp;
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                  
                  
                    <h:commandButton value="Go"/>
-                 </fieldset>
+                
                  
    
    
    
    <br/>
-      <h:commandButton  value="Refresh" />&#150; &#150; &#150; <h:commandButton  value="Export To Excel" />
+    	&#150; &#150;  &#150; &#150;		<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
+					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
       <br/>
       <br/>
       <p:dataTable var="e" value="aaa">
@@ -154,6 +156,7 @@
     </table>
     </p:column>
     </p:dataTable>
+    </div>
       </h:form>
       </h:body>
       </html>
