@@ -9,7 +9,7 @@
                 xmlns:v="http://primefaces.org/ui">
 	<ui:define name="content">
    <h:head>
-<title>Popup contact form</title>
+<title>DueTemplate form</title>
 <style type="text/css">
          input[type=text] 
           {
@@ -73,7 +73,7 @@
 	  <div class="gsTitleDiv">List Of DueTemplate<br/><hr/></div>
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
                 
-         <tr><td> <p:commandButton style="width:120px;height:25px" process="ggg" update=":form:multiDueTemplateDetail2" icon="ui-icon-pencil" value="Create New" oncomplete="PF('multiDueTemplateDialog2').show()" />&#150; &#150; &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
+         <tr><td> <p:commandButton style="width:120px;height:25px" process="ggg" update=":form:multiDueTemplateDetail2" icon="ui-icon-plus" value="Create New" oncomplete="PF('multiDueTemplateDialog2').show()" />&#150; &#150; &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="ggg" update=":form:multiDueTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiDueTemplateDialog').show()" />
        &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="ggg" process="ggg" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" />  &#150; &#150;
         <h:commandLink id="excel">

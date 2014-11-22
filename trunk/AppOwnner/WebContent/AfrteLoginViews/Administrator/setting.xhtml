@@ -45,7 +45,7 @@
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
                          <h:commandLink value="CUSTOMIZE" action="#{navigationBean.navigateTo1}" style="width:200px;height:30px">
-                         <f:param name="navParam1" value="/AfrteLoginViews/Administrator/customize.xhtml" action="#{navigationBean.navigateTo}"/>
+                         <f:param name="navParam1" value="/AfrteLoginViews/Administrator/customize.xhtml" />
          </h:commandLink>
            </p:menuitem>
            </f:ajax>
@@ -55,10 +55,10 @@
                          <p:menuitem update=":centerContentPanel" > 
                          <h:commandLink value="NOTIFICATION" action="#{navigationBean.navigateTo1}" style="width:200px;height:30px">
                          <f:param name="navParam1" value="/AfrteLoginViews/Administrator/notification.xhtml" />
-           </h:commandLink>
-           </p:menuitem>
-           </f:ajax>
-                 </p:menuitem> 
+                         </h:commandLink>
+                         </p:menuitem>
+                </f:ajax>
+                </p:menuitem> 
        
            
          </p:tabMenu>
