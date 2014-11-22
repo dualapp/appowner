@@ -37,5 +37,7 @@ public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID);
 
 public double getAmount(Integer id);
 
+public void deleteInvoice(Integer id);
+
 
 }

@@ -79,5 +79,8 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().getAmount(id);
 	  }
-	 
+	  public void deleteInvoice(Integer id)
+	  {
+		  getInvoiceDao().deleteInvoice(id);
+	  }
 }

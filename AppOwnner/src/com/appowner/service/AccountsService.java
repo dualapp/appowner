@@ -13,6 +13,7 @@ import com.appowner.model.ChartOfAccount;
 import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
+import com.appowner.model.customize;
 
 public interface AccountsService {
 
@@ -41,7 +42,7 @@ public interface AccountsService {
 	public List<SelectItem> getAccounts();
 	public List<SelectItem> getAccount();
 
-	public List<String> getAccountTypeList1(Character k);
+	public List<String> getAccountTypeList1();
 
 	public String getAccountName(Integer id1);
 
@@ -113,6 +114,12 @@ public interface AccountsService {
 	public void deleteGroup(AccountingGroup account);
 
 	public void saveOpeningAccount(AccountsOpeningBalance balance);
+
+	public void addCustomized(customize customer);
+
+	public void updateManualJournal(ManualJournal journal);
+
+	public void deleteManualJournal(Integer id);
 
 	
 	
