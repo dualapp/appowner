@@ -34,10 +34,7 @@ public class UserExtraInfo  implements Serializable {
 	private  Date date_DateOfBirth;
 	@Column
 	private Boolean bool_gender;
-	
-	
-	@Column 
-	private Integer int_ApartmentID;
+	 
 	@Column(name="var_BloodGroup")
 	private String str_BloodGroup;
 	@Column(name="var_MaritalStatus")
@@ -89,12 +86,7 @@ public class UserExtraInfo  implements Serializable {
 	public void setBool_gender(Boolean bool_gender) {
 		this.bool_gender = bool_gender;
 	}
-	public Integer getInt_ApartmentID() {
-		return int_ApartmentID;
-	}
-	public void setInt_ApartmentID(Integer int_ApartmentID) {
-		this.int_ApartmentID = int_ApartmentID;
-	}
+	 
 	public String getStr_BloodGroup() {
 		return str_BloodGroup;
 	}
