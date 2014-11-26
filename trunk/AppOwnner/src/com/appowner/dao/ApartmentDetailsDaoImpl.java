@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.appowner.model.AssetCategory;
 import com.appowner.model.CommunitySetup;
+import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
@@ -106,6 +108,18 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	public User primaryOwnerDetailsByHouseNo(String str_HouseNo) {
 		// TODO Auto-generated method stub
 		return (User) sessionFactory.getCurrentSession().createQuery("from User where str_Flat=?").setParameter(0, str_HouseNo ).uniqueResult();
+	}
+
+	@Override
+	public void saveEmp(List<Employee> employees) {
+		// TODO Auto-generated method stub
+		ListIterator itr=employees.listIterator();
+		while(itr.hasNext())
+		{
+			Employee emp=(Employee) itr.next();
+		           sessionFactory.getCurrentSession().save(emp);
+		       }
+		       
 	}
 
 }

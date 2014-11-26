@@ -15,6 +15,7 @@ import com.appowner.model.User;
 
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.UserExtraInfo;
 //import org.apache.catalina.realm.JNDIRealm.User;
 import com.appowner.bean.Cls_UserBean;
 import com.appowner.model.*;
@@ -101,6 +102,8 @@ public interface In_UserDao {
 	public void deleteUser2(String str_Username);
 
 	public int getUserRole(Integer userId);
+
+	public UserExtraInfo getUserExtraInfo(Integer int_UserId);
 
 	//public void deleteUser1(int int_UserId);
 
