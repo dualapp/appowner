@@ -31,6 +31,7 @@ import com.appowner.model.MemberLog;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 import com.appowner.model.UserExtraInfo;
+import com.appowner.service.ApartmentDetailsService;
 import com.appowner.service.In_UserService;
 import com.appowner.util.Util;
 @ManagedBean(name = "loginBean")
@@ -42,9 +43,23 @@ public class LoginBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String userloginpassword;
 	private String userloginname;
-	private String facebook_userloginname;
+	private String str_FacebookId;
+	public String getStr_FacebookId() {
+		return str_FacebookId;
+	}
+	public void setStr_FacebookId(String str_FacebookId) {
+		this.str_FacebookId = str_FacebookId;
+	}
+	public String getStr_LinkedInId() {
+		return str_LinkedInId;
+	}
+	public void setStr_LinkedInId(String str_LinkedInId) {
+		this.str_LinkedInId = str_LinkedInId;
+	}
+
 	private String facebook_userloginpassword;
 	private String linkddin_userloginname;
+	private String str_LinkedInId;
 	private String linkddin_userloginpassword;
 	public String formuserloginusername;
 	public String formuserloginuserpassword;
@@ -77,7 +92,7 @@ public class LoginBean implements Serializable{
 	 private String str_MaritalStatus;
 	 private String str_Hobbies;
 	 private String str_Proffession;
-	 private String str_IntrestedIn;
+	 private List<String> str_IntrestedIn;
 	 private String str_TwitterId;
 	 private String str_PersonalBlog;
 	 private Boolean bool_Gender;
@@ -107,12 +122,7 @@ public class LoginBean implements Serializable{
 	public void setStr_Proffession(String str_Proffession) {
 		this.str_Proffession = str_Proffession;
 	}
-	public String getStr_IntrestedIn() {
-		return str_IntrestedIn;
-	}
-	public void setStr_IntrestedIn(String str_IntrestedIn) {
-		this.str_IntrestedIn = str_IntrestedIn;
-	}
+	 
 	public String getStr_TwitterId() {
 		return str_TwitterId;
 	}
@@ -666,21 +676,7 @@ public class LoginBean implements Serializable{
 
 
 
-
-
-	public String getFacebook_userloginname() {
-		return facebook_userloginname;
-	}
-
-
-
-
-
-	public void setFacebook_userloginname(String facebook_userloginname) {
-		this.facebook_userloginname = facebook_userloginname;
-	}
-
-
+ 
 
 
 
@@ -840,7 +836,7 @@ public static void setUser1(boolean user1) {
 		System.out.println(formuserloginusername);
 		System.out.println(formuserloginuserpassword);
 		user=getUserService().getUserList(formuserloginusername);
-		System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+				System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 		System.out.println(user);
 		str_userRoleName=user.getStr_UserRoleName();
 		System.out.println(user.getStr_Password());
@@ -1077,19 +1073,23 @@ public static void setUser1(boolean user1) {
 	}
 	private UserExtraInfo userExtraInfo;
 	public String updateUser(){
-		userExtraInfo=new UserExtraInfo();
+	 	userExtraInfo=new UserExtraInfo();
 		userExtraInfo.setBool_gender(bool_Gender);
 		userExtraInfo.setDate_DateOfBirth(getDate_DateOfBirth());
 		userExtraInfo.setStr_BloodGroup(str_BloodGroup);
 		userExtraInfo.setInt_UserID(Util.getUserId());
-		userExtraInfo.setStr_FaceBookId(facebook_userloginname);
+		userExtraInfo.setStr_FaceBookId(str_FacebookId);
 		userExtraInfo.setStr_Hobbies(str_Hobbies);
-		userExtraInfo.setStr_IntrestedIn(str_IntrestedIn);
-		userExtraInfo.setStr_IntrestedIn(getLinkddin_userloginname());
+		userExtraInfo.setInt_UserExtraID(int_ExtraUserId);
+		//userExtraInfo.setStr_IntrestedIn(str_IntrestedIn);
+		
+		userExtraInfo.setStr_LinkedInId(str_LinkedInId);
 		userExtraInfo.setStr_MaritalStatus(str_MaritalStatus);
 		userExtraInfo.setStr_PersonalBlog(str_PersonalBlog);
-		userExtraInfo.setStr_TwitterId(str_TwitterId);
+		userExtraInfo.setStr_TwitterId(str_TwitterId) ;
+		userExtraInfo.setStr_Profession(str_Proffession);
 		user.setUserExtraInfo(userExtraInfo);
+		
 		user.setVar_FileName1(getPath2());
 		user.setVar_ImageName1(getBlb_image1());
 		getUserService().updateUs(user);
@@ -1110,8 +1110,60 @@ public static void setUser1(boolean user1) {
 		
 		
 	}
+	@ManagedProperty(value="#{ApartmentDetailsService}")
+	private ApartmentDetailsService apartmentDetailsService;
+	public ApartmentDetailsService getApartmentDetailsService() {
+		return apartmentDetailsService;
+	}
+	public void setApartmentDetailsService(
+			ApartmentDetailsService apartmentDetailsService) {
+		this.apartmentDetailsService = apartmentDetailsService;
+	}
+	public List<String> getHouseNoList() {
+		houseNoList=new ArrayList<String>();
+		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_Block));
+		
+		 
+		return houseNoList;
+	}
+	public void setHouseNoList(List<String> houseNoList) {
+		this.houseNoList = houseNoList;
+	}
+	 
+	private List<String> houseNoList;
+	private Integer int_ExtraUserId;
+	public Integer getInt_ExtraUserId() {
+		return int_ExtraUserId;
+	}
+	public void setInt_ExtraUserId(Integer int_ExtraUserId) {
+		this.int_ExtraUserId = int_ExtraUserId;
+	}
 	public UserExtraInfo getUserExtraInfo() {
+		
+		 userExtraInfo=getUserService().getUserExtraInfo(user.getInt_UserId());
+		 if( userExtraInfo!=null)
+		 {
+		 bool_Gender=userExtraInfo.getBool_gender();
+		 date_DateOfBirth=userExtraInfo.getDate_DateOfBirth();
+		 str_BloodGroup=userExtraInfo.getStr_BloodGroup();
+		 str_MaritalStatus=userExtraInfo.getStr_MaritalStatus();
+		 str_Hobbies=userExtraInfo.getStr_Hobbies();
+		 str_Proffession=userExtraInfo.getStr_Profession();
+		// str_IntrestedIn=userExtraInfo.getStr_IntrestedIn();
+		 str_FacebookId=userExtraInfo.getStr_FaceBookId();
+		 str_LinkedInId=userExtraInfo.getStr_IntrestedIn();
+		 str_TwitterId=userExtraInfo.getStr_TwitterId();
+		 str_PersonalBlog=userExtraInfo.getStr_PersonalBlog();
+		 int_ExtraUserId=userExtraInfo.getInt_UserExtraID();
+		 }
+		 
 		return userExtraInfo;
+	}
+	public List<String> getStr_IntrestedIn() {
+		return str_IntrestedIn;
+	}
+	public void setStr_IntrestedIn(List<String> str_IntrestedIn) {
+		this.str_IntrestedIn = str_IntrestedIn;
 	}
 	public void setUserExtraInfo(UserExtraInfo userExtraInfo) {
 		this.userExtraInfo = userExtraInfo;

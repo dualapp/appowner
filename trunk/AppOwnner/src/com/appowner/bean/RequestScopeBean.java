@@ -388,6 +388,24 @@ private Calendar today() {
 
     return calendar;
 }
+private Date previousDay8Pm() {
+    Calendar t = (Calendar) today().clone();
+    t.set(Calendar.AM_PM, Calendar.PM);
+    t.set(Calendar.DATE, t.get(Calendar.DATE) - 1);
+    t.set(Calendar.HOUR, 8);
+     
+    return t.getTime();
+}
+ 
+private Date previousDay11Pm() {
+    Calendar t = (Calendar) today().clone();
+    t.set(Calendar.AM_PM, Calendar.PM);
+    t.set(Calendar.DATE, t.get(Calendar.DATE) - 1);
+    t.set(Calendar.HOUR, 11);
+     
+    return t.getTime();
+}
+ 
 private Date theDayAfter3Pm() {
     Calendar t = (Calendar) today().clone();
     t.set(Calendar.DATE, t.get(Calendar.DATE) + 2);     
