@@ -42,6 +42,7 @@ import java.util.List;
 
 
 
+
 import javax.mail.Session;
 import javax.management.Query;
 
@@ -62,6 +63,7 @@ import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.UserCity;
 import com.appowner.model.UserCountry;
+import com.appowner.model.UserExtraInfo;
 import com.appowner.model.UserState;
 //import com.appowner.model.VendorState;
 //import com.appowner.model.VendorCountry;
@@ -268,7 +270,7 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		}
 
 		public void updateUs(User user) {
-			sessionFactory.getCurrentSession().update(user);
+			sessionFactory.getCurrentSession().saveOrUpdate(user);
 			
 		}
 
@@ -392,6 +394,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		public int getUserRole(Integer userId) {
 			// TODO Auto-generated method stub
 			return (int) getSessionFactory().getCurrentSession().createQuery("select int_UserRole from User where int_UserId=?").setParameter(0, userId).uniqueResult();
+		}
+
+		@Override
+		public UserExtraInfo getUserExtraInfo(Integer int_UserId) {
+			// TODO Auto-generated method stub
+			return  (UserExtraInfo) getSessionFactory().getCurrentSession().createQuery("from UserExtraInfo where int_UserId=?").setParameter(0, int_UserId).uniqueResult();
 		}
 			
 			
