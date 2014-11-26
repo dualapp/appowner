@@ -6,13 +6,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="../../include/templates/template.xhtml">
 	<ui:define name="content">
- <h:head><title>User Registration</title></h:head>
- <h:head><title>User Registration</title></h:head>
-	 <f:metadata>
-	<f:viewParam name="int_UserId" value="#{loginBean.int_UserId}"  />
-	 
-	<f:viewAction action="#{loginBean.getDetails}" />
+  
+  <f:metadata>
+	 <f:viewAction action="#{loginBean.getUser()}" />
+	<f:viewAction action="#{loginBean.getUserExtraInfo()}" />
 </f:metadata>
+ <h:head><title>User Registration</title></h:head>
+	  
 <h:head>
     <title>Edit</title>
 </h:head>
@@ -92,18 +92,18 @@
               </td>
               <td> <h:outputText value="FaceBook Profile* :"/></td>
           
-            <td><h:inputText id="str_fb" value="#{loginBean.facebook_userloginname}"  />
+            <td><h:inputText id="str_fb" value="#{loginBean.str_FacebookId}"  />
          <br/> www.facebook.com/</td>
                </tr> 
              <tr>
            <td> <h:outputText value="Email"/>
             </td>            
-            <td><h:outputText id="str_email" value="#{loginBean.user.str_Email}"  />
+            <td><h:outputText id="str_email" value="#{loginBean.str_EmailId}"  />
             </td>  
            
            <td> <h:outputText value="LinkedIn Profile :"/></td>
           
-            <td><h:inputText id="str_lkndin" value="#{loginBean.linkddin_userloginname}"  />
+            <td><h:inputText id="str_lkndin" value="#{loginBean.str_LinkedInId}"  />
         <br/> www.linkedin.com/ </td></tr> 
           <tr>
            <td> <h:outputText value="Personal Blog"/>
@@ -125,21 +125,19 @@
             
             <td width="10%"><h:outputText value="Block :"/>
              </td>          
-            <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}"  >
-            <f:selectItem itemLabel="#{loginBean.user.str_Block}"  itemValue="" noSelectionOption="true" />
+            <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}">
+          
             <f:selectItems value="#{cls_UserBean.blockNameList}"/>
              <p:ajax event="change" update="str_House" process="str_Block"/>
              </h:selectOneMenu>
              </td>
               <td width="10%"><h:outputText value="Flat No:"/>
              </td>
-             <td width="10%"><h:selectOneMenu id="str_House" value="#{loginBean.str_Flat}"   valueChangeListener="#{cls_UserBean.houseNoChangeListener}">
-            <f:selectItem itemLabel="#{loginBean.user.str_Flat}"  itemValue="" noSelectionOption="true" />
+             <td width="10%"><h:selectOneMenu id="str_House" value="#{loginBean.str_Flat}" >
+           
             
-            <f:selectItems value="#{cls_UserBean.houseNoList}"/>
-             
-                  <p:ajax  event="change" immediate="true"
-                   update="@form" render="parentPanel"  />
+            <f:selectItems value="#{loginBean.houseNoList}"/>
+              
             </h:selectOneMenu>
              </td>  
              <td width="10%"><h:selectOneRadio value="#{cls_UserBean.userRole}">
@@ -158,8 +156,8 @@
              <td width="15%"><h:outputText value="Gender:"/>
              </td>            
              <td width="30%"><h:selectOneRadio value="#{loginBean.bool_Gender}"  >
-<f:selectItem itemValue="Male" itemLabel="Male" />
-<f:selectItem itemValue="Female" itemLabel="Female" />
+<f:selectItem itemValue="false" itemLabel="Male" />
+<f:selectItem itemValue="true" itemLabel="Female" />
 </h:selectOneRadio>
              </td>  
             <td width="15%"><h:outputText value="Date Of Birth:"/>
@@ -208,7 +206,7 @@
              </td>  
             <td><h:outputText value="Intrested In"/>
              </td>          
-            <td><h:selectManyCheckbox value="# "  layout="pageDirection" styleClass="nostyle">
+            <td><h:selectManyCheckbox value="#{loginBean.str_IntrestedIn}"  layout="pageDirection" styleClass="nostyle">
 <f:selectItem itemValue="Meeting Others" itemLabel="Meeting Others"/>
 <f:selectItem itemValue="Sharing Stuff" itemLabel="Sharing Stuff"/>
 <f:selectItem itemValue="Organizing Events" itemLabel="Organizing Events"/>
