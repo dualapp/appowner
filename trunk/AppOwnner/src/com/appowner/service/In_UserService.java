@@ -10,6 +10,7 @@ import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.UserExtraInfo;
 
 /**
  * @author pankaj
@@ -90,5 +91,7 @@ public interface In_UserService {
 	public void deleteUser2(String str_Username);
 
 	public int getUserRole(Integer userId);
+
+	public UserExtraInfo getUserExtraInfo(Integer int_UserId);
 }
 

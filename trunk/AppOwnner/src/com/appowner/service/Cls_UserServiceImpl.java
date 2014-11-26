@@ -17,6 +17,7 @@ import com.appowner.model.User;
 //import com.appowner.model.User.*;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.UserExtraInfo;
 
 /**
  * @author pankaj singh
@@ -270,6 +271,12 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	public int getUserRole(Integer userId) {
 		// TODO Auto-generated method stub
 		return getIn_userdao().getUserRole(userId);
+	}
+
+	@Override
+	public UserExtraInfo getUserExtraInfo(Integer int_UserId) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getUserExtraInfo(int_UserId);
 	}
 
 	
