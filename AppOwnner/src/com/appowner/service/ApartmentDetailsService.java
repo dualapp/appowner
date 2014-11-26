@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.CommunitySetup;
+import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
@@ -31,5 +32,7 @@ public interface ApartmentDetailsService {
 	Integer getBlockId(String str_BlockName);
 
 	User primaryOwnerDetailsByHouseNo(String str_HouseNo);
+
+	void saveEmp(List<Employee> employees);
 
 }

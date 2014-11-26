@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.ApartmentDetailsDao;
 import com.appowner.model.CommunitySetup;
+import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
@@ -91,6 +92,12 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	public User primaryOwnerDetailsByHouseNo(String str_HouseNo) {
 		// TODO Auto-generated method stub
 		return getApartmentDetailsDao().primaryOwnerDetailsByHouseNo(str_HouseNo);
+	}
+
+	@Override
+	public void saveEmp(List<Employee> employees) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().saveEmp(employees);
 	}
 
 }
