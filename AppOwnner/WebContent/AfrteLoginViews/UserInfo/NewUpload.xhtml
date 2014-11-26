@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	 xmlns:corejsf="http://corejsf.com"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../../include/templates/template.xhtml">
+	<ui:define name="content">
+  
+  <f:metadata>
+	  
+</f:metadata>
+ <h:head><title>User Registration</title></h:head>
+	  
+<h:head>
+    <title>Edit</title>
+</h:head>
+<body bgcolor="pink">
+<h:form method="post"
+              enctype="multipart/form-data">
+<p:growl id="msgs" showDetail="true" />
+    <!-- inputFile tag to upload file -->
+		Upload File 
+		<h:inputFile id="file" 
+		             label="file"
+			         value="#{readExcel.part}" 
+			         required="true" 
+			         requiredMessage="File not selected !!">
+            
+		</h:inputFile>
+		<h:message style="color: red" for="file" /><br />
+ 
+		<h:commandButton id="submit" update="@form" execute="@form"
+		                 action="#{readExcel.uploadFile}"
+			             value="upload file" >
+			              
+			             </h:commandButton><br />
+  
+ </h:form>
+ 
+</body>
+</ui:define>
+</ui:composition>
+ 
