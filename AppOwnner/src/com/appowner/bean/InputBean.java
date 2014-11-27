@@ -35,7 +35,7 @@ public class InputBean implements Serializable {
 		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
 		File outputFilePath = new File(basePath+fileName);
-		path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
+		
 		System.out.println(path+"path");
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
@@ -51,6 +51,7 @@ public class InputBean implements Serializable {
 			}
  
 			statusMessage = "File upload successfull !!";
+			path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
 		} catch (IOException e) {
 			e.printStackTrace();
 			statusMessage = "File upload failed !!";

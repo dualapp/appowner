@@ -28,14 +28,14 @@
             <tr><td width ="50%"> <p:outputPanel layout="block" id="parentPanel">  
           
       
-      <p:graphicImage width="150px" height="150px" value="#{inputBean.getPath()}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....."  value="ds"/></td></tr>
+      <p:graphicImage width="150px" height="150px" value="#{loginBean.getPath()}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....."  value="ds"/></td></tr>
              
   <tr>
    <td>  <!-- inputFile tag to upload file -->
 		Upload File 
 		<h:inputFile id="file" 
 		             label="file"
-			         value="#{inputBean.part}" 
+			         value="#{loginBean.part}" 
 			         required="true" 
 			         requiredMessage="File not selected !!">
             <!-- FileUploadValidator for file validation -->
@@ -44,14 +44,14 @@
 		<h:message style="color: red" for="file" /><br />
  
 		<h:commandButton id="submit" update="@form" execute="@form"
-		                 action="#{inputBean.uploadFile}"
+		                 action="#{loginBean.uploadFile}"
 			             value="upload file" >
 			              
 			             </h:commandButton><br />
  
         <!-- status message of file upload; rendered if message is set -->
-		<h:outputText value="#{inputBean.statusMessage}"
-			          rendered="#{not empty inputBean.statusMessage}" /></td></tr></table>
+		<h:outputText value="#{loginBean.statusMessage}"
+			          rendered="#{not empty loginBean.statusMessage}" /></td></tr></table>
         <div class="gsTitleDiv">Contact Information<br/><hr/></div>
        <table>
         

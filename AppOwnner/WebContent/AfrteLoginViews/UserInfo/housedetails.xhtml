@@ -11,7 +11,9 @@
  <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
 </h:head>
 <body>  
- <h:form id="form">
+ <h:form id="form" method="post"
+              enctype="multipart/form-data">
+<p:growl id="msgs" showDetail="true" />
   
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
 		
@@ -31,11 +33,38 @@ Once completed, this setup will take some time. Request you to be patient.
 Removing a house may result in a member not associatedto any house. In the next screen, you will be prompted to assign house number to such members.
 Unless the Community Setup is complete, the changes that are made will not be saved.
  </p:panel>
+  
+       
+  <p:panel id="panel1"  style="border:none;"> Easily input data for multiple block/houses in one go</p:panel>
+	&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;   <p:commandButton  style="width:120px;height:25px" id="Btn" value="Bulk Upload"/>
+	     <p:overlayPanel id="uploadPanel" for="Btn" hideEffect="fade" dynamic="true" style="width:600px">
+	     <!-- inputFile tag to upload file -->
+	     <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+		<h4>Upload File</h4> 
+		<tr><th>1</th><td>
+		 
+		  <p:commandButton value="Download Template" ajax="false"    icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{apartmentDetailsBean.downloadFile()}" />
+    </p:commandButton></td> &#150; &#150;<th>2</th><td>Fill The Template</td> &#150; &#150;<th>3</th><td>Upload</td></tr></table>  
+		   <h:inputFile id="file" 
+		             label="file"
+			         value="#{apartmentDetailsBean.part}" 
+			         >
+            
+		</h:inputFile>
+		<h:message style="color: red" for="file" /><br />
+ 
+		<h:commandButton style="width:120px;height:25px" id="submit1" update="@form" execute="@form"
+		                 action="#{apartmentDetailsBean.uploadFile}"
+			             value="Upload" >
+			              
+			             </h:commandButton>  <br /></p:overlayPanel>
   <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
-	      <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
+	  
+	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
 	    &#150; &#150;  <p:button  style="width:120px;height:25px"  outcome="blockdetails.xhtml" value="Back"/>
 	     &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Next"/>
-	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Bulk Upload"/></td>
+	     </td>
 	    </tr></table>
 	    <p:panel id="panell"   process=":form:DT"  update=":form:DT"  style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
 	    <ui:repeat value="#{apartmentDetailsBean.blockNameList}" var="block" varStatus="status">
@@ -128,6 +157,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </table>
 	 </p:outputPanel>
 	 </p:dialog>
+	 
  </h:form>
  </body>
  </ui:define>
