@@ -17,6 +17,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -27,6 +31,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import com.appowner.model.Employee;
 import com.appowner.service.ApartmentDetailsService;
@@ -54,11 +60,11 @@ public void setEmpList(List<Employee> empList) {
 	this.empList = empList;
 }
 
-public   List<Employee> readExcel(String Appname,String filename) {
+public   List<Employee> readExcel(String filePath) {
+	System.out.println(filePath+"filePath");
    try {
 	   empList = new ArrayList<Employee>();
-       FileInputStream file = new FileInputStream(new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images"+"\\"+Appname+"\\"+filename));
-
+       FileInputStream file = new FileInputStream(new File(filePath));
        // Getting the instance for XLS file
        HSSFWorkbook workbook = new HSSFWorkbook(file);
 
@@ -119,35 +125,7 @@ public   List<Employee> readExcel(String Appname,String filename) {
 }
   
  
- 
-private static void persistToDB(List<Employee> employees) {
-   /*SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-   Session session = sessionFactory.openSession();
-   */
-
-       Configuration c = new Configuration();
-       c.configure("/hibernate.cfg.xml");
-       // SessionFactory holds cfg file properties like // driver props and
-       // hibernate props and mapping file
-       SessionFactory sf = c.buildSessionFactory();
-       // create one session means Connection
-       Session s = sf.openSession();
-       // before starting save(),update(), delete() operation we need to
-       // start TX // starting tx mean con.setAutoCommit(false);
-       Transaction tx = s.beginTransaction();
-       try {
-       for (int i = 0; i < employees.size(); i++) {
-           Employee emp = employees.get(i);
-           s.save(emp);
-       }
-       tx.commit();
-       s.close();
-
-   } catch (Exception e) {
-       tx.rollback();
-   }
-       
-}
+  
 //file Upload
 	private Part part;
 	public String getPath() {
@@ -166,20 +144,17 @@ private static void persistToDB(List<Employee> employees) {
   private String path;
 	 public void uploadFile() throws IOException {
 		
-		// Extract file name from content-disposition header of file part
-		//String fileName = getFileName(part);
-		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		String fileName= fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
-		System.out.println("***** fileName: " + fileName);
-		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
-		String basePath1="D:\\kalpanaproj\\AppOwnner\\WebContent\\images"+"\\"+Util.getAppartmentName()+"\\";
-		File outputFilePath = new File(basePath + fileName);
-		
-		 List<Employee>employees=readExcel(Util.getAppartmentName(),fileName);
-		 System.out.println(employees);
-		 getApartmentDetailsService().saveEmp(employees);
-	       //persistToDB(employees);
+
+			// Extract file name from content-disposition header of file part
+			String fileName = getFileName(part);
+			System.out.println("***** fileName: " + fileName);
 	  
+			String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+			System.out.println(basePath);
+			File outputFilePath = new File(basePath+fileName);
+		System.out.println(outputFilePath.getAbsolutePath());
+		
+	        
 			// Copy uploaded file to destination path
 			InputStream inputStream = null;
 			OutputStream outputStream = null;
@@ -192,7 +167,9 @@ private static void persistToDB(List<Employee> employees) {
 				while ((read = inputStream.read(bytes)) != -1) {
 					outputStream.write(bytes, 0, read);
 				}
-	 
+				List<Employee>employees=readExcel(outputFilePath.getAbsolutePath());
+				 System.out.println(employees);
+				 //getApartmentDetailsService().saveEmp(employees);
 				statusMessage = "File upload successfull !!";
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -205,6 +182,7 @@ private static void persistToDB(List<Employee> employees) {
 					inputStream.close();
 				}
 			}
+			 
 	 
 	} 
 	 
@@ -233,5 +211,30 @@ private static void persistToDB(List<Employee> employees) {
 		}
 		return null;
 	}
-
+	/**
+	   * Download file.
+	   */
+	  public void downloadFile() throws IOException
+	  {
+	     File file = new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\Community_setup_house.xls");
+	     InputStream fis = new FileInputStream(file);
+	     byte[] buf = new byte[1024];
+	     int offset = 0;
+	     int numRead = 0;
+	     while ((offset < buf.length) && ((numRead = fis.read(buf, offset, buf.length - offset)) >= 0)) 
+	     {
+	       offset += numRead;
+	     }
+	     fis.close();
+	     HttpServletResponse response =
+	        (HttpServletResponse) FacesContext.getCurrentInstance()
+	            .getExternalContext().getResponse();
+	    
+	    response.setContentType("application/octet-stream");
+	    response.setHeader("Content-Disposition", "attachment;filename=Community_setup_house.xls");
+	    response.getOutputStream().write(buf);
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	    FacesContext.getCurrentInstance().responseComplete();
+	  }
 }

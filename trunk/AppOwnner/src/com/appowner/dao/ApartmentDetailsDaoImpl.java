@@ -110,14 +110,15 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		return (User) sessionFactory.getCurrentSession().createQuery("from User where str_Flat=?").setParameter(0, str_HouseNo ).uniqueResult();
 	}
 
+	 
 	@Override
-	public void saveEmp(List<Employee> employees) {
+	public void saveHouseDetails1(List<HouseDetails> hDetailsList) {
 		// TODO Auto-generated method stub
-		ListIterator itr=employees.listIterator();
+		ListIterator itr=hDetailsList.listIterator();
 		while(itr.hasNext())
 		{
-			Employee emp=(Employee) itr.next();
-		           sessionFactory.getCurrentSession().save(emp);
+			HouseDetails hdetails=(HouseDetails) itr.next();
+		           sessionFactory.getCurrentSession().save(hdetails);
 		       }
 		       
 	}

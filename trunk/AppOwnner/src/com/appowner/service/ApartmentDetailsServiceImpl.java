@@ -94,10 +94,12 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		return getApartmentDetailsDao().primaryOwnerDetailsByHouseNo(str_HouseNo);
 	}
 
+	 
+
 	@Override
-	public void saveEmp(List<Employee> employees) {
+	public void saveHouseDetails1(List<HouseDetails> hDetailsList) {
 		// TODO Auto-generated method stub
-		getApartmentDetailsDao().saveEmp(employees);
+		getApartmentDetailsDao().saveHouseDetails1( hDetailsList);
 	}
 
 }

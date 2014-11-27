@@ -1169,27 +1169,14 @@ public static void setUser1(boolean user1) {
 		this.userExtraInfo = userExtraInfo;
 	}
 	//file Upload
-	private Part part;
-	public String getPath() {
-		System.out.println(path+"path1");
-		if(path==null)
-		{
-			path="/images/profilepic.png";
-		}
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
-	}
 
+	private Part part;
 	private String statusMessage;
     private String path;
-	 public void uploadFile() throws IOException {
+	public String uploadFile() throws IOException {
  
 		// Extract file name from content-disposition header of file part
-		//String fileName = getFileName(part);
-		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		String fileName= fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
+		String fileName = getFileName(part);
 		System.out.println("***** fileName: " + fileName);
  
 		//String basePath = "D:" + File.separator + "temp" + File.separator;
@@ -1197,7 +1184,7 @@ public static void setUser1(boolean user1) {
 		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
 		File outputFilePath = new File(basePath+fileName);
-		path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
+		
 		System.out.println(path+"path");
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
@@ -1213,6 +1200,7 @@ public static void setUser1(boolean user1) {
 			}
  
 			statusMessage = "File upload successfull !!";
+			path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
 		} catch (IOException e) {
 			e.printStackTrace();
 			statusMessage = "File upload failed !!";
@@ -1224,22 +1212,25 @@ public static void setUser1(boolean user1) {
 				inputStream.close();
 			}
 		}
-	 
-	} 
-	 
+		return null;    // return to same page
+	}
  
 	public Part getPart() {
 		return part;
 	}
+ 
 	public void setPart(Part part) {
 		this.part = part;
 	}
+ 
 	public String getStatusMessage() {
 		return statusMessage;
 	}
+ 
 	public void setStatusMessage(String statusMessage) {
 		this.statusMessage = statusMessage;
 	}
+ 
 	// Extract file name from content-disposition header of file part
 	private String getFileName(Part part) {
 		final String partHeader = part.getHeader("content-disposition");
@@ -1253,6 +1244,18 @@ public static void setUser1(boolean user1) {
 		return null;
 	}
 
-	 
+	public String getPath() {
+		System.out.println(path+"path1");
+		if(path==null)
+		{
+			path="/images/profilepic.png";
+		}
+		
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 }
 

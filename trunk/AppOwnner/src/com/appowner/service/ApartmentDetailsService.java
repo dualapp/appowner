@@ -32,7 +32,7 @@ public interface ApartmentDetailsService {
 	Integer getBlockId(String str_BlockName);
 
 	User primaryOwnerDetailsByHouseNo(String str_HouseNo);
-
-	void saveEmp(List<Employee> employees);
+ 
+	void saveHouseDetails1(List<HouseDetails> hDetailsList);
 
 }
