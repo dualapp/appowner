@@ -77,20 +77,16 @@ public class AccountsServiceImpl implements AccountsService {
 	}
 
 	@Override
-	public List<String> getAccountTypeList(Character l){
+	public List<String> getAccountTypeList(){
 		
-		return getAccountsDao().getAccountTypeList(l);
+		return getAccountsDao().getAccountTypeList();
 	}
 	public List<String> getAccountTypeList1()
 	{
 		return getAccountsDao().getAccountTypeList1();
 	}
 
-	@Override
-	public List<String> getAccountTypeList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	public List<SelectItem> getAccounts()
 	{
 		return getAccountsDao().getAccounts();
@@ -180,9 +176,9 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().group();
 	}
-	public void updateClosingBalance(double debit, double credit, String str)
+	public void updateClosingBalance(double debit, double credit, String str,double credit1)
 	{
-		getAccountsDao().updateClosingBalance(debit,credit,str);
+		getAccountsDao().updateClosingBalance(debit,credit,str,credit1);
 	}
 	public List<ChartOfAccount> listExpense()
 	{
@@ -260,5 +256,21 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		getAccountsDao().deleteManualJournal(id);
 	}
-
+	public List<InvoiceTransaction> listInvoiceTransaction2(Date dat_From, Date dat_To)
+	{
+		return (List<InvoiceTransaction>)getAccountsDao().listInvoiceTransaction2(dat_From,dat_To);
+	}
+	public List<Double> getExpenseAmount()
+	{
+		return (List<Double>)getAccountsDao().getExpenseAmount();
+	}
+	public List<Double> getIncomeAmount()
+	{
+		return (List<Double>)getAccountsDao().getIncomeAmount();
+	}
+	public List<ManualJournal> getlistManualJournal2(Date dat_From, Date dat_To)
+	{
+		return getAccountsDao().getlistManualJournal2(dat_From, dat_To);
+	}
+			
 }
