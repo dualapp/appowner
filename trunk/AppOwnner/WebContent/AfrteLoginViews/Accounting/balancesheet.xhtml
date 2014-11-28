@@ -15,7 +15,7 @@
        <div id="page3">
        <div class="gsTitleDiv">Balance Sheet<br/><hr/></div>
               &#150; &#150;  &#150; &#150;   <h:outputText value="As On"/>&nbsp; &nbsp;
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                  
                  
@@ -25,6 +25,7 @@
    
    
    
+   <br/>
    <br/>
     	&#150; &#150;  &#150; &#150;		<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
 					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
@@ -74,11 +75,9 @@
            
             
             <p:column>
-                <h:outputText value="#{timeSlot.debit_closingBalance}" style="float:right"/>
+                <h:outputText value="#{timeSlot.closingBalance}" style="float:right"/>
             </p:column>
-           <p:column>
-                <h:outputText value="#{timeSlot.credit_closingBalance}" style="float:right"/>
-            </p:column>
+          
         </p:subTable>
                      
    </p:dataTable>
@@ -131,7 +130,7 @@
                       
                         <p:column>
             
-                         <h:outputText value="Net Profit" style="float:right"/>
+                         <h:outputText value="Net #{accountingBean.indicator}" style="float:right"/>
                 
                         </p:column>
                         <p:column>
@@ -147,7 +146,7 @@
                      
                     <tr>
                     <td><h:outputText value="LIABILITIES + EQUITY:" style="float:right" /></td>
-                     <td><h:outputText value="#{accountingBean.netProfit2}" style="float:right" /></td>
+                     <td><h:outputText value="#{accountingBean.netProfit1}" style="float:right" /></td>
                        </tr>
                        </table>
    </p:column>

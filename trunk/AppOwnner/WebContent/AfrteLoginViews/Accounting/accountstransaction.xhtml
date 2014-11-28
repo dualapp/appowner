@@ -38,7 +38,7 @@
                 
            </td>
            <td>  <h:outputText  value="From:" /></td>
-           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.dat_FromDate}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" >
+           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.from_date}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" >
             <p:ajax event="change" partialSubmit="true" />
         </p:calendar>
            </td>
