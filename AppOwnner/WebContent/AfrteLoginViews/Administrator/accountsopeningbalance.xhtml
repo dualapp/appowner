@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
-	<ui:define name="content">
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	
 <h:head>
     <title>Accounts Opening Balance</title>
      
@@ -14,12 +14,14 @@
 <body>
    
       <h:form>
-       
+      	<h:body>
+       <div id="page3" >
+    <div class="gsTitleDiv">Accounts Opening Balance<br/><hr/></div> 
        <p:messages id="messages"/>  
-      <table>
+      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
              <td> <h:outputLabel value="Organisation:" /></td>  
-             <td><p:selectOneMenu id="str_Organisation" value="aaa"  style="width:230px">
+             <td><p:selectOneMenu id="str_Organisation" value="aaa"  >
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                   <f:selectItem itemLabel="#{accountsBean.str_Organisation}" itemValue="#{accountsBean.str_Organisation}"/>
                   </p:selectOneMenu>
@@ -28,19 +30,19 @@
                   <tr>
           <td>  <h:outputText  value="Opening Balance Date*" /></td>
         
-           <td>  <p:calendar id="str_DueTemplate" value="#{accountsBean.dat_openingDate}" size="30" locale="de" navigator="true" pattern="yyyy-MMM-dd"/> </td>
-           <td> <br/><font color="red">This is the date on which you are migrating accounts from your existing accounting system Accounting.</font></td>
+           <td>  <p:calendar id="str_DueTemplate" value="#{accountsBean.dat_openingDate}" size="24" locale="de" navigator="true" pattern="yyyy-MMM-dd"/> </td>
+           <td><font color="red">This is the date on which you are migrating accounts from your existing accounting system Accounting.</font></td>
              </tr>
              </table>
-             <table>
+           
              <h:dataTable  id="account" var="accounts" value="#{accountsBean.listOpeningBalance}" binding="#{accountsBean.updatedAccounts}" style="width: 70%">
-            <p:column >
+            <p:column width="48%" >
                 <f:facet name="header" >
                     <h:outputText value="Accounts" />
                 </f:facet>
                 <h:outputText value="#{accounts.str_AccountsHead}"  />
             </p:column>
-            <p:column>
+            <p:column width="31%">
                 <f:facet name="header">
                     <h:outputText value="Debit" />
                 </f:facet>
@@ -49,7 +51,7 @@
                 </h:inputText>
             </p:column>
            
-            <p:column>
+            <p:column width="31%">
                 <f:facet name="header">
                     <h:outputText value="Credit" />
                 </f:facet>
@@ -57,30 +59,29 @@
                   <f:ajax event="blur" update="hgy"  partialSubmit="true"/>   
                 </h:inputText>
             </p:column>
-      
-	 </h:dataTable>
-	 </table>
-	 <table >	 
+     </h:dataTable>
+	
+	 <table style="width: 68%;margin-right: 1%;margin-bottom:5px"  >	 
 	 <tr>
-	    <td><span style="font-size: 15px">Total Amount</span>
-	    </td>
-	     
-	    <td> <h:inputText id="priya" value="#{accountsBean.totalAmount}" readonly="true"  size="30"/></td>
+	    <td>Total Amount	   </td>
+	 
+	    <td ><p:spacer width="25" height="10"/><h:inputText id="priya" value="#{accountsBean.totalAmount}" readonly="true"  size="30"/><p:spacer width="35" height="20"/>
 	    
-	      <td> <h:inputText id="hgy" value="#{accountsBean.totalAmount1}"  readonly="true"  size="30"/></td>
+	     <h:inputText id="hgy" value="#{accountsBean.totalAmount1}"  readonly="true"  size="30"/></td>
 	 </tr>
 	 
 	
 	 <tr>
-	     <td> <span style="font-size: 15px">Opening Balance Adjustment</span></td>
-	      <td> <h:inputText value="#{accountsBean.adjustmentBalance}" readonly="true" size="30"/></td>
-	      <td> <h:inputText value="#{accountsBean.adjustmentBalance1}" readonly="true" size="30"/></td>
+	     <td>Opening Balance Adjustment</td>
+	   
+	      <td>  <p:spacer width="25" height="10"/> <h:inputText value="#{accountsBean.adjustmentBalance}" readonly="true" size="30"/><p:spacer width="35" height="20"/>
+	      <h:inputText value="#{accountsBean.adjustmentBalance1}" readonly="true" size="30"/></td>
 	 </tr>
 	
 	  <tr>
-	    <td> <span style="font-size: 15px">Total Amount</span></td>
-	    <td> <h:inputText value="#{accountsBean.totalAdjustBalance}" readonly="true" size="30"/></td>
-	      <td> <h:inputText value="#{accountsBean.totalAdjustBalance1}" readonly="true" size="30" /></td>
+	    <td>Total Amount</td>
+	    <td> <p:spacer width="25" height="10"/> <h:inputText value="#{accountsBean.totalAdjustBalance}" readonly="true" size="30"/><p:spacer width="35" height="20"/>
+	     <h:inputText value="#{accountsBean.totalAdjustBalance1}" readonly="true" size="30" /></td>
 	 </tr>
 	
 	 </table>
@@ -90,8 +91,8 @@
                 <td><p:commandButton id="AddProduct" value="Submit"  action="#{accountsBean.addAccountsHead}" /></td>     
             </tr>
   
-          
+         </div> 
+         </h:body>
              </h:form>
        </body>
-       </ui:define>
-       </ui:composition>
+  </html>
