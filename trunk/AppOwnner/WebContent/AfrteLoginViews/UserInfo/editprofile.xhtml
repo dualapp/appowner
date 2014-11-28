@@ -6,11 +6,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="../../include/templates/template.xhtml">
 	<ui:define name="content">
-  
-  <f:metadata>
-	 <f:viewAction action="#{loginBean.getUser()}" />
-	<f:viewAction action="#{loginBean.getUserExtraInfo()}" />
-</f:metadata>
  <h:head><title>User Registration</title></h:head>
 	  
 <h:head>
@@ -21,7 +16,7 @@
               enctype="multipart/form-data">
 <p:growl id="msgs" showDetail="true" />
   <div id="page3">
- 
+ <div>
  <table>
  
    
@@ -52,6 +47,7 @@
         <!-- status message of file upload; rendered if message is set -->
 		<h:outputText value="#{loginBean.statusMessage}"
 			          rendered="#{not empty loginBean.statusMessage}" /></td></tr></table>
+			          </div>
         <div class="gsTitleDiv">Contact Information<br/><hr/></div>
        <table>
         

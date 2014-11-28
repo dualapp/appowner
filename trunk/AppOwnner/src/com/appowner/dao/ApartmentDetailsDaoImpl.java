@@ -123,4 +123,10 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		       
 	}
 
+	@Override
+	public void updateProfilePic(User user) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(user);
+	}
+
 }

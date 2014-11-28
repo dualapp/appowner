@@ -422,7 +422,7 @@ public class ApartmentDetailsBean  implements Serializable{
 					}
 					List<HouseDetails>  hDetailsList=readExcel(outputFilePath.getAbsolutePath());
 					 System.out.println( hDetailsList);
-					 getApartmentDetailsService().saveHouseDetails1( hDetailsList);
+				  getApartmentDetailsService().saveHouseDetails1( hDetailsList);
 					statusMessage = "File upload successfull !!";
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -441,6 +441,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		 
 
 		public Part getPart() {
+			 
 			return part;
 		}
 		public void setPart(Part part) {
@@ -467,7 +468,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		/**
 		   * Download file.
 		   */
-		  public void downloadFile() throws IOException
+		  public String downloadFile() throws IOException
 		  {
 		     File file = new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\Community_setup_house.xls");
 		     InputStream fis = new FileInputStream(file);
@@ -483,12 +484,14 @@ public class ApartmentDetailsBean  implements Serializable{
 		        (HttpServletResponse) FacesContext.getCurrentInstance()
 		            .getExternalContext().getResponse();
 		    
-		    response.setContentType("application/octet-stream");
+		    response.setContentType("application/msexcel");
 		    response.setHeader("Content-Disposition", "attachment;filename=Community_setup_house.xls");
 		    response.getOutputStream().write(buf);
 		    response.getOutputStream().flush();
 		    response.getOutputStream().close();
+		    
 		    FacesContext.getCurrentInstance().responseComplete();
+		    return null;
 		  }
  
 }
