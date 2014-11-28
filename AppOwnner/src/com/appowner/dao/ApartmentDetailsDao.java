@@ -35,4 +35,6 @@ public interface ApartmentDetailsDao {
 	 
 	void saveHouseDetails1(List<HouseDetails> hDetailsList);
 
+	void updateProfilePic(User user);
+
 }

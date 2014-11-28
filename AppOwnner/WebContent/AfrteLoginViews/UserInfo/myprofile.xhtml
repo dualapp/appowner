@@ -15,14 +15,41 @@
     
 </h:head>
 <body bgcolor="pink">
-<h:form>
+<h:form method="post"
+              enctype="multipart/form-data">
   <div id="page3">
  <p:outputPanel   id="aaa1" style="background:#dddddd; ">
+ <p:outputPanel layout="block" id="parentPanel">  
+          
+      
+      <p:graphicImage width="150px" height="150px" value="#{loginBean.getPath()}"/></p:outputPanel>
  <table>
     
-    <tr><td width="30%"><p:outputPanel layout="block" id="aaa"  >  
+    <tr><td width="30%">
+    
+    
       
-      <p:graphicImage width="150px" height="150px"   value="/images/profilepic.png"/></p:outputPanel></td><td width="60%"><h4><b><h:outputText value="#{loginBean.user.str_Username}"/></b></h4><br/><h:outputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" /><br/>
+     <!-- inputFile tag to upload file -->
+		Upload File 
+		<h:inputFile id="file" 
+		             label="file"
+			         value="#{loginBean.part}" 
+			         required="true" 
+			         requiredMessage="File not selected !!">
+            <!-- FileUploadValidator for file validation -->
+		    <f:validator validatorId="FileUploadValidator" />
+		</h:inputFile>
+		<h:message style="color: red" for="file" /><br />
+ 
+		<h:commandButton id="submit" update="@form" execute="@form"
+		                 action="#{loginBean.uploadFile}"
+			             value="upload file" >
+			              
+			             </h:commandButton><br />
+ 
+        <!-- status message of file upload; rendered if message is set -->
+		<h:outputText value="#{loginBean.statusMessage}"
+			          rendered="#{not empty loginBean.statusMessage}" /> </td><td width="60%"><h4><b><h:outputText value="#{loginBean.user.str_Username}"/></b></h4><br/><h:outputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" /><br/>
       <h:outputText id="str_Email"   value="#{loginBean.user.str_Email}"/></td>
         
   

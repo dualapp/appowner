@@ -102,4 +102,10 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		getApartmentDetailsDao().saveHouseDetails1( hDetailsList);
 	}
 
+	@Override
+	public void updateProfilePic(User user) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateProfilePic(user);
+	}
+
 }

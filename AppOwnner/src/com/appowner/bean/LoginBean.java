@@ -299,7 +299,17 @@ public class LoginBean implements Serializable{
 
 
 		public String getVar_ImageName1() {
-			return Var_ImageName1;
+			if(user.getVar_ImageName1().equalsIgnoreCase(null))
+			{
+				Var_ImageName1="/images/profilepic.png";
+				System.out.println(Var_ImageName1+"img1");
+			}
+			else
+			{
+				Var_ImageName1=user.getVar_ImageName1();
+				System.out.println(Var_ImageName1+"img2");
+			}
+			return Var_ImageName1 ;
 		}
 
 
@@ -1091,7 +1101,7 @@ public static void setUser1(boolean user1) {
 		user.setUserExtraInfo(userExtraInfo);
 		
 		user.setVar_FileName1(getPath2());
-		user.setVar_ImageName1(getBlb_image1());
+		user.setVar_ImageName1(getPath());
 		getUserService().updateUs(user);
 		//System.out.println(pro);
 		return "updationconfirmation.xhtml";
@@ -1198,9 +1208,12 @@ public static void setUser1(boolean user1) {
 			while ((read = inputStream.read(bytes)) != -1) {
 				outputStream.write(bytes, 0, read);
 			}
- 
-			statusMessage = "File upload successfull !!";
 			path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
+			user.setVar_ImageName1(path);
+			user.setInt_UserId(user.getInt_UserId());
+			getApartmentDetailsService().updateProfilePic(user);
+			statusMessage = "File upload successfull !!";
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 			statusMessage = "File upload failed !!";
@@ -1215,7 +1228,8 @@ public static void setUser1(boolean user1) {
 		return null;    // return to same page
 	}
  
-	public Part getPart() {
+	public Part getPart() throws IOException {
+		 
 		return part;
 	}
  
@@ -1248,7 +1262,7 @@ public static void setUser1(boolean user1) {
 		System.out.println(path+"path1");
 		if(path==null)
 		{
-			path="/images/profilepic.png";
+			path=user.getVar_ImageName1();
 		}
 		
 		return path;
