@@ -19,21 +19,21 @@
         
              <div class="gsTitleDiv">Profit And Loss<br/><hr/></div>
               &#150; &#150;  &#150; &#150;   <h:outputText value="From:"/>
-                  <p:calendar value="#{accountingBean.dat_From}" navigator="true"  required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener}">
-                    <p:ajax event="change" partialSubmit="true" />
+                  <p:calendar value="#{accountingBean.date3}" navigator="true"    pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener2}">
+                     <p:ajax event="change" partialSubmit="true" />
                     </p:calendar>
                   &nbsp; &nbsp;
                   <h:outputText value="To :"/>
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
-                  <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" update="ggg"/>
+                  <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" />
              
                  
                  
     </body>
     <br/>
-   
-      	&#150; &#150;  &#150; &#150;		<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
+   <br/>
+      	&#150; &#150;  &#150; &#150;<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
 					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
       <br/>
       <br/>
@@ -106,7 +106,7 @@
                   <tr> 
                
                     <th  width="60%">Net Profit:</th>
-                     <th  align="right" width="10%">#{accountingBean.netProfit}</th>
+                     <th  align="right" width="10%">#{accountingBean.netProfit3}</th>
                   
                
                

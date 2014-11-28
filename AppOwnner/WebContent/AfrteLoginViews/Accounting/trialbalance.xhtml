@@ -13,18 +13,23 @@
     <h:form>
   <div id="page3">
      <div class="gsTitleDiv">Trial Balance<br/><hr/></div>
-               &#150; &#150;  &#150; &#150;   <h:outputText value="As On"/>&nbsp; &nbsp;
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_From}">
-                  </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                 
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_To}">
-                  </p:calendar>&nbsp; &nbsp; &nbsp;
-                   <h:commandButton value="Go"/>
+      <table>
+      <tr>
+         <td>  <h:outputText value="As On"/>&nbsp; &nbsp;</td>
+        <td> <p:selectOneMenu id="car" value="#{accountingBean.date4}">
+           
+            <f:selectItems value="#{accountingBean.dates}" />
+        </p:selectOneMenu>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </td> 
+              <td>  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_ToDate}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp;</td>
+             <td>      <h:commandButton value="Go"/></td>
                
                  
    
    
-   
+   </tr>
+   </table>
    <br/>
     	&#150; &#150;  &#150; &#150;		<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
 					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
