@@ -29,6 +29,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
 
 import com.appowner.model.Account;
@@ -188,6 +189,8 @@ public void setStr_Organisation(String str_Organisation) {
 	}
 	private List<AccountsOpeningBalance> listOpeningBalance;
 	private HtmlDataTable updatedAccounts;
+	
+	
 	public HtmlDataTable getUpdatedAccounts() {
 		return updatedAccounts;
 	}
@@ -455,6 +458,8 @@ public List<AccountingGroup> getAsset() {
 	{
 		AccountingGroup account=(AccountingGroup)list.next();
 		group=account.getCh_Group();
+		
+		
 	}
 	return asset;
 }
