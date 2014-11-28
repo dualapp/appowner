@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
-	<ui:define name="content">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml"
+	xmlns:P="http://java.sun.com/jsf/html">
+	
 <h:head>
-    <title>Invoice  Form</title>
+    <title>Chart Of Account Form</title>
    <style type="text/css">
          input[type=text] 
           {
@@ -25,12 +26,13 @@
       
 </h:head>
 
- 
+
     <h:form>
-    <div id="page3">
-        
-       
-  <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
+   	<h:body styleClass="width:40">
+ <div id="page3" >
+    <div class="gsTitleDiv">Chart Of Account<br/><hr/></div> 
+ 
+    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
  
                <td><h:outputLabel value="Organisation:*" /> </td>
               
@@ -39,27 +41,8 @@
                   <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                  </h:selectOneMenu>
              </td>
-            
-                 <td><h:outputLabel value="Account Type:*" /></td>
-                 <td><p:selectOneMenu   value="#{expenseBean.str_AssetCategoryType}" >
-                  <f:selectItem itemLabel="Asset" itemValue="Asset"/>  
-                  <f:selectItem itemLabel="liability" itemValue="liability"   />
-                  <f:selectItem itemLabel="income" itemValue="income"   />
-                  <f:selectItem itemLabel="expense" itemValue="expense"   />
-                  
-                 
-                 </p:selectOneMenu>
-                 </td>
-                 
-                 <td><h:commandButton  value="Go"/> </td>
-              </tr></table> 
-               
-                 
- 
-
-</div>
- <div id="page3">
-    <div class="gsTitleDiv">Chart Of Account<br/><hr/></div> 
+             </tr>
+             </table>
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> 
      <tr><td> <p:commandButton style="width:120px;height:25px" icon="ui-icon-pencil"  update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /> &#150; &#150;<h:commandButton style="width:120px;height:25px" action="viewgroups.xhtml" value="View Selected"/> &#150; &#150;<p:commandButton style="width:120px;height:25px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
  
@@ -78,7 +61,7 @@
         
        <td>
        
-       <ui:repeat value="#{accountsBean.asset}" var="timeSlot">
+       <ui:repeat value="#{accountsBean.asset}" var="timeSlot" >
        
        <h:outputText value="#{timeSlot.str_Acct_GroupName}"/><br/>
        </ui:repeat>
@@ -105,7 +88,7 @@
         </table>
          <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="220" width="400">
         <p:outputPanel id="multiChartOfAccountDetail" style="text-align:center;">
-        <table>
+        <table >
 	<tr><td> 
                <h:outputLabel value="Organisation:" /> </td>
              <td> <h:selectOneMenu  value="#{accountingBean.str_OrganizationName}"    editable="true"   >
@@ -117,7 +100,7 @@
 	<td><h:selectOneMenu    value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}">
 	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
 	    
-	   <f:selectItems   value="#{accountingBean.listAccountType}" /><br/> 
+	   <f:selectItems   value="#{accountingBean.listAccountsType}" /><br/> 
 	   <p:ajax event="change" partialSubmit="true"/>
                        </h:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText   value="#{accountingBean.str_AccountName}"/></td></tr>
@@ -128,11 +111,12 @@
 	
          </p:outputPanel>
          </p:dialog>
+    
 </div>
-
+</h:body>
         </h:form>
-     </ui:define>
-     </ui:composition>
+  
+    </html>
       
  
  

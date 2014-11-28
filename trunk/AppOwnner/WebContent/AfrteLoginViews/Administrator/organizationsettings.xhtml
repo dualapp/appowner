@@ -24,10 +24,10 @@
    <h:form id="formk">           
     
  
-   <div id="page3">  <div class="gsTitleDiv">ORGANIZATIONSETTINGS <br/><hr/></div> 
+   <div id="page3">  <div class="gsTitleDiv">ORGANIZATION SETTINGS <br/><hr/></div> 
     
      
-    <p:accordionPanel  multiple="true" activeIndex="">
+    <p:accordionPanel  multiple="true" activeIndex="10">
      
      
      <p:tab title="parking space">
@@ -35,6 +35,16 @@
            <ui:include src="/AfrteLoginViews/Administrator/parkingspace.xhtml" />
            </h:panelGrid>
    </p:tab>  
+    <p:tab title="Chart Of Accounts">
+    <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/AfrteLoginViews/Administrator/chartofaccount.xhtml" />
+           </h:panelGrid>
+   </p:tab> 
+   <p:tab title="Accounts Opening Balance">
+    <h:panelGrid columns="1" cellpadding="10">
+           <ui:include src="/AfrteLoginViews/Administrator/accountsopeningbalance.xhtml" />
+           </h:panelGrid>
+   </p:tab> 
    <p:tab title="Work OrderCategory">
     <h:panelGrid columns="1" cellpadding="10">
            <ui:include src="/AfrteLoginViews/Administrator/workordercategory.xhtml" />
