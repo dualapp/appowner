@@ -29,7 +29,7 @@ public interface AccountsService {
 	
 
 	public void addBalance(Date date, Integer id1, Integer id);
-	List<String> getAccountTypeList();
+	
 
 	void saveChartOfAccount(ChartOfAccount chartOfAccount);
 
@@ -37,7 +37,7 @@ public interface AccountsService {
 
 	List<Character> getCh_AccountGroup();
 	List<Character> getCh_AccountGroup1();
-	List<String> getAccountTypeList(Character c);
+	List<String> getAccountTypeList();
 
 	public List<SelectItem> getAccounts();
 	public List<SelectItem> getAccount();
@@ -84,7 +84,7 @@ public interface AccountsService {
 
 	public List<String> group();
 
-	public void updateClosingBalance(double debit, double credit, String str);
+	public void updateClosingBalance(double debit, double credit, String str, double credit2);
 	public List<ChartOfAccount> listExpense();
 	public List<ChartOfAccount> listLiability();
 	public List<ChartOfAccount> listEquity();
@@ -120,6 +120,16 @@ public interface AccountsService {
 	public void updateManualJournal(ManualJournal journal);
 
 	public void deleteManualJournal(Integer id);
+
+	public List<InvoiceTransaction> listInvoiceTransaction2(Date dat_From, Date dat_To);
+
+	public List<Double> getExpenseAmount();
+
+	public List<Double> getIncomeAmount();
+
+	public List<ManualJournal> getlistManualJournal2(Date dat_From, Date dat_To);
+		
+			
 
 	
 	
