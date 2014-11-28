@@ -89,5 +89,11 @@ public class ChartOfAccount implements Serializable {
 	public void setCredit_closingBalance(double credit_closingBalance) {
 		this.credit_closingBalance = credit_closingBalance;
 	}
-	
+	private double closingBalance;
+	public double getClosingBalance() {
+		return closingBalance;
+	}
+	public void setClosingBalance(double closingBalance) {
+		this.closingBalance = closingBalance;
+	}
 }
