@@ -31,7 +31,7 @@ public interface ApartmentDetailsService {
 
 	Integer getBlockId(String str_BlockName);
 
-	User primaryOwnerDetailsByHouseNo(String str_HouseNo);
+	User primaryOwnerDetailsByHouseNo(String str_HouseNo, int role);
  
 	void saveHouseDetails1(List<HouseDetails> hDetailsList);
 

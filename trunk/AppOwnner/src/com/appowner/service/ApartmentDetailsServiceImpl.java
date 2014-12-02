@@ -89,9 +89,9 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public User primaryOwnerDetailsByHouseNo(String str_HouseNo) {
+	public User primaryOwnerDetailsByHouseNo(String str_HouseNo,int role) {
 		// TODO Auto-generated method stub
-		return getApartmentDetailsDao().primaryOwnerDetailsByHouseNo(str_HouseNo);
+		return getApartmentDetailsDao().primaryOwnerDetailsByHouseNo(str_HouseNo,role);
 	}
 
 	 

@@ -146,15 +146,13 @@ Unless the Community Setup is complete, the changes that are made will not be sa
     </p:commandButton></td> &#150; &#150;<th>2</th><td>Fill The Template</td> &#150; &#150;<th>3</th><td>Upload</td></tr></table>  
 		<table> <tr><td>  <h:inputFile id="file" 
 		             label="file"
-			         value="#{apartmentDetailsBean.part}" required="true" 
-			         requiredMessage="File not selected !!">
-			        
+			         value="#{apartmentDetailsBean.part}"> 
+			       
             <!-- FileUploadValidator for file validation 
-            <f:validator validatorId="BulkUploadValidator" />
-            -->
-		    
-		</h:inputFile>
-		<h:message style="color: red" for="file" /><br />
+            <f:validator validatorId="BulkUploadValidator" /> --> 
+            </h:inputFile>
+             
+		 
  
 		<h:commandButton style="width:120px;height:25px" id="submit1" update="@form" execute="@form"
 		                 action="#{apartmentDetailsBean.uploadFile}"

@@ -299,16 +299,13 @@ public class LoginBean implements Serializable{
 
 
 		public String getVar_ImageName1() {
-			if(user.getVar_ImageName1().equalsIgnoreCase(null))
+			Var_ImageName1=user.getVar_ImageName1();
+			if(Var_ImageName1==null)
 			{
 				Var_ImageName1="/images/profilepic.png";
 				System.out.println(Var_ImageName1+"img1");
 			}
-			else
-			{
-				Var_ImageName1=user.getVar_ImageName1();
-				System.out.println(Var_ImageName1+"img2");
-			}
+			 
 			return Var_ImageName1 ;
 		}
 
@@ -1103,8 +1100,13 @@ public static void setUser1(boolean user1) {
 		user.setVar_FileName1(getPath2());
 		user.setVar_ImageName1(getPath());
 		getUserService().updateUs(user);
-		//System.out.println(pro);
-		return "updationconfirmation.xhtml";
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Successfully Updated!", "Successfully Updated!"));
+		
+		return "editprofile.xhtml";
 		}
 	
 
@@ -1148,7 +1150,7 @@ public static void setUser1(boolean user1) {
 	public void setInt_ExtraUserId(Integer int_ExtraUserId) {
 		this.int_ExtraUserId = int_ExtraUserId;
 	}
-	public UserExtraInfo getUserExtraInfo() {
+	public void getUserExtraInfo() {
 		
 		 userExtraInfo=getUserService().getUserExtraInfo(user.getInt_UserId());
 		 if( userExtraInfo!=null)
@@ -1167,7 +1169,7 @@ public static void setUser1(boolean user1) {
 		 int_ExtraUserId=userExtraInfo.getInt_UserExtraID();
 		 }
 		 
-		return userExtraInfo;
+		 
 	}
 	public List<String> getStr_IntrestedIn() {
 		return str_IntrestedIn;
@@ -1184,7 +1186,9 @@ public static void setUser1(boolean user1) {
 	private String statusMessage;
     private String path;
 	public String uploadFile() throws IOException {
- 
+
+		/*SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));*/
 		// Extract file name from content-disposition header of file part
 		String fileName = getFileName(part);
 		System.out.println("***** fileName: " + fileName);
@@ -1260,12 +1264,14 @@ public static void setUser1(boolean user1) {
 
 	public String getPath() {
 		System.out.println(path+"path1");
-		if(path==null)
+		path=user.getVar_ImageName1();
+		if( path==null)
 		{
-			path=user.getVar_ImageName1();
+			path="/images/profilepic.png";
+			System.out.println(path+"img1");
 		}
-		
-		return path;
+		 
+		return path ;
 	}
 
 	public void setPath(String path) {
