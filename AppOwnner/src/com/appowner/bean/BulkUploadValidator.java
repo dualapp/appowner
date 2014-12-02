@@ -14,7 +14,12 @@ public class BulkUploadValidator implements Validator {
 			Object value) throws ValidatorException {
  
 		Part part = (Part) value;
- 
+ if(part==null)
+ {
+	 FacesMessage message = new FacesMessage("File: not selected !!");
+		throw new ValidatorException(message);
+	 
+ }
 		// 1. validate file name length
 		String fileName = getFileName(part);
 		System.out.println("----- validator fileName: " + fileName);
@@ -27,7 +32,8 @@ public class BulkUploadValidator implements Validator {
 		}
  
 		// 2. validate file type (only xls files allowed)
-		if (!"application/msexcel".equals(part.getContentType())) {
+		if (!"application/kset".equals(part.getContentType())) {
+			System.out.println(part.getContentType()+"content");
 			FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 			throw new ValidatorException(message);
 		  }

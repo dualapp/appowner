@@ -105,9 +105,9 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	}
 
 	@Override
-	public User primaryOwnerDetailsByHouseNo(String str_HouseNo) {
+	public User primaryOwnerDetailsByHouseNo(String str_HouseNo,int role) {
 		// TODO Auto-generated method stub
-		return (User) sessionFactory.getCurrentSession().createQuery("from User where str_Flat=?").setParameter(0, str_HouseNo ).uniqueResult();
+		return (User) sessionFactory.getCurrentSession().createQuery("from User where str_Flat=? and int_UserRole=?").setParameter(0, str_HouseNo ).setParameter(1,role).uniqueResult();
 	}
 
 	 

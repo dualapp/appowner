@@ -484,7 +484,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		        (HttpServletResponse) FacesContext.getCurrentInstance()
 		            .getExternalContext().getResponse();
 		    
-		    response.setContentType("application/msexcel");
+		    response.setContentType("application/xls");
 		    response.setHeader("Content-Disposition", "attachment;filename=Community_setup_house.xls");
 		    response.getOutputStream().write(buf);
 		    response.getOutputStream().flush();

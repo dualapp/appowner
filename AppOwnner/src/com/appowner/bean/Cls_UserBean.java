@@ -802,6 +802,16 @@ public class Cls_UserBean implements Serializable{
 		private List<String> houseNoList;
 		private List<String> blockNameList;
 		private User u;
+		private User u1;
+		public User getU1() {
+			u1=new User();
+			u1=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo,1);
+			return u1;
+		}
+		public void setU1(User u1) {
+			this.u1 = u1;
+		}
+
 		private HouseDetails housedetails;
 		private String userRole;
 		public void setUserRole(String userRole) {
@@ -831,7 +841,7 @@ public class Cls_UserBean implements Serializable{
 		public User getU() {
 
 			u=new User();
-			u=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo);
+			u=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo,2);
 			 
 			return u;
 		}
