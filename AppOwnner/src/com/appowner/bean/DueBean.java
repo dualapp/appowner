@@ -2,16 +2,22 @@ package com.appowner.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-
+import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
+
+
+
 
 
 
@@ -95,8 +101,8 @@ public class DueBean implements Serializable{
 		this.str_ApartmentNo1 = str_ApartmentNo1;
 	}
 	  private String str_Status;
-	 private Double dbl_DueAmount;
-	private Double dbl_TotalDueAmount;
+	 private Double dbl_DueAmount=0.00;
+	private Double dbl_TotalDueAmount=0.00;
 	public Integer getInt_DueTransactionID() {
 		return int_DueTransactionID;
 	}
@@ -189,6 +195,9 @@ public class DueBean implements Serializable{
 	public List<String> getStr_DueTemplates() {
 		str_DueTemplates=new ArrayList<String>();
 		str_DueTemplates.addAll(getDueService().getDueTemplate());
+		str_DueTemplate=str_DueTemplates.get(0);
+		
+		periodIndicator=getDueService().getFrequency(str_DueTemplate);
 		return str_DueTemplates;
 	}
 	public void setStr_DueTemplates(List<String> str_DueTemplates) {
@@ -222,13 +231,13 @@ public class DueBean implements Serializable{
 			due.setDbl_TotalDueAmount(getDbl_DueAmount());
 			due.setStr_Status("Due");
 			getDueService().saveDueTransaction(due);
-			return null;
+			return "dues.xhtml";
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return null;
+		return "dues.xhtml";
 	}
 	public List<DueTransaction> getListDueTransaction() {
 		listDueTransaction=new ArrayList<DueTransaction>();
@@ -255,6 +264,7 @@ public class DueBean implements Serializable{
 	public void setStr_BlockNo(List<String> str_BlockNo) {
 		this.str_BlockNo = str_BlockNo;
 	}
+	
 	public List<String> blockChangeListener(ValueChangeEvent event)
 	{   str_Block=(String)event.getNewValue();
 	     System.out.println(str_Block);
@@ -262,20 +272,56 @@ public class DueBean implements Serializable{
 		str_BlockNo.addAll(getDueService().getApartmentlist(str_Block));
 		return str_BlockNo;
 	}
-	public void templateChangeListener(ValueChangeEvent event)
-	{   String ddd=(String)event.getNewValue();
-	     System.out.println(ddd);
-		
+	private String periodIndicator;
+	public String getPeriodIndicator() {
+		return periodIndicator;
 	}
+	public void setPeriodIndicator(String periodIndicator) {
+		this.periodIndicator = periodIndicator;
+	}
+	public String templateChangeListener(ValueChangeEvent event)
+	{  
+		 String ddd=(String)event.getNewValue();  
+	periodIndicator=getDueService().getFrequency(ddd);
+	  System.out.println(ddd+"hjhjjh");  
+		return periodIndicator;
+	}
+	public void periodChangeListener(ValueChangeEvent event)
+	{
+		str_Period=(String)event.getNewValue();
+		System.out.println(str_Period+"lksakalkska");
+	}
+	
+	
 	public double apartmentChangeListener(ValueChangeEvent event)
-	{   str_Block=(String)event.getNewValue();
-	    
-	     dbl_DueAmount= getDueService().getDueAmount(str_Block,str_DueTemplate);
-	    
-		return dbl_DueAmount;
+	{   String str=(String)event.getNewValue();
+	    System.out.println(str_DueTemplate+"jjkjkjj");
+	    System.out.println(str_Block+"hjh");
+	    System.out.println(str+"jhjhj");
+	  
+	    System.out.println(str_Period+"hjjhjj");
+	    getListDueTransaction();
+	    System.out.println(listDueTransaction+"hjjhjhjj");
+	    FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
 		
+	    ListIterator list=listDueTransaction.listIterator();
+	   
+	    System.out.println(list.hasNext());
+	
+	    if(list.hasNext())
+	   {
+			dbl_DueAmount=0.00;
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "This due already exists for the selected apartment. Duplicate dues cannot be created.!"));
+   		System.out.println("jjkjkjkjkdf");
+   		return dbl_DueAmount;
+		}
+		 dbl_DueAmount= getDueService().getDueAmount(str,str_DueTemplate);	  
+		    return dbl_DueAmount;	
 	}
-	 private List<DueTransaction>   listUserDueTransaction;
+	private List<DueTransaction>   listUserDueTransaction;
 	public List<DueTransaction> getListUserDueTransaction() {
 		listUserDueTransaction=new ArrayList<DueTransaction>();
 	
@@ -314,15 +360,40 @@ public class DueBean implements Serializable{
 		return "viewuserdues.xhtml";
 		
 	}
-	 public Object getAsObject(FacesContext context, UIComponent component, String value)
-	    {
-	        return value;
-	    }
+	public String deleteDues(){
+		System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
-	    public String getAsString(FacesContext context, UIComponent component, Object value)
-	    {
-	        return value.toString();
-	    }
+		Integer id=selectedDue.getInt_DueTransactionID();
+		
+		
+	    	FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Dues deleted Successfully!", "Dues deleted Successfully!"));
+	   
+
+			
+			getDueService().deleteDues(id);
+	    return "dues.xhtml";
+	} 
+	{
+		
+	}
 
 }
 
+    
+	    	
+	    		
+	    	
+	    	
+	    	 
+	   
+	   
+	 
+		
+	  
+		
+	
+	 

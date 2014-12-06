@@ -35,6 +35,7 @@ import org.primefaces.event.FileUploadEvent;
 import com.appowner.model.Account;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
+import com.appowner.model.ChartOfAccount;
 import com.appowner.model.customize;
 import com.appowner.service.AccountsService;
 import com.appowner.util.Util;

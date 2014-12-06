@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
@@ -80,12 +81,12 @@ public String getDat_FromDate1() {
 		      new SimpleDateFormat ("dd-MM-yyyy");
 	//String str=ft.format(d);
 	 Calendar c = Calendar.getInstance(); 
-	
-	 c.setTime(d); 
+	 c.setTime(dat_FromDate);
+	 
 	 c.add(Calendar.DATE,-1);
-	 c.add(Calendar.MONTH,-1);
-	 d= c.getTime();
 	
+	 d= c.getTime();
+	System.out.println(d+"kunkupriya");
 
 	 String str=ft.format(d);
 	
@@ -326,153 +327,7 @@ public void setDat_To(Date dat_To) {
 }
 
 
-/*
- * chart of accounts concept
- */
-private Integer  int_AccountId;
-private String str_OrganizationName;
-private String str_AccountName;
-private String str_AccountType;
-private List<ChartOfAccount> chartOfAccountList;
-private Integer int_UserId;
-public Integer getInt_AccountId() {
-	return int_AccountId;
-}
-public void setInt_AccountId(Integer int_AccountId) {
-	this.int_AccountId = int_AccountId;
-}
-public String getStr_OrganizationName() {
-	str_OrganizationName=Util.getAppartmentName();
-	return str_OrganizationName;
-}
-public void setStr_OrganizationName(String str_OrganizationName) {
-	this.str_OrganizationName = str_OrganizationName;
-}
-public String getStr_AccountName() {
-	return str_AccountName;
-}
-public void setStr_AccountName(String str_AccountName) {
-	this.str_AccountName = str_AccountName;
-}
-public Integer getInt_UserId() {
-	return int_UserId;
-}
-public void setInt_UserId(Integer int_UserId) {
-	this.int_UserId = int_UserId;
-}
-private AccountingGroup accountGroup;
-private ChartOfAccount chartOfAccount;
 
-public ChartOfAccount getChartOfAccount() {
-	return chartOfAccount;
-}
-public void setChartOfAccount(ChartOfAccount chartOfAccount) {
-	this.chartOfAccount = chartOfAccount;
-}
-
-public AccountingGroup getAccountGroup() {
-	return accountGroup;
-}
-public void setAccountGroup(AccountingGroup accountGroup) {
-	this.accountGroup = accountGroup;
-}
-private double debitNetTotal=0.00;
-private double creditNetTotal=0.00;
-
-public double getDebitNetTotal() {
-	return debitNetTotal;
-}
-public void setDebitNetTotal(double debitNetTotal) {
-	this.debitNetTotal = debitNetTotal;
-}
-public double getCreditNetTotal() {
-	return creditNetTotal;
-}
-public void setCreditNetTotal(double creditNetTotal) {
-	this.creditNetTotal = creditNetTotal;
-}
-private double totalIncome;
-public double getTotalIncome() {
-	return totalIncome;
-}
-public void setTotalIncome(double totalIncome) {
-	this.totalIncome = totalIncome;
-}
-public List<ChartOfAccount> getChartOfAccountList() {
-	chartOfAccountList=new ArrayList<ChartOfAccount>();
-	chartOfAccountList.addAll(getAccountsService().getChartOfAccountList());
-	ListIterator list=chartOfAccountList.listIterator();
-	debitNetTotal=0.00;
-	while(list.hasNext())
-	{
-		ChartOfAccount account=(ChartOfAccount)list.next();
-		double ddd=account.getDebit_closingBalance();
-		debitNetTotal=debitNetTotal+ddd;
-		double ddd1=account.getCredit_closingBalance();
-		creditNetTotal=creditNetTotal+ddd1;
-		
-	}
-			
-	return chartOfAccountList;
-}
-public void setChartOfAccountList(List<ChartOfAccount> chartOfAccountList) {
-	this.chartOfAccountList = chartOfAccountList;
-}
-private Character ch_Group;
-
- 
- public Character getCh_Group() {
-	return ch_Group;
-}
-public void setCh_Group(Character ch_Group) {
-	this.ch_Group = ch_Group;
-}
-
-
-public String getStr_AccountType() {
-	return str_AccountType;
-}
-public void setStr_AccountType(String str_AccountType) {
-	this.str_AccountType = str_AccountType;
-} 
-public void accountchangeListener(ValueChangeEvent event){
-	
-	
-	str_AccountType =(String) event.getNewValue();
-	
-	ch_Group=getAccountsService().getChGroup(str_AccountType);
-	
-} 
-private List<String> listAccountsType;
-
-public List<String> getListAccountsType() {
-	listAccountsType=new ArrayList<String>();
-	listAccountsType.addAll(getAccountsService().getAccountTypeList());
-	return listAccountsType;
-}
-public void setListAccountsType(List<String> listAccountsType) {
-	this.listAccountsType = listAccountsType;
-}
-public void saveChartOfAccount()
-{
-	chartOfAccount=new ChartOfAccount();
-	chartOfAccount.setInt_UserId(Util.getUserId());
-	chartOfAccount.setInt_ApartmentId(Util.getAppartmentId());
-	chartOfAccount.setStr_AccountName(str_AccountName);
-	chartOfAccount.setStr_OrganizationName(str_OrganizationName);
-	chartOfAccount.setStr_AccountType(str_AccountType);
-	chartOfAccount.setCh_Group(ch_Group);
-	getAccountsService().saveChartOfAccount(chartOfAccount);
-	AccountsOpeningBalance balance=new AccountsOpeningBalance();
-	balance.setInt_Debit(int_Debit);
-	balance.setInt_Credit(int_Credit);
-	balance.setInt_ApartmentID(Util.getAppartmentId());
-	balance.setStr_AccountsHead(str_AccountName);
-	getAccountsService().saveOpeningAccount(balance);
-	
-	
-	
-}
 //ACCOUNT TRANSACTION
  private List<InvoiceTransaction>  listInvoiceTransaction1;
 public List<InvoiceTransaction> getListInvoiceTransaction1() {
@@ -737,7 +592,7 @@ public double getDebit() {
 		 type2=true;
 		 debit=0.00;
 		 totalBalance=credit;
-		 ListIterator list=listInvoiceTransaction.listIterator();
+		/* ListIterator list=listInvoiceTransaction.listIterator();
 		 while(list.hasNext())
 		 { System.out.println("jhbfjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 		  System.out.println(totalBalance1+"jjjjjjjjjjjjjkkkkkk");
@@ -746,10 +601,12 @@ public double getDebit() {
 		 getAccountsService().updateClosingBalance(debit,totalBalance1,str,-totalBalance1);	
 		 return credit;
 		 }
-		
+		*/
 	    getAccountsService().updateClosingBalance(debit,credit,str,-credit);	
 		 System.out.println(debit+"pp");
-		 return credit;
+		 System.out.println(credit+"jjj");
+		 System.out.println(totalBalance+"jkfkjfkj");
+		 return totalBalance;
       }
       else
       {
@@ -1012,9 +869,9 @@ try{
 				 debit=debit-credit; 
 				 type1=true;
 				 type2=false;
-				 double  debit1=0.00;
+				// double  debit1=0.00;
 				 totalBalance=debit;
-				 if(debit<totalBalance1)
+			/*	 if(debit<totalBalance1)
 				 {
 					 
 					 credit=totalBalance1-debit;
@@ -1028,19 +885,22 @@ try{
 					 credit=0.00;
 					 getAccountsService().updateClosingBalance(debit1,credit,str,debit1);	
 					 return debit;
-				 }
+				 }  */
+				 getAccountsService().updateClosingBalance(debit,credit,str,-debit);	
+				 return debit;
 			 }
 			 else
 			 {   System.out.println("simran");
 				 credit=credit-debit;
+				 System.out.println(credit+"jjj");
 				 type1=false;
 				 type2=true;
 				 debit=0.00;
 				 totalBalance=credit;
-				 double credit1=0.00;
-				 credit1=totalBalance1+credit;
-				 getAccountsService().updateClosingBalance(debit,credit1,str,-credit1);	
-				 return credit;
+				// double credit1=0.00;
+				// credit1=totalBalance1+credit;
+				 getAccountsService().updateClosingBalance(debit,credit,str,credit);	
+				 return totalBalance;
 			 }
 			 
 			
@@ -1055,8 +915,16 @@ try{
 			 type2=false;
 			 credit=0.00;
 			totalBalance=debit;
-			 getAccountsService().updateClosingBalance(debit,credit,str,debit);	
+			if(str_Accounts.equalsIgnoreCase("Opening Balance Adjustment"))
+			{
+			 getAccountsService().updateClosingBalance(debit,credit,str,-debit);	
 			 return debit;
+			}
+			else
+			{
+				 getAccountsService().updateClosingBalance(debit,credit,str,debit);	
+				 return debit;
+			}
 		 }
 		 else
 		  {   System.out.println("rosy");
@@ -1065,8 +933,16 @@ try{
 			 type2=true;
 			 debit=0.00;
 			 totalBalance=credit;
-			 getAccountsService().updateClosingBalance(debit,credit,str,-credit);	
+			 if(str_Accounts.equalsIgnoreCase("Opening Balance Adjustment")) 
+			 {
+			 getAccountsService().updateClosingBalance(debit,credit,str,credit);	
 			 return credit;
+			 }
+			 else
+			 {
+				 getAccountsService().updateClosingBalance(debit,credit,str,-credit);	
+				 return credit; 
+			 }
 		 }
    
      
@@ -1186,6 +1062,156 @@ public TemplateService getTemplateService() {
 public void setTemplateService(TemplateService templateService) {
 	this.templateService = templateService;
 }
+/*
+ * chart of accounts concept
+ */
+private Integer  int_AccountId;
+private String str_OrganizationName;
+private String str_AccountName;
+private String str_AccountType;
+
+private Integer int_UserId;
+public Integer getInt_AccountId() {
+	return int_AccountId;
+}
+public void setInt_AccountId(Integer int_AccountId) {
+	this.int_AccountId = int_AccountId;
+}
+public String getStr_OrganizationName() {
+	str_OrganizationName=Util.getAppartmentName();
+	return str_OrganizationName;
+}
+public void setStr_OrganizationName(String str_OrganizationName) {
+	this.str_OrganizationName = str_OrganizationName;
+}
+
+
+public String getStr_AccountName() {
+	return str_AccountName;
+}
+public void setStr_AccountName(String str_AccountName) {
+	this.str_AccountName = str_AccountName;
+}
+public Integer getInt_UserId() {
+	return int_UserId;
+}
+public void setInt_UserId(Integer int_UserId) {
+	this.int_UserId = int_UserId;
+}
+private AccountingGroup accountGroup;
+
+
+public AccountingGroup getAccountGroup() {
+	return accountGroup;
+}
+public void setAccountGroup(AccountingGroup accountGroup) {
+	this.accountGroup = accountGroup;
+}
+
+private Character ch_Group;
+
+ 
+ public Character getCh_Group() {
+	return ch_Group;
+}
+public void setCh_Group(Character ch_Group) {
+	this.ch_Group = ch_Group;
+}
+
+
+public String getStr_AccountType() {
+	return str_AccountType;
+}
+public void setStr_AccountType(String str_AccountType) {
+	this.str_AccountType = str_AccountType;
+} 
+public void accountchangeListener(ValueChangeEvent event){
+	
+	
+	str_AccountType =(String) event.getNewValue();
+	System.out.println(str_AccountType+"jjkkjkjkjjk");
+	ch_Group=getAccountsService().getChGroup(str_AccountType);
+	System.out.println(ch_Group+"hjjhjhhj");
+	
+} 
+private List<String> listAccountsType;
+
+public List<String> getListAccountsType() {
+	listAccountsType=new ArrayList<String>();
+	listAccountsType.addAll(getAccountsService().getAccountTypeList());
+	return listAccountsType;
+}
+public void setListAccountsType(List<String> listAccountsType) {
+	this.listAccountsType = listAccountsType;
+}
+public String saveChartOfAccount()
+{   System.out.println("jkfjkgfgjk");
+
+ChartOfAccount chartOfAccount=new ChartOfAccount();
+	chartOfAccount.setInt_UserId(Util.getUserId());
+	chartOfAccount.setInt_ApartmentId(Util.getAppartmentId());
+	System.out.println(str_AccountName+"hjjjkjk");
+	chartOfAccount.setStr_AccountName(str_AccountName);
+	chartOfAccount.setStr_OrganizationName(Util.getAppartmentName());
+	chartOfAccount.setStr_AccountType(str_AccountType);
+	System.out.println(ch_Group+"jhjhjh");
+	chartOfAccount.setCh_Group(ch_Group);
+	getAccountsService().saveChartOfAccount(chartOfAccount);
+	AccountsOpeningBalance balance=new AccountsOpeningBalance();
+	balance.setInt_Debit(int_Debit);
+	balance.setInt_Credit(int_Credit);
+	balance.setInt_ApartmentID(Util.getAppartmentId());
+	balance.setStr_AccountsHead(str_AccountName);
+	getAccountsService().saveOpeningAccount(balance);
+	return "chartofaccount.xhtml";
+	
+	
+	
+}
+private double debitNetTotal=0.00;
+private double creditNetTotal=0.00;
+
+public double getDebitNetTotal() {
+	return debitNetTotal;
+}
+public void setDebitNetTotal(double debitNetTotal) {
+	this.debitNetTotal = debitNetTotal;
+}
+public double getCreditNetTotal() {
+	return creditNetTotal;
+}
+public void setCreditNetTotal(double creditNetTotal) {
+	this.creditNetTotal = creditNetTotal;
+}
+private ChartOfAccount chartOfAccount;
+
+public ChartOfAccount getChartOfAccount() {
+	return chartOfAccount;
+}
+public void setChartOfAccount(ChartOfAccount chartOfAccount) {
+	this.chartOfAccount = chartOfAccount;
+}
+private List<ChartOfAccount> chartOfAccountList;
+public List<ChartOfAccount> getChartOfAccountList() {
+	chartOfAccountList=new ArrayList<ChartOfAccount>();
+	chartOfAccountList.addAll(getAccountsService().getChartOfAccountList());
+	ListIterator list=chartOfAccountList.listIterator();
+	debitNetTotal=0.00;
+	while(list.hasNext())
+	{
+		ChartOfAccount account=(ChartOfAccount)list.next();
+		double ddd=account.getDebit_closingBalance();
+		debitNetTotal=debitNetTotal+ddd;
+		double ddd1=account.getCredit_closingBalance();
+		creditNetTotal=creditNetTotal+ddd1;
+		
+	}
+			
+	return chartOfAccountList;
+}
+public void setChartOfAccountList(List<ChartOfAccount> chartOfAccountList) {
+	this.chartOfAccountList = chartOfAccountList;
+}
 private List<ChartOfAccount> income1;
 public List<ChartOfAccount> getIncome1() {
 	income1=new ArrayList<ChartOfAccount>();
@@ -1234,7 +1260,7 @@ public List<ChartOfAccount> getLiability() {
 	while(list.hasNext())
 	{
 		ChartOfAccount account=(ChartOfAccount) list.next();
-		double ddd=account.getCredit_closingBalance();
+		double ddd=account.getClosingBalance();
 		int_blank=int_blank+ddd;
 	}
 	return liability;
@@ -1267,7 +1293,7 @@ private List<InvoiceTransaction>  listInvoiceTransaction2;
 public List<InvoiceTransaction> getListInvoiceTransaction2() {
 	try{
     listInvoiceTransaction2=new ArrayList<InvoiceTransaction>();
-	System.out.println(dat_To+"jjjjjjjjjjjjfffffffffffff");
+	
 	listInvoiceTransaction2.addAll(getAccountsService().listInvoiceTransaction2(dat_From,dat_To));
 	
 	ListIterator list=listInvoiceTransaction2.listIterator();
@@ -1277,7 +1303,7 @@ public List<InvoiceTransaction> getListInvoiceTransaction2() {
 		
 		InvoiceTransaction invoice=(InvoiceTransaction)list.next();
 		
-		double id=invoice.getSubTotal();
+		double id=invoice.getTotalDue();
 		
 	    totalIncome=totalIncome+id;
 	    System.out.println(totalIncome+"kkkk");
@@ -1306,12 +1332,12 @@ public List<InvoiceTransaction> getListInvoiceTransaction2() {
 						totalIncome=totalIncome+balance3;
 						System.out.println(totalIncome+"123fghj");
 					}
-					else if(sss.equalsIgnoreCase("Income from Resident"))
+					/*else if(sss.equalsIgnoreCase("Income from Resident"))
 					{
 					    double balance4=getAccountsService().getCreditAmount(id);
 					    totalIncome=totalIncome-balance4;
 					    System.out.println(totalIncome+"jjj12345");
-					}
+					}*/
 					
 				}
 	}
@@ -1327,6 +1353,13 @@ public void setListInvoiceTransaction2(
 		List<InvoiceTransaction> listInvoiceTransaction2) {
 	this.listInvoiceTransaction2 = listInvoiceTransaction2;
 }
+private List<ManualJournal> listManualJournal3;
+public List<ManualJournal> getListManualJournal3() {
+	return listManualJournal3;
+}
+public void setListManualJournal3(List<ManualJournal> listManualJournal3) {
+	this.listManualJournal3 = listManualJournal3;
+}
 private List<Expense> expenseList;
 public List<Expense> getExpenseList() {
 	expenseList=new ArrayList<Expense>();
@@ -1339,6 +1372,40 @@ public List<Expense> getExpenseList() {
 		Expense expense=(Expense) list.next();
 		double ddd=expense.getInt_Ammount();
 		debitNetTotal=debitNetTotal+ddd;
+	}	
+	System.out.println(debitNetTotal+"kjdfkdfk");
+	listManualJournal3=new ArrayList<ManualJournal>();
+	listManualJournal3.addAll(getAccountsService().getlistManualJournal3(dat_From,dat_To));
+	 ListIterator list2=listManualJournal3.listIterator();
+	 {  
+	    
+		 while(list2.hasNext())
+		 {
+			 ManualJournal journal=(ManualJournal)list2.next();
+			 id=journal.getInt_ManualJournalID();
+			 System.out.println(id);
+			
+					 ManualJournal  account=(ManualJournal) getAccountsService().getManualAccount(id);
+					
+					 String sss=account.getStr_DebitAccount();
+					 System.out.println(sss+"hjugt");
+					 String sss1=account.getStr_CreditAccount();
+					 System.out.println(sss1+"hjuygt");
+					
+					if(sss.equalsIgnoreCase("Expense"))
+					{
+						double balance3=getAccountsService().getDebitAmount(id);
+						debitNetTotal=debitNetTotal+balance3;
+						System.out.println(debitNetTotal+"123fghj");
+					}
+					/*else if(sss.equalsIgnoreCase("Income from Resident"))
+					{
+					    double balance4=getAccountsService().getCreditAmount(id);
+					    totalIncome=totalIncome-balance4;
+					    System.out.println(totalIncome+"jjj12345");
+					}*/
+					
+				}
 	}
 	return expenseList;
 }
@@ -1351,16 +1418,58 @@ public List<Double> getExpenseAmount() {
 	expenseAmount.addAll(getAccountsService().getExpenseAmount());
 	System.out.println(expenseAmount+"jjjjjjjjjjjjjjjjjjjjjjjjjjjjdddddddddddddddddddddd");
 	ListIterator list=expenseAmount.listIterator();
+	netProfit2=0.00;
 	while(list.hasNext())
 	{
-		netProfit2=(Double)list.next();
+		double id=(Double)list.next();
+		netProfit2=netProfit2+id;
 		System.out.println(netProfit2+"gggggggggggg");
 	}
+	listManualJournal3=new ArrayList<ManualJournal>();
+	listManualJournal3.addAll(getAccountsService().getlistManualJournal3(dat_From,dat_To));
+	 ListIterator list2=listManualJournal3.listIterator();
+	 {  
+	    
+		 while(list2.hasNext())
+		 {
+			 ManualJournal journal=(ManualJournal)list2.next();
+			 id=journal.getInt_ManualJournalID();
+			 System.out.println(id);
+			
+					 ManualJournal  account=(ManualJournal) getAccountsService().getManualAccount(id);
+					
+					 String sss=account.getStr_DebitAccount();
+					 System.out.println(sss+"hjugt");
+					 String sss1=account.getStr_CreditAccount();
+					 System.out.println(sss1+"hjuygt");
+					
+					if(sss.equalsIgnoreCase("Expense"))
+					{
+						double balance3=getAccountsService().getDebitAmount(id);
+						netProfit2=netProfit2+balance3;
+						System.out.println(netProfit2+"123fghj");
+					}
+					/*else if(sss.equalsIgnoreCase("Income from Resident"))
+					{
+					    double balance4=getAccountsService().getCreditAmount(id);
+					    totalIncome=totalIncome-balance4;
+					    System.out.println(totalIncome+"jjj12345");
+					}*/
+					
+				}
+	 }
 	return expenseAmount;
+}
+private double totalIncome;
+public double getTotalIncome() {
+	return totalIncome;
+}
+public void setTotalIncome(double totalIncome) {
+	this.totalIncome = totalIncome;
 }
 public double netProfit3;
 public double getNetProfit3() {
-	netProfit3=totalIncome-netProfit2;
+	netProfit3=totalIncome-debitNetTotal;
 	return netProfit3;
 }
 public void setNetProfit3(double netProfit3) {
@@ -1401,12 +1510,12 @@ public List<Double> getIncomeAmount() {
 						totalIncome=totalIncome+balance3;
 						System.out.println(totalIncome+"123fghj");
 					}
-					else if(sss.equalsIgnoreCase("Income from Resident"))
+				/*	else if(sss.equalsIgnoreCase("Income from Resident"))
 					{
 					    double balance4=getAccountsService().getCreditAmount(id);
 					    totalIncome=totalIncome-balance4;
 					    System.out.println(totalIncome+"jjj12345");
-					}
+					}*/
 					
 				}
 	}
@@ -1417,7 +1526,7 @@ public void setIncomeAmount(List<Double> incomeAmount) {
 }
 private String indicator;
 public String getIndicator() {
-	indicator="Profit";
+	//indicator="Profit";
 	return indicator;
 }
 public void setIndicator(String indicator) {
@@ -1486,7 +1595,7 @@ public void init() {
     dates.add(g3);
     getListInvoiceTransaction2(); 
     getExpenseList();  
-    getDate6();
+  
 }
 private String date4;
 public String getDate4() {
@@ -1514,17 +1623,150 @@ public String getSearch1(){
 	getListInvoiceTransaction2();
 	return "profitandloss.xhtml";
 }
-private Date date6;
-public Date getDate6() {
-	Calendar c = Calendar.getInstance();
-	c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+
+public Date accountchangeListener3(ValueChangeEvent event)
+{
 	
-	date6=c.getTime();
-	System.out.println(date6+"hhhhhhhhhhhhhhhhhhhh");
-	return date6;
+	str=(String)event.getNewValue();
+   System.out.println(str+"lovejjjjjjjjjjjjjjjjj");
+   if(str.equalsIgnoreCase("This Week End"))
+		   {
+	   Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;
+		   }
+   else if(str.equalsIgnoreCase("This Month End"))
+   {
+	   Calendar c = Calendar.getInstance();
+	 		
+	 		c.getActualMaximum(Calendar.DAY_OF_MONTH);
+	 		c.add(Calendar.MONTH, 1);  
+	        c.set(Calendar.DAY_OF_MONTH, 1);  
+	        c.add(Calendar.DATE, -1);  
+
+	 		dat_ToDate=c.getTime();
+	 		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+	 		return dat_ToDate; 
+   }
+   else if(str.equalsIgnoreCase("This Quarter End"))
+   {  
+   Calendar c = Calendar.getInstance();
+	c.setTime(dat_ToDate);
+	int factor = 0;
+	int month = c.get(Calendar.MONTH);
+	if (month == Calendar.JANUARY
+		|| month == Calendar.APRIL
+		|| month == Calendar.JULY
+		|| month == Calendar.OCTOBER) {
+		factor = 2;
+	} else if (
+		month == Calendar.FEBRUARY
+		|| month == Calendar.MAY
+		|| month == Calendar.AUGUST
+		|| month == Calendar.NOVEMBER) {
+		factor = 1;
+		} else {
+			factor = 0;
+	}
+
+	c.add(Calendar.MONTH, factor);
+	c.set(Calendar.DATE, c.getActualMaximum(Calendar.DATE));
+	dat_ToDate=c.getTime();
+	return dat_ToDate;
 }
-public void setDate6(Date date6) {
-	this.date6 = date6;
+   
+   else if(str.equalsIgnoreCase("This Year End"))
+   {
+	   Calendar c = Calendar.getInstance();
+		
+		c.getActualMaximum(Calendar.DAY_OF_MONTH);
+		int year=c.getWeekYear();
+		c.set(Calendar.YEAR, year);
+		c.set(Calendar.MONTH, 11); // 11 = december
+		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+
+
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;  
+   }
+   else if(str.equalsIgnoreCase("Yesterday"))
+   {
+	   Calendar c = Calendar.getInstance();
+	   c.add(Calendar.DATE, -1);
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;
+   }
+   else if(str.equalsIgnoreCase("Custom"))
+   {  dat_ToDate=null;
+	  return dat_ToDate;
+   }
+   else if(str.equalsIgnoreCase("Previous Week End"))
+   {
+	   Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		c.set(Calendar.DATE,-1);
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;
+   }
+   else if(str.equalsIgnoreCase("Previous Month End"))
+   {
+	   Calendar aCalendar = Calendar.getInstance();
+	   aCalendar.set(Calendar.DATE, 1);
+	   aCalendar.add(Calendar.DAY_OF_MONTH, -1);
+	   dat_ToDate = aCalendar.getTime();
+	   System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+	   
+   }
+   else if(str.equalsIgnoreCase("Previous Quarter End"))
+   {
+	   Calendar c = Calendar.getInstance();
+	   c.add(Calendar.MONTH,-3);
+		int factor = 0;
+		int month = c.get(Calendar.MONTH);
+		if (month == Calendar.JANUARY
+			|| month == Calendar.APRIL
+			|| month == Calendar.JULY
+			|| month == Calendar.OCTOBER) {
+			factor = 2;
+		} else if (
+			month == Calendar.FEBRUARY
+			|| month == Calendar.MAY
+			|| month == Calendar.AUGUST
+			|| month == Calendar.NOVEMBER) {
+			factor = 1;
+			} else {
+				factor = 0;
+		}
+
+		c.add(Calendar.MONTH, factor);
+		c.set(Calendar.DATE, c.getActualMaximum(Calendar.DATE));
+		dat_ToDate=c.getTime();
+		return dat_ToDate;
+	   
+   }
+   else if(str.equalsIgnoreCase("Previous Year End"))
+   {
+	   Calendar c = Calendar.getInstance();
+		
+		
+		int year=c.getWeekYear()-1;
+		c.set(Calendar.YEAR, year);
+		c.set(Calendar.MONTH, 11); // 11 = december
+		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+
+
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;  
+   }
+    return null;
+	
 }
 }
 
