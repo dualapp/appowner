@@ -8,12 +8,14 @@ import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.TaxTemplate;
+import com.appowner.model.Vendor;
 
 
 @Repository
@@ -77,11 +79,22 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		}
 		else
 		{    System.out.println("simranhvhh");
+		 if(str_Status==null)
+		 {   System.out.println(str_Block);
+		     System.out.println(str_ApartmentNo);
+		     System.out.println(str_BillPeriod);
+		     System.out.println(str_InvoiceTemplate+"jjkjkj");
+			 String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=?"; 
+				return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
+			          .setParameter(3, str_ApartmentNo).list(); 
+		 }
+		 else
+		 {
 			String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND str_Status=?";
 			return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
 		          .setParameter(3, str_ApartmentNo).setParameter(4, str_Status).list();
-		}
-		
+		 }
+		}  
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -124,17 +137,17 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	@SuppressWarnings("unchecked")
 	public List<String> getAccountName()
 	{
-		String hql="select str_AccountName from ChartOfAccount where ch_Group='A'";
-		List<String> str=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).list();
-		String str1=str.remove(2);
+		String str="select str_AccountName from ChartOfAccount where str_AccountType=? OR str_AccountType=?";
+		List<String> str1=(List<String>)getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,"Bank").setParameter(1, "Cash").setCacheable(true).list();
 		
 		
-		return str;
+		
+		return str1;
 	}
-	public void updatePayment(String accountName, double totalBalance,double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate,Date payment_Date, Integer payment_No)
+	public void updatePayment(String accountName,String paymentMode, double totalBalance,double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate,Date payment_Date, Integer payment_No, String deposite_Account_Name)
 	{
-		String hql="update InvoiceTransaction set str_Status=?,totalBalance=?,dueBalance=?,str_paymentAccount=?,dat_PaymentDate=?,Payment_No=?,Payment_Date=? where int_InvoiceTransactionID=?";
-		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Status).setParameter(1,totalBalance).setParameter(2, dueBalance).setParameter(3,accountName).setDate(4,dat_InvoiceDate).setParameter(5, payment_No).setParameter(6, payment_Date).setParameter(7,id).executeUpdate();
+		String hql="update InvoiceTransaction set str_Status=?,str_paymentMode=?,totalBalance=?,dueBalance=?,str_paymentAccount=?,dat_PaymentDate=?,Payment_No=?,Payment_Mode_Date=?,deposit_Account=? where int_InvoiceTransactionID=?";
+		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Status).setParameter(1,paymentMode).setParameter(2, totalBalance).setParameter(3,dueBalance).setParameter(4,accountName).setDate(5, dat_InvoiceDate).setParameter(6, payment_No).setDate(7, payment_Date).setParameter(8, deposite_Account_Name).setParameter(9,id).executeUpdate();
 	}
 	public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID)
 	{
@@ -148,6 +161,29 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	public void deleteInvoice(Integer id)
 	{
 		getSessionFactory().getCurrentSession().createQuery("DELETE FROM InvoiceTransaction WHERE int_InvoiceTransactionID = "+id).executeUpdate();
+	}
+	@SuppressWarnings("unchecked")
+	public List<String> getlistAccountName()
+	{
+		String hql="select str_acount_Name from Account";
+		return getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	}
+	public void deleteDues(String str)
+	{
+		String hql="delete from DueTransaction where int_InvoiceNo=?";
+		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).executeUpdate();
+	}
+	public String getStatus(int id)
+	{
+		String hql="select str_Status from InvoiceTransaction where int_InvoiceTransactionID=?";
+		return (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,id).setCacheable(true).uniqueResult();
+	}
+	public String getPeriod(String select)
+	{   System.out.println(select+"hjyhjjuhjuj");
+		String hql="select str_Frequency from InvoiceTemplate  where str_InvoiceTemplateName=?";
+		//String vendorList= (String) getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("str_InvoiceTemplateName",select)).uniqueResult();
+		return (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).setCacheable(true).uniqueResult();
+		//return vendorList;
 	}
 	
 }
