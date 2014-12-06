@@ -108,4 +108,34 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		getApartmentDetailsDao().updateProfilePic(user);
 	}
 
+	@Override
+	public Long getNoOfUsers(String str_HouseNo) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getNoOfUsers(str_HouseNo);
+	}
+
+	@Override
+	public HouseDetails getHouseDetails(Integer houseId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getHouseDetails(houseId);
+	}
+
+	@Override
+	public void deleteHouseDetails(HouseDetails hd) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().deleteHouseDetails(hd);
+	}
+
+	@Override
+	public void deleteSelectedHouse(List<HouseDetails> entitiesToDelete) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().deleteSelectedHouse(entitiesToDelete);
+	}
+
+	@Override
+	public void updateHouseDetails(HouseDetails housedetails) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateHouseDetails(housedetails);
+	}
+
 }
