@@ -55,7 +55,7 @@ import com.appowner.util.Util;
  
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ExpenseBean  implements Serializable{
 
 	
@@ -593,21 +593,23 @@ public String addExpenses()
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
+	
 	return "Expenses.xhtml";
 }
 public void resetExpenses()
 {
-	 str_AccountName=null;
-	str_ExcepenseType=null;
-	str_ExpenseCategory=null;
-	date_Duration=null;
-	str_Description=null;
-	int_Ammount=null;
-	str_AssetCategoryType=null;
-	str_AssetCategoryType1=null;
-	str_AssetName=null;
-	str_AssetName1=null; 
+	this.setStr_AccountName(null);
+	 this.setStr_ExcepenseType(null);
+	 this.setStr_ExpenseCategory(null);
+	 this.setStr_Date(null);
 	 
+	this.setStr_Description(null);
+	this.setDate_Duration(null);
+	 this.setInt_Ammount(null);
+	 this.setStr_AssetCategoryType(null);
+	 this.setStr_AssetCategoryType1(null);
+	 this.setStr_AssetName(null);
+	 this.setStr_AssetName1(null);
 	 
 }
 public Expense getExpense() {
