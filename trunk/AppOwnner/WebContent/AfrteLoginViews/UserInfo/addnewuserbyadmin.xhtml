@@ -128,16 +128,19 @@
  
 
  <p:panel id="parentPanel"  style="border:none;" rendered="#{cls_UserBean.render}">
-  #{cls_UserBean.render}
+  
  <div id="page3"> 
  <p:panel id="panelOne"  style="border:none;">
  <div class="gsTitleDiv">House Details of  #{cls_UserBean.str_BlockName}, #{cls_UserBean.str_HouseNo}</div><hr/>
         <table><tr>
-    <th width="20%"><h:outputText value="Size of house:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.housedetails.int_HouseSize}"/></td>
+    <th width="10%"><h:outputText value="Size of house:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.housedetails.int_HouseSize}"/></td>
    
-   <th width="20%"> <h:outputText value="Type of house:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.housedetails.str_TypeOfHouse}"/></td>
+   <th width="10%"> <h:outputText value="Type of house:"/></th><td width="20%"><h:outputText value="#{cls_UserBean.housedetails.str_TypeOfHouse}"/></td>
    
-  <th width="20%">  <h:outputText value="No of Bathrooms:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.housedetails.int_NoOfBathRooms}"/></td></tr>
+  <th width="10%">  <h:outputText value="No of Bathrooms:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.housedetails.int_NoOfBathRooms}"/></td>
+  <th width="10%"></th><td width="10%"></td>
+  </tr>
+ 
   <tr>
    
    <th> <h:outputText value="No of Balconies:"/></th><td><h:outputText value="#{cls_UserBean.housedetails.int_NoOfBalconies}"/></td>
@@ -152,7 +155,7 @@
         <table><tr>
     <th width="10%"><h:outputText value="Name:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u.str_FirstName}"/></td>
    
-   <th width="10%"> <h:outputText value="Email:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u.str_Email}"/></td>
+   <th width="10%"> <h:outputText value="Email:"/></th><td width="20%"><h:outputText value="#{cls_UserBean.u.str_Email}"/></td>
    
   <th width="10%">  <h:outputText value="Mobile No:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u.str_PhoneNo}"/></td>  
    <th width="10%"> <h:outputText value="Land Line No:"/></th><td width="10%"> <h:outputText value=" "/></td></tr>
@@ -169,7 +172,7 @@
        <table><tr>
     <th width="10%"><h:outputText value="Name:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u1.str_FirstName}"/></td>
    
-   <th width="10%"> <h:outputText value="Email:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u1.str_Email}"/></td>
+   <th width="10%"> <h:outputText value="Email:"/></th><td width="20%"><h:outputText value="#{cls_UserBean.u1.str_Email}"/></td>
    
   <th width="10%">  <h:outputText value="Mobile No:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u1.str_PhoneNo}"/></td>
    
