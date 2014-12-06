@@ -35,6 +35,10 @@ public interface DueService {
 
 	public void updateDueTransaction(String str_Status, Integer str1, double ddd);
 
+	public void deleteDues(Integer id);
+
+	public String getFrequency(String ddd);
+
 	
 
 }
