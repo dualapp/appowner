@@ -1187,10 +1187,10 @@ public static void setUser1(boolean user1) {
     private String path;
 	public String uploadFile() throws IOException {
 
-		/*SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));*/
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
 		// Extract file name from content-disposition header of file part
-		String fileName = getFileName(part);
+		//String fileName = getFileName(part);
 		System.out.println("***** fileName: " + fileName);
  
 		//String basePath = "D:" + File.separator + "temp" + File.separator;
