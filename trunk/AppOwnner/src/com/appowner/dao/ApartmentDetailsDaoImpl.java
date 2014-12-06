@@ -14,6 +14,7 @@ import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.WorkOrderCategory;
 
 @Repository
 public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
@@ -129,4 +130,39 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		sessionFactory.getCurrentSession().update(user);
 	}
 
+	@Override
+	public Long getNoOfUsers(String str_HouseNo) {
+		// TODO Auto-generated method stub
+		return  (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from User  where str_Flat=?").setParameter(0, str_HouseNo).uniqueResult();
+	}
+
+	@Override
+	public HouseDetails getHouseDetails(Integer houseId) {
+		// TODO Auto-generated method stub
+		return (HouseDetails) sessionFactory.getCurrentSession().get(HouseDetails.class, houseId);
+	}
+
+	@Override
+	public void deleteHouseDetails(HouseDetails hd) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(hd);
+	}
+
+	@Override
+	public void deleteSelectedHouse(List<HouseDetails> entitiesToDelete) {
+		ListIterator itr=entitiesToDelete.listIterator();
+		while(itr.hasNext())
+		{
+			HouseDetails Hd=(HouseDetails) itr.next();
+		sessionFactory.getCurrentSession().delete(Hd);
+	}
+
+
+	}
+
+	@Override
+	public void updateHouseDetails(HouseDetails housedetails) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(housedetails);
+	}
 }
