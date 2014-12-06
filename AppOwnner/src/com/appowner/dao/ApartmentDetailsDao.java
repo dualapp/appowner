@@ -37,4 +37,14 @@ public interface ApartmentDetailsDao {
 
 	void updateProfilePic(User user);
 
+	Long getNoOfUsers(String str_HouseNo);
+
+	HouseDetails getHouseDetails(Integer houseId);
+
+	void deleteHouseDetails(HouseDetails hd);
+
+	void deleteSelectedHouse(List<HouseDetails> entitiesToDelete);
+
+	void updateHouseDetails(HouseDetails housedetails);
+
 }
