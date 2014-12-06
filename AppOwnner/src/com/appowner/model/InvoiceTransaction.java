@@ -152,6 +152,16 @@ public class InvoiceTransaction implements Serializable{
 
 
 	private double totalBalance;
+	@Column(name="var_paymentMode")
+	private String str_paymentMode;
+	public String getStr_paymentMode() {
+		return str_paymentMode;
+	}
+	public void setStr_paymentMode(String str_paymentMode) {
+		this.str_paymentMode = str_paymentMode;
+	}
+
+
 	@Column(name="var_paymentAccount")
 	private String str_paymentAccount;
 	public String getStr_paymentAccount() {
@@ -160,13 +170,16 @@ public class InvoiceTransaction implements Serializable{
 	public void setStr_paymentAccount(String str_paymentAccount) {
 		this.str_paymentAccount = str_paymentAccount;
 	}
-	public String dat_PaymentDate;
-	public String getDat_PaymentDate() {
+	public Date dat_PaymentDate;
+	
+	public Date getDat_PaymentDate() {
 		return dat_PaymentDate;
 	}
-	public void setDat_PaymentDate(String dat_PaymentDate) {
+	public void setDat_PaymentDate(Date dat_PaymentDate) {
 		this.dat_PaymentDate = dat_PaymentDate;
 	}
+
+
 	private Integer Payment_No;
 	public Integer getPayment_No() {
 		return Payment_No;
@@ -181,13 +194,16 @@ public class InvoiceTransaction implements Serializable{
 	public void setInt_Admin_ID(Integer int_Admin_ID) {
 		this.int_Admin_ID = int_Admin_ID;
 	}
-	private Date Payment_Date;
-	public Date getPayment_Date() {
-		return Payment_Date;
+	private Date Payment_Mode_Date;
+	
+	public Date getPayment_Mode_Date() {
+		return Payment_Mode_Date;
 	}
-	public void setPayment_Date(Date payment_Date) {
-		Payment_Date = payment_Date;
+	public void setPayment_Mode_Date(Date payment_Mode_Date) {
+		Payment_Mode_Date = payment_Mode_Date;
 	}
+
+
 	private double dueBalance;
 	public double getDueBalance() {
 		return dueBalance;
@@ -195,4 +211,12 @@ public class InvoiceTransaction implements Serializable{
 	public void setDueBalance(double dueBalance) {
 		this.dueBalance = dueBalance;
 	}
+	private String deposit_Account;
+	public String getDeposit_Account() {
+		return deposit_Account;
+	}
+	public void setDeposit_Account(String deposit_Account) {
+		this.deposit_Account = deposit_Account;
+	}
+	
 }
