@@ -56,13 +56,13 @@ public class AccountsServiceImpl implements AccountsService {
 
 	@Override
 	public void saveChartOfAccount(ChartOfAccount chartOfAccount) {
-		// TODO Auto-generated method stub
+		
 		getAccountsDao().saveChartOfAccount(chartOfAccount);
 	}
 
 	@Override
 	public List<ChartOfAccount> getChartOfAccountList() {
-		// TODO Auto-generated method stub
+	
 		return getAccountsDao().getChartOfAccountList();
 	}
 
@@ -272,5 +272,9 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getlistManualJournal2(dat_From, dat_To);
 	}
-			
+	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To)
+	{
+		return getAccountsDao().getlistManualJournal3(dat_From, dat_To);
+	}
+	
 }
