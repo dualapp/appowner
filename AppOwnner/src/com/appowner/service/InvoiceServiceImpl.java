@@ -66,10 +66,10 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().getAccountName();
 	  }
-	  public void updatePayment(String accountName, double totalBalance, double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate, Date payment_Date, Integer payment_No)
+	  public void updatePayment(String accountName,String paymentMode, double totalBalance, double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate, Date payment_Date, Integer payment_No, String deposite_Account_Name)
 
 	  {
-		   getInvoiceDao().updatePayment(accountName,totalBalance,dueBalance,str_Status,id,dat_InvoiceDate,payment_Date,payment_No);
+		   getInvoiceDao().updatePayment(accountName,paymentMode,totalBalance,dueBalance,str_Status,id,dat_InvoiceDate,payment_Date,payment_No,deposite_Account_Name);
 	  }
 	  public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID)
 	  {
@@ -82,5 +82,21 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  public void deleteInvoice(Integer id)
 	  {
 		  getInvoiceDao().deleteInvoice(id);
+	  }
+	  public List<String> getlistAccountName()
+	  {
+		return   getInvoiceDao().getlistAccountName();
+	  }
+	  public void deleteDues(String str)
+	  {
+		  getInvoiceDao().deleteDues(str);
+	  }
+	  public String getStatus(int id)
+	  {
+		  return getInvoiceDao().getStatus(id);
+	  }
+	  public String getPeriod(String select)
+	  {
+		  return getInvoiceDao().getPeriod(select);
 	  }
 }

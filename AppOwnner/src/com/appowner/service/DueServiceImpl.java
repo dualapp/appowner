@@ -81,4 +81,12 @@ public class DueServiceImpl implements DueService{
 	{
 		getDueDao().updateDueTransaction(str_Status,str1,ddd);
 	}
+	public void deleteDues(Integer id)
+	{
+		getDueDao().deleteDues(id);
+	}
+	public String getFrequency(String ddd)
+	{
+		return getDueDao().getFrequency(ddd);
+	}
 }

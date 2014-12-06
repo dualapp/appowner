@@ -1,7 +1,6 @@
 package com.appowner.service;
 
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +30,21 @@ public String getmailid(String str_ApartmentNo);
 
 public List<String> getAccountName();
 
-public void updatePayment(String accountName, double totalBalance, double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate, Date payment_Date, Integer payment_No);
+public void updatePayment(String accountName, String paymentMode, double totalBalance, double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate, Date payment_Date, Integer payment_No, String deposite_Account_Name);
 
 public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID);
 
 public double getAmount(Integer id);
 
 public void deleteInvoice(Integer id);
+
+public List<String> getlistAccountName();
+
+public void deleteDues(String str);
+
+public String getStatus(int id);
+
+public String getPeriod(String select);
 
 
 }
