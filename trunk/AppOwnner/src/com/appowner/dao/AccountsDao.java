@@ -45,6 +45,7 @@ import java.util.List;
 
 
 
+
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.Account;
@@ -119,5 +120,7 @@ public interface AccountsDao {
 	public List<Double> getExpenseAmount();
 	public List<Double> getIncomeAmount();
 	public List<ManualJournal> getlistManualJournal2(Date dat_From, Date dat_To);
+	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To);
+	
 
 }
