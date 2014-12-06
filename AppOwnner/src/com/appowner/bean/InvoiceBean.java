@@ -50,12 +50,28 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private String str_Status;
 	private String int_InvoiceNo;
 	private Integer int_Admin_ID;
+	private String paymentMode;
+	
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
+	}
 	public Integer getInt_Admin_ID() {
 		int_Admin_ID=Util.getUserId();
 		return int_Admin_ID;
 	}
 	public void setInt_Admin_ID(Integer int_Admin_ID) {
 		this.int_Admin_ID = int_Admin_ID;
+	}
+	private String deposite_Account_Name;
+	
+	public String getDeposite_Account_Name() {
+		return deposite_Account_Name;
+	}
+	public void setDeposite_Account_Name(String deposite_Account_Name) {
+		this.deposite_Account_Name = deposite_Account_Name;
 	}
 	public InvoiceBean()
 	{
@@ -293,6 +309,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		public static void setTransaction1(List<String> transaction1) {
 			InvoiceBean.transaction1 = transaction1;
 		}
+		
 		private static String date3;
 	public static String getDate3() {
 		java.util.Date d=new java.util.Date();
@@ -363,6 +380,16 @@ public Integer getInt_Organisation() {
 public static void setDueID(List<Integer> dueID) {
 	InvoiceBean.dueID = dueID;
 }
+public List<DueTransaction> getListDueTransaction() {
+	listDueTransaction=new ArrayList<DueTransaction>();
+	listDueTransaction.addAll(getDueService().listDueTransaction(str_DueTemplate,str_Block,str_ApartmentNo,str_BillPeriod,str_Status));
+	System.out.println(listDueTransaction+"jjkjkkj");
+	return listDueTransaction;
+}
+public void setListDueTransaction(List<DueTransaction> listDueTransaction) {
+	this.listDueTransaction = listDueTransaction;
+}
+private List<DueTransaction> listDueTransaction;
 	public String addInvoiceTransaction()
 	{   
 		try{
@@ -386,13 +413,17 @@ public static void setDueID(List<Integer> dueID) {
 			invoice.setTotalBalance(getTotalDue());
 			invoice.setStr_Status("Due");
 			getInvoiceService().saveInvoiceTransaction(invoice);
+			
 			DueTransaction due1=new DueTransaction();
 			 listDues=getInvoiceService().taxList(select);
 		       System.out.println(listDues); 
 		        
 		          String[] strArray = listDues.split(",");
-		        for (String str : strArray) {
-		        	  due1.setStr_DueTemplate(str);
+		        for (String str : strArray) 
+		        {	  due1.setStr_DueTemplate(str);
+		             str_DueTemplate=str;
+		             getListDueTransaction();
+		 			System.out.println(listDueTransaction.listIterator().hasNext());
 		               due1.setStr_InitiatedOn(getDat_InvoiceDate());	
 		              due1.setDat_LastDate(dat_DueDate);
 		              due1.setStr_ApartmentNo(str_ApartmentNo);
@@ -434,7 +465,7 @@ public static void setDueID(List<Integer> dueID) {
 				
 					return "invoice.jsp";
 				}
-				return null;
+				return "invoice.xhtml";
 			
 			
 		}
@@ -442,7 +473,7 @@ public static void setDueID(List<Integer> dueID) {
 		{
 			e.printStackTrace();
 		}
-		return null;
+		return "invoice.xhtml";
 	}
 	
 	/*
@@ -500,10 +531,18 @@ public static void setDueID(List<Integer> dueID) {
 	public void setListTax(List<String> listTax) {
 		this.listTax = listTax;
 	}
+	private String periodIndicator;
+	public String getPeriodIndicator() {
+		return periodIndicator;
+	}
+	public void setPeriodIndicator(String periodIndicator) {
+		this.periodIndicator = periodIndicator;
+	}
 	public List<String> selectRadioButton(ValueChangeEvent event) throws InvoiceBean
 	{  try{
 		select =( String )event.getNewValue();
-        
+		System.out.println(select+"hhjjhjh");
+		
          dueList=new ArrayList<String>();
 	    if(select.equals(getSelect()))
 	    {
@@ -520,6 +559,7 @@ public static void setDueID(List<Integer> dueID) {
 	        
 	         dueList.addAll(listTax);
 	        }
+	       
           return dueList;
 
 	       
@@ -529,12 +569,23 @@ public static void setDueID(List<Integer> dueID) {
 	    	 dueList=new ArrayList<String>();
 	         return dueList;
 	    }
+	   
 	}
 	catch(Exception e)
 	{
 		throw new InvoiceBean("DueTemplate is not Present");
 	}
+	 finally
+	    {
+	    	 periodIndicator=getInvoiceService().getPeriod(select);
+				System.out.println(periodIndicator+"jhjjkkj");
+	    }
 
+	}
+	public void periodChangeListener(ValueChangeEvent event)
+	{
+		str_BillPeriod=(String)event.getNewValue();
+		System.out.println(str_BillPeriod+"hjjjjjj");
 	}
 	private List<InvoiceTransaction> listInvoiceTransaction;
 	public List<InvoiceTransaction> getListInvoiceTransaction() {
@@ -606,7 +657,7 @@ public static void setDueID(List<Integer> dueID) {
 	}
 	public List<String> blockChangeListener(ValueChangeEvent event)
 	{   str_Block=(String)event.getNewValue();
-	System.out.println(str_Block);
+	   System.out.println(str_Block);
 		str_BlockNo=new ArrayList<String>();
 		str_BlockNo.addAll(getInvoiceService().getApartmentlist(str_Block));
 		return str_BlockNo;
@@ -734,6 +785,7 @@ public static void setDueID(List<Integer> dueID) {
 			     totalDue=subTotal+taxAmount2;
 		    	 
 			    	  totalAmounts.add(totalAmount);
+			    	 
 			    	  System.out.println(totalAmounts+"jffd");
 			  		StringBuilder out = new StringBuilder();
 			  		for (Object o : totalAmounts)
@@ -755,11 +807,31 @@ public static void setDueID(List<Integer> dueID) {
 		 }
 		 	
 	}
+	
 	public List<String> amountChangeListener(ValueChangeEvent event)
-	         
-			 {  try
-			 {
-		         String str=(String)event.getNewValue();
+	 {      String str=(String)event.getNewValue();
+		System.out.println(str_BillPeriod+"hjjhj"); 
+		System.out.println(str_InvoiceTemplate+"hjjhjj");
+		str_ApartmentNo=str;
+		System.out.println(str_Status+"hjjhjjllljhuy");
+		System.out.println(str+"jkjkjjk");	
+		System.out.println(str_Block+"jjkkjkkjh");
+		getListInvoiceTransaction();
+		System.out.println(listInvoiceTransaction.listIterator().hasNext());
+		System.out.println(!listInvoiceTransaction.listIterator().hasNext());
+		if(listInvoiceTransaction.listIterator().hasNext())
+		{
+			  FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "This invoice already exists for the selected apartment. Duplicate invoice cannot be created.!"));
+		}
+		else
+		{
+		 try
+		 {
+		      
 			    
 			    Double sqrt=getInvoiceService().getSqft(str);
 			    listDues=getInvoiceService().taxList(select);
@@ -802,6 +874,7 @@ public static void setDueID(List<Integer> dueID) {
 				     totalDue=subTotal+taxAmount2;
 			    	 
 				    	  totalAmounts.add(totalAmount);
+				    
 				    	  System.out.println(totalAmounts);
 				  		StringBuilder out = new StringBuilder();
 				  		for (Object o : totalAmounts)
@@ -820,8 +893,10 @@ public static void setDueID(List<Integer> dueID) {
 				 e.printStackTrace();
 			 }
 			return transaction;
-			 
+		}
+	return null;		 
 }
+	
 	private String accountName;
 
 public String getAccountName() {
@@ -830,14 +905,14 @@ public String getAccountName() {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
-private List<String> listAccountName;
-public List<String> getListAccountName() {
-	listAccountName=new ArrayList<String>();
-	listAccountName.addAll(getInvoiceService().getAccountName());
-	return listAccountName;
+private List<String> paymentAccountName;
+public List<String> getPaymentAccountName() {
+	paymentAccountName=new ArrayList<String>();
+	paymentAccountName.addAll(getInvoiceService().getAccountName());
+	return paymentAccountName;
 }
-public void setListAccountName(List<String> listAccountName) {
-	this.listAccountName = listAccountName;
+public void setPaymentAccountName(List<String> paymentAccountName) {
+	this.paymentAccountName = paymentAccountName;
 }
 private Date Payment_Date;
 public Date getPayment_Date() {
@@ -848,27 +923,27 @@ public void setPayment_Date(Date payment_Date) {
 }
 
 public String savePayment(Integer id,String invoiceNo)
-{  
+{  System.out.println(id+"hjhjjjjjjjjjj");
 	double amount=getInvoiceService().getAmount(id);
 	System.out.println(amount+"jjk");
 	System.out.println(totalAmount+"jjjj");
 	System.out.println(select1+"jkkjds");
 	if(select1.equalsIgnoreCase("Full"))
 	{ 
-	
+		
 		totalAmount=amount;
 	}
 	System.out.println(totalAmount+"hjhjjh");
 	if(totalAmount==amount)
 	{  Double amount1=amount-totalAmount;
 		str_Status="Paid";
-	 getInvoiceService().updatePayment(accountName,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No);
+	 getInvoiceService().updatePayment(accountName,paymentMode,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No,deposite_Account_Name);
 	}
 	else if(totalAmount<amount)
 	{
 		str_Status="Partial Due";
 		Double amount1=amount-totalAmount;
-		 getInvoiceService().updatePayment(accountName,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No);
+		 getInvoiceService().updatePayment(accountName,paymentMode,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No,deposite_Account_Name);
 	}
 	List<Integer> str=getDueService().getDueTemplate1(invoiceNo);
 	ListIterator list2=str.listIterator();
@@ -891,7 +966,8 @@ public InvoiceTransaction getSelectedInvoice() {
 	
 	return selectedInvoice;
 }
-public void setSelectedInvoice(InvoiceTransaction selectedInvoice) {
+public void setSelectedInvoice(InvoiceTransaction selectedInvoice) 
+{
 	this.selectedInvoice = selectedInvoice;
 }
 private InvoiceTransaction invoice1;
@@ -905,11 +981,36 @@ public void getInvoice(int id1)
 {
 	invoice1=getInvoiceService().getInvoice(id1);
 }
-
+private boolean indicate;
+public boolean isIndicate() {
+	return indicate;
+}
+public void setIndicate(boolean indicate) {
+	this.indicate = indicate;
+}
 public String cancel()
 
-{   System.out.println("jjj");
-	return "quickpayment.xhtml";
+{   int id=selectedInvoice.getInt_InvoiceTransactionID();
+  str_Status=getInvoiceService().getStatus(id);
+  System.out.println(str_Status+"jnfdjkdkjf");
+  if(str_Status.equalsIgnoreCase("Due")||str_Status.equalsIgnoreCase("Partial Due"))
+  {   indicate=false;
+    return "quickpayment.xhtml";
+  }
+  else if(str_Status.equalsIgnoreCase("Paid"))
+  {
+	  indicate=true;
+	  FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "This invoice is already paid.!"));
+ 
+	  return null;
+  }
+   System.out.println(id+"kjdfkjfdkjfd");
+return null;
+	
 }
 
 private List<String> dueList3;
@@ -936,6 +1037,15 @@ public List<String> getDueList3(String fff,String ddd) {
 public void setDueList3(List<String> dueList3) {
 	this.dueList3 = dueList3;
 }
+private List<String> listAccountName;
+public List<String> getListAccountName() {
+	listAccountName=new ArrayList<String>();
+	listAccountName.addAll(getInvoiceService().getlistAccountName());
+	return listAccountName;
+}
+public void setListAccountName(List<String> listAccountName) {
+	this.listAccountName = listAccountName;
+}
 private Integer Payment_No;
 public Integer getPayment_No() {
 	return Payment_No;
@@ -958,17 +1068,20 @@ public String changeAccount(ValueChangeEvent event)
 }
 public String deleteInvoice() {
 	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-	ManualJournal journal=new ManualJournal();
+
 	Integer id=selectedInvoice.getInt_InvoiceTransactionID();
-	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
+	String str=selectedInvoice.getInt_InvoiceNo();
+	System.out.println(str+"kjdfffg");
+	
     	FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Invoice deleted Successfully!", "Invoice deleted Successfully!"));
    
 
 		getInvoiceService().deleteInvoice(id);
+		getInvoiceService().deleteDues(str);
     return "invoice.xhtml?faces-redirect=true";
 }
 }
