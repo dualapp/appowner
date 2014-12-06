@@ -37,4 +37,14 @@ public interface ApartmentDetailsService {
 
 	void updateProfilePic(User user);
 
+	Long getNoOfUsers(String str_HouseNo);
+
+	HouseDetails getHouseDetails(Integer houseId);
+
+	void deleteHouseDetails(HouseDetails housedetails);
+
+	void deleteSelectedHouse(List<HouseDetails> entitiesToDelete);
+
+	void updateHouseDetails(HouseDetails housedetails);
+
 }
