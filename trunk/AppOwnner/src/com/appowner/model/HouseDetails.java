@@ -56,10 +56,11 @@ public class HouseDetails  implements Serializable{
 	public void setInt_NoOfBalconies(Integer int_NoOfBalconies) {
 		this.int_NoOfBalconies = int_NoOfBalconies;
 	}
-	public Integer getInt_NoOfUsers() {
+	 
+	public Long getInt_NoOfUsers() {
 		return int_NoOfUsers;
 	}
-	public void setInt_NoOfUsers(Integer int_NoOfUsers) {
+	public void setInt_NoOfUsers(Long int_NoOfUsers) {
 		this.int_NoOfUsers = int_NoOfUsers;
 	}
 	public Integer getInt_BlockId() {
@@ -103,7 +104,7 @@ public class HouseDetails  implements Serializable{
     @Column 
     private Integer int_NoOfBalconies;
     @Column 
-    private Integer int_NoOfUsers;
+    private Long int_NoOfUsers;
     @Column 
     private Integer int_BlockId;
     @Column 
