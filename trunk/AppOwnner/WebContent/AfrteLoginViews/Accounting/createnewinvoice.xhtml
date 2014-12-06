@@ -23,7 +23,7 @@
 	</table>
 <body  bgcolor="pink">
   <h:form >
- 
+ <p:growl id="growl" showDetail="true" sticky="true" />  
    <div id="page3"> 
     <div class="gsTitleDiv">Template<br/><hr/></div>
   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -33,7 +33,7 @@
             <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
                      <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
-                    <f:ajax event="change" execute="str_InvoiceTemplate" render="@form"/>
+                    <f:ajax event="change" execute="str_InvoiceTemplate" render="@form" />
                  </p:selectOneMenu>
              </td>
         
@@ -66,11 +66,23 @@
          
            <div id="page3"> 
     <div class="gsTitleDiv">Due Details<br/><hr/></div>
+    
     <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-    <h:panelGroup id="performed3"  >
-          <tr>
-           <td><h:outputLabel value="Bill Period:" /></td> <p:spacer width="45" height="20"/>
-              <td><p:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:250px">
+    
+     <h:panelGroup id="performed3"  >
+       <tr>
+        <h:panelGroup id="str_Period">
+         <td><h:outputLabel value="Bill Period:" /></td> <p:spacer width="45" height="20"/>
+        <td>   <h:selectOneMenu value="#{invoiceBean.str_BillPeriod}" rendered="#{invoiceBean.periodIndicator eq 'Quarterly' }" valueChangeListener="#{invoiceBean.periodChangeListener}">
+            <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Q1[APR-JUN]" itemValue="Q1[APR-JUN]"/>
+                     <f:selectItem itemLabel="Q2[JUL-SEP]" itemValue="Q2[JUL-SEP]"/>
+                       <f:selectItem itemLabel="Q3[OCT-DEC]" itemValue="Q3[OCT-DEC]"/>
+                        <f:selectItem itemLabel="Q4[JAN-MAR]" itemValue="Q4[JAN-MAR]"/>
+                       <p:ajax event="change"  process="str_Period"  partialSubmit="true"/>  
+                 </h:selectOneMenu>
+         <h:selectOneMenu  value="#{invoiceBean.str_BillPeriod}" rendered="#{invoiceBean.periodIndicator eq 'Monthly'}" valueChangeListener="#{invoiceBean.periodChangeListener}">
+            <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
                        <f:selectItem itemLabel="MAR" itemValue="MAR"/>
@@ -83,26 +95,32 @@
                      <f:selectItem itemLabel="OCT" itemValue="OCT"/>
                        <f:selectItem itemLabel="NOV" itemValue="NOV"/>
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
-                 </p:selectOneMenu>
-             </td>
-            
-           <p:spacer width="100" height="20"/>
-            <td><h:outputLabel value="Year:" /></td>
-              <td><p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:250px">
-                  <f:selectItem itemLabel="2014" itemValue="2014"/>
+                        <p:ajax event="change"  process="str_Period"  />  
+                 </h:selectOneMenu>
+                <h:selectOneMenu  value="#{invoiceBean.str_BillPeriod}" rendered="#{invoiceBean.periodIndicator eq 'Yearly' || invoiceBean.periodIndicator eq 'One Time'|| invoiceBean.periodIndicator eq null}" valueChangeListener="#{invoiceBean.periodChangeListener}">
+                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                   <f:selectItem itemLabel="N/A" itemValue="N/A"/>
+                   <p:ajax event="change"  process="str_Period"  />  
+                   </h:selectOneMenu></td>
+              
+              </h:panelGroup>  
+          
+       
+            <td> <h:outputText  value="Year" /><font color="red" >*</font></td>
+           <td> <h:selectOneMenu id="int_Year" value="#{dueBean.int_Year}" >
+                   <f:selectItem itemLabel="2014" itemValue="2014"/>
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
                        <f:selectItem itemLabel="2016" itemValue="2016"/>
                         <f:selectItem itemLabel="2017" itemValue="2017"/>
                           <f:selectItem itemLabel="2018" itemValue="2018"/>
                      <f:selectItem itemLabel="2019" itemValue="2019"/>
                        <f:selectItem itemLabel="2020" itemValue="2020"/>
-                        </p:selectOneMenu>
-             </td>
-             </tr>
-  </h:panelGroup>
- <tr>
- 
-  
+                        </h:selectOneMenu>
+                        </td>
+                       
+    </tr> 
+    </h:panelGroup>     
+  <tr>
     <h:panelGroup id="performed1"  >
            
             <td>  <h:outputLabel  value="Invoice Date*" /></td>
@@ -149,14 +167,14 @@
               <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" valueChangeListener="#{invoiceBean.amountChangeListener}" style="width:250px">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                      <f:selectItems value="#{invoiceBean.str_BlockNo}" />
-                       <f:ajax event="change" execute="@this" render="@form" />
+                       <f:ajax event="change" execute="@this" render="@form" update="growl"/>
                  </p:selectOneMenu>
              </td>
              </h:panelGroup>
  
   </tr>
   </table>
-  <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo}">
+  <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo }">
     <div id="page3"> 
     <div class="gsTitleDiv">Invoice Details<br/></div>
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;border:1px solid #DADADA ;">

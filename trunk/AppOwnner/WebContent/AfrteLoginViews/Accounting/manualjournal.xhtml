@@ -32,7 +32,7 @@
   <div id="page3">
    <div class="gsTitleDiv">Manual Journal<br/><hr/></div>
     
-&#150; &#150;  &#150; &#150; <p:button style="width:120px;height:25px" outcome="createmanualjournal.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiManualJournalDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiManualJournalDialog1').show()" />
+&#150; &#150;  &#150; &#150; <p:commandButton style="width:120px;height:25px" oncomplete="PF('multiManualJournalDialog2').show()" icon="ui-icon-plus" value="Create New" />&#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiManualJournalDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiManualJournalDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="ggg" update=":form:multiManualJournalDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiManualJournalDialog').show()" />
        &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="ggg" process="ggg" onclick="return confirm('Are you sure you want to delete ?');" action="#{accountingBean.deleteManualJournal()}" icon="ui-icon-trash" value="Delete" />  &#150; &#150;
       
@@ -89,7 +89,92 @@
                 </f:facet>
                 <h:outputText value="#{journal.dbl_CreditAmount}" />
             </p:column>
-      </p:dataTable>   
+      </p:dataTable>  
+       <p:dialog header="Create New ManualJournal" widgetVar="multiManualJournalDialog2"    showEffect="explode" hideEffect="explode" resizable="false" height="450" width="700"> 
+         <p:outputPanel id="multiManualJournalDetail2" style="text-align:center;">
+           <fieldset>
+     <table style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+    
+     <tr>
+    <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
+              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:250px">
+                   <f:selectItem itemValue="#{accountingBean.str_Organisation}"  itemLabel="#{accountingBean.str_Organisation}"/>
+                 </p:selectOneMenu>
+             </td>
+     </tr>
+     <tr>
+       <td>  <h:outputText  value="Date" /><font color="red" >*</font></td>
+           <td><p:calendar id="dat_Date" value="#{accountingBean.dat_Date}" pattern="dd-MM-yyyy"/></td>
+    </tr>
+   <tr>
+       <td>  <h:outputText  value="Referance" /></td>
+           <td><p:inputText id="str_Reference" value="#{accountingBean.str_Reference}"/></td>
+    </tr>
+     
+      <tr>
+       <td>  <h:outputText  value="Notes" /><font color="red" >*</font></td>
+           <td><p:inputTextarea id="str_Notes" cols="30" row="3" value="#{accountingBean.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
+           </td>
+    </tr>
+    </table>
+    </fieldset>
+     <fieldset>
+     <legend>
+      <h:commandButton value="Accounts Details" style="background-color:blue; color:#fff;" width="300"/> </legend> 
+      <table style="width: 70%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        <tr>
+     
+          <td><font size="4" color="red"> <h:outputText  value="Debit" /></font></td> 
+          <td></td><td></td>
+            <td><font size="4" color="red"><h:outputText  value="Credit" /></font></td>
+        </tr>
+         
+          
+          <tr>
+            <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" style="width:200px">
+                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+             <td align="right">  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"  style="width:200px" >
+                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+           </tr>
+       
+    
+      
+        <tr>
+       <td>  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_DebitAmount" value="#{accountingBean.str_DebitAmount}" size="15"  required="true" requiredMessage="Please Enter Amount!">
+           <p:messages for="str_DebitAmount" style="color:red"/>
+           </p:inputText>
+           </td>
+          <td align="right">  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_CreditAmount" value="#{accountingBean.str_CreditAmount}" size="15"  required="true" requiredMessage="It must be same as Debit Amount">
+           <p:messages for="str_CreditAmount" style="color:red"/>
+         </p:inputText>
+           </td>
+      </tr>
+     
+    </table>
+    
+    </fieldset>
+   
+    <br/>
+     <h:panelGroup style="display:block; text-align:right">
+     <tr>
+                <td><p:commandButton id="submit1" value="Submit" action="#{accountingBean.addInvoiceManualJournal}" ajax="false" /></td>
+                <td><p:commandButton id="cancel" value="Cancel" action="#{accountingBean.reset}" ajax="false"/></td>
+            </tr>
+    </h:panelGroup>
+         </p:outputPanel>
+         </p:dialog>
        <p:dialog header="Edit ManualJournal" widgetVar="multiManualJournalDialog"    showEffect="explode" hideEffect="explode" resizable="false" height="450" width="700">
         <p:outputPanel id="multiManualJournalDetail" style="text-align:center;">
             <fieldset>     

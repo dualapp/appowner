@@ -34,6 +34,7 @@
 	</table>
 <body  bgcolor="pink">
   <h:form id="form">
+   <p:growl id="growl" showDetail="true" sticky="true" />  
   <div id="page3">
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr> 
@@ -131,9 +132,9 @@
 	  <div class="gsTitleDiv">List Of Invoice<br/><hr/></div>
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
           <tr><td>  <p:button  style="width:120px;height:25px" icon="ui-icon-plus" value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<h:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" action="viewinvoice.xhtml"   icon="ui-icon-search" value="View"  />
-								&#150; &#150;<p:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" onclick="return confirm('Are you sure you want to delete ?');" action="#{invoiceBean.deleteInvoice()}" icon="ui-icon-trash" value="Delete" /> &#150; &#150; <p:button  style="width:120px;height:25px" id="jjj"  update="invoice" process="invoice" outcome="#{invoiceBean.cancel()}"   icon="ui-icon-search" value="Make Payment"  >
+								&#150; &#150;<p:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" onclick="return confirm('Are you sure you want to delete ?');" action="#{invoiceBean.deleteInvoice()}" icon="ui-icon-trash" value="Delete" /> &#150; &#150; <h:commandButton  style="width:120px;height:25px" id="jjj"  process="invoice" action="#{invoiceBean.cancel()}"   icon="ui-icon-search" value="Make Payment" disabled="#{invoiceBean.indicate}" update="growl" >
 								
-								 </p:button>
+							</h:commandButton>
 								&#150; &#150;<p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"  value="Refresh" />
          
            <h:commandLink id="excel">
@@ -164,7 +165,7 @@
         <p:dataTable id="invoice" var="invoice" value="#{invoiceBean.listInvoiceTransaction}"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
           selection="#{invoiceBean.selectedInvoice}" rowKey="#{invoice.int_InvoiceTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">
        
-                  <p:column  exportable="false"  selectionMode="single" style="width:35px;text-align:center" />   
+                  <p:column  exportable="false"  selectionMode="single" style="width:35px;text-align:center" value="#{invoiceBean.int_InvoiceTransactionID}"/>   
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />

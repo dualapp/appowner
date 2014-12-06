@@ -49,9 +49,19 @@
               <td> <p:inputText id="admin" value="#{invoiceBean.createdBy}" placeholder="Received By" /> 
              </td>
              </tr>
-             <tr>
+               <tr>
              <td><h:outputLabel value="Account Name" /><font color="red" >*</font></td>
-              <td><h:selectOneMenu id="accountName" value="#{invoiceBean.accountName}" placeholder="Cash" valueChangeListener="#{invoiceBean.changeAccount}" >
+              <td><h:selectOneMenu id="paymentAccountName" value="#{invoiceBean.accountName}" placeholder="Cash"  >
+                   
+                    <f:selectItems value="#{invoiceBean.paymentAccountName}"/>
+                  
+                </h:selectOneMenu>
+             </td>
+           
+             </tr>
+             <tr>
+             <td><h:outputLabel value="Payment Mode" /><font color="red" >*</font></td>
+              <td><h:selectOneMenu id="accountName" value="#{invoiceBean.paymentMode}" placeholder="Cash" valueChangeListener="#{invoiceBean.changeAccount}" >
                    
                     <f:selectItem itemLabel="Cash" itemValue="Cash" />
                        <f:selectItem itemLabel="Cheque" itemValue="Cheque" /> 
@@ -62,16 +72,16 @@
              </td>
            
              </tr>
-              <h:panelGroup  id="performedsd"  rendered="#{!empty invoiceBean.accountName  }" >
-               <h:panelGroup  id="performedsd1"  rendered="#{invoiceBean.accountName != 'Cash' }" >
+              <h:panelGroup  id="performedsd"  rendered="#{!empty invoiceBean.paymentMode  }" >
+               <h:panelGroup  id="performedsd1"  rendered="#{invoiceBean.paymentMode != 'Cash' }" >
               <tr >
              
-              <td><h:outputLabel value="#{invoiceBean.accountName} No." /><font color="red" >*</font></td>
+              <td><h:outputLabel value="#{invoiceBean.paymentMode} No." /><font color="red" >*</font></td>
               <td> <p:inputText id="admin1" value="#{invoiceBean.payment_No}" placeholder="No." /> 
              </td>
              </tr>
               <tr >
-              <td><h:outputLabel value="#{invoiceBean.accountName} Date" /><font color="red" >*</font></td>
+              <td><h:outputLabel value="#{invoiceBean.paymentMode} Date" /><font color="red" >*</font></td>
               <td> <p:calendar id="admin3" value="#{invoiceBean.payment_Date}" placeholder="Dated" showOn="button"/> 
              </td>
              </tr>
@@ -103,13 +113,22 @@
              </td>
              </tr>
              </h:panelGroup>
-            
+             <tr>
+             <td><h:outputLabel value="Deposited To" /><font color="red" >*</font></td>
+              <td><h:selectOneMenu id="AccountName" value="#{invoiceBean.deposite_Account_Name}"   >
+                   
+                    <f:selectItems value="#{invoiceBean.listAccountName}"/>
+                  
+                </h:selectOneMenu>
+             </td>
+           
+             </tr>
    </table>
    
     <br/>
    <h:panelGroup style="display:block; text-align:right">
      <tr>
-                <td><h:commandButton id="submit" value="Confirm" action="#{invoiceBean.savePayment(invoiceBean.selectedInvoice.int_InvoiceTransactionID,invoiceBean.selectedInvoice.int_InvoiceNo)}" update="invoice" oncomplete="PF('multiVendorDialog').hide()"/></td>
+                <td><h:commandButton id="submit" value="Confirm" action="#{invoiceBean.savePayment(invoiceBean.selectedInvoice.int_InvoiceTransactionID,invoiceBean.selectedInvoice.int_InvoiceNo)}" update="invoice"/></td>
                 <td><h:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
             </tr>
     </h:panelGroup>

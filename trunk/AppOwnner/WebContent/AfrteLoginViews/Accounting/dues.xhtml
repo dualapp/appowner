@@ -300,7 +300,24 @@
           </tr>
        <tr><td><p:separator/></td></tr>
        <tr>
-       <td><p:commandButton value="Delete"/><p:commandButton value="Cancel"/></td>
+       <td><p:commandButton value="Delete" action="#{dueBean.deleteDues()}" update=":form:multiDuesDetail4" oncomplete="PF('multiDuesDialog4').show()" /><p:commandButton value="Cancel"/></td>
+      
+         </tr>
+          </table>
+          
+        </p:outputPanel>
+    </p:dialog>
+     <p:dialog header="Message" widgetVar="multiDuesDialog4"     showEffect="explode" hideEffect="explode" resizable="false" height="150" width="400">
+        <p:outputPanel id="multiDuesDetail4" style="text-align:center;">
+          <table>
+          <tr>
+          <td><h5>Due Deleted Successfully</h5>
+          
+          </td>
+          </tr>
+       <tr><td><p:separator/></td></tr>
+       <tr>
+       <td><p:commandButton value="Ok" /></td>
       
          </tr>
           </table>
