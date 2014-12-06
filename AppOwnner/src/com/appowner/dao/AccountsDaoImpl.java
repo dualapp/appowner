@@ -349,6 +349,13 @@ public class AccountsDaoImpl implements AccountsDao{
 	     System.out.println(ddd+"kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		 return ddd;
 	}
+	@SuppressWarnings("unchecked")
+	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To)
+	{
+		 List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.disjunction().add(Restrictions.eq("str_DebitAccount","Expense")).add(Restrictions.eq("str_CreditAccount","Expense"))).add(Restrictions.between("dat_Date", dat_From,dat_To)).list();
+	     System.out.println(ddd+"kkkkkkkkkkkkkkk");
+		 return ddd;
+	}
 		
 	@SuppressWarnings("unchecked")
 	public ManualJournal getManualAccount(Integer id)
@@ -609,9 +616,11 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<Double> getIncomeAmount()
 	{
-		String str="select subTotal from InvoiceTransaction";
+		String str="select totalDue from InvoiceTransaction";
 		return getSessionFactory().getCurrentSession().createQuery(str).setCacheable(true).list();
 	}
+	
+	
 }
 			 
 		       
