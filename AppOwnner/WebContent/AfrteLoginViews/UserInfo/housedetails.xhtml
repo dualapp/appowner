@@ -5,13 +5,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../../include/templates/template1.xhtml">
+	template="../../include/templates/template1.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
+	 
 <h:head><title>User Registration</title>
  <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
 </h:head>
 <body>  
- <h:form id="form" enctype="multipart/form-data">
+ <h:form id="form"  enctype="multipart/form-data">
  <p:growl id="msgs" showDetail="true" />
  
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
@@ -32,27 +34,24 @@ Once completed, this setup will take some time. Request you to be patient.
 Removing a house may result in a member not associatedto any house. In the next screen, you will be prompted to assign house number to such members.
 Unless the Community Setup is complete, the changes that are made will not be saved.
  </p:panel>
-   <p:panel id="panel1"  style="border:none;"> Easily input data for multiple block/houses in one go
-	   <p:commandButton  style="width:120px;height:25px" id="Btn" value="Bulk Upload"  update=":form:fileDetail" oncomplete="PF('fileDialog').show()" />
-	     </p:panel>
-  <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  
-	  
-	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
-	    &#150; &#150;  <p:button  style="width:120px;height:25px"  outcome="blockdetails.xhtml" value="Back"/>
-	     &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Next"/>
-	     </td>
-	    </tr></table>
-	    <p:panel id="panell"   process=":form:DT"  update=":form:DT"  style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
-	    <ui:repeat value="#{apartmentDetailsBean.blockNameList}" var="block" varStatus="status">
-	    <p:commandButton     update=":form:DT"  style="width:120px;height:25px;" value="#{block}" action="#{apartmentDetailsBean.getListHouseDetails1(block)}"/> &#150; &#150;
-	    </ui:repeat>
-	    
-	    </p:panel>
+ 
+ 	    <p:panel id="btnPanel"   process=":form:DT"  update=":form:DT"  style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
+  <p:selectOneButton id="orientation"  styleClass="yourStyleClass" value="#{apartmentDetailsBean.str_BlockName}" valueChangeListener="#{apartmentDetailsBean.blockChangeListener}" >
+            <f:selectItems  value="#{apartmentDetailsBean.blockNameList}" />
+            <f:selectItem  itemValue=""  itemLabel=">>"/>
+           <p:ajax  event="change" immediate="true"
+                    update=":form:DT"  />
+        </p:selectOneButton> 
+ </p:panel>
+	     
 	        
- <p:dataTable id="DT" rows="3"     emptyMessage="No house details found with given criteria"    style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetails"  value="#{apartmentDetailsBean.getListHouseDetails1(block)}">
+ <p:dataTable id="DT"    emptyMessage="No house details found with given Block Name"   selection="#{apartmentDetailsBean.selectedHouse}" rowKey="#{houseDetails.int_HouseId}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetails"  value="#{apartmentDetailsBean.listHouseDetails}">
            
                 
-	  
+	  <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+         
+             </p:column>
+        
 	 <p:column headerText="House No.">
                 <h:outputText value="#{houseDetails.str_HouseNo}" /> 
             
@@ -81,20 +80,108 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                 <h:outputText value="#{houseDetails.int_NoOfUsers}" /> 
             
 	 </p:column>
+	 <p:column headerText="Action">
+	   
+                     
+               <p:commandLink   process="DT"  update=":form:editHouseDetail" oncomplete="PF('editHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetails.int_HouseId)}">
+                  <h:graphicImage  height="20" width="20" alt="Edit" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
+              </p:commandLink>
+               &#150; 
+               
+               
+              <p:commandLink   process="DT"  update=":form:viewHouseDetail" oncomplete="PF('viewHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetails.int_HouseId)}">
+                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink>
+              &#150;
+           <h:commandLink process="DT" update=" DT"
+	   		 onclick="return confirm('Are you sure you want to delete #{houseDetails.str_HouseNo}?');" action="#{apartmentDetailsBean.deleteHouseDetails(houseDetails.int_HouseId)}">  
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
+	   				 
+	   		</h:commandLink> 
+            </p:column>
+          
 	</p:dataTable>
-  
+	<h3>Tired of updating House individually</h3>
+   <h6> Easily input data for multiple block/houses in one go</h6>
+   
+	      <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+	      <tr><td>
+	   &#150; &#150; <p:commandButton  style="width:120px;height:25px" id="Btn" value="Bulk Upload"  update=":form:fileDetail" oncomplete="PF('fileDialog').show()" /></td></tr>
+	      <tr><td>  
+	  
+	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
+	       &#150; &#150;  <p:commandButton style="width:120px;height:25px"   update="DT" process="DT"  onclick="return confirm('Are you sure you want to delete ?');" action="#{apartmentDetailsBean.deleteSelectedHouse()}" icon="ui-icon-trash" value="Delete" />
+
+	    &#150; &#150;  <p:button  style="width:120px;height:25px"  outcome="blockdetails.xhtml" value="Back"/>
+	     &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Next"/>
+	     </td>
+	    </tr></table>
  </div>
-  
+  <p:dialog header="Edit House Details" widgetVar="editHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+        <p:outputPanel id="editHouseDetail" style="text-align:center;">
+ 
+	<table>
+ <tr><th> 
+               <h:outputText value="House No" /> </th>
+             
+	<td><h:outputText  value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
+	 
+	</tr>
+	<tr><th><h:outputText value="Size of House (Sqft.)" /> </th>
+             
+	<td><h:outputText   value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
+	<tr><th><h:outputText value="Type Of House" /> </th>
+	<td><h:outputText    value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}"/>
+	 </td></tr>
+	<tr><th><h:outputText value="No Of BathRoom" /> </th>
+             
+	<td><h:outputText    value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
+	<tr><th><h:outputText value="No Of Balconies" /> </th>
+            
+	<td><h:outputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
+	<tr><th><h:outputText value="Rented" /> </th>
+          <td><h:outputText     value="#{apartmentDetailsBean.housedetails.is_Rented}"/>
+          </td>   
+	 </tr>
+	 
+	 </table>
+ 
+ </p:outputPanel>
+ </p:dialog>
+ <p:dialog header="View House Details" widgetVar="viewHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:outputPanel id="viewHouseDetail" style="text-align:center;">
+ <table>
+ <tr><th> 
+               <h:outputText value="House No" /> </th>
+             
+	<td><h:outputText  value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
+	 
+	</tr>
+	<tr><th><h:outputText value="Size of House (Sqft.)" /> </th>
+             
+	<td><h:outputText   value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
+	<tr><th><h:outputText value="Type Of House" /> </th>
+	<td><h:outputText    value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}"/>
+	 </td></tr>
+	<tr><th><h:outputText value="No Of BathRoom" /> </th>
+             
+	<td><h:outputText    value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
+	<tr><th><h:outputText value="No Of Balconies" /> </th>
+            
+	<td><h:outputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
+	<tr><th><h:outputText value="Rented" /> </th>
+          <td><h:outputText     value="#{apartmentDetailsBean.housedetails.is_Rented}"/>
+          </td>   
+	 </tr>
+	 
+	 </table>
+ 
+ </p:outputPanel>
+ </p:dialog>
  <p:dialog header="Add New House" widgetVar="houseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
         <p:outputPanel id="houseDetail" style="text-align:center;">
        <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-	<tr><th> 
-               <h:outputText value="Block Name" /> </th>
-             
-	<td><h:inputText    id="HouseNo1" value="#{apartmentDetailsBean.str_BlockName}"/></td>
 	 
-	</tr>
-	
 	<tr><th> 
                <h:outputText value="House No" /> </th>
              
@@ -148,14 +235,11 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 		             label="file"
 			         value="#{apartmentDetailsBean.part}"> 
 			       
-            <!-- FileUploadValidator for file validation 
-            <f:validator validatorId="BulkUploadValidator" /> --> 
+            <!--  FileUploadValidator for file validation 
+            <f:validator validatorId="BulkUploadValidator" /> -->
             </h:inputFile>
-             
-		 
- 
-		<h:commandButton style="width:120px;height:25px" id="submit1" update="@form" execute="@form"
-		                 action="#{apartmentDetailsBean.uploadFile}"
+                    
+		       <h:commandButton style="width:120px;height:25px" id="submit1"   action="#{apartmentDetailsBean.uploadFile}"
 			             value="Upload" >
 			              
 			             </h:commandButton>  <br />
