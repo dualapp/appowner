@@ -258,10 +258,11 @@
             <tr></tr><tr></tr><tr></tr><tr></tr>
              <tr>
             <td> <h:outputText  value="Calculation" /><font color="red" >*</font></td>
-             <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}" >
+             <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}" valueChangeListener="#{templateBean.frequencyChangeListener1}">
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
                        <f:selectItem itemLabel="None" itemValue="None"/>
+                        <p:ajax event="change" update="str_Rate" process="str_Calculation"/>
                 </p:selectOneRadio>
                 </td>
               </tr>
@@ -305,7 +306,7 @@
        
         </p:dialog>
         </div>
-        <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="350" width="450">
+        <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="350" width="450" minHeight="100">
         <p:outputPanel id="multiDueTemplateDetail3" style="text-align:center;">
           
            <table>

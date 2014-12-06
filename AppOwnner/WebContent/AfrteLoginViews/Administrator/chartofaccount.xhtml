@@ -86,27 +86,27 @@
                
                         
         </table>
-         <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="220" width="400">
+         <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="500">
         <p:outputPanel id="multiChartOfAccountDetail" style="text-align:center;">
         <table >
 	<tr><td> 
                <h:outputLabel value="Organisation:" /> </td>
-             <td> <h:selectOneMenu  value="#{accountingBean.str_OrganizationName}"    editable="true"   >
+             <td> <h:selectOneMenu  value="#{accountsBean.str_OrganizationName}"    editable="true"   >
               <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true" /> 
-              <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}"  itemValue="#{accountingBean.str_OrganizationName}" />
+              <f:selectItem itemLabel="#{accountsBean.str_OrganizationName}"  itemValue="#{accountsBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Type"/></td>
-	<td><h:selectOneMenu    value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}">
+	<td><h:selectOneMenu    value="#{accountsBean.str_AccountType}"   valueChangeListener="#{accountsBean.accountchangeListener}">
 	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
 	    
-	   <f:selectItems   value="#{accountingBean.listAccountsType}" /><br/> 
+	   <f:selectItems   value="#{accountsBean.listAccountsType}" /><br/> 
 	   <p:ajax event="change" partialSubmit="true"/>
                        </h:selectOneMenu></td></tr>
-	<tr><td><h:outputLabel value="Account Name"/></td><td><h:inputText   value="#{accountingBean.str_AccountName}"/></td></tr>
-	<tr><td><p:commandButton  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{accountingBean.saveChartOfAccount}"   >
+	<tr><td><h:outputLabel value="Account Name:"/></td><td><h:inputText   value="#{accountsBean.str_AccountName}"/></td></tr>
+	<tr><td><p:commandButton  id="submit"  value="Submit"   action="#{accountsBean.saveChartOfAccount()}"   />
 	
-	</p:commandButton></td> </tr>  
+	</td> </tr>  
 	</table>
 	
          </p:outputPanel>
