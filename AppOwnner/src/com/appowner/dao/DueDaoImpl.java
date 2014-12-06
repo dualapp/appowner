@@ -41,19 +41,34 @@ public class DueDaoImpl implements DueDao{
 	}
 	@SuppressWarnings("unchecked")
 	public List<DueTransaction> listDueTransaction(String str_DueTemplate, String str_Block, String str_ApartmentNo, String str_Period, String str_Status)
-	{
+	{  
 		if(str_DueTemplate==null && str_Block==null && str_ApartmentNo==null && str_Period==null && str_Status==null)
-		{
+		{  System.out.println("ghhhhjhhh");
 		return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
 		}
 		else if(str_DueTemplate.isEmpty())
-		{
+		{   System.out.println("hbhjcjvf");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
 		}
+	/*	else if(str_DueTemplate.equals(str_DueTemplate))
+		{
+			
+			System.out.println("ghhhhjhhh1111");
+			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
+			}*/
 		else
 		{
+			System.out.println("nkjkdjkjfd");
+			if(str_Status==null)
+			{   System.out.println("jhjkkjkjjj");
+				String str="From DueTransaction where str_DueTemplate=? AND str_Period=? AND str_Block=? AND str_ApartmentNo=?"; 
+				return getSessionFactory().getCurrentSession().createQuery(str).setParameter(0, str_DueTemplate).setParameter(1, str_Period).setParameter(2, str_Block).setParameter(3, str_ApartmentNo).list();
+			}
+			else
+			{
 			String str="From DueTransaction where str_DueTemplate=? AND str_Period=? AND str_Block=? AND str_ApartmentNo=? AND str_Status=?";
 			return getSessionFactory().getCurrentSession().createQuery(str).setParameter(0, str_DueTemplate).setParameter(1, str_Period).setParameter(2, str_Block).setParameter(3, str_ApartmentNo).setParameter(4, str_Status).list();
+		    }
 		}
 	}
 	@SuppressWarnings("unchecked")
@@ -86,12 +101,18 @@ public class DueDaoImpl implements DueDao{
 	{
 		String str="select str_Rate from DueTemplate where str_DueTemplate=?";
 		double str1=(double)getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,str_DueTemplate).uniqueResult();
-		System.out.println(str1);
+		String hql1="select str_Calculation from DueTemplate where str_DueTemplate=?";
+		String str4=(String)getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,str_DueTemplate).uniqueResult();
+		System.out.println(str4+"hhjjhj");
+		if(str4.equalsIgnoreCase("Sqft"))
+		{
 		String hql="select sqft from User where str_Flat=?";
 		double str2=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Block).uniqueResult();
 		System.out.println(str2);
 		System.out.println(str1*str2);
 		return (str1*str2);
+		}
+		return str1;
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> listRavenues()
@@ -123,5 +144,14 @@ public class DueDaoImpl implements DueDao{
 	{
 		String hql="update DueTransaction set str_Status=?,int_paidAmount=?,dbl_TotalDueAmount=? where int_DueTransactionID=?";
 		sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,"Paid").setParameter(1,ddd).setParameter(2, 0.00).setParameter(3, str1).executeUpdate();
+	}
+	public void deleteDues(Integer id)
+	{
+		getSessionFactory().getCurrentSession().createQuery("DELETE FROM DueTransaction WHERE int_DueTransactionID = "+id).executeUpdate();
+	}
+	public String getFrequency(String ddd)
+	{   String str="select str_Frequency from DueTemplate where str_DueTemplate=?";
+		return (String) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,ddd).setCacheable(true).uniqueResult();
+		
 	}
 }
