@@ -34,6 +34,7 @@ import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.Vendor;
 import com.appowner.service.ApartmentDetailsService;
 import com.appowner.util.Util;
 
@@ -197,6 +198,68 @@ public class ApartmentDetailsBean  implements Serializable{
 		return "blockdetails.xhtml";
 	}
 	private HouseDetails housedetails;
+	public HouseDetails getHousedetails() {
+		return housedetails;
+	}
+	public void setHousedetails(HouseDetails housedetails) {
+		this.housedetails = housedetails;
+	}
+	private List<HouseDetails> selectedHouse;
+	public List<HouseDetails> getSelectedHouse() {
+		return selectedHouse;
+	}
+	public void setSelectedHouse(List<HouseDetails> selectedHouse) {
+		this.selectedHouse = selectedHouse;
+	}
+	/**
+ * get particular House according to House id
+ */
+	 
+	public HouseDetails  getHouseDetails1(Integer houseId)
+	{    System.out.println( houseId+"hid");
+	housedetails=new HouseDetails();
+		housedetails=getApartmentDetailsService().getHouseDetails(houseId);
+		 
+		System.out.println(housedetails+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhDddddddddddddd");
+		return housedetails;
+	}
+	
+	public String deleteHouseDetails(Integer HouseId)
+	{System.out.println( HouseId+"hid1");
+	housedetails=new HouseDetails();
+		housedetails.setInt_HouseId(HouseId);
+		
+		getApartmentDetailsService().deleteHouseDetails(housedetails);	
+		return "housedetails.xhtml?faces-redirect=true";
+	}
+	public String deleteSelectedHouse() {
+	    List<HouseDetails> entitiesToDelete = new ArrayList<HouseDetails>();
+ 
+	    for (HouseDetails house :selectedHouse) {
+	    	 
+	    	if (house.getInt_HouseId()!=null) 
+	    	{
+	            entitiesToDelete.add(house);
+	        }
+	    	
+	    } 
+System.out.println(entitiesToDelete+"entyt todelete");
+ getApartmentDetailsService().deleteSelectedHouse(entitiesToDelete);
+	    FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  deleted Successfully!", " deleted Successfully!"));
+	    return "housedetails.xhtml?faces-redirect=true";
+	}
+	public String updateHouseDetails()
+	{
+		if(housedetails.getInt_HouseId()!=null)
+		{
+			getApartmentDetailsService().updateHouseDetails(housedetails);
+		}
+		return "housedetails.xhtml?faces-redirect=true";
+	}
 	public String saveHouseDetails()
 	{ 
 		
@@ -207,7 +270,8 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_HouseSize(int_HouseSize);
 		housedetails.setInt_NoOfBalconies(int_NoOfBalconies);
 		housedetails.setInt_NoOfBathRooms(int_NoOfBedRooms);
-		//housedetails.setInt_NoOfUsers(int_NoOfUsers);
+		 
+		housedetails.setInt_NoOfUsers(getApartmentDetailsService().getNoOfUsers(str_HouseNo));
 		housedetails.setIs_Rented(is_Rented);
 		housedetails.setStr_TypeOfHouse(str_TypeOfHouse);
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
@@ -231,13 +295,19 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	 
 	public List<HouseDetails> getListHouseDetails() {
-		System.out.println(str_BlockName+"BBBBBBBBBBlock");
-		listHouseDetails=new ArrayList<HouseDetails>();
-		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails());
+		 
+		System.out.println(listHouseDetails+"klap");
 		 
 		return listHouseDetails;
 	}
 	private List<String> blockNameList;
+	private Integer int_HouseId;
+	public Integer getInt_HouseId() {
+		return int_HouseId;
+	}
+	public void setInt_HouseId(Integer int_HouseId) {
+		this.int_HouseId = int_HouseId;
+	}
 	public List<String> getBlockNameList() {
 		blockNameList=new ArrayList<String>();
 		
@@ -249,9 +319,10 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	public List<HouseDetails> getListHouseDetails1(String str_BlockName) {
 		listHouseDetails=new ArrayList<HouseDetails>();
-		System.out.println(str_BlockName+"BLOKKKKKKKKKKKKKKK");
+		 
 		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName));
-		System.out.println(listHouseDetails+"klap");
+		 
+		
 		 
 		return listHouseDetails;
 	}
@@ -314,7 +385,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	               empList.add( hdetails);
 	                 if (cell.getColumnIndex() == 0 ) {
 	                	 String Block=cell.getStringCellValue();
-	            	   hdetails.setInt_BlockId(getApartmentDetailsService().getBlockId(Block));
+	            	   hdetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 	            	   
 	                   empList.add( hdetails);
 	                   System.out.print(cell.getStringCellValue()+ "\t\t");
@@ -438,8 +509,15 @@ public class ApartmentDetailsBean  implements Serializable{
 				 
 		 
 		} 
-		 
+		 private Integer index;
 
+		public Integer getIndex() {
+			index=0;
+			return index;
+		}
+		public void setIndex(Integer index) {
+			this.index = index;
+		}
 		public Part getPart() {
 			 
 			return part;
@@ -493,5 +571,11 @@ public class ApartmentDetailsBean  implements Serializable{
 		    FacesContext.getCurrentInstance().responseComplete();
 		    return null;
 		  }
- 
+  public void blockChangeListener(ValueChangeEvent event)
+  {   listHouseDetails=new ArrayList<HouseDetails>();
+	  String str_BlockName=(String) event.getNewValue();
+	  System.out.println(str_BlockName+"kalpanaaaaaaaaaaaaaaaaaaaaa");
+	  listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName));
+	  System.out.println(listHouseDetails+"klap1");
+  }
 }
