@@ -25,8 +25,9 @@
 </f:metadata>
 <body bgcolor="pink">
 <h:form>
+ <a href="Sub-GroupDetail.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
     <div id="page3">
-   <table   style="overflow:hidden;border:0pt none;width:60%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+   <table   style="overflow:hidden;border:0pt none;width:68%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr>
  
            <td>
@@ -62,7 +63,7 @@
   <tr>
            <td>
           <p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
-                 <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.edit1.str_groupPrivate}" style="width:250px">
+                 <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.edit1.str_groupPrivate}" style="width:100px">
                   <f:selectItem itemLabel="Open "  itemValue="Open"  />
                 <f:selectItem itemLabel="Private"  itemValue="Private"  />
                  </p:selectOneMenu>
@@ -74,8 +75,8 @@
 <tr>
                  <td><p:outputLabel for="Allow" value="Allow email from non Sub-Group member:" /></td>
             <td><p:selectOneMenu id="Allow" value="#{scriptBean.edit1.isCh_EmailAllow}" style="width:100px">
-              <f:selectItem itemLabel="Allow "  itemValue="A"  />
-                <f:selectItem itemLabel="Disallow"  itemValue="D"  />
+              <f:selectItem itemLabel="Allow "  itemValue="1"  />
+                <f:selectItem itemLabel="Disallow"  itemValue="0"  />
                  
             </p:selectOneMenu>
                 
@@ -84,7 +85,8 @@
  <tr>
  
   
-     <td><h:commandButton  value="Submit"  action="#{scriptBean.saveContact1}" style=" float:right !important;margin: 0px -150px 100px 0px;" /></td>
+     <td><h:commandButton  value="Submit"  action="#{scriptBean.saveContact1()}" style=" width:75px;float:left !important;margin: 100px  10px 0px 0px;" />
+     <h:button  value="Cancel"      outcome="Sub-GroupDetail.xhtml" style="width:75px; float:left !important;margin: 100px -150px 10px 0px;" /></td>
   </tr>
  </table>
  </div>
