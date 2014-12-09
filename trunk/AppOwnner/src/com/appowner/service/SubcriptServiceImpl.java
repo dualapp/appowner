@@ -58,6 +58,23 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -116,13 +133,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import com.appowner.dao.SubcriptDao;
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
+import com.appowner.model.GroupMember;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.UserExtraInfo;
 import com.appowner.model.cls_Group;
 import com.appowner.model.cls_hobby;
 
@@ -502,6 +539,109 @@ public   class SubcriptServiceImpl implements SubcriptService {
 	@Override
 	public List Categor() {
 		return getSubcriptDao().Categor();
+	}
+
+	@Override
+	public List company() {
+		return getSubcriptDao().company();
+	}
+
+	@Override
+	public List<User> getsearch(String str_State,
+			String str_Username, String str_blocks) {
+		return getSubcriptDao().getsearch(str_State,  
+			 str_Username,str_blocks);
+	}
+
+	@Override
+	public List getgroup() {
+		return getSubcriptDao().getgroup();
+	}
+
+	@Override
+	public void insertes(GroupMember m1) {
+		getSubcriptDao().insertes( m1);
+		
+	}
+
+	@Override
+	public int adv1(String selectes) {
+		return getSubcriptDao().adv1( selectes);
+	}
+
+	@Override
+	public cls_Group allname(String str_GroupNm) {
+		return getSubcriptDao().allname(str_GroupNm);
+	
+	}
+
+	@Override
+	public cls_Group getEdit8(int int_GroupId) {
+		return getSubcriptDao().getEdit8( int_GroupId);
+	}
+
+	@Override
+	public void updates(cls_Group edit2) {
+		getSubcriptDao().updates(edit2);
+		
+	}
+
+	@Override
+	public void addsetting(cls_Group edit2) {
+		getSubcriptDao().addsetting( edit2);
+		
+	}
+
+	@Override
+	public List listblock() {
+		return getSubcriptDao().listblock();
+	}
+
+	@Override
+	public List<UserExtraInfo> getsearch1(String str_Hobbies,
+			String str_Profession) {
+		return getSubcriptDao().getsearch1( str_Hobbies,
+				 str_Profession);
+	}
+
+	@Override
+	public UserExtraInfo searchuser(Integer int_UserExtraID) {
+		return getSubcriptDao().searchuser( int_UserExtraID);
+	}
+
+	@Override
+	public UserExtraInfo searchuser1(Integer int_UserId) {
+		return getSubcriptDao().searchuser1(int_UserId);
+	}
+
+	@Override
+	public int searchh(Integer int_UserId) {
+		return getSubcriptDao().searchh(int_UserId);
+	}
+
+	@Override
+	public String searchhh(int searchid) {
+		return getSubcriptDao().searchhh( searchid);
+	}
+
+	@Override
+	public UserExtraInfo searchuser12(Integer int_UserExtraID) {
+		return getSubcriptDao().searchuser12( int_UserExtraID);
+	}
+
+	@Override
+	public int searchh1(Integer int_UserExtraID) {
+		return getSubcriptDao().searchh1( int_UserExtraID);
+	}
+
+	@Override
+	public String searchhh4(int searchid) {
+		return getSubcriptDao().searchhh4(searchid);
+	}
+
+	@Override
+	public User searchhh6(Integer uid) {
+		return getSubcriptDao().searchhh6( uid);
 	}
 
 	
