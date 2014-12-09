@@ -20,24 +20,52 @@
 			</tr>
 		</tbody>
 	</table>
+	<f:metadata>
+   <f:viewParam name="int_GroupId" value="#{scriptBean.int_GroupId}"  />
+	 
+	<f:viewAction action="#{scriptBean.getedit1}" />
+</f:metadata>
 	<h:form>
+	<a href="Sub-GroupDetail.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
 	<div id="page3">
-	<div class="gsTitleDiv">Your settings for Cricket Sub-Group<br/><hr/></div>
+	
+	
+	<!-- <div class="gsTitleDiv"> -->
+	  
+           
   <table>
    
+   
+    <tr>
+           <td>
+          <h4><p:outputLabel value="Your  Settings  For">
+           </p:outputLabel>&#150; &#150;            
+           <p:outputLabel  value="#{scriptBean.edit1.str_GroupNm}" />
+           &#150; &#150; 
+          <p:outputLabel  value="Sub-Group" /></h4>
+            </td>
+            </tr>
+         
   
           <tr>
-          <td>
-               <h:selectBooleanCheckbox value="#{scriptBean.bit_emailsend}" /> Allow Sub-Group members to send updates through SMS. 
-      </td> </tr> 
+         
+               <td><p:selectBooleanCheckbox value="#{scriptBean.edit1.bol_Smsallow}" /> 
+               <p:outputLabel value= "Allow Sub-Group members to send updates through SMS"></p:outputLabel><br />
+                   &#150; &#150; &#150; &#150; &#150;<h:outputText value="(Your mobile number would not be visible or shared)"/>
+               </td> 
+      </tr> 
       <tr>
-          <td>
-               <h:selectBooleanCheckbox value="#{scriptBean.bit_emailsend}" /> Send me an email for every new Discussion or Polls in Cricket. 
-      </td></tr> 
-   		
-            <tr><td> <p:commandButton value="Save My Setting" action="#{scriptBean.document}" ajax="false" style="height:25px;width:140px"/></td>
-            <td> <p:button value="Cancel"  ajax="false" style="height:25px;width:100px"/> </td>
-               </tr> 
+         
+               <td><p:selectBooleanCheckbox value="#{scriptBean.edit1.bol_Emailallow}" /> 
+               <p:outputLabel value= "Send me an email for every new Discussion or Polls in"></p:outputLabel>
+               &#150; <p:outputLabel  value="#{scriptBean.edit1.str_GroupNm}" />
+                   
+               </td> 
+      </tr> 
+      <tr>
+             <td><h:commandButton  value="Save My Setting"  action="#{scriptBean.saveContact1()}" style=" width:120px;float:left !important;margin: 100px  10px 0px 0px;" />
+              <h:button  value="Cancel"      outcome="Sub-GroupDetail.xhtml" style="width:120px; float:left !important;margin: 100px -150px 10px 0px;" /></td>
+              </tr>
           </table>
           </div>
           </h:form>
