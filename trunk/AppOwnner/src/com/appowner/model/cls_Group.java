@@ -36,12 +36,34 @@ public class  cls_Group implements Serializable
 	@Column
 	private String str_GroupDescription;
 	@Column
-	private char isCh_EmailAllow;
+	private char  isCh_EmailAllow;
 	@Column
 	private int int_ApartmentID;
 	@Column
 	private Integer userId;
 	
+	@Column
+	private Boolean bol_Smsallow;
+	@Column
+	private Boolean bol_Emailallow;
+	
+	
+	
+	
+	
+	
+	public Boolean getBol_Smsallow() {
+		return bol_Smsallow;
+	}
+	public Boolean getBol_Emailallow() {
+		return bol_Emailallow;
+	}
+	public void setBol_Smsallow(Boolean bol_Smsallow) {
+		this.bol_Smsallow = bol_Smsallow;
+	}
+	public void setBol_Emailallow(Boolean bol_Emailallow) {
+		this.bol_Emailallow = bol_Emailallow;
+	}
 	public String getStr_GroupNm() {
 		return str_GroupNm;
 	}
@@ -61,20 +83,18 @@ public class  cls_Group implements Serializable
 		this.str_groupPrivate = str_groupPrivate;
 	}
 	
-	public String getStr_GroupDescription() {
-		return str_GroupDescription;
-	}
-	public void setStr_GroupDescription(String str_GroupDescription) {
-		this.str_GroupDescription = str_GroupDescription;
-	}
-	
-	
 	
 	public char getIsCh_EmailAllow() {
 		return isCh_EmailAllow;
 	}
 	public void setIsCh_EmailAllow(char isCh_EmailAllow) {
 		this.isCh_EmailAllow = isCh_EmailAllow;
+	}
+	public String getStr_GroupDescription() {
+		return str_GroupDescription;
+	}
+	public void setStr_GroupDescription(String str_GroupDescription) {
+		this.str_GroupDescription = str_GroupDescription;
 	}
 	public int getInt_ApartmentID() {
 		return int_ApartmentID;
