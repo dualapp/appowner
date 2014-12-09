@@ -18,7 +18,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-import javax.persistence.Column;
 
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.dao.DataAccessException;
@@ -28,11 +27,11 @@ import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Company;
+import com.appowner.model.GroupMember;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
 import com.appowner.model.User;
-import com.appowner.model.UserBlocks;
-import com.appowner.model.agency_information;
+import com.appowner.model.UserExtraInfo;
 import com.appowner.model.cls_Group;
 import com.appowner.model.cls_hobby;
 import com.appowner.service.SubcriptService;
@@ -40,7 +39,7 @@ import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ScriptBean implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
@@ -84,8 +83,7 @@ public class ScriptBean implements Serializable{
 		public void setIntdocid(String intdocid) {
 			this.intdocid = intdocid;
 		}
-
-		private String str_UserName;
+ 
 	    private Integer flag;
 	    private int userId;
 	    private String str_ApartmentName;
@@ -111,13 +109,7 @@ public class ScriptBean implements Serializable{
 		public void setFlag(Integer flag) {
 			this.flag = flag;
 		}
-	public String getStr_UserName() {
-		return str_UserName;
-	}
-	public void setStr_UserName(String str_UserName) {
-		this.str_UserName = str_UserName;
-	}
-
+	 
 	private Integer int_UserId;
 	 
 	 
@@ -915,6 +907,17 @@ private  String str_Groupaddress;
 private String  str_groupPrivate;
 private String str_GroupDescription;
 private char isCh_EmailAllow;
+
+
+
+
+public char getIsCh_EmailAllow() {
+	return isCh_EmailAllow;
+}
+public void setIsCh_EmailAllow(char isCh_EmailAllow) {
+	this.isCh_EmailAllow = isCh_EmailAllow;
+}
+
 private int ApartementId;
 
 
@@ -946,12 +949,7 @@ public void setStr_groupPrivate(String str_groupPrivate) {
 
 
 
-public char getIsCh_EmailAllow() {
-	return isCh_EmailAllow;
-}
-public void setIsCh_EmailAllow(char isCh_EmailAllow) {
-	this.isCh_EmailAllow = isCh_EmailAllow;
-}
+
 public int getApartementId() {
 	return ApartementId;
 }
@@ -968,8 +966,11 @@ public String group()
 	group.setStr_Groupaddress(getStr_Groupaddress());
 	group.setStr_GroupDescription(getStr_GroupDescription());
 	group.setStr_groupPrivate(getStr_groupPrivate());
+	group.setIsCh_EmailAllow(getIsCh_EmailAllow());
+	group.setBol_Emailallow(getBol_Emailallow());
+	group.setBol_Smsallow(getBol_Smsallow());
 	System.out.println(isCh_EmailAllow+"uhujhju");
-	group.setIsCh_EmailAllow(isCh_EmailAllow);
+  
 	group.setInt_ApartmentID(Util.getAppartmentId());
 	group.setUserId(Util.getUserId());
 	getSubcriptService().groupadd(group);
@@ -1001,25 +1002,38 @@ public void setSelect(boolean select) {
 	this.select = select;
 }
 
-public List<String> group;
+public List<String> group1;
 
 public boolean selectingroup(ValueChangeEvent event)
 {  
+	group1=new ArrayList<String>();
 	str_group =(boolean) event.getNewValue();
 	System.out.println(str_group+"jhdsjdf");
-	group= getSubcriptService().listgroup();
-	System.out.println(group+"jhjjh");
+	group1.addAll(getSubcriptService().listblock());
+	System.out.println(group1+"jhjjh");
 	return str_group ;
 	}
 
 
 
 
-public List<String> getGroup() {
-	return group;
+public List<String> getGroup1() {
+	return group1;
 }
-public void setGroup(List<String> group) {
-	this.group = group;
+public void setGroup1(List<String> group1) {
+	this.group1 = group1;
+}
+
+
+
+
+public List<String> group2;
+
+public List<String> getGroup2() {
+	return group2;
+}
+public void setGroup2(List<String> group2) {
+	this.group2 = group2;
 }
 
 private boolean str_group;
@@ -1168,6 +1182,9 @@ public String selectinfo7(ValueChangeEvent event)
 	System.out.println(select2+"jhnhjj");
 	return  "";
 }
+private Boolean bol_Smsallow;
+
+private Boolean bol_Emailallow;
 
 
 public boolean martial;
@@ -1199,19 +1216,19 @@ public void setCategories2(List<String> categories2) {
 }
 
 
-public boolean str_stat;
-public boolean isStr_stat() {
-	return str_stat;
+public boolean str_state;
+public boolean isStr_state() {
+	return str_state;
 }
-public void setStr_stat(boolean str_stat) {
-	this.str_stat = str_stat;
+public void setStr_state(boolean str_state) {
+	this.str_state = str_state;
 }
 
 
 
 public String selectinfo9(ValueChangeEvent event)
 {  
-	str_stat =( boolean )event.getNewValue();
+	str_state =( boolean )event.getNewValue();
 	System.out.println(select2+"jhnhjj");
 	return  "";
 }
@@ -1297,13 +1314,15 @@ System.out.println(edit1);
 
 public String saveContact1( )
 {
+	System.out.println("hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjh");
+	System.out.println(bol_Smsallow);
 	 if(edit1.getInt_GroupId()!=null)
 	 
 		 getSubcriptService().update3(edit1);
 	else		
 		getSubcriptService().addContact1(edit1);
      return "Sub-GroupDetail.xhtml";
-		 
+	 
 }
 
 
@@ -1393,9 +1412,323 @@ public String selectinfoq(ValueChangeEvent event)
 	return  "";
 }
 
+
+private List<String>addcompany;
+public List<String> getAddcompany() {
+	addcompany=new ArrayList<String>();
+	addcompany.addAll(getSubcriptService().company());
+	return addcompany;
+}
+public void setAddcompany(List<String> addcompany) {
+	this.addcompany = addcompany;
 }
 
 
+
+private String str_State;
+private String str_City;
+private String str_Block;
+private String str_Username;
+
+
+public String getStr_State() {
+	return str_State;
+}
+public void setStr_State(String str_State) {
+	this.str_State = str_State;
+}
+public String getStr_City() {
+	return str_City;
+}
+public void setStr_City(String str_City) {
+	this.str_City = str_City;
+}
+public String getStr_Block() {
+	return str_Block;
+}
+public void setStr_Block(String str_Block) {
+	this.str_Block = str_Block;
+}
+ 
+private List<UserExtraInfo> search;
+public List<UserExtraInfo> getSearch() {
+	search=new ArrayList<UserExtraInfo>();
+	search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession));
+	System.out.println(search+"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+	System.out.println(search.getClass());
+	ListIterator itr=search.listIterator();
+	System.out.println(itr);
+	while(itr.hasNext())
+	{
+		Object u=(Object) itr.next();
+		UserExtraInfo e=(UserExtraInfo) u;
+		System.out.println(  e.getStr_Hobbies()+"k11111111k111111111111111");
+		  
+	}
+	return search;
+}
+private String str_Uname;
+public String getStr_Uname() {
+	return str_Uname;
+}
+public void setStr_Uname(String str_Uname) {
+	this.str_Uname = str_Uname;
+}
+
+private String str_blocks;
+
+public String getStr_blocks() {
+	return str_blocks;
+}
+public void setStr_blocks(String str_blocks) {
+	this.str_blocks = str_blocks;
+}
+private String str_Profession;
+private String str_MaritalStatus;
+
+
+private UserExtraInfo usr;;
+private  User user;
+
+
+
+private Integer int_UserExtraID;
+
+
+public Integer getInt_UserExtraID() {
+	return int_UserExtraID;
+}
+public void setInt_UserExtraID(Integer int_UserExtraID) {
+	this.int_UserExtraID = int_UserExtraID;
+}
+
+public String getStr_Profession() {
+	return str_Profession;
+}
+public String getStr_MaritalStatus() {
+	return str_MaritalStatus;
+}
+
+public void setStr_Profession(String str_Profession) {
+	this.str_Profession = str_Profession;
+}
+public void setStr_MaritalStatus(String str_MaritalStatus) {
+	this.str_MaritalStatus = str_MaritalStatus;
+}
+
+public String getStr_Hobbies() {
+	return str_Hobbies;
+}
+public void setStr_Hobbies(String str_Hobbies) {
+	this.str_Hobbies = str_Hobbies;
+}
+ 
+
+public UserExtraInfo getUsr() {
+	return usr;
+}
+
+
+private String  str_Hobbies;
+
+public User getUser() {
+	return user;
+}
+public void setUser(User user) {
+	this.user = user;
+}
+public int getSearchid() {
+	return searchid;
+}
+public void setUsr(UserExtraInfo usr) {
+	this.usr = usr;
+}
+
+public void setSearchid(int searchid) {
+	this.searchid = searchid;
+}
+
+public int searchid;
+private Integer int_UserRole;
+
+public Integer getInt_UserRole() {
+	return int_UserRole;
+}
+public void setInt_UserRole(Integer int_UserRole) {
+	this.int_UserRole = int_UserRole;
+}
+ private UserExtraInfo  userExtraInfo;
+public UserExtraInfo getUserExtraInfo() {
+	return userExtraInfo;
+}
+public void setUserExtraInfo(UserExtraInfo userExtraInfo) {
+	this.userExtraInfo = userExtraInfo;
+}
+public String getSearch1() {
+	System.out.println("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
+	
+	search=new ArrayList<UserExtraInfo>();
+	search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession));
+	return "View-SubGroup.xhtml";
+}
+	
+
+
+
+
+
+
+private List<String> blocks;
+
+
+public List<String> getBlocks() {
+	return blocks;
+}
+public void setBlocks(List<String> blocks) {
+	this.blocks = blocks;
+}
+
+
+
+
+
+private List<User> subgrouplist;
+
+
+
+
+public List<User> getSubgrouplist() {
+	subgrouplist=new ArrayList<User>();
+	subgrouplist.addAll(getSubcriptService().getgroup());
+	
+	return subgrouplist;
+}
+public void setSubgrouplist(List<User> subgrouplist) {
+	this.subgrouplist = subgrouplist;
+}
+private Integer int_GroupmemberId;
+private Date DTDate;
+
+
+
+
+public Integer getInt_GroupmemberId() {
+	return int_GroupmemberId;
+}
+public Date getDTDate() {
+	return DTDate;
+}
+public void setInt_GroupmemberId(Integer int_GroupmemberId) {
+	this.int_GroupmemberId = int_GroupmemberId;
+}
+public void setDTDate(Date dTDate) {
+	DTDate = dTDate;
+}
+
+public  static  String selectes;
+
+
+public static String getSelectes() {
+	return selectes;
+}
+public static void setSelectes(String selectes) {
+	ScriptBean.selectes = selectes;
+}
+public int  intdocid2;
+
+
+public int getIntdocid2() {
+	return intdocid2;
+}
+public void setIntdocid2(int intdocid2) {
+	this.intdocid2 = intdocid2;
+}
+public String  memberadd() {
+	
+intdocid2=getSubcriptService().adv1(selectes);
+System.out.println(selectes+"mmmmmmmmmmmmmmmmmmmmmmmm");
+System.out.println(intdocid2);
+GroupMember m1=new GroupMember();
+m1.setInt_GroupId(intdocid2);
+m1.setDT_Date(getDTDate());
+m1.setInt_GroupmemberId(getInt_GroupmemberId());
+getSubcriptService().insertes(m1);
+return "View-SubGroup.xhtml";
+
+}
+public void subname()
+{
+	groups=getSubcriptService().allname(str_GroupNm);
+	selectes=groups.getStr_GroupNm();
+}
+	
+
+
+
+ 
+public Boolean getBol_Smsallow() {
+	return bol_Smsallow;
+}
+public Boolean getBol_Emailallow() {
+	return bol_Emailallow;
+}
+public void setBol_Smsallow(Boolean bol_Smsallow) {
+	this.bol_Smsallow = bol_Smsallow;
+}
+public void setBol_Emailallow(Boolean bol_Emailallow) {
+	this.bol_Emailallow = bol_Emailallow;
+}
+
+private cls_Group edit2 ;
+
+
+public cls_Group getEdit2() {
+	return edit2;
+}
+public void setEdit2(cls_Group edit2) {
+	this.edit2 = edit2;
+}
+public void getedit2()
+{ 
+	
+edit2=new cls_Group();
+System.out.println(int_GroupId);
+
+edit2 =getSubcriptService().getEdit8(int_GroupId);
+System.out.println(edit2);
+}
+
+
+public void setPath(String path) {
+	this.path = path;
+}
+public String saveSetting( )
+{
+	System.out.println("hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjh");
+	System.out.println(bol_Smsallow);
+	 if(edit2.getInt_GroupId()!=null)
+	 
+		 getSubcriptService().updates(edit2);
+	else		
+		getSubcriptService().addsetting(edit2);
+     return "Sub-GroupDetail.xhtml";
+	 
+}
+
+private String path;
+
+public String getPath() {
+	System.out.println(path+"path1");
+	path=user.getVar_ImageName1();
+	if( path==null)
+	{
+		path="/images/profilepic.png";
+		System.out.println(path+"img1");
+	}
+	 
+	return path ;
+}
+}
 
 
 
