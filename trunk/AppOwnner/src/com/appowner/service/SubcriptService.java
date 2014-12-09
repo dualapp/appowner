@@ -62,12 +62,32 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
+import com.appowner.model.GroupMember;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
+import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.UserExtraInfo;
 //import com.mukesh.bean.ScriptBean;
 import com.appowner.model.cls_Group;
 import com.appowner.model.cls_hobby;
@@ -226,6 +246,45 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 	public List< String> Categories();
 
 	public List<String> Categor();
+
+	public List< String> company();
+
+	public List< User> getsearch(String str_State,
+			String str_Username,String str_blocks);
+
+	public List<User> getgroup();
+
+	public void insertes(GroupMember m1);
+
+	public int adv1(String selectes);
+
+	public cls_Group allname(String str_GroupNm);
+
+	public cls_Group getEdit8(int int_GroupId);
+
+	public void updates(cls_Group edit2);
+
+	public void addsetting(cls_Group edit2);
+
+	public List<String> listblock();
+
+	public List< UserExtraInfo> getsearch1(String str_Hobbies, String str_Profession);
+
+	public UserExtraInfo searchuser(Integer int_UserExtraID);
+
+	public UserExtraInfo searchuser1(Integer int_UserId);
+
+	public int searchh(Integer int_UserId);
+
+	public String searchhh(int searchid);
+
+	public UserExtraInfo searchuser12(Integer int_UserExtraID);
+
+	public int searchh1(Integer int_UserExtraID);
+
+	public String  searchhh4(int searchid);
+
+	public User searchhh6(Integer uid);
 
 	
 	
