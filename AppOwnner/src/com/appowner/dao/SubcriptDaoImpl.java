@@ -15,16 +15,21 @@ import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Company;
+import com.appowner.model.GroupMember;
 import com.appowner.model.Mail;
 import com.appowner.model.Option;
 import com.appowner.model.Subcript;
 import com.appowner.model.User;
 import com.appowner.model.UserBlocks;
+import com.appowner.model.UserExtraInfo;
+import com.appowner.model.agency_information;
+import com.appowner.model.cls_Contact;
 import com.appowner.model.cls_Feedback;
 import com.appowner.model.cls_Group;
 import com.appowner.model.cls_PersonCity;
 import com.appowner.model.cls_PersonState;
 import com.appowner.model.cls_hobby;
+import com.lowagie.text.pdf.hyphenation.TernaryTree.Iterator;
 
 /**
  * @author mukesh
@@ -432,7 +437,7 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@Override
 	public List getCategories2() {
-		return getSessionFactory().getCurrentSession().createCriteria(cls_PersonState.class).setProjection(Projections.property("str_StateName")).list();
+		return getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_State")).list();
 	}
 
 	@Override
@@ -468,7 +473,7 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	@Override
 	public List<String> cityList() {
 		 
-		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(cls_PersonCity.class).setProjection(Projections.property("str_CityName")).list();
+		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_City")).list();
 		return cityList;
 	}
 
@@ -505,7 +510,170 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		return getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).setProjection(Projections.property("isCh_EmailAllow")).list();
 	}
 
-}
+	@Override
+	public List company() {
+		return getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).setProjection(Projections.property("str_GroupNm")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getsearch(String str_State,String str_Username,String str_blocks) {
+		if(str_State==null&&str_Username==null&&str_blocks==null)
+		{ 
+			return  getSessionFactory().getCurrentSession().createCriteria(User.class).setCacheable(true).list();
+	}
+		
+		else
+		{
+			System.out.println("ggggggggggggggggggggggggggggggggggggggggg");
+			System.out.println(str_Username+"jjjjjjjjjjjjjjjjjjjjjj");
+			String hql="from User  where str_State=? and str_Username=? and str_Block=? ";
+	        return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_State).setParameter(1,str_Username).setParameter(2, str_blocks).setCacheable(true).list();
+ }
+	}
+
+	@Override
+	public List getgroup() {
+		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(User.class).list();
+		return cityList;
+	}
+
+	@Override
+	public void insertes(GroupMember m1) {
+		
+		sessionFactory.getCurrentSession().save(m1);
+		
+		
+	}
+
+	@Override
+	public int  adv1(String selectes) {
+		System.out.println(selectes+"mmmmmmkkkkkkkkkkk");
+		String hql1="select int_GroupId  from cls_Group  where str_GroupNm=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid1=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, selectes).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid1);
+		return cid1;
+		
+	}
+
+	@Override
+	public cls_Group allname(String str_GroupNm) {
+		String	hql1="from cls_Group where str_GroupNm=?";
+		return (cls_Group) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, str_GroupNm).uniqueResult();
+		
+	}
+
+	@Override
+	public cls_Group getEdit8(int int_GroupId) {
+		return (cls_Group) getSessionFactory().getCurrentSession().get(cls_Group.class, int_GroupId);
+	}
+
+	@Override
+	public void updates(cls_Group edit2) {
+		String	hql1="update  cls_Group set bol_Smsallow=?,bol_Emailallow=?  where int_GroupId=?";
+		getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,edit2).executeUpdate();
+	}
+
+	@Override
+	public void addsetting(cls_Group edit2) {
+		sessionFactory.getCurrentSession().save(edit2);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public  List<String> listblock() {
+		String hql2="select str_BlockName from UserBlocks";		
+		System.out.println("8888888888888888888888888888888888");
+		return  sessionFactory.getCurrentSession().createQuery(hql2).list();
+		
+	}
+
+	
+	@Override
+	public List<UserExtraInfo> getsearch1(String str_Hobbies,String str_Profession) {
+		
+			System.out.println(str_Profession+"jjjjjjjjjjjjjjjjjjjjjj");
+			System.out.println(str_Hobbies);
+			String query="{call member()}";
+			List<UserExtraInfo> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).list();
+			return conn;
+ }
+
+
+	@Override
+	public UserExtraInfo searchuser(Integer int_UserExtraID) {
+		return(UserExtraInfo)getSessionFactory().getCurrentSession().get(UserExtraInfo.class,int_UserExtraID);
+	}
+
+	@Override
+	public UserExtraInfo searchuser1(Integer int_UserId) {
+		return(UserExtraInfo)getSessionFactory().getCurrentSession().get(UserExtraInfo.class,int_UserId);
+	}
+
+	@Override
+	public int searchh(Integer int_UserId) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(int_UserId);
+		String hql2="select int_UserExtraID from agency_information where int_UserId=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (int) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, int_UserId).uniqueResult();
+	}
+
+	@Override
+	public String searchhh(int searchid) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(searchid);
+		String hql2=" from  User int_CompanyID=?";
+		System.out.println("8888888888888888888888888888888888");
+		return""  ;
+	}
+
+	@Override
+	public UserExtraInfo searchuser12(Integer int_UserExtraID) {
+		return(UserExtraInfo)getSessionFactory().getCurrentSession().get(UserExtraInfo.class,int_UserExtraID);
+	}
+
+	@Override
+	public int searchh1(Integer int_UserExtraID) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(int_UserExtraID);
+		String hql2="select int_UserId from UserExtraInfo where int_UserExtraID=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (int) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, int_UserExtraID).uniqueResult();
+	}
+
+	@Override
+	public String searchhh4(int searchid) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(searchid);
+		String hql2="select str_Block,str_Username,str_UserRoleName from User where int_UserId=?";
+		System.out.println("8888888888888888888888888888888888");
+		return   (String) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, searchid).uniqueResult();
+
+	}
+
+	
+	@Override
+	public User searchhh6(Integer uid) {
+		System.out.println("mukeshhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(uid);
+		String hql2=" from User where int_UserId=?";
+		System.out.println("8888888888888888888888888888888888");
+		return    (User) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,uid).uniqueResult();
+
+	}
+	}
+
+	
+	
+	
+
+
 
 	
 	
