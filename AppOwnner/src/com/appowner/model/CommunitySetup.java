@@ -25,15 +25,22 @@ public class CommunitySetup implements Serializable{
 	@Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column 
-	private Integer int_SetupId;
-	public Integer getInt_SetupId() {
-		return int_SetupId;
-	}
-	public void setInt_SetupId(Integer int_SetupId) {
-		this.int_SetupId = int_SetupId;
-	}
+	private Integer int_CommunitySetupId;
+	 
 	public Integer getInt_TotalNoOfHouses() {
 		return int_TotalNoOfHouses;
+	}
+	public Integer getInt_CommunitySetupId() {
+		return int_CommunitySetupId;
+	}
+	public void setInt_CommunitySetupId(Integer int_CommunitySetupId) {
+		this.int_CommunitySetupId = int_CommunitySetupId;
+	}
+	public Integer getInt_UserId() {
+		return int_UserId;
+	}
+	public void setInt_UserId(Integer int_UserId) {
+		this.int_UserId = int_UserId;
 	}
 	public void setInt_TotalNoOfHouses(Integer int_TotalNoOfHouses) {
 		this.int_TotalNoOfHouses = int_TotalNoOfHouses;
@@ -50,12 +57,7 @@ public class CommunitySetup implements Serializable{
 	public void setInt_year(Integer int_year) {
 		this.int_year = int_year;
 	}
-	public Integer getInt_ApartmentId() {
-		return int_ApartmentId;
-	}
-	public void setInt_ApartmentId(Integer int_ApartmentId) {
-		this.int_ApartmentId = int_ApartmentId;
-	}
+	 
 	public String getStr_CommunitySetupType() {
 		return str_CommunitySetupType;
 	}
@@ -69,7 +71,7 @@ public class CommunitySetup implements Serializable{
 	@Column 
 	private Integer int_year;
 	@Column 
-	private Integer int_ApartmentId;
+	private Integer int_UserId;
 	@Column(name="var_CommunitySetupType")
 	private String str_CommunitySetupType;
 
