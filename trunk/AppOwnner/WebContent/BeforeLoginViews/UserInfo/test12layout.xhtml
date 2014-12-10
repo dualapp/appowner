@@ -58,7 +58,7 @@
           </tr>
           <tr> 
             <td><h:outputLabel for="str_UserApartment" class="gsContent" value="Apartment" /><font color="red" >*</font></td>
-            <td><p:selectOneMenu id="str_UserApartment" value="#{cls_UserBeanMain.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px"> 
+            <td><p:selectOneMenu id="str_UserApartment" value="#{cls_UserBean.str_UserApartment}" valueChangeListener="#{cls_UserBean.apartmentChangeListener}" style="width:200px"> 
                 <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
                  <p:ajax event="change" process="str_UserApartment"/>

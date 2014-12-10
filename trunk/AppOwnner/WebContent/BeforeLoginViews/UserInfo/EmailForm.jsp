@@ -1,4 +1,4 @@
-<%@page import="com.appowner.bean.Cls_UserBean"%>
+<%@page import="com.appowner.bean.Cls_UserBeanMain"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="com.appowner.*" %>
@@ -20,16 +20,16 @@
             <caption><h2>Send New E-mail</h2></caption>
             <tr>
                 <td width="50%">Recipient address </td>
-                <td><input type="text" name="recipient" size="50" value="<%=Cls_UserBean.getEl()%>"/></td>
+                <td><input type="text" name="recipient" size="50" value="<%=Cls_UserBeanMain.getEl()%>"/></td>
             </tr>
 
             <tr>
                 <td>Subject </td>
-                <td><input type="text" name="subject" size="50" value="<%=Cls_UserBean.getSubject()%>"/></td>
+                <td><input type="text" name="subject" size="50" value="<%=Cls_UserBeanMain.getSubject()%>"/></td>
             </tr>
             <tr>
                 <td>Content </td>
-                <td><textarea rows="10" cols="39" name="content" id='test'><%=Cls_UserBean.getContent()%></textarea> </td>
+                <td><textarea rows="10" cols="39" name="content" id='test'><%=Cls_UserBeanMain.getContent()%></textarea> </td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Send"/></td>
