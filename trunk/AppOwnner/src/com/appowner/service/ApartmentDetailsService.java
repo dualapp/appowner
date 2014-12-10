@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.CommunitySetup;
+import com.appowner.model.CommunityType;
 import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
@@ -46,5 +47,22 @@ public interface ApartmentDetailsService {
 	void deleteSelectedHouse(List<HouseDetails> entitiesToDelete);
 
 	void updateHouseDetails(HouseDetails housedetails);
+
+	 List<CommunitySetup> getCommunityType(Integer userId);
+
+	CommunitySetup getCommunitySetup(Integer userId);
+
+	void updateCommunitySetup(CommunitySetup cs);
+
+	List<String> getBlockNameByApartmentName(
+			String str_UserApartment);
+
+	List<String> getCommunityTypelist();
+
+	void saveCommunitySetup(CommunityType communityType);
+
+	Integer getCommunityType(String str_CommunityType);
+
+	Integer getCommunitySetupId(Integer userId);
 
 }

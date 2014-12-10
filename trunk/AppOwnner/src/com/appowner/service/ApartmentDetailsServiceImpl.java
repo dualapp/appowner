@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.ApartmentDetailsDao;
 import com.appowner.model.CommunitySetup;
+import com.appowner.model.CommunityType;
 import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
@@ -136,6 +137,54 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	public void updateHouseDetails(HouseDetails housedetails) {
 		// TODO Auto-generated method stub
 		getApartmentDetailsDao().updateHouseDetails(housedetails);
+	}
+
+	@Override
+	public List<CommunitySetup> getCommunityType(Integer userId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getCommunityType(userId);
+	}
+
+	@Override
+	public CommunitySetup getCommunitySetup(Integer userId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao(). getCommunitySetup(userId);
+	}
+
+	@Override
+	public void updateCommunitySetup(CommunitySetup cs) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateCommunitySetup(cs);
+	}
+
+	@Override
+	public List<String> getBlockNameByApartmentName(String str_UserApartment) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getBlockNameByApartmentName(str_UserApartment);
+	}
+
+	@Override
+	public List<String> getCommunityTypelist() {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getCommunityTypelist();
+	}
+
+	@Override
+	public void saveCommunitySetup(CommunityType communityType) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().saveCommunitySetup(communityType);
+	}
+
+	@Override
+	public Integer getCommunityType(String str_CommunityType) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getCommunityType(str_CommunityType);
+	}
+
+	@Override
+	public Integer getCommunitySetupId(Integer userId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getCommunitySetupId(userId);
 	}
 
 }
