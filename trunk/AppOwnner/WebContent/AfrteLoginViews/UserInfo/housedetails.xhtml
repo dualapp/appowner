@@ -36,7 +36,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
  </p:panel>
  
  	    <p:panel id="btnPanel"   process=":form:DT"  update=":form:DT"  style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
-  <p:selectOneButton id="orientation"  styleClass="yourStyleClass" value="#{apartmentDetailsBean.str_BlockName}" valueChangeListener="#{apartmentDetailsBean.blockChangeListener}" >
+  <p:selectOneButton id="orientation"   styleClass="yourStyleClass" value="#{apartmentDetailsBean.str_BlockName}" valueChangeListener="#{apartmentDetailsBean.blockChangeListener}" >
             <f:selectItems  value="#{apartmentDetailsBean.blockNameList}" />
             <f:selectItem  itemValue=""  itemLabel=">>"/>
            <p:ajax  event="change" immediate="true"
@@ -80,9 +80,16 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                 <h:outputText value="#{houseDetails.int_NoOfUsers}" /> 
             
 	 </p:column>
-	 <p:column headerText="Action">
+	 <p:column>
+	  <f:facet name="header">
+                <center>
+                
+                    <h:outputText value="Action" />
+                    </center>
+                </f:facet>
+                <center>
 	   
-                     
+                      <h:panelGroup layout="block" id="mainDiv" style="float:center">
                <p:commandLink   process="DT"  update=":form:editHouseDetail" oncomplete="PF('editHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetails.int_HouseId)}">
                   <h:graphicImage  height="20" width="20" alt="Edit" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
               </p:commandLink>
@@ -93,11 +100,13 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                   <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
               &#150;
-           <h:commandLink process="DT" update=" DT"
+           <h:commandLink process="DT" update=" DT"  
 	   		 onclick="return confirm('Are you sure you want to delete #{houseDetails.str_HouseNo}?');" action="#{apartmentDetailsBean.deleteHouseDetails(houseDetails.int_HouseId)}">  
 	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
 	   				 
 	   		</h:commandLink> 
+	   		</h:panelGroup>
+	   		</center>
             </p:column>
           
 	</p:dataTable>
@@ -110,7 +119,10 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	      <tr><td>  
 	  
 	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
-	       &#150; &#150;  <p:commandButton style="width:120px;height:25px"   update="DT" process="DT"  onclick="return confirm('Are you sure you want to delete ?');" action="#{apartmentDetailsBean.deleteSelectedHouse()}" icon="ui-icon-trash" value="Delete" />
+	       &#150; &#150;  <p:commandButton style="width:120px;height:25px"   update="DT" process="DT"  onclick="return confirm('Are you sure you want to delete ?');" action="#{apartmentDetailsBean.deleteSelectedHouse()}" icon="ui-icon-trash" value="Delete">
+	      
+	        </p:commandButton>
+	        
 
 	    &#150; &#150;  <p:button  style="width:120px;height:25px"  outcome="blockdetails.xhtml" value="Back"/>
 	     &#150; &#150; <p:commandButton style="width:120px;height:25px"  value="Next"/>
@@ -119,33 +131,43 @@ Unless the Community Setup is complete, the changes that are made will not be sa
  </div>
   <p:dialog header="Edit House Details" widgetVar="editHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
         <p:outputPanel id="editHouseDetail" style="text-align:center;">
- 
-	<table>
+ <table>
  <tr><th> 
                <h:outputText value="House No" /> </th>
              
-	<td><h:outputText  value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
+	<td><h:inputText      value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
 	 
 	</tr>
 	<tr><th><h:outputText value="Size of House (Sqft.)" /> </th>
              
-	<td><h:outputText   value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
+	<td><h:inputText      value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
 	<tr><th><h:outputText value="Type Of House" /> </th>
-	<td><h:outputText    value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}"/>
-	 </td></tr>
+	<td><h:selectOneMenu  value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}" > 
+	 <f:selectItem itemLabel="Select One" itemValue="" />
+              <f:selectItem itemLabel="1BHK" itemValue="1BHK" />
+              <f:selectItem itemLabel="2BHK" itemValue="2BHK" />
+              <f:selectItem itemLabel="3BHK" itemValue="3BHK" />
+              <f:selectItem itemLabel="SingleBuilding" itemValue="SingleBuilding" />
+              
+                 </h:selectOneMenu></td></tr>
 	<tr><th><h:outputText value="No Of BathRoom" /> </th>
              
-	<td><h:outputText    value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
+	<td><h:inputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBathRooms}"/></td></tr>
 	<tr><th><h:outputText value="No Of Balconies" /> </th>
             
-	<td><h:outputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
+	<td><h:inputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
 	<tr><th><h:outputText value="Rented" /> </th>
-          <td><h:outputText     value="#{apartmentDetailsBean.housedetails.is_Rented}"/>
-          </td>   
+          <td><h:selectOneMenu    value="#{apartmentDetailsBean.housedetails.is_Rented}"> 
+              <f:selectItem itemLabel="Select One" itemValue="" />
+              <f:selectItem itemLabel="Yes" itemValue="Yes" />
+              <f:selectItem itemLabel="No" itemValue="No" />
+              
+                 </h:selectOneMenu></td>   
 	 </tr>
-	 
+	<tr><td><h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" /></td><td><h:commandButton   styleClass="btn"    value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" />
+	 </td>
+	 </tr>
 	 </table>
- 
  </p:outputPanel>
  </p:dialog>
  <p:dialog header="View House Details" widgetVar="viewHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
@@ -228,20 +250,22 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 		 
 		<tr><th>1</th><td>
 		 
-		  <p:commandButton value="Download Template" ajax="false"    icon="ui-icon-arrowthick-1-s">
+		  <h:commandButton value="Download Template"   icon="ui-icon-arrowthick-1-s" immediate="true" execute="@this">
         <p:fileDownload value="#{apartmentDetailsBean.downloadFile()}" />
-    </p:commandButton></td> &#150; &#150;<th>2</th><td>Fill The Template</td> &#150; &#150;<th>3</th><td>Upload</td></tr></table>  
+           
+    </h:commandButton></td> &#150; &#150;<th>2</th><td>Fill The Template</td> &#150; &#150;<th>3</th><td>Upload</td></tr></table>  
 		<table> <tr><td>  <h:inputFile id="file" 
 		             label="file"
 			         value="#{apartmentDetailsBean.part}"> 
 			       
-            <!--  FileUploadValidator for file validation 
-            <f:validator validatorId="BulkUploadValidator" /> -->
+            <!--  FileUploadValidator for file validation  
+            --> 
+            <f:validator validatorId="BulkUploadValidator" />
             </h:inputFile>
                     
 		       <h:commandButton style="width:120px;height:25px" id="submit1"   action="#{apartmentDetailsBean.uploadFile}"
 			             value="Upload" >
-			              
+			             <f:ajax render="@form" execute="@form"/>
 			             </h:commandButton>  <br />
 			             <!-- status message of file upload; rendered if message is set -->
 		<h:outputText value="#{apartmentDetailsBean.statusMessage}"

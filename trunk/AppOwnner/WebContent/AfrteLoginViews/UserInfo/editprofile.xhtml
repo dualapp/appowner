@@ -174,7 +174,8 @@
              </td>  
             <td width="15%"><h:outputText value="Date Of Birth:"/>
              </td>          
-            <td width="30%"><h:inputText value="#{loginBean.str_OpenDate}"/>
+            <td width="30%"> 
+            <p:calendar required="true" requiredMessage="plz  enter to date" navigator="true"   display="inline" value="#{loginBean.date_DateOfBirth}"/>
              </td></tr>
               
           <tr>
@@ -236,15 +237,3 @@
 </body>
 </ui:define>
 </ui:composition>
-
-
-
-
-
-
-
-
-
-
-
- 
