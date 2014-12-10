@@ -281,6 +281,7 @@ box-shadow: 0px 0px 20px 3px #d3d3d3;
 border-radius: 4px;
 background-color:#ffffff;
 }
+
 #page1 {
 width: 35%;
 float: right;
@@ -325,6 +326,14 @@ box-shadow: 0px 0px 20px 3px #d3d3d3;
 border-radius: 4px;
 background-color: #ffffff;
 }
+.yourStyleClass  span {
+    background-position: left center;
+    background-repeat: no-repeat;
+    margin-left: 6px;
+    width:70px;
+    height:25px;
+}
+ 
 #page33 {
 margin-left: 15px;
 position: relative;
