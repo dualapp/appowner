@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * A servlet that takes message details from user and send it as a new e-mail
  * through an SMTP server.
  * 
- * @author www.codejava.net
+ * @author kalpana jena
  * 
  */
 @WebServlet("/EmailSendingServlet1")
@@ -59,7 +59,7 @@ public class EmailSendingServlet1 extends HttpServlet {
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/Result.jsp").forward(
+            getServletContext().getRequestDispatcher("/AfrteLoginViews/Facilities/Result.jsp").forward(
                     request, response);
         }
     }

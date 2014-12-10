@@ -30,6 +30,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
 import com.appowner.model.CommunitySetup;
+import com.appowner.model.CommunityType;
 import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
@@ -81,6 +82,28 @@ public class ApartmentDetailsBean  implements Serializable{
 	private String is_Rented;
 	private String str_TypeOfHouse;
 	private String str_HouseNo;
+	private Integer int_CommunitysetUpId;
+	 
+	@SuppressWarnings("unused")
+	private List<String> communityTypelist;
+	private CommunityType communityType;
+	 
+	 
+	public List<String> getCommunityTypelist() {
+		communityTypelist=new ArrayList<String>();
+		communityTypelist.addAll( getApartmentDetailsService().getCommunityTypelist());
+		return communityTypelist;
+	}
+	public void setCommunityTypelist(List<String> communityTypelist) {
+		this.communityTypelist = communityTypelist;
+	}
+	public Integer getInt_CommunitysetUpId() {
+		
+		return int_CommunitysetUpId;
+	}
+	public void setInt_CommunitysetUpId(Integer int_CommunitysetUpId) {
+		this.int_CommunitysetUpId = int_CommunitysetUpId;
+	}
 	public Integer getInt_NoOfBalconies() {
 		return int_NoOfBalconies;
 	}
@@ -161,27 +184,75 @@ public class ApartmentDetailsBean  implements Serializable{
 	{
 		list.addAll((List<String>) event.getNewValue());
 	}
+	
+	
 	private List<CommunitySetup> CommunityTypeList;
 	public String saveCommunitySetup()
 	{
 		
-		cs=new CommunitySetup();
-		ListIterator itr1=list.listIterator();
-		while(itr1.hasNext())
-		{ 
-			str_CommunityType=(String) itr1.next();
-		 cs.setInt_TotalNoOfHouses(int_TotalNoOfHouses);
-		 cs.setInt_year(int_year);
-		 cs.setStr_CommunitySetupType(str_CommunityType);
-		cs.setInt_NoOfBlocks(int_NoOfBlock);
-		getApartmentDetailsService().saveCommunitySetup(cs);
+		CommunitySetup	cs1=new CommunitySetup();
+		communityType=new CommunityType();
+		cs1.setInt_TotalNoOfHouses(getInt_TotalHouse());;
+		 cs1.setInt_UserId(Util.getUserId());
+		 cs1.setInt_year(getInt_year());
+		cs1.setInt_NoOfBlocks(getInt_NoOfBlock());
+		cs=getApartmentDetailsService().getCommunitySetup(Util.getUserId());
+		if(cs!=null)
+		{
+			
+			cs1.setInt_CommunitySetupId(cs.getInt_CommunitySetupId());
+			getApartmentDetailsService().updateCommunitySetup(cs1);
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Updated Successfully!", "Updated Successfully!"));
+		}
+		else
+		{
+		getApartmentDetailsService().saveCommunitySetup(cs1);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
 		}
+		ListIterator itr1=list.listIterator();
+		
+		while(itr1.hasNext())
+		{ 
+			str_CommunityType=(String) itr1.next();
+			communityType.setInt_CommunitySetupId(getApartmentDetailsService().getCommunitySetupId(Util.getUserId()));
+		    communityType.setInt_CommunityTypeId(getApartmentDetailsService().getCommunityType(str_CommunityType));
+		    getApartmentDetailsService().saveCommunitySetup(communityType);
+		}
+		 
 		return "blockdetails.xhtml";
+	}
+	public CommunitySetup getCs() {
+		cs=new CommunitySetup();
+		cs=getApartmentDetailsService().getCommunitySetup(Util.getUserId());
+		if(cs!=null)
+		{
+			int_NoOfBlock=cs.getInt_NoOfBlocks();
+			
+			int_year=cs.getInt_year();
+			int_TotalHouse=cs.getInt_TotalNoOfHouses();
+			str_CommunityType=cs.getStr_CommunitySetupType();
+			
+		}
+		else
+		{
+			int_NoOfBlock=this.getInt_NoOfBlock();
+			int_year=this.getInt_year();
+			int_TotalHouse=this.getInt_TotalHouse();
+			
+			str_CommunityType=this.getStr_CommunityType();
+		}
+		return cs;
+	}
+	public void setCs(CommunitySetup cs) {
+		this.cs = cs;
 	}
 	public String saveBlockDetails()
 	{
@@ -195,9 +266,9 @@ public class ApartmentDetailsBean  implements Serializable{
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
-		return "blockdetails.xhtml";
+		return null;
 	}
-	private HouseDetails housedetails;
+	private HouseDetails housedetails=new HouseDetails();
 	public HouseDetails getHousedetails() {
 		return housedetails;
 	}
@@ -215,13 +286,12 @@ public class ApartmentDetailsBean  implements Serializable{
  * get particular House according to House id
  */
 	 
-	public HouseDetails  getHouseDetails1(Integer houseId)
+	public void getHouseDetails1(Integer houseId)
 	{    System.out.println( houseId+"hid");
-	housedetails=new HouseDetails();
+	
 		housedetails=getApartmentDetailsService().getHouseDetails(houseId);
 		 
 		System.out.println(housedetails+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhDddddddddddddd");
-		return housedetails;
 	}
 	
 	public String deleteHouseDetails(Integer HouseId)
@@ -230,7 +300,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_HouseId(HouseId);
 		
 		getApartmentDetailsService().deleteHouseDetails(housedetails);	
-		return "housedetails.xhtml?faces-redirect=true";
+		return null;
 	}
 	public String deleteSelectedHouse() {
 	    List<HouseDetails> entitiesToDelete = new ArrayList<HouseDetails>();
@@ -250,15 +320,20 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  deleted Successfully!", " deleted Successfully!"));
-	    return "housedetails.xhtml?faces-redirect=true";
+	    return null;
 	}
 	public String updateHouseDetails()
 	{
 		if(housedetails.getInt_HouseId()!=null)
 		{
 			getApartmentDetailsService().updateHouseDetails(housedetails);
+			 FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Updated Successfully!", " Updateed Successfully!"));
 		}
-		return "housedetails.xhtml?faces-redirect=true";
+		return null;
 	}
 	public String saveHouseDetails()
 	{ 
@@ -282,7 +357,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
-		return "housedetails.xhtml";
+		return null;
 	}
 	public List<UserBlocks> getListBlockDetails() {
 		listBlockDetails=new ArrayList<UserBlocks>();
@@ -330,6 +405,8 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		this.listHouseDetails = listHouseDetails;
 	}
 	public List<CommunitySetup> getCommunityTypeList() {
+		CommunityTypeList=new ArrayList<CommunitySetup>();
+		CommunityTypeList.addAll(getApartmentDetailsService().getCommunityType(Util.getUserId()));
 		return CommunityTypeList;
 	}
 	public void setCommunityTypeList(List<CommunitySetup> communityTypeList) {

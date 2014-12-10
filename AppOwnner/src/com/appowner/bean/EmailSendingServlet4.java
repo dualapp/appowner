@@ -53,7 +53,7 @@ public class EmailSendingServlet4 extends HttpServlet {
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/memberresult.xhtml").forward(
+            getServletContext().getRequestDispatcher("/AfrteLoginViews/UserInfo/memberresult.xhtml").forward(
                     request, response);
         }
     }

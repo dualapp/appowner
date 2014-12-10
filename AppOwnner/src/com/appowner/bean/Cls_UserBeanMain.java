@@ -44,7 +44,7 @@ import com.appowner.model.UserState;
 import com.appowner.service.In_UserService;
  
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class Cls_UserBeanMain implements Serializable {
 
 	 private List<String> str_UserCities;
@@ -602,11 +602,12 @@ public class Cls_UserBeanMain implements Serializable {
 		usr.setInt_activationbit(0);
 		getUserService().addUser(usr);
 		el=getStr_Email();
+		System.out.println(el+"user email");
 		un=getStr_Username();
 		pd=getStr_Password();
 		an=getStr_ApartmentName();
 		fn=getStr_FirstName();
-		String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid;
+		String url="http://http://localhost:9573/AppOwnner/BeforeLoginViews/UserInfo/activate.jsp?activationkey="+uuid;
 		subject="AppOwner.com";
 		content="Hello."+" "  +fn+
 			   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
@@ -616,7 +617,7 @@ public class Cls_UserBeanMain implements Serializable {
 			   + "Password:  "+" "  +pd+
 			    "\n Please Click here to Activate your Account "+" "+url ;
 		
-		return "EmailForm1.jsp";
+		return "/BeforeLoginViews/UserInfo/EmailForm.jsp";
 		
 	}
 	//for user id and email validation

@@ -9,6 +9,9 @@ import java.io.Serializable;
 
 
 
+
+
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,6 +25,7 @@ import java.util.UUID;
 
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -39,11 +43,11 @@ import com.appowner.service.ApartmentDetailsService;
 import com.appowner.service.In_UserService;
 import com.appowner.util.Util;
 /*
- * Develope by Pankaj singh.
+ * Develope by kalpana .
  * This class is for Adding new user and perform
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class Cls_UserBean implements Serializable{
 	//Varialble declaration
 		private static final long serialVersionUID = 1L;
@@ -498,9 +502,9 @@ public class Cls_UserBean implements Serializable{
 				usr.setInt_activationbit(0);
 				System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
 				getUserService().addUser(usr);
-				 el=getStr_Email();
+				 el="kalpanasudha1990@gmail.com";
 				 un=getStr_Username();
-				pd=getStr_Password();
+				pd="9040219579";
 				fn=getStr_FirstName();
 				an=getUserapartment();
 				String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
@@ -800,7 +804,16 @@ public class Cls_UserBean implements Serializable{
 		}
 		private String str_HouseNo;
 		private List<String> houseNoList;
+		private List<String> blockNameByApartmentName;
 		private List<String> blockNameList;
+		private String str_UserApartment;
+		public String getStr_UserApartment() {
+			return str_UserApartment;
+		}
+		public void setStr_UserApartment(String str_UserApartment) {
+			this.str_UserApartment = str_UserApartment;
+		}
+
 		private User u;
 		private User u1;
 		public User getU1() {
@@ -859,8 +872,27 @@ public class Cls_UserBean implements Serializable{
 			str_HouseNo=(String) event.getNewValue();
 			render=true;
 		}
+		public List<String> getBlockNameByApartmentName() {
+			System.out.println(str_UserApartment);
+			System.out.println(blockNameByApartmentName+"blocks111111111111111111111111");
+			return blockNameByApartmentName;
+		}
+		public void setBlockNameByApartmentName(
+				List<String> blockNameByApartmentName) {
+			this.blockNameByApartmentName = blockNameByApartmentName;
+		}
 	 
-
+		 public void apartmentChangeListener(ValueChangeEvent event)
+		    {
+			 
+			 str_UserApartment=(String) event.getNewValue();
+			 System.out.println( str_UserApartment+"apartment");
+			 blockNameByApartmentName=new ArrayList<String>();
+				blockNameByApartmentName.addAll(getApartmentDetailsService().getBlockNameByApartmentName(str_UserApartment));
+			  
+		    	System.out.println(blockNameByApartmentName+"blockssssssssssssssssssssssssssssssssssssssssssssssss");
+		    	
+		    }
 	}
 
 
