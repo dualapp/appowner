@@ -35,7 +35,7 @@
          
     </form>
     <script>
-document.getElementById("ponyo_form").submit();
+   document.getElementById("ponyo_form").submit();
 </script>
 </div>
     
