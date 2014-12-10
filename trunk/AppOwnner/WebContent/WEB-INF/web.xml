@@ -5,105 +5,94 @@
     <welcome-file>firstpage.xhtml</welcome-file>
   </welcome-file-list>
   <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
             /WEB-INF/config/application-context-servlet.xml
         </param-value>
-    </context-param>
-     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>
             org.springframework.web.context.request.RequestContextListener
         </listener-class>
-    </listener>
-    <servlet>
+  </listener>
+  <servlet>
     <servlet-name>dum1</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-   <servlet-name>dum1</servlet-name>
-   <url-pattern>/srv</url-pattern>
-   </servlet-mapping>
-   <servlet>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dum1</servlet-name>
+    <url-pattern>/srv</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>dum2</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet4</servlet-class>
     </servlet>
     <servlet-mapping>
    <servlet-name>dum2</servlet-name>
-   <url-pattern>/srv3</url-pattern>
+   <url-pattern>/srv5</url-pattern>
    </servlet-mapping>
-   <servlet>
+
+  <servlet>
     <servlet-name>Servlet1</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet1</servlet-class>
-    </servlet>
-    <servlet-mapping>
-   <servlet-name>Servlet1</servlet-name>
-   <url-pattern>/srv1</url-pattern>
-   </servlet-mapping>
-    <servlet>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet1</servlet-name>
+    <url-pattern>/srv1</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>priya</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet2</servlet-class>
-    </servlet>
-    <servlet-mapping>
-   <servlet-name>priya</servlet-name>
-   <url-pattern>/srv2</url-pattern>
-   </servlet-mapping>
-    <!-- SMTP settings -->
-    <context-param>
-        <param-name>host</param-name>
-        <param-value>smtp.gmail.com</param-value>
-    </context-param>
- 
-    <context-param>
-        <param-name>port</param-name>
-        <param-value>587</param-value>
-    </context-param>
- 
-    <context-param>
-        <param-name>user</param-name>
-        <param-value>pankaj.singh1930@gmail.com</param-value>
-    </context-param>
- 
-    <context-param>
-        <param-name>pass</param-name>
-        <param-value>pankajart</param-value>
-    </context-param>
- 
-    <!-- Filter for uploading files -->
-    
-<filter>
-        <filter-name>PrimeFaces FileUpload Filter</filter-name>
-        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-        <init-param>
-            <param-name>thresholdSize</param-name>
-            <param-value>10240</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>PrimeFaces FileUpload Filter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
-    </filter-mapping>
-    
-    <!-- Change to "Production" when you are ready to deploy -->
-	<context-param>
-		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
-	</context-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>priya</servlet-name>
+    <url-pattern>/srv2</url-pattern>
+  </servlet-mapping>
+  <context-param>
+    <param-name>host</param-name>
+    <param-value>smtp.gmail.com</param-value>
+  </context-param>
+  <context-param>
+    <param-name>port</param-name>
+    <param-value>587</param-value>
+  </context-param>
+  <context-param>
+    <param-name>user</param-name>
+    <param-value>pankaj.singh1930@gmail.com</param-value>
+  </context-param>
+  <context-param>
+    <param-name>pass</param-name>
+    <param-value>pankajart</param-value>
+  </context-param>
+  <filter>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    <init-param>
+      <param-name>thresholdSize</param-name>
+      <param-value>10240</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
-    
-    
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   <session-config>
-  <session-timeout>20</session-timeout>
+    <session-timeout>20</session-timeout>
   </session-config>
 </web-app>
