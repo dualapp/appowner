@@ -7,6 +7,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="../../include/templates/template1.xhtml">
 	<ui:define name="content">
+	<f:metadata>
+	 
+	<f:viewAction action="#{apartmentDetailsBean.getCs()}" />
+</f:metadata>
 <h:head><title>User Registration</title>
  <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
 </h:head>
@@ -30,12 +34,9 @@
 information in few minutes.</p><p> You can add, remove or update information related to houses, blocks
 and members associated.</p> 
   <table>
-<tr><th width="30%">What is type of Community*</th><td width="70%"><h:selectManyCheckbox   valueChangeListener="#{apartmentDetailsBean.communityTypeListener}"  value="#{apartmentDetailsBean.communityTypeList}"  styleClass="nostyle">
-<f:selectItem itemValue="Apartment" itemLabel="Apartment" /> 
-   <f:selectItem itemValue="Villa" itemLabel="Villa" /> 
-   <f:selectItem itemValue="Plots" itemLabel="Plots" /> 
-   <f:selectItem itemValue="Layouts" itemLabel="Layouts" />
-   <f:selectItem itemValue="RowHouses" itemLabel="rowHouses" />
+<tr><th width="30%">What is type of Community*</th><td width="70%"><h:selectManyCheckbox   valueChangeListener="#{apartmentDetailsBean.communityTypeListener}"  value="#{apartmentDetailsBean.communityTypelist}"  styleClass="nostyle">
+   
+  <f:selectItems value="#{apartmentDetailsBean.communityTypelist}" />
    </h:selectManyCheckbox>
 </td>
 </tr>
