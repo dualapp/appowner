@@ -3,6 +3,7 @@ package com.appowner.dao;
 import java.util.List;
 import java.util.ListIterator;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,12 @@ import org.springframework.stereotype.Repository;
 
 import com.appowner.model.AssetCategory;
 import com.appowner.model.CommunitySetup;
+import com.appowner.model.CommunityType;
+import com.appowner.model.CommunityTypeMaster;
 import com.appowner.model.Employee;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
+import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.WorkOrderCategory;
 
@@ -164,5 +168,60 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	public void updateHouseDetails(HouseDetails housedetails) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(housedetails);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CommunitySetup> getCommunityType(Integer userId) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("select str_CommunitySetupType from CommunitySetup where int_UserId=?").setParameter(0, userId).list();
+	}
+
+	@Override
+	public CommunitySetup getCommunitySetup(Integer userId) {
+		// TODO Auto-generated method stub
+		return (CommunitySetup) sessionFactory.getCurrentSession().createQuery("from CommunitySetup where int_UserId=?").setParameter(0, userId).uniqueResult();
+	}
+
+	@Override
+	public void updateCommunitySetup(CommunitySetup cs) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(cs);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getBlockNameByApartmentName(String str_UserApartment) {
+		// TODO Auto-generated method stub
+		System.out.println(str_UserApartment+"appname");
+		Integer apartmentId=(Integer) sessionFactory.getCurrentSession().createQuery("select int_ApartmentId from UserApartment where str_ApartmentName=? ").setParameter(0, str_UserApartment).uniqueResult();
+		System.out.println(apartmentId+"ApartmentId");
+		
+		return sessionFactory.getCurrentSession().createQuery("select str_BlockName from UserBlocks where int_ApartmentId=?").setParameter(0, apartmentId).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getCommunityTypelist() {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createCriteria(CommunityTypeMaster.class).setCacheable(true).setProjection(Projections.property("str_CommunityType")).list();
+	}
+
+	@Override
+	public void saveCommunitySetup(CommunityType communityType) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().save(communityType);
+	}
+
+	@Override
+	public Integer getCommunityType(String str_CommunityType) {
+		// TODO Auto-generated method stub
+		return (Integer) getSessionFactory().getCurrentSession().createQuery("select int_MasterCommunityTypeId from CommunityTypeMaster where str_CommunityType=?").setParameter(0, str_CommunityType).uniqueResult();
+	}
+
+	@Override
+	public Integer getCommunitySetupId(Integer userId) {
+		// TODO Auto-generated method stub
+		return (Integer) getSessionFactory().getCurrentSession().createQuery("select int_CommunitySetupId from CommunitySetup where int_UserId=?").setParameter(0, userId).uniqueResult();
 	}
 }
