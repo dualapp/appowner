@@ -1020,7 +1020,7 @@ public static void setUser1(boolean user1) {
 			flash.setRedirect(true);
 			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Service Request Saved Successfully !", "Service Request Saved Successfully !"));
 		 //Email=user.getStr_Email();
-		 Email="devroutaray@gmail.com";
+		 Email="kalpana.j5599@gmail.com";
 		 subject="Service Request";
 		 content="sir i need ur BsnlBroadBand service so plz provice it";
 		 str_ApartmentName1=user.getStr_Apartment();

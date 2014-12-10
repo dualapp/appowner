@@ -483,7 +483,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	}
 
 	// Vendor model class
-	private Vendor vendor;
+	private Vendor vendor=new Vendor();
 
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
