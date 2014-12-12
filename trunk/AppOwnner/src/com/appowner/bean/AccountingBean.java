@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -258,11 +259,11 @@ public String deleteManualJournal() {
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ManualJournal deleted Successfully!", "ManualJournal deleted Successfully!"));
    
 
    getAccountsService().deleteManualJournal(id);
-    return "accountinglayout.xhtml?faces-redirect=true";
+    return "manualjournal.xhtml?faces-redirect=true";
 }
 private List<ManualJournal> listManualJournal;
 public List<ManualJournal> getListManualJournal() {
@@ -338,10 +339,51 @@ public List<InvoiceTransaction> getListInvoiceTransaction1() {
 	
 }
 private List<String> listAccountsName;	
-
- public List<String> getListAccountsName() {
+private List<ChartOfAccount>  listAccountsName1;
+ public List<ChartOfAccount> getListAccountsName1() {
+	 listAccountsName1=new ArrayList<ChartOfAccount>();
+	 listAccountsName1.addAll(getAccountsService().getAccountTypeList2());
+	
+	 ListIterator list=listAccountsName1.listIterator();
+	 income1=new ArrayList<String>();
+	 asset=new ArrayList<String>();
+	 expense=new ArrayList<String>();
+	 liability=new ArrayList<String>();
+	 while(list.hasNext())
+	 {
+		 ChartOfAccount account=(ChartOfAccount) list.next();
+		 String str=account.getStr_AccountName();
+		
+		 char ch=account.getCh_Group();
+		
+		 if(ch=='A')
+		 {
+			 asset.add(str);
+		 }
+		 else if(ch=='E')
+		 {
+			 expense.add(str);
+			 
+		 }
+		 else if(ch=='R')
+		 {
+			 income1.add(str);
+			 
+		 }
+		 else
+		 {
+			 liability.add(str) ;
+		 }
+	 }
+	return listAccountsName1;
+}
+public void setListAccountsName1(List<ChartOfAccount> listAccountsName1) {
+	this.listAccountsName1 = listAccountsName1;
+}
+public List<String> getListAccountsName() {
 	 listAccountsName=new ArrayList<String>();
 	 listAccountsName.addAll(getAccountsService().getAccountTypeList1());
+	
 	return listAccountsName;
 }
 public void setListAccountsName(List<String> listAccountsName) {
@@ -602,7 +644,7 @@ public double getDebit() {
 		 return credit;
 		 }
 		*/
-	    getAccountsService().updateClosingBalance(debit,credit,str,-credit);	
+	   
 		 System.out.println(debit+"pp");
 		 System.out.println(credit+"jjj");
 		 System.out.println(totalBalance+"jkfkjfkj");
@@ -615,7 +657,7 @@ public double getDebit() {
  		 type2=false;
  		 credit=0.00;
  		 totalBalance=debit;
- 		 getAccountsService().updateClosingBalance(debit,credit,str,debit);	
+ 		
  		 System.out.println(debit+"pp1"); 
  		 return debit;
       }
@@ -719,7 +761,7 @@ public double getDebit() {
 				 totalBalance=credit;
 				 System.out.println(debit+"pp");
 				 System.out.println(credit+"ppp1");
-				 getAccountsService().updateClosingBalance(debit,credit,str,-credit);	
+				
 				 return credit;
 	          }
 	          else
@@ -730,7 +772,7 @@ public double getDebit() {
 	        	  totalBalance=debit;
 	        	  credit=0.00;
 	 			 System.out.println(debit+"pp1");
-	 			 getAccountsService().updateClosingBalance(debit,credit,str,debit);	
+	 			
 	 			 return debit;
 	          }
 				
@@ -832,7 +874,7 @@ try{
 				
 				totalBalance=debit;
 				 credit=0.00;
-				 getAccountsService().updateClosingBalance(debit,credit,str,debit);	
+				
 				 return debit;
 			 }
 			 else
@@ -842,7 +884,7 @@ try{
 					  type2=true;
 				 debit=0.00;
 				 totalBalance=credit;
-				 getAccountsService().updateClosingBalance(debit,credit,str,-credit);	
+				
 				 return credit;
 			 }
 			 
@@ -886,7 +928,7 @@ try{
 					 getAccountsService().updateClosingBalance(debit1,credit,str,debit1);	
 					 return debit;
 				 }  */
-				 getAccountsService().updateClosingBalance(debit,credit,str,-debit);	
+				
 				 return debit;
 			 }
 			 else
@@ -899,7 +941,7 @@ try{
 				 totalBalance=credit;
 				// double credit1=0.00;
 				// credit1=totalBalance1+credit;
-				 getAccountsService().updateClosingBalance(debit,credit,str,credit);	
+				
 				 return totalBalance;
 			 }
 			 
@@ -917,12 +959,12 @@ try{
 			totalBalance=debit;
 			if(str_Accounts.equalsIgnoreCase("Opening Balance Adjustment"))
 			{
-			 getAccountsService().updateClosingBalance(debit,credit,str,-debit);	
+			
 			 return debit;
 			}
 			else
 			{
-				 getAccountsService().updateClosingBalance(debit,credit,str,debit);	
+				
 				 return debit;
 			}
 		 }
@@ -935,12 +977,12 @@ try{
 			 totalBalance=credit;
 			 if(str_Accounts.equalsIgnoreCase("Opening Balance Adjustment")) 
 			 {
-			 getAccountsService().updateClosingBalance(debit,credit,str,credit);	
+			
 			 return credit;
 			 }
 			 else
 			 {
-				 getAccountsService().updateClosingBalance(debit,credit,str,-credit);	
+				
 				 return credit; 
 			 }
 		 }
@@ -1191,93 +1233,58 @@ public ChartOfAccount getChartOfAccount() {
 public void setChartOfAccount(ChartOfAccount chartOfAccount) {
 	this.chartOfAccount = chartOfAccount;
 }
-private List<ChartOfAccount> chartOfAccountList;
-public List<ChartOfAccount> getChartOfAccountList() {
-	chartOfAccountList=new ArrayList<ChartOfAccount>();
-	chartOfAccountList.addAll(getAccountsService().getChartOfAccountList());
-	ListIterator list=chartOfAccountList.listIterator();
-	debitNetTotal=0.00;
-	while(list.hasNext())
-	{
-		ChartOfAccount account=(ChartOfAccount)list.next();
-		double ddd=account.getDebit_closingBalance();
-		debitNetTotal=debitNetTotal+ddd;
-		double ddd1=account.getCredit_closingBalance();
-		creditNetTotal=creditNetTotal+ddd1;
-		
-	}
-			
-	return chartOfAccountList;
-}
-public void setChartOfAccountList(List<ChartOfAccount> chartOfAccountList) {
-	this.chartOfAccountList = chartOfAccountList;
-}
-private List<ChartOfAccount> income1;
-public List<ChartOfAccount> getIncome1() {
-	income1=new ArrayList<ChartOfAccount>();
-	income1.addAll(getAccountsService().listRavenues());
-	getChartOfAccountList();
+
+private List<String> income1;
+public List<String> getIncome1() {
+	
 	
 	return income1;
 	
 }
 
-public List<ChartOfAccount> getAsset() {
-	asset=new ArrayList<ChartOfAccount>();
-	asset.addAll(getAccountsService().listAssets());
-	ListIterator list=asset.listIterator();
-	while(list.hasNext())
-	{
-		ChartOfAccount account=(ChartOfAccount) list.next();
-		double ddd=account.getClosingBalance();
-		int_blank1=int_blank1+ddd;
-	}
+public List<String> getAsset() {
+	
+	
 	return asset;
 }
 
 
-public void setIncome1(List<ChartOfAccount> income1) {
+
+public void setIncome1(List<String> income1) {
 	this.income1 = income1;
 }
-private List<ChartOfAccount> asset;
+private List<String> asset;
 
-public void setAsset(List<ChartOfAccount> asset) {
-	this.asset = asset;
-}
-private List<ChartOfAccount> expense;
-public List<ChartOfAccount> getExpense() {
-	expense=new ArrayList<ChartOfAccount>();
-	expense.addAll(getAccountsService().listExpense());
+
+private List<String> expense;
+public List<String> getExpense() {
+	
 	return expense;
 }
 
-private List<ChartOfAccount> liability;
-private List<ChartOfAccount> equity;
-public List<ChartOfAccount> getLiability() {
-	liability=new ArrayList<ChartOfAccount>();
-	liability.addAll(getAccountsService().listLiability());
-	ListIterator list=liability.listIterator();
-	while(list.hasNext())
-	{
-		ChartOfAccount account=(ChartOfAccount) list.next();
-		double ddd=account.getClosingBalance();
-		int_blank=int_blank+ddd;
-	}
+private List<String> liability;
+private List<String> equity;
+public List<String> getLiability() {
+	
+	
 	return liability;
 }
 
-public List<ChartOfAccount> getEquity() {
-	equity=new ArrayList<ChartOfAccount>();
-	equity.addAll(getAccountsService().listEquity());
+public List<String> getEquity() {
+	
 	return equity;
 }
-public void setExpense(List<ChartOfAccount> expense) {
+
+public void setAsset(List<String> asset) {
+	this.asset = asset;
+}
+public void setExpense(List<String> expense) {
 	this.expense = expense;
 }
-public void setLiability(List<ChartOfAccount> liability) {
+public void setLiability(List<String> liability) {
 	this.liability = liability;
 }
-public void setEquity(List<ChartOfAccount> equity) {
+public void setEquity(List<String> equity) {
 	this.equity = equity;
 }
 private List<ManualJournal> listManualJournal2;
@@ -1526,7 +1533,7 @@ public void setIncomeAmount(List<Double> incomeAmount) {
 }
 private String indicator;
 public String getIndicator() {
-	//indicator="Profit";
+	
 	return indicator;
 }
 public void setIndicator(String indicator) {
@@ -1594,7 +1601,8 @@ public void init() {
     dates.add(g2);
     dates.add(g3);
     getListInvoiceTransaction2(); 
-    getExpenseList();  
+    getExpenseList(); 
+   
   
 }
 private String date4;
@@ -1683,9 +1691,9 @@ public Date accountchangeListener3(ValueChangeEvent event)
 	   Calendar c = Calendar.getInstance();
 		
 		c.getActualMaximum(Calendar.DAY_OF_MONTH);
-		int year=c.getWeekYear();
+		int year=c.getWeekYear()+1;
 		c.set(Calendar.YEAR, year);
-		c.set(Calendar.MONTH, 11); // 11 = december
+		c.set(Calendar.MONTH, 2); 
 		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
 
 
@@ -1755,9 +1763,9 @@ public Date accountchangeListener3(ValueChangeEvent event)
 	   Calendar c = Calendar.getInstance();
 		
 		
-		int year=c.getWeekYear()-1;
+		int year=c.getWeekYear();
 		c.set(Calendar.YEAR, year);
-		c.set(Calendar.MONTH, 11); // 11 = december
+		c.set(Calendar.MONTH, 2); 
 		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
 
 
@@ -1767,6 +1775,137 @@ public Date accountchangeListener3(ValueChangeEvent event)
    }
     return null;
 	
+}
+private List<Double>  assetDebitBalance;
+private List<Double>  assetCreditBalance;
+private List<Double>  incomeDebitBalance;
+private List<Double>  expenseDebitBalance;
+private List<Double>  expenseCreditBalance;
+private List<Double>   liabilityDebitBalance;
+private List<Double>   liabilityCreditBalance;
+public List<Double> getExpenseDebitBalance() {
+	return expenseDebitBalance;
+}
+public void setExpenseDebitBalance(List<Double> expenseDebitBalance) {
+	this.expenseDebitBalance = expenseDebitBalance;
+}
+public List<Double> getExpenseCreditBalance() {
+	return expenseCreditBalance;
+}
+public void setExpenseCreditBalance(List<Double> expenseCreditBalance) {
+	this.expenseCreditBalance = expenseCreditBalance;
+}
+public List<Double> getLiabilityDebitBalance() {
+	return liabilityDebitBalance;
+}
+public void setLiabilityDebitBalance(List<Double> liabilityDebitBalance) {
+	this.liabilityDebitBalance = liabilityDebitBalance;
+}
+public List<Double> getLiabilityCreditBalance() {
+	return liabilityCreditBalance;
+}
+public void setLiabilityCreditBalance(List<Double> liabilityCreditBalance) {
+	this.liabilityCreditBalance = liabilityCreditBalance;
+}
+public List<Double> getIncomeDebitBalance() {
+	return incomeDebitBalance;
+}
+public void setIncomeDebitBalance(List<Double> incomeDebitBalance) {
+	this.incomeDebitBalance = incomeDebitBalance;
+}
+private List<Double>  incomeCreditBalance;
+public List<Double> getIncomeCreditBalance() {
+	return incomeCreditBalance;
+}
+public void setIncomeCreditBalance(List<Double> incomeCreditBalance) {
+	this.incomeCreditBalance = incomeCreditBalance;
+}
+public List<Double> getAssetDebitBalance() {
+	return assetDebitBalance;
+}
+public void setAssetDebitBalance(List<Double> assetDebitBalance) {
+	this.assetDebitBalance = assetDebitBalance;
+}
+public List<Double> getAssetCreditBalance() {
+	return assetCreditBalance;
+}
+public void setAssetCreditBalance(List<Double> assetCreditBalance) {
+	this.assetCreditBalance = assetCreditBalance;
+}
+private double debitNetTotal1=0.00;
+public double getDebitNetTotal1() {
+	return debitNetTotal1;
+}
+public void setDebitNetTotal1(double debitNetTotal1) {
+	this.debitNetTotal1 = debitNetTotal1;
+}
+public void getSearch2()
+{    
+	getListAccountsName1();
+	assetDebitBalance=new ArrayList<Double>();
+	assetCreditBalance=new ArrayList<Double>();
+	ListIterator list=asset.listIterator();
+	ListIterator list1=income1.listIterator();
+	ListIterator list2=expense.listIterator();
+	ListIterator list3=liability.listIterator();
+	while(list.hasNext())
+	{
+		String str=(String)list.next();
+		System.out.println(str);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
+		creditNetTotal=creditNetTotal+balance;
+		assetCreditBalance.add(balance);
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		assetDebitBalance.add(balance1);
+		debitNetTotal1=debitNetTotal1+balance1;
+		System.out.println(balance1+"kjfgfgg");
+		System.out.println(balance+"jkjjkjk");
+	}
+	incomeDebitBalance=new ArrayList<Double>();
+	incomeCreditBalance=new ArrayList<Double>();
+	while(list1.hasNext())
+	{
+		String str=(String)list1.next();
+		System.out.println(str);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
+		creditNetTotal=creditNetTotal+balance;
+		incomeCreditBalance.add(balance);
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		debitNetTotal1=debitNetTotal1+balance1;
+		incomeDebitBalance.add(balance1);
+		System.out.println(balance1+"kjfgfgg");
+		System.out.println(balance+"jkjjkjk");
+	}
+	expenseDebitBalance=new ArrayList<Double>();
+	expenseCreditBalance=new ArrayList<Double>();
+	while(list2.hasNext())
+	{
+		String str=(String)list2.next();
+		System.out.println(str);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
+		expenseCreditBalance.add(balance);
+		creditNetTotal=creditNetTotal+balance;
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		expenseDebitBalance.add(balance1);
+		debitNetTotal1=debitNetTotal1+balance1;
+		System.out.println(balance1+"kjfgfgg");
+		System.out.println(balance+"jkjjkjk");
+	}
+	liabilityDebitBalance=new ArrayList<Double>();
+	liabilityCreditBalance=new ArrayList<Double>();
+	while(list3.hasNext())
+	{
+		String str=(String)list3.next();
+		System.out.println(str);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
+		liabilityCreditBalance.add(balance);
+		creditNetTotal=creditNetTotal+balance;
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		liabilityDebitBalance.add(balance1);
+		debitNetTotal1=debitNetTotal1+balance1;
+		System.out.println(balance1+"kjfgfgg");
+		System.out.println(balance+"jkjjkjk");
+	}
 }
 }
 
