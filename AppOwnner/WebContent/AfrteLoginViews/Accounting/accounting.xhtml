@@ -25,12 +25,11 @@
 
   <h:form>
   <div id="page3">
-   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+  <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" >
    <tr> 
   <th><h:outputText value="Organisation:" /></th>
-              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px">
-                   <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}" itemValue="#{accountingBean.str_OrganizationName}" />
-                 </p:selectOneMenu>
+              <td><h:outputText id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px"/>
+                  
              </td>
             </tr>
             </table>
@@ -39,50 +38,50 @@
             
             
              <h:form>
-       <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+       <table  style="width: 95%;margin-left: 2%;margin-right: 2%;margin-bottom:5px;margin-top:5px" class="src">
           <p:tabMenu autoDisplay="true" style="padding: 0px" >  
                 <p:menuitem  value="ACCOUNT TRANACTION"  > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
-                         <f:param name="navParam" value="/AfrteLoginViews/Accounting/accountstransaction.xhtml" action="#{navigationBean.navigateTo}"/>
-         </h:commandLink>
+                         <p:commandButton value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here" async="true">
+                         <f:param name="navParam" value="/AfrteLoginViews/Accounting/accountstransaction.xhtml" />
+   </p:commandButton>
            </p:menuitem>
            </f:ajax>
              </p:menuitem>    
                 <p:menuitem  value="MANUAL JOURNAL"  >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="MANUAL JOURNAL" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
+                         <p:commandButton value="MANUAL JOURNAL" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here" async="true">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/manualjournal.xhtml" />
-           </h:commandLink>
+      </p:commandButton>
            </p:menuitem>
            </f:ajax>
                  </p:menuitem> 
          <p:menuitem  value="TRIAL BALANCE"  >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="TRIAL BALANCE" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
+                         <p:commandButton value="TRIAL BALANCE" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/trialbalance.xhtml" />
-                         </h:commandLink>
+                      </p:commandButton>
                          </p:menuitem>
                </f:ajax>
           </p:menuitem>  
         <p:menuitem  value="PROFIT AND LOSS"  >
              <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="PROFIT AND LOSS" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
+                         <p:commandButton value="PROFIT AND LOSS" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/profitandloss.xhtml" />
-                         </h:commandLink>
+                        </p:commandButton>
                          </p:menuitem>
          </f:ajax>
          </p:menuitem>
             <p:menuitem  value="BALANCE SHEET"  > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <h:commandLink value="BALANCE SHEET" action="#{navigationBean.navigateTo}" style="width:200px;height:30px">
-                         <f:param name="navParam" value="/AfrteLoginViews/Accounting/balancesheet.xhtml" action="#{navigationBean.navigateTo}"/>
-         </h:commandLink>
+                         <p:commandButton value="BALANCE SHEET" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
+                         <f:param name="navParam" value="/AfrteLoginViews/Accounting/balancesheet.xhtml" />
+        </p:commandButton>
            </p:menuitem>
            </f:ajax>
              </p:menuitem>    

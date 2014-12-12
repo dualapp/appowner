@@ -17,16 +17,16 @@
    
               
         
-             <div class="gsTitleDiv">Profit And Loss<br/><hr/></div>
-              &#150; &#150;  &#150; &#150;   <h:outputText value="From:"/>
+             <div class="gsTitleDiv"><br/></div>
+              &#150; &#150;  &#150; &#150;   <h:outputLabel value="From :"/> &#150; &#150;
                   <p:calendar value="#{accountingBean.date3}" navigator="true"    pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener2}">
                      <p:ajax event="change" partialSubmit="true" />
                     </p:calendar>
                   &nbsp; &nbsp;
-                  <h:outputText value="To :"/>
+                  <h:outputLabel value="To :"/> &#150; &#150;
                   <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
-                  <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" />
+                  <h:commandButton value="Go"  action="#{accountingBean.getSearch2()}" />
              
                  
                  
@@ -57,18 +57,23 @@
                 <td>
                    
                     <p:column>
-                      <p:dataTable id="ggg" value="sss" var="timeSlot">
+                      <p:dataTable  value="#{accountingBean.income1}" var="timeSlot">
                       <f:facet name="header" >
                               <h:outputText value="Income" style="float:left" />
                       </f:facet>
                       <p:column width="50%">
-                        <h:outputText value="Income From Resident"/><br/>
+                        <h:outputText value="#{timeSlot}"/><br/>
                         
                         </p:column>
                          <p:column>
-                <h:outputText  value="#{accountingBean.totalIncome}" style="float:right"/><br/>
-                <p:separator/>
-                 <h:outputText value="INCOME TOTALS: #{accountingBean.totalIncome}" style="float:right"/>
+                          <p:dataTable  value="#{accountingBean.incomeDebitBalance}" var="timeSlot">
+                          <p:column>
+                              <h:outputText  value="#{timeSlot}" style="float:right"/><br/>
+                              </p:column>
+               
+                
+                 </p:dataTable>
+                  <h:outputText value="INCOME TOTALS: #{accountingBean.totalIncome}" style="float:right"/>
             </p:column>
            
                         </p:dataTable>
@@ -81,12 +86,12 @@
                 <td>
                    
                     <p:column>
-                      <p:dataTable value="sss1" var="timeSlot">
+                      <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
                       <f:facet name="header">
                               <h:outputText value="Expense" style="float:left" />
                       </f:facet>
                       <p:column width="50%">
-                        <h:outputText value="Expense"/><br/>
+                        <h:outputText value="#{timeSlot}"/><br/>
                         
                         </p:column>
                          <p:column>
@@ -105,7 +110,7 @@
                  <table>
                   <tr> 
                
-                    <th  width="60%">Net Profit:</th>
+                    <th  width="60%">Net #{accountingBean.indicator}:</th>
                      <th  align="right" width="10%">#{accountingBean.netProfit3}</th>
                   
                

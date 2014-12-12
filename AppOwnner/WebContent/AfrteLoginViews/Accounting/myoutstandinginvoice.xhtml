@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+  <h:head>
+    <title> AdministrationAccess</title>
+    <style>
+     body
+        {
+            font-family: Verdana;
+            font-size: 10px;
+         
+        }
+     
+    </style>
+</h:head>
+<body bgcolor="pink">
+
+<h:form>
+    <table>
+    <tr>
+    <td align="center"><h:outputText value="Amount:"/></td>
+    <td><h:outputText value="#{invoiceBean.outstandingBalance}"/></td>
+    </tr>
+    <tr></tr>
+    <tr>
+    <td><p:link value="See Details..." outcome="/AfrteLoginViews/Accounting/invoice.xhtml"/></td>
+    </tr>
+    </table>
+</h:form>
+ </body>
+   
+</html>
