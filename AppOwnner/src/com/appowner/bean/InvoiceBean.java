@@ -134,6 +134,22 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		
 		return dat_InvoiceDate;
 	}
+	
+	private double outstandingBalance=0.00;
+	public double getOutstandingBalance() {
+	List<Double> outstandingBalance1=getInvoiceService().getOutstandingBalance();
+		ListIterator list=outstandingBalance1.listIterator();
+		outstandingBalance=0.00;
+		while(list.hasNext())
+		{
+			double amount=(double)list.next();
+			System.out.println(amount+"hjjhmjj");
+			outstandingBalance=outstandingBalance+amount;
+		}
+		return outstandingBalance;
+	}
+	
+	
 	private double dueBalance;
 	public double getDueBalance() {
 		return dueBalance;
@@ -389,6 +405,13 @@ public List<DueTransaction> getListDueTransaction() {
 public void setListDueTransaction(List<DueTransaction> listDueTransaction) {
 	this.listDueTransaction = listDueTransaction;
 }
+private DueTransaction due1=new DueTransaction();
+public DueTransaction getDue1() {
+	return due1;
+}
+public void setDue1(DueTransaction due1) {
+	this.due1 = due1;
+}
 private List<DueTransaction> listDueTransaction;
 	public String addInvoiceTransaction()
 	{   
@@ -412,18 +435,29 @@ private List<DueTransaction> listDueTransaction;
 		    invoice.setDueBalance(dueBalance);
 			invoice.setTotalBalance(getTotalDue());
 			invoice.setStr_Status("Due");
-			getInvoiceService().saveInvoiceTransaction(invoice);
 			
-			DueTransaction due1=new DueTransaction();
+			
+			
 			 listDues=getInvoiceService().taxList(select);
 		       System.out.println(listDues); 
 		        
 		          String[] strArray = listDues.split(",");
 		        for (String str : strArray) 
-		        {	  due1.setStr_DueTemplate(str);
-		             str_DueTemplate=str;
+		        {	 str_DueTemplate=str;
 		             getListDueTransaction();
 		 			System.out.println(listDueTransaction.listIterator().hasNext());
+		 			if(listDueTransaction.listIterator().hasNext())
+		 			{    Integer id=listDueTransaction.listIterator().next().getInt_DueTransactionID();
+		 			     System.out.println(id+"hhjhj");
+		 			     System.out.println(int_InvoiceNo+"hjhjjjk");
+		 				due1.setInt_InvoiceNo(int_InvoiceNo);
+		 			
+		 			     due1.setInt_DueTransactionID(id);
+		 			    getDueService().updateDue(id,int_InvoiceNo);
+		 			}
+		 			else{
+		 				 due1.setStr_DueTemplate(str);
+			            
 		               due1.setStr_InitiatedOn(getDat_InvoiceDate());	
 		              due1.setDat_LastDate(dat_DueDate);
 		              due1.setStr_ApartmentNo(str_ApartmentNo);
@@ -438,8 +472,10 @@ private List<DueTransaction> listDueTransaction;
 		          Integer id=getDueService().saveDueTransaction(due1);  
 		          System.out.println(id);
 		          dueID.add(id);
+		 			}
+		 			
 		        } 
-			
+		        getInvoiceService().saveInvoiceTransaction(invoice);
 			
 			  if(bl_Show==true)
 				{

@@ -3,16 +3,18 @@ package com.appowner.bean;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 @SuppressWarnings("serial")
 @ManagedBean
-@SessionScoped
+@ViewScoped
 
 public class NavigationBean implements Serializable{
 
-	private String pageName;
+	private String pageName="/AfrteLoginViews/Accounting/accountstransaction.xhtml";
 	public String getPageName() {
 		return pageName;
 	}
@@ -30,7 +32,7 @@ public class NavigationBean implements Serializable{
 	}
 
 	public void navigateTo() 
-	{
+	{   System.out.println("navParam"+"kjkjskjsa");
 		FacesContext ctx = FacesContext.getCurrentInstance();
 	     String target = ctx.getCurrentInstance().getExternalContext().getRequestParameterMap().get("navParam");
 	     System.out.println(target);

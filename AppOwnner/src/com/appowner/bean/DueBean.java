@@ -298,7 +298,7 @@ public class DueBean implements Serializable{
 	    System.out.println(str_DueTemplate+"jjkjkjj");
 	    System.out.println(str_Block+"hjh");
 	    System.out.println(str+"jhjhj");
-	  
+	    str_ApartmentNo=str;
 	    System.out.println(str_Period+"hjjhjj");
 	    getListDueTransaction();
 	    System.out.println(listDueTransaction+"hjjhjhjj");

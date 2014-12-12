@@ -10,7 +10,7 @@ public class StringConverter  implements Converter {
 	   public Object getAsObject(FacesContext facesContext, 
 	      UIComponent component, String value) 
 	   {
-	     
+		
 	     return null;
 	   }
    
@@ -19,6 +19,7 @@ public class StringConverter  implements Converter {
 	      UIComponent component, Object value) 
 	   {
 		   Character c= ((Character) value).charValue();
+		   
 		  
 		     if(c=='G')
 		     {
