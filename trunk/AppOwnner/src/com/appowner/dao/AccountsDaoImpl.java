@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 
 import javax.faces.model.SelectItem;
@@ -29,6 +30,16 @@ import com.appowner.util.Util;
 public class AccountsDaoImpl implements AccountsDao{
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private Integer apartmentID;
+	public Integer getApartmentID() {
+		apartmentID=Util.getAppartmentId();
+		
+		return apartmentID;
+	}
+	public void setApartmentID(Integer apartmentID) {
+		this.apartmentID = apartmentID;
+	}
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -99,13 +110,24 @@ public class AccountsDaoImpl implements AccountsDao{
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getAccountTypeList1()
-	{  
-		String hql="select str_AccountName from  ChartOfAccount ";
-		List<String> ddd=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	{  getApartmentID();
+		String hql="select str_AccountName from  ChartOfAccount where int_ApartmentId=? or int_ApartmentId=0 ";
+		List<String> ddd=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,apartmentID).setCacheable(true).list();
 		Collections.sort(ddd);
 		
 		
 		return ddd;
+	}
+	@SuppressWarnings("unchecked")
+	public List<ChartOfAccount> getAccountTypeList2()
+	{
+		 getApartmentID();
+			String hql="from  ChartOfAccount where int_ApartmentId=? or int_ApartmentId=0 ";
+			List<ChartOfAccount> ddd=(List<ChartOfAccount>)  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,apartmentID).setCacheable(true).list();
+			
+			
+			
+			return ddd;
 	}
 	@SuppressWarnings("unchecked")
 	public List<SelectItem> getAccounts()
@@ -226,14 +248,14 @@ public class AccountsDaoImpl implements AccountsDao{
 	
 	@SuppressWarnings("unchecked")
 	public List<InvoiceTransaction> listInvoiceTransaction(String str_Accounts, Date dat_From, Date dat_ToDate)
-	{    
+	{  getApartmentID();  
 	   if(str_Accounts==null)
 	   {
 		   if(dat_From==null|| dat_ToDate==null)
 		   {
 			   {
 					System.out.println(dat_From+"priya1");
-					return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+					return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation",apartmentID)).setCacheable(true).list();
 			      }  
 		   }
 	   }
@@ -241,7 +263,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	   {  	 if(dat_From!=null|| dat_ToDate!=null)
 	      {
 			System.out.println(dat_From+"priya");
-			return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+			return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("int_Organisation",apartmentID)).list();
 	      }
 	   }
 		else if(str_Accounts.equalsIgnoreCase("Income from Resident")) 
@@ -250,7 +272,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		 {
 			 
 		 
-		  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
+		  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("int_Organisation",apartmentID)).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
 		  System.out.println(ddd.listIterator().hasNext()+"jiuyre");
 		  return ddd;
 		 }
@@ -259,7 +281,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		{   
 			 if(dat_From!=null || dat_ToDate!=null)
 			 {  
-				 List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
+				 List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).add(Restrictions.eq("int_Organisation",apartmentID)).list();
 				  System.out.println(ddd.listIterator().hasNext()+"jiuyre11111111111");
 				  return ddd;
 				 }
@@ -269,7 +291,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		  if(dat_From!=null || dat_ToDate!=null)
 		  {
 			
-			  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
+			  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).add(Restrictions.eq("int_Organisation",apartmentID)).list();
 			  System.out.println(ddd.listIterator().hasNext()+"jiuyre22222222222");
 			  return ddd;
 		  }
@@ -280,7 +302,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		   System.out.println("jihytfff");
 		   
 		  String sss="from InvoiceTransaction where str_Status='paid' and str_paymentAccount=?";
-		  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("str_Status", "paid")).add(Restrictions.eq("str_paymentAccount",str_Accounts)).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
+		  List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("int_Organisation",apartmentID)).add(Restrictions.eq("str_Status", "paid")).add(Restrictions.eq("str_paymentAccount",str_Accounts)).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).list();
 		     System.out.println(ddd.listIterator().hasNext()+"pitabass");
 		   return ddd;
 		
@@ -290,8 +312,8 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<InvoiceTransaction> listInvoiceTransaction1(String str_Accounts, Date dat_FromDate, Date dat_ToDate)
 	{ 
-		
-		List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("str_Status", "Paid")).add(Restrictions.between("dat_InvoiceDate", dat_FromDate,dat_ToDate)).list();
+		getApartmentID();
+		List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("str_Status", "Paid")).add(Restrictions.eq("int_Organisation",apartmentID)).add(Restrictions.between("dat_InvoiceDate", dat_FromDate,dat_ToDate)).list();
 		System.out.println(ddd.listIterator().hasNext()+"amulya");
 		return ddd;
 	}
@@ -315,18 +337,18 @@ public class AccountsDaoImpl implements AccountsDao{
 	}
 	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal()
-	{
-		return getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).list();
+	{    getApartmentID();
+		return getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.eq("str_OrganisationID", apartmentID)).list();
 	 }
 	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal1(String str_Accounts, Date dat_FromDate, Date dat_ToDate)
-	{   
+	{   getApartmentID();
 		if(str_Accounts==null)
 		{
 			System.out.println("ggggggggggggggggggggggggggggggggggggggg");
 	     //String str="from ManualJournal where str_DebitAccount='Income from Resident' OR str_CreditAccount='Income from Resident'";
 	    // List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createQuery(str).list();
-	     List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.disjunction().add(Restrictions.eq("str_DebitAccount","Income from Resident")).add(Restrictions.eq("str_CreditAccount","Income from Resident"))).add(Restrictions.between("dat_Date", dat_FromDate,dat_ToDate)).list();
+	     List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.eq("str_OrganisationID", apartmentID)).add(Restrictions.disjunction().add(Restrictions.eq("str_DebitAccount","Income from Resident")).add(Restrictions.eq("str_CreditAccount","Income from Resident"))).add(Restrictions.between("dat_Date", dat_FromDate,dat_ToDate)).list();
 	     System.out.println(ddd+"kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		 return ddd;
 		}
@@ -334,7 +356,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		{  System.out.println("ooooooooooooooooooooo");
 		//	String str="from ManualJournal where str_DebitAccount=? OR str_CreditAccount=?";
 		//	  List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createQuery(str).setParameter(0, str_Accounts).setParameter(1, str_Accounts).list();
-			 List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.disjunction()
+			 List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.eq("str_OrganisationID", apartmentID)).add(Restrictions.disjunction()
 			 .add(Restrictions.eq("str_DebitAccount",str_Accounts))
 			  .add(Restrictions.eq("str_CreditAccount",str_Accounts))).add(Restrictions.between("dat_Date", dat_FromDate,dat_ToDate)).list();
 			 System.out.println(ddd.listIterator().hasNext()+"jiur");
@@ -344,15 +366,15 @@ public class AccountsDaoImpl implements AccountsDao{
 	}
 	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal2(Date dat_From, Date dat_To)
-	{
-		 List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.disjunction().add(Restrictions.eq("str_DebitAccount","Income from Resident")).add(Restrictions.eq("str_CreditAccount","Income from Resident"))).add(Restrictions.between("dat_Date", dat_From,dat_To)).list();
+	{    getApartmentID();
+		 List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.eq("str_OrganisationID", apartmentID)).add(Restrictions.disjunction().add(Restrictions.eq("str_DebitAccount","Income from Resident")).add(Restrictions.eq("str_CreditAccount","Income from Resident"))).add(Restrictions.between("dat_Date", dat_From,dat_To)).list();
 	     System.out.println(ddd+"kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		 return ddd;
 	}
 	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To)
-	{
-		 List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.disjunction().add(Restrictions.eq("str_DebitAccount","Expense")).add(Restrictions.eq("str_CreditAccount","Expense"))).add(Restrictions.between("dat_Date", dat_From,dat_To)).list();
+	{     getApartmentID();
+		 List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.eq("str_OrganisationID", apartmentID)).add(Restrictions.disjunction().add(Restrictions.eq("str_DebitAccount","Expense")).add(Restrictions.eq("str_CreditAccount","Expense"))).add(Restrictions.between("dat_Date", dat_From,dat_To)).list();
 	     System.out.println(ddd+"kkkkkkkkkkkkkkk");
 		 return ddd;
 	}
@@ -382,15 +404,16 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<Expense> getExpenseList(String str, Date dat_FromDate, Date dat_ToDate)
 	{  System.out.println(str+"huiop");
+	getApartmentID();
 	    if(str==null)
 	    {
-	    	List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_AccountName", str)).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
+	    	List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("int_AppartmentId",apartmentID)).add(Restrictions.eq("str_AccountName", str)).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
 	         System.out.println(ddd.listIterator().hasNext()+"jikoooooooooooooooo");
 	          return ddd;
 	    }
 	    else if(str.equalsIgnoreCase("Expense"))
 		{
-			List<Expense> ddd1=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
+			List<Expense> ddd1=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("int_AppartmentId",apartmentID)).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
 			System.out.println(ddd1.listIterator().hasNext()+"jikoooooooooooooooojjjjjjjjjjjjjjjjj");
 			return ddd1;
 			
@@ -400,7 +423,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		
 		else 
 	   {
-			 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_AccountName", str)).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
+			 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("int_AppartmentId",apartmentID)).add(Restrictions.eq("str_AccountName", str)).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
 	         System.out.println(ddd.listIterator().hasNext()+"jikoooooooooooooooo");
 	         System.out.println(ddd+"anupammmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
 	          return ddd;
@@ -430,51 +453,52 @@ public class AccountsDaoImpl implements AccountsDao{
 		  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,debit).setParameter(1,credit).setParameter(2, credit1).setParameter(3, str).executeUpdate();
 	}
 	@SuppressWarnings("unchecked")
-	public List<ChartOfAccount> listExpense()
-	{
-		String hql="from ChartOfAccount  where ch_Group='E'";
+	public List<String> listExpense()
+	{   getApartmentID();
+		String hql="select str_AccountName from ChartOfAccount  where ch_Group='E' AND int_ApartmentId";
 		 
-		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 		return ravenueList; 
 	}
 	@SuppressWarnings("unchecked")
-	public List<ChartOfAccount> listLiability()
+	public List<String> listLiability()
 	{
-		String hql="from ChartOfAccount  where ch_Group='L'";
+		String hql=" select str_AccountName from ChartOfAccount  where ch_Group='L'";
 		 
-		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 		return ravenueList; 	
 	}
 	@SuppressWarnings("unchecked")
-	public List<ChartOfAccount> listEquity()
+	public List<String> listEquity()
 	{
-		String hql="from ChartOfAccount  where ch_Group='Q'";
+		String hql=" select str_AccountName from ChartOfAccount  where ch_Group='Q'";
 		 
-		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 		return ravenueList; 
 	}
 	@SuppressWarnings("unchecked")
-	public List<ChartOfAccount> listRavenues()
+	public List<String> listRavenues()
 	{
 
-		String hql=" from ChartOfAccount  where ch_Group='R'";
+		String hql=" select str_AccountName from ChartOfAccount  where ch_Group='R'";
 		 
-		List<ChartOfAccount> ravenueList= (List<ChartOfAccount>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 		return ravenueList; 
 	}
 	@SuppressWarnings("unchecked")
 	public List<Expense> expenseList(Date dat_FromDate, Date dat_ToDate)
-	{    if(dat_FromDate==null || dat_ToDate==null)
+	{   getApartmentID(); 
+		if(dat_FromDate==null || dat_ToDate==null)
 	    {  
 		   System.out.println(dat_FromDate+"huyt");
-		 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
+		 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("int_AppartmentId",apartmentID)).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
 		 
 		  return ddd;
 	    }
 	else
 	{
 		System.out.println(dat_FromDate+"huythhhhhhhhhhhh");
-		 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
+		 List<Expense> ddd=(List<Expense>)getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).add(Restrictions.eq("int_AppartmentId",apartmentID)).add(Restrictions.eq("str_ExpenseType","Expense")).add(Restrictions.between("date_Duration", dat_FromDate, dat_ToDate)).list();
 		
 		  return ddd;
 	}
@@ -483,10 +507,10 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<InvoiceTransaction> listInvoiceTransaction2(Date dat_From, Date dat_To)
 	{
-		
+		getApartmentID();
 		   System.out.println(dat_From+"huythhhkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		   System.out.println(dat_To+"huythhhkkkkkkkkkkkkkkkk");
-			 List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate",dat_From,dat_To)).list();
+			 List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("int_Organisation",apartmentID)).add(Restrictions.between("dat_InvoiceDate",dat_From,dat_To)).list();
 			  System.out.println(ddd.listIterator().hasNext()+"jiuyre111111llll22222222222");
 			  System.out.println(ddd+"hhhhhhhhhhhhhh");
 			  return ddd; 
@@ -609,17 +633,120 @@ public class AccountsDaoImpl implements AccountsDao{
 	}
 	@SuppressWarnings("unchecked")
 	public List<Double> getExpenseAmount()
-	{
-		String str="select int_Ammount from Expense where str_ExpenseType='Expense'";
-		return getSessionFactory().getCurrentSession().createQuery(str).setCacheable(true).list();
+	{   getApartmentID();
+		String str="select int_Ammount from Expense where str_ExpenseType='Expense' and int_AppartmentId=?";
+		return getSessionFactory().getCurrentSession().createQuery(str).setCacheable(true).setParameter(0,apartmentID).list();
 	}
 	@SuppressWarnings("unchecked")
 	public List<Double> getIncomeAmount()
-	{
-		String str="select totalDue from InvoiceTransaction";
-		return getSessionFactory().getCurrentSession().createQuery(str).setCacheable(true).list();
+	{   getApartmentID();
+		String str="select totalDue from InvoiceTransaction where int_Organisation=?";
+		return getSessionFactory().getCurrentSession().createQuery(str).setCacheable(true).setParameter(0, apartmentID).list();
 	}
-	
+	@SuppressWarnings("unchecked")
+	public double getCreditAmount(String str, Date dat_ToDate)
+	{
+		getApartmentID();
+		double amounts=0.00;
+		
+		if(str.equalsIgnoreCase("Income from Resident"))
+		{    String hql="select totalDue from InvoiceTransaction where dat_InvoiceDate <=? AND int_Organisation=?";
+		  List<Double>	amount=getSessionFactory().getCurrentSession().createQuery(hql).setDate(0, dat_ToDate).setCacheable(true).setParameter(1,apartmentID).list();
+		  System.out.println(amount+"priya");
+		  ListIterator list=amount.listIterator();
+		  while(list.hasNext())
+			 {
+				 double amount3=(double) list.next();
+				 System.out.println(amount3+"hjhjjhj");
+				 amounts=amounts+amount3;
+			 }
+		 
+		}
+		if(str.equalsIgnoreCase("Accounts Recievable"))
+		{    String hql="select totalDue from InvoiceTransaction where dat_InvoiceDate <=? AND int_Organisation=? AND str_Status=?";
+		  List<Double>	amount=getSessionFactory().getCurrentSession().createQuery(hql).setDate(0, dat_ToDate).setCacheable(true).setParameter(1,apartmentID).setParameter(2,"Paid").list();
+		  System.out.println(amount+"priya1");
+		  ListIterator list=amount.listIterator();
+		  while(list.hasNext())
+			 {
+				 double amount3=(double) list.next();
+				 System.out.println(amount3+"hjhjjhj");
+				 amounts=amounts+amount3;
+			 }
+		 
+		}
+		 String hql="select int_Ammount from Expense where date_Duration <=? AND int_AppartmentId=? AND str_ExpenseType=? AND str_AccountName=?";
+		 List<Double> amount1=(List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setDate(0,dat_ToDate).setParameter(1, apartmentID).setParameter(2, "Expense").setParameter(3,str).list();
+		 System.out.println(amount1+"kunku");
+		 String hq11="select dbl_CreditAmount from ManualJournal where str_OrganisationID=? AND str_CreditAccount=? AND dat_Date <= ?";
+		 List<Double> amount2=(List<Double>) getSessionFactory().getCurrentSession().createQuery(hq11).setParameter(0, apartmentID).setParameter(1,str).setDate(2, dat_ToDate).list();
+		System.out.println(amount2+"anupam");
+		 ListIterator list1=amount1.listIterator();
+		 ListIterator list2=amount2.listIterator();
+		 while(list1.hasNext())
+		 {
+			 double amount4=(double) list1.next();
+			 System.out.println(amount4+"hjhjjhj");
+			 amounts=amounts+amount4;
+		 }
+		 while(list2.hasNext())
+		 {
+			 double amount5=(double) list2.next();
+			 System.out.println(amount5+"hjhjjhj");
+			 amounts=amounts+amount5;
+		 }	 
+			 
+		
+		return amounts;
+	}
+	@SuppressWarnings("unchecked")
+	public double getDebitAmount(String str, Date dat_ToDate)
+	{
+		getApartmentID();
+		double amounts=0.00;
+		
+		if(str.equalsIgnoreCase("Accounts Recievable"))
+		{    String hql="select totalDue from InvoiceTransaction where dat_InvoiceDate <=? AND int_Organisation=?";
+		  List<Double>	amount=getSessionFactory().getCurrentSession().createQuery(hql).setDate(0, dat_ToDate).setCacheable(true).setParameter(1,apartmentID).list();
+		  System.out.println(amount+"priya");
+		  ListIterator list=amount.listIterator();
+		  while(list.hasNext())
+			 {
+				 double amount3=(double) list.next();
+				 System.out.println(amount3+"hjhjjhj123");
+				 amounts=amounts+amount3;
+			 }
+		 
+		}
+		if(str.equalsIgnoreCase("Expense"))
+		{
+		 String hql="select int_Ammount from Expense where date_Duration <=? AND int_AppartmentId=? AND str_ExpenseType=?";
+		 List<Double> amount1=(List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setDate(0,dat_ToDate).setParameter(1, apartmentID).setParameter(2, "Expense").list();
+		 System.out.println(amount1+"kunku");
+		 ListIterator list1=amount1.listIterator();
+		 while(list1.hasNext())
+		 {
+			 double amount4=(double) list1.next();
+			 System.out.println(amount4+"hjhjjhj567");
+			 amounts=amounts+amount4;
+		 }
+		}
+		 String hq11="select dbl_DebitAmount from ManualJournal where str_OrganisationID=? AND str_DebitAccount=? AND dat_Date <= ?";
+		 List<Double> amount2=(List<Double>) getSessionFactory().getCurrentSession().createQuery(hq11).setParameter(0, apartmentID).setParameter(1,str).setDate(2, dat_ToDate).list();
+		System.out.println(amount2+"anupam");
+		
+		 ListIterator list2=amount2.listIterator();
+		
+		 while(list2.hasNext())
+		 {
+			 double amount5=(double) list2.next();
+			 System.out.println(amount5+"hjhjjhj890");
+			 amounts=amounts+amount5;
+		 }	 
+			 
+		
+		return amounts;
+	}
 	
 }
 			 

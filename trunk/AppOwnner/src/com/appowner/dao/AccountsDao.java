@@ -46,6 +46,8 @@ import java.util.List;
 
 
 
+
+
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.Account;
@@ -94,10 +96,7 @@ public interface AccountsDao {
 	public List<ChartOfAccount> listAssets();
 	public List<String> group();
 	public void updateClosingBalance(double debit, double credit, String str, double credit1);
-	public List<ChartOfAccount> listExpense();
-	public List<ChartOfAccount> listLiability();
-	public List<ChartOfAccount> listEquity();
-	public List<ChartOfAccount> listRavenues();
+	
 	public List<Expense> expenseList(Date dat_FromDate, Date dat_ToDate);
 	public void addAccount(Account account);
 	public List<Account> listAccounts();
@@ -121,6 +120,9 @@ public interface AccountsDao {
 	public List<Double> getIncomeAmount();
 	public List<ManualJournal> getlistManualJournal2(Date dat_From, Date dat_To);
 	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To);
+	public double getCreditAmount(String str, Date dat_ToDate);
+	public double getDebitAmount(String str, Date dat_ToDate);
+	public List<ChartOfAccount> getAccountTypeList2();
 	
 
 }
