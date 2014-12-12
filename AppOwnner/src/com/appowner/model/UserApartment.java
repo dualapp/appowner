@@ -1,7 +1,9 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+@Cacheable(true)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name = "tb_apartment")
 public class UserApartment   implements Serializable{
@@ -83,7 +89,27 @@ public class UserApartment   implements Serializable{
 	public void setInt_NoOfUser(Long int_NoOfUser) {
 		this.int_NoOfUser = int_NoOfUser;
 	}
-	
+	private Date dat_EntryDate;
+	public Integer getPayment_Status() {
+		return payment_Status;
+	}
+	public void setPayment_Status(Integer payment_Status) {
+		this.payment_Status = payment_Status;
+	}
+	private Integer status;
+	private Integer payment_Status;
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public Date getDat_EntryDate() {
+		return dat_EntryDate;
+	}
+	public void setDat_EntryDate(Date dat_EntryDate) {
+		this.dat_EntryDate = dat_EntryDate;
+	}
 	
 	
 	
