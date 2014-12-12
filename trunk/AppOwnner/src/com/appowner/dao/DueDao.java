@@ -36,5 +36,7 @@ public interface DueDao {
 
 	public String getFrequency(String ddd);
 
+	public void updateDue(Integer id, String int_InvoiceNo);
+
 	
 }

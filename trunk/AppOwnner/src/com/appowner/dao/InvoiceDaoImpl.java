@@ -16,6 +16,7 @@ import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.TaxTemplate;
 import com.appowner.model.Vendor;
+import com.appowner.util.Util;
 
 
 @Repository
@@ -170,8 +171,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	public void deleteDues(String str)
 	{
-		String hql="delete from DueTransaction where int_InvoiceNo=?";
-		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).executeUpdate();
+		String hql="update DueTransaction set int_InvoiceNo=? where int_InvoiceNo=?";
+		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,null).setParameter(1,str).executeUpdate();
+		
 	}
 	public String getStatus(int id)
 	{
@@ -181,9 +183,14 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	public String getPeriod(String select)
 	{   System.out.println(select+"hjyhjjuhjuj");
 		String hql="select str_Frequency from InvoiceTemplate  where str_InvoiceTemplateName=?";
-		//String vendorList= (String) getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("str_InvoiceTemplateName",select)).uniqueResult();
 		return (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).setCacheable(true).uniqueResult();
-		//return vendorList;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Double> getOutstandingBalance()
+	{
+		Integer  id=Util.getAppartmentId();
+		String hql="select totalBalance from InvoiceTransaction  where int_Organisation=?";
+		return (List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,id).setCacheable(true).list();
 	}
 	
 }
