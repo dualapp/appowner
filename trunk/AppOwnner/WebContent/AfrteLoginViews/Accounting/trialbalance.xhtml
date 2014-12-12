@@ -12,10 +12,10 @@
     <h:body>
     <h:form>
   <div id="page3">
-     <div class="gsTitleDiv">Trial Balance<br/><hr/></div>
+     <div class="gsTitleDiv"><br/></div>
       <table>
       <tr>
-         <td>  <h:outputText value="As On"/>&nbsp; &nbsp;</td>
+         <td>  <h:outputLabel value="As On"/>&nbsp; &nbsp;</td>
         <td> <p:selectOneMenu id="car" value="#{accountingBean.date4}" valueChangeListener="#{accountingBean.accountchangeListener3}" >
            
             <f:selectItems value="#{accountingBean.dates}" />
@@ -24,7 +24,7 @@
                 </td> 
               <td>  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_ToDate}">
                   </p:calendar>&nbsp; &nbsp; &nbsp;</td>
-             <td>      <h:commandButton value="Go"/></td>
+             <td>      <h:commandButton value="Go" action="#{accountingBean.getSearch2}"/></td>
                
                  
    
@@ -36,134 +36,230 @@
 					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
       <br/>
       <br/>
-    <p:dataTable var="e" value="aaa">
-        <f:facet name="header">
-        <table>
-        <tr>
-          <th style="width:50%">Account</th><th style="width:25%">Debit</th><th style="width:25%">Credit</th>
-          </tr>
-          </table>
-        </f:facet>
       
-             <p:column>
+    <p:panel  header="&#150; &#150; &#150; &#150;   Account  &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;  Debit   &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; Credit"  id="toggleable"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
+      
+       
+      
+           
                  <table>
-             <tr>
-                <td>
-                   
-                    <p:column>
-                      <p:dataTable value="#{accountingBean.asset}" var="timeSlot">
-                      <f:facet name="header">
-                              <h:outputText value="Asset" style="float:left" />
-                      </f:facet>
-                      <p:column width="50%">
-                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
-                        </p:column>
-                         <p:column width="25%">
-                 
-                     <h:outputText value="#{timeSlot.debit_closingBalance}" /><br/>
-               
-            </p:column>
-            <p:column width="25%">
-                <h:outputText value="#{timeSlot.credit_closingBalance}" />
-            </p:column>
-                        </p:dataTable>
-                     </p:column> 
-                    
-                  
-                </td>
-                </tr>
-                <tr>
-                <td>
-                   
-                    <p:column>
-                      <p:dataTable value="#{accountingBean.income1}" var="timeSlot">
-                      <f:facet name="header">
-										<h:outputText value="Income" style="float:left"/>
-									</f:facet>
-                      <p:column width="50%">
-                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
-                        </p:column>
-                         <p:column>
-                <h:outputText value="#{timeSlot.debit_closingBalance}" />
-            </p:column>
-            <p:column >
-                <h:outputText value="#{timeSlot.credit_closingBalance}" />
-            </p:column>
-                        </p:dataTable>
-                     </p:column> 
-                    
-                  
-                </td>
-                </tr>
-                <tr>
-                 <td>
-                   
-                    <p:column>
-                      <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
-                      <f:facet name="header">
-										<h:outputText value="Expense" style="float:left"/>
-									</f:facet>
-                      <p:column width="50%">
-                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
-                        </p:column>
-                         <p:column>
-                <h:outputText value="#{timeSlot.debit_closingBalance}" />
-            </p:column>
-            <p:column>
-                <h:outputText value="#{timeSlot.credit_closingBalance}" />
-            </p:column>
-                        </p:dataTable>
-                     </p:column> 
-                    
-                  
-                </td>
-                </tr>
-                <tr>
-                 <td>
-                   
-                    <p:column>
-                      <p:dataTable value="#{accountingBean.liability}" var="timeSlot">
-                      <f:facet name="header">
-										<h:outputText value="Liability" style="float:left"/>
-									</f:facet>
-                      <p:column width="50%">
-                        <h:outputText value="#{timeSlot.str_AccountName}"/><br/>
-                        </p:column>
-                         <p:column>
-                <h:outputText value="#{timeSlot.debit_closingBalance}" />
-            </p:column>
-            <p:column>
-                <h:outputText value="#{timeSlot.credit_closingBalance}" />
-            </p:column>
-                        </p:dataTable>
-                     </p:column> 
-                    
-                  
-                </td>
-                </tr>
-                  
-               <table>
-                  <tr> 
             
-                    <th  width="40%">Totals:</th>
-                     <th  width="20%" align="left">#{accountingBean.debitNetTotal}</th>
-                   <th  width="20%" align="left">#{accountingBean.creditNetTotal}</th>
+             <tr>
+          
+                <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.asset}"  var="timeSlot">
+                           <p:column width="50%">
+                      
+                         
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           </p:column>
+                       
+                  </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.assetDebitBalance}" var="timeSlot">
+                       
+                     <center>
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                        </center>
+                      </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.assetCreditBalance}" var="timeSlot">
+                      
+                    
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                
+                   </tr>
+               
+              <tr>
+                   <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.income1}"   var="timeSlot">
+                          
+                      
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           </p:column>
+                       
+                   </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.incomeDebitBalance}" var="timeSlot">
+                       
+                     
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                     </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.incomeCreditBalance}" var="timeSlot">
+                      
+                    
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                  
+              </tr>
+               <tr>
+                   <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.expense}"   var="timeSlot">
+                          
+                       <p:column width="50%">
+                         
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                       </p:column>
+                    </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.expenseDebitBalance}" var="timeSlot">
+                       
+                     
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.expenseCreditBalance}" var="timeSlot">
+                      
+                    
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                  
+              </tr>
+                    
+                  
+             
+              <tr>
+                   <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.liability}"   var="timeSlot">
+                          
+                       <p:column width="50%">
+                         
+                           <h:outputText value="#{timeSlot}"/><br/>
+                          </p:column> 
+                       
+                  </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.liabilityDebitBalance}" var="timeSlot">
+                       
+                     
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.liabilityCreditBalance}" var="timeSlot">
+                      
+                    
+                          <p:column width="50%">
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                  
+              </tr>
+                <tr>
+                 <td>
+                  <p:dataTable value="#" var="sss">
+                   <p:column >
+                           <h:outputText value="Totals" />
+                           
+                        </p:column>
+                        </p:dataTable>
+                        </td>
+                        <td>
+                      <p:dataTable value="#" var="sss">
+                        <p:column>
+                        <h:outputText value="#{accountingBean.debitNetTotal1}" />
+                        </p:column>
+                        </p:dataTable>
+                        </td>
+                        <td>
+                        <p:dataTable value="#" var="sss">
+                        <p:column>
+                        <h:outputText value="#{accountingBean.creditNetTotal}" />
+                        </p:column>
+                        </p:dataTable>
+                        </td>
+                        
+              
+            
+              </tr>
+                  
+                    
+                  
+             
+                  
               
                
-                </tr>
-                
                 </table>
-               
-                </table>
-             </p:column>
-          
-           
-            
-           
-       
-     
-   </p:dataTable>
-  </div>
+      
+        </p:panel>
+           </div>
       </h:form>  
     
 

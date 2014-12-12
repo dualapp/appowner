@@ -13,15 +13,16 @@
 
 
     <title>Accounting Form</title>
+ 
    
   
  
   </h:head>
    
   <h:form id="form">
-    <body  bgcolor="pink"> 
+    <h:body  bgcolor="pink"> 
    <div id="page3">
-      <div class="gsTitleDiv">Account Transaction<br/><hr/></div>
+      <div class="gsTitleDiv"><br/></div>
   
       <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
        <h:panelGroup id="aaaa">
@@ -31,20 +32,20 @@
                 
           
            
-           <td> <p:selectOneMenu id="account1" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}"  style="width:220px">
+           <td> <p:selectOneMenu id="account1" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}"  style="width:220px" >
                    <f:selectItems value="#{accountingBean.listAccountsName}" />
                     <p:ajax event="change" partialSubmit="true"   />
                 </p:selectOneMenu>
                 
            </td>
            <td>  <h:outputText  value="From:" /></td>
-           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.from_date}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" >
-            <p:ajax event="change" partialSubmit="true" />
-        </p:calendar>
+           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.from_date}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" onchange="submit();">
+            <p:ajax event="click" partialSubmit="true"  />
+      </p:calendar>
            </td>
               
            <td>  <h:outputText  value="To:" /></td>
-           <td>  <p:calendar id="german"   pattern="dd-MM-yyyy"  value="#{accountingBean.dat_ToDate}" size="20" locale="de" navigator="true" valueChangeListener="#{accountingBean.datechangeListener1}">
+           <td>  <p:calendar id="german"   pattern="dd-MM-yyyy"  value="#{accountingBean.dat_ToDate}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener1}">
             <p:ajax event="change" partialSubmit="true" />
             </p:calendar>
             </td> 
@@ -93,9 +94,7 @@
   
     </td>
     </tr>
-     <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+     
    
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{accountingBean.dat_FromDate1}</td>
      <td align="right" style="width:250px;">
@@ -104,14 +103,12 @@
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_Debit} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_Credit} </td>
     </tr>
-   
-   
-     <tr>
-  
-   
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;">
-    </td>
+   <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
+   
+   
+   
     <h:panelGroup id="fgggggg" rendered="#{accountingBean.income}">
     <ui:repeat id="ggg3" value="#{accountingBean.listInvoiceTransaction1}" var="account1" varStatus="status">
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account1.dat_PaymentDate}</td>
@@ -270,9 +267,7 @@ style="width:600px">
     </tr>
     </h:panelGroup>
  </ui:repeat>
- <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+ 
    
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"></td>
      <td align="right" style="width:250px;">
@@ -303,7 +298,7 @@ style="width:600px">
    </table>
  </div>
  </div>
-</body>
+</h:body>
 </h:form>
 
   
