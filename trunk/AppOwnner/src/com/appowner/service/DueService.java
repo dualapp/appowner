@@ -41,4 +41,8 @@ public interface DueService {
 
 	
 
+	public void updateDue(Integer id, String int_InvoiceNo);
+
+	
+
 }

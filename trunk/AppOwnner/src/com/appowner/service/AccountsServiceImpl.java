@@ -180,22 +180,7 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		getAccountsDao().updateClosingBalance(debit,credit,str,credit1);
 	}
-	public List<ChartOfAccount> listExpense()
-	{
-		return getAccountsDao().listExpense();
-	}
-	public List<ChartOfAccount> listLiability()
-	{
-		return getAccountsDao().listLiability();
-	}
-	public List<ChartOfAccount> listEquity()
-	{
-		return getAccountsDao().listEquity();
-	}
-	public List<ChartOfAccount> listRavenues()
-	{
-		return getAccountsDao().listRavenues();
-	}
+	
 	public List<Expense> expenseList(Date dat_FromDate,Date dat_ToDate)
 	{
 		return getAccountsDao().expenseList(dat_FromDate,dat_ToDate);
@@ -275,6 +260,18 @@ public class AccountsServiceImpl implements AccountsService {
 	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To)
 	{
 		return getAccountsDao().getlistManualJournal3(dat_From, dat_To);
+	}
+	public double getCreditAmount(String str, Date dat_ToDate)
+	{
+		return getAccountsDao().getCreditAmount(str,dat_ToDate);
+	}
+	public double getDebitAmount(String str, Date dat_ToDate)
+	{
+		return getAccountsDao().getDebitAmount(str,dat_ToDate);
+	}
+	public List<ChartOfAccount> getAccountTypeList2()
+	{
+		return getAccountsDao().getAccountTypeList2();
 	}
 	
 }
