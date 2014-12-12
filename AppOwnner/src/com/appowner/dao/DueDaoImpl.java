@@ -61,6 +61,11 @@ public class DueDaoImpl implements DueDao{
 			System.out.println("nkjkdjkjfd");
 			if(str_Status==null)
 			{   System.out.println("jhjkkjkjjj");
+			System.out.println(str_Status+"jkjkkkjkkk");
+			System.out.println(str_DueTemplate+"jkjkkkjkkk123");
+			System.out.println(str_Period+"jkjkkkjkkk456");
+			System.out.println(str_Block+"jkjkkkjkkk789");
+			System.out.println(str_ApartmentNo+"jkjkkkjkkk1265");
 				String str="From DueTransaction where str_DueTemplate=? AND str_Period=? AND str_Block=? AND str_ApartmentNo=?"; 
 				return getSessionFactory().getCurrentSession().createQuery(str).setParameter(0, str_DueTemplate).setParameter(1, str_Period).setParameter(2, str_Block).setParameter(3, str_ApartmentNo).list();
 			}
@@ -153,5 +158,9 @@ public class DueDaoImpl implements DueDao{
 	{   String str="select str_Frequency from DueTemplate where str_DueTemplate=?";
 		return (String) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,ddd).setCacheable(true).uniqueResult();
 		
+	}
+	public void updateDue(Integer id, String int_InvoiceNo)
+	{String str="update DueTransaction set int_InvoiceNo=? where int_DueTransactionID=?";
+		getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,int_InvoiceNo).setParameter(1,id).executeUpdate();
 	}
 }
