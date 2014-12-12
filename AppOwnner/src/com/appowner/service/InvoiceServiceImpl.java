@@ -99,4 +99,8 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().getPeriod(select);
 	  }
+	  public List<Double> getOutstandingBalance()
+	  {
+		  return getInvoiceDao().getOutstandingBalance();
+	  }
 }

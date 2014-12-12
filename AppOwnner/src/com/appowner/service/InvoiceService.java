@@ -46,5 +46,7 @@ public String getStatus(int id);
 
 public String getPeriod(String select);
 
+public List<Double> getOutstandingBalance();
+
 
 }
