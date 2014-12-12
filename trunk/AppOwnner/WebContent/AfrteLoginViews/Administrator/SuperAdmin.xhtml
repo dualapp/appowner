@@ -9,15 +9,26 @@
 	<ui:define name="content">
 <h:head><title>Super Admin Login</title>
  </h:head>
+ <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/members.png" height="50" width="50"></img> <span class="title">Super Admin</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
  <body bgcolor="pink">
     <h:form id="form" > 
-    
+     <p:growl id="growl" showDetail="true" sticky="true" />  
  
-     <center>
-    <legend>
-    
-        <table>
-          <tr><td><h2 align="center">Login Details</h2></td></tr>
+     <div id="page3"> <div class="gsTitleDiv"><font color="#008B8B" size="3">Login Details</font><br/><hr/></div> 
+   <table   style="width: 98%;margin-left: 0%;margin-right: 1%;margin-bottom:5px">
+   
+   
+ 
+       
+         
             <tr>
                 <td><h:outputLabel for="LoginName" value="LoginName: " /></td>
                 <td><p:inputText id="LoginName" value="#{userInformationBean.name}" required="true" requiredMessage="Name is required">
@@ -33,15 +44,14 @@
               </td>
             </tr>
              <tr>
-                 <td><h:commandButton id="submit" value="Login" action="#{userInformationBean.validate(userInformationBean.name,userInformationBean.password)}"  ajax="false" >
+                 <td><p:commandButton id="submit" value="Login" action="#{userInformationBean.validate(userInformationBean.name,userInformationBean.password)}"  ajax="false" update="growl">
               
-                </h:commandButton>
+                </p:commandButton>
                 </td>
             </tr> 
              </table>
           
-             </legend>
-             </center>
+            </div>
              </h:form>
              </body>
             </ui:define>
