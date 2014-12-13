@@ -187,4 +187,18 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		return getApartmentDetailsDao().getCommunitySetupId(userId);
 	}
 
+	@Override
+	public List<Integer> getCommunityTypeIdLists(Integer int_CommunitySetupId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getCommunityTypeIdLists(int_CommunitySetupId);
+	}
+
+	@Override
+	public String getCommunityMasterType(Integer cid) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getCommunityMasterType(cid);
+	}
+
+	
+
 }
