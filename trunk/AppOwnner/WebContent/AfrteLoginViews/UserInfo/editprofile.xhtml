@@ -138,7 +138,7 @@
             <td width="10%"><h:outputText value="Block :"/>
              </td>          
             <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}">
-          
+          <f:selectItem itemValue="#{loginBean.user.str_Block}" itemLabel="#{loginBean.user.str_Block}" />
             <f:selectItems value="#{cls_UserBean.blockNameList}"/>
              <p:ajax event="change" update="str_House" process="str_Block"/>
              </h:selectOneMenu>
