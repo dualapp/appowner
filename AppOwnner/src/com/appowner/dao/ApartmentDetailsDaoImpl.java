@@ -224,4 +224,17 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		// TODO Auto-generated method stub
 		return (Integer) getSessionFactory().getCurrentSession().createQuery("select int_CommunitySetupId from CommunitySetup where int_UserId=?").setParameter(0, userId).uniqueResult();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getCommunityTypeIdLists(Integer int_CommunitySetupId) {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("select int_MasterCommunityTypeId from CommunityType where  int_CommunitySetupId=?").setParameter(0, int_CommunitySetupId).list();
+	}
+
+	@Override
+	public String getCommunityMasterType(Integer cid) {
+		// TODO Auto-generated method stub
+		return (String) getSessionFactory().getCurrentSession().createQuery("select str_CommunityType from CommunityTypeMaster where int_MasterCommunityTypeId=?").setParameter(0, cid).uniqueResult();
+	}
 }

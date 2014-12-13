@@ -64,4 +64,8 @@ public interface ApartmentDetailsDao {
 
 	Integer getCommunitySetupId(Integer userId);
 
+	List<Integer> getCommunityTypeIdLists(Integer int_CommunitySetupId);
+
+	String getCommunityMasterType(Integer cid);
+
 }
