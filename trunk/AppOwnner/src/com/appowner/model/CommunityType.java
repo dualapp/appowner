@@ -35,5 +35,13 @@ public class CommunityType implements Serializable {
 	}
 	@Column
 	private Integer int_CommunitySetupId;
+	@Column
+	private Integer int_MasterCommunityTypeId;
+	public Integer getInt_MasterCommunityTypeId() {
+		return int_MasterCommunityTypeId;
+	}
+	public void setInt_MasterCommunityTypeId(Integer int_MasterCommunityTypeId) {
+		this.int_MasterCommunityTypeId = int_MasterCommunityTypeId;
+	}
 	
 }
