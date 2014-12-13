@@ -29,6 +29,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
+import javax.servlet.http.Part;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.event.FileUploadEvent;
@@ -94,7 +95,7 @@ public class ExpenseBean  implements Serializable{
 	private String str_offcInTiming;
 	private String str_offcOutTiming;
 	private String str_AdditionalInfo;
-	private  String str_AppartmentLogo;
+	private  String str_OrganizationLogo;
 	private String str_AppartmentImg;
 	private String str_Document_Upload;
 	
@@ -251,11 +252,11 @@ public class ExpenseBean  implements Serializable{
 	public String getBlb_images1() {
 		return blb_images1;
 	}
-	public String getStr_AppartmentLogo() {
-		return str_AppartmentLogo;
+	public String getstr_OrganizationLogo() {
+		return str_OrganizationLogo;
 	}
-	public void setStr_AppartmentLogo(String str_AppartmentLogo) {
-		this.str_AppartmentLogo = str_AppartmentLogo;
+	public void setstr_OrganizationLogo(String str_OrganizationLogo) {
+		this.str_OrganizationLogo = str_OrganizationLogo;
 	}
 	public OrganizationLogo getOl() {
 		return ol;
@@ -806,7 +807,13 @@ private String path;
 private String textLogo;
 private OrganizationLogo ol;
 
-
+private String path2;
+public String getPath2() {
+	return path2;
+}
+public void setPath2(String path2) {
+	this.path2 = path2;
+}
 public String getBlb_image() {
 	return blb_image;
 }
@@ -816,12 +823,14 @@ public void setBlb_image(String blb_image) {
 /*
  * Upload Appartment Logo
  */
+
+/*
 public void  handleFileUpload(FileUploadEvent event) throws IOException {
 	 System.out.println("hi kalpana");
 	 
 	   path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-	    str_AppartmentLogo = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+	    str_OrganizationLogo = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 	    File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
 	    if (!file.exists()) {
     	if (file.mkdir()) {
@@ -830,7 +839,7 @@ public void  handleFileUpload(FileUploadEvent event) throws IOException {
     		System.out.println("Failed to create directory!");
     	}
      }
-	    file= new File(file,str_AppartmentLogo);
+	    file= new File(file,str_OrganizationLogo);
 	    
 	    //final UploadedFile uploadedFile = event.getFile();
 	    
@@ -854,16 +863,8 @@ public void  handleFileUpload(FileUploadEvent event) throws IOException {
 	    
 	    
 }
-/*
- * upload Document
- */
-private String path2;
-public String getPath2() {
-	return path2;
-}
-public void setPath2(String path2) {
-	this.path2 = path2;
-}
+ 
+
 public void  handleFileUpload2(FileUploadEvent event) throws IOException {
 	 System.out.println("hi sudha");
 	   path2 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
@@ -898,9 +899,7 @@ public void  handleFileUpload2(FileUploadEvent event) throws IOException {
             FacesContext.getCurrentInstance().addMessage(null, msg);
 	    
 }
-/*
- * upload Appartment Image
- */
+ 
 public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 	  path1 = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
     SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -934,6 +933,192 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
         FacesContext.getCurrentInstance().addMessage(null, msg);
 	
 }
+*/
+//file Upload
+
+	
+	private String statusMessage;
+  
+	public String uploadApartmentImage() throws IOException {
+
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		str_AppartmentImg = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
+		// Extract file name from content-disposition header of file part
+		//String fileName = getFileName(part);
+		System.out.println("***** fileName: " +str_AppartmentImg);
+
+		//String basePath = "D:" + File.separator + "temp" + File.separator;
+		//File outputFilePath = new File(basePath + fileName);
+		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		System.out.println(basePath);
+		File outputFilePath = new File(basePath+str_AppartmentImg);
+		
+		System.out.println(outputFilePath+"outputFilePath");
+		// Copy uploaded file to destination path
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		try {
+			inputStream = part.getInputStream();
+			outputStream = new FileOutputStream(outputFilePath);
+
+			int read = 0;
+			final byte[] bytes = new byte[1024];
+			while ((read = inputStream.read(bytes)) != -1) {
+				outputStream.write(bytes, 0, read);
+			}
+			path1="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AppartmentImg;
+			 System.out.println(path1+"path1");
+			statusMessage = "File upload successfull !!";
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			statusMessage = "File upload failed !!";
+		} finally {
+			if (outputStream != null) {
+				outputStream.close();
+			}
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+		return null;    // return to same page
+	}
+	public String uploadOrganizationLogo() throws IOException {
+
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		str_OrganizationLogo = fmt.format(new Date()) +getFileName(part1).substring(getFileName(part1).lastIndexOf('.'));
+		// Extract file name from content-disposition header of file part
+		//String fileName = getFileName(part);
+		System.out.println("***** fileName: " +str_OrganizationLogo);
+
+		//String basePath = "D:" + File.separator + "temp" + File.separator;
+		//File outputFilePath = new File(basePath + fileName);
+		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		System.out.println(basePath);
+		File outputFilePath = new File(basePath+str_OrganizationLogo);
+		
+		System.out.println(outputFilePath+"outputFilePath2");
+		// Copy uploaded file to destination path
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		try {
+			inputStream = part1.getInputStream();
+			outputStream = new FileOutputStream(outputFilePath);
+
+			int read = 0;
+			final byte[] bytes = new byte[1024];
+			while ((read = inputStream.read(bytes)) != -1) {
+				outputStream.write(bytes, 0, read);
+			}
+			path="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_OrganizationLogo;
+			 System.out.println(path+"path");
+			statusMessage = "File upload successfull !!";
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			statusMessage = "File upload failed !!";
+		} finally {
+			if (outputStream != null) {
+				outputStream.close();
+			}
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+		return null;    // return to same page
+	}
+	public String uploadDocument() throws IOException {
+
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		str_Document_Upload = fmt.format(new Date()) +getFileName(part2).substring(getFileName(part2).lastIndexOf('.'));
+		// Extract file name from content-disposition header of file part
+		//String fileName = getFileName(part);
+		System.out.println("***** fileName: " +str_Document_Upload);
+
+		//String basePath = "D:" + File.separator + "temp" + File.separator;
+		//File outputFilePath = new File(basePath + fileName);
+		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		System.out.println(basePath);
+		File outputFilePath = new File(basePath+str_Document_Upload);
+		
+		System.out.println(outputFilePath+"outputFilePath3");
+		// Copy uploaded file to destination path
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		try {
+			inputStream = part2.getInputStream();
+			outputStream = new FileOutputStream(outputFilePath);
+
+			int read = 0;
+			final byte[] bytes = new byte[1024];
+			while ((read = inputStream.read(bytes)) != -1) {
+				outputStream.write(bytes, 0, read);
+			}
+			path2="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_Document_Upload;
+			 System.out.println(path2);
+			statusMessage = "File upload successfull !!";
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			statusMessage = "File upload failed !!";
+		} finally {
+			if (outputStream != null) {
+				outputStream.close();
+			}
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+		return null;    // return to same page
+	}
+	private Part part;
+	private Part part1;
+	public Part getPart1() {
+		return part1;
+	}
+	public void setPart1(Part part1) {
+		this.part1 = part1;
+	}
+	public Part getPart2() {
+		return part2;
+	}
+	public void setPart2(Part part2) {
+		this.part2 = part2;
+	}
+	private Part part2;
+	public Part getPart() throws IOException {
+		 
+		return part;
+	}
+
+	public void setPart(Part part) {
+		this.part = part;
+	}
+
+	public String getStatusMessage() {
+		return statusMessage;
+	}
+
+	public void setStatusMessage(String statusMessage) {
+		this.statusMessage = statusMessage;
+	}
+
+	// Extract file name from content-disposition header of file part
+	private String getFileName(Part part) {
+		final String partHeader = part.getHeader("content-disposition");
+		System.out.println("***** partHeader: " + partHeader);
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename")) {
+				return content.substring(content.indexOf('=') + 1).trim()
+						.replace("\"", "");
+			}
+		}
+		return null;
+	}
+
+	 
+
+	 
  
 public void addOrganizationLogo ()
 {
@@ -944,12 +1129,12 @@ public void addOrganizationLogo ()
 		 ol.setInt_OthersInfoId(logoid);
 		 ol.setInt_AppartmentId(Util.getAppartmentId());
 		 ol.setStr_Appartment_Img(getStr_AppartmentImg());
-		 ol.setStr_Appartment_Logo(getStr_AppartmentLogo());
+		 ol.setStr_Appartment_Logo(getstr_OrganizationLogo());
 	 getExpenseService().updateLogo(ol);
 	}
 	else
 	{
-	ol.setStr_Appartment_Logo(getStr_AppartmentLogo());
+	ol.setStr_Appartment_Logo(getstr_OrganizationLogo());
 	ol.setStr_InTime(getStr_offcInTiming());
 	ol.setStr_OutTime(getStr_offcOutTiming());
 	ol.setStr_TextLogo(getTextLogo());

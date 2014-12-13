@@ -1167,6 +1167,7 @@ public static void setUser1(boolean user1) {
 		 str_TwitterId=userExtraInfo.getStr_TwitterId();
 		 str_PersonalBlog=userExtraInfo.getStr_PersonalBlog();
 		 int_ExtraUserId=userExtraInfo.getInt_UserExtraID();
+		  
 		 }
 		 
 		 

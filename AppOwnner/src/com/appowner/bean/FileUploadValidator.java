@@ -28,13 +28,12 @@ public class FileUploadValidator implements Validator {
 		}
  
 		// 2. validate file type (only text files allowed)
-		/*if (!"image/jpeg".equals(part.getContentType())) {
+		/*if (!"image/gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG".equals(part.getContentType())) {
 			FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 			throw new ValidatorException(message);
 		  }
- */
-		int month = 8;
-        String monthString;
+ 
+		 */
         switch (part.getContentType()) {
             case "image/jpeg":  
 			 
@@ -45,9 +44,28 @@ public class FileUploadValidator implements Validator {
             case "image/bmp":   
             	 
                      break;
+            case "image/gif":   
+           	 
+                break;
+            case "image/jpg":   
+           	 
+                break;
+            case "image/PNG":   
+           	 
+                break;
+            case "image/JPEG":   
+              	 
+                break;
+            case "image/JPG":   
+             	 
+                break;
+            case "image/GIF":   
+           	 
+                break;
+                     
             default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 			throw new ValidatorException(message);
-        }
+        } 
 		// 3. validate file size (should not be greater than 512 bytes)
 		if (part.getSize() >262144) {
 			FacesMessage message = new FacesMessage("Error: File size is too big !!");
