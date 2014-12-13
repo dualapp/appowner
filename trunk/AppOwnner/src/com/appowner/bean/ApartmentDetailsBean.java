@@ -28,6 +28,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.primefaces.event.CellEditEvent;
 
 import com.appowner.model.CommunitySetup;
 import com.appowner.model.CommunityType;
@@ -86,6 +87,14 @@ public class ApartmentDetailsBean  implements Serializable{
 	 
 	@SuppressWarnings("unused")
 	private List<String> communityTypelist;
+	private List<String> communityTypelist1;
+	public List<String> getCommunityTypelist1() {
+		
+		return communityTypelist1;
+	}
+	public void setCommunityTypelist1(List<String> communityTypelist1) {
+		this.communityTypelist1 = communityTypelist1;
+	}
 	private CommunityType communityType;
 	 
 	 
@@ -223,12 +232,25 @@ public class ApartmentDetailsBean  implements Serializable{
 		{ 
 			str_CommunityType=(String) itr1.next();
 			communityType.setInt_CommunitySetupId(getApartmentDetailsService().getCommunitySetupId(Util.getUserId()));
-		    communityType.setInt_CommunityTypeId(getApartmentDetailsService().getCommunityType(str_CommunityType));
+		    communityType.setInt_MasterCommunityTypeId(getApartmentDetailsService().getCommunityType(str_CommunityType));
 		    getApartmentDetailsService().saveCommunitySetup(communityType);
 		}
 		 
-		return "blockdetails.xhtml";
+		return "instructions.xhtml";
 	}
+	public void onCellEdit(CellEditEvent event) {
+		
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+        System.out.println(newValue+"oldValue");
+        System.out.println(newValue+"celedit");
+        System.out.println(event.getColumn()+"column");
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
 	public CommunitySetup getCs() {
 		cs=new CommunitySetup();
 		cs=getApartmentDetailsService().getCommunitySetup(Util.getUserId());
@@ -239,6 +261,16 @@ public class ApartmentDetailsBean  implements Serializable{
 			int_year=cs.getInt_year();
 			int_TotalHouse=cs.getInt_TotalNoOfHouses();
 			str_CommunityType=cs.getStr_CommunitySetupType();
+			communityTypelist1=new ArrayList<String>();
+			List<Integer> communityTypeId=getApartmentDetailsService().getCommunityTypeIdLists(cs.getInt_CommunitySetupId());
+			ListIterator itr=communityTypeId.listIterator();
+			while(itr.hasNext())
+			{
+				Integer cid=(Integer) itr.next();
+				
+				communityTypelist1.add(getApartmentDetailsService().getCommunityMasterType(cid));
+			}
+			 
 			
 		}
 		else
@@ -288,7 +320,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	 
 	public void getHouseDetails1(Integer houseId)
 	{    System.out.println( houseId+"hid");
-	
+	housedetails=new HouseDetails();
 		housedetails=getApartmentDetailsService().getHouseDetails(houseId);
 		 
 		System.out.println(housedetails+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhDddddddddddddd");
