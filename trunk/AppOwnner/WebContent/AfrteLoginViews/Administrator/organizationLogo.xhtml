@@ -12,7 +12,7 @@
 	 
  
  </h:head>
- <h:form   enctype="multipart/form-data"  >
+ <h:form  id="upload" enctype="multipart/form-data"  >
  <p:growl id="msgs" showDetail="true" />
  
  <h:body>
@@ -29,9 +29,30 @@
          <tr><th><h:outputText value="Upload Appartment image:"/></th> 
  <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
-  <p:fileUpload  style="width:60%; " fileUploadListener="#{expenseBean.handleFileUpload1}" multiple="true"  mode="advanced" dragDropSupport="false"
-            sizeLimit="100000"    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"></p:fileUpload>
+  
+  
+    
+     <!-- inputFile tag to upload file -->
+		 
+		<h:inputFile id="file" 
+		             label="file"
+			         value="#{expenseBean.part}" 
+			          >
+            <!-- FileUploadValidator for file validation
+		    <f:validator validatorId="FileUploadValidator" /> -->
+		</h:inputFile>
+		<h:message style="color: red" for="file" /><br />
  
+		<h:commandButton id="submit" update="@form" execute="@form"
+		                 action="#{expenseBean.uploadApartmentImage()}"
+			             value="upload file" >
+			              
+			             </h:commandButton><br />
+ 
+        <!-- status message of file upload; rendered if message is set 
+		<h:outputText value="#{expenseBean.statusMessage}"
+			          rendered="#{not empty expenseBean.statusMessage}" />-->
+  
      
   
     </td></tr>
@@ -39,20 +60,53 @@
             <tr><th><h:outputText value="Upload Appartment Logo:"/></th> 
  <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
-   <p:fileUpload style="width:60%; " fileUploadListener="#{expenseBean.handleFileUpload}"    mode="advanced" dragDropSupport="false"
-            sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"></p:fileUpload>
+   <!-- inputFile tag to upload file -->
+		 
+		<h:inputFile id="file1" 
+		             label="file"
+			         value="#{expenseBean.part1}" 
+			         >
+            <!-- FileUploadValidator for file validation 
+		    <f:validator validatorId="FileUploadValidator" />-->
+		</h:inputFile>
+		<h:message style="color: red" for="file1" /><br />
+ 
+		<h:commandButton id="submit1" update="@form" execute="@form"
+		                 action="#{expenseBean.uploadOrganizationLogo()}"
+			             value="upload file" >
+			              
+			             </h:commandButton><br />
+ 
+        <!-- status message of file upload; rendered if message is set 
+		<h:outputText value="#{expenseBean.statusMessage}"
+			          rendered="#{not empty expenseBean.statusMessage}" />-->
   
   
   
              </td></tr>
               <tr><th>Upload Document</th><td>
             
-            <p:fileUpload style="width:60%; " fileUploadListener="#{expenseBean.handleFileUpload2}" mode="advanced" dragDropSupport="false"
-           update="messages3" sizeLimit="100000" fileLimit="3"  allowTypes="/(\.|\/)(doc|docx|xls|xlsx|pdf)$/" />
+           <!-- inputFile tag to upload file -->
+	 
+		<h:inputFile id="file3" 
+		             label="file"
+			         value="#{expenseBean.part2}" 
+			         >
+            <!-- FileUploadValidator for file validation 
+		    <f:validator validatorId="DocumentUploadValidator" />-->
+		</h:inputFile>
+		<h:message style="color: red" for="file3" /><br />
  
-    <p:growl id="messages3" showDetail="true" />
-            
-             
+		<h:commandButton id="submit3" update="@form" execute="@form"
+		                 action="#{expenseBean.uploadDocument()}"
+			             value="upload file" >
+			              
+			             </h:commandButton><br />
+ 
+        <!-- status message of file upload; rendered if message is set 
+		<h:outputText value="#{expenseBean.statusMessage}"
+			          rendered="#{not empty expenseBean.statusMessage}" />-->
+  
                                   
                                   </td></tr>
             
