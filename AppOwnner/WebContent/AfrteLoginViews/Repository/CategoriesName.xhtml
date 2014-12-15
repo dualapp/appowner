@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+	 <f:metadata>
+	<f:viewParam name="int_Document_CatID" value="#{update.int_Document_CatID}"  />
+	 
+	<f:viewAction action="#{update.getCls_DocumentCategory}" />
+</f:metadata>
+
+
+
+
+ 
+<h:head>
+    <title>JSFlive JSF 2.2 - Example 01</title>
+</h:head>
+<body  bgcolor="pink">
+<div id="page3">
+   <table   style="width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:8px">
+<h:form>
+   
+   
+ 
+    <h:outputText value="Document Categories Name:"/>
+    <h:inputText value="#{update.cat.int_Document_CatNM}"/>
+    
+
+  <br />
+   
+     
+   <h:commandButton  value="Submit"  action="#{update.saveUser1}"/>
+   
+  
+  </h:form>
+  </table>
+  </div>
+</body>
+</ui:define>
+</ui:composition>
