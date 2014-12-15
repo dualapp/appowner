@@ -936,7 +936,7 @@ public static void setUser1(boolean user1) {
  
 		else
 		{FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password id invalid!"));
-		return "/BeforeLoginViews/UserInfo/layout.xhtml";
+		return "layout.xhtml";
 		}
 	}
 	public Integer getInt_UserId() {
@@ -993,7 +993,7 @@ public static void setUser1(boolean user1) {
 	    Date date = new Date();
 	      str_LoggedOutTime=dateFormat.format(date);
 	      memberLog();
-	      return "/BeforeLoginViews/UserInfo/layout.xhtml";
+	      return "layout.xhtml";
 	   }
 	private ServiceRequest serviceRequest;
 	public String addServiceRequest()

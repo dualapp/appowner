@@ -47,7 +47,7 @@ import com.appowner.util.Util;
  * This class is for Adding new user and perform
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class Cls_UserBean implements Serializable{
 	//Varialble declaration
 		private static final long serialVersionUID = 1L;
