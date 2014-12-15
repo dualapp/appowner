@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+ 
+  
+   <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/doc.jpg" height="40" width="40"></img> <span class="title"> Sub Group Settings </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<f:metadata>
+   <f:viewParam name="int_GroupId" value="#{scriptBean.int_GroupId}"  />
+	 
+	<f:viewAction action="#{scriptBean.getedit1}" />
+</f:metadata>
+	<h:form>
+	<a href="Sub-GroupDetail.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
+	<div id="page3">
+	
+	
+	<!-- <div class="gsTitleDiv"> -->
+	  
+           
+  <table>
+   
+   
+    <tr>
+           <td>
+          <h4><p:outputLabel value="Your  Settings  For">
+           </p:outputLabel>&#150; &#150;            
+           <p:outputLabel  value="#{scriptBean.edit1.str_GroupNm}" />
+           &#150; &#150; 
+          <p:outputLabel  value="Sub-Group" /></h4>
+            </td>
+            </tr>
+         
+  
+          <tr>
+         
+               <td><p:selectBooleanCheckbox value="#{scriptBean.edit1.bol_Smsallow}" /> 
+               <p:outputLabel value= "Allow Sub-Group members to send updates through SMS"></p:outputLabel><br />
+                   &#150; &#150; &#150; &#150; &#150;<h:outputText value="(Your mobile number would not be visible or shared)"/>
+               </td> 
+      </tr> 
+      <tr>
+         
+               <td><p:selectBooleanCheckbox value="#{scriptBean.edit1.bol_Emailallow}" /> 
+               <p:outputLabel value= "Send me an email for every new Discussion or Polls in"></p:outputLabel>
+               &#150; <p:outputLabel  value="#{scriptBean.edit1.str_GroupNm}" />
+                   
+               </td> 
+      </tr> 
+      <tr>
+             <td><h:commandButton  value="Save My Setting"  action="#{scriptBean.saveContact1()}" style=" width:120px;float:left !important;margin: 100px  10px 0px 0px;" />
+              <h:button  value="Cancel"      outcome="Sub-GroupDetail.xhtml" style="width:120px; float:left !important;margin: 100px -150px 10px 0px;" /></td>
+              </tr>
+          </table>
+          </div>
+          </h:form>
+          
+           
+           
+</h:body>
+         
+   </ui:define>
+   </ui:composition>

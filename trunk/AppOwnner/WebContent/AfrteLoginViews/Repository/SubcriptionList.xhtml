@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+<h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/view.jpg.jpg" height="40" width="45"></img> <span class="title">Subscription View </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="page3">
+  
+  <h:form>
+        <p:dataTable id="user" var="user" value="#{scriptBean.listUser}"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Name" />
+                </f:facet>
+                <h:outputText value="#{user.subscriptname}" />
+            </p:column>
+           <p:column>
+            <f:facet name="header">
+            <h:outputText value="price" />
+                </f:facet>
+                <h:outputText value="#{user.price}" />
+            </p:column>
+             <p:column>
+             <f:facet name="header">update</f:facet>
+	   			<h:link outcome="SubcriptionView.xhtml" >
+	   			<f:param name="subcriptID" value="#{user.subcriptID}" />
+	   			<p:graphicImage height="20" width="20" alt="View"
+								value="#{expenseBean.str_Name}images/view.jpg"  />
+	   			</h:link>
+	   			<h:link outcome="SubcriptionUpdate.xhtml" >
+	   			<f:param name="subcriptID" value="#{user.subcriptID}" >
+	   			<p:graphicImage height="20" width="20" alt="Edit"
+								value="#{expenseBean.str_Name}images/edit.jpg" />
+	   			<h:link outcome="deletesubcript.xhtml"
+							onclick="return confirm('Are you sure you want to delete #{user.subcriptID}?');">
+							<p:graphicImage height="20" width="20" alt="delete"
+								value="#{expenseBean.str_Name}images/delete.jpg"  />
+							<f:param name="subcriptID"
+								value="#{user.subcriptID}" />
+						</h:link>
+						</f:param>	
+	   		</h:link>
+	   		</p:column>
+        </p:dataTable>
+        
+        
+         </h:form>
+        
+       
+        </div>
+         
+</h:body>
+
+</ui:define>
+</ui:composition>
