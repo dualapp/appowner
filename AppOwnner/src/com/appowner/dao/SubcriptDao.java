@@ -176,7 +176,7 @@ public interface SubcriptDao {
 	public List<String> listblock();
 
 	public List<UserExtraInfo> getsearch1(String str_Hobbies,
-			String str_Profession);
+			String str_Profession,String residence,String status );
 
 	public UserExtraInfo searchuser(Integer int_UserExtraID);
 
@@ -194,8 +194,18 @@ public interface SubcriptDao {
 
 	public User searchhh6(Integer uid);
 
+	public List reside();
 
+	public UserExtraInfo alldatas(Integer int_UserId);
 
+	public int addmember(String selecte);
+
+	public User allnames(String str_Username);
+
+	
+	
+
+	
 	
 
 	
