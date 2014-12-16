@@ -249,17 +249,17 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return (List<Double>)getAccountsDao().getExpenseAmount();
 	}
-	public List<Double> getIncomeAmount()
+	public List<Double> getIncomeAmount(Date dat_To)
 	{
-		return (List<Double>)getAccountsDao().getIncomeAmount();
+		return (List<Double>)getAccountsDao().getIncomeAmount(dat_To);
 	}
-	public List<ManualJournal> getlistManualJournal2(Date dat_From, Date dat_To)
+	public List<ManualJournal> getlistManualJournal2(String str,Date dat_From, Date dat_To)
 	{
-		return getAccountsDao().getlistManualJournal2(dat_From, dat_To);
+		return getAccountsDao().getlistManualJournal2(str,dat_From, dat_To);
 	}
-	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To)
+	public List<ManualJournal> getlistManualJournal3(String str,Date dat_From, Date dat_To)
 	{
-		return getAccountsDao().getlistManualJournal3(dat_From, dat_To);
+		return getAccountsDao().getlistManualJournal3(str,dat_From, dat_To);
 	}
 	public double getCreditAmount(String str, Date dat_ToDate)
 	{
@@ -272,6 +272,15 @@ public class AccountsServiceImpl implements AccountsService {
 	public List<ChartOfAccount> getAccountTypeList2()
 	{
 		return getAccountsDao().getAccountTypeList2();
+	}
+	public List<String> getIncome()
+	{
+		return getAccountsDao().getIncome();
+	}
+
+	public List<String> getExpense1()
+	{
+		return getAccountsDao().getExpense1();
 	}
 	
 }
