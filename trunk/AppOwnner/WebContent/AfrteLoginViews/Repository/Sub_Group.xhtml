@@ -31,8 +31,6 @@
           <p:outputLabel value="Sub-Group Name">
            </p:outputLabel></td>            
           <td>  <h:inputText  value="#{scriptBean.str_GroupNm}" style="width:250px"/>
-          &#150;
-            <p:outputLabel  value=".#{scriptBean.str_ApartmentName}@appowner.com" />
           
             </td>
             </tr>
@@ -42,14 +40,16 @@
           <p:outputLabel value="Sub-Group  Address">
            </p:outputLabel></td>            
           <td>  <h:inputText  value="#{scriptBean.str_Groupaddress}"  style="width:250px"/>
-           
+           &#150;
+            <p:outputLabel  value=".#{scriptBean.str_ApartmentName}@appowner.com" />
+          
             </td>
             </tr>
              <tr>
            <td>
           <p:outputLabel value="Sub-Group  Description">
            </p:outputLabel></td>            
-          <td>  <h:inputTextarea  value="#{scriptBean.str_GroupDescription}" style="height:70px;width:250px">
+          <td>  <h:inputTextarea  value="#{scriptBean.str_GroupDescription}" style="height:85px;width:250px">
             </h:inputTextarea>
             </td>
             </tr>
@@ -80,7 +80,7 @@
             
              </td>
             </tr>
-            <tr><td> <p:commandButton value="Create Sub-Group" action="#{scriptBean.group}" ajax="false" style="width:160px;height:30px;"/> 
+            <tr><td> <p:commandButton value="Create Sub-Group" action="#{scriptBean.group}" ajax="false" style="width:155px;height:30px; float:left !important;margin: 50px  100px 100px 10px;"/> 
              
                </td></tr> 
           </table>

@@ -11,6 +11,7 @@
  
   
    <h:body>
+   
 <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
@@ -21,7 +22,7 @@
 		</tbody>
 	</table>
   
-   
+   <a href="Sub-GroupDetail.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
   <h:form id="form">
 
     <div id="page3">
@@ -29,30 +30,50 @@
     <p:dataGrid   style=" overflow:hidden;border:0pt none;width:60%; height:100%;margin-left: 2%;margin-right: 1%;margin-bottom:10px;margin-top:2px"  var="group" value="#{scriptBean.search}"   layout="block"  id="DT">
     
      <tr><td>
-                  <p:selectBooleanCheckbox id="str_group" ></p:selectBooleanCheckbox>
-                  </td>
-                  </tr>
-                  <tr>
-                  <td width="13%">
-                  <p:graphicImage width="150px" height="150px"   value="#{group.var_ImageName1}" style="background:#dddddd;"/>
-                <font  size="3" color="#OO8B8B"> <h:outputText value="#{group.str_Username}"  /> </font>
-              </td>
-                </tr>
+                  <p:selectBooleanCheckbox id="str_group" ></p:selectBooleanCheckbox>&#150; &#150;
+        
+                  <p:graphicImage width="40px" height="40px"    value="#{group.var_ImageName1}" style="background:#dddddd;"/>
+                <font  size="3" color="#OO8B8B"> 
+                <h:outputText value="#{group.str_Username}" ></h:outputText> 
+               
+                    </font>
+             </td>
+             </tr>
+             
                  <tr>
                  <td width="35%">                                       
-                <h:outputText   value="#{group.str_Block}" />  &#150;  &#150;  &#150;<p:outputLabel value=":::"/>     
+                <h:outputText   value="#{group.str_Block}" /> &#150;  &#150;&#150;  &#150;
+                <h:outputText   value="#{group.str_Flat}" />  
+                &#150;  &#150;  &#150;<p:outputLabel value=":::"/>     
                 &#150;  &#150;  <h:outputText value="#{group.residence}," />&#150;  &#150; 
                 <h:outputText value="#{group.str_MaritalStatus}," />&#150;  &#150;
                 <h:outputText value="#{group.bool_gender}," /> </td>
                 </tr>
                  <br />
+                 
+                 
                   <tr>
                  <td>
                 <h:panelGroup layout="block" id="mainDiv">
+                <h:link value="View Profile"  outcome="Viewprofile.xhtml">&#150;    &#150; &#150;  &#150; 
+                <f:param name="int_UserId" value="#{group.int_UserId}" />
+	   		  </h:link>
+	   		  
                 <font  size="2"><p:commandLink value="Send Message" oncomplete="PF('multiVendorDialog3').show()" style="width:110px; height:32px;text-align:center;"/></font> 
                       </h:panelGroup> </td>
+                      
      </tr>
+     <tr> 
+        
+        
+        <td><p:outputLabel value="-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------">
+            </p:outputLabel>
+      
+        </td>
+        </tr>
    </p:dataGrid>
+   
+   
     <p:dialog header="Message" widgetVar="multiVendorDialog3"   showEffect="fade" hideEffect="explode" resizable="false" height="180" width="500">
       <p:outputPanel id="multiVendorDetail3" > 
      <table>
@@ -75,7 +96,7 @@
                   </p:outputPanel>
                   </p:dialog>
                   </div>
-                  <tr><td> <p:commandButton value="Submit"  style=" width:100px; height:25px; margin:  10px  10px 10px 400px   ;"/> 
+                  <tr><td> <p:button value="Submit"  outcome="Create-SubGroup.xhtml"  style=" width:100px; height:25px; margin:  10px  10px 10px 400px   ;"/> 
                </td>
                </tr> 
                  </h:form>

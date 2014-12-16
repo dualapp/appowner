@@ -36,15 +36,15 @@
               
              
               
-             <td><h:link  id="ch_Ad_Type" value="#{scriptBean.groups.str_GroupNm}" >
+             <td><h:link  id="ch_Ad_Type" value="#{scriptBean.groups.str_GroupNm}"  style="color:#009900;font-size:17px;font-weight:bold;">
             </h:link>
              </td>
              </tr>
              <tr>
             <td>  <p:outputLabel value=" Sub-Group Email Address: " /> 
-             <p:outputLabel value="#{scriptBean.groups.str_GroupNm}" />
+             <p:outputLabel value="#{scriptBean.groups.str_GroupNm}" style="color:#009900;font-size:17px;"/>
             
-            <p:outputLabel  value=".#{scriptBean.str_ApartmentName}@appowner.com" />
+            <p:outputLabel  value=".#{scriptBean.str_ApartmentName}@appowner.com" style="color:#009900;font-size:17px;" />
            
             </td>
             
@@ -52,27 +52,27 @@
              
              <tr>
              <td><p:outputLabel value=" Allow you to join: " />
-              <p:outputLabel  id="h_Ad_Type" value="#{scriptBean.groups.str_groupPrivate}">
+              <p:outputLabel  id="h_Ad_Type" value="#{scriptBean.groups.str_groupPrivate}" style="color:#009900;font-size:17px;">
               </p:outputLabel>
               </td>
               </tr>
    <tr>
-                   <td><h:link value="Settings"  outcome="Sub_Group-Settings.xhtml">
+                   <td><h:link value="Settings  &#150; |  &#150;"   outcome="Sub_Group-Settings.xhtml" style="font-size:14px;">
                    <f:param name="int_GroupId" value="#{scriptBean.groups.int_GroupId}" />
 	   		  </h:link>
                    &#150;  &#150;  &#150; 
-                   <h:link value="Edit Sub-Group Details"  outcome="EditGroup.xhtml">
+                   <h:link value="Edit Sub-Group Details   &#150; |  &#150;"  outcome="EditGroup.xhtml" style="font-size:14px;">
 	   		  <f:param name="int_GroupId" value="#{scriptBean.groups.int_GroupId}" />
 	   		  </h:link>
 	   		  
 	   		 
                    &#150;  &#150;  &#150; 
-                   <h:link value="Invite Members" outcome="Invite-Members.xhtml?str_GroupNm=#{scriptBean.groups.str_GroupNm}"/>
+                   <h:link value="Invite Members  &#150; |  &#150; " outcome="Invite-Members.xhtml?str_GroupNm=#{scriptBean.groups.str_GroupNm}"  style="font-size:14px;"/>
                    &#150;  &#150;  &#150; 
-                   <h:link value="Add Members " outcome="Add-member.xhtml?str_GroupNm=#{scriptBean.groups.str_GroupNm}"/>
+                   <h:link value="Add Members  &#150; |  &#150;" outcome="Add-member.xhtml?str_GroupNm=#{scriptBean.groups.str_GroupNm}" style="font-size:14px;"/>
                    &#150;  &#150;  &#150; 
-                   <h:link outcome="deletegroup.xhtml " value="Delete Sub-Group"
-							onclick="return confirm('Are you sure you want to delete">
+                   <h:link outcome="deletegroup.xhtml " value="Delete Sub-Group" style="font-size:14px;"
+							onclick="return confirm('Are you sure you want to delete')">
 						    <f:param name="int_GroupId"
 								value="#{scriptBean.groups.int_GroupId}" />
 						
