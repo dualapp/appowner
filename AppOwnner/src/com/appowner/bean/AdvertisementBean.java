@@ -681,7 +681,7 @@ public class AdvertisementBean  implements Serializable{
 					agency.setStr_content(getStr_content());
 					agency.setStr_Url(getStr_Url());
 					agency.setStr_vedio(path1);
-					agency.setInt_till(getInt_till());
+					//agency.setInt_till(getInt_till());
 				    getAdvertisementService().addagencies(agency);
 					
 					
