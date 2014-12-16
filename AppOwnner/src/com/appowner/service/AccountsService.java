@@ -121,17 +121,21 @@ public interface AccountsService {
 
 	public List<Double> getExpenseAmount();
 
-	public List<Double> getIncomeAmount();
+	public List<Double> getIncomeAmount(Date dat_To);
 
-	public List<ManualJournal> getlistManualJournal2(Date dat_From, Date dat_To);
+	public List<ManualJournal> getlistManualJournal2(String str, Date dat_From, Date dat_To);
 
-	public List<ManualJournal> getlistManualJournal3(Date dat_From, Date dat_To);
+	public List<ManualJournal> getlistManualJournal3(String str, Date dat_From, Date dat_To);
 
 	public double getCreditAmount(String str, Date dat_ToDate);
 
 	public double getDebitAmount(String str, Date dat_ToDate);
 
 	public List<ChartOfAccount> getAccountTypeList2();
+
+	public List<String> getIncome();
+
+	public List<String> getExpense1();
 			
 
 	
