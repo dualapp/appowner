@@ -1081,7 +1081,7 @@ public static void setUser1(boolean user1) {
 	private UserExtraInfo userExtraInfo;
 	public String updateUser(){
 	 	userExtraInfo=new UserExtraInfo();
-		userExtraInfo.setBool_gender(bool_Gender);
+		//userExtraInfo.setBool_gender(bool_Gender);
 		userExtraInfo.setDate_DateOfBirth(getDate_DateOfBirth());
 		userExtraInfo.setStr_BloodGroup(str_BloodGroup);
 		userExtraInfo.setInt_UserID(Util.getUserId());
@@ -1155,7 +1155,7 @@ public static void setUser1(boolean user1) {
 		 userExtraInfo=getUserService().getUserExtraInfo(user.getInt_UserId());
 		 if( userExtraInfo!=null)
 		 {
-		 bool_Gender=userExtraInfo.getBool_gender();
+		// bool_Gender=userExtraInfo.getBool_gender();
 		 date_DateOfBirth=userExtraInfo.getDate_DateOfBirth();
 		 str_BloodGroup=userExtraInfo.getStr_BloodGroup();
 		 str_MaritalStatus=userExtraInfo.getStr_MaritalStatus();
