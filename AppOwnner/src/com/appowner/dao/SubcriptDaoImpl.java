@@ -594,15 +594,23 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserExtraInfo> getsearch1(String str_Hobbies,String str_Profession) {
+	public List<UserExtraInfo> getsearch1(String str_Hobbies,String str_Profession,String residence,String status) {
 		
 			System.out.println(str_Profession+"jjjjjjjjjjjjjjjjjjjjjj");
 			System.out.println(str_Hobbies);
-			String query="{call member()}";
-			List<UserExtraInfo> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).list();
+			
+           System.out.println(residence+"kfjkgf");
+           System.out.println( status+"kfjkgf");
+          
+        String query="{call member(?,?,?,?)}";
+			List<UserExtraInfo> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0, str_Hobbies).setParameter(1, str_Profession).setParameter(2, residence).setParameter(3, status).list();
 			return conn;
- }
+          
+}
+			
+ 
 
 
 	@Override
@@ -667,7 +675,44 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		return    (User) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,uid).uniqueResult();
 
 	}
+
+	@Override
+	public List reside() {
+		String hql2="select residence from UserExtraInfo";		
+		System.out.println("8888888888888888888888888888888888");
+		return  sessionFactory.getCurrentSession().createQuery(hql2).list();
 	}
+
+	@Override
+	public UserExtraInfo alldatas(Integer int_UserId) {
+		String query="{call member1(?)}";
+		UserExtraInfo conn=(UserExtraInfo) sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0,int_UserId).uniqueResult();
+		return (UserExtraInfo) conn;
+	}
+
+	@Override
+	public int addmember(String selecte) {
+		System.out.println(selecte+"mmmmmmkkkkkkkkkkk");
+		String hql1="select userId  from cls_Group  where str_GroupNm=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid1=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, selecte).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid1);
+		return cid1;
+		
+	}
+
+	@Override
+	public User allnames(String str_Username) {
+		String	hql1="from User where str_Username=?";
+		return (User) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, str_Username).uniqueResult();
+	}
+
+	
+	}
+	
 
 	
 	
