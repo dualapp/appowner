@@ -18,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.dao.DataAccessException;
@@ -110,7 +111,7 @@ public class ScriptBean implements Serializable{
 			this.flag = flag;
 		}
 	 
-	private Integer int_UserId;
+	
 	 
 	 
 		
@@ -1035,6 +1036,14 @@ public List<String> getGroup2() {
 public void setGroup2(List<String> group2) {
 	this.group2 = group2;
 }
+private List<String> residing;
+
+public List<String> getResiding() {
+	return residing;
+}
+public void setResiding(List<String> residing) {
+	this.residing = residing;
+}
 
 private boolean str_group;
 public boolean isStr_group() {
@@ -1078,7 +1087,7 @@ public void setStr_owner(boolean str_owner) {
 }
 
 public boolean select2;
-
+private boolean residence;
 
 public String selectinfo2(ValueChangeEvent event)
 {  
@@ -1427,6 +1436,13 @@ public void setAddcompany(List<String> addcompany) {
 
 private String str_State;
 private String str_City;
+public String getStr_Username() {
+	return str_Username;
+}
+public void setStr_Username(String str_Username) {
+	this.str_Username = str_Username;
+}
+
 private String str_Block;
 private String str_Username;
 
@@ -1446,16 +1462,24 @@ public void setStr_City(String str_City) {
 public String getStr_Block() {
 	return str_Block;
 }
+public int getInt_UserID() {
+	return int_UserID;
+}
+public void setInt_UserID(int int_UserID) {
+	this.int_UserID = int_UserID;
+}
 public void setStr_Block(String str_Block) {
 	this.str_Block = str_Block;
 }
+ private  int int_UserID;
  
 private List<UserExtraInfo> search;
 public List<UserExtraInfo> getSearch() {
 	search=new ArrayList<UserExtraInfo>();
-	search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession));
+	search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession,residence1,status));
 	System.out.println(search+"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 	System.out.println(search.getClass());
+	
 	ListIterator itr=search.listIterator();
 	System.out.println(itr);
 	while(itr.hasNext())
@@ -1463,10 +1487,49 @@ public List<UserExtraInfo> getSearch() {
 		Object u=(Object) itr.next();
 		UserExtraInfo e=(UserExtraInfo) u;
 		System.out.println(  e.getStr_Hobbies()+"k11111111k111111111111111");
-		  
+		System.out.println(e.getResidence()+"hjjjhjhjhjhjjhjhhjjhhjhjjhhjhjhjjhhjhjhjhj");
+		System.out.println(e.getInt_UserId()+"");
+		 char ch1=e.getStr_PhoneNo().charAt(0);
+		 char ch2=e.getStr_PhoneNo().charAt(9);
+		 char em1=e.getStr_Email().charAt(0);
+		
+	     String 	ch4="********";
+	    String 	ch5="***************";
+		  first=ch1+ch4+ch2;
+		  stt_email=em1+ch5;
+        System.out.println(first+"kjfkjjfkj"); 
+       
 	}
 	return search;
 }
+public void setStr_Profession(String str_Profession) {
+	this.str_Profession = str_Profession;
+}
+
+private String stt_email;
+
+
+
+public String getStt_email() {
+	return stt_email;
+}
+public void setStt_email(String stt_email) {
+	this.stt_email = stt_email;
+}
+public String getFirst() {
+	return first;
+}
+public void setFirst(String first) {
+	this.first = first;
+}
+
+private String first;
+
+
+public void setSearch(List<UserExtraInfo> search) {
+	this.search = search;
+}
+
 private String str_Uname;
 public String getStr_Uname() {
 	return str_Uname;
@@ -1484,8 +1547,45 @@ public void setStr_blocks(String str_blocks) {
 	this.str_blocks = str_blocks;
 }
 private String str_Profession;
-private String str_MaritalStatus;
 
+
+private List<String>residences;
+
+
+public List<String> getResidences() {
+	residences=new ArrayList<String>();
+	residences.addAll(getSubcriptService().reside());
+	ListIterator itr=residences.listIterator();
+	System.out.println(itr);
+	while(itr.hasNext())
+	{
+		Object u=(Object) itr.next();
+		 s1=(String) u;
+		System.out.println(s1+".,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+		System.out.println(residences+"ioooooooooooooioioioioioioioo");
+	}
+	return residences;
+}
+
+public String s1;
+
+public String getS1() {
+	return s1;
+}
+public void setS1(String s1) {
+	this.s1 = s1;
+}
+public void setResidences(List<String> residences) {
+	this.residences = residences;
+}
+
+
+public boolean isResidence() {
+	return residence;
+}
+public void setResidence(boolean residence) {
+	this.residence = residence;
+}
 
 private UserExtraInfo usr;;
 private  User user;
@@ -1505,17 +1605,14 @@ public void setInt_UserExtraID(Integer int_UserExtraID) {
 public String getStr_Profession() {
 	return str_Profession;
 }
-public String getStr_MaritalStatus() {
+
+
+public boolean isStr_MaritalStatus() {
 	return str_MaritalStatus;
 }
-
-public void setStr_Profession(String str_Profession) {
-	this.str_Profession = str_Profession;
-}
-public void setStr_MaritalStatus(String str_MaritalStatus) {
+public void setStr_MaritalStatus(boolean str_MaritalStatus) {
 	this.str_MaritalStatus = str_MaritalStatus;
 }
-
 public String getStr_Hobbies() {
 	return str_Hobbies;
 }
@@ -1563,12 +1660,42 @@ public UserExtraInfo getUserExtraInfo() {
 }
 public void setUserExtraInfo(UserExtraInfo userExtraInfo) {
 	this.userExtraInfo = userExtraInfo;
+}private String residence1;
+
+private String status;
+
+public String getStatus() {
+	return status;
 }
+public void setStatus(String status) {
+	this.status = status;
+}
+
+private boolean str_MaritalStatus;
+
 public String getSearch1() {
 	System.out.println("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
-	
+	System.out.println(residence+"jjjkkj");
 	search=new ArrayList<UserExtraInfo>();
-	search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession));
+	if(residence==true)
+	{
+		residence1="Non-Residing";
+	}
+	else
+	{
+		residence1="Residing";
+	}
+	if(str_MaritalStatus==true)
+	{
+		
+		status="Single";
+		}
+		else
+		{
+			status="Married";
+		}
+	
+	 search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession,residence1,status ));
 	return "View-SubGroup.xhtml";
 }
 	
@@ -1576,7 +1703,14 @@ public String getSearch1() {
 
 
 
+private Integer int_UserId;
 
+public String getResidence1() {
+	return residence1;
+}
+public void setResidence1(String residence1) {
+	this.residence1 = residence1;
+}
 
 private List<String> blocks;
 
@@ -1643,17 +1777,36 @@ public int getIntdocid2() {
 public void setIntdocid2(int intdocid2) {
 	this.intdocid2 = intdocid2;
 }
-public String  memberadd() {
+public int  intdocid3;
+public  static  String selecte;
+
+public int getIntdocid3() {
+	return intdocid3;
+}
+public void setIntdocid3(int intdocid3) {
+	this.intdocid3 = intdocid3;
+}
+public static String getSelecte() {
+	return selecte;
+}
+public static void setSelecte(String selecte) {
+	ScriptBean.selecte = selecte;
+}
+
+public void  memberadd() {
 	
 intdocid2=getSubcriptService().adv1(selectes);
+intdocid3=getSubcriptService().addmember(selectes);
+System.out.println(selecte+"mmmmmmmmmmmmmmmmmmmmmmmmppppppppppppppppppppppppppppppp");
 System.out.println(selectes+"mmmmmmmmmmmmmmmmmmmmmmmm");
 System.out.println(intdocid2);
 GroupMember m1=new GroupMember();
 m1.setInt_GroupId(intdocid2);
+m1.setInt_UserId(intdocid3);
 m1.setDT_Date(getDTDate());
 m1.setInt_GroupmemberId(getInt_GroupmemberId());
 getSubcriptService().insertes(m1);
-return "View-SubGroup.xhtml";
+//return "View-SubGroup.xhtml";
 
 }
 public void subname()
@@ -1714,21 +1867,130 @@ public String saveSetting( )
      return "Sub-GroupDetail.xhtml";
 	 
 }
+public String uploadFile() throws IOException {
+
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
+	// Extract file name from content-disposition header of file part
+	//String fileName = getFileName(part);
+	System.out.println("***** fileName: " + fileName);
+
+	//String basePath = "D:" + File.separator + "temp" + File.separator;
+	//File outputFilePath = new File(basePath + fileName);
+	String basePath = "D:" + File.separator + "AppOwner" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+	System.out.println(basePath);
+	File outputFilePath = new File(basePath+fileName);
+	
+	System.out.println(path+"path");
+	// Copy uploaded file to destination path
+	InputStream inputStream = null;
+	OutputStream outputStream = null;
+	try {
+		inputStream = part.getInputStream();
+		outputStream = new FileOutputStream(outputFilePath);
+
+		int read = 0;
+		final byte[] bytes = new byte[1024];
+		while ((read = inputStream.read(bytes)) != -1) {
+			outputStream.write(bytes, 0, read);
+		}
+		path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
+		user.setVar_ImageName1(path);
+		user.setInt_UserId(user.getInt_UserId());
+		//getApartmentDetailsService().updateProfilePic(user);
+		statusMessage = "File upload successfull !!";
+		
+	} catch (IOException e) {
+		e.printStackTrace();
+		statusMessage = "File upload failed !!";
+	} finally {
+		if (outputStream != null) {
+			outputStream.close();
+		}
+		if (inputStream != null) {
+			inputStream.close();
+		}
+	}
+	return null;    // return to same page
+}
+private Part part;
+private String statusMessage;
+public Part getPart() throws IOException {
+	 
+	return part;
+}
+
+public void setPart(Part part) {
+	this.part = part;
+}
+
+public String getStatusMessage() {
+	return statusMessage;
+}
+
+public void setStatusMessage(String statusMessage) {
+	this.statusMessage = statusMessage;
+}
+
+// Extract file name from content-disposition header of file part
+private String getFileName(Part part) {
+	final String partHeader = part.getHeader("content-disposition");
+	System.out.println("***** partHeader: " + partHeader);
+	for (String content : part.getHeader("content-disposition").split(";")) {
+		if (content.trim().startsWith("filename")) {
+			return content.substring(content.indexOf('=') + 1).trim()
+					.replace("\"", "");
+		}
+	}
+	return null;
+}
 
 private String path;
+private String Var_ImageName1;
 
+public String getVar_ImageName1() {
+	return Var_ImageName1;
+}
+public void setVar_ImageName1(String var_ImageName1) {
+	Var_ImageName1 = var_ImageName1;
+}
 public String getPath() {
 	System.out.println(path+"path1");
 	path=user.getVar_ImageName1();
 	if( path==null)
 	{
-		path="/images/profilepic.png";
+		//path="/images/profilepic.png";
 		System.out.println(path+"img1");
 	}
 	 
 	return path ;
 }
+
+
+
+
+
+private UserExtraInfo groupes;
+
+
+
+
+public UserExtraInfo getGroupes() {
+	groupes= getSubcriptService().alldatas(int_UserId);
+	return groupes;
 }
+public void setGroupes(UserExtraInfo groupes) {
+	this.groupes = groupes;
+}
+public void Subdetail()
+
+{
+	System.out.println(int_UserId+"vbbbbvbvbbvbvbvbvvvbvbvbvvvvvvvvvvvvvvvvvvv");
+	
+}
+
+}
+
 
 
 
