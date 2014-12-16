@@ -29,11 +29,11 @@ public class UserExtraInfo  implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer int_UserExtraID;
 	@Column
-	private Integer int_UserID;
+	private Integer int_UserId;
 	@Column
 	private  Date date_DateOfBirth;
 	@Column
-	private Boolean bool_gender;
+	private String bool_gender;
 	 
 	@Column(name="var_BloodGroup")
 	private String str_BloodGroup;
@@ -62,31 +62,33 @@ public class UserExtraInfo  implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public Integer getInt_UserId() {
+		return int_UserId;
+	}
+	public void setInt_UserId(Integer int_UserId) {
+		this.int_UserId = int_UserId;
+	}
 	public Integer getInt_UserExtraID() {
 		return int_UserExtraID;
 	}
 	public void setInt_UserExtraID(Integer int_UserExtraID) {
 		this.int_UserExtraID = int_UserExtraID;
 	}
-	public Integer getInt_UserID() {
-		return int_UserID;
-	}
-	public void setInt_UserID(Integer int_UserID) {
-		this.int_UserID = int_UserID;
-	}
+	
 	public Date getDate_DateOfBirth() {
 		return date_DateOfBirth;
 	}
 	public void setDate_DateOfBirth(Date date_DateOfBirth) {
 		this.date_DateOfBirth = date_DateOfBirth;
 	}
-	public Boolean getBool_gender() {
+	
+	 
+	public String getBool_gender() {
 		return bool_gender;
 	}
-	public void setBool_gender(Boolean bool_gender) {
+	public void setBool_gender(String bool_gender) {
 		this.bool_gender = bool_gender;
 	}
-	 
 	public String getStr_BloodGroup() {
 		return str_BloodGroup;
 	}
@@ -142,8 +144,64 @@ public class UserExtraInfo  implements Serializable {
 		this.str_PersonalBlog = str_PersonalBlog;
 	}
 	
-	
-	
-	
+	private int int_UserRole;
+	public int getInt_UserRole() {
+		return int_UserRole;
+	}
+	public void setInt_UserRole(int int_UserRole) {
+		this.int_UserRole = int_UserRole;
+	}
 
+	private String str_Block;
+	private String str_Username;
+	private String residence;
+	private String Var_ImageName1;
+	public String getStr_Block() {
+		return str_Block;
+	}
+	public String getStr_Username() {
+		return str_Username;
+	}
+	public String getResidence() {
+		return residence;
+	}
+	
+	public void setStr_Block(String str_Block) {
+		this.str_Block = str_Block;
+	}
+	public void setStr_Username(String str_Username) {
+		this.str_Username = str_Username;
+	}
+	public void setResidence(String residence) {
+		this.residence = residence;
+	}
+	public String getVar_ImageName1() {
+		return Var_ImageName1;
+	}
+	public void setVar_ImageName1(String var_ImageName1) {
+		Var_ImageName1 = var_ImageName1;
+	}
+	private String str_Flat;
+	public String getStr_Flat() {
+		return str_Flat;
+	}
+	public void setStr_Flat(String str_Flat) {
+		this.str_Flat = str_Flat;
+	}
+	private String str_PhoneNo;
+	public String getStr_PhoneNo() {
+		return str_PhoneNo;
+	}
+	public void setStr_PhoneNo(String str_PhoneNo) {
+		this.str_PhoneNo = str_PhoneNo;
+	}
+	
+	private String str_Email;
+	public String getStr_Email() {
+		return str_Email;
+	}
+	public void setStr_Email(String str_Email) {
+		this.str_Email = str_Email;
+	}
+	
 }
