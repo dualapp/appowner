@@ -19,14 +19,14 @@
         
              <div class="gsTitleDiv"><br/></div>
               &#150; &#150;  &#150; &#150;   <h:outputLabel value="From :"/> &#150; &#150;
-                  <p:calendar value="#{accountingBean.date3}" navigator="true"    pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener2}">
+                  <p:calendar value="#{accountingBean.date3}" navigator="true"    pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener3}">
                      <p:ajax event="change" partialSubmit="true" />
                     </p:calendar>
                   &nbsp; &nbsp;
                   <h:outputLabel value="To :"/> &#150; &#150;
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}">
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
-                  <h:commandButton value="Go"  action="#{accountingBean.getSearch2()}" />
+                  <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" />
              
                  
                  
@@ -38,87 +38,99 @@
       <br/>
       <br/>
   
-       <p:dataTable var="e" value="aaa">
+    <p:panel  header="&#150; &#150; &#150; &#150;   Account Name  &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;  Amount "  style="width: 70%" id="toggleable"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
        
-       <f:facet name="header">
-        <table>
-        <tr>
-                    <th  width="50%">Account Name</th>
-                     <th  >Amount</th>
-                 
-               
-               
-                </tr>
-                </table>
-       </f:facet>
-        <p:column>
-                 <table>
+       
+                <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+                 <tr>
+                 <td><h:outputText value="Income" style="float:left;font-weight:bold"/></td>
+                 </tr>
              <tr>
                 <td>
                    
-                    <p:column>
+                  
                       <p:dataTable  value="#{accountingBean.income1}" var="timeSlot">
-                      <f:facet name="header" >
-                              <h:outputText value="Income" style="float:left" />
-                      </f:facet>
+                      
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot}"/><br/>
                         
                         </p:column>
-                         <p:column>
-                          <p:dataTable  value="#{accountingBean.incomeDebitBalance}" var="timeSlot">
+                      </p:dataTable>  
+                      </td>
+                    <td>
+                   
+                       
+                          <p:dataTable  value="#{accountingBean.totalIncome}" var="timeSlot">
                           <p:column>
                               <h:outputText  value="#{timeSlot}" style="float:right"/><br/>
                               </p:column>
-               
-                
-                 </p:dataTable>
-                  <h:outputText value="INCOME TOTALS: #{accountingBean.totalIncome}" style="float:right"/>
-            </p:column>
-           
                         </p:dataTable>
-                     </p:column> 
-                    
-                  
+                
                 </td>
                 </tr>
+               <tr>
+                 
+        
+         <td></td>
+       <td>  <h:outputText value="INCOME TOTALS: #{accountingBean.totalIncome2}" style="float:right;font-weight:bold"/></td>
+       
+     
+               
+           </tr>
+                 
+              <tr>
+                 <td><h:outputText value="Expense" style="float:left;font-weight:bold"/></td>
+                 </tr>
+               
                 <tr>
                 <td>
                    
-                    <p:column>
+                   
                       <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
-                      <f:facet name="header">
-                              <h:outputText value="Expense" style="float:left" />
-                      </f:facet>
+                     
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot}"/><br/>
                         
                         </p:column>
-                         <p:column>
-                <h:outputText value="#{accountingBean.debitNetTotal}" style="float:right" /><br/>
-                <p:separator/>
-                 <h:outputText value="EXPENSE TOTALS: #{accountingBean.debitNetTotal}" style="float:right"/>
-            </p:column>
-           
                         </p:dataTable>
-                     </p:column> 
+                     </td>
+                     <td>
+                     
+                      <p:dataTable value="#{accountingBean.expenseAmount1}" var="timeSlot">
+                     
+                      <p:column >
+                        <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                        
+                        </p:column>
+                        </p:dataTable>
+                     </td>
+             </tr>
+             <tr>
+            
+         
+         <td></td>
+    <td> <h:outputText value="EXPENSE TOTALS: #{accountingBean.debitNetTotal}" style="float:right;font-weight:bold"/></td>
+       </tr>
+      
+               
+          
+           
                     
-                  
-                </td>
-                </tr>
-                </table>
-                 <table>
+              
+              
+              </table>
+             
+             <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
                   <tr> 
                
-                    <th  width="60%">Net #{accountingBean.indicator}:</th>
-                     <th  align="right" width="10%">#{accountingBean.netProfit3}</th>
+                    <td width="60%" style="float:right;font-weight:bold">Net Profit:</td>
+                     <td  style="font-weight:bold" width="5%">#{accountingBean.netProfit3}</td>
                   
                
                
                 </tr>
                 </table>
-                </p:column>
-        </p:dataTable>
+               </p:panel>
     
      </div>
    

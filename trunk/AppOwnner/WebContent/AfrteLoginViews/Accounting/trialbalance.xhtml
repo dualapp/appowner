@@ -37,20 +37,22 @@
       <br/>
       <br/>
       
-    <p:panel  header="&#150; &#150; &#150; &#150;   Account  &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;  Debit   &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; Credit"  id="toggleable"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
+    <p:panel  header="&#150; &#150; &#150; &#150;   Account  &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;  Debit   &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; Credit"  id="toggleable"  toggleable="true" style="width: 70%"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
       
        
       
            
-                 <table>
-            
+                <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+            <tr>
+                 <td><h:outputText value="ASSET" style="font-weight:bold"/></td>
+                 </tr>
              <tr>
           
                 <td>
                   
                   
-                       <p:dataTable  value="#{accountingBean.asset}"  var="timeSlot">
-                           <p:column width="50%">
+                       <p:dataTable  value="#{accountingBean.asset}"  var="timeSlot" >
+                           <p:column >
                       
                          
                            <h:outputText value="#{timeSlot}"/><br/>
@@ -64,11 +66,11 @@
                     <td>
                    
                   
-                      <p:dataTable value="#{accountingBean.assetDebitBalance}" var="timeSlot">
+                      <p:dataTable value="#{accountingBean.assetDebitBalance}" var="timeSlot" >
                        
                      <center>
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                         </center>
@@ -78,26 +80,28 @@
                 
                    </td>
                    <td>
-                    <p:dataTable value="#{accountingBean.assetCreditBalance}" var="timeSlot">
+                    <p:dataTable value="#{accountingBean.assetCreditBalance}" var="timeSlot" >
                       
                     
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                       </p:dataTable>
                    </td>
                 
                    </tr>
-               
+               <tr>
+                 <td><h:outputText value="INCOME" style="font-weight:bold"/></td>
+                 </tr>
               <tr>
                    <td>
                   
                   
-                       <p:dataTable  value="#{accountingBean.income1}"   var="timeSlot">
+                       <p:dataTable  value="#{accountingBean.income1}"   var="timeSlot" >
                           
                       
-                          <p:column width="50%">
+                          <p:column >
                            <h:outputText value="#{timeSlot}"/><br/>
                            </p:column>
                        
@@ -109,11 +113,11 @@
                     <td>
                    
                   
-                      <p:dataTable value="#{accountingBean.incomeDebitBalance}" var="timeSlot">
+                      <p:dataTable value="#{accountingBean.incomeDebitBalance}" var="timeSlot" >
                        
                      
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                      </p:dataTable>
@@ -122,24 +126,27 @@
                 
                    </td>
                    <td>
-                    <p:dataTable value="#{accountingBean.incomeCreditBalance}" var="timeSlot">
+                    <p:dataTable value="#{accountingBean.incomeCreditBalance}" var="timeSlot" >
                       
                     
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                       </p:dataTable>
                    </td>
                   
               </tr>
+              <tr>
+                 <td><h:outputText value="EXPENSE" style="font-weight:bold"/></td>
+                 </tr>
                <tr>
                    <td>
                   
                   
-                       <p:dataTable  value="#{accountingBean.expense}"   var="timeSlot">
+                       <p:dataTable  value="#{accountingBean.expense}"   var="timeSlot" >
                           
-                       <p:column width="50%">
+                       <p:column >
                          
                            <h:outputText value="#{timeSlot}"/><br/>
                            
@@ -152,11 +159,11 @@
                     <td>
                    
                   
-                      <p:dataTable value="#{accountingBean.expenseDebitBalance}" var="timeSlot">
+                      <p:dataTable value="#{accountingBean.expenseDebitBalance}" var="timeSlot" >
                        
                      
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                       </p:dataTable>
@@ -165,29 +172,31 @@
                 
                    </td>
                    <td>
-                    <p:dataTable value="#{accountingBean.expenseCreditBalance}" var="timeSlot">
+                    <p:dataTable value="#{accountingBean.expenseCreditBalance}" var="timeSlot" >
                       
                     
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                       </p:dataTable>
                    </td>
                   
               </tr>
-                    
+              <tr>
+                 <td><h:outputText value="LIABILITY" style="font-weight:bold"/></td>
+                 </tr>      
                   
              
               <tr>
                    <td>
                   
                   
-                       <p:dataTable  value="#{accountingBean.liability}"   var="timeSlot">
+                       <p:dataTable  value="#{accountingBean.liability}"   var="timeSlot" >
                           
-                       <p:column width="50%">
+                       <p:column >
                          
-                           <h:outputText value="#{timeSlot}"/><br/>
+                           <h:outputText value="#{timeSlot}" /><br/>
                           </p:column> 
                        
                   </p:dataTable>
@@ -198,11 +207,11 @@
                     <td>
                    
                   
-                      <p:dataTable value="#{accountingBean.liabilityDebitBalance}" var="timeSlot">
+                      <p:dataTable value="#{accountingBean.liabilityDebitBalance}" var="timeSlot" >
                        
                      
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                       </p:dataTable>
@@ -211,11 +220,11 @@
                 
                    </td>
                    <td>
-                    <p:dataTable value="#{accountingBean.liabilityCreditBalance}" var="timeSlot">
+                    <p:dataTable value="#{accountingBean.liabilityCreditBalance}" var="timeSlot" >
                       
                     
-                          <p:column width="50%">
-                           <h:outputText value="#{timeSlot}"/><br/>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
                            
                         </p:column>
                       </p:dataTable>
@@ -223,28 +232,18 @@
                   
               </tr>
                 <tr>
-                 <td>
-                  <p:dataTable value="#" var="sss">
-                   <p:column >
-                           <h:outputText value="Totals" />
-                           
-                        </p:column>
-                        </p:dataTable>
-                        </td>
-                        <td>
-                      <p:dataTable value="#" var="sss">
-                        <p:column>
-                        <h:outputText value="#{accountingBean.debitNetTotal1}" />
-                        </p:column>
-                        </p:dataTable>
-                        </td>
-                        <td>
-                        <p:dataTable value="#" var="sss">
-                        <p:column>
-                        <h:outputText value="#{accountingBean.creditNetTotal}" />
-                        </p:column>
-                        </p:dataTable>
-                        </td>
+                 <table   cellpadding="0" cellspacing="0" border="0"  class="src">
+                  <tr> 
+               
+                    <td  style="float:left;font-weight:bold">TOTALS:</td>
+                   
+                     <td style="float:right;font-weight:bold" >#{accountingBean.debitNetTotal1}</td> 
+                      <td style="float:right;font-weight:bold" >#{accountingBean.creditNetTotal}</td>
+               
+               
+                </tr>
+                </table>
+               
                         
               
             
