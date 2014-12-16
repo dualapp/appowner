@@ -13,13 +13,13 @@
     <h:form>
    
        <div id="page3">
-       <div class="gsTitleDiv"><br/></div>
-              &#150; &#150;  &#150; &#150;   <h:outputLabel value="As On"/>&nbsp; &nbsp;
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}">
+       <div class="gsTitleDiv">Balance Sheet<br/><hr/></div>
+              &#150; &#150;  &#150; &#150;   <h:outputText value="As On"/>&nbsp; &nbsp;
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                  
                  
-                   <h:commandButton value="Go"/>
+                   <h:commandButton value="Go" action="#{accountingBean.getSearch3()}"/>
                 
                  
    
@@ -31,132 +31,137 @@
 					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
       <br/>
       <br/>
-      <p:dataTable var="e" value="aaa">
-        <f:facet name="header">
-       <table>
-        <tr>
-       
-          <th style="width:70%">Account Name</th><td></td><th style="width:70%">Amount</th>
-         
-          </tr>
-          </table> 
-        </f:facet>
+    <p:panel  header="&#150; &#150; &#150; &#150;   Account Name  &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;  Amount "  style="width: 70%" id="toggleable"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
+        
       
-             <p:column>
-                 <table>
+            
+               
+                  <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+                 <tr>
+                 <td><h:outputText value="ASSET" style="font-weight:bold"/></td>
+                 </tr>
              <tr>
                 <td>
-                   
-                    <p:column>
+                 
                       <p:dataTable value="#{accountingBean.asset}" var="timeSlot">
-                      <f:facet name="header">
-                              <h:outputText value="ASSET" style="float:left" />
-                      </f:facet>
-                       <p:subTable var="stats" value="sss" width="300">
-           
-                     <f:facet name="header">
+                     
+                      <p:column>
               
                      
                         <h:outputText value="#{timeSlot}"  /><br/>
-               
-            </f:facet>
-           
+                     </p:column>
+                     </p:dataTable>
+                    </td>
+                   
+                 <td>
+                      <p:dataTable value="#{accountingBean.assetBalance}" var="timeSlot" >
+                       
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      
+                     
+                     
+               </p:dataTable>       
+                
+            </td>
               
                      
-                     
+          </tr>
                
         
-             <p:column>
-            
-               
-                <h:outputText value="#{timeSlot}" style="float:right"/><br/>
-              
-                
-             </p:column>
-          
            
-            
-            <p:column>
-                <h:outputText value="#{timeSlot}" style="float:right"/>
-            </p:column>
-          
-        </p:subTable>
-                     
-   </p:dataTable>
-    <table>
+  
+  
       <tr>
-   <td>   <h:outputText value="TOTAL ASSETS:" style="float:left" /></td>
-    <td>  <h:outputText value="#{accountingBean.int_blank1}" style="float:right" /></td>
+   <td>   <h:outputText value="TOTAL ASSETS:" style="float:right;font-weight:bold" /></td>
+    <td>  <h:outputText value="#{accountingBean.int_blank1}" style="float:right;font-weight:bold" /></td>
      </tr>
-     </table>
-      <br/>
-   <p:dataTable value="#{accountingBean.liability}" var="timeSlot">
-                      <f:facet name="header">
-                              <h:outputText value="LIABILITY" style="float:left" />
-                      </f:facet>
-                       <p:subTable var="stats" value="sss" width="300">
-           
-                     <f:facet name="header">
+    <tr>
+                 <td><h:outputText value="LIABILITY" style="font-weight:bold"/></td>
+                 </tr>
+     <tr>
+      <td>
+               <p:dataTable value="#{accountingBean.liability}" var="timeSlot">
+                     
+                     <p:column>
               
                      
                         <h:outputText value="#{timeSlot}"  /><br/>
                
-            </f:facet>
+           </p:column>
            
-             <p:column>
-            
-                <h:outputText value="#{timeSlot}" style="float:right"/>
-                
-             </p:column>
-          
-           
-            
-            <p:column>
-                <h:outputText value="#{timeSlot}" style="float:right"/>
-            </p:column>
-           
-        </p:subTable>
-                     
+             
    </p:dataTable>
-   <table>
-   <tr>
-     <td><h:outputText value="TOTAL LIABILITIES:" style="float:left" /></td>
-     <td><h:outputText value="#{accountingBean.int_blank}" style="float:right" /></td>
-       </tr>
-       </table>
-       <br/>
-       <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
-                      <f:facet name="header">
-                              <h:outputText value="EQUITY" style="float:left" />
-                      </f:facet>
+   </td>
+     <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.liabilityBalance}" var="timeSlot" >
+                       
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
                       
+                      </p:dataTable>
+                     
+                      
+                
+            </td>
+           </tr>
+              
+  
+   <tr>
+     <td><h:outputText value="TOTAL LIABILITIES:" style="float:right;font-weight:bold" /></td>
+     <td><h:outputText value="#{accountingBean.int_blank}" style="float:right;font-weight:bold" /></td>
+       </tr>
+     <tr>
+         
+         
+          <td>
+                 <h:outputText value="EQUITY"  width="100%" style="font-weight:bold"/></td>
+             </tr>
+     
+     
+      <tr>
+       <td>
+     
+              <p:dataTable value="hhf"  >     
                         <p:column>
             
-                         <h:outputText value="Net #{accountingBean.indicator}" style="float:right"/>
+                         <h:outputText value="Net Profit" style="float:left"/>
                 
                         </p:column>
-                        <p:column>
+                        
+                       </p:dataTable>
+         </td>
+         <td>
+             <p:dataTable value="hhf1"  > 
+              <p:column>
                         <h:outputText value="#{accountingBean.netProfit}" style="float:right"/>
                         </p:column>
-                       </p:dataTable>
-                       <table>
-                       <tr>
+             </p:dataTable>    
+         </td>
+           </tr>      
+                   <tr>
                        
-                    <td>  <h:outputText value="EQUITY TOTALS:" style="float:left" /></td>
-                    <td>   <h:outputText value="#{accountingBean.netProfit}" style="float:right" /></td>
+                    <td>  <h:outputText value="EQUITY TOTALS:" style="float:right;font-weight:bold" /></td>
+                    <td>   <h:outputText value="#{accountingBean.netProfit}" style="float:right;font-weight:bold" /></td>
                        </tr>
                      
                     <tr>
-                    <td><h:outputText value="LIABILITIES + EQUITY:" style="float:right" /></td>
-                     <td><h:outputText value="#{accountingBean.netProfit1}" style="float:right" /></td>
+                    <td><h:outputText value="LIABILITIES + EQUITY:" style="float:right;font-weight:bold" /></td>
+                     <td><h:outputText value="#{accountingBean.netProfit1}" style="float:right;font-weight:bold" /></td>
                        </tr>
-                       </table>
-   </p:column>
-   </td>
-    </tr>
-    </table>
-    </p:column>
-    </p:dataTable>
+                   
+  
+  </table>
+  </p:panel>
+  
     </div>
       </h:form>
       </h:body>
