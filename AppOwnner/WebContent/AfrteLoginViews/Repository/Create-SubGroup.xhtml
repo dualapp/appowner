@@ -24,24 +24,23 @@
   
 
     <div id="page3">
-   <table   style="overflow:hidden;border:0pt none;width:90%;margin-left: 5%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+   <table   style="overflow:hidden;border:0pt none;width:90%;margin-left: 0%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
    <tr>
-                   <td><h:link value="Sub-Groups" />
-                   &#150;  &#150;  &#150; 
-                   <h:link value="Create a Sub-Group"  outcome="Sub_Group.xhtml"/><br /> 
+                 <td>
+                    <font  size="2"><h:link value="Sub-Groups " /></font>
+                  
+                   <font  size="2"><h:link value="| &#150;Create a Sub-Group" style="color:#FFA500;"  outcome="Sub_Group.xhtml" /><br /> 
+                   </font>
                   </td>
  </tr>
  <tr>
  <td>       <p:dataGrid    var="notice" value="#{scriptBean.userlist}" columns="1" layout="block"  id="cars">
             <h:panelGrid columns="1" style="width:100%">
              
-                 
-                  
-                  <h:link value="#{notice.str_GroupNm}" outcome="Sub-GroupDetail.xhtml?int_GroupId=#{notice.int_GroupId}"/> 
+             <h:link value="#{notice.str_GroupNm}"   style="color:#009900;font-size:17px;font-weight:bold;"  outcome="Sub-GroupDetail.xhtml?int_GroupId=#{notice.int_GroupId}"/>
                  <h:outputText value="#{notice.str_GroupDescription}"/>
                   <h:outputText value="  Members: 1 | Topics: 0 | Polls: 0" />
                    
- 
               
             </h:panelGrid>
    </p:dataGrid>
