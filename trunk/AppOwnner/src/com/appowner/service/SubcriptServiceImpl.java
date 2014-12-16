@@ -75,6 +75,10 @@ import java.util.List;
 
 
 
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -116,6 +120,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
+
+
+
+
 
 
 
@@ -599,9 +607,9 @@ public   class SubcriptServiceImpl implements SubcriptService {
 
 	@Override
 	public List<UserExtraInfo> getsearch1(String str_Hobbies,
-			String str_Profession) {
+			String str_Profession,String residence,String status) {
 		return getSubcriptDao().getsearch1( str_Hobbies,
-				 str_Profession);
+				 str_Profession,residence,status);
 	}
 
 	@Override
@@ -644,6 +652,33 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().searchhh6( uid);
 	}
 
+	@Override
+	public List reside() {
+		return getSubcriptDao(). reside() ;
+	}
+
+	@Override
+	public UserExtraInfo alldatas(Integer int_UserId) {
+		return getSubcriptDao().alldatas( int_UserId);
+	}
+
+	@Override
+	public List alldatas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int addmember(String selecte) {
+		return getSubcriptDao().addmember(selecte);
+	}
+
+	@Override
+	public User allnames(String str_Username) {
+		return getSubcriptDao().allnames( str_Username);
+	}
+
+	
 	
 	
 
