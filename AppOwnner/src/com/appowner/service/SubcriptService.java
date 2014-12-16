@@ -79,6 +79,12 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -268,7 +274,7 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 
 	public List<String> listblock();
 
-	public List< UserExtraInfo> getsearch1(String str_Hobbies, String str_Profession);
+	
 
 	public UserExtraInfo searchuser(Integer int_UserExtraID);
 
@@ -285,6 +291,19 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 	public String  searchhh4(int searchid);
 
 	public User searchhh6(Integer uid);
+
+	public List< String> reside();
+
+	public List<UserExtraInfo> getsearch1(String str_Hobbies, String str_Profession,String residence,String status
+			);
+
+	public UserExtraInfo alldatas(Integer int_UserId);
+
+	List<UserExtraInfo> alldatas();
+
+	public int addmember(String selecte);
+
+	public User allnames(String str_Username);
 
 	
 	
