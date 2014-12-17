@@ -29,7 +29,7 @@ public class UserExtraInfo  implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer int_UserExtraID;
 	@Column
-	private Integer int_UserId;
+	private Integer int_UserID;
 	@Column
 	private  Date date_DateOfBirth;
 	@Column
@@ -62,11 +62,12 @@ public class UserExtraInfo  implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Integer getInt_UserId() {
-		return int_UserId;
+	
+	public Integer getInt_UserID() {
+		return int_UserID;
 	}
-	public void setInt_UserId(Integer int_UserId) {
-		this.int_UserId = int_UserId;
+	public void setInt_UserID(Integer int_UserID) {
+		this.int_UserID = int_UserID;
 	}
 	public Integer getInt_UserExtraID() {
 		return int_UserExtraID;
