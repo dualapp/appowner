@@ -1488,7 +1488,7 @@ public List<UserExtraInfo> getSearch() {
 		UserExtraInfo e=(UserExtraInfo) u;
 		System.out.println(  e.getStr_Hobbies()+"k11111111k111111111111111");
 		System.out.println(e.getResidence()+"hjjjhjhjhjhjjhjhhjjhhjhjjhhjhjhjjhhjhjhjhj");
-		System.out.println(e.getInt_UserId()+"");
+		System.out.println(e.getInt_UserID()+"");
 		 char ch1=e.getStr_PhoneNo().charAt(0);
 		 char ch2=e.getStr_PhoneNo().charAt(9);
 		 char em1=e.getStr_Email().charAt(0);
