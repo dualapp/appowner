@@ -81,7 +81,7 @@ public class AdminDaoImpl implements AdminDao{
 	 }
 	 public UserExtraInfo getExtraUserInfo(Integer user_ID)
 	 {
-		 String str="from UserExtraInfo where int_UserId=?";
+		 String str="from UserExtraInfo where int_UserID=?";
 			return  (UserExtraInfo) sessionFactory.getCurrentSession().createQuery(str).setCacheable(true).setParameter(0, user_ID).uniqueResult();
 	 }
 }
