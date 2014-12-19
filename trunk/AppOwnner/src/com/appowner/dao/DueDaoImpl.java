@@ -41,7 +41,12 @@ public class DueDaoImpl implements DueDao{
 	}
 	@SuppressWarnings("unchecked")
 	public List<DueTransaction> listDueTransaction(String str_DueTemplate, String str_Block, String str_ApartmentNo, String str_Period, String str_Status)
-	{  
+	{  System.out.println(str_DueTemplate+"kklk");
+	    System.out.println(str_Block+"jkjj");
+	    System.out.println(str_ApartmentNo+"jkkjkj");
+	    System.out.println(str_Period+"jjjjj");
+	    System.out.println(str_Status+"jkjkjkjk");
+	    
 		if(str_DueTemplate==null && str_Block==null && str_ApartmentNo==null && str_Period==null && str_Status==null)
 		{  System.out.println("ghhhhjhhh");
 		return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
@@ -50,12 +55,12 @@ public class DueDaoImpl implements DueDao{
 		{   System.out.println("hbhjcjvf");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
 		}
-	/*	else if(str_DueTemplate.equals(str_DueTemplate))
+		else if(str_DueTemplate.equals(str_DueTemplate))
 		{
 			
 			System.out.println("ghhhhjhhh1111");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
-			}*/
+			}
 		else
 		{
 			System.out.println("nkjkdjkjfd");
