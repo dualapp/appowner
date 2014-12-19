@@ -259,7 +259,7 @@ public class UserInformationBean implements Serializable{
 	 
 			//String basePath = "D:" + File.separator + "temp" + File.separator;
 			//File outputFilePath = new File(basePath + fileName);
-			String basePath = "F:" + File.separator + "Java_Development" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator;
+			String basePath = "E:" + File.separator + "sites" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator;
 			System.out.println(basePath);
 			File outputFilePath = new File(basePath+fileName);
 			
@@ -276,7 +276,7 @@ public class UserInformationBean implements Serializable{
 				while ((read = inputStream.read(bytes)) != -1) {
 					outputStream.write(bytes, 0, read);
 				}
-				path="F://Java_Development/AppOwnner/WebContent/images"+File.separator+fileName;
+				path="E://sites/AppOwnner/WebContent/images"+File.separator+fileName;
 				user.setVar_ImageName1(path);
 				user.setInt_UserId(user.getInt_UserId());
 				getAdminService().updateProfilePic(user);
