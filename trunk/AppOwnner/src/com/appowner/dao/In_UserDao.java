@@ -105,6 +105,8 @@ public interface In_UserDao {
 
 	public UserExtraInfo getUserExtraInfo(Integer int_UserId);
 
+	public Integer getStatus(String str_ApartmentName);
+
 	//public void deleteUser1(int int_UserId);
 
 	
