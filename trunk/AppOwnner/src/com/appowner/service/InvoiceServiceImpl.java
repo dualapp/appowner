@@ -31,7 +31,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 		 getInvoiceDao().saveInvoiceTransaction(invoice);
 	}
 	public String taxList(String select)
-	{   System.out.println(select);
+	{ 
 		return getInvoiceDao().taxList(select);
 	}
 	public List<String> getTaxList(String str)
@@ -51,7 +51,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 		return getInvoiceDao().getApartmentlist(str_Block);
 	}
 	  public double getTaxAmount(String str1)
-	  {   System.out.println(str1);
+	  { 
 		  return getInvoiceDao().getTaxAmount(str1);
 	  }
 	  public double getSqft(String str)
