@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -31,7 +32,7 @@ import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{InvoiceService}")
@@ -424,7 +425,7 @@ private List<DueTransaction> listDueTransaction;
 		     
 			invoice.setDat_DueDate(dat_DueDate);
 			invoice.setInt_Admin_ID(getInt_Admin_ID());
-			
+			System.out.println(bl_Show+"kjfkjgkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 			invoice.setInt_Organisation(getInt_Organisation());
 			invoice.setStr_Block(getStr_Block());
 			invoice.setStr_ApartmentNo(getStr_ApartmentNo());
@@ -480,7 +481,7 @@ private List<DueTransaction> listDueTransaction;
 			  if(bl_Show==true)
 				{
 					 mailid= getInvoiceService().getmailid(str_ApartmentNo);
-					
+					System.out.println("kdfkdfkjkjfkfj");
 					subject="Shaffi Paradise - Invoice posted for your Apartment";
 					content="";
 					InvoiceNo=int_InvoiceNo;
@@ -498,9 +499,11 @@ private List<DueTransaction> listDueTransaction;
 					year=getInt_Year();
 					organisation=getStr_Organisation();
 					transaction1=transaction;
+				System.out.println("kifglkfgf");
+					return "/AfrteLoginViews/Accounting/invoice.jsp";
 				
-					return "invoice.jsp";
 				}
+			  System.out.println("vfgjgfvfjfjk");
 				return "invoice.xhtml";
 			
 			
@@ -509,6 +512,7 @@ private List<DueTransaction> listDueTransaction;
 		{
 			e.printStackTrace();
 		}
+		System.out.println("hjjhhjhjhhjhjhjh");
 		return "invoice.xhtml";
 	}
 	
@@ -898,14 +902,14 @@ private List<DueTransaction> listDueTransaction;
 			    	
 			    	
 			    	 taxAmount=getInvoiceService().getTaxAmount(str2);
-			    	 System.out.println(taxAmount+"jkkjjk");
+			    	
 			    	 totalAmount=template.getStr_Rate()*sqrt;
-			    	 System.out.println(totalAmount+"hjhjhj");
+			    	
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
-			    	 System.out.println(taxAmount1+"jjkjk");
+			    	
 			    	 taxAmounts.add(taxAmount1);
 			    	 subTotal=subTotal+totalAmount;
-			    	 System.out.println(subTotal+"jhjj");
+			    	
 					 taxAmount2=taxAmount2+taxAmount1;
 				     totalDue=subTotal+taxAmount2;
 			    	 
@@ -1103,11 +1107,11 @@ public String changeAccount(ValueChangeEvent event)
 	return null;
 }
 public String deleteInvoice() {
-	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	
 
 	Integer id=selectedInvoice.getInt_InvoiceTransactionID();
 	String str=selectedInvoice.getInt_InvoiceNo();
-	System.out.println(str+"kjdfffg");
+	
 	
     	FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
