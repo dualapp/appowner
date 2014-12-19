@@ -78,13 +78,14 @@
              <tr>
             <td><h:outputLabel value="Email :">
             </h:outputLabel></td>   
-            <td><h:inputText value="#{userInformationBean.user.str_Email}" readonly="true"/></td>
+            <td><a href="mailto:#{userInformationBean.user.str_Email}?Subject=Hello%20again" target="_top"><h:outputText value="#{userInformationBean.user.str_Email}" readonly="true"/></a></td>
            
             </tr>
              <tr>
             <td><h:outputLabel value="Phone No:">
             </h:outputLabel></td>   
-            <td><h:inputText value="#{userInformationBean.user.str_PhoneNo}" readonly="true"/></td>
+            <td><h:inputText value="#{userInformationBean.user.str_PhoneNo}" readonly="true"/>
+            <p:graphicImage  height="30" width="30" value="#{expenseBean.str_Name}images/mobile.jpg"/></td>
            
             </tr>
               <tr><td colspan="2" align="left">
@@ -125,7 +126,13 @@
    </tr> 
    <tr>
      <td>   <h:outputText value="FaceBook ID" /></td>
-      <td>  <h:inputText value="#{userInformationBean.userInfo.str_FaceBookId}" readonly="true"/></td>
+      <td>  <h:inputText value="#{userInformationBean.userInfo.str_FaceBookId}" readonly="true"/>
+       <p:graphicImage  height="30" width="30" value="#{expenseBean.str_Name}images/facebook.jpg"/></td>
+   </tr> 
+    <tr>
+     <td>   <h:outputText value="Twitter ID" /></td>
+      <td>  <h:inputText value="#{userInformationBean.userInfo.str_TwitterId}" readonly="true"/>
+       <p:graphicImage  height="30" width="30" value="#{expenseBean.str_Name}images/twitter.png"/></td>
    </tr> 
    <tr>
      <td>   <h:outputText value="Interested In" /></td>
