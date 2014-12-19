@@ -278,7 +278,10 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		return getIn_userdao().getUserExtraInfo(int_UserId);
 	}
-
+	public Integer getStatus(String str_ApartmentName)
+	{
+		return getIn_userdao().getStatus(str_ApartmentName);
+	}
 	
 	}
 

@@ -93,5 +93,7 @@ public interface In_UserService {
 	public int getUserRole(Integer userId);
 
 	public UserExtraInfo getUserExtraInfo(Integer int_UserId);
+
+	public Integer getStatus(String str_ApartmentName);
 }
 
