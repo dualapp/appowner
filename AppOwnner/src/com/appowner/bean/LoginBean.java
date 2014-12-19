@@ -56,7 +56,10 @@ public class LoginBean implements Serializable{
 	public void setStr_LinkedInId(String str_LinkedInId) {
 		this.str_LinkedInId = str_LinkedInId;
 	}
-
+    private  int status;
+	
+	
+	
 	private String facebook_userloginpassword;
 	private String linkddin_userloginname;
 	private String str_LinkedInId;
@@ -852,14 +855,19 @@ public static void setUser1(boolean user1) {
 		int_UserId=user.getInt_UserId();
 		str_EmailId=user.getStr_Email();
 		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjppppppppppppppppppppppppppppppppppppppppppppppppppppppppjjjjjjjjjjjjjjjjjjj");
-		System.out.println(str_userRoleName);
+		str_ApartmentName=user.getStr_Apartment();
+		 status=getUserService().getStatus(str_ApartmentName);
+		System.out.println(status+"fdjkjkdffkj");
+		System.out.println(status+"66666666666666666666666666666666");
 		String admin1="admin";
+	
 		
-		if(formuserloginuserpassword.equals(user.getStr_Password()))
+		if(formuserloginuserpassword.equals(user.getStr_Password()) )
 		{   
-			System.out.println("+++++++++++++++++++++++++++66666666666666666666666666666666");
+			
 			System.out.println(str_userRoleName);
 			System.out.println(admin1);
+		
 		   if(admin1.equals(str_userRoleName))
 		   {
 			int_ApartmentId=user.getInt_ApartmentId();
@@ -883,7 +891,7 @@ public static void setUser1(boolean user1) {
             session.setAttribute("str_Apartment",user.getStr_Apartment());
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
-		 	//String index="AfrteLoginViews/Administrator/Adminwelcomepage.xhtml";
+		 	
 		  return "/AfrteLoginViews/Administrator/Adminwelcomepage.xhtml";
 		   }
 		   else
@@ -929,15 +937,30 @@ public static void setUser1(boolean user1) {
 				str_LoggedInTime=dateFormat.format(date);
 				if(session==null)
 				  memberLog();
-			 
+				
 			 return "/AfrteLoginViews/Administrator/welcomepage.xhtml";
 		   }
 		}
  
 		else
-		{FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password id invalid!"));
+		{
+			if(status==1)
+			{
+				
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Status is Disabled.PlZ contact to Admin!"));
+			}
+			else
+			
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password id invalid!"));
 		return "layout.xhtml";
+			
 		}
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	public Integer getInt_UserId() {
 		return int_UserId;
