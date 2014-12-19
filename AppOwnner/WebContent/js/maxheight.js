@@ -10,8 +10,8 @@ ElementMaxHeight.prototype = {
     this.textElement.style.display = 'block';
     this.textElement.style.position = 'absolute';
     this.textElement.style.fontSize = '1em';
-    this.textElement.style.top = '-1000px';
-    this.textElement.style.left = '-1000px';
+    this.textElement.style.top = '1000px';
+    this.textElement.style.left = '1000px';
     document.body.appendChild(this.textElement);
     this.textElementHeight = document.getDimensions(this.textElement).height;
     var __object = this;
