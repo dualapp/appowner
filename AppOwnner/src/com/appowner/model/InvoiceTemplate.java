@@ -23,7 +23,7 @@ public class InvoiceTemplate implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer int_InvoiceTemplateID;
 	@Column(name = "int_ApartmentID")
-	private String str_Organisation;
+	private Integer int_Organisation;
 	@Column(name="var_InvoiceTemplateName")
 	private String str_InvoiceTemplateName;
 	
@@ -38,11 +38,13 @@ public class InvoiceTemplate implements Serializable {
 	public void setInt_InvoiceTemplateID(Integer int_InvoiceTemplateID) {
 		this.int_InvoiceTemplateID = int_InvoiceTemplateID;
 	}
-	public String getStr_Organisation() {
-		return str_Organisation;
+	
+	
+	public Integer getInt_Organisation() {
+		return int_Organisation;
 	}
-	public void setStr_Organisation(String str_Organisation) {
-		this.str_Organisation = str_Organisation;
+	public void setInt_Organisation(Integer int_Organisation) {
+		this.int_Organisation = int_Organisation;
 	}
 	public String getStr_InvoiceTemplateName() {
 		return str_InvoiceTemplateName;

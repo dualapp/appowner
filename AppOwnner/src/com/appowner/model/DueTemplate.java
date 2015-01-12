@@ -72,12 +72,15 @@ public class DueTemplate implements Serializable{
 		this.str_TaxTemplate = str_TaxTemplate;
 	}
 	@Column(name = "int_ApartmentID")
-	private String str_Organisation;
-	public String getStr_Organisation() {
-		return str_Organisation;
+	private Integer int_Organisation;
+	
+	
+	public Integer getInt_Organisation() {
+		return int_Organisation;
 	}
-	public void setStr_Organisation(String str_Organisation) {
-		this.str_Organisation = str_Organisation;
+
+	public void setInt_Organisation(Integer int_Organisation) {
+		this.int_Organisation = int_Organisation;
 	}
 	@Column(name = "var_DueTemplate")
 	private String str_DueTemplate;
