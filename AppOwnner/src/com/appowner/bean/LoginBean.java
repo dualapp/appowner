@@ -892,7 +892,7 @@ public static void setUser1(boolean user1) {
 			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			System.out.println("hiiiiiiiiiiiii");
 		 	
-		  return "/AfrteLoginViews/Administrator/Adminwelcomepage.xhtml";
+		  return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
 		   else
 		   {
