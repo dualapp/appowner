@@ -38,5 +38,9 @@ public interface DueDao {
 
 	public void updateDue(Integer id, String int_InvoiceNo);
 
+	public List<DueTransaction> listDueTransaction1(String str_DueTemplate,String str_Block, String str_ApartmentNo, String str_BillPeriod,Integer int_Year);
+			
+			
+
 	
 }

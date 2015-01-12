@@ -60,12 +60,10 @@ public class DueDaoImpl implements DueDao{
 			
 			System.out.println("ghhhhjhhh1111");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).list();
-			}
-		else
+		}
+		else if(str_Status==null)
 		{
-			System.out.println("nkjkdjkjfd");
-			if(str_Status==null)
-			{   System.out.println("jhjkkjkjjj");
+			
 			System.out.println(str_Status+"jkjkkkjkkk");
 			System.out.println(str_DueTemplate+"jkjkkkjkkk123");
 			System.out.println(str_Period+"jkjkkkjkkk456");
@@ -80,6 +78,15 @@ public class DueDaoImpl implements DueDao{
 			return getSessionFactory().getCurrentSession().createQuery(str).setParameter(0, str_DueTemplate).setParameter(1, str_Period).setParameter(2, str_Block).setParameter(3, str_ApartmentNo).setParameter(4, str_Status).list();
 		    }
 		}
+	@SuppressWarnings("unchecked")
+	public List<DueTransaction> listDueTransaction1(String str_DueTemplate,String str_Block, String str_ApartmentNo, String str_BillPeriod,Integer int_Year)
+	{   System.out.println(str_DueTemplate+"kklk13");
+     System.out.println(str_Block+"jkjj34");
+     System.out.println(str_ApartmentNo+"jkkjkj45");
+     System.out.println(str_BillPeriod+"jjjjj34");
+     System.out.println(int_Year+"jkjkjkjk76");
+		String str="From DueTransaction where str_DueTemplate=? AND str_Period=? AND str_Block=? AND str_ApartmentNo=? AND  int_Year=?";
+		return getSessionFactory().getCurrentSession().createQuery(str).setParameter(0, str_DueTemplate).setParameter(1, str_BillPeriod).setParameter(2, str_Block).setParameter(3, str_ApartmentNo).setParameter(4, int_Year).list(); 
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getBlockList(String str_Organisation)
