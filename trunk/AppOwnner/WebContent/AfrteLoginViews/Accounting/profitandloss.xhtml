@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions" >
 	
 	<h:head>
         <title>Profit And Loss</title>
@@ -33,23 +34,26 @@
     </body>
     <br/>
    <br/>
-      	&#150; &#150;  &#150; &#150;<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
-					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
+      	&#150; &#150;  &#150; &#150;<h:commandButton value="Refresh" />&#150; &#150;
+					 <h:commandButton value="Export to Excel">
+					 <pe:exporter type="csv" target="table" fileName="cars" />
+					</h:commandButton>
       <br/>
       <br/>
-  
-    <p:panel  header="&#150; &#150; &#150; &#150;   Account Name  &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;&#150; &#150; &#150; &#150;  Amount "  style="width: 70%" id="toggleable"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
+ 
+    <p:panel   header="&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Account Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; Amount "  style="width: 70%" id="toggleable"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
        
        
                 <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+                
                  <tr>
                  <td><h:outputText value="Income" style="float:left;font-weight:bold"/></td>
                  </tr>
              <tr>
                 <td>
-                   
+                 
                   
-                      <p:dataTable  value="#{accountingBean.income1}" var="timeSlot">
+                      <p:dataTable id="table" value="#{accountingBean.income1}" var="timeSlot">
                       
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot}"/><br/>
@@ -116,10 +120,10 @@
           
            
                     
-              
+            
               
               </table>
-             
+           
              <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
                   <tr> 
                
@@ -131,6 +135,7 @@
                 </tr>
                 </table>
                </p:panel>
+            
     
      </div>
    
