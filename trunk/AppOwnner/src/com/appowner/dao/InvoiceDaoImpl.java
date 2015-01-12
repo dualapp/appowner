@@ -65,14 +65,14 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	
 		return taxlist;
 	}
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	public List<InvoiceTransaction> listInvoiceTransaction(String str_InvoiceTemplate, String str_Block, String str_ApartmentNo, String str_Status, String str_BillPeriod)
 	{   System.out.println(str_InvoiceTemplate+"kjjj");
 	    System.out.println(str_Block+"jjjh");
 	    System.out.println(str_ApartmentNo+"kjnjj");
 	    System.out.println(str_Status+"hjhjjh");
 	    System.out.println(str_BillPeriod+"jhjfddj");
-	    System.out.println("hjfjhfjgj");
+	   
 		if(str_InvoiceTemplate==null && str_Block==null && str_ApartmentNo==null && str_Status==null && str_BillPeriod==null)
 		{
 		  System.out.println("priyahuyt");
@@ -80,23 +80,42 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		}
 		else if(str_InvoiceTemplate.isEmpty())
 		{
-			System.out.println("priyahuyt111111");
+			 System.out.println("priyahuyt234");
+			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+		}
+		else if(str_Status.isEmpty())
+		{
+			 System.out.println("priyahuyt23467");
 			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
 		}
 		else if(str_Status==null)
-		{   System.out.println("jkfdfjkdfgfg");
-			 String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=?"; 
-				return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
-			          .setParameter(3, str_ApartmentNo).list(); 
-		 }
-		 else
+		{
+			 System.out.println("priyahuyt23467");
+			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+		}
+	 else
 		 {   System.out.println("jndfjfdjfjdk");
 			String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND str_Status=?";
 			return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
 		          .setParameter(3, str_ApartmentNo).setParameter(4, str_Status).list();
 		 }
 		}  
-	
+	@SuppressWarnings("unchecked")
+	public List<InvoiceTransaction> listInvoiceTransaction1(String str_InvoiceTemplate, String str_Block, String str_ApartmentNo,Integer int_Year, String str_BillPeriod)
+	{   System.out.println(str_InvoiceTemplate+"kjjj");
+     System.out.println(str_Block+"jjjh11");
+     System.out.println(str_ApartmentNo+"kjnjj12");
+     System.out.println(int_Year+"hjhjjh34");
+     System.out.println(str_BillPeriod+"jhjfddj56");
+		
+		
+			 String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND int_Year=?"; 
+				return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
+			          .setParameter(3, str_ApartmentNo).setParameter(4, int_Year).list(); 
+		
+	}
+			
+			
 	
 	@SuppressWarnings("unchecked")
 	public List<String> getBlockList(String str_Organisation)
