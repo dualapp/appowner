@@ -1,6 +1,7 @@
 package com.appowner.service;
 
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -47,6 +48,10 @@ public String getStatus(int id);
 public String getPeriod(String select);
 
 public List<Double> getOutstandingBalance();
+
+public List<InvoiceTransaction> listInvoiceTransaction1(String str_InvoiceTemplate, String str_Block, String str_ApartmentNo,
+		Integer int_Year, String str_BillPeriod);
+		
 
 
 }
