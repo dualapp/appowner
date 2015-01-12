@@ -74,7 +74,7 @@ public class UserInformationBean implements Serializable{
 	        		Flash flash = facesContext.getExternalContext().getFlash();
 					flash.setKeepMessages(true);
 					flash.setRedirect(true);
-	        		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "invalid user name or password!!!!!"));
+	        		facesContext.addMessage(null, new FacesMessage("invalid user name or password!!!!!"));
 		    	  
 		    	       return "SuperAdmin.xhtml";  
 		       

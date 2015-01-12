@@ -89,6 +89,15 @@ public class TemplateBean implements Serializable {
 	public void setStr_TaxTemplate(String str_TaxTemplate) {
 		this.str_TaxTemplate = str_TaxTemplate;
 	}
+	private Integer int_Organisation;
+	public Integer getInt_Organisation() {
+		int_Organisation=Util.getAppartmentId();
+		System.out.println(int_Organisation+"kjfdkjffdk");
+		return int_Organisation;
+	}
+	public void setInt_Organisation(Integer int_Organisation) {
+		this.int_Organisation = int_Organisation;
+	}
 	private String str_Organisation;
 	public String getStr_Organisation() {
 		str_Organisation=Util.getAppartmentName();
@@ -101,7 +110,7 @@ public class TemplateBean implements Serializable {
 	private String str_Accounts;
 	private String str_Frequency;
 	private String str_Calculation;
-	private Double str_Rate;
+	private double str_Rate;
 	private String str_TaxTemplate;
 	private List<String> ravenues;
 	public List<String> getRavenues() {
@@ -145,10 +154,11 @@ public class TemplateBean implements Serializable {
 		try{
 		DueTemplate duetemplate3=new DueTemplate();
 		
-		duetemplate3.setStr_Organisation(getStr_Organisation());
+		duetemplate3.setInt_Organisation(getInt_Organisation());
 		
 		duetemplate3.setStr_Accounts(getStr_Accounts());
 		duetemplate3.setStr_Calculation(getStr_Calculation());
+		System.out.println(str_Calculation+"dfjkdfkj");
 		duetemplate3.setStr_DueTemplate(getStr_DueTemplate());
 		duetemplate3.setStr_Frequency(getStr_Frequency());
 		duetemplate3.setStr_Rate(str_Rate);
@@ -238,7 +248,13 @@ public class TemplateBean implements Serializable {
 	}
 	
 	private List<DueTemplate> selectedDueTemplate;
-
+	public String frequencyChangeListener1(ValueChangeEvent event)
+	{   System.out.println("fjkdjkfgjk");
+		str_Calculation=(String) event.getNewValue();
+		System.out.println(str_Calculation+"hjhjj");
+		return str_Calculation;
+		
+	}
 	
 	
 	
@@ -297,18 +313,16 @@ public class TemplateBean implements Serializable {
 	public String addTaxTemplate()
 	{ try{
 		TaxTemplate taxtemplate=new TaxTemplate();
-		taxtemplate.setStr_Organisation(getStr_Organisation());
+		taxtemplate.setInt_Organisation(getInt_Organisation());
 		taxtemplate.setInt_Percentage(getInt_Percentage());
 		taxtemplate.setStr_TaxName(getStr_TaxName());
 		taxtemplate.setInt_TaxExemption(getInt_TaxExemption());
-	Integer yes=getTemplateService().saveTaxTemplate(taxtemplate);
+	    getTemplateService().saveTaxTemplate(taxtemplate);
 		
-		if(yes!=0)
-		{
-		 FacesContext facesContext = FacesContext.getCurrentInstance();
-           facesContext.addMessage(null, new FacesMessage("Informatin Saved Successfully!!!!!!!!!!!"));
-           return "infomation.xhtml?faces-redirect=true";
-		}
+		
+         
+           return "taxtemplate.xhtml?faces-redirect=true";
+		
 	
 	}
 	catch(Exception e)
@@ -475,7 +489,7 @@ public class TemplateBean implements Serializable {
 		
 	
 	  InvoiceTemplate invoicetemplate=new InvoiceTemplate();
-	  invoicetemplate.setStr_Organisation(getStr_Organisation());
+	  invoicetemplate.setInt_Organisation(getInt_Organisation());
 	  invoicetemplate.setStr_InvoiceTemplateName(getStr_InvoiceTemplateName());
 	  invoicetemplate.setBl_Show(getBl_Show());
 	  invoicetemplate.setStr_Frequency(getStr_Frequency());
@@ -483,13 +497,10 @@ public class TemplateBean implements Serializable {
 	  invoicetemplate.setStr_MessageTemplate(getStr_MessageTemplate());
 	  invoicetemplate.setStr_Description(getStr_Description());
 	  invoicetemplate.setStr_DueInvoiceTemplate(str);
-	 Integer yes=getTemplateService().saveInvoiceTemplate(invoicetemplate);
-	  if(yes!=0)
-		{
-		 FacesContext facesContext = FacesContext.getCurrentInstance();
-         facesContext.addMessage(null, new FacesMessage("Informatin Saved Successfully!!!!!!!!!!!"));
-         return "infomation.xhtml?faces-redirect=true";
-		}
+	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
+	 
+         return "invoicetemplate.xhtml?faces-redirect=true";
+		
 	}
 	catch(Exception e)
 	{
@@ -737,6 +748,7 @@ public class TemplateBean implements Serializable {
 		MessageTemplate messagetemplate=new MessageTemplate();
 		messagetemplate.setStr_CreatedBy(getStr_CreatedBy());
 		messagetemplate.setStr_Email(getStr_Email());
+		messagetemplate.setInt_Organisation(getInt_Organisation());
 		messagetemplate.setDat_Date(getDat_Date());
 		messagetemplate.setStr_Category(getStr_Category());
 		messagetemplate.setStr_Mode(getStr_Mode());
