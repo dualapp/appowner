@@ -10,11 +10,14 @@ import java.util.ListIterator;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
+
+
 
 
 
@@ -195,7 +198,7 @@ public class DueBean implements Serializable{
 	public List<String> getStr_DueTemplates() {
 		str_DueTemplates=new ArrayList<String>();
 		str_DueTemplates.addAll(getDueService().getDueTemplate());
-		str_DueTemplate=str_DueTemplates.get(0);
+	//	str_DueTemplate=str_DueTemplates.get(0);
 		
 		periodIndicator=getDueService().getFrequency(str_DueTemplate);
 		return str_DueTemplates;
@@ -238,6 +241,16 @@ public class DueBean implements Serializable{
 			e.printStackTrace();
 		}
 		return "dues.xhtml";
+	}
+	private List<DueTransaction> listDueTransaction1;
+	public List<DueTransaction> getListDueTransaction1() {
+		listDueTransaction1=new ArrayList<DueTransaction>();
+		listDueTransaction1.addAll(getDueService().listDueTransaction1(str_DueTemplate,str_Block,str_ApartmentNo,str_Period,int_Year));
+		
+		return listDueTransaction1;
+	}
+	public void setListDueTransaction1(List<DueTransaction> listDueTransaction1) {
+		this.listDueTransaction1 = listDueTransaction1;
 	}
 	public List<DueTransaction> getListDueTransaction() {
 		listDueTransaction=new ArrayList<DueTransaction>();
@@ -291,7 +304,11 @@ public class DueBean implements Serializable{
 		str_Period=(String)event.getNewValue();
 		System.out.println(str_Period+"lksakalkska");
 	}
-	
+	public void periodChangeListener1(ValueChangeEvent event)
+	{
+		int_Year=(Integer) event.getNewValue();
+		System.out.println(int_Year+"kjgfjg");
+	}
 	
 	public double apartmentChangeListener(ValueChangeEvent event)
 	{   String str=(String)event.getNewValue();
@@ -299,15 +316,16 @@ public class DueBean implements Serializable{
 	    System.out.println(str_Block+"hjh");
 	    System.out.println(str+"jhjhj");
 	    str_ApartmentNo=str;
+	    System.out.println(int_Year+"hjjhjh");
 	    System.out.println(str_Period+"hjjhjj");
-	    getListDueTransaction();
-	    System.out.println(listDueTransaction+"hjjhjhjj");
+	    getListDueTransaction1();
+	    System.out.println(listDueTransaction1+"hjjhjhjj");
 	    FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		
-	    ListIterator list=listDueTransaction.listIterator();
+	    ListIterator list=listDueTransaction1.listIterator();
 	   
 	    System.out.println(list.hasNext());
 	

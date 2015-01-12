@@ -32,7 +32,7 @@ import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{InvoiceService}")
@@ -399,7 +399,7 @@ public static void setDueID(List<Integer> dueID) {
 }
 public List<DueTransaction> getListDueTransaction() {
 	listDueTransaction=new ArrayList<DueTransaction>();
-	listDueTransaction.addAll(getDueService().listDueTransaction(str_DueTemplate,str_Block,str_ApartmentNo,str_BillPeriod,str_Status));
+	listDueTransaction.addAll(getDueService().listDueTransaction1(str_DueTemplate,str_Block,str_ApartmentNo,str_BillPeriod,int_Year));
 	System.out.println(listDueTransaction+"jjkjkkj");
 	return listDueTransaction;
 }
@@ -628,6 +628,19 @@ private List<DueTransaction> listDueTransaction;
 		System.out.println(str_BillPeriod+"hjjjjjj");
 	}
 	private List<InvoiceTransaction> listInvoiceTransaction;
+	private List<InvoiceTransaction>  listInvoiceTransaction1;
+	public List<InvoiceTransaction> getListInvoiceTransaction1() {
+		listInvoiceTransaction1=new ArrayList<InvoiceTransaction>();
+		System.out.println(str_InvoiceTemplate+"priya234");
+		listInvoiceTransaction1.addAll(getInvoiceService().listInvoiceTransaction1(str_InvoiceTemplate,str_Block,str_ApartmentNo,int_Year,str_BillPeriod));
+		System.out.println(listInvoiceTransaction);
+		
+		return listInvoiceTransaction1;
+	}
+	public void setListInvoiceTransaction1(
+			List<InvoiceTransaction> listInvoiceTransaction1) {
+		this.listInvoiceTransaction1 = listInvoiceTransaction1;
+	}
 	public List<InvoiceTransaction> getListInvoiceTransaction() {
 		listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
 		System.out.println(str_InvoiceTemplate+"priya");
@@ -772,6 +785,14 @@ private List<DueTransaction> listDueTransaction;
 	public void setTaxAmounts(List<Double> taxAmounts) {
 		this.taxAmounts = taxAmounts;
 	}
+	private List<Double> tax2;
+	
+	public List<Double> getTax2() {
+		return tax2;
+	}
+	public void setTax2(List<Double> tax2) {
+		this.tax2 = tax2;
+	}
 	private List<String> transaction2;
 	public List<String> getTransaction2() {
 		return transaction2;
@@ -805,6 +826,7 @@ private List<DueTransaction> listDueTransaction;
 		     subTotal=0.00;
 		     totalDue=0.00;
 		     taxAmount2=0.00;
+		     tax2=new ArrayList<Double>();
 		     while(list.hasNext())
 		     {
 		    	 Object obj=list.next();
@@ -815,6 +837,7 @@ private List<DueTransaction> listDueTransaction;
 		    	
 		    	
 		    	 taxAmount=getInvoiceService().getTaxAmount(str2);
+		    	 tax2.add(taxAmount);
 		    	 totalAmount=template.getStr_Rate()*sqrt;
 		    	 System.out.println(totalAmount+"jjff");
 		    	 taxAmount1=(taxAmount*totalAmount)/100;
@@ -847,18 +870,23 @@ private List<DueTransaction> listDueTransaction;
 		 }
 		 	
 	}
-	
+	public void periodChangeListener1(ValueChangeEvent event)
+	{
+		int_Year=(Integer) event.getNewValue();
+		System.out.println(int_Year+"hjbhjjh");
+	}
 	public List<String> amountChangeListener(ValueChangeEvent event)
 	 {      String str=(String)event.getNewValue();
 		System.out.println(str_BillPeriod+"hjjhj"); 
 		System.out.println(str_InvoiceTemplate+"hjjhjj");
 		str_ApartmentNo=str;
-		System.out.println(str_Status+"hjjhjjllljhuy");
+		
 		System.out.println(str+"jkjkjjk");	
 		System.out.println(str_Block+"jjkkjkkjh");
-		getListInvoiceTransaction();
-		System.out.println(listInvoiceTransaction.listIterator().hasNext());
-		System.out.println(!listInvoiceTransaction.listIterator().hasNext());
+		System.out.println(int_Year+"jkjkjkjk");
+		getListInvoiceTransaction1();
+		System.out.println(listInvoiceTransaction1.listIterator().hasNext());
+		System.out.println(!listInvoiceTransaction1.listIterator().hasNext());
 		if(listInvoiceTransaction.listIterator().hasNext())
 		{
 			  FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -892,22 +920,25 @@ private List<DueTransaction> listDueTransaction;
 			     subTotal=0.00;
 			     totalDue=0.00;
 			     taxAmount2=0.00;
+			     tax2=new ArrayList<Double>();
 			     while(list.hasNext())
 			     {
 			    	 Object obj=list.next();
 			    	 DueTemplate template=(DueTemplate)obj;
 			    	 String str2=template.getStr_TaxTemplate();
-			    	 System.out.println(str2);
 			    	
+			    	 
 			    	
 			    	
 			    	 taxAmount=getInvoiceService().getTaxAmount(str2);
-			    	
+			    	 System.out.println(taxAmount+"jkjkggf");
+			    	tax2.add(taxAmount);
 			    	 totalAmount=template.getStr_Rate()*sqrt;
 			    	
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	
 			    	 taxAmounts.add(taxAmount1);
+			    	 System.out.println(taxAmounts+"jkkjkjjk");
 			    	 subTotal=subTotal+totalAmount;
 			    	
 					 taxAmount2=taxAmount2+taxAmount1;
@@ -916,13 +947,6 @@ private List<DueTransaction> listDueTransaction;
 				    	  totalAmounts.add(totalAmount);
 				    
 				    	  System.out.println(totalAmounts);
-				  		StringBuilder out = new StringBuilder();
-				  		for (Object o : totalAmounts)
-				  		{
-				  		  out.append(o.toString());
-				  		  out.append(",");
-				  		
-				  		}
 				  	
 		 
 			     }
