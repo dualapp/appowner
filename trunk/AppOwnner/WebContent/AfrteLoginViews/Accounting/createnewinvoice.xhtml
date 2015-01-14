@@ -79,7 +79,7 @@
                      <f:selectItem itemLabel="Q2[JUL-SEP]" itemValue="Q2[JUL-SEP]"/>
                        <f:selectItem itemLabel="Q3[OCT-DEC]" itemValue="Q3[OCT-DEC]"/>
                         <f:selectItem itemLabel="Q4[JAN-MAR]" itemValue="Q4[JAN-MAR]"/>
-                       <p:ajax event="change"  process="str_Period"  partialSubmit="true"/>  
+                       <p:ajax event="change"  process="str_Period"  partialSubmit="true" update="int_Year"/>  
                  </h:selectOneMenu>
          <h:selectOneMenu  value="#{invoiceBean.str_BillPeriod}" rendered="#{invoiceBean.periodIndicator eq 'Monthly'}" valueChangeListener="#{invoiceBean.periodChangeListener}">
             <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
@@ -95,19 +95,20 @@
                      <f:selectItem itemLabel="OCT" itemValue="OCT"/>
                        <f:selectItem itemLabel="NOV" itemValue="NOV"/>
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
-                        <p:ajax event="change"  process="str_Period"  />  
+                        <p:ajax event="change"  process="str_Period" update="int_Year" />  
                  </h:selectOneMenu>
                 <h:selectOneMenu  value="#{invoiceBean.str_BillPeriod}" rendered="#{invoiceBean.periodIndicator eq 'Yearly' || invoiceBean.periodIndicator eq 'One Time'|| invoiceBean.periodIndicator eq null}" valueChangeListener="#{invoiceBean.periodChangeListener}">
                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="N/A" itemValue="N/A"/>
-                   <p:ajax event="change"  process="str_Period"  />  
+                   <p:ajax event="change"  process="str_Period" update="int_Year" />  
                    </h:selectOneMenu></td>
               
               </h:panelGroup>  
           
        
             <td> <h:outputText  value="Year" /><font color="red" >*</font></td>
-           <td> <h:selectOneMenu id="int_Year" value="#{dueBean.int_Year}" >
+           <td> <p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}" valueChangeListener="#{invoiceBean.periodChangeListener1}" >
+            <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="2014" itemValue="2014"/>
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
                        <f:selectItem itemLabel="2016" itemValue="2016"/>
@@ -115,7 +116,8 @@
                           <f:selectItem itemLabel="2018" itemValue="2018"/>
                      <f:selectItem itemLabel="2019" itemValue="2019"/>
                        <f:selectItem itemLabel="2020" itemValue="2020"/>
-                        </h:selectOneMenu>
+                      <p:ajax event="change"  process="int_Year"  />   
+                       </p:selectOneMenu>
                         </td>
                        
     </tr> 
@@ -174,7 +176,7 @@
  
   </tr>
   </table>
-  <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo &amp;&amp; listInvoiceTransaction.listIterator().hasNext()}">
+  <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo }">
     <div id="page3"> 
     <div class="gsTitleDiv">Invoice Details<br/></div>
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;border:1px solid #DADADA ;">
@@ -183,6 +185,7 @@
     <td style="width:440px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
     <strong>Item</strong>
     </td>
+    
      <td style="width:200px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
     <strong></strong>
     </td>
@@ -196,24 +199,24 @@
     </td>
     </tr>
     
-     <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px"> 
     
-    <tr style="line-height:20px;"><td style="padding-left:5px;width:440px;">#{dues.str_DueTemplate}</td>
+    
+    <tr style="line-height:20px;"><td style="padding-left:5px;width:440px;"> <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px"> #{dues.str_DueTemplate}<br/><hr></hr></ui:repeat></td>
      <td align="left" style="width:200px;"/>
     <td align="right" style="width:250px;"><ui:repeat value="#{invoiceBean.totalAmounts}" var="account">
    
-    <h:outputText value="#{account}" /><br/>
+    <h:outputText value="#{account}" /><br/><hr/>
   
      </ui:repeat>
    </td>
   
-    <td align="right" style="padding-right:5px;width:320px;">#{dues.str_TaxTemplate} </td>
+    <td align="right" style="padding-right:5px;width:320px;"><ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px">#{dues.str_TaxTemplate}<br/><hr/> </ui:repeat></td>
     </tr>
     <tr>
     <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
  
-   </ui:repeat>
+  
   
     <tr style="line-height:25px;">
      <td align="left" style="width:200px;"/>
@@ -222,7 +225,7 @@
     <td align="right" style="width:250px;color:#E17009;">#{invoiceBean.subTotal}</td>
     </tr>
     <tr></tr>
-     <ui:repeat value="#{invoiceBean.transaction}" var="dues" varStatus="status" style="width:600px">  
+  
     <tr>
     <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
@@ -231,11 +234,13 @@
      <td align="right" style="padding-right:5px;width:320px;"></td>
      </tr>
      <tr style="line-height:25px;">
+     
      <td align="right" style="width:200px;"/>
-     <td align="right">#{dues.str_TaxTemplate} &nbsp;(#{invoiceBean.taxAmount}%)</td>
-     <td align="right">#{invoiceBean.taxAmount1}</td>
+     <td align="right"> <ui:repeat value="#{invoiceBean.transaction}" var="dues"><br/> #{dues.str_TaxTemplate}</ui:repeat><ui:repeat value="#{invoiceBean.tax2}" var="tax">(#{tax}%)</ui:repeat>
+    </td>
+     <td align="right"><ui:repeat value="#{invoiceBean.taxAmounts}" var="taxAmount">#{taxAmount}<br/></ui:repeat></td>
      </tr>
-   </ui:repeat>  
+
   
    
    
