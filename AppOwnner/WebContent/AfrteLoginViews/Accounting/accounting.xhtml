@@ -43,9 +43,9 @@
                 <p:menuitem  value="ACCOUNT TRANACTION"  > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <p:commandButton value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here" >
+                         <p:commandLink value="ACCOUNT TRANSACTION" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here" >
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/accountstransaction.xhtml" />
-</p:commandButton>
+</p:commandLink>
 </p:menuitem>
 </f:ajax>
 
@@ -54,36 +54,36 @@
                 <p:menuitem  value="MANUAL JOURNAL" outcome="/AfrteLoginViews/Accounting/manualjournal.xhtml" >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <p:commandButton value="MANUAL JOURNAL" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here" >
+                         <p:commandLink value="MANUAL JOURNAL" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here" >
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/manualjournal.xhtml" />
-      </p:commandButton>
+     </p:commandLink>
            </p:menuitem>
            </f:ajax>
                  </p:menuitem> 
          <p:menuitem  value="TRIAL BALANCE" outcome= "/AfrteLoginViews/Accounting/trialbalance.xhtml" >
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <p:commandButton value="TRIAL BALANCE" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
+                         <p:commandLink value="TRIAL BALANCE" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/trialbalance.xhtml" />
-                      </p:commandButton>
+                     </p:commandLink>
                          </p:menuitem>
                </f:ajax>
           </p:menuitem>  
         <p:menuitem  value="PROFIT AND LOSS" outcome="/AfrteLoginViews/Accounting/profitandloss.xhtml" >
              <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <p:commandButton value="PROFIT AND LOSS" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
+                         <p:commandLink value="PROFIT AND LOSS" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/profitandloss.xhtml" />
-                        </p:commandButton>
+                       </p:commandLink>
                          </p:menuitem>
          </f:ajax>
          </p:menuitem>
             <p:menuitem  value="BALANCE SHEET" outcome="/AfrteLoginViews/Accounting/balancesheet.xhtml" > 
                 <f:ajax  render=":centerContentPanel" execute="@this">
                          <p:menuitem update=":centerContentPanel" > 
-                         <p:commandButton value="BALANCE SHEET" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
+                         <p:commandLink value="BALANCE SHEET" action="#{navigationBean.navigateTo}" style="width:200px;height:30px" title="double click here">
                          <f:param name="navParam" value="/AfrteLoginViews/Accounting/balancesheet.xhtml" />
-        </p:commandButton>
+        </p:commandLink>
            </p:menuitem>
            </f:ajax>
              </p:menuitem>    
