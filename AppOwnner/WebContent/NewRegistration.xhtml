@@ -1,40 +1,114 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-<head><title>AppOwner</title>
-<meta charset="utf-8"></meta>
-<link rel="stylesheet" href="css/reset.css" type="text/css" media="all"></link>
-<link rel="stylesheet" href="css/layout.css" type="text/css" media="all"></link>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all"></link>
-<link rel="stylesheet" href="include/assets/css/ace.min.css" type="text/css" media="all"></link>
-<script type="text/javascript" src="js/maxheight.js"></script>
-<script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
-<script type="text/javascript" src="js/script.js"></script>
-</head>
-<h:body id="page1" onLoad="new ElementMaxHeight();">
-<!-- START PAGE SOURCE -->
-<div class="tail-bottom">
-  <div id="main">
-    <header>
-      <div class="nav-box">
-        <nav>
-          <ul class="fright">
-            <li><a href="firstpage.xhtml"><img src="images/pic-home-act.gif"></img></a></li>
-            <li><a href="#"><img src="images/pic-mail.gif"></img></a></li>
-            <li><a href="layout.xhtml"><img src="images/pic-sitemap.gif"></img></a></li>
-          </ul>
-          <ul>
-            <li class="current"><a href="index.html">home</a></li>
-            <li><a href="about-us.html">About</a></li>
-            <li><a href="articles.html">Articles</a></li>
-            <li><a href="contactus.xhtml">Contacts</a></li>
-            <li><a href="sitemap.html">SiteMap</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+<!DOCTYPE html>
+<html lang="en"
+	style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<title>Login</title>
+
+	<meta charset="utf-8" />
+
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+
+	<link rel="shortcut icon" type="image/x-icon"
+		href="css/images/favicon.ico" />
+
+	<link rel="stylesheet" href="css/style1.css" type="text/css"
+		media="all" />
+
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
+		media="all" />
+
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700'
+		rel='stylesheet' type='text/css' />
+
+	<script src="js/jquery-1.8.0.min.js"></script>
+
+
+
+	<script src="js/jquery.flexslider-min.js"></script>
+
+	<script src="js/functions.js"></script>
+
+</h:head>
+
+<h:body>
+
+	<!-- wraper -->
+
+	<div id="wrapper">
+
+		<!-- shell -->
+
+		<div class="shell">
+
+			<!-- container -->
+
+			<div class="container">
+
+				<!-- header -->
+
+				<header id="header">
+
+					<h1 id="logo">
+						<a href="#">App-Owner</a>
+					</h1>
+
+					<!-- search -->
+
+					<div class="search">
+
+						<form method="post" action="#">
+
+							<span class="field"> <input type="text" class="field"
+								value="keywords here ..." title="keywords here ..." />
+
+							</span> <input type="submit" class="search-btn" value="" />
+
+						</form>
+
+					</div>
+
+					<!-- end of search -->
+
+				</header>
+
+				<!-- end of header -->
+
+				<!-- navigation -->
+
+				<nav id="navigation">
+					<a href="#" class="nav-btn">HOME<span class="arr"></span></a>
+
+					<ul>
+
+						<li class="active"><a href="index.html">HOME</a></li>
+
+						<li><a href="#">About</a></li>
+
+						<li><a href="#">Feature</a></li>
+
+					
+
+						<li><a href="#">FAQ</a></li>
+
+						<li><a href="#">blog</a></li>
+
+						<li><a href="#">contacts</a></li>
+                       <li><a href="layout.xhtml">Login</a></li>
+                      <li><a href="firstpage.xhtml">Registration</a></li>
+					</ul>
+
+				</nav>
+
+
+
           <div id="page8">
  <h:form id="form" bgcolor="red">
  <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
@@ -151,21 +225,51 @@
          
              <tr> 		<td></td>	
             <td><h:commandButton id="addUser" value="Create Account" action="#{cls_UserBean.addUser}" styleClass="btn"/>
-              
+              &#150; &#150; 
             <h:commandButton id="reset" value="Reset" action="#{cls_UserBean.reset}" styleClass="btn"/>
              </td></tr>
             </table>
             </h:form>  
             </div>
-    <footer>
-      <div id="page3">
-        <p class="lf">Copyright 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
-        <p class="rf"><a href="http://all-free-download.com/free-website-templates/">Free CSS Templates</a> by <a href="http://www.templatemonster.com/">TemplateMonster</a></p>
-        <div style="clear:both;"></div>
- </div>
- </footer>
-  </div>
-</div>
-<!-- END PAGE SOURCE -->
+    	<div class="footer-bottom">
+
+					<nav class="footer-nav">
+
+						<ul>
+
+							<li class="active"><a href="#">Home</a></li>
+
+							<li><a href="#">About</a></li>
+
+							<li><a href="#">Feature</a></li>
+
+							<li><a href="#">Plan</a></li>
+
+							<li><a href="#">FAQ</a></li>
+
+							<li><a href="#">Blog</a></li>
+
+							<li><a href="#">Contacts</a></li>
+
+						</ul>
+
+					</nav>
+
+					<p class="copy">
+						&amp;copy; Copyright 2012 Dualapp Technology Pvt. Ltd <span>|</span>
+						<strong>Design by <a target="_blank"
+							href="http://www.dualapptech.com">Dualapp Technology</a></strong>
+					</p>
+
+					<div class="cl">&amp;nbsp;</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
 </h:body>
+<!-- END PAGE SOURCE -->
+
 </html>
