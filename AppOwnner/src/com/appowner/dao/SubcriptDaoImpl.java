@@ -1,6 +1,11 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -9,6 +14,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.AccountingGroup;
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
@@ -541,7 +547,27 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	@Override
 	public void insertes(GroupMember m1) {
 		
-		sessionFactory.getCurrentSession().save(m1);
+        int groupid=m1.getInt_GroupId();
+        String str=m1.getInt_UserId();
+        String hql1="  from GroupMember where int_GroupId=?";
+     GroupMember cid1=(GroupMember) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, groupid).uniqueResult();
+        System.out.println(cid1);
+        if(cid1==null)
+        {
+        	sessionFactory.getCurrentSession().save(m1);
+        }
+        else
+        {
+        	Integer id1=cid1.getInt_GroupmemberId();
+            Integer id2=cid1.getInt_GroupId();
+           if(id2==groupid)
+           {
+           	System.out.println(groupid);
+           	String hql2="update GroupMember set int_UserId=? where int_GroupmemberId=?";
+       		sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,str).setParameter(1, id1).executeUpdate();	
+           }
+        	
+        }
 		
 		
 	}
@@ -710,6 +736,86 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		return (User) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, str_Username).uniqueResult();
 	}
 
+	@Override
+	public List allusers(int int_GroupId) {
+		String	hql1="Select int_UserId  from  GroupMember where int_GroupId=?";
+		 String id = (String) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, int_GroupId).uniqueResult();
+		 System.out.println(id+"hjjhujjk");
+		 String[] array=id.split(",");
+		 List<UserExtraInfo> conn1=new ArrayList<UserExtraInfo>();
+		 for(String id1:array)
+		 {  
+			 System.out.println(id1+"jjhhjjj"); 
+			 int id2=Integer.parseInt(id1);
+			 System.out.println(id2+"jjkjkjjklllllllllllllllllllllllllllllll");
+			 String query="{ call member1(?)}";
+				UserExtraInfo conn=(UserExtraInfo) sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0,id2).uniqueResult();
+				conn1.add(conn);
+		 }
+		 
+		// Set<Integer> str2 = new HashSet<Integer>(id);
+		// List<Integer> str3 = new ArrayList(str2);
+		/* System.out.println(str3+"hhjj");
+		 System.out.println(str2+"kfkfk");
+		 List<UserExtraInfo> conn1=new ArrayList<UserExtraInfo>();
+		 ListIterator itr=(ListIterator) str3.listIterator();
+			System.out.println(itr);
+			while(itr.hasNext())
+			{
+				System.out.println(".,,,,,,,,,,,,,,,,,,,,,,,,,,,,,................>>>>>>>>>>");
+				String u=(String) itr.next();
+				Integer id=u.
+				System.out.println(u+"jjfjfj");
+				String query="{ call member1(?)}";
+				UserExtraInfo conn=(UserExtraInfo) sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0,u).uniqueResult();
+				conn1.add(conn);
+				
+				
+		 
+			}*/
+		 System.out.println(conn1+"jjjj");
+	   return conn1;
+		
+		
+		
+	}
+
+	@Override
+	public User usrname(String str_Username) {
+		String	hql1="from User where str_Username=?";
+		return (User) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, str_Username).uniqueResult();
+	}
+
+	@Override
+	public int adduser(String selecte) {
+		System.out.println(selecte+"mmmmmmkkkkkkkkkkk");
+		String hql1="select int_UserId  from User  where str_Username=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid1=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, selecte).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid1);
+		return cid1;
+	}
+
+	@Override
+	public List memberid(String str_Hobbies, String str_Profession) {
+		
+		System.out.println(str_Hobbies+"mmmmmmkkkkkkkkkkkppppppppppppp");
+		System.out.println(str_Profession+"mmmmmmkkkkkkkkkkkpppppppp");
+		
+		String hql1="select int_UserId  from UserExtraInfo  where str_Hobbies=? and str_Profession=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> cid1=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_Hobbies).setParameter(1, str_Profession).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid1);
+		return cid1;
+	}
+
+	
 	
 	}
 	
