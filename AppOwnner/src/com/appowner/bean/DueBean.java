@@ -198,7 +198,7 @@ public class DueBean implements Serializable{
 	public List<String> getStr_DueTemplates() {
 		str_DueTemplates=new ArrayList<String>();
 		str_DueTemplates.addAll(getDueService().getDueTemplate());
-	//	str_DueTemplate=str_DueTemplates.get(0);
+		str_DueTemplate=str_DueTemplates.get(0);
 		
 		periodIndicator=getDueService().getFrequency(str_DueTemplate);
 		return str_DueTemplates;
