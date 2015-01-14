@@ -12,7 +12,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/doc.jpg" height="40" width="40"></img> <span class="title"> Edit Sub-Group </span>
+					<img src="#{expenseBean.str_Name}images/group.jpg" height="40" width="40"></img> <span class="title"> Edit Sub-Group </span>
 				</td>
 			</tr>
 		</tbody>
@@ -63,7 +63,7 @@
   <tr> 
              
                  <td><p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
-                 <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.str_groupPrivate}" style="width:250px">
+                 <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.edit1.str_groupPrivate}" style="width:250px">
 
                <f:selectItem itemLabel ="Open--Any One #{scriptBean.str_ApartmentName} can join. "   itemValue="Open" />
                 <f:selectItem itemLabel="Private--You Control The Membership."  itemValue="Private"  />

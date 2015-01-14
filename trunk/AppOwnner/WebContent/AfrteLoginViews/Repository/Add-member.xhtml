@@ -16,7 +16,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/doc.jpg" height="40" width="40"></img> <span class="title">Invite Members  </span>
+					<img src="#{expenseBean.str_Name}images/group.jpg" height="40" width="40"></img> <span class="title">Invite Members  </span>
 				</td>
 			</tr>
 		</tbody>
@@ -27,7 +27,8 @@
 	<f:viewAction action="#{scriptBean.subname}" />
 </f:metadata>
    
- <h:form>
+  
+  <h:form>
   <a href="Sub-GroupDetail.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
     <div id="page3">
    <table   style="overflow:hidden;border:0pt none;width:67%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
@@ -38,7 +39,7 @@
      
            <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.str_GroupNm}" style="width:200px">
              <f:selectItem itemLabel="Select a Group"  itemValue=""  />
-              <f:selectItems value="#{scriptBean.addcompany}"  />
+             <f:selectItems value="#{scriptBean.addcompany}"  />
             </p:selectOneMenu>
            </td>
            </table>
@@ -52,7 +53,7 @@
          <p:outputLabel value="Enter Name "/>
            </td> 
       <td>  
-            <h:inputText value="#{scriptBean.str_Username}"  style="width:200px"/></td>
+            <h:inputText value="#{scriptBean.str_Uname}"  style="width:200px"/></td>
            </table>
            </td>
            </tr>
@@ -91,11 +92,11 @@
                <tr>
                <h:panelGroup id="performed1"  rendered="#{scriptBean.str_owner eq 'true'}">
                
-             <td>&#150;          &#150;               &#150;         &#150;         &#150;
-             <p:selectBooleanCheckbox   value="#{scriptBean.residence}" />Owner  &#150;     &#150; 
+   <td>&#150;          &#150;               &#150;         &#150;         &#150;
+   <p:selectBooleanCheckbox   value="#{scriptBean.residence}" />Owner  &#150;     &#150; 
              
                     
-           &#150;     &#150;    &#150;<p:selectBooleanCheckbox    value="#{scriptBean.residence}"  />Tenant
+&#150;     &#150;    &#150;<p:selectBooleanCheckbox    value="#{scriptBean.residence}"  />Tenant
                   
                  
                      </td>
@@ -171,24 +172,19 @@
       </tr>
       
     <tr>
-         
-         <td><h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5"> 
+       <td><h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5"> 
          <p:selectBooleanCheckbox id="martial" value="#{scriptBean.martial}" valueChangeListener="#{scriptBean.selectinfo8}"> 
             <f:ajax event="change" execute="martial"  render="@form"/>
             </p:selectBooleanCheckbox>
-            
             <p:outputLabel   value="Filter by Martial Status" /></h:panelGrid> 
       </td></tr> 
       <tr>
-                <h:panelGroup id="performed0"  rendered="#{scriptBean.martial eq 'true'}">
+           <h:panelGroup id="performed0"  rendered="#{scriptBean.martial eq 'true'}">
                
-                    <td>&#150;          &#150;               &#150;         &#150;         &#150;
-                    <p:selectBooleanCheckbox   value="#{scriptBean.residence}" />Married &#150;     &#150; 
-             
-
-                  &#150;     &#150;    &#150;<p:selectBooleanCheckbox    value="#{scriptBean.residence}"  />Single
-                  
-                  </td>
+    <td>&#150;          &#150;               &#150;         &#150;         &#150;
+    <p:selectBooleanCheckbox  value="#{scriptBean.str_MaritalStatus}" />Married &#150;     &#150; 
+    &#150;     &#150;    &#150;<p:selectBooleanCheckbox   value="#{scriptBean.str_MaritalStatus}"  />Single
+            </td>
                   </h:panelGroup>
                   </tr>
                    <tr>
@@ -197,8 +193,6 @@
                  <p:selectBooleanCheckbox id="str_stat" value="#{scriptBean.str_state}" valueChangeListener="#{scriptBean.selectinfo9}" > 
                  <f:ajax event="change" execute="str_stat"  render="@form"/>
                  </p:selectBooleanCheckbox>
-                
-                 
                  <p:outputLabel  value="Filter by Native State,City" /></h:panelGrid>
                  </td>
                  </tr>
@@ -217,11 +211,7 @@
     </table>
     </td>
     </tr>
-   
-    
-   
-   
-   <tr>
+    <tr>
       <td>
        <table>
     <h:panelGroup id="performed00"  rendered="#{scriptBean.str_state eq 'true'}">
@@ -242,26 +232,18 @@
                <p:selectBooleanCheckbox id="male" value="#{scriptBean.male}" valueChangeListener="#{scriptBean.selectinfoq}"> 
                <f:ajax event="change" execute="male"  render="@form"/>
                </p:selectBooleanCheckbox>
-              
-               <p:outputLabel  value="Filter by Gender" /></h:panelGrid>
-      </td></tr> 
-     <tr>
+              <p:outputLabel  value="Filter by Gender" /></h:panelGrid>
+             </td></tr> 
+               <tr>
               <h:panelGroup id="performed092"  rendered="#{scriptBean.male eq 'true'}">
                     <td>&#150;          &#150;               &#150;         &#150;         &#150;
-                    <p:selectBooleanCheckbox  value="#{scriptBean.residence}" />Male &#150; &#150; &#150;
-             
-            
-                  &#150;     &#150;    &#150;<p:selectBooleanCheckbox    value="#{scriptBean.residence}"  />Female
-                  
-                 
-                     </td>
-                  
+                    <p:selectBooleanCheckbox   />Male &#150; &#150; &#150;
+                      &#150;     &#150;    &#150;<p:selectBooleanCheckbox    />Female
+                  </td>
                   </h:panelGroup>
                   </tr>  
-          
-          
       
-            <tr><td> <h:commandButton value="Search"  action="#{scriptBean.memberadd}" outcome= "View-SubGroup.xhtml" style=" width:120px; height:30px; float:right !important;margin: 0px  100px 100px 0px;"/> 
+            <tr><td> <h:commandButton value="Search"  action="#{scriptBean.memberadd}"     style=" width:120px; height:30px; float:right !important;margin: 0px  100px 100px 0px;"/> 
               
                </td></tr> 
           
