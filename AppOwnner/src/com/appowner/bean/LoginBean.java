@@ -302,7 +302,7 @@ public class LoginBean implements Serializable{
 
 
 		public String getVar_ImageName1() {
-			Var_ImageName1=user.getVar_ImageName1();
+			//Var_ImageName1=user.getVar_ImageName1();
 			if(Var_ImageName1==null)
 			{
 				Var_ImageName1="/images/profilepic.png";
@@ -938,7 +938,7 @@ public static void setUser1(boolean user1) {
 				if(session==null)
 				  memberLog();
 				
-			 return "/AfrteLoginViews/Administrator/welcomepage.xhtml";
+			 return "/AfrteLoginViews/welcomepage.xhtml";
 		   }
 		}
  
