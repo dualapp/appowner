@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:fb="http://www.facebook.com/2008/fbml"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
@@ -21,6 +22,8 @@
 
 	<link rel="stylesheet" href="css/style1.css" type="text/css"
 		media="all" />
+		<link rel="stylesheet" href="css/layout.css" type="text/css"
+		media="all" />
 
 	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
 		media="all" />
@@ -33,8 +36,11 @@
 
 
 	<script src="js/jquery.flexslider-min.js"></script>
+	
 
 	<script src="js/functions.js"></script>
+	<script src="js/googlelogin.js"></script>
+	<script src="js/fblogin.js"></script>
 
 </h:head>
 
@@ -147,11 +153,13 @@
 						Login Credential</font>
 					<table>
 						<tr>
-							<td><h:commandLink action="#{login.facebookuserLogin}">
-									<p:graphicImage height="24" width="170"
-										value="images/facebook3.jpg" />
-								</h:commandLink></td>
+							<td><fb:login-button  scope="public_profile,email,user_likes,user_hometown" onlogin="checkLoginState();">
+                            </fb:login-button>
+  
+                            <div id="status">
+                                </div></td>
 						</tr>
+						 
 						<tr>
 							<td><h:commandLink action="#{login.linkedinuserLogin}">
 									<p:graphicImage height="24" width="172" value="images/link.jpg" />
@@ -163,7 +171,15 @@
 										value="images/twiter.jpg" />
 								</h:commandLink></td>
 						</tr>
+						 <tr>
+						 <td>
+						 <input type="button"  class="zocial googleplus" value="Sign in with Google+" onclick="login()" />
+                         <input type="button" class="zocial googleplus"  value="Logout" onclick="logout()" />
+                          <div id="profile"></div>
+						 </td>
+						 </tr>
 					</table>
+					
 				</h:form>
 
 				<div class="footer-bottom">
