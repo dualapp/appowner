@@ -85,6 +85,10 @@ import java.util.List;
 
 
 
+
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -304,6 +308,19 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 	public int addmember(String selecte);
 
 	public User allnames(String str_Username);
+
+	public List<UserExtraInfo> allusers(int int_GroupId);
+
+	public User usrname(String str_Username);
+
+	public int adduser(String selecte);
+
+	public List<Integer> memberid(String str_Hobbies, String str_Profession);
+
+	
+	
+
+	
 
 	
 	

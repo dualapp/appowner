@@ -79,6 +79,9 @@ import java.util.List;
 
 
 
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -120,6 +123,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
+
+
+
 
 
 
@@ -678,14 +684,35 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().allnames( str_Username);
 	}
 
-	
-	
-	
+	@Override
+	public List allusers(int int_GroupId ) {
+		return getSubcriptDao().allusers(int_GroupId);
+	}
+
+	@Override
+	public User usrname(String str_Username) {
+		return getSubcriptDao().usrname(str_Username);
+	}
+
+	@Override
+	public int adduser(String selecte) {
+		return getSubcriptDao().adduser( selecte);
+	}
+
+	@Override
+	public List memberid(String str_Hobbies, String str_Profession) 
+	{
+		return getSubcriptDao().memberid(str_Hobbies,  str_Profession); 
+	}
 
 	
 	
 	
+
 	}
+	
+	
+	
 
 	 
 
