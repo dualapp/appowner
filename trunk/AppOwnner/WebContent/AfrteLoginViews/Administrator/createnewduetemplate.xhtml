@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml"
+                xmlns:v="http://primefaces.org/ui">
+	<ui:define name="content">
 	
-<h:head>
-<script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
-         </h:head>
-  <body >
-    <h:form id="form1" >
-     
+ <h:head>
+<title>DueTemplate form</title>
+<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:250px;
+          }
+          select
+          {
+           height:25px;
+           weight:250px;
+          }
+      </style>	
+ 
+ 
+</h:head>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/due.jpg" height="50" width="50"></img> <span class="title">Due Template</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+   <h:form id="form" prependId="false">
+     <div id="page3">
       
-      <table>
+     <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
       
             <tr>
              <td> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
-          <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  style="width:300px">
+          <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  >
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
                  </p:selectOneMenu></td>   
@@ -26,7 +54,7 @@
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
           <td>  <h:outputText  value="Due Template" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" size="25" /></td>
+           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" /></td>
         <td> <p:tooltip id="toolVendorPhone"  trackMouse="true" for="str_DueTemplate" value="It should not Empty" /> </td>
          
              </tr>
@@ -34,14 +62,14 @@
              <tr>
             
             <td> <h:outputText  value="Account" /><font color="red" >*</font></td>
-           <td>  <p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:300px">
+           <td>  <p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  >
                    <f:selectItems value="#{templateBean.ravenues}" />
                  </p:selectOneMenu></td>
              </tr>
              <tr></tr><tr></tr><tr></tr><tr></tr>
           <tr>
             <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
-           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}"  style="width:300px">
+           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" >
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
@@ -49,19 +77,20 @@
                  </p:selectOneMenu></td>
             </tr>
             <tr></tr><tr></tr><tr></tr><tr></tr>
-             <tr>
+            <tr>
             <td> <h:outputText  value="Calculation" /><font color="red" >*</font></td>
-             <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}"  style="width:300px">
+             <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}" valueChangeListener="#{templateBean.frequencyChangeListener1}"  >
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
                        <f:selectItem itemLabel="None" itemValue="None"/>
+                        <p:ajax event="change" update="str_Rate" process="str_Calculation"/>
                 </p:selectOneRadio>
                 </td>
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
               <tr>
                <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" size="25"/></td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}"  disabled="#{templateBean.str_Calculation eq 'None'}"/></td>
         <td> <p:tooltip id="toolVendorPhone1"  trackMouse="true" for="str_Rate" value="It Should be a Number" /> </td>
           
               </tr>
@@ -69,7 +98,7 @@
              <tr>
             
             <td> <h:outputText  value="Tax Template" /><font color="red" >*</font></td>
-           <td>  <p:selectOneMenu id="str_TaxTemplate" value="#{templateBean.str_TaxTemplate}"  style="width:300px">
+           <td>  <p:selectOneMenu id="str_TaxTemplate" value="#{templateBean.str_TaxTemplate}"  >
                    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"></f:selectItem>
                    <f:selectItems value="#{templateBean.str_TaxTemplates}"  />
                      <f:selectItem itemLabel="None" itemValue="None" noSelectionOption="true"></f:selectItem>
@@ -85,26 +114,10 @@
             </tr>
             </h:panelGroup>
             
-      
-             <script type="text/javascript">
-             function closeSelf(){
-                 self.close();
-                 return true;
-             }
-             </script>
-       
-       
-        
-       
- 
-      
-        
-  
-   
-             </h:form>
-             </body>
-            </html>
-              
+      </div>
+    </h:form>
+    </ui:define>
+    </ui:composition>
               
               
         
