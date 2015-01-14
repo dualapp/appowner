@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:fb="http://www.facebook.com/2008/fbml"
+      xmlns:p="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>FB Login</title>
+        <link rel="stylesheet" type="text/css" href="./xmlhttp/css/rime/rime.css"/>
+    </h:head>
+    <h:body styleClass="ice-skin-rime">   
+
+   <fb:login-button scope="email"></fb:login-button> 
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1525993687671325',
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+
+    showMe = function(response) {
+      if (response.status !== 'connected') {
+        div.innerHTML = '<em>Not Connected</em>';
+      } else {
+        FB.api('/me', function(response) {
+            
+            
+          var i=0;
+          for (var key in response) {
+
+            i++;
+
+            switch(i){
+            case 1: document.getElementById("formId:id").value=response[key]; break;
+            case 2: document.getElementById("formId:email").value=response[key]; break;
+            case 5: document.getElementById("formId:first_name").value=response[key]; break;
+            case 6: document.getElementById("formId:gender").value=response[key]; break;
+            case 9: document.getElementById("formId:last_name").value=response[key]; break;
+           }  
+
+          }
+
+        });
+      }
+    };
+    
+  FB.getLoginStatus(function(response) {
+    showMe(response);
+    FB.Event.subscribe('auth.authResponseChange', showMe);
+  });
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+   
+</script>  
+
+       <h:form id="formId">
+        <table>
+        <tr><td><a>ID : <h:inputText id="id" value="#{cls_UserBean.int_UserId}" /> </a></td></tr>
+        <tr><td><a>Email: <h:inputText id="email" value="#{cls_UserBean.str_Email}" /> </a></td></tr>
+        
+        <tr><td><a>First Name : <h:inputText id="first_name" value="#{cls_UserBean.str_FirstName}" /> </a></td></tr>
+        <tr><td><a>Last Name : <h:inputText id="last_name" value="#{cls_UserBean.str_LastName}" /> </a></td></tr>
+        <tr><td><a>Gender : <h:inputText id="gender" value="#{loginBean.bool_Gender}" /> </a></td></tr>
+        
+        <tr><td><p:commandButton value="Register" action="#{cls_UserBean.addnewUser}"/></td></tr>                                      
+        </table>    
+      </h:form>         
+    </h:body>
+</html>
