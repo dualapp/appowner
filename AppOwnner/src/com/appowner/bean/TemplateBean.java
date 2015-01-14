@@ -92,7 +92,7 @@ public class TemplateBean implements Serializable {
 	private Integer int_Organisation;
 	public Integer getInt_Organisation() {
 		int_Organisation=Util.getAppartmentId();
-		System.out.println(int_Organisation+"kjfdkjffdk");
+		
 		return int_Organisation;
 	}
 	public void setInt_Organisation(Integer int_Organisation) {
@@ -205,7 +205,33 @@ public class TemplateBean implements Serializable {
 		
 		return "duetemplate.xhtml";
 	}
-  
+	private DataTable dataTable;
+  public DataTable getDataTable() {
+	 
+		return dataTable;
+	}
+	public void setDataTable(DataTable dataTable) {
+		this.dataTable = dataTable;
+	}
+public boolean cancel()
+  {
+	  System.out.println("kvkk");
+	
+	  dueTemplate1=(DueTemplate) dataTable.getRowData();
+	  System.out.println(dueTemplate1.getStr_DueTemplate());
+	  /*	for (DueTemplate template :selectedDueTemplate)
+	    {	String str=template.getStr_DueTemplate();
+	    String id=getTemplateService().detectDueTemplate(str);
+	    System.out.println(id+"jffkjfj");
+	    if(id!=null)
+	    {
+	    	indicator=true;
+	    }
+	    System.out.println(indicator+"fdfdf123");	
+	    }*/
+	  indicator=true;
+		return indicator;
+  }
    
 	
 	public String deleteDue(){
@@ -216,24 +242,44 @@ public class TemplateBean implements Serializable {
 		return "duetemplate.xhtml?faces-redirect=true";
 	  
 	}
+	private boolean indicator;
+	public boolean isIndicator() {
+		return indicator;
+	}
+	public void setIndicator(boolean indicator) {
+		this.indicator = indicator;
+	}
 	public String deleteDueTemplate() {
+		System.out.println("jhgjgf");
 	    List<DueTemplate> delete = new ArrayList<DueTemplate>();
-   
-	    for (DueTemplate template :selectedDueTemplate) {
-	    	
-	    	if (template.getInt_DueTemplateID()!=null) 
+	   
+	    for (DueTemplate template :selectedDueTemplate)
+	    {	String str=template.getStr_DueTemplate();
+	    String id=getTemplateService().detectDueTemplate(str);
+	    if(id!=null)
+	    {
+	    	indicator=true;
+	    }
+	    System.out.println(indicator+"fdfdf");	
+	    if (template.getInt_DueTemplateID()!=null) 
 	    	{
 	            delete.add(template);
 	        }
-	    	FacesContext facesContext = FacesContext.getCurrentInstance();
-			Flash flash = facesContext.getExternalContext().getFlash();
-			flash.setKeepMessages(true);
-			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
+	    	
+			
 	    } 
-
-     getTemplateService().deleteDue1(delete);
-	    return "duetemplate.xhtml?faces-redirect=true";
+    if(indicator==false)
+    {
+    getTemplateService().deleteDue1(delete);
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
+     System.out.println("jfjgfjgf");
+	   
+    }
+    return "duetemplate.xhtml?faces-redirect=true";
 	}
     public String cancelDue() {
 		return "duetemplate.xhtml?faces-redirect=true";
