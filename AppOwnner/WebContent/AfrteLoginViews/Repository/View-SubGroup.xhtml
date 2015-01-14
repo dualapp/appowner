@@ -16,7 +16,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/doc.jpg" height="40" width="40"></img> <span class="title"> Sub-Groups View  </span>
+					<img src="#{expenseBean.str_Name}images/group.jpg" height="40" width="40"></img> <span class="title"> Sub-Groups View  </span>
 				</td>
 			</tr>
 		</tbody>
@@ -55,18 +55,18 @@
                   <tr>
                  <td>
                 <h:panelGroup layout="block" id="mainDiv">
-                <h:link value="View Profile"  outcome="Viewprofile.xhtml">&#150;    &#150; &#150;  &#150; 
+                <h:link value="View Profile"  outcome="Viewprofile.xhtml"  style="color:#FFA500;" >&#150;    &#150; &#150;  &#150; 
                 <f:param name="int_UserId" value="#{group.int_UserId}" />
 	   		  </h:link>
 	   		  
-                <font  size="2"><p:commandLink value="Send Message" oncomplete="PF('multiVendorDialog3').show()" style="width:110px; height:32px;text-align:center;"/></font> 
+                <font  size="2"><p:commandLink value="Send Message"   action="#{scriptBean.getTo()}" oncomplete="PF('multiVendorDialog3').show()" style="color:#FFA500;width:110px; height:32px;text-align:center;"/></font> 
                       </h:panelGroup> </td>
                       
      </tr>
      <tr> 
         
         
-        <td><p:outputLabel value="-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------">
+        <td><p:outputLabel value="--------------------------------------------------------------------------------------------------------------">
             </p:outputLabel>
       
         </td>
@@ -79,25 +79,26 @@
      <table>
      <tr>
       <td><h:outputText  value="To" /></td>  
-             <td> <p:inputTextarea rows="7" cols="40" value="#{cls_AddDetailBean.to}"> 
-              </p:inputTextarea>
+             <td> <h:inputText value="#{scriptBean.to}"  style="width:200px"> 
+              </h:inputText>
               </td>
              </tr>
              <tr>
                <td><h:outputText  value="Message *"/></td>
-               <td><h:inputTextarea rows="7" cols="40" id="msg1" />
+               <td><h:inputText value="#{scriptBean.message}"  id="msg1" style="width:200px"/>
               </td>
               </tr>
              <tr>  
-             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send1}"  style=" float:left !important;margin: 0px 0px 0px 0px;" /></td>
+             <td><h:commandButton  value="Send"  action="#{scriptBean.send()}"  style=" float:left !important;margin: 0px 0px 0px 0px;" /></td>
+             <td><h:commandButton  value="Cancel"  outcome="View-SubGroup.xhtml"   style=" float:left !important;margin: 0px 10px 0px 0px;" /></td>
            
             </tr>
    </table>
                   </p:outputPanel>
                   </p:dialog>
                   </div>
-                  <tr><td> <p:button value="Submit"  outcome="Create-SubGroup.xhtml"  style=" width:100px; height:25px; margin:  10px  10px 10px 400px   ;"/> 
-               </td>
+                  <tr><td> <p:button value="Submit"  outcome="Create-SubGroup.xhtml"  style=" width:100px; height:25px; margin:  10px  10px 10px 400px   ;"/></td>
+                 
                </tr> 
                  </h:form>
                  </h:body>

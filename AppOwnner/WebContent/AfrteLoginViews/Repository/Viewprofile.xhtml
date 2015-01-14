@@ -16,7 +16,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/doc.jpg" height="40" width="40"></img> <span class="title"> Sub-Groups View  </span>
+					<img src="#{expenseBean.str_Name}images/group.jpg" height="40" width="40"></img> <span class="title"> Sub-Groups View  </span>
 				</td>
 			</tr>
 		</tbody>
@@ -70,25 +70,28 @@
                   </p:dataGrid>
      
    
-   
-       <p:dialog header="Message" widgetVar="multiVendorDialog3"   showEffect="fade" hideEffect="explode" resizable="false" height="180" width="500">
-         <p:outputPanel id="multiVendorDetail3" > 
-        <table>
-        <tr>
-        <td><h:outputText  value="To" /></td>  
-             <td> <p:inputTextarea rows="7" cols="40" value="#{cls_AddDetailBean.to}"> 
-              </p:inputTextarea>
+   <p:dialog header="Message" widgetVar="multiVendorDialog3"   showEffect="fade" hideEffect="explode" resizable="false" height="180" width="500">
+      <p:outputPanel id="multiVendorDetail3" > 
+     <table>
+     <tr>
+      <td><h:outputText  value="To" /></td>  
+             <td> <h:inputText value="#{scriptBean.to}"  style="width:200px"> 
+              </h:inputText>
               </td>
              </tr>
              <tr>
                <td><h:outputText  value="Message *"/></td>
-               <td><h:inputTextarea rows="7" cols="40" id="msg1" />
+               <td><h:inputText value="#{scriptBean.message}"  id="msg1" style="width:200px"/>
               </td>
               </tr>
-            </table>
-            </p:outputPanel>
-            </p:dialog>
-          
+             <tr>  
+             <td><h:commandButton  value="Send"  action="#{scriptBean.send()}"  style=" float:left !important;margin: 0px 0px 0px 0px;" /></td>
+             <td><h:commandButton  value="Cancel"  outcome="View-SubGroup.xhtml"   style=" float:left !important;margin: 0px 10px 0px 0px;" /></td>
+           
+            </tr>
+   </table>
+                  </p:outputPanel>
+                  </p:dialog>
             
                 </div>
                 </h:form>
