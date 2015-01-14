@@ -23,13 +23,15 @@ public class GroupMember implements Serializable {
 	
 	@Column
 	 private Date DT_Date;
-	private Integer int_UserId;
+	private String int_UserId;
 	
-	public Integer getInt_UserId() {
+	
+
+	public String getInt_UserId() {
 		return int_UserId;
 	}
 
-	public void setInt_UserId(Integer int_UserId) {
+	public void setInt_UserId(String int_UserId) {
 		this.int_UserId = int_UserId;
 	}
 
