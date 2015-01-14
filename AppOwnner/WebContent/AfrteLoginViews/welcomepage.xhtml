@@ -1,4 +1,4 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../include/templates/template11.xhtml">
+	template="../include/templates/template12.xhtml">
 	<ui:define name="content">
 	<body>
 	<form>
@@ -14,22 +14,21 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="images/started.jpg" height="50" width="50"></img> <span class="title">Welcome to AppOwner World</span>
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title">Welcome to AppOwner World</span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	 
 	 <div id="page">
-		<div class="gsTitleDiv"><img src="images/Notices.png" height="42" width="42"></img> Notice Board</div>
-		
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/Notices.png" height="42" width="42"></img> Notice Board</div>
 		<hr/>
 		 	<ui:include   src="/AfrteLoginViews/Communication/noticeboard.xhtml"/>			
 	</div>
 	<div ></div>
 	<div style="clear: all;"></div>
 	<div id="page1">
-	<div class="gsTitleDiv"><img src="images/dues.png" height="42" width="42"></img>My OutStanding Invoice</div>
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/dues.png" height="42" width="42"></img>My OutStanding Invoice</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
@@ -42,15 +41,15 @@
 		</table>														
 	</div>
 	<div style="clear: all;"></div>
-	<p:outputPanel id="poll" rendered="#{expenseBean.rendered}" > 
+	<p:outputPanel id="poll" > 
 	<div id="page1">
-		<div class="gsTitleDiv"><img src="images/polls.jpg" height="42" width="42"></img>Opinion Polls</div>
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Opinion Polls</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
 					<tr>
 						<td> 
-							<ui:include rendered="#{expenseBean.getRendered()}" src="../AfrteLoginViews/Communication/latestpoll.xhtml" />
+							<ui:include rendered="#{expenseBean.getRendered()}" src="/AfrteLoginViews/Communication/latestpoll.xhtml" />
 						</td>						
 					</tr>
 				</tbody>
@@ -61,29 +60,30 @@
 	<div style="clear: all;"></div>
 	
 	<p:outputPanel id="pollResult" rendered="#{expenseBean.getRendered1()}"> 
-       <div id="page1">
+       <div    id="page1">
            
-  <div    class="gsTitleDiv"><img src="images/polls.jpg" height="42" width="42"></img>Opinion Poll Results<br/><hr/></div> 
+  <div    class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/polls.jpg" height="42" width="42"></img>Opinion Poll Results<br/><hr/></div> 
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
 					<tr>
 						<td> 
-						 <ui:include rendered="#{expenseBean.rendered1}" src="../AfrteLoginViews/Communication/latestpollresult.xhtml" /> 
+						 <ui:include rendered="#{expenseBean.rendered1}" src="/AfrteLoginViews/Communication/latestpollresult.xhtml" /> 
 						</td>						
 					</tr>
 				</tbody>
 		</table>	
     </div>
    </p:outputPanel>
-   <div style="clear: all;"></div>
+       
+	  <div style="clear: all;"></div>
        <div id="page1">
-		<div class="gsTitleDiv"><img src="images/photos.png" height="42" width="42"/> Latest photo</div>
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/photos.png" height="42" width="42"/> Latest photo</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
 					<tr>
 						<td> 
-						  <ui:include   src="../AfrteLoginViews/Communication/photos.xhtml" /> 	
+						  <ui:include   src="/AfrteLoginViews/Communication/photos.xhtml" /> 	
 						</td>						
 					</tr>
 				</tbody>
@@ -91,15 +91,14 @@
 		 
 															
 	</div>
-	  
 	<div id="page1">
-		<div class="gsTitleDiv"><img src="images/events.jpg" height="42" width="42"></img>Eventss</div>
+		<div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/events.jpg" height="42" width="42"></img>Eventss</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
 					<tr>
 						<td> 
-						  <ui:include   src="../AfrteLoginViews/Communication/schedulevent.xhtml" /> 	
+						  <ui:include   src="/AfrteLoginViews/Communication/schedulevent.xhtml" /> 	
 						</td>						
 					</tr>
 				</tbody>
