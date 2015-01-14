@@ -92,8 +92,8 @@
 			
 				 <p:growl id="msgs" showDetail="true" />
 				<p:dataTable id="invoice" var="invoice"
-					value="#{templateBean.listInvoices}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" editable="true"  resizableColumns="true"  selection="#{templateBean.selectedInvoiceTemplate}" rowKey="#{invoice.int_InvoiceTemplateID}" >
-					 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>
+					value="#{templateBean.listInvoices}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" editable="true" paginatorPosition="top"  resizableColumns="true"  selection="#{templateBean.selectedInvoiceTemplate}" rowKey="#{invoice.int_InvoiceTemplateID}" >
+					 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center" />
          
             
           
@@ -104,7 +104,7 @@
 							</center>
 						</f:facet>
 						<center>
-						<h:outputText value="#{invoice.str_Organisation}"></h:outputText>
+						<h:outputText value="#{templateBean.str_Organisation}"></h:outputText>
 						</center>
 					</p:column>
 					<p:column>

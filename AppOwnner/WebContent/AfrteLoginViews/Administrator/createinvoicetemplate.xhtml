@@ -76,10 +76,10 @@
           
            <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
             <td><p:selectCheckboxMenu id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" requiredMessage="Choose Atleast One Due Template ">
-               <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
+               
               <f:selectItems value="#{templateBean.dueTemplates}"/>
              
-             </p:selectCheckboxMenu>  
+          </p:selectCheckboxMenu>
            </td>
            <td><p:message for="str_DueInvoiceTemplate" dispay="text"/></td>
             </tr>
