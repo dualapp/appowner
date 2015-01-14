@@ -23,7 +23,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-@Table(name="tb_User")
+@Table(name="tb_user")
 public class User implements Serializable{
 
 	private static final long serialVersionUID = -723583058586873479L;
