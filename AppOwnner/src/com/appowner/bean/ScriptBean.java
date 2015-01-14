@@ -1660,7 +1660,8 @@ public UserExtraInfo getUserExtraInfo() {
 }
 public void setUserExtraInfo(UserExtraInfo userExtraInfo) {
 	this.userExtraInfo = userExtraInfo;
-}private String residence1;
+}
+private String residence1;
 
 private String status;
 
@@ -1777,36 +1778,55 @@ public int getIntdocid2() {
 public void setIntdocid2(int intdocid2) {
 	this.intdocid2 = intdocid2;
 }
-public int  intdocid3;
+public  List<Integer> userinfo;
+
+public List<Integer> getUserinfo() {
+	return userinfo;
+}
+public void setUserinfo(List<Integer> userinfo) {
+	this.userinfo = userinfo;
+}
+
 public  static  String selecte;
 
-public int getIntdocid3() {
-	return intdocid3;
-}
-public void setIntdocid3(int intdocid3) {
-	this.intdocid3 = intdocid3;
-}
+
 public static String getSelecte() {
 	return selecte;
 }
 public static void setSelecte(String selecte) {
 	ScriptBean.selecte = selecte;
 }
+private String userID;
 
-public void  memberadd() {
+public String getUserID() {
+	return userID;
+}
+public void setUserID(String userID) {
+	this.userID = userID;
+}
+public String  memberadd() {
 	
 intdocid2=getSubcriptService().adv1(selectes);
-intdocid3=getSubcriptService().addmember(selectes);
-System.out.println(selecte+"mmmmmmmmmmmmmmmmmmmmmmmmppppppppppppppppppppppppppppppp");
+userinfo=(List<Integer>) getSubcriptService().memberid(str_Hobbies,str_Profession);
+System.out.println(userinfo+"mmmmmmmmmmmmmmmmmmmmmmmmppppppppppppppppppppppppppppppp");
+System.out.println(userinfo);
+StringBuilder out = new StringBuilder();
+for (Object o : userinfo)
+{
+	out.append(o.toString());
+  out.append(",");
+}
+userID=out.toString();
 System.out.println(selectes+"mmmmmmmmmmmmmmmmmmmmmmmm");
 System.out.println(intdocid2);
 GroupMember m1=new GroupMember();
 m1.setInt_GroupId(intdocid2);
-m1.setInt_UserId(intdocid3);
+m1.setInt_UserId(userID);
 m1.setDT_Date(getDTDate());
 m1.setInt_GroupmemberId(getInt_GroupmemberId());
 getSubcriptService().insertes(m1);
-//return "View-SubGroup.xhtml";
+
+return "View-SubGroup.xhtml";
 
 }
 public void subname()
@@ -1965,29 +1985,145 @@ public String getPath() {
 	 
 	return path ;
 }
-
-
-
-
-
 private UserExtraInfo groupes;
-
-
-
-
 public UserExtraInfo getGroupes() {
 	groupes= getSubcriptService().alldatas(int_UserId);
 	return groupes;
 }
 public void setGroupes(UserExtraInfo groupes) {
-	this.groupes = groupes;
-}
+	this.groupes = groupes;}
 public void Subdetail()
-
 {
-	System.out.println(int_UserId+"vbbbbvbvbbvbvbvbvvvbvbvbvvvvvvvvvvvvvvvvvvv");
-	
+System.out.println(int_UserId+"vbbbbvbvbbvbvbvbvvvbvbvbvvvvvvvvvvvvvvvvvvv");
+	}
+
+
+private List<UserExtraInfo> users;
+public List<UserExtraInfo> getUsers() {
+	System.out.println(int_UserId);
+	users=getSubcriptService().allusers(int_GroupId);
+	return users;
 }
+public void setUsers(List<UserExtraInfo> users) {
+	this.users = users;
+}
+
+private static String recipient="recipient";
+private static String mailid;
+public static String getRecipient() {
+	return recipient;
+}
+public static void setRecipient(String recipient) {
+	ScriptBean.recipient = recipient;
+}
+public static String getMailid() {
+	return mailid;
+}
+public static void setMailid(String mailid) {
+	ScriptBean.mailid = mailid;
+}
+public String getTo() {
+	to="im.mukeshkumar89@gmail.com";
+	System.out.println(to+"fdjkfkjjkj");
+	System.out.println(str1+"jjj");
+	return to;
+}
+
+private String to;
+public void setTo(String to) {
+	this.to = to;
+}
+private static String str1;
+
+public static String getStr1() {
+	return str1;
+}
+public static void setStr11(String str1) {
+	ScriptBean.str1 = str1;
+}
+public String getTo1(){
+	System.out.println("dkjdkjdkj");
+
+	to="im.mukeshkumar89@gmail.com";
+	
+	System.out.println(str1+"dkjdfk");
+	return to;
+}
+public String send()
+{
+	recipient= getTo();
+	content="";
+	subject="Appowner.com";
+	str_message=getMessage();
+	aprtmentname=getStr_ApartmentName();
+	blockname=Util.getBlock();
+	usrname=Util.getUserName();
+	str_date=getDates();
+	System.out.println(recipient);
+	System.out.println(content);
+	return "/AfrteLoginViews/Repository/GroupEmail.jsp";
+}
+
+
+private static  Date str_date;
+private Date dates;
+
+
+public static Date getStr_date() {
+	return str_date;
+}
+public static void setStr_date(Date str_date) {
+	ScriptBean.str_date = str_date;
+}
+public Date getDates() {
+	dates=new java.util.Date();
+	return dates;
+}
+public void setDates(Date dates) {
+	this.dates = dates;
+}
+
+private static String str_message;
+
+public static String getStr_message() {
+	return str_message;
+}
+public static void setStr_message(String str_message) {
+	ScriptBean.str_message = str_message;
+}
+
+private String message;
+
+public String getMessage() {
+	return message;
+}
+public void setMessage(String message) {
+	this.message = message;
+}
+
+private static String aprtmentname;
+private static String  blockname;
+private static String usrname;
+
+public static String getUsrname() {
+	return usrname;
+}
+public static void setUsrname(String usrname) {
+	ScriptBean.usrname = usrname;
+}
+public static String getBlockname() {
+	return blockname;
+}
+public static void setBlockname(String blockname) {
+	ScriptBean.blockname = blockname;
+}
+public static String getAprtmentname() {
+	return aprtmentname;
+}
+public static void setAprtmentname(String aprtmentname) {
+	ScriptBean.aprtmentname = aprtmentname;
+}
+
 
 }
 
