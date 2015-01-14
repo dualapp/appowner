@@ -202,6 +202,14 @@ public interface SubcriptDao {
 
 	public User allnames(String str_Username);
 
+	public List allusers(int int_GroupId);
+
+	public User usrname(String str_Username);
+
+	public int adduser(String selecte);
+
+	public List memberid(String str_Hobbies, String str_Profession);
+
 	
 	
 

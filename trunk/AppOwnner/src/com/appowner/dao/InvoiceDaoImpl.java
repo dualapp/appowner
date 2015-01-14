@@ -83,11 +83,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
 			 System.out.println("priyahuyt234");
 			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
 		}
-		else if(str_Status.isEmpty())
+	/*	else if(str_Status.isEmpty())
 		{
 			 System.out.println("priyahuyt23467");
 			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
-		}
+		}*/
 		else if(str_Status==null)
 		{
 			 System.out.println("priyahuyt23467");
