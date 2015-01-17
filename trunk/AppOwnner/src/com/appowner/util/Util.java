@@ -37,7 +37,7 @@ public class Util {
 	      }
 	      public static String getStr_Country()
 	      {
-	    	  System.out.println("llllllllllll;;;;;;;;;;;;;'''''''''''''''");
+	    	  
 	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	        return  session.getAttribute("str_Country").toString();
 	      }
