@@ -196,7 +196,7 @@ public class TemplateBean implements Serializable {
 	}
 	public String saveDueTemplate( ) {
 		 
-		//System.out.println(emp.getEmpId());
+	
 		
 		getTemplateService().updateDueTemplate(dueTemplate1);
 			
@@ -213,25 +213,32 @@ public class TemplateBean implements Serializable {
 	public void setDataTable(DataTable dataTable) {
 		this.dataTable = dataTable;
 	}
-public boolean cancel()
+	public void getDueTemplate()
+	{
+		 dueTemplate1=(DueTemplate) dataTable.getRowData();
+		 System.out.println(dueTemplate1.getInt_DueTemplateID());
+		 getDueTemplate2(dueTemplate1.getInt_DueTemplateID());
+	}
+/*public void cancel()
   {
 	  System.out.println("kvkk");
 	
-	  dueTemplate1=(DueTemplate) dataTable.getRowData();
+	 dueTemplate1=(DueTemplate) dataTable.getRowData();
 	  System.out.println(dueTemplate1.getStr_DueTemplate());
-	  /*	for (DueTemplate template :selectedDueTemplate)
-	    {	String str=template.getStr_DueTemplate();
+	 
+	    String str=dueTemplate1.getStr_DueTemplate();
 	    String id=getTemplateService().detectDueTemplate(str);
 	    System.out.println(id+"jffkjfj");
+	    
 	    if(id!=null)
 	    {
 	    	indicator=true;
 	    }
 	    System.out.println(indicator+"fdfdf123");	
-	    }*/
-	  indicator=true;
-		return indicator;
-  }
+	   
+	 
+		
+  }*/
    
 	
 	public String deleteDue(){
@@ -252,33 +259,39 @@ public boolean cancel()
 	public String deleteDueTemplate() {
 		System.out.println("jhgjgf");
 	    List<DueTemplate> delete = new ArrayList<DueTemplate>();
-	   
+	   System.out.println(indicator+"fgjfgj");
+	   FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
 	    for (DueTemplate template :selectedDueTemplate)
-	    {	String str=template.getStr_DueTemplate();
-	    String id=getTemplateService().detectDueTemplate(str);
-	    if(id!=null)
-	    {
-	    	indicator=true;
-	    }
-	    System.out.println(indicator+"fdfdf");	
-	    if (template.getInt_DueTemplateID()!=null) 
+	    {	
+	    	 String str=template.getStr_DueTemplate();
+	 	    String id=getTemplateService().detectDueTemplate(str);
+	 	    System.out.println(id+"jffkjfj");
+	 	    
+	 	    if(id!=null)
+	 	    {
+	 	    	indicator=true;
+	 	    }
+	   
+	   if (template.getInt_DueTemplateID()!=null) 
 	    	{
 	            delete.add(template);
 	        }
-	    	
+	    if(indicator==true)	
+	    {
+	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Message", " Cannot delete Due Template. Delete the due instances and try again."));	
+	    }
 			
-	    } 
-    if(indicator==false)
-    {
-    getTemplateService().deleteDue1(delete);
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
+	    else
+	    {
+        getTemplateService().deleteDue1(delete);
+    
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "DueTemplate deleted Successfully!"));
      System.out.println("jfjgfjgf");
-	   
-    }
+	    }
+	    }
     return "duetemplate.xhtml?faces-redirect=true";
 	}
     public String cancelDue() {
