@@ -95,5 +95,7 @@ public interface In_UserService {
 	public UserExtraInfo getUserExtraInfo(Integer int_UserId);
 
 	public Integer getStatus(String str_ApartmentName);
+
+	public Integer getUserId(String str_Username);
 }
 

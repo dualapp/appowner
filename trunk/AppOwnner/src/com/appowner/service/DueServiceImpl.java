@@ -96,4 +96,8 @@ public class DueServiceImpl implements DueService{
 	{
 		getDueDao().updateDue(id,int_InvoiceNo);
 	}
+	public boolean getInvoiceNo(Integer id)
+	{
+		return getDueDao().getInvoiceNo(id);
+	}
 }
