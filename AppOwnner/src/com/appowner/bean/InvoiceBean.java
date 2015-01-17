@@ -468,7 +468,7 @@ private List<DueTransaction> listDueTransaction;
 		              due1.setStr_Period(str_BillPeriod);
 		              due1.setInt_Year(getInt_Year());
 		             due1.setInt_InvoiceNo(int_InvoiceNo);
-		             due1.setStr_Organisation(str_Organisation);
+		             due1.setStr_Organisation(int_Organisation);
 		             due1.setDbl_DueAmount(totalAmount);
 		          Integer id=getDueService().saveDueTransaction(due1);  
 		          System.out.println(id);
@@ -807,7 +807,7 @@ private List<DueTransaction> listDueTransaction;
 		 {
 	       
 		    
-		    Double sqrt=getInvoiceService().getSqft(ddd);
+		  
 		    listDues=getInvoiceService().taxList(fff);
 	       
 	        
@@ -833,13 +833,24 @@ private List<DueTransaction> listDueTransaction;
 		    	 DueTemplate template=(DueTemplate)obj;
 		    	 String str2=template.getStr_TaxTemplate();
 		    	 System.out.println(str2);
-		    	
+		    	 String str3=template.getStr_Calculation();
 		    	
 		    	
 		    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 		    	 tax2.add(taxAmount);
-		    	 totalAmount=template.getStr_Rate()*sqrt;
-		    	 System.out.println(totalAmount+"jjff");
+		    	 if(str3.equalsIgnoreCase("Sqrt"))
+		    	  {   Double sqrt=getInvoiceService().getSqft(ddd);
+		    	      System.out.println("dksdsk");
+		    	      totalAmount=template.getStr_Rate()*sqrt;
+		    	      System.out.println(totalAmount+"fdkdfk");
+		    	  }
+		    	  else if(str3.equalsIgnoreCase("Flat"))
+		    	  {
+		    		  totalAmount= template.getStr_Rate(); 
+		    		  System.out.println("fdjdfffd");
+		    		  System.out.println(totalAmount+"dfjkdkjdf");
+		    	  }
+		    	
 		    	 taxAmount1=(taxAmount*totalAmount)/100;
 		    	 taxAmounts.add(taxAmount1);
 		    	 subTotal=subTotal+totalAmount;
@@ -901,7 +912,7 @@ private List<DueTransaction> listDueTransaction;
 		 {
 		      
 			    
-			    Double sqrt=getInvoiceService().getSqft(str);
+			  
 			    listDues=getInvoiceService().taxList(select);
 		       
 		        
@@ -926,15 +937,25 @@ private List<DueTransaction> listDueTransaction;
 			    	 Object obj=list.next();
 			    	 DueTemplate template=(DueTemplate)obj;
 			    	 String str2=template.getStr_TaxTemplate();
-			    	
+			    	 String str3=template.getStr_Calculation();
 			    	 
 			    	
 			    	
 			    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 			    	 System.out.println(taxAmount+"jkjkggf");
-			    	tax2.add(taxAmount);
-			    	 totalAmount=template.getStr_Rate()*sqrt;
-			    	
+			    	  tax2.add(taxAmount);
+			    	  if(str3.equalsIgnoreCase("Sqrt"))
+			    	  {   Double sqrt=getInvoiceService().getSqft(str);
+			    	      System.out.println("dksdsk");
+			    	      totalAmount=template.getStr_Rate()*sqrt;
+			    	      System.out.println(totalAmount+"fdkdfk");
+			    	  }
+			    	  else if(str3.equalsIgnoreCase("Flat"))
+			    	  {
+			    		  totalAmount= template.getStr_Rate(); 
+			    		  System.out.println("fdjdfffd");
+			    		  System.out.println(totalAmount+"dfjkdkjdf");
+			    	  }
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	
 			    	 taxAmounts.add(taxAmount1);
@@ -1080,7 +1101,8 @@ return null;
 private List<String> dueList3;
 
 public List<String> getDueList3(String fff,String ddd) {
-	
+	System.out.println("fjjfdfd");
+	System.out.println(fff+"fjdfkjf");
 	 listDues=getInvoiceService().taxList(fff);
 	
 	 String[] strArray = listDues.split(",");
@@ -1132,7 +1154,7 @@ public String changeAccount(ValueChangeEvent event)
 }
 public String deleteInvoice() {
 	
-
+System.out.println("fddffdk");
 	Integer id=selectedInvoice.getInt_InvoiceTransactionID();
 	String str=selectedInvoice.getInt_InvoiceNo();
 	
@@ -1141,7 +1163,7 @@ public String deleteInvoice() {
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Invoice deleted Successfully!", "Invoice deleted Successfully!"));
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Delete Invoice? Payments recorded against this invoice will also be deleted.!"));
    
 
 		getInvoiceService().deleteInvoice(id);
