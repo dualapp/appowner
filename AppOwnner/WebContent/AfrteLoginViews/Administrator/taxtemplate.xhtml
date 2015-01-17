@@ -57,7 +57,7 @@
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr>
           <td>
-           <p:commandButton style="width:120px;height:25px"  update=":form:multiTaxTemplateDetail2" icon="ui-icon-plus" value="Create New" oncomplete="PF('multiTaxTemplateDialog2').show()" />&#150; &#150;<p:commandButton process="tax" update=":form:multiTaxTemplateDetail1"  style="width:120px;height:25px" icon="ui-icon-search" value="View" oncomplete="PF('multiTaxTemplateDialog1').show()" />
+          <p:button style="width:120px;height:25px" outcome="createnewtax.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150;<p:commandButton process="tax" update=":form:multiTaxTemplateDetail1"  style="width:120px;height:25px" icon="ui-icon-search" value="View" oncomplete="PF('multiTaxTemplateDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="tax" update=":form:multiTaxTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiTaxTemplateDialog').show()" />
        &#150; &#150;  <p:commandButton style="width:120px;height:25px" update="tax" process="tax" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteTaxTemplate()}" icon="ui-icon-trash" value="Delete" />&#150; &#150;<p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh" value="Refresh" />
                <h:commandLink id="excel">
@@ -86,7 +86,7 @@
   
          <p:growl id="msgs" showDetail="true" /> 
         <p:dataTable id="tax" var="tax" value="#{templateBean.listTaxs}"  style="width: 98%;margin-left: 1%;margin-right: 2%;margin-bottom:5px"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50"
-         selection="#{templateBean.selectedTaxTemplate}" rowKey="#{tax.int_TaxTemplateID}" editable="true"  resizableColumns="true">
+         selection="#{templateBean.selectedTaxTemplate}" rowKey="#{tax.int_TaxTemplateID}" editable="true"  resizableColumns="true" paginatorPosition="top">
 					
                
             <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>     
@@ -158,41 +158,7 @@
             </p:column>
             </p:dataTable>
             </div>
-             <p:dialog header="Create TaxTemplate" widgetVar="multiTaxTemplateDialog2"  id="multiTaxTemplateDetail2"   showEffect="explode" hideEffect="bounce" resizable="false" height="350" width="500">
-                 <table>
-            <tr>
-             <td> <h:outputLabel value="Organisation:" /></td>  
-          <td><h:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}" >
-                  <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
-                 </h:selectOneMenu></td>   
-                 </tr>
-                 <tr></tr><tr></tr><tr></tr><tr></tr>
-           <tr>
-            <td>  <h:outputText  value="Tax Name" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_TaxName" value="#{templateBean.str_TaxName}"  required="true" requiredMessage="TaxName should not Empty"/> </td>
-           <td><p:message for="str_TaxName" dispay="text"/></td>
-             </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
-             <tr>
-            <td>  <h:outputText  value="Percentage(%)" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="int_Percentage" value="#{templateBean.int_Percentage}"  required="true" requiredMessage="Percentage should be a Number "/> </td>
-           <td><p:message for="int_Percentage" dispay="text"/></td>
-             </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
-              <tr>
-            <td>  <h:outputText  value="Tax Exemption"/><br /><small>(per month per flat)</small></td>
-           <td>  <p:inputText id="int_TaxExemption" value="#{templateBean.int_TaxExemption}" /> </td>
-             </tr>
-             </table>
-            
-              <h:panelGroup style="display:block; text-align:right">
-     <tr> <td><h:commandButton id="submit" value="Submit" onclick="EnrollNowClick()" action="#{templateBean.addTaxTemplate}" ajax="false" /></td>
-                <td><h:commandButton id="cancel" value="Cancel"  onclick="EnrollLater1()" ajax="false"/></td>
-            </tr>
-            </h:panelGroup>
-            
-             </p:dialog>
+             
               <p:dialog header="Edit TaxTemplate" widgetVar="multiTaxTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="200" width="400">
         <p:outputPanel id="multiTaxTemplateDetail" style="text-align:center;">
           
