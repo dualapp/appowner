@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="db_FeedbackForm")
+@Table(name="tb_feedbackform")
 public class cls_Userfeedback implements Serializable{
 
 	private static final long serialVersionUID = -723583058586873479L;

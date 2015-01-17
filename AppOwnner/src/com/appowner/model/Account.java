@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_Account")
+@Table(name="tb_account")
 		
 public class Account implements Serializable {
 
@@ -93,5 +93,12 @@ public class Account implements Serializable {
 	}
 	public void setStr_IFSC_Code(String str_IFSC_Code) {
 		this.str_IFSC_Code = str_IFSC_Code;
+	}
+	private Integer int_Organisation;
+	public Integer getInt_Organisation() {
+		return int_Organisation;
+	}
+	public void setInt_Organisation(Integer int_Organisation) {
+		this.int_Organisation = int_Organisation;
 	}
 }

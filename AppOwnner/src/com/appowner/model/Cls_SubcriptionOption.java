@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_Management")
+@Table(name = "tb_management")
 public class Cls_SubcriptionOption implements Serializable 
 {
 /**

@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_Role_Master")
+@Table(name="tb_role_master")
 public class RoleMaster implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

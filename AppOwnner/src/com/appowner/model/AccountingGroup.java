@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_AccountingGroup")
+@Table(name="tb_accountinggroup")
 public class AccountingGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_Group")
+@Table(name = "tb_group")
 public class  cls_Group implements Serializable 
 {
 /**

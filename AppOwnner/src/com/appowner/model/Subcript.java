@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 
-@Table(name = "tb_Subcription")
+@Table(name = "tb_subcription")
 public class Subcript implements Serializable {
 
 	private static final long serialVersionUID = -723583058586873479L;

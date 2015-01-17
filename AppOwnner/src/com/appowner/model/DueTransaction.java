@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_DueTransaction")
+@Table(name="tb_duetransaction")
 public class DueTransaction implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -34,7 +34,7 @@ public class DueTransaction implements Serializable{
 	private Date str_InitiatedOn;
 	private Date dat_LastDate;
 	@Column(name="int_Organisation")
-	private String str_Organisation;
+	private Integer str_Organisation;
 	@Column(name="var_Block")
 	private String str_Block;
 	@Column(name="var_ApartmentNo")
@@ -83,10 +83,11 @@ public class DueTransaction implements Serializable{
 	public void setDat_LastDate(Date dat_LastDate) {
 		this.dat_LastDate = dat_LastDate;
 	}
-	public String getStr_Organisation() {
+	
+	public Integer getStr_Organisation() {
 		return str_Organisation;
 	}
-	public void setStr_Organisation(String str_Organisation) {
+	public void setStr_Organisation(Integer str_Organisation) {
 		this.str_Organisation = str_Organisation;
 	}
 	public String getStr_Block() {

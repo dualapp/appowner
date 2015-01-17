@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_Groupmember")
+@Table(name="tb_groupmember")
 public class GroupMember implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

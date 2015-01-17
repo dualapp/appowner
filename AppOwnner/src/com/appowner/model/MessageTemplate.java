@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_MessageTemplate")
+@Table(name="tb_messagetemplate")
 public class MessageTemplate implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

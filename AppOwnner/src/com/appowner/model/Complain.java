@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_Complain")
+@Table(name="tb_complain")
 public class Complain implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

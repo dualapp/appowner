@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="tb_MessageForm")
+@Table(name="tb_messageform")
 public class cls_Message implements Serializable{
 
 	private static final long serialVersionUID = -723583058586873479L;

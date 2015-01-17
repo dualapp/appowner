@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_Commitee_Roles")
+@Table(name="tb_commitee_roles")
 public class CommiteeRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

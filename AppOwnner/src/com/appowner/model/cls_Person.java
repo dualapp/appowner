@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="tb_EnquiryForm")
+@Table(name="tb_enquiryform")
 public class cls_Person implements Serializable{
 
 	private static final long serialVersionUID = -723583058586873479L;
