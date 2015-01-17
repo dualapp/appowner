@@ -40,7 +40,7 @@
 	</table>
 <body  bgcolor="pink">
   <h:form id="form">
-  
+  <p:growl id="growl" showDetail="true" sticky="true" /> 
   <div id="page3">
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr> 
@@ -161,12 +161,8 @@
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
          <tr>
        <td><h:panelGroup id="jjhj" rendered="#{dueBean.indicator}">
-          <p:button style="width:120px;height:25px"  icon="ui-icon-plus" value="Create New" outcome="createnewdue.xhtml" />&#150; &#150;<h:commandButton  style="width:120px;height:25px" process="due" update="due" icon="ui-icon-search" value="View" action="viewuserdues.xhtml" />&#150; &#150;<p:commandButton  icon="ui-icon-pencil" process="due" update=":form:multiDuesDetail" oncomplete="PF('multiDuesDialog').show()" style="width:120px;height:25px" value="Edit " />&#150; &#150;<p:commandButton style="width:120px;height:25px"  icon="ui-icon-trash"  process="due" update=":form:multiDuesDetail3" oncomplete="PF('multiDuesDialog3').show()" value="Delete" action="#{dueBean.select()}" /> &#150; &#150;<p:commandButton  icon="ui-icon-refresh" style="width:120px;height:25px"  value="Refresh" />&#150; &#150;<p:menuButton value="Action">
-        <p:menuitem value="Notify By Mail" />
-        <p:menuitem value="Notify By Sms" />
-        <p:menuitem value="Export To Excel" />
-         <p:menuitem value="View Sumary"/>
-        </p:menuButton></h:panelGroup>
+          <p:button style="width:120px;height:25px"  icon="ui-icon-plus" value="Create New" outcome="createnewdue.xhtml" />&#150; &#150;<p:button  style="width:120px;height:25px" process="due" update="due" icon="ui-icon-search" value="View" outcome="viewuserdues.xhtml" />&#150; &#150;<p:commandButton  icon="ui-icon-pencil" process="due" update=":form:multiDuesDetail" oncomplete="PF('multiDuesDialog').show()" style="width:120px;height:25px" value="Edit " />&#150; &#150;<h:commandButton style="width:120px;height:25px"  icon="ui-icon-trash"  process="due" action="#{dueBean.deleteDues()}" value="Delete"  /> &#150; &#150;<p:commandButton  icon="ui-icon-refresh" style="width:120px;height:25px"  value="Refresh" />
+      </h:panelGroup>
         <h:panelGroup id="nnmnmnm" rendered="#{dueBean.indicator1}">
         <h:commandButton  style="width:120px;height:25px" process="due1" update="due1" icon="ui-icon-search" value="View" action="viewuserdues.xhtml" />
             &#150; &#150;<p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh" value="Refresh" /></h:panelGroup>
@@ -203,7 +199,7 @@
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
                 </f:facet>
-                <h:outputText value="#{due.str_Organisation}" />
+                <h:outputText value="#{dueBean.str_Organisation}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
@@ -290,23 +286,7 @@
           
         </p:outputPanel>
     </p:dialog>
-     <p:dialog header="Delete Due" widgetVar="multiDuesDialog3"     showEffect="explode" hideEffect="explode" resizable="false" height="150" width="400">
-        <p:outputPanel id="multiDuesDetail3" style="text-align:center;">
-          <table>
-          <tr>
-          <td><h5>Delete Due? Payments recorded against this due will also be deleted.</h5>
-          
-          </td>
-          </tr>
-       <tr><td><p:separator/></td></tr>
-       <tr>
-       <td><p:commandButton value="Delete" action="#{dueBean.deleteDues()}" update=":form:multiDuesDetail4" oncomplete="PF('multiDuesDialog4').show()" /><p:commandButton value="Cancel"/></td>
-      
-         </tr>
-          </table>
-          
-        </p:outputPanel>
-    </p:dialog>
+     
      <p:dialog header="Message" widgetVar="multiDuesDialog4"     showEffect="explode" hideEffect="explode" resizable="false" height="150" width="400">
         <p:outputPanel id="multiDuesDetail4" style="text-align:center;">
           <table>
@@ -338,7 +318,7 @@
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
                 </f:facet>
-                <h:outputText value="#{due.str_Organisation}" />
+                <h:outputText value="#{dueBean.str_Organisation}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
