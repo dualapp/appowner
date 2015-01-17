@@ -29,10 +29,18 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	private Integer apartmentID;
+	public Integer getApartmentID() {
+		apartmentID=Util.getAppartmentId();
+		return apartmentID;
+	}
+	public void setApartmentID(Integer apartmentID) {
+		this.apartmentID = apartmentID;
+	}
 	@SuppressWarnings("unchecked")
 	public List<String> getInvoiceName()
-	{
-		List<String> invoiceList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).setCacheable(true).setProjection(Projections.property("str_InvoiceTemplateName")).list();
+	{   getApartmentID();
+		List<String> invoiceList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).setCacheable(true).setProjection(Projections.property("str_InvoiceTemplateName")).add(Restrictions.eq("int_Organisation", apartmentID)).list();
 		
 		  return  invoiceList;
 	}
@@ -44,9 +52,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String taxList(String select) {
-		
-		String hql="Select int_InvoiceTemplateID from InvoiceTemplate  where str_InvoiceTemplateName=?";
-		int invoiceID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).uniqueResult();
+		getApartmentID();
+		String hql="Select int_InvoiceTemplateID from InvoiceTemplate  where str_InvoiceTemplateName=? and int_Organisation=?";
+		int invoiceID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).setParameter(1, apartmentID).uniqueResult();
 		
 		String hql1="select str_DueInvoiceTemplate from InvoiceTemplate where int_InvoiceTemplateID="+invoiceID;
 		String taxlist= (String) getSessionFactory().getCurrentSession().createQuery(hql1).uniqueResult();
@@ -56,9 +64,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getTaxList(String str)
-	{
-		String hql="Select int_DueTemplateID from DueTemplate  where str_DueTemplate=?";
-		int dueID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).uniqueResult();
+	{    getApartmentID();
+		String hql="Select int_DueTemplateID from DueTemplate  where str_DueTemplate=? and int_Organisation=?";
+		int dueID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).setParameter(1, apartmentID).uniqueResult();
 		
 		String hql1="from DueTemplate where int_DueTemplateID="+dueID;
 		List<String> taxlist= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).list();
@@ -72,16 +80,16 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	    System.out.println(str_ApartmentNo+"kjnjj");
 	    System.out.println(str_Status+"hjhjjh");
 	    System.out.println(str_BillPeriod+"jhjfddj");
-	   
+	    getApartmentID();
 		if(str_InvoiceTemplate==null && str_Block==null && str_ApartmentNo==null && str_Status==null && str_BillPeriod==null)
 		{
 		  System.out.println("priyahuyt");
-		   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+		   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
 		}
 		else if(str_InvoiceTemplate.isEmpty())
 		{
 			 System.out.println("priyahuyt234");
-			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
 		}
 	/*	else if(str_Status.isEmpty())
 		{
@@ -91,13 +99,13 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		else if(str_Status==null)
 		{
 			 System.out.println("priyahuyt23467");
-			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
+			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
 		}
 	 else
 		 {   System.out.println("jndfjfdjfjdk");
-			String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND str_Status=?";
+			String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND str_Status=? AND int_Organisation=?" ;
 			return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
-		          .setParameter(3, str_ApartmentNo).setParameter(4, str_Status).list();
+		          .setParameter(3, str_ApartmentNo).setParameter(4, str_Status).setParameter(5, apartmentID).list();
 		 }
 		}  
 	@SuppressWarnings("unchecked")
@@ -107,11 +115,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
      System.out.println(str_ApartmentNo+"kjnjj12");
      System.out.println(int_Year+"hjhjjh34");
      System.out.println(str_BillPeriod+"jhjfddj56");
+     getApartmentID();
 		
-		
-			 String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND int_Year=?"; 
+			 String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND int_Year=? AND int_Organisation=?"; 
 				return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str_InvoiceTemplate).setParameter(1,str_BillPeriod).setParameter(2, str_Block)
-			          .setParameter(3, str_ApartmentNo).setParameter(4, int_Year).list(); 
+			          .setParameter(3, str_ApartmentNo).setParameter(4, int_Year).setParameter(5, apartmentID).list(); 
 		
 	}
 			
@@ -134,10 +142,10 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	public double getTaxAmount(String str1)
 	
 	{
+		getApartmentID();
+		String hql="select int_Percentage from TaxTemplate where str_TaxName=? AND int_Organisation=?";
 		
-		String hql="select int_Percentage from TaxTemplate where str_TaxName=?";
-		
-		double ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str1).uniqueResult();
+		double ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str1).setParameter(1, apartmentID).uniqueResult();
 	     System.out.println(ddd);
 		return ddd;
 	
@@ -156,9 +164,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getAccountName()
-	{
-		String str="select str_AccountName from ChartOfAccount where str_AccountType=? OR str_AccountType=?";
-		List<String> str1=(List<String>)getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,"Bank").setParameter(1, "Cash").setCacheable(true).list();
+	{   getApartmentID();
+		String str="select str_AccountName from ChartOfAccount where str_AccountType=? OR str_AccountType=? AND int_ApartmentId=0 or int_ApartmentId=?";
+		List<String> str1=(List<String>)getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,"Bank").setParameter(1, "Cash").setCacheable(true).setParameter(2, apartmentID).list();
 		
 		
 		
@@ -184,9 +192,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getlistAccountName()
-	{
-		String hql="select str_acount_Name from Account";
-		return getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	{    getApartmentID();
+		String hql="select str_acount_Name from Account where int_Organisation=?";
+		return getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0, apartmentID).list();
 	}
 	public void deleteDues(String str)
 	{
@@ -201,15 +209,16 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	public String getPeriod(String select)
 	{   System.out.println(select+"hjyhjjuhjuj");
-		String hql="select str_Frequency from InvoiceTemplate  where str_InvoiceTemplateName=?";
-		return (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).setCacheable(true).uniqueResult();
+	getApartmentID();
+		String hql="select str_Frequency from InvoiceTemplate  where str_InvoiceTemplateName=? and int_Organisation=?";
+		return (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,select).setCacheable(true).setParameter(1, apartmentID).uniqueResult();
 	}
 	@SuppressWarnings("unchecked")
 	public List<Double> getOutstandingBalance()
 	{
-		Integer  id=Util.getAppartmentId();
+		getApartmentID();
 		String hql="select totalBalance from InvoiceTransaction  where int_Organisation=?";
-		return (List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,id).setCacheable(true).list();
+		return (List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,apartmentID).setCacheable(true).list();
 	}
 	
 }

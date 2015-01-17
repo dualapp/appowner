@@ -45,6 +45,8 @@ import java.util.List;
 
 
 
+
+
 import javax.mail.Session;
 import javax.management.Query;
 
@@ -408,6 +410,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		{
 			String hql="select status from UserApartment where str_ApartmentName=?";
 			return (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0, str_ApartmentName).uniqueResult();
+		}
+
+		@Override
+		public Integer getUserId(String str_Username) {
+			// TODO Auto-generated method stub
+			return (Integer) getSessionFactory().getCurrentSession().createQuery("select int_UserId  from User where str_Email=?").setCacheable(true).setParameter(0, str_Username).uniqueResult();
 		}
 		}
 
