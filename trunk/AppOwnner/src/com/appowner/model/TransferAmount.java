@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_TransferAmount")
+@Table(name="tb_transferamount")
 		
 public class TransferAmount implements Serializable {
 

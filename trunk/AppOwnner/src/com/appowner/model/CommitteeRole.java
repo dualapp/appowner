@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name = "tb_Commitee_Roles")
+@Table(name = "tb_commitee_roles")
 public class CommitteeRole implements Serializable{
 	
 	/**

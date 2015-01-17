@@ -19,7 +19,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_UserExtraInfo")
+@Table(name="tb_userextrainfo")
 public class UserExtraInfo  implements Serializable {
 	/**
 	 * 

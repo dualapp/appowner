@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_DueTemplate")
+@Table(name="tb_duetemplate")
 public class DueTemplate implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_Accounts_Opening_Balance")
+@Table(name="tb_accounts_opening_balance")
 public class AccountsOpeningBalance implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

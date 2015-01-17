@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "tb_CommunityTypeMaster")
+@Table(name = "tb_communitytypemaster")
 public class CommunityTypeMaster implements Serializable {
 	/**
 	 * 

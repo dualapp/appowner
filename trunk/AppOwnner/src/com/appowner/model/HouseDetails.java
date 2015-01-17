@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 
-@Table(name = "tb_HouseDetails")
+@Table(name = "tb_housedetails")
 
 public class HouseDetails  implements Serializable{
 

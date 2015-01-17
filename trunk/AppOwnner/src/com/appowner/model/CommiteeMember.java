@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_Commiteemember")
+@Table(name = "tb_commiteemember")
 public class CommiteeMember implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

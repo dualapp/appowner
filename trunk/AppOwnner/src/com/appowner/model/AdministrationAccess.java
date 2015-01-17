@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-@Table(name="TB_Adminstration_Access")
+@Table(name="tb_adminstration_access")
 @Entity
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)

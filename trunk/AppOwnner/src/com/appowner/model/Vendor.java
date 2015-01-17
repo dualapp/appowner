@@ -19,7 +19,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
  
-@Table(name = "tb_VendorManagement")
+@Table(name = "tb_vendormanagement")
  
 public class Vendor implements Serializable 
 {

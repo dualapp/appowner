@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="tb_Company")
+@Table(name="tb_company")
 public class Company implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id

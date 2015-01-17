@@ -19,7 +19,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_InvoiceTransaction")
+@Table(name="tb_invoicetransaction")
 public class InvoiceTransaction implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_Maintenence_Staff_Roles")
+@Table(name="tb_maintenence_staff_roles")
 public class Staff implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id

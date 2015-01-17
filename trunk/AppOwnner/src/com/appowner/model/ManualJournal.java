@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="tb_Manual_Journal")
+@Table(name="tb_manual_journal")
 public class ManualJournal implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
