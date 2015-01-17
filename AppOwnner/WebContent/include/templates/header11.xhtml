@@ -61,7 +61,7 @@
 								<li><a href="/AppOwnner/AfrteLoginViews/Communication/Ad_an_Post.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Post An Add
 								</a></li>
-								<li><a href="CreateDocument.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Repository/CreateDocument.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Upload Documents
 								</a></li>
 								<li><a href="DocumentRepository.xhtml"> <i
@@ -308,12 +308,12 @@
 								<li><a href="setting.xhtml"> <i class="icon-cog"></i> Settings
 								</a></li>
 
-								<li><a href="../AfrteLoginViews/UserInfo/myprofile.xhtml?int_UserId=#{loginBean.int_UserId}"> <i class="icon-user"></i> My Profile
+								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/myprofile.xhtml?int_UserId=#{loginBean.int_UserId}"> <i class="icon-user"></i> My Profile
 								</a></li>
 
 								<li class="divider"></li>
 
-								<li> <i class="icon-off"></i> <p:commandButton action="#{loginBean.logout}" value="Logout"  ajax="false"></p:commandButton>
+								<li> <i class="icon-off"></i> <p:commandButton outcome="#{loginBean.logout}" value="Logout"  ajax="false"></p:commandButton>
 								
 								 </li>
 							</ul></li>
