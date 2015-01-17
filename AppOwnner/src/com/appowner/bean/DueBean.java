@@ -26,6 +26,7 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
 import com.appowner.model.DueTransaction;
 import com.appowner.service.DueService;
 import com.appowner.util.Util;
@@ -153,6 +154,14 @@ public class DueBean implements Serializable{
 	public void setDat_LastDate(Date dat_LastDate) {
 		this.dat_LastDate = dat_LastDate;
 	}
+	private Integer int__Organisation;
+	public Integer getInt__Organisation() {
+		int__Organisation=Util.getAppartmentId();
+		return int__Organisation;
+	}
+	public void setInt__Organisation(Integer int__Organisation) {
+		this.int__Organisation = int__Organisation;
+	}
 	public String getStr_Organisation() {
 		str_Organisation=Util.getAppartmentName();
 		return str_Organisation;
@@ -227,7 +236,7 @@ public class DueBean implements Serializable{
 			due.setInt_Year(getInt_Year());
 			due.setStr_InitiatedOn(getStr_InitiatedOn());
 			due.setDat_LastDate(getDat_LastDate());
-			due.setStr_Organisation(str_Organisation);
+			due.setStr_Organisation(int__Organisation);
 			due.setStr_Block(getStr_Block());
 			due.setStr_ApartmentNo(getStr_ApartmentNo());
 			due.setDbl_DueAmount(getDbl_DueAmount());
@@ -382,18 +391,26 @@ public class DueBean implements Serializable{
 		System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
 		Integer id=selectedDue.getInt_DueTransactionID();
-		
-		
-	    	FacesContext facesContext = FacesContext.getCurrentInstance();
-			Flash flash = facesContext.getExternalContext().getFlash();
-			flash.setKeepMessages(true);
-			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Dues deleted Successfully!", "Dues deleted Successfully!"));
-	   
+		boolean track=getDueService().getInvoiceNo(id);
+		System.out.println(track+"ddkjd");
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		if(track==true)
+		{   System.out.println("fdjkdfkjfdfd");
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "Cannot delete Due . Delete the invoice instances and try again.!"));
+		}
+		else
+		{	
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "Delete Due? Payments recorded against this due will also be deleted.!"));
+		getDueService().deleteDues(id);
+		System.out.println("hjjcjdf");
+		}
+	    return "dues.xhtml";
 
 			
-			getDueService().deleteDues(id);
-	    return "dues.xhtml";
+			
 	} 
 	{
 		
