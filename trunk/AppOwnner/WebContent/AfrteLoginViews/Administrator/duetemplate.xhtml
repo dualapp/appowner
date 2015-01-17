@@ -27,25 +27,7 @@
  
  
 </h:head>
-<script>
-function fm()
-{  
-	
-   
-	return confirm('Are you sure you want to delete ?');
-	
-}
-function gm()
-{    alert(#{templateBean.indicator});
-	 if(#{templateBean.indicator}==true)
-	   {
-	   return confirm('Cannot delete Due Template. Delete the due instances and try again.');
-	   }
- else
-	return confirm('Are you sure you want to delete ?');
-	}
-	
-</script>
+
 <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
@@ -95,7 +77,7 @@ function gm()
                 
          <tr><td><p:button style="width:120px;height:25px" outcome="createnewduetemplate.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150; &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="ggg" update=":form:multiDueTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiDueTemplateDialog').show()" />
-       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="ggg"   onclick="gm();"  action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" >
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="ggg"     action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" >
 </p:commandButton>
         &#150; &#150;
         <h:commandLink id="excel">
@@ -122,16 +104,14 @@ function gm()
      
        
         <p:growl id="msgs" showDetail="true" />
-         <p:dataTable id="ggg" var="dueTemplate" binding="#{templateBean.dataTable}"  value="#{templateBean.listDues}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" editable="true"  resizableColumns="true" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+         <p:dataTable id="ggg" var="dueTemplate"  value="#{templateBean.listDues}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" editable="true"  resizableColumns="true" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
         rowsPerPageDropdown="{10,20,30,40,50}" selection="#{templateBean.selectedDueTemplate}" rowKey="#{dueTemplate.int_DueTemplateID}" paginatorPosition="top">
-            
-             
-          <p:column     exportable="true"  selectionMode="multiple" style="width:35px;text-align:center">
-             <h:selectBooleanCheckbox     >  
-                                   <p:ajax event="click"  listener="#{templateBean.cancel()}"    />  
-                             </h:selectBooleanCheckbox>
           
-             </p:column>
+             
+           <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>  
+            
+          
+           
        
              <p:column>
             <center>
@@ -237,22 +217,7 @@ function gm()
                
           </p:dataTable>
           </div>
-       <p:dialog header="Delete Due" widgetVar="multiDuesDialog3"     showEffect="explode" hideEffect="explode" resizable="false" height="150" width="400">
-        <p:outputPanel id="multiDuesDetail3" style="text-align:center;">
-          <table>
-          <tr>
-          <td><h5>Delete Due? Payments recorded against this due will also be deleted.</h5>
-          
-          </td>
-          </tr>
-       <tr><td><p:separator/></td></tr>
-       <tr>
-         
-         </tr>
-          </table>
-          
-        </p:outputPanel>
-    </p:dialog>
+       
         <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="350" width="450" minHeight="100">
         <p:outputPanel id="multiDueTemplateDetail3" style="text-align:center;">
           
@@ -317,7 +282,7 @@ function gm()
     
       
          
-             <tr><td><h:commandButton value="update" action="#{templateBean.saveDueTemplate()}"/></td></tr>
+             <tr><td><p:commandButton value="update" action="#{templateBean.saveDueTemplate()}"/></td></tr>
             </table>
             
         </p:outputPanel>
