@@ -302,7 +302,7 @@ public class LoginBean implements Serializable{
 
 
 		public String getVar_ImageName1() {
-			//Var_ImageName1=user.getVar_ImageName1();
+		//	Var_ImageName1=user.getVar_ImageName1();
 			if(Var_ImageName1==null)
 			{
 				Var_ImageName1="/images/profilepic.png";
@@ -673,6 +673,15 @@ public class LoginBean implements Serializable{
 
 	public String getUserloginname() {
 		 
+		if(userloginname==null)
+		{
+			HttpSession session =
+					(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+					 
+			userloginname=(String) session.getAttribute("firstName");
+			System.out.println(userloginname+"name");
+		}
+		System.out.println(userloginname+"name");
 		return userloginname;
 	}
 
@@ -760,7 +769,7 @@ public class LoginBean implements Serializable{
 	  	{
 	  		System.out.println(int_UserId);
 	  		user=getUserService().getUserList1(int_UserId);
-	  		//pro=getProductDetailService().editproduct(Int_ProductId);	
+	  		
 	  		
 	  		
 	  	}
@@ -923,17 +932,7 @@ public static void setUser1(boolean user1) {
 				 
 				str_LoggedInTime= dateFormat.format(date);
 				System.out.println(str_LoggedInTime);
-				/*memberLog=new MemberLog();
-				memberLog.setInt_ApartmentId(int_ApartmentId);
-				memberLog.setInt_UserId(int_UserId);
-				memberLog.setStr_Block(user.getStr_Block());
-				memberLog.setStr_UserEmailId(user.getStr_Email());
-				memberLog.setStr_LoggedInTime(str_LoggedInTime);
-				memberLog.setStr_LogOutTime("N/A");
-				//memberLog.setStr_LogOutTime(str_LoggedOutTime);
 				
-				
-				getUserService().addMemberLog(memberLog);*/
 				str_LoggedInTime=dateFormat.format(date);
 				if(session==null)
 				  memberLog();
@@ -974,39 +973,7 @@ public static void setUser1(boolean user1) {
 		this.int_UserId = int_UserId;
 	}
 
-	//image uploading
-			/*public void handleFileUpload1(FileUploadEvent event) throws IOException {
-				 System.out.println("hi");
-				 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-				    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-				    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-				    System.out.println(name);
-				    File file= new File("C://Users//Pankaj Singh//workspace10//AppOwnner//WebContent//images//saphi//crop\\"+ "images" + name);
-				    
-				   
-				    final UploadedFile uploadedFile = event.getFile();
-				    blb_image1=file.getAbsolutePath();
-				    System.out.println("ppppppppppppppppppppppppppppppppppppppppppppppppppppp");
-				    System.out.println(blb_image1);
-				    blb_images2=blb_image1.substring(55);
-				    cropimage="/"+blb_images2;
-				    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
-				    System.out.println(cropimage);
-			        System.out.println(file);
-				    InputStream is = event.getFile().getInputstream();
-				    OutputStream out = new FileOutputStream(file);
-				    byte buf[] = new byte[1024];
-				    int len;
-				    while ((len = is.read(buf)) > 0)
-				        out.write(buf, 0, len);
-				    is.close();
-				    out.close();
-				    path2=file.getName();
-				    System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooooooooo");
-				    System.out.println(path2);
-			}
-
-*/
+	
 
 	public String logout() {
 	      HttpSession session = Util.getSession();
@@ -1016,7 +983,7 @@ public static void setUser1(boolean user1) {
 	    Date date = new Date();
 	      str_LoggedOutTime=dateFormat.format(date);
 	      memberLog();
-	      return "layout.xhtml";
+	      return "/layout.xhtml";
 	   }
 	private ServiceRequest serviceRequest;
 	public String addServiceRequest()
@@ -1090,9 +1057,9 @@ public static void setUser1(boolean user1) {
 		 memberLog=new MemberLog();
 			memberLog.setInt_ApartmentId(int_ApartmentId);
 			memberLog.setInt_UserId(int_UserId);
-			memberLog.setStr_Block(user.getStr_Block());
-			memberLog.setStr_UserEmailId(user.getStr_Email()
-					);
+			//memberLog.setStr_Block(user.getStr_Block());
+		//	memberLog.setStr_UserEmailId(user.getStr_Email());
+					
 			memberLog.setStr_LoggedInTime(str_LoggedInTime);
 	      
 	      memberLog.setStr_LogOutTime(str_LoggedOutTime);
