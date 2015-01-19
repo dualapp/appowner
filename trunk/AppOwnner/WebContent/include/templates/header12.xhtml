@@ -26,9 +26,9 @@
 			<div class="navbar-header pull-right" role="navignation">
 				<h:form>
 					<ul class="nav ace-nav">
-					<li><a href="../../AfrteLoginViews/Administrator/welcomepage.xhtml">Home
+					<li><a href="/AppOwnner/AfrteLoginViews/Administrator/welcomepage.xhtml">Home
 					</a></li>
-					<li><a href="../../AfrteLoginViews/Administrator/News.xhtml">News Feed
+					<li><a href="/AppOwnner/AfrteLoginViews/Administrator/News.xhtml">News Feed
 					</a></li>
 					<li class="purple"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"> <i
@@ -44,13 +44,13 @@
 								<li><a href="#"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Members
 								</a></li>
-								<li><a href="../../AfrteLoginViews/Communication/noticeView.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Communication/noticeView.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i> Notice Board
 								</a></li>
 								<li><a href="#"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Discussion Forum
 								</a></li>
-								<li><a href="../../AfrteLoginViews/Communication/Ad_an_Post.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Communication/Ad_an_Post.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Post An Add
 								</a></li>
 								<li><a href=".."> <i
@@ -59,7 +59,7 @@
 								<li><a href=".."> <i
 										class="btn btn-xs btn-primary icon-user"></i>Documents Repository
 								</a></li>
-								<li><a href="../../AfrteLoginViews/Communication/pools.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Communication/pools.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Phots Polls
 								</a></li>
 								
@@ -76,23 +76,23 @@
 							<ul
 								class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								
-								<li><a href="../../AfrteLoginViews/Facilities/book a facility.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Facilities/book a facility.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Book A Facility
 								</a></li>
 
-								<li><a href="../../AfrteLoginViews/Facilities/servicerequest.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Facilities/servicerequest.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Service Request
 								</a></li>
-								<li><a href="../../AfrteLoginViews/Facilities/AddFeedback.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Facilities/AddFeedback.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i> Feedback Form
 								</a></li>
-								<li><a href="../../AfrteLoginViews/Facilities/AddEnquiry.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Facilities/AddEnquiry.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i> Enquiry Form
 								</a></li>
-								<li><a href="../../AfrteLoginViews/Facilities/AddEvent.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Facilities/AddEvent.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i> Event Form
 								</a></li>
-								<li><a href="../../AfrteLoginViews/Facilities/AddContact.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Facilities/AddContact.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i> Contact Form
 								</a></li>
 								
@@ -108,7 +108,7 @@
 							<ul
 								class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								
-								<li><a href="../../AfrteLoginViews/Vendor/vendorlists.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Vendor/vendorlists.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>List Of Vendors
 								</a></li>
  
@@ -124,7 +124,7 @@
 							<ul
 								class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
 								
-							<li><a href="../../AfrteLoginViews/Accounting/dues.xhtml"> <i
+							<li><a href="/AppOwnner/AfrteLoginViews/Accounting/dues.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Dues
 								</a></li>
 
@@ -232,7 +232,7 @@
 							</ul></li>
 
 						<li class="light-blue"><a data-toggle="dropdown" href="#"
-							class="dropdown-toggle"> <p:graphicImage width="40px" height="40px"   value="#{loginBean.var_ImageName1}"/> <span
+							class="dropdown-toggle"> <p:graphicImage width="40px" height="40px"   value="#{loginBean.getPath()}"/> <span
 								class="user-info"> <small>Welcome,</small> <h:outputText value="#{loginBean.userloginname}" />
 							</span> <i class="icon-caret-down"></i>
 						</a>
@@ -242,7 +242,7 @@
 								<li><a href="#"> <i class="icon-cog"></i> Settings
 								</a></li>
 
-								<li><a href="../../AfrteLoginViews/UserInfo/myprofile.xhtml?int_UserId=#{loginBean.int_UserId}"> <i class="icon-user"></i> My Profile
+								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/myprofile.xhtml?int_UserId=#{loginBean.int_UserId}"> <i class="icon-user"></i> My Profile
 								</a></li>
 
 								<li class="divider"></li>
