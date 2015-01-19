@@ -7,7 +7,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fb="http://www.facebook.com/2008/fbml"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-
+	
+	 
 <h:head>
 
 	<title>Login</title>
@@ -115,7 +116,7 @@
 
 
 
-				
+				<h:messages style="color:red" />
 				<h:form>
 
 					<table align="left">
@@ -128,7 +129,7 @@
 								</h:outputText><font color="red">*</font> <h:inputText id="userloginname"
 									value="#{loginBean.userloginname}" required="true"
 									requiredMessage="Please Enter user name!">
-								</h:inputText><h:message for="userloginname" style="color:red"/></td>
+								</h:inputText></td>
 						</tr>
 						<br />
 						<tr>
@@ -138,7 +139,7 @@
 									required="true" requiredMessage="Please Enter Password!">
 									<f:validateLength minimum="4" />
 								</h:inputSecret>
-								<h:message for="userloginpassword" style="color:red"/></td>
+								<h:message for="userloginpassword" /></td>
 						</tr>
 						<tr>
 							<td><h:commandButton id="submit" value="Submit"
@@ -155,8 +156,9 @@
 						 
 						 <tr><td><p:button   value="Facebook Connect" href="#{loginPageCode.facebookUrlAuth}" />
 						 
-			 
+			
 						 </td></tr>
+						 
 						<tr>
 							<td><h:commandLink action="#{login.linkedinuserLogin}">
 									<p:graphicImage height="24" width="172" value="images/link.jpg" />

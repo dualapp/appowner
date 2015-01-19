@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"
+	style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fb="http://www.facebook.com/2008/fbml"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	 
+<h:head>
+
+	<title>Confirm Your Account</title>
+
+	<meta charset="utf-8" />
+
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+
+	<link rel="shortcut icon" type="image/x-icon"
+		href="css/images/favicon.ico" />
+
+	<link rel="stylesheet" href="css/style1.css" type="text/css"
+		media="all" />
+		<link rel="stylesheet" href="css/layout.css" type="text/css"
+		media="all" />
+
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
+		media="all" />
+
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700'
+		rel='stylesheet' type='text/css' />
+
+	<script src="js/jquery-1.8.0.min.js"></script>
+
+
+
+	<script src="js/jquery.flexslider-min.js"></script>
+	
+
+	<script src="js/functions.js"></script>
+	<script src="js/googlelogin.js"></script>
+	<script src="js/fblogin.js"></script>
+
+</h:head>
+
+<h:body>
+
+	<!-- wraper -->
+
+	<div id="wrapper">
+
+		<!-- shell -->
+
+		<div class="shell">
+
+			<!-- container -->
+
+			<div class="container">
+
+				<!-- header -->
+
+				<header id="header">
+
+					<h1 id="logo">
+						<a href="#">App-Owner</a>
+					</h1>
+
+					<!-- search -->
+
+					<div class="search">
+
+						<form method="post" action="#">
+
+							<span class="field"> <input type="text" class="field"
+								value="keywords here ..." title="keywords here ..." />
+
+							</span> <input type="submit" class="search-btn" value="" />
+
+						</form>
+
+					</div>
+
+					<!-- end of search -->
+
+				</header>
+
+				<!-- end of header -->
+
+				<!-- navigation -->
+
+				<nav id="navigation">
+					<a href="#" class="nav-btn">HOME<span class="arr"></span></a>
+
+					<ul>
+
+						<li class="active"><a href="index.html">HOME</a></li>
+
+						<li><a href="#">About</a></li>
+
+						<li><a href="#">Feature</a></li>
+
+					
+
+						<li><a href="#">FAQ</a></li>
+
+						<li><a href="#">blog</a></li>
+
+						<li><a href="#">contacts</a></li>
+                       <li><a href="layout.xhtml">Login</a></li>
+                      <li><a href="firstpage.xhtml">Registration</a></li>
+					</ul>
+
+				</nav>
+
+
+		<h:form id="loginForm">
+			 <h2>Confirm Your New Account</h2><br/>
+			 <h3>You are about to create a new account on AppOwnner using a login from</h3>
+			 <h3><mark> Facebook (#{loginPageCode.str_Email}" )</mark></h3>
+			
+			 <h3>Here's how you'll look on the site based on the information provided to us by Facebook.</h3>
+			<h3>Edit these fields if you'd like, then click "Confirm And Create This Account" when finished.</h3>
+         
+         <img src="#{loginPageCode.getStr_ImageName1()}"/>
+          <mark> #{loginPageCode.userName}</mark><br/>
+			<br/><p:commandButton  style="width:250px;height:25x" value="Confirm And Create This Account" action="#{loginPageCode.getUserFromSession()}" />
+			 <br/>
+			 <br/>
+		</h:form>
+		</div>
+		</div>
+		</div>
+		
+	</h:body>
+</html>
