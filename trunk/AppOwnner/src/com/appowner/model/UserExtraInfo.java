@@ -32,8 +32,8 @@ public class UserExtraInfo  implements Serializable {
 	private Integer int_UserID;
 	@Column
 	private  Date date_DateOfBirth;
-	@Column
-	private String bool_gender;
+	@Column(name="var_Gender")
+	private String str_gender;
 	 
 	@Column(name="var_BloodGroup")
 	private String str_BloodGroup;
@@ -84,11 +84,12 @@ public class UserExtraInfo  implements Serializable {
 	}
 	
 	 
-	public String getBool_gender() {
-		return bool_gender;
+	 
+	public String getStr_gender() {
+		return str_gender;
 	}
-	public void setBool_gender(String bool_gender) {
-		this.bool_gender = bool_gender;
+	public void setStr_gender(String str_gender) {
+		this.str_gender = str_gender;
 	}
 	public String getStr_BloodGroup() {
 		return str_BloodGroup;

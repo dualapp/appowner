@@ -288,6 +288,12 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		return getIn_userdao().getUserId(str_Username);
 	}
+
+	@Override
+	public User getFbUser(Integer id) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getFbUser(id);
+	}
 	
 	}
 

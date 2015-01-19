@@ -97,5 +97,7 @@ public interface In_UserService {
 	public Integer getStatus(String str_ApartmentName);
 
 	public Integer getUserId(String str_Username);
+
+	public User getFbUser(Integer id);
 }
 

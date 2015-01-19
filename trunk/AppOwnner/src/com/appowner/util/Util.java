@@ -75,17 +75,49 @@ public class Util {
 	     
 	      public static Integer getUserId()
 	      {
-	        HttpSession session = getSession();
-	        if ( session != null )
+	    	  HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	         
 	            return (Integer) session.getAttribute("int_UserId");
-	        else
-	            return null;
+	         
 	      }
 
 	      public static String getEmail(){
 	    	   HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		        return  session.getAttribute("str_Email").toString();   
-	       } 
-		 
+		        return  session.getAttribute("str_EmailId").toString();   
+	       }
 
+
+		public static int getInt_UserRole() {
+			// TODO Auto-generated method stub
+			 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+			return (int) session.getAttribute("str_UserType");
+		}
+
+
+		public static String getStr_PhoneNo() {
+			 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return  (String) session.getAttribute("str_Mobile").toString();
+		}
+
+
+		public static String getStr_Flat() {
+			 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		        return  (String) session.getAttribute("str_Flat").toString();
+
+		} 
+		public static String getGender() {
+			 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		        return    (String) session.getAttribute("gender");
+
+		}
+
+
+		public static String getStr_FirstName() {
+			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return    (String) session.getAttribute("firstName");
+		} 
+		public static String getStr_LastName() {
+			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return    (String) session.getAttribute("lastName");
+		} 
 }
