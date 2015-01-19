@@ -832,6 +832,7 @@ public class Cls_UserBean implements Serializable{
 		}
 		public String getUserRole()
 		{ 
+			System.out.println(Util.getUserId()+"uid");
 			int_UserRole=getUserService().getUserRole(Util.getUserId());
 			if(int_UserRole==1)
 				userRole="Tenant";

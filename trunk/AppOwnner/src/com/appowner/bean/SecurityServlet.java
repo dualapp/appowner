@@ -55,7 +55,7 @@ public class SecurityServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath() +"/facebookError.html");
 				return;
 			}
-			response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/Administrator/welcomepage.xhtml");
+			response.sendRedirect(request.getContextPath() +"/confirmfbaccount.xhtml");
 		} else {
 			System.err.println("CSRF protection validation");
 		}
@@ -65,7 +65,7 @@ public class SecurityServlet extends HttpServlet {
 		String token = null;
 		if (faceCode != null && ! "".equals(faceCode)) {
 			String appId = "1525993687671325";
-			 //String redirectUrl = "http://localhost:7656/AppOwnner/AfrteLoginViews/Administrator/welcomepage.xhtml";
+			  
 			String redirectUrl = "http://localhost:4444/AppOwnner/index.sec";
 			String faceAppSecret = "7c395ac6d696bed2bf4ef1c42dcf415c";
 			String newUrl = "https://graph.facebook.com/oauth/access_token?client_id="
@@ -91,11 +91,12 @@ public class SecurityServlet extends HttpServlet {
 	}
 
 	private String getUserMailAddressFromJsonResponse(String accessToken, HttpSession httpSession)  {
-		String email = null;
+		String str_EmailId = null;
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
 			if (accessToken != null && ! "".equals(accessToken)) {
 				String newUrl = "https://graph.facebook.com/me?access_token=" + accessToken;
+				
 				httpclient = new DefaultHttpClient();
 				HttpGet httpget = new HttpGet(newUrl);
 				System.out.println("Get info from face --> executing request: " + httpget.getURI());
@@ -105,17 +106,24 @@ public class SecurityServlet extends HttpServlet {
 				String facebookId = json.getString("id");
 				String firstName = json.getString("first_name");
 				String lastName = json.getString("last_name");
+				String gender=json.getString("gender");
+				 
 				//String password=json.getString("password");
-				email= json.getString("email");
+				str_EmailId= json.getString("email");
 				httpSession.setAttribute("firstName", firstName);
 				httpSession.setAttribute("lastName", lastName);
 				httpSession.setAttribute("fbId", facebookId);
-				httpSession.setAttribute("email", email);
+				httpSession.setAttribute("str_EmailId", str_EmailId);
+				httpSession.setAttribute("username", str_EmailId);
 				
 				
+				httpSession.setAttribute("gender", gender);
+				String img="https://graph.facebook.com/" +facebookId +"/picture";
+				httpSession.setAttribute("str_ImageName1", img);
+				System.out.println(img+"image");
 				//put user data in session
 				httpSession.setAttribute("FACEBOOK_USER", firstName+" "
-						+lastName+", facebookId:" + facebookId);
+						+lastName);
 				
 			} else {
 				System.err.println("Token za facebook je null");
@@ -127,6 +135,6 @@ public class SecurityServlet extends HttpServlet {
 		} finally {
 			httpclient.getConnectionManager().shutdown();
 		}
-		return email;
+		return str_EmailId;
 	}
 }

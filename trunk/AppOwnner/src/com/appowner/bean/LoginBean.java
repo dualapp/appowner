@@ -45,6 +45,7 @@ public class LoginBean implements Serializable{
 	private String userloginname;
 	private String str_FacebookId;
 	public String getStr_FacebookId() {
+		str_FacebookId=Util.getEmailId();
 		return str_FacebookId;
 	}
 	public void setStr_FacebookId(String str_FacebookId) {
@@ -98,10 +99,50 @@ public class LoginBean implements Serializable{
 	 private List<String> str_IntrestedIn;
 	 private String str_TwitterId;
 	 private String str_PersonalBlog;
-	 private Boolean bool_Gender;
+	 private String str_Gender;
 	 private Date date_DateOfBirth;
+	 private String str_FirstName;
+	 private String str_Country;
+	 private String str_State;
+	 private String str_City;
+	 public String getStr_Country() {
+		 str_Country= Util.getStr_Country();
+		return str_Country;
+	}
 	 
-     public String getStr_BloodGroup() {
+	public String getStr_State() {
+		str_State = Util.getStr_State();
+		return str_State;
+	}
+	public void setStr_State(String str_State) {
+		this.str_State = str_State;
+	}
+	public String getStr_City() {
+		str_City = Util.getStr_City();
+		return str_City;
+	}
+	public void setStr_City(String str_City) {
+		this.str_City = str_City;
+	}
+	private String str_LastName;
+	 
+	 
+	 
+     public String getStr_FirstName() {
+    	 str_FirstName=Util.getStr_FirstName();
+		return str_FirstName;
+	}
+	public void setStr_FirstName(String str_FirstName) {
+		this.str_FirstName = str_FirstName;
+	}
+	public String getStr_LastName() {
+		str_LastName=Util.getStr_LastName();
+		return str_LastName;
+	}
+	public void setStr_LastName(String str_LastName) {
+		this.str_LastName = str_LastName;
+	}
+	public String getStr_BloodGroup() {
 		return str_BloodGroup;
 	}
 	public void setStr_BloodGroup(String str_BloodGroup) {
@@ -138,11 +179,13 @@ public class LoginBean implements Serializable{
 	public void setStr_PersonalBlog(String str_PersonalBlog) {
 		this.str_PersonalBlog = str_PersonalBlog;
 	}
-	public Boolean getBool_Gender() {
-		return bool_Gender;
+	 
+	public String getStr_Gender() {
+		str_Gender=Util.getGender();
+		return str_Gender;
 	}
-	public void setBool_Gender(Boolean bool_Gender) {
-		this.bool_Gender = bool_Gender;
+	public void setStr_Gender(String str_Gender) {
+		this.str_Gender = str_Gender;
 	}
 	public Date getDate_DateOfBirth() {
 		return date_DateOfBirth;
@@ -502,7 +545,7 @@ public class LoginBean implements Serializable{
 
 
 	public String getStr_Flat() {
-		str_Flat=user.getStr_Flat();
+		str_Flat=Util.getStr_Flat();
 		return str_Flat;
 	}
 
@@ -513,7 +556,7 @@ public class LoginBean implements Serializable{
 
 
 	public String getStr_Mobile() {
-		str_Mobile=user.getStr_PhoneNo();
+		str_Mobile=Util.getStr_PhoneNo();
 		return str_Mobile;
 	}
 
@@ -535,7 +578,7 @@ public class LoginBean implements Serializable{
 
 
 	public String getStr_EmailId() {
-		str_EmailId=user.getStr_Email();
+		str_EmailId=Util.getEmail();
 		return str_EmailId;
 	}
 
@@ -546,7 +589,7 @@ public class LoginBean implements Serializable{
 
 
 	public String getStr_UserType() {
-		int role=user.getInt_UserRole();
+		int role=Util.getInt_UserRole();
 		if(role==1)
 			return str_UserType="Tenant";
 			
@@ -563,7 +606,7 @@ public class LoginBean implements Serializable{
 
 
 	public String getStr_Block() {
-		str_Block=user.getStr_Block();
+		str_Block=Util.getBlock();
 		return str_Block;
 	}
 
@@ -643,7 +686,7 @@ public class LoginBean implements Serializable{
 	
 	
 	public String getStr_ApartmentName() {
-		str_ApartmentName=user.getStr_Apartment();
+		str_ApartmentName=Util.getStr_Apartment();
 		return str_ApartmentName;
 	}
 
@@ -847,35 +890,36 @@ public static void setUser1(boolean user1) {
 	public String userLogin()
 	{
 
-		System.out.println("//////////////////////////////////");
+		 
 		formuserloginusername=getUserloginname();
 		formuserloginuserpassword=getUserloginpassword();
-		
-		System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-		System.out.println(formuserloginusername);
-		System.out.println(formuserloginuserpassword);
+		if(formuserloginusername==null)
+		{
+			user=getUserService().getUserList(Util.getUserName());
+		}
+		else
 		user=getUserService().getUserList(formuserloginusername);
-				System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-		System.out.println(user);
+				 
+		 
 		str_userRoleName=user.getStr_UserRoleName();
-		System.out.println(user.getStr_Password());
+		 str_Country=user.getStr_Country();
+		 str_State=user.getStr_State();
+		 str_City=user.getStr_City();
 		str_Block=user.getStr_Block();
+		str_FirstName=user.getStr_FirstName();
+		str_LastName=user.getStr_LastName();
 		str_Flat=user.getStr_Flat();
 		int_UserId=user.getInt_UserId();
 		str_EmailId=user.getStr_Email();
-		System.out.println("jjjjjjjjjjjjjjjjjjjjjjjppppppppppppppppppppppppppppppppppppppppppppppppppppppppjjjjjjjjjjjjjjjjjjj");
+		 
 		str_ApartmentName=user.getStr_Apartment();
 		 status=getUserService().getStatus(str_ApartmentName);
-		System.out.println(status+"fdjkjkdffkj");
-		System.out.println(status+"66666666666666666666666666666666");
+		 
 		String admin1="admin";
 	
 		
 		if(formuserloginuserpassword.equals(user.getStr_Password()) )
-		{   
-			
-			System.out.println(str_userRoleName);
-			System.out.println(admin1);
+		{    
 		
 		   if(admin1.equals(str_userRoleName))
 		   {
@@ -884,22 +928,26 @@ public static void setUser1(boolean user1) {
 			admin=admin1.equals(str_userRoleName);
 			user1=!admin1.equals(str_userRoleName);
 			
-			HttpSession session = Util.getSession();
+			 HttpSession session = Util.getSession();
+			 session.setAttribute("str_FirstName", str_FirstName);
+			 session.setAttribute("str_LastName", str_LastName);
+			 session.setAttribute("str_Country", str_Country);
+			 session.setAttribute("str_State", str_State);
+			 session.setAttribute("str_City", str_City);
+			 
             session.setAttribute("username", userloginname);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
             session.setAttribute("str_Block",str_Block);
             session.setAttribute("str_Flat",str_Flat);
-            session.setAttribute("ApartmentName", user.getStr_Apartment());
+           
             session.setAttribute("str_EmailId",str_EmailId);
             session.setAttribute("str_Country",user.getStr_Country());
-            System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqfff555555555555fffqqqqqqqqqqqqqqqqqqqqqqqq");
-			System.out.println(user.getStr_Country());
+            
             session.setAttribute("str_State",user.getStr_State());
             session.setAttribute("str_City",user.getStr_City());
             session.setAttribute("str_Apartment",user.getStr_Apartment());
-			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-			System.out.println("hiiiiiiiiiiiii");
+			 
 		 	
 		  return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
@@ -911,9 +959,10 @@ public static void setUser1(boolean user1) {
 				user1=!admin1.equals(str_userRoleName);
 				
 				HttpSession session = Util.getSession();
-				 
+				session.setAttribute("str_FirstName", str_FirstName);
+				 session.setAttribute("str_LastName", str_LastName);
 	            session.setAttribute("username", userloginname);
-				session.setAttribute("ApartmentName", user.getStr_Apartment());
+				 
 				session.setAttribute("str_Block",str_Block);
 				session.setAttribute("str_Flat",str_Flat);
 	            session.setAttribute("int_ApartmentId", int_ApartmentId);
@@ -924,8 +973,7 @@ public static void setUser1(boolean user1) {
 	            session.setAttribute("str_State",user.getStr_State());
 	            session.setAttribute("str_City",user.getStr_City());
 	            session.setAttribute("str_Apartment",user.getStr_Apartment());
-				System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqffffffqqqqqqqqqqqqqqqqqqqqqqqq");
-				System.out.println(user.getStr_Country());
+				 
 				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				//get current date time with Date()
 				Date date = new Date();
@@ -1070,12 +1118,13 @@ public static void setUser1(boolean user1) {
 	}
 	private UserExtraInfo userExtraInfo;
 	public String updateUser(){
+		User user=new User();
 	 	userExtraInfo=new UserExtraInfo();
-		//userExtraInfo.setBool_gender(bool_Gender);
+		 userExtraInfo.setStr_gender(getStr_Gender());
 		userExtraInfo.setDate_DateOfBirth(getDate_DateOfBirth());
 		userExtraInfo.setStr_BloodGroup(str_BloodGroup);
 		userExtraInfo.setInt_UserID(Util.getUserId());
-		userExtraInfo.setStr_FaceBookId(str_FacebookId);
+		userExtraInfo.setStr_FaceBookId(Util.getEmailId());
 		userExtraInfo.setStr_Hobbies(str_Hobbies);
 		userExtraInfo.setInt_UserExtraID(int_ExtraUserId);
 		//userExtraInfo.setStr_IntrestedIn(str_IntrestedIn);
@@ -1086,7 +1135,16 @@ public static void setUser1(boolean user1) {
 		userExtraInfo.setStr_TwitterId(str_TwitterId) ;
 		userExtraInfo.setStr_Profession(str_Proffession);
 		user.setUserExtraInfo(userExtraInfo);
-		
+		user.setStr_FirstName(str_FirstName);
+		 user.setStr_LastName(str_LastName);
+		 user.setStr_PhoneNo(str_Mobile);
+		 user.setStr_Flat(str_Flat);
+		 user.setStr_Country(str_Country);
+		 user.setStr_City(str_City);
+		 user.setStr_Block(str_Block);
+		user.setStr_State(str_State);
+		 
+		 
 		user.setVar_FileName1(getPath2());
 		user.setVar_ImageName1(getPath());
 		getUserService().updateUs(user);
@@ -1141,8 +1199,8 @@ public static void setUser1(boolean user1) {
 		this.int_ExtraUserId = int_ExtraUserId;
 	}
 	public void getUserExtraInfo() {
-		
-		 userExtraInfo=getUserService().getUserExtraInfo(user.getInt_UserId());
+		System.out.println(Util.getUserId()+"uid1");
+		 userExtraInfo=getUserService().getUserExtraInfo(Util.getUserId());
 		 if( userExtraInfo!=null)
 		 {
 		// bool_Gender=userExtraInfo.getBool_gender();
@@ -1252,10 +1310,16 @@ public static void setUser1(boolean user1) {
 		}
 		return null;
 	}
-
+	HttpSession session =
+    		(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	public String getPath() {
 		System.out.println(path+"path1");
+		if(user!=null)
+			
 		path=user.getVar_ImageName1();
+		else
+		
+		path=(String) session.getAttribute("str_ImageName1");
 		if( path==null)
 		{
 			path="/images/profilepic.png";
@@ -1269,4 +1333,5 @@ public static void setUser1(boolean user1) {
 		this.path = path;
 	}
 }
+
 
