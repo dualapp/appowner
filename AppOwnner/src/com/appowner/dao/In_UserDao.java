@@ -109,6 +109,8 @@ public interface In_UserDao {
 
 	public Integer getUserId(String str_Username);
 
+	public User getFbUser(Integer id);
+
 	//public void deleteUser1(int int_UserId);
 
 	
