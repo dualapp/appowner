@@ -59,8 +59,8 @@
  
         <!-- status message of file upload; rendered if message is set -->
 		<h:outputText value="#{loginBean.statusMessage}"
-			          rendered="#{not empty loginBean.statusMessage}" /> </td><td width="60%"><h4><b><h:outputText value="#{loginBean.user.str_Username}"/></b></h4><br/><h:outputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" /><br/>
-      <h:outputText id="str_Email"   value="#{loginBean.user.str_Email}"/></td>
+			          rendered="#{not empty loginBean.statusMessage}" /> </td><td width="60%"><h4><b><h:outputText value="#{loginBean.str_FirstName}"/> #{loginBean.str_LastName}</b></h4><br/><h:outputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" /><br/>
+      <h:outputText id="str_Email"   value="#{loginBean.str_EmailId}"/></td>
         
   
    <td ><a href="editprofile.xhtml">Edit Profile</a> </td></tr>
@@ -76,16 +76,16 @@
     -#{cls_UserBean.userRole} -
               <h:outputText value="Residing-"/>
               
-             <h:outputText value="#{loginBean.user.str_Block}"/>-
-               <h:outputText value="#{loginBean.user.str_Flat}" /> 
+             <h:outputText value="#{loginBean.str_Block}"/>-
+               <h:outputText value="#{loginBean.str_Flat}" /> 
             
    </td></tr>
           <tr>
              <td><h:outputText value="Gender:"/>
              </td>            
-             <td ><h:selectOneRadio value="Male"  >
-<f:selectItem itemValue="Male" itemLabel="Male" />
-<f:selectItem itemValue="Female" itemLabel="Female" />
+             <td ><h:selectOneRadio value="#{loginBean.str_Gender}"  >
+<f:selectItem itemValue="male" itemLabel="male" />
+<f:selectItem itemValue="female" itemLabel="female" />
 </h:selectOneRadio>
              </td>  
             <td ><h:outputText value="Date Of Birth:"/>

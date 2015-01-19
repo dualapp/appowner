@@ -39,7 +39,7 @@
             <tr><td width ="50%"> <p:outputPanel layout="block" id="parentPanel">  
           
       
-      <p:graphicImage width="150px" height="150px" value="#{loginBean.getPath()}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....."   /></td></tr>
+      <p:graphicImage width="50px" height="50px" value="#{loginBean.getPath()}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....."   /></td></tr>
              
   <!-- <tr>
    <td>  
@@ -71,36 +71,36 @@
  <td width="15%">
     <h:outputText value="First name:"/></td>
     <td width="30%">
-    <h:inputText value="#{loginBean.user.str_FirstName}"> </h:inputText></td>
+    <h:inputText value="#{loginBean.str_FirstName}"> </h:inputText></td>
      
  <td  width="15%">
-    <h:outputText value="First name:"/></td>
+    <h:outputText value="Last name:"/></td>
     <td width="30%">
-    <h:inputText value="#{loginBean.user.str_LastName}"> </h:inputText></td>
+    <h:inputText value="#{loginBean.str_LastName}"> </h:inputText></td>
     </tr>
    <tr>
  <td><h:outputText value="Country :">
             </h:outputText></td>           
-           <td> <h:inputText value="#{loginBean.user.str_Country}" />
+           <td> <h:inputText value="#{loginBean.str_Country}" />
             </td> 
             <td><h:outputText value="State :"/>
               </td>           
-           <td> <h:inputText value="#{loginBean.user.str_State}" />
+           <td> <h:inputText value="#{loginBean.str_State}" />
             </td> </tr>
             <tr>
              <td><h:outputText value="City :"/>
             </td>            
-             <td><h:inputText value="#{loginBean.user.str_City}"/>
+             <td><h:inputText value="#{loginBean.str_City}"/>
              </td> 
             <td><h:outputText value="Apartment :"/>
             </td>            
-            <td><h:inputText value="#{loginBean.user.str_City}" />
+            <td><h:inputText value="#{loginBean.str_ApartmentName}" />
             </td> </tr>
            
              <tr>
            <td> <h:outputText value="Phone No* :"/>
             </td>            
-            <td><h:inputText id="str_PhoneNo" value="#{loginBean.user.str_PhoneNo}" />
+            <td><h:inputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" />
               </td>
               <td> <h:outputText value="FaceBook Profile* :"/></td>
           
@@ -138,7 +138,7 @@
             <td width="10%"><h:outputText value="Block :"/>
              </td>          
             <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}">
-          <f:selectItem itemValue="#{loginBean.user.str_Block}" itemLabel="#{loginBean.user.str_Block}" />
+          <f:selectItem itemValue="#{loginBean.str_Block}" itemLabel="#{loginBean.str_Block}" />
             <f:selectItems value="#{cls_UserBean.blockNameList}"/>
              <p:ajax event="change" update="str_House" process="str_Block"/>
              </h:selectOneMenu>
@@ -167,9 +167,9 @@
           <tr>
              <td width="15%"><h:outputText value="Gender:"/>
              </td>            
-             <td width="30%"><h:selectOneRadio value="#{loginBean.bool_Gender}"  >
-<f:selectItem itemValue="false" itemLabel="Male" />
-<f:selectItem itemValue="true" itemLabel="Female" />
+             <td width="30%"><h:selectOneRadio value="#{loginBean.str_Gender}"  >
+<f:selectItem itemValue="male" itemLabel="male" />
+<f:selectItem itemValue="female" itemLabel="female" />
 </h:selectOneRadio>
              </td>  
             <td width="15%"><h:outputText value="Date Of Birth:"/>
