@@ -33,7 +33,7 @@ public class Util {
 	      public static String getAppartmentName()
 	      {
 	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-	        return  session.getAttribute("ApartmentName").toString();
+	        return  session.getAttribute("str_Apartment").toString();
 	      }
 	      public static String getStr_Country()
 	      {
@@ -51,11 +51,7 @@ public class Util {
 	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	        return  session.getAttribute("str_City").toString();
 	      }
-	      public static String getStr_Apartment()
-	      {
-	        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-	        return  session.getAttribute("str_Apartment").toString();
-	      }
+	      
 	     
 	     public static Integer getAppartmentId()
 	      {
@@ -90,7 +86,7 @@ public class Util {
 		public static int getInt_UserRole() {
 			// TODO Auto-generated method stub
 			 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-			return (int) session.getAttribute("str_UserType");
+			return (int) session.getAttribute("int_UserRole");
 		}
 
 
@@ -114,10 +110,16 @@ public class Util {
 
 		public static String getStr_FirstName() {
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-	        return    (String) session.getAttribute("firstName");
+	        return    (String) session.getAttribute("str_FirstName");
 		} 
 		public static String getStr_LastName() {
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-	        return    (String) session.getAttribute("lastName");
+	        return    (String) session.getAttribute("str_LastName");
+		}
+
+
+		public static String getStr_UserRoleName() {
+			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	        return    (String) session.getAttribute("str_UserRoleName");
 		} 
 }
