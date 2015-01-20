@@ -28,12 +28,7 @@ private  Integer id;
         HttpSession session =
         (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         String sessionId = session.getId();
-          
-		
-        if(getId()!=null)
-        {
-        	return "/AfrteLoginViews/welcomepage.xhtml";
-        }
+         
         String appId = "1525993687671325";
         
 		String redirectUrl = "http://localhost:4444/AppOwnner/index.sec";
@@ -56,13 +51,15 @@ private  Integer id;
     		session.setAttribute("str_Block",usr.getStr_Block());
     		session.setAttribute("str_EmailId",usr.getStr_Email());
     		session.setAttribute("str_Mobile",usr.getStr_PhoneNo());
-    		session.setAttribute("str_UserType",usr.getInt_UserRole());
+    		session.setAttribute("int_UserRole",usr.getInt_UserRole());
     		session.setAttribute("int_ApartmentId",usr.getInt_ApartmentId());
     		session.setAttribute("str_Apartment",usr.getStr_Apartment());
     		session.setAttribute("int_UserId", id);
     		session.setAttribute("str_Country", usr.getStr_Country());
     		session.setAttribute("str_State", usr.getStr_State());
+    		session.setAttribute("str_UserRoleName", usr.getStr_UserRoleName());
     		session.setAttribute("str_City", usr.getStr_City());
+    		
     		
     		session.setAttribute("gender", getStr_Gender());
     		
@@ -106,14 +103,14 @@ private  Integer id;
 			this.userName = userName;
 		}
 		public String getStr_FirstName() {
-			str_FirstName=(String) session.getAttribute("firstName");
+			str_FirstName=(String) session.getAttribute("str_FirstName");
 			return str_FirstName;
 		}
 		public void setStr_FirstName(String str_FirstName) {
 			this.str_FirstName = str_FirstName;
 		}
 		public String getStr_lastName() {
-			str_lastName=(String) session.getAttribute("lastName");
+			str_lastName=(String) session.getAttribute("str_LastName");
 			return str_lastName;
 		}
 		public void setStr_lastName(String str_lastName) {
@@ -155,7 +152,7 @@ private  Integer id;
 			usr.setStr_Block("WingA");
 			usr.setStr_Flat("A");
 			usr.setStr_City("kolkata");
-			usr.setStr_Country("India");
+			usr.setStr_Country("india");
 			usr.setStr_State("Westbengal");
 			usr.setStr_PhoneNo("0000000000");
 			 getUserService().addUser(usr);
