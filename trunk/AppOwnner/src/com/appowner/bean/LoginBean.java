@@ -181,7 +181,13 @@ public class LoginBean implements Serializable{
 	}
 	 
 	public String getStr_Gender() {
-		str_Gender=Util.getGender();
+		
+		if(str_Gender==null)
+		{
+			str_Gender=Util.getGender();
+			
+			return str_Gender;
+		}
 		return str_Gender;
 	}
 	public void setStr_Gender(String str_Gender) {
@@ -686,7 +692,7 @@ public class LoginBean implements Serializable{
 	
 	
 	public String getStr_ApartmentName() {
-		str_ApartmentName=Util.getStr_Apartment();
+		str_ApartmentName=Util.getAppartmentName();
 		return str_ApartmentName;
 	}
 
@@ -717,14 +723,11 @@ public class LoginBean implements Serializable{
 	public String getUserloginname() {
 		 
 		if(userloginname==null)
-		{
-			HttpSession session =
-					(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-					 
-			userloginname=(String) session.getAttribute("firstName");
-			System.out.println(userloginname+"name");
+		{  
+			userloginname=Util.getStr_FirstName();
+			 
 		}
-		System.out.println(userloginname+"name");
+		 
 		return userloginname;
 	}
 
@@ -810,8 +813,8 @@ public class LoginBean implements Serializable{
 	}
 	  public void getDetails()
 	  	{
-	  		System.out.println(int_UserId);
-	  		user=getUserService().getUserList1(int_UserId);
+	  		 
+	  		user=getUserService().getUserList1(Util.getUserId());
 	  		
 	  		
 	  		
@@ -903,12 +906,14 @@ public static void setUser1(boolean user1) {
 		 
 		str_userRoleName=user.getStr_UserRoleName();
 		 str_Country=user.getStr_Country();
+		 formuserloginuserpassword=user.getStr_Password();
 		 str_State=user.getStr_State();
 		 str_City=user.getStr_City();
 		str_Block=user.getStr_Block();
 		str_FirstName=user.getStr_FirstName();
 		str_LastName=user.getStr_LastName();
 		str_Flat=user.getStr_Flat();
+		str_Mobile=user.getStr_PhoneNo();
 		int_UserId=user.getInt_UserId();
 		str_EmailId=user.getStr_Email();
 		 
@@ -931,24 +936,24 @@ public static void setUser1(boolean user1) {
 			 HttpSession session = Util.getSession();
 			 session.setAttribute("str_FirstName", str_FirstName);
 			 session.setAttribute("str_LastName", str_LastName);
-			 session.setAttribute("str_Country", str_Country);
-			 session.setAttribute("str_State", str_State);
-			 session.setAttribute("str_City", str_City);
-			 
+			  
             session.setAttribute("username", userloginname);
+            session.setAttribute("password", formuserloginuserpassword);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
             session.setAttribute("str_Block",str_Block);
             session.setAttribute("str_Flat",str_Flat);
-           
-            session.setAttribute("str_EmailId",str_EmailId);
-            session.setAttribute("str_Country",user.getStr_Country());
+            session.setAttribute("str_Mobile",str_Mobile);
             
-            session.setAttribute("str_State",user.getStr_State());
-            session.setAttribute("str_City",user.getStr_City());
+            session.setAttribute("str_EmailId",str_EmailId);
+            session.setAttribute("str_Country",str_Country);
+            
+            session.setAttribute("str_State",str_State);
+            session.setAttribute("str_City",str_City);
             session.setAttribute("str_Apartment",user.getStr_Apartment());
+            session.setAttribute("str_userRoleName", str_userRoleName);
 			 
-		 	
+            session.setAttribute("int_UserRole", user.getInt_UserRole());
 		  return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
 		   else
@@ -959,8 +964,11 @@ public static void setUser1(boolean user1) {
 				user1=!admin1.equals(str_userRoleName);
 				
 				HttpSession session = Util.getSession();
+				 session.setAttribute("password", formuserloginuserpassword);
 				session.setAttribute("str_FirstName", str_FirstName);
 				 session.setAttribute("str_LastName", str_LastName);
+				 session.setAttribute("int_UserRole", user.getInt_UserRole());
+				 
 	            session.setAttribute("username", userloginname);
 				 
 				session.setAttribute("str_Block",str_Block);
@@ -968,12 +976,14 @@ public static void setUser1(boolean user1) {
 	            session.setAttribute("int_ApartmentId", int_ApartmentId);
 	            session.setAttribute("int_UserId", int_UserId);
 	            session.setAttribute("str_EmailId",str_EmailId);
-	            session.setAttribute("str_Country",user.getStr_Country());
+	            session.setAttribute("str_Country",str_Country);
 	            
-	            session.setAttribute("str_State",user.getStr_State());
-	            session.setAttribute("str_City",user.getStr_City());
+	            session.setAttribute("str_State",str_State);
+	            session.setAttribute("str_City",str_City);
+	            session.setAttribute("str_Mobile",str_Mobile);
+	            
 	            session.setAttribute("str_Apartment",user.getStr_Apartment());
-				 
+	            session.setAttribute("str_userRoleName", str_userRoleName);
 				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				//get current date time with Date()
 				Date date = new Date();
@@ -1120,6 +1130,8 @@ public static void setUser1(boolean user1) {
 	public String updateUser(){
 		User user=new User();
 	 	userExtraInfo=new UserExtraInfo();
+	 	 HttpSession session = Util.getSession();
+	 	 
 		 userExtraInfo.setStr_gender(getStr_Gender());
 		userExtraInfo.setDate_DateOfBirth(getDate_DateOfBirth());
 		userExtraInfo.setStr_BloodGroup(str_BloodGroup);
@@ -1135,14 +1147,24 @@ public static void setUser1(boolean user1) {
 		userExtraInfo.setStr_TwitterId(str_TwitterId) ;
 		userExtraInfo.setStr_Profession(str_Proffession);
 		user.setUserExtraInfo(userExtraInfo);
+		formuserloginuserpassword=(String) session.getAttribute("password");
+		user.setStr_Password(formuserloginuserpassword);
+		user.setStr_Email(str_EmailId);
 		user.setStr_FirstName(str_FirstName);
 		 user.setStr_LastName(str_LastName);
 		 user.setStr_PhoneNo(str_Mobile);
+		 user.setInt_UserId(Util.getUserId());
 		 user.setStr_Flat(str_Flat);
-		 user.setStr_Country(str_Country);
+		 
+		 user.setStr_Country(getStr_Country());
 		 user.setStr_City(str_City);
 		 user.setStr_Block(str_Block);
 		user.setStr_State(str_State);
+		user.setInt_ApartmentId(Util.getAppartmentId());
+		user.setStr_Apartment(str_ApartmentName);
+		user.setStr_Username(Util.getUserName());
+		user.setInt_UserRole(Util.getInt_UserRole());
+		user.setStr_UserRoleName(Util.getStr_UserRoleName());
 		 
 		 
 		user.setVar_FileName1(getPath2());
@@ -1181,7 +1203,7 @@ public static void setUser1(boolean user1) {
 	}
 	public List<String> getHouseNoList() {
 		houseNoList=new ArrayList<String>();
-		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_Block));
+		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(getStr_Block()));
 		
 		 
 		return houseNoList;
@@ -1201,9 +1223,21 @@ public static void setUser1(boolean user1) {
 	public void getUserExtraInfo() {
 		System.out.println(Util.getUserId()+"uid1");
 		 userExtraInfo=getUserService().getUserExtraInfo(Util.getUserId());
-		 if( userExtraInfo!=null)
+		 User u=new User();
+		 u=getUserService().getFbUser(Util.getUserId());
+		 System.out.println(u+"user");
+		 if( userExtraInfo!=null&&u!=null)
 		 {
-		// bool_Gender=userExtraInfo.getBool_gender();
+			 str_FirstName=u.getStr_FirstName();
+			 str_LastName=u.getStr_LastName();
+			 str_Country=u.getStr_Apartment();
+			 str_State=u.getStr_State();
+			 str_City=u.getStr_City();
+			 str_Flat=u.getStr_Flat();
+			 str_Block=u.getStr_Block();
+			 str_EmailId=u.getStr_Email();
+			 str_Mobile=u.getStr_PhoneNo();
+		 str_Gender=userExtraInfo.getStr_gender();
 		 date_DateOfBirth=userExtraInfo.getDate_DateOfBirth();
 		 str_BloodGroup=userExtraInfo.getStr_BloodGroup();
 		 str_MaritalStatus=userExtraInfo.getStr_MaritalStatus();

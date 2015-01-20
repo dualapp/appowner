@@ -104,14 +104,14 @@ public class SecurityServlet extends HttpServlet {
 				String responseBody = httpclient.execute(httpget, responseHandler);
 				JSONObject json = (JSONObject)JSONSerializer.toJSON(responseBody);
 				String facebookId = json.getString("id");
-				String firstName = json.getString("first_name");
-				String lastName = json.getString("last_name");
+				String str_FirstName = json.getString("first_name");
+				String str_LastName = json.getString("last_name");
 				String gender=json.getString("gender");
 				 
 				//String password=json.getString("password");
 				str_EmailId= json.getString("email");
-				httpSession.setAttribute("firstName", firstName);
-				httpSession.setAttribute("lastName", lastName);
+				httpSession.setAttribute("str_FirstName", str_FirstName);
+				httpSession.setAttribute("str_LastName", str_LastName);
 				httpSession.setAttribute("fbId", facebookId);
 				httpSession.setAttribute("str_EmailId", str_EmailId);
 				httpSession.setAttribute("username", str_EmailId);
@@ -122,8 +122,8 @@ public class SecurityServlet extends HttpServlet {
 				httpSession.setAttribute("str_ImageName1", img);
 				System.out.println(img+"image");
 				//put user data in session
-				httpSession.setAttribute("FACEBOOK_USER", firstName+" "
-						+lastName);
+				httpSession.setAttribute("FACEBOOK_USER", str_FirstName+" "
+						+str_LastName);
 				
 			} else {
 				System.err.println("Token za facebook je null");
