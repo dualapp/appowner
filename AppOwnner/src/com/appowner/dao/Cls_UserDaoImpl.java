@@ -416,7 +416,7 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		@Override
 		public Integer getUserId(String str_Username) {
 			// TODO Auto-generated method stub
-			return (Integer) getSessionFactory().getCurrentSession().createQuery("select int_UserId  from User where str_Email=?").setCacheable(true).setParameter(0, str_Username).uniqueResult();
+			return (Integer) getSessionFactory().getCurrentSession().createQuery("select int_UserId  from User where str_Username=?").setCacheable(true).setParameter(0, str_Username).uniqueResult();
 		}
 
 		@Override
