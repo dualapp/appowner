@@ -7,7 +7,7 @@
 	template="../../include/templates/template.xhtml">
 	<ui:define name="content">
 	<f:metadata>
-	<f:viewParam name="int_UserId" value="#{loginBean.int_UserId}"  />
+	 
 	 
 	<f:viewAction action="#{loginBean.getUserExtraInfo}" />
 </f:metadata>
@@ -81,7 +81,7 @@
    <tr>
  <td><h:outputText value="Country :">
             </h:outputText></td>           
-           <td> <h:inputText value="#{loginBean.str_Country}" />
+           <td> <h:inputText value="#" />
             </td> 
             <td><h:outputText value="State :"/>
               </td>           
