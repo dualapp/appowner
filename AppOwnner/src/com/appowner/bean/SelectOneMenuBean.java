@@ -43,6 +43,38 @@ public class SelectOneMenuBean {
 		return city_Value;
 	}
 
+	public String getCvalue() {
+		return cvalue;
+	}
+
+	public void setCvalue(String cvalue) {
+		this.cvalue = cvalue;
+	}
+
+	public String getState_Value() {
+		return state_Value;
+	}
+
+	public void setState_Value(String state_Value) {
+		this.state_Value = state_Value;
+	}
+
+	public String getCity_Value() {
+		return city_Value;
+	}
+
+	public void setCity_Value(String city_Value) {
+		this.city_Value = city_Value;
+	}
+
+	public String getApartment_Value() {
+		return apartment_Value;
+	}
+
+	public void setApartment_Value(String apartment_Value) {
+		this.apartment_Value = apartment_Value;
+	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
@@ -84,8 +116,9 @@ public class SelectOneMenuBean {
 	}
 
 	public void getApartment(String str_userapartment) {
+		System.out.println(str_userapartment+"jhjkkjkj");
 		apartment_Value=str_userapartment;
-		
+		System.out.println(apartment_Value+"hjhjj");
 	}
 	public void getBlocks(List<String> strBlocks)
 	{

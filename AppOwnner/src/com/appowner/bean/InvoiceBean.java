@@ -898,7 +898,7 @@ private List<DueTransaction> listDueTransaction;
 		getListInvoiceTransaction1();
 		System.out.println(listInvoiceTransaction1.listIterator().hasNext());
 		System.out.println(!listInvoiceTransaction1.listIterator().hasNext());
-		if(listInvoiceTransaction.listIterator().hasNext())
+		if(listInvoiceTransaction1.listIterator().hasNext())
 		{
 			  FacesContext facesContext = FacesContext.getCurrentInstance();
 				Flash flash = facesContext.getExternalContext().getFlash();
@@ -926,6 +926,7 @@ private List<DueTransaction> listDueTransaction;
 		       
 		         transaction.addAll(listTax);
 		        }
+		        System.out.println(transaction+"fdjffdjfdjjfd");
 			     ListIterator list=transaction.listIterator();
 			     totalAmounts=new ArrayList<Double>();
 			     subTotal=0.00;
@@ -944,9 +945,10 @@ private List<DueTransaction> listDueTransaction;
 			    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 			    	 System.out.println(taxAmount+"jkjkggf");
 			    	  tax2.add(taxAmount);
-			    	  if(str3.equalsIgnoreCase("Sqrt"))
+			    	  if(str3.equalsIgnoreCase("Sqft"))
 			    	  {   Double sqrt=getInvoiceService().getSqft(str);
-			    	      System.out.println("dksdsk");
+			    	      System.out.println(sqrt+"dksdsk");
+			    	      System.out.println(template.getStr_Rate()+"kjfdfjkd");
 			    	      totalAmount=template.getStr_Rate()*sqrt;
 			    	      System.out.println(totalAmount+"fdkdfk");
 			    	  }
@@ -1169,5 +1171,14 @@ System.out.println("fddffdk");
 		getInvoiceService().deleteInvoice(id);
 		getInvoiceService().deleteDues(str);
     return "invoice.xhtml?faces-redirect=true";
+}
+private int index = 0;
+
+public int getIndex() {
+    return index;
+}
+
+public void setIndex(int index) {
+    this.index = index;
 }
 }

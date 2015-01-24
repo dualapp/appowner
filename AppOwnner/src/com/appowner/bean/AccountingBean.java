@@ -25,6 +25,8 @@ import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
 import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.tabview.Tab;
+import org.primefaces.event.TabChangeEvent;
 
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.AccountsOpeningBalance;
@@ -138,7 +140,7 @@ public void setStr_Organisation(String str_Organisation) {
 	this.str_Organisation = str_Organisation;
 }
 public Date getDat_Date() {
-	dat_Date=new java.util.Date();
+	//dat_Date=new java.util.Date();
 	
 	
 	return dat_Date;
@@ -1743,7 +1745,7 @@ public void getSearch1(){
 
 public Date accountchangeListener3(ValueChangeEvent event)
 {
-	
+	System.out.println("hjjhjhjk");
 	str=(String)event.getNewValue();
   
    if(str.equalsIgnoreCase("This Week End"))
@@ -2178,6 +2180,12 @@ public void getSearch3()
 		System.out.println(int_blank+"hhjhj123");
 	}
 }
+public void onChange(TabChangeEvent event) {
+	Tab activeTab = event.getTab();
+	System.out.println(activeTab+"fddfkj");
+	//...
+	 }
+	
 }
 
 

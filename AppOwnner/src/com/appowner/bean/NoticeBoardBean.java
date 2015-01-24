@@ -343,8 +343,18 @@ public static void setContent(String content) {
 		this.dat_ExpireOn = dat_ExpireOn;
 	}
 	
+	private LoginBean loginBean;
 	
 	
+	public LoginBean getLoginBean() {
+		
+		return loginBean;
+	}
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
+
 	//FILE UPLOAD CONCEPT
 	 public void handleFileUpload(FileUploadEvent event) throws IOException {
 		 System.out.println("hi");
@@ -355,7 +365,8 @@ public static void setContent(String content) {
 		            + event.getFile().getFileName().substring(
 		                  event.getFile().getFileName().lastIndexOf('.'));
 		    System.out.println(name);
-		      File file= new File("E:\\myUploads//" + "images" + name);
+		    System.out.println(LoginBean.getStr_ImagePath());
+		      File file= new File(LoginBean.getStr_ImagePath()+"/"+ "images" + name);
                System.out.println(file);
 		    InputStream is = event.getFile().getInputstream();
 		    OutputStream out = new FileOutputStream(file);
