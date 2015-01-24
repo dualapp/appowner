@@ -43,6 +43,7 @@
     <servlet-name>Servlet1</servlet-name>
     <url-pattern>/srv1</url-pattern>
   </servlet-mapping>
+   
   <servlet>
     <servlet-name>priya</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet2</servlet-class>
@@ -50,6 +51,15 @@
   <servlet-mapping>
     <servlet-name>priya</servlet-name>
     <url-pattern>/srv2</url-pattern>
+  </servlet-mapping>
+   
+  <servlet>
+    <servlet-name>Password</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet5</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Password</servlet-name>
+    <url-pattern>/srv6</url-pattern>
   </servlet-mapping>
   <context-param>
     <param-name>host</param-name>
@@ -92,7 +102,9 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
     
+    
   </servlet-mapping>
+    
   <session-config>
     <session-timeout>20</session-timeout>
   </session-config>
