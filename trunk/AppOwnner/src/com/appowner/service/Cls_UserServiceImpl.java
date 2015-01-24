@@ -20,7 +20,7 @@ import com.appowner.model.UserBlocks;
 import com.appowner.model.UserExtraInfo;
 
 /**
- * @author pankaj singh
+ * @author kalpana jena
  *
  */
 @Service("cls_UserService")
@@ -286,6 +286,7 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	@Override
 	public Integer getUserId(String str_Username) {
 		// TODO Auto-generated method stub
+		System.out.println(str_Username+"kkkppp");
 		return getIn_userdao().getUserId(str_Username);
 	}
 
@@ -293,6 +294,30 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	public User getFbUser(Integer id) {
 		// TODO Auto-generated method stub
 		return getIn_userdao().getFbUser(id);
+	}
+
+	@Override
+	public void updatePassword(Integer userId,String newPassword) {
+		// TODO Auto-generated method stub
+		getIn_userdao().updatePassword(userId,newPassword);
+	}
+
+	@Override
+	public String getPassword(Integer userId) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getPassword(userId);
+	}
+
+	@Override
+	public User getUser(String userName) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getUser( userName);
+	}
+
+	@Override
+	public String getPassword(String str_EmailId) {
+		// TODO Auto-generated method stub
+		return  getIn_userdao().getPassword(str_EmailId);
 	}
 	
 	}

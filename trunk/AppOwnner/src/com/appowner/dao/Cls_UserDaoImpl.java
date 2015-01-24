@@ -48,6 +48,12 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import javax.mail.Session;
 import javax.management.Query;
 
@@ -75,7 +81,7 @@ import com.appowner.model.UserState;
 //import com.appowner.model.VendorCountry;
 
 /**
- * @author pankaj
+ * @author kalpana
  *
  */
 @Repository
@@ -416,6 +422,9 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		@Override
 		public Integer getUserId(String str_Username) {
 			// TODO Auto-generated method stub
+			System.out.println(str_Username+"kkkkkkkkkkkkkpppppppppppp");
+			System.out.println(getSessionFactory()+"kalpana");
+			 
 			return (Integer) getSessionFactory().getCurrentSession().createQuery("select int_UserId  from User where str_Username=?").setCacheable(true).setParameter(0, str_Username).uniqueResult();
 		}
 
@@ -424,6 +433,30 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			// TODO Auto-generated method stub
 			return (User) getSessionFactory().getCurrentSession().get(User.class, id);
 		}
+
+		@Override
+		public void updatePassword(Integer userId,String newPassword) {
+			// TODO Auto-generated method stub
+			getSessionFactory().getCurrentSession().createQuery("update User set str_Password = ? where int_UserId=?").setParameter(0, newPassword).setParameter(1, userId).executeUpdate();
+		}
+
+		@Override
+		public String getPassword(Integer userId) {
+			// TODO Auto-generated method stub
+			return (String) getSessionFactory().getCurrentSession().createQuery(" select str_Password from  User  where int_UserId=?").setParameter(0, userId).uniqueResult();
+		}
+
+		@Override
+		public User getUser(String userName) {
+			// TODO Auto-generated method stub
+			return (User) getSessionFactory().getCurrentSession().createQuery("from  User  where str_Username=?").setParameter(0, userName).uniqueResult();
+		}
+
+		@Override
+		public String getPassword(String str_EmailId) {
+			// TODO Auto-generated method stub
+			return (String) getSessionFactory().getCurrentSession().createQuery(" select str_Password from  User  where str_Email=?").setParameter(0, str_EmailId).uniqueResult();
+		}
 		}
 
 		
@@ -433,12 +466,6 @@ public class Cls_UserDaoImpl implements In_UserDao {
 
 		
 
-		//@Override
-		//public void addUser(User user) {
-			// TODO Auto-generated method stub
-			
-		//}
-		
-
+	 
 
 
