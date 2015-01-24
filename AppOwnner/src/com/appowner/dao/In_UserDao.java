@@ -119,6 +119,8 @@ public interface In_UserDao {
 
 	public String getPassword(String str_EmailId);
 
+	public void setPassword(String str_Email, String str_RecoverPassword);
+
 	//public void deleteUser1(int int_UserId);
 
 	
