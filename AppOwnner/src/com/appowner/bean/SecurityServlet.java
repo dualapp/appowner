@@ -2,6 +2,7 @@ package com.appowner.bean;
 
 import java.io.IOException;
 
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,13 +20,24 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.HttpRequestHandler;
+
+import com.appowner.dao.Cls_UserDaoImpl;
+import com.appowner.model.User;
+import com.appowner.service.In_UserService;
+import com.appowner.util.Util;
  
  
 
 @WebServlet("*.sec")
-public class SecurityServlet extends HttpServlet {
+public class SecurityServlet extends HttpServlet   {
 
 	private static final long serialVersionUID = 8071426090770097330L;
+	 
+	Cls_UserDaoImpl userService=new Cls_UserDaoImpl() ;
+	 
 
 	public SecurityServlet() {
 	}
@@ -35,6 +47,7 @@ public class SecurityServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("*** Called SecurityServlet");
@@ -50,12 +63,27 @@ public class SecurityServlet extends HttpServlet {
 			try {
 				//do some specific user data operation like saving to DB or login user
 				//request.login(email, "somedefaultpassword");
+				User user=new User();
+				
+				 HttpSession session = request.getSession(true);
+				System.out.println(request.getParameter("email")+"email"+session.getAttribute("str_EmailId"));
+				String userName=(String) session.getAttribute("str_EmailId");
+				 
+				user=LoginPageCode.getUser(userName);
+				//Integer id=userService.getUserId(userName);
+				System.out.println(user+"user");
+				if(user!=null)
+				{
+					response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/welcomepage.xhtml");
+				}
+				else
+					response.sendRedirect(request.getContextPath() +"/confirmfbaccount.xhtml");
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.sendRedirect(request.getContextPath() +"/facebookError.html");
 				return;
 			}
-			response.sendRedirect(request.getContextPath() +"/confirmfbaccount.xhtml");
+			
 		} else {
 			System.err.println("CSRF protection validation");
 		}
@@ -137,4 +165,6 @@ public class SecurityServlet extends HttpServlet {
 		}
 		return str_EmailId;
 	}
+
+ 
 }

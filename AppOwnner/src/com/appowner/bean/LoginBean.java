@@ -44,27 +44,14 @@ public class LoginBean implements Serializable{
 	private String userloginpassword;
 	private String userloginname;
 	private String str_FacebookId;
-	public String getStr_FacebookId() {
-		str_FacebookId=Util.getEmailId();
-		return str_FacebookId;
-	}
-	public void setStr_FacebookId(String str_FacebookId) {
-		this.str_FacebookId = str_FacebookId;
-	}
-	public String getStr_LinkedInId() {
-		return str_LinkedInId;
-	}
-	public void setStr_LinkedInId(String str_LinkedInId) {
-		this.str_LinkedInId = str_LinkedInId;
-	}
-    private  int status;
 	
-	
-	
-	private String facebook_userloginpassword;
+	 
 	private String linkddin_userloginname;
+	private String currentPassword;
+	private String newPassword;
+	
 	private String str_LinkedInId;
-	private String linkddin_userloginpassword;
+	 
 	public String formuserloginusername;
 	public String formuserloginuserpassword;
 	private Integer int_ApartmentId;
@@ -92,8 +79,10 @@ public class LoginBean implements Serializable{
 	 private static String str_Flat1;
 	 private static String str_VendorType1;
 	 private static String ss="approved";
+	 private static String link="http://localhost:5454/AppOwnner/WebContent/AfrteLoginViews/UserInfo/changepassword.xhtml";
 	 private String str_BloodGroup;
-	 private String str_MaritalStatus;
+	
+	private String str_MaritalStatus;
 	 private String str_Hobbies;
 	 private String str_Proffession;
 	 private List<String> str_IntrestedIn;
@@ -105,6 +94,24 @@ public class LoginBean implements Serializable{
 	 private String str_Country;
 	 private String str_State;
 	 private String str_City;
+	 private static String str_RecoverPassword;
+	 public String getStr_FacebookId() {
+			str_FacebookId=Util.getEmailId();
+			return str_FacebookId;
+		}
+		public void setStr_FacebookId(String str_FacebookId) {
+			this.str_FacebookId = str_FacebookId;
+		}
+		public String getStr_LinkedInId() {
+			return str_LinkedInId;
+		}
+		public void setStr_LinkedInId(String str_LinkedInId) {
+			this.str_LinkedInId = str_LinkedInId;
+		}
+	    private  int status;
+		
+		
+		
 	 public String getStr_Country() {
 		 str_Country= Util.getStr_Country();
 		return str_Country;
@@ -581,9 +588,16 @@ public class LoginBean implements Serializable{
 	public void setStr_LandLineNum(String str_LandLineNum) {
 		this.str_LandLineNum = str_LandLineNum;
 	}
-
-
+private String str_Email;
+	 
+	public String getStr_Email() {
+	return str_Email;
+}
+public void setStr_Email(String str_Email) {
+	this.str_Email = str_Email;
+}
 	public String getStr_EmailId() {
+		if(str_EmailId==null)
 		str_EmailId=Util.getEmail();
 		return str_EmailId;
 	}
@@ -768,22 +782,23 @@ public class LoginBean implements Serializable{
 	}
 
 
-	public String getFacebook_userloginpassword() {
-		return facebook_userloginpassword;
+	 
+
+
+
+
+	public String getCurrentPassword() {
+		return currentPassword;
 	}
-
-
-
-
-
-	public void setFacebook_userloginpassword(String facebook_userloginpassword) {
-		this.facebook_userloginpassword = facebook_userloginpassword;
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
 	}
-
-
-
-
-
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 	public String getLinkddin_userloginname() {
 		return linkddin_userloginname;
 	}
@@ -800,17 +815,7 @@ public class LoginBean implements Serializable{
 
 
 
-	public String getLinkddin_userloginpassword() {
-		return linkddin_userloginpassword;
-	}
-
-
-
-
-
-	public void setLinkddin_userloginpassword(String linkddin_userloginpassword) {
-		this.linkddin_userloginpassword = linkddin_userloginpassword;
-	}
+ 
 	  public void getDetails()
 	  	{
 	  		 
@@ -890,6 +895,56 @@ private static boolean user1;
 public static void setUser1(boolean user1) {
 	LoginBean.user1 = user1;
 }
+public String updatePassword()
+{
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	
+	formuserloginuserpassword=getUserService().getPassword(Util.getUserId());
+	if(formuserloginuserpassword.equals(getCurrentPassword()))
+	{
+		getUserService().updatePassword(Util.getUserId(),getNewPassword());
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Password Changed Successfully!" ,"password Changed Successfully!"));
+		  
+		
+	}
+	else
+	{
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Current Password is Wrong!" ,"Current Password is Wrong!"));
+		 
+	return "";
+	}
+	 
+	 return "/AfrteLoginViews/welcomepage.xhtml";
+}
+
+ 
+
+public String getStr_RecoverPassword1() {
+	str_RecoverPassword=getUserService().getPassword(getStr_Email());
+	System.out.println(str_RecoverPassword+"fpassword");
+	Email="kalpanasudha1990@gmail.com";
+	 subject="Reset Password Instructions for you on AppOwner";
+	 content="sir i need ur BsnlBroadBand service so plz provice it";
+ link="http://localhost:5454/AppOwnner/AfrteLoginViews/UserInfo/changepassword.xhtml";
+	System.out.println(Email);
+	 return "forgotpassword1.jsp";
+}
+ 
+	public static String getStr_RecoverPassword() {
+	return str_RecoverPassword;
+}
+public static void setStr_RecoverPassword(String str_RecoverPassword) {
+	LoginBean.str_RecoverPassword = str_RecoverPassword;
+}
+	public static String getLink() {
+	return link;
+}
+public static void setLink(String link) {
+	LoginBean.link = link;
+}
 	public String userLogin()
 	{
 
@@ -938,7 +993,7 @@ public static void setUser1(boolean user1) {
 			 session.setAttribute("str_LastName", str_LastName);
 			  
             session.setAttribute("username", userloginname);
-            session.setAttribute("password", formuserloginuserpassword);
+            session.setAttribute("str_Password", formuserloginuserpassword);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
             session.setAttribute("str_Block",str_Block);
@@ -964,7 +1019,7 @@ public static void setUser1(boolean user1) {
 				user1=!admin1.equals(str_userRoleName);
 				
 				HttpSession session = Util.getSession();
-				 session.setAttribute("password", formuserloginuserpassword);
+				 session.setAttribute("str_Password", formuserloginuserpassword);
 				session.setAttribute("str_FirstName", str_FirstName);
 				 session.setAttribute("str_LastName", str_LastName);
 				 session.setAttribute("int_UserRole", user.getInt_UserRole());
@@ -1147,7 +1202,7 @@ public static void setUser1(boolean user1) {
 		userExtraInfo.setStr_TwitterId(str_TwitterId) ;
 		userExtraInfo.setStr_Profession(str_Proffession);
 		user.setUserExtraInfo(userExtraInfo);
-		formuserloginuserpassword=(String) session.getAttribute("password");
+		 
 		user.setStr_Password(formuserloginuserpassword);
 		user.setStr_Email(str_EmailId);
 		user.setStr_FirstName(str_FirstName);
