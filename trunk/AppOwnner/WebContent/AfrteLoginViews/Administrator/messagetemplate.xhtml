@@ -65,7 +65,7 @@
              </td>
               <td><h:outputText  value="Category" /></td>
                 &#150; &#150;&#150; &#150;&#150;
-             <td>   <h:commandButton  value="Go" action="#{templateBean.getListMessages()}" update="message"/></td>
+             <td>   <p:commandButton  value="Go" action="#{templateBean.getListMessages()}" update="message"/></td>
                 </h:panelGroup>
               </tr>
               </table>
@@ -80,22 +80,22 @@
        &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="message" process="message" onclick="return confirm('Are you sure you want to delete ?');" action="#{templateBean.deleteMessageTemplate()}" icon="ui-icon-trash" value="Delete" />&#150; &#150;  &#150; &#150;<p:commandButton style="width:120px;height:25px"  value="Refresh" icon="ui-icon-refresh"/>
               <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
-        <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="xls"    target="message" fileName="MessageDetails" />
     </h:commandLink>&#150;
  
     <h:commandLink id="pdf">
        <p:graphicImage  height="20" width="20" alt="pdf" value="#{expenseBean.str_Name}images/pdf.jpg"/>
-        <p:dataExporter type="pdf"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="pdf"    target="message" fileName="BookDetails" />
     </h:commandLink>&#150;
  
     <h:commandLink id="csv">
        <p:graphicImage  height="20" width="20" alt="cvs" value="#{expenseBean.str_Name}images/csv.jpg"/>
-        <p:dataExporter type="csv"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="csv"    target="message" fileName="BookDetails" />
     </h:commandLink>&#150;
  
     <h:commandLink id="xml">
        <p:graphicImage  height="20"    width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.jpg"/>
-        <p:dataExporter type="xml"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="xml"    target="message" fileName="BookDetails" />
     </h:commandLink>
      
              </td>
@@ -110,62 +110,62 @@
                   <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center"/>     
             <p:column>
                 <f:facet name="header">
-                <center>
+              
                     <h:outputText value="Organisation Name" />
-                    </center>
+                   
                 </f:facet>
-                <center>
+                
                 <h:outputText value="#{templateBean.str_Organisation}" />
-                </center>
+                
             </p:column>
             <p:column >
                 <f:facet name="header">
-                <center>
+                
                     <h:outputText value="Mode" />
-                    </center>
+                    
                 </f:facet>
-                 <center>
+                 
                 <h:outputText value="#{message.str_Mode}" />
-                </center>
+                
             </p:column>
             <p:column>
                 <f:facet name="header">
-                 <center>
+                 
                     <h:outputText value="Category" />
-                    </center>
+                    
                 </f:facet>
-                 <center>
+                 
                 <h:outputText value="#{message.str_Category}" />
-                </center>
+                
             </p:column>
             <p:column>
                 <f:facet name="header">
-                 <center>
+                 
                     <h:outputText value="Title" />
-                    </center>
+                    
                 </f:facet>
-                 <center>
+                 
                 <h:outputText value="#{message.str_Title}" />
-                </center>
+                
             </p:column>
               <p:column>
                 <f:facet name="header">
-                 <center>
+                 
                     <h:outputText value="Created By" />
-                    </center>
+                    
                 </f:facet>
-                 <center>
+                 
                 <h:outputText value="#{message.str_CreatedBy}" />
-                </center>
+                
             </p:column>
-           <p:column>
+           <p:column exportable="false">
                 <f:facet name="header">
                 <center>
                 
                     <h:outputText value="Action" />
-                    </center>
+                </center>    
                 </f:facet>
-                <center>
+              <center>
               <h:panelGroup layout="block" id="mainDiv" style="float:center">
                <p:commandLink   process="message"  update=":form:multiMessageTemplateDetail3" oncomplete="PF('multiMessageTemplateDialog3').show()" action="#{templateBean.getMessageTemplate2(message.int_MessageTemplateID)}">
                   <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
