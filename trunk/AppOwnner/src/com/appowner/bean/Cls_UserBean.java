@@ -376,7 +376,7 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_Email(getStr_Email());
 			//usr.setStr_ConfirmEmail(getStr_ConfirmEmail());
 			usr.setStr_Password(getStr_Password());
-			//usr.setStr_ConfirmPassword(getStr_ConfirmPassword());
+			 
 	        usr.setInt_UserRole(getInt_UserRole());
 	        usr.setStr_Flat(getStr_Flat());
 			usr.setStr_Block(getStr_Block());

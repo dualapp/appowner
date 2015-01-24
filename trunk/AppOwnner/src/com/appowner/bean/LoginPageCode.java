@@ -16,29 +16,52 @@ import com.appowner.service.In_UserService;
 public class LoginPageCode implements Serializable {
     private static final long serialVersionUID = -1611162265998907599L;
     @ManagedProperty(value = "#{cls_UserService}")
-	private In_UserService userService;
-	public In_UserService getUserService() {
+	private static In_UserService userService;
+	public static In_UserService getUserService() {
 		return userService;
+	}
+	public String getStr_Password() {
+		return str_Password;
+	}
+	public void setStr_Password(String str_Password) {
+		this.str_Password = str_Password;
+	}
+	public String getStr_ConfirmPassword() {
+		return str_ConfirmPassword;
+	}
+	public void setStr_ConfirmPassword(String str_ConfirmPassword) {
+		this.str_ConfirmPassword = str_ConfirmPassword;
 	}
 	public void setUserService(In_UserService userService) {
 		this.userService = userService;
 	}
 private  Integer id;
+private String str_Password;
+private String str_ConfirmPassword;
     public String getFacebookUrlAuth() {
         HttpSession session =
         (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         String sessionId = session.getId();
          
         String appId = "1525993687671325";
-        
-		String redirectUrl = "http://localhost:4444/AppOwnner/index.sec";
+        String redirectUrl = "http://localhost:4444/AppOwnner/index.sec";
+        System.out.println(getUserService().getUserId((String) session.getAttribute(str_Username)+"kalpana"));
         String returnValue = "https://www.facebook.com/dialog/oauth?client_id="
                 + appId + "&redirect_uri=" + redirectUrl
                 + "&scope=email,user_birthday&state=" + sessionId;
         
+       
+		
         return returnValue;
+        
     }
- 
+ public static User getUser(String userName)
+ { 
+	 User u=new User();
+	u= getUserService().getUser(userName);
+	return u;
+	 
+ }
     
     public Integer getId() {
     	id=getUserService().getUserId(getStr_Username());
@@ -59,6 +82,8 @@ private  Integer id;
     		session.setAttribute("str_State", usr.getStr_State());
     		session.setAttribute("str_UserRoleName", usr.getStr_UserRoleName());
     		session.setAttribute("str_City", usr.getStr_City());
+    		session.setAttribute(str_Password, str_Password);
+    		 
     		
     		
     		session.setAttribute("gender", getStr_Gender());
@@ -145,6 +170,8 @@ private  Integer id;
 			usr.setStr_Email(getStr_Email());
 			usr.setStr_UserRoleName("Guest");
 			usr.setStr_Username(getStr_Username());
+			usr.setStr_Password(str_Password);
+		 
 			usr.setVar_ImageName1(str_ImageName1);
 			usr.setInt_UserRole(1);
 			usr.setStr_Apartment("kalpnavilla");
