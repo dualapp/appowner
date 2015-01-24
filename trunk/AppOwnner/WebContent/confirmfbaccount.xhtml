@@ -7,7 +7,15 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fb="http://www.facebook.com/2008/fbml"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
+	 <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
+		
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title">Confirm Your Account</span>
+				</td>
+			</tr>
+		
+	</table>
 	 
 <h:head>
 
@@ -114,21 +122,60 @@
 
 				</nav>
 
-
-		<h:form id="loginForm">
+ 
+		 <h:form id="FBUser">
+                                        
+                                        <!-- Form -->
+                                                <div class="form">
+                                                
 			 <h2>Confirm Your New Account</h2><br/>
 			 <h3>You are about to create a new account on AppOwnner using a login from</h3>
 			 <h3><mark> Facebook (#{loginPageCode.str_Email}" )</mark></h3>
 			
 			 <h3>Here's how you'll look on the site based on the information provided to us by Facebook.</h3>
 			<h3>Edit these fields if you'd like, then click "Confirm And Create This Account" when finished.</h3>
-         
-         <img src="#{loginPageCode.getStr_ImageName1()}"/>
-          <mark> #{loginPageCode.userName}</mark><br/>
-			<br/><p:commandButton  style="width:250px;height:25x" value="Confirm And Create This Account" action="#{loginPageCode.getUserFromSession()}" />
-			 <br/>
-			 <br/>
-		</h:form>
+                                                               
+                                                               <table>
+                                                               <tr><th>
+         <img src="#{loginPageCode.getStr_ImageName1()}"/></th>
+         <td>
+          <mark> #{loginPageCode.userName}</mark></td><td></td></tr>
+                                                                <tr><th>
+                                                                <h:outputText value="New Password:" /> </th>
+                                                    <td>
+                                                    <p:password id="newPassword1" style="width:200px;" value="#{loginPageCode.str_Password}" required="true"  requiredMessage="Enter New Password" match="newPassword2" feedback="true" inline="true"
+                                                        label="New Password" > 
+                                                     
+                                                     <p:ajax event="blur" update="newPassword1Msg" />
+                                                     </p:password></td>
+                                                     <td>
+                                                     <p:message id="newPassword1Msg" for="newPassword1" display="text"/>
+                                                                </td></tr>
+                                                                <tr><th>
+                                                                <h:outputText value="Repeat New Password:"  /> </th>
+                                                               <td>
+                                                    <p:password id="newPassword2" style="width:200px;" value="#{loginPageCode.str_Password}"  required="true"  requiredMessage="Enter Repeat Password" label="Repeat New Password" >
+                                                     
+                                                    <p:ajax event="blur" update="newPassword2Msg" />
+                                                    </p:password></td>
+                                                    <td>
+                                                    <p:message id="newPassword2Msg" for="newPassword2" display="text"/></td>
+                                              </tr>
+                                              <tr><th></th><td><h:commandButton  style="width:250px;height:25x" value="Confirm And Create This Account" action="#{loginPageCode.getUserFromSession()}" /></td><td></td></tr>
+                                              </table>
+                                               
+                                                       
+		
+                                                </div>
+                                                <!-- End Form -->
+                                                
+                                                <!-- Form Buttons -->
+                                               
+                                                        
+                                                 
+                                                <br/><br/> 
+                                                <!-- End Form Buttons -->
+                                        </h:form>
 		</div>
 		</div>
 		</div>
