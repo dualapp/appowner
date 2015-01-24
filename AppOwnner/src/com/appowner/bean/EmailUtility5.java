@@ -52,7 +52,7 @@ public class EmailUtility5 {
         msg.setContent("<html>\n" +"<fieldset style="+"width:40%"+">"+
                        "<legend style="+"background-color:#40E0D0; color:#fff;"+" align="+"left"+">"+"Recover Password"+"</legend>"+
                         "<table width="+600+" bgcolor="+"#40E0D0"+">"+
-                        "<tr>"+"<td width="+30+">"+"Dear Mr/Mrs/Ms. ,"+"</td>"+"<td width="+70+">"+userName+"</td>"+"</tr>"+
+                        "<tr>"+"<td width="+30+">"+"Dear Mr/Mrs/Ms. ,"+"</td>"+"<td width="+70+">"+toAddress+"</td>"+"</tr>"+
                        
                         "<tr>"+"<td width="+30+">"+"Your Old Password is:. ,"+"</td>"+"<td width="+70+">"+str_Password+"</td>"+"</tr>"+
                        
