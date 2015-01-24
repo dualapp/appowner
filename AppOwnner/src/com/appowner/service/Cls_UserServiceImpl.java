@@ -319,6 +319,12 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		return  getIn_userdao().getPassword(str_EmailId);
 	}
+
+	@Override
+	public void setPassword(String str_Email, String str_RecoverPassword) {
+		// TODO Auto-generated method stub
+		getIn_userdao().setPassword(str_Email,str_RecoverPassword);
+	}
 	
 	}
 

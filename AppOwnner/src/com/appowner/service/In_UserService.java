@@ -107,5 +107,7 @@ public interface In_UserService {
 	public User getUser(String userName);
 
 	public String getPassword(String str_EmailId);
+
+	public void setPassword(String str_Email, String str_RecoverPassword);
 }
 
