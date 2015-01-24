@@ -16,11 +16,11 @@
       <table>
       <tr>
          <td>  <h:outputLabel value="As On"/>&nbsp; &nbsp;</td>
-        <td> <p:selectOneMenu id="car" value="#{accountingBean.date4}" valueChangeListener="#{accountingBean.accountchangeListener3}" >
+        <td> <h:selectOneMenu id="car" value="#{accountingBean.date4}" valueChangeListener="#{accountingBean.accountchangeListener3}" >
            
             <f:selectItems value="#{accountingBean.dates}" />
               <p:ajax event="change" partialSubmit="true"  update="date" process="car"/>
-        </p:selectOneMenu>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        </h:selectOneMenu>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 </td> 
               <td>  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_ToDate}">
                   </p:calendar>&nbsp; &nbsp; &nbsp;</td>
@@ -31,10 +31,7 @@
    
    </tr>
    </table>
-   <br/>
-    	&#150; &#150;  &#150; &#150;		<input type="button" class="ui-state-default ui-corner-all" id="cmdRefAccTxn" value="Refresh"/>
-					<input type="button" class="ui-state-default ui-corner-all" id="actSaveAccTxn" value="Export to Excel"/>
-      <br/>
+  
       <br/>
       
     <p:panel  header="&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Account &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; Debit  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; Credit"  id="toggleable"  toggleable="true" style="width: 70%"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >

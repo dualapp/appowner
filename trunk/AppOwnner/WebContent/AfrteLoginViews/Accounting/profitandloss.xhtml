@@ -1,12 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:pe="http://primefaces.org/ui/extensions" >
+	xmlns:pe="http://primefaces.org/ui/extensions" 
+	>
+	
 	
 	<h:head>
         <title>Profit And Loss</title>
@@ -19,13 +21,13 @@
               
         
              <div class="gsTitleDiv"><br/></div>
-              &#150; &#150;  &#150; &#150;   <h:outputLabel value="From :"/> &#150; &#150;
-                  <p:calendar value="#{accountingBean.date3}" navigator="true"    pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener3}">
-                     <p:ajax event="change" partialSubmit="true" />
+              &#150; &#150;  &#150; &#150;   <p:outputLabel value="From :"/> &#150; &#150;
+                  <p:calendar value="#{accountingBean.date3}" navigator="true"  showOn="focus"  pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener3}">
+                      <p:ajax event="dateSelect" partialSubmit="true" /> 
                     </p:calendar>
                   &nbsp; &nbsp;
-                  <h:outputLabel value="To :"/> &#150; &#150;
-                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
+                  <p:outputLabel value="To :"/> &#150; &#150;
+                  <p:calendar   required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
                   <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" />
              
@@ -33,11 +35,7 @@
                  
     </body>
     <br/>
-   <br/>
-      	&#150; &#150;  &#150; &#150;<h:commandButton value="Refresh" />&#150; &#150;
-					 <h:commandButton value="Export to Excel">
-					 <pe:exporter type="csv" target="table" fileName="cars" />
-					</h:commandButton>
+  
       <br/>
       <br/>
  
@@ -140,4 +138,5 @@
      </div>
    
 </h:form>
-</html>
+
+</ui:composition>

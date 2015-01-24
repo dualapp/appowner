@@ -31,8 +31,8 @@
              
              <p:layoutUnit   position="center" height="200" width="200">
                 <ui:include src="accounting.xhtml" />
-                <h:panelGroup id="centerContentPanel" layout="block">
-                   <ui:include  src="#{navigationBean.pageName}"/> 
+                <h:panelGroup id="centerContentPanel" layout="block" render="@all">
+                   <ui:include name="content" src="#{navigationBean.pageName}"/> 
                    
                 </h:panelGroup>
             </p:layoutUnit> 

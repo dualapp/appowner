@@ -26,12 +26,13 @@
     </h:head>
    
    <body >
-    <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
 				<td> 
 					<img src="#{expenseBean.str_Name}images/dues.png" height="60" width="70"></img> <span class="title">Dues</span>
 				</td>
+				<td ><a href="dues.xhtml"> &lt;&lt; Back to Grid</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -45,7 +46,7 @@
             <td><h:outputLabel value="Account" /> <font color="red" >*</font></td> 
             
               <td ><h:selectOneMenu id="str_Account" value="#{dueBean.str_Accounts}" required="false" >
-               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+              
                    <f:selectItems value="#{dueBean.ravenues}"  />
                  
                  </h:selectOneMenu>
@@ -64,7 +65,7 @@
           <div id="page3"> 
            <div class="gsTitleDiv">Due Details<br/><hr/></div>
   
-   <table >
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
             <td> <h:outputText  value="Period" /><font color="red" >*</font></td> 
            <td>
@@ -94,8 +95,8 @@
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
                         <p:ajax event="change"  process="str_Period"  partialSubmit="true" update="int_Year"/>  
                  </h:selectOneMenu>
-                  <h:selectOneMenu  value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Yearly' || dueBean.periodIndicator eq 'One Time'}" valueChangeListener="#{dueBean.periodChangeListener}">
-                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                  <h:selectOneMenu  value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Yearly' || dueBean.periodIndicator eq 'One Time' || dueBean.str_DueTemplate1 eq null}" valueChangeListener="#{dueBean.periodChangeListener}">
+                  
                    <f:selectItem itemLabel="N/A" itemValue="N/A"/>
                    <p:ajax event="change"  process="str_Period"  partialSubmit="true" update="int_Year"/>  
                    </h:selectOneMenu>

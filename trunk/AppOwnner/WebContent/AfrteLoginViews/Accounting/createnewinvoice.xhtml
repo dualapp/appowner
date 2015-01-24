@@ -17,7 +17,7 @@
 				<td> 
 					<img src="#{expenseBean.str_Name}images/invoice1.jpg" height="50" width="50"></img> <span class="title">Invoice</span> 
 				</td>
-				<td ><a href="invoice.xhtml">>>Back to Grid</a></td>
+				<td ><a href="invoice.xhtml"> &lt;&lt; Back to Grid</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -176,7 +176,7 @@
  
   </tr>
   </table>
-  <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo }">
+  <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo &amp;&amp; !listInvoiceTransaction1.listIterator().hasNext()}">
     <div id="page3"> 
     <div class="gsTitleDiv">Invoice Details<br/></div>
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;border:1px solid #DADADA ;">

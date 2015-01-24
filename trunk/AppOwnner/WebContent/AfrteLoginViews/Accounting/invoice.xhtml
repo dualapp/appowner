@@ -80,9 +80,13 @@
              <h:panelGroup id="aa">
             
               <td><h:outputLabel value="Invoice Date:" /></td>
-              <td><p:selectOneMenu id="dat_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}"  style="width:150px">
-                   <f:selectItems value="aaa" />
-                 </p:selectOneMenu>
+              <td><h:selectOneMenu id="dat_InvoiceDate"   style="width:150px">
+                  <f:selectItem itemLabel="Today" itemValue="Today"  />
+                  <f:selectItem itemLabel="Last Week" itemValue="Last Week"  />
+                  <f:selectItem itemLabel="Current MOnth" itemValue="Current MOnth"  />
+                  <f:selectItem itemLabel="Specific Date" itemValue="Specific Date"  />
+                   <f:selectItem itemLabel="Select Date Range" itemValue="Select Date Range"  />
+                </h:selectOneMenu>
              </td>
               <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Template:" /></td>
@@ -131,7 +135,7 @@
           <div id="page3"> 
 	  <div class="gsTitleDiv">List Of Invoice<br/><hr/></div>
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-          <tr><td>  <p:button  style="width:120px;height:25px" icon="ui-icon-plus" value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<h:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" outcome="viewinvoice.xhtml"   icon="ui-icon-search" value="View"  />
+          <tr><td>  <p:button  style="width:120px;height:25px" icon="ui-icon-plus" value="Create New" outcome="createnewinvoice.xhtml"/>&#150; &#150;<h:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" action="viewinvoice.xhtml"   icon="ui-icon-search" value="View"  />
 								&#150; &#150;<p:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" onclick="return confirm('Are you sure you want to delete ?');" action="#{invoiceBean.deleteInvoice()}" icon="ui-icon-trash" value="Delete" /> &#150; &#150; <h:commandButton  style="width:120px;height:25px" id="jjj"  process="invoice" action="#{invoiceBean.cancel()}"   icon="ui-icon-search" value="Make Payment" disabled="#{invoiceBean.indicate}" update="growl" >
 								
 							</h:commandButton>
@@ -139,22 +143,22 @@
          
            <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
-        <p:dataExporter type="xls"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="xls"    target="invoice" fileName="BookDetails" />
     </h:commandLink>&#150;
  
     <h:commandLink id="pdf">
        <p:graphicImage  height="20" width="20" alt="pdf" value="#{expenseBean.str_Name}images/pdf.jpg"/>
-        <p:dataExporter type="pdf"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="pdf"    target="invoice" fileName="BookDetails" />
     </h:commandLink>&#150;
  
     <h:commandLink id="csv">
        <p:graphicImage  height="20" width="20" alt="cvs" value="#{expenseBean.str_Name}images/csv.jpg"/>
-        <p:dataExporter type="csv"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="csv"    target="invoice" fileName="BookDetails" />
     </h:commandLink>&#150;
  
     <h:commandLink id="xml">
        <p:graphicImage  height="20"    width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.jpg"/>
-        <p:dataExporter type="xml"    target="DT" fileName="BookDetails" />
+        <p:dataExporter type="xml"    target="invoice" fileName="BookDetails" />
     </h:commandLink>
      
       </td>
@@ -235,9 +239,9 @@
                 </f:facet>
                 <h:outputText value="#{invoice.totalBalance}" />
             </p:column>
-             <p:column>
+             <p:column exportable="false">
                 <f:facet name="header">
-                    <h:outputText value="Balance" />
+                    <h:outputText value="Action" />
                 </f:facet>
                <center>
              

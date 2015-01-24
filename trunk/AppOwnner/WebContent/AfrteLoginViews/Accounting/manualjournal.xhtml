@@ -34,7 +34,7 @@
     
 &#150; &#150;  &#150; &#150; <p:commandButton style="width:120px;height:25px" oncomplete="PF('multiManualJournalDialog2').show()" icon="ui-icon-plus" value="Create New" />&#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiManualJournalDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiManualJournalDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="ggg" update=":form:multiManualJournalDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiManualJournalDialog').show()" />
-       &#150; &#150;  <h:commandButton  style="width:120px;height:25px"  process="ggg" onclick="return confirm('Are you sure you want to delete ?');" action="#{accountingBean.deleteManualJournal()}" icon="ui-icon-trash" value="Delete" />  &#150; &#150;
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px"  process="ggg" onclick="return confirm('Are you sure you want to delete ?');" action="#{accountingBean.deleteManualJournal()}" icon="ui-icon-trash" value="Delete" />  &#150; &#150;
       
              <br/>
            <br/>
@@ -113,7 +113,7 @@
      
       <tr>
        <td>  <h:outputText  value="Notes" /><font color="red" >*</font></td>
-           <td><p:inputTextarea id="str_Notes" cols="30" row="3" value="#{accountingBean.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
+           <td><h:inputTextarea id="str_Notes"  value="#{accountingBean.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
            </td>
     </tr>
     </table>
