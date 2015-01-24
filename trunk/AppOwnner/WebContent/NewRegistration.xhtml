@@ -115,7 +115,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="images/started.jpg" height="50" width="50"></img> <span class="title">New User Registration.</span>
+					<img src="images/started.jpg" height="50" width="50"></img> <span class="title"><font size="3">New User Registration.</font></span>
 				</td>
 			</tr>
 		</tbody>
@@ -205,17 +205,17 @@
             <tr>
  <td><h:outputText value="Country :">
             </h:outputText> <font color="red" >*</font></td>           
-           <td> <h:inputText id="counter" value="#{selectOneMenuBean.count1}"   required="true" requiredMessage="Enter Country Name!">
+           <td> <h:inputText id="counter" value="#{selectOneMenuBean.count1}" readOnly="true"  required="true" requiredMessage="Enter Country Name!">
             </h:inputText> </td> <td><p:message for="counter" display="text"/></td></tr>
             <tr>
             <td><h:outputText value="State :">
             </h:outputText><font color="red" >*</font> </td>           
-           <td> <h:inputText id="state" value="#{selectOneMenuBean.state}"   required="true" requiredMessage="Enter StateName!">
+           <td> <h:inputText id="state" value="#{selectOneMenuBean.state}" readOnly="true"  required="true" requiredMessage="Enter StateName!">
             </h:inputText></td><td><p:message for="state" display="text"/></td> </tr>
             <tr>
              <td><h:outputText value="City :">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText id="city" value="#{selectOneMenuBean.city}"   required="true" requiredMessage="Enter City Name!">
+             <td><h:inputText id="city" value="#{selectOneMenuBean.city}" readOnly="true"  required="true" requiredMessage="Enter City Name!">
             </h:inputText></td><td><p:message for="city" display="text"/></td></tr>
              <tr>
             <td><h:outputText value="Apartment :">
