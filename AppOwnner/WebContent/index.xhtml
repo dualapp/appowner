@@ -1,113 +1,273 @@
 <!DOCTYPE html>
+<html lang="en"
+	style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fb="http://www.facebook.com/2008/fbml"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<html lang="en" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;"
- xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-       xmlns:fb="http://www.facebook.com/2008/fbml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
 
-<head>
+	<title>Login</title>
+<style>
 
-<title>App-Ownner</title>
+fieldset
+{
+border: 2px ;
+width: 27.5em;
+height:15.2em;
+background-color: #1F7A1F	;
 
-<meta charset="utf-8"/>
+}
+fieldset1
+{
+border: 2px ;
+width: 25em;
+height:15em;
+background-color: blue;
 
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0"/>
+}
+.submit-input1
+{
+ width:10em;
+  color:#FFFFFF;
 
-<link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico"/>
+margin-left:6.5em;
+margin-top:1em;
+}
+.submit-input2
+{
+ width:6em;
+ color:chocolate;
 
-<link rel="stylesheet" href="css/style1.css" type="text/css" media="all"/>
+margin-left:7em;
+margin-top:1em;
+}
+.submit-input
+{
+ width:5em;
+color: chocolate;
 
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="all"/>
-
-<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,800,700' rel='stylesheet' type='text/css'/>
-
-<script src="js/jquery-1.8.0.min.js"></script>
+margin-left:14em;
+margin-top:1em;
+}
 
 
+</style>
+	<meta charset="utf-8" />
 
-<script src="js/jquery.flexslider-min.js"></script>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
 
-<script src="js/functions.js"></script>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="css/images/favicon.ico" />
 
-</head>
+	<link rel="stylesheet" href="css/style1.css" type="text/css"
+		media="all" />
+		<link rel="stylesheet" href="css/layout.css" type="text/css"
+		media="all" />
 
-<body>
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
+		media="all" />
 
-<!-- wraper -->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700'
+		rel='stylesheet' type='text/css' />
 
-<div id="wrapper">
+	<script src="js/jquery-1.8.0.min.js"></script>
 
-  <!-- shell -->
 
-  <div class="shell">
 
-    <!-- container -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	
 
-    <div class="container">
+	<script src="js/functions.js"></script>
+	<script src="js/googlelogin.js"></script>
+	<script src="js/fblogin.js"></script>
 
-      <!-- header -->
+</h:head>
 
-      <header id="header">
 
-        <h1 id="logo"><a href="#">App-Owner</a></h1>
 
-        <!-- search -->
+	<!-- wraper -->
 
-        <div class="search">
+	<div id="wrapper">
 
-          <h:form method="post" action="#">
+		<!-- shell -->
 
-            <span class="field">
+		<div class="shell">
 
-            <input type="text" class="field" value="keywords here ..." title="keywords here ..."/>
+			<!-- container -->
 
-            </span>
+			<div class="container">
 
-            <input type="submit" class="search-btn" value=""/>
+				<!-- header -->
 
-         </h:form>
+				<header id="header">
 
-        </div>
+					<h1 id="logo">
+						<a href="#">App-Owner</a>
+					</h1>
 
-        <!-- end of search -->
+					<!-- search -->
 
-      </header>
+					<div class="search">
 
-      <!-- end of header -->
+						<form method="post" action="#">
 
-      <!-- navigation -->
+							<span class="field"> <input type="text" class="field"
+								value="keywords here ..." title="keywords here ..." />
 
-      <nav id="navigation"> <a href="#" class="nav-btn">HOME<span class="arr"></span></a>
+							</span> <input type="submit" class="search-btn" value="" />
 
-        <ul>
+						</form>
 
-          <li class="active"><a href="index.html">HOME</a></li>
+					</div>
 
-          <li><a href="#">About</a></li>
+					<!-- end of search -->
 
-          <li><a href="#">Feature</a></li>
+				</header>
 
-       
+				<!-- end of header -->
 
-          <li><a href="#">FAQ</a></li>
+				<!-- navigation -->
 
-          <li><a href="#">blog</a></li>
+				<nav id="navigation">
+					<a href="#" class="nav-btn">HOME<span class="arr"></span></a>
 
-          <li><a href="#">contacts</a></li>
-          <li><a href="/AppOwnner/layout.xhtml">Login</a></li>
-          <li><a href="/AppOwnner/firstpage.xhtml">Registration</a></li>
-        </ul>
+					<ul>
 
-      </nav>
+						<li class="active"><a href="index.xhtml">HOME</a></li>
 
-      <!-- end of navigation -->
+						<li><a href="#">About</a></li>
 
-      <!-- slider -->
+						<li><a href="#">Feature</a></li>
 
-      <div class="m-slider">
+					
+
+						<li><a href="#">FAQ</a></li>
+
+						<li><a href="#">blog</a></li>
+
+						<li><a href="#">contacts</a></li>
+                       <li><a href="layout.xhtml">Login</a></li>
+                      <li><a href="firstpage.xhtml">Registration</a></li>
+					</ul>
+
+				</nav>
+			
+				<div id="addEventForm" style="float:right">
+
+			
+            
+             <h:form>
+               <fieldset>
+                <p align="center"><font color="white" size="3">
+									Login Credential..</font></p>
+					<table  >
+						
+						<tr>
+							<td><p:outputLabel value="User name:" style="color:#FFFFFF">
+								</p:outputLabel><font color="red">*</font> <h:inputText id="userloginname"
+									value="#{loginBean.userloginname}" required="true"
+									requiredMessage="Please Enter user name!">
+								</h:inputText><h:message for="userloginname" style="color:red"/></td>
+						</tr>
+						<br />
+						<tr>
+							<td><p:outputLabel value="Password :" style="color:#FFFFFF"></p:outputLabel> <font
+								color="red">*</font> <h:inputSecret id="userloginpassword"
+									label="Password" value="#{loginBean.userloginpassword}"
+									required="true" requiredMessage="Please Enter Password!">
+									<f:validateLength minimum="4" />
+								</h:inputSecret>
+								<h:message for="userloginpassword" style="color:red"/></td>
+						</tr>
+						
+						<tr>
+							<td><h:commandButton id="submit" value="Submit"
+									action="#{loginBean.userLogin}" ajax="false" styleClass="submit-input" /></td>
+						</tr>
+						<tr>
+							<td><p:commandLink  value="Forgot Password ?"
+									 ajax="false" styleClass="submit-input1" /></td>
+						</tr>
+					</table>
+					</fieldset>
+</h:form>
+<hr/>
+<p align="center"><font color="black" size="3">
+									New User? Join now</font></p>
+<fieldset >
+<h:form>
+     
+ <table >
+      <tr></tr>
+   		<tr>
+        	<td ><h:outputLabel for="str_UserCountry" style="color:#FFFFFF" value="Country"  /><font color="red" >*</font></td>
+            <td><h:selectOneMenu id="str_UserCountry" value="#{cls_UserBeanMain.str_UserCountry}" valueChangeListener="#{cls_UserBeanMain.countryChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select country!">
+                <!--c --> 
+               <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{cls_UserBeanMain.str_UserCountries}" />
+                <p:ajax event="change" update="str_UserState" process="str_UserCountry"/>
+                               
+            	</h:selectOneMenu>
+            </td><td><p:message for="str_UserCountry" display="text"/>
+                </td>
+        </tr><tr></tr>
+        
+        <tr>
+            <td><h:outputLabel for="str_UserState" style="color:#FFFFFF" value="State" /><font color="red" >*</font></td>
+            <td><h:selectOneMenu id="str_UserState" value="#{cls_UserBeanMain.str_UserState}"   valueChangeListener="#{cls_UserBeanMain.stateChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select state!">
+                <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{cls_UserBeanMain.str_UserStates}"/>
+               <p:ajax event="change" update="str_UserCity" process="str_UserState"/>    
+            </h:selectOneMenu></td><td><p:message for="str_UserState" display="text"/>
+                </td>
+         </tr>
+         <tr> 
+         	<td><h:outputLabel for="str_UserCity" style="color:#FFFFFF" value="City " /><font color="red" >*</font></td>
+            <td><h:selectOneMenu id="str_UserCity" value="#{cls_UserBeanMain.str_UserCity}" valueChangeListener="#{cls_UserBeanMain.cityChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select City!">
+                <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{cls_UserBeanMain.str_UserCities}"/>
+                <p:ajax event="change" update="str_UserApartment" process="str_UserCity"/>
+            </h:selectOneMenu></td><td><p:message for="str_UserCity" display="text"/>
+                </td>
+          </tr>
+          <tr> 
+            <td><h:outputLabel for="str_UserApartment" style="color:#FFFFFF" value="Apartment" /><font color="red" >*</font></td>
+            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBean.str_UserApartment}" valueChangeListener="#{cls_UserBean.apartmentChangeListener}" style="width:200px"> 
+                <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
+                 <p:ajax event="change" process="str_UserApartment"/>
+           </h:selectOneMenu></td><td><p:message for="str_UserApartment" display="text"/>
+                </td>
+          </tr>
+              
+          <tr><td colspan="2"><h:commandButton value="Join Us"   action="#{cls_UserBean.getRegistration}" styleClass="submit-input2">
+              </h:commandButton>&#150;&#150; &#150;&#150; &#150;&#150;
+              </td>
+              </tr>
+              <tr><td colspan="2">&#150; &#150; &#150; &#150;
+        <font color="#FFFFFF" >If you do not find your Apartment Complex above</font>
+          </td>
+          </tr>
+          <tr><td></td>
+          <td>
+              <h:commandButton value="Add Your Appartment" style="color:chocolate" action="#{cls_UserBean.addApartment}" update="str_UserCountry" >
+            <p:ajax event="change" update="str_UserState"/>
+               </h:commandButton></td>
+         
+          </tr>
+   </table>
+
+</h:form>
+ </fieldset>  
+</div>
+
+   <div class="m-slider" style="float:left">
 
         <div class="slider-holder"> <span class="slider-shadow"></span> <span class="slider-b"></span>
 
@@ -167,6 +327,8 @@
 
                   <a href="#" class="grey-btn">request a demo</a> </div>
 
+            
+              
               </li>
 
             </ul>
@@ -177,11 +339,8 @@
 
       </div>
 
-      <!-- end of slider -->
-
-      <!-- main -->
-
-      <div class="main"> <a href="#" class="m-btn-grey grey-btn">request a demo</a>
+<hr/>
+ <div class="main"> <a href="#" class="m-btn-grey grey-btn">request a demo</a>
 
         <section class="cols">
 
@@ -293,132 +452,46 @@
 
       </div>
 
-      <div id="footer">
+					
+			
+				<div class="footer-bottom">
 
-        <div class="footer-cols">
+					<nav class="footer-nav">
 
-          <div class="col">
+						<ul>
 
-            <h2>Services</h2>
+							<li class="active"><a href="#">Home</a></li>
 
-            <ul>
+							<li><a href="#">About</a></li>
 
-              <li><a href="#">Web Design</a></li>
+							<li><a href="#">Feature</a></li>
 
-              <li><a href="#">Branding</a></li>
+							<li><a href="#">Plan</a></li>
 
-              <li><a href="#">Seo Optimization</a></li>
+							<li><a href="#">FAQ</a></li>
 
-              <li><a href="#">Mobile App Development</a></li>
+							<li><a href="#">Blog</a></li>
 
-            </ul>
+							<li><a href="#">Contacts</a></li>
 
-          </div>
+						</ul>
 
-          <div class="col">
+					</nav>
 
-            <h2>Projects</h2>
+					<p class="copy">
+						&amp;copy; Copyright 2012 Dualapp Technology Pvt. Ltd <span>|</span>
+						<strong>Design by <a target="_blank"
+							href="http://www.dualapptech.com">Dualapp Technology</a></strong>
+					</p>
 
-            <ul>
+					<div class="cl">&amp;nbsp;</div>
 
-              <li><a href="#">Lorem ipsum dolor </a></li>
+				</div>
 
-              <li><a href="#">Consectetuer adipiscing</a></li>
+			</div>
 
-              <li><a href="#">Proin sed odio et ante </a></li>
-
-              <li><a href="#">Mazim sensibus et usu</a></li>
-
-            </ul>
-
-          </div>
-
-          <div class="col">
-
-            <h2>Solutions</h2>
-
-            <ul>
-
-              <li><a href="#">Lorem ipsum dolor</a></li>
-
-              <li><a href="#">Consectetuer adipiscing</a></li>
-
-              <li><a href="#">Proin sed odio et ante </a></li>
-
-              <li><a href="#">Mazim sensibus et usu</a></li>
-
-            </ul>
-
-          </div>
-
-          <div class="col">
-
-            <h2>Partners</h2>
-
-            <ul>
-
-              <li><a href="#">Company Name 1</a></li>
-
-              <li><a href="#">Company Name 2</a></li>
-
-              <li><a href="#">Company Name 3</a></li>
-
-              <li><a href="#">Company Name 4</a></li>
-
-            </ul>
-
-          </div>
-
-          <div class="cl">&amp;nbsp;</div>
-
-        </div>
-
-        <!-- end of footer-cols -->
-
-        <div class="footer-bottom">
-
-          <nav class="footer-nav">
-
-            <ul>
-
-              <li class="active"><a href="#">Home</a></li>
-
-              <li><a href="#">About</a></li>
-
-              <li><a href="#">Feature</a></li>
-
-              <li><a href="#">Plan</a></li>
-
-              <li><a href="#">FAQ</a></li>
-
-              <li><a href="#">Blog</a></li>
-
-              <li><a href="#">Contacts</a></li>
-
-            </ul>
-
-          </nav>
-
-          <p class="copy">&amp;copy; Copyright 2012 Dualapp Technology Pvt. Ltd <span>|</span> <strong>Design by <a target="_blank" href="http://www.dualapptech.com">Dualapp Technology</a></strong></p>
-
-          <div class="cl">&amp;nbsp;</div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- end of container -->
-
-  </div>
-
-  <!-- end of shell -->
-
-</div>
-
-<!-- end of wrapper -->
-
-</body>
+		</div>
+	</div>
 
 </html>
+
