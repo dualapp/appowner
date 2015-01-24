@@ -111,6 +111,14 @@ public interface In_UserDao {
 
 	public User getFbUser(Integer id);
 
+	public void updatePassword(Integer userId, String newPassword);
+
+	public String getPassword(Integer userId);
+
+	public User getUser(String userName);
+
+	public String getPassword(String str_EmailId);
+
 	//public void deleteUser1(int int_UserId);
 
 	

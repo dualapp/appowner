@@ -46,6 +46,7 @@ public class User implements Serializable{
 	private String str_LastName;
 	@Column
 	private String str_Email;
+	 
 	
 	@Column
 	private String str_Password;
@@ -80,6 +81,7 @@ public class User implements Serializable{
 	public void setUserExtraInfo(UserExtraInfo userExtraInfo) {
 		this.userExtraInfo = userExtraInfo;
 	}
+	 
 	public Integer getInt_ApartmentId() {
 		return int_ApartmentId;
 	}
@@ -213,6 +215,7 @@ public class User implements Serializable{
 	public void setSqft(double sqft) {
 		this.sqft = sqft;
 	}
+	 
 	
 	
 }
