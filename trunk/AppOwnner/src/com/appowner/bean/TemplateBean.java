@@ -188,7 +188,9 @@ public class TemplateBean implements Serializable {
 	
 	public List<DueTemplate> getListDues() {
 		listDues=new ArrayList<DueTemplate>();
+		System.out.println(str_Accounts+"fdhfj");
 	  	listDues.addAll(getTemplateService().listDueTemplate(str_Accounts));
+	  
 		return listDues;
 	}
 	public void setListDues(List<DueTemplate> listDues) {
@@ -219,26 +221,7 @@ public class TemplateBean implements Serializable {
 		 System.out.println(dueTemplate1.getInt_DueTemplateID());
 		 getDueTemplate2(dueTemplate1.getInt_DueTemplateID());
 	}
-/*public void cancel()
-  {
-	  System.out.println("kvkk");
-	
-	 dueTemplate1=(DueTemplate) dataTable.getRowData();
-	  System.out.println(dueTemplate1.getStr_DueTemplate());
-	 
-	    String str=dueTemplate1.getStr_DueTemplate();
-	    String id=getTemplateService().detectDueTemplate(str);
-	    System.out.println(id+"jffkjfj");
-	    
-	    if(id!=null)
-	    {
-	    	indicator=true;
-	    }
-	    System.out.println(indicator+"fdfdf123");	
-	   
-	 
-		
-  }*/
+
    
 	
 	public String deleteDue(){
@@ -591,7 +574,7 @@ public class TemplateBean implements Serializable {
 	public void setListInvoices(List<InvoiceTemplate> listInvoices) {
 		this.listInvoices = listInvoices;
 	}
-	private InvoiceTemplate invoiceTemplate;
+	private InvoiceTemplate invoiceTemplate=new InvoiceTemplate();
 	public InvoiceTemplate getInvoiceTemplate() {
 		return invoiceTemplate;
 	}
@@ -599,7 +582,7 @@ public class TemplateBean implements Serializable {
 		this.invoiceTemplate = invoiceTemplate;
 	}
 	public void getInvoiceTemplate1(int id1)
-	{
+	{   System.out.println("jkgfjkjkg");
 		invoiceTemplate=getTemplateService().getInvoiceTemplate(id1);
 	}
 	public void getInvoiceTemplate2()
@@ -607,7 +590,7 @@ public class TemplateBean implements Serializable {
 		invoiceTemplate=getTemplateService().getInvoiceTemplate(id);
 	}
 	public String saveInvoiceTemplate()
-	{
+	{   invoiceTemplate.setStr_DueInvoiceTemplate(str);
 		getTemplateService().updateInvoiceTemplate(invoiceTemplate);
 		return "invoicetemplate.xhtml";
 	}
@@ -620,7 +603,7 @@ public class TemplateBean implements Serializable {
 		this.dueTemplates = dueTemplates;
 	}
   public List<String> frequencyChangeListener(ValueChangeEvent event)
-  {
+  {  
 	   str1_Frequency=(String)event.getNewValue();
 	    dueTemplates=new ArrayList<String>();
 	     dueTemplates.addAll(getTemplateService().getDueTemplate(str1_Frequency));
@@ -644,14 +627,7 @@ public class TemplateBean implements Serializable {
 	public void setStr(String str) {
 		this.str = str;
 	}
-	private String Str1;
 	
-	public String getStr1() {
-		return Str1;
-	}
-	public void setStr1(String str1) {
-		Str1 = str1;
-	}
 	@SuppressWarnings("unchecked")
 	public void roleChangeListener(ValueChangeEvent event)
 	{   System.out.println("hi");
@@ -664,7 +640,9 @@ public class TemplateBean implements Serializable {
 		  out.append(",");
 		}
 		str=out.toString();
-	System.out.println(str);	
+	System.out.println(str);
+	
+	
 	//	Str1 = str.substring(0, str.lastIndexOf(","));
 //	System.out.println(Str1);
 		}
@@ -705,6 +683,9 @@ public class TemplateBean implements Serializable {
    
     public String saveInvoiceTemplate(InvoiceTemplate invoiceTemplate) {
 		if (invoiceTemplate.getInt_InvoiceTemplateID()!= null) {
+			System.out.println(invoiceTemplate.getStr_DueInvoiceTemplate()+"fdkfdkj");
+			invoiceTemplate.setStr_DueInvoiceTemplate(str);
+			System.out.println(invoiceTemplate.getStr_DueInvoiceTemplate()+"fdkfdkj1111");
 			getTemplateService().updateInvoiceTemplate(invoiceTemplate);
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			Flash flash = facesContext.getExternalContext().getFlash();
@@ -730,7 +711,7 @@ public class TemplateBean implements Serializable {
 			Flash flash = facesContext.getExternalContext().getFlash();
 			flash.setKeepMessages(true);
 			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Invoice deleted Successfully!"));
 	    } 
 
      getTemplateService().deleteInvoice1(delete);

@@ -287,11 +287,12 @@ public class Cls_UserBeanMain implements Serializable {
 	public void countryChangeListener(ValueChangeEvent event) {
 	       if ((event.getNewValue() != str_UserCountry)) {
 	            str_UserState = null;
-	           // str_VendorCity = null;
+	         
 	            
 	        }
 	       System.out.println("kalpanaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	        str_UserCountry=(String) event.getNewValue();
+	        
 	        getSelectonemenubean().getCount1(str_UserCountry);
 	        System.out.println(str_UserCountry);
 	        
@@ -321,7 +322,7 @@ public class Cls_UserBeanMain implements Serializable {
     //this is  listener for apartment change
     @SuppressWarnings("unchecked")
 	public void apartmentChangeListener(ValueChangeEvent event) {
-	       
+	       System.out.println("fdjjjjjjjjjjjffjfjkfjkfkjfjk");
 	        str_userapartment=(String) event.getNewValue();
 	        aparmentid1=getUserService().apartmentidget( str_userapartment);
 	        System.out.println(" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx11111111111xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -359,12 +360,14 @@ public class Cls_UserBeanMain implements Serializable {
      * Country is selected.
      */
     public List<String> getStr_UserStates() {
-   	 if(str_UserCountry!=null)
+    	System.out.println(str_UserCountry+"dsjsdjsddj");
+   	 if(str_UserCountry!= null)
    		{
    		 str_UserStates=new ArrayList<String>();
    		 str_UserStates.addAll( getUserService().stateList());
+   		 System.out.println(str_UserStates+"gfklgfk");
    		return str_UserStates;
-   	}
+   	    }
    	 else
    	   return new ArrayList<String>();
    	 

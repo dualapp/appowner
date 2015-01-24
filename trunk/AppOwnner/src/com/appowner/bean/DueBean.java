@@ -201,15 +201,26 @@ public class DueBean implements Serializable{
 		str_Account.addAll(getDueService().getAccountsList());
 		return str_Account;
 	}
+	private String str_DueTemplate1;
+	public String getStr_DueTemplate1() {
+		return str_DueTemplate1;
+	}
+	public void setStr_DueTemplate1(String str_DueTemplate1) {
+		this.str_DueTemplate1 = str_DueTemplate1;
+	}
 	public void setStr_Account(List<String> str_Account) {
 		this.str_Account = str_Account;
 	}private List<String> str_DueTemplates;
 	public List<String> getStr_DueTemplates() {
 		str_DueTemplates=new ArrayList<String>();
 		str_DueTemplates.addAll(getDueService().getDueTemplate());
-		str_DueTemplate=str_DueTemplates.get(0);
+		if(str_DueTemplates.listIterator().hasNext())
+		{
+		str_DueTemplate1=str_DueTemplates.get(0);
 		
-		periodIndicator=getDueService().getFrequency(str_DueTemplate);
+		}
+		System.out.println(str_DueTemplate1+"dfjdfjk");
+		periodIndicator=getDueService().getFrequency(str_DueTemplate1);
 		return str_DueTemplates;
 	}
 	public void setStr_DueTemplates(List<String> str_DueTemplates) {
