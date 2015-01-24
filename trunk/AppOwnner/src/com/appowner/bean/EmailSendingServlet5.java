@@ -33,25 +33,27 @@ public class EmailSendingServlet5 extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         // reads form fields
         String recipient = request.getParameter("recipient");
+        
         String subject = request.getParameter("subject");
         String content = request.getParameter("content");
         String link=request.getParameter("link");
         String str_password=request.getParameter("str_Password");
-         
+         Boolean render=false;
         
- 
+         request.setAttribute("render", "false");
         String resultMessage = "";
  
         try {
             EmailUtility5.sendEmail(host, port, user, pass, recipient, subject,
                     content,link,str_password);
-            resultMessage = "Email with the link to change the password was sent to"+ recipient+"!";
+            resultMessage = "Email with the link to change the password was sent to"+" "+ recipient+"!";
         } catch (Exception ex) {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
+        	request.setAttribute("render", "true");
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/Result.jsp").forward(
+            getServletContext().getRequestDispatcher("/layout.xhtml").forward(
                     request, response);
         }
     }
