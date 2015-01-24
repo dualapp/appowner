@@ -44,7 +44,7 @@ private String str_ConfirmPassword;
         String sessionId = session.getId();
          
         String appId = "1525993687671325";
-        String redirectUrl = "http://www.AppOwners.com/index.sec";
+        String redirectUrl = "http://localhost:5454/AppOwnner/index.sec";
         System.out.println(getUserService().getUserId((String) session.getAttribute(str_Username)+"kalpana"));
         String returnValue = "https://www.facebook.com/dialog/oauth?client_id="
                 + appId + "&redirect_uri=" + redirectUrl
