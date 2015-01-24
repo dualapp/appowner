@@ -128,7 +128,7 @@
 							</ul></li>
 
 						<li class="light-blue"><a data-toggle="dropdown" href="#"
-							class="dropdown-toggle"> <p:graphicImage width="40px" height="40px"   value="#{loginBean.var_ImageName1}"/> <span
+							class="dropdown-toggle"> <p:graphicImage width="40px" height="40px"   value="#{loginBean.getPath()}"/>  <span
 								class="user-info"> <small>Welcome,</small> <h:outputText value="#{loginBean.userloginname}" />
 							</span> <i class="icon-caret-down"></i>
 						</a>
@@ -138,7 +138,9 @@
 								<li><a href="#"> <i class="icon-cog"></i> Settings
 								</a></li>
 
-								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/myprofile.xhtml?int_UserId=#{loginBean.int_UserId}"> <i class="icon-user"></i> My Profile
+								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/myprofile.xhtml"> <i class="icon-user"></i> My Profile
+								</a></li>
+								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/changepassword.xhtml"> <i class="icon-user"></i> Change Password
 								</a></li>
 
 								<li class="divider"></li>
