@@ -28,7 +28,7 @@ textarea { overflow: auto; }
 
 article, aside, details, footer, header, menu, nav, section { display: block; }
 
-.shell { width: 990px; margin: 0 auto; }
+.shell { width: 1325px; margin: 0 auto; }
 .container { background: #fff; box-shadow: 0px 0px 13px rgba(0,0,0,0.3) ; -moz-box-shadow: 0px 0px 13px rgba(0,0,0,0.3) ; -webkit-box-shadow: 0px 0px 13px rgba(0,0,0,0.3) ; -o-box-shadow: 0px 0px 13px rgba(0,0,0,0.3) ;  }
 #header { height: 54px; padding-top: 21px; padding-left: 33px; padding-right: 17px;  }
 #logo { width: 143px; float: left; font-size: 0; line-height: 0;}
@@ -50,7 +50,7 @@ article, aside, details, footer, header, menu, nav, section { display: block; }
 .slider-holder { position: relative; z-index: 5; }
 .slider-holder span.slider-b { background: url(images/slider-bottom.png) no-repeat 0 0;  width: 990px; height: 30px; position: absolute; bottom: 0px; left: 0px; z-index: 100;}
 .slider-holder span.slider-shadow { background: url(images/slider-shadow.png) no-repeat 0 0;  width: 990px; height: 13px; position: absolute; top: 0px; left: 0px; z-index: 100; display: block; }
-.slider { width: 990px;  height: 378px; position: relative;  background: url(images/slide-img.png) no-repeat 0 0;}
+.slider { width: 990px;  height: 395px; position: relative;  background: url(images/slide-img.png) no-repeat 0 0;}
 .slider ul.slides { list-style: none; list-style-position: outside; }
 .slider ul.slides li { width: 990px; height: 378px; float: left; position: relative; overflow: hidden; }
 
@@ -209,7 +209,7 @@ article, aside, details, footer, header, menu, nav, section { display: block; }
 	.slider-holder span.slider-shadow { background: transparent; display: none; }
 	.flex-control-nav { left: 130px; }
 
-	.slider { width: 310px; height: 181px; overflow: hidden; position: relative; background: url(images/m-slide-img.png) no-repeat 0 0;}
+	.slider { width: 310px; height: 185px; overflow: hidden; position: relative; background: url(images/m-slide-img.png) no-repeat 0 0;}
 	.slider ul.slides li { width: 310px !important; height: 181px !important; float: none; }
 
 	.slider ul.slides li .img-holder { width: 250px  !important; height: 134px  !important; bottom: -10px !important; left: 50%; margin-left: -145px;  }
@@ -269,4 +269,4 @@ article, aside, details, footer, header, menu, nav, section { display: block; }
 	#navigation a.nav-btn span.arr.active { background: url(images/nav-arr@2x.png) no-repeat 0 bottom; -webkit-background-size: 13px 18px; -moz-background-size: 13px 18px; background-size: 13px 18px; }
 
 	#logo a { background: url(images/logo@2x.png) no-repeat 0 0; -webkit-background-size: 146px 53px; -moz-background-size: 146px 53px; background-size: 146px 53px;  }
-}
+}#addEventForm {         position:relative;     float:right;             left:-1px;    border: 2px solid #003B62;    font-family: verdana;     }
