@@ -65,12 +65,12 @@ public class DueDaoImpl implements DueDao{
 		{   System.out.println("hbhjcjvf");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).add(Restrictions.eq("str_Organisation", apartmentID)).list();
 		}
-		else if(str_DueTemplate.equals(str_DueTemplate))
+	/*	else if(str_DueTemplate.equals(str_DueTemplate))
 		{
 			
 			System.out.println("ghhhhjhhh1111");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).add(Restrictions.eq("str_Organisation", apartmentID)).list();
-		}
+		}  */
 		else if(str_Status==null)
 		{
 			
