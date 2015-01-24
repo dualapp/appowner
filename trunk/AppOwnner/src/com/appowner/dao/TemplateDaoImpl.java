@@ -66,11 +66,12 @@ public class TemplateDaoImpl implements TemplateDao {
 	public List<DueTemplate> listDueTemplate(String str_Accounts)
 	 {   getApartmentID();
 		 if(str_Accounts==null)
-	     {
+	     {   System.out.println("dfjkjkdfdkj");
 		    return (List<DueTemplate>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
 	     }
 	 else
-	 {
+	 {    System.out.println("jdjkdffjkfdjk");
+	     System.out.println(str_Accounts+"fggfkj");
 		 String hql="from DueTemplate  where str_Accounts=? AND int_Organisation=?";
 		    return (List<DueTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Accounts).setParameter(1, apartmentID).setCacheable(true).list();
 	 }
@@ -90,7 +91,7 @@ public class TemplateDaoImpl implements TemplateDao {
 	 public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category)
 	{  getApartmentID();
 		 if(str_Mode==null && str_Category==null)
-	    {
+	    {  
 		 return (List<MessageTemplate>) getSessionFactory().getCurrentSession().createCriteria(MessageTemplate.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list(); 
 	     }
 	   else
