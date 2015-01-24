@@ -26,18 +26,13 @@ public class LoginPageCode implements Serializable {
 	public void setStr_Password(String str_Password) {
 		this.str_Password = str_Password;
 	}
-	public String getStr_ConfirmPassword() {
-		return str_ConfirmPassword;
-	}
-	public void setStr_ConfirmPassword(String str_ConfirmPassword) {
-		this.str_ConfirmPassword = str_ConfirmPassword;
-	}
+	 
 	public void setUserService(In_UserService userService) {
 		this.userService = userService;
 	}
 private  Integer id;
 private String str_Password;
-private String str_ConfirmPassword;
+ 
     public String getFacebookUrlAuth() {
         HttpSession session =
         (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -45,7 +40,7 @@ private String str_ConfirmPassword;
          
         String appId = "1525993687671325";
         String redirectUrl = "http://localhost:5454/AppOwnner/index.sec";
-        System.out.println(getUserService().getUserId((String) session.getAttribute(str_Username)+"kalpana"));
+        
         String returnValue = "https://www.facebook.com/dialog/oauth?client_id="
                 + appId + "&redirect_uri=" + redirectUrl
                 + "&scope=email,user_birthday&state=" + sessionId;

@@ -53,7 +53,7 @@ public class EmailSendingServlet5 extends HttpServlet {
         } finally {
         	request.setAttribute("render", "true");
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/layout.xhtml").forward(
+            getServletContext().getRequestDispatcher("/index.xhtml").forward(
                     request, response);
         }
     }

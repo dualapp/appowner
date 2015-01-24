@@ -14,6 +14,7 @@ import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -933,7 +934,11 @@ public String updatePassword()
 public String getStr_RecoverPassword1() {
 	str_RecoverPassword=getUserService().getPassword(getStr_Email());
 	System.out.println(str_RecoverPassword+"fpassword");
-	Email=getStr_Email();
+	//Email=getStr_Email();
+	Email="kalpanasudha1990@gmail.com";
+	str_RecoverPassword =RandomStringUtils.randomAlphanumeric(6);
+	getUserService().setPassword(getStr_Email(),str_RecoverPassword );
+	
 	 subject="Reset Password Instructions for you on AppOwner";
 	 content=""
 	 		+ "";
