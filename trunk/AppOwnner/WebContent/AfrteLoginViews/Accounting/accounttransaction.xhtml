@@ -1,0 +1,1200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+     template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+     
+ <h:head>
+    <title>Accounting Form</title>
+    
+  
+</h:head>
+   <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/accounting.jpg" height="60" width="70"></img> <span class="title">Accounting</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+   <body>
+   <h:form id="contactform">
+  <div id="page3">
+  <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" >
+   <tr> 
+  <th><h:outputText value="Organisation:" /></th>
+              <td><h:outputText id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:150px"/>
+                  
+             </td>
+            </tr>
+            </table>
+            </div>
+    <p:tabView  dynamic="true" style="position: relative;"   effectDuration="fast"   >
+      
+        <p:tab title="ACCOUNT TRANACTION" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:5px">
+           <br/> 
+               <div id="page3">
+      <div class="gsTitleDiv"><br/></div>
+  
+      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
+       <h:panelGroup id="aaaa">
+         <td>  <h:outputLabel for="account" value="Accounts*" /></td>
+          
+              
+                
+          
+           
+           <td> <p:selectOneMenu id="account1" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}"  style="width:220px" >
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                    <p:ajax event="change" partialSubmit="true"   />
+                </p:selectOneMenu>
+                
+           </td>
+           <td>  <h:outputText  value="From:" /></td>
+           <td>  <p:calendar id="german1" pattern="dd-MM-yyyy"  value="#{accountingBean.from_date}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener}" onchange="submit();">
+            <p:ajax event="click" partialSubmit="true"  />
+      </p:calendar>
+           </td>
+              
+           <td>  <h:outputText  value="To:" /></td>
+           <td>  <p:calendar id="german"   pattern="dd-MM-yyyy"  value="#{accountingBean.dat_ToDate}" size="20"  navigator="true" valueChangeListener="#{accountingBean.datechangeListener1}">
+            <p:ajax event="change" partialSubmit="true" />
+            </p:calendar>
+            </td> 
+             <td>
+               <h:commandButton id="priya" value="Go" action="#{accountingBean.getSearch}" >
+                </h:commandButton>
+             </td> 
+           </h:panelGroup>
+      </table>
+      
+   
+   
+   
+    
+
+   <div id="content" class="ui-widget">
+  <h1>  &#150; &#150;  &#150; &#150; Account Transactions:</h1>
+    <table id="conent1" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px:border:1px solid #DADADA ;" class="src">
+    <tbody>
+    <tr>
+    <td style="width:440px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
+    <strong>Date</strong>
+    </td>
+    <td style="width:250px;background:#0E94F9;color:#fff;line-height:25px;" align="right">
+    <strong>Account</strong>
+    </td>
+    <td style="width:250px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
+    <strong>Type</strong>
+  
+    </td>
+   
+     <td style="width:250px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
+    <strong>Debit</strong>
+  
+    </td>
+    
+     <td style="width:250px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;" align="right">
+    <strong>Credit</strong>
+  
+    </td>
+    </tr>
+     
+   
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{accountingBean.dat_FromDate1}</td>
+     <td align="right" style="width:250px;">
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Opening Balance</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_Debit} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_Credit} </td>
+    </tr>
+   <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+   
+   
+   
+    <h:panelGroup id="fgggggg" rendered="#{accountingBean.income}">
+    <ui:repeat id="ggg3" value="#{accountingBean.listInvoiceTransaction1}" var="account1" varStatus="status">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account1.dat_PaymentDate}</td>
+     <td align="right" style="width:250px;">#{account1.str_paymentAccount}
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{account1.totalDue}</td>
+    </tr>
+     
+    </ui:repeat>
+ </h:panelGroup>
+ <h:panelGroup id="fggggggthg" rendered="#{accountingBean.str eq 'Bank' || accountingBean.str  eq 'Cash' || accountingBean.str  eq 'Expense'}">
+    <ui:repeat id="ggg1" value="#{accountingBean.listExpense}" var="expense" varStatus="status">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{expense.date_Duration}</td>
+     <h:panelGroup id="hjbffff" rendered="#{expense.str_ExpenseType eq accountingBean.str }">
+     <td align="right" style="width:250px;">#{expense.str_AccountName}
+   </td>
+   </h:panelGroup>
+    <h:panelGroup id="hjbffjhudrd" rendered="#{expense.str_ExpenseType != accountingBean.str &amp;&amp; expense.str_AccountName eq accountingBean.str}">
+     <td align="right" style="width:250px;">#{expense.str_ExpenseType}
+   </td>
+   </h:panelGroup>
+    <h:panelGroup id="hjbff" rendered="#{expense.str_ExpenseType eq accountingBean.str }">
+     <td align="right" style="width:250px;">#{expense.str_ExpenseCategory}
+   </td>
+   </h:panelGroup>
+    <h:panelGroup id="hjbffjhu" rendered="#{expense.str_ExpenseType != accountingBean.str &amp;&amp; expense.str_AccountName eq accountingBean.str}">
+     <td align="right" style="width:250px;">#{expense.str_ExpenseCategory}
+   </td>
+   </h:panelGroup>
+   
+    <h:panelGroup id="jjf" rendered="#{expense.str_ExpenseType eq accountingBean.str}">
+     <td align="right" style="padding-right:5px;width:320px;">#{expense.int_Ammount} </td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+     </h:panelGroup>
+     <h:panelGroup id="jjff" rendered="#{expense.str_ExpenseType != accountingBean.str &amp;&amp; expense.str_AccountName eq accountingBean.str}">
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank}</td>
+    <td align="right" style="padding-right:5px;width:320px;">#{expense.int_Ammount} </td>
+    </h:panelGroup>
+    </tr>
+     <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+    </ui:repeat>
+</h:panelGroup>
+ <h:panelGroup id="fgggggg1" rendered="#{! empty accountingBean.str}">
+    <ui:repeat id="ggg2" value="#{accountingBean.listManualJournal1}" var="journal" varStatus="status">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{journal.dat_Date}</td>
+     <h:panelGroup id="hygdtdf" rendered="#{journal.str_CreditAccount eq accountingBean.str}">
+     <td align="right" style="width:250px;"><h:outputText value="#{journal.str_DebitAccount}"/></td>
+     </h:panelGroup>
+     <h:panelGroup id="hjfdjjffd"  rendered="#{journal.str_DebitAccount eq accountingBean.str}">
+     <td align="right" style="width:250px;"><h:outputText rendered="true" value="#{journal.str_CreditAccount}"/></td>
+    </h:panelGroup>
+    <td align="right" style="padding-right:5px;width:320px;">Manual</td>
+    <h:panelGroup id="hfdfd" rendered="#{journal.str_DebitAccount eq accountingBean.str}">
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText  value="#{journal.dbl_DebitAmount}"/> </td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText  value="#{accountingBean.int_blank}"/> </td>
+     </h:panelGroup>
+     <h:panelGroup id="ejekej" rendered="#{journal.str_CreditAccount eq accountingBean.str}">
+      <td align="right" style="padding-right:5px;width:320px;"><h:outputText  value="#{accountingBean.int_blank}"/> </td> 
+    <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="true" value="#{journal.dbl_CreditAmount}"/></td>
+    </h:panelGroup>
+    </tr>
+     <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+    </ui:repeat>
+</h:panelGroup>
+     
+    <ui:repeat id="ggg" value="#{accountingBean.listInvoiceTransaction}" var="account" varStatus="status" 
+
+style="width:600px"> 
+    <h:panelGroup id="hhghhg"  rendered="#{accountingBean.str_Accounts eq 'Income from Resident'}">
+    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Accounts Receivable
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.int_blank}"/> </td>
+    <td align="right" style="padding-right:5px;width:320px;"> #{account.totalDue} </td>
+    </tr>
+    <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td> 
+    </tr>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Accounts Receivable
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.type}"/></td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    </tr>
+    </h:panelGroup>
+       
+      <h:panelGroup id="hhghhg1"  rendered="#{  accountingBean.str_Accounts eq 'Cash'|| accountingBean.str_Accounts eq 'Bank' || accountingBean.str_Accounts eq 'Expense'}">
+      
+    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Accounts Receivable
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
+     <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{account.totalDue}"/> </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank}</td>
+    </tr>
+   
+    </h:panelGroup>
+    <h:panelGroup id="fgggggggg" rendered="#{accountingBean.str_Accounts eq 'Accounts Receivable' || accountingBean.str_Accounts eq 'Accounts Receivable1'}">
+   
+    
+  
+  
+   
+   
+   
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Income from Residents
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{account.subTotal} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    </tr>
+    <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Income from Residents
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    </tr>
+      <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">#{accountingBean.str_TaxName}
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{account.taxAmount} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    </tr>
+   </h:panelGroup>
+      <h:panelGroup id="hghhhhh" rendered="#{accountingBean.str_Accounts eq 'Tax Payable'}">
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <td align="right" style="width:250px;">Accounts Receivable
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Income</td>
+     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
+    </tr>
+      <tr>
+    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
+    </tr>
+    
+    </h:panelGroup>
+ </ui:repeat>
+ 
+   
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"></td>
+     <td align="right" style="width:250px;">
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;"></td>
+     <td align="right" style="padding-right:5px;width:320px;"> </td>
+    <td align="right" style="padding-right:5px;width:320px;"> </td>
+    </tr>
+    <h:panelGroup id="jdsdsj" >
+   
+     <tr style="line-height:25px;"><td style="padding-left:10px;width:440px;"></td>
+     <td align="right" style="width:500px;">
+   </td>
+    <td align="right" style="padding-right:5px;width:320px;">Closing Balance</td>
+    <h:panelGroup id="jmhbfggf" rendered="true" >
+       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type1}" value="#{accountingBean.totalBalance}" /></td> 
+       <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="#{accountingBean.type2}" value="#{accountingBean.totalBalance}" /></td>
+    
+    </h:panelGroup> 
+   </tr>
+  </h:panelGroup>
+   
+  
+  
+  
+   
+   </tbody>
+   </table>
+ </div>
+ </div>
+ 
+ 
+         
+        </p:tab>
+        <p:tab title="MANUAL JOURNAL" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:5px">
+          
+               <div id="page3">
+   <div class="gsTitleDiv"><br/></div>
+    
+&#150; &#150;  &#150; &#150; <p:commandButton style="width:120px;height:25px" oncomplete="PF('multiManualJournalDialog2').show()" icon="ui-icon-plus" value="Create New" />&#150; &#150; <p:commandButton style="width:120px;height:25px"  process="journal5"  icon="ui-icon-search" value="View" oncomplete="PF('multiManualJournalDialog1').show()" />
+       &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="journal5"  icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiManualJournalDialog').show()" />
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px"  process="journal5" onclick="return confirm('Are you sure you want to delete ?');" action="#{accountingBean.deleteManualJournal()}" icon="ui-icon-trash" value="Delete" />  &#150; &#150;
+      
+             <br/>
+           <br/>
+         
+ 
+      
+        
+         <p:dataTable id="journal5" var="journal" value="#{accountingBean.listManualJournal}" selection="#{accountingBean.selectedjournal}" rowKey="#{journal.int_ManualJournalID}"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageDropdown="{10,20,30,40,50}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:6px" paginatorPosition="top">
+           
+            
+       
+              <p:column     exportable="false"  selectionMode="single" style="width:35px;text-align:center">
+         
+             </p:column>
+         
+         
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Organisation" />
+                </f:facet>
+                <h:outputText value="#{accountingBean.str_Organisation}"/>
+            </p:column>
+       
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Date" />
+                </f:facet>
+                <h:outputText value="#{journal.dat_Date}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value=" Debit Account" />
+                </f:facet>
+                <h:outputText value="#{journal.str_DebitAccount}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Credit Account" />
+                </f:facet>
+                <h:outputText value="#{journal.str_CreditAccount}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Debit Amount" />
+                </f:facet>
+                <h:outputText value="#{journal.dbl_DebitAmount}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Credit Account" />
+                </f:facet>
+                <h:outputText value="#{journal.dbl_CreditAmount}" />
+            </p:column>
+      </p:dataTable>  
+       <p:dialog header="Create New ManualJournal" widgetVar="multiManualJournalDialog2"    showEffect="explode" hideEffect="explode" resizable="false" height="450" width="700"> 
+         <p:outputPanel id="multiManualJournalDetail2" style="text-align:center;">
+           <fieldset>
+     <table style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+    
+     <tr>
+    <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
+              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:250px">
+                   <f:selectItem itemValue="#{accountingBean.str_Organisation}"  itemLabel="#{accountingBean.str_Organisation}"/>
+                 </p:selectOneMenu>
+             </td>
+     </tr>
+     <tr>
+       <td>  <h:outputText  value="Date" /><font color="red" >*</font></td>
+           <td><p:calendar id="dat_Date" value="#{accountingBean.dat_Date}" pattern="dd-MM-yyyy"/></td>
+    </tr>
+   <tr>
+       <td>  <h:outputText  value="Referance" /></td>
+           <td><p:inputText id="str_Reference" value="#{accountingBean.str_Reference}"/></td>
+    </tr>
+     
+      <tr>
+       <td>  <h:outputText  value="Notes" /><font color="red" >*</font></td>
+           <td><h:inputTextarea id="str_Notes"  value="#{accountingBean.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
+           </td>
+    </tr>
+    </table>
+    </fieldset>
+     <fieldset>
+    <h2> Accounts Details</h2>
+      
+      <table style="width: 70%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        <tr>
+     
+          <td><font size="4" color="red"> <h:outputText  value="Debit" /></font></td> 
+          <td></td><td></td>
+            <td><font size="4" color="red"><h:outputText  value="Credit" /></font></td>
+        </tr>
+         
+          
+          <tr>
+            <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" style="width:250px">
+                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+             <td align="right">  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"  style="width:250px" >
+                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+           </tr>
+       
+    
+      
+        <tr>
+       <td>  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_DebitAmount" value="#{accountingBean.str_DebitAmount}" size="15"  required="true" requiredMessage="Please Enter Amount!">
+           <p:messages for="str_DebitAmount" style="color:red"/>
+           </p:inputText>
+           </td>
+          <td align="right">  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_CreditAmount" value="#{accountingBean.str_CreditAmount}" size="15"  required="true" requiredMessage="It must be same as Debit Amount">
+           <p:messages for="str_CreditAmount" style="color:red"/>
+         </p:inputText>
+           </td>
+      </tr>
+     
+    </table>
+    
+    </fieldset>
+   
+    <br/>
+     <h:panelGroup style="display:block; text-align:right">
+     <tr>
+                <td><p:commandButton id="submit1" value="Submit" action="#{accountingBean.addInvoiceManualJournal}" ajax="false" /></td>
+                <td><p:commandButton id="cancel" value="Cancel" action="#{accountingBean.reset}" ajax="false"/></td>
+            </tr>
+    </h:panelGroup>
+         </p:outputPanel>
+         </p:dialog>
+       <p:dialog header="Edit ManualJournal" widgetVar="multiManualJournalDialog"    showEffect="explode" hideEffect="explode" resizable="false" height="450" width="700">
+        <p:outputPanel id="multiManualJournalDetail" style="text-align:center;">
+            <fieldset>     
+           <table style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+         
+            <ui:repeat value="#{accountingBean.selectedjournal}" var="journal1">
+               
+          
+             <tr>
+ <th>
+    <h:outputText value="Organization"/><font color="red" >*</font></th>
+  
+     <td><p:selectOneMenu id="str_Organisation1" value="#{accountingBean.str_Organisation}"  style="width:250px">
+                   <f:selectItem itemValue="#{accountingBean.str_Organisation}"  itemLabel="#{accountingBean.str_Organisation}"/>
+                 </p:selectOneMenu>
+             </td>
+               
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Date"/><font color="red" >*</font></th>
+    <td>
+      <h:inputText value="#{accountingBean.dat_Date}" pattern="dd-MM-yyyy"/></td>
+          
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Reference"/><font color="red" >*</font></th>
+   
+    <td><p:inputText id="str_Reference" value="#{journal1.str_Reference}"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Notes:"/><font color="red" >*</font></th>
+   
+    <td><p:inputTextarea id="str_Notes" cols="30" row="3" value="#{journal1.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
+                </td>
+    </tr>
+    </ui:repeat>
+   
+    </table>
+   </fieldset>
+     <fieldset>
+     <legend>
+      <h:commandButton value="Accounts Details" style="background-color:blue; color:#fff;" width="300"/> </legend> 
+      <table style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        <ui:repeat value="#{accountingBean.selectedjournal}" var="journal1">
+        
+     <tr>
+          <td> <h:outputText  value="Debit" /></td>
+          <td></td><td></td>
+            <td ><h:outputText  value="Credit" /></td>
+         </tr>
+         
+         
+          <tr>
+            <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" style="width:200px">
+                  <f:selectItem itemLabel="#{journal1.str_DebitAccount}" itemValue="#{journal1.str_DebitAccount}" />
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+             <td >  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"  style="width:200px" >
+                  <f:selectItem itemLabel="#{journal1.str_CreditAccount}" itemValue="#{journal1.str_CreditAccount}" />
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+           </tr>
+      
+        <tr>
+       <td>  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_DebitAmount" value="#{journal1.dbl_DebitAmount}" size="15"  required="true" requiredMessage="Please Enter Amount!">
+           <p:messages for="str_DebitAmount" style="color:red"/>
+           </p:inputText>
+           </td>
+          <td align="right">  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_CreditAmount" value="#{journal1.dbl_DebitAmount}" size="15"  required="true" requiredMessage="It must be same as Debit Amount">
+           <p:messages for="str_CreditAmount" style="color:red"/>
+         </p:inputText>
+           </td>
+      </tr>
+    
+      </ui:repeat>
+    </table>
+    
+    </fieldset>
+   
+    <br/>
+     <h:panelGroup style="display:block; text-align:right">
+     <tr>
+                <td><h:commandButton id="submit" value="Submit" action="#{accountingBean.addManualJournal(journal1)}"  /></td>
+             
+            </tr>
+    </h:panelGroup>
+  
+   
+            
+          
+            
+        </p:outputPanel>
+        
+    </p:dialog> 
+      <p:dialog header="View ManualJournal" widgetVar="multiManualJournalDialog1"    showEffect="explode" hideEffect="explode" resizable="false" height="450" width="700">
+        <p:outputPanel id="multiManualJournalDetail1" style="text-align:center;">
+            <fieldset>     
+           <table style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+         
+            <ui:repeat value="#{accountingBean.selectedjournal}" var="journal1">
+               
+          
+             <tr>
+ <th>
+    <h:outputText value="Organization"/><font color="red" >*</font></th>
+  
+     <td><p:selectOneMenu id="str_Organisation1" value="#{accountingBean.str_Organisation}"  style="width:250px">
+                   <f:selectItem itemValue="#{accountingBean.str_Organisation}"  itemLabel="#{accountingBean.str_Organisation}"/>
+                 </p:selectOneMenu>
+             </td>
+               
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Date"/><font color="red" >*</font></th>
+    <td>
+      <h:inputText value="#{accountingBean.dat_Date}" pattern="dd-MM-yyyy" readonly="true"/></td>
+          
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Reference"/><font color="red" >*</font></th>
+   
+    <td><p:inputText id="str_Reference" value="#{journal1.str_Reference}" readonly="true"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Notes:"/><font color="red" >*</font></th>
+   
+    <td><p:inputTextarea id="str_Notes" cols="30" row="3" value="#{journal1.str_Notes}" readonly="true"/>
+                </td>
+    </tr>
+    </ui:repeat>
+   
+    </table>
+   </fieldset>
+     <fieldset>
+     <legend>
+      <h:commandButton value="Accounts Details" style="background-color:blue; color:#fff;" width="300"/> </legend> 
+      <table style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        <ui:repeat value="#{accountingBean.selectedjournal}" var="journal1">
+        
+     <tr>
+          <td> <h:outputText  value="Debit" /></td>
+          <td></td><td></td>
+            <td ><h:outputText  value="Credit" /></td>
+         </tr>
+         
+         
+          <tr>
+            <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" style="width:200px">
+                  <f:selectItem itemLabel="#{journal1.str_DebitAccount}" itemValue="#{journal1.str_DebitAccount}" />
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+             <td >  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
+            <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"  style="width:200px" >
+                  <f:selectItem itemLabel="#{journal1.str_CreditAccount}" itemValue="#{journal1.str_CreditAccount}" />
+                   <f:selectItems value="#{accountingBean.listAccountsName}" />
+                </h:selectOneMenu>
+                
+           </td>
+           </tr>
+      
+        <tr>
+       <td>  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_DebitAmount" value="#{journal1.dbl_DebitAmount}" size="15" readonly="true" required="true" requiredMessage="Please Enter Amount!">
+           <p:messages for="str_DebitAmount" style="color:red"/>
+           </p:inputText>
+           </td>
+          <td align="right">  <h:outputText  value="Amount" /><font color="red" >*</font></td>
+           <td><p:inputText id="str_CreditAmount" value="#{journal1.dbl_DebitAmount}" size="15" readonly="true" required="true" requiredMessage="It must be same as Debit Amount">
+           <p:messages for="str_CreditAmount" style="color:red"/>
+         </p:inputText>
+           </td>
+      </tr>
+    
+      </ui:repeat>
+    </table>
+    
+    </fieldset>
+   
+  
+  
+   
+            
+          
+            
+        </p:outputPanel>
+        
+    </p:dialog>     
+      
+      </div>
+   
+        </p:tab>
+        <p:tab title="TRIAL BALANCE" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:5px">
+            <div id="page3">
+     <div class="gsTitleDiv"><br/></div>
+      <table>
+      <tr>
+         <td>  <h:outputLabel value="As On"/>&nbsp; &nbsp;</td>
+        <td> <h:selectOneMenu id="car" value="#{accountingBean.date4}" valueChangeListener="#{accountingBean.accountchangeListener3}" >
+           
+            <f:selectItems value="#{accountingBean.dates}" />
+              <p:ajax event="click" partialSubmit="true"  update="date" process="car"/>
+       </h:selectOneMenu>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </td> 
+              <td>  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_ToDate}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp;</td>
+             <td>      <h:commandButton value="Go" action="#{accountingBean.getSearch2}"/></td>
+               
+                 
+   
+   
+   </tr>
+   </table>
+  
+      <br/>
+      
+    <p:panel  header="&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Account &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; Debit  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; Credit"  id="toggleable"  toggleable="true" style="width: 70%"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
+      
+       
+      
+           
+                <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+            <tr>
+                 <td><h:outputText value="ASSET" style="font-weight:bold"/></td>
+                 </tr>
+             <tr>
+          
+                <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.asset}"  var="timeSlot" >
+                           <p:column >
+                      
+                         
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           </p:column>
+                       
+                  </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.assetDebitBalance}" var="timeSlot" >
+                       
+                     <center>
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                        </center>
+                      </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.assetCreditBalance}" var="timeSlot" >
+                      
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                
+                   </tr>
+               <tr>
+                 <td><h:outputText value="INCOME" style="font-weight:bold"/></td>
+                 </tr>
+              <tr>
+                   <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.income1}"   var="timeSlot" >
+                          
+                      
+                          <p:column >
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           </p:column>
+                       
+                   </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.incomeDebitBalance}" var="timeSlot" >
+                       
+                     
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                     </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.incomeCreditBalance}" var="timeSlot" >
+                      
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                  
+              </tr>
+              <tr>
+                 <td><h:outputText value="EXPENSE" style="font-weight:bold"/></td>
+                 </tr>
+               <tr>
+                   <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.expense}"   var="timeSlot" >
+                          
+                       <p:column >
+                         
+                           <h:outputText value="#{timeSlot}"/><br/>
+                           
+                       </p:column>
+                    </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.expenseDebitBalance}" var="timeSlot" >
+                       
+                     
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.expenseCreditBalance}" var="timeSlot" >
+                      
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                  
+              </tr>
+              <tr>
+                 <td><h:outputText value="LIABILITY" style="font-weight:bold"/></td>
+                 </tr>      
+                  
+             
+              <tr>
+                   <td>
+                  
+                  
+                       <p:dataTable  value="#{accountingBean.liability}"   var="timeSlot" >
+                          
+                       <p:column >
+                         
+                           <h:outputText value="#{timeSlot}" /><br/>
+                          </p:column> 
+                       
+                  </p:dataTable>
+                     
+                      
+                 
+                   </td>
+                    <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.liabilityDebitBalance}" var="timeSlot" >
+                       
+                     
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                     
+                      
+                
+                   </td>
+                   <td>
+                    <p:dataTable value="#{accountingBean.liabilityCreditBalance}" var="timeSlot" >
+                      
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      </p:dataTable>
+                   </td>
+                  
+              </tr>
+                <tr>
+                 <table   cellpadding="0" cellspacing="0" border="0"  class="src">
+                  <tr> 
+               
+                    <td  style="float:left;font-weight:bold">TOTALS: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                   
+                     <td style="font-weight:bold">#{accountingBean.debitNetTotal1}</td> 
+                   
+                      <td style="float:right;font-weight:bold"  >#{accountingBean.creditNetTotal}</td>
+               
+               
+                </tr>
+                </table>
+               
+                        
+              
+            
+              </tr>
+                  
+                    
+                  
+             
+                  
+              
+               
+                </table>
+      
+        </p:panel>
+           </div>
+        </p:tab>
+         <p:tab title="PROFIT AND LOSS" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:5px">
+         <div id="page3">
+    <body>
+   
+              
+        
+             <div class="gsTitleDiv"><br/></div>
+              &#150; &#150;  &#150; &#150;   <p:outputLabel value="From :"/> &#150; &#150;
+                  <p:calendar value="#{accountingBean.date3}" navigator="true"  showOn="focus"  pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener3}">
+                      <p:ajax event="dateSelect" partialSubmit="true" /> 
+                    </p:calendar>
+                  &nbsp; &nbsp;
+                  <p:outputLabel value="To :"/> &#150; &#150;
+                  <p:calendar   required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" />
+             
+                 
+                 
+    </body>
+    <br/>
+  
+      <br/>
+      <br/>
+ 
+    <p:panel   header="&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Account Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; Amount "  style="width: 70%" id="toggleable1"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
+       
+       
+                <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+                
+                 <tr>
+                 <td><h:outputText value="Income" style="float:left;font-weight:bold"/></td>
+                 </tr>
+             <tr>
+                <td>
+                 
+                  
+                      <p:dataTable id="table" value="#{accountingBean.income1}" var="timeSlot">
+                      
+                      <p:column width="50%">
+                        <h:outputText value="#{timeSlot}"/><br/>
+                        
+                        </p:column>
+                      </p:dataTable>  
+                      </td>
+                    <td>
+                   
+                       
+                          <p:dataTable  value="#{accountingBean.totalIncome}" var="timeSlot">
+                          <p:column>
+                              <h:outputText  value="#{timeSlot}" style="float:right"/><br/>
+                              </p:column>
+                        </p:dataTable>
+                
+                </td>
+                </tr>
+               <tr>
+                 
+        
+         <td></td>
+       <td>  <h:outputText value="INCOME TOTALS: #{accountingBean.totalIncome2}" style="float:right;font-weight:bold"/></td>
+       
+     
+               
+           </tr>
+                 
+              <tr>
+                 <td><h:outputText value="Expense" style="float:left;font-weight:bold"/></td>
+                 </tr>
+               
+                <tr>
+                <td>
+                   
+                   
+                      <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
+                     
+                      <p:column width="50%">
+                        <h:outputText value="#{timeSlot}"/><br/>
+                        
+                        </p:column>
+                        </p:dataTable>
+                     </td>
+                     <td>
+                     
+                      <p:dataTable value="#{accountingBean.expenseAmount1}" var="timeSlot">
+                     
+                      <p:column >
+                        <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                        
+                        </p:column>
+                        </p:dataTable>
+                     </td>
+             </tr>
+             <tr>
+            
+         
+         <td></td>
+    <td> <h:outputText value="EXPENSE TOTALS: #{accountingBean.debitNetTotal}" style="float:right;font-weight:bold"/></td>
+       </tr>
+      
+               
+          
+           
+                    
+            
+              
+              </table>
+           
+             <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+                  <tr> 
+               
+                    <td width="60%" style="float:right;font-weight:bold">Net Profit:</td>
+                     <td  style="font-weight:bold" width="5%">#{accountingBean.netProfit3}</td>
+                  
+               
+               
+                </tr>
+                </table>
+               </p:panel>
+            
+    
+     </div>
+   
+         </p:tab>
+         <p:tab title="BALANCE SHEET" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:5px">
+         <div id="page3">
+       <div class="gsTitleDiv"><br/></div>
+              &#150; &#150;  &#150; &#150;   <h:outputText value="As On"/>&nbsp; &nbsp;
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                 
+                 
+                   <h:commandButton value="Go" action="#{accountingBean.getSearch3()}"/>
+                
+                 
+   
+   
+   
+   <br/>
+  
+      <br/>
+    <p:panel  header="&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Account Name  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; Amount "  style="width: 70%" id="toggleable2"  toggleable="true"  toggleSpeed="500" closeSpeed="500" widgetVar="panel" >
+        
+      
+            
+               
+                  <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
+                 <tr>
+                 <td><h:outputText value="ASSET" style="font-weight:bold"/></td>
+                 </tr>
+             <tr>
+                <td>
+                 
+                      <p:dataTable value="#{accountingBean.asset}" var="timeSlot">
+                     
+                      <p:column>
+              
+                     
+                        <h:outputText value="#{timeSlot}"  /><br/>
+                     </p:column>
+                     </p:dataTable>
+                    </td>
+                   
+                 <td>
+                      <p:dataTable value="#{accountingBean.assetBalance}" var="timeSlot" >
+                       
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      
+                     
+                     
+               </p:dataTable>       
+                
+            </td>
+              
+                     
+          </tr>
+               
+        
+           
+  
+  
+      <tr>
+   <td>   <h:outputText value="TOTAL ASSETS:" style="float:right;font-weight:bold" /></td>
+    <td>  <h:outputText value="#{accountingBean.int_blank1}" style="float:right;font-weight:bold" /></td>
+     </tr>
+    <tr>
+                 <td><h:outputText value="LIABILITY" style="font-weight:bold"/></td>
+                 </tr>
+     <tr>
+      <td>
+               <p:dataTable value="#{accountingBean.liability}" var="timeSlot">
+                     
+                     <p:column>
+              
+                     
+                        <h:outputText value="#{timeSlot}"  /><br/>
+               
+           </p:column>
+           
+             
+   </p:dataTable>
+   </td>
+     <td>
+                   
+                  
+                      <p:dataTable value="#{accountingBean.liabilityBalance}" var="timeSlot" >
+                       
+                    
+                          <p:column >
+                           <h:outputText value="#{timeSlot}" style="float:right"/><br/>
+                           
+                        </p:column>
+                      
+                      </p:dataTable>
+                     
+                      
+                
+            </td>
+           </tr>
+              
+  
+   <tr>
+     <td><h:outputText value="TOTAL LIABILITIES:" style="float:right;font-weight:bold" /></td>
+     <td><h:outputText value="#{accountingBean.int_blank}" style="float:right;font-weight:bold" /></td>
+       </tr>
+     <tr>
+         
+         
+          <td>
+                 <h:outputText value="EQUITY"  width="100%" style="font-weight:bold"/></td>
+             </tr>
+     
+     
+      <tr>
+       <td>
+     
+              <p:dataTable value="hhf"  >     
+                        <p:column>
+            
+                         <h:outputText value="Net Profit" style="float:left"/>
+                
+                        </p:column>
+                        
+                       </p:dataTable>
+         </td>
+         <td>
+             <p:dataTable value="hhf1"  > 
+              <p:column>
+                        <h:outputText value="#{accountingBean.netProfit}" style="float:right"/>
+                        </p:column>
+             </p:dataTable>    
+         </td>
+           </tr>      
+                   <tr>
+                       
+                    <td>  <h:outputText value="EQUITY TOTALS:" style="float:right;font-weight:bold" /></td>
+                    <td>   <h:outputText value="#{accountingBean.netProfit}" style="float:right;font-weight:bold" /></td>
+                       </tr>
+                     
+                    <tr>
+                    <td><h:outputText value="LIABILITIES + EQUITY:" style="float:right;font-weight:bold" /></td>
+                     <td><h:outputText value="#{accountingBean.netProfit1}" style="float:right;font-weight:bold" /></td>
+                       </tr>
+                   
+  
+  </table>
+  </p:panel>
+  
+    </div>
+         </p:tab>
+    </p:tabView>
+ 
+  
+
+</h:form>
+</body>
+</ui:define>
+</ui:composition>
