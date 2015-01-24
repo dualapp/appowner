@@ -928,7 +928,7 @@ public String getStr_RecoverPassword1() {
 	Email="kalpanasudha1990@gmail.com";
 	 subject="Reset Password Instructions for you on AppOwner";
 	 content="sir i need ur BsnlBroadBand service so plz provice it";
- link="http://localhost:5454/AppOwnner/AfrteLoginViews/UserInfo/changepassword.xhtml";
+ link="http://localhost:5454/AppOwnner/recoverpassword.xhtml";
 	System.out.println(Email);
 	 return "forgotpassword1.jsp";
 }
