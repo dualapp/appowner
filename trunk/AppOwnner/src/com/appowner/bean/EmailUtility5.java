@@ -52,15 +52,13 @@ public class EmailUtility5 {
         msg.setContent("<html>\n" +"<fieldset style="+"width:40%"+">"+
                        "<legend style="+"background-color:#40E0D0; color:#fff;"+" align="+"left"+">"+"Recover Password"+"</legend>"+
                         "<table width="+600+" bgcolor="+"#40E0D0"+">"+
-                        "<tr>"+"<td width="+30+">"+"Dear Mr/Mrs/Ms. ,"+"</td>"+"<td width="+70+">"+toAddress+"</td>"+"</tr>"+
+                        "<tr>"+"<td>"+"Dear Mr/Mrs/Ms:"+toAddress+"</td>"+"</tr>"+
                        
-                        "<tr>"+"<td width="+30+">"+"Your Old Password is:. ,"+"</td>"+"<td width="+70+">"+str_Password+"</td>"+"</tr>"+
+"<tr>"+"<td>"+"You had placed a request that you forgot your password" +"</td>"+"</tr>"+
+                        "<tr>"+"<td>"+"Your New Password is:"+str_Password+"</td>"+"</tr>"+
                        
-        		         "<tr>"+"<td width="+30+">"+"You had placed a request that you forgot your password"+"</td>"+"<td width="+70+">"+"</tr>"+
-        		         "<tr>"+"<td>"+"<h4>"+"<legend style="+"background-color:#40E0D0; color:#fff;"+" align="+"left"+">"+"Please click this"+" <a href="+link+">"+" link"+"</a> to set a new password if u want!!."+"</legend>"+"</h4>"+"<br/>"+ "<tr>"+"<td width="+30+">"+"Title:"+"</td>"+"<td width="+70+">"+"</td>"+"</tr>"+
-        		         "<tr>"+"<td width="+30+">"+"If link is not clickable, please copy and paste the text below in your browsers address bar:"+"</td>"+"<td width="+70+">"+"</td>"+
-        		        "</tr>"+"<tr>"+
-        		        "<td width="+30+">"+link+"</td>"+"<td width="+70+">" +"</td>"+
+ 
+"<tr>"+"<td>"+"Please Change To Your Own Password After Login Immediately"+"</td>"+"</tr>"+    
                         
                         "</table>"+
         		"</fieldset>"+
