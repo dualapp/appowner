@@ -11,7 +11,7 @@
  <link rel="stylesheet" href="css/style.css" type="text/css" media="all"></link>
  </h:head>
 <body bgcolor="red"><center>
-    <h:form id="form" ><center>
+    
    <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
@@ -22,7 +22,7 @@
 		</tbody>
 	</table>   
    <div id="page">
-   	
+   <h:form>
    <table >
    		<tr>
         	<td ><h:outputLabel for="str_UserCountry" class="gsContent" value="Country" color="#F08080" /><font color="red" >*</font></td>
@@ -31,7 +31,7 @@
                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{cls_UserBeanMain.str_UserCountries}" />
-                <f:ajax event="change" update="str_UserState" process="str_UserCountry"/>
+                <p:ajax event="change" update="str_UserState" process="str_UserCountry"/>
                                
             	</h:selectOneMenu>
             </td><td><p:message for="str_UserCountry" display="text"/>
@@ -41,7 +41,7 @@
         <tr>
             <td><h:outputLabel for="str_UserState" class="gsContent" value="State" /><font color="red" >*</font></td>
             <td><h:selectOneMenu id="str_UserState" value="#{cls_UserBeanMain.str_UserState}"   valueChangeListener="#{cls_UserBeanMain.stateChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select state!">
-                <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
+               <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{cls_UserBeanMain.str_UserStates}"/>
                <p:ajax event="change" update="str_UserCity" process="str_UserState"/>    
             </h:selectOneMenu></td><td><p:message for="str_UserState" display="text"/>
@@ -58,10 +58,10 @@
           </tr>
           <tr> 
             <td><h:outputLabel for="str_UserApartment" class="gsContent" value="Apartment" /><font color="red" >*</font></td>
-            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBean.str_UserApartment}" valueChangeListener="#{cls_UserBean.apartmentChangeListener}" style="width:200px"> 
+            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBeanMain.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px"> 
                 <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
-                 <p:ajax event="change" process="str_UserApartment"/>
+                 <p:ajax event="change" update="str_UserApartment" process="str_UserApartment"/>
            </h:selectOneMenu></td><td><p:message for="str_UserApartment" display="text"/>
                 </td>
           </tr>
@@ -74,7 +74,8 @@
           <tr><td colspan="2"><br/><br/></td></tr>    
           
    </table>
-   </div></center>
-   </h:form> </center>        
+   </h:form>
+   </div>
+  </center>
    </body>
    </html>
