@@ -156,7 +156,16 @@ margin-top:1em;
 					</ul>
 
 				</nav>
-			
+			<p:outputPanel id="pollResult" rendered="#{request.getAttribute('render')}">
+					<div id="password">
+					  <h4>Your Password recovered successfully.....</h4> 
+        <h4> #{request.getAttribute('Message')}</h4>
+         
+        <h4>Please login to your account to get your password</h4> 
+         <h4>Thanks....</h4> 
+					</div>
+					</p:outputPanel>
+					
 				<div id="addEventForm" style="float:right">
 
 			
@@ -189,12 +198,12 @@ margin-top:1em;
 							<td><h:commandButton id="submit" value="Submit"
 									action="#{loginBean.userLogin}" ajax="false" styleClass="submit-input" /></td>
 						</tr>
-						<tr>
-							<td><p:commandLink  value="Forgot Password ?"
-									 ajax="false" styleClass="submit-input1" /></td>
-						</tr>
+						 
 					</table>
 					</fieldset>
+					   
+					 
+					
 </h:form>
 <hr/>
 <p align="center"><font color="black" size="3">
