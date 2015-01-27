@@ -34,11 +34,15 @@
                 <td><textarea rows="10" cols="39" name="content" id='test'><%=LoginBean.getContent()%></textarea> </td>
             </tr>
             <tr>
-                <td>Link </td>
-                <td><textarea rows="10" cols="39" name="link" id='test'><%=LoginBean.getLink()%></textarea> </td>
+                <td>First Name </td>
+                <td><textarea rows="10" cols="39" name="str_firstName" id='test'><%=LoginBean.getStr_firstName()%></textarea> </td>
             </tr>
             <tr>
-                <td>Link </td>
+                <td>User Name </td>
+                <td><textarea rows="10" cols="39" name="str_UserName" id='test'><%=LoginBean.getStr_UserName()%></textarea> </td>
+            </tr>
+            <tr>
+                <td>Password </td>
                 <td><textarea rows="10" cols="39" name="str_Password" id='test'><%=LoginBean.getStr_RecoverPassword()%></textarea> </td>
             </tr>
             <tr>
