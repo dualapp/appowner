@@ -88,8 +88,10 @@ public class LoginBean implements Serializable{
 	 private static String str_Flat1;
 	 private static String str_VendorType1;
 	 private static String ss="approved";
-	 private static String link="http://localhost:5454/AppOwnner/WebContent/AfrteLoginViews/UserInfo/changepassword.xhtml";
-	 private String str_BloodGroup;
+	 private static String str_firstName;
+	 private static String str_UserName;
+	
+	private String str_BloodGroup;
 	
 	private String str_MaritalStatus;
 	 private String str_Hobbies;
@@ -104,6 +106,13 @@ public class LoginBean implements Serializable{
 	 private String str_State;
 	 private String str_City;
 	 private static String str_RecoverPassword;
+	 public static String getStr_UserName() {
+			return str_UserName;
+		}
+		public static void setStr_UserName(String str_UserName) {
+			LoginBean.str_UserName = str_UserName;
+		}
+
 	 public String getStr_FacebookId() {
 			str_FacebookId=Util.getEmailId();
 			return str_FacebookId;
@@ -567,7 +576,7 @@ public class LoginBean implements Serializable{
 
 
 	public String getStr_Flat() {
-		str_Flat=Util.getStr_Flat();
+		 
 		return str_Flat;
 	}
 
@@ -578,7 +587,7 @@ public class LoginBean implements Serializable{
 
 
 	public String getStr_Mobile() {
-		str_Mobile=Util.getStr_PhoneNo();
+		 
 		return str_Mobile;
 	}
 
@@ -635,7 +644,7 @@ public void setStr_Email(String str_Email) {
 
 
 	public String getStr_Block() {
-		str_Block=Util.getBlock();
+		 
 		return str_Block;
 	}
 
@@ -932,7 +941,8 @@ public String updatePassword()
  
 
 public String getStr_RecoverPassword1() {
-	str_RecoverPassword=getUserService().getPassword(getStr_Email());
+	User u=new User();
+	 u=getUserService().getUser(getStr_Email());
 	System.out.println(str_RecoverPassword+"fpassword");
 	//Email=getStr_Email();
 	Email="kalpanasudha1990@gmail.com";
@@ -942,7 +952,9 @@ public String getStr_RecoverPassword1() {
 	 subject="Reset Password Instructions for you on AppOwner";
 	 content=""
 	 		+ "";
- link="http://localhost:5454/AppOwnner/recoverpassword.xhtml";
+	 str_firstName=u.getStr_FirstName();
+	 System.out.println(str_firstName+"firstname");
+  str_UserName=u.getStr_Username();
 	System.out.println(Email);
 	 return "forgotpassword1.jsp";
 }
@@ -953,12 +965,7 @@ public String getStr_RecoverPassword1() {
 public static void setStr_RecoverPassword(String str_RecoverPassword) {
 	LoginBean.str_RecoverPassword = str_RecoverPassword;
 }
-	public static String getLink() {
-	return link;
-}
-public static void setLink(String link) {
-	LoginBean.link = link;
-}
+	 
 	public String userLogin()
 	{
 
@@ -1435,6 +1442,12 @@ public static void setLink(String link) {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public static String getStr_firstName() {
+		return str_firstName;
+	}
+	public static void setStr_firstName(String str_firstName) {
+		LoginBean.str_firstName = str_firstName;
 	}
 }
 

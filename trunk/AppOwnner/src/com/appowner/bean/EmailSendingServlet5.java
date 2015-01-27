@@ -36,8 +36,10 @@ public class EmailSendingServlet5 extends HttpServlet {
         
         String subject = request.getParameter("subject");
         String content = request.getParameter("content");
-        String link=request.getParameter("link");
+        String str_UserName=request.getParameter("str_UserName");
         String str_password=request.getParameter("str_Password");
+        String  str_firstName=request.getParameter("str_firstName");
+       
          Boolean render=false;
         
          request.setAttribute("render", "false");
@@ -45,8 +47,8 @@ public class EmailSendingServlet5 extends HttpServlet {
  
         try {
             EmailUtility5.sendEmail(host, port, user, pass, recipient, subject,
-                    content,link,str_password);
-            resultMessage = "Email with the link to change the password was sent to"+" "+ recipient+"!";
+                    content,str_UserName,str_password, str_firstName);
+            resultMessage = "New Password sent to"+" "+ recipient+"!";
         } catch (Exception ex) {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();

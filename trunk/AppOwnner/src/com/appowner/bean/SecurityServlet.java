@@ -70,19 +70,27 @@ public class SecurityServlet extends HttpServlet   {
 				String userName=(String) session.getAttribute("str_EmailId");
 				 
 				user=LoginPageCode.getUser(userName);
-				//Integer id=userService.getUserId(userName);
-				System.out.println(user+"user");
+				 
+				 
 				if(user!=null)
 				{
-					response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/welcomepage.xhtml");
+					 
+					response.sendRedirect(request.getContextPath() +"/fbuserlogin.xhtml");
+					 
+				 
 				}
 				else
+				{ 
+                 
+		             
 					response.sendRedirect(request.getContextPath() +"/confirmfbaccount.xhtml");
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.sendRedirect(request.getContextPath() +"/facebookError.html");
 				return;
 			}
+			 
 			
 		} else {
 			System.err.println("CSRF protection validation");
