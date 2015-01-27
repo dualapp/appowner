@@ -230,7 +230,7 @@ public   List<Employee> readExcel(String filePath) {
 	        (HttpServletResponse) FacesContext.getCurrentInstance()
 	            .getExternalContext().getResponse();
 	    
-	    response.setContentType("application/octet-stream");
+	    response.setContentType("application/vnd.ms-excel");
 	    response.setHeader("Content-Disposition", "attachment;filename=Community_setup_house.xls");
 	    response.getOutputStream().write(buf);
 	    response.getOutputStream().flush();
