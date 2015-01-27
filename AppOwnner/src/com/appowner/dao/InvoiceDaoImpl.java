@@ -40,8 +40,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	@SuppressWarnings("unchecked")
 	public List<String> getInvoiceName()
 	{   getApartmentID();
+	  System.out.println(apartmentID+"kfdkfdfkklfdkfd");
 		List<String> invoiceList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).setCacheable(true).setProjection(Projections.property("str_InvoiceTemplateName")).add(Restrictions.eq("int_Organisation", apartmentID)).list();
-		
+		System.out.println(invoiceList+"fdkdfkdfk");
 		  return  invoiceList;
 	}
 	public void saveInvoiceTransaction(InvoiceTransaction invoice)
