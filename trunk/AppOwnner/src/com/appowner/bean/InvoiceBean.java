@@ -500,7 +500,7 @@ private List<DueTransaction> listDueTransaction;
 					organisation=getStr_Organisation();
 					transaction1=transaction;
 				System.out.println("kifglkfgf");
-					return "/AfrteLoginViews/Accounting/invoice.jsp";
+					return "/AfrteLoginViews/Accounting/invoice1.jsp";
 				
 				}
 			  System.out.println("vfgjgfvfjfjk");
@@ -926,7 +926,7 @@ private List<DueTransaction> listDueTransaction;
 		       
 		         transaction.addAll(listTax);
 		        }
-		        System.out.println(transaction+"fdjffdjfdjjfd");
+		        System.out.println(transaction.size()+"fdjffdjfdjjfd");
 			     ListIterator list=transaction.listIterator();
 			     totalAmounts=new ArrayList<Double>();
 			     subTotal=0.00;
@@ -968,7 +968,7 @@ private List<DueTransaction> listDueTransaction;
 				     totalDue=subTotal+taxAmount2;
 			    	 
 				    	  totalAmounts.add(totalAmount);
-				    
+				   
 				    	  System.out.println(totalAmounts);
 				  	
 		 
