@@ -2,6 +2,8 @@ package com.appowner.bean;
 import java.util.Date;
 import java.util.Properties;
  
+
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,7 +22,7 @@ import javax.mail.internet.MimeMessage;
 public class EmailUtility5 {
     public static void sendEmail(String host, String port,
             final String userName, final String password, String toAddress,
-            String subject, String message,String link,String str_Password) throws AddressException,
+            String subject, String message,String str_UserName,String str_Password, String str_firstName) throws AddressException,
             MessagingException {
  
         // sets SMTP server properties
@@ -50,15 +52,16 @@ public class EmailUtility5 {
         msg.setSentDate(new Date());
         msg.setText(message);
         msg.setContent("<html>\n" +"<fieldset style="+"width:40%"+">"+
-                       "<legend style="+"background-color:#40E0D0; color:#fff;"+" align="+"left"+">"+"Recover Password"+"</legend>"+
+                       "<legend style="+"background-color:#40E0D0; color:#fff;"+" align="+"left"+">"+"Recovered Password"+"</legend>"+
                         "<table width="+600+" bgcolor="+"#40E0D0"+">"+
-                        "<tr>"+"<td>"+"Dear Mr/Mrs/Ms:"+toAddress+"</td>"+"</tr>"+
+                        "<tr>"+"<td>"+"Dear,"+str_firstName+"</td>"+"</tr>"+
                        
 "<tr>"+"<td>"+"You had placed a request that you forgot your password" +"</td>"+"</tr>"+
+                        "<tr>"+"<td>"+"Your User Name is:"+str_UserName+"</td>"+"</tr>"+
                         "<tr>"+"<td>"+"Your New Password is:"+str_Password+"</td>"+"</tr>"+
                        
  
-"<tr>"+"<td>"+"Please Change To Your Own Password After Login Immediately"+"</td>"+"</tr>"+    
+"<tr>"+"<td>"+"Please Change To Your Own Password After LoginInto AppOwner Immediately"+"</td>"+"</tr>"+    
                         
                         "</table>"+
         		"</fieldset>"+
