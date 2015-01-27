@@ -68,15 +68,17 @@ public class EmailUtility2 {
     	  taxName=template.getStr_TaxTemplate();
     	 str=str+"<tr style="+"line-height:25px;"+">"+"<td style="+"padding-left:5px;width:440px;"+">"+dues+
   	    "</td>"+
+  	  "<td align="+"right"+"" +"style="+"width:250px;"+">"+"</td>"+
   	    "<td align="+"right"+"" +"style="+"width:250px;"+">"+amount+
       	"</td>"+
-      	    "<td align="+"right"+""+ "style="+"padding-right:5px;width:320px;"+">"+taxName+"</td>"+
+      	
+      	"<td align="+"right"+""+ "style="+"padding-right:5px;width:200px;"+">"+taxName+"</td>"+
       	 "</tr>"+
       	 "<tr>"+
 
         	    
         	    
-        "<td colspan="+3+""+"style="+"border-bottom:1px solid #DADADA"+";"+""+">"+
+        "<td colspan="+3+""+"style="+"border-bottom:1px solid #DADADA;"+">"+
         "</td>"+
         "</tr>"+"</td>"+
  	    "</tr>";
@@ -101,7 +103,7 @@ public class EmailUtility2 {
 		double b=Double.parseDouble(amount);
 	   double tax5=(a * b)/100;
 	     str1=str1+"<tr style="+"line-height:25px;"+">"+
-        	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:320px;"+">"+"</td>"+"</tr>"+"<tr style="+"line-height:20px;"+">"+"<td align="+"right"+">"+taxName+"&nbsp;&nbsp;"+"("+taxAmount1+"%"+")"+"</td>"+"<td align="+"right"+""+">"+tax5+"</td>"+
+        	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:300px;"+">"+"</td>"+"<td align="+"right"+"" +"style="+"width:200px;"+">"+taxName+"&nbsp;&nbsp;"+"("+taxAmount1+"%"+")"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;"+">"+tax5+"</td>"+
         	     "</tr>";
        }
         // creates a new session with an authenticator
@@ -127,37 +129,44 @@ public class EmailUtility2 {
         		
         		
                         "<fieldset style="+"width:40%"+">"+
-                        "<table width="+600+" bgcolor="+"#AAAAAA"+">"+
+                      
+                        "<table width="+700+" height="+100+" bgcolor="+"#CCEEFF"+">"+
         		         "<tr>"+
-                        "<td>"+"INVOICE NO:"+" "+invoice+"</td>"+
+                        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"INVOICE NO:"+" "+invoice+""+"</font>"+"</td>"+
         		        "</tr>"+"<tr>"+
         		        "<td>"+"Date"+" "+date+""+" "+"(Pay Invoice by"+" "+date3+")"+"</td>"+
         		        "</tr>"+"<tr>"+
-        		        "<td>"+"Rs."+due+"</td>"+
+        		        "<td>"+"<font size="+3+" color="+"#FFA07A"+">"+"Rs."+due+"</td>"+
                         "</tr>"+
                         "</table>"+
                         "<h1 style="+"text-align:center;"+">"+organisation+"</h1>"+
                         "<hr/>"+
                         "<table width="+600+" bgcolor="+"#FFFFFF"+">"+
        		         "<tr>"+
-                       "<td>"+"Invoice TO:"+" "+block+""+"-"+apartmentNo+""+"</td>"+
-       		        "</tr>"+"<td>"+
+                       "<td>"+"<font size="+3+" color="+"#000000"+">"+"Invoice To:"+" "+block+""+"-"+apartmentNo+""+"</td>"+
+       		        "<td>"+
        		       
        		        "</td>"+
-       		        "<tr>"+
+       		        "<td>"+
+     		       
+       		        "</td>"+
+       		      
        		        "<td>"+"Bill Period:"+billperiod+""+"-"+""+year+""+"</td>"+
                        "</tr>"+
                        "</table>"+
         		"<body>\n" +
-        		 "<table  cellpadding="+0+"" +"cellspacing="+0+"" +"style="+"width:598px;align:center;"+ "font-family:arial;"+"font-size:14px;"+"line-height:15px;border:1px"+ "solid"+" " +"#DADADA;"+">"+
+        		 "<table  cellpadding="+0+"" +"cellspacing="+0+"" +"style="+"width:598px;align:center;"+ "font-family:arial;"+"font-size:14px;"+"line-height:15px;border:1px solid #DADADA;"+">"+
         		
         	    "<tbody>"+
         	    "<tr>"+
-        	    "<td style="+"width:440px;"+"height:20px;"+"background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;"+">"+
+        	    "<td style="+"width:250px;"+"height:20px;"+"background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;"+">"+
         	    "<strong>"+"Item"+"</strong>"+
         	    "</td>"+
-        	    "<td style="+"width:250px;background:#0E94F9;color:#fff;line-height:25px;"+" "+"align=+right+"+">"+
-        	    "<strong>"+"Amount"+"</strong>"+
+        	    "<td style="+"width:200px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;"+">"+
+        	    "<strong>"+""+"</strong>"+
+        	    "</td>"+
+        	    "<td style="+"width:200px;background:#0E94F9;color:#fff;line-height:25px;"+" "+"align=+right+"+">"+
+        	    "Amount"+
         	    "</td>"+
         	    "<td style="+"width:220px;background:#0E94F9;color:#fff;line-height:20px;padding-right:5px;"+" "+"align=+right+" +">"+
         	    "<strong>"+"Tax Applied"+"</strong>"+
@@ -165,24 +174,26 @@ public class EmailUtility2 {
         	    "<span style="+"font-size:10px;"+">"+"(Tax calculated below)"+"</span>"+
         	    "</td>"+
         	    "</tr>"+
- "<tr>"+
+                 "<tr>"+
         	    
         	    
-        	    "<td colspan="+3+""+"style="+"border-bottom:1px solid #DADADA;"+">"+
+        	    "<td colspan="+4+""+"style="+"border-bottom:1px solid #DADADA;"+">"+
         	    "</td>"+
         	    "</tr>"+str+
         	     "<tr>"+
-        	    "<td style="+"padding-left:5px;width:440px;line-height:20px;" +"align="+"right"+">"+"SubTotal"+"</td>"+
-        	    "<td align="+"right"+"" +"style="+"width:250px;"+">"+subTotal+"</td>"+
+        	     "<td align="+"right"+"" +"style="+"width:200px;"+">"+"</td>"+
+        	    "<td style="+"padding-left:5px;width:440px;line-height:20px;color:#E17009;" +"align="+"right"+">"+"SubTotal"+"</td>"+
+        	    "<td align="+"right"+"" +"style="+"width:250px;color:#E17009;"+">"+subTotal+"</td>"+
         	    "</tr>"+
         	    "<tr>"+"</tr>"+str1+
         	     "<tr>"+
         	  "<tr>"+
-        	    "<td colspan="+2+""+ "style="+"border-bottom:1px solid #DADADA ;"+">"+"</td>"+
+        	    "<hr/>"+"</tr>"+
         	    "<tr>"+
-        	  "<td style="+"height:20px;color:#E17009;"+" align="+"right"+""+">"+"Total Due"+"</td>"+"<td align="+"right"+" "+"style="+"width:250px;color:#E17009;"+">"+due+"</td>"+"<td align="+"right"+""+"style="+"padding-right:5px;width:320px;"+">"+"</td>"+
+        	    "<td align="+"right"+"" +"style="+"width:200px;"+">"+"</td>"+
+             "<td style="+"padding-left:5px;width:440px;line-height:20px;color:#E17009;" +"align="+"right"+">"+"Total Due"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;color:#E17009;"+">"+due+"</td>"+
         	  "</tr>"+
-        	     "<tbody>"+"<table>"+
+        	     "<tbody>"+"</table>"+
         	    
         		"</body>\n" +
         		"</fieldset>"+
