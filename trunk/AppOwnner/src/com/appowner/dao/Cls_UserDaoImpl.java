@@ -251,8 +251,7 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		public User getUserDetails(String formuserloginusername) {
 			 String hql="from User where str_Username=?";
 			User Userinfo=(User) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, formuserloginusername).uniqueResult();
-			System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-			System.out.println(Userinfo);
+			 
 			return Userinfo;
 		}
 
