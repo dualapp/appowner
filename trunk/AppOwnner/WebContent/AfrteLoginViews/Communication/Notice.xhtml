@@ -8,10 +8,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 		<h:head></h:head>
-  <body bgcolor="green">
+  <body >
     <h:form id="form1" enctype="multipart/form-data">
     <br/>
      <center> <legend   style="background-color:#438eb9; color:#fff;"> Notice Board-Post Notice </legend></center>
@@ -19,12 +19,12 @@
         <table>
         <tr>
            <th align="left">Subject</th>
-            <td>&#150; &#150;<p:inputText id="str_Subject" value="#{noticeBoardBean.str_Subject}"  required="true" requiredMessage="Subject can not be Empty"  size="50"/></td>
+            <td>&#150; &#150;<p:inputText id="str_Subject" value="#{noticeBoardBean.str_Subject}"  required="true" requiredMessage="Subject can not be Empty"  size="60"/></td>
               
             </tr>
            <tr>
             <th align="left">Flash the notice?</th>
-           <td>&#150; &#150;<p:selectBooleanCheckbox id="str_Flash" value="#{noticeBoardBean.bool_Flash}"/>Check this box if you want to flash this message to the the members, when they login into their accounts       
+           <td>&#150; &#150;<p:selectBooleanCheckbox id="str_Flash" value="#{noticeBoardBean.bool_Flash}"/>&#150;  Check this box if you want to flash this message to the the members, when they login into their accounts       
         </td>
             </tr> 
              <tr>
@@ -40,7 +40,7 @@
              <tr>
              <th align="left">Attachment, if any</th>
                <th align="left">&#150; &#150;<p:fileUpload fileUploadListener="#{noticeBoardBean.handleFileUpload}" value="#{noticeBoardBean.str_Document}" mode="advanced"  auto="true" 
-            sizeLimit="100000" fileLimit="3"  style="width:500px"/> 
+            sizeLimit="100000" fileLimit="3"  style="width:520px"/> 
                  
           </th>
              </tr>
@@ -55,12 +55,12 @@
              <tr>
            <th align="left">Special Notice?</th>
             
-             <td> &#150; &#150;<p:selectBooleanCheckbox id="bool_SpecialNotice" value="#{noticeBoardBean.bool_SpecialNotice}"/>Notices are emailed only to those members who have opted to receive emails.Check this box to mark this as a special notic Special notices will also be<br/> emailed to relevant members including those who have marked their preference NOT to receieve emaHence, this must be used sparingly for some critical messages such as AGM notices or emergency repair notices.
+             <td> &#150; &#150;<p:selectBooleanCheckbox id="bool_SpecialNotice" value="#{noticeBoardBean.bool_SpecialNotice}"/> &#150;Notices are emailed only to those members who have opted to receive emails.Check this box to mark this as a special notic Special notices will also be emailed to relevant members  <br/>  &#150; &#150; &#150; &#150; &#150; &#150; &#150; including those who have marked their preference NOT to receieve emaHence, this must be used sparingly for some critical messages such as AGM notices or emergency repair notices.
              </td>
             </tr>
             <tr> 
         <th align="left">Copy Maintenance Staff?</th>
-          <td>&#150; &#150; <p:selectBooleanCheckbox id="bool_Staff" value="#{noticeBoardBean.bool_Staff}"/>If this is checked the notice will be sent to all staff who has email ids on record.
+          <td>&#150; &#150; <p:selectBooleanCheckbox id="bool_Staff" value="#{noticeBoardBean.bool_Staff}"/> &#150; If this is checked the notice will be sent to all staff who has email ids on record.
      </td>
             </tr>
             <tr>
@@ -73,9 +73,9 @@
              </p:selectOneMenu>
             </td>
             </tr>
-        <tr>
-                <td><p:commandButton id="submit" value="Submit" action="#{noticeBoardBean.addNotice}" ajax="false" /></td>
-                 <td><p:commandButton id="reset" value="Reset" action="#{noticeBoardBean.reset}" ajax="false"/></td>
+        <tr>     <td></td>
+                 <td>&#150; &#150;<p:commandButton id="submit" value="Submit" action="#{noticeBoardBean.addNotice}" ajax="false" /></td>
+                
             </tr>
            
         </table>
