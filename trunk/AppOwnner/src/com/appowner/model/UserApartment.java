@@ -96,6 +96,13 @@ public class UserApartment   implements Serializable{
 	public void setPayment_Status(Integer payment_Status) {
 		this.payment_Status = payment_Status;
 	}
+	private Date dat_ExpireDate;
+	public Date getDat_ExpireDate() {
+		return dat_ExpireDate;
+	}
+	public void setDat_ExpireDate(Date dat_ExpireDate) {
+		this.dat_ExpireDate = dat_ExpireDate;
+	}
 	private Integer status;
 	private Integer payment_Status;
 	public Integer getStatus() {

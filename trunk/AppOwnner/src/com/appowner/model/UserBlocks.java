@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name = "tb_blockDetails")
+@Table(name = "tb_blockdetails")
 public class UserBlocks implements Serializable{
 	/**
 	 * 
