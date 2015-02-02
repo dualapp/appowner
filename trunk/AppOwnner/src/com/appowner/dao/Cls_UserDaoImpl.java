@@ -449,7 +449,7 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		@Override
 		public User getUser(String userName) {
 			// TODO Auto-generated method stub
-			return (User) getSessionFactory().getCurrentSession().createQuery("from  User  where str_Username=?").setParameter(0, userName).uniqueResult();
+			return (User) getSessionFactory().getCurrentSession().createQuery("from  User  where str_Email=?").setParameter(0, userName).uniqueResult();
 		}
 
 		@Override

@@ -19,6 +19,7 @@ import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.WorkOrderCategory;
+import com.appowner.util.Util;
 
 @Repository
 public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
@@ -86,8 +87,9 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	@Override
 	public List<String> getHouseNoList(String str_BlockName) {
 		// TODO Auto-generated method stub
+		Integer id=Util.getAppartmentId();
 		Integer blockId=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId  from UserBlocks where str_BlockName=?").setParameter(0, str_BlockName).uniqueResult();
-		return sessionFactory.getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_BlockId=?").setParameter(0, blockId).list();
+		return sessionFactory.getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_BlockId=? and int_ApartmentId=?").setParameter(0, blockId).setParameter(1, id).list();
 	}
 
 	@Override
