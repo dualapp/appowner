@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.validator.ValidatorException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
@@ -944,8 +945,8 @@ public String getStr_RecoverPassword1() {
 	User u=new User();
 	 u=getUserService().getUser(getStr_Email());
 	System.out.println(str_RecoverPassword+"fpassword");
-	//Email=getStr_Email();
-	Email="kalpanasudha1990@gmail.com";
+     Email=getStr_Email();
+	//Email="kalpanasudha1990@gmail.com";
 	str_RecoverPassword =RandomStringUtils.randomAlphanumeric(6);
 	getUserService().setPassword(getStr_Email(),str_RecoverPassword );
 	
@@ -965,13 +966,19 @@ public String getStr_RecoverPassword1() {
 public static void setStr_RecoverPassword(String str_RecoverPassword) {
 	LoginBean.str_RecoverPassword = str_RecoverPassword;
 }
-	 
+
 	public String userLogin()
 	{
-
-		 
-		formuserloginusername=getUserloginname();
-		formuserloginuserpassword=getUserloginpassword();
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		String userName=request.getParameter("Userloginname");
+		System.out.println(userName+"klkk123");
+		 String userPassword=request.getParameter("userPassword");
+		 System.out.println(userPassword+"sdjdskjdskj");
+		formuserloginusername=userName;
+		formuserloginuserpassword=userPassword;
+		System.out.println(formuserloginusername+"klkk");
+		System.out.println(formuserloginuserpassword+"fdkfd");
+		System.out.println(userloginpassword+"jjkjkkjkj");
 		if(formuserloginusername==null)
 		{
 			user=getUserService().getUserList(Util.getUserName());
@@ -982,7 +989,8 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 		 
 		str_userRoleName=user.getStr_UserRoleName();
 		 str_Country=user.getStr_Country();
-		 formuserloginuserpassword=user.getStr_Password();
+		// formuserloginuserpassword=user.getStr_Password();
+		 System.out.println(formuserloginuserpassword+"kldfkldlk");
 		 str_State=user.getStr_State();
 		 str_City=user.getStr_City();
 		str_Block=user.getStr_Block();
@@ -995,10 +1003,11 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 		 
 		str_ApartmentName=user.getStr_Apartment();
 		 status=getUserService().getStatus(str_ApartmentName);
-		 
+		 System.out.println(status+"fkdfdkj");
 		String admin1="admin";
 	
-		
+	if(status==0)
+	{
 		if(formuserloginuserpassword.equals(user.getStr_Password()) )
 		{    
 		
@@ -1074,20 +1083,25 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 			 return "/AfrteLoginViews/welcomepage.xhtml";
 		   }
 		}
+		   else
+		   {
+			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password is invalid!"));
+				return "index.xhtml";  
+		   }
+	}
  
 		else
 		{
-			if(status==1)
-			{
-				
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Status is Disabled.PlZ contact to Admin!"));
-			}
-			else
 			
-		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password id invalid!"));
-		return "layout.xhtml";
+				
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Status is Disabled.PlZ contact to Admin!", "Status is Disabled.PlZ contact to Admin!"));
+				
 			
 		}
+			
+		
+		return "index.xhtml";	
+		
 	}
 	public Integer getStatus() {
 		return status;

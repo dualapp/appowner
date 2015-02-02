@@ -55,7 +55,7 @@ public class EmailSendingServlet5 extends HttpServlet {
         } finally {
         	request.setAttribute("render", "true");
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/index.xhtml").forward(
+            getServletContext().getRequestDispatcher("/forgotpassword.xhtml").forward(
                     request, response);
         }
     }
