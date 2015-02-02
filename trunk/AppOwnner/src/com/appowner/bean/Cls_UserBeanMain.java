@@ -387,7 +387,32 @@ public class Cls_UserBeanMain implements Serializable {
 		else
 			 return new ArrayList<String>();
 	}
+	private  static boolean indicator;
 	
+	public static boolean isIndicator() {
+		return indicator;
+	}
+	private boolean indicator2;
+	public boolean isIndicator2() {
+		indicator2=!indicator;
+		System.out.println(indicator2+"fjdjfkddfkj");
+		return indicator2;
+	}
+	public void setIndicator2(boolean indicator2) {
+		this.indicator2 = indicator2;
+	}
+	private boolean indicator1;
+	public boolean isIndicator1() {
+		indicator1=indicator;
+		System.out.println(indicator1+"dkjdfjkdfjk");
+		return indicator1;
+	}
+	public void setIndicator1(boolean indicator1) {
+		this.indicator1 = indicator1;
+	}
+	public static void setIndicator(boolean indicator) {
+		Cls_UserBeanMain.indicator = indicator;
+	}
 	public List<String>cityChangeListener(ValueChangeEvent event) {
 		if ((event.getNewValue() != str_UserCity)) {
 			str_UserApartment = null;
@@ -398,7 +423,10 @@ public class Cls_UserBeanMain implements Serializable {
 	       str_apart=str_ApartmentName;
 	       str_ApartmentListByState=new ArrayList<String>();
 	       str_ApartmentListByState.addAll( getUserService().apatrmentList1(str_ApartmentName));
-	       System.out.println( str_ApartmentListByState);
+	       System.out.println( str_ApartmentListByState+"jjkkjjkjk");
+	       System.out.println(str_ApartmentListByState.listIterator().hasNext()+"kisdksdkds");
+	       indicator=str_ApartmentListByState.listIterator().hasNext();
+	       System.out.println(indicator+"kjkjkjjk");
 	       System.out.println("hi");
 	       getSelectonemenubean().getCity(str_ApartmentName);
 	       return str_ApartmentListByState;
@@ -566,6 +594,7 @@ public class Cls_UserBeanMain implements Serializable {
 		ua.setStr_Address(getStr_Address());
 		ua.setInt_PinCode(getInt_PinCode());
 		ua.setInt_CityId(id);
+		ua.setStatus(0);
 		getUserService().addApartment(ua);
 		int_getappartmentid=getUserService().getAppartmenId(getStr_ApartmentName());
 		str_getRoleNameUser=getUserService().getRoleNameUser(24);
@@ -592,6 +621,7 @@ public class Cls_UserBeanMain implements Serializable {
 		usr.setStr_Block(getStr_Block());
 		//user.setSqft(sqft);
 		usr.setStr_PhoneNo(getStr_PhoneNo());
+		
 		usr.setStr_UserRoleName("admin");
 		Integer activationbit1=0;
 		System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
