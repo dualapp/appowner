@@ -115,7 +115,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="images/started.jpg" height="50" width="50"></img> <span class="title"><font size="3">New User Registration.</font></span>
+					<img src="images/started.jpg" height="50" width="50"></img> <span class="title"><font size="5">New User Registration.</font></span>
 				</td>
 			</tr>
 		</tbody>
@@ -187,16 +187,36 @@
             <tr><td colspan="2" align="left"><br></br>
            <h3><u>Apartment Information</u></h3><br></br></td></tr>
        
+           <h:panelGroup rendered="#{cls_UserBeanMain.indicator1}">
+             
+        
+             <tr>
+            <td><h:outputText value="Apartment :">
+            </h:outputText><font color="red" >*</font></td>            
+            <td><h:inputText id="apartment" value="#{selectOneMenuBean.apartment}"    required="true" requiredMessage="Enter Apartment/Complex name!">
+            </h:inputText></td> <td><p:message for="apartment" display="text"/></td></tr>
+         
             
              <tr>
+             
             <td><h:outputLabel for="str_House" value="Block :"/>
             </td>          
-            <td><h:selectOneMenu id="str_Block" value="#{cls_UserBean.str_BlockName}"  valueChangeListener="#{cls_UserBean.blockChangeListener}"   required="true">
+            <td><h:selectOneMenu id="str_Block" value="#{cls_UserBean.str_BlockName}"  valueChangeListener="#{cls_UserBean.blockChangeListener}" style="width:140px"  required="true">
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
             <f:selectItems value="#{cls_UserBean.blockNameByApartmentName}"/>
              <p:ajax event="change" update="str_House" process="str_Block"/>
              </h:selectOneMenu>  
             </td></tr> 
+            </h:panelGroup>
+               <h:panelGroup rendered="#{cls_UserBeanMain.indicator2}">
+             <tr>
+              <td><h:outputText  value="Apartment Name/Complex Name :"></h:outputText><font color="red" >*</font> </td>          
+              <td> <h:inputText id="str_ApartmentName" value="#{cls_UserBean.str_Apartment}" required="true" requiredMessage="Enter Apartment Name!">
+                   </h:inputText> </td><td><p:message for="str_ApartmentName" display="text"/>
+                   
+               </td>
+               </tr>
+               </h:panelGroup>
              <tr>
              <td><h:outputText value="Flat No:">
             </h:outputText><font color="red" >*</font></td>         
@@ -217,12 +237,7 @@
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText id="city" value="#{selectOneMenuBean.city}" readOnly="true"  required="true" requiredMessage="Enter City Name!">
             </h:inputText></td><td><p:message for="city" display="text"/></td></tr>
-             <tr>
-            <td><h:outputText value="Apartment :">
-            </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText id="apartment" value="#{selectOneMenuBean.apartment}"    required="true" requiredMessage="Enter Apartment/Complex name!">
-            </h:inputText></td> <td><p:message for="apartment" display="text"/></td></tr>
-         
+            
              <tr> 		<td></td>	
             <td><h:commandButton id="addUser" value="Create Account" action="#{cls_UserBean.addUser}" styleClass="btn"/>
               &#150; &#150; 
