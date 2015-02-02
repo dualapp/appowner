@@ -236,7 +236,7 @@
      <tr style="line-height:20px;">
      
      <td align="right" style="width:200px;"/>
-     <td align="right"> <ui:repeat value="#{invoiceBean.transaction}" var="dues">#{dues.str_TaxTemplate}<ui:repeat value="#{invoiceBean.tax2}" var="tax">(#{tax}%)</ui:repeat><br/></ui:repeat>
+     <td align="right"> <ui:repeat value="#{invoiceBean.transaction}" var="dues">#{dues.str_TaxTemplate}<br/></ui:repeat><ui:repeat value="#{invoiceBean.tax2}" var="tax">(#{tax}%)<br/></ui:repeat>
     </td>
      <td align="right"><ui:repeat value="#{invoiceBean.taxAmounts}" var="taxAmount">#{taxAmount}<br/></ui:repeat></td>
      </tr>
