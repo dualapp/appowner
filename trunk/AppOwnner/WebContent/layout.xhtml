@@ -7,8 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fb="http://www.facebook.com/2008/fbml"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
-	 
+
 <h:head>
 
 	<title>Login</title>
@@ -42,7 +41,174 @@
 	<script src="js/functions.js"></script>
 	<script src="js/googlelogin.js"></script>
 	<script src="js/fblogin.js"></script>
+<script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 
+
+<style>
+
+ inputText:invalid {
+  border: 1px solid red;
+}
+
+inputText:valid {
+  border: 1px solid yellow;
+}
+
+
+
+
+fieldset
+
+{
+
+border: 2px ;
+
+width: 41em;
+
+height:25.2em;
+
+background-color: #1F7A1F	;
+
+
+}
+
+
+
+.submit-input1
+
+{
+
+ width:10em;
+
+  color:#FFFFFF;
+
+
+
+margin-left:6.5em;
+
+margin-top:1em;
+
+}
+
+.submit-input2
+
+{
+
+ width:6em;
+
+ color:chocolate;
+
+
+
+margin-left:7em;
+
+margin-top:1em;
+
+}
+
+.submit-input
+
+{
+
+ width:5em;
+
+color: chocolate;
+
+
+
+margin-left:14em;
+
+margin-top:1em;
+
+}
+
+
+
+
+
+</style>
+<script type= "text/javascript" src = "JavaScript/city.js"></script> 
+<script>
+
+ var modalWin = new CreateModalPopUpObject();
+ modalWin.SetLoadingImagePath("images/loading.gif");
+ modalWin.SetCloseButtonImagePath("images/remove.gif");
+ //Uncomment below line to make look buttons as link
+ //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
+
+function ShowNewPage(){
+ var callbackFunctionArray = new Array(Submit, Cancel);
+ modalWin.ShowURL('/AppOwnner/forgotpassword.xhtml',300,400,'Create New Due Template',null,callbackFunctionArray);
+ }
+
+	 
+ 
+function ShowMessage() {
+ modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
+ }
+  
+ function  ShowMessageWithAction(){
+    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
+    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
+ }
+
+function ShowMessageNoDragging(){
+ modalWin.Draggable=false;
+ modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
+
+}
+
+function Action1(){
+alert('Action1 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Action2(){
+alert('Action2 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Submit(msg){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function Cancel(){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function HideModalWindow() {
+    modalWin.HideModalPopUp();
+}
+function MyFunc(obj1)
+{   var ob=obj1.value;
+
+	alert(ob);
+	}
+function InvalidMsg(textbox) {
+    
+    if (textbox.value == '') {
+        textbox.setCustomValidity('Required Valid UserName');
+    }
+   
+    else {
+        textbox.setCustomValidity('');
+    }
+    return true;
+}
+function InvalidMsg1(textbox) {
+    
+    if (textbox.value == '') {
+        textbox.setCustomValidity('Required Valid Password');
+    }
+   
+    else {
+        textbox.setCustomValidity('');
+    }
+    return true;
+}
+</script>
 </h:head>
 
 <h:body>
@@ -116,70 +282,204 @@
 
 
 
-				<h:messages style="color:red" />
-				<h:form action="myurl">
-
-					<table align="left">
-						<tr>
-							<td><font color="#008B8B" size="5" style="">Enter
-									Login Credential..</font></td>
-						</tr>
-						<tr>
-							<td><h:outputText value="User name:">
-								</h:outputText><font color="red">*</font> <h:inputText id="userloginname"
-									value="#{loginBean.userloginname}" required="true"
-									requiredMessage="Please Enter user name!">
-								</h:inputText></td>
-						</tr>
-						<br />
-						<tr>
-							<td><h:outputText value="Password :"></h:outputText> <font
-								color="red">*</font> <h:inputSecret id="userloginpassword"
-									label="Password" value="#{loginBean.userloginpassword}"
-									required="true" requiredMessage="Please Enter Password!">
-									<f:validateLength minimum="4" />
-								</h:inputSecret>
-								<h:message for="userloginpassword" /></td>
-						</tr>
-						<tr>
-							<td><h:commandButton id="submit" value="Submit"
-									action="#{loginBean.userLogin}" ajax="false" /></td>
-						</tr>
-					</table>
+				
+				<div id="addEventForm" style="float:left">
 
 
 
-
-					<font size="5" style="" color="#008B8B">Facebook/Linkedin
-						Login Credential</font>
-					<table>
-						 
-						 <tr><td><p:button style="background-color:#133783;color:white;height:24px; width:172px;"  value="Facebook Connect" href="#{loginPageCode.facebookUrlAuth}" />
-						 
 			
-						 </td></tr>
-						 
+
+            
+         
+             <h:form>
+
+               <fieldset>
+
+                <p align="center"><font color="white" size="3">
+
+									Login Credential..</font></p>
+
+					<table style="width: 98%;margin-left: 5%;margin-right: 5%;margin-bottom:5px;margin-top:5px" >
+
+						
+
 						<tr>
-							<td><h:commandLink action="#{login.linkedinuserLogin}">
-									<p:graphicImage height="24" width="172" value="images/link.jpg" />
-								</h:commandLink></td>
+
+							<td><p:outputLabel value="User name:" style="color:#FFFFFF" >
+
+								</p:outputLabel><font color="red">*</font> <input type="text" id="userloginname" autofocus="true" style="width:200px"
+
+									name="Userloginname" required="true" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" >
+
+								
+
+								</input></td>
+
 						</tr>
+
+						<br />
+
 						<tr>
-							<td><h:commandLink action="#{login.linkedinuserLogin}">
-									<p:graphicImage height="24" width="170"
-										value="images/twiter.jpg" />
-								</h:commandLink></td>
+
+							<td><p:outputLabel value="Password :" style="color:#FFFFFF"></p:outputLabel> <font
+
+								color="red">*</font> <input id="userloginpassword" style="width:200px"
+
+									label="Password" name="userPassword" oninvalid="InvalidMsg1(this);" oninput="InvalidMsg1(this);"
+
+									required="true" >
+
+
+								</input>
+
+								</td>
+
 						</tr>
-						 <tr>
-						 <td>
-						 <input type="button" class="zocial googleplus" style="height:24px; width:172px;" value="Sign in with Google+" onclick="login()" />
-                         
-                          <div id="profile"></div>
-						 </td>
-						 </tr>
+
+						
+
+						<tr>
+
+							<td><h:commandButton id="submit" value="Submit"
+
+									action="#{loginBean.userLogin}" ajax="false" styleClass="submit-input" /></td>
+
+						</tr>
+                       <tr>
+                       <td>
+                       <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Forgot Password ?" class="submit-input2"/>
+                       </td>
+                       </tr>
+						
+
 					</table>
-					
-				</h:form>
+
+					</fieldset>
+
+</h:form>
+</div>
+
+<h:form>
+<div id="addEventForm1" >
+
+
+ 
+
+<fieldset>
+<p align="center"><font color="white" size="3">
+
+									New User? Join now</font></p> 
+
+ <table style="margin-left: 5%;margin-right: 5%;margin-bottom:5em;margin-top:2em" >
+
+      <tr></tr>
+
+   		<tr>
+
+        	<td ><h:outputLabel for="str_UserCountry" style="color:#FFFFFF" value="Country" /><font color="red" >*</font></td>
+
+           <td>
+            <input type="text" id="userloginname" list="l1"  ></input>
+          
+            <select id="country" name="country" style="width:200px"></select></td>
+       
+       </tr>
+       <tr>
+       <td><h:outputLabel for="str_UserState" style="color:#FFFFFF" value="State"  /><font color="red" >*</font></td>
+
+      <td>  <select name="state" id="state" style="width:200px"></select></td>
+        <script language="javascript">
+            populateCountries("country", "state");
+            
+        </script>
+        
+          
+
+        </tr>
+
+        
+
+       
+
+         <tr> 
+
+         	<td><h:outputLabel for="str_UserCity" style="color:#FFFFFF" value="City " /><font color="red" >*</font></td>
+
+            <td><h:selectOneMenu id="str_UserCity" value="#{cls_UserBeanMain.str_UserCity}" valueChangeListener="#{cls_UserBeanMain.cityChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select City!">
+
+                <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
+
+                <f:selectItems  value ="#{cls_UserBeanMain.str_UserCities}"/>
+
+                <p:ajax event="change" update="str_UserApartment" process="str_UserCity"/>
+
+            </h:selectOneMenu></td><td><p:message for="str_UserCity" display="text"/>
+
+                </td>
+
+          </tr>
+
+          <tr> 
+
+            <td><h:outputLabel for="str_UserApartment" style="color:#FFFFFF" value="Apartment" /><font color="red" >*</font></td>
+
+            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBeanMain.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px"> 
+
+                 <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
+
+                <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
+
+                 <p:ajax event="change" process="str_UserApartment" render="@form"/>
+
+           </h:selectOneMenu></td><td><p:message for="str_UserApartment" display="text"/>
+
+                </td>
+
+          </tr>
+
+              
+
+          <tr><td colspan="2"> <h:commandButton value="Join Us"   action="#{cls_UserBean.getRegistration}" styleClass="submit-input2">
+
+              </h:commandButton>&#150;&#150; &#150;&#150; &#150;&#150;
+
+              </td>
+
+              </tr>
+           
+              <tr><td colspan="2">&#150; &#150; &#150; &#150;
+            
+        <font color="#FFFFFF" >If you do not find your Apartment Complex above</font>
+
+          </td>
+
+          </tr>
+
+          <tr><td></td>
+
+          <td>
+
+              <h:commandButton value="Add Your Appartment" style="color:chocolate" action="#{cls_UserBean.getRegistration}" update="str_UserCountry" >
+
+            <p:ajax event="change" />
+
+               </h:commandButton></td>
+
+         
+
+          </tr>
+        
+   </table>
+</fieldset>
+
+
+
+
+</div>
+</h:form>
+
+
+
 
 				<div class="footer-bottom">
 
