@@ -203,6 +203,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		communityType=new CommunityType();
 		cs1.setInt_TotalNoOfHouses(getInt_TotalHouse());;
 		 cs1.setInt_UserId(Util.getUserId());
+		
 		 cs1.setInt_year(getInt_year());
 		cs1.setInt_NoOfBlocks(getInt_NoOfBlock());
 		cs=getApartmentDetailsService().getCommunitySetup(Util.getUserId());

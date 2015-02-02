@@ -12,12 +12,15 @@ import java.io.Serializable;
 
 
 
+
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 //import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -37,6 +40,7 @@ import org.springframework.dao.DataAccessException;
 import com.appowner.model.DueTransaction;
 import com.appowner.model.HouseDetails;
 import com.appowner.model.User;
+import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.VendorServiceDetails;
 import com.appowner.service.ApartmentDetailsService;
@@ -205,8 +209,17 @@ public class Cls_UserBean implements Serializable{
 		 private String city;
 		 /* Here userapartment variable and its setter and getter is declare to get the apartment value from select one menu bean class*/
 		 private String userapartment;
+		 private String str_Apartment;
+		public String getStr_Apartment() {
+			return str_Apartment;
+		}
+		public void setStr_Apartment(String str_Apartment) {
+			this.str_Apartment = str_Apartment;
+		}
 		public String getUserapartment() {
 			String s4=getSelectonemenubean().getApartment();
+			System.out.println(s4+"fdjkfdjkdfjkfd");
+			System.out.println(userapartment+"hjjkjk");
 			return s4;
 		}
 		public void setUserapartment(String userapartment) {
@@ -367,9 +380,45 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_Country(getCountry());
 			usr.setStr_State(getState());
 			usr.setStr_City(getCity());
+			if(userapartment==null)
+			{
+				System.out.println(str_Apartment+"fffkjjk");
+				int id=getUserService().getCityId(getCity());
+				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeyyyyyy");
+				
+				UserApartment ua=new UserApartment();
+				ua.setStr_ApartmentName(str_Apartment);
+				ua.setInt_NoOfFlates(132);
+				ua.setInt_PinCode(565434);
+				ua.setStr_Address(getCity());
+				ua.setInt_CityId(id);
+				ua.setStatus(0);
+				java.util.Date d=new java.util.Date();
+				System.out.println(d+"dskdskdslkk");
+				Calendar cal1 = Calendar.getInstance();
+
+
+				cal1.add(Calendar.MONTH,6);
+				d=cal1.getTime();
+				System.out.println(d+"sdkk");
+				ua.setDat_ExpireDate(d);
+				
+				getUserService().addApartment(ua);
+				int_getappartmentid=getUserService().getAppartmenId(str_Apartment);
+				usr.setStr_Apartment(str_Apartment);
+				usr.setInt_ApartmentId(int_getappartmentid);
+				usr.setStr_UserRoleName("admin");
+				an=str_Apartment;
+			}
+			else
+			{
 			usr.setStr_Apartment(getUserapartment());
 			int_getappartmentid=getUserService().getAppartmenId(getUserapartment());
 			usr.setInt_ApartmentId(int_getappartmentid);
+			usr.setStr_UserRoleName("user");
+			an=getUserapartment();
+			}
+			
 			usr.setInt_UserId(getInt_UserId());
 			usr.setStr_FirstName(getStr_FirstName());
 			usr.setStr_LastName(getStr_LastName());
@@ -382,14 +431,12 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_Block(getStr_Block());
 			usr.setStr_PhoneNo(getStr_PhoneNo());
 			usr.setStr_Username(getStr_Username());
+			
 			Integer activationbit2=0;
 			System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
 			final String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
 			
-			//System.out.println(uuid);
-			//String s= UUID.randomUUID().toString();
-			//System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnn");
-			//System.out.println(s);
+			
 			usr.setStr_activationkey(uuid1);
 			usr.setInt_activationbit(0);
 			System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
@@ -398,8 +445,9 @@ public class Cls_UserBean implements Serializable{
 			 un=getStr_Username();
 			pd=getStr_Password();
 			fn=getStr_FirstName();
-			an=getUserapartment();
-			String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
+			
+			
+			String url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
 			subject="AppOwner.com";
 			content="Hello."+" "  +fn+
 				   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
@@ -414,7 +462,7 @@ public class Cls_UserBean implements Serializable{
 			list.add(el);
 			list.add(pd);
 			
-			return "EmailForm.jsp";
+			return "EmailForm2.jsp";
 			}
 			else
 			{
@@ -522,7 +570,7 @@ public class Cls_UserBean implements Serializable{
 				list.add(el);
 				list.add(pd);
 				
-				return "EmailForm2.jsp";
+				return "EmailForm.jsp";
 				}
 				else
 				{
@@ -875,7 +923,11 @@ public class Cls_UserBean implements Serializable{
 		}
 		public List<String> getBlockNameByApartmentName() {
 			System.out.println(str_UserApartment);
-			System.out.println(blockNameByApartmentName+"blocks111111111111111111111111");
+			str_UserApartment=getUserapartment();
+			System.out.println(str_UserApartment+"fdkfdkj");
+			 blockNameByApartmentName=new ArrayList<String>();
+				blockNameByApartmentName.addAll(getApartmentDetailsService().getBlockNameByApartmentName(str_UserApartment));
+			   System.out.println(blockNameByApartmentName+"blocks111111111111111111111111");
 			return blockNameByApartmentName;
 		}
 		public void setBlockNameByApartmentName(
@@ -883,15 +935,13 @@ public class Cls_UserBean implements Serializable{
 			this.blockNameByApartmentName = blockNameByApartmentName;
 		}
 	 
-		 public void apartmentChangeListener(ValueChangeEvent event)
+		 public void blockChangeListener(ValueChangeEvent event)
 		    {
 			 
-			 str_UserApartment=(String) event.getNewValue();
-			 System.out.println( str_UserApartment+"apartment");
-			 blockNameByApartmentName=new ArrayList<String>();
-				blockNameByApartmentName.addAll(getApartmentDetailsService().getBlockNameByApartmentName(str_UserApartment));
+			 str_BlockName=(String) event.getNewValue();
+			
 			  
-		    	System.out.println(blockNameByApartmentName+"blockssssssssssssssssssssssssssssssssssssssssssssssss");
+		    	System.out.println(str_BlockName+"blockssssssssssssssssssssssssssssssssssssssssssssssss");
 		    	
 		    }
 	}
