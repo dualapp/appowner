@@ -21,7 +21,7 @@ function loginCallback(result)
     if(result['status']['signed_in'])
     {
     	 alert("Login Success");
-    	 window.location = "http://www.AppOwners.com/AfrteLoginViews/welcomepage.xhtml";
+    	// window.location = "http://www.AppOwners.com/AfrteLoginViews/welcomepage.xhtml";
         var request = gapi.client.plus.people.get(
         {
             'userId': 'me'
