@@ -19,7 +19,9 @@ import org.springframework.dao.DataAccessException;
 import com.appowner.model.CommiteeRole;
 import com.appowner.model.Notice;
 import com.appowner.model.RoleMaster;
+import com.appowner.model.menuTransaction;
 import com.appowner.service.ComplainService;
+import com.appowner.service.MaintainanceStaffService;
 import com.appowner.service.StaffService;
 
 @ManagedBean
@@ -146,6 +148,110 @@ private List<Object> list=new ArrayList();
 	  getStaffService().updateRoleMaster(master2);
 	return null; 
   }
+  @ManagedProperty(value="#{MaintainanceStaffService}")
+	private  MaintainanceStaffService maintainanceStaffService;
+	public MaintainanceStaffService getMaintainanceStaffService() {
+	return maintainanceStaffService;
+}
+public void setMaintainanceStaffService(
+		MaintainanceStaffService maintainanceStaffService) {
+	this.maintainanceStaffService = maintainanceStaffService;
+}
+	private String subscriptName;
+	private List<String>   subscriptNames;
+
+	public String getSubscriptName() {
+		
+		return subscriptName;
+	}
+	public void setSubscriptName(String subscriptName) {
+		this.subscriptName = subscriptName;
+	}
+	private List<String> menuName;
 	
+	public List<String> getMenuName() {
+		return menuName;
+	}
+	public void setMenuName(List<String> menuName) {
+		this.menuName = menuName;
+	}
+	private List<String> menuNames;
+	public List<String> getSubscriptNames() {
+		System.out.println("fdjdfjdf");
+		subscriptNames=new ArrayList<String>();
+		subscriptNames.addAll(getStaffService().subcriptlist());
+		return subscriptNames;
+	}
+	public void setSubscriptNames(List<String> subscriptNames) {
+		this.subscriptNames = subscriptNames;
+	}
+	public List<String> getMenuNames() {
+		menuNames=new ArrayList<String>();
+		menuNames.addAll(getMaintainanceStaffService().getMenulist());
+		return menuNames;
+	}
+	public void setMenuNames(List<String> menuNames) {
+		this.menuNames = menuNames;
+	}
+	private Integer subcriptionID;
+	public Integer getSubcriptionID() {
+		return subcriptionID;
+	}
+	public void setSubcriptionID(Integer subcriptionID) {
+		this.subcriptionID = subcriptionID;
+	}
+	public void subcriptNameChangeListener(ValueChangeEvent event)
+	{
+		subscriptName=(String) event.getNewValue();
+		System.out.println(subscriptName+"dskkdffk");
+		subcriptionID=getStaffService().getSubcriptId(subscriptName);
+		System.out.println(subcriptionID+"jjkkj");
+		
+	}	
+	private List<Integer> int_menuID;
+	public List<Integer> getInt_menuID() {
+		return int_menuID;
+	}
+	public void setInt_menuID(List<Integer> int_menuID) {
+		this.int_menuID = int_menuID;
+	}
+	public void menuChangeListener(ValueChangeEvent event) 
+	{
+		 list=new ArrayList();
+	     list.addAll((List<String>) event.getNewValue());
+	     System.out.println(list+"dskkjfdkj");
+	     ListIterator itr=list.listIterator();
+	     int_menuID=new ArrayList<Integer>();
+	     while(itr.hasNext())
+	     {   String str=(String) itr.next();
+	         System.out.println(str+"jkkejerkr");
+	         int_menuID.add(getMaintainanceStaffService().getMenuID(str)) ;
+	    	
+	     }
+	     System.out.println(int_menuID+"jjjjj");
+	}
+	public void addSubcriptMenu()
+	{  System.out.println("fdjkfdjkdfjkfdjk");
+		try
+		{    
+			 StringBuilder out = new StringBuilder();
+				for (Object o : int_menuID)
+				{
+				  out.append(o.toString());
+				  out.append(",");
+				}
+			String	str=out.toString();
+			System.out.println(str);
+			menuTransaction menu=new menuTransaction();
+			menu.setInt_subcriptionID(subcriptionID);
+			menu.setStr_menuID(str);
+			getStaffService().saveMenuTransaction(menu);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	
 }

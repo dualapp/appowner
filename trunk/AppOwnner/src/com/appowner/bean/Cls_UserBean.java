@@ -833,7 +833,7 @@ public class Cls_UserBean implements Serializable{
 		public List<String> getBlockNameList() {
 			blockNameList=new ArrayList<String>();
 			
-			blockNameList.addAll(getApartmentDetailsService().getBlockNameList());
+			blockNameList.addAll(getApartmentDetailsService().getBlockNameList(Util.getAppartmentId()));
 			return blockNameList;
 		}
 		public void setBlockNameList(List<String> blockNameList) {
