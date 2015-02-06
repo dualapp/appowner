@@ -122,9 +122,10 @@ public class AccountsDaoImpl implements AccountsDao{
 	public List<ChartOfAccount> getAccountTypeList2()
 	{
 		 getApartmentID();
+		 System.out.println(apartmentID+"jjkjkj");
 			String hql="from  ChartOfAccount where int_ApartmentId=? or int_ApartmentId=0 ";
 			List<ChartOfAccount> ddd=(List<ChartOfAccount>)  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,apartmentID).setCacheable(true).list();
-			
+			System.out.println(ddd+"jjjkkjkj");
 			
 			
 			return ddd;

@@ -47,26 +47,22 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserBlocks> getListBlockDetails() {
+	public List<UserBlocks> getListBlockDetails(Integer apartmentid) {
 		 
-		return sessionFactory.getCurrentSession().createCriteria(UserBlocks.class).setCacheable(true).list();
+		return sessionFactory.getCurrentSession().createQuery("from UserBlocks where int_ApartmentId=?").setParameter(0,apartmentid).list();
 		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<HouseDetails> getListHouseDetails(String str_BlockName)
+	public List<HouseDetails> getListHouseDetails(String str_BlockName, Integer ApartmentId)
 	{ 
-		if(str_BlockName.equals("ALL"))
-		{
-			return sessionFactory.getCurrentSession().createCriteria(HouseDetails.class).setCacheable(true).list();	 
-		}
-		else
-		{
+		 
+		 
 			 System.out.println(str_BlockName+"blockname");
-			 Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId from UserBlocks where  str_BlockName=?").setParameter(0, str_BlockName).uniqueResult();
-		     return sessionFactory.getCurrentSession().createQuery("from HouseDetails where int_BlockId=?").setCacheable(true).setParameter(0, id).list();
-		}
+			 Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId from UserBlocks where  str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, ApartmentId).uniqueResult();
+		     return sessionFactory.getCurrentSession().createQuery("from HouseDetails where int_BlockId=? and int_ApartmentId=?").setCacheable(true).setParameter(0, id).setParameter(1, ApartmentId).list();
+		 
 	}
  
 	@Override
@@ -78,18 +74,17 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> getBlockNameList() {
+	public List<String> getBlockNameList(Integer ApartmentId) {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(UserBlocks.class).setCacheable(true).setProjection(Projections.property("str_BlockName")).list();
+		return getSessionFactory().getCurrentSession().createQuery("select str_BlockName from UserBlocks where int_ApartmentId=?").setParameter(0, ApartmentId).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getHouseNoList(String str_BlockName) {
 		// TODO Auto-generated method stub
-		Integer id=Util.getAppartmentId();
-		Integer blockId=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId  from UserBlocks where str_BlockName=?").setParameter(0, str_BlockName).uniqueResult();
-		return sessionFactory.getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_BlockId=? and int_ApartmentId=?").setParameter(0, blockId).setParameter(1, id).list();
+		Integer blockId=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId  from UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, Util.getAppartmentId()).uniqueResult();
+		return sessionFactory.getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_BlockId=? and int_ApartmentId=? ").setParameter(0, blockId).setParameter(1, Util.getAppartmentId()).list();
 	}
 
 	@Override
@@ -100,7 +95,7 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<HouseDetails> getListHouseDetails() {
+	public List<HouseDetails> getListHouseDetails(String str_BlockName) {
 		// TODO Auto-generated method stub
 		  	return sessionFactory.getCurrentSession().createCriteria(HouseDetails.class).setCacheable(true).list();
 	}
@@ -108,7 +103,7 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	@Override
 	public Integer getBlockId(String str_BlockName) {
 		// TODO Auto-generated method stub
-		return (Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId from UserBlocks where str_BlockName=?").setParameter(0, str_BlockName).uniqueResult();
+		return (Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId from UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, Util.getAppartmentId()).uniqueResult();
 	}
 
 	@Override

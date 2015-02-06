@@ -15,6 +15,7 @@ import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.MaintainanceStaffRole;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
+import com.appowner.model.RoleMenuManagement;
 
 @Repository
 public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
@@ -219,28 +220,58 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 		return (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, roleId1).uniqueResult();
 	}
 
-	/*@Override
-	public void deleteAssignedRoles(RoleManagement rm) {
-String hql="select int_RoleId from RoleAssignment where  str_RoleName=?";
-		System.out.println(rm);
-		System.out.println("Sudhaaaaaaaaaaaaaaaa");
-		@SuppressWarnings("unchecked")
-		List<Integer> roleId=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, rm).list();
-		ListIterator itr= roleId.listIterator();
-		while(itr.hasNext())
-		{
-			Integer roleID=(Integer) itr.next();
-			
-			String hql2="select  int_RoleAssignID from  RoleAssignment where int_RoleId =?";
-			Integer assignedroleId= (Integer) getSessionFactory().getCurrentSession().createQuery(hql2).setParameter(0, roleID).uniqueResult();
-			System.out.println(assignedroleId);
-			System.out.println("kalpanaaaaaaaaaaaaaaaaaaaaaaa");
-			String hql1="delete from RoleAssignment where int_RoleAssignID=?";
-			getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,assignedroleId).executeUpdate();
-			
-		
+	@SuppressWarnings("unchecked")
+	public List<String> getMenulist()
+	{
+		String str=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=1").setCacheable(true).uniqueResult();
+		System.out.println(str+"dskkj");
+		  String[] strArray = str.split(",");
+		  List<String> str2=new ArrayList<String>();
+		  for (String str1 : strArray) {
+		       
+		       System.out.println(str1+"dsjjdfd");
+		       int id=Integer.parseInt(str1);
+		         str2.add((String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id).setCacheable(true).uniqueResult());
+		       System.out.println(str2+"dskjfdjkdfkj");
+		       
+		          
+		        }
+		  System.out.println(str2+"dsjkdfkjdf");
+		  return str2;
 	}
+	@SuppressWarnings("unchecked")
+	public Integer getMenuID(String str)
+	{   System.out.println(str+"fdkgkggk");
 	
-	
-	}*/
-}
+		Integer id= (Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from ManuMaster where str_MenuName=?").setParameter(0,str).setCacheable(true).uniqueResult();
+		System.out.println(id+"dflkkfldf");
+		return id;
+	}
+	 @SuppressWarnings("deprecation")
+	public void saveRolemenuManagement(RoleMenuManagement menu)
+	 
+	 {
+		int id= menu.getInt_MenuID();
+		System.out.println(id+"gfkgfkgfkf");
+		getSessionFactory().getCurrentSession().saveOrUpdate(menu);
+		
+	 }
+   @SuppressWarnings("unchecked")
+public List<String> getRoleMenus(Integer i)
+	 {
+		List<Integer> id=getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=?").setParameter(0, i).list();
+		System.out.println(id+"fdjkjfdkj");
+		ListIterator itr = id.listIterator();
+		 List<String> str1=new ArrayList<String>();
+		while(itr.hasNext())
+		{  int id1=(int) itr.next();
+		  String str=(String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0, id1).uniqueResult();
+		  System.out.println(str);
+		 
+		  str1.add(str);
+		 
+		}
+		 return str1;
+	 }
+	}
+
