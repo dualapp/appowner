@@ -355,9 +355,9 @@ private List<ChartOfAccount>  listAccountsName1;
 	 {
 		 ChartOfAccount account=(ChartOfAccount) list.next();
 		 String str=account.getStr_AccountName();
-		
+		System.out.println(str+"sjjssdjkdkj");
 		 char ch=account.getCh_Group();
-		
+		System.out.println(ch+"hhjhjhj");
 		 if(ch=='A')
 		 {
 			 asset.add(str);
@@ -1119,7 +1119,20 @@ private Integer  int_AccountId;
 private String str_OrganizationName;
 private String str_AccountName;
 private String str_AccountType;
-
+private String str_AccountName1;
+private String str_AccountType1;
+public String getStr_AccountName1() {
+	return str_AccountName1;
+}
+public void setStr_AccountName1(String str_AccountName1) {
+	this.str_AccountName1 = str_AccountName1;
+}
+public String getStr_AccountType1() {
+	return str_AccountType1;
+}
+public void setStr_AccountType1(String str_AccountType1) {
+	this.str_AccountType1 = str_AccountType1;
+}
 private Integer int_UserId;
 public Integer getInt_AccountId() {
 	return int_AccountId;
@@ -1202,7 +1215,7 @@ ChartOfAccount chartOfAccount=new ChartOfAccount();
 	chartOfAccount.setInt_ApartmentId(Util.getAppartmentId());
 	System.out.println(str_AccountName+"hjjjkjk");
 	chartOfAccount.setStr_AccountName(str_AccountName);
-	chartOfAccount.setStr_OrganizationName(Util.getAppartmentName());
+	System.out.println(str_AccountType+"skdskjdkdf");
 	chartOfAccount.setStr_AccountType(str_AccountType);
 	System.out.println(ch_Group+"jhjhjh");
 	chartOfAccount.setCh_Group(ch_Group);
@@ -2180,11 +2193,7 @@ public void getSearch3()
 		System.out.println(int_blank+"hhjhj123");
 	}
 }
-public void onChange(TabChangeEvent event) {
-	Tab activeTab = event.getTab();
-	System.out.println(activeTab+"fddfkj");
-	//...
-	 }
+
 	
 }
 

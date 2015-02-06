@@ -394,7 +394,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	}
 	public List<UserBlocks> getListBlockDetails() {
 		listBlockDetails=new ArrayList<UserBlocks>();
-		listBlockDetails.addAll(getApartmentDetailsService().getListBlockDetails());
+		listBlockDetails.addAll(getApartmentDetailsService().getListBlockDetails(Util.getAppartmentId()));
 		return listBlockDetails;
 	}
 	 
@@ -419,7 +419,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	public List<String> getBlockNameList() {
 		blockNameList=new ArrayList<String>();
 		
-		blockNameList.addAll(getApartmentDetailsService().getBlockNameList());
+		blockNameList.addAll(getApartmentDetailsService().getBlockNameList(Util.getAppartmentId()));
 		return blockNameList;
 	}
 	public void setBlockNameList(List<String> blockNameList) {
@@ -428,7 +428,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	public List<HouseDetails> getListHouseDetails1(String str_BlockName) {
 		listHouseDetails=new ArrayList<HouseDetails>();
 		 
-		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName));
+		listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName,Util.getAppartmentId()));
 		 
 		
 		 
@@ -685,7 +685,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
   {   listHouseDetails=new ArrayList<HouseDetails>();
 	  String str_BlockName=(String) event.getNewValue();
 	  System.out.println(str_BlockName+"kalpanaaaaaaaaaaaaaaaaaaaaa");
-	  listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName));
+	  listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName,Util.getAppartmentId()));
 	  System.out.println(listHouseDetails+"klap1");
   }
 }
