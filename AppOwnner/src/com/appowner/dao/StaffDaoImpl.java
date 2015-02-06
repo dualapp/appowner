@@ -10,6 +10,7 @@ import com.appowner.model.CommiteeRole;
 import com.appowner.model.Complain;
 import com.appowner.model.RoleMaster;
 import com.appowner.model.Staff;
+import com.appowner.model.menuTransaction;
 
 @Repository
 public class StaffDaoImpl implements StaffDao{
@@ -79,5 +80,18 @@ public class StaffDaoImpl implements StaffDao{
 		public void updateCommiteeRole(CommiteeRole role2)
 		{
 			getSessionFactory().getCurrentSession().update(role2);
+		}
+		@SuppressWarnings("unchecked")
+		public List<String> subcriptlist()
+		{
+		  return 	getSessionFactory().getCurrentSession().createQuery("select subscriptname from Subcript").setCacheable(true).list();
+		}
+		public Integer getSubcriptId(String subscriptName)
+		{
+			return (Integer) getSessionFactory().getCurrentSession().createQuery("select subcriptID from Subcript where subscriptname=?").setParameter(0, subscriptName).setCacheable(true).uniqueResult();
+		}
+		public void saveMenuTransaction(menuTransaction menu)
+		{
+			getSessionFactory().getCurrentSession().save(menu);
 		}
 }
