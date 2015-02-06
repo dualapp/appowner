@@ -13,21 +13,21 @@ public interface ApartmentDetailsDao {
  
 	void saveBlockDetails(UserBlocks ub);
 
-	List<UserBlocks> getListBlockDetails();
+	List<UserBlocks> getListBlockDetails(Integer apartmentid);
 
-	List<HouseDetails> getListHouseDetails(String str_BlockName);
+	List<HouseDetails> getListHouseDetails(String str_BlockName, Integer ApartmentId);
 
 	void saveCommunitySetup(CommunitySetup cs);
 
 	void saveHouseDetails(HouseDetails housedetails);
 
-	List<String> getBlockNameList();
+	List<String> getBlockNameList(Integer apartmentId);
 
 	List<String> getHouseNoList(String str_BlockName);
 
 	HouseDetails getHouseDetailByHouseNo(String str_HouseNo);
 
-	List<HouseDetails> getListHouseDetails();
+	List<HouseDetails> getListHouseDetails(String str_BlockName);
 
 	Integer getBlockId(String str_BlockName);
 

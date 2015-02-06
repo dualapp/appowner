@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import com.appowner.model.BookAFacility;
@@ -120,6 +121,10 @@ public interface In_UserDao {
 	public String getPassword(String str_EmailId);
 
 	public void setPassword(String str_Email, String str_RecoverPassword);
+
+	public Date getEntryDate(Integer int_ApartmentId);
+
+	public Date getEndDate(Integer int_ApartmentId);
 
 	//public void deleteUser1(int int_UserId);
 

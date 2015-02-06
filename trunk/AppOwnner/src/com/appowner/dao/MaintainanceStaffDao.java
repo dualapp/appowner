@@ -5,6 +5,7 @@ import java.util.List;
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
+import com.appowner.model.RoleMenuManagement;
 
 public interface MaintainanceStaffDao {
 
@@ -48,6 +49,14 @@ public interface MaintainanceStaffDao {
 	List<RoleManagement> getRoleManagementList();
 
 	String getRoleNameFromRoleMaster(Integer roleId1);
+
+	public List<String> getMenulist();
+
+	Integer getMenuID(String str);
+
+	void saveRolemenuManagement(RoleMenuManagement menu);
+
+	List<String> getRoleMenus(Integer i);
 
 	//void deleteAssignedRoles(RoleManagement rm);
 

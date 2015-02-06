@@ -1,7 +1,9 @@
 package com.appowner.dao;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+
 
 
 
@@ -273,7 +275,8 @@ public class Cls_UserDaoImpl implements In_UserDao {
 
 		@Override
 		public User getUserDetails(Integer int_UserId) {
-			 String hql="from User where int_UserId=?";
+			 String hql="from User where int_UserId=? ";
+			 System.out.println(int_UserId+"jkkjkjkj");
 				User Userinfo=(User) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_UserId).uniqueResult();
 				System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
 				System.out.println(Userinfo);
@@ -335,8 +338,8 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		public Collection<? extends User> getuserDetails(
 				Integer int_apartment_id) {
 			System.out.println("***********************************");
-			String hql="from User where int_ApartmentId=?";
-			List<User>   sss1=(List<User>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_apartment_id).list();
+			String hql="from User where int_ApartmentId=?AND str_UserRoleName=?";
+			List<User>   sss1=(List<User>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_apartment_id).setParameter(1, "User").list();
 			System.out.println(sss1);
 			return sss1;
 		}
@@ -462,6 +465,15 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		public void setPassword(String str_Email, String str_RecoverPassword) {
 			getSessionFactory().getCurrentSession().createQuery("update User set str_Password = ? where str_Email=?").setParameter(0, str_RecoverPassword).setParameter(1, str_Email).executeUpdate();
 			
+		}
+		public Date getEntryDate(Integer int_ApartmentId)
+		{
+			return (Date) getSessionFactory().getCurrentSession().createQuery("select dat_EntryDate from UserApartment where int_ApartmentId=?").setParameter(0, int_ApartmentId).setCacheable(true).uniqueResult();
+		}
+
+		public Date getEndDate(Integer int_ApartmentId)
+		{
+			return (Date) getSessionFactory().getCurrentSession().createQuery("select dat_ExpireDate from UserApartment where int_ApartmentId=?").setParameter(0, int_ApartmentId).setCacheable(true).uniqueResult();
 		}
 		}
 
