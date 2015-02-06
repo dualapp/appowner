@@ -23,6 +23,7 @@ import com.appowner.model.RoleManagement;
 import com.appowner.model.User;
 import com.appowner.service.AdministrationAccessService;
 import com.appowner.service.MaintainanceStaffService;
+import com.appowner.util.Util;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -221,13 +222,13 @@ public void roleChangeListener(ValueChangeEvent event)
 		 
 	getAdministrationAccessService().deleteAssignedRoles(roleid,int_UserId);
 	}
-	System.out.println(list);
+	System.out.println(list+"sdkjdskj");
 	
 	 
 	 //return "committeememberlist.xhtml";
 list=new ArrayList();
 	list.addAll((List<String>) event.getNewValue());
-	 
+System.out.println(list+"dslksklsd");	 
 	 
 }
 public List<Integer> getRoleIds() {
@@ -244,27 +245,45 @@ public void setRoleId(List<Integer> roleId) {
 }
 private String str_RoleName;
 List<Integer> roleId;
+private String str;
 public String  addRoleManagement()
 {
 	@SuppressWarnings("rawtypes")
 	ListIterator itr1=list.listIterator();
+	roleId=new ArrayList<Integer>();
 	while(itr1.hasNext())
 	{ 
 		str_RoleName=(String) itr1.next();
-		 
-		administrationAccess=new AdministrationAccess();
-		administrationAccess.setInt_RoleID(getMaintainanceStaffService().getRoleId(str_RoleName));
-		administrationAccess.setInt_UserID(int_UserId);
-		administrationAccess.setInt_AppartmentID(getMaintainanceStaffService().getApartmentId(int_UserId));
-		roleId=new ArrayList<Integer>();
-	    roleId.addAll(getMaintainanceStaffService().getRoleID(int_UserId));
-		 ListIterator itr=roleId.listIterator();
+	
+		 roleId.add(getMaintainanceStaffService().getRoleId(str_RoleName));
+		
+	}
+	
+	 System.out.println(roleId+"jkdkjdf");
+	 StringBuilder out = new StringBuilder();
+		for (Object o : roleId)
+		{
+		  out.append(o.toString());
+		  out.append(",");
+		}
+		str=out.toString();
+	System.out.println(str);
+	
+	  administrationAccess=new AdministrationAccess();
+		administrationAccess.setInt_RoleID(str);
+		administrationAccess.setInt_UserID(Util.getUserId());
+		administrationAccess.setInt_AppartmentID(Util.getAppartmentId());
+	
+		/* ListIterator itr=roleId.listIterator();
 		 while(itr.hasNext())
 		 {
-			 System.out.println(roleId);
+			 
 				
 			 Integer roleId1=(Integer) itr.next();
+			 System.out.println(roleId1+"dssdklsdkl");
 			String roleName= getMaintainanceStaffService().getRoleNameFromRoleMaster(roleId1);
+			System.out.println(roleName+"jkdskjds");
+			System.out.println(str_RoleName+"dskjsjkd");
 			 if( roleName.equals(str_RoleName))
 			 {
 				 
@@ -273,11 +292,17 @@ public String  addRoleManagement()
 			 }
 			
 			 
-	} getAdministrationAccessService().saveAdministrationAccess(administrationAccess);
-		 }
- 
+	     } */
+	    getAdministrationAccessService().saveAdministrationAccess(administrationAccess);
+		
 	 return  null;
 	
+}
+public String getStr() {
+	return str;
+}
+public void setStr(String str) {
+	this.str = str;
 }
 /*
  * get All RoleName 
