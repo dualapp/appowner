@@ -17,7 +17,9 @@ import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
+import com.appowner.model.RoleMenuManagement;
 import com.appowner.service.MaintainanceStaffService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
@@ -146,7 +148,11 @@ public  void getAssignedRoles()
 	System.out.println(str_AssinedRoles);
 	
 	 }
-
+public  void getAssignedRoleMenu()
+{
+	menuNames=new ArrayList<String>();
+	menuNames.addAll(getMaintainanceStaffService().getRoleMenus(3));
+}
 	public Integer getRoleid() {
 	return roleid;
 }
@@ -336,4 +342,99 @@ public String getStr_UserName() {
 public void setStr_UserName(String str_UserName) {
 	this.str_UserName = str_UserName;
 }
+private String roleName1;
+
+
+public String getRoleName1() {
+	return roleName1;
+}
+
+public void setRoleName1(String roleName1) {
+	this.roleName1 = roleName1;
+}
+private List<String>  menuNames;
+public List<String> getMenuNames() {
+	return menuNames;
+}
+
+public void setMenuNames(List<String> menuNames) {
+	this.menuNames = menuNames;
+}
+private List<String>  listMenuNames;
+public List<String> getListMenuNames() {
+	listMenuNames=new ArrayList<String>();
+	listMenuNames.addAll(getMaintainanceStaffService().getMenulist());
+	return listMenuNames;
+}
+
+public void setListMenuNames(List<String> listMenuNames) {
+	this.listMenuNames = listMenuNames;
+}
+public void roleNameChangeListener(ValueChangeEvent event)
+{
+	roleName1=(String) event.getNewValue();
+	System.out.println(roleName1+"dskkdffk");
+	int_RoleId=getMaintainanceStaffService().getRoleId(roleName1);
+	System.out.println(int_RoleId+"jjkkj");
+	
+}
+private List<Integer>  int_menuID;
+public List<Integer> getInt_menuID() {
+	return int_menuID;
+}
+
+public void setInt_menuID(List<Integer> int_menuID) {
+	this.int_menuID = int_menuID;
+}
+
+public void menuChangeListener(ValueChangeEvent event) 
+{
+	 list1=new ArrayList();
+     list1.addAll((List<String>) event.getNewValue());
+     System.out.println(list1+"dskkjfdkj");
+     ListIterator itr=list1.listIterator();
+     int_menuID=new ArrayList<Integer>();
+     while(itr.hasNext())
+     {   String str=(String) itr.next();
+         System.out.println(str+"jkkejerkr");
+         int_menuID.add(getMaintainanceStaffService().getMenuID(str)) ;
+    	
+     }
+     System.out.println(int_menuID+"jjjjj");
+}
+private Integer id;
+public Integer getId() {
+	return id;
+}
+
+public void setId(Integer id) {
+	this.id = id;
+}
+
+public void addRoleMenuManagement()
+{  
+	try
+	{
+		RoleMenuManagement menu=new RoleMenuManagement();
+		
+		ListIterator itr=int_menuID.listIterator();
+		while(itr.hasNext())
+		{
+			id=(int) itr.next();
+			System.out.println(id+"hjhjjhjh");
+			menu.setInt_MenuID(id);
+			System.out.println(id+"fdjkdjfkdfjk");
+			menu.setBt_Visible(0);
+			menu.setInt_RoleID(int_RoleId);
+			menu.setInt_ApartmentID(Util.getAppartmentId());
+			getMaintainanceStaffService().saveRolemenuManagement(menu);
+		}
+		
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+}
+
 }

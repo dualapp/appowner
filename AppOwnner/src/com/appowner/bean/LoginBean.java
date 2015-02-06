@@ -1014,6 +1014,12 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 		   if(admin1.equals(str_userRoleName))
 		   {
 			int_ApartmentId=user.getInt_ApartmentId();
+			java.util.Date Entrydate=new java.util.Date();
+			Date EndDate=getUserService().getEndDate(int_ApartmentId);
+			expireDay=(int) ((EndDate.getTime() - Entrydate.getTime())/(1000 * 60 * 60 * 24));
+			System.out.println(expireDay+"fdkjfdjkfdkj");
+			System.out.println(Entrydate+"lkfklfddf");
+			System.out.println(EndDate+"dksdsksdk");
 			int_UserId=user.getInt_UserId();
 			admin=admin1.equals(str_userRoleName);
 			user1=!admin1.equals(str_userRoleName);
@@ -1085,8 +1091,8 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 		}
 		   else
 		   {
-			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User name or password is invalid!"));
-				return "index.xhtml";  
+			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"User name or password is invalid!"));
+				return "layout.xhtml";  
 		   }
 	}
  
@@ -1094,13 +1100,13 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 		{
 			
 				
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Status is Disabled.PlZ contact to Admin!", "Status is Disabled.PlZ contact to Admin!"));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Status is Disabled.PlZ contact to Admin!"));
 				
 			
 		}
 			
 		
-		return "index.xhtml";	
+		return "layout.xhtml";	
 		
 	}
 	public Integer getStatus() {
@@ -1121,9 +1127,11 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 		this.int_UserId = int_UserId;
 	}
 
-	
 
 	public String logout() {
+		System.out.println("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+	     
+	      memberLog();
 	      HttpSession session = Util.getSession();
 	      session.invalidate();
 	      DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -1131,7 +1139,7 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 	    Date date = new Date();
 	    
 	      str_LoggedOutTime=dateFormat.format(date);
-	      memberLog();
+	      System.out.println("djjdffjfjdfj");
 	      return "/layout.xhtml";
 	   }
 	private ServiceRequest serviceRequest;
@@ -1462,6 +1470,14 @@ public static void setStr_RecoverPassword(String str_RecoverPassword) {
 	}
 	public static void setStr_firstName(String str_firstName) {
 		LoginBean.str_firstName = str_firstName;
+	}
+	public Integer expireDay;
+
+	public Integer getExpireDay() {
+		return expireDay;
+	}
+	public void setExpireDay(Integer expireDay) {
+		this.expireDay = expireDay;
 	}
 }
 
