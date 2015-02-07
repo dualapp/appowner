@@ -10,6 +10,7 @@ import com.appowner.dao.StaffDao;
 import com.appowner.model.CommiteeRole;
 import com.appowner.model.RoleMaster;
 import com.appowner.model.Staff;
+import com.appowner.model.menuTransaction;
 
 @Service("StaffService")
 @Transactional 
@@ -77,6 +78,22 @@ public class StaffServiceImpl implements StaffService {
 		public void updateCommiteeRole(CommiteeRole role2)
 		{
 			getStaffDao().updateCommiteeRole(role2);
+		}
+		public List<String> subcriptlist()
+		{
+			 return getStaffDao().subcriptlist();
+		}
+		public Integer getSubcriptId(String subscriptName)
+		{
+			 return getStaffDao().getSubcriptId(subscriptName);
+		}
+		public void saveMenuTransaction(menuTransaction menu)
+		{
+			getStaffDao().saveMenuTransaction(menu);
+		}
+		public List<String> getMenuName(Integer subcriptionID)
+		{
+			return getStaffDao().getMenuName(subcriptionID);
 		}
 		
 }

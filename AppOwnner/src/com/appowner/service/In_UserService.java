@@ -1,6 +1,7 @@
 package com.appowner.service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import com.appowner.bean.Cls_UserBean;
@@ -109,5 +110,9 @@ public interface In_UserService {
 	public String getPassword(String str_EmailId);
 
 	public void setPassword(String str_Email, String str_RecoverPassword);
+
+	public Date getEntryDate(Integer int_ApartmentId);
+
+	public Date getEndDate(Integer int_ApartmentId);
 }
 

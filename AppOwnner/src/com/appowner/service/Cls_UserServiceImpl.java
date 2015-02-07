@@ -2,6 +2,7 @@ package com.appowner.service;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -325,7 +326,15 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		getIn_userdao().setPassword(str_Email,str_RecoverPassword);
 	}
-	
+	public Date getEntryDate(Integer int_ApartmentId)
+	{
+		return getIn_userdao().getEntryDate(int_ApartmentId);
+	}
+
+	public Date getEndDate(Integer int_ApartmentId)
+	{
+		return getIn_userdao().getEndDate(int_ApartmentId);    
+	}
 	}
 
 	 

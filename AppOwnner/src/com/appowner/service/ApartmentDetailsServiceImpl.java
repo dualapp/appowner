@@ -42,9 +42,9 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public List<UserBlocks> getListBlockDetails() {
+	public List<UserBlocks> getListBlockDetails(Integer apartmentid) {
 		// TODO Auto-generated method stub
-		return getApartmentDetailsDao().getListBlockDetails();
+		return getApartmentDetailsDao().getListBlockDetails(apartmentid);
 	}
 
 	@Override
@@ -60,9 +60,9 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public List<String> getBlockNameList() {
+	public List<String> getBlockNameList(Integer ApartmentId) {
 		// TODO Auto-generated method stub
-		return getApartmentDetailsDao().getBlockNameList();
+		return getApartmentDetailsDao().getBlockNameList(ApartmentId);
 	}
 
 	@Override
@@ -78,9 +78,9 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public List<HouseDetails> getListHouseDetails() {
+	public List<HouseDetails> getListHouseDetails(String str_BlockName, Integer ApartmentID) {
 		// TODO Auto-generated method stub
-		return getApartmentDetailsDao().getListHouseDetails();
+		return getApartmentDetailsDao().getListHouseDetails(str_BlockName,ApartmentID);
 	}
 
 	@Override
