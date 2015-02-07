@@ -170,6 +170,10 @@ public void setMaintainanceStaffService(
 	private List<String> menuName;
 	
 	public List<String> getMenuName() {
+		menuName=new ArrayList<String>();
+		System.out.println(subcriptionID+"jhjfddfjdj");
+		menuName.addAll(getStaffService().getMenuName(subcriptionID));
+		System.out.println(menuName+"dskjsdkjsdkjsd");
 		return menuName;
 	}
 	public void setMenuName(List<String> menuName) {
@@ -187,7 +191,7 @@ public void setMaintainanceStaffService(
 	}
 	public List<String> getMenuNames() {
 		menuNames=new ArrayList<String>();
-		menuNames.addAll(getMaintainanceStaffService().getMenulist());
+		menuNames.addAll(getMaintainanceStaffService().getMenulist1());
 		return menuNames;
 	}
 	public void setMenuNames(List<String> menuNames) {

@@ -150,8 +150,7 @@ public  void getAssignedRoles()
 	 }
 public  void getAssignedRoleMenu()
 {
-	menuNames=new ArrayList<String>();
-	menuNames.addAll(getMaintainanceStaffService().getRoleMenus(3));
+	
 }
 	public Integer getRoleid() {
 	return roleid;
@@ -354,6 +353,10 @@ public void setRoleName1(String roleName1) {
 }
 private List<String>  menuNames;
 public List<String> getMenuNames() {
+	menuNames=new ArrayList<String>();
+	System.out.println(int_RoleId+"dkldslksdk");
+	menuNames.addAll(getMaintainanceStaffService().getRoleMenus(int_RoleId));
+	System.out.println(menuNames+"fgkfgk");
 	return menuNames;
 }
 
@@ -418,6 +421,7 @@ public void addRoleMenuManagement()
 		RoleMenuManagement menu=new RoleMenuManagement();
 		
 		ListIterator itr=int_menuID.listIterator();
+		getMaintainanceStaffService().deleteAssignedMenus(int_RoleId);
 		while(itr.hasNext())
 		{
 			id=(int) itr.next();
