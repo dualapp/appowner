@@ -35,7 +35,14 @@
 	<script src="js/jquery.flexslider-min.js"></script>
 
 	<script src="js/functions.js"></script>
-
+<style>
+#content
+            {
+                color: white;
+                margin-top: 50px;
+               
+            }
+</style>
 </h:head>
 
 <h:body>
@@ -122,7 +129,7 @@
 	</table>   
  
  <h:message style="red"/>
-  <table  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+  <table  style="overflow:hidden;border:0pt none;width:68%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
          <tr>
                 <td colspan="2" align="left">
                  <br></br> <h3><u>Login Information</u></h3><br></br></td></tr>
@@ -239,13 +246,39 @@
             </h:inputText></td><td><p:message for="city" display="text"/></td></tr>
             
              <tr> 		<td></td>	
-            <td><h:commandButton id="addUser" value="Create Account" action="#{cls_UserBean.addUser}" styleClass="btn"/>
-              &#150; &#150; 
-            <h:commandButton id="reset" value="Reset" action="#{cls_UserBean.reset}" styleClass="btn"/>
-             </td></tr>
+            <td><h:commandButton id="addUser" value="Create Account" action="#{cls_UserBean.addUser}" style=" background-color:#9ACD32;width:10em; color:white;margin-top:1em;"/>
+          </td>  
+             </tr>
+            
             </table>
+          <fieldset style="border: 2px;width:30em;height:52em;background-color: #696969;margin-left: 50em;margin-top:-55em">
+            <table  >
+            
+            <tr>
+            <td ><font color="#9ACD32" size="2">What happens next?</font></td>
+            </tr>
+            <tr>
+            <td><font color="white" size="2">Three things happen once you submit details on this page:</font></td>
+            </tr>
+           
+            <tr>
+<td><font color="white" size="2">1. &#150; &#150; A six digit activation code will be sent to your mobile number to activate your Portal. You need to enter this code on the next page after which your portal will be created.</font></td>
+</tr>
+<tr></tr>
+<tr><td><font color="white" size="2">
+2. &#150; &#150; Your AppOwnner account shall be created and details would be sent to you by email to activate the same.</font></td>
+</tr>
+<tr></tr>
+<tr><td><font color="white" size="2">
+3.&#150; &#150; After Activation of your account, you can login to access your portal</font></td>
+            
+            </tr>
+          
+            </table>
+          </fieldset>
             </h:form>  
             </div>
+            <div id="content">
     	<div class="footer-bottom">
 
 					<nav class="footer-nav">
@@ -283,6 +316,7 @@
 			</div>
 
 		</div>
+	</div>
 	</div>
 </h:body>
 <!-- END PAGE SOURCE -->
