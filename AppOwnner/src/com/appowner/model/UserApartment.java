@@ -117,6 +117,13 @@ public class UserApartment   implements Serializable{
 	public void setDat_EntryDate(Date dat_EntryDate) {
 		this.dat_EntryDate = dat_EntryDate;
 	}
+	private Integer int_subscriptID;
+	public Integer getInt_subscriptID() {
+		return int_subscriptID;
+	}
+	public void setInt_subscriptID(Integer int_subscriptID) {
+		this.int_subscriptID = int_subscriptID;
+	}
 	
 	
 	
