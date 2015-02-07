@@ -1,6 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en"
-	style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;"
+	
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -44,90 +45,8 @@
 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 
 
-<style>
-
- inputText:invalid {
-  border: 1px solid red;
-}
-
-inputText:valid {
-  border: 1px solid yellow;
-}
 
 
-
-
-fieldset
-
-{
-
-border: 2px ;
-
-width: 39.5em;
-
-height:25.2em;
-
-background-color: #1F7A1F	;
-
-
-}
-
-
-
-.submit-input1
-
-{
-
- width:10em;
-
-  color:#FFFFFF;
-
-
-
-margin-left:6.5em;
-
-margin-top:1em;
-
-}
-
-.submit-input2
-
-{
-
- width:6em;
-
- color:chocolate;
-
-
-
-margin-left:7em;
-
-margin-top:1em;
-
-}
-
-.submit-input
-
-{
-
- width:5em;
-
-color: chocolate;
-
-
-
-margin-left:14em;
-
-margin-top:1em;
-
-}
-
-
-
-
-
-</style>
-<script type= "text/javascript" src = "JavaScript/city.js"></script> 
 <script>
 
  var modalWin = new CreateModalPopUpObject();
@@ -138,7 +57,7 @@ margin-top:1em;
 
 function ShowNewPage(){
  var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('/AppOwnner/forgotpassword.xhtml',300,400,'Create New Due Template',null,callbackFunctionArray);
+ modalWin.ShowURL('/AppOwnner/forgotpassword.xhtml',250,380,'Forgot Password',null,callbackFunctionArray);
  }
 
 	 
@@ -279,43 +198,23 @@ function InvalidMsg1(textbox) {
 					</ul>
 
 				</nav>
-
-
-
-				
-				<div id="addEventForm" style="float:left">
-
-
-
-			
-
-            
-         
-             <h:form>
-
-               <fieldset>
-
-                <p align="center"><font color="white" size="3">
-
-									Login Credential..</font></p>
-
-					<table style="width: 98%;margin-left: 5%;margin-right: 5%;margin-bottom:5px;margin-top:5px" >
-
-						
-
-						<tr>
+         <div id="addEventForm" style="float:left">
+ 
+  <h:form>
+     
+               <fieldset style="border: 2px;width: 39.5em;height:26.5em;background-color: #A0A0A0;">
+               <p align="center"><font color="white" size="3">Login Credential..</font></p>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                  <table style="width: 98%;margin-left: 5%;margin-right: 5%;margin-top:1px" >
+                  <tr>
 
 							<td><p:outputLabel value="User name:" style="color:#FFFFFF" >
 
-								</p:outputLabel><font color="red">*</font> <input type="text" id="userloginname" autofocus="true" style="width:200px"
+								</p:outputLabel><font color="red">*</font> <input type="text" id="userloginname" autofocus="true" style="width:200px;margin-top:1em;"
 
-									name="Userloginname" required="true" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" >
+									name="Userloginname" required="true" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" ></input></td>
 
-								
-
-								</input></td>
-
-						</tr>
+				</tr>
 
 						<br />
 
@@ -323,7 +222,7 @@ function InvalidMsg1(textbox) {
 
 							<td><p:outputLabel value="Password :" style="color:#FFFFFF"></p:outputLabel> <font
 
-								color="red">*</font> <input id="userloginpassword" style="width:200px"
+								color="red">*</font> <input id="userloginpassword" style="width:200px;margin-top:1em;"
 
 									label="Password" name="userPassword" oninvalid="InvalidMsg1(this);" oninput="InvalidMsg1(this);"
 
@@ -342,15 +241,41 @@ function InvalidMsg1(textbox) {
 
 							<td><h:commandButton id="submit" value="Submit"
 
-									action="#{loginBean.userLogin}" ajax="false" styleClass="submit-input" /></td>
-
+									action="#{loginBean.userLogin}" ajax="false" style="width:6em;color: chocolate;margin-left:17em;margin-top:1em;" /></td>
+                              
 						</tr>
                        <tr>
+                       
                        <td>
-                       <input type="button" style="width: 100px" onclick="ShowNewPage()" value="Forgot Password ?" class="submit-input2"/>
+                       <input type="button"  onclick="ShowNewPage()" value="Forgot Password ?" style="background-color:#FFFFFF;color:chocolate; width:11em;margin-left:6.4em;margin-top:1em;"/>
                        </td>
                        </tr>
+						  <tr>
+                       <td>
+                      <p:outputLabel value="Login With :" style="color:#FFFFFF"></p:outputLabel>
+                      &#150; &#150;
+						 
+					 <p:button style="background-color:#133783;color:white;height:20px; width:20px;" value="F" title="Facebook Connect" href="#{loginPageCode.facebookUrlAuth}" />&#150; &#150;
 						
+			
+						
+						 
+					
+					 <h:commandLink action="#{login.linkedinuserLogin}">
+									<p:graphicImage height="18px" width="20px" value="images/link.jpg" />
+					</h:commandLink>&#150; &#150;
+						
+							<h:commandLink action="#{login.linkedinuserLogin}">
+									<p:graphicImage height="18px" width="20px"
+										value="images/twiter.jpg" />
+								</h:commandLink>
+						&#150;
+						 <input type="button" class="zocial googleplus" style="height:19px; width:22px;" value="G+" title="Login With Goole" onclick="login()" />
+                         
+                          <div id="profile"></div>
+						 </td>
+				</tr>
+				
 
 					</table>
 
@@ -361,127 +286,87 @@ function InvalidMsg1(textbox) {
 
 <h:form>
 <div id="addEventForm1" >
-
-
- 
-
-<fieldset>
+<fieldset style="border: 2px;width: 39.5em;height:26.5em;background-color: #A0A0A0;">
 <p align="center"><font color="white" size="3">
 
 									New User? Join now</font></p> 
 
  <table style="margin-left: 5%;margin-right: 5%;margin-bottom:5em;margin-top:2em" >
 
-      <tr></tr>
-
+     <tr></tr>
    		<tr>
-
-        	<td ><h:outputLabel for="str_UserCountry" style="color:#FFFFFF" value="Country" /><font color="red" >*</font></td>
-
-           <td>
-            <input type="text" id="userloginname" list="l1"  ></input>
-          
-            <select id="country" name="country" style="width:200px"></select></td>
-       
-       </tr>
-       <tr>
-       <td><h:outputLabel for="str_UserState" style="color:#FFFFFF" value="State"  /><font color="red" >*</font></td>
-
-      <td>  <select name="state" id="state" style="width:200px"></select></td>
-        <script language="javascript">
-            populateCountries("country", "state");
-            
-        </script>
+        	<td ><h:outputLabel for="str_UserCountry" style="color:#FFFFFF" value="Country"  /><font color="red" >*</font></td>
+            <td><h:selectOneMenu id="str_UserCountry" value="#{cls_UserBeanMain.str_UserCountry}" valueChangeListener="#{cls_UserBeanMain.countryChangeListener}" style="width:200px;margin-top:1em;" required="true"                requiredMessage="Please Select country!">
+                <!--c --> 
+               <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{cls_UserBeanMain.str_UserCountries}" />
+                <p:ajax event="change" update="str_UserState" process="str_UserCountry"/>
+                               
+            	</h:selectOneMenu>
+            </td><td><p:message for="str_UserCountry" display="icon"/>
+                </td>
+        </tr><tr></tr>
         
-          
-
-        </tr>
-
-        
-
-       
-
+        <tr>
+            <td><h:outputLabel for="str_UserState" style="color:#FFFFFF;" value="State" /><font color="red" >*</font></td>
+            <td><h:selectOneMenu id="str_UserState" value="#{cls_UserBeanMain.str_UserState}"   valueChangeListener="#{cls_UserBeanMain.stateChangeListener}" style="width:200px;margin-top:1em;" required="true"                requiredMessage="Please Select state!">
+                <f:selectItem itemLabel="Select State"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{cls_UserBeanMain.str_UserStates}"/>
+               <p:ajax event="change" update="str_UserCity" process="str_UserState"/>    
+            </h:selectOneMenu></td><td><p:message for="str_UserState" display="icon"/>
+                </td>
+         </tr>
          <tr> 
-
          	<td><h:outputLabel for="str_UserCity" style="color:#FFFFFF" value="City " /><font color="red" >*</font></td>
-
-            <td><h:selectOneMenu id="str_UserCity" value="#{cls_UserBeanMain.str_UserCity}" valueChangeListener="#{cls_UserBeanMain.cityChangeListener}" style="width:200px" required="true"                requiredMessage="Please Select City!">
-
+            <td><h:selectOneMenu id="str_UserCity" value="#{cls_UserBeanMain.str_UserCity}" valueChangeListener="#{cls_UserBeanMain.cityChangeListener}" style="width:200px;margin-top:1em;" required="true"                requiredMessage="Please Select City!">
                 <f:selectItem itemLabel="Select City"  itemValue="" noSelectionOption="true" />
-
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserCities}"/>
-
                 <p:ajax event="change" update="str_UserApartment" process="str_UserCity"/>
-
-            </h:selectOneMenu></td><td><p:message for="str_UserCity" display="text"/>
-
+            </h:selectOneMenu></td><td><p:message for="str_UserCity" display="icon"/>
                 </td>
-
           </tr>
-
           <tr> 
-
             <td><h:outputLabel for="str_UserApartment" style="color:#FFFFFF" value="Apartment" /><font color="red" >*</font></td>
-
-            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBeanMain.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px"> 
-
-                 <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
-
+            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBean.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px;margin-top:1em;"> 
+                <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
-
-                 <p:ajax event="change" process="str_UserApartment" render="@form"/>
-
-           </h:selectOneMenu></td><td><p:message for="str_UserApartment" display="text"/>
-
+                 <p:ajax event="change" process="str_UserApartment"/>
+           </h:selectOneMenu></td><td><p:message for="str_UserApartment" display="icon"/>
                 </td>
-
           </tr>
-
               
-
-          <tr><td colspan="2"> <h:commandButton value="Join Us"   action="#{cls_UserBean.getRegistration}" styleClass="submit-input2">
-
-              </h:commandButton>&#150;&#150; &#150;&#150; &#150;&#150;
-
+          <tr><td colspan="2"><h:commandButton value="Join Us"   action="#{cls_UserBean.getRegistration}" style="width:13em; color:chocolate;margin-left:6.2em;margin-top:1em;padding-top:1px;padding-left:2px;">
+             </h:commandButton>&#150;&#150; &#150;&#150; &#150;&#150;
               </td>
-
               </tr>
-           
-              <tr><td colspan="2">&#150; &#150; &#150; &#150;
-            
-        <font color="#FFFFFF" >If you do not find your Apartment Complex above</font>
-
+              <tr><td colspan="2">&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
+        <font color="#FFFFFF" >Not found your Complex </font>
           </td>
-
           </tr>
-
           <tr><td></td>
-
           <td>
-
-              <h:commandButton value="Add Your Appartment" style="color:chocolate" action="#{cls_UserBean.getRegistration}" update="str_UserCountry" >
-
-            <p:ajax event="change" />
-
+              <h:commandButton value="Add Your Appartment" style="color:chocolate;width:13em" action="#{cls_UserBean.getRegistration}" update="str_UserCountry" >
+            <p:ajax event="change" update="str_UserState"/>
                </h:commandButton></td>
-
          
-
           </tr>
-        
+         
+          <tr><td></td>
+          <td>
+              <p:selectBooleanCheckbox style="color:#FFFFFF"/><font color="white" size="2">&#150; &#150;Terms And Conditions | Privacy Policy</font>
+           
+            
+              </td>
+         
+          </tr>
+       
    </table>
+
 </fieldset>
-
-
-
-
 </div>
 </h:form>
-
-
-
-
-				<div class="footer-bottom">
+<div class="footer-bottom">
 
 					<nav class="footer-nav">
 
@@ -521,6 +406,43 @@ function InvalidMsg1(textbox) {
 	</div>
 </h:body>
 </html>
+                              
+
+
+				
+				
+
+
+			
+
+            
+         
+           
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+				
+
+
+
+
+
+
+
+
+            
 
 
 
