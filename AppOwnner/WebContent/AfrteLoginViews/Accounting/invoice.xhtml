@@ -454,62 +454,7 @@
       </p:outputPanel>
       </p:dialog>
       
-          <p:dialog header="Quick payment Details" widgetVar="multiVendorDialog"   showEffect="fade" hideEffect="explode" resizable="false" height="400" width="400">
-      <p:outputPanel id="multiVendorDetail" style="text-align:center;"> 
-         <ui:repeat value="#{invoiceBean.selectedInvoice}" var="invoice1">
-        <table>
-       
-    <tr>
-            
-             <td><h:outputLabel value="Account Name" /><font color="red" >*</font></td>
-              <td><h:selectOneMenu id="accountName" value="#{invoiceBean.accountName}" valueChangeListener="#{invoiceBean.changeAccount}" >
-                    <f:selectItem itemLabel="Cash" itemValue="Cash" />
-                       <f:selectItem itemLabel="Cheque" itemValue="Cheque" /> 
-                         <f:selectItem itemLabel="Demand Draft" itemValue="Demand Draft" /> 
-                           <f:selectItem itemLabel="Online" itemValue="Online" />
-                    <f:ajax event="change" execute="accountName" render="@form"/>
-                </h:selectOneMenu>
-             </td>
-           
-             </tr>
-              <h:panelGroup  id="performedsd"  rendered="#{! empty invoiceBean.accountName}" >
-              <tr >
-              <td><h:outputLabel value="Payment No" /><font color="red" >*</font></td>
-              <td> <p:inputText id="admin1" value="#{invoiceBean.payment_No}"  /> 
-             </td>
-             </tr>
-             </h:panelGroup>
-             <tr>
-              <td><h:outputLabel value="Payment Date" /><font color="red" >*</font></td>
-              <td> <p:calendar id="dat1_InvoiceDate" value="#{invoiceBean.dat_InvoiceDate}"  pattern="dd-MM-yyyy"/> 
-             </td>
-             </tr>
-              <tr>
-              <td><h:outputLabel value="Received By" /><font color="red" >*</font></td>
-              <td> <p:inputText id="admin" value="#{invoiceBean.createdBy}" /> 
-             </td>
-             </tr>
-              <tr>
-              <td><h:outputLabel value="Amount" /><font color="red" >*</font></td>
-              <td> <p:inputText id="admin2" value="#{invoiceBean.totalAmount}" /> 
-             </td>
-             </tr>
-             <tr>
-            <td>  <h:outputText  value="Comments" /><font color="red" >*</font></td>
-            <td>  <p:inputTextarea id="str_Description" rows="4" cols="30" value="#{templateBean.str_Description}"  /></td>
-             </tr>
-           
-   </table>
-   </ui:repeat>
-    <br/>
-   <h:panelGroup style="display:block; text-align:right">
-     <tr>
-                <td><h:commandButton id="submit" value="Confirm" action="#{invoiceBean.savePayment(invoice1.int_InvoiceTransactionID,invoice1.int_InvoiceNo)}" update="invoice" oncomplete="PF('multiVendorDialog').hide()"/></td>
-                <td><h:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
-            </tr>
-    </h:panelGroup>
-       </p:outputPanel>
-        </p:dialog>
+         
         
         </h:form>
         </body>
