@@ -28,7 +28,7 @@ public class AdministrationAccess implements Serializable{
 	private Integer Int_AdminAccessID;
 	
 	@Column
-	private Integer Int_RoleID;
+	private String Int_RoleID;
 	@Column
 	private Integer Int_UserID;
 	@Column
@@ -40,12 +40,15 @@ public class AdministrationAccess implements Serializable{
 	public void setInt_AdminAccessID(Integer int_AdminAccessID) {
 		Int_AdminAccessID = int_AdminAccessID;
 	}
-	public Integer getInt_RoleID() {
+	
+	public String getInt_RoleID() {
 		return Int_RoleID;
 	}
-	public void setInt_RoleID(Integer int_RoleID) {
+
+	public void setInt_RoleID(String int_RoleID) {
 		Int_RoleID = int_RoleID;
 	}
+
 	public Integer getInt_UserID() {
 		return Int_UserID;
 	}

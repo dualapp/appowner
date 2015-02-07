@@ -22,8 +22,7 @@ public class ChartOfAccount implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private Integer  int_AccountId;
-	@Column(name="var_OrganizationName")
-	private String str_OrganizationName;
+	
 	@Column(name="var_AccountType")
 	private String str_AccountType;
 	@Column(name="var_AccountName")
@@ -38,12 +37,7 @@ public class ChartOfAccount implements Serializable {
 	public void setInt_AccountId(Integer int_AccountId) {
 		this.int_AccountId = int_AccountId;
 	}
-	public String getStr_OrganizationName() {
-		return str_OrganizationName;
-	}
-	public void setStr_OrganizationName(String str_OrganizationName) {
-		this.str_OrganizationName = str_OrganizationName;
-	}
+	
 	public String getStr_AccountType() {
 		return str_AccountType;
 	}
