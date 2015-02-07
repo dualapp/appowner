@@ -3,13 +3,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../../include/templates/template1.xhtml">
+	template="../../include/templates/template.xhtml">
 	<ui:define name="content">
-  
-	 <f:metadata>
+  <f:metadata>
 	 
-	<f:viewAction action="#{loginBean.getDetails}" />
+	 
+	<f:viewAction action="#{loginBean.getUserExtraInfo}" />
 </f:metadata>
+	 
 <h:head>
     
 </h:head>
@@ -20,26 +21,26 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/profilepic.png" height="50" width="50"></img> <span class="title">Upload Profile Picture</span>
+					<img src="#{expenseBean.str_Name}images/profilepic.png" height="50" width="50"></img> <span class="title">My Profile </span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
   <div id="page3">
-  
- <p:outputPanel   id="aaa1" style="background:#dddddd; ">
+  <div id="profilepic">
+ <p:outputPanel   id="aaa1" style="background:#ffffff; ">
  <p:outputPanel layout="block" id="parentPanel">  
           
       
-      <p:graphicImage width="50px" height="50px" value="#{loginBean.getPath()}"/></p:outputPanel>
- <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
+      <p:graphicImage width="50%" height="25%" value="#{loginBean.getPath()}"/></p:outputPanel>
+ <table>
     
     <tr><td width="30%">
     
     
       
      <!-- inputFile tag to upload file -->
-		Upload File 
+		 
 		<h:inputFile id="file" 
 		             label="file"
 			         value="#{loginBean.part}" 
@@ -48,49 +49,175 @@
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
 		</h:inputFile>
+		
 		<h:message style="color: red" for="file" /><br />
  
 		<h:commandButton id="submit" update="@form" execute="@form"
 		                 action="#{loginBean.uploadFile}"
-			             value="upload file" >
+			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
 			              
-			             </h:commandButton><br />
- 
+			             </h:commandButton>
         <!-- status message of file upload; rendered if message is set -->
 		<h:outputText value="#{loginBean.statusMessage}"
-			          rendered="#{not empty loginBean.statusMessage}" /> </td><td width="60%"><h4><b><h:outputText value="#{loginBean.str_FirstName}"/> #{loginBean.str_LastName}</b></h4><br/><h:outputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" /><br/>
-      <h:outputText id="str_Email"   value="#{loginBean.str_EmailId}"/></td>
-        
+			          rendered="#{not empty loginBean.statusMessage}" /> </td></tr>
+			          </table>
+			      </p:outputPanel>
+			      </div>
+			           
   
-   <td ><a href="editprofile.xhtml">Edit Profile</a> </td></tr>
-   
-    </table>
-   </p:outputPanel>
+   <div id="myprofile">
   <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-   <tr><td>
-   <h:outputText value="Status"/></td><td><h:selectOneRadio value="Active"    style="color:green;">
+  <tr> <td width="10%"><h2><b><h:outputText value="#{loginBean.str_FirstName}"/> #{loginBean.str_LastName}</b></h2><br/><h:outputText id="str_PhoneNo1" value="#{loginBean.str_Mobile}" /><br/>
+      
+      <h:outputText id="str_Email"   value="#{loginBean.str_EmailId}"/></td>
+      
+   </tr>
+   <tr><td><h:selectOneRadio value="Active"    style="color:green;">
    <f:selectItem itemValue="Active" itemLabel="Active" />
-   </h:selectOneRadio></td>
-   <td>
-    -#{cls_UserBean.userRole} -
-              <h:outputText value="Residing-"/>
-              
-             <h:outputText value="#{loginBean.str_Block}"/>-
-               <h:outputText value="#{loginBean.str_Flat}" /> 
-            
-   </td></tr>
+   </h:selectOneRadio> </td>
+    </tr>
+       <tr>   <td><p:button  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"   value="EditProfile" outcome="editprofile.xhtml"    /></td> </tr>
+ </table>
+ </div>
+  </div>
+  <div id="page3">
+   <div class="gsTitleDiv">Contact Information<br/><hr/></div>
+       <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        
+           <tr>
+ <td width="20%">
+    <h:outputText value="First name:"/></td>
+    <td width="20%">
+    <h:outputText value="#{loginBean.str_FirstName}"> </h:outputText></td>
+     
+ <td  width="20%">
+    <h:outputText value="Last name:"/></td>
+    <td width="20%">
+    <h:outputText value="#{loginBean.str_LastName}"> </h:outputText></td>
+    </tr>
+   <tr>
+ <td><h:outputText value="Country :">
+            </h:outputText></td>           
+           <td> <h:outputText value="#{loginBean.str_Country}" />
+            </td> 
+            <td><h:outputText value="State :"/>
+              </td>           
+           <td> <h:outputText value="#{loginBean.str_State}" />
+            </td> </tr>
+            <tr>
+             <td><h:outputText value="City :"/>
+            </td>            
+             <td><h:outputText value="#{loginBean.str_City}"/>
+             </td> 
+            <td><h:outputText value="Apartment :"/>
+            </td>            
+            <td><h:outputText value="#{loginBean.str_ApartmentName}" />
+            </td> </tr>
+           
+             <tr>
+           <td> <h:outputText value="Phone No* :"/>
+            </td>            
+            <td><h:outputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" />
+              </td>
+              <td> <h:outputText value="FaceBook Profile* :"/></td>
+          
+            <td><h:outputText id="str_fb" value="#{loginBean.str_FacebookId}"  />
+         <br/> www.facebook.com/</td>
+               </tr> 
+             <tr>
+           <td> <h:outputText value="Email"/>
+            </td>            
+            <td><h:outputText id="str_email" value="#{loginBean.str_EmailId}"  />
+            </td>  
+           
+           <td> <h:outputText value="LinkedIn Profile :"/></td>
+          
+            <td><h:outputText id="str_lkndin" value="#{loginBean.str_LinkedInId}"  />
+        <br/> www.linkedin.com/ </td></tr> 
           <tr>
-             <td><h:outputText value="Gender:"/>
+           <td> <h:outputText value="Personal Blog"/>
+            </td>            
+            <td><h:outputText id="str_pb" value="something" required="true"                requiredMessage="Please Enter Phone No!"/>
+          <br/> http()s):// </td>  
+           
+           <td> <h:outputText value="Twitter Profile:"/></td>
+          
+            <td><h:outputText id="str_tw" value="#{loginBean.str_TwitterId}" />
+       <br/>  www.twitter.com/ </td></tr> 
+            
+             
+           </table>
+          
+   <table>
+   <div class="gsTitleDiv">House Information<br/><hr/></div>
+    <tr> 
+            
+            <td width="15%"><h:outputText value="Block :"/>
+             </td>          
+            <td width="15%"><h:outputText id="str_Block" value="#{loginBean.str_Block}"/>
+          
+             </td>
+              <td width="15%"><h:outputText value="Flat No:"/>
+             </td>
+             <td width="15%"><h:outputText id="str_House" value="#{loginBean.str_Flat}" />
+           
+            
+             </td>  
+             <td width="15%"><h:outputText value="#{cls_UserBean.userRole}" />
+    
+             </td>
+             <td width="15%"><h:outputText value="Residing"/>
+   
+   
+             </td>
+             </tr> 
+             </table>
+             <div class="gsTitleDiv">Soclial Profile Information<br/><hr/></div>
+       <table>
+          <tr>
+             <td width="20%"><h:outputText value="Gender:"/>
              </td>            
-             <td ><h:selectOneRadio value="#{loginBean.str_Gender}"  >
+             <td width="20%"><h:selectOneRadio value="#{loginBean.str_Gender}"  >
 <f:selectItem itemValue="male" itemLabel="male" />
 <f:selectItem itemValue="female" itemLabel="female" />
 </h:selectOneRadio>
              </td>  
-            <td ><h:outputText value="Date Of Birth:"/>
-              <h:outputText value="#{loginBean.date_DateOfBirth}"/>
+            <td width="20%"><h:outputText value="Date Of Birth:"/>
+             </td>          
+            <td width="20%"> 
+            <h:outputText  value="#{loginBean.date_DateOfBirth}"/>
              </td></tr>
- </table>
+              
+          <tr>
+             <td><h:outputText value="Blood Group:"/>
+             </td>            
+             <td><h:outputText value="#{loginBean.str_BloodGroup}" />
+ 
+             </td>  
+            <td><h:outputText value="Marital Status"/>
+             </td>          
+            <td><h:outputText value="#{loginBean.str_MaritalStatus}"/>
+ 
+ 
+             </td></tr>
+             <tr>
+             <td></td><td></td>
+            <td><h:outputText value="Hobbies:"/>
+             </td>          
+            <td><h:outputText value="#{loginBean.str_Hobbies}"/>
+             </td></tr>
+              <tr>
+             <td><h:outputText value="Proffession:"/>
+             </td>            
+             <td><h:outputText value="#{loginBean.str_Proffession}"/></td>  
+            <td><h:outputText value="Intrested In"/>
+             </td>          
+            <td><h:selectManyCheckbox value="#{loginBean.str_IntrestedIn}"  layout="pageDirection" styleClass="nostyle">
+<f:selectItem itemValue="Meeting Others" itemLabel="Meeting Others"/>
+<f:selectItem itemValue="Sharing Stuff" itemLabel="Sharing Stuff"/>
+<f:selectItem itemValue="Organizing Events" itemLabel="Organizing Events"/>
+</h:selectManyCheckbox>
+             </td></tr></table>
   </div>
  </h:form>
  
