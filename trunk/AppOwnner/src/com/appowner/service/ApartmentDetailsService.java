@@ -16,19 +16,19 @@ public interface ApartmentDetailsService {
 
 	void saveHouseDetails(HouseDetails housedetails);
 
-	List<UserBlocks> getListBlockDetails();
+	List<UserBlocks> getListBlockDetails(Integer integer);
 
 	List<HouseDetails> getListHouseDetails(String str_BlockName);
 
 	void saveCommunitySetup(CommunitySetup cs);
 
-	List<String> getBlockNameList();
+	List<String> getBlockNameList(Integer integer);
 
 	List<String> getHouseNoList(String str_BlockName);
 
 	HouseDetails getHouseDetailByHouseNo(String str_HouseNo);
 
-	List<HouseDetails> getListHouseDetails();
+	List<HouseDetails> getListHouseDetails(String str_BlockName, Integer integer);
 
 	Integer getBlockId(String str_BlockName);
 

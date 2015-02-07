@@ -1,10 +1,12 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.CommiteeRole;
 import com.appowner.model.RoleMaster;
 import com.appowner.model.Staff;
+import com.appowner.model.menuTransaction;
 
 public interface StaffService {
 	public void addStaff(Staff staff);
@@ -20,5 +22,9 @@ public interface StaffService {
 		public void updateRoleMaster(RoleMaster master2);
 		public CommiteeRole getCommiteeRole(Integer int_Commitee_RoleID);
 		public void updateCommiteeRole(CommiteeRole role2);
+		public List<String> subcriptlist();
+		public Integer getSubcriptId(String subscriptName);
+		public void saveMenuTransaction(menuTransaction menu);
+		public List<String> getMenuName(Integer subcriptionID);
 		
 }

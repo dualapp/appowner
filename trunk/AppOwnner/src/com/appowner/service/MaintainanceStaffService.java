@@ -7,6 +7,7 @@ import com.appowner.model.AdministrationAccess;
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
+import com.appowner.model.RoleMenuManagement;
 
 public interface MaintainanceStaffService {
 
@@ -52,6 +53,18 @@ public interface MaintainanceStaffService {
 	String getRoleNameFromRoleMaster(Integer roleId1);
 
 	void saveAdministrationAccess(AdministrationAccess administrationAccess);
+
+	public List<String> getMenulist();
+
+	Integer getMenuID(String str);
+
+	void saveRolemenuManagement(RoleMenuManagement menu);
+
+	List<String> getRoleMenus(Integer i);
+
+	List<String> getMenulist1();
+
+	void deleteAssignedMenus(Integer int_RoleId);
 
 	//void deleteAssignedRoles(RoleManagement rm);
 
