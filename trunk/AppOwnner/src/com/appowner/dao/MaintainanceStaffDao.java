@@ -58,6 +58,10 @@ public interface MaintainanceStaffDao {
 
 	List<String> getRoleMenus(Integer i);
 
+	List<String> getMenulist1();
+
+	void deleteAssignedMenus(Integer int_RoleId);
+
 	//void deleteAssignedRoles(RoleManagement rm);
 
 	 
