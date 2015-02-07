@@ -13,7 +13,7 @@
 </h:head>
 <body bgcolor="#F08080">  
  <h:form id="form">
- <p:growl id="msgs" showDetail="true" />
+
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
 		
 			<tr>
@@ -43,12 +43,12 @@
             <tr>
             <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
             <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 10 char!">
-            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,10})"/>
+          
             </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
              <tr>
             <td><h:outputText value="Confirm Password* :"></h:outputText><font color="red" >*</font></td>
              <td><h:inputSecret id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBean.str_ConfirmPassword}" required="true"                requiredMessage="Enter Confirm Password!">
-             <f:validateLength minimum="4" maximum="16"/>
+             
              </h:inputSecret></td> <td><p:message for="str_ConfirmPassword" display="text"/></td></tr>
               <tr>
              <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
