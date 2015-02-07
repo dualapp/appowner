@@ -24,4 +24,5 @@ public interface StaffDao {
 	public List<String> subcriptlist();
 	public Integer getSubcriptId(String subscriptName);
 	public void saveMenuTransaction(menuTransaction menu);
+	public List<String> getMenuName(Integer subcriptionID);
 }

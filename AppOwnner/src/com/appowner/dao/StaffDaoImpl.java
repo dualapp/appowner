@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -94,4 +95,42 @@ public class StaffDaoImpl implements StaffDao{
 		{
 			getSessionFactory().getCurrentSession().save(menu);
 		}
+		public List<String> getMenuName(Integer subcriptionID)
+		{  
+		    String str;
+		  if(subcriptionID==null)
+		  {
+			str=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=1").setCacheable(true).uniqueResult();
+			
+		  }
+		  else
+		  {  
+			  str=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=?").setParameter(0, subcriptionID).setCacheable(true).uniqueResult();
+			  
+			  if(str==null)
+			  {  
+			     List<String> str2=new ArrayList<String>();
+				  return str2;
+			  }
+			  
+		  }
+		  
+		  
+			  String[] strArray = str.split(",");
+			  List<String> str2=new ArrayList<String>();
+			  for (String str1 : strArray) {
+			       
+			      
+			       int id=Integer.parseInt(str1);
+			         str2.add((String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id).setCacheable(true).uniqueResult());
+			     
+			       
+			          
+			        }
+			 
+			  return str2;
+		  }
+	
+	
+		
 }
