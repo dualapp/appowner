@@ -11,6 +11,7 @@ import com.appowner.model.AdministrationAccess;
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.model.RoleAssignment;
 import com.appowner.model.RoleManagement;
+import com.appowner.model.RoleMenuManagement;
 
 @Service("MaintainanceStaffService")
 @Transactional
@@ -165,9 +166,32 @@ public class MaintainanceStaffServiceImpl implements MaintainanceStaffService {
 		getMaintainanceStaffDao().deleteAssignedRoles(rm);
 		
 	}*/
+	public List<String> getMenulist()
+	{
+		return getMaintainanceStaffDao().getMenulist();
+	}
+	public List<String> getMenulist1()
+	{
+		return getMaintainanceStaffDao().getMenulist1();
+	}
+	public Integer getMenuID(String str)
+	{
+		return getMaintainanceStaffDao().getMenuID(str);
+	}
+	public void saveRolemenuManagement(RoleMenuManagement menu)
+	{
+		getMaintainanceStaffDao().saveRolemenuManagement(menu);
+	}
+	public void deleteAssignedMenus(Integer int_RoleId)
+	{
+		getMaintainanceStaffDao().deleteAssignedMenus(int_RoleId);
+	}
 
- 
- 
+	@Override
+	public List<String> getRoleMenus(Integer i) {
+		
+		 return getMaintainanceStaffDao().getRoleMenus(i);
+	}
 
 	 
 	 
