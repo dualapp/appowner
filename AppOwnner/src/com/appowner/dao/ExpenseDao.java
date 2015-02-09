@@ -153,4 +153,14 @@ public interface ExpenseDao {
 
 	String getStr_Venue(Integer int_MessageTypeId);
 
+	String getTextLogo(Integer appartmentId);
+
+	String organizationLogo(Integer appartmentId);
+
+	String getAppartmentImg(Integer appartmentId);
+
+	void updateAppartmentImg(String path1);
+
+	void updateOrganizationName(String path);
+
 }
