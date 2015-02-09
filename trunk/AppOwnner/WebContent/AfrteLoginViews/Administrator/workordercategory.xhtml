@@ -1,13 +1,14 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml"
-                xmlns:P="http://java.sun.com/jsf/html">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+ 
 	 
 	<h:head>
 
@@ -25,74 +26,14 @@
         }
      
     </style>
-    <script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading_home.gif");
- modalWin.SetCloseButtonImagePath("images/cross.png");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-
-function ShowNewPage5(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('createnewworkordercategory.xhtml',400,350,'Create New WorkOrderCategory',null,callbackFunctionArray);
- }
- 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
-
-}
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Submit(msg){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function HideModalWindow() {
-    modalWin.HideModalPopUp();
-}
-
-function ShowChildWindowValues(name,email,address,phone,zip) {
-    var displayString = "<b>Values Of Child Window</b> <br/><br/>Name : " + name;
-    displayString += "<br/><br/>Email : " + email;
-    displayString += "<br/><br/>Address : " + address;
-    displayString += "<br/><br/>Phone : " + phone;
-    displayString += "<br/><br/>Zip : " + zip;
-    var div = document.getElementById("divShowChildWindowValues");
-    div.style.display = "";
-    div.innerHTML = displayString;
-}
-</script>
+     
 
  </h:head>
-	 <h:form>
-	  <p:growl id="msgs" showDetail="true" />
+  <h:form>
+   <p:growl id="msgs" showDetail="true" />
+ <h:body>
+	
+	 
 	 
 	 <div id="page3">
            <div class="gsTitleDiv">Work Order Category<br/><hr/></div> 
@@ -139,7 +80,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	 </p:column>
 	 </p:dataTable>
 	 </div>
-	 <p:dialog header="Create New" widgetVar="multiWorkOrderDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+	 <p:dialog header="Create New" widgetVar="multiWorkOrderDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
         <p:outputPanel id="multiWorkOrderDetail" style="text-align:center;">
         <table>
 	<tr><th> 
@@ -149,7 +90,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
                 
                  </h:selectOneMenu></td></tr>
 	<tr><th><h:outputText value="CategoryName"/></th>
-	<td><h:inputText id="CategoryName" required="true" requiredMessage="plz Enter Category Name" value="#{vendorBean.str_VendorCategoryType}">
+	<td><h:inputText id="CategoryName" required="true" requiredMessage=" Enter Category Name" value="#{vendorBean.str_VendorCategoryType}">
 	<p:ajax event="blur" update="CategoryNameMsg" />
 	</h:inputText>
 	</td>
@@ -157,10 +98,12 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 	</tr>
 	<tr><td><p:commandButton   styleClass="btn"   value="Submit" onclick="EnrollLaterClick()"   action="#{vendorBean.saveWorkOrderCategory}"   >
 	
-	</p:commandButton></td><td><p:commandButton   styleClass="btn" id="submit"  value="Cancel" onclick="EnrollLaterClick1()"/></td> </tr>  
+	</p:commandButton></td><td><p:commandButton  execute="@this"   styleClass="btn" id="submit"  value="Cancel" onclick="EnrollLaterClick1()"/></td> </tr>  
 	</table>
                  </p:outputPanel>
                  </p:dialog>
+                 
+                 
                   <p:dialog header="Edit work Order Details" widgetVar="multiWorkOrderDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiWorkOrderDetail2" style="text-align:center;">
           
@@ -177,7 +120,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
     
     </ui:repeat>
     <tr>
-  <td><h:commandButton value="Update" action="#{vendorBean.updateWorkOrder(ws1)}"/><h:commandButton value="Cancel" action="workordercategory"/></td>
+  <td><h:commandButton value="Update"  execute="@this"  action="#{vendorBean.updateWorkOrder(ws1)}"  /></td><td><h:commandButton value="Cancel" action="workordercategory"/></td>
     </tr>
     </table>
     </p:outputPanel>
@@ -186,27 +129,27 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
         <p:outputPanel id="multiWorkOrderDetail1" style="text-align:center;">
           
            <table>
+           
                
             <ui:repeat value="#{vendorBean.workOrderCategoryList1}" var="ws1">
+              
+           
             <tr>
  <th>
 	<h:outputText  value="Organization:" /> </th>
     <td>
     <h:outputText value="#{ws1.str_VendorCategoryType}"/></td>
     </tr>
-             <tr>
- <th>
-	<h:outputText  value="Type:" /> </th>
-    <td>
-    <h:outputText value="#{ws1.str_VendorCategoryType}"/></td>
-    </tr>
+             
      
     </ui:repeat>
     </table>
     </p:outputPanel>
     </p:dialog>
                  
-	  
+	  </h:body>
 	 </h:form>
-	 </html>
+	 
+	 </ui:define>
+	 </ui:composition>
 	 
