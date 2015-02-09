@@ -1,22 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml"
-                xmlns:P="http://java.sun.com/jsf/html">
-	 
-	<h:head>
-
-	<title></title>
-	 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript">
-	 
-	 </script>
-
- <style>
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+<h:head><title>Parking </title>
+<style>
      body
         {
             font-family: Verdana;
@@ -26,10 +19,9 @@
      
     </style>
      
-
- </h:head>
-	 <h:form   >
-	  
+</h:head>
+	 <h:form>
+	   <p:growl id="msgs" showDetail="true" />
 	<h:body>
 	<br/>
 	<div id="page3">
@@ -83,7 +75,7 @@
 	  
             </p:dataTable>
 	 </div>
-	  <p:dialog header="Create Parking Space" widgetVar="multiParkingSpaceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+	  <p:dialog header="Create Parking Space" widgetVar="multiParkingSpaceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
         <p:outputPanel id="multiParkingSpaceDetail" style="text-align:center;">
         <table>
 	<tr><th>
@@ -95,13 +87,13 @@
                  </h:selectOneMenu></td></tr>
                  
 <tr><th><h:outputText value="parkingSlot"/></th>
-	<td><h:inputText  id="Parkingslot"   required="true"  requiredMessage="please enter parking slot" value="#{expenseBean.str_ParkingSlot}">
+	<td><h:inputText  id="Parkingslot"   required="true"  requiredMessage=" Enter Parking Slot" value="#{expenseBean.str_ParkingSlot}">
 	  <p:ajax event="blur" update="ParkingslotMsg" />
 	</h:inputText>
 	</td>
 	 <td><p:message id="ParkingslotMsg" for="Parkingslot" display="text"/></td>
 	</tr>
-	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.saveParking}" /> </td></tr> 
+	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit"     action="#{expenseBean.saveParking}" immediate="true" execute="@this" /> </td></tr> 
 	  
     
     </table>
@@ -129,7 +121,7 @@
     </tr>
      
     </ui:repeat>
-     <tr><td><h:commandButton value="update"  action="#{expenseBean.updateParkingSpace(ps2)}"/></td> <td><h:commandButton action="parkingspace" value="Cancel"/></td></tr>
+     <tr><td><h:commandButton value="update"  execute="@this"  action="#{expenseBean.updateParkingSpace(ps2)}"/></td> <td><h:commandButton action="parkingspace" value="Cancel"/></td></tr>
             </table>
     </p:outputPanel>
     </p:dialog>
@@ -160,4 +152,5 @@
 	</h:form>
 	 
 
-</html>
+</ui:define>
+</ui:composition>
