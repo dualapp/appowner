@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml"
-	xmlns:P="http://java.sun.com/jsf/html">
-	
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+ 
 <h:head>
     <title>Chart Of Account Form</title>
    <style type="text/css">
@@ -38,21 +38,21 @@
               
               <td><h:selectOneMenu id="str_Organisation" value="#{expenseBean.str_OrganizationName}"  >
                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}"  itemValue="#{accountingBean.str_OrganizationName}" />
+                  <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                  </h:selectOneMenu>
              </td>
              </tr>
              </table>
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> 
-     <tr><td> <p:button style="width:120px;height:25px" outcome="createnewchartofaccount.xhtml" icon="ui-icon-plus" value="Create New" /> &#150; &#150;<h:commandButton style="width:120px;height:25px" action="viewgroups.xhtml" value="View Selected"/> &#150; &#150;<p:commandButton style="width:120px;height:25px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
+     <tr><td> <p:commandButton style="width:120px;height:25px" icon="ui-icon-pencil"  update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /> &#150; &#150;<h:commandButton style="width:120px;height:25px" action="viewgroups.xhtml" value="View Selected"/> &#150; &#150;<p:commandButton style="width:120px;height:25px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
  
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" border="2">
        <tr>
-       <td><h:outputText value="Asset Groups" /><p:spacer height="10px" width="10px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group)}">
-       </h:commandButton> </td>
-       <td> <h:outputText value="RevenueGroups"/><p:spacer height="10px" width="10px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group1)}"/></td>
-        <td> <h:outputText value="LiabilityGroups"/><p:spacer height="10px" width="10px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group2)}"/></td>
-         <td> <h:outputText value="ExpenseGroups"/><p:spacer height="10px" width="10px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group3)}"/></td>
+       <td><h:outputText value="Asset Groups" /><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group)}">
+        </h:commandButton> </td>
+       <td> <h:outputText value="RevenueGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group1)}"/></td>
+        <td> <h:outputText value="LiabilityGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group2)}"/></td>
+         <td> <h:outputText value="ExpenseGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group3)}"/></td>
        </tr>
      
 	   
@@ -86,7 +86,7 @@
                
                         
         </table>
-         <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="exlpode" resizable="true" height="300" width="500">
+         <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="500">
         <p:outputPanel id="multiChartOfAccountDetail" style="text-align:center;">
         <table >
 	<tr><td> 
@@ -97,13 +97,13 @@
                 
                  </h:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Type"/></td>
-	<td><p:selectOneMenu    value="#{accountingBean.str_AccountType1}"   valueChangeListener="#{accountingBean.accountchangeListener}">
+	<td><h:selectOneMenu    value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}">
 	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
 	    
 	   <f:selectItems   value="#{accountingBean.listAccountsType}" /><br/> 
 	   <p:ajax event="change" partialSubmit="true"/>
-                      </p:selectOneMenu></td></tr>
-	<tr><td><h:outputLabel value="Account Name:"/></td><td><p:inputText   value="#{accountingBean.str_AccountName1}"/></td></tr>
+                       </h:selectOneMenu></td></tr>
+	<tr><td><h:outputLabel value="Account Name:"/></td><td><h:inputText   value="#{accountingBean.str_AccountName}"/></td></tr>
 	<tr><td><p:commandButton  id="submit"  value="Submit"   action="#{accountingBean.saveChartOfAccount()}"   />
 	
 	</td> </tr>  
@@ -116,8 +116,8 @@
 </h:body>
         </h:form>
   
-    </html>
-      
+    </ui:define>
+    </ui:composition>
  
  
  
