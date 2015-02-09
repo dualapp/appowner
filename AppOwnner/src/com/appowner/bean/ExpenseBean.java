@@ -29,6 +29,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -189,6 +190,8 @@ public class ExpenseBean  implements Serializable{
 	}
 	
 	public String getStr_AppartmentImg() {
+		str_AppartmentImg=getExpenseService().getAppartmentImg(Util.getAppartmentId());
+		//str_AppartmentImg="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AppartmentImg;
 		return str_AppartmentImg;
 	}
 	public void setStr_AppartmentImg(String str_AppartmentImg) {
@@ -252,7 +255,9 @@ public class ExpenseBean  implements Serializable{
 	public String getBlb_images1() {
 		return blb_images1;
 	}
-	public String getstr_OrganizationLogo() {
+	public String getStr_OrganizationLogo() {
+		str_OrganizationLogo=getExpenseService().organizationLogo(Util.getAppartmentId());
+		//str_OrganizationLogo="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_OrganizationLogo;
 		return str_OrganizationLogo;
 	}
 	public void setstr_OrganizationLogo(String str_OrganizationLogo) {
@@ -947,9 +952,8 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 		//String fileName = getFileName(part);
 		System.out.println("***** fileName: " +str_AppartmentImg);
 
-		//String basePath = "D:" + File.separator + "temp" + File.separator;
-		//File outputFilePath = new File(basePath + fileName);
-		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
 		File outputFilePath = new File(basePath+str_AppartmentImg);
 		
@@ -968,8 +972,10 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 			}
 			path1="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AppartmentImg;
 			 System.out.println(path1+"path1");
+			 addOrganizationLogo();
+			 getExpenseService().updateAppartmentImg(path1);
 			statusMessage = "File upload successfull !!";
-			
+			getStr_AppartmentImg();
 		} catch (IOException e) {
 			e.printStackTrace();
 			statusMessage = "File upload failed !!";
@@ -993,8 +999,8 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 
 		//String basePath = "D:" + File.separator + "temp" + File.separator;
 		//File outputFilePath = new File(basePath + fileName);
-		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
-		System.out.println(basePath);
+		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		File outputFilePath = new File(basePath+str_OrganizationLogo);
 		
 		System.out.println(outputFilePath+"outputFilePath2");
@@ -1011,6 +1017,10 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 				outputStream.write(bytes, 0, read);
 			}
 			path="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_OrganizationLogo;
+			addOrganizationLogo();
+			getExpenseService().updateOrganizationName(path);
+			getStr_OrganizationName();
+			 
 			 System.out.println(path+"path");
 			statusMessage = "File upload successfull !!";
 			
@@ -1037,7 +1047,8 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 
 		//String basePath = "D:" + File.separator + "temp" + File.separator;
 		//File outputFilePath = new File(basePath + fileName);
-		String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
 		File outputFilePath = new File(basePath+str_Document_Upload);
 		
@@ -1124,17 +1135,27 @@ public void addOrganizationLogo ()
 {
 	ol=new OrganizationLogo();
 	Integer logoid=getExpenseService().getLogoId(Util.getAppartmentId());
+	
+	
 	 if(logoid!=null)
 	{ 
 		 ol.setInt_OthersInfoId(logoid);
-		 ol.setInt_AppartmentId(Util.getAppartmentId());
-		 ol.setStr_Appartment_Img(getStr_AppartmentImg());
-		 ol.setStr_Appartment_Logo(getstr_OrganizationLogo());
+		 ol.setStr_Appartment_Logo(path);
+			ol.setStr_InTime(getStr_offcInTiming());
+			ol.setStr_OutTime(getStr_offcOutTiming());
+			ol.setStr_TextLogo(getTextLogo());
+			ol.setStr_ApptAddress(getStr_ApptAddress());
+			ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
+			System.out.println(Util.getAppartmentId());
+			ol.setInt_AppartmentId(Util.getAppartmentId());
+			ol.setStr_Document_Upload(getStr_Document_Upload());
+			ol.setStr_Appartment_Img(path1);
 	 getExpenseService().updateLogo(ol);
+	 getTextLogo();
 	}
 	else
 	{
-	ol.setStr_Appartment_Logo(getstr_OrganizationLogo());
+	ol.setStr_Appartment_Logo(getStr_OrganizationLogo());
 	ol.setStr_InTime(getStr_offcInTiming());
 	ol.setStr_OutTime(getStr_offcOutTiming());
 	ol.setStr_TextLogo(getTextLogo());
@@ -1146,6 +1167,7 @@ public void addOrganizationLogo ()
 	ol.setStr_Appartment_Img(getStr_AppartmentImg());
      
 	getExpenseService().addOrganizationLogo(ol);
+	getTextLogo();
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	Flash flash = facesContext.getExternalContext().getFlash();
 	flash.setKeepMessages(true);
@@ -1153,6 +1175,7 @@ public void addOrganizationLogo ()
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Added Successfully!", "  Added Successfully!"));
 	 
 	}
+	 
 	 
 }
  
@@ -1162,7 +1185,9 @@ public   void getOrganizationLogo()
 { ol=new OrganizationLogo();
   ol=getExpenseService().getOrganizationLogo(Util.getAppartmentId());
   System.out.println(ol+""+"hgxdddddddddddddddd");
-  File file=new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images",Util.getAppartmentName());
+  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+	String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+  File file=new File(basePath);
   if (!file.exists()) {
 	if (file.mkdir()) {
 		System.out.println("Directory is created!");
@@ -1177,17 +1202,24 @@ public   void getOrganizationLogo()
   System.out.println(ol+""+"sudhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	 
 }
+private String str_TextLogo1;
+public String getStr_TextLogo1() {
+	str_TextLogo1=getExpenseService().getTextLogo(Util.getAppartmentId());
+	return str_TextLogo1;
+}
+public void setStr_TextLogo1(String str_TextLogo1) {
+	this.str_TextLogo1 = str_TextLogo1;
+}
 public String getTextLogo() {
+	
 	return textLogo;
 }
 public void setTextLogo(String textLogo) {
 	this.textLogo = textLogo;
 }
  
-
+ 
 public String getPath() {
-	getOrganizationLogo();
-	System.out.println(path);
 	 
 	return path;
 }
@@ -2164,7 +2196,7 @@ public void setRender(Boolean render) {
 }
 public Pool getLatestPolls() {
 	latestPolls=new Pool();
-	latestPolls=getExpenseService().getLatestPolls();
+ 
 	if(getExpenseService().getLatestPolls()==null)
 		   
 		render=false;
