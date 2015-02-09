@@ -24,6 +24,7 @@ import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.UserApartment;
 import com.appowner.model.Vote;
+import com.appowner.util.Util;
 
 @Repository
 public class ExpenseDaoImpl implements ExpenseDao {
@@ -508,5 +509,55 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		return (String) sessionFactory.getCurrentSession().createQuery("select str_Venue from AddTemplateMessage where int_MessageTypeId=?").setParameter(0, int_MessageTypeId).uniqueResult();
 		
+	}
+
+	@Override
+	public String getTextLogo(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_TextLogo from OrganizationLogo where int_AppartmentId=?").setParameter(0, appartmentId).uniqueResult();
+	}
+
+	@Override
+	public String organizationLogo(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_Appartment_Logo from OrganizationLogo where int_AppartmentId=?").setParameter(0, appartmentId).uniqueResult();
+	}
+
+	@Override
+	public String getAppartmentImg(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_Appartment_Img from OrganizationLogo where int_AppartmentId=?").setParameter(0, appartmentId).uniqueResult();
+	}
+
+	@Override
+	public void updateAppartmentImg(String path1) {
+		// TODO Auto-generated method stub
+		Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
+		
+		
+		OrganizationLogo ol=new OrganizationLogo();
+		
+		ol=(OrganizationLogo) sessionFactory.getCurrentSession().createQuery("from OrganizationLogo where int_OthersInfoId=?").setParameter(0, id).uniqueResult();
+	if(ol!=null)
+	{
+		ol.setStr_Appartment_Img(path1);
+	sessionFactory.getCurrentSession().saveOrUpdate(ol);
+	}
+	}
+
+	@Override
+	public void updateOrganizationName(String path) {
+		// TODO Auto-generated method stubInteger id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
+		
+		Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
+		OrganizationLogo ol=new OrganizationLogo();
+		
+		ol=(OrganizationLogo) sessionFactory.getCurrentSession().createQuery("from OrganizationLogo where int_OthersInfoId=?").setParameter(0, id).uniqueResult();
+		if(ol!=null)
+		{
+		ol.setStr_Appartment_Logo(path);
+	
+	sessionFactory.getCurrentSession().saveOrUpdate(ol);
+		}
 	}
 }
