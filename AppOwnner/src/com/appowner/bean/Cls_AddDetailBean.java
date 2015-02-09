@@ -281,7 +281,7 @@ public int getInt_Ad_categoryId() {
 		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
 		    System.out.println(name);
-		    File file= new File("D://Image\\"+ "images" + name);
+		    File file= new File("E://"+ "images" + name);
 		    final UploadedFile uploadedFile = event.getFile();
 		    blb_image=file.getAbsolutePath();
 		    System.out.println(blb_image);
