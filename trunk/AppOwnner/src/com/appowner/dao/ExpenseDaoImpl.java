@@ -354,7 +354,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		//String hql="from Pool order by int_PoolId desc limit 1,1;";
 		Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
 		 
-		return  (Pool) getSessionFactory().getCurrentSession().get(Pool.class, id);
+		return  (Pool) getSessionFactory().getCurrentSession().createQuery("from Pool where int_PoolId=?").setParameter(0, id).uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
