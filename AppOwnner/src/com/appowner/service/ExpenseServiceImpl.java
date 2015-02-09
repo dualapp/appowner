@@ -442,6 +442,36 @@ public class ExpenseServiceImpl implements ExpenseService {
 		  
 	}
 
+	@Override
+	public String getTextLogo(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getTextLogo(appartmentId);
+	}
+
+	@Override
+	public String organizationLogo(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().organizationLogo(appartmentId);
+	}
+
+	@Override
+	public String getAppartmentImg(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAppartmentImg(appartmentId);
+	}
+
+	@Override
+	public void updateAppartmentImg(String path1) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateAppartmentImg( path1);
+	}
+
+	@Override
+	public void updateOrganizationName(String path) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateOrganizationName(path);
+	}
+
 	 
 	 
 
