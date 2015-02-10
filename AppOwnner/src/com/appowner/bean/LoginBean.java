@@ -814,6 +814,8 @@ public class LoginBean implements Serializable {
 	public String getStr_RecoverPassword1() {
 		User u = new User();
 		u = getUserService().getUser(getStr_Email());
+		if(u!=null)
+		{
 		System.out.println(str_RecoverPassword + "fpassword");
 		// Email=getStr_Email();
 		Email = "kalpanasudha1990@gmail.com";
@@ -826,6 +828,11 @@ public class LoginBean implements Serializable {
 		System.out.println(str_firstName + "firstname");
 		str_UserName = u.getStr_Username();
 		System.out.println(Email);
+	}
+	else
+	{
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"invalid Email!"));
+	}
 		return "forgotpassword1.jsp";
 	}
 
