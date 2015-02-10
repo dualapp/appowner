@@ -13,10 +13,10 @@
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <i
-						class="icon-leaf"></i>&nbsp;<h:outputText value="#{LoginBean.getUserloginname()}"/> &nbsp;<p:graphicImage  height="20" width="20" alt="AppartmentImg" value="#"/>&nbsp;<h:outputText value="#{expenseBean.getTextLogo()}"/>
+						class="icon-leaf"></i>&nbsp;<h:outputText value="#{LoginBean.getUserloginname()}"/> &nbsp;<p:graphicImage  height="20" width="20" alt="AppartmentImg" value="#{expenseBean.getStr_AppartmentImg()}"/>&nbsp;<h:outputText value="#{expenseBean.getStr_TextLogo1()}"/>
 				</small>
-				<p:graphicImage  height="20" width="20" alt="AppartmentLogo" value="# "/> &nbsp;
-				 
+				<p:graphicImage  height="20" width="20" alt="AppartmentLogo" value="#{expenseBean.getStr_OrganizationLogo()}" /> &nbsp;
+				  
 				
 				</a>
 				<!-- /.brand -->
@@ -129,7 +129,7 @@
 							</ul></li>
 
 						<li class="light-blue"><a data-toggle="dropdown" href="#"
-							class="dropdown-toggle"> <p:graphicImage width="40px" height="40px"   value="#{loginBean.var_ImageName1}"/> <span
+							class="dropdown-toggle"> <p:graphicImage width="40px" height="40px"   value="#{loginBean.getPath()}"/> <span
 								class="user-info"> <small>Welcome,</small> <h:outputText value="#{loginBean.userloginname}" />
 							</span> <i class="icon-caret-down"></i>
 						</a>
