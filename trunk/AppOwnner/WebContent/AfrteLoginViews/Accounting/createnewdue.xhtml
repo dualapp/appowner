@@ -15,6 +15,7 @@
            
            height:25px;
            weight:250px;
+          
           }
           select
           {
@@ -131,7 +132,7 @@
             <div id="page3"> 
            <div class="gsTitleDiv">Apartment Details<br/><hr/></div>
   
-   <table  >
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr>
       <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
               <td><h:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}" >
@@ -166,11 +167,12 @@
           <div id="page3"> 
     <div class="gsTitleDiv">Amount Details<br/><hr/></div>     
  
-   <table  >
+   <table style="width: 78%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    
           <tr>
            <td>  <h:outputText  value="Due Amount" /></td>
            <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}"  readonly="true" /> </td>
+           <td></td>
            </tr>
            <tr>
            <td>  <h:outputText  value="Total Due Amount" /></td>
