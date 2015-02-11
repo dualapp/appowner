@@ -63,36 +63,37 @@
             </p:column>
      </h:dataTable>
 	
-	 <table style="width: 68%;margin-right: 1%;margin-bottom:5px"  >	 
+	 
+	<table style="width: 70%;margin-right: 1%;margin-bottom:5px"  >	 
 	 <tr>
 	    <td>Total Amount	   </td>
 	 
-	    <td ><p:spacer width="25" height="10"/><h:inputText id="priya" value="#{accountsBean.totalAmount}" readonly="true"  size="30"/><p:spacer width="35" height="20"/>
+	    <td ><h:inputText id="priya" value="#{accountsBean.totalAmount}" readonly="true" size="30"/></td>
 	    
-	     <h:inputText id="hgy" value="#{accountsBean.totalAmount1}"  readonly="true"  size="30"/></td>
+	    <td> <h:inputText id="hgy" value="#{accountsBean.totalAmount1}"  readonly="true"  size="30"/></td>
 	 </tr>
 	 
 	
 	 <tr>
 	     <td>Opening Balance Adjustment</td>
 	   
-	      <td>  <p:spacer width="25" height="10"/> <h:inputText value="#{accountsBean.adjustmentBalance}" readonly="true" size="30"/><p:spacer width="35" height="20"/>
-	      <h:inputText value="#{accountsBean.adjustmentBalance1}" readonly="true" size="30"/></td>
+	      <td><h:inputText value="#{accountsBean.adjustmentBalance}" readonly="true"  size="30"/></td>
+	    <td> <h:inputText value="#{accountsBean.adjustmentBalance1}" readonly="true" size="30"/></td>
 	 </tr>
 	
 	  <tr>
 	    <td>Total Amount</td>
-	    <td> <p:spacer width="25" height="10"/> <h:inputText value="#{accountsBean.totalAdjustBalance}" readonly="true" size="30"/><p:spacer width="35" height="20"/>
-	     <h:inputText value="#{accountsBean.totalAdjustBalance1}" readonly="true" size="30" /></td>
+	    <td> <h:inputText value="#{accountsBean.totalAdjustBalance}" readonly="true"  size="30"/></td>
+	   <td>  <h:inputText value="#{accountsBean.totalAdjustBalance1}" readonly="true" size="30" /></td>
 	 </tr>
 	
-	 </table>
-	 <br/>
-	 <br/>
-	  <tr>
-                <td><p:commandButton id="AddProduct" value="Submit"  action="#{accountsBean.addAccountsHead}" /></td>     
+	
+	
+	
+	  <tr><td></td>
+                <td><p:commandButton id="AddProduct" value="Submit" style=" background-color:#9ACD32;width:10em;height:2em; color:white;margin-top:1em;" action="#{accountsBean.addAccountsHead}" /></td>     
             </tr>
-  
+  </table>
          </div> 
          </h:body>
              </h:form>
