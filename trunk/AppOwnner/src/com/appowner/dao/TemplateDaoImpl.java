@@ -95,7 +95,7 @@ public class TemplateDaoImpl implements TemplateDao {
 		 return (List<MessageTemplate>) getSessionFactory().getCurrentSession().createCriteria(MessageTemplate.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list(); 
 	     }
 	   else
-	   {
+	   {   System.out.println(apartmentID+"lkffgkl");
 		   String hql="from MessageTemplate  where str_Mode=? and str_Category=? and int_Organisation=?";
 		   return (List<MessageTemplate>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Mode).setParameter(1,str_Category).setParameter(2, apartmentID).setCacheable(true).list();
 	   }
