@@ -187,14 +187,41 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setInt_TotalNoOfHouses(Integer int_TotalNoOfHouses) {
 		this.int_TotalNoOfHouses = int_TotalNoOfHouses;
 	}
+	@SuppressWarnings("rawtypes")
 	private List list=new ArrayList();
+	@SuppressWarnings("rawtypes")
+	private List list1=new ArrayList();
 	@SuppressWarnings("unchecked")
 	public void communityTypeListener(ValueChangeEvent event)
 	{
+		
+		/*list1.addAll((List<String>) event.getOldValue());
+		@SuppressWarnings("rawtypes")
+		ListIterator itr1=list1.listIterator();
+		while(itr1.hasNext())
+		{
+			str_CommunityType=(String) itr1.next();
+			System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+			System.out.println(str_CommunityType);
+			 
+			getApartmentDetailsService().deleteCommunityType(str_CommunityType);
+		}*/
 		list.addAll((List<String>) event.getNewValue());
 	}
 	
 	
+	public List getList() {
+		return list;
+	}
+	public void setList(List list) {
+		this.list = list;
+	}
+	public List getList1() {
+		return list1;
+	}
+	public void setList1(List list1) {
+		this.list1 = list1;
+	}
 	private List<CommunitySetup> CommunityTypeList;
 	public String saveCommunitySetup()
 	{
@@ -261,7 +288,7 @@ public class ApartmentDetailsBean  implements Serializable{
 			
 			int_year=cs.getInt_year();
 			int_TotalHouse=cs.getInt_TotalNoOfHouses();
-			str_CommunityType=cs.getStr_CommunitySetupType();
+			//str_CommunityType=cs.getStr_CommunitySetupType();
 			communityTypelist1=new ArrayList<String>();
 			List<Integer> communityTypeId=getApartmentDetailsService().getCommunityTypeIdLists(cs.getInt_CommunitySetupId());
 			ListIterator itr=communityTypeId.listIterator();
