@@ -26,6 +26,14 @@ public class CommunitySetup implements Serializable{
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column 
 	private Integer int_CommunitySetupId;
+	@Column 
+	private Integer int_TotalNoOfHouses;
+	@Column 
+	private Integer int_NoOfBlocks;
+	@Column 
+	private Integer int_year;
+	@Column 
+	private Integer int_UserId;
 	 
 	public Integer getInt_TotalNoOfHouses() {
 		return int_TotalNoOfHouses;
@@ -58,21 +66,8 @@ public class CommunitySetup implements Serializable{
 		this.int_year = int_year;
 	}
 	 
-	public String getStr_CommunitySetupType() {
-		return str_CommunitySetupType;
-	}
-	public void setStr_CommunitySetupType(String str_CommunitySetupType) {
-		this.str_CommunitySetupType = str_CommunitySetupType;
-	}
-	@Column 
-	private Integer int_TotalNoOfHouses;
-	@Column 
-	private Integer int_NoOfBlocks;
-	@Column 
-	private Integer int_year;
-	@Column 
-	private Integer int_UserId;
-	@Column(name="var_CommunitySetupType")
-	private String str_CommunitySetupType;
+	 
+	
+	 
 
 }
