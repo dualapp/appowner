@@ -141,6 +141,13 @@ public class Cls_UserBean implements Serializable{
 		public void setValue1(String value1) {
 			this.value1 = value1;
 		}
+		private boolean indicator;
+		public boolean isIndicator() {
+			return indicator;
+		}
+		public void setIndicator(boolean indicator) {
+			this.indicator = indicator;
+		}
 		public String getValue() {
 			System.out.println("99999999999999999eeee999888889999999999999999999999");
 			//dataChange1();
@@ -380,7 +387,9 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_Country(getCountry());
 			usr.setStr_State(getState());
 			usr.setStr_City(getCity());
-			if(userapartment==null)
+			System.out.println(userapartment+"liflkfflkfff");
+			System.out.println(str_Apartment+"jvvjkcjvc");
+			if(str_Apartment!=null)
 			{
 				System.out.println(str_Apartment+"fffkjjk");
 				int id=getUserService().getCityId(getCity());
@@ -440,7 +449,7 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_activationkey(uuid1);
 			usr.setInt_activationbit(0);
 			System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
-			getUserService().addUser(usr);
+		getUserService().addUser(usr);
 			 el=getStr_Email();
 			 un=getStr_Username();
 			pd=getStr_Password();
@@ -651,7 +660,15 @@ public class Cls_UserBean implements Serializable{
 	
 		public String getRegistration() {
 			System.out.println("heeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+			System.out.println(indicator+"kdffddf");
+			if(indicator==true)
+			{
 			return "NewRegistration.xhtml";
+			}
+			else
+			{
+				return null;
+			}
 		}
 		public void setRegistration(String registration) {
 			Registration = registration;
@@ -944,6 +961,10 @@ public class Cls_UserBean implements Serializable{
 		    	System.out.println(str_BlockName+"blockssssssssssssssssssssssssssssssssssssssssssssssss");
 		    	
 		    }
+		 public String go()
+		 {
+			 return "/layout.xhtml";
+		 }
 	}
 
 
