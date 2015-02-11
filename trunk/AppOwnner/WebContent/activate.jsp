@@ -10,7 +10,7 @@
 <body>
 <div style="display:none;">
 <iframe id="ponyo_frame" name="ponyo_frame"></iframe>
- <form id="ponyo_form" action="accountActivationConfirmation.xhtml" method="post">
+ <form id="ponyo_form" action="/AppOwnner/AfrteLoginViews/Adminwelcomepage.xhtml" method="post">
 <%
   String activationkey1=request.getParameter("activationkey");
   Class.forName("com.mysql.jdbc.Driver");
