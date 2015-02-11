@@ -556,9 +556,34 @@ public static char getGroup4() {
 public static void setGroup4(char group4) {
 	AccountsBean.group4 = group4;
 }
+private String groupName;
+public String getGroupName() {
+	return groupName;
+}
+public void setGroupName(String groupName) {
+	this.groupName = groupName;
+}
 public String getAccountsHead(char d)
  {  System.out.println(d+"jdfjjf");
- group4=d;
+    if(d=='A')
+    {
+    	groupName="Asset";
+    }
+    else if(d=='R')
+    {
+    	groupName="Revenue";
+    	
+    }
+    else if(d=='L')
+    {
+    	groupName="Liability";
+    	
+    }
+    else
+    {
+    	groupName="Expense"	;
+    }
+      group4=d;
  System.out.println(group4+"jbjj");
  // groups.addAll(getAccountsService().getGroups(d));
 	 return "addaccountshead.xhtml";
