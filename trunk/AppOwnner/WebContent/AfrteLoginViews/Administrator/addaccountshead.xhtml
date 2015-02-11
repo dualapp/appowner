@@ -29,8 +29,8 @@
  
     <div id="page3">
         
-        <div class="gsTitleDiv">Asset<br/>
-       <font color="blue">Following is the list of Asset Groups available to your complex. Some groups provided by default and they cannot be deleted.</font><hr/></div> 
+        <div class="gsTitleDiv">#{accountsBean.groupName}<br/>
+       <font color="blue">Following is the list of #{accountsBean.groupName} Groups available to your complex. Some groups provided by default and they cannot be deleted.</font><hr/></div> 
         <p:dataTable var="account" value="#{accountsBean.groups}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
         <p:column headerText="Accounts Head">
            <h:outputText value="#{account.str_Acct_GroupName}"/>
@@ -56,19 +56,22 @@
            </p:column>
         </p:dataTable>
         <p:separator/>
-          <div class="gsTitleDiv">Add Accounts Head<br/>
-          Please enter the names of groups that you would like to add for your complex under Asset Groups. 
-Do note that each category name must be different.</div>
-<table>
+          <div class="gsTitleDiv">Add Accounts Head<br/></div>
+           <div id="page3">
+        <h5> Please enter the names of groups that you would like to add for your complex under #{accountsBean.groupName} Groups. 
+          Do note that each category name must be different.</h5>
+<table style="color:white;margin-top:1em;margin-left:2em;">
 <tr>
 <td><h:outputText value="Name:" /></td>
 <td><h:inputText value="#{accountsBean.accounthead}"/></td>
 </tr>
 <tr>
-<td><h:commandButton value="Add" action="#{accountsBean.addAccountHead()}"/>
+<td></td>
+<td><h:commandButton value="Add" action="#{accountsBean.addAccountHead()}" style="width:7em; color:grey;"/>
 </td>
 </tr>
 </table>
+</div>
         </div>
         </h:form>
         </ui:define>

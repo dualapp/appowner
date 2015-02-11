@@ -44,11 +44,11 @@
              </tr>
              </table>
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> 
-     <tr><td> <p:commandButton style="width:120px;height:25px" icon="ui-icon-pencil"  update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /> &#150; &#150;<h:commandButton style="width:120px;height:25px" action="viewgroups.xhtml" value="View Selected"/> &#150; &#150;<p:commandButton style="width:120px;height:25px" onclick="ShowNewPage()" value="Edit Selected"/></td></tr></table> 
+     <tr><td> <p:commandButton style="width:120px;height:25px" icon="ui-icon-pencil"  update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td></tr></table> 
  
- <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" border="2">
+ <table style="width: 90%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" border="2">
        <tr>
-       <td><h:outputText value="Asset Groups" /><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group)}">
+       <td><h:outputText value="Asset Groups" /><p:spacer height="10%" weight="20%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group)}">
         </h:commandButton> </td>
        <td> <h:outputText value="RevenueGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group1)}"/></td>
         <td> <h:outputText value="LiabilityGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group2)}"/></td>
