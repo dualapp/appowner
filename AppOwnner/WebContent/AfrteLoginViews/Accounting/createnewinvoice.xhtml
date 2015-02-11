@@ -9,7 +9,21 @@
 	
 <h:head>
     <title>Create Invoice Form</title>
-  
+   <style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:250px;
+          
+          }
+          select
+          {
+           height:25px;
+           weight:250px;
+          }
+      </style>	
+    
 </h:head>
 <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
@@ -109,7 +123,7 @@
             <td> <h:outputText  value="Year" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}" valueChangeListener="#{invoiceBean.periodChangeListener1}" >
             <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                   <f:selectItem itemLabel="2014" itemValue="2014"/>
+                 
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
                        <f:selectItem itemLabel="2016" itemValue="2016"/>
                         <f:selectItem itemLabel="2017" itemValue="2017"/>
