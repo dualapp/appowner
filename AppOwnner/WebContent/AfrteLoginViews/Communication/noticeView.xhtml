@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 	<h:head>
     <title>Welcome to Contact Page</title>
@@ -17,11 +17,19 @@
     <h:form>
        
           
-       <legend  align="left" style="background-color:#438eb9; color:#fff;"> NotificationList</legend>
+     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title"> NotificationList</span>
+				</td>
+			</tr>
+		</tbody>
+	</table> 
                              
-       <p:dataGrid    var="notice" value="#{noticeBoardBean.listOfNotice}" columns="1" layout="block" paginator="true" id="cars"
+       <p:dataGrid    var="notice" value="#{noticeBoardBean.listOfNotice}" columns="3" layout="block" paginator="true" id="cars"
         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="6,12,16">
+        rowsPerPageTemplate="6,12,16" paginatorPosition="bottom">
  
        
            
