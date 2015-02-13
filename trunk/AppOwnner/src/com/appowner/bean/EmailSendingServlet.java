@@ -40,12 +40,16 @@ public class EmailSendingServlet extends HttpServlet {
         System.out.println(recipient+"recipient");
         String subject = request.getParameter("subject");
         String content = request.getParameter("content");
-          
+        String username=request.getParameter("username");
+        String apartment=request.getParameter("apartment");
+        String password=request.getParameter("password");
+        String email=request.getParameter("email");
+        String url=request.getParameter("url");
         String resultMessage = "";
         Boolean render=false;
         try {
             EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
-                    content);
+                    content,username,apartment,password,email,url);
             resultMessage = "One e-mail has been sent to your Email-id !";
         } catch (Exception ex) {
             ex.printStackTrace();

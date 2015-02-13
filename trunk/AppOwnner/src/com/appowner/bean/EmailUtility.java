@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class EmailUtility {
     public static void sendEmail(String host, String port,
             final String userName, final String password, String toAddress,
-            String subject, String message) throws AddressException,
+            String subject, String message,String username,String apartment,String password1,String email,String url) throws AddressException,
             MessagingException {
  
         // sets SMTP serve properties
@@ -49,7 +49,36 @@ public class EmailUtility {
         msg.setSubject(subject);
         msg.setSentDate(new Date());
         msg.setText(message);
- 
+      msg.setContent("<html>\n" +
+        		
+        		
+                        "<fieldset style="+"width:60%"+">"+
+                      
+                        "<table width="+700+" height="+100+">"+
+        		         "<tr>"+
+                        "<td>"+"<font size="+2+">"+"Dear:"+" "+username+""+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+2+">"+"You have now been added as a member in Appownner online community.please use the following credentials to login to the site:"+""+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+2+">"+"Website:https://www.appowners.com/"+""+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+2+">"+"UserName:"+" "+email+"</font>"+"</td>"+
+        		         "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+2+">"+"Password:"+" "+password1+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+2+">"+"Please Click here to Activate your Account"+" "+url+"</font>"+"</td>"+
+        		        
+        		        "</tr>"+"<tr>"+
+"<td>"+"<font size="+2+">"+"For any queries.please contact  your maintenance manager for details or sene an email to "+" "+email+"</font>"+"</td>"+
+        		        
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+2+">"+"Regards:"+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+"<td>"+"<font size="+2+">"+"Website Administrator:"+"</font>"+"</td>"+
+        		        "</tr>"+"</table>"+
+                	    
+                		"</body>\n" +
+                		"</fieldset>"+
+                		"</html>", "text/html");
         // sends the e-mail
         Transport.send(msg);
  

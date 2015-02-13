@@ -41,7 +41,7 @@ public class EmailSendingServlet3 extends HttpServlet {
         String resultMessage = "";
  
         try {
-            EmailUtility.sendEmail(host, port, user, pass, recipient,content, resultMessage);
+          //  EmailUtility.sendEmail(host, port, user, pass, recipient,content, resultMessage);
             resultMessage = "One e-mail has been sent to your Email-id !";
         } catch (Exception ex) {
             ex.printStackTrace();
