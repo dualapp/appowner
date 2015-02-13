@@ -900,7 +900,7 @@ public class LoginBean implements Serializable {
 			int_ApartmentId=user.getInt_ApartmentId();
 			java.util.Date Entrydate=new java.util.Date();
 			Date EndDate=getUserService().getEndDate(int_ApartmentId);
-			expireDay=(int) ((EndDate.getTime() - Entrydate.getTime())/(1000 * 60 * 60 * 24));
+			//expireDay=(int) ((EndDate.getTime() - Entrydate.getTime())/(1000 * 60 * 60 * 24));
 			System.out.println(expireDay+"fdkjfdjkfdkj");
 			System.out.println(Entrydate+"lkfklfddf");
 			System.out.println(EndDate+"dksdsksdk");

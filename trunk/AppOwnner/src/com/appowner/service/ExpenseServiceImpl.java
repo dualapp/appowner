@@ -467,9 +467,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public void updateOrganizationName(String path) {
+	public void updateOrganizationLogo(String path) {
 		// TODO Auto-generated method stub
-		getExpenseDao().updateOrganizationName(path);
+		getExpenseDao().updateOrganizationLogo(path);
 	}
 
 	 

@@ -68,4 +68,6 @@ public interface ApartmentDetailsDao {
 
 	String getCommunityMasterType(Integer cid);
 
+	void deleteCommunityType(String str_CommunityType);
+
 }

@@ -69,4 +69,6 @@ public interface ApartmentDetailsService {
 
 	String getCommunityMasterType(Integer cid);
 
+	void deleteCommunityType(String str_CommunityType);
+
 }

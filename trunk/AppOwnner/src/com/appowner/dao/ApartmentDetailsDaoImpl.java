@@ -234,4 +234,10 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		// TODO Auto-generated method stub
 		return (String) getSessionFactory().getCurrentSession().createQuery("select str_CommunityType from CommunityTypeMaster where int_MasterCommunityTypeId=?").setParameter(0, cid).uniqueResult();
 	}
+
+	@Override
+	public void deleteCommunityType(String str_CommunityType) {
+		Integer cmid=(Integer) getSessionFactory().getCurrentSession().createQuery("int_MasterCommunityTypeId from CommunityTypeMaster where str_CommunityType=?").setParameter(0, str_CommunityType).uniqueResult();
+		getSessionFactory().getCurrentSession().createQuery("delete from CommunityType where int_MasterCommunityTypeId=?").setParameter(0, cmid);
+	}
 }

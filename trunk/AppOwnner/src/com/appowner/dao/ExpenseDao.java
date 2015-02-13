@@ -161,6 +161,6 @@ public interface ExpenseDao {
 
 	void updateAppartmentImg(String path1);
 
-	void updateOrganizationName(String path);
+	void updateOrganizationLogo(String path);
 
 }

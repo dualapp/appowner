@@ -255,10 +255,24 @@ public class ExpenseBean  implements Serializable{
 	public String getBlb_images1() {
 		return blb_images1;
 	}
+	private Boolean renderlogo;
 	public String getStr_OrganizationLogo() {
 		str_OrganizationLogo=getExpenseService().organizationLogo(Util.getAppartmentId());
+		
 		//str_OrganizationLogo="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_OrganizationLogo;
 		return str_OrganizationLogo;
+	}
+	public Boolean getRenderlogo() {
+		if(getStr_OrganizationLogo()!=null)
+		{
+			renderlogo=true;
+		}
+		else
+			renderlogo=false;
+		return renderlogo;
+	}
+	public void setRenderlogo(Boolean renderlogo) {
+		this.renderlogo = renderlogo;
 	}
 	public void setstr_OrganizationLogo(String str_OrganizationLogo) {
 		this.str_OrganizationLogo = str_OrganizationLogo;
@@ -1018,7 +1032,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 			}
 			path="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_OrganizationLogo;
 			addOrganizationLogo();
-			getExpenseService().updateOrganizationName(path);
+			getExpenseService().updateOrganizationLogo(path);
 			getStr_OrganizationName();
 			 
 			 System.out.println(path+"path");
@@ -1041,18 +1055,15 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 		str_Document_Upload = fmt.format(new Date()) +getFileName(part2).substring(getFileName(part2).lastIndexOf('.'));
-		// Extract file name from content-disposition header of file part
-		//String fileName = getFileName(part);
+		 
 		System.out.println("***** fileName: " +str_Document_Upload);
-
-		//String basePath = "D:" + File.separator + "temp" + File.separator;
-		//File outputFilePath = new File(basePath + fileName);
+ 
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
 		File outputFilePath = new File(basePath+str_Document_Upload);
 		
-		System.out.println(outputFilePath+"outputFilePath3");
+		 
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
@@ -1084,6 +1095,14 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 	}
 	private Part part;
 	private Part part1;
+	private Part part2;
+	public Part getPart3() {
+		return part3;
+	}
+	public void setPart3(Part part3) {
+		this.part3 = part3;
+	}
+	private Part part3;
 	public Part getPart1() {
 		return part1;
 	}
@@ -1096,7 +1115,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 	public void setPart2(Part part2) {
 		this.part2 = part2;
 	}
-	private Part part2;
+	
 	public Part getPart() throws IOException {
 		 
 		return part;
@@ -1204,8 +1223,8 @@ public   void getOrganizationLogo()
 }
 private String str_TextLogo1;
 public String getStr_TextLogo1() {
-	str_TextLogo1=getExpenseService().getTextLogo(Util.getAppartmentId());
-	return str_TextLogo1;
+	textLogo=getExpenseService().getTextLogo(Util.getAppartmentId());
+	return textLogo;
 }
 public void setStr_TextLogo1(String str_TextLogo1) {
 	this.str_TextLogo1 = str_TextLogo1;
@@ -1417,6 +1436,44 @@ public void addAsset()
  */
 
 
+public void  uploadAssetsFile( ) throws IOException   {
+	 
+	   
+	    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	    str_AssetImg = fmt.format(new Date()) +getFileName(part3).substring(getFileName(part3).lastIndexOf('.'));
+	    ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+	    File file=new File(basePath+str_AssetImg);
+	 // Copy uploaded file to destination path
+	 		InputStream inputStream = null;
+	 		OutputStream outputStream = null;
+	 		try {
+	 			inputStream = part3.getInputStream();
+	 			outputStream = new FileOutputStream(file);
+
+	 			int read = 0;
+	 			final byte[] bytes = new byte[1024];
+	 			while ((read = inputStream.read(bytes)) != -1) {
+	 				outputStream.write(bytes, 0, read);
+	 			}
+	 			path3="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
+	 			 System.out.println(path3);
+	 			statusMessage = "File upload successfull !!";
+	 			
+	 		} catch (IOException e) {
+	 			e.printStackTrace();
+	 			statusMessage = "File upload failed !!";
+	 		} finally {
+	 			if (outputStream != null) {
+	 				outputStream.close();
+	 			}
+	 			if (inputStream != null) {
+	 				inputStream.close();
+	 			}
+	 		}
+	 		 
+}
+/*
 public void  handleFileUpload4(FileUploadEvent event) throws IOException {
 	System.out.println("seemooooooooooooooooooo");
 	 
@@ -1454,7 +1511,7 @@ public void  handleFileUpload4(FileUploadEvent event) throws IOException {
 	    
 	    
 	    
-}
+}*/
 public String getPath3() {
 	return path3;
 }
