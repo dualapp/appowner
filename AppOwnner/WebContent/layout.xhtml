@@ -1,47 +1,18 @@
 
 <!DOCTYPE html>
-<html lang="en"
+<ui:composition lang="en"
 	
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fb="http://www.facebook.com/2008/fbml"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="include/templates/beforelogintemplate.xhtml">
+<ui:define name="content">
 <h:head>
 
-	<title>Login</title>
-
-	<meta charset="utf-8" />
-
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
-
-	<link rel="shortcut icon" type="image/x-icon"
-		href="css/images/favicon.ico" />
-
-	<link rel="stylesheet" href="css/style1.css" type="text/css"
-		media="all" />
-		<link rel="stylesheet" href="css/layout.css" type="text/css"
-		media="all" />
-
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
-		media="all" />
-
-	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700'
-		rel='stylesheet' type='text/css' />
-
-	<script src="js/jquery-1.8.0.min.js"></script>
-
-
-
-	<script src="js/jquery.flexslider-min.js"></script>
 	
-
-	<script src="js/functions.js"></script>
-	<script src="js/googlelogin.js"></script>
-	<script src="js/fblogin.js"></script>
 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 
 
@@ -131,78 +102,13 @@ function InvalidMsg1(textbox) {
 </h:head>
 
 <h:body>
-
-	<!-- wraper -->
-
-	<div id="wrapper">
-
-		<!-- shell -->
-
-		<div class="shell">
-
-			<!-- container -->
-
-			<div class="container">
-
-				<!-- header -->
-
-				<header id="header">
-
-					<h1 id="logo">
-						<a href="#">App-Owner</a>
-					</h1>
-
-					<!-- search -->
-
-					<div class="search">
-
-						<form method="post" action="#">
-
-							<span class="field"> <input type="text" class="field"
-								value="keywords here ..." title="keywords here ..." />
-
-							</span> <input type="submit" class="search-btn" value="" />
-
-						</form>
-
-					</div>
-
-					<!-- end of search -->
-
-				</header>
-
-				<!-- end of header -->
-
-				<!-- navigation -->
-
-				<nav id="navigation">
-					<a href="#" class="nav-btn">HOME<span class="arr"></span></a>
-
-					<ul>
-
-						<li class="active"><a href="index.xhtml">HOME</a></li>
-
-						<li><a href="#">About</a></li>
-
-						<li><a href="#">Feature</a></li>
-
-					
-
-						<li><a href="#">FAQ</a></li>
-
-						<li><a href="#">blog</a></li>
-
-						<li><a href="#">contacts</a></li>
-                       <li><a href="layout.xhtml">Login</a></li>
-                      <li><a href="firstpage.xhtml">Registration</a></li>
-					</ul>
-
-				</nav>
-         <div id="addEventForm" style="float:left">
+<div class="shell">
+	
+       
  
   <h:form>
      
-               <fieldset style="border: 2px;width: 39.5em;height:26.5em;background-color: #A0A0A0;">
+               <fieldset style="width: 39.2em;height:26.5em;background-color: #A0A0A0;">
                <p align="center"><font color="white" size="3">Login Credential..</font></p>
                 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                   <table style="width: 98%;margin-left: 5%;margin-right: 5%;margin-top:1px" >
@@ -255,19 +161,20 @@ function InvalidMsg1(textbox) {
                       <p:outputLabel value="Login With :" style="color:#FFFFFF"></p:outputLabel>
                       &#150; &#150;
 						 
-					 <p:button style="background-color:#133783;color:white;height:20px; width:20px;" value="F" title="Facebook Connect" href="#{loginPageCode.facebookUrlAuth}" />&#150; &#150;
+					 <p:link style="background-image:images/linkedin.png;color:white;height:20px; width:20px;" value="f" title="Facebook Connect" href="#{loginPageCode.facebookUrlAuth}" />
+					 &#150; &#150;
 						
 			
 						
 						 
 					
 					 <h:commandLink action="#{login.linkedinuserLogin}">
-									<p:graphicImage height="18px" width="20px" value="images/link.jpg" />
+									<p:graphicImage height="18px" width="20px" value="images/linkedin.png" />
 					</h:commandLink>&#150; &#150;
 						
 							<h:commandLink action="#{login.linkedinuserLogin}">
 									<p:graphicImage height="18px" width="20px"
-										value="images/twiter.jpg" />
+										value="images/twitter.png" />
 								</h:commandLink>
 						&#150;
 						 <input type="button" class="zocial googleplus" style="height:19px; width:22px;" value="G+" title="Login With Goole" onclick="login()" />
@@ -283,15 +190,17 @@ function InvalidMsg1(textbox) {
 
 </h:form>
 </div>
-
+<div class="shell" align="right">
 <h:form>
-<div id="addEventForm1" >
-<fieldset style="border: 2px;width: 39.5em;height:26.5em;background-color: #A0A0A0;">
+
+<fieldset style="width: 39.5em;height:26.5em;background-color: #A0A0A0;position: absolute;
+    left: 830px;
+    top: 150px;">
 <p align="center"><font color="white" size="3">
 
 									New User? Join now</font></p> 
 
- <table style="margin-left: 5%;margin-right: 5%;margin-bottom:5em;margin-top:2em" >
+ <table style="margin-right: 9em;margin-bottom:5em;margin-top:2em" >
 
      <tr></tr>
    		<tr>
@@ -336,11 +245,11 @@ function InvalidMsg1(textbox) {
                 </td>
           </tr>
               
-          <tr><td colspan="2"><h:commandButton value="Join Us"   action="#{cls_UserBean.getRegistration}" style="width:13em; color:chocolate;margin-left:6.2em;margin-top:1em;padding-top:1px;padding-left:2px;">
+          <tr><td colspan="2"><h:commandButton value="Join Us"   action="#{cls_UserBean.getRegistration}" style="width:13em; color:chocolate;margin-left:5.5em;margin-top:1em;padding-top:1px;padding-left:2px;">
              </h:commandButton>&#150;&#150; &#150;&#150; &#150;&#150;
               </td>
               </tr>
-              <tr><td colspan="2">&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
+              <tr><td colspan="2">&#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150;
         <font color="#FFFFFF" >Not found your Complex </font>
           </td>
           </tr>
@@ -354,7 +263,7 @@ function InvalidMsg1(textbox) {
          
           <tr><td></td>
           <td>
-              <p:selectBooleanCheckbox id="indicator" style="color:#FFFFFF" value="#{cls_UserBean.indicator}" required="true"/><font color="white" size="2">&#150; &#150;Terms And Conditions | Privacy Policy</font>
+              <p:selectBooleanCheckbox id="indicator" style="color:#FFFFFF" value="#{cls_UserBean.indicator}" required="true"/><font color="grey" size="2">&#150; &#150;<h:link value="Terms And Conditions | Privacy Policy"></h:link></font>
            
             
               </td>
@@ -365,48 +274,12 @@ function InvalidMsg1(textbox) {
    </table>
 
 </fieldset>
-</div>
 </h:form>
-<div class="footer-bottom">
+</div>
 
-					<nav class="footer-nav">
-
-						<ul>
-
-							<li class="active"><a href="#">Home</a></li>
-
-							<li><a href="#">About</a></li>
-
-							<li><a href="#">Feature</a></li>
-
-							<li><a href="#">Plan</a></li>
-
-							<li><a href="#">FAQ</a></li>
-
-							<li><a href="#">Blog</a></li>
-
-							<li><a href="#">Contacts</a></li>
-
-						</ul>
-
-					</nav>
-
-					<p class="copy">
-						&amp;copy; Copyright 2012 Dualapp Technology Pvt. Ltd <span>|</span>
-						<strong>Design by <a target="_blank"
-							href="http://www.dualapptech.com">Dualapp Technology</a></strong>
-					</p>
-
-					<div class="cl">&amp;nbsp;</div>
-
-				</div>
-
-			</div>
-
-		</div>
-	</div>
 </h:body>
-</html>
+</ui:define>
+</ui:composition>
                               
 
 
