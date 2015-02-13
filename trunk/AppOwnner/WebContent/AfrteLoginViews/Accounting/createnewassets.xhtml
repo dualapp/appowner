@@ -26,12 +26,12 @@
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
                <h:outputText value="  Organisation:*" /> </th>
               
-               <td><p:selectOneMenu   style="width:100px"> 
+               <td><p:selectOneMenu > 
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </p:selectOneMenu> </td> 
                  <th><h:outputText value="Assets Category*"/></th>
-                 <td><p:selectOneMenu  id="AssetCategory" required="true" requiredMessage="plz Enter Assets Category "  value="#{expenseBean.str_AssetCategoryType}"   style="width:100px">
+                 <td><p:selectOneMenu  id="AssetCategory" required="true" requiredMessage="plz Enter Assets Category "  value="#{expenseBean.str_AssetCategoryType}">
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
@@ -46,7 +46,7 @@
                   <p:message  id="AssetNameMsg" for="AssetName" display="text"/> 
                  </td>
                  
-                <th><h:outputText value="Location(Block)"/></th><td><p:selectOneMenu  value="#{expenseBean.str_Block}"     style="width:100px"> 
+                <th><h:outputText value="Location(Block)"/></th><td><p:selectOneMenu  value="#{expenseBean.str_Block}"> 
               <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
@@ -74,8 +74,27 @@
                    <td> <p:outputPanel layout="block" id="assetimg" style="width:200px;height:200px;margin-bottom:20px">  
        <p:graphicImage height="150" width="150" value="#{expenseBean.getPath3()}"/></p:outputPanel></td ></tr><tr><td>
        
-       <p:fileUpload  style="width:70%; " update="assetimg" fileUploadListener="#{expenseBean.handleFileUpload4}" multiple="true"  mode="advanced" dragDropSupport="false"
-            sizeLimit="100000"    allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"></p:fileUpload>
+       <!-- inputFile tag to upload file -->
+		 
+		<h:inputFile id="file" 
+		             label="file"
+			         value="#{expenseBean.part3}" 
+			         required="true" 
+			         requiredMessage="File not selected !!">
+            <!-- FileUploadValidator for file validation -->
+		    <f:validator validatorId="FileUploadValidator" />
+		</h:inputFile>
+		
+		<h:message style="color: red" for="file" /><br />
+ 
+		<h:commandButton id="upload" update="assetimg" execute="file"
+		                 action="#{expenseBean.uploadAssetsFile()}"
+			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
+			              
+			             </h:commandButton>
+        <!-- status message of file upload; rendered if message is set -->
+		<h:outputText value="#{expenseBean.statusMessage}"
+			          rendered="#{not empty expenseBean.statusMessage}" />
        </td></tr>
         
                  </table>

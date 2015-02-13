@@ -188,12 +188,18 @@ border: 1px solid #f09784 !important;
 }
 table.src {
  
-width: 98%;
-border-collapse: collapse;
+margin-left: 15px;
+position: relative;
+overflow: auto;
+margin-top:0px;
+margin-right: 15px;
  
-margin-top: 1px;
-margin-bottom: 1px;
-background: #e9eaed;
+padding-top: 10px;
+padding-bottom: 20px;
+ 
+border-radius: 4px;
+ 
+background:#DAE1F5;
  
 }
 .p30 {
@@ -222,7 +228,7 @@ font-size: 15px;
  font-weight: bold;
  text-align:left;
 text-shadow: 0 0 0.2em #8F7 ;
-  
+ 
 margin-left: 10px;
 padding-bottom: 1px;
 font-family: "Open Sans light", sans-serif;
