@@ -1,0 +1,316 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <h:head>
+
+
+
+	<title>Login</title>
+
+	<meta charset="utf-8" />
+
+
+
+	<meta name="viewport"
+
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+
+
+
+	<link rel="shortcut icon" type="image/x-icon"
+
+		href="css/images/favicon.ico" />
+
+
+
+	<link rel="stylesheet" href="css/style1.css" type="text/css"
+
+		media="all" />
+
+		<link rel="stylesheet" href="css/layout.css" type="text/css"
+
+		media="all" />
+
+
+
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
+
+		media="all" />
+
+
+
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700'
+
+		rel='stylesheet' type='text/css' />
+
+
+
+	<script src="js/jquery-1.8.0.min.js"></script>
+
+
+
+
+
+
+
+	<script src="js/jquery.flexslider-min.js"></script>
+
+	
+
+
+
+	<script src="js/functions.js"></script>
+
+	<script src="js/googlelogin.js"></script>
+
+	<script src="js/fblogin.js"></script>
+
+<script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
+
+
+
+
+<script>
+
+ var modalWin = new CreateModalPopUpObject();
+ modalWin.SetLoadingImagePath("images/loading.gif");
+ modalWin.SetCloseButtonImagePath("images/remove.gif");
+ //Uncomment below line to make look buttons as link
+ //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
+
+function ShowNewPage(){
+ var callbackFunctionArray = new Array(Submit, Cancel);
+ modalWin.ShowURL('/AppOwnner/AfrteLoginViews/Advertisement/contactus.xhtml',300,380,'Contact Us',null,callbackFunctionArray);
+ }
+
+	 
+ 
+function ShowMessage() {
+ modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
+ }
+  
+ function  ShowMessageWithAction(){
+    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
+    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
+ }
+
+function ShowMessageNoDragging(){
+ modalWin.Draggable=false;
+ modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
+
+}
+
+function Action1(){
+alert('Action1 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Action2(){
+alert('Action2 is excuted');
+modalWin.HideModalPopUp();
+}
+
+function Submit(msg){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function Cancel(){
+modalWin.HideModalPopUp();
+modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+}
+
+function HideModalWindow() {
+    modalWin.HideModalPopUp();
+}
+function MyFunc(obj1)
+{   var ob=obj1.value;
+
+	alert(ob);
+	}
+function InvalidMsg(textbox) {
+    
+    if (textbox.value == '') {
+        textbox.setCustomValidity('Required Valid UserName');
+    }
+   
+    else {
+        textbox.setCustomValidity('');
+    }
+    return true;
+}
+function InvalidMsg1(textbox) {
+    
+    if (textbox.value == '') {
+        textbox.setCustomValidity('Required Valid Password');
+    }
+   
+    else {
+        textbox.setCustomValidity('');
+    }
+    return true;
+}
+</script>
+
+
+</h:head>
+<h:body>
+   <div id="wrapper">
+
+
+
+		<!-- shell -->
+
+
+
+		<div class="shell">
+
+
+
+			<!-- container -->
+
+
+
+			<div class="container">
+
+
+
+				<!-- header -->
+
+
+
+				<header id="header">
+
+
+
+					<h1 id="logo">
+
+						<a href="#">App-Owner</a>
+
+					</h1>
+
+
+
+					<!-- search -->
+
+
+
+					<div class="search">
+
+
+
+						<form method="post" action="#">
+
+
+
+							<span class="field"> <input type="text" class="field"
+
+								value="keywords here ..." title="keywords here ..." />
+
+
+
+							</span> <input type="submit" class="search-btn" value="" />
+
+
+
+						</form>
+
+
+
+					</div>
+
+
+
+					<!-- end of search -->
+
+
+
+				</header>
+
+
+
+				<!-- end of header -->
+
+
+
+				<!-- navigation -->
+
+
+
+				<nav id="navigation">
+
+					<a href="#" class="nav-btn">HOME<span class="arr"></span></a>
+
+
+
+					<ul>
+
+
+
+						<li class="active"><a href="index.xhtml">HOME</a></li>
+
+
+
+						<li><a href="#">About</a></li>
+
+
+
+						<li><a href="#">Feature</a></li>
+
+
+
+					
+
+
+
+						<li><a href="#">FAQ</a></li>
+
+
+
+						<li><a href="#">blog</a></li>
+
+
+
+						<li><input type="text"  onclick="ShowNewPage()" value="CONTACTS" style="background-color:#E6E6FA;color:black;size:2; width:7em;margin-top:1em;"/></li>
+
+                       <li><a href="layout.xhtml">Login</a></li>
+
+                      <li><a href="layout.xhtml">Registration</a></li>
+
+					</ul>
+
+
+
+				</nav>
+
+			</div>
+			</div>
+			
+			
+			
+      
+       
+      
+        <div id="content-container">
+            <div id="content">
+                <ui:insert name="content">
+                   
+                </ui:insert>
+            </div>
+           <div id="footer-container">
+            <div id="footer">
+                <ui:insert name="footer">
+                 <ui:include src="/include/templates/beforeloginfooter.xhtml" />
+                </ui:insert>
+            </div>
+        </div>
+       
+        </div>
+        </div>
+        </h:body>
+        </h:head>
+        </html>
+        
+
+
+
+	
