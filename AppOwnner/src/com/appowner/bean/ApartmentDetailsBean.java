@@ -21,6 +21,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
@@ -195,6 +196,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void communityTypeListener(ValueChangeEvent event)
 	{
 		
+		 
 		/*list1.addAll((List<String>) event.getOldValue());
 		@SuppressWarnings("rawtypes")
 		ListIterator itr1=list1.listIterator();
@@ -206,6 +208,7 @@ public class ApartmentDetailsBean  implements Serializable{
 			 
 			getApartmentDetailsService().deleteCommunityType(str_CommunityType);
 		}*/
+		  
 		list.addAll((List<String>) event.getNewValue());
 	}
 	
@@ -270,10 +273,9 @@ public class ApartmentDetailsBean  implements Serializable{
 		
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
-        System.out.println(newValue+"oldValue");
-        System.out.println(newValue+"celedit");
-        System.out.println(event.getColumn()+"column");
-         
+        System.out.println(oldValue+"oldValue");
+        System.out.println(newValue+"newValue");
+      
         if(newValue != null && !newValue.equals(oldValue)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -609,8 +611,9 @@ System.out.println(entitiesToDelete+"entyt todelete");
 				// Extract file name from content-disposition header of file part
 				String fileName = getFileName(part);
 				System.out.println("***** fileName: " + fileName);
-		  
-				String basePath = "D:" + File.separator + "kalpanaproj" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+				 ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+					String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+				 
 				System.out.println(basePath);
 				File outputFilePath = new File(basePath+fileName);
 			System.out.println(outputFilePath.getAbsolutePath());
@@ -685,7 +688,9 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		   */
 		  public String downloadFile() throws IOException
 		  {
-		     File file = new File("D:\\kalpanaproj\\AppOwnner\\WebContent\\images\\Community_setup_house.xls");
+			  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+				String basePath = servletContext.getContextPath()+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		     File file = new File(basePath+"Community_setup_house.xls");
 		     InputStream fis = new FileInputStream(file);
 		     byte[] buf = new byte[1024];
 		     int offset = 0;

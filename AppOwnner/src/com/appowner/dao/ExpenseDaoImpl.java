@@ -546,7 +546,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	}
 
 	@Override
-	public void updateOrganizationName(String path) {
+	public void updateOrganizationLogo(String path) {
 		// TODO Auto-generated method stubInteger id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
 		
 		Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();

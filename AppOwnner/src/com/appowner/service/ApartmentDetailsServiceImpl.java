@@ -199,6 +199,12 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		return getApartmentDetailsDao().getCommunityMasterType(cid);
 	}
 
+	@Override
+	public void deleteCommunityType(String str_CommunityType) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().deleteCommunityType(str_CommunityType);
+	}
+
 	
 
 }

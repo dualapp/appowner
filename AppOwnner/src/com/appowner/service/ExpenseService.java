@@ -168,7 +168,7 @@ public interface ExpenseService {
 
 	void updateAppartmentImg(String path1);
 
-	void updateOrganizationName(String path);
+	void updateOrganizationLogo(String path);
 
 	 
 
