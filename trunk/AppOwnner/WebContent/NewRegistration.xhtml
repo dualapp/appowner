@@ -1,46 +1,24 @@
 <!DOCTYPE html>
-<html lang="en"
+<ui:composition lang="en"
 	style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+template="include/templates/beforelogintemplate.xhtml">
+<ui:define name="content">
+	
 
 <h:head>
 
-	<title>Login</title>
-
-	<meta charset="utf-8" />
-
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
-
-	<link rel="shortcut icon" type="image/x-icon"
-		href="css/images/favicon.ico" />
-
-	<link rel="stylesheet" href="css/style1.css" type="text/css"
-		media="all" />
-
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css"
-		media="all" />
-
-	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700'
-		rel='stylesheet' type='text/css' />
-
-	<script src="js/jquery-1.8.0.min.js"></script>
-
-
-
-	<script src="js/jquery.flexslider-min.js"></script>
-
-	<script src="js/functions.js"></script>
+	
 	<script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
 <style>
 #content
             {
-                color: white;
-                margin-top: 50px;
+                color: grey;
+               
                
             }
 </style>
@@ -126,99 +104,31 @@ function InvalidMsg1(textbox) {
 }
 </script>
 </h:head>
-
 <h:body>
+<div class="shell">
 
-	<!-- wraper -->
-
-	<div id="wrapper">
-
-		<!-- shell -->
-
-		<div class="shell">
-
-			<!-- container -->
-
-			<div class="container">
-
-				<!-- header -->
-
-				<header id="header">
-
-					<h1 id="logo">
-						<a href="#">App-Owner</a>
-					</h1>
-
-					<!-- search -->
-
-					<div class="search">
-
-						<form method="post" action="#">
-
-							<span class="field"> <input type="text" class="field"
-								value="keywords here ..." title="keywords here ..." />
-
-							</span> <input type="submit" class="search-btn" value="" />
-
-						</form>
-
-					</div>
-
-					<!-- end of search -->
-
-				</header>
-
-				<!-- end of header -->
-
-				<!-- navigation -->
-
-				<nav id="navigation">
-					<a href="#" class="nav-btn">HOME<span class="arr"></span></a>
-
-					<ul>
-
-						<li class="active"><a href="index.xhtml">HOME</a></li>
-
-						<li><a href="#">About</a></li>
-
-						<li><a href="#">Feature</a></li>
-
-					
-
-						<li><a href="#">FAQ</a></li>
-
-						<li><a href="#">blog</a></li>
-
-						<li><a href="#">contacts</a></li>
-                       <li><a href="layout.xhtml">Login</a></li>
-                      <li><a href="firstpage.xhtml">Registration</a></li>
-					</ul>
-
-				</nav>
-
-
-
-          <div id="page8">
+        
         
          
-   <p:outputPanel   rendered="true">
+   <p:outputPanel   rendered="#{request.getAttribute('render')}">
 				  <body onLoad="ShowNewPage()"/>
 					</p:outputPanel>
 				
-				
- <h:form id="form" bgcolor="red">
- <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+ <div style="background-color: #FFFFFF;">				
+ <h:form id="form" >
+
+ <table cellpadding="0" cellspacing="0" border="0"  width="100%" class="src">
 		<tbody>
 			<tr>
 				<td> 
-					<img src="images/started.jpg" height="50" width="50"></img> <span class="title"><font size="5">New User Registration.</font></span>
+					<img src="images/started.jpg" height="50" width="50"></img> <span class="title"><font size="5">New User Registration.<hr/></font></span>
 				</td>
 			</tr>
 		</tbody>
 	</table> 
 	
  <h:message style="red"/>
-  <table  style="overflow:hidden;border:0pt none;width:68%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+  <table  style="overflow:hidden;border:0pt none;width:58%;margin-left: 1%;margin-right: 1%;margin-bottom:7px;background-color: #FFFFFF;" >
          <tr>
                 <td colspan="2" align="left">
                  <br></br> <h3><u>Login Information</u></h3><br></br></td></tr>
@@ -230,25 +140,25 @@ function InvalidMsg1(textbox) {
             <p:ajax event="blur" update="out2" listener="#{cls_UserBean.dataChange1}" partialSubmit="true"/>   
             </h:inputText>&#150;
             <h:outputText id="out2" value="#{cls_UserBean.value}" />
-            </td><td><p:message for="str_username" display="text"/></td>
+            </td><td><p:message for="str_username" display="icon"/></td>
             </tr>
    
             <tr>
             <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
             <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 20 char!">
             <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,20})"/>
-            </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
+            </h:inputSecret></td> <td><p:message for="str_Password" display="icon"/></td></tr>
              <tr>
             <td><h:outputText value="Confirm Password* :"></h:outputText><font color="red" >*</font></td>
              <td><h:inputSecret id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBean.str_ConfirmPassword}" required="true"                requiredMessage="Enter Confirm Password!">
              <f:validateLength minimum="4" maximum="16"/>
-             </h:inputSecret></td> <td><p:message for="str_ConfirmPassword" display="text"/></td></tr>
+             </h:inputSecret></td> <td><p:message for="str_ConfirmPassword" display="icon"/></td></tr>
               <tr>
              <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
          <td><h:selectOneRadio id="options" value="#{cls_UserBean.int_UserRole}">
             <f:selectItem itemLabel="Tenant" itemValue="1" />
             <f:selectItem itemLabel="Owner" itemValue="2" />
-            </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
+            </h:selectOneRadio></td><td><p:message for="options" display="icon"/></td> </tr>
             <tr><td colspan="2" align="left"><br></br>
            <h3><u>General Information</u></h3><br></br></td></tr>
             <tr>
@@ -256,30 +166,30 @@ function InvalidMsg1(textbox) {
             </h:outputText><font color="red" >*</font> </td>          
             <td><h:inputText id="str_FirstName" value="#{cls_UserBean.str_FirstName}" required="true" requiredMessage="Enter First Name!">
             </h:inputText></td>
-            <td><p:message for="str_FirstName" dispay="text"/></td>
+          <td><p:message for="str_FirstName" display="icon" /></td>
             </tr> 
             <tr>
             <td><h:outputText value="Last name :">
             </h:outputText> </td>           
             <td><h:inputText id="str_LastName" value="#{cls_UserBean.str_LastName}"  required="true" requiredMessage="Enter First Name!">
-            </h:inputText></td><td><p:message for="str_LastName" display="text"/></td></tr>
+            </h:inputText></td><td><p:message for="str_LastName" display="icon"/></td></tr>
              <tr>
              <td><h:outputText value="Email :">
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText id="str_Email" value="#{cls_UserBean.str_Email}" required="true"  maxlength="50" validatorMessage=" Email id should be like abc@gmail.com" requiredMessage="Enter Email!">
              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
              <p:ajax event="blur" update="out3" listener="#{cls_UserBean.dataChange2}" partialSubmit="true" />
-            </h:inputText> <h:outputText id="out3" value="#{cls_UserBean.value1}" /></td><td><p:message for="str_Email" display="text"/></td></tr>
+            </h:inputText> <h:outputText id="out3" value="#{cls_UserBean.value1}" /></td><td><p:message for="str_Email" display="icon"/></td></tr>
             <tr>
             <td><h:outputText value="Confirm Email :">
             </h:outputText><font color="red" >*</font> </td>           
             <td><h:inputText id="str_ConfirmEmail" value="#{cls_UserBean.str_ConfirmEmail}"    maxlength="50"            required="true" requiredMessage="Enter Confirm Email!">
-            </h:inputText></td> <td><p:message for="str_ConfirmEmail" display="text"/></td></tr>
+            </h:inputText></td> <td><p:message for="str_ConfirmEmail" display="icon"/></td></tr>
                 <tr>
            <td> <h:outputText value="Phone No* :">
             </h:outputText><font color="red" >*</font></td>            
             <td><h:inputText id="str_PhoneNo" value="#{cls_UserBean.str_PhoneNo}" required="true"  maxlength="10"              requiredMessage="Enter Phone No!">
-            </h:inputText> </td><td><p:message for="str_PhoneNo" display="text"/></td> </tr> 
+            </h:inputText> </td><td><p:message for="str_PhoneNo" display="icon"/></td> </tr> 
             <tr><td colspan="2" align="left"><br></br>
            <h3><u>Apartment Information</u></h3><br></br></td></tr>
        
@@ -290,7 +200,7 @@ function InvalidMsg1(textbox) {
             <td><h:outputText value="Apartment :">
             </h:outputText><font color="red" >*</font></td>            
             <td><h:inputText id="apartment" value="#{selectOneMenuBean.apartment}"    required="true" requiredMessage="Enter Apartment/Complex name!">
-            </h:inputText></td> <td><p:message for="apartment" display="text"/></td></tr>
+            </h:inputText></td> <td><p:message for="apartment" display="icon"/></td></tr>
          
             
              <tr>
@@ -308,7 +218,7 @@ function InvalidMsg1(textbox) {
              <tr>
               <td><h:outputText  value="Apartment/Complex Name :"></h:outputText><font color="red" >*</font> </td>          
               <td> <h:inputText id="str_ApartmentName" value="#{cls_UserBean.str_Apartment}" required="true" requiredMessage="Enter Apartment Name!">
-                   </h:inputText> </td><td><p:message for="str_ApartmentName" display="text"/>
+                   </h:inputText> </td><td><p:message for="str_ApartmentName" display="icon"/>
                    
                </td>
                </tr>
@@ -317,17 +227,17 @@ function InvalidMsg1(textbox) {
  <td><h:outputText value="Country :">
             </h:outputText> <font color="red" >*</font></td>           
            <td> <h:inputText id="counter" value="#{selectOneMenuBean.count1}" readOnly="true"  required="true" requiredMessage="Enter Country Name!">
-            </h:inputText> </td> <td><p:message for="counter" display="text"/></td></tr>
+            </h:inputText> </td> <td><p:message for="counter" display="icon"/></td></tr>
             <tr>
             <td><h:outputText value="State :">
             </h:outputText><font color="red" >*</font> </td>           
            <td> <h:inputText id="state" value="#{selectOneMenuBean.state}" readOnly="true"  required="true" requiredMessage="Enter StateName!">
-            </h:inputText></td><td><p:message for="state" display="text"/></td> </tr>
+            </h:inputText></td><td><p:message for="state" display="icon"/></td> </tr>
             <tr>
              <td><h:outputText value="City :">
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText id="city" value="#{selectOneMenuBean.city}" readOnly="true"  required="true" requiredMessage="Enter City Name!">
-            </h:inputText></td><td><p:message for="city" display="text"/></td></tr>
+            </h:inputText></td><td><p:message for="city" display="icon"/></td></tr>
             
              <tr> 		<td></td>	
             <td><h:commandButton id="addUser" value="Create Account" action="#{cls_UserBean.addUser}" style=" background-color:#9ACD32;width:10em; color:white;margin-top:1em;"/>
@@ -335,7 +245,7 @@ function InvalidMsg1(textbox) {
              </tr>
             
             </table>
-          <fieldset style="border: 2px;width:30em;height:52em;background-color: #696969;margin-left: 50em;margin-top:-55em">
+          <fieldset style="border: 2px;width:30em;height:55em;background-color: #696969;margin-left: 50em;margin-top:-56em;margin-bottom:2em;">
             <table  >
             
             <tr>
@@ -360,49 +270,11 @@ function InvalidMsg1(textbox) {
           
             </table>
           </fieldset>
-            </h:form>  
-            </div>
-            <div id="content">
-    	<div class="footer-bottom">
-
-					<nav class="footer-nav">
-
-						<ul>
-
-							<li class="active"><a href="#">Home</a></li>
-
-							<li><a href="#">About</a></li>
-
-							<li><a href="#">Feature</a></li>
-
-							<li><a href="#">Plan</a></li>
-
-							<li><a href="#">FAQ</a></li>
-
-							<li><a href="#">Blog</a></li>
-
-							<li><a href="#">Contacts</a></li>
-
-						</ul>
-
-					</nav>
-
-					<p class="copy">
-						&amp;copy; Copyright 2012 Dualapp Technology Pvt. Ltd <span>|</span>
-						<strong>Design by <a target="_blank"
-							href="http://www.dualapptech.com">Dualapp Technology</a></strong>
-					</p>
-
-					<div class="cl">&amp;nbsp;</div>
-
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-	</div>
-</h:body>
-<!-- END PAGE SOURCE -->
-
-</html>
+     
+         </h:form>
+         </div>
+         </div>
+         </h:body>
+         
+</ui:define>
+</ui:composition>
