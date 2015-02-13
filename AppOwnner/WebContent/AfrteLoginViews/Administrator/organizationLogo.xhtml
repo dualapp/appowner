@@ -32,7 +32,7 @@
                <h:outputText value="Organisation:" /> </th>
               <td> <h:outputText value="#{expenseBean.str_OrganizationName}"/></td></tr>
                  
-       <tr><th><h:outputText value="Appartment Address:"/> </th><td><p:inputTextarea rows="6" cols="33"     value="#{expenseBean.str_ApptAddress}"/></td></tr><br/>
+       <tr><th><h:outputText value="Appartment Address:"/> </th><td><p:inputTextarea rows="6" cols="33"     value="#{expenseBean.str_ApptAddress}"/></td></tr> 
   
   <tr><th><h:outputText value="Upload Appartment Logo:"/></th> 
  <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
@@ -49,7 +49,7 @@
 		</h:inputFile>
 		<h:message style="color: red" for="file1" /><br />
  
-		<h:commandButton id="submit1"  update="@form"
+		<h:commandButton id="submit1"  update="@form" style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
 		                 action="#{expenseBean.uploadOrganizationLogo()}"
 			             value="upload file" >
 			              <f:ajax execute="file1" event="click" render="@form" />
@@ -81,7 +81,7 @@
 		</h:inputFile>
 		<h:message style="color: red" for="file" /><br />
  
-		<h:commandButton id="submit"  
+		<h:commandButton id="submit"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
 		                 action="#{expenseBean.uploadApartmentImage()}"
 			             value="upload file" >
 			               <f:ajax execute="file" event="click"  render="upload"/>
@@ -110,7 +110,7 @@
 		</h:inputFile>
 		<h:message style="color: red" for="file3" /><br />
  
-		<h:commandButton id="submit3"  
+		<h:commandButton id="submit3"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
 		                 action="#{expenseBean.uploadDocument()}"
 			             value="upload file" >
 			                 <f:ajax execute="file3" event="click"  render="upload"/>
@@ -123,7 +123,7 @@
                                   
                                   </td></tr>
             
-        <tr><th><h:outputText value="OrganizationTextLogo" /></th><td><h:inputText id="textlogo" value="#{expenseBean.textLogo}"/></td></tr><br/>
+        <tr><th><h:outputText value="OrganizationTextLogo" /></th><td><h:inputText id="textlogo" value="#{expenseBean.textLogo}"/></td></tr> 
         <tr><th><h:outputText value="What is your association office timings? *"/></th> </tr><tr>
         <th><h:outputText value="From"/></th><td><h:selectOneMenu id="str_offcInTiming" value="#{expenseBean.str_offcInTiming}" >
         

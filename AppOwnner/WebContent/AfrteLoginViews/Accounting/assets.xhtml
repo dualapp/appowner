@@ -22,7 +22,7 @@
      <p:growl id="msgs" showDetail="true" />
     <body>
      
- <div>
+ <div id="page3">
               <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th> <h:outputText value="Show Assets Of Organisation:" /> </th>
             <td>  <h:selectOneMenu       style="width:100px"> ;
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
@@ -42,7 +42,7 @@
                  
                  </h:selectOneMenu></td>
                 <th> <p:commandButton   style="width:50px;height:25px"  value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
-                 </div>
+                
                   
                  
                 
@@ -106,6 +106,7 @@
           </p:column>
           
           </p:dataTable>
+           </div>
            <p:dialog header="Edit asset Details" widgetVar="multiAssetDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiAssetDetail" style="text-align:center;">
            <table>

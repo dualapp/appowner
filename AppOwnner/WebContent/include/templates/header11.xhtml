@@ -12,8 +12,8 @@
 
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
-				<a href="#" class="navbar-brand"> <small> <i
-						class="icon-leaf"></i>&nbsp;<h:outputText value="#{LoginBean.getUserloginname()}"/> &nbsp;<p:graphicImage  height="20" width="20" alt="AppartmentLogo" value="#{expenseBean.getStr_OrganizationLogo()}" />&nbsp;<h:outputText value="#{expenseBean.getStr_TextLogo1()}"/>
+				<a href="#" class="navbar-brand"> <small> <i  
+						class="icon-leaf"></i>&nbsp;<h:outputText value="#{LoginBean.getUserloginname()}"/> &nbsp;<p:graphicImage rendered="#{expenseBean.renderlogo}" height="20" width="20" alt="AppartmentLogo" value="#{expenseBean.getStr_OrganizationLogo()}" />&nbsp;<h:outputText value="#{expenseBean.getStr_TextLogo1()}"/>
 				</small>
 				 
 				
