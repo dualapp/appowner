@@ -20,6 +20,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.Part;
 
 import org.springframework.dao.DataAccessException;
 
@@ -150,7 +151,7 @@ public class ComplainBean implements Serializable{
 		cmp.setCh_Complain(getCh_Complain());
 		cmp.setStr_ComplainType(getStr_ComplainType());
 		cmp.setStr_Description(getStr_Description());
-		cmp.setStr_File(uploadedFileName);
+		cmp.setStr_File(path);
 		cmp.setStr_VendorType(str_VendorType);
 		System.out.println(str_VendorType);
 		cmp.setStr_VenderName(str_VenderName);
@@ -304,56 +305,100 @@ public class ComplainBean implements Serializable{
 				BeHalfOfs = beHalfOfs;
 			}
 			//FILE UPLOAD CONCEPT
-			private String uploadedFileName;
-			
-			
-			 public String getUploadedFileName() {
-				return uploadedFileName;
-			}
-			public void setUploadedFileName(String uploadedFileName) {
-				this.uploadedFileName = uploadedFileName;
-			}
-			public void handleFileUpload(FileUploadEvent event) throws IOException {
-				 System.out.println("hi");
-				 String s=event.getFile().getFileName();
-				System.out.println(s);
-				 String path = FacesContext.getCurrentInstance().getExternalContext()
-				            .getRealPath("/");
-				    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-				    String name = fmt.format(new Date())
-				            + event.getFile().getFileName().substring(
-				                  event.getFile().getFileName().lastIndexOf('.'));
-				    System.out.println(name);
-				    File file= new File("E:\\myUploads\\" + "images" + name);
-		               System.out.println(file);
-				    InputStream is = event.getFile().getInputstream();
-				    OutputStream out = new FileOutputStream(file);
-				    byte buf[] = new byte[1024];
-				    int len;
-				    while ((len = is.read(buf)) > 0)
-				        out.write(buf, 0, len);
-				    is.close();
-				    out.close();
-				     uploadedFileName = file.getName();
-				    System.out.println(uploadedFileName);
-				
-			      /*  UploadedFile file = event.getFile();
-			        String fileName = file.getFileName();
-			        System.out.println(file);
-			        System.out.println(fileName);
-			        InputStream myInputStream = file.getInputstream();
-			        System.out.println(myInputStream);
-			        OutputStream out = new FileOutputStream(file);
-			        byte buf[] = new byte[1024];
-			        int len;
-			        while ((len = myInputStream.read(buf)) > 0)
-			            out.write(buf, 0, len);
-			        myInputStream.close();
-			        out.close();
-			        
-			        //Save myInputStream in a directory of your choice and store that path in DB  */
-			    }
 		
+
+			private Part part;
+			private String statusMessage;
+		    private String path;
+			public String uploadFile() throws IOException {
+System.out.println("fjkjkfdjkkjfjkfkj");
+				SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+				 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
+			
+				System.out.println(fileName+"dfjkjkfjkfd");
+		 
+				
+				String basePath = "E:" + File.separator + "sites" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator;
+				System.out.println(basePath);
+				File outputFilePath = new File(basePath+fileName);
+				
+				System.out.println(path+"path");
+				// Copy uploaded file to destination path
+				InputStream inputStream = null;
+				OutputStream outputStream = null;
+				try {
+					inputStream = part.getInputStream();
+					outputStream = new FileOutputStream(outputFilePath);
+		 
+					int read = 0;
+					final byte[] bytes = new byte[1024];
+					while ((read = inputStream.read(bytes)) != -1) {
+						outputStream.write(bytes, 0, read);
+					}
+					path="E://sites/AppOwnner/WebContent/images"+File.separator+fileName;
+				
+					statusMessage = "File upload successfull !!";
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+					statusMessage = "File upload failed !!";
+				} finally {
+					if (outputStream != null) {
+						outputStream.close();
+					}
+					if (inputStream != null) {
+						inputStream.close();
+					}
+				}
+				return null;    // return to same page
+			}
+		 
+			public Part getPart() throws IOException {
+				 
+				return part;
+			}
+		 
+			public void setPart(Part part) {
+				this.part = part;
+			}
+		 
+			public String getStatusMessage() {
+				return statusMessage;
+			}
+		 
+			public void setStatusMessage(String statusMessage) {
+				this.statusMessage = statusMessage;
+			}
+		 
+			// Extract file name from content-disposition header of file part
+			private String getFileName(Part part) {
+				final String partHeader = part.getHeader("content-disposition");
+				System.out.println(part+"fdjkfkjkjf");
+				System.out.println("partHeader: " +partHeader);
+				for (String content : part.getHeader("content-disposition").split(";")) {
+					if (content.trim().startsWith("filename")) {
+						return content.substring(content.indexOf('=') + 1).trim()
+								.replace("\"", "");
+					}
+				}
+				return null;
+			}
+
+			public String getPath() {
+				System.out.println(path+"path1");
+			//	path=user.getVar_ImageName1();
+				if( path==null)
+				{
+					path="/images/profilepic.png";
+					System.out.println(path+"img1");
+				}
+				 
+				return path ;
+			}
+
+			public void setPath(String path) {
+				this.path = path;
+			}
 
 			private Complain cmp;
 			 public Complain getCmp() {
