@@ -74,7 +74,14 @@ public class Cls_UserBean implements Serializable{
 	    private static String fn="fn";
 	    private static String un="un";
 	    private static String an="an";
-	    private static String subject="subject";
+	    private static String url="url";
+	    public static String getUrl() {
+			return url;
+		}
+		public static void setUrl(String url) {
+			Cls_UserBean.url = url;
+		}
+		private static String subject="subject";
 	    private static String content="content";
 	    private String str_Username;
 	    private String criticaNome;
@@ -204,6 +211,7 @@ public class Cls_UserBean implements Serializable{
 		public static void setPd(String pd) {
 			Cls_UserBean.pd = pd;
 		}
+		
 /*
  * variable declaration for return statements..
  */
@@ -365,6 +373,7 @@ public class Cls_UserBean implements Serializable{
 			return Registraion;
 		}
 		
+		
 		/*
 		 * addUser method is define here to adding new user...
 		 */
@@ -456,16 +465,9 @@ public class Cls_UserBean implements Serializable{
 			fn=getStr_FirstName();
 			
 			
-			String url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
+			url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
 			subject="AppOwner.com";
-			content="Hello."+" "  +fn+
-				   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
-					+ "You are registered as the moderator for "+","  +an
-				  
-					+"UserName:  "+" "  +un+" "+"\n"
-				   + "Password:  "+" "  +pd+
-				    "\n Please Click here to Activate your Account "+" "+url ;
-					
+			content="dffddf";
 				
 			List<String> list=new ArrayList<String>();
 			list.add(el);
@@ -559,20 +561,46 @@ public class Cls_UserBean implements Serializable{
 				usr.setInt_activationbit(0);
 				System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
 				getUserService().addUser(usr);
-				 el="kalpanasudha1990@gmail.com";
+				 el="kalpnasudha1990@gmail.com";
 				 un=getStr_Username();
 				pd="9040219579";
 				fn=getStr_FirstName();
 				an=getUserapartment();
 				String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
 				subject="AppOwner.com";
-				content="Hello."+" "  +fn+
-					   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
-						+ "You are registered as the moderator for "+","  +an
-					  
-						+"UserName:  "+" "  +un+" "+"\n"
-					   + "Password:  "+" "  +pd+
-					    "\n Please Click here to Activate your Account "+" "+url ;
+				content="<html>\n" +
+        		
+        		
+                        "<fieldset style="+"width:40%"+">"+
+                      
+                        "<table width="+700+" height="+100+" bgcolor="+"#CCEEFF"+">"+
+        		         "<tr>"+
+                        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Dear:"+" "+fn+""+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"You have now been added as a member in Appownner online community.please use the following credentials to login to the site:"+""+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Website:https://www.appowners.com/"+""+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"UserName:"+" "+un+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Password:"+" "+pd+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Please Click here to Activate your Account"+" "+url+"</font>"+"</td>"+
+        		        
+        		        "</tr>"+"<tr>"+
+"<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"For any queries.please contact  your maintenance manager for details or sene an email to "+" "+url+"</font>"+"</td>"+
+        		        
+        		        "</tr>"+"<tr>"+
+        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Regards:"+"</font>"+"</td>"+
+        		        "</tr>"+"<tr>"+"<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Website Administrator:"+"</font>"+"</td>"+
+        		        "</tr>"+"</table>"+
+                	    
+                		"</body>\n" +
+                		"</fieldset>"+
+                		"</html>";
+        		        
+        		        
+					
 						
 					
 				List<String> list=new ArrayList<String>();
@@ -618,6 +646,18 @@ public class Cls_UserBean implements Serializable{
 			
 			
 		
+		public static String getFn() {
+			return fn;
+		}
+		public static void setFn(String fn) {
+			Cls_UserBean.fn = fn;
+		}
+		public static String getAn() {
+			return an;
+		}
+		public static void setAn(String an) {
+			Cls_UserBean.an = an;
+		}
 		/*
 		 * reset method is for reset the value of adding new user form page..
 		 */
@@ -690,7 +730,7 @@ public class Cls_UserBean implements Serializable{
 	        	}
 	   else    
 	   { 
-		   setValue("This name is taken by someone try another.");
+		   setValue("Name is taken by someone try another.");
 	   }
 			
 			
@@ -961,9 +1001,12 @@ public class Cls_UserBean implements Serializable{
 		    	System.out.println(str_BlockName+"blockssssssssssssssssssssssssssssssssssssssssssssssss");
 		    	
 		    }
+		 private boolean indicator1;
 		 public String go()
-		 {
-			 return "/layout.xhtml";
+		 {  System.out.println("jsdkjddjsk");
+		   
+		 return "NewRegistration.xhtml";
+			
 		 }
 	}
 
