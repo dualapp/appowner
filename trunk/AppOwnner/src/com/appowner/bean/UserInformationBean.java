@@ -253,8 +253,7 @@ public class UserInformationBean implements Serializable{
 
 			SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 			 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
-			// Extract file name from content-disposition header of file part
-			//String fileName = getFileName(part);
+		
 			System.out.println("***** fileName: " + fileName);
 	 
 			//String basePath = "D:" + File.separator + "temp" + File.separator;
