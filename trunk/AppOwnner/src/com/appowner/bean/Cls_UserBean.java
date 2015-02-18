@@ -74,14 +74,7 @@ public class Cls_UserBean implements Serializable{
 	    private static String fn="fn";
 	    private static String un="un";
 	    private static String an="an";
-	    private static String url="url";
-	    public static String getUrl() {
-			return url;
-		}
-		public static void setUrl(String url) {
-			Cls_UserBean.url = url;
-		}
-		private static String subject="subject";
+	    private static String subject="subject";
 	    private static String content="content";
 	    private String str_Username;
 	    private String criticaNome;
@@ -148,13 +141,6 @@ public class Cls_UserBean implements Serializable{
 		public void setValue1(String value1) {
 			this.value1 = value1;
 		}
-		private boolean indicator;
-		public boolean isIndicator() {
-			return indicator;
-		}
-		public void setIndicator(boolean indicator) {
-			this.indicator = indicator;
-		}
 		public String getValue() {
 			System.out.println("99999999999999999eeee999888889999999999999999999999");
 			//dataChange1();
@@ -211,7 +197,6 @@ public class Cls_UserBean implements Serializable{
 		public static void setPd(String pd) {
 			Cls_UserBean.pd = pd;
 		}
-		
 /*
  * variable declaration for return statements..
  */
@@ -373,7 +358,6 @@ public class Cls_UserBean implements Serializable{
 			return Registraion;
 		}
 		
-		
 		/*
 		 * addUser method is define here to adding new user...
 		 */
@@ -396,9 +380,7 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_Country(getCountry());
 			usr.setStr_State(getState());
 			usr.setStr_City(getCity());
-			System.out.println(userapartment+"liflkfflkfff");
-			System.out.println(str_Apartment+"jvvjkcjvc");
-			if(str_Apartment!=null)
+			if(userapartment==null)
 			{
 				System.out.println(str_Apartment+"fffkjjk");
 				int id=getUserService().getCityId(getCity());
@@ -458,16 +440,17 @@ public class Cls_UserBean implements Serializable{
 			usr.setStr_activationkey(uuid1);
 			usr.setInt_activationbit(0);
 			System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
-		getUserService().addUser(usr);
+			getUserService().addUser(usr);
 			 el=getStr_Email();
 			 un=getStr_Username();
 			pd=getStr_Password();
 			fn=getStr_FirstName();
 			
 			
-			url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
+			String url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
 			subject="AppOwner.com";
-			content="dffddf";
+			content="fffff";
+					
 				
 			List<String> list=new ArrayList<String>();
 			list.add(el);
@@ -482,19 +465,19 @@ public class Cls_UserBean implements Serializable{
 				{
 					System.out.println("hello");
 					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("email and confirm email should same"));
-					return "Registration.xhtml";
+					return "NewRegistration.xhtml";
 				}
 				if(str_Email.equals(str_ConfirmEmail))
 				{ 
 					
 							FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("password  and confirm password should same"));
-							return "Registration.xhtml";
+							return "NewRegistration.xhtml";
 				}
 				//else(email.equals(confirmemail)&&password.equals(confirmpassword))
 				//{ 
 					
 							FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("password,confirm password and email,confirm email should same"));
-							return "Registration.xhtml";
+							return "NewRegistration.xhtml";
 				//}
 										
 				
@@ -549,6 +532,7 @@ public class Cls_UserBean implements Serializable{
 				usr.setStr_Block(str_BlockName);
 				usr.setStr_PhoneNo(getStr_PhoneNo());
 				usr.setStr_Username(getStr_Username());
+				usr.setStr_UserRoleName("user");
 				Integer activationbit2=0;
 				System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
 				final String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
@@ -561,53 +545,27 @@ public class Cls_UserBean implements Serializable{
 				usr.setInt_activationbit(0);
 				System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
 				getUserService().addUser(usr);
-				 el="kalpnasudha1990@gmail.com";
+				 el=getStr_Email();
 				 un=getStr_Username();
-				pd="9040219579";
+				pd=getStr_Password();
 				fn=getStr_FirstName();
-				an=getUserapartment();
+				an=Util.getAppartmentName();
 				String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
 				subject="AppOwner.com";
-				content="<html>\n" +
-        		
-        		
-                        "<fieldset style="+"width:40%"+">"+
-                      
-                        "<table width="+700+" height="+100+" bgcolor="+"#CCEEFF"+">"+
-        		         "<tr>"+
-                        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Dear:"+" "+fn+""+"</font>"+"</td>"+
-        		        "</tr>"+"<tr>"+
-        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"You have now been added as a member in Appownner online community.please use the following credentials to login to the site:"+""+"</font>"+"</td>"+
-        		        "</tr>"+"<tr>"+
-        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Website:https://www.appowners.com/"+""+"</font>"+"</td>"+
-        		        "</tr>"+"<tr>"+
-        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"UserName:"+" "+un+"</font>"+"</td>"+
-        		        "</tr>"+"<tr>"+
-        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Password:"+" "+pd+"</font>"+"</td>"+
-        		        "</tr>"+"<tr>"+
-        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Please Click here to Activate your Account"+" "+url+"</font>"+"</td>"+
-        		        
-        		        "</tr>"+"<tr>"+
-"<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"For any queries.please contact  your maintenance manager for details or sene an email to "+" "+url+"</font>"+"</td>"+
-        		        
-        		        "</tr>"+"<tr>"+
-        		        "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Regards:"+"</font>"+"</td>"+
-        		        "</tr>"+"<tr>"+"<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"Website Administrator:"+"</font>"+"</td>"+
-        		        "</tr>"+"</table>"+
-                	    
-                		"</body>\n" +
-                		"</fieldset>"+
-                		"</html>";
-        		        
-        		        
-					
+				content="Hello."+" "  +fn+
+					   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
+						+ "You are registered as the moderator for "+","  +an
+					  
+						+"UserName:  "+" "  +un+" "+"\n"
+					   + "Password:  "+" "  +pd+
+					    "\n Please Click here to Activate your Account "+" "+url ;
 						
 					
 				List<String> list=new ArrayList<String>();
 				list.add(el);
 				list.add(pd);
 				
-				return "EmailForm.jsp";
+				return "EmailForm2.jsp";
 				}
 				else
 				{
@@ -646,18 +604,6 @@ public class Cls_UserBean implements Serializable{
 			
 			
 		
-		public static String getFn() {
-			return fn;
-		}
-		public static void setFn(String fn) {
-			Cls_UserBean.fn = fn;
-		}
-		public static String getAn() {
-			return an;
-		}
-		public static void setAn(String an) {
-			Cls_UserBean.an = an;
-		}
 		/*
 		 * reset method is for reset the value of adding new user form page..
 		 */
@@ -676,11 +622,11 @@ public class Cls_UserBean implements Serializable{
 		/*
 		 * deleteUser method is to delete user..
 		 */
-		public String deleteUser(String str_Username)
+		public String deleteUser(Integer id)
 		{
 			//System.out.println(userid);
 			
-			getUserService().deleteUser2(str_Username);
+			getUserService().deleteUser2(id);
 			return "userDeleteuserconfirmation.xhtml";
 		}
 		/*
@@ -700,15 +646,7 @@ public class Cls_UserBean implements Serializable{
 	
 		public String getRegistration() {
 			System.out.println("heeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-			System.out.println(indicator+"kdffddf");
-			if(indicator==true)
-			{
 			return "NewRegistration.xhtml";
-			}
-			else
-			{
-				return null;
-			}
 		}
 		public void setRegistration(String registration) {
 			Registration = registration;
@@ -730,7 +668,7 @@ public class Cls_UserBean implements Serializable{
 	        	}
 	   else    
 	   { 
-		   setValue("Name is taken by someone try another.");
+		   setValue("This name is taken by someone try another.");
 	   }
 			
 			
@@ -1001,13 +939,6 @@ public class Cls_UserBean implements Serializable{
 		    	System.out.println(str_BlockName+"blockssssssssssssssssssssssssssssssssssssssssssssssss");
 		    	
 		    }
-		 private boolean indicator1;
-		 public String go()
-		 {  System.out.println("jsdkjddjsk");
-		   
-		 return "NewRegistration.xhtml";
-			
-		 }
 	}
 
 
