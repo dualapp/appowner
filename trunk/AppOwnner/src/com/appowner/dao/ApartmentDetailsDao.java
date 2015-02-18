@@ -70,4 +70,6 @@ public interface ApartmentDetailsDao {
 
 	void deleteCommunityType(String str_CommunityType);
 
+	void updateBlockDetails(UserBlocks ub);
+
 }
