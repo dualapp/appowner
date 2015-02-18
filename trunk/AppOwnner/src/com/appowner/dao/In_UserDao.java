@@ -100,7 +100,7 @@ public interface In_UserDao {
 
 	public void updateUser1(User editlis);
 
-	public void deleteUser2(String str_Username);
+	public void deleteUser2(Integer id);
 
 	public int getUserRole(Integer userId);
 
@@ -125,6 +125,10 @@ public interface In_UserDao {
 	public Date getEntryDate(Integer int_ApartmentId);
 
 	public Date getEndDate(Integer int_ApartmentId);
+
+	public String getSetUp();
+
+	public String getId(String setup);
 
 	//public void deleteUser1(int int_UserId);
 

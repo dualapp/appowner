@@ -57,6 +57,12 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import javax.mail.Session;
 import javax.management.Query;
 
@@ -79,6 +85,7 @@ import com.appowner.model.UserCity;
 import com.appowner.model.UserCountry;
 import com.appowner.model.UserExtraInfo;
 import com.appowner.model.UserState;
+import com.appowner.util.Util;
 //import com.appowner.model.VendorState;
 //import com.appowner.model.VendorCountry;
 //import com.appowner.model.VendorCountry;
@@ -382,25 +389,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		}
 
 		@Override
-		public void deleteUser2(String str_Usernam) {
-			//System.out.println("ooooooooooooowwwwwwwwwwwwwwwoooooooooooopppppppppppppp");
-			String hqluserid="select int_UserId from User where str_Username=?";
-			Integer userida=(Integer) getSessionFactory().getCurrentSession().createQuery(hqluserid).setParameter(0,str_Usernam).uniqueResult();
-			//return apartmentida;
-			/*
-				System.out.println(str_Usernam);
-				String hql="delete from User where str_Username=str_Username";
-				@SuppressWarnings("unused")
-				int row =sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
-				// String hql = "delete from Insurance insurance where id = 2";  
-				       
-                    */
-			//String srt=str_Usernam;
-			User u=(User) sessionFactory.getCurrentSession().get(User.class,userida);
-			getSessionFactory().getCurrentSession().delete(u);
-			//tx.commit();
+		public void deleteUser2(Integer id) {
+			
+			
+			sessionFactory.getCurrentSession().createQuery("delete from  User where  int_UserId=?").setParameter(0,id).setCacheable(true).executeUpdate();
+			
 			System.out.println("bnbnbnnnn");
-			//SessionFactory factory=new Configuration().configure(application-context-servlet.xml).buildSessionFactory();
 				
 			}
 
@@ -474,6 +468,20 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		public Date getEndDate(Integer int_ApartmentId)
 		{
 			return (Date) getSessionFactory().getCurrentSession().createQuery("select dat_ExpireDate from UserApartment where int_ApartmentId=?").setParameter(0, int_ApartmentId).setCacheable(true).uniqueResult();
+		}
+		public String getSetUp()
+		{   System.out.println(Util.getAppartmentId()+"fdjkdfkjfd11111111111111111111111111111111111111111111111");
+		   System.out.println(Util.getUserId()+"jkfjkfgkjgfkjf22222222222222222222222222222222222222222222222");
+			return (String) getSessionFactory().getCurrentSession().createQuery("select str_RoleName from RoleAssignment where int_ApartmentId=? and int_UserId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,Util.getUserId()).setCacheable(true).uniqueResult();
+		}
+		public String getId(String setup)
+		{
+			int id=(int) getSessionFactory().getCurrentSession().createQuery("select int_RoleID from RoleMaster where str_RoleName=?").setParameter(0,setup).setCacheable(true).uniqueResult();
+			System.out.println(id+"hhjhjjjh");
+			int id1 =(int) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id).setParameter(1, Util.getAppartmentId()).setCacheable(true).uniqueResult();
+			String str=(String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName  from ManuMaster where int_MenuID=?").setParameter(0,id1).setCacheable(true).uniqueResult();
+			return str;
+			
 		}
 		}
 
