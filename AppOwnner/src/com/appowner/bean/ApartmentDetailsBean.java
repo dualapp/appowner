@@ -432,9 +432,10 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	}
 	 
 	public List<HouseDetails> getListHouseDetails() {
-		 
-		System.out.println(listHouseDetails+"klap");
-		 
+		listHouseDetails=new ArrayList<HouseDetails>();
+		
+		 listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName,Util.getAppartmentId()));
+		 System.out.println(listHouseDetails+"klap");
 		return listHouseDetails;
 	}
 	private List<String> blockNameList;
