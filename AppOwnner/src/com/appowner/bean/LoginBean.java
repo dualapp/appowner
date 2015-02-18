@@ -831,7 +831,7 @@ public class LoginBean implements Serializable {
 	}
 	else
 	{
-		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"invalid Email!"));
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"We couldn't find your account with that informationPlease try searching for your email again!"));
 	}
 		return "forgotpassword1.jsp";
 	}
@@ -1279,8 +1279,15 @@ public class LoginBean implements Serializable {
 				+ File.separator + "images" + File.separator
 				+ Util.getAppartmentName() + File.separator;
 		System.out.println(basePath);
-		File outputFilePath = new File(basePath + fileName);
-
+		File outputFilePath = new File(basePath);
+		 if (!outputFilePath.exists()) {
+			   	if (outputFilePath.mkdir()) {
+			   		System.out.println("Directory is created!");
+			   	} else {
+			   		System.out.println("Failed to create directory!");
+			   	}
+		 }
+		 outputFilePath = new File(basePath, fileName);
 		System.out.println(path + "path");
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
