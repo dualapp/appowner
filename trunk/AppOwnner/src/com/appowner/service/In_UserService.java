@@ -89,7 +89,7 @@ public interface In_UserService {
 
 	public void updateUser(User editlis);
 
-	public void deleteUser2(String str_Username);
+	public void deleteUser2(Integer id);
 
 	public int getUserRole(Integer userId);
 
@@ -114,5 +114,9 @@ public interface In_UserService {
 	public Date getEntryDate(Integer int_ApartmentId);
 
 	public Date getEndDate(Integer int_ApartmentId);
+
+	public String getSetUp();
+
+	public String getId(String setup);
 }
 

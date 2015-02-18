@@ -263,8 +263,8 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	}
 
 	@Override
-	public void deleteUser2(String str_Username) {
-		getIn_userdao().deleteUser2(str_Username);
+	public void deleteUser2(Integer id) {
+		getIn_userdao().deleteUser2(id);
 		
 	}
 
@@ -335,6 +335,16 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	{
 		return getIn_userdao().getEndDate(int_ApartmentId);    
 	}
+	public String getSetUp()
+	{
+		return getIn_userdao().getSetUp();  
+	}
+	public String getId(String setup)
+	{
+		return getIn_userdao().getId(setup);  
+	}
+	
+	
 	}
 
 	 
