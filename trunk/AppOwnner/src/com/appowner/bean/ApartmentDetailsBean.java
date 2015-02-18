@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -85,7 +86,13 @@ public class ApartmentDetailsBean  implements Serializable{
 	private String str_TypeOfHouse;
 	private String str_HouseNo;
 	private Integer int_CommunitysetUpId;
-	 
+	@PostConstruct
+    public void init() {
+		listBlockDetails=new ArrayList<UserBlocks>();
+		listBlockDetails.addAll(getApartmentDetailsService().getListBlockDetails(Util.getAppartmentId()));
+		 
+    }
+ 
 	@SuppressWarnings("unused")
 	private List<String> communityTypelist;
 	private List<String> communityTypelist1;
@@ -273,10 +280,23 @@ public class ApartmentDetailsBean  implements Serializable{
 		
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
-        System.out.println(oldValue+"oldValue");
-        System.out.println(newValue+"newValue");
-      
+       System.out.println(event.getColumn().getField()+"column name");
+        
+       System.out.println(event.getSource());
+       String blockName = newValue.toString();
+        
+ 
+        System.out.println(blockName+"name");
+        
+         
+        
         if(newValue != null && !newValue.equals(oldValue)) {
+        	UserBlocks ub=new UserBlocks();
+    		 
+    	    ub.setStr_BlockName(blockName);
+    		ub.setInt_ApartmentId(Util.getAppartmentId());
+    		//getApartmentDetailsService().updateBlockDetails(ub);
+        	
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
@@ -422,8 +442,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		return null;
 	}
 	public List<UserBlocks> getListBlockDetails() {
-		listBlockDetails=new ArrayList<UserBlocks>();
-		listBlockDetails.addAll(getApartmentDetailsService().getListBlockDetails(Util.getAppartmentId()));
+		
 		return listBlockDetails;
 	}
 	 
