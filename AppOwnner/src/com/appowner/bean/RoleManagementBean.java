@@ -289,7 +289,7 @@ C=C;
 		
 		roleAssignment.setStr_RoleName(str_RoleName);
 		roleAssignment.setInt_RoleId(getMaintainanceStaffService().getRoleId(str_RoleName));
-		roleAssignment.setInt_UserId(int_UserId);
+		roleAssignment.setInt_UserId(Util.getUserId());
 		 
 		S=getMaintainanceStaffService().getUserType(int_UserId);
 		System.out.println(S);
@@ -300,7 +300,7 @@ C=C;
 		else{
 			roleAssignment.setChar_User_Type('S');
 		}
-		roleAssignment.setInt_ApartmentId(getMaintainanceStaffService().getApartmentId(int_UserId));
+		roleAssignment.setInt_ApartmentId(Util.getAppartmentId());
 		List<Integer> roleId=getMaintainanceStaffService().getRoleID(int_UserId);
 		 ListIterator itr=roleId.listIterator();
 		 while(itr.hasNext())
