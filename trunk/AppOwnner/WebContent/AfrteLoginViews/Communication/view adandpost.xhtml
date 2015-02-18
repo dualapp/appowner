@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+    <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> User details</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="page3" >
+ <p:dataList value="#{cls_AddDetailBean.searchByProducttype}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" var="car" paginatorPosition="bottom" itemType="none" paginator="true" rows="10" >
+      
+       
+        <h:outputText value="I want To :#{car.ch_Product_Type}"/> &#150; &#150; &#150; &#150; &#150;  <h:outputText value="Category :#{car.ch_Ad_Type}"/> &#150; &#150; &#150; &#150; &#150;  <h:outputText value="Status :#{car.status}"/><br/>
+        <h:outputText value="Posted On :#{car.dt_date}"/><br/>
+       <font size="1"> <h:outputText value="#{car.var_Title}"/><br/></font>
+        
+        <h:outputText value="Organisation :#{car.str_ApartmentName}"/><br/>
+        <h:outputText value="Created By :#{car.username}"/><h1><hr/></h1>
+    </p:dataList>
+    </div>
+    </h:body>
+    </ui:define>
+    </ui:composition>

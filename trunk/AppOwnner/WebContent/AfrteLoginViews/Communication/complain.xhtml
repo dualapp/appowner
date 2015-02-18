@@ -133,11 +133,11 @@
 		<h:commandButton id="submit1" 
 		                 action="#{complainBean.uploadFile}"
 			             value="upload file"  style="height: 20px;font-size: 10px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
-			              
+			            <f:ajax execute="file" event="click"  />
 			             </h:commandButton>
-        <!-- status message of file upload; rendered if message is set -->
+       
 		<h:outputText value="#{complainBean.statusMessage}"
-			          rendered="#{not empty loginBean.statusMessage}" /> </td></tr>
+			          rendered="#{not empty complainBean.statusMessage}" /> </td></tr>
 			         
 			     
 			   
