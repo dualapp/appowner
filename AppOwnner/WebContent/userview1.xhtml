@@ -32,7 +32,7 @@
          <p:outputPanel layout="block" id="parentPanel">  
           
      <p:graphicImage id="image"  value="images/profilepic.png" rendered="#{userInformationBean.user.var_ImageName1 ==null}" title="User Image" style="background:#dddddd;height:200px;width:200px;float:right !important;margin:-10px 155px -700px 0px;"/>  
-     <p:graphicImage id="image1"   value="#{userInformationBean.user.var_ImageName1}" rendered="#{userInformationBean.user.var_ImageName1 !=null}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-10px 155px -700px 0px;"/></p:outputPanel> 
+     <p:graphicImage id="image1"   value="#{userInformationBean.user.var_ImageName1}"  title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-10px 155px -700px 0px;"/></p:outputPanel> 
      <br/>
      <p:commandButton id="submit" value="Edit" actionListener="#{userInformationBean.changeListener}" ajax="false" rendered="#{userInformationBean.indicator1}" style="height:30px;width:70px;float:right !important;margin:200px 280px 400px 100px;">&#150;  &#150;
     <p:ajax event="click"  process="image" partialSubmit="true"/>
