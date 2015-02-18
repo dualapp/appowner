@@ -969,8 +969,15 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
-		File outputFilePath = new File(basePath+str_AppartmentImg);
-		
+		File outputFilePath = new File(basePath);
+		if (!outputFilePath.exists()) {
+		   	if (outputFilePath.mkdir()) {
+		   		System.out.println("Directory is created!");
+		   	} else {
+		   		System.out.println("Failed to create directory!");
+		   	}
+	 }
+		 outputFilePath = new File(basePath,str_AppartmentImg);
 		System.out.println(outputFilePath+"outputFilePath");
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
@@ -1015,9 +1022,16 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 		//File outputFilePath = new File(basePath + fileName);
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
-		File outputFilePath = new File(basePath+str_OrganizationLogo);
-		
+		File outputFilePath = new File(basePath);
+		if (!outputFilePath.exists()) {
+		   	if (outputFilePath.mkdir()) {
+		   		System.out.println("Directory is created!");
+		   	} else {
+		   		System.out.println("Failed to create directory!");
+		   	}
+	 }
 		System.out.println(outputFilePath+"outputFilePath2");
+		outputFilePath = new File(basePath,str_OrganizationLogo);
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
@@ -1061,9 +1075,16 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
-		File outputFilePath = new File(basePath+str_Document_Upload);
-		
-		 
+		File outputFilePath = new File(basePath);
+		//create directory dynamicaly
+		if (!outputFilePath.exists()) {
+		   	if (outputFilePath.mkdir()) {
+		   		System.out.println("Directory is created!");
+		   	} else {
+		   		System.out.println("Failed to create directory!");
+		   	}
+	 }
+		outputFilePath = new File(basePath,str_Document_Upload);
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
@@ -1443,13 +1464,21 @@ public void  uploadAssetsFile( ) throws IOException   {
 	    str_AssetImg = fmt.format(new Date()) +getFileName(part3).substring(getFileName(part3).lastIndexOf('.'));
 	    ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
-	    File file=new File(basePath+str_AssetImg);
+	    File outputFilePath=new File(basePath);
+	    if (!outputFilePath.exists()) {
+		   	if (outputFilePath.mkdir()) {
+		   		System.out.println("Directory is created!");
+		   	} else {
+		   		System.out.println("Failed to create directory!");
+		   	}
+	 }
+	    outputFilePath = new File(basePath,str_AssetImg);
 	 // Copy uploaded file to destination path
 	 		InputStream inputStream = null;
 	 		OutputStream outputStream = null;
 	 		try {
 	 			inputStream = part3.getInputStream();
-	 			outputStream = new FileOutputStream(file);
+	 			outputStream = new FileOutputStream(outputFilePath);
 
 	 			int read = 0;
 	 			final byte[] bytes = new byte[1024];
