@@ -35,6 +35,7 @@ import com.appowner.model.cls_Group;
 import com.appowner.model.cls_PersonCity;
 import com.appowner.model.cls_PersonState;
 import com.appowner.model.cls_hobby;
+import com.appowner.util.Util;
 import com.lowagie.text.pdf.hyphenation.TernaryTree.Iterator;
 
 /**
@@ -485,7 +486,8 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@Override
 	public List getlist() {
-		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).list();
+		@SuppressWarnings("unchecked")
+		List<String> cityList=getSessionFactory().getCurrentSession().createQuery("from cls_Group where int_ApartmentID=?").setParameter(0,Util.getAppartmentId()).list();
 		return cityList;
 	}
 
@@ -613,9 +615,9 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public  List<String> listblock() {
-		String hql2="select str_BlockName from UserBlocks";		
+		String hql2="select str_BlockName from UserBlocks where int_ApartmentId=?";		
 		System.out.println("8888888888888888888888888888888888");
-		return  sessionFactory.getCurrentSession().createQuery(hql2).list();
+		return  sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, Util.getAppartmentId()).list();
 		
 	}
 
@@ -741,16 +743,26 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		String	hql1="Select int_UserId  from  GroupMember where int_GroupId=?";
 		 String id = (String) sessionFactory.getCurrentSession().createQuery(hql1).setParameter(0, int_GroupId).uniqueResult();
 		 System.out.println(id+"hjjhujjk");
+		 if(id==null)
+		 {
+			 List<UserExtraInfo> conn1=new ArrayList<UserExtraInfo>();
+			 return conn1;
+		 }
+		 else
+		 {
 		 String[] array=id.split(",");
 		 List<UserExtraInfo> conn1=new ArrayList<UserExtraInfo>();
 		 for(String id1:array)
-		 {  
+		   {  
 			 System.out.println(id1+"jjhhjjj"); 
 			 int id2=Integer.parseInt(id1);
 			 System.out.println(id2+"jjkjkjjklllllllllllllllllllllllllllllll");
 			 String query="{ call member1(?)}";
 				UserExtraInfo conn=(UserExtraInfo) sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0,id2).uniqueResult();
 				conn1.add(conn);
+				 System.out.println(conn1+"jjjj");
+				   return conn1;
+		     }
 		 }
 		 
 		// Set<Integer> str2 = new HashSet<Integer>(id);
@@ -773,9 +785,8 @@ public class SubcriptDaoImpl implements SubcriptDao {
 				
 		 
 			}*/
-		 System.out.println(conn1+"jjjj");
-	   return conn1;
 		
+		return null;
 		
 		
 	}
