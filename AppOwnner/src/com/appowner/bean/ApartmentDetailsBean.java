@@ -280,20 +280,18 @@ public class ApartmentDetailsBean  implements Serializable{
 		
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
-       System.out.println(event.getColumn().getField()+"column name");
-        
-       System.out.println(event.getSource());
-       String blockName = newValue.toString();
-        
- 
-        System.out.println(blockName+"name");
-        
-         
+      
+       
         
         if(newValue != null && !newValue.equals(oldValue)) {
         	UserBlocks ub=new UserBlocks();
-    		 
-    	    ub.setStr_BlockName(blockName);
+        	 if (newValue instanceof Integer)
+        		 ub.setInt_NoOfHouses((Integer)newValue);  
+             if (newValue instanceof String)
+            	 ub.setStr_BlockName((String)newValue); 
+              
+              System.out.println(ub.getStr_BlockName()+"kakkakak");
+    	   System.out.println(ub.getInt_NoOfHouses()+"k1k1k1k1k");
     		ub.setInt_ApartmentId(Util.getAppartmentId());
     		//getApartmentDetailsService().updateBlockDetails(ub);
         	
