@@ -19,6 +19,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.dao.DataAccessException;
@@ -130,35 +131,8 @@ private static List<String> mailids;
 
 public static String getMailids() {
 	
-	/*String[] stockArr = new String[mailids.size()];
-	stockArr = mailids.toArray(stockArr);
-	for(String s : stockArr)
-	{
-		return s;
 	
-	}
-	return null;
-	*/
-	/*String[] strArray = (String[]) mailids.toArray(new String[0]);
-			    System.out.println(ArrayUtils.toString(strArray));
-			 //   System.out.println(strarray);
-
-	return ArrayUtils.toString(strArray);*/
-	/*String[] strarray = new String[mailids.size()];
-		    mailids.toArray(strarray );
-		    for(String s : strarray)
-			{ System.out.println(s);
-				return s;
-			
-			}
-	*/
-	/*StringBuilder sb = new StringBuilder();
-	for (String s : mailids)
-	{
-	    sb.append(s);
-	    sb.append("\t");
-	}
-*/StringBuilder out = new StringBuilder();
+StringBuilder out = new StringBuilder();
 for (Object o : mailids)
 {
   out.append(o.toString());
@@ -193,7 +167,7 @@ public static void setContent(String content) {
 		Notice notice=new Notice();
 		  notice.setStr_Subject(getStr_Subject());
 		notice.setBool_Flash(getBool_Flash());
-		notice.setStr_Document(uploadedFileName);
+		notice.setStr_Document(path1);
 		
 		  notice.setStr_Description(getStr_Description());
 		  System.out.println(str_Description);
@@ -356,29 +330,95 @@ public static void setContent(String content) {
 	}
 
 	//FILE UPLOAD CONCEPT
-	 public void handleFileUpload(FileUploadEvent event) throws IOException {
-		 System.out.println("hi");
-		 String path = FacesContext.getCurrentInstance().getExternalContext()
-		            .getRealPath("/");
-		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		    String name = fmt.format(new Date())
-		            + event.getFile().getFileName().substring(
-		                  event.getFile().getFileName().lastIndexOf('.'));
-		    System.out.println(name);
-		    System.out.println(LoginBean.getStr_ImagePath());
-		      File file= new File(LoginBean.getStr_ImagePath()+"/"+ "images" + name);
-               System.out.println(file);
-		    InputStream is = event.getFile().getInputstream();
-		    OutputStream out = new FileOutputStream(file);
-		    byte buf[] = new byte[1024];
-		    int len;
-		    while ((len = is.read(buf)) > 0)
-		        out.write(buf, 0, len);
-		    is.close();
-		    out.close();
-		     uploadedFileName = file.getName();
-		    System.out.println(uploadedFileName);
+	
+
+	private Part part;
+	private String statusMessage;
+    private static  String path1;
+	public String uploadFile() throws IOException {
+        System.out.println("fjkjkfdjkkjfjkfkj");
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
+	
+		System.out.println(fileName+"dfjkjkfjkfd");
+ 
 		
-	    
-	    }
+		String basePath = "E:" + File.separator + "sites" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator;
+		System.out.println(basePath);
+		File outputFilePath = new File(basePath+fileName);
+		
+		System.out.println(outputFilePath+"path");
+		// Copy uploaded file to destination path
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		try {
+			inputStream = part.getInputStream();
+			outputStream = new FileOutputStream(outputFilePath);
+ 
+			int read = 0;
+			final byte[] bytes = new byte[1024];
+			while ((read = inputStream.read(bytes)) != -1) {
+				outputStream.write(bytes, 0, read);
+			}
+			path1=outputFilePath.getName();
+			System.out.println(path1+"fkjdfkdl");
+		
+			statusMessage = "File upload successfull !!";
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			statusMessage = "File upload failed !!";
+		} finally {
+			if (outputStream != null) {
+				outputStream.close();
+			}
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+		return null;    // return to same page
+	}
+ 
+	public Part getPart() throws IOException {
+		 
+		return part;
+	}
+ 
+	public void setPart(Part part) {
+		this.part = part;
+	}
+ 
+	public String getStatusMessage() {
+		return statusMessage;
+	}
+ 
+	public void setStatusMessage(String statusMessage) {
+		this.statusMessage = statusMessage;
+	}
+ 
+	// Extract file name from content-disposition header of file part
+	private String getFileName(Part part) {
+		final String partHeader = part.getHeader("content-disposition");
+		System.out.println(part+"fdjkfkjkjf");
+		System.out.println("partHeader: " +partHeader);
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename")) {
+				return content.substring(content.indexOf('=') + 1).trim()
+						.replace("\"", "");
+			}
+		}
+		return null;
+	}
+
+	public static String getPath1() {
+		return path1;
+	}
+
+	public static void setPath1(String path1) {
+		NoticeBoardBean.path1 = path1;
+	}
+
+	
+
+	
 }
