@@ -231,7 +231,7 @@ public int getInt_Ad_categoryId() {
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
-		pro.setUsername(Util.getUserName());
+	//	pro.setUsername(Util.getUserName());
 		pro.setApartementId(Util.getAppartmentId());
 		pro.setVar_FileName("image");
 		System.out.println(path1);

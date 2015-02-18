@@ -151,7 +151,8 @@ public class ComplainBean implements Serializable{
 		cmp.setCh_Complain(getCh_Complain());
 		cmp.setStr_ComplainType(getStr_ComplainType());
 		cmp.setStr_Description(getStr_Description());
-		cmp.setStr_File(path);
+		
+		cmp.setStr_File(getPath1());
 		cmp.setStr_VendorType(str_VendorType);
 		System.out.println(str_VendorType);
 		cmp.setStr_VenderName(str_VenderName);
@@ -309,9 +310,9 @@ public class ComplainBean implements Serializable{
 
 			private Part part;
 			private String statusMessage;
-		    private String path;
+		    private static  String path1;
 			public String uploadFile() throws IOException {
-System.out.println("fjkjkfdjkkjfjkfkj");
+                System.out.println("fjkjkfdjkkjfjkfkj");
 				SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 				 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
 			
@@ -322,7 +323,7 @@ System.out.println("fjkjkfdjkkjfjkfkj");
 				System.out.println(basePath);
 				File outputFilePath = new File(basePath+fileName);
 				
-				System.out.println(path+"path");
+				System.out.println(outputFilePath+"path");
 				// Copy uploaded file to destination path
 				InputStream inputStream = null;
 				OutputStream outputStream = null;
@@ -335,7 +336,8 @@ System.out.println("fjkjkfdjkkjfjkfkj");
 					while ((read = inputStream.read(bytes)) != -1) {
 						outputStream.write(bytes, 0, read);
 					}
-					path="E://sites/AppOwnner/WebContent/images"+File.separator+fileName;
+					path1=outputFilePath.getName();
+					System.out.println(path1+"fkjdfkdl");
 				
 					statusMessage = "File upload successfull !!";
 					
@@ -384,22 +386,15 @@ System.out.println("fjkjkfdjkkjfjkfkj");
 				return null;
 			}
 
-			public String getPath() {
-				System.out.println(path+"path1");
-			//	path=user.getVar_ImageName1();
-				if( path==null)
-				{
-					path="/images/profilepic.png";
-					System.out.println(path+"img1");
-				}
-				 
-				return path ;
-			}
+			
 
-			public void setPath(String path) {
-				this.path = path;
+			
+			public static String getPath1() {
+				return path1;
 			}
-
+			public static void setPath1(String path1) {
+				ComplainBean.path1 = path1;
+			}
 			private Complain cmp;
 			 public Complain getCmp() {
 				return cmp;
