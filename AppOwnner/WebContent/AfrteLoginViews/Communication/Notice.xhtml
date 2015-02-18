@@ -49,10 +49,34 @@
              </tr>
              <tr>
              <th align="left">Attachment, if any</th>
-               <th align="left">&#150; &#150;<p:fileUpload fileUploadListener="#{noticeBoardBean.handleFileUpload}" value="#{noticeBoardBean.str_Document}" mode="advanced"  auto="true" 
-            sizeLimit="100000" fileLimit="3"  style="width:520px"/> 
-                 
-          </th>
+                <td><h:inputFile id="file"  label="file" value="#{noticeBoardBean.part}"  required="true"   requiredMessage="File not selected !!">
+		            
+			         
+			         
+			       
+		    <f:validator validatorId="FileUploadValidator" />
+		     </h:inputFile>
+		
+		<h:message style="color: red" for="file" /><br />
+ 
+		<h:commandButton id="submit1" 
+		                 action="#{noticeBoardBean.uploadFile}"
+			             value="upload file"  style="height: 20px;font-size: 10px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
+			            <f:ajax execute="file" event="click"  />
+			             </h:commandButton>
+       
+		<h:outputText value="#{noticeBoardBean.statusMessage}"
+			          rendered="#{not empty noticeBoardBean.statusMessage}" /> </td></tr>
+			         
+			     
+			   
+			           
+  
+          
+            
+            
+          
+            <tr>
              </tr>
              <tr>
             <th align="left">Notice Description</th>
