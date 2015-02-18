@@ -15,15 +15,31 @@
  </h:head>
 <body bgcolor="pink">
 <h:form>
+  <div id="page3">
+ <p:panel id="panel"  style="border:none;"> 
+ <div class="gsTitleDiv">Login Information<br/><hr/></div>
   
-  <p:panel id="panel" header="Edit User" color="blue" style="margin-bottom:20px;"> 
-   <h3><u>User Details</u></h3>
- <table>
- 
-  
- 
-           
-   <tr>
+<table>
+                <tr>
+            <td><h:outputText value="User Name:">
+            </h:outputText>  </td>          
+            <td><h:inputText value="#{cls_UserBean.editlis.str_Username}" required="true"   requiredMessage="Please ente the User Name!">
+            </h:inputText></td></tr> 
+   
+            <tr>
+            <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
+            <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.editlis.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 10 char!">
+          
+            </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
+            
+                <tr>
+            <td><h:outputText value="User role:">
+            </h:outputText>  </td>          
+            <td><h:inputText value="#{cls_UserBean.editlis.int_UserRole}" required="true"   requiredMessage="Please ente the User Name!">
+            </h:inputText></td></tr> 
+            <tr><td colspan="2" align="left">
+           <div class="gsTitleDiv">General Information</div> </td></tr> 
+           <tr>
  <td><h:outputText value="First Name:">
             </h:outputText> <font color="red" >*</font></td>           
            <td> <h:inputText value="#{cls_UserBean.editlis.str_FirstName}" required="true" requiredMessage="Please Enter First!">
@@ -38,7 +54,8 @@
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText value="#{cls_UserBean.editlis.str_Email}"  required="true" requiredMessage="Please Enter Email!">
             </h:inputText></td></tr>
-            <tr>
+            
+               <tr>
             <td><h:outputText value="Flate No:">
             </h:outputText><font color="red" >*</font></td>            
             <td><h:inputText value="#{cls_UserBean.editlis.str_Flat}"  required="true" requiredMessage="Please Enter Flate No">
@@ -57,16 +74,15 @@
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText value="#{cls_UserBean.editlis.str_PhoneNo}" required="true"                requiredMessage="Please Enter Phone No.!">
             </h:inputText></td> </tr> 
-             <tr>
-            <td><h:outputText value="User Name:">
-            </h:outputText>  </td>          
-            <td><h:inputText value="#{cls_UserBean.editlis.str_Username}" required="true"   requiredMessage="Please ente the User Name!">
-            </h:inputText></td></tr> 
-              <tr>
-            <td><h:outputText value="User role:">
-            </h:outputText>  </td>          
-            <td><h:inputText value="#{cls_UserBean.editlis.int_UserRole}" required="true"   requiredMessage="Please ente the User Name!">
-            </h:inputText></td></tr> 
+            
+          
+ 
+           
+   
+           
+            
+            
+            
  <tr>
  <td>
   
@@ -76,8 +92,10 @@
    </td>
    </tr>
   </table>
-  </p:panel>
+ </p:panel>
+ </div>
  </h:form>
+ 
  
 </body>
 </ui:define>
