@@ -45,7 +45,7 @@
              <f:facet name="header">
            Cell Editing with Click and RightClick
        </f:facet>
-       <p:ajax event="cellEdit" listener="#{apartmentDetailsBean.onCellEdit}"  process="@this" update="@this" />
+       <p:ajax event="cellEdit" listener="#{apartmentDetailsBean.onCellEdit}"  update=":form:msgs" />
                 <p:column headerText="Block Name">
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{blockDetails.str_BlockName}" /></f:facet>
