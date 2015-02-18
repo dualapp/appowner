@@ -190,6 +190,7 @@ public class UserInformationBean implements Serializable{
 		public void getRegisteredUser()
 		{
 			user=getAdminService().getUser(user_ID);
+			
 		}
 		private boolean indicator2;
 		public boolean isIndicator2() {
