@@ -11,7 +11,7 @@
 				<li class="#{index.first ? 'active' : ''}"><a href="#" class="dropdown-toggle"> <i
 						class="icon-desktop"></i> <span class="menu-text"> 
 						#{prod.name} </span> <b class="arrow icon-angle-down"></b>
-				</a>
+				  </a>
 					<ul class="submenu">
 						<ui:repeat value="#{pc_sidebar.products}" var="prod1" varStatus="ind"> 
 							<li class="#{ind.first ? 'active' : ''}"><a href="elements.html"> <i
@@ -29,24 +29,14 @@
 					class="arrow icon-angle-down"></b>
 			</a>
 			<ul class="submenu">
-			<li><a href="#"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Apartment
-								</a></li>
+			
 
-								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/addnewuserbyadmin.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Members
-								</a></li>
-								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/communitysetup.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>CommunitySetup
-								</a></li>
 								
-								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/viewhousedetails.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>View House Details
-								</a></li>
+								
 								<li><a href="/AppOwnner/AfrteLoginViews/Communication/Notice.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Post An Notice
 								</a></li>
-								<li><a href="noticeView.xhtml"> <i
+								<li><a href="/AppOwnner/AfrteLoginViews/Communication/noticeView.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>View Notice
 								</a></li>
 								<li><a href="#"> <i
@@ -55,18 +45,11 @@
 								<li><a href="/AppOwnner/AfrteLoginViews/Communication/Ad_an_Post.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Post An Add
 								</a></li>
-								<li><a href="/AppOwnner/AfrteLoginViews/Repository/CreateDocument.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Upload Documents
-								</a></li>
-								<li><a href="DocumentRepository.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Documents Repository
-								</a></li>
+								
 								<li><a href="/AppOwnner/AfrteLoginViews/Communication/pools.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Polls
 								</a></li>
-								<li><a href="/AppOwnner/AfrteLoginViews/Communication/photos.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Photo's
-								</a></li>
+								
 								
 								
 
@@ -128,12 +111,54 @@
 								<li><a href="/AppOwnner/AfrteLoginViews/Accounting/accountinglayout.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Accounting
 								</a></li>
-								
+								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/duetemplate.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Due Template
+								</a></li>
+								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/messagetemplate.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Message Template
+								</a></li>
+								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/taxtemplate.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Tax Template
+								</a></li>
+								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/invoicetemplate.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Invoice Template
+								</a></li>
 								
 
 								
 							</ul></li>
-					
+				<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text">SMS Gateway </span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+								
+								
+								<li><a href="/AppOwnner/AfrteLoginViews/SMS Gateway/addtemplatemessage.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Add Template
+								</a></li>
+
+								<li><a href="/AppOwnner/AfrteLoginViews/SMS Gateway/broadcastmessage.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Booardcast Message
+								</a></li>
+								
+
+								
+							</ul></li>
+			
+			<li><a href="#" class="dropdown-toggle"> <i
+					class="icon-list"></i> <span class="menu-text">Advertisement</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+								
+								
+							
+								
+							</ul></li>
+			
+				
+						
 					
 					
 			
@@ -165,43 +190,20 @@
 					class="arrow icon-angle-down"></b>
 			</a>
 			<ul class="submenu">
-								
-								
-								 
-
-								<li><a href="#"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Member Approval
+								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/apartments_memberdetails.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Members
 								</a></li>
-								 
-								
-								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/duetemplate.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Due Template
+								<li><a href="/AppOwnner/AfrteLoginViews/Repository/CreateDocument.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Upload Documents
 								</a></li>
-								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/messagetemplate.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Message Template
+								<li><a href="/AppOwnner/AfrteLoginViews/Repository/DocumentRepository.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Documents Repository
 								</a></li>
-								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/taxtemplate.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Tax Template
-								</a></li>
-								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/invoicetemplate.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Invoice Template
-								</a></li>
-								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/memberlog.xhtml"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Member Log
-								</a></li>
-								<li><a href="#"> <i
-										class="btn btn-xs btn-primary icon-user"></i>Set Log
+								 <li><a href="/AppOwnner/AfrteLoginViews/UserInfo/communitysetup.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>CommunitySetup
 								</a></li>
 
 								
-							</ul></li>
-			
-		<li><a href="#" class="dropdown-toggle"> <i
-					class="icon-list"></i> <span class="menu-text">Organization Settings</span> <b
-					class="arrow icon-angle-down"></b>
-			</a>
-			<ul class="submenu">
-						 
 								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/organizationLogo.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Organization Logo
 								</a></li>
@@ -221,7 +223,13 @@
 										class="btn btn-xs btn-primary icon-user"></i>Accounts Opening Balance
 								</a></li>
 								
-								 
+								
+								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/memberlog.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Member Log
+								</a></li>
+								<li><a href="/AppOwnner/AfrteLoginViews/Administrator/roleassignment.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Role Management
+								</a></li>
 
 								
 							</ul></li>
