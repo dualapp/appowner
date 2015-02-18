@@ -205,6 +205,12 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		getApartmentDetailsDao().deleteCommunityType(str_CommunityType);
 	}
 
+	@Override
+	public void updateBlockDetails(UserBlocks ub) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateBlockDetails(ub);
+	}
+
 	
 
 }
