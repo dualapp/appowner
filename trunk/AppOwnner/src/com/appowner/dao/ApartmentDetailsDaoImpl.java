@@ -57,12 +57,19 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	@Override
 	public List<HouseDetails> getListHouseDetails(String str_BlockName, Integer ApartmentId)
 	{ 
-		 
-		 
+		 if(str_BlockName==null)
+		 {
+			List<Integer> id= sessionFactory.getCurrentSession().createQuery("select int_BlockId from UserBlocks where int_ApartmentId=?").setParameter(0, ApartmentId).list();
+			Integer blockId=id.get(0);
+			System.out.println(blockId+"mahesh");
+			return sessionFactory.getCurrentSession().createQuery("from HouseDetails where int_BlockId=? and int_ApartmentId=?").setCacheable(true).setParameter(0, blockId).setParameter(1, ApartmentId).list();
+		 }
+		 else
+		 {
 			 System.out.println(str_BlockName+"blockname");
 			 Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId from UserBlocks where  str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, ApartmentId).uniqueResult();
 		     return sessionFactory.getCurrentSession().createQuery("from HouseDetails where int_BlockId=? and int_ApartmentId=?").setCacheable(true).setParameter(0, id).setParameter(1, ApartmentId).list();
-		 
+		 }
 	}
  
 	@Override
@@ -239,5 +246,11 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	public void deleteCommunityType(String str_CommunityType) {
 		Integer cmid=(Integer) getSessionFactory().getCurrentSession().createQuery("int_MasterCommunityTypeId from CommunityTypeMaster where str_CommunityType=?").setParameter(0, str_CommunityType).uniqueResult();
 		getSessionFactory().getCurrentSession().createQuery("delete from CommunityType where int_MasterCommunityTypeId=?").setParameter(0, cmid);
+	}
+
+	@Override
+	public void updateBlockDetails(UserBlocks ub) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().update(ub);
 	}
 }
