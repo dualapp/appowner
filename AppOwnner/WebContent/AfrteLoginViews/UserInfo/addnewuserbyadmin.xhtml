@@ -102,13 +102,13 @@
           <tr>
              <td><h:outputText value="House:">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:selectOneMenu id="str_House" value="#{cls_UserBean.str_HouseNo}" required="true" valueChangeListener="#{cls_UserBean.houseNoChangeListener}"     requiredMessage="Enter Flat Name!">
-            <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
+             <td><h:selectOneMenu id="str_House"  onchange="submit();"  value="#{cls_UserBean.str_HouseNo}" required="true" valueChangeListener="#{cls_UserBean.houseNoChangeListener}"     requiredMessage="Enter Flat Name!">
+            <f:selectItem itemLabel="Select Block"   itemValue="" noSelectionOption="true" />
             
             <f:selectItems value="#{cls_UserBean.houseNoList}"/>
              
-                  <p:ajax  event="change" immediate="true"
-                   update="@form" render="parentPanel"  />
+                 <!--<p:ajax  event="change" immediate="true"
+                    update="@form" render="parentPanel" />  -->
             </h:selectOneMenu>
              </td><td><p:message for="str_House" display="text"/></td>  </tr> 
 
