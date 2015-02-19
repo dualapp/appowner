@@ -276,24 +276,36 @@ public class ApartmentDetailsBean  implements Serializable{
 		 
 		return "instructions.xhtml";
 	}
+	 String  oldBlockName;
+	 private UserBlocks selectedBlock;
+	public UserBlocks getSelectedBlock() {
+		System.out.println(selectedBlock+"makhetbdbcccccccs");
+		return selectedBlock;
+	}
+	public void setSelectedBlock(UserBlocks selectedBlock) {
+		this.selectedBlock = selectedBlock;
+	}
 	public void onCellEdit(CellEditEvent event) {
 		
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
       
-       
+        
+       System.out.println(getSelectedBlock().getInt_BlockId()+"blockid");
         
         if(newValue != null && !newValue.equals(oldValue)) {
         	UserBlocks ub=new UserBlocks();
         	 if (newValue instanceof Integer)
-        		 ub.setInt_NoOfHouses((Integer)newValue);  
+        		 selectedBlock.setInt_NoOfHouses((Integer)newValue);  
              if (newValue instanceof String)
-            	 ub.setStr_BlockName((String)newValue); 
-              
+            	 selectedBlock.setStr_BlockName((String)newValue); 
+              if(oldValue instanceof String)
+            	  oldBlockName=(String)oldValue;
               System.out.println(ub.getStr_BlockName()+"kakkakak");
     	   System.out.println(ub.getInt_NoOfHouses()+"k1k1k1k1k");
-    		ub.setInt_ApartmentId(Util.getAppartmentId());
-    		//getApartmentDetailsService().updateBlockDetails(ub);
+    	   selectedBlock.setInt_ApartmentId(Util.getAppartmentId());
+    	   getApartmentDetailsService().updateOneBlock(selectedBlock);
+    		//getApartmentDetailsService().updateBlockDetails(ub, oldBlockName);
         	
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
