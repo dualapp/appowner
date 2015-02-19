@@ -10,6 +10,7 @@ import com.appowner.dao.ProductsDao;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
+import com.appowner.model.cls_Ads;
 @Service("ProductDetailService")
 @Transactional 
 public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
@@ -241,6 +242,62 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	public void updated(int int_Ad_categoryId) {
 		getProductDao().updated( int_Ad_categoryId);
 		
+	}
+
+	@Override
+	public void Addadss(cls_Ads ads) {
+		getProductDao().Addadss( ads);
+		
+	}
+
+	@Override
+	public List<String> getcat() {
+		return getProductDao().getcat();
+	}
+
+	@Override
+	public List<String> gettitle() {
+		return getProductDao().gettitle();
+	}
+
+	@Override
+	public int getid(String select) {
+		return getProductDao().getid(select);
+	}
+
+	@Override
+	public String getmsg(int ads_id) {
+		return getProductDao().getmsg(ads_id);
+	}
+
+	@Override
+	public String getname(String select1) {
+		return getProductDao().getname(select1);
+	}
+
+	@Override
+	public String getname(Integer int_ProductId) {
+		return getProductDao().getname( int_ProductId);
+	}
+
+	@Override
+	public String getclose(Integer int_ProductId) {
+		return getProductDao().getclose( int_ProductId);
+	}
+
+	@Override
+	public String getreject(Integer int_ProductId) {
+		return getProductDao().getreject( int_ProductId);
+	}
+
+	@Override
+	public int getrejectids(Integer int_ProductId) {
+		return getProductDao().getrejectids( int_ProductId);
+	}
+
+	@Override
+	public String getemailids(int msgrejectid) {
+		return getProductDao().getemailids( msgrejectid);
 	}
 
 	
