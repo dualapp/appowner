@@ -13,6 +13,8 @@ import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.Notification;
+import com.appowner.model.UserExtraInfo;
+import com.appowner.model.cls_Ads;
 import com.appowner.model.cls_Contact;
 @Repository
 public class ProductsDaoImpl implements ProductsDao{
@@ -131,6 +133,10 @@ public class ProductsDaoImpl implements ProductsDao{
 	@Override
 	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type ,String ch_Ad_Type,String status)
 	{
+		System.out.println(ch_Product_Type+";;;;;;;;;;;;;;;");
+		System.out.println( ch_Ad_Type+",........,.,.,,.,.,<><><><><>");
+		System.out.println( status);
+		
 		if(ch_Product_Type==null && ch_Ad_Type==null)
 		{
 			String  query = "{ CALL detail() }";
@@ -142,12 +148,11 @@ public class ProductsDaoImpl implements ProductsDao{
 		}
 		else
 		{
-			String  query = "{ CALL details('Buy','Neighbourhood','Pending Approval') }";
+			String  query = "{ CALL details(?,?,?)}";
+			List<Cls_ProductDetails> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0, ch_Product_Type).setParameter(1, ch_Ad_Type).setParameter(2, status).list();
+			return conn;
 		
-		 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
-		          ).list();
-		 System.out.println(kkk.listIterator().hasNext()+"priya");
-		 return kkk;
+		
 		
 	}
 	
@@ -329,7 +334,85 @@ public class ProductsDaoImpl implements ProductsDao{
 		
 	}
 
-}
+	@Override
+	public void Addadss(cls_Ads ads) {
+		getSessionFactory().getCurrentSession().save(ads);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getcat() {
+		return getSessionFactory().getCurrentSession().createCriteria(cls_Ads.class).setProjection(Projections.property("str_category")).list();
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> gettitle() {
+		return getSessionFactory().getCurrentSession().createCriteria(cls_Ads.class).setProjection(Projections.property("str_title")).list();
+	}
+
+	@Override
+	public int getid(String select) {
+		String hql2="select Adsid from cls_Ads where str_title=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (int) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, select).uniqueResult();
+	}
+
+	@Override
+	public String getmsg(int ads_id) {
+		String hql2="select message1 from cls_Ads where adsid=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (String) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, ads_id).uniqueResult();
+	
+	}
+
+	@Override
+	public String getname(String select1) {
+		String hql2="select username from Cls_ProductDetails where str_ApartmentName=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (String) sessionFactory.getCurrentSession().createQuery(hql2).uniqueResult();
+	}
+
+	@Override
+	public String getname(Integer int_ProductId) {
+		String hql="update  Cls_ProductDetails set  Status=? where int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Open").setParameter(1,int_ProductId).executeUpdate();
+		return hql;
+	}
+
+	@Override
+	public String getclose(Integer int_ProductId) {
+		String hql="update  Cls_ProductDetails set  Status=? where int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Close").setParameter(1,int_ProductId).executeUpdate();
+		return hql;
+	}
+
+	@Override
+	public String getreject(Integer int_ProductId) {
+		String hql="update  Cls_ProductDetails set  Status=? where int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Ads Rejected").setParameter(1,int_ProductId).executeUpdate();
+		return hql;
+	}
+
+	@Override
+	public int getrejectids(Integer int_ProductId) {
+		String hql2="select UserId from Cls_ProductDetails where int_ProductId=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (int) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, int_ProductId).uniqueResult();
+	}
+
+	@Override
+	public String getemailids(int msgrejectid) {
+		String hql2="select str_Email from User where int_UserId=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (String) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,  msgrejectid).uniqueResult();
+	}
+	}
+
+	
+
 	
 	
 
