@@ -14,16 +14,19 @@
 <div style="display:none;">
 <iframe id="ponyo_frame" name="ponyo_frame"></iframe>
 
-    <form id="ponyo_form" action="srv3" method="post">
+    <form id="ponyo_form" action="../../srv5" method="post">
     
         <table border="0" width="35%" align="center">
-            <caption><h2>Send New E-mail</h2></caption>
+            <caption><h2>Send E-mail</h2></caption>
             <tr>
                 <td width="50%">Recipient address </td>
                 <td><input type="text" name="recipient" size="50" value="<%=Cls_AddDetailBean.getRecipient()%>"/></td>
             </tr>
 
-            
+              <tr>
+                <td>Subject </td>
+                <td><textarea rows="10" cols="39" name="Organization" id='test'><%=Cls_AddDetailBean.getAprtmentname()%></textarea> </td>
+            </tr>
             <tr>
                 <td>Message </td>
                 <td><textarea rows="10" cols="39" name="content" id='test'><%=Cls_AddDetailBean.getContent()%></textarea> </td>
