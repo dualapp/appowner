@@ -206,11 +206,17 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public void updateBlockDetails(UserBlocks ub) {
+	public void updateBlockDetails(UserBlocks ub,String oldBlockName) {
 		// TODO Auto-generated method stub
-		getApartmentDetailsDao().updateBlockDetails(ub);
+		getApartmentDetailsDao().updateBlockDetails(ub,oldBlockName);
 	}
 
-	
+	@Override
+	public void updateOneBlock(UserBlocks selectedBlock) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateOneBlock(selectedBlock) ;
+	}
+
+	 
 
 }

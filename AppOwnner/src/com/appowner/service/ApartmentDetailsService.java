@@ -71,6 +71,10 @@ public interface ApartmentDetailsService {
 
 	void deleteCommunityType(String str_CommunityType);
 
-	void updateBlockDetails(UserBlocks ub);
+	 
+
+	void updateBlockDetails(UserBlocks ub, String oldBlockName);
+
+	void updateOneBlock(UserBlocks selectedBlock);
 
 }
