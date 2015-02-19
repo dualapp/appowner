@@ -6,6 +6,7 @@ import java.util.List;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.Notification;
+import com.appowner.model.cls_Ads;
 import com.appowner.model.cls_Person;
 
 public interface ProductsDetailService {
@@ -84,6 +85,30 @@ public interface ProductsDetailService {
 			String ch_Product_Type, String ch_Ad_Type, String status);
 
 	public void updated(int int_Ad_categoryId);
+
+	public void Addadss(cls_Ads ads);
+
+	public List<String> getcat();
+
+	public List< String> gettitle();
+
+	public int getid(String select);
+
+	public String getmsg(int ads_id);
+
+	public String getname(String select1);
+
+	public String getname(Integer int_ProductId);
+
+	public String getclose(Integer int_ProductId);
+
+	public String getreject(Integer int_ProductId);
+
+	public int getrejectids(Integer int_ProductId);
+
+	public String getemailids(int msgrejectid);
+
+	
 
 	
 
