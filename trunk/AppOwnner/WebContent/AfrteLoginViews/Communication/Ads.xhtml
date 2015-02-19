@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+<h:body> 
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/acc.jpg.jpg" height="45" width="45"></img> <span class="title"> Ads </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+     <div id="page3">
+   <table   style="width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:8px">
+ <h:form>
+ <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage">
+ </h:messages>        
+ <h:panelGrid columns="2">
+          
+  
+            
+            <h:outputText value="Category :">
+            </h:outputText>            
+            <h:inputText id="optionName1" value="#{cls_AddDetailBean.str_category}" >
+            </h:inputText>
+            <h:outputText value="Title  :">
+            </h:outputText>            
+            <h:inputText id="optionName2" value="#{cls_AddDetailBean.str_title}" >           
+             </h:inputText>
+            <h:outputText value="Message :">
+            </h:outputText>            
+            <h:inputText id="optionName3" value="#{cls_AddDetailBean.message1}" >
+            </h:inputText> 		
+            <h:commandButton id="add" value="Submit" action="#{cls_AddDetailBean.AddAds}"  /> 
+            
+             </h:panelGrid> 
+                
+            </h:form> 
+            </table>
+            </div>
+</h:body>
+          
+</ui:define>
+</ui:composition>
