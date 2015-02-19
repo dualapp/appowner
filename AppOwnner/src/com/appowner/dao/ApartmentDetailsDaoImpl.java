@@ -249,8 +249,28 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	}
 
 	@Override
-	public void updateBlockDetails(UserBlocks ub) {
+	public void updateBlockDetails(UserBlocks ub,String oldBlockName) {
 		// TODO Auto-generated method stub
-		getSessionFactory().getCurrentSession().update(ub);
+		String newBlockName=ub.getStr_BlockName();
+		Integer noOfHouses=ub.getInt_NoOfHouses();
+		Integer organizationId=ub.getInt_ApartmentId();
+		System.out.println(newBlockName+"kplakam");
+		
+		System.out.println(oldBlockName+"oldkalpam");
+		Integer blockId=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_BlockId from  UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, oldBlockName).setParameter(1, organizationId).uniqueResult();
+				
+		if(newBlockName!=null)
+		{
+			getSessionFactory().getCurrentSession().createQuery("UPDATE UserBlocks SET str_BlockName =?  WHERE int_BlockId = ? and int_ApartmentId=?").setParameter(0, newBlockName).setParameter(1,blockId).setParameter(2, organizationId).executeUpdate();
+		}
+		if(noOfHouses!=null)
+		getSessionFactory().getCurrentSession().createQuery("UPDATE UserBlocks SET int_NoOfHouses =?  WHERE int_BlockId = ? and int_ApartmentId=?").setParameter(0, noOfHouses).setParameter(1,blockId).setParameter(2, organizationId).executeUpdate();
 	}
+
+	@Override
+	public void updateOneBlock(UserBlocks selectedBlock) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().update(selectedBlock);
+	}
+	
 }
