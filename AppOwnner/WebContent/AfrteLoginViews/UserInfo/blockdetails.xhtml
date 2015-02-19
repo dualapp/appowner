@@ -40,12 +40,16 @@
        <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellBlocks').showCellEditor();return false;"/>  
        <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('bMenu').hide()"/>  
    </p:contextMenu> 
-  <p:dataTable id="DT"  editable="true" editMode="cell" widgetVar="cellBlocks" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
+  <p:dataTable id="DT"    selection="#{apartmentDetailsBean.selectedBlock}" rowKey="#{blockDetails.int_BlockId}" editable="true" editMode="cell" widgetVar="cellBlocks" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
              var="blockDetails"  value="#{apartmentDetailsBean.listBlockDetails}"> 
              <f:facet name="header">
            Cell Editing with Click and RightClick
        </f:facet>
        <p:ajax event="cellEdit" listener="#{apartmentDetailsBean.onCellEdit}"  update=":form:msgs" />
+               
+               <p:column selectionMode="single">
+               
+               </p:column>
                 <p:column headerText="Block Name">
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{blockDetails.str_BlockName}" /></f:facet>
