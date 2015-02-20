@@ -223,9 +223,21 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 
 	@SuppressWarnings("unchecked")
 	public List<String> getMenulist()
-	{
-	
-		String str=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=1").setCacheable(true).uniqueResult();
+	{  Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).uniqueResult();
+	   System.out.println(id1+"fcjdfjkdfjkfd");
+		/*String role=(String)getSessionFactory().getCurrentSession().createQuery("select str_UserRoleName from User where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).uniqueResult();
+	    System.out.println(role+"fjdfjkfgkjf");
+	    List<String> str3=new ArrayList<String>();
+	    if(role.equalsIgnoreCase("admin"))
+	    {
+	      str3=getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster").setCacheable(true).list();
+	      System.out.println(str3+"fjkfdkjdff");
+	      return str3;
+	    }
+	    else
+	    { */ 
+	  
+	   String str=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=?").setParameter(0,id1).setCacheable(true).uniqueResult();
 		System.out.println(str+"dskkj");
 		  String[] strArray = str.split(",");
 		  List<String> str2=new ArrayList<String>();
@@ -240,6 +252,7 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 		        }
 		  System.out.println(str2+"dsjkdfkjdf");
 		  return str2;
+	  
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getMenulist1()
@@ -301,5 +314,42 @@ public List<String> getRoleMenus(Integer i)
 		}
 		 return str1;
 	 }
+  @SuppressWarnings("unchecked")
+public  List<String> getSideMenu()
+  {  
+	  String str="select int_RoleId from RoleAssignment where int_ApartmentId=? and int_UserId=?";
+	Integer id= (Integer) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,Util.getAppartmentId()).setParameter(1, Util.getUserId()).uniqueResult();
+	System.out.println(id+"fjdfjdfjd");
+	if(id==null)
+	{
+		Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).uniqueResult();
+		   System.out.println(id1+"fcjdfjkdfjkfd");
+		   String str2=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=?").setParameter(0,id1).setCacheable(true).uniqueResult();
+			System.out.println(str2+"dskkj");
+			  String[] strArray = str2.split(",");
+			  List<String> str3=new ArrayList<String>();
+			  for (String str1 : strArray) {
+			       
+			       System.out.println(str1+"dsjjdfd");
+			       int id2=Integer.parseInt(str1);
+			         str3.add((String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id2).setCacheable(true).uniqueResult());
+			       System.out.println(str2+"dskjfdjkdfkj");
+			       
+			          
+			        }
+			  System.out.println(str3+"dsjkdfkjdf");
+			  return str3;
+		  
+		   
+	}
+	else
+	{
+	Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id).setParameter(1,Util.getAppartmentId()).uniqueResult();
+	System.out.println(id1+"fddfhdfj");
+	List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id1).list();
+	 System.out.println(str1+"fdjdfjfd"); 
+	  return str1;
+	}
+  }
 	}
 
