@@ -20,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 
 import com.appowner.model.User;
@@ -256,14 +257,23 @@ public class UserInformationBean implements Serializable{
 			 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
 		
 			System.out.println("***** fileName: " + fileName);
-	 
+			ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 			//String basePath = "D:" + File.separator + "temp" + File.separator;
 			//File outputFilePath = new File(basePath + fileName);
-			String basePath = "E:" + File.separator + "sites" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator;
+			String basePath = servletContext.getRealPath("")
+					+ File.separator + "images" + File.separator;
+					
 			System.out.println(basePath);
-			File outputFilePath = new File(basePath+fileName);
-			
-			System.out.println(path+"path");
+			File outputFilePath = new File(basePath);
+			 if (!outputFilePath.exists()) {
+				   	if (outputFilePath.mkdir()) {
+				   		System.out.println("Directory is created!");
+				   	} else {
+				   		System.out.println("Failed to create directory!");
+				   	}
+			 }
+			 outputFilePath = new File(basePath, fileName);
+			System.out.println(path + "path");
 			// Copy uploaded file to destination path
 			InputStream inputStream = null;
 			OutputStream outputStream = null;
@@ -276,7 +286,7 @@ public class UserInformationBean implements Serializable{
 				while ((read = inputStream.read(bytes)) != -1) {
 					outputStream.write(bytes, 0, read);
 				}
-				path="E://sites/AppOwnner/WebContent/images"+File.separator+fileName;
+				path="/images" + File.separator+fileName; 
 				user.setVar_ImageName1(path);
 				user.setInt_UserId(user.getInt_UserId());
 				getAdminService().updateProfilePic(user);
