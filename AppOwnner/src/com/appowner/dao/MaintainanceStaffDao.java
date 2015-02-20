@@ -62,6 +62,8 @@ public interface MaintainanceStaffDao {
 
 	void deleteAssignedMenus(Integer int_RoleId);
 
+	List<String> getSideMenu();
+
 	//void deleteAssignedRoles(RoleManagement rm);
 
 	 
