@@ -14,7 +14,7 @@
 				  </a>
 					<ul class="submenu">
 						<ui:repeat value="#{pc_sidebar.products}" var="prod1" varStatus="ind"> 
-							<li class="#{ind.first ? 'active' : ''}"><a href="elements.html">#{loginBean.setup} <i
+							<li class="#{ind.first ? 'active' : ''}"><a href="elements.html"><i
 									class="icon-double-angle-right"></i> Elements
 							</a></li>
 						</ui:repeat>
@@ -22,16 +22,16 @@
 			</ui:repeat>
 
 			 
- 
-			
+ 	<ui:repeat value="#{roleManagementBean.listSideMenu}" var="role" varStatus="ind"> 
+			<h:panelGroup rendered="#{role.equalsIgnoreCase('communication')}">			
 			<li><a href="#" class="dropdown-toggle"> <i
-					class="icon-list"></i> <span class="menu-text">Communication</span> <b
+					class="icon-list"></i> <span class="menu-text">#{role}</span> <b
 					class="arrow icon-angle-down"></b>
 			</a>
 			<ul class="submenu">
 			
 
-								
+				
 								
 								<li><a href="/AppOwnner/AfrteLoginViews/Communication/Notice.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Post An Notice
@@ -55,18 +55,18 @@
 			</ul>
 			</li>
 								
+		</h:panelGroup>						
 								
-								
 			
 			
-			
-			
+				
+	<h:panelGroup rendered="#{role.equalsIgnoreCase('Facility')}">				
 			<li><a href="#" class="dropdown-toggle"> <i
 					class="icon-list"></i> <span class="menu-text">Facility</span> <b
 					class="arrow icon-angle-down"></b>
 			</a>
 			<ul class="submenu">
-								
+							
 								
 								<li><a href="/AppOwnner/AfrteLoginViews/Facilities/facilityneeded.xhtml"> <i
 										class="btn btn-xs btn-primary icon-user"></i>Add A Facility
@@ -88,12 +88,11 @@
 										class="btn btn-xs btn-primary icon-user"></i>Assets Category
 								</a></li>
 
-								
+					
 							</ul></li>
 			
-
- 
-			
+</h:panelGroup>
+		<h:panelGroup rendered="#{role.equalsIgnoreCase('Accounting')}">			
 			<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
 					<span class="menu-text">Accounting</span> <b
 					class="arrow icon-angle-down"></b>
@@ -135,13 +134,13 @@
 							</ul></li>
 			
 			
-			
+			</h:panelGroup>
 				
 						
 					
 					
 			
-			
+	<h:panelGroup rendered="#{role.equalsIgnoreCase('Vendors')}">			
 			
 <li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
 					<span class="menu-text">Vendors</span> <b
@@ -163,6 +162,8 @@
 
 								
 							</ul></li>
+							</h:panelGroup>
+					<h:panelGroup rendered="#{role.equalsIgnoreCase('SMS Gateway')}">					
 							<li><a href="#" class="dropdown-toggle"> <i
 					class="icon-list"></i> <span class="menu-text">SMS Gateway </span> <b
 					class="arrow icon-angle-down"></b>
@@ -181,7 +182,8 @@
 
 								
 							</ul></li>
-			
+							</h:panelGroup>
+			<h:panelGroup rendered="#{role.equalsIgnoreCase('Advertisement')}">			
 			<li><a href="#" class="dropdown-toggle"> <i
 					class="icon-list"></i> <span class="menu-text">Advertisement</span> <b
 					class="arrow icon-angle-down"></b>
@@ -197,13 +199,13 @@
 							
 								
 							</ul></li>
-			
+			</h:panelGroup>
 				
 						
 					
 					
 			
-			
+		<h:panelGroup rendered="#{role.equalsIgnoreCase('Administration')}">				
 			<li><a href="#" class="dropdown-toggle"> <i
 					class="icon-list"></i> <span class="menu-text">Administration</span> <b
 					class="arrow icon-angle-down"></b>
@@ -245,7 +247,8 @@
 										</li>
 </ul>
 </li>
-							
+	</h:panelGroup>
+	<h:panelGroup rendered="#{role.equalsIgnoreCase('Organisation')}">									
 								
 <li><a href="#" class="dropdown-toggle"> <i
 					class="icon-list"></i> <span class="menu-text">Organisation</span> <b
@@ -281,11 +284,11 @@
 					</ul>
 					</li>
 				
-						
+				</h:panelGroup>		
 						
 			
 		
-		
+		<h:panelGroup rendered="#{role.equalsIgnoreCase('Other')}">			
 		<li><a href="#" class="dropdown-toggle"> <i
 					class="icon-list"></i> <span class="menu-text">Other</span> <b
 					class="arrow icon-angle-down"></b>
@@ -300,6 +303,9 @@
 
 	</ul>
 	</li>
+	</h:panelGroup>
+	
+	</ui:repeat>
 	</ul>
 	</h:form>
 </ui:composition>
