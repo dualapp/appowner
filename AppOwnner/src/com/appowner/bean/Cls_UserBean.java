@@ -329,6 +329,21 @@ public class Cls_UserBean implements Serializable{
 		public static void setUrl(String url) {
 			Cls_UserBean.url = url;
 		}
+		public void houseNoChangeListener(ValueChangeEvent event)
+		{
+			str_HouseNo=(String) event.getNewValue();
+			 
+			 user=getUserService().isUserStaying(str_HouseNo);
+			 System.out.println(user+"uuuuuuuuuuuuuu");
+			 if(user!=null)
+			 {
+				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This House is already Booked for: "  + user.getStr_UserRoleName()+""+user.getStr_Username()));
+			 }
+			 
+		   
+	   
+			render=true;
+		}
 
 		/*
 		 * here binding cls_UserServie and vendorBean and selectonemenu object with annotaions to access their getter and setter..
@@ -944,11 +959,7 @@ public class Cls_UserBean implements Serializable{
 			return render;
 		}
 		
-		public void houseNoChangeListener(ValueChangeEvent event)
-		{
-			str_HouseNo=(String) event.getNewValue();
-			render=true;
-		}
+		
 		public List<String> getBlockNameByApartmentName() {
 			System.out.println(str_UserApartment);
 			str_UserApartment=getUserapartment();
