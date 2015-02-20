@@ -322,6 +322,14 @@ public class Cls_UserBean implements Serializable{
 		public static String getError() {
 			return ERROR;
 		}
+		private static String url;
+		public static String getUrl() {
+			return url;
+		}
+		public static void setUrl(String url) {
+			Cls_UserBean.url = url;
+		}
+
 		/*
 		 * here binding cls_UserServie and vendorBean and selectonemenu object with annotaions to access their getter and setter..
 		 */
@@ -441,15 +449,17 @@ public class Cls_UserBean implements Serializable{
 			usr.setInt_activationbit(0);
 			System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
 			getUserService().addUser(usr);
+			
 			 el=getStr_Email();
 			 un=getStr_Username();
 			pd=getStr_Password();
 			fn=getStr_FirstName();
 			
 			
-			String url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
+			url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
 			subject="AppOwner.com";
 			content="fffff";
+			Bn="admin";
 					
 				
 			List<String> list=new ArrayList<String>();
@@ -505,6 +515,13 @@ public class Cls_UserBean implements Serializable{
 		public void setListUser(List<User> listUser) {
 			ListUser = listUser;
 		}
+		public static String Bn;
+		public static String getBn() {
+			return Bn;
+		}
+		public static void setBn(String bn) {
+			Bn = bn;
+		}
 		public String addnewUser()
 		{
 			try{
@@ -550,15 +567,11 @@ public class Cls_UserBean implements Serializable{
 				pd=getStr_Password();
 				fn=getStr_FirstName();
 				an=Util.getAppartmentName();
-				String url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
+				Bn="user";
+				url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
+				System.out.println(url+"fdjjkjkfdjkdffdj");
 				subject="AppOwner.com";
-				content="Hello."+" "  +fn+
-					   "\n Thank you for registering your Apartment Complex with AppOwner.\n"
-						+ "You are registered as the moderator for "+","  +an
-					  
-						+"UserName:  "+" "  +un+" "+"\n"
-					   + "Password:  "+" "  +pd+
-					    "\n Please Click here to Activate your Account "+" "+url ;
+				content="gggggg";
 						
 					
 				List<String> list=new ArrayList<String>();
@@ -802,18 +815,38 @@ public class Cls_UserBean implements Serializable{
 		     
 			return "BlockAddedConfirmation.xhtml";
 		}
-		
+	public static Integer id;	
+		public static Integer getId() {
+		return id;
+	}
+	public static void setId(Integer id) {
+		Cls_UserBean.id = id;
+	}
 		//@SuppressWarnings("unchecked")
 		public void editUser()
 		{
 			
 			System.out.println(int_UserId+"jjj");
+			id=int_UserId;
+			System.out.println(id+"fdfjfdjfd");
 			editlis=getUserService().edit(int_UserId);
 			System.out.println("..............................................");
 			System.out.println(editlis.getStr_FirstName());
 			edituserid2=editlis.getInt_UserId();
 			
 		//	return "userEdituser.xhtml";
+		}
+		public static String getFn() {
+			return fn;
+		}
+		public static void setFn(String fn) {
+			Cls_UserBean.fn = fn;
+		}
+		public static String getAn() {
+			return an;
+		}
+		public static void setAn(String an) {
+			Cls_UserBean.an = an;
 		}
 		public String updateUser(int usereditid)
 		{
