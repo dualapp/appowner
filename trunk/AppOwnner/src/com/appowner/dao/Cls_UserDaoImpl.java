@@ -483,6 +483,11 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			return str;
 			
 		}
+		@Override
+		public User isUserStaying(String str_HouseNo) {
+			// TODO Auto-generated method stub
+			return (User) getSessionFactory().getCurrentSession().createQuery("from User where str_Flat=? and int_ApartmentId=?").setParameter(0, str_HouseNo).setParameter(1,Util.getAppartmentId()).uniqueResult();
+		}
 		}
 
 		
