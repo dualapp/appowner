@@ -66,7 +66,9 @@ public interface MaintainanceStaffService {
 
 	void deleteAssignedMenus(Integer int_RoleId);
 
-	//void deleteAssignedRoles(RoleManagement rm);
+	List<String> getSideMenu();
+
+	
 
 	 
 }
