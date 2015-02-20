@@ -207,14 +207,7 @@ public class User implements Serializable{
 	public void setVar_ImageName1(String var_ImageName1) {
 		Var_ImageName1 = var_ImageName1;
 	}
-	@Column(name="SqareFeet")
-	private double sqft;
-	public double getSqft() {
-		return sqft;
-	}
-	public void setSqft(double sqft) {
-		this.sqft = sqft;
-	}
+	
 	 
 	
 	
