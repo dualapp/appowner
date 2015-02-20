@@ -37,7 +37,7 @@
  
   <servlet>
     <servlet-name>Servlet1</servlet-name>
-    <servlet-class>com.appowner.bean.EmailSendingServlet1</servlet-class>
+    <servlet-class>com.appowner.bean.EmailSendingServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Servlet1</servlet-name>
