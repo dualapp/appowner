@@ -130,6 +130,8 @@ public interface In_UserDao {
 
 	public String getId(String setup);
 
+	public User isUserStaying(String str_HouseNo);
+
 	//public void deleteUser1(int int_UserId);
 
 	
