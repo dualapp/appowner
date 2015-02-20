@@ -35,6 +35,14 @@ public class User implements Serializable{
 	@Column
 	private String str_Country;
 	@Column
+	private Boolean is_Active;
+	public Boolean getIs_Active() {
+		return is_Active;
+	}
+	public void setIs_Active(Boolean is_Active) {
+		this.is_Active = is_Active;
+	}
+	@Column
 	private String str_State;
 	@Column
 	private String str_City;
@@ -207,8 +215,6 @@ public class User implements Serializable{
 	public void setVar_ImageName1(String var_ImageName1) {
 		Var_ImageName1 = var_ImageName1;
 	}
-	
+ 
 	 
-	
-	
 }
