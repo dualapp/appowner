@@ -171,7 +171,10 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	<tr><td><h:commandButton   styleClass="btn"    value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" >
 	 <f:ajax execute="editHouseDetail" event="click"  render="@form"/>
 	 </h:commandButton>
-	 </td><td><h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" /></td>
+	 </td><td><h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </h:commandButton>
+	 </td>
 	 </tr>
 	 </table>
  </p:outputPanel>
@@ -246,7 +249,10 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	<td><h:commandButton   styleClass="btn" id="submit"  value="Confirm"     action="#{apartmentDetailsBean.saveHouseDetails}" >
 	  <f:ajax execute="houseDetail" event="click"  render="@form"/>
 	 </h:commandButton>
-	 </td><td><h:commandButton   styleClass="btn" id="Cancel"  value="Cancel"    action="housedetails.xhtml" /></td>
+	 </td><td>
+   <h:commandButton     styleClass="btn" icon="ui-icon-close"    value="Cancel"    action="housedetails.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </h:commandButton></td>
 	 </tr>
 	 </table>
 	 </p:outputPanel>
