@@ -286,10 +286,10 @@ C=C;
 		str_RoleName=(String) itr1.next();
 		System.out.println(str_RoleName);
 		roleAssignment=new RoleAssignment();
-		
+		System.out.println(Cls_UserBean.id+"jfdffd");
 		roleAssignment.setStr_RoleName(str_RoleName);
 		roleAssignment.setInt_RoleId(getMaintainanceStaffService().getRoleId(str_RoleName));
-		roleAssignment.setInt_UserId(Util.getUserId());
+		roleAssignment.setInt_UserId(Cls_UserBean.id);
 		 
 		S=getMaintainanceStaffService().getUserType(int_UserId);
 		System.out.println(S);
@@ -440,5 +440,16 @@ public void addRoleMenuManagement()
 		e.printStackTrace();
 	}
 }
+private List<String>  listSideMenu;
+public List<String> getListSideMenu() {
+	listSideMenu=new ArrayList<String>();
+	listSideMenu=getMaintainanceStaffService().getSideMenu();
+	return listSideMenu;
+}
+
+public void setListSideMenu(List<String> listSideMenu) {
+	this.listSideMenu = listSideMenu;
+}
+
 
 }
