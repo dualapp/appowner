@@ -44,7 +44,9 @@ public class EmailSendingServlet extends HttpServlet {
         String apartment=request.getParameter("apartment");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
-        String url=request.getParameter("url");
+        String url=request.getParameter("activation");
+        String str=request.getParameter("indicator");
+        System.out.println(str+"fkjdfgkjfkjfgkj");
         String resultMessage = "";
         Boolean render=false;
         try {
@@ -57,8 +59,16 @@ public class EmailSendingServlet extends HttpServlet {
         } finally {
             request.setAttribute("Message", resultMessage);
             request.setAttribute("render", "true");
+            if(str.equalsIgnoreCase("user"))
+            {
+            	 getServletContext().getRequestDispatcher("/AfrteLoginViews/UserInfo/addnewuserbyadmin.xhtml").forward(
+                         request, response);
+            }
+            else if(str.equalsIgnoreCase("admin"))
+            {
             getServletContext().getRequestDispatcher("/NewRegistration.xhtml").forward(
                     request, response);
+            }
         }
     }
 }
