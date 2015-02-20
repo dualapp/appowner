@@ -192,7 +192,10 @@ public class MaintainanceStaffServiceImpl implements MaintainanceStaffService {
 		
 		 return getMaintainanceStaffDao().getRoleMenus(i);
 	}
-
+public	List<String> getSideMenu()
+	{
+		return getMaintainanceStaffDao().getSideMenu();
+	}
 	 
 	 
 }
