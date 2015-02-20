@@ -1715,11 +1715,8 @@ public void setFacilityNeededList(List<FacilityNeeded> facilityNeededList) {
 public String updateFacility(FacilityNeeded fn1)
 {  getExpenseService().updateFacility(fn1);
 
-FacesContext facesContext = FacesContext.getCurrentInstance();
-Flash flash = facesContext.getExternalContext().getFlash();
-flash.setKeepMessages(true);
-flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Updated Successfully!", " Updated Successfully!"));
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Updated Successfully!"));
+ 
 return "facilityneeded.xhtml";
 }
 public FacilityNeeded getFacilityNeeded() {
@@ -1734,11 +1731,7 @@ public String addFacility()
 	facilityNeeded.setStr_FacilityName(str_FacilityName);
 	facilityNeeded.setInt_ApartmentId(Util.getAppartmentId());
 	getExpenseService().addFacility(facilityNeeded);
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   added Successfully!", " added Successfully!"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Added Successfully!"));
 	return "facilityneeded.xhtml";
 }
 public String deletefacilityNeeded()
@@ -1757,11 +1750,7 @@ public String deletefacilityNeeded()
   
      getExpenseService().deletefacilityNeeded(entitiesToDelete);
  
-FacesContext facesContext = FacesContext.getCurrentInstance();
-Flash flash = facesContext.getExternalContext().getFlash();
-flash.setKeepMessages(true);
-flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   deleted Successfully!", " deleted Successfully!"));
+     FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Deleted Successfully!"));
 return "facilityneeded.xhtml";
 }
 
@@ -1866,11 +1855,7 @@ public void setStr_PoolQuestion(String str_PoolQuestion) {
 public String deleteOnePoll1()
 {
 	getExpenseService().deleteOnePoll(onePoll);
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Poll deleted Successfully!", "Poll deleted Successfully!"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Deleted Successfully!"));
 	return "pools.xhtml";
 	
 }
