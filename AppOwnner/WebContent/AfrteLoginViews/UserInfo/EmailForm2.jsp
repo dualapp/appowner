@@ -14,7 +14,7 @@
 <div style="display:none;">
 <iframe id="ponyo_frame" name="ponyo_frame"></iframe>
 
-    <form id="ponyo_form" action="../../srv5" method="post">
+    <form id="ponyo_form" action="../../srv" method="post">
     
         <table border="0" width="35%" align="center">
             <caption><h2>Send New E-mail</h2></caption>
@@ -27,9 +27,34 @@
                 <td>Subject </td>
                 <td><input type="text" name="subject" size="50" value="<%=Cls_UserBean.getSubject()%>"/></td>
             </tr>
-            <tr>
+           
+             <tr>
                 <td>Content </td>
                 <td><textarea rows="10" cols="39" name="content" id='test'><%=Cls_UserBean.getContent()%></textarea> </td>
+            </tr>
+             <tr>
+                <td>UserName </td>
+                <td><textarea rows="10" cols="39" name="username" id='test'><%=Cls_UserBean.getFn()%></textarea> </td>
+            </tr>
+             <tr>
+                <td>Password </td>
+                <td><textarea rows="10" cols="39" name="password" id='test'><%=Cls_UserBean.getPd()%></textarea> </td>
+            </tr>
+             <tr>
+                <td>activation</td>
+                <td><textarea rows="10" cols="39" name="activation" id='test'><%=Cls_UserBean.getUrl()%></textarea> </td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td><textarea rows="10" cols="39" name="email" id='test'><%=Cls_UserBean.getEl()%></textarea> </td>
+            </tr>
+             <tr>
+                <td>apartment</td>
+                <td><textarea rows="10" cols="39" name="apartment" id='test'><%=Cls_UserBean.getAn()%></textarea> </td>
+            </tr>
+            <tr>
+                <td>apartment</td>
+                <td><textarea rows="10" cols="39" name="indicator" id='test'><%=Cls_UserBean.getBn()%></textarea> </td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Send"/></td>
