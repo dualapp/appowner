@@ -851,6 +851,13 @@ public class LoginBean implements Serializable {
 	public void setExpireDay(Integer expireDay) {
 		this.expireDay = expireDay;
 	}
+	public Integer actvationkey;
+	public Integer getActvationkey() {
+		return actvationkey;
+	}
+	public void setActvationkey(Integer actvationkey) {
+		this.actvationkey = actvationkey;
+	}
 	public String userLogin()
 	{
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -873,7 +880,7 @@ public class LoginBean implements Serializable {
 		 
 		str_userRoleName=user.getStr_UserRoleName();
 		 str_Country=user.getStr_Country();
-		// formuserloginuserpassword=user.getStr_Password();
+		//formuserloginuserpassword=user.getStr_Password();
 		 System.out.println(formuserloginuserpassword+"kldfkldlk");
 		 str_State=user.getStr_State();
 		 str_City=user.getStr_City();
@@ -887,32 +894,34 @@ public class LoginBean implements Serializable {
 		 
 		str_ApartmentName=user.getStr_Apartment();
 		 status=getUserService().getStatus(str_ApartmentName);
+		 actvationkey=user.getInt_activationbit();
 		 System.out.println(status+"fkdfdkj");
 		String admin1="admin";
 	
 	if(status==0)
-	{
+	{ if(actvationkey==1)
+	  {
 		if(formuserloginuserpassword.equals(user.getStr_Password()) )
-		{    
+		  {    
 		
-		   if(admin1.equals(str_userRoleName))
-		   {
+		     if(admin1.equals(str_userRoleName))
+		    {
 			int_ApartmentId=user.getInt_ApartmentId();
 			java.util.Date Entrydate=new java.util.Date();
 			Date EndDate=getUserService().getEndDate(int_ApartmentId);
-			//expireDay=(int) ((EndDate.getTime() - Entrydate.getTime())/(1000 * 60 * 60 * 24));
+			expireDay=(int) ((EndDate.getTime() - Entrydate.getTime())/(1000 * 60 * 60 * 24));
 			System.out.println(expireDay+"fdkjfdjkfdkj");
 			System.out.println(Entrydate+"lkfklfddf");
 			System.out.println(EndDate+"dksdsksdk");
 			int_UserId=user.getInt_UserId();
 			admin=admin1.equals(str_userRoleName);
 			user1=!admin1.equals(str_userRoleName);
-			
+			System.out.println(formuserloginusername+"fkjdfdkjfdkj8888888888888888888888888888888888888888");
 			 HttpSession session = Util.getSession();
 			 session.setAttribute("str_FirstName", str_FirstName);
 			 session.setAttribute("str_LastName", str_LastName);
 			  
-            session.setAttribute("username", userloginname);
+            session.setAttribute("username", formuserloginusername);
             session.setAttribute("str_Password", formuserloginuserpassword);
             session.setAttribute("int_ApartmentId", int_ApartmentId);
             session.setAttribute("int_UserId", int_UserId);
@@ -929,7 +938,7 @@ public class LoginBean implements Serializable {
             session.setAttribute("str_userRoleName", str_userRoleName);
 			 
             session.setAttribute("int_UserRole", user.getInt_UserRole());
-		  return "/AfrteLoginViews/Adminwelcomepage.xhtml";
+		     return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
 		   else
 		   {
@@ -973,13 +982,20 @@ public class LoginBean implements Serializable {
 			 return "/AfrteLoginViews/welcomepage.xhtml";
 		   }
 		}
-		   else
+	  else
 		   {
 			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"User name or password is invalid!"));
 				return "layout.xhtml";  
 		   }
+	
 	}
- 
+	else
+	{
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Plz activate ur account! Credential sent to ur Email"));
+			return "layout.xhtml"; 
+	}
+	
+	}
 		else
 		{
 			

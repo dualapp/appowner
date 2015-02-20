@@ -62,7 +62,7 @@ public class EmailUtility {
         		        "</tr>"+"<tr>"+
         		        "<td>"+"<font size="+2+">"+"Website:https://www.appowners.com/"+""+"</font>"+"</td>"+
         		        "</tr>"+"<tr>"+
-        		        "<td>"+"<font size="+2+">"+"UserName:"+" "+email+"</font>"+"</td>"+
+        		        "<td>"+"<font size="+2+">"+"UserName:"+" "+username+"</font>"+"</td>"+
         		         "</tr>"+"<tr>"+
         		        "<td>"+"<font size="+2+">"+"Password:"+" "+password1+"</font>"+"</td>"+
         		        "</tr>"+"<tr>"+
