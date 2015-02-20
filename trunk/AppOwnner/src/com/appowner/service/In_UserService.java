@@ -118,5 +118,6 @@ public interface In_UserService {
 	public String getSetUp();
 
 	public String getId(String setup);
+	public User isUserStaying(String str_HouseNo);
 }
 
