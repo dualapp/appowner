@@ -97,7 +97,7 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	@Override
 	public HouseDetails getHouseDetailByHouseNo(String str_HouseNo) {
 		// TODO Auto-generated method stub
-		return (HouseDetails) sessionFactory.getCurrentSession().createQuery("from HouseDetails where str_HouseNo=?").setParameter(0, str_HouseNo).uniqueResult();
+		return (HouseDetails) sessionFactory.getCurrentSession().createQuery("from HouseDetails where str_HouseNo=? and int_ApartmentId=?").setParameter(0, str_HouseNo).setParameter(1, Util.getAppartmentId()).uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
