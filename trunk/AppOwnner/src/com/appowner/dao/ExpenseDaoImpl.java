@@ -71,7 +71,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		{
 			//pending
 		}
-		return getSessionFactory().getCurrentSession().createCriteria(Expense.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from Expense where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		 
 		/*List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
 		System.out.println(parkingSpaceList);*/
-		return getSessionFactory().getCurrentSession().createCriteria(Parking.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from Parking where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override
@@ -251,10 +251,11 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		getSessionFactory().getCurrentSession().save(pool);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Pool> getPoolList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(Pool.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override
