@@ -52,6 +52,10 @@
                 <td>apartment</td>
                 <td><textarea rows="10" cols="39" name="apartment" id='test'><%=Cls_UserBean.getAn()%></textarea> </td>
             </tr>
+             <tr>
+                <td>apartment</td>
+                <td><textarea rows="10" cols="39" name="indicator" id='test'><%=Cls_UserBean.getBn()%></textarea> </td>
+            </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Send"/></td>
             </tr>
