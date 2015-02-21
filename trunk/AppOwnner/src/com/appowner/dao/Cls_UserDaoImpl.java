@@ -63,6 +63,8 @@ import java.util.List;
 
 
 
+
+
 import javax.mail.Session;
 import javax.management.Query;
 
@@ -484,10 +486,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			
 		}
 		@Override
-		public User isUserStaying(String str_HouseNo) {
+		public User isUserStaying(String str_HouseNo,Integer int_UserRole) {
 			// TODO Auto-generated method stub
-			return (User) getSessionFactory().getCurrentSession().createQuery("from User where str_Flat=? and int_ApartmentId=?").setParameter(0, str_HouseNo).setParameter(1,Util.getAppartmentId()).uniqueResult();
+			return (User) getSessionFactory().getCurrentSession().createQuery("from User where str_Flat=? and int_ApartmentId=? and int_UserRole=?").setParameter(0, str_HouseNo).setParameter(1,Util.getAppartmentId()).setParameter(2,int_UserRole).uniqueResult();
 		}
+
+		 
 		}
 
 		
