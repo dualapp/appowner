@@ -300,6 +300,12 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 		return getProductDao().getemailids( msgrejectid);
 	}
 
+	@Override
+	public void updateProfilePic(Cls_ProductDetails user) {
+		
+		
+	}
+
 	
 
 	

@@ -108,6 +108,8 @@ public interface ProductsDetailService {
 
 	public String getemailids(int msgrejectid);
 
+	public void updateProfilePic(Cls_ProductDetails user);
+
 	
 
 	
