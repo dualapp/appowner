@@ -13,7 +13,7 @@
 </h:head>
 <body bgcolor="#F08080">  
  <h:form id="form">
- <p:growl id="messages" globalOnly="true" />
+ <p:growl id="messages" globalOnly="true" sticky="true" />
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
 		
 			<tr>
@@ -50,12 +50,7 @@
              <td><h:inputSecret id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBean.str_ConfirmPassword}" required="true"                requiredMessage="Enter Confirm Password!">
              
              </h:inputSecret></td> <td><p:message for="str_ConfirmPassword" display="text"/></td></tr>
-              <tr>
-             <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
-         <td><h:selectOneRadio id="options" value="#{cls_UserBean.int_UserRole}">
-            <f:selectItem itemLabel="Tenant" itemValue="1" />
-            <f:selectItem itemLabel="Owner" itemValue="2" />
-            </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
+              
             <tr><td colspan="2" align="left">
            <div class="gsTitleDiv">General Information</div> </td></tr> 
             <tr>
@@ -102,7 +97,7 @@
           <tr>
              <td><h:outputText value="House:">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:selectOneMenu id="str_House"     onchange="submit();"  value="#{cls_UserBean.str_HouseNo}" required="true" valueChangeListener="#{cls_UserBean.houseNoChangeListener}"     requiredMessage="Enter Flat Name!">
+             <td><h:selectOneMenu id="str_House"       value="#{cls_UserBean.str_HouseNo}" required="true" valueChangeListener="#{cls_UserBean.houseNoChangeListener}"     requiredMessage="Enter Flat Name!">
             <f:selectItem itemLabel="Select Block"   itemValue="" noSelectionOption="true" />
             
             <f:selectItems value="#{cls_UserBean.houseNoList}"/>
@@ -111,9 +106,14 @@
             
              </td><td><p:message for="str_House"   display="text"/></td>  </tr> 
 
-         
+         <tr>
+             <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
+         <td><h:selectOneRadio id="options"  onchange="submit();" value="#{cls_UserBean.int_UserRole}" valueChangeListener="#{cls_UserBean.roleChangeListener}">
+            <f:selectItem itemLabel="Tenant" itemValue="1" />
+            <f:selectItem itemLabel="Owner" itemValue="2" />
+            </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
              <tr> 			
-            <td><h:commandButton id="addUser" value="Add User" action="#{cls_UserBean.addnewUser}"  />
+            <td><h:commandButton id="addUser"     value="Add User" action="#{cls_UserBean.addnewUser}"  />
              </td><td>
             <h:commandButton id="reset" value="   Reset  " action="#{cls_UserBean.reset}"  />
              </td></tr>
@@ -121,9 +121,15 @@
             </table>
              
             </p:panel>
+ <h:outputScript rendered="#{cls_UserBean.show}">
+    alert('User Added');
+     
+</h:outputScript>
+           
             </div>
+            
              <hr/>
-             
+            
  <p:panel id="parentPanel"  style="border:none;" rendered="#{cls_UserBean.render}">
   
  <div id="page3"> 
