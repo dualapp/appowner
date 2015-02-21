@@ -344,9 +344,9 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		return getIn_userdao().getId(setup);  
 	}
 	@Override
-	public User isUserStaying(String str_HouseNo) {
+	public User isUserStaying(String str_HouseNo,Integer int_UserRole) {
 		// TODO Auto-generated method stub
-		return getIn_userdao().isUserStaying(str_HouseNo);
+		return getIn_userdao().isUserStaying(str_HouseNo,int_UserRole);
 	}
 	
 	
