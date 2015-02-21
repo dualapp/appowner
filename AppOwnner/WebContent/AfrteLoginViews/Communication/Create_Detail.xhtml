@@ -13,7 +13,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> User details</span>
+					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Post details</span>
 				</td>
 			</tr>
 		</tbody>
@@ -24,100 +24,109 @@
 <body bgcolor="white">
   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
     <h:form id="form" enctype="multipart/form-data" >
-    <a href="Ad_an_Post.xhtml">Back To Ads and post</a> 
+    <a href="Ad_an_Post.xhtml">&#60;&#60;Back To Ads and post</a> 
     
-   <table    style="overflow:hidden;border:0pt none;width:60%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
-    
+   <table    style="overflow:hidden;border:0pt none;width:60%;margin-left: 10em;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+     <table style="margin-left:15px">
       <tr> 
     <td>
-        <p:outputLabel value="Organisation"  /></td>
-         <td>   <p:selectOneMenu id="str_ApartmentName"  style="width:270px">
+  <p:outputLabel value="Organisation:"  /></td>
+         <td>   <h:selectOneMenu id="str_ApartmentName"  style="width:200px">
              <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  />
-           </p:selectOneMenu>
-           
-        </td>
+           </h:selectOneMenu>
+          </td>
         <td> 
-            <p:outputLabel for="var_Ad_CategoryName" value="Category" /></td>
-         <td>   <p:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:270px">
+        <p:outputLabel for="var_Ad_CategoryName" value="Category:" /></td>
+         <td>   <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
             <f:selectItems value="#{cls_AddDetailBean.categories}"  />
-            </p:selectOneMenu>
-            
-      </td>
-      </tr> 
-          
-           
-        
-            <tr> 
-            <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+            </h:selectOneMenu>
+          </td>
+      </tr>
+      </table> 
+      <table style="margin-left:15px">
+        <tr> 
+            <td><p:outputLabel for="ch_Ad_Type" value="Ad Type:" /></td>
              <td><h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
             <f:selectItem itemLabel="My Community" itemValue="My Community" />
             <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
           </h:selectOneRadio>
         </td>
         </tr>
+        </table>
+       <table style="margin-left:15px">
        <tr> 
-        <td><p:outputLabel for="I" value="I want to" /></td>
+        <td><p:outputLabel for="I" value="I want to:" /></td>
         <td><h:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
-            <f:selectItem itemLabel="SELL" itemValue="Sell" />
-            <f:selectItem itemLabel="BUY" itemValue="Buy" />
-            <f:selectItem itemLabel="RENT" itemValue="Rent" />
+          <f:selectItem itemLabel="Sell" Value="Sell"  />  
+            <f:selectItem itemLabel="Buy" itemValue="Buy" />
+            <f:selectItem itemLabel="Rent   " itemValue="Rent" />
         </h:selectOneRadio>
       </td>
       </tr>
- 
-         
-         <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -155px -400px 0px;" >  
-           <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_image}"/>
-          </p:outputPanel> 
-          
-          <tr>
+      </table>
+      <table style="margin-left:15px">
+         <tr>
            <td>
-          <p:outputLabel value="Title"></p:outputLabel></td>
+          <p:outputLabel value="Title:"></p:outputLabel></td>
                         
-          <td><h:inputText  value="#{cls_AddDetailBean.var_Title}"  style="width:300px">
-            </h:inputText>
+          <td><h:inputTextarea  value="#{cls_AddDetailBean.var_Title}"  style="width:350px;height:70px">
+            </h:inputTextarea>
             </td>
             </tr>
-  
-
-             <tr><th><p:outputLabel value="Choose Image for Upload"/></th>
-           
-              
-                 <td> <p:fileUpload value="#{cls_AddDetailBean.var_ImageName}"
-                        fileUploadListener="#{cls_AddDetailBean.handleFileUpload1}" mode="advanced" dragDropSupport="false" style="width:300px"
-                  multiple="true"  sizeLimit="100000" fileLimit="3"  update="aaa"/>
-                 </td>
-                 </tr>
-                
- 
- 
- 
-  
-       
- <tr>
-               <td><p:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><h:inputTextarea rows="60" cols="50" value="#{cls_AddDetailBean.var_Description}" style="width:300px" >
+  </table>
+ <p:outputPanel   layout="block"  update="aaa1" style="background:#ffffff; ">
+ <p:graphicImage width="15%" height="15%"  id="aaa1" value="#{cls_AddDetailBean.getPath()}" style=" float:right !important;margin:-250px 100px -800px 100px;" />
+     <table style="margin-left:15px">
+    <tr>
+    <td>
+    <p:outputLabel value="Choose Image for Upload:"/>
+    </td>
+  </tr>
+  </table>
+     <table style="margin-left:80px">
+		<tr>
+    <td >
+  <!-- inputFile tag to upload file -->
+  <h:inputFile id="file"  
+		             label="file"
+			         value="#{cls_AddDetailBean.part}" 
+			         required="true" 
+			         requiredMessage="File not selected !!">
+            <!-- FileUploadValidator for file validation -->
+		    <f:validator validatorId="FileUploadValidator" />
+		</h:inputFile>
+		 <h:message style="color: red" for="file" /><br />
+          <h:commandButton id="submit" 
+		                 action="#{cls_AddDetailBean.uploadFile}"
+			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" update="aaa1">
+			             <f:ajax execute="file" event="click"/>
+			             </h:commandButton>
+           <!-- status message of file upload; rendered if message is set -->
+		         <h:outputText value="#{cls_AddDetailBean.statusMessage}"
+			          rendered="#{not empty cls_AddDetailBean.statusMessage}" /> 
+			          
+			          </td></tr>
+			          </table>
+			         </p:outputPanel>
+			       <table style="margin-left:15px">
+			      <tr>
+			    <td><p:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
+                <td><h:inputTextarea  value="#{cls_AddDetailBean.var_Description}" style="width:600px; height:300px" >
               </h:inputTextarea>
-               
-                
-            </td>
+               </td>
             </tr>
-            
+            </table>
+            <table style="margin-left:30px">
            <tr>
                 <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" float:left !important;margin: px 0px 0px `0px;" ajax="false"/></td> 
                <td> <p:button id="AddProduct1" value="Cancel" outcome="Create_Detail.xhtml" style=" float:left !important;margin: 0px -50px px 0px;" /></td>
                </tr>
-                
-           </table>
-           </h:form>
+               </table> 
+                </table>
+               </h:form>
            </body>
-          
-           </div>
-           
-           
-           
-     </h:body>
-     
-           </ui:define>
+         </div>
+        </h:body>
+   </ui:define>
   </ui:composition>
