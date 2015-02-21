@@ -14,6 +14,7 @@ import java.io.Serializable;
 
 
 
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -35,6 +36,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.component.datatable.DataTable;
+import org.primefaces.context.RequestContext;
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.DueTransaction;
@@ -329,20 +331,29 @@ public class Cls_UserBean implements Serializable{
 		public static void setUrl(String url) {
 			Cls_UserBean.url = url;
 		}
-		public void houseNoChangeListener(ValueChangeEvent event)
+		public void roleChangeListener(ValueChangeEvent event)
 		{
-			str_HouseNo=(String) event.getNewValue();
-			 
-			 user=getUserService().isUserStaying(str_HouseNo);
+			int_UserRole=(int) event.getNewValue();
+			 System.out.println(getInt_UserRole()+"kkkkkkkkkkkkkkkk");
+			 user=getUserService().isUserStaying(str_HouseNo,int_UserRole);
 			 System.out.println(user+"uuuuuuuuuuuuuu");
 			 if(user!=null)
 			 {
+				 render=true;
+				 if(user.getInt_UserRole()==2)
+				 {
+					 user.setStr_UserRoleName("Owner");
+				 }
+				 else
+					 user.setStr_UserRoleName("Tenant");
+				 RequestContext.getCurrentInstance().execute("dialogaboutDEQ.show()");
 				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This House is already Booked for: "  + user.getStr_UserRoleName()+""+user.getStr_Username()));
 			 }
-			 
-		   
-	   
-			render=true;
+		}
+		public void houseNoChangeListener(ValueChangeEvent event)
+		{
+			str_HouseNo=(String) event.getNewValue();
+		 
 		}
 
 		/*
@@ -537,6 +548,13 @@ public class Cls_UserBean implements Serializable{
 		public static void setBn(String bn) {
 			Bn = bn;
 		}
+		private Boolean show;
+		public Boolean getShow() {
+			return show;
+		}
+		public void setShow(Boolean show) {
+			this.show = show;
+		}
 		public String addnewUser()
 		{
 			try{
@@ -577,6 +595,8 @@ public class Cls_UserBean implements Serializable{
 				usr.setInt_activationbit(0);
 				System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
 				getUserService().addUser(usr);
+				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User Added Successfully"));
+				 show=true;
 				 el=getStr_Email();
 				 un=getStr_Username();
 				pd=getStr_Password();
