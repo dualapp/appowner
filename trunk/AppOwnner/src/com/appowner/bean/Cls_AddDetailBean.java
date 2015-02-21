@@ -1,5 +1,6 @@
 package com.appowner.bean;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,7 +22,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
+import javax.persistence.Column;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
@@ -31,6 +36,8 @@ import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
+import com.appowner.model.User;
+import com.appowner.model.cls_Ads;
 import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -68,6 +75,10 @@ public class Cls_AddDetailBean implements Serializable {
  	 public boolean isSelected() {
 	    return selected;
 	  }
+ 	private Integer Adsid;
+ 	private String str_category;
+ 	private String  str_title;
+ 	private String  message1;
 	private String Var_Title;
 	private String Var_FileName;
 	private String Var_ImageName;
@@ -110,7 +121,16 @@ public class Cls_AddDetailBean implements Serializable {
 			this.userId = userId;
 		}
 		
+	private String usrname;
 	
+   public String getUsrname()
+   {
+	   usrname=Util.getUserName();
+		return usrname;
+	}
+	public void setUsrname(String usrname) {
+		this.usrname = usrname;
+	}
 public String getStatus() {
 			return Status;
 		}
@@ -231,7 +251,7 @@ public int getInt_Ad_categoryId() {
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
-	//	pro.setUsername(Util.getUserName());
+		pro.setUsername(usrname);
 		pro.setApartementId(Util.getAppartmentId());
 		pro.setVar_FileName("image");
 		System.out.println(path1);
@@ -408,6 +428,7 @@ public int getInt_Ad_categoryId() {
 	 public List<Cls_ProductDetails> getSearchByProducttype() {
 		 searchByProducttype=new ArrayList<Cls_ProductDetails>();
 		 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type,Status));
+		 blb_images1="E:/Var_ImageName";
 			return searchByProducttype;
 			
 			
@@ -546,7 +567,7 @@ public int getInt_Ad_categoryId() {
 	System.out.println(Int_ProductId);
 	edit1 =getProductDetailService().getEdit1(id1);
 	Var_ImageName=edit1.getVar_ImageName();
-	 blb_images1="D://Image\\"+Var_ImageName;
+	 blb_images1="E://Var_ImageName";
 	 System.out.println(blb_images1);
 	 System.out.println(edit1);
 		}
@@ -670,30 +691,7 @@ public int getInt_Ad_categoryId() {
 	 public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public String  messageChangeListener1(ValueChangeEvent vce){
-		System.out.println("mukesh");
-		msg1=(String)vce.getNewValue();
-		System.out.println(msg1);
-		if (msg1.equals("s1"))
-        {
-           
-msg="The ad you have posted is of commercial nature, hence it cannot be approved.Only ads of personal nature can be posted here.Regards,Admin";
-        }
-        else if (msg1.equals("s2"))
-        {
-            
-        	 msg="Thanks for your payment on time";
-        	 return msg;
-        }
-        else
-        {	
-        	 msg="dfdfdfdfdf";
-		 
-		 return msg;
-        }
-		return msg;
-	}
-		
+	
 	 
 	private String to;
 
@@ -770,15 +768,16 @@ public static void setMessage(String message) {
 	}
 	
 	
-private List<Cls_ProductDetails> selectedAll;
+private Cls_ProductDetails selectedAll;
 
-public List<Cls_ProductDetails> getSelectedAll() {
+
+
+public Cls_ProductDetails getSelectedAll() {
 	return selectedAll;
 }
-public void setSelectedAll(List<Cls_ProductDetails> selectedAll) {
+public void setSelectedAll(Cls_ProductDetails selectedAll) {
 	this.selectedAll = selectedAll;
 }
-
 private Cls_categoryDetail cat;
 
 public String editdetail(Cls_ProductDetails ProductDetails)
@@ -820,8 +819,10 @@ private List<Cls_ProductDetails> details;
 
 public List<Cls_ProductDetails> getDetails()
 {
+	System.out.println(Int_ProductId+";;;;;;;;;;;;;;;;;;;;;;;;;;++++++++++++++++++++++++++++++++++++++++");
 	details=new ArrayList<Cls_ProductDetails>();
 	details.addAll(getProductDetailService().listDetail(Ch_Product_Type,Ch_Ad_Type,Status));
+	System.out.println(details+"gvghhhfhfh");
 	return details;
 }
 public void setDetails(List<Cls_ProductDetails> details) {
@@ -832,7 +833,7 @@ public void setDetails(List<Cls_ProductDetails> details) {
 private String msg3;
 
 public String getMsg3() {
-	msg3="This is to inform you that your ad posting in Shaffi Paradise is now Rejected.";
+	msg3="This is to inform you that your ad posting  is now Rejected.";
 	return msg3;
 }
 public void setMsg3(String msg3) {
@@ -858,24 +859,295 @@ public String getMsg4() {
 public void setMsg4(String msg4) {
 	this.msg4 = msg4;
 }
-public String send4()
-{    System.out.println("huyt");
-	recipient=getTo();
-	approval="approved";
-	//System.out.println(id1);
-	content=msg4;
-	subject="Appowner.com";
-	System.out.println(recipient);
-	System.out.println(content);
-	return "Email.jsp";
+
+
+private static String aprtmentname;
+public static String getAprtmentname() {
+	return aprtmentname;
 }
+public static void setAprtmentname(String aprtmentname) {
+	Cls_AddDetailBean.aprtmentname = aprtmentname;
+}
+
+
+
+public String send4()
+{
+	recipient= emailids;
+	content="";
+	subject="Appowner.com";
+	aprtmentname=getStr_ApartmentName();
+	return "/AfrteLoginViews/Communication/Email.jsp";
+}
+
+
+
+public static String getMessages() {
+	return messages;
+}
+public static void setMessages(String messages) {
+	Cls_AddDetailBean.messages = messages;
+}
+public Integer getAdsid() {
+	return Adsid;
+}
+public void setAdsid(Integer adsid) {
+	Adsid = adsid;
+}
+public String getStr_category() {
+	return str_category;
+}
+public void setStr_category(String str_category) {
+	this.str_category = str_category;
+}
+public String getStr_title() {
+	return str_title;
+}
+public void setStr_title(String str_title) {
+	this.str_title = str_title;
+}
+public String getMessage1() {
+	return message1;
+}
+public void setMessage1(String message1) {
+	this.message1 = message1;
+}
+
+
+public void AddAds(){
+	cls_Ads  ads=new cls_Ads();
+	
+	ads.setMessage1(getMessage1());
+	ads.setStr_category(getStr_category());
+	ads.setStr_title(str_title);
+	getProductDetailService().Addadss(ads);	
+}
+
+private List<String>Category;
+
+public List<String> getCategory() {
+Category=new ArrayList<String>();
+Category.addAll(getProductDetailService().getcat());
+System.out.println(Category+"kjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjk");
+	return Category;
+}
+public void setCategory(List<String> category) {
+	Category = category;
+}
+public List<String> adtitle;
+
+public List<String> getAdtitle(){
+	adtitle=new ArrayList<String>();
+	adtitle.addAll(getProductDetailService().gettitle());
+	
+	return adtitle;
+}
+public void setAdtitle(List<String> adtitle) {
+	this.adtitle = adtitle;
+}
+public String getStrmessage() {
+	return strmessage;
+}
+public void setStrmessage(String strmessage) {
+	this.strmessage = strmessage;
+}
+private int ads_id;
+public  static  String select;
+private String strmessage;
+
+public String selectinfo(ValueChangeEvent event)
+{  
+select =( String )event.getNewValue();
+System.out.println(select+"jhdsjdf");
+ads_id=(getProductDetailService().getid(select));
+strmessage=(getProductDetailService().getmsg(ads_id));
+msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
+emailids=(getProductDetailService().getemailids(msgrejectid));
+System.out.println(ads_id+"-====-==-=-===-=-=-=-=-=-============-------------============--------------");
+System.out.println(strmessage+"-====-==-=-===-=-=-=-=-=-============-------------============--------------");
+return select;
 }  
-   	
+   private static String messages;
+   
+public String send5()
+{
+	recipient= emailids;
+	content="";
+	subject="Appowner.com";
+	messages=getStrmessage();
+	return "/AfrteLoginViews/Communication/AdsEmail.jsp";
 	
 	
-	
-	
-	
+}
+public String msgupdate; 
+public static String select1;
+public String selectinfo1(ActionEvent e)
+{  
+System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
+System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
+msgupdate=(getProductDetailService().getname(selectedAll.getInt_ProductId()));
+msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
+emailids=(getProductDetailService().getemailids(msgrejectid));
+System.out.println(emailids+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+System.out.println(msgupdate+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//msgname=(getProductDetailService().getname(select1));
+//strmessage=(getProductDetailService().getmsg(ads_id));
+return select1;
+}  
+public String msgclose;
+public String selectinfo2(ActionEvent e)
+{  
+System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
+System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
+msgclose=(getProductDetailService().getclose(selectedAll.getInt_ProductId()));
+
+System.out.println(select1+"jhdsjdf");
+//msgname=(getProductDetailService().getname(select1));
+//strmessage=(getProductDetailService().getmsg(ads_id));
+return select1;
+}	
+public String send6()
+{
+	recipient= emailids;
+	content="";
+	subject="Appowner.com";
+	aprtmentname=getStr_ApartmentName();
+	System.out.println(emailids+"jshadkjashjdhkjashdjhasjhdhjdhfjlhdsfjhdhf");
+	return "/AfrteLoginViews/Communication/Ads1Email.jsp";
+}	
+
+
+public String getEmailids() {
+	return emailids;
+}
+public void setEmailids(String emailids) {
+	this.emailids = emailids;
+}
+public String emailids;
+public String msgreject;
+public int msgrejectid;
+public String selectinfo3(ActionEvent e)
+{  
+System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
+System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
+msgreject=(getProductDetailService().getreject(selectedAll.getInt_ProductId()));
+msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
+emailids=(getProductDetailService().getemailids(msgrejectid));
+System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbbbbbbbbbbb");
+System.out.println(emailids+"lkkkkkkkkkkkkkkkkkAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+//msgname=(getProductDetailService().getname(select1));
+//strmessage=(getProductDetailService().getmsg(ads_id));
+return select1;
+}
+
+public String selectinfo4(ActionEvent e)
+{  
+msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
+emailids=(getProductDetailService().getemailids(msgrejectid));
+System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbbbbbbbbbbb");
+System.out.println(emailids+"lkkkkkkkkkkkkkkkkkAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+//msgname=(getProductDetailService().getname(select1));
+//strmessage=(getProductDetailService().getmsg(ads_id));
+return select1;
+}
+
+private Part part;
+private String statusMessage;
+private String path;
+private Cls_ProductDetails user;
+public String uploadFile() throws IOException {
+
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	String fileName = fmt.format(new Date())
+			+ getFileName(part).substring(
+					getFileName(part).lastIndexOf('.'));
+	// Extract file name from content-disposition header of file part
+	// String fileName = getFileName(part);
+	System.out.println("***** fileName: " + fileName);
+	ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+
+	// String basePath = "D:" + File.separator + "temp" + File.separator;
+	// File outputFilePath = new File(basePath + fileName);
+	String basePath =servletContext.getRealPath("")
+			+ File.separator + "images" + File.separator
+			+ File.separator;
+	System.out.println(basePath);
+	File outputFilePath = new File(basePath + fileName);
+    System.out.println(path + "path");
+	// Copy uploaded file to destination path
+	InputStream inputStream = null;
+	OutputStream outputStream = null;
+	try {
+		inputStream = part.getInputStream();
+		outputStream = new FileOutputStream(outputFilePath);
+
+		int read = 0;
+		final byte[] bytes = new byte[1024];
+		while ((read = inputStream.read(bytes)) != -1) {
+			outputStream.write(bytes, 0, read);
+		}
+		path = "/images" + File.separator 
+				+ File.separator + fileName;
+		//user.setVar_ImageName1(path);
+		//user.setInt_UserId(user.getInt_UserId());
+		System.out.println(user+"m,,,,,,,,,,,,mmmmmmmmmmm,,,,,,,,,,,,,mmmmmmmmmmmmm,,,,,,,,,,,,");
+		getProductDetailService().updateProfilePic(user);
+		
+		statusMessage = "File uploaded successfull !!";
+
+	} catch (IOException e) {
+		e.printStackTrace();
+		statusMessage = "File upload failed !!";
+	} finally {
+		if (outputStream != null) {
+			outputStream.close();
+		}
+		if (inputStream != null) {
+			inputStream.close();
+		}
+	}
+	return null; // return to same page
+}
+public Part getPart() throws IOException {
+return part;
+}
+public void setPart(Part part) {
+	this.part = part;
+}
+public String getStatusMessage() {
+	return statusMessage;
+}
+public void setStatusMessage(String statusMessage) {
+	this.statusMessage = statusMessage;}
+
+// Extract file name from content-disposition header of file part
+private String getFileName(Part part) {
+	final String partHeader = part.getHeader("content-disposition");
+	System.out.println("***** partHeader: " + partHeader);
+	for (String content : part.getHeader("content-disposition").split(";")) {
+		if (content.trim().startsWith("filename")) {
+			return content.substring(content.indexOf('=') + 1).trim()
+					.replace("\"", "");
+		}
+	}
+	return null;
+}
+HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+		.getExternalContext().getSession(false);
+     public String getPath() {
+	System.out.println(path + "path1");
+	path = (String) session.getAttribute("Var_ImageName");
+	if (user != null)
+		path = user.getVar_ImageName();
+	 else
+		path = "/images/profilepic.png";
+	 return path;
+	 }
+public void setPath(String path) {
+	this.path = path;
+}
+}
 	
 	
 	 
