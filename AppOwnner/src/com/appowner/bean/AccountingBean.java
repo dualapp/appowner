@@ -140,7 +140,7 @@ public void setStr_Organisation(String str_Organisation) {
 	this.str_Organisation = str_Organisation;
 }
 public Date getDat_Date() {
-	//dat_Date=new java.util.Date();
+	dat_Date=new java.util.Date();
 	
 	
 	return dat_Date;
@@ -227,7 +227,7 @@ public String addInvoiceManualJournal() throws AccountingBean
     
     	 getAccountsService().addManualJournal(journal);
    
-   return "accountinglayout.xhtml";
+   return "accounttransaction.xhtml";
     
     }
   catch(Exception e)
