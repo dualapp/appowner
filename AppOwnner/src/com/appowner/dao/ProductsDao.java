@@ -102,6 +102,8 @@ public interface ProductsDao {
 
 	public String getemailids(int msgrejectid);
 
+	public void updateProfilePic(Cls_ProductDetails user);
+
 
 
 
