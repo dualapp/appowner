@@ -409,6 +409,12 @@ public class ProductsDaoImpl implements ProductsDao{
 		System.out.println("8888888888888888888888888888888888");
 		return (String) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,  msgrejectid).uniqueResult();
 	}
+
+	@Override
+	public void updateProfilePic(Cls_ProductDetails user) {
+		 sessionFactory.getCurrentSession().update(user);
+		
+	}
 	}
 
 	
