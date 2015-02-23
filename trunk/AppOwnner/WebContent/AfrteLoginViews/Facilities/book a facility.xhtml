@@ -9,6 +9,21 @@
 	template="#{expenseBean.str_Name}include/templates/#{expenseBean.templateIndicator}"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
+	<h:head>
+	<style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+</style>
+
+     
+	</h:head>
 	<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
@@ -19,7 +34,7 @@
 		</tbody>
 	</table>
 	 <h:form id="form">
-	 <p:growl id="msgs" showDetail="true" />
+	<p:growl id="ui-growl" globalOnly="true" sticky="true" />
 	 
 	 
  <div id="page3">  

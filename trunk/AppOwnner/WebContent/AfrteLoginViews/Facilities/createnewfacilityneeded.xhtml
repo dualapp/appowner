@@ -14,7 +14,7 @@
 	<h:body>
 	<br/>
 	 
-	<h:panelGroup  >
+	<h:panelGroup  id="addFacility" style="text-align:center;" >
 	 
              <table><tr><th>  <h:outputText  value="Organisation:" /> </th>
              <td> <h:selectOneMenu>
@@ -29,24 +29,13 @@
 	</td>
 	<td> <p:message  id="FacilityNameMsg" for="FacilityName" display="text"/> </td>
 	</tr>
-	<tr><td> <p:commandButton  styleClass="btn"  id="submit"  value="Submit" onclick="EnrollLaterClick()"   action="#{expenseBean.addFacility}"   >
-	
-	</p:commandButton> </td></tr>
+	<tr><td> <p:commandButton  styleClass="btn"  id="submit"  value="Submit"     action="#{expenseBean.addFacility}" >
+	 <f:ajax execute="addFacility" event="click"  render="@form"/>
+	</p:commandButton> </td><td><h:commandButton   styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </h:commandButton></td></tr>
 	</table>  
-	 <script>
 	 
-        function EnrollNowClick() {
-            PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
-           
-        }
-        function EnrollLaterClick() {
-            window.parent.modalWin.CallCallingWindowFunction(0, 'Information Saved Scucessfully');
-            window.opener.reload(true);
-            window.close();
-        }
- 
-    </script>
 	</h:panelGroup>
  
 	</h:body>

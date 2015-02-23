@@ -17,87 +17,18 @@
 	 
 	 </script>
 
- <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
-    <script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading.gif");
- modalWin.SetCloseButtonImagePath("images/remove.gif");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-function ShowNewPage1(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('editservicerequest.xhtml',400,350,'Edit service details',null,callbackFunctionArray);
- }
-function ShowNewPage2(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('viewservicerequest.xhtml',400,350,'view service details',null,callbackFunctionArray);
- }
-function ShowNewPage3(){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-	 modalWin.ShowURL('delectservicerequest.xhtml',200,150,'delete service',null,callbackFunctionArray);
-	 }
- 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
+ <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
 
 }
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Submit(msg){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function HideModalWindow() {
-    modalWin.HideModalPopUp();
-}
-
-function ShowChildWindowValues(name,email,address,phone,zip) {
-    var displayString = "<b>Values Of Child Window</b> <br/><br/>Name : " + name;
-    displayString += "<br/><br/>Email : " + email;
-    displayString += "<br/><br/>Address : " + address;
-    displayString += "<br/><br/>Phone : " + phone;
-    displayString += "<br/><br/>Zip : " + zip;
-    var div = document.getElementById("divShowChildWindowValues");
-    div.style.display = "";
-    div.innerHTML = displayString;
-}
-</script>
-
+</style>
+   
  </h:head>
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
@@ -109,8 +40,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
 		</tbody>
 	</table>
   <h:form id="form">
-   <p:growl id="msgs" showDetail="true" />
-  
+   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
                  <div id="page3"> 
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
                <h:outputText value="Organisation:" /> </th>
@@ -259,8 +189,13 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
     <td>
     <h:inputText value="#{sr1.str_Flat}"/></td>  
     </tr>
-    <tr><td><h:commandButton value="Update" action="#{requestScopeBean.updateOneServiceRequest(sr1)}"/></td>
-    <td><h:commandButton value="Cancel" action="servicerequest.xhtml"/></td>
+    <tr><td><h:commandButton value="Update" styleClass="btn" action="#{requestScopeBean.updateOneServiceRequest(sr1)}">
+    
+    </h:commandButton>
+    </td>
+   <td><p:commandButton   styleClass="btn"    value="Cancel"    action="servicerequest.xhtml">
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </p:commandButton></td> 
     </tr>
              </ui:repeat>
              </table>
