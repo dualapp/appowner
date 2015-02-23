@@ -9,19 +9,21 @@
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 <h:head><title>Parking </title>
-<style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
-     
+ <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+</style>
+
 </h:head>
 	 <h:form>
-	   <p:growl id="msgs" showDetail="true" />
+	  <p:growl id="ui-growl" globalOnly="true" sticky="true" />
 	<h:body>
 	<br/>
 	<div id="page3">
@@ -81,7 +83,7 @@
 	<tr><th>
 	<h:outputText  value="Organisation:" /> </th>
               
-              <td><h:selectOneMenu       style="width:100px">
+              <td><h:selectOneMenu>
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
@@ -93,7 +95,14 @@
 	</td>
 	 <td><p:message id="ParkingslotMsg" for="Parkingslot" display="text"/></td>
 	</tr>
-	<tr><td></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit"     action="#{expenseBean.saveParking}" immediate="true" execute="@this" /> </td></tr> 
+	<tr><td><p:commandButton   styleClass="btn" id="submit"  value="Submit"     action="#{expenseBean.saveParking}"  >
+	 <f:ajax execute="multiParkingSpaceDetail" event="click"  render="@form"/>
+	</p:commandButton>
+	 </td>
+	<td><p:commandButton   styleClass="btn"    value="Cancel"    action="parkingspace.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </p:commandButton></td>
+	</tr> 
 	  
     
     </table>
@@ -121,7 +130,14 @@
     </tr>
      
     </ui:repeat>
-     <tr><td><h:commandButton value="update"  execute="@this"  action="#{expenseBean.updateParkingSpace(ps2)}"/></td> <td><h:commandButton action="parkingspace" value="Cancel"/></td></tr>
+     <tr><td><p:commandButton value="update"  styleClass="btn"     action="#{expenseBean.updateParkingSpace(ps2)}">
+     <f:ajax execute="multiParkingSpaceDetail2" event="click"  render="@form"/>
+     </p:commandButton>
+     </td> <td><p:commandButton  styleClass="btn"  action="parkingspace.xhtml" value="Cancel">
+     <f:ajax execute="@this" event="click"  render="@form"/>
+     </p:commandButton>
+     
+     </td></tr>
             </table>
     </p:outputPanel>
     </p:dialog>

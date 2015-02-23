@@ -17,20 +17,22 @@
 	 
 	 </script>
 
- <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
-     
+ <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+</style>
+
 
  </h:head>
   <h:form>
-   <p:growl id="msgs" showDetail="true" />
+  <p:growl id="ui-growl" globalOnly="true" sticky="true" />
  <h:body>
 	
 	 
@@ -50,7 +52,9 @@
 	
 	 &#150; &#150;  <p:commandButton style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail1" icon="ui-icon-info" value="View" oncomplete="PF('multiWorkOrderDialog1').show()" />
        &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiWorkOrderDialog2').show()" />
-       &#150; &#150;  <p:commandButton style="width:120px;height:25px"  update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteWorkOrder()}" icon="ui-icon-trash" value="Delete" />
+       &#150; &#150;  <h:commandButton style="width:120px;height:25px"  update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteWorkOrder()}" icon="ui-icon-trash" value="Delete">
+        <f:ajax execute="DT" event="click" update="ui-growl" render="DT"/>
+       </h:commandButton> &#150; &#150;
        <p:commandButton  style="width:120px;height:25px" value="Refresh" />
          
      
@@ -85,7 +89,7 @@
         <table>
 	<tr><th> 
                <h:outputText value="Organisation:" /> </th>
-             <td> <h:selectOneMenu       style="width:100px">
+             <td> <h:selectOneMenu >
               <f:selectItem itemLabel="#{vendorBean.str_OrganizationName}"  itemValue="#{vendorBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
@@ -96,9 +100,11 @@
 	</td>
 	<td><p:message  id="CategoryNameMsg" for="CategoryName" display="text"/></td>
 	</tr>
-	<tr><td><p:commandButton   styleClass="btn"   value="Submit" onclick="EnrollLaterClick()"   action="#{vendorBean.saveWorkOrderCategory}"   >
-	
-	</p:commandButton></td><td><p:commandButton  execute="@this"   styleClass="btn" id="submit"  value="Cancel" onclick="EnrollLaterClick1()"/></td> </tr>  
+	<tr><td><p:commandButton   styleClass="btn"   value="Submit"    action="#{vendorBean.saveWorkOrderCategory}"   >
+	  <f:ajax execute="multiWorkOrderDetail" event="click"  render="@form"/>
+	</p:commandButton></td><td><p:commandButton   styleClass="btn"    value="Cancel"    action="workordercategory.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </p:commandButton></td></tr>  
 	</table>
                  </p:outputPanel>
                  </p:dialog>
@@ -115,13 +121,20 @@
  <th>
 	<h:outputText  value="Type:" /> </th>
     <td>
-    <h:inputText value="#{ws1.str_VendorCategoryType}"/></td>
+    <p:inputText id="vct" value="#{ws1.str_VendorCategoryType}"/></td>
     </tr>
-    
-    </ui:repeat>
-    <tr>
-  <td><h:commandButton value="Update"  execute="@this"  action="#{vendorBean.updateWorkOrder(ws1)}"  /></td><td><h:commandButton value="Cancel" action="workordercategory"/></td>
+     </ui:repeat>
+     <tr>
+     
+  <td><p:commandButton value="Update" styleClass="btn"   action="#{vendorBean.updateWorkOrder(ws1)}"  >
+   <f:ajax execute="multiWorkOrderDetail2" event="click"  render="@form"/>
+  </p:commandButton>
+  </td><td><p:commandButton   styleClass="btn"    value="Cancel"    action="workordercategory.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </p:commandButton></td>
     </tr>
+   
+   
     </table>
     </p:outputPanel>
     </p:dialog>
