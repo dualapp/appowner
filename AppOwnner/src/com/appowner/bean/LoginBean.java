@@ -811,14 +811,17 @@ public class LoginBean implements Serializable {
 		return "/AfrteLoginViews/welcomepage.xhtml";
 	}
 
+	@SuppressWarnings("unused")
 	public String getStr_RecoverPassword1() {
 		User u = new User();
 		u = getUserService().getUser(getStr_Email());
+
 		if(u!=null)
 		{
+			System.out.println(u.getStr_FirstName()+"user exist");
 		System.out.println(str_RecoverPassword + "fpassword");
-		// Email=getStr_Email();
-		Email = "kalpanasudha1990@gmail.com";
+		  Email=getStr_Email();
+		//Email = "kalpanasudha1990@gmail.com";
 		str_RecoverPassword = RandomStringUtils.randomAlphanumeric(6);
 		getUserService().setPassword(getStr_Email(), str_RecoverPassword);
 
@@ -828,12 +831,16 @@ public class LoginBean implements Serializable {
 		System.out.println(str_firstName + "firstname");
 		str_UserName = u.getStr_Username();
 		System.out.println(Email);
+		return "forgotpassword1.jsp";
 	}
 	else
+		
 	{
-		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"We couldn't find your account with that informationPlease try searching for your email again!"));
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("We couldn't find your account with that information ,Please try searching for your email again! "));
+		 
+		 return "forgotpassword.xhtml";
 	}
-		return "forgotpassword1.jsp";
+		
 	}
 
 	public static String getStr_RecoverPassword() {
