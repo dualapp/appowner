@@ -163,7 +163,7 @@ private String str_Password;
 			usr.setStr_FirstName(getStr_FirstName());
 			usr.setStr_LastName(getStr_lastName());
 			usr.setStr_Email(getStr_Email());
-			usr.setStr_UserRoleName("Guest");
+			usr.setStr_UserRoleName("user");
 			usr.setStr_Username(getStr_Username());
 			usr.setStr_Password(str_Password);
 		 
@@ -177,6 +177,7 @@ private String str_Password;
 			usr.setStr_Country("india");
 			usr.setStr_State("Westbengal");
 			usr.setStr_PhoneNo("0000000000");
+			usr.setInt_activationbit(1);
 			 getUserService().addUser(usr);
 			 return "/AfrteLoginViews/welcomepage.xhtml";
 			}
