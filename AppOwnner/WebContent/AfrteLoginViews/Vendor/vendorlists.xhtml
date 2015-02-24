@@ -12,89 +12,23 @@
     <link href="include/assets/css/ace.min.css" rel="stylesheet" />
     
     <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
-    
+   <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
 
-  <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
- 
+}
+</style>
 </h:head>
 
 
 <h:body>
 
-<script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading_home.gif");
- modalWin.SetCloseButtonImagePath("images/cross.png");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-function ShowNewPage(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('Create New Due Template.xhtml',470,600,'Create New Due Template',null,callbackFunctionArray);
  
- }
- 
-function ShowNewPage1(clicked_id){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-	 alert(clicked_id);
-     modalWin.ShowURL("editvendor.xhtml?int_VendorId="+clicked_id+"",400,350,'Editvendor',null,callbackFunctionArray);
-	 }
-function ShowNewPage2(clicked_id){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-	 alert(clicked_id);
-	modalWin.ShowURL("viewvendor.xhtml?int_VendorId="+clicked_id+"",400,350,'View Vendor',null,callbackFunctionArray);
-	 }
-	 
- 
-function ShowMessage() {
- modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
- }
-  
- function  ShowMessageWithAction(){
-    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
-    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
- }
-
-function ShowMessageNoDragging(){
- modalWin.Draggable=false;
- modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
-
-}
-
-function Action1(){
-alert('Action1 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Action2(){
-alert('Action2 is excuted');
-modalWin.HideModalPopUp();
-}
-
-function Submit(msg){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function HideModalWindow() {
-    modalWin.HideModalPopUp();
-}
-
-
-</script>
 </h:body>
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
@@ -128,7 +62,7 @@ function HideModalWindow() {
 </td>  </tr>
 </table>
 </legend>-->
- <p:growl id="msgs" showDetail="true" />
+ <p:growl id="ui-growl" globalOnly="true" sticky="true" />
   
 		<div id="page3">
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
@@ -301,7 +235,9 @@ function HideModalWindow() {
     </tr>
       
             </ui:repeat>
-             <tr><td><h:commandButton value="update" action="#{vendorBean.updateVendor(vendor1)}"/></td> <td><h:commandButton action="vendorlist" value="Cancel"/></td></tr>
+             <tr><td><h:commandButton  styleClass="btn" value="update" action="#{vendorBean.updateVendor(vendor1)}"/></td>
+             
+              <td><h:commandButton  styleClass="btn" action="vendorlist" value="Cancel"/></td></tr>
             </table>
             
         </p:outputPanel>
@@ -411,8 +347,8 @@ function HideModalWindow() {
     <h:inputText value="#{vendorBean.vendor.str_VendorComments}"/></td>
     </tr>
      
- <tr><td><h:commandButton  value="Submit"  action="#{vendorBean.updateVendor}"/>
-   <h:button outcome="vendorlists.xhtml" value="Cancel"  /></td></tr> 
+ <tr><td><h:commandButton  value="Submit"  styleClass="btn" action="#{vendorBean.updateVendor}"/></td><td>
+   <h:button outcome="vendorlists.xhtml" styleClass="btn" value="Cancel"  /></td></tr> 
     </table>
    </p:outputPanel>
    </p:dialog>
