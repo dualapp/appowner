@@ -78,7 +78,7 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	@Override
 	public User getUser(int int_UserId) {
 		// TODO Auto-generated method stub
-		return null;
+		return getIn_userdao().getUser(int_UserId);
 	}
 
 	@Override
