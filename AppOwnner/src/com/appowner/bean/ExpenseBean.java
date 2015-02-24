@@ -608,11 +608,7 @@ public String addExpenses()
 		else
 			return "Expenses.xhtml";
 	}
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Expenses Added Successfully!"));
 	
 	return "Expenses.xhtml";
 }
@@ -743,6 +739,7 @@ public String saveParking()
 	parking.setStr_ParkingSlot(getStr_ParkingSlot());
 	parking.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().saveParking(parking);
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Parking Saved Successfully!"));
 	 return "parkingspace.xhtml";
 }
  
@@ -765,14 +762,11 @@ public String deleteParkingSpace()
     	{
             entitiesToDelete.add(parking);
         }
-    	FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Parking Space deleted Successfully!", "Parking Space deleted Successfully!"));
+    	 
     } 
  
     getExpenseService().deleteParkingSpace(entitiesToDelete);
+    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Parking Deleted Successfully!"));
 	return "parkingspace.xhtml";
 }
   
@@ -790,7 +784,7 @@ public  void updateParkingSpace(Parking p)
 	System.out.println("updateeeeeeee");
 	getExpenseService().updateParkingSpace( p);
 	System.out.println("updat");
-	 
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Parking Updated Successfully!"));
 	
 }
  
@@ -1285,15 +1279,12 @@ private Boolean bool_Rentable;
 private AssetCategory assetcategory;
 private List<AssetCategory> assetCategoryList;
 private List<AssetCategory> assetCategoryList1;
-public void updateAssetCategory(AssetCategory ac)
+public String updateAssetCategory(AssetCategory ac)
 {
 	getExpenseService().updateAssetCategory( ac);
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Updated Successfully!", "  Updated Successfully!"));
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Updated Successfully!"));
 	 
+	 return "assetcategory.xhtml";
 }
 public String deleteAssetsCategory()
 {
@@ -1311,11 +1302,7 @@ public String deleteAssetsCategory()
   
      getExpenseService().delectAssetsCategory(entitiesToDelete);
  
-FacesContext facesContext = FacesContext.getCurrentInstance();
-Flash flash = facesContext.getExternalContext().getFlash();
-flash.setKeepMessages(true);
-flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," AssetCategory deleted Successfully!", "AssetCategory deleted Successfully!"));
+     FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Deleted Successfully!"));
 return "assetcategory.xhtml";
 }
 public List<AssetCategory> getAssetCategoryList1() {
@@ -1552,13 +1539,8 @@ public String saveAssetCategory()
 	assetcategory=new AssetCategory();
 	assetcategory.setStr_assetcat_name(str_AssetCategoryType);
 	assetcategory.setStr_OrganizationName(str_OrganizationName);
-	
-	getExpenseService().saveAssetCategory(assetcategory);
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Added Successfully!", " Added Successfully!"));
+	 
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Added Successfully!"));
 	return"assetcategory.xhtml";
 }
 

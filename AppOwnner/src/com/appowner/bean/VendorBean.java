@@ -80,20 +80,21 @@ public class VendorBean implements Serializable {
 	    	{
 	            entitiesToDelete.add(w);
 	        }
-	    	FacesContext facesContext = FacesContext.getCurrentInstance();
-			Flash flash = facesContext.getExternalContext().getFlash();
-			flash.setKeepMessages(true);
-			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Workorder deleted Successfully!", "Workorder deleted Successfully!"));
+	    	
 	    } 
 	 
 	    getVendorservice().deleteWorkOrder(entitiesToDelete);
+	    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Workorder deleted Successfully!"));
+		 
 		return "workordercategory.xhtml";
 	}
 	public String updateWorkOrder(WorkOrderCategory w)
+	
 	{
+		System.out.println("kakkakakakkak");
 		getVendorservice().updateWorkOrder(w);
-		return "null";
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Workorder Updated Successfully!"));
+		return "workordercategory.xhtml";
 	}
 
 	public void setWorkOrderCategoryList1(
@@ -850,10 +851,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public String saveVendor() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
+		 
  
 		vendorServiceDetails1 = new VendorServiceDetails();
 		vendorServiceDetails2 = new VendorServiceDetails();
@@ -896,14 +894,14 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		 System.out.println(vid);
 		 if(vid!=null)
 		 {
-			
-			 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," This mobile  number already exist!", "This mobile  number already exist!"));
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This mobile  number already exist!"));
+			  
 		 return null;
 		 }
 		 else
 		 {
 		getVendorservice().addVendor(vendor);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor Added Successfully!", "Vendor added Successfully!"));
+		 
 		int vendorId = getVendorservice().getVendorId(str_VendorName);
 		System.out.println(vendorId);
 		 
@@ -925,18 +923,20 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		 
 		}
 
-		 
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Vendor Added Successfully!"));
 
 		return "addvendor.xhtml";
 	}
 	}
 	private WorkOrderCategory workOrderCategory;
-	public void saveWorkOrderCategory()
+	public String saveWorkOrderCategory()
 	{
 		workOrderCategory=new WorkOrderCategory();
 		
 		workOrderCategory.setStr_VendorCategoryType(str_VendorCategoryType);
 		getVendorservice().saveWorkOrderCategory(workOrderCategory);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
+		return "workordercategory.xhtml";
 	}
 	public List<Vendor> getVendorList() {
 		vendorList = new ArrayList<Vendor>();
