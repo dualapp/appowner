@@ -13,9 +13,6 @@
 	<h:head>
 
 	 
-	 <script src="JavaScript/ModalPopupWindow.js" type="text/javascript">
-	 
-	 </script>
 <style type="text/css">
  .ui-growl {
  position:absolute;
@@ -84,19 +81,19 @@
                 
                  </h:selectOneMenu></td></tr>
 	<tr><th><h:outputText value="CategoryName" /></th>
-	<td><h:inputText    id="AssetCategory" value="#{expenseBean.str_AssetCategoryType}" required="true"  requiredMessage=" Enter Assets Category">
+	<td><p:inputText    id="AssetCategory" value="#{expenseBean.str_AssetCategoryType}" placeholder="Enter AssetCategory">
 	  <p:ajax event="blur" update="AssetCategoryMsg" />
-	</h:inputText>
+	</p:inputText>
 	</td>
 	  <td>  <p:message id="AssetCategoryMsg" for="AssetCategory" display="text"/>  </td>
 	</tr>
 	<tr><td><h:commandButton   styleClass="btn"  value="Submit"    action="#{expenseBean.saveAssetCategory}">
-	 <f:ajax execute="multiAssetCategoryDetail" event="click"  render="@form"/>
+	 
 	</h:commandButton>
 	
-	  </td> <td><p:commandButton   styleClass="btn"    value="Cancel"    action="assetcategory.xhtml" >
+	  </td> <td><h:commandButton   styleClass="btn"    value="Cancel"    action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </p:commandButton></td></tr>  
+	  </h:commandButton></td></tr>  
 	  
 	</table>
 	
@@ -117,14 +114,14 @@
              </tr>
              
              </ui:repeat>
-             <tr><td><p:commandButton value="update"  styleClass="btn"   execute="@this" action="#{expenseBean.updateAssetCategory(ac1)}">
-              <f:ajax execute="multiAssetCategoryDetail2" event="click"  render="@form"/>
-             </p:commandButton>
+             <tr><td><h:commandButton value="update"  styleClass="btn"     action="#{expenseBean.updateAssetCategory(ac1)}">
+               
+             </h:commandButton>
              </td> 
              
-            <td><p:commandButton   styleClass="btn"    value="Cancel"    action="assetcategory.xhtml" >
+            <td><h:commandButton   styleClass="btn"    value="Cancel"    action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </p:commandButton></td></tr>
+	  </h:commandButton></td></tr>
             </table>
               
              </p:outputPanel>
