@@ -29,14 +29,14 @@
          
               <th><h:outputText value="Organisation:" /></th>
                
-            <td>  <h:selectOneMenu       style="width:100px">
+            <td>  <h:selectOneMenu >
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu>
              </td>
             
              <th><h:outputText  value="Status:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_Status}"  style="width:100px">
+               <td><h:selectOneMenu   value="#{expenseBean.str_Status}">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
                     <f:selectItem itemLabel="Closed" itemValue="Closed"  />
@@ -45,7 +45,7 @@
              </td>
               
              <th><h:outputText  value="Pool in the last:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  style="width:100px">
+               <td><h:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}">
                   <f:selectItem itemLabel="3 Month" itemValue="3 Month" />
                    <f:selectItem itemLabel="6 Month" itemValue="6 Month"  />
                     <f:selectItem itemLabel="12 Month" itemValue="12 Month"  />
