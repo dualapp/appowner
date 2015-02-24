@@ -12,11 +12,24 @@
 </f:metadata>
 	 
 <h:head>
-    
+    <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+</style>
+
+     
 </h:head>
 <body bgcolor="pink">
 <h:form method="post"
               enctype="multipart/form-data">
+              <p:growl id="ui-growl" globalOnly="true" sticky="true" />
                <table  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" class="src">
 		<tbody>
 			<tr>
