@@ -1139,15 +1139,20 @@ public class LoginBean implements Serializable {
 
 	public String updateUser() {
 		User user = new User();
+		user=getUserService().getUser(Util.getUserId());
+		System.out.println(user+"uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"+Util.getUserId());
 		userExtraInfo = new UserExtraInfo();
+		userExtraInfo=getUserService().getUserExtraInfo(Util.getUserId());
+		if(userExtraInfo!=null)
+		{
 
 		userExtraInfo.setStr_gender(getStr_Gender());
 		userExtraInfo.setDate_DateOfBirth(getDate_DateOfBirth());
 		userExtraInfo.setStr_BloodGroup(str_BloodGroup);
-		userExtraInfo.setInt_UserID(Util.getUserId());
-		userExtraInfo.setStr_FaceBookId(Util.getEmailId());
+		 
+		userExtraInfo.setStr_FaceBookId(str_FacebookId);
 		userExtraInfo.setStr_Hobbies(str_Hobbies);
-		userExtraInfo.setInt_UserExtraID(int_ExtraUserId);
+		 
 		// userExtraInfo.setStr_IntrestedIn(str_IntrestedIn);
 
 		userExtraInfo.setStr_LinkedInId(str_LinkedInId);
@@ -1156,24 +1161,43 @@ public class LoginBean implements Serializable {
 		userExtraInfo.setStr_TwitterId(str_TwitterId);
 		userExtraInfo.setStr_Profession(str_Proffession);
 		user.setUserExtraInfo(userExtraInfo);
+		}
+		
+		else
+		{
+			userExtraInfo = new UserExtraInfo();
+			userExtraInfo.setStr_gender(getStr_Gender());
+			userExtraInfo.setDate_DateOfBirth(getDate_DateOfBirth());
+			userExtraInfo.setStr_BloodGroup(str_BloodGroup);
+			userExtraInfo.setInt_UserID(Util.getUserId());
+			userExtraInfo.setStr_FaceBookId(str_FacebookId);
+			userExtraInfo.setStr_Hobbies(str_Hobbies);
+			// userExtraInfo.setStr_IntrestedIn(str_IntrestedIn);
 
-		user.setStr_Password(formuserloginuserpassword);
+			userExtraInfo.setStr_LinkedInId(str_LinkedInId);
+			userExtraInfo.setStr_MaritalStatus(str_MaritalStatus);
+			userExtraInfo.setStr_PersonalBlog(str_PersonalBlog);
+			userExtraInfo.setStr_TwitterId(str_TwitterId);
+			userExtraInfo.setStr_Profession(str_Proffession);
+			user.setUserExtraInfo(userExtraInfo);
+			
+		}
+		user.setUserExtraInfo(userExtraInfo);
+ 
 		user.setStr_Email(str_EmailId);
 		user.setStr_FirstName(str_FirstName);
 		user.setStr_LastName(str_LastName);
 		user.setStr_PhoneNo(str_Mobile);
-		user.setInt_UserId(Util.getUserId());
+		 
 		user.setStr_Flat(str_Flat);
 		System.out.println(str_Country + "counttttttttttttttttttttttry");
 		user.setStr_Country(str_Country);
 		user.setStr_City(str_City);
 		user.setStr_Block(str_Block);
 		user.setStr_State(str_State);
-		user.setInt_ApartmentId(Util.getAppartmentId());
+		 
 		user.setStr_Apartment(str_ApartmentName);
-		user.setStr_Username(Util.getUserName());
-		user.setInt_UserRole(Util.getInt_UserRole());
-		user.setStr_UserRoleName(Util.getStr_UserRoleName());
+		 
 
 		user.setVar_FileName1(getPath2());
 		user.setVar_ImageName1(getPath());
