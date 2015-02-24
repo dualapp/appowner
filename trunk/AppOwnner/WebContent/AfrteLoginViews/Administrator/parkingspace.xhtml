@@ -89,19 +89,19 @@
                  </h:selectOneMenu></td></tr>
                  
 <tr><th><h:outputText value="parkingSlot"/></th>
-	<td><h:inputText  id="Parkingslot"   required="true"  requiredMessage=" Enter Parking Slot" value="#{expenseBean.str_ParkingSlot}">
+	<td><p:inputText  id="Parkingslot"  placeholder="Enter Parkingslot"  value="#{expenseBean.str_ParkingSlot}">
 	  <p:ajax event="blur" update="ParkingslotMsg" />
-	</h:inputText>
+	</p:inputText>
 	</td>
 	 <td><p:message id="ParkingslotMsg" for="Parkingslot" display="text"/></td>
 	</tr>
-	<tr><td><p:commandButton   styleClass="btn" id="submit"  value="Submit"     action="#{expenseBean.saveParking}"  >
-	 <f:ajax execute="multiParkingSpaceDetail" event="click"  render="@form"/>
-	</p:commandButton>
+	<tr><td><h:commandButton   styleClass="btn" id="submit"  value="Submit"     action="#{expenseBean.saveParking}"  >
+	  
+	</h:commandButton>
 	 </td>
-	<td><p:commandButton   styleClass="btn"    value="Cancel"    action="parkingspace.xhtml" >
+	<td><h:commandButton   styleClass="btn"    value="Cancel"    action="parkingspace.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </p:commandButton></td>
+	  </h:commandButton></td>
 	</tr> 
 	  
     
@@ -130,12 +130,12 @@
     </tr>
      
     </ui:repeat>
-     <tr><td><p:commandButton value="update"  styleClass="btn"     action="#{expenseBean.updateParkingSpace(ps2)}">
-     <f:ajax execute="multiParkingSpaceDetail2" event="click"  render="@form"/>
-     </p:commandButton>
-     </td> <td><p:commandButton  styleClass="btn"  action="parkingspace.xhtml" value="Cancel">
+     <tr><td><h:commandButton value="update"  styleClass="btn"     action="#{expenseBean.updateParkingSpace(ps2)}">
+      
+     </h:commandButton>
+     </td> <td><h:commandButton  styleClass="btn"  action="parkingspace.xhtml" value="Cancel">
      <f:ajax execute="@this" event="click"  render="@form"/>
-     </p:commandButton>
+     </h:commandButton>
      
      </td></tr>
             </table>
