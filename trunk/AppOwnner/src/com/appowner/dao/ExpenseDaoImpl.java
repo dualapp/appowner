@@ -149,7 +149,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getStr_BlockListByAppartmentName(Integer appartmentId) {
-		String hql="select str_Block from User  where int_ApartmentId=?";
+		String hql="select str_BlockName from UserBlocks where int_ApartmentId=?";
 		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, appartmentId).list();
 	}
 
