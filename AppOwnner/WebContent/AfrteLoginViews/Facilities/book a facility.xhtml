@@ -175,14 +175,14 @@
        <td><p:inputTextarea value="#{loginBean.str_EmailId}" readonly="true" rows="6" cols="33"/></td></tr>
        <tr><th><h:outputText value="MESSAGE*"/></th><br/>
         <td><p:inputTextarea   rows="6" cols="33"/></td></tr>
-       <tr><td><h:commandButton value="Send"/></td>  <td><h:commandButton value="Cancel"/></td></tr>
+       <tr><td><h:commandButton  styleClass="btn" value="Send" action="#"/></td>  <td><h:commandButton styleClass="btn"  value="Cancel" action="book a facility.xhtml"/></td></tr>
         </table>
         
          
             </p:outputPanel>
             </p:dialog>
             
-             <p:dialog header="BookedFacility Details" widgetVar="bookDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+             <p:dialog header="BookedFacility Details" widgetVar="bookDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="400">
         <p:outputPanel id="bookDetail2" style="text-align:center;">
            <table>
               
@@ -237,7 +237,7 @@
             </p:outputPanel>
             </p:dialog>
             
-             <p:dialog header="Edit BookedFacility Details" widgetVar="bookDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+             <p:dialog header="Edit BookedFacility Details" widgetVar="bookDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
         <p:outputPanel id="bookDetail3" style="text-align:center;">
            <table>
               
@@ -289,7 +289,7 @@
     </tr>
             </ui:repeat>
             
-           <tr><td><h:commandButton value="update" action="#{requestScopeBean.updateBookAFacility(bf1)}"/></td> <td><h:commandButton action="book a facility.xhtml" value="Cancel"/></td></tr>
+           <tr><td><h:commandButton value="update" styleClass="btn" action="#{requestScopeBean.updateBookAFacility(bf1)}"/></td> <td><h:commandButton  styleClass="btn" action="book a facility.xhtml" value="Cancel"/></td></tr>
             </table>
             </p:outputPanel>
             </p:dialog>
