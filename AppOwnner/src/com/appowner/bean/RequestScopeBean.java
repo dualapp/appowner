@@ -137,11 +137,7 @@ public String assignRequestedService(ServiceRequest serviceRequest)
 serviceRequest.setStr_Status("Progress");
  
 getRequestScopeService().updateStatusOfServiceRequest(serviceRequest);
-FacesContext facesContext = FacesContext.getCurrentInstance();
-Flash flash = facesContext.getExternalContext().getFlash();
-flash.setKeepMessages(true);
-flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service assigned Successfully!", "Service assigned Successfully!"));
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Assigned Successfully"));
     return "servicerequest.xhtml?faces-redirect=true";
 }
 public String closeRequestedService(ServiceRequest serviceRequest)
@@ -151,11 +147,7 @@ serviceRequest.setStr_Status("RequestClosed");
  
    
 getRequestScopeService().updateStatusOfServiceRequest(serviceRequest);
-FacesContext facesContext = FacesContext.getCurrentInstance();
-Flash flash = facesContext.getExternalContext().getFlash();
-flash.setKeepMessages(true);
-flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service closed Successfully!", "Service closed Successfully!"));
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Closed Successfully"));
     return "servicerequest.xhtml?faces-redirect=true";
 }
 private ServiceRequest servicerequest1;
@@ -182,12 +174,8 @@ System.out.println(selectedServices+"venders");
     } 
 System.out.println(entitiesToDelete+"entyt todelete");
 getRequestScopeService().deleteOneServiceRequest(entitiesToDelete);
-FacesContext facesContext = FacesContext.getCurrentInstance();
-Flash flash = facesContext.getExternalContext().getFlash();
-flash.setKeepMessages(true);
-flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service deleted Successfully!", "Service deleted Successfully!"));
-    return "servicerequest.xhtml?faces-redirect=true";
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully"));
+    return "servicerequest.xhtml";
 }
  
 public void getOneServiceRequest()
@@ -196,9 +184,11 @@ public void getOneServiceRequest()
 	   System.out.println(servicerequest1+"servicerequest");
   
 }
-public void updateOneServiceRequest(ServiceRequest servicerequest)
+public String updateOneServiceRequest(ServiceRequest servicerequest)
 {
 	getRequestScopeService().updateOneServiceRequest(servicerequest);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully"));
+	return "servicerequest.xhtml";
 	
 }
 public void updateOneServiceRequest()
@@ -245,11 +235,8 @@ System.out.println(selectedServices+"venders");
     
 System.out.println(entitiesToDelete+"entyt todelete");
 getRequestScopeService().deleteOnefacility(entitiesToDelete);
-FacesContext facesContext = FacesContext.getCurrentInstance();
-Flash flash = facesContext.getExternalContext().getFlash();
-flash.setKeepMessages(true);
-flash.setRedirect(true);
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Service deleted Successfully!", "Service deleted Successfully!"));
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully"));
+ 
     return "book a facility.xhtml?faces-redirect=true";
 }
 
@@ -262,11 +249,7 @@ public void setSelectedBookAFacility(List<BookAFacility> selectedBookAFacility) 
 public String updateBookAFacility(BookAFacility bf1)
 {
 	getRequestScopeService().updateBookAFacility(bf1);
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Successfully Updated !", "Successfully Updated"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully"));
 	    return "book a facility.xhtml?faces-redirect=true";
 }
 public String getStr_FacilityType() {

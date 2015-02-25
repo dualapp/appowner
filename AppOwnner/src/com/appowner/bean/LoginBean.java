@@ -664,9 +664,10 @@ public class LoginBean implements Serializable {
 	}
 
 	public String getUserloginname() {
-
-		if (userloginname == null) {
-			userloginname = Util.getStr_FirstName();
+		user=new User();
+		user=getUserService().getUser(Util.getUserId());
+		if (user!= null) {
+			userloginname = user.getStr_Username();
 
 		}
 
@@ -1074,10 +1075,10 @@ public class LoginBean implements Serializable {
 				FacesMessage.SEVERITY_INFO,
 				"Service Request Saved Successfully !",
 				"Service Request Saved Successfully !"));
-		// Email=user.getStr_Email();
-		Email = "kalpana.j5599@gmail.com";
+		 Email=user.getStr_Email();
+		//Email = "kalpana.j5599@gmail.com";
 		subject = "Service Request";
-		content = "sir i need ur BsnlBroadBand service so plz provice it";
+		content = "Service Related";
 		str_ApartmentName1 = user.getStr_Apartment();
 		str_Flat1 = user.getStr_Flat();
 		str_Block1 = user.getStr_Block();
@@ -1099,7 +1100,7 @@ public class LoginBean implements Serializable {
 		bookAFacility.setStr_EventType(str_EventType);
 		bookAFacility.setStr_FacilityType(str_FacilityType);
 		bookAFacility.setStr_Flat(str_Flat);
-		bookAFacility.setStr_Status(str_Status);
+		bookAFacility.setStr_Status("Open");
 		bookAFacility.setStr_Mobile(str_Mobile);
 		bookAFacility.setStr_OpenDate(str_OpenDate);
 		bookAFacility.setStr_CloseDate(str_CloseDate);
@@ -1406,7 +1407,7 @@ public class LoginBean implements Serializable {
 	public String getPath() {
 		System.out.println(path + "path1");
 		path = (String) session.getAttribute("str_ImageName1");
-		if (user != null)
+		if (user.getVar_ImageName1() != null)
 
 			path = user.getVar_ImageName1();
 		  
