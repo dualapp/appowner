@@ -1,6 +1,7 @@
 package com.appowner.bean;
 import java.io.IOException;
  
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +46,7 @@ public class EmailSendingServlet1 extends HttpServlet {
         String OpenDate=request.getParameter("str_OpenDate1");
         System.out.println(Flat);
         System.out.println(subject);
-        
+        Boolean render1=false;
         
  
         String resultMessage = "";
@@ -58,9 +59,9 @@ public class EmailSendingServlet1 extends HttpServlet {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
+        	 request.setAttribute("render1", "true");
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/AfrteLoginViews/Facilities/Result.jsp").forward(
-                    request, response);
+            response.sendRedirect(request.getContextPath()+"/AfrteLoginViews/Facilities/createnewservicerequest.xhtml");
         }
     }
 }

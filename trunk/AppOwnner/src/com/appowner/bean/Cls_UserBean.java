@@ -333,6 +333,8 @@ public class Cls_UserBean implements Serializable{
 		}
 		public void roleChangeListener(ValueChangeEvent event)
 		{
+			if(event.getNewValue()!=null)
+			{
 			int_UserRole=(int) event.getNewValue();
 			 System.out.println(getInt_UserRole()+"kkkkkkkkkkkkkkkk");
 			 user=getUserService().isUserStaying(str_HouseNo,int_UserRole);
@@ -350,6 +352,7 @@ public class Cls_UserBean implements Serializable{
 				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This House is already Booked for: "  + user.getStr_UserRoleName()+""+user.getStr_Username()));
 			 }
 		}
+}
 		public void houseNoChangeListener(ValueChangeEvent event)
 		{
 			str_HouseNo=(String) event.getNewValue();
@@ -947,7 +950,7 @@ public class Cls_UserBean implements Serializable{
 			int_UserRole=getUserService().getUserRole(Util.getUserId());
 			if(int_UserRole==1)
 				userRole="Tenant";
-			 else
+			 if(int_UserRole==2)
 				 userRole="Owner";
 				 
 			return userRole ;
