@@ -46,7 +46,7 @@
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
-                  <p:ajax event="blur" update="AssetCategoryMsg" />
+                  <p:ajax event="click" update="AssetCategoryMsg" />
                  </h:selectOneMenu>
                  </td>
                  <td><p:message id="AssetCategoryMsg"  for="AssetCategory" display="text"/></td>

@@ -35,24 +35,24 @@
     <body>
      
  <div id="page3">
-              <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th> <h:outputText value="Show Assets Of Organisation:" /> </th>
+              <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th> <h:outputText value="Organisation:" /> </th>
             <td>  <h:selectOneMenu> 
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu> </td>
-                <th> <h:outputText value="In Bolck"/></th> 
+                <th> <h:outputText value="Bolck"/></th> 
                <td>  <h:selectOneMenu  value="#{expenseBean.str_Block}" > 
               <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
                  </h:selectOneMenu> </td>
-                 <th> <h:outputText value="Of Category"/></th>
+                 <th> <h:outputText value="Category"/></th>
                 <td> <h:selectOneMenu  id="AssetCategory"    value="#{expenseBean.str_AssetCategoryType}">
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                  
                  </h:selectOneMenu></td>
-                <th> <p:commandButton   style="width:50px;height:25px"  value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
+                <th> <p:commandButton     value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
                 
                   
                  
