@@ -14,10 +14,21 @@
 	 <link href="#{expenseBean.str_Name}include/assets/css/ace.min.css" rel="stylesheet" />
 	 
  
-  
+  <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+</style>
     </h:head>
  <a href="assets.xhtml">>>Back To Asset</a >
     <h:form id="form" enctype="multipart/form-data" prependId="false"> 
+     <p:growl id="ui-growl" globalOnly="true" sticky="true" />
     
     <body>
      
@@ -90,7 +101,7 @@
 		<h:commandButton id="upload" update="assetimg" execute="file"
 		                 action="#{expenseBean.uploadAssetsFile()}"
 			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
-			              
+			               <f:ajax execute="file" event="click" render="@form" />
 			             </h:commandButton>
         <!-- status message of file upload; rendered if message is set -->
 		<h:outputText value="#{expenseBean.statusMessage}"
