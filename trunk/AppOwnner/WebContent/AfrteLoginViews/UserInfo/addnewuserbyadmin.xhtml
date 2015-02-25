@@ -43,7 +43,7 @@
             <tr>
             <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
             <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 10 char!">
-          
+          <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,20})"/>
             </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
              <tr>
             <td><h:outputText value="Confirm Password* :"></h:outputText><font color="red" >*</font></td>
@@ -80,7 +80,9 @@
                 <tr>
            <td> <h:outputText value="Phone No* :">
             </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText id="str_PhoneNo" value="#{cls_UserBean.str_PhoneNo}" required="true"                requiredMessage="Enter Phone No!">
+            <td><h:inputText id="str_PhoneNo" value="#{cls_UserBean.str_PhoneNo}" validatorMessage="invalid mobile no" maxlength="11" required="true"                requiredMessage="Enter Phone No!">
+            <f:validateLength minimum="10" />
+                    <f:validateRegex pattern="^([+]?[\d]+)?$" />
             </h:inputText> </td><td><p:message for="str_PhoneNo" display="text"/></td> </tr> 
             <tr><td colspan="2" align="left">
            <div class="gsTitleDiv">Apartment Information</div></td></tr>
@@ -113,7 +115,7 @@
             <f:selectItem itemLabel="Owner" itemValue="2" />
             </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
              <tr> 			
-            <td><h:commandButton id="addUser"     value="Add User" action="#{cls_UserBean.addnewUser}"  />
+            <td><h:commandButton id="addUser"   execute="@form"  value="Add User" action="#{cls_UserBean.addnewUser}"  />
              </td><td>
             <h:commandButton id="reset" value="   Reset  " action="#{cls_UserBean.reset}"  />
              </td></tr>

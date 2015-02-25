@@ -25,7 +25,17 @@
 		</tbody>
 	</table>
     <div id="page3">
+     <p:outputPanel   rendered="#{request.getAttribute('render1')}">
+					<div id="password">
+					  <h4>Your Service Request Sent  successfully.....</h4> 
+        <h4> #{request.getAttribute('Message')}</h4>
+         
+         
+         <h4>Thanks....</h4> 
+					</div>
+					</p:outputPanel>
            <div class="gsTitleDiv">Service  Details<br/><hr/></div>
+           
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
     
     <tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputText value="Organization"/></th> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
