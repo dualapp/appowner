@@ -74,7 +74,7 @@
 			             </h:commandButton><br />
  
         
-		<h:outputLabel value="#{loginBean.statusMessage}"
+		<p:outputLabel value="#{loginBean.statusMessage}"
 			          rendered="#{not empty loginBean.statusMessage}" /></td></tr> --></table>
 			          </div>
         <div class="gsTitleDiv">Contact Information<br/><hr/></div>
@@ -82,61 +82,61 @@
         
            <tr>
  <td width="15%">
-    <h:outputLabel value="First name:"/></td>
+    <p:outputLabel value="First name:"/></td>
     <td width="30%">
     <p:inputText value="#{loginBean.str_FirstName}"> </p:inputText></td>
      
  <td  width="15%">
-    <h:outputLabel value="Last name:"/></td>
+    <p:outputLabel value="Last name:"/></td>
     <td width="30%">
     <p:inputText value="#{loginBean.str_LastName}"> </p:inputText></td>
     </tr>
    <tr>
- <td><h:outputLabel value="Country :">
-            </h:outputLabel></td>           
+ <td><p:outputLabel value="Country :">
+            </p:outputLabel></td>           
            <td> <p:inputText value="#{loginBean.str_Country}" />
             </td> 
-            <td><h:outputLabel value="State :"/>
+            <td><p:outputLabel value="State :"/>
               </td>           
            <td> <p:inputText value="#{loginBean.str_State}" />
             </td> </tr>
             <tr>
-             <td><h:outputLabel value="City :"/>
+             <td><p:outputLabel value="City :"/>
             </td>            
              <td><p:inputText value="#{loginBean.str_City}"/>
              </td> 
-            <td><h:outputLabel value="Apartment :"/>
+            <td><p:outputLabel value="Apartment :"/>
             </td>            
             <td><p:inputText value="#{loginBean.str_ApartmentName}" />
             </td> </tr>
            
              <tr>
-           <td> <h:outputLabel value="Phone No* :"/>
+           <td> <p:outputLabel value="Phone No* :"/>
             </td>            
             <td><p:inputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" />
               </td>
-              <td> <h:outputLabel value="FaceBook Profile* :"/></td>
+              <td> <p:outputLabel value="FaceBook Profile* :"/></td>
           
             <td><p:inputText id="str_fb" value="#{loginBean.str_FacebookId}"  />
          <br/> www.facebook.com/</td>
                </tr> 
              <tr>
-           <td> <h:outputLabel value="Email"/>
+           <td> <p:outputLabel value="Email"/>
             </td>            
-            <td><h:outputLabel id="str_email" value="#{loginBean.str_EmailId}"  />
+            <td><p:outputLabel id="str_email" value="#{loginBean.str_EmailId}"  />
             </td>  
            
-           <td> <h:outputLabel value="LinkedIn Profile :"/></td>
+           <td> <p:outputLabel value="LinkedIn Profile :"/></td>
           
             <td><p:inputText id="str_lkndin" value="#{loginBean.str_LinkedInId}"  />
         <br/> www.linkedin.com/ </td></tr> 
           <tr>
-           <td> <h:outputLabel value="Personal Blog"/>
+           <td> <p:outputLabel value="Personal Blog"/>
             </td>            
             <td><p:inputText id="str_pb" value="something" required="true"                requiredMessage="Please Enter Phone No!"/>
           <br/> http()s):// </td>  
            
-           <td> <h:outputLabel value="Twitter Profile:"/></td>
+           <td> <p:outputLabel value="Twitter Profile:"/></td>
           
             <td><p:inputText id="str_tw" value="#{loginBean.str_TwitterId}" />
        <br/>  www.twitter.com/ </td></tr> 
@@ -148,7 +148,7 @@
    <div class="gsTitleDiv">House Information<br/><hr/></div>
     <tr> 
             
-            <td width="10%"><h:outputLabel value="Block :"/>
+            <td width="10%"><p:outputLabel value="Block :"/>
              </td>          
             <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}">
           <f:selectItem itemValue="#{loginBean.str_Block}" itemLabel="#{loginBean.str_Block}" />
@@ -156,7 +156,7 @@
              <p:ajax event="change" update="str_House" process="str_Block"/>
              </h:selectOneMenu>
              </td>
-              <td width="10%"><h:outputLabel value="Flat No:"/>
+              <td width="10%"><p:outputLabel value="Flat No:"/>
              </td>
              <td width="10%"><h:selectOneMenu id="str_House" value="#{loginBean.str_Flat}" >
            
@@ -178,21 +178,21 @@
              <div class="gsTitleDiv">Soclial Profile Information<br/><hr/></div>
        <table>
           <tr>
-             <td width="15%"><h:outputLabel value="Gender:"/>
+             <td width="15%"><p:outputLabel value="Gender:"/>
              </td>            
              <td width="30%"><h:selectOneRadio value="#{loginBean.str_Gender}"  >
 <f:selectItem itemValue="male" itemLabel="male" />
 <f:selectItem itemValue="female" itemLabel="female" />
 </h:selectOneRadio>
              </td>  
-            <td width="15%"><h:outputLabel value="Date Of Birth:"/>
+            <td width="15%"><p:outputLabel value="Date Of Birth:"/>
              </td>          
             <td width="30%"> 
             <p:calendar required="true" requiredMessage="plz  enter to date" navigator="true"   display="inline" value="#{loginBean.date_DateOfBirth}"/>
              </td></tr>
               
           <tr>
-             <td><h:outputLabel value="Blood Group:"/>
+             <td><p:outputLabel value="Blood Group:"/>
              </td>            
              <td><h:selectOneMenu value="#{loginBean.str_BloodGroup}"  >
 <f:selectItem itemValue="A+" itemLabel="A+"/>
@@ -203,7 +203,7 @@
 <f:selectItem itemValue="AB-" itemLabel="AB-"/>
 </h:selectOneMenu>
              </td>  
-            <td><h:outputLabel value="Marital Status"/>
+            <td><p:outputLabel value="Marital Status"/>
              </td>          
             <td><h:selectOneMenu value="#{loginBean.str_MaritalStatus}"  >
 <f:selectItem itemValue="No Anwser" itemLabel="No Anwser"/>
@@ -214,12 +214,12 @@
              </td></tr>
              <tr>
              <td></td><td></td>
-            <td><h:outputLabel value="Hobbies:"/>
+            <td><p:outputLabel value="Hobbies:"/>
              </td>          
             <td><p:inputText value="#{loginBean.str_Hobbies}"/>
              </td></tr>
               <tr>
-             <td><h:outputLabel value="Proffession:"/>
+             <td><p:outputLabel value="Proffession:"/>
              </td>            
              <td><h:selectOneMenu value="#{loginBean.str_Proffession}"  >
 <f:selectItem itemValue="ArmedForce" itemLabel="ArmedForce"/>
@@ -230,7 +230,7 @@
 <f:selectItem itemValue="Police" itemLabel="Police"/>
 </h:selectOneMenu>
              </td>  
-            <td><h:outputLabel value="Intrested In"/>
+            <td><p:outputLabel value="Intrested In"/>
              </td>          
             <td><h:selectManyCheckbox value="#{loginBean.str_IntrestedIn}"  layout="pageDirection" styleClass="nostyle">
 <f:selectItem itemValue="Meeting Others" itemLabel="Meeting Others"/>
