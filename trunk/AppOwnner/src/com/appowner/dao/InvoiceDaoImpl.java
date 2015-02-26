@@ -1,7 +1,9 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.Query;
 
@@ -129,16 +131,25 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	@SuppressWarnings("unchecked")
 	public List<String> getBlockList(String str_Organisation)
 	{
-		String hql="select str_Block from User where str_Apartment=?";
-		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Organisation).list();
+		String hql="select str_BlockName from UserBlocks where int_ApartmentId=?";
+		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).list();
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getApartmentlist(String str_Block)
 	{
-		String hql="select str_Flat from User where str_Block=?";
-		List<String> list=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).list();
-	
-		return list;
+		String hql="select int_BlockId from UserBlocks where str_BlockName=? and int_ApartmentId=?";
+		List<Integer> list=(List<Integer>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).setParameter(1,Util.getAppartmentId()).list();
+		ListIterator itr=list.listIterator();
+		List<String> str2=new ArrayList<String>();
+		while(itr.hasNext())
+		{
+			Integer id=(Integer) itr.next();
+			System.out.println(id+"gfgfkgfkj");
+			str2=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_ApartmentId=? and int_BlockId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,id).list();
+			
+		}
+	System.out.println(str2+"fdjdff");
+		return str2;
 	}
 	public double getTaxAmount(String str1)
 	
@@ -153,10 +164,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	public double getSqft(String str)
 	{
-		String hql="select sqft from User where str_Flat=?";
-		double ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str).uniqueResult();
-	
-		return ddd;
+		String hql="select int_HouseSize from HouseDetails where str_HouseNo=? and int_ApartmentId=?";
+		Integer  ddd=(Integer)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str).setParameter(1,Util.getAppartmentId()).uniqueResult();
+	     Double ddd1=(double)ddd;
+	    
+		return ddd1;
 	}
 	public String getmailid(String str_ApartmentNo)
 	{
