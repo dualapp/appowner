@@ -20,6 +20,16 @@
            height:25px;
            weight:250px;
           }
+          .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
+
+}
       </style>	
  
  
@@ -174,7 +184,7 @@
  <th>
     <h:outputText value="Frequency:"/><font color="red" >*</font></th>
     <td>
-   <h:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
+   <h:selectOneMenu id="str_Frequency" value="#{templateBean.str1_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
                   <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
