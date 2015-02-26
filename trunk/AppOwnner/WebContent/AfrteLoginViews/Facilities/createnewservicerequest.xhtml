@@ -38,20 +38,20 @@
            
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
     
-    <tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputText value="Organization"/></th> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
-    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <th><h:outputText value="Block"/></th>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
-   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <th><h:outputText value="Type"/></th> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
+    <tr><th><h:outputLabel value="Created by"/></th>  <td><p:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputLabel value="Organization"/></th> <td><p:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><th><h:outputLabel value="Organization"/></th>  <td><p:inputText value="#{loginBean.str_ApartmentName}"/></td>   <th><h:outputLabel value="Block"/></th>  <td><p:inputText value="#{loginBean.str_Block}"/></td></tr>
+   <tr><th><h:outputLabel value="Flat Name"/></th> <td><p:inputText value="#{loginBean.str_Flat}"/></td> <th><h:outputLabel value="Type"/></th> <td><p:inputText value="#{loginBean.str_UserType}"/></td></tr>
     
-    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputText value="Email"/></th>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
-    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <th><h:outputText value="LandLine"/></th>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+    <tr><th><h:outputLabel value="Name"/></th> <td><p:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputLabel value="Email"/></th>  <td><p:inputText value="#{loginBean.str_EmailId}"/></td></tr>
+    <tr><th><h:outputLabel value="Mobile"/></th>  <td><p:inputText value="#{loginBean.str_Mobile}"/></td>   <th><h:outputLabel value="LandLine"/></th>  <td><p:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
      
-    <tr><th><h:outputText value="Date Open"/></th>  <td><h:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputText value="Date Closed"/></th>  <td><h:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
-    <tr><th><h:outputText value="Status"/></th> <td><h:inputText value="#{expenseBean.str_Status}"/></td>   <th><h:outputText value="VendorCategory"/></th>  <td><h:selectOneMenu value="#{loginBean.str_VendorType}">
+    <tr><th><h:outputLabel value="Date Open"/></th>  <td><p:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th><h:outputLabel value="Date Closed"/></th>  <td><p:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
+    <tr><th><h:outputLabel value="Status"/></th> <td><p:inputText value="#{expenseBean.str_Status}"/></td>   <th><h:outputLabel value="VendorCategory"/></th>  <td><h:selectOneMenu value="#{loginBean.str_VendorType}">
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></h:selectOneMenu>
     </td></tr>
-   <tr><th><h:outputText value="Title*"/></th>  <td><h:inputText id="Title" required="true" requiredMessage="plz  enter Title" value="#{loginBean.str_Title}">
+   <tr><th><h:outputLabel value="Title*"/></th>  <td><p:inputText id="Title" required="true" requiredMessage="plz  enter Title" value="#{loginBean.str_Title}">
    <p:ajax event="blur" update="TitleMsg" />
-   </h:inputText>
+   </p:inputText>
    
    </td>
    <td> <p:message  id="TitleMsg" for="Title" display="text"/> </td>
@@ -61,7 +61,7 @@
    
    
    <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-   <tr><th><h:outputText value="Description*"/></th>  <td></td><td><p:editor id="editor" required="true" requiredMessage="plz  Enter Description"  widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td>
+   <tr><th><h:outputLabel value="Description*"/></th>  <td></td><td><p:editor id="editor" required="true" requiredMessage="plz  Enter Description"  widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td>
     <td> <p:message  id="editorMsg" for="editor" display="text"/> </td>
    </tr>
    <tr><td> <h:commandButton  styleClass="btn" style="width:100px" onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addServiceRequest()}"/></td><td> <h:commandButton  styleClass="btn" style="width:100px" value="Cancel" action="#"/> </td></tr>
