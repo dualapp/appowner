@@ -77,6 +77,7 @@ public class TemplateBean implements Serializable {
 		this.str_Frequency = str_Frequency;
 	}
 	public String getStr_Calculation() {
+		//str_Calculation=getTemplateService().getCalculation();
 		return str_Calculation;
 	}
 	public void setStr_Calculation(String str_Calculation) {
@@ -196,12 +197,14 @@ public class TemplateBean implements Serializable {
 	public void setListDues(List<DueTemplate> listDues) {
 		this.listDues = listDues;
 	}
-	public String saveDueTemplate( ) {
+	public String saveDueTemplate() {
 		 
 	
-		
+	System.out.println("fkjfgkjfgjkkfj");
+	dueTemplate1.setStr_Calculation(getStr_Calculation());
+	dueTemplate1.setStr_Frequency(getStr_Frequency());
 		getTemplateService().updateDueTemplate(dueTemplate1);
-			
+		
 		
 		
 		
@@ -264,14 +267,14 @@ public class TemplateBean implements Serializable {
 	        }
 	    if(indicator==true)	
 	    {
-	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Message", " Cannot delete Due Template. Delete the due instances and try again."));	
+	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Last date cannot be before from date", "Last date cannot be before from date"));	
 	    }
 			
 	    else
 	    {
         getTemplateService().deleteDue1(delete);
     
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "DueTemplate deleted Successfully!"));
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"DueTemplate deleted Successfully!", "DueTemplate deleted Successfully!"));
      System.out.println("jfjgfjgf");
 	    }
 	    }
@@ -309,8 +312,15 @@ public class TemplateBean implements Serializable {
 	
 	public String saveDueTemplate(DueTemplate dueTemplate) {
 		if (dueTemplate.getInt_DueTemplateID() != null) {
-			
+			System.out.println("jhfjfgjkkjgfjkg");
+			System.out.println(str_Calculation);
+			System.out.println(str_Frequency);
+			dueTemplate.setStr_Frequency(getStr_Frequency());
+			dueTemplate.setStr_Calculation(getStr_Calculation());
+			System.out.println(dueTemplate.getStr_Calculation());
+			System.out.println(dueTemplate.getStr_Frequency());
 			getTemplateService().updateDueTemplate(dueTemplate);
+		
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			Flash flash = facesContext.getExternalContext().getFlash();
 			flash.setKeepMessages(true);
@@ -591,6 +601,7 @@ public class TemplateBean implements Serializable {
 	}
 	public String saveInvoiceTemplate()
 	{   invoiceTemplate.setStr_DueInvoiceTemplate(str);
+	    invoiceTemplate.setStr_Frequency(getStr_Frequency());
 		getTemplateService().updateInvoiceTemplate(invoiceTemplate);
 		return "invoicetemplate.xhtml";
 	}
@@ -605,6 +616,7 @@ public class TemplateBean implements Serializable {
   public List<String> frequencyChangeListener(ValueChangeEvent event)
   {  
 	   str1_Frequency=(String)event.getNewValue();
+	   System.out.println(str1_Frequency+"fjkjkkjfd");
 	    dueTemplates=new ArrayList<String>();
 	     dueTemplates.addAll(getTemplateService().getDueTemplate(str1_Frequency));
 	        return dueTemplates;
@@ -685,6 +697,8 @@ public class TemplateBean implements Serializable {
 		if (invoiceTemplate.getInt_InvoiceTemplateID()!= null) {
 			System.out.println(invoiceTemplate.getStr_DueInvoiceTemplate()+"fdkfdkj");
 			invoiceTemplate.setStr_DueInvoiceTemplate(str);
+			System.out.println(str1_Frequency+"fkfgkjfg");
+			invoiceTemplate.setStr_Frequency(str1_Frequency);
 			System.out.println(invoiceTemplate.getStr_DueInvoiceTemplate()+"fdkfdkj1111");
 			getTemplateService().updateInvoiceTemplate(invoiceTemplate);
 			FacesContext facesContext = FacesContext.getCurrentInstance();
