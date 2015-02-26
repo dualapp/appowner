@@ -265,7 +265,7 @@ public class DueBean implements Serializable{
 	private List<DueTransaction> listDueTransaction1;
 	public List<DueTransaction> getListDueTransaction1() {
 		listDueTransaction1=new ArrayList<DueTransaction>();
-		listDueTransaction1.addAll(getDueService().listDueTransaction1(str_DueTemplate,str_Block,str_ApartmentNo,str_Period,int_Year));
+		listDueTransaction1.addAll(getDueService().listDueTransaction1(str_DueTemplate1,str_Block,str_ApartmentNo,str_Period,int_Year));
 		
 		return listDueTransaction1;
 	}
@@ -332,7 +332,7 @@ public class DueBean implements Serializable{
 	
 	public double apartmentChangeListener(ValueChangeEvent event)
 	{   String str=(String)event.getNewValue();
-	    System.out.println(str_DueTemplate+"jjkjkjj");
+	    System.out.println(str_DueTemplate1+"jjkjkjj");
 	    System.out.println(str_Block+"hjh");
 	    System.out.println(str+"jhjhj");
 	    str_ApartmentNo=str;
@@ -356,7 +356,7 @@ public class DueBean implements Serializable{
    		System.out.println("jjkjkjkjkdf");
    		return dbl_DueAmount;
 		}
-		 dbl_DueAmount= getDueService().getDueAmount(str,str_DueTemplate);	  
+		 dbl_DueAmount= getDueService().getDueAmount(str,str_DueTemplate1);	  
 		    return dbl_DueAmount;	
 	}
 	private List<DueTransaction>   listUserDueTransaction;
