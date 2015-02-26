@@ -80,18 +80,18 @@
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
-	<tr><th><h:outputText value="CategoryName" /></th>
-	<td><p:inputText    id="AssetCategory" value="#{expenseBean.str_AssetCategoryType}" placeholder="Enter AssetCategory">
+	<tr><th><p:outputLabel for="AssetCategory" value="CategoryName" /></th>
+	<td><p:inputText    id="AssetCategory"  required="true" requiredMessage="Enter AssetCategory" placeholder="Enter AssetCategory" value="#{expenseBean.str_AssetCategoryType}">
 	  <p:ajax event="blur" update="AssetCategoryMsg" />
 	</p:inputText>
 	</td>
 	  <td>  <p:message id="AssetCategoryMsg" for="AssetCategory" display="text"/>  </td>
 	</tr>
-	<tr><td><h:commandButton   styleClass="btn"  value="Submit"    action="#{expenseBean.saveAssetCategory}">
+	<tr><td><h:commandButton   styleClass="btn"  value="Submit"  ajax="false"  action="#{expenseBean.saveAssetCategory}">
 	 
 	</h:commandButton>
 	
-	  </td> <td><h:commandButton   styleClass="btn"    value="Cancel"    action="assetcategory.xhtml" >
+	  </td> <td><h:commandButton   styleClass="btn"   ajax="false" value="Cancel"    action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
 	  </h:commandButton></td></tr>  
 	  
@@ -107,19 +107,19 @@
                
             <ui:repeat value="#{expenseBean.assetCategoryList1}" var="ac1">
              <tr>
-             <th><h:outputText value="Organization"/></th><td><h:inputText value="#{ac1.str_OrganizationName}" /> </td>
+             <th><p:outputLabel value="Organization"/></th><td><h:inputText value="#{ac1.str_OrganizationName}" /> </td>
              </tr>
              <tr>
-             <th><h:outputText value="Category name"/></th><td><h:inputText value="#{ac1.str_assetcat_name}" /> </td>
+             <th><p:outputLabel value="Category Name"/></th><td><h:inputText value="#{ac1.str_assetcat_name}" /> </td>
              </tr>
              
              </ui:repeat>
-             <tr><td><h:commandButton value="update"  styleClass="btn"     action="#{expenseBean.updateAssetCategory(ac1)}">
+             <tr><td><h:commandButton value="update"  styleClass="btn"  ajax="false"   action="#{expenseBean.updateAssetCategory(ac1)}">
                
              </h:commandButton>
              </td> 
              
-            <td><h:commandButton   styleClass="btn"    value="Cancel"    action="assetcategory.xhtml" >
+            <td><h:commandButton   styleClass="btn"    value="Cancel"  ajax="false"  action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
 	  </h:commandButton></td></tr>
             </table>

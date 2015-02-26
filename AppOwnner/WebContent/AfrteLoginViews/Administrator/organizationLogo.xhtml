@@ -38,14 +38,16 @@
  <h:body>
  <div id="page3" align="center">
             
-  <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"><tr><th>
-               <h:outputText value="Organisation:" /> </th>
-              <td> <h:outputText value="#{expenseBean.str_OrganizationName}"/></td></tr>
-                 
-       <tr><th><h:outputText value="Appartment Address:"/> </th><td><p:inputTextarea rows="6" cols="33"     value="#{expenseBean.str_ApptAddress}"/></td></tr> 
+  <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
   
-  <tr><th><h:outputText value="Upload Appartment Logo:"/></th> 
- <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
+  <tr><th width="20%">
+               <p:outputLabel value="Organisation:" /> </th>
+              <td width="30%"> <p:outputLabel value="#{expenseBean.str_OrganizationName}"/></td><td width="50%"></td></tr>
+                 
+       <tr><th><p:outputLabel value="Appartment Address:"/> </th><td><p:inputText       value="#{expenseBean.str_ApptAddress}"/></td></tr> 
+  
+  <tr><th><p:outputLabel value="Upload Appartment Logo:"/></th> 
+ <td><p:outputLabel value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
    <!-- inputFile tag to upload file -->
 		 
@@ -56,25 +58,29 @@
 			         requiredMessage="File not selected !!"  >
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
+		   
 		</h:inputFile>
 		<h:message style="color: red" for="file1" /><br />
  
-		<h:commandButton id="submit1"  update="@form" style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
+		<h:commandButton id="submit1"     style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
 		                 action="#{expenseBean.uploadOrganizationLogo()}"
 			             value="upload file" >
-			              <f:ajax execute="file1" event="click" render="@form" />
+			              <f:ajax execute="file1"  immediate="true" event="click" update="@form" render="@form" />
 			             </h:commandButton><br />
  
         <!-- status message of file upload; rendered if message is set 
-		<h:outputText value="#{expenseBean.statusMessage}"
+		<p:outputLabel value="#{expenseBean.statusMessage}"
 			          rendered="#{not empty expenseBean.statusMessage}" />-->
   
   
   
              </td></tr>
+             
+   
+ 
   
-         <tr><th><h:outputText value="Upload Appartment image:"/></th> 
- <td><h:outputText value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
+         <tr><th><p:outputLabel value="Upload Appartment image:"/></th> 
+ <td><p:outputLabel value="Upload an image of the size ( 75 X 75 ) pixel"/></td></tr>
   <tr><td></td><td>
   
   
@@ -98,7 +104,7 @@
 			             </h:commandButton><br />
  
         <!-- status message of file upload; rendered if message is set 
-		<h:outputText value="#{expenseBean.statusMessage}"
+		<p:outputLabel value="#{expenseBean.statusMessage}"
 			          rendered="#{not empty expenseBean.statusMessage}" />-->
   
      
@@ -127,41 +133,44 @@
 			             </h:commandButton><br />
  
         <!-- status message of file upload; rendered if message is set 
-		<h:outputText value="#{expenseBean.statusMessage}"
+		<p:outputLabel value="#{expenseBean.statusMessage}"
 			          rendered="#{not empty expenseBean.statusMessage}" />-->
   
                                   
                                   </td></tr>
             
-        <tr><th><h:outputText value="OrganizationTextLogo" /></th><td><h:inputText id="textlogo" value="#{expenseBean.textLogo}"/></td></tr> 
-        <tr><th><h:outputText value="What is your association office timings? *"/></th> </tr><tr>
-        <th><h:outputText value="From"/></th><td><h:selectOneMenu id="str_offcInTiming" value="#{expenseBean.str_offcInTiming}" >
+        <tr><th><p:outputLabel value="OrganizationTextLogo" /></th><td><p:inputText id="textlogo" value="#{expenseBean.textLogo}"/></td></tr> 
+        <tr><th><p:outputLabel value="What is your association office timings? *"/></th> </tr><tr>
+        <th><p:outputLabel value="From"/></th><td><h:selectOneMenu id="str_offcInTiming" value="#{expenseBean.str_offcInTiming}" >
         
             <f:selectItem itemLabel="1" itemValue="1" />
             <f:selectItem itemLabel="1:30" itemValue="1:30" />
             <f:selectItem itemLabel="2" itemValue="2" />
             <f:selectItem itemLabel="2:30" itemValue="2:30" />
              <f:selectItem itemLabel="3" itemValue="3" />
-               </h:selectOneMenu> 
-         <h:selectOneMenu id="str_offcInTiming1" value="#{expenseBean.str_offcInTiming}" >
+               </h:selectOneMenu> </td>
+        <td> <h:selectOneMenu id="str_offcInTiming1" value="#{expenseBean.str_offcInTiming}" >
             <f:selectItem itemLabel="AM" itemValue="AM" />
             <f:selectItem itemLabel="PM" itemValue="PM" />
              
                </h:selectOneMenu> </td></tr>
-        <tr> <th><h:outputText value="To"/></th><td><h:selectOneMenu id="str_offcOutTiming" value="#{expenseBean.str_offcOutTiming}" >
+        <tr> <th><p:outputLabel value="To"/></th><td><h:selectOneMenu id="str_offcOutTiming" value="#{expenseBean.str_offcOutTiming}" >
             <f:selectItem itemLabel="1" itemValue="1" />
             <f:selectItem itemLabel="1:30" itemValue="1:30" />
             <f:selectItem itemLabel="2" itemValue="2" />
             <f:selectItem itemLabel="2:30" itemValue="2:30" />
              <f:selectItem itemLabel="3" itemValue="3" />
                
-        </h:selectOneMenu><h:selectOneMenu id="str_offcOutTiming1" value="#{expenseBean.str_offcOutTiming}"  >
+        </h:selectOneMenu>
+        </td>
+        <td>
+        <h:selectOneMenu id="str_offcOutTiming1" value="#{expenseBean.str_offcOutTiming}"  >
             <f:selectItem itemLabel="AM" itemValue="AM" />
             <f:selectItem itemLabel="PM" itemValue="PM" />
              
                
         </h:selectOneMenu></td></tr>
-        <tr><th><h:outputText value="Weekly Holidays"/></th><td> <h:selectOneMenu id="str_Day" value="#{expenseBean.str_Day}" >
+        <tr><th><p:outputLabel value="Weekly Holidays"/></th><td> <h:selectOneMenu id="str_Day" value="#{expenseBean.str_Day}" >
             <f:selectItem itemLabel="Sunday" itemValue="Sunday" />
             <f:selectItem itemLabel="Monday" itemValue="monday" />
             <f:selectItem itemLabel="tuesdat" itemValue="tuesday" />
