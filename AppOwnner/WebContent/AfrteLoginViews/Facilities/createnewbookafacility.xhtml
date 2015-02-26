@@ -30,7 +30,7 @@
            <div class="gsTitleDiv">Booking Details<br/><hr/></div> 
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    
-  <tr><th width="15%"><h:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
+  <tr><th width="15%"><p:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
   <p:ajax event="blur" update="Eventname" />
   </p:inputText>
   </td>
@@ -40,17 +40,17 @@
   <td width="15%"></td>
   <th  width="20%"></th>
   </tr>
-   <tr><th><h:outputLabel value="Organization"/></th>  <td><p:inputText value="#{loginBean.str_ApartmentName}"/>  </td>
+   <tr><th><p:outputLabel value="Organization"/></th>  <td><p:inputText value="#{loginBean.str_ApartmentName}"/>  </td>
    <th></th>
-   <th><h:outputLabel value="Event Type"/></th> 
+   <th><p:outputLabel value="Event Type"/></th> 
    <td><h:selectOneMenu value="#{loginBean.str_EventType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="Public" itemLabel="Public"/>
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </h:selectOneMenu></td><th></th></tr>
       
-    <tr><th><h:outputLabel value="Date Open"/></th>  <td><p:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th></th><th><h:outputLabel value="Date Closed"/></th>  <td><p:inputText value="#{loginBean.str_CloseDate}"/></td><th></th></tr>
-    <tr><th><h:outputLabel value="Start Time"/></th> 
+    <tr><th><p:outputLabel value="Date Open"/></th>  <td><p:inputText value="#{loginBean.str_OpenDate}"/>  </td> <th></th><th><p:outputLabel value="Date Closed"/></th>  <td><p:inputText value="#{loginBean.str_CloseDate}"/></td><th></th></tr>
+    <tr><th><p:outputLabel value="Start Time"/></th> 
      <td><h:selectOneMenu  id="STime"   required="true" requiredMessage="Enter StartTime" value="#{loginBean.str_StartTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
@@ -62,7 +62,7 @@
       
        <th> <p:message id="STimeMsg"   for="STime" display="text"/></th>
        
-       <th><h:outputLabel value="End Time"/></th>  <td>
+       <th><p:outputLabel value="End Time"/></th>  <td>
      <h:selectOneMenu id="ETime"    required="true" requiredMessage="Enter EndTime" value="#{loginBean.str_EndTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
     <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
@@ -73,7 +73,7 @@
       </td>
       <th>  <p:message id="ETimeMsg"  for="ETime" display="text"/></th>
        </tr>
-     <tr><th><h:outputLabel value="Facility Needed"/></th>
+     <tr><th><p:outputLabel value="Facility Needed"/></th>
      <td><h:selectOneMenu id="Facility" required="true" requiredMessage="Enter Facility"   value="#{loginBean.str_FacilityType}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
@@ -90,7 +90,7 @@
    </table>
    
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-   <tr><th width="15%"><h:outputLabel value=" Facility Details*"/></th>  <td width="15%"><p:editor   required="true" requiredMessage="Enter Details" id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" >
+   <tr><th width="15%"><p:outputLabel value=" Facility Details*"/></th>  <td width="15%"><p:editor   required="true" requiredMessage="Enter Details" id="editor" widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" >
    
    </p:editor>
    </td>
