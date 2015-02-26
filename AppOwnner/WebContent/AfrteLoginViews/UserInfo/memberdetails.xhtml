@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://java.sun.com/jsf/html">
 	<f:metadata>
 	 
 	 
@@ -27,12 +28,12 @@
  
      
     <h:body>
-    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th><h:outputText value="Created by"/></th>  <td><h:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputText value="Organization"/></th> <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
-    <tr><th><h:outputText value="Organization"/></th>  <td><h:inputText value="#{loginBean.str_ApartmentName}"/></td>   <th><h:outputText value="Block"/></th>  <td><h:inputText value="#{loginBean.str_Block}"/></td></tr>
-   <tr><th><h:outputText value="Flat Name"/></th> <td><h:inputText value="#{loginBean.str_Flat}"/></td> <th><h:outputText value="Type"/></th> <td><h:inputText value="#{loginBean.str_UserType}"/></td></tr>
+    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th><h:outputLabel value="Created by"/></th>  <td><p:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputLabel value="Organization"/></th> <td><p:inputText value="#{loginBean.str_ApartmentName}"/></td></tr>
+    <tr><th><h:outputLabel value="Organization"/></th>  <td><p:inputText value="#{loginBean.str_ApartmentName}"/></td>   <th><h:outputLabel value="Block"/></th>  <td><p:inputText value="#{loginBean.str_Block}"/></td></tr>
+   <tr><th><h:outputLabel value="Flat Name"/></th> <td><p:inputText value="#{loginBean.str_Flat}"/></td> <th><h:outputLabel value="Type"/></th> <td><p:inputText value="#{loginBean.str_UserType}"/></td></tr>
     
-    <tr><th><h:outputText value="Name"/></th> <td><h:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputText value="Email"/></th>  <td><h:inputText value="#{loginBean.str_EmailId}"/></td></tr>
-    <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText value="#{loginBean.str_Mobile}"/></td>   <th><h:outputText value="LandLine"/></th>  <td><h:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
+    <tr><th><h:outputLabel value="Name"/></th> <td><p:inputText value="#{loginBean.str_FirstName}"/></td>   <th><h:outputLabel value="Email"/></th>  <td><p:inputText value="#{loginBean.str_EmailId}"/></td></tr>
+    <tr><th><h:outputLabel value="Mobile"/></th>  <td><p:inputText value="#{loginBean.str_Mobile}"/></td>   <th><h:outputLabel value="LandLine"/></th>  <td><p:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
 </table>
 </h:body>
  
