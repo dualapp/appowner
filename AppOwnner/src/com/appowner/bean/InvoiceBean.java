@@ -938,12 +938,18 @@ private List<DueTransaction> listDueTransaction;
 			    	 Object obj=list.next();
 			    	 DueTemplate template=(DueTemplate)obj;
 			    	 String str2=template.getStr_TaxTemplate();
+			    	 System.out.println(str2+"gfjjgjkfg");
 			    	 String str3=template.getStr_Calculation();
-			    	 
-			    	
-			    	
+			    	 if(str2.isEmpty())
+			    	 {   System.out.println("dfjkfkjfdkj");
+			    		 taxAmount=0.00; 
+			    	 }
+			    	 else
+			    	 {
 			    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 			    	 System.out.println(taxAmount+"jkjkggf");
+			    	 }
+			    	
 			    	  tax2.add(taxAmount);
 			    	  if(str3.equalsIgnoreCase("Sqft"))
 			    	  {   Double sqrt=getInvoiceService().getSqft(str);
