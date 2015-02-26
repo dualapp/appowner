@@ -114,5 +114,14 @@ public class Notice implements Serializable {
 	public void setDat_ExpireOn(Date dat_ExpireOn) {
 		this.dat_ExpireOn = dat_ExpireOn;
 	}
+	private Integer int_ApartmentID;
+
+	   public Integer getInt_ApartmentID() {
+		return int_ApartmentID;
+	}
+	public void setInt_ApartmentID(Integer int_ApartmentID) {
+		this.int_ApartmentID = int_ApartmentID;
+	}
+	
 	
 }
