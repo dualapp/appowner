@@ -71,7 +71,7 @@
 			              
 			             </h:commandButton>
         <!-- status message of file upload; rendered if message is set -->
-		<h:outputText value="#{loginBean.statusMessage}"
+		<p:outputLabel value="#{loginBean.statusMessage}"
 			          rendered="#{not empty loginBean.statusMessage}" /> </td></tr>
 			          </table>
 			      </p:outputPanel>
@@ -80,9 +80,9 @@
   
    <div id="myprofile">
   <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-  <tr> <td width="10%"><h2><b><h:outputText value="#{loginBean.str_FirstName}"/> #{loginBean.str_LastName}</b></h2><br/><h:outputText id="str_PhoneNo1" value="#{loginBean.str_Mobile}" /><br/>
+  <tr> <td width="10%"><h2><b><p:outputLabel value="#{loginBean.str_FirstName}"/> #{loginBean.str_LastName}</b></h2><br/><p:outputLabel id="str_PhoneNo1" value="#{loginBean.str_Mobile}" /><br/>
       
-      <h:outputText id="str_Email"   value="#{loginBean.str_EmailId}"/></td>
+      <p:outputLabel id="str_Email"   value="#{loginBean.str_EmailId}"/></td>
       
    </tr>
    <tr><td><h:selectOneRadio value="Active"    style="color:green;">
@@ -99,63 +99,63 @@
         
            <tr>
  <td width="20%">
-    <h:outputText value="First name:"/></td>
+    <p:outputLabel value="First name:"/></td>
     <td width="20%">
-    <h:outputText value="#{loginBean.str_FirstName}"> </h:outputText></td>
+    <p:outputLabel value="#{loginBean.str_FirstName}"> </p:outputLabel></td>
      
  <td  width="20%">
-    <h:outputText value="Last name:"/></td>
+    <p:outputLabel value="Last name:"/></td>
     <td width="20%">
-    <h:outputText value="#{loginBean.str_LastName}"> </h:outputText></td>
+    <p:outputLabel value="#{loginBean.str_LastName}"> </p:outputLabel></td>
     </tr>
    <tr>
- <td><h:outputText value="Country :">
-            </h:outputText></td>           
-           <td> <h:outputText value="#{loginBean.str_Country}" />
+ <td><p:outputLabel value="Country :">
+            </p:outputLabel></td>           
+           <td> <p:outputLabel value="#{loginBean.str_Country}" />
             </td> 
-            <td><h:outputText value="State :"/>
+            <td><p:outputLabel value="State :"/>
               </td>           
-           <td> <h:outputText value="#{loginBean.str_State}" />
+           <td> <p:outputLabel value="#{loginBean.str_State}" />
             </td> </tr>
             <tr>
-             <td><h:outputText value="City :"/>
+             <td><p:outputLabel value="City :"/>
             </td>            
-             <td><h:outputText value="#{loginBean.str_City}"/>
+             <td><p:outputLabel value="#{loginBean.str_City}"/>
              </td> 
-            <td><h:outputText value="Apartment :"/>
+            <td><p:outputLabel value="Apartment :"/>
             </td>            
-            <td><h:outputText value="#{loginBean.str_ApartmentName}" />
+            <td><p:outputLabel value="#{loginBean.str_ApartmentName}" />
             </td> </tr>
            
              <tr>
-           <td> <h:outputText value="Phone No* :"/>
+           <td> <p:outputLabel value="Phone No* :"/>
             </td>            
-            <td><h:outputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" />
+            <td><p:outputLabel id="str_PhoneNo" value="#{loginBean.str_Mobile}" />
               </td>
-              <td> <h:outputText value="FaceBook Profile* :"/></td>
+              <td> <p:outputLabel value="FaceBook Profile* :"/></td>
           
-            <td><h:outputText id="str_fb" value="#{loginBean.str_FacebookId}"  />
+            <td><p:outputLabel id="str_fb" value="#{loginBean.str_FacebookId}"  />
          <br/> www.facebook.com/</td>
                </tr> 
              <tr>
-           <td> <h:outputText value="Email"/>
+           <td> <p:outputLabel value="Email"/>
             </td>            
-            <td><h:outputText id="str_email" value="#{loginBean.str_EmailId}"  />
+            <td><p:outputLabel id="str_email" value="#{loginBean.str_EmailId}"  />
             </td>  
            
-           <td> <h:outputText value="LinkedIn Profile :"/></td>
+           <td> <p:outputLabel value="LinkedIn Profile :"/></td>
           
-            <td><h:outputText id="str_lkndin" value="#{loginBean.str_LinkedInId}"  />
+            <td><p:outputLabel id="str_lkndin" value="#{loginBean.str_LinkedInId}"  />
         <br/> www.linkedin.com/ </td></tr> 
           <tr>
-           <td> <h:outputText value="Personal Blog"/>
+           <td> <p:outputLabel value="Personal Blog"/>
             </td>            
-            <td><h:outputText id="str_pb" value="something" required="true"                requiredMessage="Please Enter Phone No!"/>
+            <td><p:outputLabel id="str_pb" value="something" required="true"                requiredMessage="Please Enter Phone No!"/>
           <br/> http()s):// </td>  
            
-           <td> <h:outputText value="Twitter Profile:"/></td>
+           <td> <p:outputLabel value="Twitter Profile:"/></td>
           
-            <td><h:outputText id="str_tw" value="#{loginBean.str_TwitterId}" />
+            <td><p:outputLabel id="str_tw" value="#{loginBean.str_TwitterId}" />
        <br/>  www.twitter.com/ </td></tr> 
             
              
@@ -165,21 +165,21 @@
    <div class="gsTitleDiv">House Information<br/><hr/></div>
     <tr> 
             
-            <td width="15%"><h:outputText value="Block :"/>
+            <td width="15%"><p:outputLabel value="Block :"/>
              </td>          
-            <td width="15%"><h:outputText id="str_Block" value="#{loginBean.str_Block}"/>
+            <td width="15%"><p:outputLabel id="str_Block" value="#{loginBean.str_Block}"/>
           
              </td>
-              <td width="15%"><h:outputText value="Flat No:"/>
+              <td width="15%"><p:outputLabel value="Flat No:"/>
              </td>
-             <td width="15%"><h:outputText id="str_House" value="#{loginBean.str_Flat}" />
+             <td width="15%"><p:outputLabel id="str_House" value="#{loginBean.str_Flat}" />
            
             
              </td>  
-             <td width="15%"><h:outputText value="#{cls_UserBean.userRole}" />
+             <td width="15%"><p:outputLabel value="#{cls_UserBean.userRole}" />
     
              </td>
-             <td width="15%"><h:outputText value="Residing"/>
+             <td width="15%"><p:outputLabel value="Residing"/>
    
    
              </td>
@@ -188,42 +188,42 @@
              <div class="gsTitleDiv">Soclial Profile Information<br/><hr/></div>
        <table>
           <tr>
-             <td width="20%"><h:outputText value="Gender:"/>
+             <td width="20%"><p:outputLabel value="Gender:"/>
              </td>            
              <td width="20%"><h:selectOneRadio value="#{loginBean.str_Gender}"  >
 <f:selectItem itemValue="male" itemLabel="male" />
 <f:selectItem itemValue="female" itemLabel="female" />
 </h:selectOneRadio>
              </td>  
-            <td width="20%"><h:outputText value="Date Of Birth:"/>
+            <td width="20%"><p:outputLabel value="Date Of Birth:"/>
              </td>          
             <td width="20%"> 
-            <h:outputText  value="#{loginBean.date_DateOfBirth}"/>
+            <p:outputLabel  value="#{loginBean.date_DateOfBirth}"/>
              </td></tr>
               
           <tr>
-             <td><h:outputText value="Blood Group:"/>
+             <td><p:outputLabel value="Blood Group:"/>
              </td>            
-             <td><h:outputText value="#{loginBean.str_BloodGroup}" />
+             <td><p:outputLabel value="#{loginBean.str_BloodGroup}" />
  
              </td>  
-            <td><h:outputText value="Marital Status"/>
+            <td><p:outputLabel value="Marital Status"/>
              </td>          
-            <td><h:outputText value="#{loginBean.str_MaritalStatus}"/>
+            <td><p:outputLabel value="#{loginBean.str_MaritalStatus}"/>
  
  
              </td></tr>
              <tr>
              <td></td><td></td>
-            <td><h:outputText value="Hobbies:"/>
+            <td><p:outputLabel value="Hobbies:"/>
              </td>          
-            <td><h:outputText value="#{loginBean.str_Hobbies}"/>
+            <td><p:outputLabel value="#{loginBean.str_Hobbies}"/>
              </td></tr>
               <tr>
-             <td><h:outputText value="Proffession:"/>
+             <td><p:outputLabel value="Proffession:"/>
              </td>            
-             <td><h:outputText value="#{loginBean.str_Proffession}"/></td>  
-            <td><h:outputText value="Intrested In"/>
+             <td><p:outputLabel value="#{loginBean.str_Proffession}"/></td>  
+            <td><p:outputLabel value="Intrested In"/>
              </td>          
             <td><h:selectManyCheckbox value="#{loginBean.str_IntrestedIn}"  layout="pageDirection" styleClass="nostyle">
 <f:selectItem itemValue="Meeting Others" itemLabel="Meeting Others"/>
