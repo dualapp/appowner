@@ -13,7 +13,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Post details</span>
+					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Ads &#38; Post details</span>
 				</td>
 			</tr>
 		</tbody>
@@ -30,12 +30,12 @@
      <table style="margin-left:15px">
       <tr> 
     <td>
-  <p:outputLabel value="Organisation:"  /></td>
+  <p:outputLabel value="Organisation:"  />   &#150;     &#150;  </td>
          <td>   <h:selectOneMenu id="str_ApartmentName"  style="width:200px">
              <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  />
            </h:selectOneMenu>
           </td>
-        <td> 
+        <td>&#150;           &#150;           &#150;    &#150;  
         <p:outputLabel for="var_Ad_CategoryName" value="Category:" /></td>
          <td>   <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
@@ -44,51 +44,46 @@
           </td>
       </tr>
       </table> 
-      <table style="margin-left:15px">
+      <table style="margin-left:35px">
         <tr> 
-            <td><p:outputLabel for="ch_Ad_Type" value="Ad Type:" /></td>
-             <td><h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
+            <td><p:outputLabel for="ch_Ad_Type" value="Ad Type:" /> &#150;&#150;  </td>  
+            <td><p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
             <f:selectItem itemLabel="My Community" itemValue="My Community" />
             <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
-          </h:selectOneRadio>
+        </p:selectOneRadio>
         </td>
         </tr>
         </table>
-       <table style="margin-left:15px">
+       <table style="margin-left:35px">
        <tr> 
         <td><p:outputLabel for="I" value="I want to:" /></td>
-        <td><h:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
+        <td><p:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
           <f:selectItem itemLabel="Sell" Value="Sell"  />  
             <f:selectItem itemLabel="Buy" itemValue="Buy" />
             <f:selectItem itemLabel="Rent   " itemValue="Rent" />
-        </h:selectOneRadio>
+        </p:selectOneRadio>
       </td>
       </tr>
       </table>
-      <table style="margin-left:15px">
+      <table style="margin-left:60px">   
          <tr>
            <td>
-          <p:outputLabel value="Title:"></p:outputLabel></td>
-                        
-          <td><h:inputTextarea  value="#{cls_AddDetailBean.var_Title}"  style="width:350px;height:70px">
+        <p:outputLabel value="Title:"/>
+          </td>
+        <td>
+        <h:inputTextarea  value="#{cls_AddDetailBean.var_Title}"  style="width:350px;height:90px">
             </h:inputTextarea>
             </td>
             </tr>
-  </table>
- <p:outputPanel   layout="block"  update="aaa1" style="background:#ffffff; ">
- <p:graphicImage width="15%" height="15%"  id="aaa1" value="#{cls_AddDetailBean.getPath()}" style=" float:right !important;margin:-250px 100px -800px 100px;" />
-     <table style="margin-left:15px">
+            </table>
+            <p:outputPanel   layout="block"  update="aaa1" style="background:#ffffff; ">
+            <p:graphicImage width="15%" height="15%"  id="aaa1" value="#{cls_AddDetailBean.getPath()}" style=" float:right !important;margin:-250px 100px -800px 100px;" />
+     <table style="margin-left:13px">
     <tr>
     <td>
-    <p:outputLabel value="Choose Image for Upload:"/>
-    </td>
-  </tr>
-  </table>
-     <table style="margin-left:80px">
-		<tr>
-    <td >
+    <p:outputLabel value="Image Upload:"/></td>
   <!-- inputFile tag to upload file -->
-  <h:inputFile id="file"  
+  <td><h:inputFile id="file"  
 		             label="file"
 			         value="#{cls_AddDetailBean.part}" 
 			         required="true" 
@@ -96,31 +91,39 @@
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
 		</h:inputFile>
-		 <h:message style="color: red" for="file" /><br />
-          <h:commandButton id="submit" 
+       </td>
+       </tr>
+       </table>
+         <table style="margin-left:100px">
+       <tr>
+	    <td>
+		 <h:message style="color: red" for="file" />
+           <h:commandButton id="submit" 
 		                 action="#{cls_AddDetailBean.uploadFile}"
-			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" update="aaa1">
+			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" update="aaa1">
 			             <f:ajax execute="file" event="click"/>
 			             </h:commandButton>
            <!-- status message of file upload; rendered if message is set -->
 		         <h:outputText value="#{cls_AddDetailBean.statusMessage}"
-			          rendered="#{not empty cls_AddDetailBean.statusMessage}" /> 
-			          
-			          </td></tr>
-			          </table>
-			         </p:outputPanel>
-			       <table style="margin-left:15px">
+			          rendered="#{not empty cls_AddDetailBean.statusMessage}" />
+			          </td>
+			          </tr>
+			     </table> 
+			     </p:outputPanel>
+			        
+			         
+			       <table style="margin-left:20px">
 			      <tr>
-			    <td><p:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><h:inputTextarea  value="#{cls_AddDetailBean.var_Description}" style="width:600px; height:300px" >
-              </h:inputTextarea>
-               </td>
-            </tr>
-            </table>
-            <table style="margin-left:30px">
+			    <td><p:outputLabel  value="Description:"/></td>
+			    <td><h:inputTextarea  value="#{cls_AddDetailBean.var_Description}" style="width:600px; height:300px" >
+             </h:inputTextarea>
+             </td>
+             </tr>
+             </table>
+            <table style="margin-left:95px">
            <tr>
-                <td><p:commandButton id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}" style=" float:left !important;margin: px 0px 0px `0px;" ajax="false"/></td> 
-               <td> <p:button id="AddProduct1" value="Cancel" outcome="Create_Detail.xhtml" style=" float:left !important;margin: 0px -50px px 0px;" /></td>
+                <td><p:button id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}"  outcome="Ad_an_Post.xhtml"  style="width:80px;height:30px;float:left !important;margin: px 0px 0px `0px;" ajax="false"/></td> 
+               <td> <p:button id="AddProduct1" value="Cancel" outcome="Ad_an_Post.xhtml" style=" width:80px;height:30px;float:left !important;margin: 0px -50px px 0px;" /></td>
                </tr>
                </table> 
                 </table>
