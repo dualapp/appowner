@@ -255,7 +255,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		   if(dat_From==null|| dat_ToDate==null)
 		   {
 			   {
-					System.out.println(dat_From+"priya1");
+					System.out.println(dat_From+"priya1333333333333333333333333333");
 					return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation",apartmentID)).setCacheable(true).list();
 			      }  
 		   }
@@ -263,7 +263,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		if(str_Accounts==null)
 	   {  	 if(dat_From!=null|| dat_ToDate!=null)
 	      {
-			System.out.println(dat_From+"priya");
+			System.out.println(dat_From+"priya4577777777777777777777777777");
 			return getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.eq("int_Organisation",apartmentID)).list();
 	      }
 	   }
@@ -280,7 +280,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		}
 		else if(str_Accounts.equalsIgnoreCase("Accounts Receivable"))
 		{   
-			 if(dat_From!=null || dat_ToDate!=null)
+			 if(dat_From!=null || dat_ToDate!=null )
 			 {  
 				 List<InvoiceTransaction> ddd=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).add(Restrictions.between("dat_InvoiceDate", dat_From,dat_ToDate)).add(Restrictions.eq("int_Organisation",apartmentID)).list();
 				  System.out.println(ddd.listIterator().hasNext()+"jiuyre11111111111");
@@ -344,6 +344,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal1(String str_Accounts, Date dat_FromDate, Date dat_ToDate)
 	{   getApartmentID();
+	   
 		if(str_Accounts==null)
 		{
 			System.out.println("ggggggggggggggggggggggggggggggggggggggg");
