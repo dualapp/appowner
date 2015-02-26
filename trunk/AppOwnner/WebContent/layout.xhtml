@@ -104,9 +104,7 @@ function InvalidMsg1(textbox) {
 <h:body>
 <div class="shell">
 	
-       
- 
-  <h:form>
+ <h:form>
      
                <fieldset style="width: 39.2em;height:26.5em;background-color: #A0A0A0;">
                <p align="center"><font color="white" size="3">Login Credential..</font></p>
@@ -204,9 +202,9 @@ function InvalidMsg1(textbox) {
 
      <tr></tr>
    		<tr>
-        	<td ><h:outputLabel for="str_UserCountry" style="color:#FFFFFF" value="Country"  /><font color="red" >*</font></td>
+        	<td ><h:outputLabel for="str_UserCountry" style="color:white" value="Country"  /><font color="red" >*</font></td>
             <td><h:selectOneMenu id="str_UserCountry" value="#{cls_UserBeanMain.str_UserCountry}" valueChangeListener="#{cls_UserBeanMain.countryChangeListener}" style="width:200px;margin-top:1em;" required="true"                requiredMessage="Please Select country!">
-                <!--c --> 
+               
                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{cls_UserBeanMain.str_UserCountries}" />
