@@ -22,6 +22,17 @@
            height:25px;
            weight:250px;
           }
+        
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
+
+}
       </style>	
  
  
@@ -102,7 +113,7 @@
        </td></tr></table>
      
        
-        <p:growl id="msgs" showDetail="true" />
+       <p:growl id="ui-growl" globalOnly="true" sticky="true" />
          <p:dataTable id="ggg" var="dueTemplate"  value="#{templateBean.listDues}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" editable="true"  resizableColumns="true" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
         rowsPerPageDropdown="{10,20,30,40,50}" selection="#{templateBean.selectedDueTemplate}" rowKey="#{dueTemplate.int_DueTemplateID}" paginatorPosition="top">
           
@@ -191,18 +202,18 @@
               <center>
               <h:panelGroup layout="block" id="mainDiv" style="float:center" >
                <p:commandLink   process="ggg"  update=":form:multiDueTemplateDetail3" oncomplete="PF('multiDueTemplateDialog3').show()" action="#{templateBean.getDueTemplate2(dueTemplate.int_DueTemplateID)}">
-                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
               </p:commandLink>
                &#150; 
                
                
               <p:commandLink   process="ggg"  update=":form:multiDueTemplateDetail4" oncomplete="PF('multiDueTemplateDialog4').show()" action="#{templateBean.getDueTemplate2(dueTemplate.int_DueTemplateID)}">
-                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
                &#150;
           <h:commandLink action="#{templateBean.deleteDueTemplate()}"
 	   		 onclick="return confirm('Are you sure you want to delete #{dueTemplate.int_DueTemplateID}?');" >  
-	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
+	   			<p:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
 	   				
 	   		</h:commandLink>
 	   		 
@@ -281,7 +292,7 @@
     
       
          
-             <tr><td><p:commandButton value="update" action="#{templateBean.saveDueTemplate()}"/></td></tr>
+             <tr><td><p:commandButton value="update" action="#{templateBean.saveDueTemplate()}" ajax="false"/></td></tr>
             </table>
             
         </p:outputPanel>
@@ -327,10 +338,11 @@
  <th>
     <h:outputText value="Calculation:"/><font color="red" >*</font></th>
     <td>
-   <h:selectOneRadio id="str_Calculation1" value="#{templateBean.str_Calculation}" >
+   <h:selectOneRadio id="str_Calculation1" value="#{templateBean.str_Calculation}" valueChangeListener="#{templateBean.frequencyChangeListener1}" >
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
                        <f:selectItem itemLabel="None" itemValue="None"/>
+                         <p:ajax event="change"  process="str_Calculation1"/>
                 </h:selectOneRadio>
                 </td>
     </tr>
