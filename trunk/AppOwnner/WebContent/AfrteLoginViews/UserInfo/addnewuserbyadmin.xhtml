@@ -30,64 +30,65 @@
   
 <table>
                 <tr>
-            <td><h:outputText value="User name:">
-            </h:outputText><font color="red" >*</font> </td>           
-            <td><h:inputText id="str_username" value="#{cls_UserBean.str_Username}" required="true" validatorMessage="Must starts with alphanumeric[0-9 or a-z] min 3 char and max 15 char!" requiredMessage="Enter User Name!">
+            <td><p:outputLabel  for="str_username" value="User name:"/></td>
+                       
+            <td><p:inputText id="str_username" value="#{cls_UserBean.str_Username}" required="true" validatorMessage="Must starts with alphanumeric[0-9 or a-z] min 3 char and max 15 char!" requiredMessage="Enter User Name!">
             <f:validateRegex pattern="^[a-z0-9]{3,15}$"/>
             <p:ajax event="blur" update="out2" listener="#{cls_UserBean.dataChange1}" partialSubmit="true"/>   
-            </h:inputText>&#150;
-            <h:outputText id="out2" value="#{cls_UserBean.value}" />
+            </p:inputText>&#150;
+            <p:outputLabel id="out2" value="#{cls_UserBean.value}" />
             </td><td><p:message for="str_username" display="text"/></td>
             </tr>
    
             <tr>
-            <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
-            <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 10 char!">
+            <td><p:outputLabel  for="str_Password"  value="Password :"/> </td>          
+            <td><p:password  id="str_Password"  label="Password" value="#{cls_UserBean.str_Password}"       feedback="true" inline="true"         required="true" requiredMessage="Enter Password!" validatorMessage="Must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 10 char!">
           <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[@#$]).{6,20})"/>
-            </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
+            </p:password></td> <td><p:message for="str_Password" display="text"/></td></tr>
              <tr>
-            <td><h:outputText value="Confirm Password* :"></h:outputText><font color="red" >*</font></td>
-             <td><h:inputSecret id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBean.str_ConfirmPassword}" required="true"                requiredMessage="Enter Confirm Password!">
+            <td><p:outputLabel for="str_ConfirmPassword" value="Confirm Password :"/></td>
+             <td><p:password  id="str_ConfirmPassword" label="Confirm Password" value="#{cls_UserBean.str_ConfirmPassword}" required="true"                requiredMessage="Enter Confirm Password!">
              
-             </h:inputSecret></td> <td><p:message for="str_ConfirmPassword" display="text"/></td></tr>
+             </p:password></td> <td><p:message for="str_ConfirmPassword" display="text"/></td></tr>
               
             <tr><td colspan="2" align="left">
            <div class="gsTitleDiv">General Information</div> </td></tr> 
             <tr>
-            <td><h:outputText value="First Name :">
-            </h:outputText><font color="red" >*</font> </td>          
-            <td><h:inputText id="str_FirstName" value="#{cls_UserBean.str_FirstName}" required="true" requiredMessage="Enter First Name!">
-            </h:inputText></td>
+            <td><p:outputLabel for="str_FirstName" value="First Name :" />
+             </td>          
+            <td><p:inputText id="str_FirstName" value="#{cls_UserBean.str_FirstName}" required="true" requiredMessage="Enter First Name!">
+            </p:inputText></td>
             <td><p:message for="str_FirstName" dispay="text"/></td>
             </tr> 
             <tr>
-            <td><h:outputText value="Last name :">
-            </h:outputText> </td>           
-            <td><h:inputText id="str_LastName" value="#{cls_UserBean.str_LastName}"  required="true" requiredMessage="Enter First Name!">
-            </h:inputText></td><td><p:message for="str_LastName" display="text"/></td></tr>
+            <td><p:outputLabel for="str_LastName" value="Last name :" />
+              </td>           
+            <td><p:inputText id="str_LastName" value="#{cls_UserBean.str_LastName}"  required="true" requiredMessage="Enter First Name!">
+            </p:inputText></td><td><p:message for="str_LastName" display="text"/></td></tr>
              <tr>
-             <td><h:outputText value="Email :">
-            </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText id="str_Email" value="#{cls_UserBean.str_Email}" required="true" validatorMessage=" Email id should be like abc@gmail.com" requiredMessage="Enter Email!">
+             <td><p:outputLabel for="str_Email" value="Email :" /></td>
+                        
+             <td><p:inputText id="str_Email" value="#{cls_UserBean.str_Email}" required="true" validatorMessage=" Email id should be like abc@gmail.com" requiredMessage="Enter Email!">
              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
              <p:ajax event="blur" update="out3" listener="#{cls_UserBean.dataChange2}" partialSubmit="true" />
-            </h:inputText> <h:outputText id="out3" value="#{cls_UserBean.value1}" /></td><td><p:message for="str_Email" display="text"/></td></tr>
+            </p:inputText> <p:outputLabel id="out3" value="#{cls_UserBean.value1}" /></td><td><p:message for="str_Email" display="text"/></td></tr>
             <tr>
-            <td><h:outputText value="Confirm Email :">
-            </h:outputText><font color="red" >*</font> </td>           
-            <td><h:inputText id="str_ConfirmEmail" value="#{cls_UserBean.str_ConfirmEmail}"                required="true" requiredMessage="Enter Confirm Email!">
-            </h:inputText></td> <td><p:message for="str_ConfirmEmail" display="text"/></td></tr>
+            <td><p:outputLabel for="str_ConfirmEmail"  value="Confirm Email :" /></td>
+                      
+            <td><p:inputText id="str_ConfirmEmail" value="#{cls_UserBean.str_ConfirmEmail}"                required="true" requiredMessage="Enter Confirm Email!">
+            </p:inputText></td> <td><p:message for="str_ConfirmEmail" display="text"/></td></tr>
                 <tr>
-           <td> <h:outputText value="Phone No* :">
-            </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText id="str_PhoneNo" value="#{cls_UserBean.str_PhoneNo}" validatorMessage="invalid mobile no" maxlength="11" required="true"                requiredMessage="Enter Phone No!">
+           <td> <p:outputLabel for="str_PhoneNo" value="Phone No :" /></td>
+                       
+            <td><p:inputText id="str_PhoneNo" value="#{cls_UserBean.str_PhoneNo}" validatorMessage="invalid mobile no" maxlength="11" required="true"                requiredMessage="Enter Phone No!">
             <f:validateLength minimum="10" />
                     <f:validateRegex pattern="^([+]?[\d]+)?$" />
-            </h:inputText> </td><td><p:message for="str_PhoneNo" display="text"/></td> </tr> 
+                     <p:ajax event="keyup" update="PhoneMsg" />
+            </p:inputText> </td><td><p:message  id="PhoneMsg" for="str_PhoneNo" display="text"/></td> </tr> 
             <tr><td colspan="2" align="left">
            <div class="gsTitleDiv">Apartment Information</div></td></tr>
             <tr>
-            <td><h:outputLabel for="str_Block" value="Block :"/>
+            <td><p:outputLabel for="str_Block" value="Block :"/>
             </td>          
             <td><h:selectOneMenu id="str_Block" value="#{cls_UserBean.str_BlockName}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}"   required="true">
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
@@ -97,8 +98,8 @@
             </td></tr> 
             
           <tr>
-             <td><h:outputText value="House:">
-            </h:outputText><font color="red" >*</font></td>            
+             <td><p:outputLabel  for="str_House" value="House:" /></td>
+                     
              <td><h:selectOneMenu id="str_House"       value="#{cls_UserBean.str_HouseNo}" required="true" valueChangeListener="#{cls_UserBean.houseNoChangeListener}"     requiredMessage="Enter Flat Name!">
             <f:selectItem itemLabel="Select Block"   itemValue="" noSelectionOption="true" />
             
@@ -109,15 +110,15 @@
              </td><td><p:message for="str_House"   display="text"/></td>  </tr> 
 
          <tr>
-             <td><h:outputText value="User Role: " /><font color="red" >*</font></td>
-         <td><h:selectOneRadio id="options"  onchange="submit();" value="#{cls_UserBean.int_UserRole}" valueChangeListener="#{cls_UserBean.roleChangeListener}">
+             <td><p:outputLabel for="options" value="User Role: " /></td>
+         <td><h:selectOneRadio id="options"  onchange="submit();"  required="true" requiredMessage="Choose User Role" value="#{cls_UserBean.int_UserRole}" valueChangeListener="#{cls_UserBean.roleChangeListener}">
             <f:selectItem itemLabel="Tenant" itemValue="1" />
             <f:selectItem itemLabel="Owner" itemValue="2" />
             </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
              <tr> 			
-            <td><h:commandButton id="addUser"   execute="@form"  value="Add User" action="#{cls_UserBean.addnewUser}"  />
+            <td><h:commandButton id="addUser"  ajax="false"  execute="@form"  value="Add User" action="#{cls_UserBean.addnewUser}"  />
              </td><td>
-            <h:commandButton id="reset" value="   Reset  " action="#{cls_UserBean.reset}"  />
+            <h:commandButton id="reset" value=" Reset" action="#{cls_UserBean.reset}"  />
              </td></tr>
             
             </table>
@@ -138,57 +139,57 @@
  <p:panel id="panelOne"  style="border:none;">
  <div class="gsTitleDiv">House Details of  #{cls_UserBean.str_BlockName}, #{cls_UserBean.str_HouseNo}</div><hr/>
         <table><tr>
-    <th width="10%"><h:outputText value="Size of house:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.housedetails.int_HouseSize}"/></td>
+    <th width="10%"><p:outputLabel value="Size of house:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.housedetails.int_HouseSize}"/></td>
    
-   <th width="10%"> <h:outputText value="Type of house:"/></th><td width="20%"><h:outputText value="#{cls_UserBean.housedetails.str_TypeOfHouse}"/></td>
+   <th width="10%"> <p:outputLabel value="Type of house:"/></th><td width="20%"><p:outputLabel value="#{cls_UserBean.housedetails.str_TypeOfHouse}"/></td>
    
-  <th width="10%">  <h:outputText value="No of Bathrooms:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.housedetails.int_NoOfBathRooms}"/></td>
+  <th width="10%">  <p:outputLabel value="No of Bathrooms:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.housedetails.int_NoOfBathRooms}"/></td>
   <th width="10%"></th><td width="10%"></td>
   </tr>
  
   <tr>
    
-   <th> <h:outputText value="No of Balconies:"/></th><td><h:outputText value="#{cls_UserBean.housedetails.int_NoOfBalconies}"/></td>
+   <th> <p:outputLabel value="No of Balconies:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.int_NoOfBalconies}"/></td>
    
-   <th> <h:outputText value="Intercom no:"/></th><td><h:outputText value="#{cls_UserBean.housedetails.str_HouseNo}"/></td>
+   <th> <p:outputLabel value="Intercom no:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.str_HouseNo}"/></td>
    
-   <th> <h:outputText value="Occupancy Status:"/></th><td><h:outputText value="#{cls_UserBean.housedetails.is_Rented}"/></td>
+   <th> <p:outputLabel value="Occupancy Status:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.is_Rented}"/></td>
    </tr></table>
   </p:panel>
   <p:panel id="panelTwo"  style="border:none;"  >
  <div class="gsTitleDiv">Registered Primary Owner Details</div><hr/>
         <table><tr>
-    <th width="10%"><h:outputText value="Name:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u.str_FirstName}"/></td>
+    <th width="10%"><p:outputLabel value="Name:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.u.str_FirstName}"/></td>
    
-   <th width="10%"> <h:outputText value="Email:"/></th><td width="20%"><h:outputText value="#{cls_UserBean.u.str_Email}"/></td>
+   <th width="10%"> <p:outputLabel value="Email:"/></th><td width="20%"><p:outputLabel value="#{cls_UserBean.u.str_Email}"/></td>
    
-  <th width="10%">  <h:outputText value="Mobile No:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u.str_PhoneNo}"/></td>  
-   <th width="10%"> <h:outputText value="Land Line No:"/></th><td width="10%"> <h:outputText value=" "/></td></tr>
+  <th width="10%">  <p:outputLabel value="Mobile No:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.u.str_PhoneNo}"/></td>  
+   <th width="10%"> <p:outputLabel value="Land Line No:"/></th><td width="10%"> <p:outputLabel value=" "/></td></tr>
    <tr>
    
-   <th> <h:outputText value="Alternate No:"/></th><td><h:outputText value="2"/></td>
+   <th> <p:outputLabel value="Alternate No:"/></th><td><p:outputLabel value="2"/></td>
    
-   <th> <h:outputText value="Postal Address:"/></th><td><h:outputText value="#{cls_UserBean.u.str_City}"/><h:outputText value="#{cls_UserBean.u.str_State}"/><h:outputText value="#{cls_UserBean.u.str_Country}"/></td>
-    <th> <h:outputText value="Uplaod Files:"/></th><td><h:outputText value="Vacant"/></td>
+   <th> <p:outputLabel value="Postal Address:"/></th><td><p:outputLabel value="#{cls_UserBean.u.str_City}"/><p:outputLabel value="#{cls_UserBean.u.str_State}"/><p:outputLabel value="#{cls_UserBean.u.str_Country}"/></td>
+    <th> <p:outputLabel value="Uplaod Files:"/></th><td><p:outputLabel value="Vacant"/></td>
    </tr></table>
   </p:panel>
   <p:panel id="panelThree"  style="border:none;">
  <div class="gsTitleDiv">Tenant Details</div><hr/>
        <table><tr>
-    <th width="10%"><h:outputText value="Name:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u1.str_FirstName}"/></td>
+    <th width="10%"><p:outputLabel value="Name:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.u1.str_FirstName}"/></td>
    
-   <th width="10%"> <h:outputText value="Email:"/></th><td width="20%"><h:outputText value="#{cls_UserBean.u1.str_Email}"/></td>
+   <th width="10%"> <p:outputLabel value="Email:"/></th><td width="20%"><p:outputLabel value="#{cls_UserBean.u1.str_Email}"/></td>
    
-  <th width="10%">  <h:outputText value="Mobile No:"/></th><td width="10%"><h:outputText value="#{cls_UserBean.u1.str_PhoneNo}"/></td>
+  <th width="10%">  <p:outputLabel value="Mobile No:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.u1.str_PhoneNo}"/></td>
    
-   <th width="10%"> <h:outputText value="Land Line No:"/></th><td width="10%"><h:outputText value="2"/></td></tr>
+   <th width="10%"> <p:outputLabel value="Land Line No:"/></th><td width="10%"><p:outputLabel value="2"/></td></tr>
    <tr>
-    <th> <h:outputText value=" Altername No:"/></th><td><h:outputText value="2"/></td>
+    <th> <p:outputLabel value=" Altername No:"/></th><td><p:outputLabel value="2"/></td>
    
-   <th> <h:outputText value="Rental Agrement:"/></th><td><h:outputText value="2"/></td>
+   <th> <p:outputLabel value="Rental Agrement:"/></th><td><p:outputLabel value="2"/></td>
    
-   <th> <h:outputText value="Postal Address:"/></th><td><h:outputText value="#{cls_UserBean.u1.str_City}"/><h:outputText value="#{cls_UserBean.u1.str_State}"/><h:outputText value="#{cls_UserBean.u1.str_Country}"/></td>
-    <th> <h:outputText value="Uplaod Files:"/></th><td><h:outputText value="Vacant"/></td>
+   <th> <p:outputLabel value="Postal Address:"/></th><td><p:outputLabel value="#{cls_UserBean.u1.str_City}"/><p:outputLabel value="#{cls_UserBean.u1.str_State}"/><p:outputLabel value="#{cls_UserBean.u1.str_Country}"/></td>
+    <th> <p:outputLabel value="Uplaod Files:"/></th><td><p:outputLabel value="Vacant"/></td>
    </tr></table>
   </p:panel>
    </div>
