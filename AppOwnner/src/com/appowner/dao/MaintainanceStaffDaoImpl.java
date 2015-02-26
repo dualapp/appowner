@@ -333,11 +333,11 @@ public  List<String> getSideMenu()
 			       System.out.println(str1+"dsjjdfd");
 			       int id2=Integer.parseInt(str1);
 			         str3.add((String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id2).setCacheable(true).uniqueResult());
-			       System.out.println(str2+"dskjfdjkdfkj");
+			     
 			       
 			          
 			        }
-			  System.out.println(str3+"dsjkdfkjdf");
+			
 			  return str3;
 		  
 		   
@@ -345,9 +345,9 @@ public  List<String> getSideMenu()
 	else
 	{
 	Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id).setParameter(1,Util.getAppartmentId()).uniqueResult();
-	System.out.println(id1+"fddfhdfj");
+	
 	List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id1).list();
-	 System.out.println(str1+"fdjdfjfd"); 
+	 
 	  return str1;
 	}
   }

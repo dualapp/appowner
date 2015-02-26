@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.appowner.model.Mail;
 import com.appowner.model.Notice;
+import com.appowner.util.Util;
 
 @Repository
 public class NoticeBoardDaoImpl implements NoticeBoardDao {
@@ -36,12 +37,14 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	  }   */
 	System.out.println(firstRow+"k22");
 		if(str_Visible.equalsIgnoreCase("Only Owner of this Complex"))
-		
-			return (List<Notice>) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setFirstResult(firstRow).setMaxResults(rowPerPage).list();   
-		else
 		{
-			String hql="from Notice where str_Visible=?";
-			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setFirstResult(firstRow).setMaxResults(rowPerPage).setParameter(0, str_Visible).list();   
+		     System.out.println("jkjkkjjjjjjjjjjjjjjjjjjjjj");
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery("from Notice where  int_ApartmentID=?").setParameter(0,Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).list();
+		}
+		else
+		{   System.out.println("hjfvvhjfghjjj");
+			String hql="from Notice where str_Visible=? and int_ApartmentID=?";
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Visible).setParameter(1,Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).setParameter(0, str_Visible).list();   
 		}
 	}
 	

@@ -1,6 +1,8 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -102,16 +104,25 @@ public class DueDaoImpl implements DueDao{
 	@SuppressWarnings("unchecked")
 	public List<String> getBlockList(String str_Organisation)
 	{
-		String hql="select str_Block from User where str_Apartment=?";
-		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Organisation).list();
+		String hql="select str_BlockName from UserBlocks where int_ApartmentId=?";
+		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).list();
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getApartmentlist(String str_Block)
 	{
-		String hql="select str_Flat from User where str_Block=?";
-		List<String> list=(List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).list();
-		System.out.println(list);
-		return list;
+		String hql="select int_BlockId from UserBlocks where str_BlockName=? and int_ApartmentId=?";
+		List<Integer> list=(List<Integer>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).setParameter(1,Util.getAppartmentId()).list();
+		ListIterator itr=list.listIterator();
+		List<String> str2=new ArrayList<String>();
+		while(itr.hasNext())
+		{
+			Integer id=(Integer) itr.next();
+			System.out.println(id+"gfgfkgfkj");
+			str2=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_ApartmentId=? and int_BlockId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,id).list();
+			
+		}
+	System.out.println(str2+"fdjdff");
+		return str2;
 	}
 	@SuppressWarnings("unchecked")
 	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo, String str_ApartmentNo1, String str_Status, String str_Period, String str_DueTemplate)
@@ -135,11 +146,13 @@ public class DueDaoImpl implements DueDao{
 		System.out.println(str4+"hhjjhj");
 		if(str4.equalsIgnoreCase("Sqft"))
 		{
-		String hql="select sqft from User where str_Flat=?";
-		double str2=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Block).uniqueResult();
-		System.out.println(str2);
-		System.out.println(str1*str2);
-		return (str1*str2);
+			String hql="select int_HouseSize from HouseDetails where str_HouseNo=? and int_ApartmentId=?";
+			Integer  ddd=(Integer)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).setParameter(1,Util.getAppartmentId()).uniqueResult();
+		     Double ddd1=(double)ddd;
+		    
+			
+		System.out.println(str1*ddd1);
+		return (str1*ddd1);
 		}
 		return str1;
 	}
