@@ -233,4 +233,12 @@ public class TemplateDaoImpl implements TemplateDao {
 		return id;
 		
 	}
+	public String getCalculation()
+	{
+		 getApartmentID();
+			String hql=" select str_Calculation from DueTemplate where int_DueTemplateID=3 and int_Organisation=12" ;
+			String id=(String) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).uniqueResult();
+			System.out.println(id+"jfdfd");
+			return id;
+	}
 }
