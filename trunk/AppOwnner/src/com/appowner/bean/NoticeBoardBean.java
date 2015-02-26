@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -27,6 +28,7 @@ import org.springframework.dao.DataAccessException;
 import com.appowner.model.FacilityNeeded;
 import com.appowner.model.Notice;
 import com.appowner.service.NoticeBoardService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
@@ -171,6 +173,19 @@ public static void setContent(String content) {
 		
 		  notice.setStr_Description(getStr_Description());
 		  System.out.println(str_Description);
+		  Date date=new java.util.Date();
+		  notice.setDat_EntryDate(date);
+		  int number=getInt_ExpireDay();
+		  System.out.println(number+"jfjgf");
+		  Calendar c = Calendar.getInstance(); 
+			 c.setTime(date);
+			 
+			 c.add(Calendar.DATE,number);
+			
+		Date date1= c.getTime();
+			System.out.println(date1+"kunkupriya");
+		notice.setInt_ApartmentID(Util.getAppartmentId());
+		  notice.setDat_ExpireOn(date1);
 		  notice.setInt_ExpireDay(getInt_ExpireDay());
 		 notice.setBool_SpecialNotice(getBool_SpecialNotice());
 	     notice.setBool_Staff(getBool_Staff());
