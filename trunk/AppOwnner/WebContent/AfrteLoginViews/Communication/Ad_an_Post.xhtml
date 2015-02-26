@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 	
 	 <h:body>
@@ -12,13 +12,17 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Buy And Sell </span>
+					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Buy &#38; Sell </span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	
   <body bgcolor="white">
+  <p:outputPanel   rendered="#{request.getAttribute('render')}">
+				  <body onLoad="ShowNewPage()"/>
+					</p:outputPanel>
+        
   <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
     <h:form id="form" enctype="multipart/form-data" prependId="false">
 <h:head>
@@ -45,37 +49,93 @@
 <script>
 
 
-   var modalWin = new CreateModalPopUpObject();
-   modalWin.SetLoadingImagePath("images/loading_home.gif");
-   modalWin.SetCloseButtonImagePath("images/cross.png");
-   
- 
-  function ShowNewPage(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL(' Email_for_Ads.xhtml',470,600,'E-Mail',null,callbackFunctionArray);
-  }
- 
-
-	 function Cancel(){
-	 modalWin.HideModalPopUp();
-	 modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+function ShowNewPage(){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 modalWin.ShowURL('/AppOwnner/accountActivationConfirmation.xhtml',300,400,'Congratulation',null,callbackFunctionArray);
+	 }
+function ShowNewPage(){
+	 var callbackFunctionArray = new Array(Submit, Cancel);
+	 modalWin.ShowURL('/AppOwnner/activationmessage.xhtml',300,400,'Congratulation',null,callbackFunctionArray);
 	 }
 
-	 function HideModalWindow() {
-	     modalWin.HideModalPopUp();
+		 
+	 
+	function ShowMessage() {
+	 modalWin.ShowMessage('This Modal Popup Window using Javascript',200,400,'User Information');
+	 }
+	  
+	 function  ShowMessageWithAction(){
+	    //ShowConfirmationMessage(message, height, width, title,onCloseCallBack, firstButtonText, onFirstButtonClick, secondButtonText, onSecondButtonClick);
+	    modalWin.ShowConfirmationMessage('This is confirmation window using Javascript',200,400,'User Confirmation',null,'Agree',Action1,'Disagree',Action2);
 	 }
 
- 
+	function ShowMessageNoDragging(){
+	 modalWin.Draggable=false;
+	 modalWin.ShowMessage('You can not drag this window',200,400,'User Information');
+
+	}
+
+	function Action1(){
+	alert('Action1 is excuted');
+	modalWin.HideModalPopUp();
+	}
+
+	function Action2(){
+	alert('Action2 is excuted');
+	modalWin.HideModalPopUp();
+	}
+
+	function Submit(msg){
+	modalWin.HideModalPopUp();
+	modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+	}
+
+	function Cancel(){
+	modalWin.HideModalPopUp();
+	modalWin.ShowMessage(msg,200,400,'User Information',null,null);
+	}
+
+	function HideModalWindow() {
+	    modalWin.HideModalPopUp();
+	}
+	function MyFunc(obj1)
+	{   var ob=obj1.value;
+
+		alert(ob);
+		}
+	function InvalidMsg(textbox) {
+	    
+	    if (textbox.value == '') {
+	        textbox.setCustomValidity('Required Valid UserName');
+	    }
+	   
+	    else {
+	        textbox.setCustomValidity('');
+	    }
+	    return true;
+	}
+	function InvalidMsg1(textbox) {
+	    
+	    if (textbox.value == '') {
+	        textbox.setCustomValidity('Required Valid Password');
+	    }
+	   
+	    else {
+	        textbox.setCustomValidity('');
+	    }
+	    return true;
+	}
    
     </script>
      </h:body>
-     
+    
    <div id="page3" >
+  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+  
    
-     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-        
              <tr> 
-        <td><h:outputLabel value="Organisation"  /></td>
+            <td> &#150;       &#150;      &#150;      &#150;      &#150;         &#150;      &#150;    &#150;  
+            <p:outputLabel value="Organisation"  /></td>
             <td><h:selectOneMenu id="str_ApartmentName"  style="width:150px">
              <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  Value="#{cls_AddDetailBean.str_ApartmentName}"  />
             
@@ -83,7 +143,7 @@
             </td>
           
         
-             <td><h:outputLabel  value="Intent" /></td>
+             <td><p:outputLabel  value="Intent" /></td>
                <td><h:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Product_Type}" style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
                   <f:selectItem itemLabel="Buy" itemValue="Buy"  />
@@ -94,7 +154,7 @@
              </td>
              
          
-             <td><h:outputLabel value="Status" /></td>
+             <td><p:outputLabel value="Status" /></td>
                <td><h:selectOneMenu id="option2"  value="#{cls_AddDetailBean.status}" style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="All"  />
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
@@ -106,7 +166,7 @@
                <tr>
                  
                 
-                 <td><h:outputLabel  value="Posted in the last" /></td>
+                 <td><p:outputLabel  value="Posted in the last" /></td>
                <td><h:selectOneMenu id="option3" value="ghgf"  style="width:150px">
                   <f:selectItem itemLabel="10 days" itemValue="10 days"  />
                   <f:selectItem itemLabel="30 days" itemValue="30 days"  />
@@ -119,7 +179,7 @@
            
            
              
-              <td><h:outputLabel value="Type" /></td>
+              <td><p:outputLabel value="Type" /></td>
               <td><h:selectOneMenu id="option4" value="#{cls_AddDetailBean.ch_Ad_Type}" style="width:150px">
               <f:selectItem itemLabel="All" itemValue="All"  />
               <f:selectItem itemLabel="My Community" itemValue="My Community"  />
@@ -128,7 +188,7 @@
                  </h:selectOneMenu> 
              </td>
           
-           <td>    <p:commandButton  value="Go" action="#{cls_AddDetailBean.getDetails()}"  style="width:40px; height:20px" update="per">
+           <td>    <p:commandButton  value="Go" action="#{cls_AddDetailBean.getDetails()}"  style="width:40px; height:20px;" update="per">
                </p:commandButton></td>
            
           </tr>
@@ -136,12 +196,12 @@
           </div>
        
      <div id="page3" >
-           <div class="gsTitleDiv"> Buy And Sell<br/><hr/></div> 
+           <div class="gsTitleDiv"> Buy &#38; Sell<br/><hr/></div> 
             &#150; &#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:button  value="Create New" outcome="Create_Detail.xhtml" style="width:110px; height:32px" />
             &#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
-            <p:commandButton process="per" update=":form:multiVendorDetail3" icon="ui-icon-search" value="View Selected" oncomplete="PF('multiVendorDialog3').show()" style="width:110px; height:32px" /> &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; <p:commandButton process="per"   value="Edit Selected" update=":form:multiVendorDetail5"   oncomplete="PF('multiVendorDialog5').show()"  action="#{cls_AddDetailBean.getedit1(per.int_ProductId)}" style="width:110px; height:32px"/>&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <p:button  value="Refresh" icon="ui-icon-refresh" style="width:110px; height:32px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
+            <p:commandButton process="per" update=":form:multiVendorDetail3" icon="ui-icon-search" value="View Selected"  oncomplete="PF('multiVendorDialog3').show()" style="width:110px; height:32px" /> &#150; &#150; &#150;&#150; &#150;&#150; &#150; &#150;&#150; <p:commandButton process="per"   value="Edit Selected" update=":form:multiVendorDetail5"   oncomplete="PF('multiVendorDialog5').show()"  action="#{cls_AddDetailBean.getedit1(per.int_ProductId)}" style="width:110px; height:32px"/>&#150; &#150;&#150; &#150;&#150;&#150; &#150; &#150;&#150; &#150;&#150; <p:button  value="Refresh" icon="ui-icon-refresh" style="width:110px; height:32px" />&#150; &#150;&#150; &#150;&#150; &#150;&#150; &#150;
             <p:menuButton value="Action" style="width:110px; height:35px">
-            <p:menuitem value="Approval Selected" update=":form:multiVendorDetail1" oncomplete="PF('multiVendorDialog1').show()"  actionListener="#{cls_AddDetailBean.selectinfo1(e)}" ></p:menuitem>
+            <p:menuitem value="Approval Selected" update=":form:multiVendorDetail1" rendered="#{cls_AddDetailBean.emailstatus}" oncomplete="PF('multiVendorDialog1').show()"  actionListener="#{cls_AddDetailBean.selectinfo1(e)}" ></p:menuitem>
           <p:menuitem value="Reject Selected"  update=":form:multiVendorDetail8" oncomplete="PF('multiVendorDialog8').show()"  actionListener="#{cls_AddDetailBean.selectinfo3(e)}"/>
           <p:menuitem value="Close Selected" actionListener="#{cls_AddDetailBean.selectinfo2(e)}" />
           <p:menuitem value="Send Email to Creator"  update=":form:multiVendorDetail" oncomplete="PF('multiVendorDialog').show()" actionListener="#{cls_AddDetailBean.selectinfo4(e)}"/>
@@ -280,18 +340,17 @@
         <td><h:inputText  id="I" value="#{per1.ch_Product_Type}" >
         </h:inputText>
         </td>
-        
- 
- 
- 
-</tr>
-
-   
-  <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
+        </tr>
+        <tr>
+      <td><h:outputLabel for="I" value="Status" /></td>
+        <td><h:inputText  id="I4" value="#{per1.status}" >
+        </h:inputText>
+        </td>
+       </tr>
+    <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
            <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
           </p:outputPanel>  
-  
-           <tr>
+          <tr>
            <td>
           <h:outputLabel value="Title"></h:outputLabel></td>
           <td><h:inputText  value="#{per1.var_Title}"  style="height:100px ;width:300px">
@@ -351,10 +410,13 @@
         </h:inputText>
         </td>
         </tr>
-        
- 
- 
-   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
+         <tr> 
+         <td><h:outputLabel for="I" value="Status" /></td>
+        <td><h:inputText  id="I3" value="#{per1.status}" size="30" >
+        </h:inputText>
+        </td>
+        </tr>
+       <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -100px -400px 0px;"  >  
            <p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.blb_images1}"/>
           </p:outputPanel>  
   <tr>
@@ -377,8 +439,8 @@
 
 <tr>
                <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><p:inputTextarea style="height:100px ;width:300px" value="#{per1.var_Description}" >
-              </p:inputTextarea>
+                <td><h:inputTextarea style="height:100px ;width:300px" value="#{per1.var_Description}" >
+              </h:inputTextarea>
                
                 
             </td>
@@ -425,6 +487,12 @@
         </h:inputText>
         </td>
         </tr>
+        <tr> 
+       <td><h:outputLabel for="I" value="Status" /></td>
+        <td><h:inputText  id="I2" value="#{per1.status}" size="30" >
+        </h:inputText>
+        </td>
+        </tr>
         
  
  
@@ -451,8 +519,8 @@
 
 <tr>
                <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
-                <td><p:inputTextarea style="height:100px ;width:300px" value="#{per1.var_Description}" >
-              </p:inputTextarea>
+                <td><h:inputTextarea style="height:100px ;width:300px" value="#{per1.var_Description}" >
+              </h:inputTextarea>
                
                 
             </td>
@@ -496,6 +564,12 @@
         
         <td><h:outputLabel for="I" value="I want to" /></td>
         <td><h:inputText  id="I" value="#{per1.ch_Product_Type}" size="30" >
+        </h:inputText>
+        </td>
+        </tr>
+       <tr> 
+        <td><h:outputLabel for="I" value="Status" /></td>
+        <td><h:inputText  id="I1" value="#{per1.status}" size="30" >
         </h:inputText>
         </td>
         </tr>
@@ -553,7 +627,7 @@
               </td>
               </tr>
              <tr>  
-             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send4}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
+             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send4}"  actionListener="#{cls_AddDetailBean.selectinfo6(e)}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
            <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml"/></td>
             </tr>
    </table>
@@ -605,7 +679,7 @@
   
        </p:outputPanel>
         </p:dialog>
-       <p:dialog header="Ads Approval" widgetVar="multiVendorDialog8"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
+       <p:dialog header="Ads Rejection" widgetVar="multiVendorDialog8"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
       <p:outputPanel id="multiVendorDetail8" style="text-align:center;"> 
          <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
         <table>
@@ -623,7 +697,7 @@
               </td>
               </tr>
              <tr>  
-             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send6}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
+             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send6}"  actionListener="#{cls_AddDetailBean.selectinfo7(e)}" style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
             <td><h:commandButton  value="Cancel" outcome="Ad_an_Post.xhtml"/></td>
             </tr>
    </table>
