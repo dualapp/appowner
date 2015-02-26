@@ -20,6 +20,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
@@ -79,6 +80,7 @@ public void setDat_ToDate(Date dat_ToDate) {
 }
 private String dat_FromDate1;
 public String getDat_FromDate1() {
+	
 	java.util.Date d=new java.util.Date();
 	 SimpleDateFormat ft = 
 		      new SimpleDateFormat ("dd-MM-yyyy");
@@ -205,6 +207,7 @@ private Double str_DebitAmount;
 private Double str_CreditAmount;
 private ManualJournal selectedjournal;
 public ManualJournal getSelectedjournal() {
+	
 	return selectedjournal;
 }
 public void setSelectedjournal(ManualJournal selectedjournal) {
@@ -250,9 +253,9 @@ public String addManualJournal(ManualJournal journal) {
 
 	} else
 		getAccountsService().addManualJournal(journal);
-	return "accountinglayout.xhtml";
+	return "accounttransaction.xhtml";
 }
-public String deleteManualJournal() {
+public String deleteManualJournal1(ActionEvent actionEvent) {
 	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 	ManualJournal journal=new ManualJournal();
 	Integer id=selectedjournal.getInt_ManualJournalID();
@@ -334,11 +337,14 @@ public void setDat_To(Date dat_To) {
 //ACCOUNT TRANSACTION
  private List<InvoiceTransaction>  listInvoiceTransaction1;
 public List<InvoiceTransaction> getListInvoiceTransaction1() {
-	
+	System.out.println("jhgkknrffkjfjkddfkjfdkj3333333333333333333");
+	if(dat_FromDate.before(dat_ToDate))
+	{
 	listInvoiceTransaction1=new ArrayList<InvoiceTransaction>();
 	listInvoiceTransaction1.addAll(getAccountsService().listInvoiceTransaction1(str_Accounts,dat_FromDate,dat_ToDate));
-	return listInvoiceTransaction1;
 	
+	}
+	return listInvoiceTransaction1;
 }
 private List<String> listAccountsName;	
 private List<ChartOfAccount>  listAccountsName1;
@@ -355,9 +361,9 @@ private List<ChartOfAccount>  listAccountsName1;
 	 {
 		 ChartOfAccount account=(ChartOfAccount) list.next();
 		 String str=account.getStr_AccountName();
-		System.out.println(str+"sjjssdjkdkj");
+		
 		 char ch=account.getCh_Group();
-		System.out.println(ch+"hhjhjhj");
+	
 		 if(ch=='A')
 		 {
 			 asset.add(str);
@@ -385,6 +391,7 @@ public void setListAccountsName1(List<ChartOfAccount> listAccountsName1) {
 public List<String> getListAccountsName() {
 	 listAccountsName=new ArrayList<String>();
 	 listAccountsName.addAll(getAccountsService().getAccountTypeList1());
+
 	 getListAccountsName1();
 	return listAccountsName;
 }
@@ -398,7 +405,12 @@ public void setListInvoiceTransaction1(
 private String str_Accounts;
  public String getStr_Accounts() {
 	
-	 str_Accounts=getAccountsService().getAccountName(id1);
+  str_Accounts=getAccountsService().getAccountName(id1);
+  System.out.println(id1+"hvhjgfvhjfgvhj");
+  if(id1==null)
+  {
+	  getDebit();
+  }
    System.out.println(str_Accounts+"vhhjhj");
 	
 	 return str_Accounts;
@@ -460,11 +472,13 @@ public void accountchangeListener1(ValueChangeEvent event)
 public void datechangeListener(ValueChangeEvent event)
 {   System.out.println("jhjhjj");
 	dat_FromDate=(Date)event.getNewValue();
+	System.out.println(dat_FromDate+"gjkfg");
 	
 }
 public void datechangeListener1(ValueChangeEvent event)
 {
 	dat_ToDate=(Date)event.getNewValue();
+	System.out.println(dat_ToDate+"fgvjfgjgfkj");
 	
 }
 public void datechangeListener2(ValueChangeEvent event)
@@ -480,9 +494,19 @@ System.out.println(dat_From+"jjjjjjjjjjjjjjjjjjjjjjjjjjjlokiiiiiiiiiiiiiiiii");
 
 }
 public void getSearch()
-{  
-	
-	
+{    System.out.println(str_Accounts+"fdfdhjfdj");
+	System.out.println("fdjjkdffdjkfkjjfg");
+	System.out.println(dat_FromDate.after(dat_ToDate)+"fdkjfkjfgkj");
+	if(dat_FromDate.after(dat_ToDate))
+    {
+	  FacesContext facesContext = FacesContext.getCurrentInstance();
+	  Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Last date cannot be before from date","Last date cannot be before from date"));
+    }
+else
+{
  str_Accounts=getAccountsService().getAccountName1(id1);
  System.out.println(str_Accounts+"juhy");
 	
@@ -510,7 +534,8 @@ public void getSearch()
    getListInvoiceTransaction();
    getListManualJournal1();
    getListExpense();
-  getDebit();
+    getDebit();
+}
   
 }
 private double debit=0.00;
@@ -583,8 +608,8 @@ public double getDebit() {
 		  
 		  
 	    
-	     }
-	       return credit;
+	       }
+	      
 	    }
 	   else if(str.equalsIgnoreCase("Income from Resident"))
 	   {
@@ -602,6 +627,7 @@ public double getDebit() {
 		System.out.println(credit+"huy");
 	     } 
 	   }
+		 getListManualJournal1();
 	 ListIterator list2=listManualJournal1.listIterator();
 	 {  
 	    
@@ -641,6 +667,7 @@ public double getDebit() {
 		
 		 type2=true;
 		 debit=0.00;
+		 System.out.println("dfjdfjkfdkjfdfd");
 		 totalBalance=credit;
 		/* ListIterator list=listInvoiceTransaction.listIterator();
 		 while(list.hasNext())
@@ -725,6 +752,7 @@ public double getDebit() {
 					 
 				 }
 			 }
+			
 			 ListIterator list2=listManualJournal1.listIterator();
 			 { 
 			   
@@ -1010,12 +1038,13 @@ return debit;
 
 private List<InvoiceTransaction>  listInvoiceTransaction;
 public List<InvoiceTransaction> getListInvoiceTransaction() {
-	
+	System.out.println("fkdfdkjfjkddfjkfdkjkdffdjkfd7777777777777777777777777777");
 	try{
 	listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
-	
+	if(dat_FromDate.before(dat_ToDate))
+	{
 	listInvoiceTransaction.addAll(getAccountsService().listInvoiceTransaction(str_Accounts,dat_FromDate,dat_ToDate));
-	
+	System.out.println("fdjfdfdjfdjkfdjhfdjkfdjkdfjkdf111111111111111111111111111111111111");
 	ListIterator list=listInvoiceTransaction.listIterator();
 	
 	while(list.hasNext())
@@ -1029,6 +1058,11 @@ public List<InvoiceTransaction> getListInvoiceTransaction() {
 	}
 	
 	return  listInvoiceTransaction;
+	}
+	else
+	{
+		return  listInvoiceTransaction;	
+	}
 	}
 	catch(Exception e)
 	{
@@ -1087,9 +1121,13 @@ public void setIncome(String income) {
 private List<ManualJournal> listManualJournal1;
 
 public List<ManualJournal> getListManualJournal1() {
+	System.out.println("fkdfdkjfjkddfjkfdkjkdffdjkfd2222222222222222222222222222222222");
+	if(dat_FromDate.before(dat_ToDate))
+	{
+		System.out.println("fggfjkgfjkgfjkgjg77777777898767");
 	listManualJournal1=new ArrayList<ManualJournal>();
 	listManualJournal1.addAll(getAccountsService().getlistManualJournal1(str,dat_FromDate,dat_ToDate));
-	
+	}
 	return listManualJournal1;
 }
 public void setListManualJournal1(List<ManualJournal> listManualJournal1) {
@@ -1097,8 +1135,12 @@ public void setListManualJournal1(List<ManualJournal> listManualJournal1) {
 }
 public List<Expense>   listExpense;
 public List<Expense> getListExpense() {
-	listExpense=new ArrayList<Expense>();
+	System.out.println("fkdfdkjfjkddfjkfdkjkdffdjkfd999999999999999999999999999");
+	if(dat_FromDate.before(dat_ToDate))
+	{
+	   listExpense=new ArrayList<Expense>();
 	 listExpense.addAll(getAccountsService().getExpenseList(str,dat_FromDate,dat_ToDate));
+     }
 	 return listExpense;
 }
 public void setListExpense(List<Expense> listExpense) {
@@ -1595,7 +1637,10 @@ public void setTotalIncome(List<Double> totalIncome) {
 }
 public double netProfit3;
 public double getNetProfit3() {
+	System.out.println("fdjfdjfdjfjjhjgpriya");
 	indicator="Profit";
+	type1=true;
+	System.out.println(indicator+"fdjkdfjfdj");
 	netProfit3=totalIncome2-debitNetTotal;
 	return netProfit3;
 }
@@ -2193,7 +2238,9 @@ public void getSearch3()
 		System.out.println(int_blank+"hhjhj123");
 	}
 }
-
+public void setTest(ActionEvent testEvent)
+    {
+       System.out.println("tydhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");}
 	
 }
 
