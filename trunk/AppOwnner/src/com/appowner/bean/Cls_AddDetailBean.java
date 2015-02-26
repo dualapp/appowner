@@ -254,8 +254,8 @@ public int getInt_Ad_categoryId() {
 		pro.setUsername(usrname);
 		pro.setApartementId(Util.getAppartmentId());
 		pro.setVar_FileName("image");
-		System.out.println(path1);
-		pro.setVar_ImageName(path1);
+		System.out.println(path+"fkjfdkjdfjk");
+		pro.setVar_ImageName(path);
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
 		pro.setStr_ApartmentName(str_ApartmentName);
@@ -749,7 +749,11 @@ public static void setMessage(String message) {
 	private String msg2;
 	
 	public String getMsg2() {
-		msg2="This is to inform you that your ad posting in Shaffi Paradise is now approved.";
+		String str="This is to inform you that your ad posting in  ";
+		String str1=Util.getAppartmentName();
+		String str2="  is now approved.";
+		msg2=str+str1+str2;
+		System.out.println(msg2+"fjdkfdkjjkdf");
 		return msg2;
 	}
 	public void setMsg2(String msg2) {
@@ -833,7 +837,11 @@ public void setDetails(List<Cls_ProductDetails> details) {
 private String msg3;
 
 public String getMsg3() {
-	msg3="This is to inform you that your ad posting  is now Rejected.";
+	String str="This is to inform you that your ad posting in  ";
+	String str1=Util.getAppartmentName();
+	String str2="   is not approved.";
+	msg3=str+str1+str2;
+	System.out.println(msg2+"fjdkfdkjjkdf");
 	return msg3;
 }
 public void setMsg3(String msg3) {
@@ -872,12 +880,14 @@ public static void setAprtmentname(String aprtmentname) {
 
 
 public String send4()
-{
+{   System.out.println("fkjdfkjfkjfjlkkkkkkkkkkkkkkkkkkkkkkk");
+
 	recipient= emailids;
 	content="";
 	subject="Appowner.com";
 	aprtmentname=getStr_ApartmentName();
-	return "/AfrteLoginViews/Communication/Email.jsp";
+	return null;
+	//return "/AfrteLoginViews/Communication/Email.jsp";
 }
 
 
@@ -979,15 +989,36 @@ public String send5()
 	
 	
 }
+private boolean emailstatus=true;
+public boolean isEmailstatus() {
+	return emailstatus;
+}
+public void setEmailstatus(boolean emailstatus) {  
+	this.emailstatus = emailstatus;
+}
+public String statusmsg;
 public String msgupdate; 
 public static String select1;
 public String selectinfo1(ActionEvent e)
-{  
+{ 
+	productid=selectedAll.getInt_ProductId();
 System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
 System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
-msgupdate=(getProductDetailService().getname(selectedAll.getInt_ProductId()));
+//msgupdate=(getProductDetailService().getname(selectedAll.getInt_ProductId()));
 msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
 emailids=(getProductDetailService().getemailids(msgrejectid));
+System.out.println(selectedAll.getStatus()+"kjkjkjkjkjkjkjkjkjkjkjk");
+System.out.println(statusmsg=="Ads Rejected"+"lklklklklklklklklklklklk;;';';';';';';';';';';';';';';");
+statusmsg=selectedAll.getStatus();
+if(statusmsg=="Ads Rejected")
+{
+	emailstatus=false;	
+}
+   
+
+
+//statusmsg=(getProductDetailService().statusmesg(selectedAll.getInt_ProductId()));
+
 System.out.println(emailids+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 System.out.println(msgupdate+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
@@ -1027,11 +1058,20 @@ public void setEmailids(String emailids) {
 public String emailids;
 public String msgreject;
 public int msgrejectid;
+public static Integer productid;
+
+public static Integer getProductid() {
+	return productid;
+}
+public static void setProductid(Integer productid) {
+	Cls_AddDetailBean.productid = productid;
+}
 public String selectinfo3(ActionEvent e)
 {  
 System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
 System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
-msgreject=(getProductDetailService().getreject(selectedAll.getInt_ProductId()));
+productsid=selectedAll.getInt_ProductId();
+
 msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
 emailids=(getProductDetailService().getemailids(msgrejectid));
 System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbbbbbbbbbbb");
@@ -1054,7 +1094,7 @@ return select1;
 
 private Part part;
 private String statusMessage;
-private String path;
+private static String path;
 private Cls_ProductDetails user;
 public String uploadFile() throws IOException {
 
@@ -1070,10 +1110,11 @@ public String uploadFile() throws IOException {
 	// String basePath = "D:" + File.separator + "temp" + File.separator;
 	// File outputFilePath = new File(basePath + fileName);
 	String basePath =servletContext.getRealPath("")
-			+ File.separator + "images" + File.separator
+			+ File.separator + "images" 
 			+ File.separator;
 	System.out.println(basePath);
-	File outputFilePath = new File(basePath + fileName);
+	File outputFilePath = new File(basePath);
+	outputFilePath=new File(basePath,fileName);
     System.out.println(path + "path");
 	// Copy uploaded file to destination path
 	InputStream inputStream = null;
@@ -1088,11 +1129,11 @@ public String uploadFile() throws IOException {
 			outputStream.write(bytes, 0, read);
 		}
 		path = "/images" + File.separator 
-				+ File.separator + fileName;
+				 + fileName;
 		//user.setVar_ImageName1(path);
 		//user.setInt_UserId(user.getInt_UserId());
 		System.out.println(user+"m,,,,,,,,,,,,mmmmmmmmmmm,,,,,,,,,,,,,mmmmmmmmmmmmm,,,,,,,,,,,,");
-		getProductDetailService().updateProfilePic(user);
+		//getProductDetailService().updateProfilePic(user);
 		
 		statusMessage = "File uploaded successfull !!";
 
@@ -1133,6 +1174,22 @@ private String getFileName(Part part) {
 	}
 	return null;
 }
+
+public static String getPath() {
+	System.out.println(path + "path1");
+	if(path==null)
+	{
+		path = "/images/profilepic.png";
+	}
+	
+		
+	 return path;
+	
+}
+
+/*public static void setPath(String path) {
+	Cls_AddDetailBean.path = path;
+}
 HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 		.getExternalContext().getSession(false);
      public String getPath() {
@@ -1144,11 +1201,25 @@ HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 		path = "/images/profilepic.png";
 	 return path;
 	 }
-public void setPath(String path) {
-	this.path = path;
+*/
+
+public String selectinfo6(ActionEvent e)
+{  
+System.out.println("mukesh kumar ");	
+System.out.println(productid+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
+msgupdate=(getProductDetailService().getname(productid));
+return select1;
+}
+
+public static Integer productsid;
+public String selectinfo7(ActionEvent e)
+{  
+System.out.println("mukesh kumar ");	
+System.out.println(productid+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
+msgreject=(getProductDetailService().getreject(productsid));
+return select1;
 }
 }
-	
 	
 	 
 	
