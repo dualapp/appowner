@@ -29,6 +29,12 @@ public class AssetCategory  implements Serializable{
 	@Column(name="var_organizationname")
 	
 	private String str_OrganizationName;
+	public Integer getInt_AppartmentId() {
+		return int_AppartmentId;
+	}
+	public void setInt_AppartmentId(Integer int_AppartmentId) {
+		this.int_AppartmentId = int_AppartmentId;
+	}
 	@Column
 	private Integer int_AppartmentId;
 	@Column(name="var_assetcat_name")
