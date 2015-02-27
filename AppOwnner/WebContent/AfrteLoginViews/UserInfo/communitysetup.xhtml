@@ -35,15 +35,15 @@
 information in few minutes.</p><p> You can add, remove or update information related to houses, blocks
 and members associated.</p> 
   <table>
-<tr><th width="30%">What is type of Community*</th><td width="70%"><h:selectManyCheckbox   valueChangeListener="#{apartmentDetailsBean.communityTypeListener}"  value="#{apartmentDetailsBean.communityTypelist1}"  styleClass="nostyle">
+<tr><th width="30%"><p:outputLabel for="communityType"  value="What is type of Community" /></th><td width="70%"><h:selectManyCheckbox  id="communityType" valueChangeListener="#{apartmentDetailsBean.communityTypeListener}"  required="true" requiredMessage="Choose Community type" value="#{apartmentDetailsBean.communityTypelist1}"  styleClass="nostyle">
    
   <f:selectItems value="#{apartmentDetailsBean.communityTypelist}" />
    </h:selectManyCheckbox>
 </td>
 </tr>
-<tr><th>Year Of Completion</th><td><h:inputText value="#{apartmentDetailsBean.int_year}" /></td></tr>
-<tr><th>No Of Blocks(if any)</th><td><h:inputText value="#{apartmentDetailsBean.int_NoOfBlock}" /></td></tr>
-<tr><th>Total No Of Houses</th><td><h:inputText value="#{apartmentDetailsBean.int_TotalHouse}" /></td></tr>
+<tr><th>Year Of Completion</th><td><p:inputText value="#{apartmentDetailsBean.int_year}" /></td></tr>
+<tr><th>No Of Blocks(if any)</th><td><p:inputText value="#{apartmentDetailsBean.int_NoOfBlock}" /></td></tr>
+<tr><th>Total No Of Houses</th><td><p:inputText value="#{apartmentDetailsBean.int_TotalHouse}" /></td></tr>
 <tr><th></th> <td><h:commandButton value="Cancel" action="#" />  <h:commandButton value="SaveAndProceed"   action="#{apartmentDetailsBean.saveCommunitySetup()}"/></td></tr>
 </table>
 </p:panel>

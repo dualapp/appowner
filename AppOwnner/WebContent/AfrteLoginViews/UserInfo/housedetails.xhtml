@@ -67,38 +67,38 @@ Unless the Community Setup is complete, the changes that are made will not be sa
              </p:column>
         
 	 <p:column headerText="House No.">
-                <h:outputText value="#{houseDetail.str_HouseNo}" /> 
+                <p:outputLabel value="#{houseDetail.str_HouseNo}" /> 
             
 	 </p:column>
 	 <p:column headerText="House(sqft)">
-                <h:outputText value="#{houseDetail.int_HouseSize}" /> 
+                <p:outputLabel value="#{houseDetail.int_HouseSize}" /> 
             
 	 </p:column>
 	 <p:column headerText="Type Of House">
-                <h:outputText value="#{houseDetail.str_TypeOfHouse}" /> 
+                <p:outputLabel value="#{houseDetail.str_TypeOfHouse}" /> 
             
 	 </p:column>
 	 <p:column headerText=" BathRooms">
-                <h:outputText value="#{houseDetail.int_NoOfBathRooms}" /> 
+                <p:outputLabel value="#{houseDetail.int_NoOfBathRooms}" /> 
             
 	 </p:column>
 	  <p:column headerText="Balconies">
-                <h:outputText value="#{houseDetail.int_NoOfBalconies}" /> 
+                <p:outputLabel value="#{houseDetail.int_NoOfBalconies}" /> 
             
 	 </p:column>
 	  <p:column headerText="Rented">
-                <h:outputText value="#{houseDetail.is_Rented}" /> 
+                <p:outputLabel value="#{houseDetail.is_Rented}" /> 
             
 	 </p:column>
 	 <p:column headerText="Users">
-                <h:outputText value="#{houseDetail.int_NoOfUsers}" /> 
+                <p:outputLabel value="#{houseDetail.int_NoOfUsers}" /> 
             
 	 </p:column>
 	 <p:column>
 	  <f:facet name="header">
                 <center>
                 
-                    <h:outputText value="Action" />
+                    <p:outputLabel value="Action" />
                     </center>
                 </f:facet>
                 <center>
@@ -149,15 +149,15 @@ Unless the Community Setup is complete, the changes that are made will not be sa
         <p:outputPanel id="editHouseDetail" style="text-align:center;">
  <table>
  <tr><th> 
-               <h:outputText value="House No" /> </th>
+               <p:outputLabel value="House No" /> </th>
              
-	<td><h:inputText      value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
+	<td><p:inputText      value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
 	 
 	</tr>
-	<tr><th><h:outputText value="Size of House (Sqft.)" /> </th>
+	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
-	<td><h:inputText      value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
-	<tr><th><h:outputText value="Type Of House" /> </th>
+	<td><p:inputText      value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
+	<tr><th><p:outputLabel value="Type Of House" /> </th>
 	<td><h:selectOneMenu  value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}" > 
 	 <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="1BHK" itemValue="1BHK" />
@@ -166,13 +166,13 @@ Unless the Community Setup is complete, the changes that are made will not be sa
               <f:selectItem itemLabel="SingleBuilding" itemValue="SingleBuilding" />
               
                  </h:selectOneMenu></td></tr>
-	<tr><th><h:outputText value="No Of BathRoom" /> </th>
+	<tr><th><p:outputLabel value="No Of BathRoom" /> </th>
              
-	<td><h:inputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBathRooms}"/></td></tr>
-	<tr><th><h:outputText value="No Of Balconies" /> </th>
+	<td><p:inputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBathRooms}"/></td></tr>
+	<tr><th><p:outputLabel value="No Of Balconies" /> </th>
             
-	<td><h:inputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
-	<tr><th><h:outputText value="Rented" /> </th>
+	<td><p:inputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
+	<tr><th><p:outputLabel value="Rented" /> </th>
           <td><h:selectOneMenu    value="#{apartmentDetailsBean.housedetails.is_Rented}"> 
               <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="Yes" itemValue="Yes" />
@@ -195,25 +195,25 @@ Unless the Community Setup is complete, the changes that are made will not be sa
         <p:outputPanel id="viewHouseDetail" style="text-align:center;">
  <table>
  <tr><th> 
-               <h:outputText value="House No" /> </th>
+               <p:outputLabel value="House No" /> </th>
              
-	<td><h:outputText  value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
+	<td><p:outputLabel  value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
 	 
 	</tr>
-	<tr><th><h:outputText value="Size of House (Sqft.)" /> </th>
+	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
-	<td><h:outputText   value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
-	<tr><th><h:outputText value="Type Of House" /> </th>
-	<td><h:outputText    value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}"/>
+	<td><p:outputLabel   value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
+	<tr><th><p:outputLabel value="Type Of House" /> </th>
+	<td><p:outputLabel    value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}"/>
 	 </td></tr>
-	<tr><th><h:outputText value="No Of BathRoom" /> </th>
+	<tr><th><p:outputLabel value="No Of BathRoom" /> </th>
              
-	<td><h:outputText    value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
-	<tr><th><h:outputText value="No Of Balconies" /> </th>
+	<td><p:outputLabel    value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
+	<tr><th><p:outputLabel value="No Of Balconies" /> </th>
             
-	<td><h:outputText     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
-	<tr><th><h:outputText value="Rented" /> </th>
-          <td><h:outputText     value="#{apartmentDetailsBean.housedetails.is_Rented}"/>
+	<td><p:outputLabel     value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}"/></td></tr>
+	<tr><th><p:outputLabel value="Rented" /> </th>
+          <td><p:outputLabel     value="#{apartmentDetailsBean.housedetails.is_Rented}"/>
           </td>   
 	 </tr>
 	 
@@ -226,15 +226,15 @@ Unless the Community Setup is complete, the changes that are made will not be sa
        <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 	 
 	<tr><th> 
-               <h:outputText value="House No" /> </th>
+               <p:outputLabel  for="HouseNo" value="House No" /> </th>
              
-	<td><h:inputText    id="HouseNo" required="true" requiredMessage="Enter House No" value="#{apartmentDetailsBean.str_HouseNo}"/></td>
+	<td><p:inputText    id="HouseNo" required="true" requiredMessage="Enter House No" value="#{apartmentDetailsBean.str_HouseNo}"/></td>
 	 
 	</tr>
-	<tr><th><h:outputText value="Size of House (Sqft.)" /> </th>
+	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
-	<td><h:inputText    id="size" value="#{apartmentDetailsBean.int_HouseSize}"/></td></tr>
-	<tr><th><h:outputText value="Type Of House" /> </th>
+	<td><p:inputText    id="size" value="#{apartmentDetailsBean.int_HouseSize}"/></td></tr>
+	<tr><th><p:outputLabel value="Type Of House" /> </th>
 	<td><h:selectOneMenu  value="#{apartmentDetailsBean.str_TypeOfHouse}" > 
 	 <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="1BHK" itemValue="1BHK" />
@@ -243,13 +243,13 @@ Unless the Community Setup is complete, the changes that are made will not be sa
               <f:selectItem itemLabel="SingleBuilding" itemValue="SingleBuilding" />
               
                  </h:selectOneMenu></td></tr>
-	<tr><th><h:outputText value="No Of BathRoom" /> </th>
+	<tr><th><p:outputLabel value="No Of BathRoom" /> </th>
              
-	<td><h:inputText    id="NoOfBathRoom" value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
-	<tr><th><h:outputText value="No Of Balconies" /> </th>
+	<td><p:inputText    id="NoOfBathRoom" value="#{apartmentDetailsBean.int_NoOfBedRooms}"/></td></tr>
+	<tr><th><p:outputLabel value="No Of Balconies" /> </th>
             
-	<td><h:inputText    id="BoOfBalconies" value="#{apartmentDetailsBean.int_NoOfBalconies}"/></td></tr>
-	<tr><th><h:outputText value="Rented" /> </th>
+	<td><p:inputText    id="BoOfBalconies" value="#{apartmentDetailsBean.int_NoOfBalconies}"/></td></tr>
+	<tr><th><p:outputLabel value="Rented" /> </th>
           <td><h:selectOneMenu  id="isRented" value="#{apartmentDetailsBean.is_Rented}"> 
               <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="Yes" itemValue="Yes" />
@@ -296,7 +296,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 
 			             </h:commandButton>  <br />
 			             <!-- status message of file upload; rendered if message is set -->
-		<h:outputText value="#{apartmentDetailsBean.statusMessage}"
+		<p:outputLabel value="#{apartmentDetailsBean.statusMessage}"
 			          rendered="#{not empty apartmentDetailsBean.statusMessage}" /></td></tr></table>
         </p:outputPanel>
         </p:dialog>

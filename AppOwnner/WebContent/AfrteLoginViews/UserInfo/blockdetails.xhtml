@@ -58,19 +58,19 @@
        </f:facet>
        <p:ajax event="cellEdit" listener="#{apartmentDetailsBean.onCellEdit}"  update=":form:ui-growl" />
                
-               <p:column selectionMode="single">
+               <p:column  style="width:35px;text-align:center" selectionMode="single">
                
                </p:column>
                 <p:column headerText="Block Name">
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{blockDetails.str_BlockName}" /></f:facet>
+               <f:facet name="output"><p:outputLabel value="#{blockDetails.str_BlockName}" /></f:facet>
                <f:facet name="input"><p:inputText value="#{blockDetails.str_BlockName}" style="width:96%" label="Block Name"/></f:facet>
            </p:cellEditor>
        </p:column>
         <p:column headerText="NO.Of Houses">
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{blockDetails.int_NoOfHouses}" /></f:facet>
-               <f:facet name="input"><p:inputText value="#{blockDetails.int_NoOfHouses}" style="width:96%" label="Block Name"/></f:facet>
+               <f:facet name="output"><p:outputLabel value="#{blockDetails.int_NoOfHouses}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{blockDetails.int_NoOfHouses}" style="width:96%"  label="Block Name"/></f:facet>
            </p:cellEditor>
        </p:column>
  
@@ -81,16 +81,19 @@
         <p:outputPanel id="blockDetail" style="text-align:center;">
        <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 	<tr><th> 
-               <h:outputText value="Block Name" /> </th>
+               <p:outputLabel for="blockName"  value="Block Name" /> </th>
              
-	<td><h:inputText    id="blockName" value="#{apartmentDetailsBean.str_BlockName}"/></td>
+	<td><p:inputText    required="true" requiredMessage="Enter House No"   id="blockName" value="#{apartmentDetailsBean.str_BlockName}"/></td>
 	 
 	</tr>
-	<tr><th><h:outputText value="No. Of Houses" /> </th>
+	<tr><th><p:outputLabel value="No. Of Houses" /> </th>
              
-	<td><h:inputText    id="noofhouses" value="#{apartmentDetailsBean.int_NoOfHouse}"/></td></tr>
-	<tr><td><h:commandButton   styleClass="btn" id="Cancel"  value="Cancel"     action="blockdetails.xhtml" /></td><td><h:commandButton   styleClass="btn" id="submit"  value="Submit"     action="#{apartmentDetailsBean.saveBlockDetails}" />
+	<td><p:inputText    id="noofhouses" value="#{apartmentDetailsBean.int_NoOfHouse}"/></td></tr>
+	<tr> <td><h:commandButton execute="@form" update="form:DT" styleClass="btn" id="submit"  value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" >
+	  
+	 </h:commandButton>
 	 </td>
+	 <td><h:commandButton   styleClass="btn" id="Cancel"  value="Cancel"     action="blockdetails.xhtml" /></td>
 	 </tr>
 	 </table>
 	 </p:outputPanel>
