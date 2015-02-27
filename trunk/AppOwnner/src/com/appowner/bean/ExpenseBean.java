@@ -603,7 +603,7 @@ public String addExpenses()
 		else
 			return "Expenses.xhtml";
 	}
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Expenses Added Successfully!"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
 	
 	return "Expenses.xhtml";
 }
@@ -687,14 +687,15 @@ List<Expense> entitiesToDelete = new ArrayList<Expense>();
     	{
             entitiesToDelete.add(expense);
         }
-    	FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Expense deleted Successfully!", "Expense deleted Successfully!"));
+    	
     } 
  
     getExpenseService().deleteSelectedExpenses(entitiesToDelete);
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+	Flash flash = facesContext.getExternalContext().getFlash();
+	flash.setKeepMessages(true);
+	flash.setRedirect(true);
+	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Expense deleted Successfully!", "Expense deleted Successfully!"));
     return "Expenses.xhtml?faces-redirect=true";
 
 	
@@ -1534,6 +1535,7 @@ public String saveAssetCategory()
 	assetcategory=new AssetCategory();
 	assetcategory.setStr_assetcat_name(str_AssetCategoryType);
 	assetcategory.setStr_OrganizationName(str_OrganizationName);
+	assetcategory.setInt_AppartmentId(Util.getAppartmentId());
 	 
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Added Successfully!"));
 	return"assetcategory.xhtml";

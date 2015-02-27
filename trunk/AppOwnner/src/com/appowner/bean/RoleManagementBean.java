@@ -118,12 +118,20 @@ public Boolean getRoleSelected() {
 public void setRoleSelected(Boolean roleSelected) {
 	this.roleSelected = roleSelected;
 }
+public static Integer getId1() {
+	return id1;
+}
+
+public static void setId1(Integer id1) {
+	RoleManagementBean.id1 = id1;
+}
 Integer roleid;
-public  void getAssignedRoles()
+public static Integer id1;
+public  void getAssignedRoles(int int_UserId)
 {
 	List<RoleAssignment> roleId =new ArrayList<RoleAssignment>();
 	   roleId.addAll(getMaintainanceStaffService().getAssignedIds(int_UserId));
-	   
+	  id1= int_UserId;
 	/*@SuppressWarnings("rawtypes")
 	ListIterator itr = roleId.listIterator();
 	while(itr.hasNext())
@@ -142,6 +150,7 @@ public  void getAssignedRoles()
 	//System.out.println(roleid);
 	//return  str_AssinedRoles;
 	*/
+	   System.out.println(int_UserId+"romemmmmmmmmmmmmmmmmmmmmmmmmmmm");
 	str_AssinedRoles =new ArrayList<RoleAssignment>();
 	System.out.println(int_UserId);
 	str_AssinedRoles.addAll(getMaintainanceStaffService().getRoleNames(int_UserId));
@@ -289,9 +298,9 @@ C=C;
 		System.out.println(Cls_UserBean.id+"jfdffd");
 		roleAssignment.setStr_RoleName(str_RoleName);
 		roleAssignment.setInt_RoleId(getMaintainanceStaffService().getRoleId(str_RoleName));
-		roleAssignment.setInt_UserId(Cls_UserBean.id);
+		roleAssignment.setInt_UserId(id1);
 		 
-		S=getMaintainanceStaffService().getUserType(int_UserId);
+		S=getMaintainanceStaffService().getUserType(id1);
 		System.out.println(S);
 		if(S==null)
 		{
@@ -301,7 +310,7 @@ C=C;
 			roleAssignment.setChar_User_Type('S');
 		}
 		roleAssignment.setInt_ApartmentId(Util.getAppartmentId());
-		List<Integer> roleId=getMaintainanceStaffService().getRoleID(int_UserId);
+		List<Integer> roleId=getMaintainanceStaffService().getRoleID(id1);
 		 ListIterator itr=roleId.listIterator();
 		 while(itr.hasNext())
 		 {
@@ -312,16 +321,20 @@ C=C;
 			 if( roleName.equals(str_RoleName))
 			 {
 				System.out.println(roleName);
-				 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( getStr_RoleName()+" is already Assigned  to u plz Choose another Role "));
-			 return null;
+				 getMaintainanceStaffService().deleteAssignedRoles(str_RoleName,int_UserId);
+				 
+			 
 			 }
 			
 			 System.out.println("k1111111111111111111111");
 		   
-	} getMaintainanceStaffService().saveRoleManagement(roleAssignment);
+	} 
+		 getMaintainanceStaffService().saveRoleManagement(roleAssignment);
+	
 		 }
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Role Updated Successfully!"));
  
-	 return  null;
+	 return "committeememberlist.xhtml";
 	
 }
 private String str_UserName;
