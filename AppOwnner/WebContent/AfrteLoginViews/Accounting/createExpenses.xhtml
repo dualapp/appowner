@@ -9,7 +9,17 @@
 	<ui:define name="content">
 	<h:head>
     <title>Expense  Form</title>
-  
+   <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+</style>
 </h:head>
 	 <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
@@ -22,12 +32,12 @@
 		</tbody>
 	</table>
 	<h:form>
-	 
+	 <p:growl id="ui-growl"   sticky="true" />
 	 <div id="page3">
    
 	<table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
         <tr><th> 
-               <h:outputLabel value="Organisation:" /> </th>
+               <p:outputLabel value="Organisation:" /> </th>
              <td> <h:selectOneMenu  style="width:150px" >
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
@@ -55,18 +65,18 @@
                  </h:selectOneMenu>
                  </td>
                 <td> 
-               <p:calendar  id="Date" style="width:150px"   navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
+               <p:calendar  id="Date" style="width:150px"  required="true" requiredMessage="Enter Date"  navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
                 
                   </p:calendar>
                     
              </td>     
-             <td><h:inputText id="Amount" style="width:150px" value="#{expenseBean.int_Ammount}" valueChangeListener="#{expenseBean.amountListener}">
+             <td><p:inputText id="Amount" style="width:150px"  required="true" requiredMessage="Enter Amount" value="#{expenseBean.int_Ammount}" valueChangeListener="#{expenseBean.amountListener}">
              
-             </h:inputText> 
+             </p:inputText> 
              
               </td>
               
-               <td><h:inputText  value="#{expenseBean.str_Description}" style="width:150px" valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
+               <td><p:inputText  value="#{expenseBean.str_Description}" style="width:150px" valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
                <td><h:selectOneMenu id="assetcatname"  style="width:150px" value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" >
                   <f:selectItem itemLabel="Select" itemValue=""/>
                  
@@ -109,13 +119,13 @@
                   </p:calendar>
                     
              </td>     
-             <td><h:inputText id="Amount1"  value="#{expenseBean.int_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean.amountListener}">
+             <td><p:inputText id="Amount1"  value="#{expenseBean.int_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean.amountListener}">
              
-             </h:inputText> 
+             </p:inputText> 
              
               </td>
               
-               <td><h:inputText  value="#{expenseBean.str_Description}"  style="width:150px" valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
+               <td><p:inputText  value="#{expenseBean.str_Description}"  style="width:150px" valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
                <td><h:selectOneMenu id="assetcatname1"  style="width:150px"  value="#{expenseBean.str_AssetCategoryType1}" valueChangeListener="#{expenseBean.assetCatNameListener1}">
                   <f:selectItem itemLabel="Select" itemValue="" />
                  
