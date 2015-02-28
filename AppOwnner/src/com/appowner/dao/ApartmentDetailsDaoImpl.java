@@ -36,7 +36,7 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	@Override
 	public void saveCommunitySetup(CommunitySetup cs) {
 		
-		sessionFactory.getCurrentSession().save(cs);
+		sessionFactory.getCurrentSession().saveOrUpdate(cs);
 		
 	}
 
@@ -244,8 +244,10 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 
 	@Override
 	public void deleteCommunityType(String str_CommunityType) {
-		Integer cmid=(Integer) getSessionFactory().getCurrentSession().createQuery("int_MasterCommunityTypeId from CommunityTypeMaster where str_CommunityType=?").setParameter(0, str_CommunityType).uniqueResult();
-		getSessionFactory().getCurrentSession().createQuery("delete from CommunityType where int_MasterCommunityTypeId=?").setParameter(0, cmid);
+		System.out.println(str_CommunityType+"ctype");
+		Integer cmid=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MasterCommunityTypeId from CommunityTypeMaster where str_CommunityType=?").setParameter(0, str_CommunityType).uniqueResult();
+		System.out.println(cmid+"ctype");
+		getSessionFactory().getCurrentSession().createQuery("delete from CommunityType where int_MasterCommunityTypeId=? and int_ApartmentId=?").setParameter(0, cmid).setParameter(1,Util.getAppartmentId()).executeUpdate();
 	}
 
 	@Override
