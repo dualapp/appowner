@@ -8,7 +8,7 @@
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
  <h:head>
-    <title>Invoice  Form</title>
+    <title>Expense</title>
    <style type="text/css">
          input[type=text] 
           {
@@ -22,6 +22,17 @@
            weight:250px;
           }
       </style>	
+       <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+</style>
       
 </h:head>
 <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
@@ -34,66 +45,66 @@
 		</tbody>
 	</table>
   <h:form id="form">
-   <p:growl id="msgs" showDetail="true" />
+  <p:growl id="ui-growl" globalOnly="true" sticky="true" />
   <div id="page3">
    
        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
          
-              <th><h:outputText value="Organisation:" /></th>
-              <td><p:selectOneMenu     value="#{expenseBean.str_OrganizationName}" >
+              <th><p:outputLabel value="Organisation:" /></th>
+              <td><h:selectOneMenu     value="#{expenseBean.str_OrganizationName}" >
                
                 <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}"/>
                    
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
             
-             <th><h:outputText  value="Expense Type:" /></th>
-               <td><p:selectOneMenu   value="#{expenseBean.str_ExcepenseType}" >
+             <th><p:outputLabel  value="Expense Type:" /></th>
+               <td><h:selectOneMenu   value="#{expenseBean.str_ExcepenseType}" >
                   <f:selectItem itemLabel="All" itemValue="All" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"/>
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"/>
                    
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
               
-             <th><h:outputText  value="Expense Category:" /></th>
-               <td><p:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  >
+             <th><p:outputLabel  value="Expense Category:" /></th>
+               <td><h:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  >
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
                  </td></tr>
                            
              
             
-             <tr> <th><h:outputText value="Duration:" /></th>
-              <td><p:selectOneMenu value="#{expenseBean.date_Duration}">
+             <tr> <th><p:outputLabel value="Duration:" /></th>
+              <td><h:selectOneMenu value="#">
              
-            <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
+            <f:selectItem   itemValue="today" itemLabel="Today"/>
             <f:selectItem  itemLabel="Lastweek" itemValue="Private" />
              <f:selectItem  itemLabel="CurrentMonth" itemValue="Private" />
               <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
                <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
                 <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
-      </p:selectOneMenu>
+      </h:selectOneMenu>
              </td>
                
-             <th><h:outputText  value="Asset Category:" /></th>
-               <td><p:selectOneMenu id="assetcatname"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" >
+             <th><p:outputLabel  value="Asset Category:" /></th>
+               <td><h:selectOneMenu id="assetcatname"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" >
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                    <p:ajax event="change" update="assetname" process="assetcatname"/>
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
                
-             <th><h:outputText  value="Asset Name" /></th>
-               <td><p:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" >
+             <th><p:outputLabel  value="Asset Name" /></th>
+               <td><h:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" >
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                   <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
                   
                   
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
                  </td>
                 <th><p:commandButton   value="Go" action="#{expenseBean.getExpenseList}"/></th></tr>
                  </table>
@@ -121,61 +132,61 @@
                  var="Expenselist" value="#{expenseBean.expenseList}"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                rows="5" paginatorPosition="bottom"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="3,6,12"  >
-                <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
+                <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">
           </p:column>
         
  
           <p:column     headerText="Organization"   >
           
-                <h:outputText   value="#{Expenselist.str_OrganizationName}" /> 
+                <p:outputLabel   value="#{Expenselist.str_OrganizationName}" /> 
                  
                  
             </p:column>
             <p:column  headerText="Id"  >
-                 <h:outputText    value="#{Expenselist.str_ExpenseId}" /> 
+                 <p:outputLabel    value="#{Expenselist.str_ExpenseId}" /> 
                 
             </p:column>
               <p:column   headerText="Type"  >
-                <h:outputText    value="#{Expenselist.str_ExpenseType}" /> 
+                <p:outputLabel    value="#{Expenselist.str_ExpenseType}" /> 
           
                 
             </p:column>
              <p:column   headerText="Expense"  >
-                <h:outputText    value="#{Expenselist.str_ExpenseCategory}" /> 
+                <p:outputLabel    value="#{Expenselist.str_ExpenseCategory}" /> 
           
                 
             </p:column>
              <p:column    headerText="Description" >
-              <h:outputText    value="#{Expenselist.str_Description}" /> 
+              <p:outputLabel    value="#{Expenselist.str_Description}" /> 
                 
             </p:column>
             <p:column   headerText="AssetCategory"  >
-                <h:outputText    value="#{Expenselist.str_AssetCatType}" /> 
+                <p:outputLabel    value="#{Expenselist.str_AssetCatType}" /> 
           
                 
             </p:column>
              <p:column   headerText="Amount"  >
-                <h:outputText    value="#{Expenselist.int_Ammount}" /> 
+                <p:outputLabel    value="#{Expenselist.int_Ammount}" /> 
           
                 
             </p:column>
              <p:column   headerText="Date"  >
-                <h:outputText    value="#{Expenselist.date_Duration}" /> 
+                <p:outputLabel    value="#{Expenselist.date_Duration}" /> 
           
                 
             </p:column>
-             <p:column   headerText="Asset Category"  >
-                <h:outputText    value="#{Expenselist.str_ExpenseCategory}" /> 
+             <p:column   headerText="Expense Category"  >
+                <p:outputLabel    value="#{Expenselist.str_ExpenseCategory}" /> 
           
                 
             </p:column>
              <p:column   headerText="Asset Name"  >
-                <h:outputText    value="#{Expenselist.str_AssetName}" /> 
+                <p:outputLabel    value="#{Expenselist.str_AssetName}" /> 
           
                 
             </p:column>
              <p:column   headerText="Status"  >
-                <h:outputText    value="#{Expenselist.str_AccountName}" /> 
+                <p:outputLabel    value="Approved" /> 
           
                 
             </p:column>
@@ -190,46 +201,46 @@
             <ui:repeat value="#{expenseBean.selectedExpenses}" var="ex">
              <tr>
  <th>
-    <h:outputText value="Organization Name:"/></th>
+    <p:outputLabel value="Organization Name:"/></th>
     <td>
-    <h:inputText value="#{ex.str_OrganizationName}"/></td>  
+    <p:inputText value="#{ex.str_OrganizationName}"/></td>  
     </tr>
   <tr>
  <th>
-    <h:outputText value="AccountName:"/></th>
+    <p:outputLabel value="AccountName:"/></th>
     <td>
-    <h:inputText value="#{ex.str_AccountName}"/></td>  
+    <p:inputText value="#{ex.str_AccountName}"/></td>  
     </tr>
      <tr>
  <th>
-    <h:outputText value="ExpenseType:"/></th>
+    <p:outputLabel value="ExpenseType:"/></th>
     <td>
-    <h:inputText value="#{ex.str_ExpenseType}"/></td>  
+    <p:inputText value="#{ex.str_ExpenseType}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="ExpenseCategory:"/></th>
+    <p:outputLabel value="ExpenseCategory:"/></th>
     <td>
-    <h:inputText value="#{ex.str_ExpenseCategory}"/></td>  
+    <p:inputText value="#{ex.str_ExpenseCategory}"/></td>  
     </tr>
     
       <tr>
  <th>
-    <h:outputText value="AssetCategoryType:"/></th>
+    <p:outputLabel value="AssetCategoryType:"/></th>
     <td>
-    <h:inputText value="#{ex.str_AssetCatType}"/></td>  
+    <p:inputText value="#{ex.str_AssetCatType}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="AssetsName:"/></th>
+    <p:outputLabel value="AssetsName:"/></th>
     <td>
-    <h:inputText value="#{ex.str_AssetName}"/></td>  
+    <p:inputText value="#{ex.str_AssetName}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="Ammount:"/></th>
+    <p:outputLabel value="Ammount:"/></th>
     <td>
-    <h:inputText value="#{ex.int_Ammount}"/></td>  
+    <p:inputText value="#{ex.int_Ammount}"/></td>  
     </tr>
       
     <tr><td><h:commandButton value="Update" action="#{expenseBean.updateOneExpense(ex)}" /> 
@@ -247,46 +258,46 @@
             <ui:repeat value="#{expenseBean.selectedExpenses}" var="ex">
             <tr>
  <th>
-    <h:outputText value="Organization Name:"/></th>
+    <p:outputLabel value="Organization Name:"/></th>
     <td>
-    <h:outputText value="#{ex.str_OrganizationName}"/></td>  
+    <p:outputLabel value="#{ex.str_OrganizationName}"/></td>  
     </tr>
   <tr>
  <th>
-    <h:outputText value="AccountName:"/></th>
+    <p:outputLabel value="AccountName:"/></th>
     <td>
-    <h:outputText value="#{ex.str_AccountName}"/></td>  
+    <p:outputLabel value="#{ex.str_AccountName}"/></td>  
     </tr>
      <tr>
  <th>
-    <h:outputText value="ExpenseType:"/></th>
+    <p:outputLabel value="ExpenseType:"/></th>
     <td>
-    <h:outputText value="#{ex.str_ExpenseType}"/></td>  
+    <p:outputLabel value="#{ex.str_ExpenseType}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="ExpenseCategory:"/></th>
+    <p:outputLabel value="ExpenseCategory:"/></th>
     <td>
-    <h:outputText value="#{ex.str_ExpenseCategory}"/></td>  
+    <p:outputLabel value="#{ex.str_ExpenseCategory}"/></td>  
     </tr>
     
       <tr>
  <th>
-    <h:outputText value="AssetCategoryType:"/></th>
+    <p:outputLabel value="AssetCategoryType:"/></th>
     <td>
-    <h:outputText value="#{ex.str_AssetCatType}"/></td>  
+    <p:outputLabel value="#{ex.str_AssetCatType}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="AssetsName:"/></th>
+    <p:outputLabel value="AssetsName:"/></th>
     <td>
-    <h:outputText value="#{ex.str_AssetName}"/></td>  
+    <p:outputLabel value="#{ex.str_AssetName}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="Ammount:"/></th>
+    <p:outputLabel value="Ammount:"/></th>
     <td>
-    <h:outputText value="#{ex.int_Ammount}"/></td>  
+    <p:outputLabel value="#{ex.int_Ammount}"/></td>  
     </tr>
             </ui:repeat>
             </table>
