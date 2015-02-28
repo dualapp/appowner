@@ -116,7 +116,6 @@ function InvalidMsg1(textbox) {
 				
  <div style="background-color: #FFFFFF;">				
  <h:form id="form" >
-
  <table cellpadding="0" cellspacing="0" border="0"  width="100%" class="src">
 		<tbody>
 			<tr>
@@ -238,7 +237,7 @@ function InvalidMsg1(textbox) {
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText id="city" value="#{selectOneMenuBean.city}" readOnly="true"  required="true" requiredMessage="Enter City Name!">
             </h:inputText></td><td><p:message for="city" display="icon"/></td></tr>
-            
+             <tr><td></td><td> <p:captcha id="captcha" label="Captcha" theme="white" language="en" /></td><td><p:message for="captcha" display="icon"/></td></tr>
              <tr> 		<td></td>	
             <td><h:commandButton id="addUser" value="Create Account" action="#{cls_UserBean.addUser}" style=" background-color:#9ACD32;width:10em; color:white;margin-top:1em;"/>
           </td>  
