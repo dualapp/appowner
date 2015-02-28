@@ -10,6 +10,15 @@
             /WEB-INF/config/application-context-servlet.xml
         </param-value>
   </context-param>
+   <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6LegywITAAAAAIjjvS5Zrt0OpVuLhtoRPjK_T3PE</param-value>
+    </context-param>
+   
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6LegywITAAAAAPc-8LvrI4FFDbfSDoQRK7heUtSV</param-value>
+    </context-param>  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
