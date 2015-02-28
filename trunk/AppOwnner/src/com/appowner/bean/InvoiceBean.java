@@ -203,11 +203,19 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		this.listInvoiceName = listInvoiceName;
 	}
 	private InvoiceTransaction iinvoice;
-	private static  double tax1;
-	public static double getTax1() {
-		return tax1;
+	private static  List<Double> tax1;
+	
+	public static String getTax1() {
+		StringBuilder out = new StringBuilder();
+		for (Object o : tax1)
+		{
+		  out.append(o.toString());
+		  out.append(",");
+		}
+		System.out.println(out.toString()+"tax1");
+		return out.toString();
 	}
-	public static void setTax1(double tax1) {
+	public static void setTax1(List<Double> tax1) {
 		InvoiceBean.tax1 = tax1;
 	}
 	public InvoiceTransaction getIinvoice() {
@@ -241,8 +249,8 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	 private static String InvoiceNo="invoiceNo";
 	   
 	    private static java.util.Date Date;
-	    private static Double amount;
-	    private static Double tax;
+	    private static List<Double> amount;
+	    private static List<Double> tax;
 	    private static Double due;
 	    private static Date date1;
 	    public static String Dues;
@@ -299,16 +307,34 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		public static void setDate(java.util.Date date) {
 			Date = date;
 		}
-		public static Double getAmount() {
-			return amount;
+		
+		public static String getAmount() {
+			StringBuilder out = new StringBuilder();
+			for (Object o : amount)
+			{
+			  out.append(o.toString());
+			  out.append(",");
+			}
+			System.out.println(out.toString());
+			return out.toString();
+			
 		}
-		public static void setAmount(Double amount) {
+		public static void setAmount(List<Double> amount) {
 			InvoiceBean.amount = amount;
 		}
-		public static Double getTax() {
-			return tax;
+		
+		public static String getTax() {
+			StringBuilder out = new StringBuilder();
+			for (Object o : tax)
+			{
+			  out.append(o.toString());
+			  out.append(",");
+			}
+			System.out.println(out.toString()+"tax");
+			return out.toString();
+			
 		}
-		public static void setTax(Double tax) {
+		public static void setTax(List<Double> tax) {
 			InvoiceBean.tax = tax;
 		}
 		public static Double getDue() {
@@ -487,9 +513,10 @@ private List<DueTransaction> listDueTransaction;
 					InvoiceNo=int_InvoiceNo;
 					Date=dat_InvoiceDate;
 					date1=getDat_DueDate();
-					amount=getTotalAmount();
-					tax=getTaxAmount1();
-					tax1=getTaxAmount();
+					amount=totalAmounts;
+					System.out.println(amount+"kvcvjvkj");
+					tax=tax2;
+					tax1=taxAmounts; 
 					due=getTotalDue();
 					date3=getDate3();
 					block=getStr_Block();
@@ -838,6 +865,7 @@ private List<DueTransaction> listDueTransaction;
 		    	
 		    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 		    	 tax2.add(taxAmount);
+		    	
 		    	 if(str3.equalsIgnoreCase("Sqrt"))
 		    	  {   Double sqrt=getInvoiceService().getSqft(ddd);
 		    	      System.out.println("dksdsk");
@@ -859,7 +887,7 @@ private List<DueTransaction> listDueTransaction;
 			     totalDue=subTotal+taxAmount2;
 		    	 
 			    	  totalAmounts.add(totalAmount);
-			    	 
+			    	
 			    	  System.out.println(totalAmounts+"jffd");
 			  		StringBuilder out = new StringBuilder();
 			  		for (Object o : totalAmounts)
@@ -951,6 +979,7 @@ private List<DueTransaction> listDueTransaction;
 			    	 }
 			    	
 			    	  tax2.add(taxAmount);
+			    	  tax=tax2;//for Mail purpose
 			    	  if(str3.equalsIgnoreCase("Sqft"))
 			    	  {   Double sqrt=getInvoiceService().getSqft(str);
 			    	      System.out.println(sqrt+"dksdsk");
@@ -967,6 +996,7 @@ private List<DueTransaction> listDueTransaction;
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	
 			    	 taxAmounts.add(taxAmount1);
+			    	 tax1=taxAmounts;  //for Mail purpose
 			    	 System.out.println(taxAmounts+"jkkjkjjk");
 			    	 subTotal=subTotal+totalAmount;
 			    	
@@ -974,7 +1004,8 @@ private List<DueTransaction> listDueTransaction;
 				     totalDue=subTotal+taxAmount2;
 			    	 
 				    	  totalAmounts.add(totalAmount);
-				   
+				           amount=totalAmounts;  //for Mail purpose
+				           System.out.println(amount+"gffkllkfgh");
 				    	  System.out.println(totalAmounts);
 				  	
 		 
