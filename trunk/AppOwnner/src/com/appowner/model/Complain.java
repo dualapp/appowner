@@ -46,16 +46,10 @@ public class Complain implements Serializable {
 	public void setStr_VendorType(String str_VendorType) {
 		this.str_VendorType = str_VendorType;
 	}
-	public String getStr_UserName() {
-		return str_UserName;
-	}
-	public void setStr_UserName(String str_UserName) {
-		this.str_UserName = str_UserName;
-	}
+	
 	@Column(name = "VenderType")
 	private String str_VendorType;
-	@Column(name = "UserName")
-	private String str_UserName;
+	
 	@Column(name = "ComplainType")
 	private String str_ComplainType;
 
@@ -97,8 +91,29 @@ public class Complain implements Serializable {
 	public String getFlat() {
 		return Flat;
 	}
+	private String block;
+	public String getBlock() {
+		return block;
+	}
+	public void setBlock(String block) {
+		this.block = block;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public void setFlat(String flat) {
 		Flat = flat;
+	}
+	private String status;
+	private String adminReason;
+	public String getAdminReason() {
+		return adminReason;
+	}
+	public void setAdminReason(String adminReason) {
+		this.adminReason = adminReason;
 	}
 	
 }
