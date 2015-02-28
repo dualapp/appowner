@@ -54,10 +54,12 @@ public class EmailUtility2 {
        System.out.println(invoice);
        System.out.println(date);
        System.out.println(date1); 
-       System.out.println(amount);
-       System.out.println(tax);
-       System.out.println(due);
+       System.out.println(amount+"fjdfdkjdf");
+       System.out.println(tax+"klkdffd");
+       System.out.println(taxAmount+"fdjfdjkfjkfdjkf");
+       System.out.println(dues+"kldfklffd");
        System.out.println(transaction);
+       System.out.println(taxName+"fdkjdkfkfdj");
       String str="";
        ListIterator list=InvoiceBean.getTransaction1().listIterator();
        while(list.hasNext())
@@ -66,10 +68,11 @@ public class EmailUtility2 {
     	   DueTemplate template=(DueTemplate)o;
     	  dues=template.getStr_DueTemplate();
     	  taxName=template.getStr_TaxTemplate();
+    	  System.out.println(dues+"kfdjkfjfdkdfkj");
     	 str=str+"<tr style="+"line-height:25px;"+">"+"<td style="+"padding-left:5px;width:440px;"+">"+dues+
   	    "</td>"+
   	  "<td align="+"right"+"" +"style="+"width:250px;"+">"+"</td>"+
-  	    "<td align="+"right"+"" +"style="+"width:250px;"+">"+amount+
+  	    "<td align="+"right"+"" +"style="+"width:250px;"+">"+
       	"</td>"+
       	
       	"<td align="+"right"+""+ "style="+"padding-right:5px;width:200px;"+">"+taxName+"</td>"+
@@ -91,19 +94,19 @@ public class EmailUtility2 {
    		InvoiceDao o1=new InvoiceDaoImpl();
    
        String str1="";
-       ListIterator list1=InvoiceBean.getTransaction1().listIterator();
+      ListIterator list1=InvoiceBean.getTransaction1().listIterator();
        while(list1.hasNext())
        {  Object o=list1.next();
 	      DueTemplate template=(DueTemplate)o;
 	      taxName=template.getStr_TaxTemplate();
 	    System.out.println(taxName);
 	   
-		String taxAmount1="10.00";
-		double a=Double.parseDouble(taxAmount1);
-		double b=Double.parseDouble(amount);
-	   double tax5=(a * b)/100;
+	//	String taxAmount1="10.00";
+		//double a=Double.parseDouble(taxAmount1);
+	//	double b=Double.parseDouble(amount);
+	//   double tax5=(a * b)/100;
 	     str1=str1+"<tr style="+"line-height:25px;"+">"+
-        	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:300px;"+">"+"</td>"+"<td align="+"right"+"" +"style="+"width:200px;"+">"+taxName+"&nbsp;&nbsp;"+"("+taxAmount1+"%"+")"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;"+">"+tax5+"</td>"+
+        	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:300px;"+">"+"</td>"+"<td align="+"right"+"" +"style="+"width:200px;"+">"+taxName+"&nbsp;&nbsp;"+"("+tax+"%"+")"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;"+">"+taxAmount+"</td>"+
         	     "</tr>";
        }
         // creates a new session with an authenticator
@@ -134,7 +137,7 @@ public class EmailUtility2 {
         		         "<tr>"+
                         "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"INVOICE NO:"+" "+invoice+""+"</font>"+"</td>"+
         		        "</tr>"+"<tr>"+
-        		        "<td>"+"Date"+" "+date+""+" "+"(Pay Invoice by"+" "+date3+")"+"</td>"+
+        		        "<td>"+"Date"+" "+date+""+" "+"(Pay Invoice by"+" "+date1+")"+"</td>"+
         		        "</tr>"+"<tr>"+
         		        "<td>"+"<font size="+3+" color="+"#FFA07A"+">"+"Rs."+due+"</td>"+
                         "</tr>"+
