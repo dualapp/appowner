@@ -13,7 +13,7 @@
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <i
-						class="icon-leaf"></i>&nbsp;<h:outputText value="#{LoginBean.getUserloginname()}"/> &nbsp;<p:graphicImage  height="20" width="20" alt="AppartmentImg" value="#"/>&nbsp;<h:outputText value="#{expenseBean.getTextLogo()}"/>
+						class="icon-leaf"></i>&nbsp;<h:outputText value=""/> &nbsp;<p:graphicImage  height="20" width="20" alt="AppartmentImg" value="#"/>&nbsp;<h:outputText value="#{expenseBean.getTextLogo()}"/>
 				</small>
 				<p:graphicImage  height="20" width="20" alt="AppartmentLogo" value="#"/> &nbsp;
 				 
@@ -130,7 +130,7 @@
 
 						<li class="light-blue"><a data-toggle="dropdown" href="#"
 							class="dropdown-toggle"> <p:graphicImage width="40px" height="40px"   value="#{loginBean.var_ImageName1}"/> <span
-								class="user-info"> <small>Welcome,</small> <h:outputText value="#{loginBean.userloginname}" />
+								class="user-info"> <small>Welcome,</small> <h:outputText value="#{userInformationBean.name}" />
 							</span> <i class="icon-caret-down"></i>
 						</a>
 
@@ -139,7 +139,7 @@
 								<li><a href="setting.xhtml"> <i class="icon-cog"></i> Settings
 								</a></li>
 
-								<li><a href="/AppOwnner/AfrteLoginViews/UserInfo/myprofile.xhtml?int_UserId=#{loginBean.int_UserId}"> <i class="icon-user"></i> My Profile
+								<li><a href="#"> <i class="icon-user"></i> My Profile
 								</a></li>
 
 								<li class="divider"></li>
