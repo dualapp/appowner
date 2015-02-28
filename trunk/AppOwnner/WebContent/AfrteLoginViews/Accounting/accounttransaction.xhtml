@@ -463,7 +463,8 @@ style="width:600px">
         <tr>
        <td>  <h:outputText  value="Amount" /><font color="red" >*</font></td>
            <td><p:inputText id="str_DebitAmount" value="#{accountingBean.str_DebitAmount}" size="15"  required="true" requiredMessage="Please Enter Amount!">
-           <p:messages for="str_DebitAmount" style="color:red"/>
+             <p:ajax event="keyup" update="PhoneMsg" />
+           <p:messages id="PhoneMsg" for="str_DebitAmount" style="color:red"/>
            </p:inputText>
            </td>
           <td align="right">  <h:outputText  value="Amount" /><font color="red" >*</font></td>
