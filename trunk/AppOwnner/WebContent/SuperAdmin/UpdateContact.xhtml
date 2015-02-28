@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../include/templates/template2.xhtml">
+	<ui:define name="content">
+	  <f:metadata>
+	<f:viewParam name="contactId" value="#{cls_ContactBean.contactId}"  />
+	 
+	<f:viewAction action="#{cls_ContactBean.getContact1}" />
+</f:metadata>
+
+<h:head>
+    <title>JSFlive JSF 2.2 - Example 01</title>
+</h:head>
+<h:body>
+<h:form>
+  <h:panelGrid columns="2">
+    <h:outputText value="Name:"/>
+    <h:inputText value="#{cls_ContactBean.contact.contactName}"/>
+    
+    <h:outputText value="Service"/>
+    <h:inputText value="#{cls_ContactBean.contact.contactService1}"/>
+    
+    <h:outputText value="Phone"/>
+    <h:inputText value="#{cls_ContactBean.contact.contactPhone}"/>
+    
+    <h:outputText value="UserPhone"/>
+    <h:inputText value="#{cls_ContactBean.contact.str_PhoneNo}"/>
+    
+    <h:outputText value="Email"/>
+    <h:inputText value="#{cls_ContactBean.contact.str_Email}"/>
+    
+    <h:outputText value="AdditionalInformation"/>
+    <h:inputText value="#{cls_ContactBean.contact.additionalInfo}"/>
+     
+   <h:commandButton  value="Submit"  action="#{cls_ContactBean.saveContact}"/>
+   <h:button outcome="ViewContact.xhtml" value="Cancel"  />
+  </h:panelGrid>
+  </h:form>
+</h:body>
+</ui:define>
+</ui:composition>
