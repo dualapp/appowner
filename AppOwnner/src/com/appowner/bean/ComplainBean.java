@@ -29,6 +29,7 @@ import com.appowner.model.PanelPrice;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.service.ComplainService;
+import com.appowner.util.Util;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
@@ -144,19 +145,31 @@ public class ComplainBean implements Serializable{
 		
 
 	}
+	private String adminReason;
+	public String getAdminReason() {
+		return adminReason;
+	}
+	public void setAdminReason(String adminReason) {
+		this.adminReason = adminReason;
+	}
+	
 	public String addComplain()
 	{  try{
 		Complain cmp=new Complain();
-		cmp.setStr_UserName(getStr_UserName());
+		
 		cmp.setCh_Complain(getCh_Complain());
 		cmp.setStr_ComplainType(getStr_ComplainType());
 		cmp.setStr_Description(getStr_Description());
 		
 		cmp.setStr_File(getPath1());
 		cmp.setStr_VendorType(str_VendorType);
+		cmp.setFlat(getFlat());
+		cmp.setBlock(getBlock());
 		System.out.println(str_VendorType);
 		cmp.setStr_VenderName(str_VenderName);
 		System.out.println(str_VenderName);
+		cmp.setStatus("Not Done");
+		cmp.setAdminReason(getAdminReason());
 		getComplainService().addComplain(cmp);
 		
 		return "ComplainView.xhtml";
@@ -205,12 +218,14 @@ public class ComplainBean implements Serializable{
 				FlatID = flatID;
 			}
 			public String getFlat() {
+				Flat=Util.getFlatNo();
 				return Flat;
 			}
 			public void setFlat(String flat) {
 				Flat = flat;
 			}
 			public String getBlock() {
+				Block=Util.getBlock();	
 				return Block;
 			}
 			public void setBlock(String block) {

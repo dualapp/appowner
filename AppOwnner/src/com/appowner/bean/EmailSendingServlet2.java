@@ -38,6 +38,7 @@ public class EmailSendingServlet2 extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         // reads form fields
         String recipient = request.getParameter("recipient");
+        System.out.println(recipient+"fdkjfdjkfdkjf");
         String subject = request.getParameter("subject");
         String content = request.getParameter("content");
         String invoice =request.getParameter("invoice");
