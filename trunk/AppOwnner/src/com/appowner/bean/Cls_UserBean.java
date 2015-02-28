@@ -1,7 +1,9 @@
 package com.appowner.bean;
 
+import java.awt.event.ActionEvent;
 import java.io.Serializable;
 //package org.primefaces.showcase.view.ajax;
+
 
 
 
@@ -747,6 +749,7 @@ public class Cls_UserBean implements Serializable{
 			System.out.println("////////////////ggg/////////////////////");
 			System.out.println(Util.getAppartmentId());
 			ListUser1.addAll(getUserService().userDetails(Util.getAppartmentId()));
+		
 			return ListUser1;
 		}
 		public void setListUser1(List<User> listUser1) {
@@ -865,8 +868,7 @@ public class Cls_UserBean implements Serializable{
 		{
 			
 			System.out.println(int_UserId+"jjj");
-			id=int_UserId;
-			System.out.println(id+"fdfjfdjfd");
+		
 			editlis=getUserService().edit(int_UserId);
 			System.out.println("..............................................");
 			System.out.println(editlis.getStr_FirstName());
@@ -1006,6 +1008,21 @@ public class Cls_UserBean implements Serializable{
 		    	System.out.println(str_BlockName+"blockssssssssssssssssssssssssssssssssssssssssssssssss");
 		    	
 		    }
+		 public User selectedUser;
+		public User getSelectedUser() {
+			return selectedUser;
+		}
+		public void setSelectedUser(User selectedUser) {
+			this.selectedUser = selectedUser;
+		}
+		public String selectRole(int id)
+		{   System.out.println("hjyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		   System.out.println(id+"dfjkdfjkfkj");
+			Cls_UserBean.id=id;
+			System.out.println(Cls_UserBean.id+"fdfjfdjfd");
+			return null;
+			
+		}
 	}
 
 
