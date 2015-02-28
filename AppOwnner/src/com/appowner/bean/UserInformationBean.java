@@ -87,7 +87,7 @@ public class UserInformationBean implements Serializable{
 			flash.setKeepMessages(true);
 			flash.setRedirect(true);
 		   facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Login Successful!!!!!!!!!!!"));
-           return "ApartmentView.xhtml";
+           return "/SuperAdmin/ApartmentView.xhtml";
 	   }
 	      
 }
