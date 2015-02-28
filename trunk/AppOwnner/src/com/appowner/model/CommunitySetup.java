@@ -34,7 +34,15 @@ public class CommunitySetup implements Serializable{
 	private Integer int_year;
 	@Column 
 	private Integer int_UserId;
+	@Column 
+	private Integer int_ApartmentID;
 	 
+	public Integer getInt_ApartmentID() {
+		return int_ApartmentID;
+	}
+	public void setInt_ApartmentID(Integer int_ApartmentID) {
+		this.int_ApartmentID = int_ApartmentID;
+	}
 	public Integer getInt_TotalNoOfHouses() {
 		return int_TotalNoOfHouses;
 	}
