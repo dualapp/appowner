@@ -668,6 +668,7 @@ public class LoginBean implements Serializable {
 		user=getUserService().getUser(Util.getUserId());
 		if (user!= null) {
 			userloginname = user.getStr_Username();
+			System.out.println(userloginname+"fdklmfdkjfdkjfjkfkjfgkj444444444444447777777777777");
 
 		}
 
@@ -1032,7 +1033,13 @@ public class LoginBean implements Serializable {
 	public void setInt_UserId(Integer int_UserId) {
 		this.int_UserId = int_UserId;
 	}
-
+	public boolean indicator;
+	public boolean isIndicator() {
+		return indicator;
+	}
+	public void setIndicator(boolean indicator) {
+		this.indicator = indicator;
+	}
 	public String logout() {
 		System.out.println("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
 	     
@@ -1042,7 +1049,7 @@ public class LoginBean implements Serializable {
 	      DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	    //get current date time with Date()
 	    Date date = new Date();
-	    
+	    indicator=true;
 	      str_LoggedOutTime=dateFormat.format(date);
 	      System.out.println("djjdffjfjdfj");
 	      return "/layout.xhtml";
