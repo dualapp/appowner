@@ -203,8 +203,11 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void communityTypeListener(ValueChangeEvent event)
 	{
 		
-		 
-		/*list1.addAll((List<String>) event.getOldValue());
+		 if(event.getOldValue() != null)
+		 {
+		list1.addAll((List<String>) event.getOldValue());
+		 }
+		 System.out.println("dfd");
 		@SuppressWarnings("rawtypes")
 		ListIterator itr1=list1.listIterator();
 		while(itr1.hasNext())
@@ -214,7 +217,7 @@ public class ApartmentDetailsBean  implements Serializable{
 			System.out.println(str_CommunityType);
 			 
 			getApartmentDetailsService().deleteCommunityType(str_CommunityType);
-		}*/
+		}
 		  
 		list.addAll((List<String>) event.getNewValue());
 	}
@@ -240,6 +243,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		communityType=new CommunityType();
 		cs1.setInt_TotalNoOfHouses(getInt_TotalHouse());;
 		 cs1.setInt_UserId(Util.getUserId());
+		 cs1.setInt_ApartmentID(Util.getAppartmentId());
 		
 		 cs1.setInt_year(getInt_year());
 		cs1.setInt_NoOfBlocks(getInt_NoOfBlock());
@@ -271,6 +275,7 @@ public class ApartmentDetailsBean  implements Serializable{
 			str_CommunityType=(String) itr1.next();
 			communityType.setInt_CommunitySetupId(getApartmentDetailsService().getCommunitySetupId(Util.getUserId()));
 		    communityType.setInt_MasterCommunityTypeId(getApartmentDetailsService().getCommunityType(str_CommunityType));
+		    communityType.setInt_ApartmentID(Util.getAppartmentId());
 		    getApartmentDetailsService().saveCommunitySetup(communityType);
 		}
 		 
