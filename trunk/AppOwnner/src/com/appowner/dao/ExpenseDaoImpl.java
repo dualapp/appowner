@@ -50,7 +50,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<String> getAssetCategoryList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(AssetCategory.class).setCacheable(true).setProjection(Projections.property("str_assetcat_name")).list();
+		return getSessionFactory().getCurrentSession().createQuery("select str_assetcat_name from AssetCategory where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override
@@ -161,8 +161,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getStr_AssetNameList(String str_AssetCategoryType) {
-		String hql="select str_AssetName from Assets where str_assetcat_name=?";
-		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).list();
+		String hql="select str_AssetName from Assets where str_assetcat_name=? and int_AppartmentId=?";
+		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).setParameter(1, Util.getAppartmentId()).list();
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		List<Expense> expense=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(AssetCategory.class)).list();
 		*/
 		
-		return getSessionFactory().getCurrentSession().createCriteria(AssetCategory.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from AssetCategory where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -199,7 +199,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<ChartOfAccount> getChartOfAccountList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(ChartOfAccount.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from ChartOfAccount where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -221,7 +221,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<Assets> getAssetsList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override
@@ -235,14 +235,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<FacilityNeeded> getFacilityNeededList(int firstRow, int rowPerPage) {
 		 
 		 System.out.println(firstRow+"100");
-		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setFirstResult(firstRow).setMaxResults(rowPerPage).list();
+		return getSessionFactory().getCurrentSession().createQuery("from FacilityNeeded where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getFacilityTypeList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(FacilityNeeded.class).setCacheable(true).setProjection(Projections.property("str_FacilityName")).list();
+		return getSessionFactory().getCurrentSession().createQuery("select str_FacilityName from FacilityNeeded where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 	}
 
 	@Override
@@ -325,8 +325,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@Override
 	public Long getTotalVote(Integer int_PoolId) {
-		String hql="select count(*) from Vote  where int_PoolId=?";
-		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_PoolId).uniqueResult();
+		String hql="select count(*) from Vote  where int_PoolId=? and int_OrganizationId=?";
+		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, int_PoolId).setParameter(1, Util.getAppartmentId()).uniqueResult();
 	}
 
 	@Override
@@ -346,15 +346,15 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<ServiceRequest> getListServiceRequest() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from ServiceRequest where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override
 	public Pool getLatestPolls() {
 		// TODO Auto-generated method stub
-		String hql=" select max(int_PoolId) from Pool";
+		String hql=" select max(int_PoolId) from Pool where int_OrganizationId=?";
 		//String hql="from Pool order by int_PoolId desc limit 1,1;";
-		Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+		Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).uniqueResult();
 		 
 		return  (Pool) getSessionFactory().getCurrentSession().createQuery("from Pool where int_PoolId=?").setParameter(0, id).uniqueResult();
 	}
@@ -369,7 +369,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 			String hql="from Assets where str_assetcat_name=? AND str_Block=? AND int_AppartmentId=?";
 			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).setParameter(1, str_Block).setParameter(2, int_ApartmentId).list();
 		}
-		return getSessionFactory().getCurrentSession().createCriteria(Assets.class).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override
