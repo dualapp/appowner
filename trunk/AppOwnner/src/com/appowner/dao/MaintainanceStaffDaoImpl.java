@@ -167,12 +167,17 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RoleAssignment> getRoleNames(Integer int_UserId) {
-		// TODO Auto-generated method stub
-		String hql7="select str_RoleName from  RoleAssignment where int_UserId=?";
+		if(int_UserId==null)
+		{
+			return getSessionFactory().getCurrentSession().createQuery("select str_RoleName from RoleMaster where int_ApartmentID=0 or int_ApartmentID=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).list();	
+		}
+		else
+		{
+		String hql7="select str_RoleName from  RoleAssignment where int_UserId=? and int_ApartmentId=?";
 		//String hql8="from  RoleAssignment where int_UserId=?";
-		return getSessionFactory().getCurrentSession().createQuery(hql7).setParameter(0, int_UserId).list();
+		return getSessionFactory().getCurrentSession().createQuery(hql7).setParameter(0, int_UserId).setParameter(1,Util.getAppartmentId()).list();
 		 
-		  
+		} 
 		
 	}
 
