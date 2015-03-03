@@ -253,20 +253,13 @@ public class ApartmentDetailsBean  implements Serializable{
 			
 			cs1.setInt_CommunitySetupId(cs.getInt_CommunitySetupId());
 			getApartmentDetailsService().updateCommunitySetup(cs1);
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			Flash flash = facesContext.getExternalContext().getFlash();
-			flash.setKeepMessages(true);
-			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Updated Successfully!", "Updated Successfully!"));
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
+			 
 		}
 		else
 		{
 		getApartmentDetailsService().saveCommunitySetup(cs1);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
 		}
 		ListIterator itr1=list.listIterator();
 		
@@ -316,6 +309,20 @@ public class ApartmentDetailsBean  implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
+	private Integer int_blockId;
+	public String deleteBlock()
+	{
+		System.out.println(int_blockId+"BlockId");
+		getApartmentDetailsService().deleteBlock(int_blockId);
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Bolck Deleted Successfully!"));
+		return "blockdetails.xhtml?faces-redirect=true";
+	}
+	public Integer getInt_blockId() {
+		return int_blockId;
+	}
+	public void setInt_blockId(Integer int_blockId) {
+		this.int_blockId = int_blockId;
+	}
 	public CommunitySetup getCs() {
 		cs=new CommunitySetup();
 		cs=getApartmentDetailsService().getCommunitySetup(Util.getUserId());
@@ -358,11 +365,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		ub.setStr_BlockName(str_BlockName);
 		ub.setInt_ApartmentId(Util.getAppartmentId());
 		getApartmentDetailsService().saveBlockDetails(ub);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
 		return null;
 	}
 	private HouseDetails housedetails=new HouseDetails();
@@ -412,11 +415,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	    } 
 System.out.println(entitiesToDelete+"entyt todelete");
  getApartmentDetailsService().deleteSelectedHouse(entitiesToDelete);
-	    FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  deleted Successfully!", " deleted Successfully!"));
+ FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 	    return null;
 	}
 	public String updateHouseDetails()
@@ -424,11 +423,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		if(housedetails.getInt_HouseId()!=null)
 		{
 			getApartmentDetailsService().updateHouseDetails(housedetails);
-			 FacesContext facesContext = FacesContext.getCurrentInstance();
-				Flash flash = facesContext.getExternalContext().getFlash();
-				flash.setKeepMessages(true);
-				flash.setRedirect(true);
-				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"  Updated Successfully!", " Updateed Successfully!"));
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
 		}
 		return null;
 	}
@@ -449,11 +444,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
 		housedetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 		getApartmentDetailsService().saveHouseDetails(housedetails);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Added Successfully!", "Added Successfully!"));
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
 		return null;
 	}
 	public List<UserBlocks> getListBlockDetails() {
