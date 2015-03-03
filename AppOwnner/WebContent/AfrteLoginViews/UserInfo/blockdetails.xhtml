@@ -73,7 +73,20 @@
                <f:facet name="input"><p:inputText value="#{blockDetails.int_NoOfHouses}" style="width:96%"  label="Block Name"/></f:facet>
            </p:cellEditor>
        </p:column>
+  <p:column>
+  <f:facet name="header">
+                <center>
+                
+                    <h:outputText value="Action" />
+                    </center>
+                </f:facet>
+  <h:link outcome="deleteblock.xhtml"
+	   		 onclick="return confirm('Are you sure you want to delete #{blockDetails.str_BlockName}?');" >  
+	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
+	   				<f:param name="int_blockId" value="#{blockDetails.int_BlockId}" />
+	   		</h:link>
  
+  </p:column>
 	</p:dataTable>
   
   </div>
