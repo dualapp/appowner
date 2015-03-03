@@ -77,4 +77,6 @@ public interface ApartmentDetailsService {
 
 	void updateOneBlock(UserBlocks selectedBlock);
 
+	void deleteBlock(Integer blockId);
+
 }
