@@ -691,11 +691,8 @@ List<Expense> entitiesToDelete = new ArrayList<Expense>();
     } 
  
     getExpenseService().deleteSelectedExpenses(entitiesToDelete);
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Expense deleted Successfully!", "Expense deleted Successfully!"));
+    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Expense Deleted Successfully!"));
+	 
     return "Expenses.xhtml?faces-redirect=true";
 
 	
