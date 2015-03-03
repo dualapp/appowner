@@ -74,4 +74,6 @@ public interface ApartmentDetailsDao {
 
 	void updateOneBlock(UserBlocks selectedBlock);
 
+	void deleteBlock(Integer blockId);
+
 }
