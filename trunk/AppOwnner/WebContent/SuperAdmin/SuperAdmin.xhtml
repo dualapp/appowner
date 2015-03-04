@@ -83,72 +83,49 @@
 
    
        
- <h:messages style="color:red"/>
- <h:form>
  
+ <h:form>
+  
 
  
-  
-   <table  align="left" >
-       <tr>
-		<td><font color="#008B8B" size="5" style="">Enter Login Credential..</font></td>
-						</tr>
+  <fieldset style="width: 43em;height:30em;margin-left:20%;margin-bottom:5%;"><legend><h:commandButton   value="Login"  action="#" style="background-color:blue; color:#fff;"/> </legend>
+   <table style="margin-left:13%;margin-top:13%;">
+      
    
  
        
          
             <tr>
-                <td><h:outputLabel for="LoginName" value="LoginName: " /><font color="red">*</font>
-                <h:inputText id="LoginName" value="#{userInformationBean.name}" required="true" requiredMessage="Name is required">
-                <p:message for="LoginName"/> 
-               </h:inputText>
-                </td>
+                <td><h2><h:outputLabel for="LoginName" value="LoginName: " /><font color="red" >*</font>
+              <p:inputText id="LoginName" value="#{userInformationBean.name}" required="true"  size="22" requiredMessage="Name is required"></p:inputText>
+             <td>   <p:message for="LoginName" display="icon"/> </td>
+               </h2></td>
+              
             </tr>
             <tr>
-                <td><h:outputLabel for="Password" value="Password: " /><font color="red">*</font>
-               <h:inputText id="Password" value="#{userInformationBean.password}" required="true" requiredMessage="Password is required">
-                     <p:message for="Password"/> 
-                   </h:inputText>
-              </td>
+                <td><h2><h:outputLabel for="Password" value="Password: " /><font color="red">*</font>&#150; &#150; &#150; 
+              <p:inputText id="Password" value="#{userInformationBean.password}"  size="22" required="true" requiredMessage="Password is required"></p:inputText>
+                   <td>  <p:message for="Password" display="icon"/> </td>
+                   </h2></td>
+             
             </tr>
              <tr>
-                 <td><p:commandButton id="submit" value="Login" action="#{userInformationBean.validate(userInformationBean.name,userInformationBean.password)}"  ajax="false" update="growl">
+             
+                 <td><p:commandButton id="submit" value="Login" action="#{userInformationBean.validate(userInformationBean.name,userInformationBean.password)}"  ajax="false" style="margin-left:9em;">
               
                 </p:commandButton>
                 </td>
             </tr> 
              </table>
            
-          
+          </fieldset>
         
        
              
       
        
-     <font size="5" style="" color="#008B8B">Facebook/Linkedin
-						Login Credential</font>   
-        <table>
- <tr>
-    <td>
-       <h:commandLink   action="#{login.facebookuserLogin}">
-                 <p:graphicImage height="24" width="170" value="../images/facebook3.jpg"/>  
-       </h:commandLink></td>
-  </tr>
-  <tr>
-   <td>           
-         <h:commandLink   action="#{login.linkedinuserLogin}">
-                 <p:graphicImage height="24" width="172" value="../images/link.jpg"/>  
-         </h:commandLink>
-  </td>
-</tr>
- <tr>
-   <td>           
-         <h:commandLink   action="#{login.linkedinuserLogin}">
-                 <p:graphicImage height="24" width="170" value="../images/twiter.jpg"/>  
-         </h:commandLink>
-  </td>
-</tr>
-</table>
+    
+
 </h:form>
 <div class="footer-bottom">
 
