@@ -55,7 +55,7 @@ public class EmailSendingServlet extends HttpServlet {
             resultMessage = "One e-mail has been sent to your Email-id !";
         } catch (Exception ex) {
             ex.printStackTrace();
-            resultMessage = "There were an error: " + ex.getMessage();
+            resultMessage = "There were an error: " +ex.toString();
         } finally {
             request.setAttribute("Message", resultMessage);
             request.setAttribute("render", "true");
