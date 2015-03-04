@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 	<ui:define name="content">
 <h:head>
     <title>Welcome to Complain Page</title>
@@ -22,7 +22,7 @@
 		</table>
     <div id="page3">
         <h:outputText value="Complain Information : "></h:outputText>
-        <p:dataTable  id="complain" var="complain" value="#{complainBean.listComplain}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+        <p:dataTable  id="complain" var="complain" value="#{complainBean.listComplain}" selection="#{complainBean.selectedComplain}" rowKey="#{complain.int_ComplainID}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            
             
            
@@ -60,11 +60,13 @@
                 <f:facet name="header">
                     <h:outputText value="Status" />
                 </f:facet>
-                <h:outputText value="#{complain.status}" />
+                <p:graphicImage  height="20" width="20"  value="../../images/enable.jpg" title="Enabled" rendered="#{complain.status==1}"/>
+                    <p:graphicImage  height="30" width="30"  value="../../images/disable.png" title="Disabled" rendered="#{complain.status==0}"/>
             </p:column>
-            
+      
             <p:column>
                 <f:facet name="header">Action</f:facet>
+                 <h:panelGroup rendered="#{dueBean.indicator1}">   
                <h:link outcome="deleteComplain.xhtml" >
 	   			<p:graphicImage  height="20" width="20"  value="../../images/delete.jpg"/> 
 	   				<f:param name="int_ComplainID" value="#{complain.int_ComplainID}" />
@@ -73,24 +75,54 @@
                 <p:graphicImage height="20" width="20" value="../../images/edit.jpg"/> 
                 <f:param name="int_ComplainID" value="#{complain.int_ComplainID}"/>
                 </h:link>
-                 <p:commandLink disabled="false"     oncomplete="PF('multiDueTemplateDialog3').show()" actionListener="#{cls_UserBean.selectRole(due.int_UserId)}">
-                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/role.jpg" title="Role Assignment"/> 
+                 <p:commandLink disabled="#{complain.status==0}"     oncomplete="PF('multiDueTemplateDialog1').show()" actionListener="#{complainBean.selectID(complain.int_ComplainID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/role.jpg" title="Admin Reason"/> 
               </p:commandLink>
-               
+               </h:panelGroup>
+                <h:panelGroup rendered="#{dueBean.indicator}">
+                 <p:commandLink   oncomplete="PF('multiDueTemplateDialog3').show()" actionListener="#{complainBean.selectID(complain.int_ComplainID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/role.jpg" title="Admin Reason"/> 
+           </p:commandLink>
+              </h:panelGroup>
                </p:column>
-            
+      
+         
+    
         </p:dataTable>
+         <p:dialog header="Admin Reason" widgetVar="multiDueTemplateDialog1"    showEffect="explode" hideEffect="explode" resizable="false" height="150" width="500" minHeight="100">
+        <p:outputPanel id="multiDueTemplateDetail1" style="text-align:center;">
+        <table>
+        
+        <tr>
+        <td>
+        <h:inputText value="#{complainBean.selectedComplain.adminReason}"/>
+        </td>
+        </tr>
+        </table>
+        </p:outputPanel>
+        </p:dialog>
          <p:dialog header="Admin Reason" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="150" width="500" minHeight="100">
         <p:outputPanel id="multiDueTemplateDetail3" style="text-align:center;">
         <fieldset>
+           
        <table>
+           
              <tr>
                <td><h:outputText  value=" Admin Reason*:"/><br /></td>
-                <td><p:inputTextarea style="width:300px; height:100px" id="description" value="#{complainBean.str_Description}" required="true" requiredMessage="Complain box should not Empty">
+                <td><p:inputTextarea style="width:300px; height:100px" id="description" value="#{complainBean.str_Description}" >
               </p:inputTextarea>
+              
               </td>
               </tr>
+              <tr>
+              <td>
+              <p:commandButton value="Submit" action="#{complainBean.addAdminReason()}" ajax="false">
+              </p:commandButton>
+              </td>
+              </tr>
+         
               </table>
+             
               </fieldset>
         </p:outputPanel>
         </p:dialog>
