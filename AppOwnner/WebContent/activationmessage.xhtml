@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 <title>Result</title>
+
 </head>
 <body bgcolor="grey">
     <center>
@@ -16,18 +17,24 @@
       
       <h5>Your account created successfully.....</h5>
          <h5>Email has been sent to yout email</h5>
+          <h1><%=request.getAttribute("Message")%></h1><br><br>
         <h5>Please activate your account</h5>
-        <h5><p:link value="Click here to login" outcome="/layout.xhtml" onclick="EnrollLater1()" ajax="false"/></h5>
+        <h5><p:link value="Click here to login"   onclick="Redirect();EnrollLater1()" ajax="false"/></h5>
          <h5>Thanks....</h5>
          </table>
            <script>
           
            function EnrollLater1()
-            {
+            {  
             	window.parent.modalWin.CallCallingWindowFunction(1);
             	
+            	
                 }
-          
+           function Redirect()
+           {   alert("dshjhjcfddfj")
+               window.open='http://www.google.com';
+               alert("jgfgjufujfguk")
+           }
             
               
           
