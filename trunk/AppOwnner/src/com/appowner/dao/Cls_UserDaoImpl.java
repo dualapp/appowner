@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -64,6 +65,10 @@ import java.util.List;
 
 
 
+
+
+
+import java.util.ListIterator;
 
 import javax.mail.Session;
 import javax.management.Query;
@@ -490,10 +495,60 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			// TODO Auto-generated method stub
 			return (User) getSessionFactory().getCurrentSession().createQuery("from User where str_Flat=? and int_ApartmentId=? and int_UserRole=?").setParameter(0, str_HouseNo).setParameter(1,Util.getAppartmentId()).setParameter(2,int_UserRole).uniqueResult();
 		}
-
-		 
+		@SuppressWarnings("unchecked")
+		public List<String> getRoleAssign(Integer int_UserId, Integer int_ApartmentId)
+		{  try
+		   {
+			
+				 String str="select int_RoleId from RoleAssignment where int_ApartmentId=? and int_UserId=?";
+				List<Integer> id= (List<Integer>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,int_ApartmentId).setParameter(1,int_UserId).list();
+				
+				if(id.isEmpty())
+				{
+					Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,int_ApartmentId).setCacheable(true).uniqueResult();
+					  
+					   String str2=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=?").setParameter(0,id1).setCacheable(true).uniqueResult();
+					
+						  String[] strArray = str2.split(",");
+						  List<String> str3=new ArrayList<String>();
+						  for (String str1 : strArray) {
+						       
+						      
+						       int id2=Integer.parseInt(str1);
+						         str3.add((String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id2).setCacheable(true).uniqueResult());
+						     
+						       
+						          
+						        }
+						
+						  return str3;
+					  
+					   
+				}
+				else
+				{
+					 ListIterator list=id.listIterator();
+					 while(list.hasNext())
+					 {
+					   Integer id2=(Integer) list.next();
+					 
+				    Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id2).setParameter(1,int_ApartmentId).uniqueResult();
+				
+				    List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id1).list();
+				 
+				    return str1;
+					 }
+				}
+				
+		   }
+		catch(Exception e)
+		{
+			e.printStackTrace();
 		}
-
+		return null;
+		  }
+	
+}
 		
 
 		

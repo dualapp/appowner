@@ -110,6 +110,11 @@ public class ComplainDaoImpl implements ComplainDao {
 	 {//System.out.println("int_ComplainID");
 		 sessionFactory.getCurrentSession().createQuery("DELETE FROM Complain WHERE int_ComplainID = "+complain.getInt_ComplainID()).executeUpdate();
 	 }
+	 public void updateAdminReason(Integer iD, String str_Description)
+	 {
+		 String str="update Complain set status=1,adminReason=? where int_ComplainID=?";
+		 sessionFactory.getCurrentSession().createQuery(str).setParameter(0,str_Description).setParameter(1, iD).executeUpdate();
+	 }
 	
 
 	
