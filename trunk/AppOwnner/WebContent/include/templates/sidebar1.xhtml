@@ -90,6 +90,19 @@
 							</ul></li>
 			
 </h:panelGroup>
+<h:panelGroup rendered="#{role.equalsIgnoreCase('Community')}">			
+			<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
+					<span class="menu-text">Community</span> <b
+					class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+			  <li><a href="/AppOwnner/AfrteLoginViews/Repository/Create-SubGroup.xhtml"> <i
+										class="btn btn-xs btn-primary icon-user"></i>Add Group
+								</a></li>
+			</ul>
+			</li>
+			</h:panelGroup>
+				
 		<h:panelGroup rendered="#{role.equalsIgnoreCase('Accounting')}">			
 			<li><a href="#" class="dropdown-toggle"> <i class="icon-tag"></i>
 					<span class="menu-text">Accounting</span> <b
