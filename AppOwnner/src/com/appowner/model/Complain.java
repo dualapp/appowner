@@ -98,16 +98,17 @@ public class Complain implements Serializable {
 	public void setBlock(String block) {
 		this.block = block;
 	}
-	public String getStatus() {
+	
+	public Integer getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 	public void setFlat(String flat) {
 		Flat = flat;
 	}
-	private String status;
+	private Integer status;
 	private String adminReason;
 	public String getAdminReason() {
 		return adminReason;
