@@ -38,6 +38,7 @@ import com.appowner.model.User;
 import com.appowner.model.UserExtraInfo;
 import com.appowner.service.ApartmentDetailsService;
 import com.appowner.service.In_UserService;
+import com.appowner.service.MaintainanceStaffService;
 import com.appowner.util.Util;
 
 @ManagedBean(name = "loginBean")
@@ -668,7 +669,7 @@ public class LoginBean implements Serializable {
 		user=getUserService().getUser(Util.getUserId());
 		if (user!= null) {
 			userloginname = user.getStr_Username();
-			System.out.println(userloginname+"fdklmfdkjfdkjfjkfkjfgkj444444444444447777777777777");
+			
 
 		}
 
@@ -812,7 +813,14 @@ public class LoginBean implements Serializable {
 
 		return "/AfrteLoginViews/welcomepage.xhtml";
 	}
-
+    public List<String> roleAssign;
+	
+	public List<String> getRoleAssign() {
+		return roleAssign;
+	}
+	public void setRoleAssign(List<String> roleAssign) {
+		this.roleAssign = roleAssign;
+	}
 	@SuppressWarnings("unused")
 	public String getStr_RecoverPassword1() {
 		User u = new User();
@@ -864,6 +872,15 @@ public class LoginBean implements Serializable {
 	public Integer getActvationkey() {
 		return actvationkey;
 	}
+	@ManagedProperty(value="#{MaintainanceStaffService}")
+	private  MaintainanceStaffService maintainanceStaffService;
+	public MaintainanceStaffService getMaintainanceStaffService() {
+		return maintainanceStaffService;
+	}
+	public void setMaintainanceStaffService(
+			MaintainanceStaffService maintainanceStaffService) {
+		this.maintainanceStaffService = maintainanceStaffService;
+	}
 	public void setActvationkey(Integer actvationkey) {
 		this.actvationkey = actvationkey;
 	}
@@ -900,8 +917,11 @@ public class LoginBean implements Serializable {
 		str_Mobile=user.getStr_PhoneNo();
 		int_UserId=user.getInt_UserId();
 		str_EmailId=user.getStr_Email();
-		 
+		int_ApartmentId=user.getInt_ApartmentId();
 		str_ApartmentName=user.getStr_Apartment();
+		roleAssign=getUserService().getRoleAssign(int_UserId,int_ApartmentId);
+		System.out.println(roleAssign+"gfgfkjgfjk");
+		System.out.println(roleAssign+"fdkjfdkjfdkj");
 		 status=getUserService().getStatus(str_ApartmentName);
 		 actvationkey=user.getInt_activationbit();
 		 System.out.println(status+"fkdfdkj");
@@ -949,8 +969,8 @@ public class LoginBean implements Serializable {
             session.setAttribute("int_UserRole", user.getInt_UserRole());
 		     return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
-		   else
-		   {
+		   else if(str_userRoleName.equalsIgnoreCase("user") && roleAssign.isEmpty())
+		   {   System.out.println( "fdufdkjfdjkfdjgffggffg");
 			   int_ApartmentId=user.getInt_ApartmentId();
 				int_UserId=user.getInt_UserId();
 				admin=admin1.equals(str_userRoleName);
@@ -988,19 +1008,59 @@ public class LoginBean implements Serializable {
 				if(session==null)
 				  memberLog();
 				
-			 return "/AfrteLoginViews/welcomepage.xhtml";
+				 return "/AfrteLoginViews/welcomepage.xhtml";
+		   }
+		   else
+		   {   System.out.println("njvvkjjkfgjkgfgjkgfkj");
+			   int_ApartmentId=user.getInt_ApartmentId();
+				int_UserId=user.getInt_UserId();
+				admin=admin1.equals(str_userRoleName);
+				user1=!admin1.equals(str_userRoleName);
+				
+				HttpSession session = Util.getSession();
+				 session.setAttribute("str_Password", formuserloginuserpassword);
+				session.setAttribute("str_FirstName", str_FirstName);
+				 session.setAttribute("str_LastName", str_LastName);
+				 session.setAttribute("int_UserRole", user.getInt_UserRole());
+				 
+	            session.setAttribute("username", userloginname);
+				 
+				session.setAttribute("str_Block",str_Block);
+				session.setAttribute("str_Flat",str_Flat);
+	            session.setAttribute("int_ApartmentId", int_ApartmentId);
+	            session.setAttribute("int_UserId", int_UserId);
+	            session.setAttribute("str_EmailId",str_EmailId);
+	            session.setAttribute("str_Country",str_Country);
+	            
+	            session.setAttribute("str_State",str_State);
+	            session.setAttribute("str_City",str_City);
+	            session.setAttribute("str_Mobile",str_Mobile);
+	            
+	            session.setAttribute("str_Apartment",user.getStr_Apartment());
+	            session.setAttribute("str_userRoleName", str_userRoleName);
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				//get current date time with Date()
+				Date date = new Date();
+				 
+				str_LoggedInTime= dateFormat.format(date);
+				System.out.println(str_LoggedInTime);
+				
+				str_LoggedInTime=dateFormat.format(date);
+				if(session==null)
+				  memberLog();
+				 return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
 		}
 	  else
 		   {
-			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"User name or password is invalid!"));
+			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"User name or password is invalid!","User name or password is invalid!"));
 				return "layout.xhtml";  
 		   }
 	
 	}
 	else
 	{
-		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Plz activate ur account! Credential sent to ur Email"));
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Plz activate ur account! Credential sent to ur Email","Plz activate ur account! Credential sent to ur Email"));
 			return "layout.xhtml"; 
 	}
 	
@@ -1009,7 +1069,7 @@ public class LoginBean implements Serializable {
 		{
 			
 				
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Status is Disabled.PlZ contact to Admin!"));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Status is Disabled.PlZ contact to Admin!","Status is Disabled.PlZ contact to Admin!"));
 				
 			
 		}
