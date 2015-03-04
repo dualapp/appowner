@@ -348,7 +348,10 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		return getIn_userdao().isUserStaying(str_HouseNo,int_UserRole);
 	}
-	
+	public List<String> getRoleAssign(Integer int_UserId, Integer int_ApartmentId)
+	{
+		return getIn_userdao().getRoleAssign(int_UserId,int_ApartmentId);
+	}
 	
 	}
 

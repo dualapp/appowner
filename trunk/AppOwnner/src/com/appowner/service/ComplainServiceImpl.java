@@ -88,6 +88,10 @@ public class ComplainServiceImpl implements ComplainService{
 	{
 		getComplainDao().deleteComplain(complain);
 	}
+	public void updateAdminReason(Integer iD, String str_Description)
+	{
+		getComplainDao().updateAdminReason(iD,str_Description);
+	}
 	
 	
 /*	public int getNoPerson(String str_CompanyName)
