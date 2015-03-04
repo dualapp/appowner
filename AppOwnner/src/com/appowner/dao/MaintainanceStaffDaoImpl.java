@@ -183,9 +183,11 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 
 	@Override
 	public void deleteAssignedRoles(String str_RoleName,Integer int_UserId) {
-		String hql="select int_RoleId from RoleAssignment where  str_RoleName=?";
-		
-		@SuppressWarnings("unchecked")
+		String hql="select int_RoleID from RoleMaster where  str_RoleName=?";
+		Integer roleId=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_RoleName).uniqueResult();
+		String hql1="delete from RoleAssignment where int_RoleId=? and int_UserId=? and int_ApartmentId=?";
+		getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,roleId).setParameter(1, int_UserId).setParameter(2,Util.getAppartmentId()).executeUpdate();
+		/*@SuppressWarnings("unchecked")
 		List<Integer> roleId=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_RoleName).list();
 		@SuppressWarnings("rawtypes")
 		ListIterator itr= roleId.listIterator();
@@ -199,7 +201,7 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 			String hql1="delete from RoleAssignment where int_RoleAssignID=?";
 			getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,assignedroleId).executeUpdate();
 			
-		}
+		}*/
 		
 		
 		
@@ -321,21 +323,21 @@ public List<String> getRoleMenus(Integer i)
 	 }
   @SuppressWarnings("unchecked")
 public  List<String> getSideMenu()
-  {  
-	  String str="select int_RoleId from RoleAssignment where int_ApartmentId=? and int_UserId=?";
-	Integer id= (Integer) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,Util.getAppartmentId()).setParameter(1, Util.getUserId()).uniqueResult();
-	System.out.println(id+"fjdfjdfjd");
-	if(id==null)
+  { 
+	 String str="select int_RoleId from RoleAssignment where int_ApartmentId=? and int_UserId=?";
+	List<Integer> id= (List<Integer>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,Util.getAppartmentId()).setParameter(1, Util.getUserId()).list();
+	
+	if(id.isEmpty())
 	{
 		Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).uniqueResult();
-		   System.out.println(id1+"fcjdfjkdfjkfd");
+		  
 		   String str2=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=?").setParameter(0,id1).setCacheable(true).uniqueResult();
-			System.out.println(str2+"dskkj");
+			
 			  String[] strArray = str2.split(",");
 			  List<String> str3=new ArrayList<String>();
 			  for (String str1 : strArray) {
 			       
-			       System.out.println(str1+"dsjjdfd");
+			     
 			       int id2=Integer.parseInt(str1);
 			         str3.add((String) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id2).setCacheable(true).uniqueResult());
 			     
@@ -349,12 +351,19 @@ public  List<String> getSideMenu()
 	}
 	else
 	{
-	Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id).setParameter(1,Util.getAppartmentId()).uniqueResult();
+		 ListIterator list=id.listIterator();
+		 while(list.hasNext())
+		 {
+		   Integer id2=(Integer) list.next();
+		 
+	    Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id2).setParameter(1,Util.getAppartmentId()).uniqueResult();
 	
-	List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id1).list();
+	    List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id1).list();
 	 
-	  return str1;
+	    return str1;
+		 }
 	}
+	return null;
   }
 	}
 

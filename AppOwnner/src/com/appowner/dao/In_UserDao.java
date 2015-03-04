@@ -134,6 +134,8 @@ public interface In_UserDao {
 
 	public User isUserStaying(String str_HouseNo, Integer int_UserRole);
 
+	public List<String> getRoleAssign(Integer int_UserId, Integer int_ApartmentId);
+
 	//public void deleteUser1(int int_UserId);
 
 	

@@ -37,6 +37,7 @@ public interface ComplainDao {
 		public void update(Complain cmp);
 		
 		public void deleteComplain(Complain complain);
+		public void updateAdminReason(Integer iD, String str_Description);
 		
 	//	public int getNoPerson(String str_CompanyName);
 	
