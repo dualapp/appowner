@@ -387,6 +387,7 @@ public class DueBean implements Serializable{
 	}
 	private boolean indicator1;
 	public boolean isIndicator1() {
+		System.out.println("djfkdfkjfdkjfdkjfdjkfd");
 		indicator1=LoginBean.isUser1();
 		return indicator1;
 	}

@@ -17,9 +17,13 @@ import java.io.Serializable;
 
 
 
+
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.context.FacesContext;
 
 import java.util.ArrayList;
@@ -699,7 +703,12 @@ public class Cls_UserBean implements Serializable{
 	
 		public String getRegistration() {
 			System.out.println("heeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+			if(indicator==true)
+			{
 			return "NewRegistration.xhtml";
+			}
+			else
+				return "layout.xhtml";
 		}
 		public void setRegistration(String registration) {
 			Registration = registration;
@@ -895,9 +904,15 @@ public class Cls_UserBean implements Serializable{
 			getUserService().updateUser(editlis);
 			return "userupdateconfirmation.xhtml";
 		}
-		
+		private boolean indicator;
 		
          
+		public boolean isIndicator() {
+			return indicator;
+		}
+		public void setIndicator(boolean indicator) {
+			this.indicator = indicator;
+		}
 		public List<String> getBlockNameList() {
 			blockNameList=new ArrayList<String>();
 			
@@ -1023,7 +1038,25 @@ public class Cls_UserBean implements Serializable{
 			return null;
 			
 		}
+		private String indicator1;
+		public String getIndicator1() {
+			return indicator1;
+		}
+		public void setIndicator1(String indicator1) {
+			this.indicator1 = indicator1;
+		}
+		public void validateCheckBox(FacesContext context, UIComponent component,Object o) {
+			System.out.println("dfhfdhjfgv hufg vjhu");
+			HtmlSelectBooleanCheckbox checkBox =(HtmlSelectBooleanCheckbox) component;
+			
+			
+			if(checkBox.getSubmittedValue().equals(indicator)) {
+				System.out.println("vfgfjkfkjgfkj");
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Plz Check Terms And Conditions"));
+			
+			
+			}
 	}
 
-
+}
 

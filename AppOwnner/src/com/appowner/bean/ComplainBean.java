@@ -34,7 +34,7 @@ import com.appowner.util.Util;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ComplainBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static final String ERROR   = "error";
@@ -168,7 +168,7 @@ public class ComplainBean implements Serializable{
 		System.out.println(str_VendorType);
 		cmp.setStr_VenderName(str_VenderName);
 		System.out.println(str_VenderName);
-		cmp.setStatus("Not Done");
+		cmp.setStatus(0);
 		cmp.setAdminReason(getAdminReason());
 		getComplainService().addComplain(cmp);
 		
@@ -410,7 +410,7 @@ public class ComplainBean implements Serializable{
 			public static void setPath1(String path1) {
 				ComplainBean.path1 = path1;
 			}
-			private Complain cmp;
+			private Complain cmp=new Complain();
 			 public Complain getCmp() {
 				return cmp;
 			}
@@ -437,7 +437,37 @@ public class ComplainBean implements Serializable{
 				
 				return "ComplainView.xhtml";
 			}
+			public void addAdminReason()
+			{	
+				System.out.println("dffdfdkjdfkj");
+				System.out.println(str_Description+"fdkjdfjkdfjk");
+				getComplainService().updateAdminReason(ID,str_Description);
+				
+			}
+			private Complain selectedComplain;
+			public Complain getSelectedComplain() {
+				
+				return selectedComplain;
+			}
+			public void setSelectedComplain(Complain selectedComplain) {
+				this.selectedComplain = selectedComplain;
+			}
+			private static Integer ID;
+		public static Integer getID() {
+				return ID;
+			}
+			public static void setID(Integer iD) {
+				ID = iD;
+			}
+		public Complain selectID(Integer Id)
+		{
+			System.out.println(Id+"dkskjffdjkfdkjdf");
+			ID=Id;
+			System.out.println(ID+"dlsdklsdslk");
+			selectedComplain=getComplainService().getComplain(ID);
 			
+			return selectedComplain;
+		}
 			
 			
 }			
