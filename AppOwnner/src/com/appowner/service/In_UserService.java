@@ -121,5 +121,7 @@ public interface In_UserService {
 	 
 
 	public User isUserStaying(String str_HouseNo, Integer int_UserRole);
+
+	public List<String> getRoleAssign(Integer int_UserId, Integer int_ApartmentId);
 }
 
