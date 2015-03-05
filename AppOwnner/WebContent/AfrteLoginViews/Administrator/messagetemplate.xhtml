@@ -39,11 +39,10 @@
        <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="str_Organisation1" value="#{templateBean.str_Organisation}" style="width:150px" >
-                  <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{templateBean.str_Organisation}"  itemValue="#{templateBean.str_Organisation}"/>
-                 </p:selectOneMenu>
-             </td>
+             <td><h:inputText id="str_Organisation1" readonly="true"
+								value="#{templateBean.str_Organisation}" style="width:150px"></h:inputText>
+								</td>
+            
              <td><h:outputLabel value="Show:" /></td>
               <td><p:selectOneMenu id="str_Mode1" value="#{templateBean.str_Mode}"  style="width:150px">
                    <f:selectItem itemLabel="All" itemValue="All" />
@@ -190,7 +189,7 @@
             </p:dataTable>
             </div>
            
-             <p:dialog header="Edit MessageTemplate" widgetVar="multiMessageTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="400" width="400">
+             <p:dialog header="Edit MessageTemplate" widgetVar="multiMessageTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="500" width="400">
         <p:outputPanel id="multiMessageTemplateDetail" style="text-align:center;">
           
            <table>
@@ -229,18 +228,22 @@
       <tr>
     <th>
     <h:outputText value="Description"/></th>
+     <br/>
+   
     <td>
-     <h:inputTextarea cols="20" row="30"  value="#{messageTemplate1.str_Description}"/></td>
+     <h:inputTextarea style="width:250px; height:100px"  value="#{messageTemplate1.str_Description}"/></td>
     </tr>  
 
       
             </ui:repeat>
-             <tr><td><h:commandButton value="update" action="#{templateBean.saveMessageTemplate(messageTemplate1)}"/></td></tr>
+             <tr>
+             <td></td>
+             <td><h:commandButton styleClass="btn" value="update" action="#{templateBean.saveMessageTemplate(messageTemplate1)}"/></td></tr>
             </table>
             
         </p:outputPanel>
     </p:dialog>
-    <p:dialog header="Edit MessageTemplate" widgetVar="multiMessageTemplateDialog3"     showEffect="explode" hideEffect="explode" resizable="false" height="400" width="400">
+    <p:dialog header="Edit MessageTemplate" widgetVar="multiMessageTemplateDialog3"     showEffect="explode" hideEffect="explode" resizable="false" height="500" width="400">
         <p:outputPanel id="multiMessageTemplateDetail3" style="text-align:center;">
           
            <table>
@@ -280,12 +283,13 @@
     <th>
     <h:outputText value="Description"/></th>
     <td>
-     <h:inputTextarea cols="20" row="30"  value="#{templateBean.messageTemplate.str_Description}"/></td>
+     <h:inputTextarea style="width:250px; height:100px"  value="#{templateBean.messageTemplate.str_Description}"/></td>
     </tr>  
 
       
            
-             <tr><td><h:commandButton value="update" action="#{templateBean.saveMessageTemplate()}"/></td></tr>
+             <tr>
+             <td></td><td><h:commandButton styleClass="btn"  value="update" action="#{templateBean.saveMessageTemplate()}"/></td></tr>
             </table>
             
         </p:outputPanel>
