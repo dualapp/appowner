@@ -39,7 +39,7 @@
  
 </h:head>
 
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
@@ -57,11 +57,10 @@
     
            
               <th><h:outputText value="Organisation:" /></th>
-              <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"   style="width:150px">
-                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}" />
-                 </p:selectOneMenu>
-             </td>
+              <td><h:inputText id="str_Organisation" readonly="true"
+								value="#{templateBean.str_Organisation}" style="width:150px" ></h:inputText>
+								</td>
+             
              <p:spacer width="40" height="20"/>
              <th><h:outputText  value="Due Template Of:" /></th>
                <td><p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:150px">
@@ -127,7 +126,7 @@
            
                 <f:facet name="header">
                 
-                    <h:outputText value="Organisation Name" />
+                    <h:outputText value="Organisation" />
                  
                 </f:facet>
                
@@ -146,7 +145,7 @@
                 
             </p:column>
             <p:column>
-                <f:facet name="header">
+                <f:facet name="header" width="20%">
                
                     <h:outputText value="Accounts" />
                    
@@ -228,7 +227,7 @@
           </p:dataTable>
           </div>
        
-        <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="350" width="450" minHeight="100">
+        <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="380" width="450" minHeight="100">
         <p:outputPanel id="multiDueTemplateDetail3" style="text-align:center;">
           
            <table>
@@ -253,7 +252,7 @@
     <th>
     <h:outputText value="Frequency:"/><font color="red" >*</font></th>
     <td>
-    <h:selectOneMenu id="str_Frequency1" value="#{templateBean.str_Frequency}" >
+    <h:selectOneMenu id="str_Frequency1" value="#{templateBean.dueTemplate1.str_Frequency}" >
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
@@ -264,11 +263,11 @@
  <th>
     <h:outputText value="Calculation:"/><font color="red" >*</font></th>
     <td>
-   <h:selectOneRadio id="str_Calculation1" value="#{templateBean.str_Calculation}" >
+   <p:selectOneRadio id="str_Calculation1" value="#{templateBean.dueTemplate1.str_Calculation}" >
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
                        <f:selectItem itemLabel="None" itemValue="None"/>
-                </h:selectOneRadio>
+               </p:selectOneRadio>
                 </td>
     </tr>
    
@@ -283,7 +282,7 @@
  <th>
     <h:outputText value="TaxTemplate:"/></th>
     <td>
-   <h:selectOneMenu id="str_TaxTemplate1" value="#{templateBean.str_TaxTemplate}" >
+   <h:selectOneMenu id="str_TaxTemplate1" value="#{templateBean.dueTemplate1.str_TaxTemplate}" >
                    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"></f:selectItem>
                    <f:selectItems value="#{templateBean.str_TaxTemplates}"  />
                      <f:selectItem itemLabel="None" itemValue="None" noSelectionOption="true"></f:selectItem>
@@ -292,12 +291,14 @@
     
       
          
-             <tr><td><p:commandButton value="update" action="#{templateBean.saveDueTemplate()}" ajax="false"/></td></tr>
+             <tr>
+             <td></td>
+             <td><p:commandButton  styleClass="btn" value="Submit" action="#{templateBean.saveDueTemplate()}" ajax="false"/></td></tr>
             </table>
             
         </p:outputPanel>
     </p:dialog> 
-       <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="350" width="450">
+       <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="380" width="450">
         <p:outputPanel id="multiDueTemplateDetail" style="text-align:center;">
           
            <table>
@@ -307,7 +308,7 @@
  <th>
     <h:outputText value="Due Template:"/><font color="red" >*</font></th>
     <td>
-    <h:inputText value="#{dueTemplate1.str_DueTemplate}" style="width:250px;height:25px"/></td>
+    <h:inputText value="#{dueTemplate1.str_DueTemplate}" style="width:250px;height:25px" readonly="true"/></td>
     </tr>
 
  
@@ -327,7 +328,7 @@
     <th>
     <h:outputText value="Frequency:"/><font color="red" >*</font></th>
     <td>
-    <h:selectOneMenu id="str_Frequency1" value="#{templateBean.str_Frequency}" >
+    <h:selectOneMenu id="str_Frequency1" value="#{dueTemplate1.str_Frequency}" >
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
@@ -338,12 +339,12 @@
  <th>
     <h:outputText value="Calculation:"/><font color="red" >*</font></th>
     <td>
-   <h:selectOneRadio id="str_Calculation1" value="#{templateBean.str_Calculation}" valueChangeListener="#{templateBean.frequencyChangeListener1}" >
+   <p:selectOneRadio id="str_Calculation1" value="#{dueTemplate1.str_Calculation}" valueChangeListener="#{templateBean.frequencyChangeListener1}" >
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
                        <f:selectItem itemLabel="None" itemValue="None"/>
                          <p:ajax event="change"  process="str_Calculation1"/>
-                </h:selectOneRadio>
+                </p:selectOneRadio>
                 </td>
     </tr>
    
@@ -358,7 +359,7 @@
  <th>
     <h:outputText value="TaxTemplate:"/></th>
     <td>
-   <h:selectOneMenu id="str_TaxTemplate1" value="#{templateBean.str_TaxTemplate}" >
+   <h:selectOneMenu id="str_TaxTemplate1" value="#{dueTemplate1.str_TaxTemplate}" >
                    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"></f:selectItem>
                    <f:selectItems value="#{templateBean.str_TaxTemplates}"  />
                      <f:selectItem itemLabel="None" itemValue="None" noSelectionOption="true"></f:selectItem>
@@ -368,7 +369,9 @@
       
       
             </ui:repeat>
-             <tr><td><h:commandButton value="update" action="#{templateBean.saveDueTemplate(dueTemplate1)}"/></td></tr>
+             <tr>
+             <td></td>
+             <td><h:commandButton styleClass="btn" value="Submit" action="#{templateBean.saveDueTemplate(dueTemplate1)}"/></td></tr>
             </table>
             
         </p:outputPanel>
