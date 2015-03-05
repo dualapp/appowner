@@ -79,4 +79,6 @@ public interface ApartmentDetailsService {
 
 	void deleteBlock(Integer blockId);
 
+	UserBlocks getBlock(Integer blockId);
+
 }
