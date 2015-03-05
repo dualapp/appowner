@@ -330,9 +330,9 @@ public  List<String> getSideMenu()
 	if(id.isEmpty())
 	{
 		Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).uniqueResult();
-		  
+		  System.out.println(id1+"gffg");
 		   String str2=(String) getSessionFactory().getCurrentSession().createQuery("select str_menuID from menuTransaction where int_subcriptionID=?").setParameter(0,id1).setCacheable(true).uniqueResult();
-			
+			System.out.println(str2+"fklkjfgkj");
 			  String[] strArray = str2.split(",");
 			  List<String> str3=new ArrayList<String>();
 			  for (String str1 : strArray) {

@@ -43,8 +43,8 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 		}
 		else
 		{   System.out.println("hjfvvhjfghjjj");
-			String hql="from Notice where str_Visible=? and int_ApartmentID=?";
-			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Visible).setParameter(1,Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).setParameter(0, str_Visible).list();   
+			String hql="from Notice where str_Visible=1 and int_ApartmentID=?";
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).list();   
 		}
 	}
 	
