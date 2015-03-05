@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.CommiteeRole;
@@ -37,6 +38,7 @@ public interface ComplainService {
 	
 	public void deleteComplain(Complain complain);
 	public void updateAdminReason(Integer iD, String str_Description);
+	public List<Complain> adminlistComplain();
 	
 //	public int getNoPerson(String str_CompanyName);
 

@@ -92,7 +92,10 @@ public class ComplainServiceImpl implements ComplainService{
 	{
 		getComplainDao().updateAdminReason(iD,str_Description);
 	}
-	
+	public List<Complain> adminlistComplain()
+	{
+		return getComplainDao().adminlistComplain();
+	}
 	
 /*	public int getNoPerson(String str_CompanyName)
 	{
