@@ -35,7 +35,7 @@
  
 		</h:head>
 		
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
@@ -52,13 +52,11 @@
 					<h:panelGroup id="performed">
 
 						<th><h:outputText value="Organisation:" /></th>
-						<td><p:selectOneMenu id="str_Organisation1"
-								value="#{templateBean.str_Organisation}" style="width:200px">
-								<f:selectItem itemLabel="Select" itemValue=""
-									noSelectionOption="true" />
-								<f:selectItem itemLabel="#{templateBean.str_Organisation}"
-									itemValue="#{templateBean.str_Organisation}" />
-							</p:selectOneMenu></td>
+						<td><h:inputText id="str_Organisation1" readonly="true"
+								value="#{templateBean.str_Organisation}" style="width:200px"></h:inputText>
+								</td>
+								
+								
               <p:spacer width="40" height="20"/>
              <td>   <h:commandButton value="Go" /></td>
 					</h:panelGroup>
@@ -158,7 +156,7 @@
 					</p:column>
 				</p:dataTable>
 				</div>
-				  <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="350" width="450">
+				  <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="400" width="450">
         <p:outputPanel id="multiInvoiceTemplateDetail" style="text-align:center;">
           
            <table>
@@ -167,10 +165,9 @@
              
     <tr>
      <th><h:outputText value="Organisation"/><font color="red" >*</font></th>
-      <td><h:selectOneMenu id="str_Organisation3" value="#{templateBean.str_Organisation}" >
-			<f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-			<f:selectItem itemLabel="#{templateBean.str_Organisation}" 	itemValue="#{templateBean.str_Organisation}" />	
-				</h:selectOneMenu></td>										
+     <td><h:inputText id="str_Organisation3" readonly="true"
+								value="#{templateBean.str_Organisation}" ></h:inputText>
+								</td>									
 								
 						
     </tr>  
@@ -184,7 +181,7 @@
  <th>
     <h:outputText value="Frequency:"/><font color="red" >*</font></th>
     <td>
-   <h:selectOneMenu id="str_Frequency" value="#{templateBean.str1_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
+   <h:selectOneMenu id="str_Frequency" value="#{invoiceTemplate1.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
                   <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
@@ -209,28 +206,28 @@
  <th>
     <h:outputText value="Description:"/></th>
     <td>
-    <h:inputText value="#{invoiceTemplate1.str_Description}"/></td>
+    <h:inputTextarea style="weight:250px;height:100px;" value="#{invoiceTemplate1.str_Description}"/></td>
     </tr>
     
  
     
       
             </ui:repeat>
-             <tr><td><h:commandButton value="update" action="#{templateBean.saveInvoiceTemplate(invoiceTemplate1)}"/></td></tr>
+             <tr>
+             <td></td><td><h:commandButton styleClass="btn" value="update" action="#{templateBean.saveInvoiceTemplate(invoiceTemplate1)}"/></td></tr>
             </table>
             
         </p:outputPanel>
     </p:dialog>
-    <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog3"     showEffect="explode" hideEffect="explode" resizable="false" height="350" width="450">
+    <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog3"     showEffect="explode" hideEffect="explode" resizable="false" height="400" width="450">
         <p:outputPanel id="multiInvoiceTemplateDetail3" style="text-align:center;">
           
            <table>
      <tr>
      <th><h:outputText value="Organisation"/><font color="red" >*</font></th>
-      <td><h:selectOneMenu id="str_Organisation4" value="#{templateBean.str_Organisation}" >
-			<f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-			<f:selectItem itemLabel="#{templateBean.str_Organisation}" 	itemValue="#{templateBean.str_Organisation}" />	
-				</h:selectOneMenu></td>										
+      <td><h:inputText id="str_Organisation4" readonly="true"
+								value="#{templateBean.str_Organisation}" ></h:inputText>
+								</td>									
 								
 						
     </tr>  
@@ -245,7 +242,7 @@
  <th>
     <h:outputText value="Frequency:"/><font color="red" >*</font></th>
     <td>
-   <h:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
+   <h:selectOneMenu id="str_Frequency" value="#{templateBean.invoiceTemplate.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
                   <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
@@ -270,14 +267,15 @@
  <th>
     <h:outputText value="Description:"/></th>
     <td>
-    <h:inputText value="#{templateBean.invoiceTemplate.str_Description}"/></td>
+    <h:inputTextarea style="weight:250px;height:100px;" value="#{templateBean.invoiceTemplate.str_Description}"/></td>
     </tr>
     
  
     
       
           
-             <tr><td><h:commandButton value="update" action="#{templateBean.saveInvoiceTemplate()}"/></td></tr>
+             <tr>
+             <td></td><td><h:commandButton  styleClass="btn" value="update" action="#{templateBean.saveInvoiceTemplate()}"/></td></tr>
             </table>
             
         </p:outputPanel>
