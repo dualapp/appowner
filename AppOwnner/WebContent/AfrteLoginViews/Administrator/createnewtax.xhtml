@@ -28,12 +28,13 @@
       </style>	
  
 </h:head>
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
 					<img src="#{expenseBean.str_Name}images/tax.jpg" height="50" width="50"></img> <span class="title">Tax Template</span>
 				</td>
+				<td align="left"><a href="taxtemplate.xhtml">Back to Grid</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -45,10 +46,9 @@
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
              <td> <h:outputLabel value="Organisation:" /></td>  
-          <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  >
-                  <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
-                 </p:selectOneMenu></td>   
+          <td><h:inputText id="str_Organisation" readonly="true"
+								value="#{templateBean.str_Organisation}" ></h:inputText>
+								</td>
                  </tr>
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
@@ -56,28 +56,31 @@
            <td>  <p:inputText id="str_TaxName" value="#{templateBean.str_TaxName}"   required="true" requiredMessage="TaxName should not Empty"/> </td>
            <td><p:message for="str_TaxName" dispay="text"/></td>
              </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
+            
              <tr>
             <td>  <h:outputText  value="Percentage(%)" /><font color="red" >*</font></td>
            <td>  <p:inputText id="int_Percentage" value="#{templateBean.int_Percentage}"   required="true" requiredMessage="Percentage should be a Number "/> </td>
            <td><p:message for="int_Percentage" dispay="text"/></td>
              </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
+             
               <tr>
             <td>  <h:outputText  value="Tax Exemption"/><br /><small>(per month per flat)</small></td>
            <td>  <p:inputText id="int_TaxExemption" value="#{templateBean.int_TaxExemption}" /> </td>
              </tr>
-             </table>
-            </div>
-              <h:panelGroup style="display:block; text-align:right">
-     <tr> <td><p:commandButton id="submit" value="Submit" onclick="EnrollNowClick()" action="#{templateBean.addTaxTemplate}" ajax="false" /></td>
-                <td><p:commandButton id="cancel" value="Cancel" action="#{templateBean.reset}" onclick="EnrollLater1()" ajax="false"/></td>
+          
+            
+     <tr>
+     <td></td>
+      <td><p:commandButton styleClass="btn"  id="submit" value="Submit" onclick="EnrollNowClick()" action="#{templateBean.addTaxTemplate}" ajax="false" />
+          <p:commandButton styleClass="btn" id="cancel" value="Cancel" action="#{templateBean.reset}" style="margin-left:2em;" ajax="false"/></td>
             </tr>
-            </h:panelGroup>
+         </table>
                
               
-             </h:form>
-             </body>
+           </div>
+           </h:form>
+           </body>
+           
              
    
 </ui:define>
