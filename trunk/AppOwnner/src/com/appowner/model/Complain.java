@@ -116,5 +116,12 @@ public class Complain implements Serializable {
 	public void setAdminReason(String adminReason) {
 		this.adminReason = adminReason;
 	}
+	private Integer int_ApartmentId;
+	public Integer getInt_ApartmentId() {
+		return int_ApartmentId;
+	}
+	public void setInt_ApartmentId(Integer int_ApartmentId) {
+		this.int_ApartmentId = int_ApartmentId;
+	}
 	
 }
