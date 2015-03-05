@@ -502,8 +502,8 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			
 				 String str="select int_RoleId from RoleAssignment where int_ApartmentId=? and int_UserId=?";
 				List<Integer> id= (List<Integer>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,int_ApartmentId).setParameter(1,int_UserId).list();
-				
-				if(id.isEmpty())
+				System.out.println(id+"fdkfdjkfdjkkjf");
+				if(id==null)
 				{
 					Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,int_ApartmentId).setCacheable(true).uniqueResult();
 					  

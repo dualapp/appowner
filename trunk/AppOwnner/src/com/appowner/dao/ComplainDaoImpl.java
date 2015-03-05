@@ -7,10 +7,12 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.bean.LoginBean;
 import com.appowner.model.Complain;
 import com.appowner.model.Contact;
 import com.appowner.model.User;
 import com.appowner.model.Vendor;
+import com.appowner.util.Util;
 
 @Repository
 public class ComplainDaoImpl implements ComplainDao {
@@ -36,8 +38,18 @@ public class ComplainDaoImpl implements ComplainDao {
 	
 	 @SuppressWarnings("unchecked")
 	public List<Complain> listComplain()
+	 {  System.out.println(LoginBean.isAdmin()+"dkjdjkfekjfe");
+		 if(LoginBean.isAdmin())
+	   {
+		 return (List<Complain>) getSessionFactory().getCurrentSession().createQuery("from Complain where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).list();
+	   }
+	 else
+		 return (List<Complain>) getSessionFactory().getCurrentSession().createQuery("from Complain where int_ApartmentId=? and Flat=? and block=?").setParameter(0,Util.getAppartmentId()).setParameter(1,Util.getStr_Flat()).setParameter(2,Util.getBlock()).setCacheable(true).list();
+	 }
+	 @SuppressWarnings("unchecked")
+	public List<Complain> adminlistComplain()
 	 {
-		 return (List<Complain>) getSessionFactory().getCurrentSession().createCriteria(Complain.class).setCacheable(true).list();
+		 return (List<Complain>) getSessionFactory().getCurrentSession().createQuery("from Complain where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).list(); 
 	 }
 	 @SuppressWarnings("unchecked")
 	public List<Contact> listContact()
