@@ -201,8 +201,8 @@ public class TemplateBean implements Serializable {
 		 
 	
 	System.out.println("fkjfgkjfgjkkfj");
-	dueTemplate1.setStr_Calculation(getStr_Calculation());
-	dueTemplate1.setStr_Frequency(getStr_Frequency());
+	//dueTemplate1.setStr_Calculation(getStr_Calculation());
+	//dueTemplate1.setStr_Frequency(getStr_Frequency());
 		getTemplateService().updateDueTemplate(dueTemplate1);
 		
 		
@@ -315,8 +315,8 @@ public class TemplateBean implements Serializable {
 			System.out.println("jhfjfgjkkjgfjkg");
 			System.out.println(str_Calculation);
 			System.out.println(str_Frequency);
-			dueTemplate.setStr_Frequency(getStr_Frequency());
-			dueTemplate.setStr_Calculation(getStr_Calculation());
+		//	dueTemplate.setStr_Frequency(getStr_Frequency());
+		//	dueTemplate.setStr_Calculation(getStr_Calculation());
 			System.out.println(dueTemplate.getStr_Calculation());
 			System.out.println(dueTemplate.getStr_Frequency());
 			getTemplateService().updateDueTemplate(dueTemplate);
@@ -547,6 +547,7 @@ public class TemplateBean implements Serializable {
 	  invoicetemplate.setStr_Frequency(getStr_Frequency());
 	  invoicetemplate.setStr_MessageCategory(getStr_MessageCategory());
 	  invoicetemplate.setStr_MessageTemplate(getStr_MessageTemplate());
+	  System.out.println(str_Description+"jfkjfkjfgjk");
 	  invoicetemplate.setStr_Description(getStr_Description());
 	  invoicetemplate.setStr_DueInvoiceTemplate(str);
 	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
@@ -592,7 +593,7 @@ public class TemplateBean implements Serializable {
 		this.invoiceTemplate = invoiceTemplate;
 	}
 	public void getInvoiceTemplate1(int id1)
-	{   System.out.println("jkgfjkjkg");
+	{   System.out.println(id1+"jfdfdjfjkgfjkjkg");
 		invoiceTemplate=getTemplateService().getInvoiceTemplate(id1);
 	}
 	public void getInvoiceTemplate2()

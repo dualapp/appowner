@@ -34,6 +34,7 @@ public class FileUploadValidator implements Validator {
 		  }
  
 		 */
+		System.out.println(part.getContentType()+"fjkdfjfgjkgk");
         switch (part.getContentType()) {
             case "image/jpeg":  
 			 
@@ -62,6 +63,8 @@ public class FileUploadValidator implements Validator {
             case "image/GIF":   
            	 
                 break;
+            case "text/txt":
+            break;
                      
             default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 			throw new ValidatorException(message);
