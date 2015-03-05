@@ -29,7 +29,7 @@
  
  
 </h:head>
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
@@ -46,10 +46,9 @@
       
             <tr>
              <td> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
-          <td><p:selectOneMenu id="str_Organisation" value="#{templateBean.str_Organisation}"  >
-                    <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{templateBean.str_Organisation}" itemValue="#{templateBean.str_Organisation}"/>
-                 </p:selectOneMenu></td>   
+          <td><p:inputText id="str_Organisation" readonly="true"
+								value="#{templateBean.str_Organisation}" ></p:inputText>
+								</td> 
                  </tr>
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
@@ -105,15 +104,16 @@
                  </p:selectOneMenu></td>
              </tr>
           
-         </table>
+       
         
-             <h:panelGroup style="display:block; text-align:right">
-     <tr> 
-     <td><p:commandButton id="submit" value="Submit" onclick="EnrollLater();"  action="#{templateBean.addDueTemplate}" ajax="false"  update="output" oncomplete="PF('dlg').show()"/></td>
-                <td><p:commandButton id="cancel" value="Cancel" onclick="closeSelf()" ajax="false"/></td>
-            </tr>
-            </h:panelGroup>
             
+     <tr> 
+     <td></td>
+     <td><p:commandButton  styleClass="btn" id="submit" value="Submit" onclick="EnrollLater();"  action="#{templateBean.addDueTemplate}" ajax="false"  update="output" oncomplete="PF('dlg').show()"/>
+               <p:commandButton  styleClass="btn" id="cancel" value="Cancel" onclick="closeSelf()" ajax="false" style="margin-left:2em;"/></td>
+            </tr>
+           
+       </table>     
       </div>
     </h:form>
     </ui:define>
