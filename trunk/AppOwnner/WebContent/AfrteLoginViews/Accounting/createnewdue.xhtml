@@ -179,15 +179,14 @@
            <td>  <p:inputText id="dbl_TotalDueAmount" value="#{dueBean.dbl_DueAmount}"  readonly="true"/> </td>
            </tr>
          
-           </table>
            
-           <br/>
-            <h:panelGroup style="display:block; text-align:right"> 
-         <tr>
-                <td><p:commandButton id="submit" value="Submit" action="#{dueBean.addDueTransaction}"  ajax="false" /></td>
-                <td><p:commandButton id="cancel" value="Cancel" onclick="" ajax="false"/></td>
+           <tr>
+           <td></td>
+             <td><p:commandButton styleClass="btn" id="submit" value="Submit" action="#{dueBean.addDueTransaction}"  ajax="false" />
+              <p:commandButton styleClass="btn" id="cancel" value="Cancel" style="margin-left:2em;" ajax="false"/></td>
            </tr>
-           </h:panelGroup>
+           </table>
+         
               <p:dialog header="Message" widgetVar="multiDuesDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="100" width="300">
         <p:outputPanel id="multiDuesDetail" style="text-align:center;">
           <table>
