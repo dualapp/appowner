@@ -34,12 +34,8 @@
 	<div id="page3">
            <div class="gsTitleDiv">Assets Catecory<br/><hr/></div> 
 	 <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-	 <tr><td><h:outputText value="Organisation:" /> 
-               
-              <h:selectOneMenu >
-              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
-                
-                 </h:selectOneMenu></td></tr>
+	 <tr><td><p:outputLabel value="Organisation:" />  <p:outputLabel value="#{expenseBean.str_OrganizationName}" /> </td>
+              </tr>
 	 <tr><td>  
 	    <p:commandButton style="width:120px;height:25px" process="DT" update="multiAssetCategoryDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('multiAssetCategoryDialog').show()" />
 	
@@ -87,7 +83,7 @@
 	</td>
 	  <td>  <p:message id="AssetCategoryMsg" for="AssetCategory" display="text"/>  </td>
 	</tr>
-	<tr><td><h:commandButton   styleClass="btn"  value="Submit"  ajax="false"  action="#{expenseBean.saveAssetCategory}">
+	<tr><td><h:commandButton   styleClass="btn"  value="Submit"     action="#{expenseBean.saveAssetCategory}">
 	 
 	</h:commandButton>
 	
