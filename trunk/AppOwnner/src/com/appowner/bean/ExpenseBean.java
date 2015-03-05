@@ -33,7 +33,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.hibernate.engine.RowSelection;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
 
 import com.appowner.model.AddTemplateMessage;
 import com.appowner.model.AssetCategory;
@@ -1533,7 +1535,7 @@ public String saveAssetCategory()
 	assetcategory.setStr_assetcat_name(str_AssetCategoryType);
 	assetcategory.setStr_OrganizationName(str_OrganizationName);
 	assetcategory.setInt_AppartmentId(Util.getAppartmentId());
-	 
+	getExpenseService().saveAssetCategory(assetcategory);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Added Successfully!"));
 	return"assetcategory.xhtml";
 }
@@ -1830,6 +1832,7 @@ public void setStr_PoolQuestion(String str_PoolQuestion) {
 }
 public String deleteOnePoll1()
 {
+	System.out.println(onePoll+"onePolllllllllll");
 	getExpenseService().deleteOnePoll(onePoll);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Deleted Successfully!"));
 	return "pools.xhtml";
@@ -2079,6 +2082,33 @@ public static void setPool1(Pool pool1) {
 	ExpenseBean.pool1 = pool1;
 }
 private String msg;
+private Boolean disabled1;
+public Boolean getDisabled1() {
+	if(getIsVoted()==null)
+		 
+		disabled1=true;
+	else
+		disabled1=false;
+	 
+	return disabled1;
+}
+public void setDisabled1(Boolean disabled1) {
+	this.disabled1 = disabled1;
+}
+public void desabled1Listener( SelectEvent event)
+{
+	if(getIsVoted()==null)
+	{
+		disabled=false;	 
+		disabled1=true;
+	}
+	else
+	{
+		disabled1=false;
+		disabled=true;
+	}
+	 
+}
 public Boolean getDisabled() {
 	if(getIsVoted()==null)
 	 

@@ -276,6 +276,13 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	 String  oldBlockName;
 	 private UserBlocks selectedBlock;
+	 private UserBlocks selectedBlock1=new UserBlocks();
+	public UserBlocks getSelectedBlock1() {
+		return selectedBlock1;
+	}
+	public void setSelectedBlock1(UserBlocks selectedBlock1) {
+		this.selectedBlock1 = selectedBlock1;
+	}
 	public UserBlocks getSelectedBlock() {
 		System.out.println(selectedBlock+"makhetbdbcccccccs");
 		return selectedBlock;
@@ -283,7 +290,28 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setSelectedBlock(UserBlocks selectedBlock) {
 		this.selectedBlock = selectedBlock;
 	}
-	public void onCellEdit(CellEditEvent event) {
+	
+	public void getBlock1(Integer blockId)
+	{
+		System.out.println(blockId);
+		 
+		selectedBlock1=getApartmentDetailsService().getBlock(blockId);
+		 
+	}
+	public String updateBlockDetails(UserBlocks selectedBlock)
+	{
+		if(selectedBlock1.getInt_BlockId()!=null)
+		{
+		getApartmentDetailsService().updateOneBlock(selectedBlock1);
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Updated Successfully!"));
+		}
+		return "blockdetails.xhtml";
+		
+	}
+
+	 
+		public void onCellEdit(CellEditEvent event) {
+	 
 		
         Object oldValue = event.getOldValue();
         Object newValue = event.getNewValue();
@@ -314,7 +342,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	{
 		System.out.println(int_blockId+"BlockId");
 		getApartmentDetailsService().deleteBlock(int_blockId);
-		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Bolck Deleted Successfully!"));
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Deleted Successfully!"));
 		return "blockdetails.xhtml?faces-redirect=true";
 	}
 	public Integer getInt_blockId() {
