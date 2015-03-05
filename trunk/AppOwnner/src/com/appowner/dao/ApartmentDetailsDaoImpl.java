@@ -280,5 +280,11 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		// TODO Auto-generated method stub
 		getSessionFactory().getCurrentSession().createQuery("delete from UserBlocks where int_BlockId = ?").setParameter(0,blockId).executeUpdate();
 	}
+
+	@Override
+	public UserBlocks getBlock(Integer blockId) {
+		// TODO Auto-generated method stub
+		return (UserBlocks) getSessionFactory().getCurrentSession().get(UserBlocks.class, blockId);
+	}
 	
 }
