@@ -23,7 +23,7 @@
       </style>	
       
 </h:head>
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
@@ -80,13 +80,13 @@
              <h:panelGroup id="aa">
             
               <td><h:outputLabel value="Invoice Date:" /></td>
-              <td><h:selectOneMenu id="dat_InvoiceDate"   style="width:150px">
+              <td><p:selectOneMenu id="dat_InvoiceDate"   style="width:150px">
                   <f:selectItem itemLabel="Today" itemValue="Today"  />
                   <f:selectItem itemLabel="Last Week" itemValue="Last Week"  />
                   <f:selectItem itemLabel="Current MOnth" itemValue="Current MOnth"  />
                   <f:selectItem itemLabel="Specific Date" itemValue="Specific Date"  />
                    <f:selectItem itemLabel="Select Date Range" itemValue="Select Date Range"  />
-                </h:selectOneMenu>
+               </p:selectOneMenu>
              </td>
               <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Template:" /></td>
@@ -139,7 +139,7 @@
 								&#150; &#150;<p:commandButton  style="width:120px;height:25px" update="invoice" process="invoice" onclick="return confirm('Are you sure you want to delete ?');" action="#{invoiceBean.deleteInvoice()}" icon="ui-icon-trash" value="Delete" /> &#150; &#150; <h:commandButton  style="width:120px;height:25px" id="jjj"  process="invoice" action="#{invoiceBean.cancel()}"   icon="ui-icon-search" value="Make Payment" disabled="#{invoiceBean.indicate}" update="growl" >
 								
 							</h:commandButton>
-								&#150; &#150;<p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"  value="Refresh" />
+								&#150; &#150;
          
            <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>

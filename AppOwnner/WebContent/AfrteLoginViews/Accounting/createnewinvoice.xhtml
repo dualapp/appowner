@@ -190,6 +190,7 @@
  
   </tr>
   </table>
+  </div>
   <h:panelGroup id="priya" rendered="#{! empty invoiceBean.str_ApartmentNo &amp;&amp; !listInvoiceTransaction1.listIterator().hasNext()}">
     <div id="page3"> 
     <div class="gsTitleDiv">Invoice Details<br/></div>
@@ -267,24 +268,29 @@
   <td style="height:20px;color:#E17009;" align="right">Total Due</td><td align="right" style="width:250px;color:#E17009;">#{invoiceBean.totalDue}</td><td align="right" style="padding-right:5px;width:320px;"></td>
   </tr>
     </tbody>
-    </table>
-   
-    <tr>
-  <td align="right"><p:spacer width="40" height="20"/><h:selectBooleanCheckbox id="bl_Show" value="#{invoiceBean.bl_Show}"/>Send Invoice </td> 
+     
+   </table>
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr>
+    
+  <td colspan="4"><p:selectBooleanCheckbox id="bl_Show" value="#{invoiceBean.bl_Show}"/>Send Invoice </td> 
      </tr>
-   
-     </div>
-     </h:panelGroup>
-   
+     </table>
+   </div>
+    <h:panelGroup style="display:block; text-align:right">
  
-  <h:panelGroup style="display:block; text-align:right"> 
-         <tr>
-                 <td><p:commandButton id="submit" value="Submit" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" /></td>
-                 <td><p:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancel}" ajax="false"/></td>
+  
+       <tr>
+        
+                 <td><p:commandButton styleClass="btn" id="submit" value="Submit" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" />
+                 <p:commandButton styleClass="btn" id="cancel" value="Cancel" action="#{invoiceBean.cancel}"  style="margin-left:2em;" ajax="false"/></td>
            </tr>
-  </h:panelGroup>
+ </h:panelGroup>
+ 
+ </h:panelGroup>
+ 
           
-           </div>
+          
           </h:form>
           </body>
           
