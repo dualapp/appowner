@@ -22,6 +22,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.CroppedImage;
 import org.primefaces.model.UploadedFile;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -905,6 +906,7 @@ public class LoginBean implements Serializable {
 				 
 		 
 		str_userRoleName=user.getStr_UserRoleName();
+		System.out.println(str_userRoleName+"dfjkfdjkfdkjfd");
 		 str_Country=user.getStr_Country();
 		//formuserloginuserpassword=user.getStr_Password();
 		 System.out.println(formuserloginuserpassword+"kldfkldlk");
@@ -964,12 +966,12 @@ public class LoginBean implements Serializable {
             session.setAttribute("str_State",str_State);
             session.setAttribute("str_City",str_City);
             session.setAttribute("str_Apartment",user.getStr_Apartment());
-            session.setAttribute("str_userRoleName", str_userRoleName);
+            session.setAttribute("str_userRoleName",str_userRoleName);
 			 
             session.setAttribute("int_UserRole", user.getInt_UserRole());
 		     return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
-		   else if(str_userRoleName.equalsIgnoreCase("user") && roleAssign.isEmpty())
+		   else if(str_userRoleName.equalsIgnoreCase("user") && roleAssign==null)
 		   {   System.out.println( "fdufdkjfdjkfdjgffggffg");
 			   int_ApartmentId=user.getInt_ApartmentId();
 				int_UserId=user.getInt_UserId();
@@ -1100,7 +1102,7 @@ public class LoginBean implements Serializable {
 	public void setIndicator(boolean indicator) {
 		this.indicator = indicator;
 	}
-	public String logout() {
+	public String logout(ActionEvent e) {
 		System.out.println("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
 	     
 	      memberLog();

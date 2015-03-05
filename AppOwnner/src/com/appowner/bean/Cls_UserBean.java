@@ -436,6 +436,7 @@ public class Cls_UserBean implements Serializable{
 				ua.setStr_Address(getCity());
 				ua.setInt_CityId(id);
 				ua.setStatus(0);
+				ua.setInt_subscriptID(1);
 				java.util.Date d=new java.util.Date();
 				System.out.println(d+"dskdskdslkk");
 				Calendar cal1 = Calendar.getInstance();

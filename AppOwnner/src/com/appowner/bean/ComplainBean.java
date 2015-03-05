@@ -34,7 +34,7 @@ import com.appowner.util.Util;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ComplainBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static final String ERROR   = "error";
@@ -53,7 +53,13 @@ public class ComplainBean implements Serializable{
 	public void setInt_ComplainID(Integer int_ComplainID) {
 		this.int_ComplainID = int_ComplainID;
 	}
-	
+	private Integer int_ApartmentId;
+	public Integer getInt_ApartmentId() {
+		return int_ApartmentId;
+	}
+	public void setInt_ApartmentId(Integer int_ApartmentId) {
+		this.int_ApartmentId = int_ApartmentId;
+	}
 	private char ch_Complain;
 	public char getCh_Complain() {
 		return ch_Complain;
@@ -169,6 +175,7 @@ public class ComplainBean implements Serializable{
 		cmp.setStr_VenderName(str_VenderName);
 		System.out.println(str_VenderName);
 		cmp.setStatus(0);
+		cmp.setInt_ApartmentId(Util.getAppartmentId());
 		cmp.setAdminReason(getAdminReason());
 		getComplainService().addComplain(cmp);
 		
@@ -190,6 +197,15 @@ public class ComplainBean implements Serializable{
 	}
 	public void setListComplain(List<Complain> listComplain) {
 		ListComplain = listComplain;
+	}
+	private List<Complain> adminListComplain;
+	public List<Complain> getAdminListComplain() {
+		adminListComplain=new ArrayList<Complain>();
+		adminListComplain.addAll(getComplainService().adminlistComplain());
+		return adminListComplain;
+	}
+	public void setAdminListComplain(List<Complain> adminListComplain) {
+		this.adminListComplain = adminListComplain;
 	}
 	public void reset() 
 	{
@@ -459,14 +475,15 @@ public class ComplainBean implements Serializable{
 			public static void setID(Integer iD) {
 				ID = iD;
 			}
-		public Complain selectID(Integer Id)
+		public void selectID(Integer Id)
 		{
 			System.out.println(Id+"dkskjffdjkfdkjdf");
 			ID=Id;
 			System.out.println(ID+"dlsdklsdslk");
-			selectedComplain=getComplainService().getComplain(ID);
+			cmp=getComplainService().getComplain(ID);
+			System.out.println(cmp+"jjkjkjkkj");
+			System.out.println(cmp.getAdminReason()+"fdifgikfgi");
 			
-			return selectedComplain;
 		}
 			
 			
