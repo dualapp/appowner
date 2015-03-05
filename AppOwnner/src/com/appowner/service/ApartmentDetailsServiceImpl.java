@@ -223,6 +223,12 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		getApartmentDetailsDao().deleteBlock(blockId);
 	}
 
+	@Override
+	public UserBlocks getBlock(Integer blockId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getBlock(blockId);
+	}
+
 	 
 
 }
