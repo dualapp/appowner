@@ -147,7 +147,7 @@
 
 								<li class="divider"></li>
 
-								<li> <i class="icon-off"></i> <p:commandButton action="#{loginBean.logout}" value="Logout"  ajax="false"></p:commandButton>
+								<li> <i class="icon-off"></i>  <p:button outcome="/layout.xhtml" target="_top" value="Logout" actionListener="#{loginBean.logout(e)}" ></p:button>
 								
 								 </li>
 							</ul></li>
