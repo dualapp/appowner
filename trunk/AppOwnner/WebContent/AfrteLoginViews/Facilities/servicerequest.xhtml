@@ -43,16 +43,16 @@
    <p:growl id="ui-growl" globalOnly="true" sticky="true" />
                  <div id="page3"> 
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
-               <h:outputText value="Organisation:" /> </th>
+               <p:outputLabel value="Organisation:" /> </th>
              <td> <h:selectOneMenu value="#{requestScopeBean.str_OrganizationName}">&nbsp;
              <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
     </h:selectOneMenu></td>
-   <th><h:outputText value="VendorCategory"/></th>  <td><h:selectOneMenu value="#{requestScopeBean.str_VendorType}">
+   <th><p:outputLabel value="VendorCategory"/></th>  <td><h:selectOneMenu value="#{requestScopeBean.str_VendorType}">
    <f:selectItem itemLabel="Select One" itemValue="" />
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></h:selectOneMenu>
     </td>
-    <th><h:outputText value="Status"></h:outputText></th>
+    <th><p:outputLabel value="Status"></p:outputLabel></th>
     <td> <h:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
     <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="All"  itemValue="All" />
@@ -63,7 +63,7 @@
             </td>
    
      </tr>
-    <tr><th><h:outputText value="Period"></h:outputText></th>
+    <tr><th><p:outputLabel value="Period"></p:outputLabel></th>
     <td><h:selectOneMenu style="" value="#{requestScopeBean.str_Period}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
@@ -121,29 +121,29 @@
              </p:column>
            	  
 	 <p:column headerText="Organization">
-                <h:outputText value="#{loginBean.str_ApartmentName}" /> 
+                <p:outputLabel value="#{loginBean.str_ApartmentName}" /> 
             
 	 </p:column>
 	 
 	 <p:column headerText="Created On">
-                <h:outputText value="#{sr.str_OpenDate}" /> 
+                <p:outputLabel value="#{sr.str_OpenDate}" /> 
             
 	 </p:column>
 	 <p:column headerText="Category">
-                <h:outputText value="#{sr.str_VendorType}" /> 
+                <p:outputLabel value="#{sr.str_VendorType}" /> 
             
 	 </p:column>
 	 <p:column headerText="Title">
-                <h:outputText value="#{sr.str_Title}" /> 
+                <p:outputLabel value="#{sr.str_Title}" /> 
             
 	 </p:column>
 	 <p:column headerText="Status">
-                <h:outputText value="#{sr.str_Status}" /> 
+                <p:outputLabel value="#{sr.str_Status}" /> 
             
 	 </p:column>
 	 
 	 <p:column headerText="Flat">
-                <h:outputText value="#{sr.str_Flat}" /> 
+                <p:outputLabel value="#{sr.str_Flat}" /> 
             
 	 </p:column>
 	 </p:dataTable>
@@ -154,40 +154,40 @@
             <ui:repeat value="#{requestScopeBean.selectedServices}" var="sr1">
              <tr>
  <th>
-    <h:outputText value="Organization Name:"/></th>
+    <p:outputLabel value="Organization Name:"/></th>
     <td>
-    <h:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
+    <p:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
     </tr>
     <tr>
  <th>
-    <h:outputText value="Service category:"/></th>
+    <p:outputLabel value="Service category:"/></th>
     <td>
-    <h:inputText value="#{sr1.str_VendorType}"/></td>  
+    <p:inputText value="#{sr1.str_VendorType}"/></td>  
     </tr>
     <tr>
  <th>
-    <h:outputText value="Created On:"/></th>
+    <p:outputLabel value="Created On:"/></th>
     <td>
-    <h:inputText value="#{sr1.str_OpenDate}"/></td>  
+    <p:inputText value="#{sr1.str_OpenDate}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="Title:"/></th>
+    <p:outputLabel value="Title:"/></th>
     <td>
-    <h:inputText value="#{sr1.str_Title}"/></td>  
+    <p:inputText value="#{sr1.str_Title}"/></td>  
     </tr>
 
   <tr>
  <th>
-    <h:outputText value="Status:"/></th>
+    <p:outputLabel value="Status:"/></th>
     <td>
-    <h:inputText value="#{sr1.str_Status}"/></td>  
+    <p:inputText value="#{sr1.str_Status}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="Flat:"/></th>
+    <p:outputLabel value="Flat:"/></th>
     <td>
-    <h:inputText value="#{sr1.str_Flat}"/></td>  
+    <p:inputText value="#{sr1.str_Flat}"/></td>  
     </tr>
     <tr><td><h:commandButton value="Update" styleClass="btn" action="#{requestScopeBean.updateOneServiceRequest(sr1)}">
     
@@ -209,40 +209,40 @@
             
             <tr>
  <th>
-    <h:outputText value="Organization Name:"/></th>
+    <p:outputLabel value="Organization Name:"/></th>
     <td>
-     <h:outputText value="#{expenseBean.str_OrganizationName}"/></td>  
+     <p:outputLabel value="#{expenseBean.str_OrganizationName}"/></td>  
     </tr>
     <tr>
  <th>
-    <h:outputText value="Service category:"/></th>
+    <p:outputLabel value="Service category:"/></th>
     <td>
-     <h:outputText value="#{sr1.str_VendorType}"/></td>  
+     <p:outputLabel value="#{sr1.str_VendorType}"/></td>  
     </tr>
     <tr>
  <td>
-    <h:outputText value="Created On:"/></td>
+    <p:outputLabel value="Created On:"/></td>
     <td>
-     <h:outputText value="#{sr1.str_OpenDate}"/></td>  
+     <p:outputLabel value="#{sr1.str_OpenDate}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="Title:"/></th>
+    <p:outputLabel value="Title:"/></th>
     <td>
-     <h:outputText value="#{sr1.str_Title}"/></td>  
+     <p:outputLabel value="#{sr1.str_Title}"/></td>  
     </tr>
 
   <tr>
  <th>
-    <h:outputText value="Status:"/></th>
+    <p:outputLabel value="Status:"/></th>
     <td>
-    <h:outputText value="#{sr1.str_Status}"/></td>  
+    <p:outputLabel value="#{sr1.str_Status}"/></td>  
     </tr>
       <tr>
  <th>
-    <h:outputText value="Flat:"/></th>
+    <p:outputLabel value="Flat:"/></th>
     <td>
-     <h:outputText value="#{sr1.str_Flat}"/></td>  
+     <p:outputLabel value="#{sr1.str_Flat}"/></td>  
     </tr>
     
             </ui:repeat>
@@ -257,9 +257,9 @@
               
             <ui:repeat value="#{requestScopeBean.selectedServices}" var="sr1">
             
-            <tr><th><h:outputText value="Selected request will be assign click yes to confirm"/></th></tr>
-           <tr><td><p:selectBooleanCheckbox      value="#"/> <h:outputText value="Send Email to creator"/> </td></tr>
-           <tr><td><p:selectBooleanCheckbox     value="#"/><h:outputText value="Send Email to creator"/></td></tr>
+            <tr><th><p:outputLabel value="Selected request will be assign click yes to confirm"/></th></tr>
+           <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
            <tr><td><h:commandButton value="yes" action="#{requestScopeBean.assignRequestedService(sr1)}"/> 
            <h:commandButton value="No" action="servicerequest.xhtml"/></td>
            </tr>
@@ -273,9 +273,9 @@
               
             <ui:repeat value="#{requestScopeBean.selectedServices}" var="sr1">
             
-            <tr><th><h:outputText value="Selected request will be closed click yes to confirm"/></th></tr>
-           <tr><td><p:selectBooleanCheckbox      value="#"/> <h:outputText value="Send Email to creator"/> </td></tr>
-           <tr><td><p:selectBooleanCheckbox     value="#"/><h:outputText value="Send Email to creator"/></td></tr>
+            <tr><th><p:outputLabel value="Selected request will be closed click yes to confirm"/></th></tr>
+           <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
            <tr><td><h:commandButton value="yes" action="#{requestScopeBean.closeRequestedService(sr1)}"/> 
            <h:commandButton value="No" action="servicerequest.xhtml"/></td>
            </tr>

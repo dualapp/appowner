@@ -39,18 +39,18 @@
 	 
  <div id="page3">  
   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
-               <h:outputText value="Organisation:" /> </th>
+               <p:outputLabel value="Organisation:" /> </th>
              <td> <h:selectOneMenu  value="#{requestScopeBean.str_OrganizationName}">&nbsp;
              <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
     </h:selectOneMenu></td>
-   <th><h:outputText value="Falility"/></th>  <td><h:selectOneMenu id="Facility" value="#{requestScopeBean.str_FacilityType}"  >
+   <th><p:outputLabel value="Falility"/></th>  <td><h:selectOneMenu id="Facility" value="#{requestScopeBean.str_FacilityType}"  >
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
      
     </h:selectOneMenu>
     </td>
-    <th><h:outputText value="Status"></h:outputText></th>
+    <th><p:outputLabel value="Status"></p:outputLabel></th>
     <td> <h:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
     <f:selectItem itemLabel="Select One" itemValue="" />
               <f:selectItem itemLabel="All"  itemValue="All" />
@@ -61,7 +61,7 @@
             </td>
    
      </tr>
-    <tr><th><h:outputText value="Period"></h:outputText></th>
+    <tr><th><p:outputLabel value="Period"></p:outputLabel></th>
     <td><h:selectOneMenu value="#{requestScopeBean.str_Period}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
@@ -71,7 +71,7 @@
                <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
                 <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
       </h:selectOneMenu></td>
-    <th><h:outputText value="Event Type"/></th> 
+    <th><p:outputLabel value="Event Type"/></th> 
    <td><h:selectOneMenu value="#{requestScopeBean.str_EventType}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem   itemValue="Public" itemLabel="Public"/>
@@ -129,31 +129,31 @@
 	 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
             </p:column>
           <p:column headerText="Organization">
-                <h:outputText value="#{loginBean.str_ApartmentName}" /> 
+                <p:outputLabel value="#{loginBean.str_ApartmentName}" /> 
             
 	 </p:column>
 	  <p:column headerText="EventName">
-                <h:outputText value="#{Bf.str_EventName}" /> 
+                <p:outputLabel value="#{Bf.str_EventName}" /> 
             
 	 </p:column>
 	 <p:column headerText="Facility">
-                <h:outputText value="#{Bf.str_FacilityType}" /> 
+                <p:outputLabel value="#{Bf.str_FacilityType}" /> 
             
 	 </p:column>
 	 <p:column headerText="Start Date">
-                <h:outputText value="#{Bf.str_OpenDate}" /> 
+                <p:outputLabel value="#{Bf.str_OpenDate}" /> 
             
 	 </p:column>
 	 <p:column headerText="End Date">
-                <h:outputText value="#{Bf.str_CloseDate}" /> 
+                <p:outputLabel value="#{Bf.str_CloseDate}" /> 
             
 	 </p:column>
 	 <p:column headerText="Event Type">
-                <h:outputText value="#{Bf.str_EventType}" /> 
+                <p:outputLabel value="#{Bf.str_EventType}" /> 
             
 	 </p:column>
 	  <p:column headerText="Created By">
-                <h:outputText value="#{Bf.str_CreatedBy}"/> 
+                <p:outputLabel value="#{Bf.str_CreatedBy}"/> 
             
 	 </p:column>
 	 
@@ -165,15 +165,15 @@
              
             <legend  style="background-color:#438eb9; color:#fff;">Email</legend>
             <table>
-            <tr><th><h:outputText value="Select recipient"/></th>
+            <tr><th><p:outputLabel value="Select recipient"/></th>
             <td><h:selectOneRadio id="Audience"
                       value="#{expenseBean.str_PoolAudience}">
         <f:selectItem   itemLabel="All Members" itemValue="1" />
         <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
         </h:selectOneRadio></td></tr>
-       <tr> <th><h:outputText value="To"/></th><br/>
+       <tr> <th><p:outputLabel value="To"/></th><br/>
        <td><p:inputTextarea value="#{loginBean.str_EmailId}" readonly="true" rows="6" cols="33"/></td></tr>
-       <tr><th><h:outputText value="MESSAGE*"/></th><br/>
+       <tr><th><p:outputLabel value="MESSAGE*"/></th><br/>
         <td><p:inputTextarea   rows="6" cols="33"/></td></tr>
        <tr><td><h:commandButton  styleClass="btn" value="Send" action="#"/></td>  <td><h:commandButton styleClass="btn"  value="Cancel" action="book a facility.xhtml"/></td></tr>
         </table>
@@ -189,47 +189,47 @@
             <ui:repeat value="#{requestScopeBean.selectedBookAFacility}" var="bf1">
                <tr>
  <th>
-    <h:outputText value="Organization:"/></th>
+    <p:outputLabel value="Organization:"/></th>
     <td>
-    <h:outputText value="#{loginBean.str_ApartmentName}" /></td>
+    <p:outputLabel value="#{loginBean.str_ApartmentName}" /></td>
     </tr>
      <tr>
  <th>
-    <h:outputText value="Event Name:"/></th>
+    <p:outputLabel value="Event Name:"/></th>
     <td>
-      <h:outputText value="#{bf1.str_EventName}" /> </td>
+      <p:outputLabel value="#{bf1.str_EventName}" /> </td>
     </tr>
      <tr>
  <th>
-    <h:outputText value="Facility:"/></th>
+    <p:outputLabel value="Facility:"/></th>
     <td>
-     <h:outputText value="#{bf1.str_FacilityType}" />  </td>
+     <p:outputLabel value="#{bf1.str_FacilityType}" />  </td>
     </tr>
     <tr>
  <th>
-    <h:outputText value="Open Date:"/></th>
+    <p:outputLabel value="Open Date:"/></th>
     <td>
-      <h:outputText value="#{bf1.str_OpenDate}" />   </td>
+      <p:outputLabel value="#{bf1.str_OpenDate}" />   </td>
     </tr>
     <tr>
  <th>
-    <h:outputText value="Close Date:"/></th>
+    <p:outputLabel value="Close Date:"/></th>
     <td>
-      <h:outputText value="#{bf1.str_CloseDate}" />   </td>
+      <p:outputLabel value="#{bf1.str_CloseDate}" />   </td>
     </tr>
     
        <tr>
  <th>
-    <h:outputText value="Event Type:"/></th>
+    <p:outputLabel value="Event Type:"/></th>
     <td>
-      <h:outputText value="#{bf1.str_EventType}" />    </td>
+      <p:outputLabel value="#{bf1.str_EventType}" />    </td>
     </tr>
     
       <tr>
  <th>
-    <h:outputText value="Created By:"/></th>
+    <p:outputLabel value="Created By:"/></th>
     <td>
-      <h:outputText value="#{bf1.str_CreatedBy}" />   </td>
+      <p:outputLabel value="#{bf1.str_CreatedBy}" />   </td>
     </tr>
             
             </ui:repeat>
@@ -245,47 +245,47 @@
             
              <tr>
  <th>
-    <h:outputText value="Organization:"/></th>
+    <p:outputLabel value="Organization:"/></th>
     <td>
-    <h:inputText value="#{loginBean.str_ApartmentName}" /></td>
+    <p:inputText value="#{loginBean.str_ApartmentName}" /></td>
     </tr>
      <tr>
  <th>
-    <h:outputText value="Event Name:"/></th>
+    <p:outputLabel value="Event Name:"/></th>
     <td>
-      <h:inputText value="#{bf1.str_EventName}" /> </td>
+      <p:inputText value="#{bf1.str_EventName}" /> </td>
     </tr>
      <tr>
  <th>
-    <h:outputText value="Facility:"/></th>
+    <p:outputLabel value="Facility:"/></th>
     <td>
-     <h:inputText value="#{bf1.str_FacilityType}" />  </td>
+     <p:inputText value="#{bf1.str_FacilityType}" />  </td>
     </tr>
     <tr>
  <th>
-    <h:outputText value="Open Date:"/></th>
+    <p:outputLabel value="Open Date:"/></th>
     <td>
-      <h:inputText value="#{bf1.str_OpenDate}" />   </td>
+      <p:inputText value="#{bf1.str_OpenDate}" />   </td>
     </tr>
     <tr>
  <th>
-    <h:outputText value="Close Date:"/></th>
+    <p:outputLabel value="Close Date:"/></th>
     <td>
-     <h:inputText value="#{bf1.str_CloseDate}" />   </td>
+     <p:inputText value="#{bf1.str_CloseDate}" />   </td>
     </tr>
     
        <tr>
  <th>
-    <h:outputText value="Event Type:"/></th>
+    <p:outputLabel value="Event Type:"/></th>
     <td>
-      <h:inputText  value="#{bf1.str_EventType}" />    </td>
+      <p:inputText  value="#{bf1.str_EventType}" />    </td>
     </tr>
     
       <tr>
  <th>
-    <h:outputText value="Created By:"/></th>
+    <p:outputLabel value="Created By:"/></th>
     <td>
-      <h:inputText value="#{bf1.str_CreatedBy}" />   </td>
+      <p:inputText value="#{bf1.str_CreatedBy}" />   </td>
     </tr>
             </ui:repeat>
             
