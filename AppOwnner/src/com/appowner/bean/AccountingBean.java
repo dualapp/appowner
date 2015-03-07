@@ -213,7 +213,7 @@ public ManualJournal getSelectedjournal() {
 public void setSelectedjournal(ManualJournal selectedjournal) {
 	this.selectedjournal = selectedjournal;
 }
-public String addInvoiceManualJournal() throws AccountingBean
+public void addInvoiceManualJournal() throws AccountingBean
 { try{
 	ManualJournal journal=new ManualJournal();
     journal.setStr_OrganisationID(Util.getAppartmentId());
@@ -230,7 +230,7 @@ public String addInvoiceManualJournal() throws AccountingBean
     
     	 getAccountsService().addManualJournal(journal);
    
-   return "accounttransaction.xhtml";
+  
     
     }
   catch(Exception e)
@@ -239,8 +239,8 @@ public String addInvoiceManualJournal() throws AccountingBean
   }
 
 }
-public String addManualJournal(ManualJournal journal) {
-	System.out.println("jhvvnjhhhhhhhhhhhhhhhhhh");
+public void addManualJournal(ManualJournal journal) {
+	System.out.println("jhvvnjggggggggggggggggggggg");
 	if (journal.getInt_ManualJournalID()!= null) {
 		
 		 getAccountsService().updateManualJournal(journal);
@@ -253,9 +253,9 @@ public String addManualJournal(ManualJournal journal) {
 
 	} else
 		getAccountsService().addManualJournal(journal);
-	return "accounttransaction.xhtml";
+	
 }
-public String deleteManualJournal1(ActionEvent actionEvent) {
+public void deleteManualJournal1() {
 	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 	ManualJournal journal=new ManualJournal();
 	Integer id=selectedjournal.getInt_ManualJournalID();
@@ -268,7 +268,7 @@ public String deleteManualJournal1(ActionEvent actionEvent) {
    
 
    getAccountsService().deleteManualJournal(id);
-    return "manualjournal.xhtml?faces-redirect=true";
+   
 }
 private List<ManualJournal> listManualJournal;
 public List<ManualJournal> getListManualJournal() {
@@ -2238,9 +2238,11 @@ public void getSearch3()
 		System.out.println(int_blank+"hhjhj123");
 	}
 }
-public void setTest(ActionEvent testEvent)
+public void setTest(TabChangeEvent event)
     {
-       System.out.println("tydhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");}
+       System.out.println("tydhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+     //Tab activeTab = event.getTab();
+    }
 	
 }
 

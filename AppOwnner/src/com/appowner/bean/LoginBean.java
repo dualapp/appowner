@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.servlet.ServletContext;
@@ -40,6 +41,7 @@ import com.appowner.model.UserExtraInfo;
 import com.appowner.service.ApartmentDetailsService;
 import com.appowner.service.In_UserService;
 import com.appowner.service.MaintainanceStaffService;
+import com.appowner.service.VendorService;
 import com.appowner.util.Util;
 
 @ManagedBean(name = "loginBean")
@@ -667,13 +669,15 @@ public class LoginBean implements Serializable {
 
 	public String getUserloginname() {
 		user=new User();
+		if(Util.getUserId()!=null)
 		user=getUserService().getUser(Util.getUserId());
 		if (user!= null) {
 			userloginname = user.getStr_Username();
 			
 
 		}
-
+		else
+			userloginname=Util.getStr_FirstName();
 		return userloginname;
 	}
 
@@ -1476,7 +1480,9 @@ public class LoginBean implements Serializable {
 	public String getPath() {
 		System.out.println(path + "path1");
 		path = (String) session.getAttribute("str_ImageName1");
-		if (user.getVar_ImageName1() != null)
+		if(path!=null)
+			path = (String) session.getAttribute("str_ImageName1");
+		else if (user.getVar_ImageName1() != null)
 
 			path = user.getVar_ImageName1();
 		  
@@ -1497,5 +1503,87 @@ public class LoginBean implements Serializable {
 
 	public static void setStr_firstName(String str_firstName) {
 		LoginBean.str_firstName = str_firstName;
+	}
+	/**
+	 * This listener cleans up the State value if a new Country is selected.
+	 * 
+	 * @param event
+	 *            a change event when the value of the country changes.
+	 */
+
+	public void countryChangeListener(ValueChangeEvent event) {
+		if ((event.getNewValue() != str_Country)) {
+			str_State = null;
+			// str_VendorCity = null;
+
+		}
+
+		str_Country = (String) event.getNewValue();
+	}
+	private List<String> str_UserStates;
+private List<String> cityListByState;
+	/**
+	 * This listener cleans up the city value if a new state is selected.
+	 * 
+	 * @param event
+	 *            a change event when the value of the state changes.
+	 * @return
+	 */
+	public List<String> stateChangeListener(ValueChangeEvent event) {
+
+		String str_StateName = (String) event.getNewValue();
+		cityListByState = new ArrayList<String>();
+		cityListByState.addAll(getVendorservice().cityList1(str_StateName));
+
+		return cityListByState;
+	}
+	/**
+     * Gets a {@code List of States based on the selected Country.
+     *
+     * @return a list of States based on selected Country, or an empty list if no
+     * Country is selected.
+     */
+	public List<String> getStr_UserStates() {
+		if (str_Country != null) {
+			str_UserStates = new ArrayList<String>();
+			str_UserStates.addAll(getVendorservice().stateList());
+			return str_UserStates;
+		} else
+			return new ArrayList<String>();
+
+	}
+
+public List<String> getCityListByState() {
+		return cityListByState;
+	}
+	public void setCityListByState(List<String> cityListByState) {
+		this.cityListByState = cityListByState;
+	}
+	public void setStr_UserStates(List<String> str_UserStates) {
+		this.str_UserStates = str_UserStates;
+	}
+/**
+     * Gets a {@code List of cities based on the selected state.
+     *
+     * @return a list of cities based on selected state, or an empty list if no
+     * state is selected.
+     */
+	public List<String> getStr_UserCities() {
+		if ((str_State != null)) {
+
+			 
+			return cityListByState;
+		} else
+			return new ArrayList<String>();
+	}
+	@ManagedProperty(value = "#{VendorService}")
+	private VendorService vendorservice;
+
+	public VendorService getVendorservice() {
+		return vendorservice;
+	}
+
+	public void setVendorservice(VendorService vendorservice) {
+		this.vendorservice = vendorservice;
 	}
 }
