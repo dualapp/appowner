@@ -103,10 +103,10 @@
                
             <ui:repeat value="#{expenseBean.assetCategoryList1}" var="ac1">
              <tr>
-             <th><p:outputLabel value="Organization"/></th><td><h:inputText value="#{ac1.str_OrganizationName}" /> </td>
+             <th><p:outputLabel value="Organization"/></th><td><p:inputText value="#{ac1.str_OrganizationName}" /> </td>
              </tr>
              <tr>
-             <th><p:outputLabel value="Category Name"/></th><td><h:inputText value="#{ac1.str_assetcat_name}" /> </td>
+             <th><p:outputLabel value="Category Name"/></th><td><p:inputText value="#{ac1.str_assetcat_name}" /> </td>
              </tr>
              
              </ui:repeat>
