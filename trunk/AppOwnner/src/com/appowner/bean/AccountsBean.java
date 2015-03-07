@@ -214,6 +214,7 @@ public void setStr_Organisation(String str_Organisation) {
 		
 		
 	   Date  date=getDat_openingDate();
+	   System.out.println(date+"dkkdffklfkf");
 	   Integer id1=Util.getAppartmentId();
 	    System.out.println(id);
 	     
