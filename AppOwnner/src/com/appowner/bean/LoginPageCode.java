@@ -39,7 +39,8 @@ private String str_Password;
         String sessionId = session.getId();
          
         String appId = "1525993687671325";
-        String redirectUrl = "http://www.appowners.com/AppOwnner/index.sec";
+       String redirectUrl = "http://www.appowners.com/AppOwnner/index.sec";
+        //String redirectUrl = "http://localhost:5356/AppOwnner/index.sec";
         
         String returnValue = "https://www.facebook.com/dialog/oauth?client_id="
                 + appId + "&redirect_uri=" + redirectUrl
@@ -178,7 +179,9 @@ private String str_Password;
 			usr.setStr_State("Westbengal");
 			usr.setStr_PhoneNo("0000000000");
 			usr.setInt_activationbit(1);
+			 
 			 getUserService().addUser(usr);
+			 getId();
 			 return "/AfrteLoginViews/welcomepage.xhtml";
 			}
 			else

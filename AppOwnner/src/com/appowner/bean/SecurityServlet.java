@@ -74,16 +74,17 @@ public class SecurityServlet extends HttpServlet   {
 				 
 				if(user!=null)
 				{
+					response.sendRedirect(request.getContextPath() +"/layout.xhtml");
 					 
-					response.sendRedirect(request.getContextPath() +"/fbuserlogin.xhtml");
-					 
+					
 				 
 				}
 				else
 				{ 
                  
-		             
 					response.sendRedirect(request.getContextPath() +"/confirmfbaccount.xhtml");
+					 
+					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -102,6 +103,7 @@ public class SecurityServlet extends HttpServlet   {
 		if (faceCode != null && ! "".equals(faceCode)) {
 			String appId = "1525993687671325";
 			  
+			//String redirectUrl = "http://localhost:5356/AppOwnner/index.sec";
 			String redirectUrl = "http://www.appowners.com/AppOwnner/index.sec";
 			String faceAppSecret = "7c395ac6d696bed2bf4ef1c42dcf415c";
 			String newUrl = "https://graph.facebook.com/oauth/access_token?client_id="
