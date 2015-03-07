@@ -111,7 +111,7 @@ function InvalidMsg1(textbox) {
         
         
          
-   <p:outputPanel   rendered="true">
+   <p:outputPanel   rendered="#{request.getAttribute('render')}">
 				  <body onLoad="ShowNewPage()"/>
 					</p:outputPanel>
 				
