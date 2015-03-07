@@ -492,7 +492,7 @@ public class Cls_UserBean implements Serializable{
 			fn=getStr_FirstName();
 			
 			
-			url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
+			url="http://www.appowners.com/AppOwnner/activate.jsp?activationkey="+uuid1;
 			subject="AppOwner.com";
 			content="fffff";
 			Bn="admin";
