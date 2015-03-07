@@ -131,7 +131,12 @@
              <tr>
            <td> <p:outputLabel value="Phone No* :"/>
             </td>            
-            <td><p:inputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" />
+            <td><p:inputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" validatorMessage="invalid mobile no" maxlength="11">
+            <f:validateLength minimum="10" />
+                    <f:validateRegex pattern="^([+]?[\d]+)?$" />
+                     <p:ajax event="keyup" update="PhoneMsg" />
+                     </p:inputText>
+                     <p:message  id="PhoneMsg" for="str_PhoneNo" display="text"/>
               </td>
               <td> <p:outputLabel value="FaceBook Profile* :"/></td>
           
