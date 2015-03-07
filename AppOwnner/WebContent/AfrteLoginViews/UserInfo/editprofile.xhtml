@@ -94,16 +94,34 @@
    <tr>
  <td><p:outputLabel value="Country :">
             </p:outputLabel></td>           
-           <td> <p:inputText value="#{loginBean.str_Country}" />
+           <td>  
+            	<h:selectOneMenu id="str_VendorCountry" value="#{loginBean.str_Country}"       valueChangeListener="#{loginBean.countryChangeListener}">
+                <!--c --> 
+               <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{vendorBean.str_VendorCountries}" />
+                 <p:ajax event="change" update="str_VendorState" process="str_VendorCountry"/>
+            </h:selectOneMenu>
+          
             </td> 
             <td><p:outputLabel value="State :"/>
               </td>           
-           <td> <p:inputText value="#{loginBean.str_State}" />
+           <td> 
+           <h:selectOneMenu id="str_VendorState" value="#{loginBean.str_State}"     valueChangeListener="#{loginBean.stateChangeListener}">
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{loginBean.str_UserStates}"/>
+               <p:ajax event="change" update="str_VendorCity" process="str_VendorState"/>    
+            </h:selectOneMenu>
             </td> </tr>
             <tr>
              <td><p:outputLabel value="City :"/>
             </td>            
-             <td><p:inputText value="#{loginBean.str_City}"/>
+             <td> 
+             <h:selectOneMenu id="str_VendorCity" value="#{loginBean.str_City}"  >
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{loginBean.str_UserCities}"/>
+             
+            </h:selectOneMenu>
              </td> 
             <td><p:outputLabel value="Apartment :"/>
             </td>            
@@ -151,7 +169,6 @@
             <td width="10%"><p:outputLabel value="Block :"/>
              </td>          
             <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}">
-          <f:selectItem itemValue="#{loginBean.str_Block}" itemLabel="#{loginBean.str_Block}" />
             <f:selectItems value="#{cls_UserBean.blockNameList}"/>
              <p:ajax event="change" update="str_House" process="str_Block"/>
              </h:selectOneMenu>
@@ -159,7 +176,6 @@
               <td width="10%"><p:outputLabel value="Flat No:"/>
              </td>
              <td width="10%"><h:selectOneMenu id="str_House" value="#{loginBean.str_Flat}" >
-           
             
             <f:selectItems value="#{loginBean.houseNoList}"/>
               
