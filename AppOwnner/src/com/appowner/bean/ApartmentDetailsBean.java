@@ -394,7 +394,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		ub.setInt_ApartmentId(Util.getAppartmentId());
 		getApartmentDetailsService().saveBlockDetails(ub);
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
-		return null;
+		return "blockdetails.xhtml";
 	}
 	private HouseDetails housedetails=new HouseDetails();
 	public HouseDetails getHousedetails() {
@@ -428,7 +428,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_HouseId(HouseId);
 		
 		getApartmentDetailsService().deleteHouseDetails(housedetails);	
-		return null;
+		return "housedetails.xhtml";
 	}
 	public String deleteSelectedHouse() {
 	    List<HouseDetails> entitiesToDelete = new ArrayList<HouseDetails>();
