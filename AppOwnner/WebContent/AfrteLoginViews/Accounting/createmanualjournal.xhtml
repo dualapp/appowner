@@ -27,9 +27,8 @@
     
      <tr>
     <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:250px">
-                   <f:selectItem itemValue="#{accountingBean.str_Organisation}"  itemLabel="#{accountingBean.str_Organisation}"/>
-                 </p:selectOneMenu>
+              <td><p:inputText id="str_Organisation" value="#{accountingBean.str_Organisation}"  >
+                  </p:inputText>
              </td>
      </tr>
      <tr>
@@ -43,7 +42,7 @@
      
       <tr>
        <td>  <h:outputText  value="Notes" /><font color="red" >*</font></td>
-           <td><p:inputTextarea id="str_Notes" cols="30" row="3" value="#{accountingBean.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
+           <td><h:inputTextarea id="str_Notes" cols="30" row="3" value="#{accountingBean.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
            </td>
     </tr>
     </table>
@@ -62,14 +61,14 @@
           
           <tr>
             <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
-            <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" style="width:200px">
+            <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" >
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{accountingBean.listAccountsName}" />
                 </h:selectOneMenu>
                 
            </td>
              <td align="right">  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
-            <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"  style="width:200px" >
+            <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}"   >
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{accountingBean.listAccountsName}" />
                 </h:selectOneMenu>
@@ -81,12 +80,12 @@
       
         <tr>
        <td>  <h:outputText  value="Amount" /><font color="red" >*</font></td>
-           <td><p:inputText id="str_DebitAmount" value="#{accountingBean.str_DebitAmount}" size="15"  required="true" requiredMessage="Please Enter Amount!">
+           <td><p:inputText id="str_DebitAmount" value="#{accountingBean.str_DebitAmount}"   required="true" requiredMessage="Please Enter Amount!">
            <p:messages for="str_DebitAmount" style="color:red"/>
            </p:inputText>
            </td>
           <td align="right">  <h:outputText  value="Amount" /><font color="red" >*</font></td>
-           <td><p:inputText id="str_CreditAmount" value="#{accountingBean.str_CreditAmount}" size="15"  required="true" requiredMessage="It must be same as Debit Amount">
+           <td><p:inputText id="str_CreditAmount" value="#{accountingBean.str_CreditAmount}"   required="true" requiredMessage="It must be same as Debit Amount">
            <p:messages for="str_CreditAmount" style="color:red"/>
          </p:inputText>
            </td>
@@ -99,10 +98,24 @@
     <br/>
      <h:panelGroup style="display:block; text-align:right">
      <tr>
-                <td><p:commandButton id="submit" value="Submit" action="#{accountingBean.addInvoiceManualJournal}" ajax="false" /></td>
-                <td><p:commandButton id="cancel" value="Cancel" action="#{accountingBean.reset}" ajax="false"/></td>
+                <td><p:commandButton onclick="EnrollNowClick();" styleClass="btn" id="submit" value="Submit" action="#{accountingBean.addInvoiceManualJournal}" ajax="false" /></td>
+                <td><p:commandButton  styleClass="btn" id="cancel" value="Cancel" action="#{accountingBean.reset}" ajax="false"/></td>
             </tr>
     </h:panelGroup>
+     <script>
+	 
+        function EnrollNowClick() {
+           
+            window.parent.modalWin.CallCallingWindowFunction(1);
+           
+        }
+        function EnrollLaterClick() {
+            window.parent.modalWin.CallCallingWindowFunction(0, 'Do u want to sent Email to Manager');
+            window.opener.reload(true);
+            window.close();
+        }
+ 
+    </script>
     </h:form>
     </html>
     
