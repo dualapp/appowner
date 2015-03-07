@@ -669,10 +669,15 @@ System.out.println(entitiesToDelete+"entyt todelete");
 					String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 				 
 				System.out.println(basePath);
-				File outputFilePath = new File(basePath+fileName);
-			System.out.println(outputFilePath.getAbsolutePath());
-			
-		        
+				File outputFilePath = new File(basePath);
+				if (!outputFilePath.exists()) {
+				   	if (outputFilePath.mkdir()) {
+				   		System.out.println("Directory is created!");
+				   	} else {
+				   		System.out.println("Failed to create directory!");
+				   	}
+			 }
+				outputFilePath = new File(basePath,fileName);
 				// Copy uploaded file to destination path
 				InputStream inputStream = null;
 				OutputStream outputStream = null;
@@ -688,6 +693,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 					List<HouseDetails>  hDetailsList=readExcel(outputFilePath.getAbsolutePath());
 					 System.out.println( hDetailsList);
 				  getApartmentDetailsService().saveHouseDetails1( hDetailsList);
+				  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House Details Added Successfully!"));
 					statusMessage = "File upload successfull !!";
 				} catch (IOException e) {
 					e.printStackTrace();
