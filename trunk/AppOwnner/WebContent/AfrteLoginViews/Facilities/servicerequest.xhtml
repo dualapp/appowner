@@ -64,15 +64,13 @@
    
      </tr>
     <tr><th><p:outputLabel value="Period"></p:outputLabel></th>
-    <td><h:selectOneMenu style="" value="#{requestScopeBean.str_Period}">
-            <f:selectItem itemLabel="Select One" itemValue="" />
-            <f:selectItem   itemValue="#{requestScopeBean.today}" itemLabel="Today"/>
-            <f:selectItem  itemLabel="Lastweek" itemValue="Private" />
-             <f:selectItem  itemLabel="CurrentMonth" itemValue="Private" />
-              <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
-               <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
-                <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
-      </h:selectOneMenu></td>
+    <td><h:selectOneMenu id="car" value="#{requestScopeBean.str_Period}" valueChangeListener="#{requestScopeBean.accountchangeListener3}" >
+           
+            <f:selectItems value="#{requestScopeBean.dates}" />
+              <p:ajax event="click" partialSubmit="true"  update="date" process="car"/>
+       </h:selectOneMenu>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp;</td>
      
      <td></td><td><h:commandButton  icon="ui-icon-search" update="DT" value="Go" action="#{requestScopeBean.getListServiceRequest}"/></td>
     </tr>
@@ -126,7 +124,7 @@
 	 </p:column>
 	 
 	 <p:column headerText="Created On">
-                <p:outputLabel value="#{sr.str_OpenDate}" /> 
+                <p:outputLabel value="#{sr.dat_OpenDate}" /> 
             
 	 </p:column>
 	 <p:column headerText="Category">
@@ -168,7 +166,7 @@
  <th>
     <p:outputLabel value="Created On:"/></th>
     <td>
-    <p:inputText value="#{sr1.str_OpenDate}"/></td>  
+    <p:inputText value="#{sr1.dat_OpenDate}"/></td>  
     </tr>
       <tr>
  <th>
@@ -223,7 +221,7 @@
  <td>
     <p:outputLabel value="Created On:"/></td>
     <td>
-     <p:outputLabel value="#{sr1.str_OpenDate}"/></td>  
+     <p:outputLabel value="#{sr1.dat_OpenDate}"/></td>  
     </tr>
       <tr>
  <th>
