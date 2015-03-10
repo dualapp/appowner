@@ -193,12 +193,12 @@
            
               
              </p:dataTable>
-              <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+              <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
         <p:outputPanel id="multiExpenseDetail" style="text-align:center;">
-          
+          <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
            <table>
                
-            <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
+            
              <tr>
  <th>
     <p:outputLabel value="Organization Name:"/></th>
@@ -209,32 +209,52 @@
  <th>
     <p:outputLabel value="AccountName:"/></th>
     <td>
-    <p:inputText value="#{ex.str_AccountName}"/></td>  
+    <h:selectOneMenu  valueChangeListener="#{expenseBean1.accountListener}" value="#{ex.str_AccountName}">
+          <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
+          <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
+          </h:selectOneMenu>
+     </td>  
     </tr>
      <tr>
  <th>
     <p:outputLabel value="ExpenseType:"/></th>
     <td>
-    <p:inputText value="#{ex.str_ExpenseType}"/></td>  
+    <p:inputText  readonly="true" value="#{ex.str_ExpenseType}"/></td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="ExpenseCategory:"/></th>
     <td>
-    <p:inputText value="#{ex.str_ExpenseCategory}"/></td>  
+    <h:selectOneMenu id="ExpenseCategory"    value="#{ex.str_ExpenseCategory}"  valueChangeListener="#{expenseBean1.expenseCategoryListener}"   >
+                  
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    
+                 </h:selectOneMenu>
+     </td>  
     </tr>
     
       <tr>
  <th>
     <p:outputLabel value="AssetCategoryType:"/></th>
     <td>
-    <p:inputText value="#{ex.str_AssetCatType}"/></td>  
+    <h:selectOneMenu id="assetcatnamee"    value="#{ex.str_AssetCatType}"  valueChangeListener="#{expenseBean1.assetCatNameListener}" >
+                  <f:selectItem itemLabel="Select" itemValue=""/>
+                 
+                   <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
+                   <f:ajax event="change" update="assetnamee" process="assetcatnamee"/>
+                 </h:selectOneMenu>
+    </td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="AssetsName:"/></th>
     <td>
-    <p:inputText value="#{ex.str_AssetName}"/></td>  
+    <h:selectOneMenu  id="assetnamee" value="#{ex.str_AssetName}"    valueChangeListener="#{expenseBean1.assetNameListener}" >
+                 <f:selectItem itemLabel="Select" itemValue="Not Applicable"   />
+                <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
+                  
+                 </h:selectOneMenu>
+     </td>  
     </tr>
       <tr>
  <th>
@@ -242,12 +262,17 @@
     <td>
     <p:inputText value="#{ex.int_Ammount}"/></td>  
     </tr>
-      
-    <tr><td><h:commandButton value="Update" action="#{expenseBean1.updateOneExpense(ex)}" /> 
-     </td>
-     </tr>
+       </table>
+       <div>
+       <hr/>
+     <h:commandButton styleClass="btn" value="Update" action="#{expenseBean1.updateOneExpense(ex)}" /> 
+      &#150; &#150;  <h:commandButton   styleClass="btn"    value="Cancel"  ajax="false"  action="Expenses.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </h:commandButton>
+    </div>
+     
              </ui:repeat>
-             </table>
+            
              </p:outputPanel>
              </p:dialog>
               <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
