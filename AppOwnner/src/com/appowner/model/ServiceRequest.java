@@ -42,8 +42,8 @@ public class ServiceRequest implements Serializable{
 	private String Str_Title;
 	@Column (name="var_Description")
 	private String Str_Description;
-	@Column (name="str_OpenDate")
-	private String str_OpenDate;
+	 
+	private Date dat_OpenDate;
 	@Column (name="str_CloseDate")
 	private String str_CloseDate;
 	@Column (name="var_Mobile")
@@ -124,11 +124,12 @@ public class ServiceRequest implements Serializable{
 	public void setStr_LandLineNum(String str_LandLineNum) {
 		Str_LandLineNum = str_LandLineNum;
 	}
-	public String getStr_OpenDate() {
-		return str_OpenDate;
+	 
+	public Date getDat_OpenDate() {
+		return dat_OpenDate;
 	}
-	public void setStr_OpenDate(String str_OpenDate) {
-		this.str_OpenDate = str_OpenDate;
+	public void setDat_OpenDate(Date dat_OpenDate) {
+		this.dat_OpenDate = dat_OpenDate;
 	}
 	public String getStr_CloseDate() {
 		return str_CloseDate;
