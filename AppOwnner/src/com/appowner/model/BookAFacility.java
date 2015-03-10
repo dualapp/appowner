@@ -1,6 +1,9 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+ 
+
+import java.util.Date;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -45,7 +48,7 @@ public class BookAFacility implements Serializable{
 	@Column (name="var_Description")
 	private String Str_Description;
 	@Column (name="str_OpenDate")
-	private String str_OpenDate;
+	private Date dat_OpenDate;
 	@Column (name="str_CloseDate")
 	private String str_CloseDate;
 	@Column (name="var_Mobile")
@@ -121,11 +124,12 @@ public class BookAFacility implements Serializable{
 	public void setStr_EmailId(String str_EmailId) {
 		Str_EmailId = str_EmailId;
 	}
-	public String getStr_OpenDate() {
-		return str_OpenDate;
+	 
+	public Date getDat_OpenDate() {
+		return dat_OpenDate;
 	}
-	public void setStr_OpenDate(String str_OpenDate) {
-		this.str_OpenDate = str_OpenDate;
+	public void setDat_OpenDate(Date dat_OpenDate) {
+		this.dat_OpenDate = dat_OpenDate;
 	}
 	public String getStr_CloseDate() {
 		return str_CloseDate;
