@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.primefaces.model.ScheduleEvent;
@@ -26,14 +27,14 @@ public interface RequestScopeDao {
 	void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete);
 
 	List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
-			String str_Status, String str_VendorType);
+			String str_Status, String str_VendorType, Date dat_ToDate);
 
 	void deleteOnefacility(List<BookAFacility> entitiesToDelete);
 
 	void updateBookAFacility(BookAFacility bf1);
 
 	List<BookAFacility> getSelectedBookFacility(Integer int_ApartmentId,
-			String str_Status, String str_Period, String str_FacilityType, String str_EventType);
+			String str_Status, Date str_Period, String str_FacilityType, String str_EventType);
 
 	List<cls_Event> getEventList();
 

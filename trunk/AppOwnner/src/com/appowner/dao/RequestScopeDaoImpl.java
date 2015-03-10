@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -81,22 +82,22 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 
 	@Override
 	public List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
-			String str_Status, String str_VendorType) {
+			String str_Status, String str_VendorType,Date dat_ToDate) {
 		if(int_ApartmentId!=null&&str_Status!=null&&str_VendorType!=null)
 		{
 			if(str_Status.equalsIgnoreCase("All"))
 			{
-				String query="from ServiceRequest where  Str_VendorType=? AND int_ApartmentId=?";
+				String query="from ServiceRequest where  Str_VendorType=? AND int_ApartmentId=? AND dat_OpenDate=?";
 				
-				return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0,str_VendorType).setParameter(1, int_ApartmentId).list();
+				return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0,str_VendorType).setParameter(1, int_ApartmentId).setParameter(2, dat_ToDate).list();
 			}
-			String query="from ServiceRequest where Str_Status=? AND Str_VendorType=? AND int_ApartmentId=?";
+			String query="from ServiceRequest where Str_Status=? AND Str_VendorType=? AND int_ApartmentId=? AND dat_OpenDate=?";
 		
-			return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0, str_Status).setParameter(1,str_VendorType).setParameter(2, int_ApartmentId).list();
+			return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0, str_Status).setParameter(1,str_VendorType).setParameter(2, int_ApartmentId).setParameter(3, dat_ToDate).list();
 			
 		}
 		 
-		return sessionFactory.getCurrentSession().createCriteria(ServiceRequest.class).setCacheable(true).list();
+		return sessionFactory.getCurrentSession().createQuery("from ServiceRequest where int_ApartmentId=? ").setParameter(0, int_ApartmentId).setCacheable(true).list();
 		 
 	}
 
@@ -120,7 +121,7 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 
 	@Override
 	public List<BookAFacility> getSelectedBookFacility(
-			Integer int_ApartmentId, String str_Status, String str_OpenDate,
+			Integer int_ApartmentId, String str_Status, Date str_OpenDate,
 			String str_FacilityType,String str_EventType) {
 		if(int_ApartmentId!=null&&str_Status!=null&&str_OpenDate!=null&&str_FacilityType!=null&&str_EventType!=null)
 		{
@@ -130,13 +131,13 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 				
 				return sessionFactory.getCurrentSession().createQuery(query).setParameter(0,str_FacilityType).setParameter(1, int_ApartmentId).setParameter(2,str_OpenDate).setParameter(3, str_EventType).list();
 			}
-			String query="from BookAFacility where Str_Status=? AND str_FacilityType=? AND int_ApartmentId=? AND str_OpenDate=? AND str_EventType=?";
+			String query="from BookAFacility where Str_Status=? AND str_FacilityType=? AND int_ApartmentId=? AND dat_OpenDate=? AND str_EventType=?";
 		
 			return sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_FacilityType).setParameter(2, int_ApartmentId).setParameter(3, str_OpenDate).setParameter(4, str_EventType).list();
 			
 		}
 		 
-		return sessionFactory.getCurrentSession().createCriteria(BookAFacility.class).setCacheable(true).list();
+		return sessionFactory.getCurrentSession().createQuery("from  BookAFacility where int_ApartmentId=?").setParameter(0, int_ApartmentId).setCacheable(true).list();
 	}
 
 	@SuppressWarnings("unchecked")
