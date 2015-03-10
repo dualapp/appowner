@@ -352,8 +352,15 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	{
 		return getIn_userdao().getRoleAssign(int_UserId,int_ApartmentId);
 	}
-	
-	}
+
+	 
+
+	@Override
+	public User getUserByBlockAndFlat(String str_Flat, String str_Block,
+			Integer appartmentId, String str_UserType) {
+		return getIn_userdao().getUserByBlockAndFlat(str_Flat, str_Block,
+				 appartmentId,str_UserType);
+	}}
 
 	 
 

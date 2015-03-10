@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.primefaces.model.ScheduleEvent;
@@ -63,9 +64,9 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 	}
 	@Override
 	public List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
-			String str_Status, String str_VendorType) {
+			String str_Status, String str_VendorType,Date dat_ToDate) {
 		return getRequestScopeDao().getListServiceRequest( int_ApartmentId,
-				str_Status,  str_VendorType);
+				str_Status,  str_VendorType,dat_ToDate);
 		 
 	}
 	@Override
@@ -80,7 +81,7 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 	}
 	@Override
 	public List<BookAFacility> getSelectedBookFacility(
-			Integer int_ApartmentId, String str_Status, String str_Period,
+			Integer int_ApartmentId, String str_Status, Date str_Period,
 			String str_FacilityType,String str_EventType) {
 		// TODO Auto-generated method stub
 		return getRequestScopeDao().getSelectedBookFacility(
