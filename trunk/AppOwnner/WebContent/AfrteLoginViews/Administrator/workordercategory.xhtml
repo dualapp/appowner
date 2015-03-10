@@ -81,73 +81,100 @@
         <p:outputPanel id="multiWorkOrderDetail" style="text-align:center;">
         <table>
 	<tr><th> 
-               <h:outputText value="Organisation:" /> </th>
-             <td> <h:selectOneMenu>
+               <p:outputLabel  for="org" value="Organisation:" /> </th>
+             <td> <h:selectOneMenu id="org" required="true" value="#{vendorBean.str_OrganizationName}" >
               <f:selectItem itemLabel="#{vendorBean.str_OrganizationName}"  itemValue="#{vendorBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
 	<tr><th><p:outputLabel for="CategoryName" value="CategoryName"/></th>
-	<td><p:inputText id="CategoryName"  placeholder="Enter CategoryName"    value="#{vendorBean.str_VendorCategoryType}">
+	<td><p:inputText id="CategoryName"  placeholder="Enter CategoryName" required="true" requiredMessage="Enter CategoryName"   value="#{vendorBean.str_VendorCategoryType}">
 	<p:ajax event="blur" update="CategoryNameMsg" />
 	</p:inputText>
 	</td>
 	<td><p:message  id="CategoryNameMsg" for="CategoryName" display="text"/></td>
 	</tr>
+ 
 	
-	<tr><td><h:commandButton   styleClass="btn"   value="Submit"      action="#{vendorBean.saveWorkOrderCategory}">
-	
-	</h:commandButton></td><td><h:commandButton  execute="@this"   styleClass="btn"  action="workordercategory"  value="Cancel"  /></td> </tr>  
 	</table>
-                 </p:outputPanel>
+	<div>
+	<hr/>
+	 <h:commandButton   styleClass="btn"   value="Submit"      action="#{vendorBean.saveWorkOrderCategory}">
+	
+	</h:commandButton> &#150; &#150; <h:commandButton  execute="@this"   styleClass="btn"  action="workordercategory"  value="Cancel"  /> 
+                
+                </div> </p:outputPanel>
                  </p:dialog>
                  
                  
-                  <p:dialog header="Edit work Order Details" widgetVar="multiWorkOrderDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+                  <p:dialog header="Edit work Order Details" widgetVar="multiWorkOrderDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
        
         <p:outputPanel id="multiWorkOrderDetail2" style="text-align:center;">
-          
+           <ui:repeat value="#{vendorBean.workOrderCategoryList1}" var="ws1">
            <table>
                
-            <ui:repeat value="#{vendorBean.workOrderCategoryList1}" var="ws1">
-            
+           
+            <tr><th> 
+               <p:outputLabel for="org1" value="Organisation:" /> </th>
+             <td> <h:selectOneMenu required="true" id="org1" value="#{vendorBean.str_OrganizationName}" >
+              <f:selectItem itemLabel="#{vendorBean.str_OrganizationName}"  itemValue="#{vendorBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td></tr>
              <tr>
  <th>
-	<p:outputLabel  value="Type:" /> </th>
+	<p:outputLabel for="CategoryName1" value="Type:" /> </th>
     <td>
-    <p:inputText id="vct" value="#{ws1.str_VendorCategoryType}"/></td>
+    <p:inputText id="CategoryName1" required="true" requiredMessage="Enter CategoryName" value="#{ws1.str_VendorCategoryType}">
+    <p:ajax event="blur" update="CategoryNameMsg1" />
+    </p:inputText>
+    </td>
+    <td><p:message  id="CategoryNameMsg1" for="CategoryName1" display="text"/></td>
     </tr>
     
-    </ui:repeat>
+     
     
-    <tr>
-  <td><h:commandButton value="Update"   ajax="true"  
-                update="@form"   styleClass="btn"   action="#{vendorBean.updateWorkOrder(ws1)}"  />
-  </td>
-  <td><h:commandButton value="Cancel"  ajax="false" styleClass="btn"  action="workordercategory"/></td>
-    </tr>
+   
     </table>
+    <div>
+    <hr/>
+      
+   <h:commandButton value="Update"   ajax="true"  
+                update="@form"   styleClass="btn"   action="#{vendorBean.updateWorkOrder(ws1)}"  />
+   &#150; &#150; <h:commandButton value="Cancel"  ajax="false" styleClass="btn"  action="workordercategory"/> 
+    
+    </div>
+    </ui:repeat>
     </p:outputPanel>
     
     </p:dialog>
-     <p:dialog header="  work Order Details" widgetVar="multiWorkOrderDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+     <p:dialog header="  work Order Details" widgetVar="multiWorkOrderDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
         <p:outputPanel id="multiWorkOrderDetail1" style="text-align:center;">
           
+          <ui:repeat value="#{vendorBean.workOrderCategoryList1}" var="ws1">
            <table>
-           
                
-            <ui:repeat value="#{vendorBean.workOrderCategoryList1}" var="ws1">
-              
            
-            <tr>
+            <tr><th> 
+               <p:outputLabel   value="Organisation:" /> </th>
+             <td> <h:selectOneMenu  readonly="true" value="#{vendorBean.str_OrganizationName}" >
+              <f:selectItem itemLabel="#{vendorBean.str_OrganizationName}"  itemValue="#{vendorBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td></tr>
+             <tr>
  <th>
-	<h:outputText  value="Organization:" /> </th>
+	<p:outputLabel   value="Type:" /> </th>
     <td>
-    <h:outputText value="#{ws1.str_VendorCategoryType}"/></td>
+    <p:inputText   readonly="true" value="#{ws1.str_VendorCategoryType}">
+    
+    </p:inputText>
+    </td>
+    
     </tr>
-             
+    
      
-    </ui:repeat>
+    
+   
     </table>
+    </ui:repeat>
     </p:outputPanel>
     </p:dialog>
                  
