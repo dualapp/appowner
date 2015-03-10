@@ -180,15 +180,18 @@ Unless the Community Setup is complete, the changes that are made will not be sa
               
                  </h:selectOneMenu></td>   
 	 </tr>
-	<tr><td><h:commandButton   styleClass="btn"    value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" >
+	
+	 </table>
+	 <div>
+	 <hr/>
+	  <h:commandButton   styleClass="btn"    value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" >
 	 <f:ajax execute="editHouseDetail" event="click"  render="@form"/>
 	 </h:commandButton>
-	 </td><td><h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" >
+	  &#150; &#150; <h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
 	  </h:commandButton>
-	 </td>
-	 </tr>
-	 </table>
+	  
+	 </div>
  </p:outputPanel>
  </p:dialog>
  <p:dialog header="View House Details" widgetVar="viewHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
@@ -218,7 +221,9 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </tr>
 	 
 	 </table>
- 
+ <div>
+	 <hr/>
+	 </div>
  </p:outputPanel>
  </p:dialog>
  <p:dialog header="Add New House" widgetVar="houseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
@@ -257,16 +262,19 @@ Unless the Community Setup is complete, the changes that are made will not be sa
               
                  </h:selectOneMenu></td>   
 	 </tr>
-	<tr>
-	<td><h:commandButton   styleClass="btn" id="submit"  value="Confirm"     action="#{apartmentDetailsBean.saveHouseDetails}" >
+	
+	 </table>
+	 <div>
+	 <hr/>
+	   <h:commandButton   styleClass="btn" id="submit"  value="Confirm"     action="#{apartmentDetailsBean.saveHouseDetails}" >
 	  <f:ajax execute="houseDetail" event="click"  render="@form"/>
 	 </h:commandButton>
-	 </td><td>
+	 &#150; &#150;  
    <h:commandButton     styleClass="btn" icon="ui-icon-close"    value="Cancel"    action="housedetails.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton></td>
-	 </tr>
-	 </table>
+	  </h:commandButton> 
+	  
+	 </div>
 	 </p:outputPanel>
 	 </p:dialog>
 	 
