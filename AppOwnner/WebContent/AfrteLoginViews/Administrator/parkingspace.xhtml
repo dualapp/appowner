@@ -77,9 +77,9 @@
         <p:outputPanel id="multiParkingSpaceDetail" style="text-align:center;">
         <table>
 	<tr><th>
-	<p:outputLabel  value="Organisation:" /> </th>
+	<p:outputLabel for="org" value="Organisation:" /> </th>
               
-              <td><h:selectOneMenu>
+              <td><h:selectOneMenu  required="true" value="#{expenseBean.str_OrganizationName}" id="org">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
@@ -91,75 +91,91 @@
 	</td>
 	 <td><p:message id="ParkingslotMsg" for="Parkingslot" display="text"/></td>
 	</tr>
-	<tr><td><h:commandButton   styleClass="btn" id="submit"  value="Submit"  ajax="false"    action="#{expenseBean.saveParking}"  >
-	  
-	</h:commandButton>
-	 </td>
-	<td><h:commandButton   styleClass="btn"   ajax="false"  value="Cancel"    action="parkingspace.xhtml" >
-	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton></td>
-	</tr> 
+	
 	  
     
     </table>
-    
+    <div>
+    <hr/>
+     <h:commandButton   styleClass="btn" id="submit"  value="Submit"  ajax="false"    action="#{expenseBean.saveParking}"  >
+	  
+	</h:commandButton>
+	&#150; &#150; <h:commandButton   styleClass="btn"   ajax="false"  value="Cancel"    action="parkingspace.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </h:commandButton> 
+	 
+    </div>
     
            </p:outputPanel>
            </p:dialog>
-             <p:dialog header="Edit Parking Space Details" widgetVar="multiParkingSpaceDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+             <p:dialog header="Edit Parking Space Details" widgetVar="multiParkingSpaceDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
       <p:outputPanel id="multiParkingSpaceDetail2" style="text-align:center;">
-      
+      <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
            <table>
                
-            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
+            
              <tr>
+  
+  <th>  <p:outputLabel for="org1" value="Organisation:" /> </th>
+              
+              <td><h:selectOneMenu   required="true" value="#{expenseBean.str_OrganizationName}" id="org1">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td>
+    </tr>
+    <tr>
  <th>
-	<p:outputLabel  value="Organisation:" /> </th>
+	<p:outputLabel for="Parkingslot1" value="Parking slot:" /> </th>
     <td>
-    <p:inputText value="#{ps2.str_OrganizationName}"/></td>
+    <p:inputText id="Parkingslot1"  required="true" requiredMessage="Enter Parking slot" value="#{ps2.str_ParkingSlot}">
+     <p:ajax event="blur" update="ParkingslotMsg1" />
+     </p:inputText>
+    </td>
+    <td><p:message id="ParkingslotMsg1" for="Parkingslot1" display="text"/></td>
+    </tr>
+      
+            </table>
+            </ui:repeat>
+           <div>
+           <hr/>
+            <h:commandButton value="update"  styleClass="btn"   ajax="false"  action="#{expenseBean.updateParkingSpace(ps2)}">
+      
+     </h:commandButton>
+     &#150; &#150; <h:commandButton  styleClass="btn" ajax="false" action="parkingspace.xhtml" value="Cancel">
+     <f:ajax execute="@this" event="click"  render="@form"/>
+     </h:commandButton>
+    
+           </div>
+    </p:outputPanel>
+    
+    </p:dialog>
+     <p:dialog header="  Parking Space Details" widgetVar="multiParkingSpaceDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+        <p:outputPanel id="multiParkingSpaceDetail1" style="text-align:center;">
+          
+          <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
+           <table>
+               
+            
+             <tr>
+  
+  <th>  <p:outputLabel   value="Organisation:" /> </th>
+              
+              <td><h:selectOneMenu  readonly="true"   value="#{expenseBean.str_OrganizationName}"  >
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td>
     </tr>
     <tr>
  <th>
 	<p:outputLabel  value="Parking slot:" /> </th>
     <td>
-    <p:inputText value="#{ps2.str_ParkingSlot}"/></td>
+    <p:inputText  readonly="true" value="#{ps2.str_ParkingSlot}"/></td>
     </tr>
      
-    </ui:repeat>
-     <tr><td><h:commandButton value="update"  styleClass="btn"   ajax="false"  action="#{expenseBean.updateParkingSpace(ps2)}">
-      
-     </h:commandButton>
-     </td> <td><h:commandButton  styleClass="btn" ajax="false" action="parkingspace.xhtml" value="Cancel">
-     <f:ajax execute="@this" event="click"  render="@form"/>
-     </h:commandButton>
-     
-     </td></tr>
-            </table>
-           
-    </p:outputPanel>
     
-    </p:dialog>
-     <p:dialog header="  Parking Space Details" widgetVar="multiParkingSpaceDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="500">
-        <p:outputPanel id="multiParkingSpaceDetail1" style="text-align:center;">
-          
-           <table>
-               
-            <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
-             <tr>
- <th>
-	<h:outputText  value="Organisation:" /> </th>
-    <td>
-    <h:outputText value="#{ps2.str_OrganizationName}"/></td>
-    </tr>
-    <tr>
- <th>
-	<h:outputText  value="Parking slot:" /> </th>
-    <td>
-    <h:outputText value="#{ps2.str_ParkingSlot}"/></td>
-    </tr>
      
-    </ui:repeat>
-    </table>
+            </table>
+            </ui:repeat>
     </p:outputPanel>
     </p:dialog>
 	</h:body>
