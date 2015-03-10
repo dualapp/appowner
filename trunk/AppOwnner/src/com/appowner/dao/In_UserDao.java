@@ -136,6 +136,9 @@ public interface In_UserDao {
 
 	public List<String> getRoleAssign(Integer int_UserId, Integer int_ApartmentId);
 
+	public User getUserByBlockAndFlat(String str_Flat, String str_Block,
+			Integer appartmentId, String str_UserType);
+
 	//public void deleteUser1(int int_UserId);
 
 	
