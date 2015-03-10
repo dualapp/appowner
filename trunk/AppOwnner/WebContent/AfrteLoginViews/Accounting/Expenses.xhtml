@@ -51,15 +51,15 @@
        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
          
               <th><p:outputLabel value="Organisation:" /></th>
-              <td><h:selectOneMenu     value="#{expenseBean.str_OrganizationName}" >
+              <td><h:selectOneMenu     value="#{expenseBean1.str_OrganizationName}" >
                
-                <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}"/>
+                <f:selectItem itemLabel="#{expenseBean1.str_OrganizationName}"  itemValue="#{expenseBean1.str_OrganizationName}"/>
                    
                  </h:selectOneMenu>
              </td>
             
              <th><p:outputLabel  value="Expense Type:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_ExcepenseType}" >
+               <td><h:selectOneMenu   value="#{expenseBean1.str_ExcepenseType}" >
                   <f:selectItem itemLabel="All" itemValue="All" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"/>
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"/>
@@ -68,7 +68,7 @@
              </td>
               
              <th><p:outputLabel  value="Expense Category:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}"  >
+               <td><h:selectOneMenu   value="#{expenseBean1.str_ExpenseCategory}"  >
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
@@ -90,23 +90,23 @@
              </td>
                
              <th><p:outputLabel  value="Asset Category:" /></th>
-               <td><h:selectOneMenu id="assetcatname"  value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" >
+               <td><h:selectOneMenu id="assetcatname"  value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
-                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                   <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
                    <p:ajax event="change" update="assetname" process="assetcatname"/>
                  </h:selectOneMenu>
              </td>
                
              <th><p:outputLabel  value="Asset Name" /></th>
-               <td><h:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}"  valueChangeListener="#{expenseBean.assetNameListener}" >
+               <td><h:selectOneMenu  id="assetname" value="#{expenseBean1.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
                   <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
-                  <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
+                  <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
                   
                   
                  </h:selectOneMenu>
                  </td>
-                <th><p:commandButton   value="Go" action="#{expenseBean.getExpenseList}"/></th></tr>
+                <th><p:commandButton   value="Go" action="#{expenseBean1.getExpenseList}"/></th></tr>
                  </table>
                   </div>
                   <div id="page3">
@@ -122,14 +122,14 @@
         </p:menuButton>
          &#150; &#150;  <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:multiExpenseDetail1" icon="ui-icon-info" value="View" oncomplete="PF('multiExpenseDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="DT" update=":form:multiExpenseDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiExpenseDialog').show()" />
-       &#150; &#150;  <p:commandButton style="width:120px;height:25px"  update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteSelectedExpenses()}" icon="ui-icon-trash" value="Delete" />
+       &#150; &#150;  <p:commandButton style="width:120px;height:25px"  update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean1.deleteSelectedExpenses()}" icon="ui-icon-trash" value="Delete" />
         </td>
         </tr>
         </table>
         
-             <p:dataTable     selection="#{expenseBean.selectedExpenses}" rowKey="#{Expenselist.str_ExpenseId}"
+             <p:dataTable     selection="#{expenseBean1.selectedExpenses}" rowKey="#{Expenselist.str_ExpenseId}"
               id="DT"    
-                 var="Expenselist" value="#{expenseBean.expenseList}"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
+                 var="Expenselist" value="#{expenseBean1.expenseList}"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                rows="5" paginatorPosition="bottom"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="3,6,12"  >
                 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">
@@ -198,7 +198,7 @@
           
            <table>
                
-            <ui:repeat value="#{expenseBean.selectedExpenses}" var="ex">
+            <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
              <tr>
  <th>
     <p:outputLabel value="Organization Name:"/></th>
@@ -243,7 +243,7 @@
     <p:inputText value="#{ex.int_Ammount}"/></td>  
     </tr>
       
-    <tr><td><h:commandButton value="Update" action="#{expenseBean.updateOneExpense(ex)}" /> 
+    <tr><td><h:commandButton value="Update" action="#{expenseBean1.updateOneExpense(ex)}" /> 
      </td>
      </tr>
              </ui:repeat>
@@ -255,7 +255,7 @@
           
            <table>
                
-            <ui:repeat value="#{expenseBean.selectedExpenses}" var="ex">
+            <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
             <tr>
  <th>
     <p:outputLabel value="Organization Name:"/></th>
