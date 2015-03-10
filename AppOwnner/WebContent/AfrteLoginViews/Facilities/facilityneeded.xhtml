@@ -36,7 +36,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/facility.png" height="50" width="50"></img> <span class="title">Book A Facility</span>
+					<img src="#{expenseBean.str_Name}images/facility.png" height="50" width="50"></img> <span class="title">  Facility Needed</span>
 				</td>
 			</tr> 
 		</tbody>
@@ -45,7 +45,7 @@
 	  <p:growl id="ui-growl" globalOnly="true" sticky="true" />
 	<h:body>
 	 <div id="page3"> 
-	 <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td> <h:outputText value="Organisation:" />   
+	 <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td> <p:outputLabel value="Organisation:" />   
              <h:selectOneMenu>
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
@@ -98,12 +98,12 @@
          
              </p:column>
           <p:column headerText="Organization">
-                <h:outputText value="#{expenseBean.str_OrganizationName}" /> 
+                <p:outputLabel value="#{expenseBean.str_OrganizationName}" /> 
                    
                </p:column>
            
           <p:column headerText="Facility Name">
-               <h:outputText value="#{fn.str_FacilityName}" /> 
+               <p:outputLabel value="#{fn.str_FacilityName}" /> 
           </p:column>
           
 	   
@@ -111,16 +111,16 @@
 	 </p:dataTable>
 	 
                            
-	 <p:dialog header=" Create New" widgetVar="multiFacilityDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+	 <p:dialog header=" Create New" widgetVar="multiFacilityDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         
         <p:outputPanel id="multiFacilityDetail1" style="text-align:center;">
-           <table><tr><th>  <h:outputText  value="Organisation:" /> </th>
-             <td> <h:selectOneMenu >
+           <table><tr><th>  <p:outputLabel for="org" value="Organisation:" /> </th>
+             <td> <h:selectOneMenu id="org" required="true" value="#{expenseBean.str_OrganizationName}">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td> </tr>
                  
-	<tr><th><h:outputText value="Facility Name*"/></th>
+	<tr><th><p:outputLabel value="Facility Name"/></th>
 	<td><p:inputText  id="FacilityName"   placeholder="Enter Facility Name "   value="#{expenseBean.str_FacilityName}">
 	<p:ajax event="blur" update="FacilityNameMsg" />
 	</p:inputText>
@@ -128,52 +128,81 @@
 	  <p:message  id="FacilityNameMsg" for="FacilityName" display="text"/>  
 	
 	</tr>
-	<tr><td> <h:commandButton  styleClass="btn"  id="submit"  value="Submit"    action="#{expenseBean.addFacility}"   >
-	 
-	</h:commandButton> </td>
-	<p:spacer width="90px" height="20px"/>
-	<td><h:commandButton   styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
-	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton></td></tr>
+	
 	</table>  
-	  
+	  <div>
+	  <hr/>
+	  <h:commandButton  styleClass="btn"  value="Submit"  update="DT"  action="#{expenseBean.addFacility}" />
+	    
+	 &#150; &#150; <h:commandButton   styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </h:commandButton> 
+	  </div>
              </p:outputPanel>
              </p:dialog>
 	 
 	 
 	 <p:dialog header="  Facility Details" widgetVar="multiFacilityDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiFacilityDetail2" style="text-align:center;">
+           <ui:repeat value="#{expenseBean.selectedFacilities}" var="fn1">
            <table>
                
-            <ui:repeat value="#{expenseBean.selectedFacilities}" var="fn1">
+            
+            <tr><th>  <p:outputLabel   value="Organisation:" /> </th>
+             <td> <h:selectOneMenu  readonly="true"  value="#{expenseBean.str_OrganizationName}">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td> </tr>
              <tr>
-             <th><h:outputText  value="Facility Name"/></th>
-             <td> <h:outputText value="#{fn1.str_FacilityName}" />  </td>
+             <th><p:outputLabel   value="Facility Name"/></th>
+             <td> <p:inputText readonly="true" value="#{fn1.str_FacilityName}"/> 
+             
+              </td>
              </tr>
-              
+             
                
-             </ui:repeat>
+            
              </table>
+              </ui:repeat>
+             <div>
+             <hr/>
+             </div>
              </p:outputPanel>
              </p:dialog>
              <p:dialog header="  Edit Facility Details" widgetVar="multiFacilityDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiFacilityDetail3" style="text-align:center;">
+           <ui:repeat value="#{expenseBean.selectedFacilities}" var="fn1">
            <table>
                
-            <ui:repeat value="#{expenseBean.selectedFacilities}" var="fn1">
+            
+            <tr><th>  <p:outputLabel for="org1" value="Organisation:" /> </th>
+             <td> <h:selectOneMenu id="org1" required="true" value="#{expenseBean.str_OrganizationName}">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td> </tr>
              <tr>
-             <th><h:outputText  value="Facility Name"/></th>
-             <td> <h:inputText id="fId" value="#{fn1.str_FacilityName}" />  </td>
+             <th><p:outputLabel for="FacilityName1" value="Facility Name"/></th>
+             <td> <p:inputText id="FacilityName1" required="true" requiredMessage="Enter Facility Name" value="#{fn1.str_FacilityName}" > 
+             
+             <p:ajax event="blur" update="FacilityNameMsg1" />
+             </p:inputText> </td>
+             <td><p:message  id="FacilityNameMsg1" for="FacilityName1" display="text"/>  </td>
              </tr>
-              <tr><td><h:commandButton value="Update" styleClass="btn"  action="#{expenseBean.updateFacility(fn1)}">
+             
+               
+            
+             </table>
+             
+             <div>
+             <hr/>
+               <h:commandButton value="Update" styleClass="btn"  action="#{expenseBean.updateFacility(fn1)}">
                
               </h:commandButton>
-              </td><td><h:commandButton   styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
+              &#150; &#150; <h:commandButton   styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton></td></tr>
-               
-             </ui:repeat>
-             </table>
+	  </h:commandButton> 
+             </div>
+              </ui:repeat>
              </p:outputPanel>
              </p:dialog>
              </div>
