@@ -18,6 +18,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.SelectEvent;
@@ -72,6 +75,175 @@ public String getStr_VendorType() {
 public void setStr_VendorType(String str_VendorType) {
 	this.str_VendorType = str_VendorType;
 }
+private Date dat_ToDate=new java.util.Date();
+public Date getDat_ToDate() {
+	return dat_ToDate;
+}
+public void setDat_ToDate(Date dat_ToDate) {
+	this.dat_ToDate = dat_ToDate;
+}
+private List<SelectItem> dates;
+public List<SelectItem> getDates() {
+	return dates;
+}
+public void setDates(List<SelectItem> dates) {
+	this.dates = dates;
+}
+ 
+private  String str;
+
+public String getStr() {
+	
+	
+	return str;
+}
+public void setStr(String str) {
+	this.str = str;
+}
+public Date accountchangeListener3(ValueChangeEvent event)
+{
+	System.out.println("hjjhjhjk");
+	str=(String)event.getNewValue();
+  
+   if(str.equalsIgnoreCase("This Week End"))
+		   {
+	   Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;
+		   }
+   else if(str.equalsIgnoreCase("This Month End"))
+   {
+	   Calendar c = Calendar.getInstance();
+	 		
+	 		c.getActualMaximum(Calendar.DAY_OF_MONTH);
+	 		c.add(Calendar.MONTH, 1);  
+	        c.set(Calendar.DAY_OF_MONTH, 1);  
+	        c.add(Calendar.DATE, -1);  
+
+	 		dat_ToDate=c.getTime();
+	 		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+	 		return dat_ToDate; 
+   }
+   else if(str.equalsIgnoreCase("This Quarter End"))
+   {  
+   Calendar c = Calendar.getInstance();
+	c.setTime(dat_ToDate);
+	int factor = 0;
+	int month = c.get(Calendar.MONTH);
+	if (month == Calendar.JANUARY
+		|| month == Calendar.APRIL
+		|| month == Calendar.JULY
+		|| month == Calendar.OCTOBER) {
+		factor = 2;
+	} else if (
+		month == Calendar.FEBRUARY
+		|| month == Calendar.MAY
+		|| month == Calendar.AUGUST
+		|| month == Calendar.NOVEMBER) {
+		factor = 1;
+		} else {
+			factor = 0;
+	}
+
+	c.add(Calendar.MONTH, factor);
+	c.set(Calendar.DATE, c.getActualMaximum(Calendar.DATE));
+	dat_ToDate=c.getTime();
+	return dat_ToDate;
+}
+   
+   else if(str.equalsIgnoreCase("This Year End"))
+   {
+	   Calendar c = Calendar.getInstance();
+		
+		c.getActualMaximum(Calendar.DAY_OF_MONTH);
+		int year=c.getWeekYear()+1;
+		c.set(Calendar.YEAR, year);
+		c.set(Calendar.MONTH, 2); 
+		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+
+
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;  
+   }
+   else if(str.equalsIgnoreCase("Yesterday"))
+   {
+	   Calendar c = Calendar.getInstance();
+	   c.add(Calendar.DATE, -1);
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;
+   }
+   else if(str.equalsIgnoreCase("Custom"))
+   {  dat_ToDate=null;
+	  return dat_ToDate;
+   }
+   else if(str.equalsIgnoreCase("Previous Week End"))
+   {
+	   Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		c.set(Calendar.DATE,-1);
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;
+   }
+   else if(str.equalsIgnoreCase("Previous Month End"))
+   {
+	   Calendar aCalendar = Calendar.getInstance();
+	   aCalendar.set(Calendar.DATE, 1);
+	   aCalendar.add(Calendar.DAY_OF_MONTH, -1);
+	   dat_ToDate = aCalendar.getTime();
+	   System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+	   
+   }
+   else if(str.equalsIgnoreCase("Previous Quarter End"))
+   {
+	   Calendar c = Calendar.getInstance();
+	   c.add(Calendar.MONTH,-3);
+		int factor = 0;
+		int month = c.get(Calendar.MONTH);
+		if (month == Calendar.JANUARY
+			|| month == Calendar.APRIL
+			|| month == Calendar.JULY
+			|| month == Calendar.OCTOBER) {
+			factor = 2;
+		} else if (
+			month == Calendar.FEBRUARY
+			|| month == Calendar.MAY
+			|| month == Calendar.AUGUST
+			|| month == Calendar.NOVEMBER) {
+			factor = 1;
+			} else {
+				factor = 0;
+		}
+
+		c.add(Calendar.MONTH, factor);
+		c.set(Calendar.DATE, c.getActualMaximum(Calendar.DATE));
+		dat_ToDate=c.getTime();
+		return dat_ToDate;
+	   
+   }
+   else if(str.equalsIgnoreCase("Previous Year End"))
+   {
+	   Calendar c = Calendar.getInstance();
+		
+		
+		int year=c.getWeekYear();
+		c.set(Calendar.YEAR, year);
+		c.set(Calendar.MONTH, 2); 
+		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+
+
+		dat_ToDate=c.getTime();
+		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate;  
+   }
+    return null;
+	
+}
 public RequestScopeService getRequestScopeService() {
 	return requestScopeService;
 }
@@ -88,7 +260,7 @@ public void setSelectedServices(List<ServiceRequest> selectedServices) {
 private List<ServiceRequest> listServiceRequest;
 public List<ServiceRequest> getListServiceRequest() {
 	listServiceRequest=new ArrayList<ServiceRequest>();
-	listServiceRequest.addAll(getRequestScopeService().getListServiceRequest(Util.getAppartmentId(),str_Status,str_VendorType));
+	listServiceRequest.addAll(getRequestScopeService().getListServiceRequest(Util.getAppartmentId(),str_Status,str_VendorType,dat_ToDate));
 	return listServiceRequest;
 	
 }
@@ -260,7 +432,8 @@ public void setStr_FacilityType(String str_FacilityType) {
 }
 public List<BookAFacility> getBookAFacilityList() {
 	bookAFacilityList=new ArrayList<BookAFacility>();
-	bookAFacilityList.addAll(getRequestScopeService().getSelectedBookFacility(Util.getAppartmentId(),str_Status,str_Period,str_FacilityType,str_EventType));
+	System.out.println(dat_ToDate+"dateeee");
+	bookAFacilityList.addAll(getRequestScopeService().getSelectedBookFacility(Util.getAppartmentId(),str_Status,dat_ToDate,str_FacilityType,str_EventType));
 	System.out.println(bookAFacilityList.size()+"size");
 	return bookAFacilityList;
 }
@@ -309,6 +482,18 @@ public void init() {
     	 eventModel.addEvent(new DefaultScheduleEvent(ename,sDate,eDate, user));
     }
     
+    SelectItemGroup g1 = new SelectItemGroup("Current");
+    g1.setSelectItems(new SelectItem[] {new SelectItem("Today", "Today"), new SelectItem("This Week End", "This Week End"), new SelectItem("This Month End", "This Month End"),new SelectItem("This Quarter End", "This Quarter End"),new SelectItem("This Year End", "This Year End")});
+     
+    SelectItemGroup g2 = new SelectItemGroup("Previous");
+    g2.setSelectItems(new SelectItem[] {new SelectItem("Yesterday", "Yesterday"), new SelectItem("Previous Week End", "Previous Week End"), new SelectItem("Previous Month End", "Previous Month End"),new SelectItem("Previous Quarter End", "Previous Quarter End"),new SelectItem("Previous Year End", "Previous Year End")});
+     
+    SelectItemGroup g3 = new SelectItemGroup("Custom");
+    g3.setSelectItems(new SelectItem[] {new SelectItem("Custom", "Custom")});
+    dates = new ArrayList<SelectItem>();
+    dates.add(g1);
+    dates.add(g2);
+    dates.add(g3);
  
 }
 private ScheduleEvent event = new DefaultScheduleEvent();
