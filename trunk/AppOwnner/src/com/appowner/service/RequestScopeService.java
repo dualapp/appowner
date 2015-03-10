@@ -1,6 +1,7 @@
 package com.appowner.service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.primefaces.model.ScheduleEvent;
@@ -27,14 +28,14 @@ void updateStatusOfServiceRequest(ServiceRequest serviceRequest);
 void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete);
 
 List<ServiceRequest> getListServiceRequest(
-		Integer int_ApartmentId, String str_Status, String str_VendorType);
+		Integer int_ApartmentId, String str_Status, String str_VendorType, Date dat_ToDate);
 
 void deleteOnefacility(List<BookAFacility> entitiesToDelete);
 
 void updateBookAFacility(BookAFacility bf1);
 
 List<BookAFacility> getSelectedBookFacility(
-		Integer int_ApartmentId, String str_Status, String str_Period,
+		Integer int_ApartmentId, String str_Status, Date dat_ToDate,
 		String str_FacilityType, String str_EventType);
 
 List<cls_Event> getEventList();
