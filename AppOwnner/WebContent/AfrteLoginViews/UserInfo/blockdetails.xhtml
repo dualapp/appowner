@@ -103,13 +103,15 @@
 	<tr><th><p:outputLabel value="No. Of Houses" /> </th>
              
 	<td><p:inputText    id="noofhouses" value="#{apartmentDetailsBean.int_NoOfHouse}"/></td></tr>
-	<tr> <td><h:commandButton   styleClass="btn" id="submit"  value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" >
+	
+	 </table>
+	 <div>
+             <hr/>
+              <h:commandButton   styleClass="btn" id="submit"  value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" >
 	  
 	 </h:commandButton>
-	 </td>
-	 <td><h:commandButton   styleClass="btn" id="Cancel"  value="Cancel"     action="blockdetails.xhtml" /></td>
-	 </tr>
-	 </table>
+	 &#150; &#150;<h:commandButton   styleClass="btn" id="Cancel"  value="Cancel"     action="blockdetails.xhtml" /> 
+	 </div>
 	 </p:outputPanel>
 	 </p:dialog>
 	 <p:dialog header="Edit Block" widgetVar="editBlockDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
@@ -124,13 +126,16 @@
 	<tr><th><p:outputLabel value="No. Of Houses" /> </th>
              
 	<td><p:inputText     value="#{apartmentDetailsBean.selectedBlock1.int_NoOfHouses}"/></td></tr>
-	<tr> <td><h:commandButton   execute="editBlockDetail" styleClass="btn"    value="Submit"   action="#{apartmentDetailsBean.updateBlockDetails(selectedBlock1)}" >
+	
+	 </table>
+	 <div>
+	 <hr/>
+	  <h:commandButton   execute="editBlockDetail" styleClass="btn"    value="Submit"   action="#{apartmentDetailsBean.updateBlockDetails(selectedBlock1)}" >
 	    
 	 </h:commandButton>
-	 </td>
-	 <td><h:commandButton   styleClass="btn"    value="Cancel"     action="blockdetails.xhtml" /></td>
-	 </tr>
-	 </table>
+	 &#150; &#150;  <h:commandButton   styleClass="btn"    value="Cancel"     action="blockdetails.xhtml" /> 
+	  
+	 </div>
 	 </p:outputPanel>
 	 </p:dialog>
 	 </h:form>
