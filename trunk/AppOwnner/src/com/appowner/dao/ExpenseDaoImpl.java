@@ -62,16 +62,12 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId) {
-		// TODO Auto-generated method stub
-		/*String  query = "{ CALL expenseList() }";
-		List<Expense> expense=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Expense.class)).list();
-		return expense;*/
-		
+		 
 		if( str_AssetName!=null&&str_AssetCategoryType!=null&&str_ExpenseCategory!=null&&str_ExcepenseType!=null&&int_ApartmentId!=null)
 		{
 			//pending
 		}
-		return getSessionFactory().getCurrentSession().createQuery("from Expense where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from Expense where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 	}
 
 	@Override
@@ -101,12 +97,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Parking> getParkingSlotList() {
-		//String  query = "{ CALL parkingSpaceList() }";
-		
 		 
-		/*List<String> parkingSpaceList=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Parking.class)).list();
-		System.out.println(parkingSpaceList);*/
-		return getSessionFactory().getCurrentSession().createQuery("from Parking where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		return getSessionFactory().getCurrentSession().createQuery("from Parking where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 	}
 
 	@Override
