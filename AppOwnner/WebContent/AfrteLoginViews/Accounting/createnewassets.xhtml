@@ -98,10 +98,10 @@
 		
 		<h:message style="color: red" for="file" /><br />
  
-		<h:commandButton id="upload" update="assetimg" execute="file"
+		<h:commandButton id="upload"   
 		                 action="#{expenseBean.uploadAssetsFile()}"
 			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
-			               <f:ajax execute="file" event="click" render="@form" />
+			               <f:ajax execute="file"   event="click"  update="assetimg" render="assetimg" />
 			             </h:commandButton>
         <!-- status message of file upload; rendered if message is set -->
 		<p:outputLabel value="#{expenseBean.statusMessage}"

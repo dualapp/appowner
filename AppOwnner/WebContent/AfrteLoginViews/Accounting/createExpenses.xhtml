@@ -39,17 +39,17 @@
         <tr><th> 
                <p:outputLabel value="Organisation:" /> </th>
              <td> <h:selectOneMenu  style="width:150px" >
-              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+              <f:selectItem itemLabel="#{expenseBean1.str_OrganizationName}"  itemValue="#{expenseBean1.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
          <tr>
           <th> Acc Name*</th>  <th>  Type* </th> <th> Category*  </th>   <th>  Date* </th>   <th>  Ammount* </th> <th>  Description </th> <th> Assets Category </th> <th>  Assets Name</th></tr> 
-          <tr><td> <h:selectOneMenu  valueChangeListener="#{expenseBean.accountListener}"  value="#{expenseBean.str_AccountName}" style="width:150px" >
+          <tr><td> <h:selectOneMenu  valueChangeListener="#{expenseBean1.accountListener}"  value="#{expenseBean1.str_AccountName}" style="width:150px" >
           <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
           <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
           </h:selectOneMenu>
           </td> 
-  <td><h:selectOneMenu id="ExpenseType" style="width:150px"  value="#{expenseBean.str_ExcepenseType}" valueChangeListener="#{expenseBean.expenseTypeListener}"  >
+  <td><h:selectOneMenu id="ExpenseType" style="width:150px"  value="#{expenseBean1.str_ExcepenseType}" valueChangeListener="#{expenseBean1.expenseTypeListener}"  >
                   
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
@@ -58,47 +58,47 @@
                   
              </td>
              
-               <td><h:selectOneMenu id="ExpenseCategory" style="width:150px"  value="#{expenseBean.str_ExpenseCategory}" valueChangeListener="#{expenseBean.expenseCategoryListener}"   >
+               <td><h:selectOneMenu id="ExpenseCategory" style="width:150px"  value="#{expenseBean1.str_ExpenseCategory}" valueChangeListener="#{expenseBean1.expenseCategoryListener}"   >
                   
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
                  </h:selectOneMenu>
                  </td>
                 <td> 
-               <p:calendar  id="Date" style="width:150px"  required="true" requiredMessage="Enter Date"  navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
+               <p:calendar  id="Date" style="width:150px"  required="true" requiredMessage="Enter Date"  navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean1.dateListener}"   value="#{expenseBean1.date_Duration}">
                 
                   </p:calendar>
                     
              </td>     
-             <td><p:inputText id="Amount" style="width:150px"  required="true" requiredMessage="Enter Amount" value="#{expenseBean.int_Ammount}" valueChangeListener="#{expenseBean.amountListener}">
+             <td><p:inputText id="Amount" style="width:150px"  required="true" requiredMessage="Enter Amount" value="#{expenseBean1.int_Ammount}" valueChangeListener="#{expenseBean1.amountListener}">
              
              </p:inputText> 
              
               </td>
               
-               <td><p:inputText  value="#{expenseBean.str_Description}" style="width:150px" valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
-               <td><h:selectOneMenu id="assetcatname"  style="width:150px" value="#{expenseBean.str_AssetCategoryType}" valueChangeListener="#{expenseBean.assetCatNameListener}" >
+               <td><p:inputText  value="#{expenseBean1.str_Description}" style="width:150px" valueChangeListener="#{expenseBean1.descriptionListener}"/>  </td>
+               <td><h:selectOneMenu id="assetcatname"  style="width:150px" value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
                   <f:selectItem itemLabel="Select" itemValue=""/>
                  
-                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                   <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
                    <p:ajax event="change" update="assetname" process="assetcatname"/>
                  </h:selectOneMenu>
              </td>
              
-               <td><h:selectOneMenu  id="assetname" value="#{expenseBean.str_AssetName}" style="width:150px" valueChangeListener="#{expenseBean.assetNameListener}" >
+               <td><h:selectOneMenu  id="assetname" value="#{expenseBean1.str_AssetName}" style="width:150px" valueChangeListener="#{expenseBean1.assetNameListener}" >
                  <f:selectItem itemLabel="Select" itemValue="Not Applicable"   />
-                  <f:selectItems  value= "#{expenseBean.str_AssetNameList}"  />
+                  <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
                   
                   
                  </h:selectOneMenu>
                  </td></tr>
                  <!-- nextLine -->
-                   <tr><td> <h:selectOneMenu  valueChangeListener="#{expenseBean.accountListener}"  style="width:150px" value="#{expenseBean.str_AccountName}" >
+                   <tr><td> <h:selectOneMenu  valueChangeListener="#{expenseBean1.accountListener}"  style="width:150px" value="#{expenseBean1.str_AccountName}" >
           <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
           <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
           </h:selectOneMenu>
           </td> 
-  <td><h:selectOneMenu id="ExpenseType1"   value="#{expenseBean.str_ExcepenseType}" style="width:150px" valueChangeListener="#{expenseBean.expenseTypeListener}" >
+  <td><h:selectOneMenu id="ExpenseType1"   value="#{expenseBean1.str_ExcepenseType}" style="width:150px" valueChangeListener="#{expenseBean1.expenseTypeListener}" >
                   
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
@@ -107,43 +107,43 @@
                   
              </td>
              
-               <td><h:selectOneMenu id="ExpenseCategory1"  style="width:150px" value="#{expenseBean.str_ExpenseCategory}" valueChangeListener="#{expenseBean.expenseCategoryListener}"  >
+               <td><h:selectOneMenu id="ExpenseCategory1"  style="width:150px" value="#{expenseBean1.str_ExpenseCategory}" valueChangeListener="#{expenseBean1.expenseCategoryListener}"  >
                   
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
                  </h:selectOneMenu>
                  </td>
                 <td> 
-               <p:calendar  id="Date1"   navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  style="width:150px" display="inline" valueChangeListener="#{expenseBean.dateListener}"   value="#{expenseBean.date_Duration}">
+               <p:calendar  id="Date1"   navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  style="width:150px" display="inline" valueChangeListener="#{expenseBean1.dateListener}"   value="#{expenseBean1.date_Duration}">
                 
                   </p:calendar>
                     
              </td>     
-             <td><p:inputText id="Amount1"  value="#{expenseBean.int_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean.amountListener}">
+             <td><p:inputText id="Amount1"  value="#{expenseBean1.int_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean1.amountListener}">
              
              </p:inputText> 
              
               </td>
               
-               <td><p:inputText  value="#{expenseBean.str_Description}"  style="width:150px" valueChangeListener="#{expenseBean.descriptionListener}"/>  </td>
-               <td><h:selectOneMenu id="assetcatname1"  style="width:150px"  value="#{expenseBean.str_AssetCategoryType1}" valueChangeListener="#{expenseBean.assetCatNameListener1}">
+               <td><p:inputText  value="#{expenseBean1.str_Description}"  style="width:150px" valueChangeListener="#{expenseBean1.descriptionListener}"/>  </td>
+               <td><h:selectOneMenu id="assetcatname1"  style="width:150px"  value="#{expenseBean1.str_AssetCategoryType1}" valueChangeListener="#{expenseBean1.assetCatNameListener1}">
                   <f:selectItem itemLabel="Select" itemValue="" />
                  
-                   <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
+                   <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
                    <p:ajax event="change" update="assetname1" process="assetcatname1"/>
                  </h:selectOneMenu>
              </td>
              
-               <td><h:selectOneMenu  id="assetname1" value="#{expenseBean.str_AssetName1}"  valueChangeListener="#{expenseBean.assetNameListener1}"  style="width:150px">
+               <td><h:selectOneMenu  id="assetname1" value="#{expenseBean1.str_AssetName1}"  valueChangeListener="#{expenseBean1.assetNameListener1}"  style="width:150px">
                  <f:selectItem itemLabel="Select" itemValue="Not Applicable"   />
-                  <f:selectItems  value="#{expenseBean.str_AssetNameList1}"  />
+                  <f:selectItems  value="#{expenseBean1.str_AssetNameList1}"  />
                   
                   
                  </h:selectOneMenu>
                  </td></tr>
           
-             <tr><td><h:commandButton styleClass="btn"  action="#{expenseBean.addExpenses}" value="Submit"/>  &#150;   &#150;   &#150; 
-            <h:commandButton styleClass="btn"  action="#{expenseBean.resetExpenses}" value="Reset"/></td></tr>
+             <tr><td><h:commandButton styleClass="btn"  action="#{expenseBean1.addExpenses}" value="Submit"/>  &#150;   &#150;   &#150; 
+            <h:commandButton styleClass="btn"  action="createExpenses.xhtml" value="Reset"/></td></tr>
               
              
               
