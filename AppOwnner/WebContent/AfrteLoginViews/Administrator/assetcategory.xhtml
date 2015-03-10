@@ -29,7 +29,7 @@
  </h:head>
 	<h:form >
 	
-	   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+	   <p:growl id="ui-growl"   sticky="true" />
 	   <h:body>
 	<div id="page3">
            <div class="gsTitleDiv">Assets Catecory<br/><hr/></div> 
@@ -71,8 +71,8 @@
         <p:outputPanel id="multiAssetCategoryDetail" style="text-align:center;">
        <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 	<tr><th> 
-               <h:outputText value="Organisation" /> </th>
-             <td> <h:selectOneMenu>
+              <p:outputLabel for="org" value="Organisation" /> </th>
+             <td> <h:selectOneMenu id="org" required="true" value="#{expenseBean.str_OrganizationName}">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
@@ -83,63 +83,81 @@
 	</td>
 	  <td>  <p:message id="AssetCategoryMsg" for="AssetCategory" display="text"/>  </td>
 	</tr>
-	<tr><td><h:commandButton   styleClass="btn"  value="Submit"     action="#{expenseBean.saveAssetCategory}">
+	 
+	  
+	</table>
+	<div>
+	<hr/>
+	 <h:commandButton   styleClass="btn"  value="Submit"     action="#{expenseBean.saveAssetCategory}">
 	 
 	</h:commandButton>
 	
-	  </td> <td><h:commandButton   styleClass="btn"   ajax="false" value="Cancel"    action="assetcategory.xhtml" >
+	  &#150; &#150; <h:commandButton   styleClass="btn"   ajax="false" value="Cancel"    action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton></td></tr>  
-	  
-	</table>
-	
+	  </h:commandButton> 
+	</div>
 	 
         </p:outputPanel>
         </p:dialog>
         <p:dialog header="Edit AssetsCatgory Details" widgetVar="multiAssetCategoryDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiAssetCategoryDetail2" style="text-align:center;">
-          
+           <ui:repeat value="#{expenseBean.assetCategoryList1}" var="ac1">
            <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
                
-            <ui:repeat value="#{expenseBean.assetCategoryList1}" var="ac1">
+           
+            <tr><th> 
+               <p:outputLabel for="org1" value="Organisation" /> </th>
+             <td> <h:selectOneMenu id="org1" required="true" value="#{expenseBean.str_OrganizationName}">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td></tr>
              <tr>
-             <th><p:outputLabel value="Organization"/></th><td><p:inputText value="#{ac1.str_OrganizationName}" /> </td>
-             </tr>
-             <tr>
-             <th><p:outputLabel value="Category Name"/></th><td><p:inputText value="#{ac1.str_assetcat_name}" /> </td>
+             <th><p:outputLabel for="AssetCategory1" value="Category Name"/></th><td><p:inputText id="AssetCategory1" required="true" requiredMessage="Enter Category Name" value="#{ac1.str_assetcat_name}" >
+             <p:ajax event="blur" update="AssetCategoryMsg1" />
+             </p:inputText>
+              </td>
+             <td>  <p:message id="AssetCategoryMsg1" for="AssetCategory1" display="text"/>  </td>
              </tr>
              
+            </table>
              </ui:repeat>
-             <tr><td><h:commandButton value="update"  styleClass="btn"  ajax="false"   action="#{expenseBean.updateAssetCategory(ac1)}">
+              <div>
+              <hr/>
+               <h:commandButton value="update"  styleClass="btn"  ajax="false"   action="#{expenseBean.updateAssetCategory(ac1)}">
                
              </h:commandButton>
-             </td> 
-             
-            <td><h:commandButton   styleClass="btn"    value="Cancel"  ajax="false"  action="assetcategory.xhtml" >
+            &#150; &#150;  <h:commandButton   styleClass="btn"    value="Cancel"  ajax="false"  action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton></td></tr>
-            </table>
-              
+	  </h:commandButton> 
+              </div>
              </p:outputPanel>
              </p:dialog>
-             <p:dialog header=" AssetsCatgory Details" widgetVar="multiAssetCategoryDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+             <p:dialog header="AssetsCatgory Details" widgetVar="multiAssetCategoryDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
         <p:outputPanel id="multiAssetCategoryDetail1" style="text-align:center;">
           
            <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-          
-          
                
-            <ui:repeat value="#{expenseBean.assetCategoryList1}" var="ac1">
+            <ui:repeat value="#{expenseBean.assetCategoryList1}" var="ac2">
+           <tr>
+  
+  <th>  <p:outputLabel   value="Organisation:" /> </th>
+              
+              <td><h:selectOneMenu  readonly="true"   value="#{expenseBean.str_OrganizationName}">
+              <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
+                
+                 </h:selectOneMenu></td>
+    </tr>
+    
              <tr>
-             <th><h:outputText value="Organization"/></th><td><h:outputText value="#{ac1.str_OrganizationName}" /> </td>
-             </tr>
-             <tr>
-             <th><h:outputText value="Category name"/></th><td><h:outputText value="#{ac1.str_assetcat_name}" /> </td>
+             <th><p:outputLabel  value="Category Name"/></th><td><p:inputText  readonly="true" value="#{ac2.str_assetcat_name}" /> </td>
              </tr>
              
-             </ui:repeat>
-              </table>
-              
+            </ui:repeat>
+             
+            </table>
+             <div>
+             <hr/>
+             </div>
              </p:outputPanel>
              </p:dialog>
              </div>
