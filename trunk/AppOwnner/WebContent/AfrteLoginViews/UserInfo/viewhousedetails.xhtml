@@ -114,7 +114,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                   <h:graphicImage  height="20" width="20" alt="View" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
               &#150;
-           <h:commandLink process="DT" update=" DT"  immediate="true" execute="@this"
+           <h:commandLink process="DT" update=":form:ui-growl"  immediate="true" execute="DT" render="@form"
 	   		 onclick="return confirm('Are you sure you want to delete #{houseDetail.str_HouseNo}?');" action="#{apartmentDetailsBean.deleteHouseDetails(houseDetail.int_HouseId)}">  
 	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
 	   				 
@@ -133,7 +133,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	  
 	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
 	       &#150; &#150;  <h:commandButton style="width:120px;height:25px"    onclick="return confirm('Are you sure you want to delete ?');" action="#{apartmentDetailsBean.deleteSelectedHouse()}" icon="ui-icon-trash" value="Delete">
-	          <f:ajax execute="DT" event="click" update="ui-growl" render="DT"/>
+	          <f:ajax execute="DT" event="click" update="ui-growl" render="@form"/>
 	        </h:commandButton>
 	        
 
@@ -180,15 +180,18 @@ Unless the Community Setup is complete, the changes that are made will not be sa
               
                  </h:selectOneMenu></td>   
 	 </tr>
-	<tr><td><h:commandButton   styleClass="btn"    value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" >
+	
+	 </table>
+	 <div>
+	 <hr/>
+	  <h:commandButton   styleClass="btn"    value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" >
 	 <f:ajax execute="editHouseDetail" event="click"  render="@form"/>
 	 </h:commandButton>
-	 </td><td><h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" >
+	  &#150; &#150; <h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
 	  </h:commandButton>
-	 </td>
-	 </tr>
-	 </table>
+	  
+	 </div>
  </p:outputPanel>
  </p:dialog>
  <p:dialog header="View House Details" widgetVar="viewHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
@@ -218,7 +221,9 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </tr>
 	 
 	 </table>
- 
+ <div>
+	 <hr/>
+	 </div>
  </p:outputPanel>
  </p:dialog>
  <p:dialog header="Add New House" widgetVar="houseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
@@ -257,16 +262,19 @@ Unless the Community Setup is complete, the changes that are made will not be sa
               
                  </h:selectOneMenu></td>   
 	 </tr>
-	<tr>
-	<td><h:commandButton   styleClass="btn" id="submit"  value="Confirm"     action="#{apartmentDetailsBean.saveHouseDetails}" >
+	
+	 </table>
+	 <div>
+	 <hr/>
+	   <h:commandButton   styleClass="btn" id="submit"  value="Confirm"     action="#{apartmentDetailsBean.saveHouseDetails}" >
 	  <f:ajax execute="houseDetail" event="click"  render="@form"/>
 	 </h:commandButton>
-	 </td><td>
+	 &#150; &#150;  
    <h:commandButton     styleClass="btn" icon="ui-icon-close"    value="Cancel"    action="housedetails.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton></td>
-	 </tr>
-	 </table>
+	  </h:commandButton> 
+	  
+	 </div>
 	 </p:outputPanel>
 	 </p:dialog>
 	 
