@@ -136,14 +136,9 @@
           </p:column>
         
  
-          <p:column     headerText="Organization"   >
-          
-                <p:outputLabel   value="#{Expenselist.str_OrganizationName}" /> 
-                 
-                 
-            </p:column>
-            <p:column  headerText="Id"  >
-                 <p:outputLabel    value="#{Expenselist.str_ExpenseId}" /> 
+         
+            <p:column  headerText="Account"  >
+                 <p:outputLabel    value="#{Expenselist.str_AccountName}" /> 
                 
             </p:column>
               <p:column   headerText="Type"  >
@@ -151,7 +146,7 @@
           
                 
             </p:column>
-             <p:column   headerText="Expense"  >
+             <p:column   headerText="ExpenseCat"  >
                 <p:outputLabel    value="#{Expenselist.str_ExpenseCategory}" /> 
           
                 
@@ -160,7 +155,7 @@
               <p:outputLabel    value="#{Expenselist.str_Description}" /> 
                 
             </p:column>
-            <p:column   headerText="AssetCategory"  >
+            <p:column   headerText="AssetCat"  >
                 <p:outputLabel    value="#{Expenselist.str_AssetCatType}" /> 
           
                 
@@ -175,11 +170,7 @@
           
                 
             </p:column>
-             <p:column   headerText="Expense Category"  >
-                <p:outputLabel    value="#{Expenselist.str_ExpenseCategory}" /> 
-          
-                
-            </p:column>
+             
              <p:column   headerText="Asset Name"  >
                 <p:outputLabel    value="#{Expenselist.str_AssetName}" /> 
           
@@ -236,11 +227,11 @@
  <th>
     <p:outputLabel value="AssetCategoryType:"/></th>
     <td>
-    <h:selectOneMenu id="assetcatnamee"    value="#{ex.str_AssetCatType}"  valueChangeListener="#{expenseBean1.assetCatNameListener}" >
-                  <f:selectItem itemLabel="Select" itemValue=""/>
+  <h:selectOneMenu id="assetcatname1"  value="#{ex.str_AssetCatType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
-                   <f:ajax event="change" update="assetnamee" process="assetcatnamee"/>
+                   <p:ajax event="change" update="assetname1" process="assetcatname1"/>
                  </h:selectOneMenu>
     </td>  
     </tr>
@@ -248,9 +239,10 @@
  <th>
     <p:outputLabel value="AssetsName:"/></th>
     <td>
-    <h:selectOneMenu  id="assetnamee" value="#{ex.str_AssetName}"    valueChangeListener="#{expenseBean1.assetNameListener}" >
-                 <f:selectItem itemLabel="Select" itemValue="Not Applicable"   />
-                <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
+  <h:selectOneMenu  id="assetname1" value="#{ex.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
+                  
                   
                  </h:selectOneMenu>
      </td>  
