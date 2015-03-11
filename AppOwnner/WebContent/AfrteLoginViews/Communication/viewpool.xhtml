@@ -50,12 +50,12 @@
    
     
 <h2><p:outputLabel value="*#{expenseBean.onePoll.str_poolQuestion}"/>?</h2> 
- #{expenseBean.onePoll.str_Choise1} Got:  #{expenseBean.getCount1()} Vote
+ #{expenseBean.onePoll.str_Choise1} Got:  #{expenseBean.count1} Vote
   
 <p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
-  #{expenseBean.onePoll.str_Choise2} Got: #{expenseBean.getCount2()} Vote
+  #{expenseBean.onePoll.str_Choise2} Got: #{expenseBean.count2} Vote
  <p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
-#{expenseBean.onePoll.str_Choise3} Got: #{expenseBean.getCount3()} Vote
+#{expenseBean.onePoll.str_Choise3} Got: #{expenseBean.count3} Vote
  <p:progressBar style="width: 30%;" value="#{expenseBean.getChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/>
 
     
