@@ -34,6 +34,7 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.hibernate.engine.RowSelection;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 
@@ -443,6 +444,7 @@ public String saveParking()
 	parking.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().saveParking(parking);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Parking Saved Successfully!"));
+	 str_ParkingSlot="";
 	 return "parkingspace.xhtml";
 }
  
@@ -1238,13 +1240,27 @@ public void setPath3(String path3) {
 	this.path3 = path3;
 }
 public String saveAssetCategory()
-{
+{ 
+	 RequestContext context = RequestContext.getCurrentInstance();
+    
+     boolean loggedIn = false;
+     if(str_AssetCategoryType!= null) {
 	assetcategory=new AssetCategory();
 	assetcategory.setStr_assetcat_name(str_AssetCategoryType);
 	assetcategory.setStr_OrganizationName(str_OrganizationName);
 	assetcategory.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().saveAssetCategory(assetcategory);
-	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Added Successfully!"));
+	 loggedIn = true;
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Saved Successfully!"));
+	  
+	 str_AssetCategoryType="";
+ 
+     }
+     else{
+    	 FacesMessage message = null;
+     FacesContext.getCurrentInstance().addMessage(null, message);
+     context.addCallbackParam("loggedIn", loggedIn);
+     }
 	return"assetcategory.xhtml";
 }
 
@@ -1418,6 +1434,7 @@ public String addFacility()
 	facilityNeeded.setInt_ApartmentId(Util.getAppartmentId());
 	getExpenseService().addFacility(facilityNeeded);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Added Successfully!"));
+	str_FacilityName="";
 	return "facilityneeded.xhtml";
 }
 public String deletefacilityNeeded()
@@ -1660,6 +1677,7 @@ public void setTemplateIndicator(String templateIndicator) {
 
 public Long getLatestChoise1Vote()
 {
+	count1=0l;
 	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
 	 System.out.println(latestPolls.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -1676,7 +1694,7 @@ public Long getLatestChoise1Vote()
 
 
 public Long getChoise1Vote()
-{ 
+{ count1=0l;
 	  count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
 	 System.out.println(onePoll.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -1691,12 +1709,21 @@ public Long getChoise1Vote()
 	
 }
 public Long getCount1() {
+	 
 	return count1;
 }
 public void setCount1(Long count1) {
 	this.count1 = count1;
 }
+public Long getCount2() {
+	 
+	return count2;
+}
+public void setCount2(Long count2) {
+	this.count2 = count2;
+}
 public Long getCount3() {
+	 
 	return count3;
 }
 public void setCount3(Long count3) {
@@ -1708,6 +1735,7 @@ private Long count3;
 
 public Long getLatestChoise2Vote()
 {
+	count2=0l;
 	System.out.println(latestPolls.getInt_PoolId());
 	  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
 	 System.out.println(latestPolls.getStr_Choise2());
@@ -1721,6 +1749,7 @@ public Long getLatestChoise2Vote()
 }
 public Long getChoise2Vote()
 {
+	count2=0l;
 	System.out.println(onePoll.getInt_PoolId());
 	  count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
 	 System.out.println(onePoll.getStr_Choise2());
@@ -1732,14 +1761,10 @@ public Long getChoise2Vote()
 	 return res;
 	
 }
-public Long getCount2() {
-	return count2;
-}
-public void setCount2(Long count2) {
-	this.count2 = count2;
-}
+
 public Long getLatestChoise3Vote()
 {System.out.println(latestPolls.getInt_PoolId());
+count3=0l;
 	   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
 	  System.out.println(latestPolls.getStr_Choise3());
 		 System.out.println(int_PoolId+"pid");
@@ -1751,6 +1776,7 @@ public Long getLatestChoise3Vote()
 }
 public Long getChoise3Vote()
 {System.out.println(onePoll.getInt_PoolId());
+count3=0l;
 	   count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
 	  System.out.println(onePoll.getStr_Choise3());
 		 System.out.println(int_PoolId+"pid");

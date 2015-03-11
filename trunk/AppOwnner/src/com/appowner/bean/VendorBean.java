@@ -936,6 +936,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		workOrderCategory.setStr_VendorCategoryType(str_VendorCategoryType);
 		getVendorservice().saveWorkOrderCategory(workOrderCategory);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
+		
 		return "workordercategory.xhtml";
 	}
 	public List<Vendor> getVendorList() {

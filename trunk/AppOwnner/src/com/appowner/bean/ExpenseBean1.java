@@ -179,13 +179,6 @@ public void setStr_AssetCatNameList(List<String> str_AssetCatNameList) {
  * get assetName By assetCategory
  */
 public List<String> getStr_AssetNameList() {
-	
-	 
-		str_AssetNameList=new ArrayList<String>();
-		 
-	 
-	 str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType));
-	 System.out.println(str_AssetNameList);
 	 
 	return str_AssetNameList;
 }
@@ -234,8 +227,16 @@ public void setStr_ExpenseId(String str_ExpenseId) {
 
 public void assetCatNameListener(ValueChangeEvent  event)
 {  
+	str_AssetCategoryType=(String) event.getNewValue();
 	
-   assetCatnameList.add(event.getNewValue());
+   assetCatnameList.add(str_AssetCategoryType);
+
+	str_AssetNameList=new ArrayList<String>();
+	 
+
+str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType));
+System.out.println(str_AssetNameList);
+
  
 }
 public void assetCatNameListener1(ValueChangeEvent  event)
