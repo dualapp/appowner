@@ -140,7 +140,7 @@ public void setStr_Organisation(String str_Organisation) {
 	}
 	public List<AccountsOpeningBalance> getListOpeningBalance() {
 		listOpeningBalance=new ArrayList<AccountsOpeningBalance>();
-		listOpeningBalance.addAll(getAccountsService().listOpeningBalance());
+		listOpeningBalance.addAll(getAccountsService().listOpeningBalance(Util.getAppartmentId()));
 		ListIterator list=listOpeningBalance.listIterator();
 		totalAmount=0.0;
 		totalAmount1=0.0;
