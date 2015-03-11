@@ -553,4 +553,12 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	sessionFactory.getCurrentSession().saveOrUpdate(ol);
 		}
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getStr_AccountNameList() {
+		// TODO Auto-generated method stub
+		String hql="select str_AccountName from ChartOfAccount where str_AccountType IN ('Cash', 'Bank') and int_ApartmentId IN ('0',"+Util.getAppartmentId()+')';
+		return (List<String>) sessionFactory.getCurrentSession().createQuery(hql).list();
+	}
 }

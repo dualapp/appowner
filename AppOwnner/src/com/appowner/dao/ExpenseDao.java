@@ -163,4 +163,6 @@ public interface ExpenseDao {
 
 	void updateOrganizationLogo(String path);
 
+	List<String> getStr_AccountNameList();
+
 }
