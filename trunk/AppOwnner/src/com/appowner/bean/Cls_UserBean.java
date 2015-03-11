@@ -354,7 +354,7 @@ public class Cls_UserBean implements Serializable{
 				 }
 				 else
 					 user.setStr_UserRoleName("Tenant");
-				 RequestContext.getCurrentInstance().execute("dialogaboutDEQ.show()");
+				 
 				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This House is already Booked for: "  + user.getStr_UserRoleName()+""+user.getStr_Username()));
 			 }
 		}
@@ -436,7 +436,6 @@ public class Cls_UserBean implements Serializable{
 				ua.setStr_Address(getCity());
 				ua.setInt_CityId(id);
 				ua.setStatus(0);
-				ua.setInt_subscriptID(1);
 				java.util.Date d=new java.util.Date();
 				System.out.println(d+"dskdskdslkk");
 				Calendar cal1 = Calendar.getInstance();
@@ -492,7 +491,7 @@ public class Cls_UserBean implements Serializable{
 			fn=getStr_FirstName();
 			
 			
-			url="http://www.appowners.com/AppOwnner/activate.jsp?activationkey="+uuid1;
+			url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
 			subject="AppOwner.com";
 			content="fffff";
 			Bn="admin";
