@@ -17,7 +17,7 @@ import com.appowner.model.customize;
 
 public interface AccountsService {
 
-	public List<AccountsOpeningBalance> listOpeningBalance();
+	public List<AccountsOpeningBalance> listOpeningBalance(Integer id);
 
 	public void addAccounts(Integer int_Accounts_OpeningID, Double int_Debit);
 
@@ -48,7 +48,7 @@ public interface AccountsService {
 
 	public double getCreditBalance(Integer id1);
 
-	public double getDebitBalance(Integer id1);
+	public double getDebitBalance(Integer id1, Date openingdate, String str);
 
 	public int getAccountId(String str);
 
@@ -119,7 +119,7 @@ public interface AccountsService {
 
 	public List<InvoiceTransaction> listInvoiceTransaction2(Date dat_From, Date dat_To);
 
-	public List<Double> getExpenseAmount();
+	public List<Double> getExpenseAmount(Date dat_To);
 
 	public List<Double> getIncomeAmount(Date dat_To);
 

@@ -32,9 +32,9 @@ public class AccountsServiceImpl implements AccountsService {
 	public void setAccountsDao(AccountsDao accountsDao) {
 		this.accountsDao = accountsDao;
 	}
-	public List<AccountsOpeningBalance> listOpeningBalance()
+	public List<AccountsOpeningBalance> listOpeningBalance(Integer id)
 	{
-		return getAccountsDao().listOpeningBalance();
+		return getAccountsDao().listOpeningBalance(id);
 	}
 	public void addAccounts(Integer int_Accounts_OpeningID, Double int_Debit)
 	{ 
@@ -104,9 +104,9 @@ public class AccountsServiceImpl implements AccountsService {
 		return getAccountsDao().getCreditBalance(id1);
 	}
 
-	public double getDebitBalance(Integer id1)
+	public double getDebitBalance(Integer id1, Date openingdate, String str)
 	{
-		return getAccountsDao().getDebitBalance(id1);
+		return getAccountsDao().getDebitBalance(id1,openingdate,str);
 	}
 	public int getAccountId(String str)
 	{
@@ -245,9 +245,9 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return (List<InvoiceTransaction>)getAccountsDao().listInvoiceTransaction2(dat_From,dat_To);
 	}
-	public List<Double> getExpenseAmount()
+	public List<Double> getExpenseAmount(Date dat_To)
 	{
-		return (List<Double>)getAccountsDao().getExpenseAmount();
+		return (List<Double>)getAccountsDao().getExpenseAmount(dat_To);
 	}
 	public List<Double> getIncomeAmount(Date dat_To)
 	{
