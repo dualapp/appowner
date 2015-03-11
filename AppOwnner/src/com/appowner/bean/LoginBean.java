@@ -81,7 +81,7 @@ public class LoginBean implements Serializable {
 	private String str_EmailId;
 	private String str_UserType;
 	private String str_Block;
-	private String str_OpenDate;
+	private Date dat_OpenDate;
 	private String str_CloseDate;
 	private String str_VendorType;
 	private String str_Description;
@@ -592,18 +592,15 @@ public class LoginBean implements Serializable {
 		this.str_Block = str_Block;
 	}
 
-	public String getStr_OpenDate() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat(
-				"yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		str_OpenDate = dateFormat.format(date);
-		return str_OpenDate;
-	}
+ 
 
-	public void setStr_OpenDate(String str_OpenDate) {
-		this.str_OpenDate = str_OpenDate;
+	public Date getDat_OpenDate() {
+		
+		return dat_OpenDate;
 	}
-
+	public void setDat_OpenDate(Date dat_OpenDate) {
+		this.dat_OpenDate = dat_OpenDate;
+	}
 	public String getStr_CloseDate() {
 		str_CloseDate = "Not Applicable";
 		return str_CloseDate;
@@ -1137,7 +1134,7 @@ public class LoginBean implements Serializable {
 		serviceRequest.setStr_UserType(str_UserType);
 		serviceRequest.setStr_VendorName(str_VendorName);
 		serviceRequest.setStr_VendorType(str_VendorType);
-		serviceRequest.setStr_OpenDate(str_OpenDate);
+		serviceRequest.setDat_OpenDate(dat_OpenDate);
 		serviceRequest.setStr_CloseDate(str_CloseDate);
 		getUserService().addServiceRequest(serviceRequest);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1157,9 +1154,42 @@ public class LoginBean implements Serializable {
 		str_Block1 = user.getStr_Block();
 		str_VendorType1 = getStr_VendorType();
 		str_Title1 = getStr_Title();
-		str_OpenDate1 = getStr_OpenDate();
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"yyyy/MM/dd HH:mm:ss");
+		 
+		str_OpenDate1 = dateFormat.format(getDat_OpenDate());
 		return "workordercategory1.jsp";
 
+	}
+	public void blockChangeListener(ValueChangeEvent event)
+    {
+	 
+	 str_Block=(String) event.getNewValue();
+	 houseNoList = new ArrayList<String>();
+		System.out.println(str_Block);
+		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_Block));
+		System.out.println(houseNoList+"house");
+				
+
+    }
+	 
+	 
+	
+	public void houseNoChangeListener(ValueChangeEvent event)
+	{
+		str_Flat=(String) event.getNewValue();
+		/* user=new User();
+		 System.out.println(str_Flat+""+str_Block+""+str_UserType);
+		 user=getUserService().getUserByBlockAndFlat(str_Flat,str_Block,Util.getAppartmentId(),str_UserType);
+		 System.out.println(user+"uuuuuuuuuuuuuu");
+		 if(user!=null)
+		 {
+		 
+		 str_FirstName="kalpana";
+		 str_Email=user.getStr_Email();
+		
+	}*/
+	 
 	}
 
 	public String addBookAFacility() {
@@ -1175,7 +1205,7 @@ public class LoginBean implements Serializable {
 		bookAFacility.setStr_Flat(str_Flat);
 		bookAFacility.setStr_Status("Open");
 		bookAFacility.setStr_Mobile(str_Mobile);
-		bookAFacility.setStr_OpenDate(str_OpenDate);
+		bookAFacility.setDat_OpenDate(dat_OpenDate);
 		bookAFacility.setStr_CloseDate(str_CloseDate);
 		bookAFacility.setStr_StartTime(str_StartTime);
 		bookAFacility.setStr_UserType(str_UserType);
@@ -1188,7 +1218,7 @@ public class LoginBean implements Serializable {
 		facesContext.addMessage(null, new FacesMessage(
 				FacesMessage.SEVERITY_INFO, "  Successfully  Book A Facility!",
 				" Successfully  Book A Facility !"));
-		return "/AfrteLoginViews/Facilities/facilityneeded.xhtml";
+		return "/AfrteLoginViews/Facilities/book a facility.xhtml";
 	}
 
 	/*
@@ -1308,10 +1338,7 @@ public class LoginBean implements Serializable {
 	}
 
 	public List<String> getHouseNoList() {
-		houseNoList = new ArrayList<String>();
-		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(
-				getStr_Block()));
-
+		
 		return houseNoList;
 	}
 
@@ -1482,7 +1509,7 @@ public class LoginBean implements Serializable {
 		path = (String) session.getAttribute("str_ImageName1");
 		if(path!=null)
 			path = (String) session.getAttribute("str_ImageName1");
-		else if (user.getVar_ImageName1() != null)
+		else if (user != null)
 
 			path = user.getVar_ImageName1();
 		  
