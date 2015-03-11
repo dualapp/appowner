@@ -45,8 +45,7 @@
          <tr>
           <th> Acc Name*</th>  <th>  Type* </th> <th> Category*  </th>   <th>  Date* </th>   <th>  Ammount* </th> <th>  Description </th> <th> Assets Category </th> <th>  Assets Name</th></tr> 
           <tr><td> <h:selectOneMenu  valueChangeListener="#{expenseBean1.accountListener}"  value="#{expenseBean1.str_AccountName}" style="width:150px" >
-          <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
-          <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
+          <f:selectItems  value= "#{expenseBean1.str_AccountNameList}"  />
           </h:selectOneMenu>
           </td> 
   <td><h:selectOneMenu id="ExpenseType" style="width:150px"  value="#{expenseBean1.str_ExcepenseType}" valueChangeListener="#{expenseBean1.expenseTypeListener}"  >
@@ -94,8 +93,9 @@
                  </td></tr>
                  <!-- nextLine -->
                    <tr><td> <h:selectOneMenu  valueChangeListener="#{expenseBean1.accountListener}"  style="width:150px" value="#{expenseBean1.str_AccountName}" >
-          <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
-          <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
+         
+           <f:selectItems  value= "#{expenseBean1.str_AccountNameList}"  />
+          
           </h:selectOneMenu>
           </td> 
   <td><h:selectOneMenu id="ExpenseType1"   value="#{expenseBean1.str_ExcepenseType}" style="width:150px" valueChangeListener="#{expenseBean1.expenseTypeListener}" >
@@ -143,7 +143,10 @@
                  </td></tr>
           
              <tr><td><h:commandButton styleClass="btn"  action="#{expenseBean1.addExpenses}" value="Submit"/>  &#150;   &#150;   &#150; 
-            <h:commandButton styleClass="btn"  action="createExpenses.xhtml" value="Reset"/></td></tr>
+            <h:commandButton styleClass="btn"  action="createExpenses.xhtml" value="Reset">
+            <f:ajax execute="@this" event="click"  render="@form"/>
+            </h:commandButton>
+            </td></tr>
               
              
               

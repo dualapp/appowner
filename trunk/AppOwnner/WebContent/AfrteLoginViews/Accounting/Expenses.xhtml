@@ -210,8 +210,7 @@
     <p:outputLabel value="AccountName:"/></th>
     <td>
     <h:selectOneMenu  valueChangeListener="#{expenseBean1.accountListener}" value="#{ex.str_AccountName}">
-          <f:selectItem itemLabel="Cash"  itemValue="Cash"  />
-          <f:selectItem itemLabel="Bank"  itemValue="Bank"  />
+           <f:selectItems  value= "#{expenseBean1.str_AccountNameList}"  />
           </h:selectOneMenu>
      </td>  
     </tr>
