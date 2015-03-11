@@ -115,7 +115,7 @@ function HideModalWindow() {
     <p:tabView  dynamic="true" style="position:relative;" styleClass="line"   effectDuration="fast"   >
      
       <p:ajax event="tabChange" listener="#{accountingBean.setTest}" />
-        <p:tab title=" &#150; &#150;  &#150; &#150;ACCOUNT TRANACTION  &#150; &#150;  &#150; &#150;"  titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px;">
+        <p:tab title="ACCOUNT TRANACTION "  titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px;">
           <br/>
                <div id="page3">
       <div class="gsTitleDiv"><br/></div>
@@ -273,7 +273,7 @@ function HideModalWindow() {
 
 style="width:600px"> 
     <h:panelGroup id="hhghhg"  rendered="#{accountingBean.str_Accounts eq 'Income from Resident'}">
-    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}" pattern="dd/MM/yyyy" ></h:outputText></td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
@@ -388,7 +388,7 @@ style="width:600px">
  
          
         </p:tab>
-        <p:tab title="  &#150; &#150;  &#150; &#150;MANUAL JOURNAL  &#150; &#150;  &#150; &#150;" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px">
+        <p:tab title="MANUAL JOURNAL" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px">
           <br/>
         
                <div id="page3">
@@ -559,7 +559,7 @@ style="width:600px">
       </div>
   
         </p:tab>
-        <p:tab title=" &#150; &#150;  &#150; &#150;TRIAL BALANCE  &#150; &#150;  &#150; &#150;" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px">
+        <p:tab title="TRIAL BALANCE" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px">
         <br/>
             <div id="page3">
      <div class="gsTitleDiv"><br/></div>
@@ -808,7 +808,7 @@ style="width:600px">
         </p:panel>
            </div>
         </p:tab>
-         <p:tab title=" &#150; &#150;  &#150; &#150;PROFIT AND LOSS  &#150; &#150;  &#150; &#150;" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px">
+         <p:tab title="PROFIT AND LOSS " titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px">
         <br/>
   
    
@@ -845,7 +845,7 @@ style="width:600px">
                 <td>
                  
                   
-                      <p:dataTable id="table" value="#{accountingBean.income1}" var="timeSlot">
+                      <p:dataTable id="table" value="#{accountingBean.income2}" var="timeSlot">
                       
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot}"/><br/>
@@ -882,7 +882,7 @@ style="width:600px">
                 <td>
                    
                    
-                      <p:dataTable value="#{accountingBean.expense}" var="timeSlot">
+                      <p:dataTable value="#{accountingBean.expense2}" var="timeSlot">
                      
                       <p:column width="50%">
                         <h:outputText value="#{timeSlot}"/><br/>
@@ -919,9 +919,9 @@ style="width:600px">
              <table   cellpadding="0" cellspacing="0" border="0" width="100%" class="src">
                   <tr> 
                
-                    <td width="60%" style="float:right;font-weight:bold"><h:outputText value="Net #{accountingBean.indicator}:" rendered="#{accountingBean.type1}"/></td>
-                     <td  style="font-weight:bold" width="5%">#{accountingBean.netProfit3}</td>
-                  
+                    <td width="60%" style="float:right;font-weight:bold"><h:outputText value="Net #{accountingBean.indicator}:" /></td>
+                     <td  style="font-weight:bold" width="8%">#{accountingBean.netProfit3}</td>
+                 
                
                
                 </tr>
@@ -932,7 +932,7 @@ style="width:600px">
      </div>
    
          </p:tab>
-         <p:tab title=" &#150; &#150;  &#150; &#150; &#150; &#150;  &#150; &#150; BALANCE SHEET  &#150; &#150;  &#150; &#150;" titleStyle="background-color:#87CEEB;padding-top:5px;padding-bottom:1px;">
+         <p:tab title="BALANCE SHEET" titleStyle="background-color:#87CEEB;padding-top:5px;padding-bottom:1px;">
          <br/>
          <div id="page3">
        <div class="gsTitleDiv"><br/></div>
@@ -1052,7 +1052,7 @@ style="width:600px">
               <p:dataTable value="hhf"  >     
                         <p:column>
             
-                         <h:outputText value="Net Profit" style="float:left"/>
+                         <h:outputText value="Net #{accountingBean.indicator}:" style="float:left"/>
                 
                         </p:column>
                         
@@ -1062,6 +1062,7 @@ style="width:600px">
              <p:dataTable value="hhf1"  > 
               <p:column>
                         <h:outputText value="#{accountingBean.netProfit}" style="float:right"/>
+                        
                         </p:column>
              </p:dataTable>    
          </td>
