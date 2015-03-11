@@ -472,6 +472,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().updateOrganizationLogo(path);
 	}
 
+	@Override
+	public List<String> getStr_AccountNameList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getStr_AccountNameList();
+	}
+
 	 
 	 
 

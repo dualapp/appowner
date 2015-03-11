@@ -170,6 +170,8 @@ public interface ExpenseService {
 
 	void updateOrganizationLogo(String path);
 
+	List<String> getStr_AccountNameList();
+
 	 
 
 }
