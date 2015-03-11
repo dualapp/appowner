@@ -127,6 +127,15 @@ public Integer getStartIndex() {
 		this.int_UpTosize = int_UpTosize;
 	}
 private List<String>  str_AssetNameList;
+private List<String>  str_AccountNameList;
+public List<String> getStr_AccountNameList() {
+	str_AccountNameList=new ArrayList<String>();
+	str_AccountNameList.addAll(getExpenseService().getStr_AccountNameList());
+	return str_AccountNameList;
+}
+public void setStr_AccountNameList(List<String> str_AccountNameList) {
+	this.str_AccountNameList = str_AccountNameList;
+}
 private String str_AssetName1;
 private String str_AssetCategoryType1;
 public String getStr_AssetCategoryType1() {
