@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
  
   
@@ -20,7 +20,20 @@
 			</tr>
 		</tbody>
 	</table>
-	
+	<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:150px;
+          }
+          select
+          {
+           height:25px;
+           weight:150px;
+          }
+      </style>	
+ 
  <a href="Create-SubGroup.xhtml"> &#60;&#60; Back To Sub-Group</a> 
 	<h:form>
     <div id="page3">
@@ -29,62 +42,61 @@
    <table>
  
           <tr>
-           <td>
+           <td style=" float:right !important;margin: 0px  30px 0px 100px;">
           <p:outputLabel value="Sub-Group Name">
            </p:outputLabel></td>            
           <td>  <h:inputText  value="#{scriptBean.str_GroupNm}" style="width:250px"/>
-          
-            </td>
+           </td>
             </tr>
-             
-            <tr>
+           <tr>
            <td>
-          <p:outputLabel value="Sub-Group  Address">
+          <p:outputLabel value="Sub-Group  Address" style=" float:right !important;margin: 0px  30px 10px 100px;">
            </p:outputLabel></td>            
           <td>  <h:inputText  value="#{scriptBean.str_Groupaddress}"  style="width:250px"/>
            &#150;
             <p:outputLabel  value=".#{scriptBean.str_ApartmentName}@appowner.com" style="color:#FFA500;font-size:17px;"/>
-          
             </td>
             </tr>
              <tr>
            <td>
-          <p:outputLabel value="Sub-Group  Description">
+          <p:outputLabel value="Sub-Group  Description" style=" float:right !important;margin: 0px  30px 0px 100px;">
            </p:outputLabel></td>            
-          <td>  <h:inputTextarea  value="#{scriptBean.str_GroupDescription}" style="height:85px;width:250px">
+          <td>  <h:inputTextarea  value="#{scriptBean.str_GroupDescription}" style="height:180px;width:450px">
             </h:inputTextarea>
             </td>
             </tr>
-       
-             
-              <tr> 
-             
-                 <td><p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
-                 <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.str_groupPrivate}" style="width:250px">
-
-               <f:selectItem itemLabel ="Open--Any One #{scriptBean.str_ApartmentName} can join. "   itemValue="Open" />
+            <tr> 
+              <td style=" float:right !important;margin: 0px  30px 10px 100px;">
+              <p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
+                 <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.str_groupPrivate}" style="width:250px">   
+                 <f:selectItem itemLabel ="Open--Any One #{scriptBean.str_ApartmentName} can join. "   itemValue="Open" />
                 <f:selectItem itemLabel="Private--You Control The Membership."  itemValue="Private"  />
                  
-            </p:selectOneMenu>
+            </h:selectOneMenu>
             
             </td>
             </tr>
           
              <tr> 
              
-                 <td><p:outputLabel for="Allow" value="Allow email from non Sub-Group member:" /></td>
-            <td><p:selectOneMenu id="Allow" value="#{scriptBean.isCh_EmailAllow}" style="width:100px">
+                 <td style=" float:right !important;margin: 0px  30px 10px 100px;">
+                 <p:outputLabel for="Allow" value="Allow email from non Sub-Group member:" /></td>
+            <td><h:selectOneMenu id="Allow" value="#{scriptBean.isCh_EmailAllow}" style="width:100px">
 
             <f:selectItem itemLabel="Allow "  itemValue="1"  />
                 <f:selectItem itemLabel="Disallow"  itemValue="0"  />
                  
-            </p:selectOneMenu>
+            </h:selectOneMenu>
             
              </td>
             </tr>
-            <tr><td> <p:commandButton value="Create Sub-Group" action="#{scriptBean.group}" ajax="false" style="width:155px;height:30px; float:left !important;margin: 50px  100px 100px 10px;"/> 
+           
+            <tr>
+            <td> 
+            <p:commandButton value="Create Sub-Group"  styleClass="btn"  action="#{scriptBean.group}" ajax="false" style="width:155px;height:30px; float:left !important;margin: 0px  50px 00px 100px;"/> 
              
                </td></tr> 
+            
           </table>
           </div>
           </h:form>
