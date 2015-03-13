@@ -65,6 +65,8 @@ public void setStr_Organisation(String str_Organisation) {
 	private String str_Accounts;
 	private double int_Debit;
 	public Date getDat_openingDate() {
+		dat_openingDate=getAccountsService().getOpeningDate();
+		System.out.println(dat_openingDate+"fjkgkjkjg");
 		return dat_openingDate;
 	}
 	public void setDat_openingDate(Date dat_openingDate) {
@@ -138,6 +140,26 @@ public void setStr_Organisation(String str_Organisation) {
 	public void setTotalAdjustBalance1(double totalAdjustBalance1) {
 		this.totalAdjustBalance1 = totalAdjustBalance1;
 	}
+	public void datechangeListener(ValueChangeEvent event)
+	{   System.out.println("jhjhjj");
+	openingDate=(Date)event.getNewValue();
+		System.out.println(openingDate+"gjkfg");
+		
+	}
+	private Date openingDate;
+	public Date getOpeningDate() {
+		return openingDate;
+	}
+	public void setOpeningDate(Date openingDate) {
+		this.openingDate = openingDate;
+	}
+	private static Integer id1;
+	public static Integer getId1() {
+		return id1;
+	}
+	public static void setId1(Integer id1) {
+		AccountsBean.id1 = id1;
+	}
 	public List<AccountsOpeningBalance> getListOpeningBalance() {
 		listOpeningBalance=new ArrayList<AccountsOpeningBalance>();
 		listOpeningBalance.addAll(getAccountsService().listOpeningBalance(Util.getAppartmentId()));
@@ -148,7 +170,12 @@ public void setStr_Organisation(String str_Organisation) {
 		{
 			Object obj=list.next();
 			accounts=(AccountsOpeningBalance)obj;
-			
+			String accountName=accounts.getStr_AccountsHead();
+			if(accountName.equalsIgnoreCase("Opening Balance Adjustment"))
+			{
+				id1=accounts.getInt_Accounts_OpeningID();
+				System.out.println(id1+"fkjgfjkfgj");
+			}
 			totalAmount+=accounts.getInt_Debit();
 			totalAmount1+=accounts.getInt_Credit();
 			if(totalAmount==totalAmount1)
@@ -210,15 +237,15 @@ public void setStr_Organisation(String str_Organisation) {
 	
 	public void addAccountsHead()  
 	   { System.out.println("gud"); 
+		System.out.println(adjustmentBalance+"hjdfjfdfd");
+		System.out.println(adjustmentBalance1+"fdkfdkfdkfd");
 		
-		
-		
-	   Date  date=getDat_openingDate();
-	   System.out.println(date+"dkkdffklfkf");
-	   Integer id1=Util.getAppartmentId();
-	    System.out.println(id);
-	     
-	      getAccountsService().addBalance(date,id1,id);
+	
+	   System.out.println(openingDate+"dkkdffklfkf");
+	  
+	    System.out.println(id1+"hjhjjhj");
+	     indicator=false;
+	      getAccountsService().addBalance(openingDate,id1,adjustmentBalance,adjustmentBalance1);
 	     
 		
 	    }
@@ -244,8 +271,23 @@ public double getDebit() {
 	public void setDebit(double debit) {
 		this.debit = debit;
 	}
+	private AccountsOpeningBalance openingBalance=new AccountsOpeningBalance();
+	public AccountsOpeningBalance getOpeningBalance() {
+		return openingBalance;
+	}
+	public void setOpeningBalance(AccountsOpeningBalance openingBalance) {
+		this.openingBalance = openingBalance;
+	}
+	private boolean indicator;
+public boolean isIndicator() {
+		return indicator;
+	}
+	public void setIndicator(boolean indicator) {
+		this.indicator = indicator;
+	}
 public void processValueChange(ValueChangeEvent event)  
 	        throws AbortProcessingException { 
+	
 	accounts=(AccountsOpeningBalance) updatedAccounts.getRowData();
 	int_Accounts_OpeningID=accounts.getInt_Accounts_OpeningID();
 	id=accounts.getInt_Accounts_OpeningID();
@@ -262,7 +304,10 @@ public void processValueChange(ValueChangeEvent event)
 	credit=((Double) event.getOldValue());
 	System.out.println(int_Credit);
 	System.out.println(int_Debit);
-	
+	setIndicator(true);
+	System.out.println(indicator+"gjkjkghkjgh");
+	adjustmentBalance=int_Debit;
+	adjustmentBalance1=int_Credit;
 	getAccountsService().addAccounts(int_Accounts_OpeningID,int_Debit);  
 	
 	
@@ -279,6 +324,8 @@ public void processValueChange1(ValueChangeEvent event)
 	int_Credit=(Double) event.getNewValue();
 	credit=(Double) event.getNewValue();
 	accounts.setInt_Credit(int_Credit);
+	setIndicator(true);
+	
 	getAccountsService().saveAccounts(int_Accounts_OpeningID,int_Credit);   
         }
 private double totalAmount;
