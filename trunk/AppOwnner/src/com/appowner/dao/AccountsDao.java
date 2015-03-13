@@ -53,6 +53,8 @@ import java.util.List;
 
 
 
+
+
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.Account;
@@ -71,7 +73,7 @@ public interface AccountsDao {
 
 	public void addManualJournal(ManualJournal journal);
 	
-	public void addBalance(Date date, Integer id1, Integer id);
+	public void addBalance(Date date,Integer id1, double adjustmentBalance, double adjustmentBalance1);
 	void saveChartOfAccount(ChartOfAccount chartOfAccount);
 
 	List<ChartOfAccount> getChartOfAccountList();
@@ -131,5 +133,7 @@ public interface AccountsDao {
 	public List<String> getIncome();
 
 	public List<String> getExpense1();
+	public Date getOpeningDate();
+	
 
 }
