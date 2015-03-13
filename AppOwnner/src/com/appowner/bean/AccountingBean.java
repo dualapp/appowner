@@ -213,7 +213,7 @@ private String str_DebitAccount;
 private String str_CreditAccount;
 private Double str_DebitAmount;
 private Double str_CreditAmount;
-private ManualJournal selectedjournal;
+private ManualJournal selectedjournal=new ManualJournal();
 public ManualJournal getSelectedjournal() {
 	
 	return selectedjournal;
@@ -247,8 +247,11 @@ public void addInvoiceManualJournal() throws AccountingBean
   }
 
 }
-public void addManualJournal(ManualJournal journal) {
+
+public String saveManualJournal(ManualJournal journal) {
 	System.out.println("jhvvnjggggggggggggggggggggg");
+	System.out.println(journal+"fdkjfjkfdkj");
+	System.out.println(journal.getInt_ManualJournalID()+"fkjfgkfgkj");
 	if (journal.getInt_ManualJournalID()!= null) {
 		
 		 getAccountsService().updateManualJournal(journal);
@@ -261,6 +264,7 @@ public void addManualJournal(ManualJournal journal) {
 
 	} else
 		getAccountsService().addManualJournal(journal);
+	return "true";
 	
 }
 public void deleteManualJournal1() {
