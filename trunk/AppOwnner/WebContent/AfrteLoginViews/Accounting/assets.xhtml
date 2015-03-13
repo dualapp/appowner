@@ -90,8 +90,8 @@
     </h:commandLink>
                   </td></tr></table>
                  <p:dataTable   paginatorPosition="bottom"    resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
-               rows="5"  paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="3,6,12"    id="DT"     var="ps"  value="#{expenseBean.assetList}"   selection="#{expenseBean.selectedAssets}" rowKey="#{ps.int_asset_id}"  >
+               rows="5"  paginator="true" 
+        emptyMessage="No Records Found" paginatorAlwaysVisible="false"    id="DT"     var="ps"  value="#{expenseBean.assetList}"   selection="#{expenseBean.selectedAssets}" rowKey="#{ps.int_asset_id}"  >
                   
 	  <p:column    exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
