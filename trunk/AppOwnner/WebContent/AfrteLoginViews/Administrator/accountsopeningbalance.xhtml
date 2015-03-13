@@ -10,20 +10,37 @@
 	
 <h:head>
     <title>Accounts Opening Balance</title>
-     
+ <script type="text/javascript">
+
+function intialize()
+{  
+	
+}
+</script>    
 
 </h:head>
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/invoice.jpg" height="50" width="50"></img> <span class="title">Accounts Opening Balance</span>
+					
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
 <body>
    
       <h:form>
       	<h:body>
        <div id="page3" >
-    <div class="gsTitleDiv">Accounts Opening Balance<br/><hr/></div> 
+    
        <p:messages id="messages"/>  
-      <table style="width: 150%;margin-left: 1%;margin-right: 2%;margin-bottom:5px">
+      <table style="width: 98%;margin-left: 1%;margin-right: 2%;margin-bottom:5px">
             <tr>
-             <td> <h:outputLabel value="Organisation:" /></td>  
-             <td width="31%"><p:inputText id="str_Organisation" value="#{accountsBean.str_Organisation}"  >
+             <td> <h:outputLabel value="Organisation:" /> <p:spacer height="10px" width="210px"/></td> 
+             <td><p:inputText id="str_Organisation" value="#{accountsBean.str_Organisation}"  >
                    
                  </p:inputText>
                   </td>
@@ -31,39 +48,47 @@
                   <tr>
           <td>  <h:outputText  value="Opening Balance Date*" /></td>
         
-           <td>  <p:calendar id="str_DueTemplate" value="#{accountsBean.dat_openingDate}" size="24" locale="de" navigator="true" pattern="yyyy-MM-dd"/> </td>
-           <td><font color="red">This is the date on which you are migrating accounts from your existing accounting system Accounting.</font></td>
+           <td>  <p:calendar id="str_DueTemplate" value="#{accountsBean.dat_openingDate}" size="24" locale="de" navigator="true" pattern="yyyy-MM-dd" valueChangeListener="#{accountsBean.datechangeListener}">
+            <p:ajax event="click" partialSubmit="true"  /></p:calendar>
+        <font color="red">This is the date on which you are migrating accounts from your existing accounting system Accounting.</font></td>
              </tr>
              </table>
            
-             <h:dataTable  id="account" var="accounts" value="#{accountsBean.listOpeningBalance}" binding="#{accountsBean.updatedAccounts}" style="width: 70%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-            <p:column width="48%" >
+             <h:dataTable   id="account" var="accounts" value="#{accountsBean.listOpeningBalance}" binding="#{accountsBean.updatedAccounts}" style="width: 99%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+            <p:column >
                 <f:facet name="header" >
                     <h:outputText value="Accounts" />
                 </f:facet>
                 <h:outputText value="#{accounts.str_AccountsHead}"  />
-            </p:column>
-            <p:column width="31%">
-                <f:facet name="header">
-                    <h:outputText value="Debit" />
+          </p:column>
+       
+            <p:column>
+            
+            <f:facet name="header">
+             <p:spacer height="10px" width="90px"></p:spacer>
+                    <h:outputText  value="Debit" />   <p:spacer height="10px" width="290px"></p:spacer> <h:outputText  value="Credit" />
                 </f:facet>
-                <h:inputText  value="#{accounts.int_Debit}"  size="30" valueChangeListener="#{accountsBean.processValueChange}" >
-                <f:ajax event="blur" update="priya"  partialSubmit="true"/>   
-                </h:inputText>
-            </p:column>
+            <p:column >
            
-            <p:column width="31%">
-                <f:facet name="header">
-                    <h:outputText value="Credit" />
-                </f:facet>
-                <h:inputText value="#{accounts.int_Credit}" valueChangeListener="#{accountsBean.processValueChange1}" size="30" >
+                
+                 <p:spacer height="10px" width="70px"></p:spacer>
+                <h:inputText id="true" value="#{accounts.int_Debit}"  size="30" onchange="submit();" valueChangeListener="#{accountsBean.processValueChange}" >
+                <f:ajax event="blur" update="id" partialSubmit="true" />   
+                </h:inputText>
+            <p:spacer height="10px" width="80px"></p:spacer>
+        
+         
+               
+                <h:inputText value="#{accounts.int_Credit}" valueChangeListener="#{accountsBean.processValueChange1}" size="30" onchange="submit();">
                   <f:ajax event="blur" update="hgy"  partialSubmit="true"/>   
                 </h:inputText>
-            </p:column>
-     </h:dataTable>
+                </p:column>
+                </p:column>
+         
+ </h:dataTable>
 	
 	 
-	<table style="width: 70%;margin-left:1%;margin-right: 1%;margin-bottom:5px"  >	 
+	<table style="width: 72%;margin-left:1%;margin-right: 1%;margin-bottom:5px"  >	 
 	 <tr>
 	    <td>Total Amount	   </td>
 	 
@@ -72,18 +97,19 @@
 	    <td> <h:inputText id="hgy" value="#{accountsBean.totalAmount1}"  readonly="true"  size="30"/></td>
 	 </tr>
 	 
-	
+	<h:panelGroup  rendered="#{accountsBean.indicator}">
 	 <tr>
-	     <td>Opening Balance Adjustment</td>
+	     <td>Opening Balance Adjustment<br/><small>(Account will hold the difference in credits and debits.)</small></td>
 	   
-	      <td><h:inputText value="#{accountsBean.adjustmentBalance}" readonly="true"  size="30"/></td>
+	      <td><h:inputText  id="priya1" value="#{accountsBean.adjustmentBalance}" readonly="true"  size="30"/></td>
 	    <td> <h:inputText value="#{accountsBean.adjustmentBalance1}" readonly="true" size="30"/></td>
 	 </tr>
-	
+	</h:panelGroup>
 	  <tr>
-	    <td>Total Amount</td>
+	    <td>Total Amount<br/><small>(including Opening Balance Adjustment account balance)</small></td>
 	    <td> <h:inputText value="#{accountsBean.totalAdjustBalance}" readonly="true"  size="30"/></td>
 	   <td>  <h:inputText value="#{accountsBean.totalAdjustBalance1}" readonly="true" size="30" /></td>
+	  
 	 </tr>
 	
 	
