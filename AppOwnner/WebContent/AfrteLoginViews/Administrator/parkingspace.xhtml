@@ -50,8 +50,8 @@
                 
              <p:dataTable   id="DT"  
                
-               rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="1,2,3"  var="ps"  value= "#{expenseBean.parkingSpaceList}" selection="#{expenseBean.parkingSpaceList1}" rowKey="#{ps.int_ParkingId}"  >
+               rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
+       emptyMessage="No Records Found" paginatorAlwaysVisible="false"  var="ps"  value= "#{expenseBean.parkingSpaceList}" selection="#{expenseBean.parkingSpaceList1}" rowKey="#{ps.int_ParkingId}"  >
 	 
 	 
 	  <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">

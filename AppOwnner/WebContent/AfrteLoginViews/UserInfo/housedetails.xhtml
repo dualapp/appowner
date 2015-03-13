@@ -60,7 +60,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
  </p:panel>
 	     
 	        
- <p:dataTable id="DT"    emptyMessage="No house details found with given Block Name"   selection="#{apartmentDetailsBean.selectedHouse}" rowKey="#{houseDetail.int_HouseId}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetail"  value="#{apartmentDetailsBean.listHouseDetails}">
+ <p:dataTable id="DT"   paginatorAlwaysVisible="false"   rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true" emptyMessage="No house details found with given Block Name"   selection="#{apartmentDetailsBean.selectedHouse}" rowKey="#{houseDetail.int_HouseId}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetail"  value="#{apartmentDetailsBean.listHouseDetails}">
            
                 
 	  <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
@@ -105,7 +105,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                 <center>
 	   
                       <h:panelGroup layout="block" id="mainDiv" style="float:center">
-               <p:commandLink   process="DT"   immediate="true" execute="@this" update=":editform" oncomplete="PF('editHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetail.int_HouseId)}">
+               <p:commandLink   process="DT"    update=":editform" oncomplete="PF('editHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetail.int_HouseId)}">
                   <h:graphicImage  height="20" width="20" alt="Edit" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
                             </p:commandLink>
                &#150; 
@@ -347,7 +347,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
         } 
         else{
         	 
-        	PF('editHouseDialog').hide();
+        	 PF('editHouseDialog').hide();
         	
         }
         
@@ -361,7 +361,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
         } 
         else{
         	 
-        	PF(fileDialog').hide();
+        	PF('fileDialog').hide();
         	
         }
         
