@@ -409,7 +409,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 getRequestScopeService().deleteOnefacility(entitiesToDelete);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully"));
  
-    return "book a facility.xhtml?faces-redirect=true";
+    return "book a facility.xhtml";
 }
 
 public List<BookAFacility> getSelectedBookAFacility() {
@@ -422,7 +422,7 @@ public String updateBookAFacility(BookAFacility bf1)
 {
 	getRequestScopeService().updateBookAFacility(bf1);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully"));
-	    return "book a facility.xhtml?faces-redirect=true";
+	    return "book a facility.xhtml";
 }
 public String getStr_FacilityType() {
 	return str_FacilityType;

@@ -437,7 +437,8 @@ private Parking parking;
  
 public String saveParking()
 {
-	 
+	 if(str_ParkingSlot!=null)
+	 {
 	parking=new Parking();
 	parking.setStr_OrganizationName(Util.getAppartmentName());
 	parking.setStr_ParkingSlot(getStr_ParkingSlot());
@@ -445,6 +446,12 @@ public String saveParking()
 	getExpenseService().saveParking(parking);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Parking Saved Successfully!"));
 	 str_ParkingSlot="";
+	 }
+	 else{
+    	 FacesMessage message = null;
+     FacesContext.getCurrentInstance().addMessage(null, message);
+     
+     }
 	 return "parkingspace.xhtml";
 }
  
@@ -486,10 +493,18 @@ private List<Parking> parkingSpaceList1;
 
 public  void updateParkingSpace(Parking p)
 {
+	if( p!=null)
+	{
 	System.out.println("updateeeeeeee");
 	getExpenseService().updateParkingSpace( p);
 	System.out.println("updat");
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Parking Updated Successfully!"));
+	}
+	 else{
+    	 FacesMessage message = null;
+     FacesContext.getCurrentInstance().addMessage(null, message);
+     
+     }
 	
 }
  
@@ -986,9 +1001,16 @@ private List<AssetCategory> assetCategoryList;
 private List<AssetCategory> assetCategoryList1;
 public String updateAssetCategory(AssetCategory ac)
 {
+	System.out.println(ac+"kalpaaaaaaaaaaaaaaaaaaaaaaa");
+	if(ac!= null) {
 	getExpenseService().updateAssetCategory( ac);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Updated Successfully!"));
-	 
+	}
+	 else{
+    	 FacesMessage message = null;
+     FacesContext.getCurrentInstance().addMessage(null, message);
+     
+     }
 	 return "assetcategory.xhtml";
 }
 public String deleteAssetsCategory()
@@ -1240,17 +1262,14 @@ public void setPath3(String path3) {
 	this.path3 = path3;
 }
 public String saveAssetCategory()
-{ 
-	 RequestContext context = RequestContext.getCurrentInstance();
-    
-     boolean loggedIn = false;
+{  
      if(str_AssetCategoryType!= null) {
 	assetcategory=new AssetCategory();
 	assetcategory.setStr_assetcat_name(str_AssetCategoryType);
 	assetcategory.setStr_OrganizationName(str_OrganizationName);
 	assetcategory.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().saveAssetCategory(assetcategory);
-	 loggedIn = true;
+	  
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Saved Successfully!"));
 	  
 	 str_AssetCategoryType="";
@@ -1259,7 +1278,7 @@ public String saveAssetCategory()
      else{
     	 FacesMessage message = null;
      FacesContext.getCurrentInstance().addMessage(null, message);
-     context.addCallbackParam("loggedIn", loggedIn);
+     
      }
 	return"assetcategory.xhtml";
 }
@@ -1415,9 +1434,18 @@ public void setFacilityNeededList(List<FacilityNeeded> facilityNeededList) {
 	this.facilityNeededList = facilityNeededList;
 }
 public String updateFacility(FacilityNeeded fn1)
-{  getExpenseService().updateFacility(fn1);
+{ 
+	if(fn1!=null)
+	{
+	getExpenseService().updateFacility(fn1);
 
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Updated Successfully!"));
+}
+else{
+	 FacesMessage message = null;
+FacesContext.getCurrentInstance().addMessage(null, message);
+
+}
  
 return "facilityneeded.xhtml";
 }
@@ -1429,12 +1457,20 @@ public void setFacilityNeeded(FacilityNeeded facilityNeeded) {
 }
 public String addFacility()
 {
+	if(str_FacilityName!=null)
+	{
 	facilityNeeded=new FacilityNeeded();
 	facilityNeeded.setStr_FacilityName(str_FacilityName);
 	facilityNeeded.setInt_ApartmentId(Util.getAppartmentId());
 	getExpenseService().addFacility(facilityNeeded);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Added Successfully!"));
 	str_FacilityName="";
+	}
+	 else{
+    	 FacesMessage message = null;
+     FacesContext.getCurrentInstance().addMessage(null, message);
+     
+     }
 	return "facilityneeded.xhtml";
 }
 public String deletefacilityNeeded()

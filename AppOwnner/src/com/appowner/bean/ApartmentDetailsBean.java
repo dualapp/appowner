@@ -300,10 +300,15 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	public String updateBlockDetails(UserBlocks selectedBlock)
 	{
-		if(selectedBlock1.getInt_BlockId()!=null)
+		if(selectedBlock1!=null)
 		{
 		getApartmentDetailsService().updateOneBlock(selectedBlock1);
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Updated Successfully!"));
+		}
+		 else{
+			 FacesMessage message = null;
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
 		}
 		return "blockdetails.xhtml";
 		
@@ -388,13 +393,21 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	public String saveBlockDetails()
 	{
+		if(str_BlockName!=null)
+		{
 		UserBlocks ub=new UserBlocks();
 		ub.setInt_NoOfHouses(int_NoOfHouse);
 		ub.setStr_BlockName(str_BlockName);
 		ub.setInt_ApartmentId(Util.getAppartmentId());
 		getApartmentDetailsService().saveBlockDetails(ub);
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
-		return "blockdetails.xhtml";
+		}
+		 else{
+			 FacesMessage message = null;
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		}
+		return null;
 	}
 	private HouseDetails housedetails=new HouseDetails();
 	public HouseDetails getHousedetails() {
@@ -448,16 +461,22 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	}
 	public String updateHouseDetails()
 	{
-		if(housedetails.getInt_HouseId()!=null)
+		if(housedetails!=null)
 		{
 			getApartmentDetailsService().updateHouseDetails(housedetails);
 			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
+		}
+		 else{
+			 FacesMessage message = null;
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
 		}
 		return null;
 	}
 	public String saveHouseDetails()
 	{ 
-		
+		if(str_HouseNo!=null)
+		{
 		housedetails=new HouseDetails();
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
 		
@@ -473,6 +492,12 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		housedetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 		getApartmentDetailsService().saveHouseDetails(housedetails);
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
+		}
+		 else{
+			 FacesMessage message = null;
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		}
 		return null;
 	}
 	public List<UserBlocks> getListBlockDetails() {
@@ -659,11 +684,13 @@ System.out.println(entitiesToDelete+"entyt todelete");
 
 		private String statusMessage;
 	  private String path;
-		 public void uploadFile() throws IOException {
+		 public String uploadFile() throws IOException {
+			 String fileName = getFileName(part);
 			
-
+            if(fileName!=null)
+            {
 				// Extract file name from content-disposition header of file part
-				String fileName = getFileName(part);
+				
 				System.out.println("***** fileName: " + fileName);
 				 ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 					String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
@@ -706,8 +733,13 @@ System.out.println(entitiesToDelete+"entyt todelete");
 						inputStream.close();
 					}
 				}
-				 
-		 
+		 }
+            else{
+   			 FacesMessage message = null;
+   		FacesContext.getCurrentInstance().addMessage(null, message);
+
+   		}
+		 return "housedetails.xhtml";
 		} 
 		 private Integer index;
 
@@ -749,9 +781,17 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		  public String downloadFile() throws IOException
 		  {
 			  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-				String basePath = servletContext.getContextPath()+File.separator+"WebContent"+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
-		     File file = new File(basePath+"Community_setup_house.xls");
-		     InputStream fis = new FileInputStream(file);
+				String basePath = servletContext.getContextPath()+File.separator+"WebContent"+File.separator+"images"+File.separator;
+		     File outputFilePath = new File(basePath);
+		     if (!outputFilePath.exists()) {
+				   	if (outputFilePath.mkdir()) {
+				   		System.out.println("Directory is created!");
+				   	} else {
+				   		System.out.println("Failed to create directory!");
+				   	}
+			 }
+		     outputFilePath = new File(basePath+"Community_setup_house.xls");
+		     InputStream fis = new FileInputStream(outputFilePath);
 		     byte[] buf = new byte[1024];
 		     int offset = 0;
 		     int numRead = 0;
