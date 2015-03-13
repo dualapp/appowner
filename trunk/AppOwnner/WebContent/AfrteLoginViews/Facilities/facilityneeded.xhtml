@@ -23,7 +23,7 @@
         
          width:400px;
          left:50%;
-         top:200px;
+         
          margin-left:-200px; 
 
 }
@@ -41,9 +41,10 @@
 			</tr> 
 		</tbody>
 	</table>
+	<h:body>
 	 <h:form id="form">
 	  <p:growl id="ui-growl" globalOnly="true" sticky="true" />
-	<h:body>
+	
 	 <div id="page3"> 
 	 <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td> <p:outputLabel value="Organisation:" />   
              <h:selectOneMenu>
@@ -51,14 +52,14 @@
                 
                  </h:selectOneMenu></td></tr>
 	  
-                <tr><td> <p:commandButton  style="width:120px;height:25px" process="DT" update=":form:multiFacilityDetail1"  value="Create New"   icon="ui-icon-plus"  oncomplete="PF('multiFacilityDialog1').show()" />
-            &#150; &#150; <p:commandButton  style="width:120px;height:25px"  value="Refresh" />
-	
-	 &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":form:multiFacilityDetail2" icon="ui-icon-info" value="View" oncomplete="PF('multiFacilityDialog2').show()" />
-       &#150; &#150; <p:commandButton  style="width:120px;height:25px"  process="DT" update=":form:multiFacilityDetail3" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiFacilityDialog3').show()" />
+                <tr><td> <p:commandButton  style="width:120px;height:25px" process="DT" update=":addform"  value="Create New"   icon="ui-icon-plus"  oncomplete="PF('multiFacilityDialog1').show()" />
+          
+	 &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":viewform" icon="ui-icon-info" value="View" oncomplete="PF('multiFacilityDialog2').show()" />
+       &#150; &#150; <p:commandButton  style="width:120px;height:25px"  process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiFacilityDialog3').show()" />
        &#150; &#150;  <p:commandButton  style="width:120px;height:25px"  update="DT" process="DT"  onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deletefacilityNeeded()}" icon="ui-icon-trash" value="Delete" >
         
         </p:commandButton>
+       &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />
              &#150; &#150;    <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="FaciliyiNeeded" />
@@ -109,21 +110,21 @@
 	   
         
 	 </p:dataTable>
-	 
+	 </div>
+	 </h:form>
                            
-	 <p:dialog header=" Create New" widgetVar="multiFacilityDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
-        
+	 <p:dialog header=" Create New" widgetVar="multiFacilityDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+        <h:form id="addform">
         <p:outputPanel id="multiFacilityDetail1" style="text-align:center;">
-           <table><tr><th>  <p:outputLabel for="org" value="Organisation:" /> </th>
-             <td> <h:selectOneMenu id="org" required="true" value="#{expenseBean.str_OrganizationName}">
+           <table><tr><th>  <p:outputLabel for="org" value="Organisation*:" /> </th>
+             <td> <h:selectOneMenu id="org"   value="#{expenseBean.str_OrganizationName}">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td> </tr>
                  
-	<tr><th><p:outputLabel value="Facility Name"/></th>
-	<td><p:inputText  id="FacilityName"   placeholder="Enter Facility Name "   value="#{expenseBean.str_FacilityName}">
-	<p:ajax event="blur" update="FacilityNameMsg" />
-	</p:inputText>
+	<tr><th><p:outputLabel for="FacilityName" value="Facility Name"/></th>
+	<td><p:inputText  id="FacilityName"  required="true" requiredMessage="Enter Facility Name "  placeholder="Enter Facility Name "   value="#{expenseBean.str_FacilityName}" />
+	  
 	</td>
 	  <p:message  id="FacilityNameMsg" for="FacilityName" display="text"/>  
 	
@@ -132,17 +133,20 @@
 	</table>  
 	  <div>
 	  <hr/>
-	  <h:commandButton  styleClass="btn"  value="Submit"  update="DT"  action="#{expenseBean.addFacility}" />
+	  <p:commandButton  styleClass="btn"  value="Submit"  update=":form:DT :form:ui-growl,FacilityNameMsg"  actionListener="#{expenseBean.addFacility}" oncomplete="handleRequest(xhr, status, args)"/>
 	    
-	 &#150; &#150; <h:commandButton   styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
+	 &#150; &#150; <p:commandButton  onclick="multiFacilityDialog1.hide()" styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton> 
+	  </p:commandButton> 
 	  </div>
+	  
              </p:outputPanel>
+             </h:form>
              </p:dialog>
 	 
 	 
-	 <p:dialog header="  Facility Details" widgetVar="multiFacilityDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+	 <p:dialog header="  Facility Details" widgetVar="multiFacilityDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+         <h:form id="viewform">
         <p:outputPanel id="multiFacilityDetail2" style="text-align:center;">
            <ui:repeat value="#{expenseBean.selectedFacilities}" var="fn1">
            <table>
@@ -168,15 +172,17 @@
              <hr/>
              </div>
              </p:outputPanel>
+             </h:form>
              </p:dialog>
-             <p:dialog header="  Edit Facility Details" widgetVar="multiFacilityDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+             <p:dialog header="Edit Facility Details" widgetVar="multiFacilityDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+      <h:form id="editform">
         <p:outputPanel id="multiFacilityDetail3" style="text-align:center;">
            <ui:repeat value="#{expenseBean.selectedFacilities}" var="fn1">
            <table>
                
             
-            <tr><th>  <p:outputLabel for="org1" value="Organisation:" /> </th>
-             <td> <h:selectOneMenu id="org1" required="true" value="#{expenseBean.str_OrganizationName}">
+            <tr><th>  <p:outputLabel for="org1" value="Organisation*:" /> </th>
+             <td> <h:selectOneMenu id="org1"   value="#{expenseBean.str_OrganizationName}">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td> </tr>
@@ -184,9 +190,9 @@
              <th><p:outputLabel for="FacilityName1" value="Facility Name"/></th>
              <td> <p:inputText id="FacilityName1" required="true" requiredMessage="Enter Facility Name" value="#{fn1.str_FacilityName}" > 
              
-             <p:ajax event="blur" update="FacilityNameMsg1" />
+             
              </p:inputText> </td>
-             <td><p:message  id="FacilityNameMsg1" for="FacilityName1" display="text"/>  </td>
+             <p:message  id="FacilityNameMsg1" for="FacilityName1" display="text"/>  
              </tr>
              
                
@@ -195,18 +201,50 @@
              
              <div>
              <hr/>
-               <h:commandButton value="Update" styleClass="btn"  action="#{expenseBean.updateFacility(fn1)}">
+               <p:commandButton value="Update" styleClass="btn"  update=":form:DT :form:ui-growl,FacilityNameMsg1" action="#{expenseBean.updateFacility(fn1)}" oncomplete="handleRequest1(xhr, status, args)"/>
                
-              </h:commandButton>
-              &#150; &#150; <h:commandButton   styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
+            
+              &#150; &#150; <p:commandButton onclick="multiFacilityDialog3.hide()"  styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton> 
+	  </p:commandButton> 
              </div>
               </ui:repeat>
              </p:outputPanel>
+             </h:form>
              </p:dialog>
-             </div>
+              
 	</h:body>
-	</h:form>
+	 
+	 <script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiFacilityDialog1').show();
+            
+        } 
+        else{
+        	 
+        	PF('multiFacilityDialog1').hide();
+        	
+        }
+        
+    }
+    function handleRequest1(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiFacilityDialog3').show();
+            
+        } 
+        else{
+        	 
+        	PF('multiFacilityDialog3').hide();
+        	
+        }
+        
+    }
+    
+</script>
 	</ui:define>
 	</ui:composition>

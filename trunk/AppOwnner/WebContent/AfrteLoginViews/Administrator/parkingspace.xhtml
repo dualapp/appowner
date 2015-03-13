@@ -15,16 +15,17 @@
         
          width:400px;
          left:50%;
-         top:200px;
+        
          margin-left:-200px; 
 
 }
 </style>
 
 </h:head>
-	 <h:form>
+<h:body>
+	 <h:form id="form">
 	  <p:growl id="ui-growl" globalOnly="true" sticky="true" />
-	<h:body>
+	
 	<br/>
 	<div id="page3">
            <div class="gsTitleDiv"><img src="#{expenseBean.str_Name}images/myparking.png" height="50" width="50"></img>Parking Space<br/><hr/></div> 
@@ -34,12 +35,12 @@
            <tr><td><p:outputLabel value="Organisation:" />  <p:outputLabel value="#{expenseBean.str_OrganizationName}" /> </td>
               </tr>
            <tr><td>  
-	    <p:commandButton style="width:120px;height:25px" process="DT" update="multiParkingSpaceDetail"    icon="ui-icon-plus"  value="Create New" oncomplete="PF('multiParkingSpaceDialog').show()" />
+	    <p:commandButton style="width:120px;height:25px" process="DT" update=":addform"    icon="ui-icon-plus"  value="Create New" oncomplete="PF('multiParkingSpaceDialog').show()" />
 	
-	 &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update="multiParkingSpaceDetail1" icon="ui-icon-info" value="View" oncomplete="PF('multiParkingSpaceDialog1').show()" />
-       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update="multiParkingSpaceDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiParkingSpaceDialog2').show()" />
+	 &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":viewform" icon="ui-icon-info" value="View" oncomplete="PF('multiParkingSpaceDialog1').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiParkingSpaceDialog2').show()" />
        &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteParkingSpace}" icon="ui-icon-trash" value="Delete" />
-       <p:commandButton  style="width:120px;height:25px"  value="Refresh" />
+      &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />
          
      
      </td>
@@ -73,7 +74,9 @@
 	  
             </p:dataTable>
 	 </div>
-	  <p:dialog header="Create Parking Space" widgetVar="multiParkingSpaceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+	</h:form>
+	  <p:dialog header="Create Parking Space" widgetVar="multiParkingSpaceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+        <h:form id="addform">
         <p:outputPanel id="multiParkingSpaceDetail" style="text-align:center;">
         <table>
 	<tr><th>
@@ -86,10 +89,10 @@
                  
 <tr><th><p:outputLabel for="Parkingslot" value="parkingSlot"/></th>
 	<td><p:inputText  id="Parkingslot"  placeholder="Enter Parkingslot" required="true" requiredMessage="Enter Parkingslot" value="#{expenseBean.str_ParkingSlot}">
-	  <p:ajax event="blur" update="ParkingslotMsg" />
+	  
 	</p:inputText>
 	</td>
-	 <td><p:message id="ParkingslotMsg" for="Parkingslot" display="text"/></td>
+	  <p:message id="ParkingslotMsg" for="Parkingslot" display="text"/> 
 	</tr>
 	
 	  
@@ -97,18 +100,20 @@
     </table>
     <div>
     <hr/>
-     <h:commandButton   styleClass="btn" id="submit"  value="Submit"  ajax="false"    action="#{expenseBean.saveParking}"  >
+     <p:commandButton   styleClass="btn" id="submit"  value="Submit"   update=":form:DT :form:ui-growl,ParkingslotMsg"  actionListener="#{expenseBean.saveParking}"  oncomplete="handleRequest(xhr, status, args)" />
 	  
-	</h:commandButton>
-	&#150; &#150; <h:commandButton   styleClass="btn"   ajax="false"  value="Cancel"    action="parkingspace.xhtml" >
+	 
+	&#150; &#150; <p:commandButton  onclick="multiParkingSpaceDialog.hide()"  styleClass="btn"    value="Cancel"    action="parkingspace.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton> 
+	  </p:commandButton> 
 	 
     </div>
     
            </p:outputPanel>
+           </h:form>
            </p:dialog>
-             <p:dialog header="Edit Parking Space Details" widgetVar="multiParkingSpaceDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+             <p:dialog header="Edit Parking Space Details" widgetVar="multiParkingSpaceDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+       <h:form id="editform">
       <p:outputPanel id="multiParkingSpaceDetail2" style="text-align:center;">
       <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
            <table>
@@ -128,28 +133,29 @@
 	<p:outputLabel for="Parkingslot1" value="Parking slot:" /> </th>
     <td>
     <p:inputText id="Parkingslot1"  required="true" requiredMessage="Enter Parking slot" value="#{ps2.str_ParkingSlot}">
-     <p:ajax event="blur" update="ParkingslotMsg1" />
+      
      </p:inputText>
     </td>
-    <td><p:message id="ParkingslotMsg1" for="Parkingslot1" display="text"/></td>
+     <p:message id="ParkingslotMsg1" for="Parkingslot1" display="text"/> 
     </tr>
       
             </table>
-            </ui:repeat>
+          
            <div>
            <hr/>
-            <h:commandButton value="update"  styleClass="btn"   ajax="false"  action="#{expenseBean.updateParkingSpace(ps2)}">
+            <p:commandButton value="update" update=":form:DT :form:ui-growl,ParkingslotMsg1" styleClass="btn"    action="#{expenseBean.updateParkingSpace(ps2)}" oncomplete="handleRequest1(xhr, status, args)" />
       
-     </h:commandButton>
-     &#150; &#150; <h:commandButton  styleClass="btn" ajax="false" action="parkingspace.xhtml" value="Cancel">
-     <f:ajax execute="@this" event="click"  render="@form"/>
-     </h:commandButton>
-    
+      
+    	&#150; &#150; <p:commandButton  onclick="multiParkingSpaceDialog.hide()"  styleClass="btn"    value="Cancel"    action="parkingspace.xhtml" >
+	  <f:ajax execute="@this" event="click"  render="@form"/>
+	  </p:commandButton> 
            </div>
+             </ui:repeat>
     </p:outputPanel>
-    
+    </h:form>
     </p:dialog>
      <p:dialog header="  Parking Space Details" widgetVar="multiParkingSpaceDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+        <h:form id="viewform">
         <p:outputPanel id="multiParkingSpaceDetail1" style="text-align:center;">
           
           <ui:repeat value="#{expenseBean.parkingSpaceList1}" var="ps2">
@@ -180,9 +186,43 @@
              <hr/>
              </div>
     </p:outputPanel>
+    </h:form>
     </p:dialog>
-	</h:body>
-	</h:form>
+	  
+	 </h:body>
+	
+	<script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiParkingSpaceDialog').show();
+            
+        } 
+        else{
+        	 
+         
+        	PF('multiParkingSpaceDialog').hide();
+        	
+        }
+        
+    }
+    function handleRequest1(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiParkingSpaceDialog2').show();
+            
+        } 
+        else{
+        	 
+        	PF('multiParkingSpaceDialog2').hide();
+        	
+        }
+        
+    }
+    
+</script>
 	 
 
 </ui:define>
