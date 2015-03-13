@@ -91,9 +91,17 @@ public class VendorBean implements Serializable {
 	public String updateWorkOrder(WorkOrderCategory w)
 	
 	{
+		if(w!=null)
+		{
 		System.out.println("kakkakakakkak");
 		getVendorservice().updateWorkOrder(w);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Workorder Updated Successfully!"));
+		}
+		else{
+			 FacesMessage message = null;
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		}
 		return "workordercategory.xhtml";
 	}
 
@@ -931,12 +939,19 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	private WorkOrderCategory workOrderCategory;
 	public String saveWorkOrderCategory()
 	{
+		if(str_VendorCategoryType!=null)
+		{
 		workOrderCategory=new WorkOrderCategory();
 		
 		workOrderCategory.setStr_VendorCategoryType(str_VendorCategoryType);
 		getVendorservice().saveWorkOrderCategory(workOrderCategory);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
-		
+		}
+		else{
+			 FacesMessage message = null;
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		}
 		return "workordercategory.xhtml";
 	}
 	public List<Vendor> getVendorList() {
