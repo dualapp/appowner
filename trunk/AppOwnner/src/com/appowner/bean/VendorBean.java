@@ -787,7 +787,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	  return "viewvendor.xhtml";
   }
   public String updateVendor(Vendor vendor) {
-		if (vendor.getInt_VendorId() != null) {
+		if (vendor!= null) {
 			getVendorservice().update(vendor);
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			Flash flash = facesContext.getExternalContext().getFlash();
@@ -796,8 +796,11 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
 
-		} else
-			getVendorservice().addVendor(vendor);
+		} else{
+			 FacesMessage message = null;
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		}
 		return "vendorlists.xhtml";
 	}
 	public String updateVendor() {
