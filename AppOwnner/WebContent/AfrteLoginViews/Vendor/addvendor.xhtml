@@ -132,7 +132,9 @@
                 
             <tr> 
             <th><p:outputLabel for="Zip" value="Zip " /></th>
-                <td><p:inputText id="Zip" placeholder="ZipCode"   value="#{vendorBean.str_ZipCode}" required="true"  requiredMessage="Enter ZipCode">
+                <td><p:inputText id="Zip" placeholder="ZipCode"  maxlength="6"  validatorMessage="invalid mobile no" value="#{vendorBean.str_ZipCode}" required="true"  requiredMessage="Enter ZipCode">
+            <f:validateLength minimum="6"/>
+              <f:validateRegex pattern="^([+]?[\d]+)?$" />
             <p:ajax event="blur" update="ZipMsg" />
             </p:inputText></td>
             <td> <p:message id="ZipMsg" for="Zip" display="text" /></td>
@@ -259,12 +261,17 @@
                 </td>
                
            </tr>
-            <tr> <td><h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/></td> <td><h:commandButton   styleClass="btn" id="cancel"  value="Cancel" action="#{vendorBean.cancelVendor}"/></td></tr>
+           </table>
+            
+            <div>
+	 <hr/>
+             <h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/> 
+             &#150; &#150;  <h:commandButton   styleClass="btn" id="cancel"  value="Cancel" action="#{vendorBean.cancelVendor}"/> 
           
-            </table>
+           
+             </div>
              
-             
-            </div>
+           </div>
            
            </h:form>
            

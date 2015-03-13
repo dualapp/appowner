@@ -18,7 +18,7 @@
         
          width:400px;
          left:50%;
-         top:200px;
+      
          margin-left:-200px; 
 
 }
@@ -27,9 +27,7 @@
 
 
 <h:body>
-
  
-</h:body>
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
@@ -77,9 +75,9 @@
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
          
-          &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":form:multiVendorDetail1" icon="ui-icon-info" value="View" oncomplete="PF('multiVendorDialog1').show()" />
-       &#150; &#150; <p:commandButton style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}" process="DT" update=":form:multiVendorDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
-       &#150; &#150;  <p:commandButton style="width:120px;height:25px" rendered="#{expenseBean.isEnable}" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
+          &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":viewform" icon="ui-icon-info" value="View" oncomplete="PF('multiVendorDialog1').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
+       &#150; &#150;  <p:commandButton style="width:120px;height:25px" rendered="#{expenseBean.isEnable}" update=":form:DT :form:ui-growl" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
      &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />
      &#150; &#150;   <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
@@ -159,17 +157,17 @@
                 </f:facet>
                 <center>
               
-               <p:commandLink   process="DT"  update=":form:editVendorDetail" oncomplete="PF('editVendorDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
+               <p:commandLink   process="DT"  update=":editform1" oncomplete="PF('editVendorDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
                   <h:graphicImage  height="20" width="20" alt="Edit" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
               </p:commandLink>
                &#150; 
                
                
-              <p:commandLink   process="DT"  update=":form:viewVendorDetail" oncomplete="PF('viewVendorDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
+              <p:commandLink   process="DT"  update=":viewform1" oncomplete="PF('viewVendorDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
                   <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
                &#150;
-          <h:link outcome="deletevendor.xhtml"
+          <h:link outcome="deletevendor.xhtml"  update=":form:DT :form:ui-growl"
 	   		 onclick="return confirm('Are you sure you want to delete #{vendor.str_VendorName}?');" >  
 	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
 	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
@@ -180,15 +178,18 @@
          
             </p:dataTable>
             </div>
-             
+             </h:form>
            
             
-            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="500">
+        <h:form id="editform">
         <p:outputPanel id="multiVendorDetail" style="text-align:center;">
           
+       
+         <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
            <table>
                
-            <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
+          
              <tr>
  <th>
     <h:outputText value="Vendor Type:"/></th>
@@ -233,16 +234,22 @@
     <td>
     <h:inputText value="#{vendor1.str_VendorComments}"/></td>
     </tr>
-      
-            </ui:repeat>
-             <tr><td><h:commandButton  styleClass="btn" value="update" action="#{vendorBean.updateVendor(vendor1)}"/></td>
-             
-              <td><h:commandButton  styleClass="btn" action="vendorlist" value="Cancel"/></td></tr>
-            </table>
+       </table>
             
+             
+            <div>
+	 <hr/><p:commandButton  styleClass="btn"   update=":form:DT :form:ui-growl" value="update" action="#{vendorBean.updateVendor(vendor1)}" oncomplete="handleRequest(xhr, status, args)"/> 
+             
+              &#150; &#150; <p:commandButton  onclick="editVendorDialog.hide()"   styleClass="btn"  action="vendorlists.xhtml"  value="Cancel"  >
+	 <f:ajax execute="@this" event="click"  render="@form"/>
+	 </p:commandButton> 
+           </div>
+            </ui:repeat>
         </p:outputPanel>
+        </h:form>
     </p:dialog>
     <p:dialog header="Vendor Details" widgetVar="multiVendorDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+         <h:form id="viewform">
         <p:outputPanel id="multiVendorDetail1" style="text-align:center;">
            <table>
               
@@ -298,8 +305,10 @@
             </ui:repeat>
             </table>
         </p:outputPanel>
+        </h:form>
     </p:dialog>
-       <p:dialog header="Edit Vendor Details" widgetVar="editVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+       <p:dialog header="Edit Vendor Details" widgetVar="editVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
+         <h:form id="editform1">
         <p:outputPanel id="editVendorDetail" style="text-align:center;">
  <table>
  <tr>
@@ -346,13 +355,21 @@
     <td>
     <h:inputText value="#{vendorBean.vendor.str_VendorComments}"/></td>
     </tr>
-     
- <tr><td><h:commandButton  value="Submit"  styleClass="btn" action="#{vendorBean.updateVendor}"/></td><td>
-   <h:button outcome="vendorlists.xhtml" styleClass="btn" value="Cancel"  /></td></tr> 
     </table>
+     <div>
+	 <hr/>
+  <p:commandButton  value="Submit" update=":form:DT :form:ui-growl"  styleClass="btn" action="#{vendorBean.updateVendor}" oncomplete="handleRequest1(xhr, status, args)"/> 
+   &#150; &#150; <p:commandButton  onclick="editVendorDialog.hide()"   styleClass="btn"  action="vendorlists.xhtml"  value="Cancel"  >
+	 <f:ajax execute="@this" event="click"  render="@form"/>
+	 </p:commandButton> 
+                
+  </div>
+    
    </p:outputPanel>
+   </h:form>
    </p:dialog>
          <p:dialog header="Vendor Details" widgetVar="viewVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+         <h:form id="viewform1">
         <p:outputPanel id="viewVendorDetail" style="text-align:center;">
         <table>
  <tr>
@@ -441,9 +458,43 @@
   
     </table>
     </p:outputPanel>
+    </h:form>
     </p:dialog>
         
-      </h:form>     
+   </h:body>
+   <script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiVendorDialog').show();
             
+        } 
+        else{
+        	 
+         
+        	PF('multiVendorDialog').hide();
+        	
+        }
+        
+    }
+    function handleRequest1(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('editVendorDialog').show();
+            
+        } 
+        else{
+        	 
+         
+        	PF('editVendorDialog').hide();
+        	
+        }
+        
+    }
+     
+    
+</script>
 </ui:define>
 </ui:composition>
