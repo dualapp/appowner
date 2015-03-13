@@ -17,7 +17,19 @@
 			</tr>
 		</tbody>
 	</table>
-		
+	<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:150px;
+          }
+          select
+          {
+           height:25px;
+           weight:150px;
+          }
+      </style>		
   <f:metadata>
    <f:viewParam name="int_GroupId" value="#{scriptBean.int_GroupId}"  />
 	 
@@ -27,21 +39,20 @@
 <h:form>
  <a href="Sub-GroupDetail.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
     <div id="page3">
-   <table   style="overflow:hidden;border:0pt none;width:68%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
+   <table   style="overflow:hidden;border:0pt none;width:100%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr>
  
-           <td>
+           <td  style=" float:right !important;margin: 0px  30px 0px 100px;">
           <p:outputLabel value="Sub-Group Name">
            </p:outputLabel></td>
-           <td><h:inputText  id="cg" value="#{scriptBean.edit1.str_GroupNm}" size="30">  
+           <td><h:inputText  id="cg" value="#{scriptBean.edit1.str_GroupNm}" >  
            </h:inputText>
            </td>
             </tr>
-   <tr>
-              
-             
-              <td><p:outputLabel for="ch_Ad_Type" value="Sub-Group  Address" /></td>
-             <td><h:inputText  id="ch_Ad_Type" value="#{scriptBean.edit1.str_Groupaddress}" size="30">
+            <tr>
+              <td  style=" float:right !important;margin: 0px  30px 0px 100px;">
+              <p:outputLabel for="ch_Ad_Type" value="Sub-Group  Address" /></td>
+             <td><h:inputText  id="ch_Ad_Type" value="#{scriptBean.edit1.str_Groupaddress}" >
              </h:inputText>
              </td>
              </tr>
@@ -49,48 +60,46 @@
     
     
         <tr> 
-        
-        <td><p:outputLabel for="I" value="Sub-Group  Description" /></td>
-        <td>  <h:inputTextarea  id="I"  value="#{scriptBean.edit1.str_GroupDescription}" style="height:85px;width:300px">
+        <td  style=" float:right !important;margin: 0px  30px 0px 100px;">
+        <p:outputLabel for="I" value="Sub-Group  Description" /></td>
+        <td>  <h:inputTextarea  id="I"  value="#{scriptBean.edit1.str_GroupDescription}" style="height:180px;width:450px">
             </h:inputTextarea>
       
         </td>
         </tr>
-        
- 
- 
-   
-  <tr> 
-             
-                 <td><p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
-                 <td><p:selectOneMenu id="ch_Access" value="#{scriptBean.edit1.str_groupPrivate}" style="width:250px">
+       <tr> 
+         <td style=" float:right !important;margin: 0px  30px 0px 100px;">
+         <p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
+                 <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.edit1.str_groupPrivate}" >
 
                <f:selectItem itemLabel ="Open--Any One #{scriptBean.str_ApartmentName} can join. "   itemValue="Open" />
                 <f:selectItem itemLabel="Private--You Control The Membership."  itemValue="Private"  />
                  
-            </p:selectOneMenu>
+            </h:selectOneMenu>
             
             </td>
             </tr>
   
 
-<tr>
-                 <td><p:outputLabel for="Allow" value="Allow email from non Sub-Group member:" /></td>
-            <td><p:selectOneMenu id="Allow" value="#{scriptBean.edit1.isCh_EmailAllow}" style="width:100px">
+          <tr>
+           <td  style=" float:right !important;margin: 0px  30px 0px 100px;">
+                 <p:outputLabel for="Allow" value="Allow email from non Sub-Group member:" /></td>
+            <td><h:selectOneMenu id="Allow" value="#{scriptBean.edit1.isCh_EmailAllow}" >
               <f:selectItem itemLabel="Allow "  itemValue="1"  />
                 <f:selectItem itemLabel="Disallow"  itemValue="0"  />
                  
-            </p:selectOneMenu>
+            </h:selectOneMenu>
                 
             </td>
             </tr>
- <tr>
+            </table>
+    <tr>
+     <td><h:commandButton  value="Submit"   action="#{scriptBean.saveContact1()}"    styleClass="btn" style="width:100px;height:30px; float:left !important;margin: -10px  -20px 0px 760px;"/>
+     <h:button  value="Cancel"  outcome="Sub-GroupDetail.xhtml"  styleClass="btn" style="width:100px;height:30px; float:left !important;margin: -27px  130px 100px 900px;" />
+ </td>
+ </tr>s
  
-  
-     <td><h:commandButton  value="Submit"  action="#{scriptBean.saveContact1()}" style=" width:75px;float:left !important;margin: 100px  10px 0px 0px;" />
-     <h:button  value="Cancel"      outcome="Sub-GroupDetail.xhtml" style="width:75px; float:left !important;margin: 100px -150px 10px 0px;" /></td>
-  </tr>
- </table>
+
  </div>
  
  </h:form>
