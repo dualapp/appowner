@@ -28,7 +28,7 @@ public interface AccountsService {
 
 	
 
-	public void addBalance(Date date, Integer id1, Integer id);
+	public void addBalance(Date date,Integer id1, double adjustmentBalance, double adjustmentBalance1);
 	
 
 	void saveChartOfAccount(ChartOfAccount chartOfAccount);
@@ -136,6 +136,8 @@ public interface AccountsService {
 	public List<String> getIncome();
 
 	public List<String> getExpense1();
+
+	public Date getOpeningDate();
 			
 
 	

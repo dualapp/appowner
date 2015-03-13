@@ -48,9 +48,9 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		getAccountsDao().addManualJournal(journal);
 	}
-	public void addBalance(Date date, Integer id1, Integer id)
+	public void addBalance(Date date,Integer id1, double adjustmentBalance, double adjustmentBalance1)
 	{
-		getAccountsDao().addBalance(date, id1,id);
+		getAccountsDao().addBalance(date, id1,adjustmentBalance,adjustmentBalance1);
 	}
 	
 
@@ -281,6 +281,10 @@ public class AccountsServiceImpl implements AccountsService {
 	public List<String> getExpense1()
 	{
 		return getAccountsDao().getExpense1();
+	}
+	public Date getOpeningDate()
+	{
+		return getAccountsDao().getOpeningDate();
 	}
 	
 }
