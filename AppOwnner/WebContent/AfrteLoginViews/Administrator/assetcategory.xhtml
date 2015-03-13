@@ -20,7 +20,7 @@
         
          width:400px;
          left:50%;
-         top:200px;
+         
          margin-left:-200px; 
 
 }
@@ -28,24 +28,25 @@
 
      
  </h:head>
-	<h:form >
+   <h:body>
+	<h:form id="form">
 	
-	 <p:growl id="growl" sticky="true"/>
-	   <h:body>
+	 <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+	 
 	<div id="page3">
            <div class="gsTitleDiv">Assets Catecory<br/><hr/></div> 
 	 <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 	 <tr><td><p:outputLabel value="Organisation:" />  <p:outputLabel value="#{expenseBean.str_OrganizationName}" /> </td>
               </tr>
 	 <tr><td>  
-	    <p:commandButton style="width:120px;height:25px" process="DT" update="multiAssetCategoryDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('multiAssetCategoryDialog').show()" />
+	    <p:commandButton style="width:120px;height:25px" process="DT" update=":addform" icon="ui-icon-plus"  value="Create New" oncomplete="PF('multiAssetCategoryDialog').show()" />
 	
-	 &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update="multiAssetCategoryDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiAssetCategorylDialog1').show()" />
-       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update="multiAssetCategoryDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiAssetCategoryDialog2').show()" />
+	 &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":viewform" icon="ui-icon-search" value="View" oncomplete="PF('multiAssetCategorylDialog1').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiAssetCategoryDialog2').show()" />
        &#150; &#150;  <p:commandButton style="width:120px;height:25px"  update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteAssetsCategory()}" icon="ui-icon-trash" value="Delete" />
-       <p:commandButton style="width:120px;height:25px"  value="Refresh" />
+          &#150; &#150;  <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"  onclick="refresh();" value="Refresh" />
          
-     
+    
      </td>
      </tr>
      </table>
@@ -68,42 +69,50 @@
           </p:column>
          
 	 </p:dataTable>
+	 
+	 </div>
+	 </h:form>
 	 <p:dialog header="Create AssetsCategory" widgetVar="multiAssetCategoryDialog"       showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+         <h:form id="addform">
         <p:outputPanel id="multiAssetCategoryDetail" columns="2" cellpadding="5" style="text-align:center;">
+        
        <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 	<tr><th> 
-              <p:outputLabel for="org" value="Organisation" /> </th>
-             <td> <h:selectOneMenu id="org" required="true" value="#{expenseBean.str_OrganizationName}">
+              <p:outputLabel for="org" value="Organisation*" /> </th>
+             <td> <h:selectOneMenu id="org"   value="#{expenseBean.str_OrganizationName}">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td></tr>
 	<tr><th><p:outputLabel for="AssetCategory" value="CategoryName" /></th>
-	<td><p:inputText    id="AssetCategory"  required="true" requiredMessage="Enter AssetCategory" placeholder="Enter AssetCategory" value="#{expenseBean.str_AssetCategoryType}">
-	  <p:ajax event="blur" update="AssetCategoryMsg" />
+	<td><p:inputText    id="AssetCategory"    required="true" requiredMessage="Enter Asset Category" placeholder="Enter AssetCategory" value="#{expenseBean.str_AssetCategoryType}">
+	  
 	</p:inputText>
 	</td>
-	  <td>  <p:message id="AssetCategoryMsg" for="AssetCategory" display="text"/>  </td>
+	    <p:message id="AssetCategoryMsg" for="AssetCategory" display="text"/>  
 	</tr>
 	 
 	  
 	</table>
+	 
 	<div>
 	<hr/>
-	 <p:commandButton   styleClass="btn"  value="Submit" update="growl"  actionListener="#{expenseBean.saveAssetCategory}" oncomplete="handleLoginRequest(xhr, status, args)" />
+	 <p:commandButton   styleClass="btn"  value="Submit" update=":form:DT :form:ui-growl,AssetCategoryMsg"  actionListener="#{expenseBean.saveAssetCategory}" oncomplete="handleRequest(xhr, status, args)" />
 	 
 	 
 	
-	  &#150; &#150; <h:commandButton   styleClass="btn"   ajax="false" value="Cancel"    action="assetcategory.xhtml" >
+	  &#150; &#150; <h:commandButton  onclick="multiAssetCategoryDialog.hide()"  styleClass="btn"   ajax="false" value="Cancel"    action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
 	  </h:commandButton> 
 	</div>
 	 
         </p:outputPanel>
+        </h:form>
         </p:dialog>
-        <p:dialog header="Edit AssetsCatgory Details" widgetVar="multiAssetCategoryDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <p:dialog header="Edit AssetsCatgory Details" widgetVar="multiAssetCategoryDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+        <h:form id="editform">
         <p:outputPanel id="multiAssetCategoryDetail2" style="text-align:center;">
            <ui:repeat value="#{expenseBean.assetCategoryList1}" var="ac1">
-           <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+           <table id="tbl" style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
                
            
             <tr><th> 
@@ -114,26 +123,27 @@
                  </h:selectOneMenu></td></tr>
              <tr>
              <th><p:outputLabel for="AssetCategory1" value="Category Name"/></th><td><p:inputText id="AssetCategory1" required="true" requiredMessage="Enter Category Name" value="#{ac1.str_assetcat_name}" >
-             <p:ajax event="blur" update="AssetCategoryMsg1" />
+              
              </p:inputText>
               </td>
-             <td>  <p:message id="AssetCategoryMsg1" for="AssetCategory1" display="text"/>  </td>
-             </tr>
+             <p:message id="AssetCategoryMsg1" for="AssetCategory1" display="text"/>  </tr>
              
-            </table>
-             </ui:repeat>
+              </table>
               <div>
               <hr/>
-               <h:commandButton value="update"  styleClass="btn"  ajax="false"   action="#{expenseBean.updateAssetCategory(ac1)}">
-               
-             </h:commandButton>
-            &#150; &#150;  <h:commandButton   styleClass="btn"    value="Cancel"  ajax="false"  action="assetcategory.xhtml" >
+               <p:commandButton value="update"  styleClass="btn"   update=":form:DT :form:ui-growl,AssetCategoryMsg1"  action="#{expenseBean.updateAssetCategory(ac1)}" oncomplete="handleRequest1(xhr, status, args)"/>
+                
+            &#150; &#150;  <p:commandButton onclick="multiAssetCategoryDialog.hide()"   styleClass="btn"    value="Cancel"  ajax="false"  action="assetcategory.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton> 
+	  </p:commandButton> 
               </div>
+            
+             </ui:repeat>
              </p:outputPanel>
+             </h:form>
              </p:dialog>
-             <p:dialog header="AssetsCatgory Details" widgetVar="multiAssetCategoryDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+             <p:dialog header="AssetsCatgory Details" widgetVar="multiAssetCategoryDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+        <h:form id="viewform">
         <p:outputPanel id="multiAssetCategoryDetail1" style="text-align:center;">
           
            <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -143,7 +153,7 @@
   
   <th>  <p:outputLabel   value="Organisation:" /> </th>
               
-              <td><h:selectOneMenu  readonly="true"   value="#{expenseBean.str_OrganizationName}">
+              <td><h:selectOneMenu    value="#{expenseBean.str_OrganizationName}">
               <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
                 
                  </h:selectOneMenu></td>
@@ -160,24 +170,45 @@
              <hr/>
              </div>
              </p:outputPanel>
-             </p:dialog>
-             </div>
-             </h:body>
              </h:form>
+             </p:dialog>
+             
+             </h:body>
+             
            <script type="text/javascript">
-    function handleLoginRequest(xhr, status, args) 
+    function handleRequest(xhr, status, args) 
     {
-        if(args.validationFailed || !args.loggedIn)
+        if(args.validationFailed)
              {
-            PF('multiAssetCategoryDialog').show();
-            alert('h')
+        	 PF('multiAssetCategoryDialog').show();
+            
         } 
         else{
-        	alert('hh')
-            PF('multiAssetCategoryDialog').hide();
+        	 
+        	PF('multiAssetCategoryDialog').hide();
+        	
         }
         
     }
+    function handleRequest1(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiAssetCategoryDialog2').show();
+            
+        } 
+        else{
+        	 
+        	PF('multiAssetCategoryDialog2').hide();
+        	
+        }
+        
+    }
+    function refresh() 
+    {
+    	 history.go(0);
+            
+        } 
     
 </script>
 </ui:define>

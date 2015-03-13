@@ -17,16 +17,17 @@
         
          width:400px;
          left:50%;
-         top:200px;
+        
          margin-left:-200px; 
 
 }
 </style>
  
 </h:head>
-<body>  
- <h:form id="form"  enctype="multipart/form-data">
- <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+<body> 
+ <h:form id="form">
+ <p:growl id="ui-growl" globalOnly="true"  sticky="true" />
+  
  
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
 		
@@ -104,13 +105,13 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                 <center>
 	   
                       <h:panelGroup layout="block" id="mainDiv" style="float:center">
-               <p:commandLink   process="DT"   immediate="true" execute="@this" update=":form:editHouseDetail" oncomplete="PF('editHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetail.int_HouseId)}">
+               <p:commandLink   process="DT"   immediate="true" execute="@this" update=":editform" oncomplete="PF('editHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetail.int_HouseId)}">
                   <h:graphicImage  height="20" width="20" alt="Edit" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
                             </p:commandLink>
                &#150; 
                
                
-              <p:commandLink   process="DT"  update=":form:viewHouseDetail" oncomplete="PF('viewHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetail.int_HouseId)}">
+              <p:commandLink   process="DT"  update=":viewform" oncomplete="PF('viewHouseDialog').show()" action="#{apartmentDetailsBean.getHouseDetails1(houseDetail.int_HouseId)}">
                   <h:graphicImage  height="20" width="20" alt="View" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
               &#150;
@@ -124,6 +125,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
             </p:column>
           
 	</p:dataTable>
+	</div>
+	</h:form>
 	<h3>Tired of updating House individually</h3>
    <h6> Easily input data for multiple block/houses in one go</h6>
    
@@ -131,9 +134,9 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	      
 	      <tr><td>  
 	  
-	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="DT" update=":form:houseDetail" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
+	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process=":form:DT" update=":addform" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
 	       &#150; &#150;  <h:commandButton style="width:120px;height:25px"    onclick="return confirm('Are you sure you want to delete ?');" action="#{apartmentDetailsBean.deleteSelectedHouse()}" icon="ui-icon-trash" value="Delete">
-	          <f:ajax execute="DT" event="click" update="ui-growl" render="@form"/>
+	          <f:ajax execute=":form:DT" event="click" update="ui-growl" render="@form"/>
 	        </h:commandButton>
 	        
 
@@ -142,17 +145,19 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	     </td> </tr>
 	   
 	    <tr><td>
-	   &#150; &#150; <p:commandButton  style="width:120px;height:25px" id="Btn" value="Bulk Upload"  update=":form:fileDetail" oncomplete="PF('fileDialog').show()" /></td></tr>
+	   &#150; &#150; <p:commandButton  style="width:120px;height:25px" id="Btn" value="Bulk Upload"  update=":uploadform" oncomplete="PF('fileDialog').show()" />
+	    &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" /></td></tr>
 	    </table>
- </div>
+  
   <p:dialog header="Edit House Details" widgetVar="editHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+       <h:form id="editform">
         <p:outputPanel id="editHouseDetail" style="text-align:center;">
  <table>
  <tr><th> 
                <p:outputLabel value="House No" /> </th>
              
-	<td><p:inputText      value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
-	 
+	<td><p:inputText   id="HouseNo1" required="true" requiredMessage="Enter House No"   value="#{apartmentDetailsBean.housedetails.str_HouseNo}"/></td>
+	 <p:message  id="HouseNoMsg1" for="HouseNo1" display="text"/>
 	</tr>
 	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
@@ -184,17 +189,19 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </table>
 	 <div>
 	 <hr/>
-	  <h:commandButton   styleClass="btn"    value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" >
-	 <f:ajax execute="editHouseDetail" event="click"  render="@form"/>
-	 </h:commandButton>
-	  &#150; &#150; <h:commandButton   styleClass="btn"    value="Cancel"    action="housedetails.xhtml" >
+	  <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,HouseNoMsg1"  value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" oncomplete="handleRequest1(xhr, status, args)"/>
+	 
+	  
+	  &#150; &#150; <p:commandButton onclick="editHouseDialog.hide()"  styleClass="btn"    value="Cancel"    action="housedetails.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton>
+	  </p:commandButton>
 	  
 	 </div>
  </p:outputPanel>
+ </h:form>
  </p:dialog>
  <p:dialog header="View House Details" widgetVar="viewHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+        <h:form id="viewform">
         <p:outputPanel id="viewHouseDetail" style="text-align:center;">
  <table>
  <tr><th> 
@@ -225,8 +232,10 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 <hr/>
 	 </div>
  </p:outputPanel>
+ </h:form>
  </p:dialog>
  <p:dialog header="Add New House" widgetVar="houseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
+     <h:form id="addform">
         <p:outputPanel id="houseDetail" style="text-align:center;">
        <table style="overflow:hidden;border:0pt none;width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 	 
@@ -234,7 +243,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                <p:outputLabel  for="HouseNo" value="House No" /> </th>
              
 	<td><p:inputText    id="HouseNo" required="true" requiredMessage="Enter House No" value="#{apartmentDetailsBean.str_HouseNo}"/></td>
-	 
+	  <p:message  id="HouseNoMsg" for="HouseNo" display="text"/>
 	</tr>
 	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
@@ -266,19 +275,21 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </table>
 	 <div>
 	 <hr/>
-	   <h:commandButton   styleClass="btn" id="submit"  value="Confirm"     action="#{apartmentDetailsBean.saveHouseDetails}" >
-	  <f:ajax execute="houseDetail" event="click"  render="@form"/>
-	 </h:commandButton>
+	   <p:commandButton   styleClass="btn" id="submit"  value="Confirm"    update=":form:DT :form:ui-growl,HouseNoMsg"  action="#{apartmentDetailsBean.saveHouseDetails}" oncomplete="handleRequest(xhr, status, args)" />
+	 
+	 
 	 &#150; &#150;  
-   <h:commandButton     styleClass="btn" icon="ui-icon-close"    value="Cancel"    action="housedetails.xhtml" >
+   <p:commandButton    onclick="houseDialog.hide()" styleClass="btn" icon="ui-icon-close"    value="Cancel"    action="housedetails.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton> 
+	  </p:commandButton> 
 	  
 	 </div>
 	 </p:outputPanel>
+	 </h:form>
 	 </p:dialog>
 	 
 	 <p:dialog header="File Upload" widgetVar="fileDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+        <h:form id="uploadform"  enctype="multipart/form-data">
         <p:outputPanel id="fileDetail" style="text-align:center;">
          <!-- inputFile tag to upload file -->
 	     <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -289,28 +300,75 @@ Unless the Community Setup is complete, the changes that are made will not be sa
         <p:fileDownload value="#{apartmentDetailsBean.downloadFile()}" />
            
     </h:commandButton></td> &#150; &#150;<th>2</th><td>Fill The Template</td> &#150; &#150;<th>3</th><td>Upload</td></tr></table>  
-		<table> <tr><td>  <h:inputFile id="file" 
+		<table> <tr><td>  <h:inputFile id="file" required="true" requiredMessage="File Not Selected"
 		             label="file"
 			         value="#{apartmentDetailsBean.part}"> 
 			       
             <!--  FileUploadValidator for file validation  -->
             
-            <f:validator validatorId="BulkUploadValidator" /> 
+            <f:validator validatorId="BulkUploadValidator" id="BulkUploadValidator"/> 
             </h:inputFile>
-                    
-		       <h:commandButton style="width:120px;height:25px" id="submit1"   action="#{apartmentDetailsBean.uploadFile}"
-			             value="Upload" >
-			           <f:ajax render="@form" execute="file" update="msgs"/>
+                      <p:message  id="uploadMsg" for="file" display="text"/> 
+		       <h:commandButton style="width:120px;height:25px" id="submit1" update=":form:DT :form:ui-growl,uploadMsg"  action="#{apartmentDetailsBean.uploadFile}"
+			             value="Upload" oncomplete="handleRequest2(xhr, status, args)" />
+			            
 
-			             </h:commandButton>  <br />
+			             <br />
 			             <!-- status message of file upload; rendered if message is set -->
 		<p:outputLabel value="#{apartmentDetailsBean.statusMessage}"
 			          rendered="#{not empty apartmentDetailsBean.statusMessage}" /></td></tr></table>
         </p:outputPanel>
+        </h:form>
         </p:dialog>
- </h:form>
-      
+         </body>
   
- </body>
+       <script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('houseDialog').show();
+            
+        } 
+        else{
+        	 
+        	PF('houseDialog').hide();
+        	
+        }
+        
+    }
+    
+    function handleRequest1(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('editHouseDialog').show();
+            
+        } 
+        else{
+        	 
+        	PF('editHouseDialog').hide();
+        	
+        }
+        
+    }
+    function handleRequest2(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('fileDialog').show();
+            
+        } 
+        else{
+        	 
+        	PF(fileDialog').hide();
+        	
+        }
+        
+    }
+    
+</script>
+  
+
  </ui:define>
  </ui:composition>

@@ -22,16 +22,17 @@
         
          width:400px;
          left:50%;
-         top:200px;
+        
          margin-left:-200px; 
 
 }
 </style>
 
  </h:head>
-  <h:form>
-   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
  <h:body>
+  <h:form id="form">
+   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+ 
 	
 	 
 	 
@@ -42,12 +43,12 @@
              <tr><td><p:outputLabel value="Organisation:" />  <p:outputLabel value="#{expenseBean.str_OrganizationName}" /> </td>
               </tr>
 <tr><td>  
-	    <p:commandButton  icon="ui-icon-plus"  style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail"   value="Create New" oncomplete="PF('multiWorkOrderDialog').show()" />
+	    <p:commandButton  icon="ui-icon-plus"  style="width:120px;height:25px" process="DT" update=":addform"   value="Create New" oncomplete="PF('multiWorkOrderDialog').show()" />
 	
-	 &#150; &#150;  <p:commandButton style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail1" icon="ui-icon-info" value="View" oncomplete="PF('multiWorkOrderDialog1').show()" />
-       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update="multiWorkOrderDetail2" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiWorkOrderDialog2').show()" />
+	 &#150; &#150;  <p:commandButton style="width:120px;height:25px" process="DT" update=":viewform" icon="ui-icon-info" value="View" oncomplete="PF('multiWorkOrderDialog1').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiWorkOrderDialog2').show()" />
        &#150; &#150;  <p:commandButton style="width:120px;height:25px"  update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteWorkOrder()}" icon="ui-icon-trash" value="Delete" />
-       <p:commandButton  style="width:120px;height:25px" value="Refresh" />
+       &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />
          
      
      </td>
@@ -77,7 +78,9 @@
 	 </p:column>
 	 </p:dataTable>
 	 </div>
-	 <p:dialog header="Create New" widgetVar="multiWorkOrderDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+	</h:form>
+	 <p:dialog header="Create New" widgetVar="multiWorkOrderDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+      <h:form id="addform">
         <p:outputPanel id="multiWorkOrderDetail" style="text-align:center;">
         <table>
 	<tr><th> 
@@ -88,26 +91,29 @@
                  </h:selectOneMenu></td></tr>
 	<tr><th><p:outputLabel for="CategoryName" value="CategoryName"/></th>
 	<td><p:inputText id="CategoryName"  placeholder="Enter CategoryName" required="true" requiredMessage="Enter CategoryName"   value="#{vendorBean.str_VendorCategoryType}">
-	<p:ajax event="blur" update="CategoryNameMsg" />
+	 
 	</p:inputText>
 	</td>
-	<td><p:message  id="CategoryNameMsg" for="CategoryName" display="text"/></td>
+	 <p:message  id="CategoryNameMsg" for="CategoryName" display="text"/> 
 	</tr>
  
 	
 	</table>
 	<div>
 	<hr/>
-	 <h:commandButton   styleClass="btn"   value="Submit"      action="#{vendorBean.saveWorkOrderCategory}">
+	 <p:commandButton   styleClass="btn"   value="Submit" update=":form:DT :form:ui-growl,CategoryNameMsg"      action="#{vendorBean.saveWorkOrderCategory}" oncomplete="handleRequest(xhr, status, args)"/>
 	
-	</h:commandButton> &#150; &#150; <h:commandButton  execute="@this"   styleClass="btn"  action="workordercategory"  value="Cancel"  /> 
+	 &#150; &#150; <p:commandButton  onclick="multiWorkOrderDialog.hide()"   styleClass="btn"  action="workordercategory.xhtml"  value="Cancel"  >
+	 <f:ajax execute="@this" event="click"  render="@form"/>
+	 </p:commandButton> 
                 
                 </div> </p:outputPanel>
+                </h:form>
                  </p:dialog>
                  
                  
-                  <p:dialog header="Edit work Order Details" widgetVar="multiWorkOrderDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
-       
+                  <p:dialog header="Edit work Order Details" widgetVar="multiWorkOrderDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="250" width="500">
+       <h:form id="editform">
         <p:outputPanel id="multiWorkOrderDetail2" style="text-align:center;">
            <ui:repeat value="#{vendorBean.workOrderCategoryList1}" var="ws1">
            <table>
@@ -124,10 +130,10 @@
 	<p:outputLabel for="CategoryName1" value="Type:" /> </th>
     <td>
     <p:inputText id="CategoryName1" required="true" requiredMessage="Enter CategoryName" value="#{ws1.str_VendorCategoryType}">
-    <p:ajax event="blur" update="CategoryNameMsg1" />
+    
     </p:inputText>
     </td>
-    <td><p:message  id="CategoryNameMsg1" for="CategoryName1" display="text"/></td>
+     <p:message  id="CategoryNameMsg1" for="CategoryName1" display="text"/> 
     </tr>
     
      
@@ -137,16 +143,19 @@
     <div>
     <hr/>
       
-   <h:commandButton value="Update"   ajax="true"  
-                update="@form"   styleClass="btn"   action="#{vendorBean.updateWorkOrder(ws1)}"  />
-   &#150; &#150; <h:commandButton value="Cancel"  ajax="false" styleClass="btn"  action="workordercategory"/> 
+   <p:commandButton value="Update"   
+                update=":form:DT :form:ui-growl,CategoryNameMsg1"   styleClass="btn"   action="#{vendorBean.updateWorkOrder(ws1)}"  oncomplete="handleRequest1(xhr, status, args)" />
+   &#150; &#150; <p:commandButton value="Cancel"  onclick="multiWorkOrderDialog2.hide()" styleClass="btn"  action="workordercategory.xhtml">
+   <f:ajax execute="@this" event="click"   />
+   </p:commandButton>
     
     </div>
     </ui:repeat>
     </p:outputPanel>
-    
+    </h:form>
     </p:dialog>
      <p:dialog header="  work Order Details" widgetVar="multiWorkOrderDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+       <h:form id="viewform">
         <p:outputPanel id="multiWorkOrderDetail1" style="text-align:center;">
           
           <ui:repeat value="#{vendorBean.workOrderCategoryList1}" var="ws1">
@@ -177,11 +186,43 @@
              <hr/>
              </div>
     </p:outputPanel>
+    </h:form>
     </p:dialog>
                  
 	  </h:body>
-	 </h:form>
 	 
+	  <script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiWorkOrderDialog').show();
+            
+        } 
+        else{
+        	  
+        	PF('multiWorkOrderDialog').hide();
+        	
+        }
+        
+    }
+    function handleRequest1(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiWorkOrderDialog2').jq.effect("shake", {times:5}, 100);
+            
+        } 
+        else{
+        	 
+        	PF('multiWorkOrderDialog2').hide();
+        	 
+        	
+        }
+        
+    }
+    
+</script>
 	 </ui:define>
 	 </ui:composition>
 	 
