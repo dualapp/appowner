@@ -229,6 +229,28 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		return getApartmentDetailsDao().getBlock(blockId);
 	}
 
+	@Override
+	public void updateUserBlock(String oldBlock, String newBlock,
+			Integer appartmentId) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateUserBlock(  oldBlock,   newBlock, appartmentId);
+				 
+	}
+
+	@Override
+	public void updateUserFlat(String oldHouseNo, String newHouseNo,
+			String blockName, Integer appartmentId) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateUserFlat( oldHouseNo,  newHouseNo,
+				  blockName,  appartmentId);
+	}
+
+	@Override
+	public List getHouseDetailsByBlockId(Integer int_blockId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getHouseDetailsByBlockId(int_blockId);
+	}
+
 	 
 
 }

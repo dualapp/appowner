@@ -172,6 +172,8 @@ public interface ExpenseService {
 
 	List<String> getStr_AccountNameList();
 
+	List<FacilityNeeded> getFacilityNeededList();
+
 	 
 
 }
