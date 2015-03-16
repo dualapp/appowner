@@ -1425,9 +1425,8 @@ private void loadFacilityNeededList()
 }
 public List<FacilityNeeded> getFacilityNeededList() {
 	
-	if (facilityNeededList== null) {
-		loadFacilityNeededList(); // Preload page for the 1st view.
-    }
+	facilityNeededList=new ArrayList<FacilityNeeded>();
+	facilityNeededList.addAll((getExpenseService().getFacilityNeededList()));
 	return facilityNeededList;
 }
 public void setFacilityNeededList(List<FacilityNeeded> facilityNeededList) {

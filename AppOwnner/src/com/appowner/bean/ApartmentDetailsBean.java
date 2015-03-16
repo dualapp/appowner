@@ -302,7 +302,13 @@ public class ApartmentDetailsBean  implements Serializable{
 	{
 		if(selectedBlock1!=null)
 		{
+			Integer blockId=selectedBlock1.getInt_BlockId();
+			UserBlocks block=getApartmentDetailsService().getBlock(blockId);
+			String oldBlock=block.getStr_BlockName();
+			String newBlock=selectedBlock1.getStr_BlockName();
 		getApartmentDetailsService().updateOneBlock(selectedBlock1);
+		getApartmentDetailsService().updateUserBlock(oldBlock,newBlock,Util.getAppartmentId());
+		
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Updated Successfully!"));
 		}
 		 else{
@@ -343,11 +349,24 @@ public class ApartmentDetailsBean  implements Serializable{
         }
     }
 	private Integer int_blockId;
+	@SuppressWarnings("unchecked")
 	public String deleteBlock()
 	{
 		System.out.println(int_blockId+"BlockId");
-		getApartmentDetailsService().deleteBlock(int_blockId);
-		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Deleted Successfully!"));
+		List<HouseDetails> hd=new ArrayList<HouseDetails>();
+		  hd=getApartmentDetailsService().getHouseDetailsByBlockId(int_blockId);
+		  System.out.println(hd+"nuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+		if(hd.isEmpty())
+		{
+
+			getApartmentDetailsService().deleteBlock(int_blockId);
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Deleted Successfully!"));
+		
+		}
+		else
+		{
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This Block can't be deleted as it has some houses.Please delete the houses to proceed!"));
+		}
 		return "blockdetails.xhtml?faces-redirect=true";
 	}
 	public Integer getInt_blockId() {
@@ -407,7 +426,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		FacesContext.getCurrentInstance().addMessage(null, message);
 
 		}
-		return null;
+		return "blockdetails.xhtml";
 	}
 	private HouseDetails housedetails=new HouseDetails();
 	public HouseDetails getHousedetails() {
@@ -436,11 +455,20 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	
 	public String deleteHouseDetails(Integer HouseId)
-	{System.out.println( HouseId+"hid1");
-	housedetails=new HouseDetails();
-		housedetails.setInt_HouseId(HouseId);
-		
+	{  housedetails=new HouseDetails();
+	 housedetails=getApartmentDetailsService().getHouseDetails(HouseId);
+		Long u=getApartmentDetailsService().getNoOfUsers( housedetails.getStr_HouseNo());
+		System.out.println(u+"uuuuuuuuuuuuuuuuuuuuser");
+		if(u==0)
+		{
+			
+			housedetails.setInt_HouseId(HouseId);
 		getApartmentDetailsService().deleteHouseDetails(housedetails);	
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
+		}
+		else
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("The selected Houses have users or maintenance dues associated with them .so they  couldn't be deleted!.Please remove the members from the houses to proceed."));
+			
 		return "housedetails.xhtml";
 	}
 	public String deleteSelectedHouse() {
@@ -448,22 +476,33 @@ public class ApartmentDetailsBean  implements Serializable{
  
 	    for (HouseDetails house :selectedHouse) {
 	    	 
-	    	if (house.getInt_HouseId()!=null) 
-	    	{
-	            entitiesToDelete.add(house);
-	        }
-	    	
+			if( house.getInt_NoOfUsers()==0)
+			{
+	    	 
+				getApartmentDetailsService().deleteHouseDetails(house);
+				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
+			}
+			else
+				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("The selected Houses have users or maintenance dues associated with them .so they  couldn't be deleted!.Please remove the members from the houses to proceed."));
+				
 	    } 
-System.out.println(entitiesToDelete+"entyt todelete");
- getApartmentDetailsService().deleteSelectedHouse(entitiesToDelete);
- FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
-	    return null;
+  
+	    return "housedetails.xhtml";
 	}
 	public String updateHouseDetails()
 	{
 		if(housedetails!=null)
-		{
+		{ Integer houseId=housedetails.getInt_HouseId();
+		HouseDetails housedetails1=getApartmentDetailsService().getHouseDetails(houseId);
+		String oldHouseNo=housedetails1.getStr_HouseNo();
+		String newHouseNo=housedetails.getStr_HouseNo();
+		Integer blockId=housedetails.getInt_BlockId();
+		UserBlocks ub=getApartmentDetailsService().getBlock(blockId);
+		String blockName=ub.getStr_BlockName();
+		
 			getApartmentDetailsService().updateHouseDetails(housedetails);
+			getApartmentDetailsService().updateUserFlat(oldHouseNo,newHouseNo,blockName,Util.getAppartmentId());
+			
 			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
 		}
 		 else{
@@ -491,6 +530,11 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
 		housedetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 		getApartmentDetailsService().saveHouseDetails(housedetails);
+		str_HouseNo="";
+		int_HouseSize=0;
+		int_NoOfBalconies=0;
+		int_NoOfBedRooms=0;
+		
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
 		}
 		 else{
