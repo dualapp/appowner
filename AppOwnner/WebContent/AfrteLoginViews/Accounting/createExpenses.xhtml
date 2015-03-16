@@ -76,7 +76,7 @@
               </td>
               
                <td><p:inputText  value="#{expenseBean1.str_Description}" style="width:150px" valueChangeListener="#{expenseBean1.descriptionListener}"/>  </td>
-               <td><h:selectOneMenu id="assetcatname"  style="width:150px" value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
+               <td><h:selectOneMenu id="assetcatname" required="true" requiredMessage="Enter AssetCatName"  style="width:150px" value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
                   <f:selectItem itemLabel="Select" itemValue=""/>
                  
                    <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
