@@ -61,7 +61,7 @@ public class EmailSendingServlet extends HttpServlet {
             request.setAttribute("render", "true");
             if(str.equalsIgnoreCase("user"))
             {
-            	response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/UserInfo/addnewuserbyadmin.xhtml") ;
+            	response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/UserInfo/apartments_memberdetails.xhtml") ;
             }
               if(str.equalsIgnoreCase("admin"))
             {
