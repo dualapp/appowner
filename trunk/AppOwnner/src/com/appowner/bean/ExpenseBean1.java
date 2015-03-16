@@ -292,7 +292,7 @@ public String addExpenses()
 	{ 
 		
 		System.out.println(assetName.hasNext()+"check");
-		if(assetName.hasNext()==true && dateduration.hasNext()==true)
+		if(assetName.hasNext()==true && dateduration.hasNext()==true&& assetCategory.hasNext()==true)
 		{
 		str_AssetName=(String)assetName.next();
 		str_AssetCategoryType=(String)assetCategory.next();
@@ -319,11 +319,12 @@ public String addExpenses()
 	expense.setInt_AppartmentId(Util.getAppartmentId());
 	
 	getExpenseService().addExpenses(expense);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
 		}
 		else
 			return "Expenses.xhtml";
 	}
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
+	
 	
 	return "Expenses.xhtml";
 }
