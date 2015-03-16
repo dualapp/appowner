@@ -165,4 +165,6 @@ public interface ExpenseDao {
 
 	List<String> getStr_AccountNameList();
 
+	List<FacilityNeeded> getFacilityNeededList();
+
 }

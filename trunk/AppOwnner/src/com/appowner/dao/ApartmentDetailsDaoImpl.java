@@ -286,5 +286,25 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		// TODO Auto-generated method stub
 		return (UserBlocks) getSessionFactory().getCurrentSession().get(UserBlocks.class, blockId);
 	}
+
+	@Override
+	public void updateUserBlock(String oldBlock, String newBlock,
+			Integer appartmentId) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().createQuery("UPDATE User SET str_Block =?  WHERE str_Block=? and int_ApartmentId=?").setParameter(0, newBlock).setParameter(1, oldBlock).setParameter(2, appartmentId).executeUpdate();
+	}
+
+	@Override
+	public void updateUserFlat(String oldHouseNo, String newHouseNo,
+			String blockName, Integer appartmentId) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().createQuery("UPDATE User SET str_Flat =?  WHERE str_Flat =? and str_Block=? and int_ApartmentId=?").setParameter(0, newHouseNo).setParameter(1, oldHouseNo).setParameter(2, blockName).setParameter(3, appartmentId).executeUpdate();
+	}
+
+	@Override
+	public List getHouseDetailsByBlockId(Integer int_blockId) {
+		// TODO Auto-generated method stub
+		return getSessionFactory().getCurrentSession().createQuery("from  HouseDetails where int_BlockId=? and int_ApartmentId=?").setParameter(0,int_blockId).setParameter(1, Util.getAppartmentId()).list();
+	}
 	
 }

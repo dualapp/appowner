@@ -561,4 +561,10 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		String hql="select str_AccountName from ChartOfAccount where str_AccountType IN ('Cash', 'Bank') and int_ApartmentId IN ('0',"+Util.getAppartmentId()+')';
 		return (List<String>) sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
+
+	@Override
+	public List<FacilityNeeded> getFacilityNeededList() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from FacilityNeeded where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).list();
+	}
 }
