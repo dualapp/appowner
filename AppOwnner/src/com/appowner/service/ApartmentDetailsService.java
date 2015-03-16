@@ -81,4 +81,11 @@ public interface ApartmentDetailsService {
 
 	UserBlocks getBlock(Integer blockId);
 
+	void updateUserBlock(String oldBlock, String newBlock, Integer appartmentId);
+
+	void updateUserFlat(String oldHouseNo, String newHouseNo, String blockName,
+			Integer appartmentId);
+
+	List getHouseDetailsByBlockId(Integer int_blockId);
+
 }

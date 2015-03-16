@@ -478,6 +478,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getStr_AccountNameList();
 	}
 
+	@Override
+	public List<FacilityNeeded> getFacilityNeededList() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getFacilityNeededList();
+	}
+
 	 
 	 
 
