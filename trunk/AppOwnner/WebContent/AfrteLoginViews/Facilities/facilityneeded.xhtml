@@ -79,19 +79,13 @@
        <p:graphicImage  height="20"  pageOnly="true" width="20" alt="xml" value="#{expenseBean.str_Name}images/xml.png"/>
         <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="FaciliyiNeeded" />
     </h:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
-                            <h:commandButton value="prev" action="#{expenseBean.pagePrevious}"
-                                             disabled="#{expenseBean.firstRow == 0}" >
-                                              <f:ajax render="@form" execute="@form"/>
-                                              </h:commandButton>
-                            <h:commandButton value="next" action="#{expenseBean.pageNext}"
-                                             disabled="#{expenseBean.firstRow + expenseBean.rowPerPage >= expenseBean.totalRows}" >
-                                             </h:commandButton>
+                      
                              
                   </td></tr></table>
 	           
                
                 
-             <p:dataTable    resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
+             <p:dataTable   emptyMessage="No Records Found" paginatorAlwaysVisible="false"   rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                 
            id="DT" var="fn"  value="#{expenseBean.facilityNeededList}" selection="#{expenseBean.selectedFacilities}" rowKey="#{fn.int_FacilityId}">
 	 
@@ -133,7 +127,7 @@
 	</table>  
 	  <div>
 	  <hr/>
-	  <p:commandButton  styleClass="btn"  value="Submit"  update=":form:DT :form:ui-growl,FacilityNameMsg"  actionListener="#{expenseBean.addFacility}" oncomplete="handleRequest(xhr, status, args)"/>
+	  <p:commandButton  styleClass="btn"  value="Submit"  update=":form:DT :form:ui-growl,FacilityNameMsg"  action="#{expenseBean.addFacility}" oncomplete="handleRequest(xhr, status, args)"/>
 	    
 	 &#150; &#150; <p:commandButton  onclick="multiFacilityDialog1.hide()" styleClass="btn"    value="Cancel"    action="facilityneeded.xhtml" >
 	  <f:ajax execute="@this" event="click"  render="@form"/>
@@ -224,7 +218,7 @@
             
         } 
         else{
-        	 
+         
         	PF('multiFacilityDialog1').hide();
         	
         }
@@ -238,7 +232,7 @@
             
         } 
         else{
-        	 
+       
         	PF('multiFacilityDialog3').hide();
         	
         }
