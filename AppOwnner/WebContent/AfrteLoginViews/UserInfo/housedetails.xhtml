@@ -125,8 +125,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
             </p:column>
           
 	</p:dataTable>
-	</div>
-	</h:form>
+	
 	<h3>Tired of updating House individually</h3>
    <h6> Easily input data for multiple block/houses in one go</h6>
    
@@ -135,9 +134,9 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	      <tr><td>  
 	  
 	      &#150; &#150; <p:commandButton style="width:120px;height:25px"  process=":form:DT" update=":addform" icon="ui-icon-plus"  value="Create New" oncomplete="PF('houseDialog').show()" /> 
-	       &#150; &#150;  <h:commandButton style="width:120px;height:25px"    onclick="return confirm('Are you sure you want to delete ?');" action="#{apartmentDetailsBean.deleteSelectedHouse()}" icon="ui-icon-trash" value="Delete">
-	          <f:ajax execute=":form:DT" event="click" update="ui-growl" render="@form"/>
-	        </h:commandButton>
+	       &#150; &#150;  <p:commandButton style="width:120px;height:25px"   update=":form:DT :form:ui-growl" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{apartmentDetailsBean.deleteSelectedHouse()}" icon="ui-icon-trash" value="Delete">
+	          
+	        </p:commandButton>
 	        
 
 	    &#150; &#150;  <p:button  style="width:120px;height:25px"  outcome="blockdetails.xhtml" value="Back"/>
@@ -148,7 +147,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	   &#150; &#150; <p:commandButton  style="width:120px;height:25px" id="Btn" value="Bulk Upload"  update=":uploadform" oncomplete="PF('fileDialog').show()" />
 	    &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" /></td></tr>
 	    </table>
-  
+  </div>
+	</h:form>
   <p:dialog header="Edit House Details" widgetVar="editHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
        <h:form id="editform">
         <p:outputPanel id="editHouseDetail" style="text-align:center;">
