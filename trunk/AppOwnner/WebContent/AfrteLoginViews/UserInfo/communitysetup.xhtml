@@ -44,8 +44,14 @@ and members associated.</p>
 <tr><th>Year Of Completion</th><td><p:inputText value="#{apartmentDetailsBean.int_year}" /></td></tr>
 <tr><th>No Of Blocks(if any)</th><td><p:inputText value="#{apartmentDetailsBean.int_NoOfBlock}" /></td></tr>
 <tr><th>Total No Of Houses</th><td><p:inputText value="#{apartmentDetailsBean.int_TotalHouse}" /></td></tr>
-<tr><th></th> <td><h:commandButton value="Cancel" action="#" />  <h:commandButton value="SaveAndProceed"   action="#{apartmentDetailsBean.saveCommunitySetup()}"/></td></tr>
+ 
 </table>
+ <div>
+             <hr/>
+          <h:commandButton   styleClass="btn" value="SaveAndProceed"   action="#{apartmentDetailsBean.saveCommunitySetup()}"/>
+          &#150; &#150;    <h:commandButton   styleClass="btn" value="Cancel" action="communitysetup.xhtml" />
+             </div>
+              
 </p:panel>
 </div>
 </h:form>

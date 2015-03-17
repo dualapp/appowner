@@ -10,6 +10,17 @@
 	 
 <h:head><title>User Registration</title>
  <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
+ <style type="text/css">
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+        top:500px;
+         margin-left:-200px; 
+
+}
+</style>
 </h:head>
 <body bgcolor="#F08080">  
  <h:form id="form">
@@ -111,31 +122,27 @@
 
          <tr>
              <td><p:outputLabel for="options" value="User Role: " /></td>
-         <td><h:selectOneRadio id="options"  onchange="submit();"  required="true" requiredMessage="Choose User Role" value="#{cls_UserBean.int_UserRole}" valueChangeListener="#{cls_UserBean.roleChangeListener}">
+         <td><h:selectOneRadio id="options"    required="true" requiredMessage="Choose User Role" value="#{cls_UserBean.int_UserRole}" valueChangeListener="#{cls_UserBean.roleChangeListener}">
             <f:selectItem itemLabel="Tenant" itemValue="1" />
             <f:selectItem itemLabel="Owner" itemValue="2" />
+            <f:ajax  event="click" execute="@form"   render="@form"/>
             </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
-             <tr> 			
-            <td><h:commandButton id="addUser"  ajax="false"  execute="@form"  value="Add User" action="#{cls_UserBean.addnewUser}"  />
-             </td><td>
-            <h:commandButton id="reset" value=" Reset" action="#{cls_UserBean.reset}"  />
-             </td></tr>
-            
+             
             </table>
+             <div>
+             <hr/>
+             </div>
+             		
+             <p:commandButton id="addUser"  styleClass="btn"   value="Add User" action="#{cls_UserBean.addnewUser}"  />
+            &#150; &#150;  
+            <p:commandButton styleClass="btn" id="reset" value=" Reset" action="#{cls_UserBean.reset}"  />
              
             </p:panel>
- <h:outputScript rendered="#{cls_UserBean.show}">
-    alert('User Added');
-     
-</h:outputScript>
-           
-            </div>
-            
-             <hr/>
+  
+       
             
  <p:panel id="parentPanel"  style="border:none;" rendered="#{cls_UserBean.render}">
-  
- <div id="page3"> 
+   
  <p:panel id="panelOne"  style="border:none;">
  <div class="gsTitleDiv">House Details of  #{cls_UserBean.str_BlockName}, #{cls_UserBean.str_HouseNo}</div><hr/>
         <table><tr>
@@ -192,9 +199,9 @@
     <th> <p:outputLabel value="Uplaod Files:"/></th><td><p:outputLabel value="Vacant"/></td>
    </tr></table>
   </p:panel>
-   </div>
+    
   </p:panel>
-   
+   </div>
             </h:form>
             </body>
             </ui:define>
