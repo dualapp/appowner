@@ -72,9 +72,9 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public HouseDetails getHouseDetailByHouseNo(String str_HouseNo) {
+	public HouseDetails getHouseDetailByHouseNo(String str_HouseNo,String str_BlockName) {
 		// TODO Auto-generated method stub
-		return getApartmentDetailsDao().getHouseDetailByHouseNo(str_HouseNo);
+		return getApartmentDetailsDao().getHouseDetailByHouseNo(str_HouseNo,str_BlockName);
 	}
 
 	@Override
@@ -90,9 +90,9 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public User primaryOwnerDetailsByHouseNo(String str_HouseNo,int role) {
+	public User primaryOwnerDetailsByHouseNo(String str_BlockNo,String str_HouseNo,int role) {
 		// TODO Auto-generated method stub
-		return getApartmentDetailsDao().primaryOwnerDetailsByHouseNo(str_HouseNo,role);
+		return getApartmentDetailsDao().primaryOwnerDetailsByHouseNo(str_BlockNo,str_HouseNo,role);
 	}
 
 	 
