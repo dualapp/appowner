@@ -475,8 +475,8 @@ public class ApartmentDetailsBean  implements Serializable{
 	    List<HouseDetails> entitiesToDelete = new ArrayList<HouseDetails>();
  
 	    for (HouseDetails house :selectedHouse) {
-	    	 
-			if( house.getInt_NoOfUsers()==0)
+	    	Long u=getApartmentDetailsService().getNoOfUsers( house.getStr_HouseNo());
+			if(u==0)
 			{
 	    	 
 				getApartmentDetailsService().deleteHouseDetails(house);
@@ -783,7 +783,7 @@ public class ApartmentDetailsBean  implements Serializable{
    		FacesContext.getCurrentInstance().addMessage(null, message);
 
    		}
-		 return "housedetails.xhtml";
+		 return null;
 		} 
 		 private Integer index;
 
