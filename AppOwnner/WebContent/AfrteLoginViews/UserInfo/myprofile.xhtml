@@ -80,9 +80,9 @@
   
    <div id="myprofile">
   <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-  <tr> <td width="10%"><h2><b><p:outputLabel value="#{loginBean.str_FirstName}"/> #{loginBean.str_LastName}</b></h2><br/><p:outputLabel id="str_PhoneNo1" value="#{loginBean.str_Mobile}" /><br/>
+  <tr> <td width="10%"><h2><b> #{loginBean.str_FirstName}  #{loginBean.str_LastName}</b></h2><br/>  <b>  #{loginBean.str_Mobile}</b> <br/>
       
-      <p:outputLabel id="str_Email"   value="#{loginBean.str_EmailId}"/></td>
+      <b> #{loginBean.str_EmailId} </b></td>
       
    </tr>
    <tr><td><h:selectOneRadio value="Active"    style="color:green;">

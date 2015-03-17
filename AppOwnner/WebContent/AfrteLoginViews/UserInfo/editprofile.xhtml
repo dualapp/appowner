@@ -43,40 +43,7 @@
 		</tbody>
 	</table>
   <div id="page3">
-  
-	 
- <div>
- <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
- 
    
-            <tr><td width ="50%"> <p:outputPanel layout="block" id="parentPanel">  
-          
-      
-      <p:graphicImage width="50%" height="25%" value="#{loginBean.getPath()}"/></p:outputPanel></td><td width="50%"><p:inputTextarea rows="10" cols="33" placeholder="Enter about informatoin here....."   /></td></tr>
-             
-  <!-- <tr>
-   <td>  
-		Upload File 
-		<h:inputFile id="file" 
-		             label="file"
-			         value="#{loginBean.part}" 
-			         required="true" 
-			         requiredMessage="File not selected !!">
-            
-		    <f:validator validatorId="FileUploadValidator" />
-		</h:inputFile>
-		<h:message style="color: red" for="file" /><br />
- 
-		<h:commandButton id="submit" update="@form" execute="@form"
-		                 action="#"
-			             value="upload file" >
-			              
-			             </h:commandButton><br />
- 
-        
-		<p:outputLabel value="#{loginBean.statusMessage}"
-			          rendered="#{not empty loginBean.statusMessage}" /></td></tr> --></table>
-			          </div>
         <div class="gsTitleDiv">Contact Information<br/><hr/></div>
        <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
         
@@ -173,14 +140,14 @@
             
             <td width="10%"><p:outputLabel value="Block :"/>
              </td>          
-            <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}">
+            <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}" valueChangeListener="#{loginBean.blockChangeListener}">
             <f:selectItems value="#{cls_UserBean.blockNameList}"/>
-             <p:ajax event="change" update="str_House" process="str_Block"/>
+             <f:ajax event="change" update="str_House" process="str_Block" immediate="true"/>
              </h:selectOneMenu>
              </td>
               <td width="10%"><p:outputLabel value="Flat No:"/>
              </td>
-             <td width="10%"><h:selectOneMenu id="str_House" value="#{loginBean.str_Flat}" >
+             <td width="10%"><h:selectOneMenu id="str_House" value="#{loginBean.str_Flat}"  >
             
             <f:selectItems value="#{loginBean.houseNoList}"/>
               
