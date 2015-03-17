@@ -25,13 +25,13 @@ public interface ApartmentDetailsDao {
 
 	List<String> getHouseNoList(String str_BlockName);
 
-	HouseDetails getHouseDetailByHouseNo(String str_HouseNo);
+	HouseDetails getHouseDetailByHouseNo(String str_HouseNo, String str_BlockName);
 
 	List<HouseDetails> getListHouseDetails(String str_BlockName);
 
 	Integer getBlockId(String str_BlockName);
 
-	User primaryOwnerDetailsByHouseNo(String str_HouseNo, int role);
+	User primaryOwnerDetailsByHouseNo(String str_BlockNo, String str_HouseNo, int role);
 
 	 
 	void saveHouseDetails1(List<HouseDetails> hDetailsList);
