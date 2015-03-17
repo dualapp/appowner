@@ -342,7 +342,7 @@ public class Cls_UserBean implements Serializable{
 			if(event.getNewValue()!=null)
 			{
 			int_UserRole=(int) event.getNewValue();
-			 System.out.println(getInt_UserRole()+"kkkkkkkkkkkkkkkk");
+			 System.out.println(getInt_UserRole()+"kkkkkkkkkkkkkkkk"+int_UserRole);
 			 user=getUserService().isUserStaying(str_HouseNo,int_UserRole);
 			 System.out.println(user+"uuuuuuuuuuuuuu");
 			 if(user!=null)
@@ -591,6 +591,7 @@ public class Cls_UserBean implements Serializable{
 				usr.setStr_Block(str_BlockName);
 				usr.setStr_PhoneNo(getStr_PhoneNo());
 				usr.setStr_Username(getStr_Username());
+				usr.setVar_ImageName1("/images/profilepic.png");
 				usr.setStr_UserRoleName("user");
 				Integer activationbit2=0;
 				System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
@@ -949,7 +950,7 @@ public class Cls_UserBean implements Serializable{
 		private User u1;
 		public User getU1() {
 			u1=new User();
-			u1=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo,1);
+			u1=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_BlockName,str_HouseNo,1);
 			return u1;
 		}
 		public void setU1(User u1) {
@@ -975,7 +976,8 @@ public class Cls_UserBean implements Serializable{
 		}
 		public HouseDetails getHousedetails() {
 			System.out.println(str_HouseNo+"hno");
-			housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo);
+			System.out.println(str_BlockName+"blokkkkkkkkkkkkkkkkkkkk");
+			housedetails=getApartmentDetailsService().getHouseDetailByHouseNo(str_HouseNo,str_BlockName);
 			System.out.println(housedetails+"Hdetails");
 			 
 			return housedetails;
@@ -986,7 +988,8 @@ public class Cls_UserBean implements Serializable{
 		public User getU() {
 
 			u=new User();
-			u=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_HouseNo,2);
+			System.out.println(str_BlockName+"blocknameeeeeeeeeeeeeeeeeeee");
+			u=getApartmentDetailsService().primaryOwnerDetailsByHouseNo(str_BlockName,str_HouseNo,2);
 			 
 			return u;
 		}
