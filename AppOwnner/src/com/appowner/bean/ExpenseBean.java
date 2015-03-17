@@ -1617,14 +1617,14 @@ public void setPool(Pool pool) {
  
 public void addPool()
 {
-	System.out.println("Poollllllllllllllllllllll");
+	 
 	pool=new Pool();
 	pool.setInt_OrganizationId(Util.getAppartmentId());
 	pool.setStr_poolAudience(str_PoolAudience);
 	pool.setInt_Vote(0l);
 	pool.setInt_userId(Util.getUserId());
 	pool.setStr_StartDate(getStr_StartDate());
-	System.out.println(getStr_EndDate()+"seemaaaaaaaaaaa");
+	 
 	pool.setStr_EndDate(getStr_EndDate());
     pool.setStr_Status(str_Status);
 	pool.setStr_CreatedBy(Util.getUserName());
@@ -1632,15 +1632,15 @@ public void addPool()
 	pool.setStr_Choise1(str_Choise1);
 	pool.setStr_Choise2(str_Choise2);
 	pool.setStr_Choise3(str_Choise3);
-	pool.setStr_Status(str_Status);
-	 
 	 
 		getExpenseService().addPool(pool);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Poll Created Successfully!", "Poll Created Successfully!"));
+		str_PoolQuestion="";
+		str_Choise1="";
+		str_Choise2="";
+		str_Choise3="";
+		str_EndDate="";
+		str_PoolAudience="";
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Created Successfully!"));
 }
 public String getStr_Choise() {
 	return str_Choise;
@@ -1936,61 +1936,56 @@ public void setMsg(String msg) {
 }
 public String addVote()
 {
-	System.out.println("sumantaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	 
 	vote=new Vote();
 	vote.setInt_OrganizationId(Util.getAppartmentId());
 	vote.setInt_UserId(Util.getUserId());
 	vote.setStr_Remark(str_Remark);
 	vote.setStr_Choise(str_Choise);
-	System.out.println(int_PoolId+"poolId");
-//	System.out.println(pool.getInt_userId()+"userId");
-	
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
 	 
-	if(onePoll!=null)
-	{
 		vote.setInt_PoolId(onePoll.getInt_PoolId());
 		isVoted=getExpenseService().isVoted(Util.getUserId(),onePoll.getInt_PoolId());
-	}
-    
-	else
-	{
-		vote.setInt_PoolId(latestPolls.getInt_PoolId());
-		 isVoted=getExpenseService().isVoted( Util.getUserId(),latestPolls.getInt_PoolId());
+	 
 		 
-    System.out.println(isVoted+"voteId");
-	}
-	if(isVoted!=null)
-	{
-		System.out.println(isVoted+"voteId1");
-		
-		
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"u have already voted Thank u for participating!", "u have already voted Thank u for participating!"));
-		
-		return null;
-	}
 	 
 	getExpenseService().addVote(vote);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Vote Successfully!", "Vote Saved Successfully!"));
-	System.out.println(int_PoolId);
-	if(onePoll!=null)
-	{
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Vote Added Successfully!"));
+	 
 	 long_Vote= getExpenseService().getTotalVote(onePoll.getInt_PoolId());
 	 onePoll.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(onePoll);
-	}
-	else
-	{
+	 
+  return null;
+}
+public String addVote1()
+{
+	 
+	vote=new Vote();
+	vote.setInt_OrganizationId(Util.getAppartmentId());
+	vote.setInt_UserId(Util.getUserId());
+	vote.setStr_Remark(str_Remark);
+	vote.setStr_Choise(str_Choise);
+	 
+	vote.setInt_PoolId(latestPolls.getInt_PoolId());
+	 isVoted=getExpenseService().isVoted( Util.getUserId(),latestPolls.getInt_PoolId());
+		 
+   
+	getExpenseService().addVote(vote);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Vote Added Successfully!"));
+	 
 	long_Vote= getExpenseService().getTotalVote(latestPolls.getInt_PoolId());
 	latestPolls.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(latestPolls);
-	}
- return null;
+	if(LoginBean.isAdmin())
+		 
+		 return "/AfrteLoginViews/Adminwelcomepage.xhtml";
+	 
+	else
+	 
+ return "/AfrteLoginViews/welcomepage.xhtml";
+	 
 }
 public void getOnePool()
 {   pool=new Pool();

@@ -1163,9 +1163,9 @@ public class LoginBean implements Serializable {
 	}
 	public void blockChangeListener(ValueChangeEvent event)
     {
-	 
+		houseNoList=new ArrayList<String>();
 	 str_Block=(String) event.getNewValue();
-	 houseNoList = new ArrayList<String>();
+	  
 		System.out.println(str_Block);
 		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_Block));
 		System.out.println(houseNoList+"house");
@@ -1505,13 +1505,13 @@ public class LoginBean implements Serializable {
 			.getExternalContext().getSession(false);
 
 	public String getPath() {
-		System.out.println(path + "path1");
 		path = (String) session.getAttribute("str_ImageName1");
-		if(path!=null)
-			path = (String) session.getAttribute("str_ImageName1");
-		else if (user != null)
-
+		if (user != null)
 			path = user.getVar_ImageName1();
+			
+		else if (path != null)
+
+			path = (String) session.getAttribute("str_ImageName1");
 		  
 		else
 			path = "/images/profilepic.png";
