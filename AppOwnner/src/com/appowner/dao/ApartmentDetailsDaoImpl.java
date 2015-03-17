@@ -95,9 +95,10 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	}
 
 	@Override
-	public HouseDetails getHouseDetailByHouseNo(String str_HouseNo) {
+	public HouseDetails getHouseDetailByHouseNo(String str_HouseNo,String str_BlockName) {
 		// TODO Auto-generated method stub
-		return (HouseDetails) sessionFactory.getCurrentSession().createQuery("from HouseDetails where str_HouseNo=? and int_ApartmentId=?").setParameter(0, str_HouseNo).setParameter(1, Util.getAppartmentId()).uniqueResult();
+		Integer blockId=(Integer) sessionFactory.getCurrentSession().createQuery("select int_BlockId  from UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, Util.getAppartmentId()).uniqueResult();
+		return (HouseDetails) sessionFactory.getCurrentSession().createQuery("from HouseDetails where int_BlockId=? and  str_HouseNo=? and int_ApartmentId=?").setParameter(0,blockId).setParameter(1, str_HouseNo).setParameter(2, Util.getAppartmentId()).uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -114,9 +115,9 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	}
 
 	@Override
-	public User primaryOwnerDetailsByHouseNo(String str_HouseNo,int role) {
+	public User primaryOwnerDetailsByHouseNo(String str_BlockNo,String str_HouseNo,int role) {
 		// TODO Auto-generated method stub
-		return (User) sessionFactory.getCurrentSession().createQuery("from User where str_Flat=? and int_UserRole=?").setParameter(0, str_HouseNo ).setParameter(1,role).uniqueResult();
+		return (User) sessionFactory.getCurrentSession().createQuery("from User where int_ApartmentId=?  and str_Block=? and str_Flat=? and int_UserRole=?").setParameter(0, Util.getAppartmentId()).setParameter(1, str_BlockNo).setParameter(2, str_HouseNo ).setParameter(3,role).uniqueResult();
 	}
 
 	 
