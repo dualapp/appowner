@@ -823,7 +823,14 @@ public class LoginBean implements Serializable {
 	public void setRoleAssign(List<String> roleAssign) {
 		this.roleAssign = roleAssign;
 	}
-	@SuppressWarnings("unused")
+	private Boolean render=true;
+	public Boolean getRender() {
+		
+		return render;
+	}
+	public void setRender(Boolean render) {
+		this.render = render;
+	}
 	public String getStr_RecoverPassword1() {
 		User u = new User();
 		u = getUserService().getUser(getStr_Email());
@@ -843,6 +850,7 @@ public class LoginBean implements Serializable {
 		System.out.println(str_firstName + "firstname");
 		str_UserName = u.getStr_Username();
 		System.out.println(Email);
+		render=false;
 		return "forgotpassword1.jsp";
 	}
 	else
