@@ -102,7 +102,7 @@
               <h:panelGroup  id="performedsddd"  rendered="#{invoiceBean.select1 eq 'Full'}" >
               <tr>
               <td><h:outputLabel value="Amount" /><font color="red" >*</font></td>
-              <td> <p:inputText id="admin2" value="#{invoiceBean.selectedInvoice.totalDue}" readonly="true"/> 
+              <td> <p:inputText id="admin2" value="#{invoiceBean.totalAmount}" readonly="true"/> 
              </td>
              </tr>
              </h:panelGroup>
@@ -123,15 +123,16 @@
              </td>
            
              </tr>
-   </table>
+ 
    
     <br/>
-   <h:panelGroup style="display:block; text-align:right">
-     <tr>
-                <td><h:commandButton id="submit" value="Confirm" action="#{invoiceBean.savePayment(invoiceBean.selectedInvoice.int_InvoiceTransactionID,invoiceBean.selectedInvoice.int_InvoiceNo)}" update="invoice"/></td>
-                <td><h:commandButton id="cancel" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
+  
+     <tr><td></td>
+                <td><h:commandButton id="submit" styleClass="btn" value="Confirm" action="#{invoiceBean.savePayment(invoiceBean.selectedInvoice.int_InvoiceTransactionID,invoiceBean.selectedInvoice.int_InvoiceNo)}" update="invoice"/>
+                <h:commandButton id="cancel" styleClass="btn" style="margin-left:2em;" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
             </tr>
-    </h:panelGroup>
+            </table>
+   
      </div>
    </h:form>
    </body>
