@@ -100,4 +100,8 @@ public class DueServiceImpl implements DueService{
 	{
 		return getDueDao().getInvoiceNo(id);
 	}
+	public DueTransaction getDueTransaction(Integer int_DueTransactionID)
+	{
+		return getDueDao().getDueTransaction(int_DueTransactionID);
+	}
 }
