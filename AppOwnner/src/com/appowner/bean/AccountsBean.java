@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -160,6 +161,20 @@ public void setStr_Organisation(String str_Organisation) {
 	public static void setId1(Integer id1) {
 		AccountsBean.id1 = id1;
 	}
+	private static double adjustmentBalance2;
+	private static double adjustmentBalance3;
+	public static double getAdjustmentBalance2() {
+		return adjustmentBalance2;
+	}
+	public static void setAdjustmentBalance2(double adjustmentBalance2) {
+		AccountsBean.adjustmentBalance2 = adjustmentBalance2;
+	}
+	public static double getAdjustmentBalance3() {
+		return adjustmentBalance3;
+	}
+	public static void setAdjustmentBalance3(double adjustmentBalance3) {
+		AccountsBean.adjustmentBalance3 = adjustmentBalance3;
+	}
 	public List<AccountsOpeningBalance> getListOpeningBalance() {
 		listOpeningBalance=new ArrayList<AccountsOpeningBalance>();
 		listOpeningBalance.addAll(getAccountsService().listOpeningBalance(Util.getAppartmentId()));
@@ -175,23 +190,27 @@ public void setStr_Organisation(String str_Organisation) {
 			{
 				id1=accounts.getInt_Accounts_OpeningID();
 				System.out.println(id1+"fkjgfjkfgj");
+				 adjustmentBalance2=accounts.getInt_Debit();
+				 adjustmentBalance3=accounts.getInt_Credit();
 			}
+			adjustmentBalance=0.0;
+			adjustmentBalance1=0.0;
 			totalAmount+=accounts.getInt_Debit();
 			totalAmount1+=accounts.getInt_Credit();
 			if(totalAmount==totalAmount1)
 			{
-				adjustmentBalance=0.0;
-				adjustmentBalance1=0.0;
+				
 				totalAdjustBalance=totalAmount;
 				totalAdjustBalance1=totalAmount1;
-				
+				adjustmentBalance=0.0;
+				adjustmentBalance1=0.0;
 			}
 			else
 			  {
 				if(totalAmount>totalAmount1)
 				{
 					adjustmentBalance1=totalAmount-totalAmount1;
-					adjustmentBalance=0.0;
+					
 					totalAdjustBalance=totalAmount+adjustmentBalance;
 					totalAdjustBalance1=totalAmount1+adjustmentBalance1;
 					
@@ -199,7 +218,7 @@ public void setStr_Organisation(String str_Organisation) {
 			  else
 			    {
 				  adjustmentBalance=totalAmount1-totalAmount;
-				  adjustmentBalance1=0.0;
+				 
 				  totalAdjustBalance=totalAmount+adjustmentBalance;
 				  totalAdjustBalance1=totalAmount1+adjustmentBalance1;
 			    }
@@ -236,16 +255,32 @@ public void setStr_Organisation(String str_Organisation) {
 	}
 	
 	public void addAccountsHead()  
-	   { System.out.println("gud"); 
+	   { System.out.println("gud");
+	   System.out.println(adjustmentBalance2+"fdkjfdjk");
+	   System.out.println(adjustmentBalance3+"dskfdkjdf");
 		System.out.println(adjustmentBalance+"hjdfjfdfd");
 		System.out.println(adjustmentBalance1+"fdkfdkfdkfd");
-		
-	
-	   System.out.println(openingDate+"dkkdffklfkf");
-	  
+		double debitBalance=adjustmentBalance2+adjustmentBalance;
+		System.out.println(debitBalance+"dfjkdffd");
+		double creditBalance=adjustmentBalance3+adjustmentBalance1;
+		System.out.println(creditBalance+"fdjfg");
+		double adjustBalance=debitBalance-creditBalance;
+		System.out.println(adjustBalance+"fdjfdjfd");
+		if(adjustBalance < 0)
+		{   System.out.println("fddfjhfdfd");
+			debitBalance=0.00;
+			creditBalance=-(adjustBalance);
+		}
+		else
+		{   System.out.println("dhffdjfdkjfdj");
+			creditBalance=0.00;
+			debitBalance=adjustBalance;
+		}
+		System.out.println(debitBalance+"dfjkfjkdfd");
+		System.out.println(creditBalance+"fdjkfdjk");
 	    System.out.println(id1+"hjhjjhj");
 	     indicator=false;
-	      getAccountsService().addBalance(openingDate,id1,adjustmentBalance,adjustmentBalance1);
+	      getAccountsService().addBalance(openingDate,id1,debitBalance,creditBalance);
 	     
 		
 	    }
@@ -633,7 +668,7 @@ public String getAccountsHead(char d)
     }
       group4=d;
  System.out.println(group4+"jbjj");
- // groups.addAll(getAccountsService().getGroups(d));
+ 
 	 return "addaccountshead.xhtml";
  }
 public String addAccountHead()
@@ -645,6 +680,8 @@ public String addAccountHead()
 	account.setBl_Default(1);
 	account.setInt_ApartmentID(Util.getAppartmentId());
 	getAccountsService().addAccountGroup(account);
+	accounthead="";
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Account Saved Successfully!"));
 	return "addaccountshead.xhtml";
 }
 private List<AccountingGroup>  groups;
@@ -661,6 +698,7 @@ public String deleteGroup(int id)
 	AccountingGroup account=new AccountingGroup();
 	account.setInt_Acct_GroupID(id);
 	getAccountsService().deleteGroup(account);
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Account Deleted Successfully!"));
 	return "addaccountshead.xhtml";
 	
 }
