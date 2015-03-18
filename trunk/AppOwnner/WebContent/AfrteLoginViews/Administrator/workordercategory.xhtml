@@ -103,9 +103,8 @@
 	<hr/>
 	 <p:commandButton   styleClass="btn"   value="Submit" update=":form:DT :form:ui-growl,CategoryNameMsg"      action="#{vendorBean.saveWorkOrderCategory}" oncomplete="handleRequest(xhr, status, args)"/>
 	
-	 &#150; &#150; <p:commandButton  onclick="multiWorkOrderDialog.hide()"   styleClass="btn"  action="workordercategory.xhtml"  value="Cancel"  >
-	 <f:ajax execute="@this" event="click"  render="@form"/>
-	 </p:commandButton> 
+	 &#150; &#150; <p:commandButton  type="reset"   styleClass="btn"    value="Cancel"  />
+	  
                 
                 </div> </p:outputPanel>
                 </h:form>
@@ -145,9 +144,8 @@
       
    <p:commandButton value="Update"   
                 update=":form:DT :form:ui-growl,CategoryNameMsg1"   styleClass="btn"   action="#{vendorBean.updateWorkOrder(ws1)}"  oncomplete="handleRequest1(xhr, status, args)" />
-   &#150; &#150; <p:commandButton value="Cancel"  onclick="multiWorkOrderDialog2.hide()" styleClass="btn"  action="workordercategory.xhtml">
-   <f:ajax execute="@this" event="click"   />
-   </p:commandButton>
+   &#150; &#150; <p:commandButton value="Cancel"  type="reset"  styleClass="btn" />
+   
     
     </div>
     </ui:repeat>
