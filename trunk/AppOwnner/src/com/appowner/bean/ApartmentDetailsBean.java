@@ -512,6 +512,18 @@ public class ApartmentDetailsBean  implements Serializable{
 		}
 		return null;
 	}
+	public String getBlockName()
+	{
+		if(str_BlockName!=null)
+		{
+			return str_BlockName;
+		}
+			else{
+				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select A Block!"));
+			return null;
+			}
+		
+	}
 	public String saveHouseDetails()
 	{ 
 		if(str_HouseNo!=null)
