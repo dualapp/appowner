@@ -71,7 +71,7 @@
                 <p:spacer width="40" height="20"/>
              <th><h:outputText  value="Account" /></th>
                <p:spacer width="40" height="20"/>
-              <td><p:commandButton id="priya" value="Go" action="#{templateBean.getListDues()}" update="ggg">
+              <td><p:commandButton id="priya" value="Go"  style="width:40px;height:20px" action="#{templateBean.getListDues()}" update="ggg">
                   </p:commandButton></td>
                              
               
@@ -87,7 +87,8 @@
          <tr><td><p:button style="width:120px;height:25px" outcome="createnewduetemplate.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150; &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="ggg" update=":form:multiDueTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiDueTemplateDialog').show()" />
        &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="ggg"     action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" >
-</p:commandButton>
+</p:commandButton>&#150; &#150;<p:commandButton style="width:120px;height:25px"  value="Refresh" onclick="history.go(0)" icon="ui-icon-refresh"/>
+              
         &#150; &#150;
         <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
@@ -210,8 +211,8 @@
                   <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
                &#150;
-          <h:commandLink action="#{templateBean.deleteDueTemplate()}"
-	   		 onclick="return confirm('Are you sure you want to delete #{dueTemplate.int_DueTemplateID}?');" >  
+          <h:commandLink action="#{templateBean.deleteDue(dueTemplate)}"
+	   		 onclick="return confirm('Are you sure you want to delete ?');" >  
 	   			<p:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
 	   				
 	   		</h:commandLink>
@@ -263,10 +264,11 @@
  <th>
     <h:outputText value="Calculation:"/><font color="red" >*</font></th>
     <td>
-   <p:selectOneRadio id="str_Calculation1" value="#{templateBean.dueTemplate1.str_Calculation}" >
+   <p:selectOneRadio id="str_Calculation1" value="#{templateBean.dueTemplate1.str_Calculation}" valueChangeListener="#{templateBean.frequencyChangeListener1}">
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
                        <f:selectItem itemLabel="None" itemValue="None"/>
+                    <p:ajax event="change" update="str_Rate" process="str_Calculation1"/>
                </p:selectOneRadio>
                 </td>
     </tr>
@@ -276,7 +278,7 @@
  <th>
     <h:outputText value="Rate:"/><font color="red" >*</font></th>
     <td>
-    <h:inputText value="#{templateBean.dueTemplate1.str_Rate}" /></td>
+    <h:inputText id="str_Rate" value="#{templateBean.dueTemplate1.str_Rate}" disabled="#{templateBean.str_Calculation eq 'None'}"/></td>
     </tr>
     <tr>
  <th>
@@ -343,7 +345,7 @@
                    <f:selectItem itemLabel="Suare Feet" itemValue="Sqft"/> &#150; &#150;&#150; &#150;&#150; 
                      <f:selectItem itemLabel="Flat" itemValue="Flat"/>
                        <f:selectItem itemLabel="None" itemValue="None"/>
-                         <p:ajax event="change"  process="str_Calculation1"/>
+                         <p:ajax event="change" update="str_Rate"  process="str_Calculation1"/>
                 </p:selectOneRadio>
                 </td>
     </tr>
@@ -353,7 +355,7 @@
  <th>
     <h:outputText value="Rate:"/><font color="red" >*</font></th>
     <td>
-    <h:inputText value="#{dueTemplate1.str_Rate}" /></td>
+    <h:inputText id="str_Rate" value="#{dueTemplate1.str_Rate}" disabled="#{templateBean.str_Calculation eq 'None'}"/></td>
     </tr>
     <tr>
  <th>
