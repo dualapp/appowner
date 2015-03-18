@@ -100,9 +100,8 @@
 	 
 	 
 	
-	  &#150; &#150; <h:commandButton  onclick="multiAssetCategoryDialog.hide()"  styleClass="btn"   ajax="false" value="Cancel"    action="assetcategory.xhtml" >
-	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton> 
+	  &#150; &#150; <p:commandButton   styleClass="btn"   type="reset"  value="Cancel" />
+	  
 	</div>
 	 
         </p:outputPanel>
@@ -133,9 +132,8 @@
               <hr/>
                <p:commandButton value="update"  styleClass="btn"   update=":form:DT :form:ui-growl,AssetCategoryMsg1"  action="#{expenseBean.updateAssetCategory(ac1)}" oncomplete="handleRequest1(xhr, status, args)"/>
                 
-            &#150; &#150;  <p:commandButton onclick="multiAssetCategoryDialog.hide()"   styleClass="btn"    value="Cancel"  ajax="false"  action="assetcategory.xhtml" >
-	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </p:commandButton> 
+            &#150; &#150;  <p:commandButton  type="reset"    styleClass="btn"    value="Cancel" />
+	   
               </div>
             
              </ui:repeat>
