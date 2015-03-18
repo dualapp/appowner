@@ -156,7 +156,34 @@ public Date getDat_Date() {
 	return dat_Date;
 	
 }
-
+private static String debitAccount;
+private static String creditAccount;
+public void accountchangeListener4(ValueChangeEvent event)
+{
+	System.out.println("fjkfgjkfgjkf");
+	debitAccount=(String)event.getNewValue();
+   System.out.println(debitAccount+"lovejjjjjjjjjjjjjjjjj");
+	
+}
+public void accountchangeListener5(ValueChangeEvent event)
+{
+	System.out.println("fjkfgjkfgjkf123");
+	creditAccount=(String)event.getNewValue();
+   System.out.println(creditAccount+"lovejjjjjjjjjjjjjjjjj");
+	
+}
+public static String getDebitAccount() {
+	return debitAccount;
+}
+public static void setDebitAccount(String debitAccount) {
+	AccountingBean.debitAccount = debitAccount;
+}
+public static String getCreditAccount() {
+	return creditAccount;
+}
+public static void setCreditAccount(String creditAccount) {
+	AccountingBean.creditAccount = creditAccount;
+}
 public void setDat_Date(Date dat_Date) {
 	this.dat_Date = dat_Date;
 }
@@ -221,15 +248,22 @@ public ManualJournal getSelectedjournal() {
 public void setSelectedjournal(ManualJournal selectedjournal) {
 	this.selectedjournal = selectedjournal;
 }
-public void addInvoiceManualJournal() throws AccountingBean
-{ try{
+public void addInvoiceManualJournal() 
+{ System.out.println("dfjudffgviugfiugfiu");
+	try{
+	if(str_Notes!=null && str_DebitAmount!=null)
+	{
 	ManualJournal journal=new ManualJournal();
     journal.setStr_OrganisationID(Util.getAppartmentId());
     journal.setDat_Date(dat_Date);
     journal.setStr_Reference(getStr_Reference());
     journal.setStr_Notes(getStr_Notes());
-    journal.setStr_DebitAccount(getStr_DebitAccount());
-    journal.setStr_CreditAccount(getStr_CreditAccount());
+    journal.setStr_DebitAccount(debitAccount);
+    System.out.println(debitAccount+"fdjfdfd");
+    System.out.println(creditAccount+"djkfdkjfdkj");
+    System.out.println(getStr_DebitAccount()+"fdkdffd");
+    System.out.println(getStr_CreditAccount()+"fdkjfdjkfd");
+    journal.setStr_CreditAccount(creditAccount);
     journal.setDbl_DebitAmount(getStr_DebitAmount());
     System.out.println(getStr_DebitAmount());
     journal.setDbl_CreditAmount(getStr_CreditAmount());
@@ -237,13 +271,21 @@ public void addInvoiceManualJournal() throws AccountingBean
    
     
     	 getAccountsService().addManualJournal(journal);
-   
+    	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("ManualJournal Saved Successfully!"));
+    	 str_Notes="";
+    	 }
+    	 else{
+        	 FacesMessage message = null;
+         FacesContext.getCurrentInstance().addMessage(null, message);
+         
+         }
   
     
-    }
+   
+}
   catch(Exception e)
   {
-	throw new  AccountingBean("CreditAmount Should be Same as DebitAmount");
+	e.printStackTrace();
   }
 
 }
@@ -1275,7 +1317,7 @@ public void setListAccountsType(List<String> listAccountsType) {
 public String saveChartOfAccount()
 {   System.out.println("jkfjkgfgjk");
 
-ChartOfAccount chartOfAccount=new ChartOfAccount();
+  ChartOfAccount chartOfAccount=new ChartOfAccount();
 	chartOfAccount.setInt_UserId(Util.getUserId());
 	chartOfAccount.setInt_ApartmentId(Util.getAppartmentId());
 	System.out.println(str_AccountName+"hjjjkjk");
@@ -1291,6 +1333,7 @@ ChartOfAccount chartOfAccount=new ChartOfAccount();
 	balance.setInt_ApartmentID(Util.getAppartmentId());
 	balance.setStr_AccountsHead(str_AccountName);
 	getAccountsService().saveOpeningAccount(balance);
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Chart Of Account Saved Successfully!"));
 	return "chartofaccount.xhtml";
 	
 	
@@ -1644,7 +1687,7 @@ public List<Double> getTotalIncome() {
 					{System.out.println("jfdjkfdjfjfd");
 					 totalIncome1=totalIncome1+balance3;
 					 System.out.println(totalIncome1+"jjjj");
-					 totalIncome.add(totalIncome1);
+					
 					}
 				 else
 				 {
@@ -1658,7 +1701,7 @@ public List<Double> getTotalIncome() {
 	  
 	    
 	  }					  
-	
+	  totalIncome.add(totalIncome1);
 	 }	
 	 totalIncome2=totalIncome2+totalIncome1;
 	}
@@ -2192,18 +2235,18 @@ public void getSearch3()
 	assetBalance=new ArrayList<Double>();
 	ListIterator list=asset.listIterator();
 	ListIterator list3=liability.listIterator();
-	System.out.println(dat_To+"hjhjjhjjj");
+	
 	while(list.hasNext())
 	{
 		String str=(String)list.next();
 		System.out.println(str);
 		Double balance=getAccountsService().getCreditAmount(str,dat_To);
 		
-		System.out.println(balance+"jkjjkjk");
+		
 		
 		
 		Double balance1=getAccountsService().getDebitAmount(str,dat_To);
-		System.out.println(balance1+"kjfgfgg");
+		
 	     if(balance1 > balance)
 	     {
 	    	balance1=balance1-balance; 
@@ -2226,14 +2269,13 @@ public void getSearch3()
 	}
 	liabilityBalance=new ArrayList<Double>();
 	while(list3.hasNext())
-	{    System.out.println(dat_ToDate+"jjkjkjk");
+	{  
 		String str=(String)list3.next();
-		System.out.println(str);
+		
 		Double balance=getAccountsService().getCreditAmount(str,dat_To);
 		
 		Double balance1=getAccountsService().getDebitAmount(str,dat_To);
-		System.out.println(balance1+"kjfgfgg");
-		System.out.println(balance+"jkjjkjk");
+		
 		 if(balance1 > balance)
 	     {
 	    	balance1=balance1-balance; 
@@ -2261,7 +2303,7 @@ public void getSearch3()
 	{
 		double balance =(double) list5.next();
 		int_blank1=int_blank1+balance;
-		System.out.println(int_blank1+"hhjhj");
+		
 	}
 	ListIterator list6=liabilityBalance.listIterator();
 	int_blank=0.00;
@@ -2269,27 +2311,27 @@ public void getSearch3()
 	{
 		double balance1 =(double) list6.next();
 		int_blank=int_blank+balance1;
-		System.out.println(int_blank+"hhjhj123");
+		
 	}
 }
 public void setTest(TabChangeEvent event)
     {
-       System.out.println("tydhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+       
      Tab activeTab = event.getTab();
      if(activeTab.getTitle().equalsIgnoreCase("TRIAL BALANCE"))
-     {   System.out.println("fdjkfdfdkjf");
+     {   
     	 getSearch2(); 
      }
      else if(activeTab.getTitle().equalsIgnoreCase("BALANCE SHEET"))
-     {    System.out.println("dfmkfdkmfgjkfg");
+     {   
     	 getSearch3(); 
     	 getNetProfit();
      }
      else if(activeTab.getTitle().equalsIgnoreCase("PROFIT AND LOSS"))
      {   getSearch1();
-    	 System.out.println("dfkjfdkjfdkjgfkj");
+    	 
      }
-     System.out.println(activeTab.getTitle()+"gfgffg");
+    
      
     }
 	

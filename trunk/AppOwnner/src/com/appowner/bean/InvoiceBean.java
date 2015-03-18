@@ -32,7 +32,7 @@ import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class InvoiceBean  extends RuntimeException implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{InvoiceService}")
@@ -866,7 +866,7 @@ private List<DueTransaction> listDueTransaction;
 		    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 		    	 tax2.add(taxAmount);
 		    	
-		    	 if(str3.equalsIgnoreCase("Sqrt"))
+		    	 if(str3.equalsIgnoreCase("Sqft"))
 		    	  {   Double sqrt=getInvoiceService().getSqft(ddd);
 		    	      System.out.println("dksdsk");
 		    	      totalAmount=template.getStr_Rate()*sqrt;
@@ -932,7 +932,7 @@ private List<DueTransaction> listDueTransaction;
 				Flash flash = facesContext.getExternalContext().getFlash();
 				flash.setKeepMessages(true);
 				flash.setRedirect(true);
-				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "This invoice already exists for the selected apartment. Duplicate invoice cannot be created.!"));
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"This invoice already exists for the selected apartment. Duplicate invoice cannot be created.!", "This invoice already exists for the selected apartment. Duplicate invoice cannot be created.!"));
 		}
 		else
 		{
@@ -1096,6 +1096,7 @@ public void setSelectedInvoice(InvoiceTransaction selectedInvoice)
 }
 private InvoiceTransaction invoice1;
 public InvoiceTransaction getInvoice1() {
+	invoice1=getInvoiceService().getInvoice(id);
 	return invoice1;
 }
 public void setInvoice1(InvoiceTransaction invoice1) {
@@ -1112,13 +1113,28 @@ public boolean isIndicate() {
 public void setIndicate(boolean indicate) {
 	this.indicate = indicate;
 }
+private static Integer id;
+public static Integer getId() {
+	return id;
+}
+public static void setId(Integer id) {
+	InvoiceBean.id = id;
+}
+
+public String select()
+{   System.out.println(selectedInvoice.getInt_InvoiceTransactionID()+"fjfdjfdjffg");
+   id=selectedInvoice.getInt_InvoiceTransactionID();
+	return "viewinvoice.xhtml";
+}
 public String cancel()
 
 {   int id=selectedInvoice.getInt_InvoiceTransactionID();
+     System.out.println(id+"fjgfjkgfgfkj");
   str_Status=getInvoiceService().getStatus(id);
   System.out.println(str_Status+"jnfdjkdkjf");
   if(str_Status.equalsIgnoreCase("Due")||str_Status.equalsIgnoreCase("Partial Due"))
   {   indicate=false;
+  totalAmount=selectedInvoice.getTotalBalance();
     return "quickpayment.xhtml";
   }
   else if(str_Status.equalsIgnoreCase("Paid"))
@@ -1128,7 +1144,7 @@ public String cancel()
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "This invoice is already paid.!"));
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"This invoice is already paid.!", "This invoice is already paid.!"));
  
 	  return null;
   }
@@ -1142,6 +1158,7 @@ private List<String> dueList3;
 public List<String> getDueList3(String fff,String ddd) {
 	System.out.println("fjjfdfd");
 	System.out.println(fff+"fjdfkjf");
+	System.out.println(ddd+"fgkjfjkfkj");
 	 listDues=getInvoiceService().taxList(fff);
 	
 	 String[] strArray = listDues.split(",");
@@ -1202,20 +1219,12 @@ System.out.println("fddffdk");
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Delete Invoice? Payments recorded against this invoice will also be deleted.!"));
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Delete Invoice? Payments recorded against this invoice will also be deleted.!", "Delete Invoice? Payments recorded against this invoice will also be deleted.!"));
    
 
 		getInvoiceService().deleteInvoice(id);
 		getInvoiceService().deleteDues(str);
     return "invoice.xhtml?faces-redirect=true";
 }
-private int index = 0;
 
-public int getIndex() {
-    return index;
-}
-
-public void setIndex(int index) {
-    this.index = index;
-}
 }

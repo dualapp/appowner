@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 
 
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UIData;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.component.html.HtmlInputHidden;
@@ -23,8 +24,12 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.validator.FacesValidator;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
 
 import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.selectcheckboxmenu.SelectCheckboxMenu;
 import org.primefaces.model.DualListModel;
 
 import com.appowner.model.AccountsOpeningBalance;
@@ -39,7 +44,8 @@ import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
-public class TemplateBean implements Serializable {
+
+public class TemplateBean implements Serializable,Validator {
 	private static final long serialVersionUID = 1L;
 	
 	@ManagedProperty(value = "#{TemplateService}")
@@ -169,7 +175,7 @@ public class TemplateBean implements Serializable {
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate  added Successfully!", "  DueTemplate added Successfully!"));
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate  added Successfully!", " DueTemplate added Successfully!"));
 		return "duetemplate.xhtml";
 		}
 		catch(Exception e)
@@ -200,38 +206,44 @@ public class TemplateBean implements Serializable {
 	public String saveDueTemplate() {
 		 
 	
-	System.out.println("fkjfgkjfgjkkfj");
-	//dueTemplate1.setStr_Calculation(getStr_Calculation());
-	//dueTemplate1.setStr_Frequency(getStr_Frequency());
+	
+	if(str_Calculation.equalsIgnoreCase("None"))
+	{
+		dueTemplate1.setStr_Rate(0.00);
+	}
 		getTemplateService().updateDueTemplate(dueTemplate1);
 		
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
 		
 		
-		
-		return "duetemplate.xhtml";
+		 return "duetemplate.xhtml?faces-redirect=true";
 	}
-	private DataTable dataTable;
-  public DataTable getDataTable() {
-	 
-		return dataTable;
-	}
-	public void setDataTable(DataTable dataTable) {
-		this.dataTable = dataTable;
-	}
-	public void getDueTemplate()
-	{
-		 dueTemplate1=(DueTemplate) dataTable.getRowData();
-		 System.out.println(dueTemplate1.getInt_DueTemplateID());
-		 getDueTemplate2(dueTemplate1.getInt_DueTemplateID());
-	}
-
+	
+	
    
 	
-	public String deleteDue(){
-		DueTemplate dueTemplate=new DueTemplate();
-		System.out.println(int_DueTemplateID);
-	dueTemplate.setInt_DueTemplateID(int_DueTemplateID);
-	getTemplateService().deleteDue(dueTemplate);
+	public String deleteDue(DueTemplate dueTemplate){
+		System.out.println("fdkjfkjgfkjgfkjg");
+	
+		System.out.println(dueTemplate.getInt_DueTemplateID()+"dhhjhjf");
+		dueTemplate.setInt_DueTemplateID(dueTemplate.getInt_DueTemplateID());
+		 String str=dueTemplate.getStr_DueTemplate();
+    	 System.out.println(str+"fjfgvkjgfjkgfjk");
+ 	    String id1=getTemplateService().detectDueTemplate(str);
+ 	    System.out.println(id1+"jffkjfj");
+ 	   FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+ 	    if(id1!=null)
+ 	    {
+ 	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Due Template. Delete the due instances and try again.", "Cannot delete Due Template. Delete the due instances and try again."));
+ 	    }
+ 	    else
+ 	    {
+	     getTemplateService().deleteDue(dueTemplate);
+	     FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
+ 	    }
 		return "duetemplate.xhtml?faces-redirect=true";
 	  
 	}
@@ -253,6 +265,7 @@ public class TemplateBean implements Serializable {
 	    for (DueTemplate template :selectedDueTemplate)
 	    {	
 	    	 String str=template.getStr_DueTemplate();
+	    	 System.out.println(str+"fjfgvkjgfjkgfjk");
 	 	    String id=getTemplateService().detectDueTemplate(str);
 	 	    System.out.println(id+"jffkjfj");
 	 	    
@@ -267,7 +280,7 @@ public class TemplateBean implements Serializable {
 	        }
 	    if(indicator==true)	
 	    {
-	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Last date cannot be before from date", "Last date cannot be before from date"));	
+	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Due Template. Delete the due instances and try again.", "Cannot delete Due Template. Delete the due instances and try again."));	
 	    }
 			
 	    else
@@ -315,6 +328,10 @@ public class TemplateBean implements Serializable {
 			System.out.println("jhfjfgjkkjgfjkg");
 			System.out.println(str_Calculation);
 			System.out.println(str_Frequency);
+			if(str_Calculation.equalsIgnoreCase("None"))
+			{   
+				dueTemplate.setStr_Rate(0.00);
+			}
 		//	dueTemplate.setStr_Frequency(getStr_Frequency());
 		//	dueTemplate.setStr_Calculation(getStr_Calculation());
 			System.out.println(dueTemplate.getStr_Calculation());
@@ -330,6 +347,10 @@ public class TemplateBean implements Serializable {
 
 		} else
 			getTemplateService().saveDueTemplate(dueTemplate);
+		return "duetemplate.xhtml";
+	}
+	public String reset() 
+	{  System.out.println("fdjkfgkjgfkf");
 		return "duetemplate.xhtml";
 	}
 	//TAX TEMPLATE
@@ -370,7 +391,7 @@ public class TemplateBean implements Serializable {
 		taxtemplate.setStr_TaxName(getStr_TaxName());
 		taxtemplate.setInt_TaxExemption(getInt_TaxExemption());
 	    getTemplateService().saveTaxTemplate(taxtemplate);
-		
+	    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("TaxTemplate Saved Successfully!"));
 		
          
            return "taxtemplate.xhtml?faces-redirect=true";
@@ -381,7 +402,7 @@ public class TemplateBean implements Serializable {
 	{
 		e.printStackTrace();
 	}
-	return "infomation.xhtml?faces-redirect=true";
+	   return "taxtemplate.xhtml?faces-redirect=true";
 	}
 	private List<TaxTemplate> listTaxs;
 	public List<TaxTemplate> getListTaxs() {
@@ -407,13 +428,15 @@ public class TemplateBean implements Serializable {
 	public String saveTaxTemplate()
 	{
 		getTemplateService().updateTaxTemplate(taxTemplate);
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));  
 		return "taxtemplate.xhtml";
 	}
-	public String deleteTax(){
-		TaxTemplate tax=new TaxTemplate();
+	public String deleteTax(TaxTemplate tax){
 		
-		tax.setInt_TaxTemplateID(int_TaxTemplateID);
-	getTemplateService().deleteTax(tax);
+		
+		System.out.println(tax.getInt_TaxTemplateID()+"fdkjfdkjffgkj");
+	  getTemplateService().deleteTax(tax);
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 		return "taxtemplate.xhtml?faces-redirect=true";
 	  
 	}
@@ -455,7 +478,7 @@ public class TemplateBean implements Serializable {
 				Flash flash = facesContext.getExternalContext().getFlash();
 				flash.setKeepMessages(true);
 				flash.setRedirect(true);
-				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Deleted Successfully!", "Deleted Successfully!"));
 		    } 
 
 	     getTemplateService().deleteTax1(delete);
@@ -551,7 +574,7 @@ public class TemplateBean implements Serializable {
 	  invoicetemplate.setStr_Description(getStr_Description());
 	  invoicetemplate.setStr_DueInvoiceTemplate(str);
 	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
-	 
+	  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Invoice Template Saved Successfully!"));
          return "invoicetemplate.xhtml?faces-redirect=true";
 		
 	}
@@ -602,8 +625,11 @@ public class TemplateBean implements Serializable {
 	}
 	public String saveInvoiceTemplate()
 	{   invoiceTemplate.setStr_DueInvoiceTemplate(str);
-	    invoiceTemplate.setStr_Frequency(getStr_Frequency());
+	   // invoiceTemplate.setStr_Frequency(getStr_Frequency());
+		System.out.println("fgkjfgkjgf");
+		System.out.println(str_Frequency+"vfkkgkf");
 		getTemplateService().updateInvoiceTemplate(invoiceTemplate);
+		  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
 		return "invoicetemplate.xhtml";
 	}
 	private List<String> dueTemplates;
@@ -620,7 +646,14 @@ public class TemplateBean implements Serializable {
 	   System.out.println(str1_Frequency+"fjkjkkjfd");
 	    dueTemplates=new ArrayList<String>();
 	     dueTemplates.addAll(getTemplateService().getDueTemplate(str1_Frequency));
+	     if(dueTemplates.isEmpty())
+	     {    System.out.println("fdkfdkjfkjf");
+	    	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("When no template is selected .You must select atleast one due template to create invoice template!")); 
+	     }
+	     
+	    
 	        return dueTemplates;
+	    
 		
 	}
      @SuppressWarnings("rawtypes")
@@ -642,7 +675,7 @@ public class TemplateBean implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void roleChangeListener(ValueChangeEvent event)
+	public void roleChangeListener(ValueChangeEvent event) 
 	{   System.out.println("hi");
 		list1.addAll((List<String>)event.getNewValue());
 		System.out.println(list1);
@@ -653,12 +686,12 @@ public class TemplateBean implements Serializable {
 		  out.append(",");
 		}
 		str=out.toString();
-	System.out.println(str);
+	System.out.println(str+"fdkdfkfgk");
 	
-	
-	//	Str1 = str.substring(0, str.lastIndexOf(","));
-//	System.out.println(Str1);
 		}
+	
+	
+
 	private String description;
 	public String getDescription() {
 		return description;
@@ -810,7 +843,7 @@ public class TemplateBean implements Serializable {
 		messagetemplate.setStr_Title(getStr_Title());
 		messagetemplate.setStr_Description(getStr_Description());
 	     getTemplateService().saveMessageTemplate(messagetemplate);
-		
+	     FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("MessageTemplate Saved Successfully!"));
 		return "messagetemplate.xhtml";
 	   }
 		catch(Exception e)
@@ -846,14 +879,16 @@ public class TemplateBean implements Serializable {
 	public String saveMessageTemplate()
 	{   System.out.println("hujy");
 		getTemplateService().updateMessageTemplate(messageTemplate);
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("MessageTemplate Updated Successfully!"));
 		return "messagetemplate.xhtml?faces-redirect=true";
 	}
 	
-	public String deleteMessage(){
-		MessageTemplate message=new MessageTemplate();
-		System.out.println(int_DueTemplateID);
-		message.setInt_MessageTemplateID(int_MessageTemplateID);
-	getTemplateService().deleteMessage(message);
+	public String deleteMessage(MessageTemplate message){
+		System.out.println(message+"dfjfdjfdfdjk");
+		System.out.println(message.getInt_MessageTemplateID());
+		
+	  getTemplateService().deleteMessage(message);
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 		return "messagetemplate.xhtml?faces-redirect=true";
 	  
 	}
@@ -903,5 +938,11 @@ public class TemplateBean implements Serializable {
 
 	     getTemplateService().deleteMessage1(delete);
 		    return "messagetemplate.xhtml?faces-redirect=true";
+		}
+		@Override
+		public void validate(FacesContext context, UIComponent component,
+				Object value) throws ValidatorException {
+			// TODO Auto-generated method stub
+			
 		}
 }

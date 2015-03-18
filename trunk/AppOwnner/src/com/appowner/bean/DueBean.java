@@ -12,10 +12,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
+
 
 
 
@@ -33,7 +35,7 @@ import com.appowner.util.Util;
 
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 
 public class DueBean implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -247,7 +249,7 @@ public class DueBean implements Serializable{
 			due.setInt_Year(getInt_Year());
 			due.setStr_InitiatedOn(getStr_InitiatedOn());
 			due.setDat_LastDate(getDat_LastDate());
-			due.setStr_Organisation(int__Organisation);
+			due.setStr_Organisation(Util.getAppartmentId());
 			due.setStr_Block(getStr_Block());
 			due.setStr_ApartmentNo(getStr_ApartmentNo());
 			due.setDbl_DueAmount(getDbl_DueAmount());
@@ -352,7 +354,7 @@ public class DueBean implements Serializable{
 	    if(list.hasNext())
 	   {
 			dbl_DueAmount=0.00;
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "This due already exists for the selected apartment. Duplicate dues cannot be created.!"));
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"This due already exists for the selected apartment. Duplicate dues cannot be created.", "This due already exists for the selected apartment. Duplicate dues cannot be created.!"));
    		System.out.println("jjkjkjkjkdf");
    		return dbl_DueAmount;
 		}
@@ -394,10 +396,29 @@ public class DueBean implements Serializable{
 	public void setIndicator1(boolean indicator1) {
 		this.indicator1 = indicator1;
 	}
+	private DueTransaction dueTranasction=new DueTransaction() ;
+	public DueTransaction getDueTranasction() {
+		dueTranasction=getDueService().getDueTransaction(id);
+		System.out.println(dueTranasction.getInt_DueTransactionID()+"fkjfgjkfgkj");
+		return dueTranasction;
+	}
+	public void setDueTranasction(DueTransaction dueTranasction) {
+		this.dueTranasction = dueTranasction;
+	}
+	private static Integer id;
+	public static Integer getId() {
+		return id;
+	}
+	public static void setId(Integer id) {
+		DueBean.id = id;
+	}
 	public String select()
 	{  System.out.println("hhhhhh");
+		System.out.println(selectedDue.getInt_DueTransactionID()+"gfvgfg");
+		id=selectedDue.getInt_DueTransactionID();
+		dueTranasction=getDueService().getDueTransaction(selectedDue.getInt_DueTransactionID());
+		System.out.println(dueTranasction.getStr_Status()+"ffgkjfgjk");
 		return "viewuserdues.xhtml";
-		
 	}
 	public String deleteDues(){
 		System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
@@ -411,11 +432,11 @@ public class DueBean implements Serializable{
 		flash.setRedirect(true);
 		if(track==true)
 		{   System.out.println("fdjkdfkjfdfd");
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "Cannot delete Due . Delete the invoice instances and try again.!"));
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Due . Delete the invoice instances and try again.!", "Cannot delete Due . Delete the invoice instances and try again.!"));
 		}
 		else
 		{	
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message!", "Delete Due? Payments recorded against this due will also be deleted.!"));
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Delete Due? Payments recorded against this due will also be deleted.!", "Delete Due? Payments recorded against this due will also be deleted.!"));
 		getDueService().deleteDues(id);
 		System.out.println("hjjcjdf");
 		}
