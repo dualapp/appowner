@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -71,7 +72,14 @@ public class AccountsDaoImpl implements AccountsDao{
       			openingbalance1.setStr_AccountsHead(openingbalance.getStr_AccountsHead());
       			openingbalance1.setInt_Credit(0.00);
       			openingbalance1.setInt_Debit(0.00);
+      		Date dat_openingDate= new java.util.Date();
+      			Calendar cal1 = Calendar.getInstance();
+
+
       			
+      			dat_openingDate=cal1.getTime();
+      			System.out.println(dat_openingDate+"cdcfkcf");
+      			openingbalance1.setDat_openingDate(dat_openingDate);
       			openingbalance1.setInt_ApartmentID(Util.getAppartmentId());
       			
       		
@@ -86,15 +94,15 @@ public class AccountsDaoImpl implements AccountsDao{
       	return balance;
 	}
 	public void addAccounts(Integer int_Accounts_OpeningID, Double int_Debit)
-	{   String hql="update  AccountsOpeningBalance  set int_Debit =?  where int_Accounts_OpeningID =?";
+	{   String hql="update  AccountsOpeningBalance  set int_Debit =?,int_Credit=?  where int_Accounts_OpeningID =?";
         
-	  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_Debit).setParameter(1,int_Accounts_OpeningID).executeUpdate();
+	  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_Debit).setParameter(1,0.00).setParameter(2,int_Accounts_OpeningID).executeUpdate();
 	}
 	public void saveAccounts(Integer int_Accounts_OpeningID, Double int_Credit)
 	{
-		String hql="update  AccountsOpeningBalance  set int_Credit =?  where int_Accounts_OpeningID =?";
+		String hql="update  AccountsOpeningBalance set int_Debit =?,int_Credit=?  where int_Accounts_OpeningID =?";
       
-	  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_Credit).setParameter(1,int_Accounts_OpeningID).executeUpdate();
+	  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,0.00).setParameter(1, int_Credit).setParameter(2,int_Accounts_OpeningID).executeUpdate();
 		
 	}
 	public void addManualJournal(ManualJournal journal){
@@ -260,12 +268,20 @@ public class AccountsDaoImpl implements AccountsDao{
 		System.out.println(str+"fgtkfjgfkgfkj");
 		if(id1==null && str==null)
 		{
-		String hql="select int_Debit from AccountsOpeningBalance where int_Accounts_OpeningID=2";
-		Double sss=(Double)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).uniqueResult();
+		String hql="select int_Debit from AccountsOpeningBalance where str_AccountsHead='Income from Resident' and int_ApartmentID=? and dat_openingDate <=?";
+		Double sss=(Double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setDate(1, openingdate).setCacheable(true).uniqueResult();
 		System.out.println(sss+"fklfgkgfk");
-		String hql4="select int_Credit from AccountsOpeningBalance where int_Accounts_OpeningID=2";
-		Double sss5=(Double)getSessionFactory().getCurrentSession().createQuery(hql4).setCacheable(true).uniqueResult();
+		if(sss==null)
+		{
+			sss=0.00;
+		}
+		String hql4="select int_Credit from AccountsOpeningBalance where str_AccountsHead='Income from Resident' and int_ApartmentID=? and dat_openingDate <=?";
+		Double sss5=(Double)getSessionFactory().getCurrentSession().createQuery(hql4).setParameter(0,Util.getAppartmentId()).setDate(1, openingdate).setCacheable(true).uniqueResult();
 		System.out.println(sss5+"fjkfgkjfgkj");
+		if(sss5==null)
+		{
+			sss5=0.00;
+		}
 		str="Income from Resident";
 		System.out.println(str+"fdkmlfdkjgfkgfkj");
 		String hql1="select date_Duration from Expense where int_AppartmentId=? and str_AssetName=? and str_ExpenseType='Expense' and date_Duration <=?";
@@ -819,9 +835,14 @@ public class AccountsDaoImpl implements AccountsDao{
 	public double getCreditAmount(String str, Date dat_ToDate)
 	{
 		getApartmentID();
-		double amounts=0.00;
-	amounts=(double) getSessionFactory().getCurrentSession().createQuery("select int_Credit from AccountsOpeningBalance where str_AccountsHead=? and int_ApartmentID=? and dat_openingDate <=?").setParameter(0,str).setParameter(1,Util.getAppartmentId()).setDate(2, dat_ToDate).setCacheable(true).uniqueResult();
+		Double amounts=0.00;
+	amounts=(Double) getSessionFactory().getCurrentSession().createQuery("select int_Credit from AccountsOpeningBalance where str_AccountsHead=? and int_ApartmentID=? and dat_openingDate <=?").setParameter(0,str).setParameter(1,Util.getAppartmentId()).setDate(2, dat_ToDate).setCacheable(true).uniqueResult();
 	System.out.println(amounts+"gkjgfkjgkgf");
+	if(amounts==null)
+	{
+		amounts=0.00;
+	}
+	System.out.println(amounts+"dflkfdkfd");
 		if(str.equalsIgnoreCase("Income from Resident"))
 		{    String hql="select totalDue from InvoiceTransaction where dat_InvoiceDate <=? AND int_Organisation=?";
 		  List<Double>	amount=getSessionFactory().getCurrentSession().createQuery(hql).setDate(0, dat_ToDate).setCacheable(true).setParameter(1,apartmentID).list();
@@ -876,10 +897,15 @@ public class AccountsDaoImpl implements AccountsDao{
 	public double getDebitAmount(String str, Date dat_ToDate)
 	{
 		getApartmentID();
-		System.out.println(dat_ToDate+"fgklmkghkl");
-		double amounts=0.00;
-		amounts=(double) getSessionFactory().getCurrentSession().createQuery("select int_Debit where str_AccountsHead=? and int_ApartmentID=? and dat_openingDate <=?").setParameter(0,str).setParameter(1,Util.getAppartmentId()).setDate(2, dat_ToDate).setCacheable(true).uniqueResult();
-		System.out.println(amounts+"gkjgfkjgkgf1234");
+		
+		Double amounts=0.00;
+		amounts=(Double) getSessionFactory().getCurrentSession().createQuery("select int_Debit from AccountsOpeningBalance where str_AccountsHead=? and int_ApartmentID=? and dat_openingDate <=?").setParameter(0,str).setParameter(1,Util.getAppartmentId()).setDate(2, dat_ToDate).setCacheable(true).uniqueResult();
+		
+		if(amounts==null)
+		{
+			amounts=0.00;
+		}
+		System.out.println(amounts+"fdkmfdlkfdlk");
 		if(str.equalsIgnoreCase("Accounts Receivable"))
 		{    String hql="select totalDue from InvoiceTransaction where dat_InvoiceDate <=? AND int_Organisation=?";
 		  List<Double>	amount=getSessionFactory().getCurrentSession().createQuery(hql).setDate(0, dat_ToDate).setCacheable(true).setParameter(1,apartmentID).list();
@@ -949,8 +975,8 @@ public class AccountsDaoImpl implements AccountsDao{
 			String hql="select str_AccountName from ChartOfAccount  where ch_Group='E' AND int_ApartmentId=0 or int_ApartmentId=?";
 			 
 			List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,apartmentID).list();
-			System.out.println(ravenueList+"jjjkjkj");
-		//	ravenueList.remove(0);
+			
+	
 			return ravenueList; 
 	}
 	
