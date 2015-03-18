@@ -22,24 +22,46 @@
            height:25px;
            weight:200px;
           }
-      </style>	
+     
+       .line
+       {
+         margin-left:1em;
+       }
+        .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
       
+    </style>
 </h:head>
-
-
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/invoice.jpg" height="50" width="50"></img> <span class="title">Chart of Account</span>
+					
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+ 
     <h:form>
    	<h:body styleClass="width:40">
+   	<p:growl id="ui-growl" globalOnly="true" sticky="true" />
  <div id="page3" >
-    <div class="gsTitleDiv">Chart Of Account<br/><hr/></div> 
+   
  
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
  
                <td><h:outputLabel value="Organisation:*" /> </td>
               
-              <td><h:selectOneMenu id="str_Organisation" value="#{expenseBean.str_OrganizationName}"  >
-                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
-                  <f:selectItem itemLabel="#{expenseBean.str_OrganizationName}"  itemValue="#{expenseBean.str_OrganizationName}" />
-                 </h:selectOneMenu>
+              <td><h:inputText id="str_Organisation" value="#{expenseBean.str_OrganizationName}"  >
+                   </h:inputText>
              </td>
              </tr>
              </table>
@@ -48,11 +70,11 @@
  
  <table style="width: 90%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" border="2">
        <tr>
-       <td><h:outputText value="Asset Groups" /><p:spacer height="10%" weight="20%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group)}">
+       <td><font color="red"><h:outputText value="Asset Groups" /></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group)}">
         </h:commandButton> </td>
-       <td> <h:outputText value="RevenueGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group1)}"/></td>
-        <td> <h:outputText value="LiabilityGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group2)}"/></td>
-         <td> <h:outputText value="ExpenseGroups"/><p:spacer height="10%" weight="10%"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group3)}"/></td>
+       <td><font color="red"><h:outputText value="RevenueGroups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group1)}"/></td>
+        <td><font color="red"> <h:outputText value="LiabilityGroups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group2)}"/></td>
+         <td><font color="red"> <h:outputText value="ExpenseGroups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group3)}"/></td>
        </tr>
      
 	   
@@ -86,7 +108,7 @@
                
                         
         </table>
-         <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="500">
+         <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="280" width="450">
         <p:outputPanel id="multiChartOfAccountDetail" style="text-align:center;">
         <table >
 	<tr><td> 
@@ -104,7 +126,7 @@
 	   <p:ajax event="change" partialSubmit="true"/>
                        </h:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Name:"/></td><td><h:inputText   value="#{accountingBean.str_AccountName}"/></td></tr>
-	<tr><td><p:commandButton  id="submit"  value="Submit"   action="#{accountingBean.saveChartOfAccount()}"   />
+	<tr><td></td><td><p:commandButton styleClass="btn"  id="submit"  value="Submit"   action="#{accountingBean.saveChartOfAccount()}" ajax="false"  />
 	
 	</td> </tr>  
 	</table>

@@ -23,22 +23,32 @@
            height:25px;
            weight:250px;
           }
+          .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
+
+}
       </style>	
 </h:head>
-<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
+<table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
 				<td> 
 					<img src="#{expenseBean.str_Name}images/invoice.jpg" height="50" width="50"></img> <span class="title">Invoice Template</span>
 					
 				</td>
-				<td align="left"><a href="invoicetemplate.xhtml">Back to Grid</a></td>
+				<td ><a href="invoicetemplate.xhtml"> &lt;&lt; Back to Grid</a></td>
 			</tr>
 		</tbody>
 	</table>
 <body  bgcolor="pink">
   <h:form id="form" prependId="false">
- 
+ <p:growl id="ui-growl" globalOnly="true" sticky="true" />
   <div id="page3"> 
     <div class="gsTitleDiv"> Create Invoice Template<br/><hr/></div>
   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -68,19 +78,20 @@
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
                         <f:selectItem itemLabel="One Time" itemValue="One Time"/>
-                         <p:ajax event="change" update="str_DueInvoiceTemplate" process="str_Frequency"/>
+                         <p:ajax event="change" update="str_DueInvoiceTemplate,ui-growl" process="str_Frequency"/>
                  </p:selectOneMenu></td>
             </tr>
             <tr>
           
            <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
-            <td><p:selectCheckboxMenu id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" requiredMessage="Choose Atleast One Due Template ">
+            <td><p:selectCheckboxMenu id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" validatorMessage="Choose Atleast One Due Template ">
                
               <f:selectItems value="#{templateBean.dueTemplates}"/>
              
-          </p:selectCheckboxMenu>
+            <p:ajax event="change"  process="str_DueInvoiceTemplate"/>
+         </p:selectCheckboxMenu>
            </td>
-           <td><p:message for="str_DueInvoiceTemplate" dispay="text"/></td>
+           <td><p:message for="str_DueInvoiceTemplate" dispay="text" /></td>
             </tr>
            
           
