@@ -22,6 +22,16 @@
            height:25px;
            weight:250px;
           }
+          .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
+
+}
       </style>	
     
     </h:head>
@@ -38,7 +48,7 @@
 		</tbody>
 	</table>
   <h:form id="form" >
-  <p:growl id="growl" showDetail="true" sticky="true" />  
+  <p:growl id="ui-growl" globalOnly="true" sticky="true" />  
    <div id="page3"> 
    <div class="gsTitleDiv">Template<br/><hr/></div>
    
@@ -80,7 +90,7 @@
                         <f:selectItem itemLabel="Q4[JAN-MAR]" itemValue="Q4[JAN-MAR]"/>
                        <p:ajax event="change"  process="str_Period"  partialSubmit="true" update="int_Year"/>  
                  </h:selectOneMenu>
-           <h:selectOneMenu  value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Monthly'}" valueChangeListener="#{dueBean.periodChangeListener}">
+           <h:selectOneMenu  value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Monthly'}" valueChangeListener="#{dueBean.periodChangeListener}" onChange="submit();">
             <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
@@ -94,12 +104,12 @@
                      <f:selectItem itemLabel="OCT" itemValue="OCT"/>
                        <f:selectItem itemLabel="NOV" itemValue="NOV"/>
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
-                        <p:ajax event="change"  process="str_Period"  partialSubmit="true" update="int_Year"/>  
+                        <f:ajax event="change"  process="str_Period" partialSubmit="true" />  
                  </h:selectOneMenu>
                   <h:selectOneMenu  value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Yearly' || dueBean.periodIndicator eq 'One Time' || dueBean.str_DueTemplate1 eq null}" valueChangeListener="#{dueBean.periodChangeListener}">
                   
                    <f:selectItem itemLabel="N/A" itemValue="N/A"/>
-                   <p:ajax event="change"  process="str_Period"  partialSubmit="true" update="int_Year"/>  
+                   <p:ajax event="change"  process="str_Period"   />  
                    </h:selectOneMenu>
                   
                  </h:panelGroup></td>
@@ -107,7 +117,7 @@
          <tr>
             <td> <h:outputText  value="Year" /><font color="red" >*</font></td>
            <td> <h:selectOneMenu id="int_Year" value="#{dueBean.int_Year}" valueChangeListener="#{dueBean.periodChangeListener1}">
-                   <f:selectItem itemLabel="2014" itemValue="2014"/>
+                  <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
                        <f:selectItem itemLabel="2016" itemValue="2016"/>
                         <f:selectItem itemLabel="2017" itemValue="2017"/>
@@ -156,7 +166,7 @@
               <td><h:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}" valueChangeListener="#{dueBean.apartmentChangeListener}"  required="true" requiredMessage="ApartmentNo Should not Empty" oncomplete="PF('multiDuesDialog').show()">
                    <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_BlockNo}" />
-                    <p:ajax event="change" update="dbl_DueAmount,dbl_TotalDueAmount,growl" process="str_ApartmentNo"/>
+                    <p:ajax event="change" update="dbl_DueAmount,dbl_TotalDueAmount,ui-growl" process="str_ApartmentNo" />
                  </h:selectOneMenu>
              </td>
               <td><p:message for="str_ApartmentNo" dispay="text"/></td>

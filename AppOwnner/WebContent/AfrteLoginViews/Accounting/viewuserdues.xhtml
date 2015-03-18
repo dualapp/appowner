@@ -7,7 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 	<ui:define name="content">
-	 
+	
 <h:head>
     <title>Company Registration Edition </title>
        <style type="text/css">
@@ -39,15 +39,17 @@ template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
  <h:form>
  
  <h:body>
+   <ui:repeat value="#{dueBean.dueTranasction}" var="dueTransaction1">  
  <div id="page3"> 
 	  <div class="gsTitleDiv">Template<br/><hr/></div>
-     
+   
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+     
            <tr>
-           <td> <h:outputText value="Account:" />&#160; &#160; &#160; &#160; &#160; </td>
-         <td>   <h:inputText value="Income From Residents" /></td>
+           <td> <h:outputText value="Account:" /> <p:spacer height="10px" width="50px"></p:spacer></td>
+         <td>   <h:inputText value="#{dueTransaction1.str_Accounts}" /></td>
             <td > <h:outputText value="DueTemplate:" /></td>
-         <td>   <h:inputText value="#{dueBean.selectedDue.str_DueTemplate}" /></td>
+         <td>   <h:inputText value="#{dueBean.dueTranasction.str_DueTemplate}" /></td>
            </tr>
         </table>
         </div>
@@ -57,16 +59,16 @@ template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
         
          <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr>
-           <td> <h:outputText value="Period:" /> &#160; &#160; &#160; &#160; &#160;  &#160; </td>
-         <td>   <h:inputText value="#{dueBean.selectedDue.str_Period}" /></td>
-            <td > <h:outputText value="Year" />&#160; &#160; &#160; &#160;  </td>
-         <td>   <h:inputText value="#{dueBean.selectedDue.int_Year}" /></td>
+           <td> <h:outputText value="Period:" /> <p:spacer height="10px" width="65px"></p:spacer> </td>
+         <td>   <h:inputText value="#{dueBean.dueTranasction.str_Period}" /></td>
+            <td > <h:outputText value="Year" /> <p:spacer height="10px" width="65px"></p:spacer> </td>
+         <td>   <h:inputText value="#{dueBean.dueTranasction.int_Year}" /></td>
            </tr>
             <tr>
            <td> <h:outputText value="Initiated On:" /></td>
-         <td>   <h:inputText value="#{dueBean.selectedDue.str_InitiatedOn}" /></td>
-            <td > <h:outputText value="Last Date" />&#160; &#160; &#160; &#160;  </td>
-         <td>   <h:inputText value="#{dueBean.selectedDue.dat_LastDate}" /></td>
+         <td>   <h:inputText value="#{dueBean.dueTranasction.str_InitiatedOn}" /></td>
+            <td > <h:outputText value="Last Date" /> </td>
+         <td>   <h:inputText value="#{dueBean.dueTranasction.dat_LastDate}" /></td>
            </tr>
         </table>
         </div>
@@ -75,12 +77,12 @@ template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
        
          <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr>
-           <td> <h:outputText value="Block:" />&#160; &#160; &#160;&#160; &#160; &#160; &#160; </td>
-         <td >   <h:inputText value="#{dueBean.selectedDue.str_Block}" /></td>
+           <td> <h:outputText value="Block:" /> <p:spacer height="10px" width="65px"></p:spacer></td>
+         <td >   <h:inputText value="#{dueBean.dueTranasction.str_Block}" /></td>
           
             
            <td> <h:outputText value="Apartment No:" /></td>
-         <td class="more-padding-on-right">  <h:inputText value="#{dueBean.selectedDue.str_ApartmentNo}" /></td>
+         <td class="more-padding-on-right">  <h:inputText value="#{dueBean.dueTranasction.str_ApartmentNo}" /></td>
           
            </tr>
         </table>
@@ -91,32 +93,34 @@ template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
         <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr>
            <td> <h:outputText value="Due Amount:" /></td>
-         <td >   <h:inputText value="#{dueBean.selectedDue.dbl_DueAmount}" /></td>
+         <td >   <h:inputText value="#{dueBean.dueTranasction.dbl_DueAmount}" /></td>
           </tr>
             <tr>
            <td > <h:outputText value=" Total Due Amount:" /></td>
-           <td >   <h:inputText value="#{dueBean.selectedDue.dbl_TotalDueAmount}" /></td>
+           <td >   <h:inputText value="#{dueBean.dueTranasction.dbl_TotalDueAmount}" /></td>
             <td> <h:outputText value=" Balance Amount" /></td>
-           <td >   <h:inputText value="#{dueBean.selectedDue.dbl_TotalDueAmount}" /></td>
+           <td >   <h:inputText value="#{dueBean.dueTranasction.dbl_TotalDueAmount}" /></td>
            </tr>
           <tr>
             <td> <h:outputText value=" Paid Amount:" /></td>
-           <td >   <h:inputText value="#{dueBean.selectedDue.dbl_TotalDueAmount}" /></td>
+           <td >   <h:inputText value="#{dueBean.dueTranasction.int_paidAmount}" /></td>
             <td> <h:outputText value="Status:" /></td>
-           <td >   <h:inputText value="#{dueBean.selectedDue.str_Status}" /></td>
+           <td >   <h:inputText value="#{dueBean.dueTranasction.str_Status}" /></td>
            </tr>
          
           
           
            <tr>
            <td><h:outputText value="payment History:" /> </td>
-         <td>  <h:inputTextarea value="" cols="50" row="10" /></td> 
+         <td>  <h:inputTextarea value="" style="weight:250px;height:100px;" /></td> 
            </tr>
+         
         </table>
+        
      </div>
        
  
-  
+  </ui:repeat>
 
  </h:body>  
 </h:form>
