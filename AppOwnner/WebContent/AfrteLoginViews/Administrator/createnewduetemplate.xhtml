@@ -29,17 +29,19 @@
  
  
 </h:head>
-<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
+<table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
 				<td> 
 					<img src="#{expenseBean.str_Name}images/due.jpg" height="50" width="50"></img> <span class="title">Due Template</span>
 				</td>
+				<td ><a href="duetemplate.xhtml"> &lt;&lt; Back to Grid</a></td>
 			</tr>
 		</tbody>
 	</table>
 
    <h:form id="form" prependId="false">
+   
      <div id="page3">
       
      <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -50,14 +52,14 @@
 								value="#{templateBean.str_Organisation}" ></p:inputText>
 								</td> 
                  </tr>
-                 <tr></tr><tr></tr><tr></tr><tr></tr>
+                 
            <tr>
           <td>  <h:outputText  value="Due Template" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" /></td>
-        <td> <p:tooltip id="toolVendorPhone"  trackMouse="true" for="str_DueTemplate" value="It should not Empty" /> </td>
+           <td>  <p:inputText id="str_DueTemplate" value="#{templateBean.str_DueTemplate}" required="true" requiredMessage="It should not Empty"   /></td>
+      <td> <p:message   for="str_DueTemplate"  /> </td>
          
              </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
+             
              <tr>
             
             <td> <h:outputText  value="Account" /><font color="red" >*</font></td>
@@ -65,7 +67,7 @@
                    <f:selectItems value="#{templateBean.ravenues}" />
                  </p:selectOneMenu></td>
              </tr>
-             <tr></tr><tr></tr><tr></tr><tr></tr>
+           
           <tr>
             <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" >
@@ -75,7 +77,7 @@
                         <f:selectItem itemLabel="One Time" itemValue="One Time"/>
                  </p:selectOneMenu></td>
             </tr>
-            <tr></tr><tr></tr><tr></tr><tr></tr>
+          
             <tr>
             <td> <h:outputText  value="Calculation" /><font color="red" >*</font></td>
              <td><p:selectOneRadio id="str_Calculation" value="#{templateBean.str_Calculation}" valueChangeListener="#{templateBean.frequencyChangeListener1}"  >
@@ -86,14 +88,14 @@
                 </p:selectOneRadio>
                 </td>
               </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
+            
               <tr>
                <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}"  disabled="#{templateBean.str_Calculation eq 'None'}"/></td>
-        <td> <p:tooltip id="toolVendorPhone1"  trackMouse="true" for="str_Rate" value="It Should be a Number" /> </td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}"  disabled="#{templateBean.str_Calculation eq 'None'}" required="true" requiredMessage="It Should be a Number"/>
+                 <p:message   for="str_Rate"  /> </td>
           
               </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
+              
              <tr>
             
             <td> <h:outputText  value="Tax Template" /><font color="red" >*</font></td>
@@ -109,8 +111,8 @@
             
      <tr> 
      <td></td>
-     <td><p:commandButton  styleClass="btn" id="submit" value="Submit" onclick="EnrollLater();"  action="#{templateBean.addDueTemplate}" ajax="false"  update="output" oncomplete="PF('dlg').show()"/>
-               <p:commandButton  styleClass="btn" id="cancel" value="Cancel" onclick="closeSelf()" ajax="false" style="margin-left:2em;"/></td>
+     <td><p:commandButton  styleClass="btn" id="submit" value="Submit"   action="#{templateBean.addDueTemplate}" ajax="false" />
+               <p:commandButton  styleClass="btn" id="cancel" value="Cancel" action="#{templateBean.reset}"  ajax="false" style="margin-left:2em;"/></td>
             </tr>
            
        </table>     
