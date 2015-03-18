@@ -53,9 +53,9 @@
   <p:dataTable id="DT"   emptyMessage="No Records Found" paginatorAlwaysVisible="false"   rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  selection="#{apartmentDetailsBean.selectedBlock}" rowKey="#{blockDetails.int_BlockId}" editable="true" editMode="cell" widgetVar="cellBlocks" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
              var="blockDetails"  value="#{apartmentDetailsBean.listBlockDetails}"> 
      
-               <p:column  style="width:35px;text-align:center" selectionMode="single">
+             
                
-               </p:column>
+               
                 <p:column headerText="Block Name">
            
                 <p:outputLabel value="#{blockDetails.str_BlockName}" /> 
@@ -104,10 +104,10 @@
 	 </table>
 	 <div>
              <hr/>
-              <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg"  value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" oncomplete="handleRequest(xhr, status, args)" />
+              <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg" icon="ui-icon-check" value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" oncomplete="handleRequest(xhr, status, args)" />
 	  
 	 
-	 &#150; &#150;<p:commandButton  onclick="blockDialog.hide()" styleClass="btn"  value="Cancel"     action="blockdetails.xhtml" >
+	 &#150; &#150;<p:commandButton  onclick="blockDialog.hide()" styleClass="btn"  value="Cancel"  icon="ui-icon-close"   action="blockdetails.xhtml" >
 	 <f:ajax execute="@this" event="click"  render="@form"/>
 	 </p:commandButton> 
 	 </div>
@@ -134,10 +134,10 @@
 	 </table>
 	 <div>
 	 <hr/>
-	  <p:commandButton  styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg1"    value="Submit"   action="#{apartmentDetailsBean.updateBlockDetails(selectedBlock1)}"  oncomplete="handleRequest1(xhr, status, args)" />
+	  <p:commandButton  styleClass="btn" icon="ui-icon-check" update=":form:DT :form:ui-growl,blockNameMsg1"    value="Submit"   action="#{apartmentDetailsBean.updateBlockDetails(selectedBlock1)}"  oncomplete="handleRequest1(xhr, status, args)" />
 	    
 	  
-	 &#150; &#150;  <p:commandButton   onclick="editBlockDialog.hide()" styleClass="btn"    value="Cancel"     action="blockdetails.xhtml" >
+	 &#150; &#150;  <p:commandButton icon="ui-icon-close"  onclick="editBlockDialog.hide()" styleClass="btn"    value="Cancel"     action="blockdetails.xhtml" >
 	 <f:ajax execute="@this" event="click"  render="@form"/>
 	 </p:commandButton> 
 	  
