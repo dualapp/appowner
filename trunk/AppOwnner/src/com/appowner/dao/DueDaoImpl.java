@@ -63,7 +63,7 @@ public class DueDaoImpl implements DueDao{
 		{  System.out.println("ghhhhjhhh");
 		return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).add(Restrictions.eq("str_Organisation", apartmentID)).list();
 		}
-		else if(str_DueTemplate.isEmpty())
+		else if(str_DueTemplate==null && str_Status==null)
 		{   System.out.println("hbhjcjvf");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).add(Restrictions.eq("str_Organisation", apartmentID)).list();
 		}
@@ -210,5 +210,10 @@ public class DueDaoImpl implements DueDao{
 			return false;
 		else
 			return true;
+	}
+	public DueTransaction getDueTransaction(Integer int_DueTransactionID)
+	{
+		String hql="from DueTransaction where int_DueTransactionID=?";
+		return (DueTransaction) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_DueTransactionID).setCacheable(true).uniqueResult();
 	}
 }

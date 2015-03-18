@@ -41,6 +41,8 @@ public interface DueDao {
 	public List<DueTransaction> listDueTransaction1(String str_DueTemplate,String str_Block, String str_ApartmentNo, String str_BillPeriod,Integer int_Year);
 
 	public boolean getInvoiceNo(Integer id);
+
+	public DueTransaction getDueTransaction(Integer int_DueTransactionID);
 			
 			
 
