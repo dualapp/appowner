@@ -192,9 +192,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	  <p:commandButton  icon="ui-icon-check" styleClass="btn"  update=":form:DT :form:ui-growl,HouseNoMsg1"  value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" oncomplete="handleRequest1(xhr, status, args)"/>
 	 
 	  
-	  &#150; &#150; <p:commandButton onclick="editHouseDialog.hide()"  styleClass="btn" icon="ui-icon-close"   value="Cancel"    action="housedetails.xhtml" >
-	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </p:commandButton>
+	  &#150; &#150; <p:commandButton type="reset"  styleClass="btn" icon="ui-icon-close"   value="Cancel"    />
+	 
 	  
 	 </div>
  </p:outputPanel>
@@ -279,9 +278,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 
 	 
 	 &#150; &#150;  
-   <p:commandButton    onclick="houseDialog.hide()" styleClass="btn" icon="ui-icon-close"    value="Cancel"    action="housedetails.xhtml" >
-	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </p:commandButton> 
+   <p:commandButton   type="reset"  styleClass="btn" icon="ui-icon-close"    value="Cancel" />
+	  
 	  
 	 </div>
 	 </p:outputPanel>
