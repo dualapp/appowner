@@ -24,7 +24,7 @@
 </h:head>
 <body bgcolor="#F08080">  
  <h:form id="form">
- <p:growl id="messages" globalOnly="true" sticky="true" />
+ <p:growl id="ui-growl" globalOnly="true" sticky="true" />
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px"  class="src">
 		
 			<tr>
@@ -125,7 +125,7 @@
          <td><h:selectOneRadio id="options"    required="true" requiredMessage="Choose User Role" value="#{cls_UserBean.int_UserRole}" valueChangeListener="#{cls_UserBean.roleChangeListener}">
             <f:selectItem itemLabel="Tenant" itemValue="1" />
             <f:selectItem itemLabel="Owner" itemValue="2" />
-            <f:ajax  event="click" execute="@form"   render="@form"/>
+            <f:ajax  event="click" execute="@form"   render="ui-growl"/>
             </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
              
             </table>
@@ -133,9 +133,9 @@
              <hr/>
              </div>
              		
-             <p:commandButton id="addUser"  styleClass="btn"   value="Add User" action="#{cls_UserBean.addnewUser}"  />
+             <h:commandButton id="addUser"  styleClass="btn"    value="Add User" action="#{cls_UserBean.addnewUser}"  />
             &#150; &#150;  
-            <p:commandButton styleClass="btn" id="reset" value=" Reset"  type="reset" />
+            <h:commandButton styleClass="btn" id="reset" value=" Reset"  type="reset" />
              
             </p:panel>
   
