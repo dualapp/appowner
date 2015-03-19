@@ -34,11 +34,12 @@
  </fieldset>
 <br/><br/>
  
- <h:commandButton value="AddOrUpdate Role"    action="#{administrationAccessBean.addRoleManagement}">
+ <h:commandButton value="AddOrUpdate Role" styleClass="btn"    action="#{administrationAccessBean.addRoleManagement}">
    <f:ajax render="@all" execute="@all"/>
   </h:commandButton> 
-
-	</h:form>
+ 
+ <h:commandButton value="Cancel" type="reset" styleClass="btn"  />
+   </h:form>
 	 </body>
  
 </html>
