@@ -104,10 +104,10 @@
 	 </table>
 	 <div>
              <hr/>
-              <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg" icon="ui-icon-check" value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" oncomplete="handleRequest(xhr, status, args)" />
+              <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg"  value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" oncomplete="handleRequest(xhr, status, args)" />
 	  
 	 
-	 &#150; &#150;<p:commandButton   type="reset"  styleClass="btn"  value="Cancel"  icon="ui-icon-close" >
+	 &#150; &#150;<p:commandButton   type="reset"  styleClass="btn"  value="Cancel"   >
 	 
 	 </p:commandButton> 
 	 </div>
@@ -134,12 +134,12 @@
 	 </table>
 	 <div>
 	 <hr/>
-	  <p:commandButton  styleClass="btn" icon="ui-icon-check" update=":form:DT :form:ui-growl,blockNameMsg1"    value="Submit"   action="#{apartmentDetailsBean.updateBlockDetails(selectedBlock1)}"  oncomplete="handleRequest1(xhr, status, args)" />
-	    
+	 <tr><td> <p:commandButton  styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg1"    value="Submit"   action="#{apartmentDetailsBean.updateBlockDetails(selectedBlock1)}"  oncomplete="handleRequest1(xhr, status, args)" />
+	    </td>
 	  
-	 &#150; &#150;  <p:commandButton icon="ui-icon-close"   type="reset"  styleClass="btn"    value="Cancel">
+	 &#150; &#150; <td> <p:commandButton    type="reset"  styleClass="btn"    value="Cancel" /></td></tr>
 	  
-	 </p:commandButton> 
+	 
 	  
 	 </div>
 	 </p:outputPanel>
