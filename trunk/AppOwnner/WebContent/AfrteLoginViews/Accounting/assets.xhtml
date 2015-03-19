@@ -136,8 +136,8 @@
              <th><p:outputLabel  value="Vendor Name"/></th>
              <td> <h:inputText value="#{asset.str_VendorName}" />    </td>
              </tr>
-             <tr><td><h:commandButton value="Update" action="#{expenseBean.updateOneAsset(asset)}"/></td>
-             <td><h:commandButton value="Cancel" action="assets.xhtml"/></td></tr>
+             <tr><td><h:commandButton value="Update" styleClass="btn"  action="#{expenseBean.updateOneAsset(asset)}"/></td>
+             <td><h:commandButton value="Cancel" styleClass="btn" type="reset"  /></td></tr>
              
              </ui:repeat>
              </table>
