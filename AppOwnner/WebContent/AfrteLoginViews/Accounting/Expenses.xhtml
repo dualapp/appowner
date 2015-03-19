@@ -257,16 +257,15 @@
        <div>
        <hr/>
      <h:commandButton styleClass="btn" value="Update" action="#{expenseBean1.updateOneExpense(ex)}" /> 
-      &#150; &#150;  <h:commandButton   styleClass="btn"    value="Cancel"  ajax="false"  action="Expenses.xhtml" >
-	  <f:ajax execute="@this" event="click"  render="@form"/>
-	  </h:commandButton>
+      &#150; &#150;  <h:commandButton   styleClass="btn"  type="reset"   value="Cancel" />
+	   
     </div>
      
              </ui:repeat>
             
              </p:outputPanel>
              </p:dialog>
-              <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+              <p:dialog header="Expense Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiExpenseDetail1" style="text-align:center;">
           
            <table>
