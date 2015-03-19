@@ -240,9 +240,8 @@
             <div>
 	 <hr/><p:commandButton  styleClass="btn"   update=":form:DT :form:ui-growl" value="update" action="#{vendorBean.updateVendor(vendor1)}" oncomplete="handleRequest(xhr, status, args)"/> 
              
-              &#150; &#150; <p:commandButton  onclick="editVendorDialog.hide()"   styleClass="btn"  action="vendorlists.xhtml"  value="Cancel"  >
-	 <f:ajax execute="@this" event="click"  render="@form"/>
-	 </p:commandButton> 
+              &#150; &#150; <p:commandButton type="reset"   styleClass="btn"    value="Cancel"  />
+	 
            </div>
             </ui:repeat>
         </p:outputPanel>
@@ -359,9 +358,8 @@
      <div>
 	 <hr/>
   <p:commandButton  value="Submit" update=":form:DT :form:ui-growl"  styleClass="btn" action="#{vendorBean.updateVendor}" oncomplete="handleRequest1(xhr, status, args)"/> 
-   &#150; &#150; <p:commandButton  onclick="editVendorDialog.hide()"   styleClass="btn"  action="vendorlists.xhtml"  value="Cancel"  >
-	 <f:ajax execute="@this" event="click"  render="@form"/>
-	 </p:commandButton> 
+   &#150; &#150; <p:commandButton  type="reset"  styleClass="btn"    value="Cancel"  />
+	 
                 
   </div>
     
