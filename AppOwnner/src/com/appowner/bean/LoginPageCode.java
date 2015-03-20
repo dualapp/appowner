@@ -171,7 +171,7 @@ private String str_Password;
 			usr.setVar_ImageName1(str_ImageName1);
 			usr.setInt_UserRole(1);
 			usr.setStr_Apartment("kalpnavilla");
-			usr.setInt_ApartmentId(25);
+			usr.setInt_ApartmentId(0);
 			usr.setStr_Block("WingA");
 			usr.setStr_Flat("A");
 			usr.setStr_City("kolkata");
