@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -34,6 +35,7 @@ import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Cls_subcategoryDetail;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.User;
@@ -228,26 +230,26 @@ public int getInt_Ad_categoryId() {
 	
 	private String intdocid3;
 	private int intdocID3;
-	
+	private String subcatid;
+	private int subid;
 	public void AddProduct(){
+		 System.out.println("mukesh kumar 1989");
+	     intdocid1=getVar_Ad_CategoryName();
+		 System.out.println(intdocid1);
+		 subcatid=getVar_subscategoryname();
+		 System.out.println( subcatid+"mk bihar");
+		 System.out.println(var_Ad_SubCategoryName+"mukesh bihar patna");
+		 intdocID1=getProductDetailService().getdocid2(intdocid1);
+		 subid=getProductDetailService().getdid(var_Ad_SubCategoryName);
+		 System.out.println(subid+"khkjhkgkjhkjghkjghkguhguhu");
+		 intdocid2=getStr_ApartmentName();
+		 System.out.println(intdocid1);
+
 		
-	    intdocid1=getVar_Ad_CategoryName();
-		System.out.println(intdocid1);
-		intdocID1=getProductDetailService().getdocid2(intdocid1);
-		intdocid2=getStr_ApartmentName();
-		System.out.println(intdocid1);
-		/*intdocID2=getProductDetailService().getdocid3(intdocid2);
-		intdocid3=getStr_Username();
-		System.out.println(intdocid3);
-		intdocID3=getProductDetailService().getdocid4(intdocid3);
-*/
-		//Aprtid=getStr_ApartmentName();
 		Cls_ProductDetails pro=new Cls_ProductDetails();
 		pro.setInt_Ad_categoryId(intdocID1);
-		
-		//pro.setInt_ApartmentId(Util.getAppartmentId());
-		
-		pro.setUserId(getUserId());
+		pro.setInt_subcategoryId( subid);
+        pro.setUserId(getUserId());
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
@@ -260,20 +262,49 @@ public int getInt_Ad_categoryId() {
 		pro.setCh_Ad_Type(getCh_Ad_Type());
 		pro.setStr_ApartmentName(str_ApartmentName);
 		pro.setStatus("Pending Approval");
+		System.out.println(pro+"kjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjkjkjkjkjk");
 		getProductDetailService().AddProduct1(pro);		
 	}
-	
+	private String var_Ad_SubCategoryName;
+	public String getVar_Ad_SubCategoryName() {
+		return var_Ad_SubCategoryName;}
+	public void setVar_Ad_SubCategoryName(String var_Ad_SubCategoryName) {
+		this.var_Ad_SubCategoryName = var_Ad_SubCategoryName;
+	}
 		public void AddCategory(){
 		Cls_categoryDetail Cat=new Cls_categoryDetail();
 	      System.out.println("hi");
-	      Cat.setInt_Ad_categoryId(getInt_Ad_categoryId());
-		Cat.setVar_Ad_CategoryName(getVar_Ad_CategoryName());
-		System.out.println(var_Ad_CategoryName);
-		getProductDetailService().AddCategorys(Cat);
+	      Cat.setInt_Ad_categoryId(getInt_Ad_categoryId()); 
+		  Cat.setVar_Ad_CategoryName(getVar_Ad_CategoryName());
+		 System.out.println(var_Ad_CategoryName);
+		 getProductDetailService().AddCategorys(Cat);
 		}
-	
-	
-	
+		private int int_subcategoryId;
+		private String var_subscategoryname;
+		public int getInt_subcategoryId() {
+			return int_subcategoryId;
+		}
+		public void setInt_subcategoryId(int int_subcategoryId) {
+			this.int_subcategoryId = int_subcategoryId;
+		}
+		public String getVar_subscategoryname() {
+			return var_subscategoryname;
+		}
+		public void setVar_subscategoryname(String var_subscategoryname) {
+			this.var_subscategoryname = var_subscategoryname;
+		}
+	   
+		public void AddSubCategory()
+		{
+		System.out.println(var_Ad_CategoryName+"jkjdkjcghjksdghjasghjshdlhkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+		 Cls_subcategoryDetail detail=new Cls_subcategoryDetail();	
+		detail.setInt_subcategoryId(int_subcategoryId);
+		detail.setVar_subscategoryname(var_subscategoryname);
+		detail.setInt_Ad_categoryId(getProductDetailService().getcatid(var_Ad_CategoryName));
+		getProductDetailService().AddCategorys(detail);
+		
+		}
+		
 	private List<String>Categories;
     public List<String> getCategories() 
 	{
@@ -283,7 +314,7 @@ public int getInt_Ad_categoryId() {
 	return Categories;
 }
 	public void setCategories(List<String> categories) {
-		this.Categories = categories;
+	this.Categories = categories;
 	
 }
 
@@ -345,7 +376,7 @@ public int getInt_Ad_categoryId() {
 	public void getCls_ProductDetails(){
 		System.out.println(Int_ProductId);
 		pro2=getProductDetailService().editproduct(Int_ProductId);
-	System.out.println("111111111111111111111111111111111111111111");
+	    System.out.println("111111111111111111111111111111111111111111");
 		System.out.println(pro2.getInt_ProductId());
 		prointcatid=getProductDetailService().editproductaa(pro2.getInt_ProductId());
 		System.out.println("222222222222222222222222222");
@@ -549,9 +580,7 @@ public int getInt_Ad_categoryId() {
 	id=product.getInt_ProductId();
 	System.out.println(id);
 	approval=product.getStatus();
-	
-	
-}
+	}
 	private Cls_ProductDetails edit1 ;
 	
 	public Cls_ProductDetails getEdit1() {
@@ -783,16 +812,21 @@ public void setSelectedAll(Cls_ProductDetails selectedAll) {
 	this.selectedAll = selectedAll;
 }
 private Cls_categoryDetail cat;
-
+private int   int_subcatid; 
 public String editdetail(Cls_ProductDetails ProductDetails)
 {
-	System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjlllllllllllllllll");
-	System.out.println(var_Ad_CategoryName+"jgfgf");
-	int_Ad_categoryId=getProductDetailService().getdocid2(var_Ad_CategoryName);
-	System.out.println(int_Ad_categoryId+"jkfkjfdkj");
-	if (ProductDetails.getInt_ProductId() != null) {
+	 System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjlllllllllllllllll");
+	 System.out.println(var_Ad_SubCategoryName+"jgfgf");
+	 System.out.println(var_Ad_CategoryName+"ndffdf");
+	 System.out.println(catname+"fdjfdkjfdjdfk");
+	  int_Ad_categoryId=getProductDetailService().getdocid2(catname);
+	  int_subcatid=getProductDetailService().getdocid3(var_Ad_SubCategoryName);
+	  
+	    System.out.println( int_subcatid+"jkfkjfdkj");
+	    if (ProductDetails.getInt_ProductId() != null) {
 		ProductDetails.setInt_Ad_categoryId(int_Ad_categoryId);
 		ProductDetails.setVar_Ad_CategoryName(var_Ad_CategoryName);
+		ProductDetails.setInt_subcategoryId( int_subcatid);
 		getProductDetailService().updatedetails(ProductDetails);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -805,7 +839,7 @@ public String editdetail(Cls_ProductDetails ProductDetails)
 	return "Ad_an_Post.xhtml";
 }
 	
-	
+
 public String deletedetail(){
 	Cls_ProductDetails detail=new Cls_ProductDetails();
 	System.out.println(Int_ProductId);
@@ -1001,7 +1035,7 @@ public String msgupdate;
 public static String select1;
 public String selectinfo1(ActionEvent e)
 { 
-	productid=selectedAll.getInt_ProductId();
+productid=selectedAll.getInt_ProductId();
 System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
 System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
 //msgupdate=(getProductDetailService().getname(selectedAll.getInt_ProductId()));
@@ -1009,16 +1043,13 @@ msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId
 emailids=(getProductDetailService().getemailids(msgrejectid));
 System.out.println(selectedAll.getStatus()+"kjkjkjkjkjkjkjkjkjkjkjk");
 System.out.println(statusmsg=="Ads Rejected"+"lklklklklklklklklklklklk;;';';';';';';';';';';';';';';");
-statusmsg=selectedAll.getStatus();
-if(statusmsg=="Ads Rejected")
-{
+//statusmsg=selectedAll.getStatus();
+//if(statusmsg=="Ads Rejected")
+//{
 	emailstatus=false;	
-}
+//}
    
-
-
 //statusmsg=(getProductDetailService().statusmesg(selectedAll.getInt_ProductId()));
-
 System.out.println(emailids+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 System.out.println(msgupdate+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
@@ -1218,6 +1249,131 @@ System.out.println("mukesh kumar ");
 System.out.println(productid+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
 msgreject=(getProductDetailService().getreject(productsid));
 return select1;
+}
+
+public    static String catname;
+public List<String> catmessage;
+public int msgid;
+
+public String selectinfo8(ValueChangeEvent event)
+{  
+
+catname =( String )event.getNewValue();
+System.out.println(catname+"lklklklkkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
+msgid=(getProductDetailService().getids(catname));
+System.out.println(catmessage+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
+System.out.println(msgid+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
+catmessage=(getProductDetailService().getmessages(msgid));
+return catname;
+
+}
+
+public List<String> getCatmessage() {
+	return catmessage;
+}
+public void setCatmessage(List<String> catmessage) {
+	this.catmessage = catmessage;
+}
+public static String getCatname() {
+	return catname;
+}
+public static void setCatname(String catname) {
+	Cls_AddDetailBean.catname = catname;
+}
+
+
+
+private List<Cls_ProductDetails> searchByType;
+
+public List<Cls_ProductDetails> getSearchByType() {
+	
+	searchByType=new ArrayList<Cls_ProductDetails>();
+	searchByType.addAll(getProductDetailService().getSearchBytype(var_Ad_CategoryName,var_subscategoryname,Ch_Ad_Type));
+	 blb_images1="E:/Var_ImageName";
+		return searchByType;
+}
+public void setSearchByType(List<Cls_ProductDetails> searchByType) {
+	this.searchByType = searchByType;
+}
+	
+public static String  phnumber;
+
+public static String getPhnumber() {
+	return phnumber;
+}
+public static void setPhnumber(String phnumber) {
+	Cls_AddDetailBean.phnumber = phnumber;
+}
+private String str_PhoneNo;
+
+public String getStr_PhoneNo() {
+	return str_PhoneNo;
+}
+public void setStr_PhoneNo(String str_PhoneNo) {
+	this.str_PhoneNo = str_PhoneNo;
+}
+public String sell_msg;
+
+public String getSell_msg() {
+	return sell_msg;
+}
+public void setSell_msg(String sell_msg) {
+	this.sell_msg = sell_msg;
+}
+public static String getmsg_sell;
+
+public static String getGetmsg_sell() {
+	return getmsg_sell;
+}
+public static void setGetmsg_sell(String getmsg_sell) {
+	Cls_AddDetailBean.getmsg_sell = getmsg_sell;
+}
+public static String usrnames;
+
+public static String getUsrnames() {
+	return usrnames;
+}
+public static void setUsrnames(String usrnames) {
+	Cls_AddDetailBean.usrnames = usrnames;
+}
+public String send9()
+{   System.out.println("jgjgjgjgkjgkghghhghh");
+	recipient=emailid;
+	phnumber=Util.getStr_PhoneNo();
+	usrnames=Util.getUserName();
+	aprtmentname=getStr_ApartmentName();
+	getmsg_sell=getSell_msg();
+	subject="Appowner.com";
+	System.out.println(recipient);
+	System.out.println(phnumber+"jkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+	return "/AfrteLoginViews/Communication/contact.jsp";
+}		
+	
+public static int getUsreid() {
+	return usreid;
+}
+public static void setUsreid(int usreid) {
+	Cls_AddDetailBean.usreid = usreid;
+}
+public String emailid;
+
+public String getEmailid() 
+{
+	emailid=(getProductDetailService().usremail(usreid));
+	return emailid;
+}
+public void setEmailid(String emailid) {
+	this.emailid = emailid;
+}
+public static int usreid;
+
+public String getemailid(Integer id1)
+{
+	 usreid=id1;
+     System.out.println(id1+"lklklklklklklklklklklklklklklklklklklklklklklklklklklklklklk");
+     System.out.println(emailid+";lmd;lmasldfmsamfmas;lfm;sakmf;lsa;lf;lasf;laslkmasmf;las");
+	return emailid;
+	
 }
 }
 	
