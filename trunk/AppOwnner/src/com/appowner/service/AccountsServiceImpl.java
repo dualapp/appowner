@@ -286,5 +286,8 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getOpeningDate();
 	}
-	
+	public ManualJournal getManualJournal(int id1)
+	{
+		return getAccountsDao().getManualJournal(id1);
+	}
 }
