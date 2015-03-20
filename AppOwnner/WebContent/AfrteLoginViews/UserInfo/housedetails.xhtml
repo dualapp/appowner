@@ -199,7 +199,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
  </p:outputPanel>
  </h:form>
  </p:dialog>
- <p:dialog header="View House Details" widgetVar="viewHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+ <p:dialog header="View House Details" widgetVar="viewHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
         <h:form id="viewform">
         <p:outputPanel id="viewHouseDetail" style="text-align:center;">
  <table>
@@ -286,18 +286,11 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </h:form>
 	 </p:dialog>
 	 
-	 <p:dialog header="File Upload" widgetVar="fileDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="500">
+	 <p:dialog header="File Upload" widgetVar="fileDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="600">
         <h:form id="uploadform"  enctype="multipart/form-data">
         <p:outputPanel id="fileDetail" style="text-align:center;">
          <!-- inputFile tag to upload file -->
-	     <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-		 
-		<tr><th>1</th><td>
-		 
-		  <h:commandButton value="Download Template"   icon="ui-icon-arrowthick-1-s" immediate="true" execute="@this">
-        <p:fileDownload value="#{apartmentDetailsBean.downloadFile()}" />
-           
-    </h:commandButton></td> &#150; &#150;<th>2</th><td>Fill The Template</td> &#150; &#150;<th>3</th><td>Upload</td></tr></table>  
+	    
 		<table> <tr><td>  <h:inputFile id="file" required="true" requiredMessage="File Not Selected"
 		             label="file"
 			         value="#{apartmentDetailsBean.part}"> 
@@ -306,21 +299,47 @@ Unless the Community Setup is complete, the changes that are made will not be sa
             
             <f:validator validatorId="BulkUploadValidator" id="BulkUploadValidator"/> 
             </h:inputFile>
-                      <p:message  id="uploadMsg" for="file" display="text"/> 
-		       <h:commandButton style="width:120px;height:25px" id="submit1" update=":form:DT :form:ui-growl,uploadMsg"  action="#{apartmentDetailsBean.uploadFile}"
-			             value="Upload" oncomplete="handleRequest2(xhr, status, args)" />
+                      </td>
+		    <td>   <h:commandButton   id="submit1" update=":form:DT :form:ui-growl"  action="#{apartmentDetailsBean.uploadFile}"
+			             value="Upload" oncomplete="handleRequest2(xhr, status, args)" /></td></tr>
 			            
-
-			             <br />
+ 
 			             <!-- status message of file upload; rendered if message is set -->
-		<p:outputLabel value="#{apartmentDetailsBean.statusMessage}"
+		<tr><td><p:outputLabel value="#{apartmentDetailsBean.statusMessage}"
 			          rendered="#{not empty apartmentDetailsBean.statusMessage}" /></td></tr></table>
-        </p:outputPanel>
-        </h:form>
+			          </p:outputPanel>
+			            </h:form>
+			         
+		 
+<h:form id="download">
+ 
+			           <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+		 <tr><h3><b>Please Follow The Bellow Steps Before Bulk Uploading</b></h3></tr>
+		<tr><th width="10%">1</th><td>
+		
+    <p:commandButton value="Download"    onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{fileDownloadView.file}" />
+        
+    </p:commandButton>
+    </td> </tr>
+    <tr><th>2</th><td>Fill The Template</td> </tr>
+    <tr><th>3</th><td>Upload</td></tr></table>  
+</h:form>
+        
+      
         </p:dialog>
          </body>
-  
+ 
+
        <script type="text/javascript">
+       function start() {
+    	    PF('statusDialog').show();
+    	}
+    	 
+    	function stop() {
+    	    PF('statusDialog').hide();
+    	}
+    	 
     function handleRequest(xhr, status, args) 
     {
         if(args.validationFailed)
