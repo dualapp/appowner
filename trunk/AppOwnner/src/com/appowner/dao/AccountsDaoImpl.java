@@ -979,7 +979,11 @@ public class AccountsDaoImpl implements AccountsDao{
 	
 			return ravenueList; 
 	}
-	
+	public ManualJournal getManualJournal(int id1)
+	{
+		String str="from ManualJournal where int_ManualJournalID=?";
+		return (ManualJournal) getSessionFactory().getCurrentSession().createQuery(str).setCacheable(true).setParameter(0,id1).uniqueResult();
+	}
 }
 			 
 		       
