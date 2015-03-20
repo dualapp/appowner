@@ -45,9 +45,15 @@ import javax.persistence.Table;
 	private String username;
 	private Date dt_date;
 	private String Status;
+	private int int_subcategoryId;
 	
 	
-	
+	public int getInt_subcategoryId() {
+		return int_subcategoryId;
+	}
+	public void setInt_subcategoryId(int int_subcategoryId) {
+		this.int_subcategoryId = int_subcategoryId;
+	}
 	public String getStatus() {
 		return Status;
 	}
