@@ -9,7 +9,7 @@
 	<ui:define name="content">
 <h:head><title>User Registration</title>
  <link rel="stylesheet" type="text/css" href="assets/css/ace.min.css" />
- <style type="text/css">
+  <style>
  .ui-growl {
  position:absolute;
         
@@ -19,6 +19,13 @@
          margin-left:-200px; 
 
 }
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
 </style>
 </h:head>
  <body> 
