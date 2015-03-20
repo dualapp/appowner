@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.appowner.dao.ProductsDao;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Cls_subcategoryDetail;
 import com.appowner.model.Notification;
 import com.appowner.model.cls_Ads;
 @Service("ProductDetailService")
@@ -55,6 +56,7 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 
 	@Override
 	public void update1(Cls_ProductDetails pro) {
+		System.out.println(pro+"jhjhjhjhjhjhjhjhjhjss");
 		getProductDao().update1(pro);
 		
 	}
@@ -276,8 +278,8 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	}
 
 	@Override
-	public String getname(Integer int_ProductId) {
-		return getProductDao().getname( int_ProductId);
+	public String getname(Integer productid) {
+		return getProductDao().getname( productid);
 	}
 
 	@Override
@@ -286,8 +288,8 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	}
 
 	@Override
-	public String getreject(Integer int_ProductId) {
-		return getProductDao().getreject( int_ProductId);
+	public String getreject(Integer productsid) {
+		return getProductDao().getreject( productsid);
 	}
 
 	@Override
@@ -306,15 +308,64 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 		
 	}
 
-	
+	@Override
+	public String statusmesg(Integer int_ProductId) {
+		return getProductDao().statusmesg(int_ProductId);
+	}
 
-	
-	
+	@Override
+	public void AddCategorys(Cls_subcategoryDetail detail) {
+		getProductDao().AddCategorys( detail);
 		
 	}
 
+	@Override
+	public int getcatid(String var_Ad_CategoryName) {
+		// TODO Auto-generated method stub
+		return getProductDao().getcatid(var_Ad_CategoryName);
+	}
+
+	@Override
+	public int getids(String catname) {
+		return getProductDao().getids(catname);
+	}
+
+	@Override
+	public List<String> getmessages(int msgid) {
+		return getProductDao().getmessages( msgid);
+	}
+
+	@Override
+	public int getdid(String var_Ad_SubCategoryName) {
+		return getProductDao().getdid( var_Ad_SubCategoryName) ;
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
+			String var_subscategoryname, String ch_Ad_Type) {
+		return getProductDao().getSearchBytype( var_Ad_CategoryName,
+				 var_subscategoryname,  ch_Ad_Type); 
 	
+
+}
+
+	@Override
+	public int getcatsid(String str_sub_catid) {
+		return getProductDao().getcatsid(str_sub_catid);
+	}
+
+	@Override
+	public int getdocid3(String var_Ad_SubCategoryName) {
+		return getProductDao().getdocid3(var_Ad_SubCategoryName);
+	}
+
+	@Override
+	public String usremail(int id) {
+		return getProductDao().usremail(id);
+	}
+
 	
+}	
 
 	
 	
