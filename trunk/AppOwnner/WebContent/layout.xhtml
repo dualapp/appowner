@@ -24,7 +24,7 @@
          top:200px;
          border-color:red;
          margin-left:-200px; 
-
+         color:red
 }
 </style>
 
@@ -272,10 +272,10 @@ function InvalidMsg1(textbox) {
          
           <tr><td></td>
           <td>
-              <p:selectBooleanCheckbox id="indicator" value="#{cls_UserBean.indicator}" style="color:#FFFFFF" required="true" validator="#{cls_UserBean.validateCheckBox}"/><font color="grey" size="2">&#150; &#150;<h:link value="Terms And Conditions | Privacy Policy"></h:link></font>
+              <p:selectBooleanCheckbox id="indicator" value="#{cls_UserBean.indicator}" style="color:#FFFFFF" required="true" validator="#{cls_UserBean.validateCheckBox}" validatorMessage="Plz Check It"/><font color="grey" size="2">&#150; &#150;<h:link value="Terms And Conditions | Privacy Policy"></h:link></font>
             
           </td>
-            
+             <td><p:message for="indicator" display="icon" /></td>
               
              
              
