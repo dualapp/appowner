@@ -19,6 +19,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
@@ -871,17 +872,23 @@ public class ApartmentDetailsBean  implements Serializable{
 	  listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName,Util.getAppartmentId()));
 	  System.out.println(listHouseDetails+"klap1");
   }
-  private StreamedContent file;
-  
-  public ApartmentDetailsBean() {        
-	  
-      InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/WebContent/images/Community_setup_house.xls");
-      file = new DefaultStreamedContent(stream, "application/xls", "Community_setup_house.xls");
-      System.out.println( file+"kkkkkkkkkkkkkkkkkkkkkkkkffffffffffffffffffffffff");
+   
+  public ApartmentDetailsBean() throws FileNotFoundException{        
+	  ExternalContext extContext = FacesContext.getCurrentInstance().getExternalContext(); 
+	  File result = new File(extContext.getRealPath("//images//Community_setup_house.xls"));     
+	  InputStream stream = new FileInputStream(result.getAbsolutePath());
+	  downloadFile = new DefaultStreamedContent(stream, "application/xls", "Community_setup_house.xls");
+      
+      
+      System.out.println(downloadFile+"kkkkkkkkkkkkkkkkkkkkkkkkffffffffffffffffffffffff");
   }
-
-  public StreamedContent getFile() {
-	  System.out.println( file+"sFFFFFFFfffffffile");
-      return file;
-  }
+  private StreamedContent downloadFile;
+public StreamedContent getDownloadFile() {
+	return downloadFile;
+}
+public void setDownloadFile(StreamedContent downloadFile) {
+	this.downloadFile = downloadFile;
+}
+ 
+ 
 }
