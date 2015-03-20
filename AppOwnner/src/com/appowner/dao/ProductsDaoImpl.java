@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Cls_subcategoryDetail;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.Notification;
 import com.appowner.model.UserExtraInfo;
@@ -41,7 +42,9 @@ public class ProductsDaoImpl implements ProductsDao{
 	}
 
 	@Override
-	public void AddProduct1(Cls_ProductDetails pro) {
+	public void AddProduct1(Cls_ProductDetails pro) 
+	{
+		System.out.println(pro.getCh_Product_Type()+"';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
 		getSessionFactory().getCurrentSession().save(pro);
 		
 	}
@@ -137,7 +140,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		System.out.println( ch_Ad_Type+",........,.,.,,.,.,<><><><><>");
 		System.out.println( status);
 		
-		if(ch_Product_Type==null && ch_Ad_Type==null)
+		if(ch_Product_Type==null && ch_Ad_Type==null && status==null )
 		{
 			String  query = "{ CALL detail() }";
 			
@@ -376,9 +379,9 @@ public class ProductsDaoImpl implements ProductsDao{
 	}
 
 	@Override
-	public String getname(Integer int_ProductId) {
+	public String getname(Integer productid) {
 		String hql="update  Cls_ProductDetails set  Status=? where int_ProductId=?";
-		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Open").setParameter(1,int_ProductId).executeUpdate();
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Open").setParameter(1,productid).executeUpdate();
 		return hql;
 	}
 
@@ -390,9 +393,9 @@ public class ProductsDaoImpl implements ProductsDao{
 	}
 
 	@Override
-	public String getreject(Integer int_ProductId) {
+	public String getreject(Integer productsid) {
 		String hql="update  Cls_ProductDetails set  Status=? where int_ProductId=?";
-		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Ads Rejected").setParameter(1,int_ProductId).executeUpdate();
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Ads Rejected").setParameter(1,productsid).executeUpdate();
 		return hql;
 	}
 
@@ -415,6 +418,120 @@ public class ProductsDaoImpl implements ProductsDao{
 		 sessionFactory.getCurrentSession().update(user);
 		
 	}
+
+	@Override
+	public String statusmesg(Integer int_ProductId) {
+		String hql2="select UserId from Cls_ProductDetails where int_ProductId=?";
+		System.out.println("8888888888888888888888888888888888");
+		return (String) sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, int_ProductId).uniqueResult();
+	}
+
+	@Override
+	public void AddCategorys(Cls_subcategoryDetail detail) {
+		 sessionFactory.getCurrentSession().save(detail);;
+		
+	}
+
+	@Override
+	public int getcatid(String var_Ad_CategoryName) {
+		String hql4="select int_Ad_categoryId from Cls_categoryDetail where var_Ad_CategoryName=?";
+		return  (Integer) getSessionFactory().getCurrentSession().createQuery(hql4).setParameter(0, var_Ad_CategoryName).uniqueResult();
+	}
+
+	@Override
+	public int getids(String catname) {
+		System.out.println(catname+"mukesh kumar");
+		
+		String hql4="select int_Ad_categoryId from Cls_categoryDetail where var_Ad_CategoryName=?";
+	   return  (Integer) getSessionFactory().getCurrentSession().createQuery(hql4).setParameter(0,catname).uniqueResult();
+		
+	}
+
+	@Override
+	public List<String> getmessages(int msgid) {
+		String hql4="select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?";
+		return  (List<String>) getSessionFactory().getCurrentSession().createQuery(hql4).setParameter(0,  msgid).list();
+	}
+
+	@Override
+	public int getdid(String var_Ad_SubCategoryName) {
+		String hql1="select int_subcategoryId from Cls_subcategoryDetail  where var_subscategoryname=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, var_Ad_SubCategoryName).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
+			String var_subscategoryname, String ch_Ad_Type) {
+		System.out.println(var_Ad_CategoryName+";;;;;;;;;;;;;;;");
+		System.out.println( var_subscategoryname+",........,.,.,,.,.,<><><><><>");
+		System.out.println( ch_Ad_Type);
+		if(var_Ad_CategoryName==null&&var_subscategoryname==null&&ch_Ad_Type==null)
+		{
+			String  query = "{ CALL search() }";
+			
+			 @SuppressWarnings("unchecked")
+			List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+			          ).list();
+		     		 return kkk;	
+		}
+		else
+		{
+			System.out.println(var_Ad_CategoryName+";;;;;;;;;;;;;;;");
+			System.out.println( var_subscategoryname+",........,.,.,,.,.,<><><><><>");
+			System.out.println( ch_Ad_Type);
+			String  query = "{ CALL searchcategory(?,?,?)}";
+			@SuppressWarnings("unchecked")
+			List<Cls_ProductDetails> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,var_Ad_CategoryName).setParameter(1,var_subscategoryname).setParameter(2,ch_Ad_Type).list();
+			return conn;
+		
+		
+		
+	}
+	}
+
+	@Override
+	public int getcatsid(String str_sub_catid) {
+		String hql1="select int_subcategoryId from Cls_subcategoryDetail where var_subscategoryname=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_sub_catid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
+	}
+
+	@Override
+	public int getdocid3(String var_Ad_SubCategoryName) {
+		String hql1="select int_subcategoryId from Cls_subcategoryDetail where var_subscategoryname=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer cid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, var_Ad_SubCategoryName).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
+	}
+
+	@Override
+	public String usremail(int id) {
+		System.out.println(id+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="select str_Email from User where int_UserId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		String cid=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,id).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
+	}
+
 	}
 
 	

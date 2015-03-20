@@ -128,8 +128,8 @@ public class DueDaoImpl implements DueDao{
 	public List<DueTransaction> listUserDueTransaction(String str_ApartmentNo, String str_ApartmentNo1, String str_Status, String str_Period, String str_DueTemplate)
 	{   System.out.println(str_ApartmentNo+"kil");
 	 getApartmentID();
-		String hql="from DueTransaction where str_Block=? and str_Organisation=?";
-		List<DueTransaction>   sss=(List<DueTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).setParameter(1, apartmentID).list();
+		String hql="from DueTransaction where str_Block=? and str_ApartmentNo=? and str_Organisation=?";
+		List<DueTransaction>   sss=(List<DueTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).setParameter(1, str_ApartmentNo1).setParameter(2, apartmentID).list();
 		System.out.println(sss);
 		return sss;
 	}

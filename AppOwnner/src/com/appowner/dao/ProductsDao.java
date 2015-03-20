@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.Cls_subcategoryDetail;
 import com.appowner.model.Notification;
 import com.appowner.model.cls_Ads;
 
@@ -92,17 +93,38 @@ public interface ProductsDao {
 
 	public String getname(String select1);
 
-	public String getname(Integer int_ProductId);
+	public String getname(Integer productid);
 
 	public String getclose(Integer int_ProductId);
 
-	public String getreject(Integer int_ProductId);
+	public String getreject(Integer productsid);
 
 	public int getrejectids(Integer int_ProductId);
 
 	public String getemailids(int msgrejectid);
 
 	public void updateProfilePic(Cls_ProductDetails user);
+
+	public String statusmesg(Integer int_ProductId);
+
+	public void AddCategorys(Cls_subcategoryDetail detail);
+
+	public int getcatid(String var_Ad_CategoryName);
+
+	public int getids(String catname);
+
+	public List<String> getmessages(int msgid);
+
+	public int getdid(String subcatid);
+
+	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
+			String var_subscategoryname, String ch_Ad_Type);
+
+	public int getcatsid(String str_sub_catid);
+
+	public int getdocid3(String var_Ad_SubCategoryName);
+
+	public String usremail(int id);
 
 
 
