@@ -31,6 +31,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.event.CellEditEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import com.appowner.model.CommunitySetup;
 import com.appowner.model.CommunityType;
@@ -469,7 +471,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		else
 			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("The selected Houses have users or maintenance dues associated with them .so they  couldn't be deleted!.Please remove the members from the houses to proceed."));
 			
-		return "housedetails.xhtml";
+		return null;
 	}
 	public String deleteSelectedHouse() {
 	    List<HouseDetails> entitiesToDelete = new ArrayList<HouseDetails>();
@@ -487,7 +489,7 @@ public class ApartmentDetailsBean  implements Serializable{
 				
 	    } 
   
-	    return "housedetails.xhtml";
+	    return null;
 	}
 	public String updateHouseDetails()
 	{
@@ -780,7 +782,6 @@ public class ApartmentDetailsBean  implements Serializable{
 					statusMessage = "File upload successfull !!";
 				} catch (IOException e) {
 					e.printStackTrace();
-					statusMessage = "File upload failed !!";
 				} finally {
 					if (outputStream != null) {
 						outputStream.close();
@@ -834,20 +835,13 @@ public class ApartmentDetailsBean  implements Serializable{
 		/**
 		   * Download file.
 		   */
-		  public String downloadFile() throws IOException
+		 public String downloadFile() throws IOException
 		  {
 			  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 				String basePath = servletContext.getContextPath()+File.separator+"WebContent"+File.separator+"images"+File.separator;
-		     File outputFilePath = new File(basePath);
-		     if (!outputFilePath.exists()) {
-				   	if (outputFilePath.mkdir()) {
-				   		System.out.println("Directory is created!");
-				   	} else {
-				   		System.out.println("Failed to create directory!");
-				   	}
-			 }
-		     outputFilePath = new File(basePath+"Community_setup_house.xls");
-		     InputStream fis = new FileInputStream(outputFilePath);
+		     File file = new File(basePath+"Community_setup_house.xls");
+		      
+		     InputStream fis = new FileInputStream(file);
 		     byte[] buf = new byte[1024];
 		     int offset = 0;
 		     int numRead = 0;
@@ -869,11 +863,25 @@ public class ApartmentDetailsBean  implements Serializable{
 		    FacesContext.getCurrentInstance().responseComplete();
 		    return null;
 		  }
+
   public void blockChangeListener(ValueChangeEvent event)
   {   listHouseDetails=new ArrayList<HouseDetails>();
 	  String str_BlockName=(String) event.getNewValue();
 	  System.out.println(str_BlockName+"kalpanaaaaaaaaaaaaaaaaaaaaa");
 	  listHouseDetails.addAll(getApartmentDetailsService().getListHouseDetails(str_BlockName,Util.getAppartmentId()));
 	  System.out.println(listHouseDetails+"klap1");
+  }
+  private StreamedContent file;
+  
+  public ApartmentDetailsBean() {        
+	  
+      InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/WebContent/images/Community_setup_house.xls");
+      file = new DefaultStreamedContent(stream, "application/xls", "Community_setup_house.xls");
+      System.out.println( file+"kkkkkkkkkkkkkkkkkkkkkkkkffffffffffffffffffffffff");
+  }
+
+  public StreamedContent getFile() {
+	  System.out.println( file+"sFFFFFFFfffffffile");
+      return file;
   }
 }
