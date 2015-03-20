@@ -12,16 +12,23 @@
     <link href="include/assets/css/ace.min.css" rel="stylesheet" />
     
     <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
-   <style type="text/css">
+   <style>
  .ui-growl {
  position:absolute;
         
          width:400px;
          left:50%;
-      
+         top:200px;
          margin-left:-200px; 
 
 }
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
 </style>
 </h:head>
 
@@ -125,10 +132,31 @@
             <p:column >
           
           <f:facet name="header">
-                <h:outputText value="Type"/>      
+                <h:outputText value="Category"/>      
           
              </f:facet>
                 <h:outputText   value="#{vendor.str_VendorType}" /> 
+                
+            
+            </p:column>
+            <p:column >
+             <f:facet name="header">
+                <h:outputText value="Contact Person"/>      
+          
+             </f:facet>
+                <h:outputText   value="#{vendor.str_ContactPersonName}" /> 
+                
+            
+            </p:column>
+             <p:column >
+             <f:facet name="header">
+                <h:outputText value="Address"/>      
+          
+             </f:facet>
+                 #{vendor.str_AddressLine1}
+                  #{vendor.str_CountryName} 
+                 #{vendor.str_StateName}
+                #{vendor.str_CityName}
                 
             
             </p:column>
@@ -156,7 +184,14 @@
                     </center>
                 </f:facet>
                 <center>
-              
+                <p:commandLink    process="DT"  update=":viewServiceForm" oncomplete="PF('viewServiceDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
+                  <h:graphicImage  height="20" width="20" alt="Service Details" value="#{expenseBean.str_Name}images/view.jpg" title="ServiceDetails"/> 
+              </p:commandLink>
+               &#150;
+               <p:commandLink    process="DT"  update=":viewBankDetailsForm" oncomplete="PF('viewBankDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
+                  <h:graphicImage  height="20" width="20" alt="Bank Details" value="#{expenseBean.str_Name}images/view.jpg" title="Bank Details"/> 
+              </p:commandLink>
+               &#150;
                <p:commandLink   process="DT"  update=":editform1" oncomplete="PF('editVendorDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
                   <h:graphicImage  height="20" width="20" alt="Edit" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
               </p:commandLink>
@@ -164,7 +199,7 @@
                
                
               <p:commandLink   process="DT"  update=":viewform1" oncomplete="PF('viewVendorDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
-                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+                  <h:graphicImage  height="20" width="20" alt="View" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
                &#150;
           <h:link outcome="deletevendor.xhtml"  update=":form:DT :form:ui-growl"
@@ -192,15 +227,58 @@
           
              <tr>
  <th>
-    <h:outputText value="Vendor Type:"/></th>
+    <h:outputText value="Vendor Category:"/></th>
     <td>
-    <h:inputText value="#{vendor1.str_VendorType}"/></td>
+   
+    <h:selectOneMenu value="#{vendor1.str_VendorType}" id="vendorCategory" required="true" requiredMessage="Enterr Category">
+            <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+               
+        </h:selectOneMenu>
+     
+</td>
     </tr>
  <tr>
  <th>
     <h:outputText value="Vendor Name:"/></th>
     <td>
     <h:inputText value="#{vendor1.str_VendorName}"/></td>
+    </tr>
+     <tr>
+    <th>
+    <h:outputText value="Country:"/></th>
+    <td>
+    <h:selectOneMenu id="str_VendorCountry" value="#{vendor1.str_CountryName}" required="true" requiredMessage="Enterr Country"    valueChangeListener="#{vendorBean.countryChangeListener}">
+                <!--c --> 
+               <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
+                
+                <f:selectItems value="#{vendorBean.str_VendorCountries}" />
+                 <p:ajax event="change" update="str_VendorState" process="str_VendorCountry"/>
+            </h:selectOneMenu>
+    </td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="State:"/></th>
+    <td>
+    <h:selectOneMenu id="str_VendorState" value="#{vendor1.str_StateName}"  required="true" requiredMessage="Enter State"  valueChangeListener="#{vendorBean.stateChangeListener}"  >
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorBean.str_VendorStates}"/>
+               <p:ajax event="change" update="str_VendorCity" process="str_VendorState"/>    
+            </h:selectOneMenu>
+     </td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="City:"/></th>
+    <td>
+    <h:selectOneMenu id="str_VendorCity" value="#{vendor1.str_CityName}" required="true" requiredMessage="Enterr City" >
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
+             
+            </h:selectOneMenu>
+     </td>
     </tr>
     <tr>
     <th>
@@ -306,21 +384,110 @@
         </p:outputPanel>
         </h:form>
     </p:dialog>
+     <p:dialog header="Vendor Bank  Details" widgetVar="viewBankDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="500">
+         <h:form id="viewBankDetailsForm">
+        <p:outputPanel id="viewBankDetail" style="text-align:center;">
+           <table>
+          
+    <tr>
+ <th>
+    <h:outputText value=" Bank Name:"/></th>
+    <td>
+    <h:outputText value="#{vendorBean.vendor.str_VendorBankName}"/></td>
+    </tr>
+    <tr>
+ <th>
+    <h:outputText value="Acc No:"/></th>
+    <td>
+    <h:outputText value="#{vendorBean.vendor.str_VendorAccount}"/></td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="NEFT/IFSC Code"/></th>
+    <td>
+    <h:outputText value="#{vendorBean.vendor.str_VendorBankNeftOrIfsc}"/></td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="Pan No"/></th>
+    <td>
+    <h:outputText value="#{vendorBean.vendor.str_PanNo}"/></td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="Tax No"/></th>
+    <td>
+    <h:outputText value="#{vendorBean.vendor.str_ServiceTaxNo}"/></td>
+    </tr>
+     <tr>
+ <th>
+    <h:outputText value="TDS Charge"/></th>
+    <td>
+    <h:outputText value="#{vendorBean.vendor.int_TdsCharge}"/></td>
+    </tr>
+      
+               
+                
+           
+            </table>
+        </p:outputPanel>
+        </h:form>
+    </p:dialog>
        <p:dialog header="Edit Vendor Details" widgetVar="editVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
          <h:form id="editform1">
         <p:outputPanel id="editVendorDetail" style="text-align:center;">
  <table>
  <tr>
  <td>
-    <h:outputText value="Vendor Type:"/></td>
+    <h:outputText value="Vendor Category:"/></td>
     <td>
-    <h:inputText value="#{vendorBean.vendor.str_VendorType}"/></td>
+    <h:selectOneMenu value="#{vendorBean.vendor.str_VendorType}" id="vendorCategory" required="true" requiredMessage="Enterr Category">
+            <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
+             
+             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+               
+        </h:selectOneMenu>
+     </td>
     </tr>
  <tr>
  <td>
     <h:outputText value="Vendor Name:"/></td>
     <td>
     <h:inputText value="#{vendorBean.vendor.str_VendorName}"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="Country:"/></th>
+    <td>
+    <h:selectOneMenu id="str_VendorCountry1" value="#{vendorBean.vendor.str_CountryName}"    valueChangeListener="#{vendorBean.countryChangeListener}">
+               
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorBean.str_VendorCountries}" />
+                 <p:ajax event="change" update="str_VendorState1" process="str_VendorCountry1"/>
+            </h:selectOneMenu>
+    </td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="State:"/></th>
+    <td>
+    <h:selectOneMenu id="str_VendorState1" value="#{vendorBean.vendor.str_StateName}"     valueChangeListener="#{vendorBean.stateChangeListener}" >
+              <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorBean.str_VendorStates}"/>
+               <p:ajax event="change" update="str_VendorCity1" process="str_VendorState1"/>    
+            </h:selectOneMenu>
+     </td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="City:"/></th>
+    <td>
+    <h:selectOneMenu id="str_VendorCity1" value="#{vendorBean.vendor.str_CityName}">
+                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
+                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
+             
+            </h:selectOneMenu>
+     </td>
     </tr>
     <tr>
     <td>
@@ -366,7 +533,7 @@
    </p:outputPanel>
    </h:form>
    </p:dialog>
-         <p:dialog header="Vendor Details" widgetVar="viewVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="400">
+         <p:dialog header="Vendor Details" widgetVar="viewVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="500">
          <h:form id="viewform1">
         <p:outputPanel id="viewVendorDetail" style="text-align:center;">
         <table>
@@ -412,49 +579,35 @@
     <td>
     <h:outputText value="#{vendorBean.vendor.str_VendorComments}"/></td>
     </tr>
-     
-    
-      <p:dataTable id="v1" var="v"   value="#{vendorBean.vendorServiceDetails3}" style="width: 10%">
+       
+  
+    </table>
+    </p:outputPanel>
+    </h:form>
+    </p:dialog>
+    <p:dialog header="Vendor Service  Details" widgetVar="viewServiceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="500">
+         <h:form id="viewServiceForm">
+        <p:outputPanel id="viewServiceDetail" style="text-align:center;">
+         
+      <p:dataTable id="v1" var="v"   value="#{vendorBean.vendorServiceDetails3}"  >
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Vendor Price" />
                 </f:facet>
-                <h:outputText  rendered="#{not v.editable}"     value="#{v.int_ServicePrice}" />
-                  <h:inputText  rendered="#{ v.editable}"     value="#{v.int_ServicePrice}" />
+                <h:outputText     value="#{v.int_ServicePrice}" />
+                  
             </p:column>
              <p:column>
                 <f:facet name="header">
                     <h:outputText value="Vendor Service Name" />
                 </f:facet>
-                <h:outputText  rendered="#{not v.editable}"     value="#{v.str_ServiceName}" />
+                <h:outputText    value="#{v.str_ServiceName}" />
                  
-                  <h:inputText  rendered="#{ v.editable}"    value="#{v.str_ServiceName}" />
+                   
             </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Edit" />
-                </f:facet>
-               
-              <h:button  value="Edit"  rendered="#{not v.editable}"     update="@form" process="@this"  immediate="true" execute="@this"  action="#{vendorBean.editAction(v)}"   > 
-                
-               </h:button>
-               	   		 
-               
-               	   		 
-	   		</p:column>
-	   		
-	   		<p:column>
-                <f:facet name="header">
-                    <h:outputText value="Update" />
-                </f:facet>
-                
-	   		<h:button  value="Update"     action="#{vendorBean.updateVendorServiceDetails(v)}" > 
-               
-              </h:button>
-               </p:column>
+          
             </p:dataTable>  
-  
-    </table>
+   
     </p:outputPanel>
     </h:form>
     </p:dialog>
