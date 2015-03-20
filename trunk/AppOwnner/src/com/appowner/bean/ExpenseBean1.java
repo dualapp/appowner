@@ -319,13 +319,13 @@ public String addExpenses()
 	expense.setInt_AppartmentId(Util.getAppartmentId());
 	
 	getExpenseService().addExpenses(expense);
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
+	
 		}
 		else
 			return "Expenses.xhtml";
 	}
 	
-	
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
 	return "Expenses.xhtml";
 }
  
