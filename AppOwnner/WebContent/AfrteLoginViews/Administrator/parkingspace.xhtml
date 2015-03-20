@@ -9,19 +9,24 @@
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 <h:head><title>Parking </title>
- <style type="text/css">
+  <style>
  .ui-growl {
  position:absolute;
         
          width:400px;
          left:50%;
-          top:200px;
-        
+         top:200px;
          margin-left:-200px; 
 
 }
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
 </style>
-
 </h:head>
 <h:body>
 	 <h:form id="form">
