@@ -912,7 +912,11 @@ public class LoginBean implements Serializable {
 		}
 		else
 		user=getUserService().getUserList(formuserloginusername);
-				 
+		if(user==null)
+		{
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"User name or password is invalid!","User name or password is invalid!"));
+				return "layout.xhtml";  
+		}
 		 
 		str_userRoleName=user.getStr_UserRoleName();
 		System.out.println(str_userRoleName+"dfjkfdjkfdkjfd");

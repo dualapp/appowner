@@ -862,8 +862,22 @@ private List<DueTransaction> listDueTransaction;
 		    	 System.out.println(str2);
 		    	 String str3=template.getStr_Calculation();
 		    	
-		    	
+		    	 if(str2.isEmpty())
+		    	 {   System.out.println("dfjkfkjfdkj");
+		    		 taxAmount=0.00; 
+		    	 }
+		    	 else if(str2.equalsIgnoreCase("None"))
+		    	 {
+		    		 System.out.println("dfjkfkjfdkjsssssssssssssss");
+		    		 taxAmount=0.00;  
+		    	 }
+		    	 else
+		    	 {
 		    	 taxAmount=getInvoiceService().getTaxAmount(str2);
+		    	 System.out.println(taxAmount+"jkjkggf");
+		    	 }
+		    	
+		    	 
 		    	 tax2.add(taxAmount);
 		    	
 		    	 if(str3.equalsIgnoreCase("Sqft"))
@@ -971,6 +985,11 @@ private List<DueTransaction> listDueTransaction;
 			    	 if(str2.isEmpty())
 			    	 {   System.out.println("dfjkfkjfdkj");
 			    		 taxAmount=0.00; 
+			    	 }
+			    	 else if(str2.equalsIgnoreCase("None"))
+			    	 {
+			    		 System.out.println("dfjkfkjfdkjsssssssssssssss");
+			    		 taxAmount=0.00;  
 			    	 }
 			    	 else
 			    	 {
