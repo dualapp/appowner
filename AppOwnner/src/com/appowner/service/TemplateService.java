@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
+import com.appowner.model.ManualJournal;
 import com.appowner.model.MessageTemplate;
 import com.appowner.model.TaxTemplate;
 

@@ -138,6 +138,8 @@ public interface AccountsService {
 	public List<String> getExpense1();
 
 	public Date getOpeningDate();
+
+	public ManualJournal getManualJournal(int id1);
 			
 
 	
