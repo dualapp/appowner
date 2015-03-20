@@ -291,7 +291,7 @@ public void addInvoiceManualJournal()
 }
 
 public String saveManualJournal(ManualJournal journal) {
-	System.out.println("jhvvnjggggggggggggggggggggg");
+	System.out.println("jhvvnjggggggggggggggggggggg11111111111111111111111111111111111111111111111111111111");
 	System.out.println(journal+"fdkjfjkfdkj");
 	System.out.println(journal.getInt_ManualJournalID()+"fkjfgkfgkj");
 	if (journal.getInt_ManualJournalID()!= null) {
@@ -309,10 +309,10 @@ public String saveManualJournal(ManualJournal journal) {
 	return "true";
 	
 }
-public void deleteManualJournal1() {
+public void deleteManualJournal1(int id) {
 	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-	ManualJournal journal=new ManualJournal();
-	Integer id=selectedjournal.getInt_ManualJournalID();
+	
+	
 	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
     	FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -347,6 +347,18 @@ public static Integer getId() {
 }
 public static void setId(Integer id) {
 	AccountingBean.id = id;
+}
+private ManualJournal journal1=new ManualJournal();
+public ManualJournal getJournal1() {
+	return journal1;
+}
+public void setJournal1(ManualJournal journal1) {
+	this.journal1 = journal1;
+}
+public void getManualJournal(int id1)
+{  System.out.println(id1+"jdskjfd55555555555555555555555555555555555555555555555555555555555555555555555555");
+   journal1=getAccountsService().getManualJournal(id1);
+  System.out.println(journal1+"dfjkfdjkfdj");
 }
 public void processValueChange(ValueChangeEvent event)  
         throws AbortProcessingException 
