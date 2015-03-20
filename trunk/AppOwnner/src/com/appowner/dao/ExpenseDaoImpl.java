@@ -50,7 +50,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<String> getAssetCategoryList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createQuery("select str_assetcat_name from AssetCategory where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		String hql="select str_assetcat_name from AssetCategory where int_AppartmentId IN ('0',"+Util.getAppartmentId()+')';
+		return getSessionFactory().getCurrentSession().createQuery(hql).list();
 	}
 
 	@Override
