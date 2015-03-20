@@ -8,7 +8,20 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 <h:head>
     <title>apartments member details form</title>
-    
+    <style>
+    .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
+
+}
+      </style>	
+ 
+ 
 
 
 
@@ -31,7 +44,7 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
        <h:form>
            <div id="page3">
   
-              
+               <p:growl id="ui-growl" globalOnly="true" sticky="true" /> 
                <p:dataTable id="due"  selection="#{cls_UserBean.selectedUser}" rowKey="#{due.int_UserId}" emptyMessage="No Records Found" paginatorAlwaysVisible="false"   rows="3"   paginator="true"  paginatorPosition="bottom" 
            var="due" value="#{cls_UserBean.listUser1}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  >
             
@@ -94,10 +107,10 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
 	  <h3 style="color:red">Current Roles of <h:outputText value="#{roleManagementBean.str_UserName}"/> are checked bellow. </h3>
 	 
-	<h:selectManyCheckbox     value="#{roleManagementBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
+	<p:selectManyCheckbox     value="#{cls_UserBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
   <f:selectItems value="#{roleManagementBean.str_Roles}"  /><br/>
    
-</h:selectManyCheckbox>
+</p:selectManyCheckbox>
  
 <h5 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h5>
  </fieldset>
