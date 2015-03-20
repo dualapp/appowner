@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	<ui:define name="content">
+ <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/group.png" height="45" width="45"></img> <span class="title">Search</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+ <h:form>
+ <div id="page3" >
+ <tr>
+ <td>
+ &#150;           &#150;           &#150;    &#150; &#150;    &#150; &#150;    &#150; 
+ <h:outputLabel for="var_Ad_CategoryName" value="Choose Category:" />&#150;    &#150;</td>
+ <td> <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}"   >
+           <f:selectItem itemLabel="Category"  itemValue=""  />
+            <f:selectItems value="#{cls_AddDetailBean.categories}"   />
+            <p:ajax partialSubmit="true" update="sub_Ad_CategoryName" execute="catmessage"/>
+            </h:selectOneMenu>
+            </td> 
+            <td> &#150;           &#150;            &#150;   
+        <h:outputLabel for="sub_Ad_CategoryName" value="Choose SubCategory:" /> &#150; &#150;</td>
+         <td>   <h:selectOneMenu id="sub_Ad_CategoryName"  value="#{cls_AddDetailBean.var_subscategoryname}" style="width:200px">
+            <f:selectItem itemLabel="SubCategory"  itemValue=""  />
+            <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
+            </h:selectOneMenu>
+          </td>
+           <td>&#150;           &#150;            &#150; 
+           <h:outputLabel value="Type:" /> &#150; &#150;</td>
+          <td><h:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Ad_Type}" style="width:150px">
+                  <f:selectItem itemLabel="All" itemValue="All"  />
+              <f:selectItem itemLabel="My Community" itemValue="My Community"  />
+              <f:selectItem itemLabel="Negihbourhood" itemValue="Neighbourhood"  />
+                  </h:selectOneMenu>
+                  </td>
+                  <td> <h:commandButton  value="Search" action="#{cls_AddDetailBean.getSearchByType()}" style=" background:#00CC66;color:#F5FFFA;border:2px;font-size:17px;width:110px; height:42px;" update="car"> 
+               </h:commandButton></td>
+              </tr>
+              </div>
+      <div id="page3" >
+     <p:dataList  id="car" value="#{cls_AddDetailBean.searchByType}" style="width:93%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" var="car" rowKey="#{car.int_ProductId}">
+       <font size="2"><b><h:outputText value="#{car.var_Title}" style="color:#00CC66;"/><br/></b></font>
+         <font size="2"> <h:outputText value="#{car.var_Description}" style="color:#00CC66;"/><br/></font>
+         <font size="2"><h:outputText value="Community :#{car.str_ApartmentName}" style="color:#00CC66;"/><br/></font>
+        <font size="2"><h:outputText value="Posted By :#{car.username}" style="color:#00CC66;"/><br/></font>
+        <font size="2"><h:outputText value="Posted On :#{car.dt_date}"  style="color:#FFA500;"/><br/></font>
+        <p:commandButton process="car" value="Send Email" action="#{cls_AddDetailBean.getemailid(car.userId)}" style="color:#FFFAF0;background:#FF8C00; border:2px;font-size:15px;width:160px;height:30px"
+           oncomplete="PF('multiVendorDialog1').show()"  /><hr/>
+          <p:outputPanel   layout="block" width="15%" height="6%"  update="aaa1" style="background:#ffffff; ">
+            <p:graphicImage  id="aaa1" value="#{car.var_ImageName}" style=" width:15%; height:15%; float:right !important;margin:-160px 50px -800px 100px;" />
+          </p:outputPanel>  
+       </p:dataList>
+    </div>
+     <p:dialog header="Buy&#38;Sell" widgetVar="multiVendorDialog1"   showEffect="fade" hideEffect="explode" resizable="false" height="200" width="400">
+      <p:outputPanel id="multiVendorDetail1" style="text-align:center;"> 
+        
+        <table>
+         <tr>
+             
+             <td> <h:inputHidden  value="#{cls_AddDetailBean.emailid}" > 
+             </h:inputHidden>
+              </td>
+             </tr>
+             <tr>
+               <td><h:outputText  value="Message"/></td>
+               <td><h:inputTextarea rows="7" style="height:100px ;width:250px"  value="#{cls_AddDetailBean.sell_msg}"/>
+              </td>
+              </tr>
+             <tr>  
+             <td><h:commandButton styleClass="btn"  value="Send"   action="#{cls_AddDetailBean.send9()}" style=" float:left !important;height:30px;width:70px;"   /></td>
+           <td><h:commandButton styleClass="btn"  value="Cancel" outcome="SearchCategoryName.xhtml"  style=" float:left !important;height:30px;width:70px;"  /></td>
+          
+            </tr>
+   </table>
+   
+  
+       </p:outputPanel>
+        </p:dialog> 
+      
+      
+      
+</h:form>
+</h:body>
+</ui:define>
+</ui:composition>

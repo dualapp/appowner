@@ -13,11 +13,24 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Ads &#38; Post details</span>
+					<img src="#{expenseBean.str_Name}images/sub.jpg.jpg" height="45" width="45"></img> <span class="title"> Ad&#38;Post details</span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:150px;
+          }
+          select
+          {
+           height:25px;
+           weight:150px;
+          }
+      </style>	
 	<div id="page3" >
  
 	
@@ -37,9 +50,20 @@
           </td>
         <td>&#150;           &#150;           &#150;    &#150;  
         <p:outputLabel for="var_Ad_CategoryName" value="Category:" /></td>
-         <td>   <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px">
+ <td> <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}"   >
+           <f:selectItem itemLabel="Category"  itemValue=""  />
+            <f:selectItems value="#{cls_AddDetailBean.categories}"   />
+            <p:ajax partialSubmit="true" update="var_Ad_SubCategoryName" execute="catmessage"/>
+            
+            </h:selectOneMenu>
+            
+          </td>
+     
+      <td>&#150;           &#150;           &#150;    &#150;  
+        <p:outputLabel for="var_Ad_SubCategoryName" value="SubCategory:" /></td>
+         <td>   <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" style="width:200px">
             <f:selectItem itemLabel="Category"  itemValue=""  />
-            <f:selectItems value="#{cls_AddDetailBean.categories}"  />
+            <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
             </h:selectOneMenu>
           </td>
       </tr>
@@ -47,21 +71,21 @@
       <table style="margin-left:35px">
         <tr> 
             <td><p:outputLabel for="ch_Ad_Type" value="Ad Type:" /> &#150;&#150;  </td>  
-            <td><p:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
+            <td><h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.ch_Ad_Type}">
             <f:selectItem itemLabel="My Community" itemValue="My Community" />
             <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
-        </p:selectOneRadio>
+          </h:selectOneRadio>
         </td>
         </tr>
         </table>
        <table style="margin-left:35px">
        <tr> 
         <td><p:outputLabel for="I" value="I want to:" /></td>
-        <td><p:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
-          <f:selectItem itemLabel="Sell" Value="Sell"  />  
+        <td><h:selectOneRadio id="I" value="#{cls_AddDetailBean.ch_Product_Type}">
+          <f:selectItem itemLabel="Sell" itemValue="Sell"  />  
             <f:selectItem itemLabel="Buy" itemValue="Buy" />
             <f:selectItem itemLabel="Rent   " itemValue="Rent" />
-        </p:selectOneRadio>
+        </h:selectOneRadio>
       </td>
       </tr>
       </table>
@@ -71,13 +95,13 @@
         <p:outputLabel value="Title:"/>
           </td>
         <td>
-        <h:inputTextarea  value="#{cls_AddDetailBean.var_Title}"  style="width:350px;height:90px">
+        <h:inputTextarea  value="#{cls_AddDetailBean.var_Title}"  style="width:350px;height:40px">
             </h:inputTextarea>
             </td>
             </tr>
             </table>
             <p:outputPanel   layout="block"  update="aaa1" style="background:#ffffff; ">
-            <p:graphicImage width="15%" height="15%"  id="aaa1" value="#{cls_AddDetailBean.getPath()}" style=" float:right !important;margin:-250px 100px -800px 100px;" />
+            <p:graphicImage width="15%" height="15%"  id="aaa1" value="#{cls_AddDetailBean.getPath()}" style=" float:right !important;margin:-150px 50px -800px 100px;" />
      <table style="margin-left:13px">
     <tr>
     <td>
@@ -122,8 +146,8 @@
              </table>
             <table style="margin-left:95px">
            <tr>
-                <td><p:button id="AddProduct" value="Submit"  action="#{cls_AddDetailBean.AddProduct}"  outcome="Ad_an_Post.xhtml"  style="width:80px;height:30px;float:left !important;margin: px 0px 0px `0px;" ajax="false"/></td> 
-               <td> <p:button id="AddProduct1" value="Cancel" outcome="Ad_an_Post.xhtml" style=" width:80px;height:30px;float:left !important;margin: 0px -50px px 0px;" /></td>
+                <td><h:commandButton id="AddProduct" styleClass="btn"  value="Submit"  action="#{cls_AddDetailBean.AddProduct}"  outcome="Ad_an_Post.xhtml"  style="width:80px;height:30px;float:left !important;margin: px 0px 0px `0px;" ajax="false"/></td> 
+               <td> <h:commandButton id="AddProduct1"  styleClass="btn"  value="Cancel" outcome="Ad_an_Post.xhtml" style=" width:80px;height:30px;float:left !important;margin: 0px -50px px 0px;" /></td>
                </tr>
                </table> 
                 </table>
