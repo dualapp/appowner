@@ -131,7 +131,7 @@
                  <th><p:outputLabel for="str_VendorCity" value="City " /></th>
             <td><h:selectOneMenu id="str_VendorCity" value="#{vendorBean.str_VendorCity}" required="true" requiredMessage="Enterr City" >
                 <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
-                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
+                <f:selectItems  value ="#{vendorBean.cityListByState}"/>
              
             </h:selectOneMenu></td></tr>
             
@@ -207,7 +207,7 @@
            
             <tr>
                 <th width="20%"><p:outputLabel for="vendorbankaccount" value="Account Number  " /></th>
-                <td width="30%"><p:inputText id="vendorbankaccount" placeholder="Account Number"   value="#{vendorBean.str_VendorBankAccount}"/>
+                <td width="30%"><p:inputText id="vendorbankaccount" placeholder="Account Number"  maxlength="11"  value="#{vendorBean.str_VendorBankAccount}"/>
                 </td>
               <td width="50%"></td>
                 
@@ -272,10 +272,10 @@
             
             <div>
 	 <hr/>
-             <h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/> 
+           &#150; &#150; &#150; &#150; &#150; &#150;    <h:commandButton   styleClass="btn" id="submit"  value="Submit" action="#{vendorBean.saveVendor}"/> 
              &#150; &#150;  <h:commandButton   styleClass="btn" id="cancel" type="reset" value="Cancel" /> 
           
-           
+            
              </div>
              
            </div>
