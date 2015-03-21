@@ -72,8 +72,8 @@ public void setVendordao(VendorDao vendordao) {
 	}
 
 	@Override
-	public List<String> stateList() {
-		return getVendordao().stateList();
+	public List<String> stateList(String str_VendorCountry) {
+		return getVendordao().stateList(str_VendorCountry);
  	}
  
 	 
