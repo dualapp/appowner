@@ -569,6 +569,10 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 	}
 
+	public List<String> getCityListByState() {
+		
+		return cityListByState;
+	}
 	/**
 	 * This listener cleans up the State value if a new Country is selected.
 	 * 
@@ -577,13 +581,15 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	 */
 
 	public void countryChangeListener(ValueChangeEvent event) {
-		if ((event.getNewValue() != str_VendorCountry)) {
-			str_VendorState = null;
-			// str_VendorCity = null;
+		str_VendorCountry=(String) event.getNewValue();
+		if (str_VendorCountry != null) {
+			str_VendorStates = new ArrayList<String>();
+			str_VendorStates.addAll(getVendorservice().stateList(str_VendorCountry));
+			 
+		} else
+			str_VendorStates= new ArrayList<String>();
 
-		}
-
-		str_VendorCountry = (String) event.getNewValue();
+		cityListByState=new ArrayList<String>();
 	}
 
 	/**
@@ -594,10 +600,14 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	 * @return
 	 */
 	public List<String> stateChangeListener(ValueChangeEvent event) {
-
-		str_StateName = (String) event.getNewValue();
+		 
+		str_VendorState = (String) event.getNewValue();
+		if (str_VendorState!= null) {
 		cityListByState = new ArrayList<String>();
-		cityListByState.addAll(getVendorservice().cityList1(str_StateName));
+		cityListByState.addAll(getVendorservice().cityList1(str_VendorState));
+		}
+		else
+			cityListByState= new ArrayList<String>();
 
 		return cityListByState;
 	}
@@ -639,12 +649,9 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
      * Country is selected.
      */
 	public List<String> getStr_VendorStates() {
-		if (str_VendorCountry != null) {
-			str_VendorStates = new ArrayList<String>();
-			str_VendorStates.addAll(getVendorservice().stateList());
+		
 			return str_VendorStates;
-		} else
-			return new ArrayList<String>();
+		 
 
 	}
 
@@ -655,13 +662,9 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
      * state is selected.
      */
 	public List<String> getStr_VendorCities() {
-		if ((str_VendorState != null)) {
-
-			 
+		 
 			return cityListByState;
-		} else
-			return new ArrayList<String>();
-	}
+		}  
 
 	public void setStr_VendorCities(List<String> str_VendorCities) {
 		this.str_VendorCities = str_VendorCities;
@@ -721,6 +724,18 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 	public List<Vendor> getSelectedVendor() {
 		System.out.println(selectedVendor);
+		if(selectedVendor!=null)
+		{
+		 for (Vendor vendor :selectedVendor) {
+	     
+			str_VendorStates=new ArrayList<String>();
+			str_VendorStates.addAll(getVendorservice().stateList(vendor.getStr_CountryName()));
+			cityListByState = new ArrayList<String>();
+			 
+			cityListByState.addAll(getVendorservice().cityList1(vendor.getStr_StateName()));
+		}
+	}
+		 
 		return selectedVendor;
 	}
 
@@ -823,18 +838,14 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	 
 	 System.out.println( str_ServiceName);
 	 System.out.println(int_ServicePrice);
-	   vendorServiceDetails5.setEditable(false);
+	   
 		getVendorservice().updateVendorServiceDetails(vendorServiceDetails5);
 		 
 		  return null;
 	 }
 	
-	public String editAction(VendorServiceDetails vendorServiceDetails4) {
-		vendorServiceDetails4.setEditable(true);
-		 
-		return  null;
-	}
-	private   List<VendorServiceDetails> vendorServiceDetails3=new ArrayList<VendorServiceDetails>();
+	 
+	private   List<VendorServiceDetails> vendorServiceDetails3;
 	 /**
 	  * 
 	  * @return list of serviceDetails according to vendor id
@@ -843,9 +854,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	public List<VendorServiceDetails> getVendorServiceDetails3() {
 		//vendorServiceDetails3=new ArrayList<VendorServiceDetails>();
 		//Thread.dumpStack();
-		 
-		vendorServiceDetails3.addAll(getVendorservice().getVendorServiceDetails(int_VendorId));
-		 
+		
 		return vendorServiceDetails3;
 	}
 	 
@@ -936,7 +945,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Vendor Added Successfully!"));
 
-		return "addvendor.xhtml";
+		return "vendorlists.xhtml";
 	}
 	}
 	private WorkOrderCategory workOrderCategory;
@@ -975,7 +984,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 		getVendorservice().deleteVendor(vendor);
 
-		return "vendorlists?faces-redirect=true";
+		return "vendorlists.xhtml";
 
 	}
  
@@ -1053,6 +1062,17 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	public void getVendor1(Integer int_VendorId) {
 
 		vendor = getVendorservice().getVendor(int_VendorId);
+		 
+		if(vendor!=null)
+		{
+			str_VendorStates=new ArrayList<String>();
+			str_VendorStates.addAll(getVendorservice().stateList(vendor.getStr_CountryName()));
+			cityListByState = new ArrayList<String>();
+			 
+			cityListByState.addAll(getVendorservice().cityList1(vendor.getStr_StateName()));
+			vendorServiceDetails3=new ArrayList<VendorServiceDetails>();
+			vendorServiceDetails3.addAll(getVendorservice().getVendorServiceDetails(vendor.getInt_VendorId()));
+		}
 		//System.out.println(vendor.getStr_VendorName());
 
 	}
