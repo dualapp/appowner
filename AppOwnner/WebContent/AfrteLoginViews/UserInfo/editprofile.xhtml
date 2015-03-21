@@ -15,7 +15,7 @@
 	  
 <h:head>
     <title>Edit</title>
-    <style type="text/css">
+     <style>
  .ui-growl {
  position:absolute;
         
@@ -25,9 +25,14 @@
          margin-left:-200px; 
 
 }
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
 </style>
-
-     
 </h:head>
 <body bgcolor="pink">
 <h:form method="post"
@@ -67,7 +72,7 @@
                <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{vendorBean.str_VendorCountries}" />
-                 <p:ajax event="change" update="str_VendorState" process="str_VendorCountry"/>
+                 <p:ajax event="change" update="str_VendorState,str_VendorCity" process="str_VendorCountry"/>
             </h:selectOneMenu>
           
             </td> 
@@ -86,7 +91,7 @@
              <td> 
              <h:selectOneMenu id="str_VendorCity" value="#{loginBean.str_City}"  >
                 <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
-                <f:selectItems  value ="#{loginBean.str_UserCities}"/>
+                <f:selectItems  value ="#{loginBean.cityListByState}"/>
              
             </h:selectOneMenu>
              </td> 
@@ -142,7 +147,7 @@
              </td>          
             <td width="10%"><h:selectOneMenu id="str_Block" value="#{loginBean.str_Block}" valueChangeListener="#{loginBean.blockChangeListener}">
             <f:selectItems value="#{cls_UserBean.blockNameList}"/>
-             <f:ajax event="change" update="str_House" process="str_Block" immediate="true"/>
+             <f:ajax event="change" update="str_House"  render="str_House" process="str_Block"/>
              </h:selectOneMenu>
              </td>
               <td width="10%"><p:outputLabel value="Flat No:"/>
