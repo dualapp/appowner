@@ -216,7 +216,7 @@
              </h:form>
            
             
-            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="500">
+            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="600" width="500">
         <h:form id="editform">
         <p:outputPanel id="multiVendorDetail" style="text-align:center;">
           
@@ -254,7 +254,7 @@
                <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{vendorBean.str_VendorCountries}" />
-                 <p:ajax event="change" update="str_VendorState" process="str_VendorCountry"/>
+                 <p:ajax event="change" update="str_VendorState,str_VendorCity" process="str_VendorCountry"/>
             </h:selectOneMenu>
     </td>
     </tr>
@@ -292,26 +292,14 @@
     <td>
     <h:inputText value="#{vendor1.str_VendorEmail}"/></td>
     </tr>
-   
-  
+    
     <tr>
  <th>
-    <h:outputText value="Vendor Bank Name:"/></th>
-    <td>
-    <h:inputText value="#{vendor1.str_VendorBankName}"/></td>
-    </tr>
-    <tr>
- <th>
-    <h:outputText value="Vendor Expense:"/></th>
+    <h:outputText value="Active:"/></th>
     <td>
     <h:inputText value="#{vendor1.bool_IsVendorActive}"/></td>
     </tr>
-     <tr>
- <th>
-    <h:outputText value="Comments:"/></th>
-    <td>
-    <h:inputText value="#{vendor1.str_VendorComments}"/></td>
-    </tr>
+     
        </table>
             
              
@@ -433,7 +421,7 @@
         </p:outputPanel>
         </h:form>
     </p:dialog>
-       <p:dialog header="Edit Vendor Details" widgetVar="editVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
+       <p:dialog header="Edit Vendor Details" widgetVar="editVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="600" width="500">
          <h:form id="editform1">
         <p:outputPanel id="editVendorDetail" style="text-align:center;">
  <table>
@@ -463,7 +451,7 @@
                
                 <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{vendorBean.str_VendorCountries}" />
-                 <p:ajax event="change" update="str_VendorState1" process="str_VendorCountry1"/>
+                 <p:ajax event="change" update="str_VendorState1,str_VendorCity1" process="str_VendorCountry1"/>
             </h:selectOneMenu>
     </td>
     </tr>
@@ -484,7 +472,7 @@
     <td>
     <h:selectOneMenu id="str_VendorCity1" value="#{vendorBean.vendor.str_CityName}">
                 <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
-                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
+                <f:selectItems  value ="#{vendorBean.cityListByState}"/>
              
             </h:selectOneMenu>
      </td>
@@ -502,25 +490,14 @@
     <h:inputText value="#{vendorBean.vendor.str_VendorEmail}"/></td>
     </tr>
    
-  
+   
     <tr>
  <td>
-    <h:outputText value="Vendor Bank Name:"/></td>
-    <td>
-    <h:inputText value="#{vendorBean.vendor.str_VendorBankName}"/></td>
-    </tr>
-    <tr>
- <td>
-    <h:outputText value="Vendor Expense:"/></td>
+    <h:outputText value="Active:"/></td>
     <td>
     <h:inputText value="#{vendorBean.vendor.bool_IsVendorActive}"/></td>
     </tr>
-     <tr>
- <td>
-    <h:outputText value="Comments:"/></td>
-    <td>
-    <h:inputText value="#{vendorBean.vendor.str_VendorComments}"/></td>
-    </tr>
+      
     </table>
      <div>
 	 <hr/>
