@@ -35,14 +35,7 @@ public class VendorServiceDetails implements Serializable {
     private String int_ServicePrice;
 	@Column(name="int_VendorId")
 	private Integer int_VendorId;
-	@Column 
-	private Boolean editable;
-	public Boolean getEditable() {
-		return editable;
-	}
-	public void setEditable(Boolean editable) {
-		this.editable = editable;
-	}
+	 
 	public Integer getInt_VendorId() {
 		return int_VendorId;
 	}
