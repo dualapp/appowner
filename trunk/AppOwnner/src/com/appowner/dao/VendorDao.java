@@ -29,7 +29,7 @@ public interface VendorDao {
 
 	public List<String> countryList();
 
-	public List<String> stateList();
+	public List<String> stateList(String str_VendorCountry);
 
 	public List<String> cityList1(String str_VendorState);
 

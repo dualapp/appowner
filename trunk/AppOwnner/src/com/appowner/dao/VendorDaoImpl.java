@@ -94,11 +94,12 @@ public class VendorDaoImpl implements VendorDao{
 	}
 
 	@Override
-	public List<String> stateList() {
-
+	public List<String> stateList(String str_VendorCountry) {
+		
+	Integer cid=	(Integer) getSessionFactory().getCurrentSession().createQuery("select int_CountryId from VendorCountry where str_CountryName=?").setParameter(0, str_VendorCountry).uniqueResult();
 		@SuppressWarnings("unchecked")
-		List<String> stateList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(VendorState.class).setCacheable(true).setProjection(Projections.property("str_StateName")).list();
-		  System.out.println( ( stateList).listIterator().hasNext());
+		List<String> stateList= (List<String>) getSessionFactory().getCurrentSession().createQuery("select str_StateName from VendorState where int_CountryId=?").setParameter(0, cid).list();
+		  
 		  return  stateList ;
 		 
 	}
