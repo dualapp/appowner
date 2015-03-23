@@ -211,6 +211,15 @@ public class InvoiceTransaction implements Serializable{
 	public void setDueBalance(double dueBalance) {
 		this.dueBalance = dueBalance;
 	}
+	private double paidBalance;
+	public double getPaidBalance() {
+		return paidBalance;
+	}
+	public void setPaidBalance(double paidBalance) {
+		this.paidBalance = paidBalance;
+	}
+
+
 	private String deposit_Account;
 	public String getDeposit_Account() {
 		return deposit_Account;
