@@ -19,9 +19,6 @@ import java.io.Serializable;
 
 
 
-
-
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -43,7 +40,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
-import javax.faces.validator.ValidatorException;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.context.RequestContext;
@@ -51,14 +47,12 @@ import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.DueTransaction;
 import com.appowner.model.HouseDetails;
-import com.appowner.model.RoleAssignment;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.VendorServiceDetails;
 import com.appowner.service.ApartmentDetailsService;
 import com.appowner.service.In_UserService;
-import com.appowner.service.MaintainanceStaffService;
 import com.appowner.util.Util;
 /*
  * Develope by kalpana .
@@ -442,7 +436,6 @@ public class Cls_UserBean implements Serializable{
 				ua.setStr_Address(getCity());
 				ua.setInt_CityId(id);
 				ua.setStatus(0);
-				ua.setInt_subscriptID(1);
 				java.util.Date d=new java.util.Date();
 				System.out.println(d+"dskdskdslkk");
 				Calendar cal1 = Calendar.getInstance();
@@ -639,19 +632,19 @@ public class Cls_UserBean implements Serializable{
 					{
 						System.out.println("hello");
 						FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("email and confirm email should same"));
-						return "addnewuserbyadmin.xhtml";
+						return "null";
 					}
 					if(str_Email.equals(str_ConfirmEmail))
 					{ 
 						
 								FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("password  and confirm password should same"));
-								return "addnewuserbyadmin.xhtml";
+								return "null";
 					}
 					//else(email.equals(confirmemail)&&password.equals(confirmpassword))
 					//{ 
 						
 								FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("password,confirm password and email,confirm email should same"));
-								return "addnewuserbyadmin.xhtml";
+								return "null";
 					//}
 											
 					
@@ -910,7 +903,7 @@ public class Cls_UserBean implements Serializable{
 			
 			
 			getUserService().updateUser(editlis);
-			return "apartments_memberdetails.xhtml";
+			return "userupdateconfirmation.xhtml";
 		}
 		private boolean indicator;
 		
@@ -1040,40 +1033,14 @@ public class Cls_UserBean implements Serializable{
 		public void setSelectedUser(User selectedUser) {
 			this.selectedUser = selectedUser;
 		}
-		public List<String> selectRole(int id)
+		public String selectRole(int id)
 		{   System.out.println("hjyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 		   System.out.println(id+"dfjkdfjkfkj");
 			Cls_UserBean.id=id;
-			getStr_AssinedRoles();
-		/*	str_AssinedRoles =new ArrayList<String>();
-			str_AssinedRoles.addAll(getMaintainanceStaffService().getRoleNames(id));
-			System.out.println(str_AssinedRoles+"fdkmkmgfm");
 			System.out.println(Cls_UserBean.id+"fdfjfdjfd");
-			return str_AssinedRoles; */
 			return null;
+			
 		}
-		@ManagedProperty(value="#{MaintainanceStaffService}")
-		private  MaintainanceStaffService maintainanceStaffService;
-		public MaintainanceStaffService getMaintainanceStaffService() {
-			return maintainanceStaffService;
-		}
-		public void setMaintainanceStaffService(
-				MaintainanceStaffService maintainanceStaffService) {
-			this.maintainanceStaffService = maintainanceStaffService;
-		}
-		 private List<String> str_AssinedRoles;
-			public List<String> getStr_AssinedRoles() {
-				str_AssinedRoles =new ArrayList<String>();
-				System.out.println(Cls_UserBean.id+"kjvjkgfkjfkj");
-				str_AssinedRoles.addAll(getMaintainanceStaffService().getRoleNames(Cls_UserBean.id));
-				System.out.println(str_AssinedRoles+"jkfdjkfgkjgfkjfgkj");
-			return str_AssinedRoles;
-			}
-		
-		public void setStr_AssinedRoles(List<String> str_AssinedRoles) {
-				this.str_AssinedRoles = str_AssinedRoles;
-			}
-
 		private String indicator1;
 		public String getIndicator1() {
 			return indicator1;
@@ -1088,11 +1055,7 @@ public class Cls_UserBean implements Serializable{
 			
 			if(checkBox.getSubmittedValue().equals(indicator)) {
 				System.out.println("vfgfjkfkjgfkj");
-				FacesMessage msg
-		          = new FacesMessage();
-				 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			        throw new ValidatorException(msg);
-				//FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Plz Check Terms And Conditions"));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Plz Check Terms And Conditions"));
 			
 			
 			}
