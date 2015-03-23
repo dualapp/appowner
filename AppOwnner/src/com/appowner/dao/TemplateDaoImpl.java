@@ -151,16 +151,16 @@ public class TemplateDaoImpl implements TemplateDao {
 			return dueList;  
 	 }
 	@SuppressWarnings("unchecked")
-	public List<String> getMessageTemplate()
+	public List<String> getMessageTemplate(String str)
 	{
-		String hql="select str_Title from MessageTemplate where str_Category='Dues'";
-		List<String> str= (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
-		return str;
+		String hql="select str_Title from MessageTemplate where str_Category=? and int_Organisation=?";
+		List<String> str1= (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).setParameter(1,Util.getAppartmentId()).setCacheable(true).list();
+		return str1;
 		
 	}
 	public String getDescription(String str)
-	{    String hql=" select int_MessageTemplateID from MessageTemplate  where str_Title=?";
-	      int ID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).setCacheable(true).uniqueResult();
+	{    String hql="select int_MessageTemplateID from MessageTemplate  where str_Title=? and int_Organisation=?";
+	      int ID=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str).setParameter(1,Util.getAppartmentId()).setCacheable(true).uniqueResult();
 	 
 	   String hql1="select str_Description from MessageTemplate where int_MessageTemplateID="+ID;
 	   String str1= (String)getSessionFactory().getCurrentSession().createQuery(hql1).setCacheable(true).uniqueResult();
@@ -240,5 +240,11 @@ public class TemplateDaoImpl implements TemplateDao {
 			String id=(String) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).uniqueResult();
 			System.out.println(id+"jfdfd");
 			return id;
+	}
+	public int getTaxID(String str)
+	{
+		 String hql="select int_TaxTemplateID from TaxTemplate where int_Organisation=? and str_TaxName=?";
+		 Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setParameter(1,str).setCacheable(true).uniqueResult();
+		 return id;
 	}
 }
