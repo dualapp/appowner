@@ -14,11 +14,16 @@ import java.util.List;
 
 import java.util.UUID;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlSelectBooleanCheckbox;
+import javax.faces.component.html.HtmlSelectOneMenu;
+import javax.faces.context.FacesContext;
 //import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
@@ -35,6 +40,8 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
+import javax.faces.validator.ValidatorException;
 
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
@@ -324,6 +331,8 @@ public class Cls_UserBeanMain implements Serializable {
 	public void apartmentChangeListener(ValueChangeEvent event) {
 	       System.out.println("fdjjjjjjjjjjjffjfjkfjkfkjfjk");
 	        str_userapartment=(String) event.getNewValue();
+	        System.out.println(str_userapartment+"fdjkfgkjfgjkg");
+	       
 	        aparmentid1=getUserService().apartmentidget( str_userapartment);
 	        System.out.println(" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx11111111111xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 	        System.out.println( aparmentid1);
@@ -425,9 +434,7 @@ public class Cls_UserBeanMain implements Serializable {
 	       str_ApartmentListByState.addAll( getUserService().apatrmentList1(str_ApartmentName));
 	       System.out.println( str_ApartmentListByState+"jjkkjjkjk");
 	       System.out.println(str_ApartmentListByState.listIterator().hasNext()+"kisdksdkds");
-	       indicator=str_ApartmentListByState.listIterator().hasNext();
-	       System.out.println(indicator+"kjkjkjjk");
-	       System.out.println("hi");
+	    
 	       getSelectonemenubean().getCity(str_ApartmentName);
 	       return str_ApartmentListByState;
 	       }
@@ -681,9 +688,49 @@ public class Cls_UserBeanMain implements Serializable {
    	   { 
    		   setValue1(" ");
    	   }
-   
-		
 	}
+	 public void validateSelectMenuBox(FacesContext context, UIComponent component,Object o) {
+			System.out.println("dfhfdhjfgv hufg vjhu");
+			HtmlSelectOneMenu checkBox =(HtmlSelectOneMenu) component;
+			
+			if(checkBox.getSubmittedValue().equals(""))
+			{   
+				indicator=false;
+			}
+			else
+			{ 
+				indicator=true;
+			}
+			
+			}
+			
+		private boolean indicator3;	
+			
+			
+          public boolean isIndicator3() {
+			return indicator3;
+		}
+		public void setIndicator3(boolean indicator3) {
+			this.indicator3 = indicator3;
+		}
+		public void validateCheckBox(FacesContext context, UIComponent component,Object o) {
+  			System.out.println("dfhfdhjfgv hufg vjhu");
+  			HtmlSelectBooleanCheckbox checkBox =(HtmlSelectBooleanCheckbox) component;
+  			System.out.println(indicator3+"fdjkfdfkjdfkj");
+  			
+  			if(checkBox.getSubmittedValue().equals(indicator3)) {
+  				System.out.println("vfgfjkfkjgfkj");
+  				FacesMessage msg
+  		          = new FacesMessage();
+  				 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+  			        throw new ValidatorException(msg);
+  				//FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Plz Check Terms And Conditions"));
+  			
+  			
+  			}
+  	}
+		
+	
 }
 
 	 
