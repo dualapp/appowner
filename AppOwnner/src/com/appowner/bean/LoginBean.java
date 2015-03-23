@@ -1173,16 +1173,22 @@ public class LoginBean implements Serializable {
 		return "workordercategory1.jsp";
 
 	}
-	public void blockChangeListener(ValueChangeEvent event)
+	public List<String> blockChangeListener(ValueChangeEvent event)
     {
-		houseNoList=new ArrayList<String>();
-	 str_Block=(String) event.getNewValue();
+		
+	String  str_Block1=(String) event.getNewValue();
+	 if(str_Block1!=null)
+	 {
+		 houseNoList=new ArrayList<String>();
 	  
-		System.out.println(str_Block);
-		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_Block));
+		System.out.println(str_Block1);
+		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_Block1));
 		System.out.println(houseNoList+"house");
+		return houseNoList;
+	 }
 				
-
+	 else
+		return  houseNoList=new ArrayList<String>();
     }
 	 
 	 
@@ -1350,7 +1356,13 @@ public class LoginBean implements Serializable {
 	}
 
 	public List<String> getHouseNoList() {
-		
+		if(str_Block!=null)
+		{
+		houseNoList=new ArrayList<String>();
+		houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_Block));
+		}
+		else
+			houseNoList=new ArrayList<String>();
 		return houseNoList;
 	}
 
@@ -1571,10 +1583,15 @@ private List<String> cityListByState;
 	public List<String> stateChangeListener(ValueChangeEvent event) {
 
 		String str_StateName = (String) event.getNewValue();
+		if(str_StateName!=null){
 		cityListByState = new ArrayList<String>();
 		cityListByState.addAll(getVendorservice().cityList1(str_StateName));
-
 		return cityListByState;
+		}
+		
+		else
+			return new ArrayList<String>();
+		
 	}
 	/**
      * Gets a {@code List of States based on the selected Country.
@@ -1585,7 +1602,7 @@ private List<String> cityListByState;
 	public List<String> getStr_UserStates() {
 		if (str_Country != null) {
 			str_UserStates = new ArrayList<String>();
-			str_UserStates.addAll(getVendorservice().stateList());
+			str_UserStates.addAll(getVendorservice().stateList(str_Country));
 			return str_UserStates;
 		} else
 			return new ArrayList<String>();
@@ -1593,7 +1610,15 @@ private List<String> cityListByState;
 	}
 
 public List<String> getCityListByState() {
-		return cityListByState;
+	if(str_State!=null)
+	{
+	cityListByState = new ArrayList<String>();
+	cityListByState.addAll(getVendorservice().cityList1(str_State));
+	return cityListByState;
+	}
+	else
+		return new ArrayList<String>();
+		
 	}
 	public void setCityListByState(List<String> cityListByState) {
 		this.cityListByState = cityListByState;
