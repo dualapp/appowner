@@ -46,12 +46,14 @@ public class  cls_Group implements Serializable
 	private Boolean bol_Smsallow;
 	@Column
 	private Boolean bol_Emailallow;
-	
-	
-	
-	
-	
-	
+	@Column
+	private int  int_Nomember;
+	public int getInt_Nomember() {
+		return int_Nomember;
+	}
+	public void setInt_Nomember(int int_Nomember) {
+		this.int_Nomember = int_Nomember;
+	}
 	public Boolean getBol_Smsallow() {
 		return bol_Smsallow;
 	}
