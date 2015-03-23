@@ -20,6 +20,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.hibernate.search.annotations.Factory;
 import org.primefaces.event.RateEvent;
+import org.primefaces.event.RowEditEvent;
 import org.springframework.context.annotation.Scope;
 
 import com.appowner.model.Parking;
@@ -268,7 +269,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	}
 
 	private String str_ServiceName;
-	private String int_ServicePrice;
+	private Double int_ServicePrice;
 
 	public String getStr_ServiceName() {
 		return str_ServiceName;
@@ -278,11 +279,12 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		this.str_ServiceName = str_ServiceName;
 	}
 
-	public String getInt_ServicePrice() {
+	 
+
+	public Double getInt_ServicePrice() {
 		return int_ServicePrice;
 	}
-
-	public void setInt_ServicePrice(String int_ServicePrice) {
+	public void setInt_ServicePrice(Double int_ServicePrice) {
 		this.int_ServicePrice = int_ServicePrice;
 	}
 
@@ -310,27 +312,38 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 	// private String CountryName;
 	@SuppressWarnings("rawtypes")
-	private List list1 = new ArrayList();
+	private List<Double> list1= new ArrayList<Double>();
+
+	@SuppressWarnings("rawtypes")
+	private List<String> list = new ArrayList<String>();
 
 	public List getList1() {
 		return list1;
 	}
-
 	public void setList1(List list1) {
 		this.list1 = list1;
 	}
-
-	@SuppressWarnings("rawtypes")
-	private List list = new ArrayList();
-
 	public List getList() {
 		return list;
 	}
-
 	public void setList(List list) {
 		this.list = list;
 	}
 
+	
+	 public void onRowEdit(RowEditEvent event) {
+		 VendorServiceDetails vs = (VendorServiceDetails) event.getObject();
+         System.out.println("Edit: " +vs);
+         getVendorservice().update(vs);
+         
+	        FacesMessage msg = new FacesMessage("Car Edited" );
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
+	     
+	    public void onRowCancel(RowEditEvent event) {
+	        FacesMessage msg = new FacesMessage("Edit Cancelled" );
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
 	
 	public String getStr_PanNo() {
 		return str_PanNo;
@@ -553,18 +566,18 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 	@SuppressWarnings("unchecked")
 	public void vendorServiceDetailsListener(ValueChangeEvent event) {
-
+  
 		 
-		list.add(event.getNewValue());
+		list.add((String) event.getNewValue());
 		 
 
 	}
 
 	@SuppressWarnings("unchecked")
 	public void vendorServiceDetailsListener1(ValueChangeEvent event) {
-
-		 
-		list1.add(event.getNewValue());
+     
+      
+		list1.add(Double.parseDouble((String) event.getNewValue()));
 	 
 
 	}
@@ -928,10 +941,11 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		ListIterator itr = list.listIterator();
 		ListIterator itr1 = list1.listIterator();
 		while (itr.hasNext() || itr1.hasNext()) {
-			Object servicename = itr.next();
-			str_ServiceName = (String) servicename;
-			Object serviceprice = itr1.next();
-			int_ServicePrice = (String) serviceprice;
+			 
+			str_ServiceName = (String) itr.next();
+			 int_ServicePrice = (Double) itr1.next();
+			 
+			 
 			System.out.println(str_ServiceName);
 			System.out.println(int_ServicePrice);
 			vendorServiceDetails1.setStr_ServiceName(str_ServiceName);
@@ -1041,21 +1055,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
 	    return "vendorlists?faces-redirect=true";
 	}
-	public void cancelVendor() {
-		str_VendorEmail=null;
-		str_VendorAddress=null;
-		str_ContactPersonName=null;
-		str_VendorType=null;
-		str_VendorName=null;
-		str_VendorPhone= null;
-		str_ServiceName=null;
-		int_ServicePrice="0.0";
-		str_VendorCountry=null;
-		str_VendorState=null;
-		str_VendorCity=null;
-		str_ZipCode=null;
-		
-	}
+	 
 /**
  * get particular vendor according to vendor id
  */
