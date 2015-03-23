@@ -191,11 +191,11 @@
                  </h:selectOneMenu></td>
     </tr>
     <tr>
-   
+ 
    <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
    
     <td><p:selectManyCheckbox id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}" style="height:25px;width:250px;" reqired="true" requiredMessage="Choose Atleast One Due Template ">
-               <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
+              
               <f:selectItems value="#{templateBean.dueTemplates}"  style="height:25px;width:250px;"/>
              
              </p:selectManyCheckbox> </td>

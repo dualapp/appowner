@@ -190,7 +190,11 @@
                 
                
                 <h:outputText value="#{dueTemplate.str_TaxTemplate}" />
-               
+                <h:panelGroup rendered="#{dueTemplate.str_TaxTemplate != 'None'}">
+                 <p:commandLink     update=":form:multiTaxTemplateDetail4" oncomplete="PF('multiTaxTemplateDialog4').show()" action="#{templateBean.getTaxTemplate1(dueTemplate.str_TaxTemplate)}">
+                  <h:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink>
+             </h:panelGroup>
             </p:column>
             <p:column exportable="false">
                 <f:facet name="header">
@@ -227,7 +231,34 @@
                
           </p:dataTable>
           </div>
-       
+        <p:dialog header="View TaxTemplate" widgetVar="multiTaxTemplateDialog4"     showEffect="explode" hideEffect="explode" resizable="false" height="200" width="400">
+        <p:outputPanel id="multiTaxTemplateDetail4" style="text-align:center;">
+           <table>
+              
+            
+             
+              <tr>
+ <th>
+    <h:outputText value="Tax Template:"/></th>
+    <td>
+    <h:inputText value="#{templateBean.taxTemplate.str_TaxName}" readonly="true"/></td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Tax Percentage:"/></th>
+    <td>
+    <h:inputText value="#{templateBean.taxTemplate.int_Percentage}" readonly="true"/></td>
+    </tr>
+    <tr>
+    <th>
+    <h:outputText value="TaxExemption:"/></th>
+    <td>
+    <h:inputText value="#{templateBean.taxTemplate.int_TaxExemption}" readonly="true"/></td>
+    </tr>
+           
+            </table>
+        </p:outputPanel>
+    </p:dialog>
         <p:dialog header="Edit DueTemplate" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="380" width="450" minHeight="100">
         <p:outputPanel id="multiDueTemplateDetail3" style="text-align:center;">
           

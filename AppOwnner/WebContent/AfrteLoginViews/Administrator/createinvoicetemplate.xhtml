@@ -84,12 +84,12 @@
             <tr>
           
            <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
-            <td><p:selectCheckboxMenu id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" validatorMessage="Choose Atleast One Due Template ">
+            <td><p:selectManyCheckbox id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" validatorMessage="Choose Atleast One Due Template ">
                
               <f:selectItems value="#{templateBean.dueTemplates}"/>
              
             <p:ajax event="change"  process="str_DueInvoiceTemplate"/>
-         </p:selectCheckboxMenu>
+        </p:selectManyCheckbox>
            </td>
            <td><p:message for="str_DueInvoiceTemplate" dispay="text" /></td>
             </tr>
@@ -99,9 +99,15 @@
             <tr><td><h3 align="left">Payment Instruction</h3></td></tr>
             <tr>
              <td> <h:outputLabel value="Message Category" /></td>  
-          <td><p:selectOneMenu id="str_MessageCategory" value="#{templateBean.str_MessageCategory}"  >
+          <td><p:selectOneMenu id="str_MessageCategory" value="#{templateBean.str_MessageCategory}" valueChangeListener="#{templateBean.templateChangeListener1}" >
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Ads" itemValue="Ads" />
                     <f:selectItem itemLabel="Accounts" itemValue="Accounts" />
+                     <f:selectItem itemLabel="Maintenance" itemValue="Maintenance" />
+                     <f:selectItem itemLabel="Parking" itemValue="Parking" />
+                      <f:selectItem itemLabel="Meeting" itemValue="Meeting" />
+                       <f:selectItem itemLabel="Others" itemValue="Others" />
+                        <f:selectItem itemLabel="Welcome New User" itemValue="Welcome New User" />
                      <p:ajax event="change" update="str_MessageTemplate" process="str_MessageCategory"/>
                  </p:selectOneMenu></td>   
                  </tr>
@@ -126,7 +132,7 @@
               <tr>
               <td></td>
                 <td><p:commandButton styleClass="btn" id="submit" value="Submit" action="#{templateBean.addInvoiceTemplate}" onclick="EnrollNowClick()" ajax="false" />
-                <p:commandButton styleClass="btn" id="cancel" value="Cancel" action="#{complainBean.reset}" onclick="EnrollLater1()" style="margin-left:2em;" ajax="false"/></td>
+                <p:button styleClass="btn" id="cancel" value="Cancel" outcome="invoicetemplate.xhtml"  style="margin-left:2em;" /></td>
             </tr>
            </table>
            
