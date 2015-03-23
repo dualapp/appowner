@@ -27,7 +27,7 @@ public void updateTaxTemplate(TaxTemplate taxTemplate);
 public MessageTemplate getMessageTemplate(Integer int_MessageTemplateID);
 public void updateMessageTemplate(MessageTemplate messageTemplate);
 public List<String> getDueTemplate( String frequency);
-public List<String> getMessageTemplate();
+public List<String> getMessageTemplate(String str);
 public String getDescription(String str);
 public List<DueTemplate> searchDueTemplate(String account);
 public void deleteDue(DueTemplate dueTemplate);
@@ -40,4 +40,5 @@ public void deleteMessage1(List<MessageTemplate> delete);
 public void deleteTax1(List<TaxTemplate> delete);
 public String detectDueTemplate(String str);
 public String getCalculation();
+public int getTaxID(String str);
 }
