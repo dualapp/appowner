@@ -47,7 +47,7 @@ template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
      
            <tr>
            <td> <h:outputText value="Account:" /> <p:spacer height="10px" width="50px"></p:spacer></td>
-         <td>   <h:inputText value="Income From Resident" /></td>
+         <td>   <p:inputText value="#{dueBean.dueTranasction.str_Accounts}" /></td>
             <td > <h:outputText value="DueTemplate:" /></td>
          <td>   <h:inputText value="#{dueBean.dueTranasction.str_DueTemplate}" /></td>
            </tr>

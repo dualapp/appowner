@@ -128,7 +128,7 @@
     <br/>
   
      <tr><td></td>
-                <td><h:commandButton id="submit" styleClass="btn" value="Confirm" action="#{invoiceBean.savePayment(invoiceBean.selectedInvoice.int_InvoiceTransactionID,invoiceBean.selectedInvoice.int_InvoiceNo)}" update="invoice"/>
+                <td><h:commandButton id="submit" styleClass="btn" value="Confirm" action="#{invoiceBean.savePayment()}" update="invoice"/>
                 <h:commandButton id="cancel" styleClass="btn" style="margin-left:2em;" value="Cancel" action="#{invoiceBean.cancelInvoice}" ajax="false"/></td>
             </tr>
             </table>
