@@ -69,8 +69,7 @@ public class EmailSendingServlet2 extends HttpServlet {
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/Result.jsp").forward(
-                    request, response);
+            response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/Accounting/invoice.xhtml?render=true") ;
         }
     }
 }
