@@ -2,12 +2,14 @@ package com.appowner.bean;
 import java.io.IOException;
  
 
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
  
 /**
  * A servlet that takes message details from user and send it as a new e-mail
@@ -57,8 +59,11 @@ public class EmailSendingServlet extends HttpServlet {
             ex.printStackTrace();
             resultMessage = "There were an error: " +ex.toString();
         } finally {
+        	HttpSession session = request.getSession(false);
+        	//save message in session
+        	session.setAttribute("render", "true");
             request.setAttribute("Message", resultMessage);
-            request.setAttribute("render", "true");
+          //  request.setAttribute("render", "true");
             if(str.equalsIgnoreCase("user"))
             {
             	response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/UserInfo/apartments_memberdetails.xhtml") ;
