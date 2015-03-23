@@ -108,4 +108,8 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().getOutstandingBalance();
 	  }
+	  public String getUserName(String str_Block, String str_ApartmentNo)
+	  {
+		  return getInvoiceDao().getUserName(str_Block,str_ApartmentNo);
+	  }
 }
