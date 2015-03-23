@@ -185,10 +185,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		
 		return str1;
 	}
-	public void updatePayment(String accountName,String paymentMode, double totalBalance,double dueBalance, String str_Status, Integer id, Date dat_InvoiceDate,Date payment_Date, Integer payment_No, String deposite_Account_Name)
-	{
-		String hql="update InvoiceTransaction set str_Status=?,str_paymentMode=?,totalBalance=?,dueBalance=?,str_paymentAccount=?,dat_PaymentDate=?,Payment_No=?,Payment_Mode_Date=?,deposit_Account=? where int_InvoiceTransactionID=?";
-		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Status).setParameter(1,paymentMode).setParameter(2, totalBalance).setParameter(3,dueBalance).setParameter(4,accountName).setDate(5, dat_InvoiceDate).setParameter(6, payment_No).setDate(7, payment_Date).setParameter(8, deposite_Account_Name).setParameter(9,id).executeUpdate();
+	public void updatePayment(String accountName,String paymentMode, double dueBalance,double paidBalance, String str_Status, Integer id, Date dat_InvoiceDate,Date payment_Date, Integer payment_No, String deposite_Account_Name)
+	{  System.out.println(paidBalance+"fdjkfdkjfd");
+	System.out.println(dueBalance+"fkjfkjdfdfg");
+		String hql="update InvoiceTransaction set str_Status=?,str_paymentMode=?,dueBalance=?,paidBalance=?,str_paymentAccount=?,dat_PaymentDate=?,Payment_No=?,Payment_Mode_Date=?,deposit_Account=? where int_InvoiceTransactionID=?";
+		getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Status).setParameter(1,paymentMode).setParameter(2, dueBalance).setParameter(3,paidBalance).setParameter(4,accountName).setDate(5, dat_InvoiceDate).setParameter(6, payment_No).setDate(7, payment_Date).setParameter(8, deposite_Account_Name).setParameter(9,id).executeUpdate();
 	}
 	public InvoiceTransaction getInvoice(Integer int_InvoiceTransactionID)
 	{
@@ -233,5 +234,15 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		String hql="select totalBalance from InvoiceTransaction  where int_Organisation=?";
 		return (List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,apartmentID).setCacheable(true).list();
 	}
-	
+	public String getUserName(String str_Block, String str_ApartmentNo)
+	{
+		String hql="select str_FirstName  from User  where int_ApartmentId=? and str_Block=? and str_Flat=?";
+		String str=(String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setParameter(1, str_Block).setParameter(2, str_ApartmentNo).setCacheable(true).uniqueResult();
+		String hql1="select str_LastName  from User  where int_ApartmentId=? and str_Block=? and str_Flat=?";
+		String str1=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,Util.getAppartmentId()).setParameter(1, str_Block).setParameter(2, str_ApartmentNo).setCacheable(true).uniqueResult();
+		
+		String str2=str+"   "+str1;
+		
+		return str2;
+	}
 }

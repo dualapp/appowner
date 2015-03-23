@@ -48,6 +48,8 @@ public List<InvoiceTransaction> listInvoiceTransaction1(
 		String str_InvoiceTemplate, String str_Block, String str_ApartmentNo,
 		Integer int_Year, String str_BillPeriod);
 
+public String getUserName(String str_Block, String str_ApartmentNo);
+
 
 
 
