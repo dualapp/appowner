@@ -103,9 +103,9 @@ public class TemplateServiceImpl implements TemplateService {
 	  {
 		  return getTemplateDao().getDueTemplate(frequency);
 	  }
-	  public List<String> getMessageTemplate()
+	  public List<String> getMessageTemplate(String str)
 	  {
-		  return getTemplateDao().getMessageTemplate(); 
+		  return getTemplateDao().getMessageTemplate(str); 
 	  }
 	  public String getDescription(String str)
 	  {
@@ -155,5 +155,9 @@ public class TemplateServiceImpl implements TemplateService {
 			  {
 				  return getTemplateDao().getCalculation(); 
 			  }
+	  public int getTaxID(String str)
+	  {
+		  return getTemplateDao().getTaxID(str);
+	  }
 	  
 }
