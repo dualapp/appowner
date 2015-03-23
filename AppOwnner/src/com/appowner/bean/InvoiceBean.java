@@ -246,6 +246,10 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	public static void setContent(String content) {
 		InvoiceBean.content = content;
 	}
+	public void getTaxTemplate1(String str)
+	{
+		System.out.println("gfgfkjgkjkjgh");
+	}
 	 private static String InvoiceNo="invoiceNo";
 	   
 	    private static java.util.Date Date;
@@ -459,10 +463,10 @@ private List<DueTransaction> listDueTransaction;
 			invoice.setSubTotal(getSubTotal());
 			invoice.setTaxAmount(getTaxAmount2());
 			invoice.setTotalDue(getTotalDue());
-		    invoice.setDueBalance(dueBalance);
+		    invoice.setDueBalance(getTotalDue());
 			invoice.setTotalBalance(getTotalDue());
 			invoice.setStr_Status("Due");
-			
+			invoice.setPaidBalance(dueBalance);
 			
 			
 			 listDues=getInvoiceService().taxList(select);
@@ -721,6 +725,20 @@ private List<DueTransaction> listDueTransaction;
 	
 	
 	public double getTotalAmount() {
+		
+		System.out.println(select1+"gjkgkjfgkj");
+		if(select1==null)
+				{
+			return totalAmount;
+				}
+		else if(select1.equalsIgnoreCase("Full"))
+		{
+			totalAmount=totalAmount1;
+		}
+		else if(select1.equalsIgnoreCase("Partial"))
+		{  totalAmount=0.00;
+		   System.out.println(totalAmount+"dfjfjjfjj");
+		}
 		return totalAmount;
 	}
 	public void setTotalAmount(double totalAmount) {
@@ -827,6 +845,7 @@ private List<DueTransaction> listDueTransaction;
 	public void setTransaction2(List<String> transaction2) {
 		this.transaction2 = transaction2;
 	}
+	
 	@SuppressWarnings("rawtypes")
 	public List<String> amountCalculation(String fff,String ddd)
 	{
@@ -928,12 +947,19 @@ private List<DueTransaction> listDueTransaction;
 		int_Year=(Integer) event.getNewValue();
 		System.out.println(int_Year+"hjbhjjh");
 	}
+	private String userName;
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public List<String> amountChangeListener(ValueChangeEvent event)
 	 {      String str=(String)event.getNewValue();
 		System.out.println(str_BillPeriod+"hjjhj"); 
 		System.out.println(str_InvoiceTemplate+"hjjhjj");
 		str_ApartmentNo=str;
-		
+		userName=getInvoiceService().getUserName(str_Block,str_ApartmentNo);
 		System.out.println(str+"jkjkjjk");	
 		System.out.println(str_Block+"jjkkjkkjh");
 		System.out.println(int_Year+"jkjkjkjk");
@@ -1065,9 +1091,11 @@ public void setPayment_Date(Date payment_Date) {
 	Payment_Date = payment_Date;
 }
 
-public String savePayment(Integer id,String invoiceNo)
+public String savePayment()
 {  System.out.println(id+"hjhjjjjjjjjjj");
+   System.out.println(invoiceNo+"fdkfgkkggfk");
 	double amount=getInvoiceService().getAmount(id);
+	System.out.println(paidAmount+"fdkjfdjfkd");
 	System.out.println(amount+"jjk");
 	System.out.println(totalAmount+"jjjj");
 	System.out.println(select1+"jkkjds");
@@ -1075,19 +1103,35 @@ public String savePayment(Integer id,String invoiceNo)
 	{ 
 		
 		totalAmount=amount;
-	}
-	System.out.println(totalAmount+"hjhjjh");
-	if(totalAmount==amount)
-	{  Double amount1=amount-totalAmount;
-		str_Status="Paid";
-	 getInvoiceService().updatePayment(accountName,paymentMode,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No,deposite_Account_Name);
-	}
-	else if(totalAmount<amount)
-	{
-		str_Status="Partial Due";
 		Double amount1=amount-totalAmount;
+		str_Status="Paid";
 		 getInvoiceService().updatePayment(accountName,paymentMode,amount1,totalAmount,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No,deposite_Account_Name);
 	}
+	System.out.println(totalAmount+"hjhjjh");
+	if(select1.equalsIgnoreCase("Partial"))
+	{  System.out.println("fdjkfjkjkggfjkgfkj");
+	   double dueamount=0.00;
+	   double paidAmount1=0.00;
+	   if(paidAmount==0.00)
+	     { System.out.println("dfjfdjfdjfjfdfjfdj"); 
+		paidAmount1=totalAmount;
+		dueamount=amount-totalAmount;
+		str_Status="Partial Due";
+	     }
+	  else
+	   {  System.out.println("gfgfjgjkgfj");
+		paidAmount1=paidAmount+totalAmount;
+		dueamount=amount-paidAmount1;
+		str_Status="Partial Due";
+		  if(paidAmount1==amount)
+		  {
+			str_Status="Paid";
+		  }
+	}
+		
+	 getInvoiceService().updatePayment(accountName,paymentMode,dueamount,paidAmount1,str_Status,id,dat_InvoiceDate,Payment_Date,Payment_No,deposite_Account_Name);
+	}
+	
 	List<Integer> str=getDueService().getDueTemplate1(invoiceNo);
 	ListIterator list2=str.listIterator();
 	while(list2.hasNext())
@@ -1143,19 +1187,42 @@ public static void setId(Integer id) {
 public String select()
 {   System.out.println(selectedInvoice.getInt_InvoiceTransactionID()+"fjfdjfdjffg");
    id=selectedInvoice.getInt_InvoiceTransactionID();
+   
 	return "viewinvoice.xhtml";
+}
+private static String invoiceNo;
+private static double totalAmount1;
+public static double getTotalAmount1() {
+	return totalAmount1;
+}
+public static void setTotalAmount1(double totalAmount1) {
+	InvoiceBean.totalAmount1 = totalAmount1;
+}
+private static double paidAmount;
+public static double getPaidAmount() {
+	return paidAmount;
+}
+public static void setPaidAmount(double paidAmount) {
+	InvoiceBean.paidAmount = paidAmount;
 }
 public String cancel()
 
-{   int id=selectedInvoice.getInt_InvoiceTransactionID();
+{   id=selectedInvoice.getInt_InvoiceTransactionID();
+
      System.out.println(id+"fjgfjkgfgfkj");
   str_Status=getInvoiceService().getStatus(id);
   System.out.println(str_Status+"jnfdjkdkjf");
-  if(str_Status.equalsIgnoreCase("Due")||str_Status.equalsIgnoreCase("Partial Due"))
+  paidAmount=selectedInvoice.getPaidBalance();
+  if(str_Status.equalsIgnoreCase("Due"))
   {   indicate=false;
-  totalAmount=selectedInvoice.getTotalBalance();
+  totalAmount1=selectedInvoice.getTotalBalance();
+  
+ 
+  invoiceNo=selectedInvoice.getInt_InvoiceNo();
+  System.out.println(totalAmount1+"fkjfdkjfdkj");
     return "quickpayment.xhtml";
   }
+  
   else if(str_Status.equalsIgnoreCase("Paid"))
   {
 	  indicate=true;
@@ -1167,8 +1234,16 @@ public String cancel()
  
 	  return null;
   }
-   System.out.println(id+"kjdfkjfdkjfd");
-return null;
+  else
+	  {
+	  indicate=false;
+	  totalAmount1=selectedInvoice.getDueBalance();
+	  System.out.println(paidAmount);
+	  invoiceNo=selectedInvoice.getInt_InvoiceNo();
+	  System.out.println(totalAmount1+"fkjfdkjfdkj");
+	    return "quickpayment.xhtml";
+	  }
+
 	
 }
 
@@ -1221,11 +1296,20 @@ public String getSelect1() {
 public void setSelect1(String select1) {
 	this.select1 = select1;
 }
-public String changeAccount(ValueChangeEvent event)
+public double changeAccount(ValueChangeEvent event)
 {    
 	select1=(String)event.getNewValue();
 	System.out.println(select1+"jkkjjskd");
-	return null;
+	if(select1.equals("Full"))
+	{
+	System.out.println(totalAmount1+"dfjfjfj");
+	}
+	else
+	{
+		
+		System.out.println(totalAmount1+"fcjddfjkfjk");
+	}
+	return totalAmount1;
 }
 public String deleteInvoice() {
 	
