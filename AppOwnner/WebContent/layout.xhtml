@@ -246,7 +246,7 @@ function InvalidMsg1(textbox) {
           </tr>
           <tr> 
             <td><h:outputLabel for="str_UserApartment" style="color:#FFFFFF" value="Apartment" /><font color="red" >*</font></td>
-            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBean.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" style="width:200px;margin-top:1em;"> 
+            <td><h:selectOneMenu id="str_UserApartment" value="#{cls_UserBean.str_UserApartment}" valueChangeListener="#{cls_UserBeanMain.apartmentChangeListener}" validator="#{cls_UserBeanMain.validateSelectMenuBox}" style="width:200px;margin-top:1em;"> 
                 <f:selectItem itemLabel="Select Apartment"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{cls_UserBeanMain.str_UserApartments}"/>
                  <p:ajax event="change" process="str_UserApartment"/>
@@ -272,7 +272,7 @@ function InvalidMsg1(textbox) {
          
           <tr><td></td>
           <td>
-              <p:selectBooleanCheckbox id="indicator" value="#{cls_UserBean.indicator}" style="color:#FFFFFF" required="true" validator="#{cls_UserBean.validateCheckBox}" validatorMessage="Plz Check It"/><font color="grey" size="2">&#150; &#150;<h:link value="Terms And Conditions | Privacy Policy"></h:link></font>
+              <p:selectBooleanCheckbox id="indicator" value="#{cls_UserBean.indicator}" style="color:#FFFFFF" required="true" validator="#{cls_UserBeanMain.validateCheckBox}" validatorMessage="Plz Check It"/><font color="grey" size="2">&#150; &#150;<h:link value="Terms And Conditions | Privacy Policy"></h:link></font>
             
           </td>
              <td><p:message for="indicator" display="icon" /></td>
