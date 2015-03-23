@@ -169,7 +169,12 @@ public class TemplateBean implements Serializable,Validator {
 		duetemplate3.setStr_DueTemplate(getStr_DueTemplate());
 		duetemplate3.setStr_Frequency(getStr_Frequency());
 		duetemplate3.setStr_Rate(str_Rate);
-		duetemplate3.setStr_TaxTemplate(getStr_TaxTemplate());
+		System.out.println(str_TaxTemplate+"fgkjfgkjgfkjgf");
+		if(str_TaxTemplate.isEmpty())
+		{
+			str_TaxTemplate="None";
+		}
+		duetemplate3.setStr_TaxTemplate(str_TaxTemplate);
 		getTemplateService().saveDueTemplate(duetemplate3);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -207,7 +212,7 @@ public class TemplateBean implements Serializable,Validator {
 		 
 	
 	
-	if(str_Calculation.equalsIgnoreCase("None"))
+	if(dueTemplate1.getStr_Calculation().equalsIgnoreCase("None"))
 	{
 		dueTemplate1.setStr_Rate(0.00);
 	}
@@ -328,14 +333,15 @@ public class TemplateBean implements Serializable,Validator {
 			System.out.println("jhfjfgjkkjgfjkg");
 			System.out.println(str_Calculation);
 			System.out.println(str_Frequency);
-			if(str_Calculation.equalsIgnoreCase("None"))
-			{   
-				dueTemplate.setStr_Rate(0.00);
-			}
+			
 		//	dueTemplate.setStr_Frequency(getStr_Frequency());
 		//	dueTemplate.setStr_Calculation(getStr_Calculation());
 			System.out.println(dueTemplate.getStr_Calculation());
 			System.out.println(dueTemplate.getStr_Frequency());
+			if(dueTemplate.getStr_Calculation().equalsIgnoreCase("None"))
+			{   
+				dueTemplate.setStr_Rate(0.00);
+			}
 			getTemplateService().updateDueTemplate(dueTemplate);
 		
 			FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -419,6 +425,13 @@ public class TemplateBean implements Serializable,Validator {
 	}
 	public void setTaxTemplate(TaxTemplate taxTemplate) {
 		this.taxTemplate = taxTemplate;
+	}
+	public void getTaxTemplate1(String str)
+	{   System.out.println("jkfgkjgfkjgfkjf111111111111111111111111111111111111111111111111111111");
+	System.out.println(str+"fdkfkjgfk");
+		int id1=getTemplateService().getTaxID(str);
+	System.out.println(id1+"cfkjjkdf");
+		taxTemplate=getTemplateService().getTaxTemplate(id1);
 	}
 	public void getTaxTemplate1(int id1)
 	{
@@ -536,8 +549,7 @@ public class TemplateBean implements Serializable,Validator {
 	
 	private List<String> str_DueInvoiceTemplate;
 	public List<String> getStr_DueInvoiceTemplate() {
-		
-		return str_DueInvoiceTemplate;
+				return str_DueInvoiceTemplate;
 		
 	}
 	public void setStr_DueInvoiceTemplate(List<String> str_DueInvoiceTemplate) {
@@ -570,8 +582,8 @@ public class TemplateBean implements Serializable,Validator {
 	  invoicetemplate.setStr_Frequency(getStr_Frequency());
 	  invoicetemplate.setStr_MessageCategory(getStr_MessageCategory());
 	  invoicetemplate.setStr_MessageTemplate(getStr_MessageTemplate());
-	  System.out.println(str_Description+"jfkjfkjfgjk");
-	  invoicetemplate.setStr_Description(getStr_Description());
+	  System.out.println(description+"jfkjfkjfgjk");
+	  invoicetemplate.setStr_Description(description);
 	  invoicetemplate.setStr_DueInvoiceTemplate(str);
 	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
 	  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Invoice Template Saved Successfully!"));
@@ -586,8 +598,7 @@ public class TemplateBean implements Serializable,Validator {
 	}
 	private List<String> str_MessageTemplate1;
 	public List<String> getStr_MessageTemplate1() {
-		str_MessageTemplate1=new ArrayList<String>();
-		str_MessageTemplate1= getTemplateService().getMessageTemplate();
+		
 		
 		return str_MessageTemplate1;
 	}
@@ -702,8 +713,20 @@ public class TemplateBean implements Serializable,Validator {
 	public String templateChangeListener(ValueChangeEvent event)
 	{
 		String str=(String)event.getNewValue();
+		System.out.println(str+"fgjkgfjkgf");
 		description=getTemplateService().getDescription(str);
+		System.out.println(description+"gflkgfkgfk");
 		return description;
+		
+	}
+	public List<String> templateChangeListener1(ValueChangeEvent event)
+	{
+		String str=(String)event.getNewValue();
+		System.out.println(str+"gfkgfjkgfk");
+		str_MessageTemplate1=new ArrayList<String>();
+		str_MessageTemplate1= getTemplateService().getMessageTemplate(str);
+		System.out.println(str_MessageTemplate1+"gfkfggf");
+		return str_MessageTemplate1;
 		
 	}
 	public String deleteInvoice(){
