@@ -166,11 +166,14 @@
     
     <c:forEach items="#{vendorBean.vendorServiceDetails}"   var="Service">
           <tr>   <th>   <p:outputLabel value="Service"/></th>
-	   <td> <p:inputText value="#{ str_ServiceName}" placeholder="Service" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
+	   <td> <p:inputText value="#{str_ServiceName}" placeholder="Service" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
 	   </td></tr>
 	   <tr><th>  <p:outputLabel value="Price"/></th>
-	   <td> <p:inputText value="#{ int_ServicePrice}"  placeholder="Price" validatorMessage="Price should be  number only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
-	    <f:validateRegex pattern="^([+]?[\d]+)?$" /></p:inputText></td>
+	   <td> <p:inputText  value="#{int_ServicePrice}"  placeholder="Price(in double)" validatorMessage="Price should be  Double only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
+	      
+    <f:validateDoubleRange minimum="1" />
+	   </p:inputText></td>
+	    
 	   </tr>  </c:forEach> 
     
 	  
@@ -196,7 +199,7 @@
                    
                     <p:ajax event="blur" update="vendorcommentsMsg" />
                </p:inputTextarea>
-                    <p:message id="vendorcommentsMsg" for="vendorcomments" display="icon"/>
+                    <p:message id="vendorcommentsMsg" for="vendorcomments" display="text"/>
                 </td>
            </tr>  
              
@@ -207,9 +210,16 @@
            
             <tr>
                 <th width="20%"><p:outputLabel for="vendorbankaccount" value="Account Number  " /></th>
-                <td width="30%"><p:inputText id="vendorbankaccount" placeholder="Account Number"  maxlength="11"  value="#{vendorBean.str_VendorBankAccount}"/>
+                <td width="30%"><p:inputText id="vendorbankaccount" placeholder="Account Number"  maxlength="11"  value="#{vendorBean.str_VendorBankAccount}" 
+                 converterMessage="Please enter digits only." validatorMessage="Please enter 11 digits." >
+    
+      <f:validateRegex pattern="(^[0-9]{11}$)" />
+    <f:validateLength minimum="11" maximum="11" />
+     <p:ajax event="blur" update="vendorbankaccountMsg" />
+    </p:inputText></td>
+    <td width="50%"> <p:message id="vendorbankaccountMsg" for="vendorbankaccount" display="text"/>
                 </td>
-              <td width="50%"></td>
+            
                 
            </tr>
            
