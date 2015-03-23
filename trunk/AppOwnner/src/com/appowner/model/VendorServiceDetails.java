@@ -32,7 +32,7 @@ public class VendorServiceDetails implements Serializable {
 	@Column 
     private String str_ServiceName;
 	@Column(name="int_ServicePrice")
-    private String int_ServicePrice;
+    private Double int_ServicePrice;
 	@Column(name="int_VendorId")
 	private Integer int_VendorId;
 	 
@@ -48,11 +48,12 @@ public class VendorServiceDetails implements Serializable {
 	public void setStr_ServiceName(String str_ServiceName) {
 		this.str_ServiceName = str_ServiceName;
 	}
-	public String getInt_ServicePrice() {
+	 
+	public Double getInt_ServicePrice() {
 		return int_ServicePrice;
 	}
-	public void setInt_ServicePrice(String int_ServicePrice2) {
-		this.int_ServicePrice = int_ServicePrice2;
+	public void setInt_ServicePrice(Double int_ServicePrice) {
+		this.int_ServicePrice = int_ServicePrice;
 	}
 	public Integer getInt_ServiceId() {
 		return int_ServiceId;
