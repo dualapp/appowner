@@ -1,8 +1,14 @@
 package com.appowner.bean;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Properties;
  
+
+
+
+
 
 
 
@@ -61,6 +67,7 @@ public class EmailUtility2 {
        System.out.println(transaction);
        System.out.println(taxName+"fdkjdkfkfdj");
       String str="";
+      List<String> taxTemplate=new ArrayList<String>();
        ListIterator list=InvoiceBean.getTransaction1().listIterator();
        while(list.hasNext())
        {
@@ -68,11 +75,13 @@ public class EmailUtility2 {
     	   DueTemplate template=(DueTemplate)o;
     	  dues=template.getStr_DueTemplate();
     	  taxName=template.getStr_TaxTemplate();
+    	  taxTemplate.add(taxName);
+    	 
     	  System.out.println(dues+"kfdjkfjfdkdfkj");
     	 str=str+"<tr style="+"line-height:25px;"+">"+"<td style="+"padding-left:5px;width:440px;"+">"+dues+
   	    "</td>"+
   	  "<td align="+"right"+"" +"style="+"width:250px;"+">"+"</td>"+
-  	    "<td align="+"right"+"" +"style="+"width:250px;"+">"+
+  	    "<td align="+"right"+"" +"style="+"width:250px;"+">"+amount+
       	"</td>"+
       	
       	"<td align="+"right"+""+ "style="+"padding-right:5px;width:200px;"+">"+taxName+"</td>"+
@@ -86,28 +95,34 @@ public class EmailUtility2 {
         "</tr>"+"</td>"+
  	    "</tr>";
       	    
-      	  
+      	
 	     
        }
      
+   	System.out.println(taxTemplate+"fdjkfdkjdfkjf");
    	
-   		InvoiceDao o1=new InvoiceDaoImpl();
    
        String str1="";
-      ListIterator list1=InvoiceBean.getTransaction1().listIterator();
+      ListIterator list1=taxTemplate.listIterator();
        while(list1.hasNext())
-       {  Object o=list1.next();
-	      DueTemplate template=(DueTemplate)o;
-	      taxName=template.getStr_TaxTemplate();
-	    System.out.println(taxName);
-	   
-	//	String taxAmount1="10.00";
-		//double a=Double.parseDouble(taxAmount1);
-	//	double b=Double.parseDouble(amount);
-	//   double tax5=(a * b)/100;
+       { 
+	      taxName=(String) list1.next();
+	    System.out.println(taxName+"dkjdjkkjdfjk");
+	    System.out.println(tax+"fghjjggjf");
+	    System.out.println(taxAmount+"fdklfkgk");
+	    String[] strArray = tax.split(",");
+	   System.out.println(strArray.length+"fdjkdfjkfj");
+        for (String str2: strArray) 
+        {  
+            
+        	String tax2=str2;
+        	System.out.println(str2+"fklfgvkgf");
+        
+	
 	     str1=str1+"<tr style="+"line-height:25px;"+">"+
-        	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:300px;"+">"+"</td>"+"<td align="+"right"+"" +"style="+"width:200px;"+">"+taxName+"&nbsp;&nbsp;"+"("+tax+"%"+")"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;"+">"+taxAmount+"</td>"+
+        	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:300px;"+">"+"</td>"+"<td align="+"right"+"" +"style="+"width:200px;"+">"+taxName+"&nbsp;&nbsp;"+"("+tax2+"%"+")"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;"+">"+taxAmount+"</td>"+
         	     "</tr>";
+        }
        }
         // creates a new session with an authenticator
         Authenticator auth = new Authenticator() {
@@ -191,7 +206,7 @@ public class EmailUtility2 {
         	    "<tr>"+"</tr>"+str1+
         	     "<tr>"+
         	  "<tr>"+
-        	    "<hr/>"+"</tr>"+
+        	    "</tr>"+
         	    "<tr>"+
         	    "<td align="+"right"+"" +"style="+"width:200px;"+">"+"</td>"+
              "<td style="+"padding-left:5px;width:440px;line-height:20px;color:#E17009;" +"align="+"right"+">"+"Total Due"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;color:#E17009;"+">"+due+"</td>"+
