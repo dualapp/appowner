@@ -54,7 +54,7 @@
      </table>
          <p:dataTable      id="DT"  
                
-               rows="3"   emptyMessage="No Records Found" paginatorAlwaysVisible="false"  paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
+               rows="10"   emptyMessage="No Records Found" paginatorAlwaysVisible="false"  paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
          var="ac"  value="#{expenseBean.assetCategoryList}" selection="#{expenseBean.assetCategoryList1}" rowKey="#{ac.int_assetcatId}">
 	 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
@@ -102,7 +102,7 @@
 	 
 	 
 	
-	  &#150; &#150; <p:commandButton   styleClass="btn"   type="reset"  value="Cancel" />
+	  &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	  
 	</div>
 	 
@@ -134,8 +134,7 @@
               <hr/>
                <p:commandButton value="update"  styleClass="btn"   update=":form:DT :form:ui-growl,AssetCategoryMsg1"  action="#{expenseBean.updateAssetCategory(ac1)}" oncomplete="handleRequest1(xhr, status, args)"/>
                 
-            &#150; &#150;  <p:commandButton  type="reset"    styleClass="btn"    value="Cancel" />
-	   
+           &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
               </div>
             
              </ui:repeat>

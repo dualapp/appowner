@@ -67,7 +67,7 @@
 	 
              <p:dataTable  id="DT"  
                
-               rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
+               rows="10"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
         emptyMessage="No Records Found" paginatorAlwaysVisible="false" 
                 var="ps"  value="#{vendorBean.workOrderCategoryList}" selection="#{vendorBean.workOrderCategoryList1}" rowKey="#{ps.int_WorkOrderCategoryId}">
 	 
@@ -109,8 +109,7 @@
 	<hr/>
 	 <p:commandButton   styleClass="btn"   value="Submit" update=":form:DT :form:ui-growl,CategoryNameMsg"      action="#{vendorBean.saveWorkOrderCategory}" oncomplete="handleRequest(xhr, status, args)"/>
 	
-	 &#150; &#150; <p:commandButton  type="reset"   styleClass="btn"    value="Cancel"  />
-	  
+	  &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
                 
                 </div> </p:outputPanel>
                 </h:form>
@@ -150,7 +149,7 @@
       
    <p:commandButton value="Update"   
                 update=":form:DT :form:ui-growl,CategoryNameMsg1"   styleClass="btn"   action="#{vendorBean.updateWorkOrder(ws1)}"  oncomplete="handleRequest1(xhr, status, args)" />
-   &#150; &#150; <p:commandButton value="Cancel"  type="reset"  styleClass="btn" />
+   &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
    
     
     </div>
