@@ -129,11 +129,16 @@ private Date date_TDate;
 		public List<String> vendorTypeChangeListener(ValueChangeEvent event)
 		{   
 			str_VendorType=(String) event.getNewValue();
+			if(str_VendorType!=null)
+			{
 			System.out.println(str_VendorType);
 			str_VendorNameByType=new ArrayList<String>();
 			str_VendorNameByType.addAll(getVendorservice().listOfVendorNameByType(str_VendorType));
 			System.out.println(str_VendorNameByType);
 			return str_VendorNameByType ;
+			}
+			else
+				return str_VendorNameByType=new ArrayList<String>();
 			
 	}
 

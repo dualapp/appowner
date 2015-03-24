@@ -970,6 +970,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		workOrderCategory=new WorkOrderCategory();
 		
 		workOrderCategory.setStr_VendorCategoryType(str_VendorCategoryType);
+		workOrderCategory.setInt_ApartmentId(Util.getAppartmentId());
 		getVendorservice().saveWorkOrderCategory(workOrderCategory);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
 		}
@@ -997,7 +998,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		
 
 		getVendorservice().deleteVendor(vendor);
-
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully"));
 		return "vendorlists.xhtml";
 
 	}
