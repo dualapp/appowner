@@ -57,7 +57,7 @@
 	      &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" /> </td>
 	    </tr></table>
 	    
-  <p:dataTable id="DT"   emptyMessage="No Records Found" paginatorAlwaysVisible="false"   rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  selection="#{apartmentDetailsBean.selectedBlock}" rowKey="#{blockDetails.int_BlockId}" editable="true" editMode="cell" widgetVar="cellBlocks" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
+  <p:dataTable id="DT"   emptyMessage="No Records Found" paginatorAlwaysVisible="false"   rows="10"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  selection="#{apartmentDetailsBean.selectedBlock}" rowKey="#{blockDetails.int_BlockId}" editable="true" editMode="cell" widgetVar="cellBlocks" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
              var="blockDetails"  value="#{apartmentDetailsBean.listBlockDetails}"> 
      
              
@@ -113,10 +113,7 @@
              <hr/>
               <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg"  value="Submit"   action="#{apartmentDetailsBean.saveBlockDetails}" oncomplete="handleRequest(xhr, status, args)" />
 	  
-	 
-	 &#150; &#150;<p:commandButton   type="reset"  styleClass="btn"  value="Cancel"   >
-	 
-	 </p:commandButton> 
+	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	 </div>
 	  
 	 </p:outputPanel>
@@ -144,7 +141,7 @@
 	 <tr><td> <p:commandButton  styleClass="btn"  update=":form:DT :form:ui-growl,blockNameMsg1"    value="Submit"   action="#{apartmentDetailsBean.updateBlockDetails(selectedBlock1)}"  oncomplete="handleRequest1(xhr, status, args)" />
 	    </td>
 	  
-	 &#150; &#150; <td> <p:commandButton    type="reset"  styleClass="btn"    value="Cancel" /></td></tr>
+	 &#150; &#150; <td>  &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/></td></tr>
 	  
 	 
 	  
