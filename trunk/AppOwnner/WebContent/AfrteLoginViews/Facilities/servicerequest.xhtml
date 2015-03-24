@@ -111,7 +111,7 @@
     </h:commandLink>
 	</td></tr></table>
                 
-        <p:dataTable id="DT" rows="3"   paginatorPosition="bottom" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" paginator="true"  
+        <p:dataTable id="DT" rows="10"   paginatorPosition="bottom" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" paginator="true"  
         emptyMessage="No Records Found" paginatorAlwaysVisible="false"    resizableColumns="true"      var="sr"  value="#{requestScopeBean.listServiceRequest}"  selection="#{requestScopeBean.selectedServices}" rowKey="#{sr.int_ServiceRequestId}"> 
                 
 	 <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
@@ -196,7 +196,7 @@
     <p:commandButton value="Update" styleClass="btn" action="#{requestScopeBean.updateOneServiceRequest(sr1)}">
     
     </p:commandButton>
-    &#150; &#150; <p:commandButton type="reset"  styleClass="btn"    value="Cancel"  />
+     &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	  
 	   </div>
     

@@ -133,7 +133,7 @@
 	  <hr/>
 	  <p:commandButton  styleClass="btn"  value="Submit"  update=":form:DT :form:ui-growl,FacilityNameMsg"  action="#{expenseBean.addFacility}" oncomplete="handleRequest(xhr, status, args)"/>
 	    
-	 &#150; &#150; <p:commandButton type="reset" styleClass="btn"    value="Cancel"   />
+	  &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	  
 	  </div>
 	  
@@ -201,7 +201,7 @@
                <p:commandButton value="Update" styleClass="btn"  update=":form:DT :form:ui-growl,FacilityNameMsg1" action="#{expenseBean.updateFacility(fn1)}" oncomplete="handleRequest1(xhr, status, args)"/>
                
             
-              &#150; &#150; <p:commandButton type="reset"  styleClass="btn"    value="Cancel"   />
+              &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	   
              </div>
               </ui:repeat>
