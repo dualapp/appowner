@@ -66,8 +66,8 @@ public class ApartmentDetailsBean  implements Serializable{
 	private List<UserBlocks> listBlockDetails;
 	private List<HouseDetails> listHouseDetails;
 	private Integer int_year;
-	private Integer int_NoOfBlock;
-	private Integer int_TotalHouse;
+	private Long int_NoOfBlock;
+	private Long int_TotalHouse;
 	private Integer int_NoOfHouse;
 	
 	public Integer getInt_NoOfHouse() {
@@ -155,13 +155,14 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setStr_HouseNo(String str_HouseNo) {
 		this.str_HouseNo = str_HouseNo;
 	}
-	public Integer getInt_HouseSize() {
-		return int_HouseSize;
+	 
+	public Double getDbl_HouseSize() {
+		return dbl_HouseSize;
 	}
-	public void setInt_HouseSize(Integer int_HouseSize) {
-		this.int_HouseSize = int_HouseSize;
+	public void setDbl_HouseSize(Double dbl_HouseSize) {
+		this.dbl_HouseSize = dbl_HouseSize;
 	}
-	private Integer int_HouseSize;
+	private Double dbl_HouseSize;
 	
 	
 	public String getStr_CommunityType() {
@@ -176,19 +177,20 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setInt_year(Integer int_year) {
 		this.int_year = int_year;
 	}
-	public Integer getInt_NoOfBlock() {
+	public Long getInt_NoOfBlock() {
 		return int_NoOfBlock;
 	}
-	public void setInt_NoOfBlock(Integer int_NoOfBlock) {
+	public void setInt_NoOfBlock(Long int_NoOfBlock) {
 		this.int_NoOfBlock = int_NoOfBlock;
 	}
-	public Integer getInt_TotalHouse() {
+	 
+	
+	public Long getInt_TotalHouse() {
 		return int_TotalHouse;
 	}
-	public void setInt_TotalHouse(Integer int_TotalHouse) {
+	public void setInt_TotalHouse(Long int_TotalHouse) {
 		this.int_TotalHouse = int_TotalHouse;
 	}
-	
 	private CommunitySetup cs;
  
 	private Integer int_TotalNoOfHouses;
@@ -380,14 +382,20 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	public CommunitySetup getCs() {
 		cs=new CommunitySetup();
+		int_NoOfBlock=getApartmentDetailsService().getNoOfBlocks();
+		int_TotalHouse=getApartmentDetailsService().getTotalNoOfHouses();
+		if(int_NoOfBlock!=null ||int_TotalHouse!=null)
+		{
+			getApartmentDetailsService().updateCommunitySetup1(int_NoOfBlock,int_TotalHouse);
+		}
 		cs=getApartmentDetailsService().getCommunitySetup(Util.getUserId());
 		if(cs!=null)
 		{
 			int_NoOfBlock=cs.getInt_NoOfBlocks();
-			
+			 
 			int_year=cs.getInt_year();
 			int_TotalHouse=cs.getInt_TotalNoOfHouses();
-			//str_CommunityType=cs.getStr_CommunitySetupType();
+			 
 			communityTypelist1=new ArrayList<String>();
 			List<Integer> communityTypeId=getApartmentDetailsService().getCommunityTypeIdLists(cs.getInt_CommunitySetupId());
 			ListIterator itr=communityTypeId.listIterator();
@@ -400,14 +408,7 @@ public class ApartmentDetailsBean  implements Serializable{
 			 
 			
 		}
-		else
-		{
-			int_NoOfBlock=this.getInt_NoOfBlock();
-			int_year=this.getInt_year();
-			int_TotalHouse=this.getInt_TotalHouse();
-			
-			str_CommunityType=this.getStr_CommunityType();
-		}
+		 
 		return cs;
 	}
 	public void setCs(CommunitySetup cs) {
@@ -535,7 +536,8 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
 		
 		housedetails.setStr_HouseNo(str_HouseNo);
-		housedetails.setInt_HouseSize(int_HouseSize);
+		 
+		housedetails.setDbl_HouseSize(dbl_HouseSize);
 		housedetails.setInt_NoOfBalconies(int_NoOfBalconies);
 		housedetails.setInt_NoOfBathRooms(int_NoOfBedRooms);
 		 
@@ -546,7 +548,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 		getApartmentDetailsService().saveHouseDetails(housedetails);
 		str_HouseNo="";
-		int_HouseSize=0;
+		dbl_HouseSize=0.0;
 		int_NoOfBalconies=0;
 		int_NoOfBedRooms=0;
 		
@@ -675,8 +677,8 @@ public class ApartmentDetailsBean  implements Serializable{
 	               }
 	               
 	               else if (cell.getColumnIndex() == 2 ) {
-	            	   hdetails.setInt_HouseSize((int)cell.getNumericCellValue());
-	            	  
+	            	   
+	            	   hdetails.setDbl_HouseSize((Double)cell.getNumericCellValue());
 	                   empList.add( hdetails);
 	                   System.out.print((int)cell.getNumericCellValue() + "\t\t");
 	               }
