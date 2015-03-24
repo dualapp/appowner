@@ -22,6 +22,7 @@ import com.appowner.model.VendorState;
 import com.appowner.model.WaterPayment;
 import com.appowner.model.WaterVendorTransaction;
 import com.appowner.model.WorkOrderCategory;
+import com.appowner.util.Util;
  
 @Repository
 public class VendorDaoImpl implements VendorDao{
@@ -167,9 +168,8 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<String> listOfVendorNameByType(String str_VendorType) {
 		String hql4="select str_VendorName from Vendor where str_VendorType=?";
-		List<String> VendorNames=sessionFactory.getCurrentSession().createQuery(hql4).setParameter(0, str_VendorType).list();
-		System.out.println(VendorNames);
-		return VendorNames;
+		 
+		return sessionFactory.getCurrentSession().createQuery(hql4).setParameter(0, str_VendorType).list();
 		
 	}
 
@@ -296,7 +296,8 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<String> getStr_VendorTypeList() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(WorkOrderCategory.class).setProjection(Projections.property("str_VendorCategoryType")).list();
+		 
+		return sessionFactory.getCurrentSession().createQuery("select str_VendorCategoryType from WorkOrderCategory where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 	}
 
 	@SuppressWarnings("unchecked")

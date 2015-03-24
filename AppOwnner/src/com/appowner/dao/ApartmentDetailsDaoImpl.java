@@ -307,5 +307,24 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		// TODO Auto-generated method stub
 		return getSessionFactory().getCurrentSession().createQuery("from  HouseDetails where int_BlockId=? and int_ApartmentId=?").setParameter(0,int_blockId).setParameter(1, Util.getAppartmentId()).list();
 	}
+
+	@Override
+	public Long getNoOfBlocks() {
+		// TODO Auto-generated method stub
+		String hql="select count(*) from UserBlocks  where int_ApartmentId=?";
+		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).uniqueResult();
+	}
+
+	@Override
+	public Long getTotalNoOfHouses() {
+		String hql="select count(*) from HouseDetails  where int_ApartmentId=?";
+		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).uniqueResult();
+	}
+
+	@Override
+	public void updateCommunitySetup1(Long int_NoOfBlock, Long int_TotalHouse) {
+		// TODO Auto-generated method stub
+		getSessionFactory().getCurrentSession().createQuery("UPDATE CommunitySetup SET int_NoOfBlocks =? , int_TotalNoOfHouses=? WHERE int_ApartmentID=?").setParameter(0, int_NoOfBlock).setParameter(1, int_TotalHouse).setParameter(2, Util.getAppartmentId()).executeUpdate();
+	}
 	
 }
