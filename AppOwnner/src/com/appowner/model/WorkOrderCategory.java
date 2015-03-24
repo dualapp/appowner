@@ -20,6 +20,14 @@ public class WorkOrderCategory {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column 
 	private Integer int_WorkOrderCategoryId;
+	@Column 
+	private Integer int_ApartmentId;
+	public Integer getInt_ApartmentId() {
+		return int_ApartmentId;
+	}
+	public void setInt_ApartmentId(Integer int_ApartmentId) {
+		this.int_ApartmentId = int_ApartmentId;
+	}
 	@Column (name="var_VendorCategoryType")
 	private String str_VendorCategoryType;
 	public Integer getInt_WorkOrderCategoryId() {
