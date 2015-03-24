@@ -251,6 +251,24 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		return getApartmentDetailsDao().getHouseDetailsByBlockId(int_blockId);
 	}
 
+	@Override
+	public Long getNoOfBlocks() {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getNoOfBlocks();
+	}
+
+	@Override
+	public Long getTotalNoOfHouses() {
+		// TODO Auto-generated method stub
+		return  getApartmentDetailsDao().getTotalNoOfHouses();
+	}
+
+	@Override
+	public void updateCommunitySetup1(Long int_NoOfBlock, Long int_TotalHouse) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateCommunitySetup1( int_NoOfBlock, int_TotalHouse);
+	}
+
 	 
 
 }
