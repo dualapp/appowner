@@ -66,7 +66,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
  </p:panel>
 	     
 	        
- <p:dataTable id="DT"   paginatorAlwaysVisible="false"   rows="3"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true" emptyMessage="No house details found with given Block Name"   selection="#{apartmentDetailsBean.selectedHouse}" rowKey="#{houseDetail.int_HouseId}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetail"  value="#{apartmentDetailsBean.listHouseDetails}">
+ <p:dataTable id="DT"   paginatorAlwaysVisible="false"   rows="10"   paginator="true"  paginatorPosition="bottom"   resizableColumns="true" emptyMessage="No house details found with given Block Name"   selection="#{apartmentDetailsBean.selectedHouse}" rowKey="#{houseDetail.int_HouseId}"   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    var="houseDetail"  value="#{apartmentDetailsBean.listHouseDetails}">
            
                 
 	  <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
@@ -78,7 +78,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
             
 	 </p:column>
 	 <p:column headerText="House(sqft)">
-                <p:outputLabel value="#{houseDetail.int_HouseSize}" /> 
+                <p:outputLabel value="#{houseDetail.dbl_HouseSize}" /> 
             
 	 </p:column>
 	 <p:column headerText="Type Of House">
@@ -167,7 +167,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	</tr>
 	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
-	<td><p:inputText      value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
+	<td><p:inputText      value="#{apartmentDetailsBean.housedetails.dbl_HouseSize}"/></td></tr>
 	<tr><th><p:outputLabel value="Type Of House" /> </th>
 	<td><h:selectOneMenu  value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}" > 
 	 <f:selectItem itemLabel="Select One" itemValue="" />
@@ -198,7 +198,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	  <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,HouseNoMsg1"  value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" oncomplete="handleRequest1(xhr, status, args)"/>
 	 
 	  
-	  &#150; &#150; <p:commandButton type="reset"  styleClass="btn"   value="Cancel"    />
+	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+	  
 	 
 	  
 	 </div>
@@ -217,7 +218,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	</tr>
 	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
-	<td><p:outputLabel   value="#{apartmentDetailsBean.housedetails.int_HouseSize}"/></td></tr>
+	<td><p:outputLabel   value="#{apartmentDetailsBean.housedetails.dbl_HouseSize}"/></td></tr>
 	<tr><th><p:outputLabel value="Type Of House" /> </th>
 	<td><p:outputLabel    value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}"/>
 	 </td></tr>
@@ -252,7 +253,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	</tr>
 	<tr><th><p:outputLabel value="Size of House (Sqft.)" /> </th>
              
-	<td><p:inputText    id="size" value="#{apartmentDetailsBean.int_HouseSize}"/></td></tr>
+	<td><p:inputText    id="size" value="#{apartmentDetailsBean.dbl_HouseSize}"/></td></tr>
 	<tr><th><p:outputLabel value="Type Of House" /> </th>
 	<td><h:selectOneMenu  value="#{apartmentDetailsBean.str_TypeOfHouse}" > 
 	 <f:selectItem itemLabel="Select One" itemValue="" />
@@ -283,9 +284,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	   <p:commandButton   styleClass="btn" id="submit"  value="Confirm"    update=":form:DT :form:ui-growl,HouseNoMsg"  action="#{apartmentDetailsBean.saveHouseDetails}" oncomplete="handleRequest(xhr, status, args)" />
 	 
 	 
-	 &#150; &#150;  
-   <p:commandButton   type="reset"  styleClass="btn"    value="Cancel" />
-	  
+	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	  
 	 </div>
 	 </p:outputPanel>
