@@ -27,9 +27,9 @@ public class CommunitySetup implements Serializable{
 	@Column 
 	private Integer int_CommunitySetupId;
 	@Column 
-	private Integer int_TotalNoOfHouses;
+	private Long int_TotalNoOfHouses;
 	@Column 
-	private Integer int_NoOfBlocks;
+	private Long int_NoOfBlocks;
 	@Column 
 	private Integer int_year;
 	@Column 
@@ -43,9 +43,7 @@ public class CommunitySetup implements Serializable{
 	public void setInt_ApartmentID(Integer int_ApartmentID) {
 		this.int_ApartmentID = int_ApartmentID;
 	}
-	public Integer getInt_TotalNoOfHouses() {
-		return int_TotalNoOfHouses;
-	}
+	 
 	public Integer getInt_CommunitySetupId() {
 		return int_CommunitySetupId;
 	}
@@ -58,13 +56,17 @@ public class CommunitySetup implements Serializable{
 	public void setInt_UserId(Integer int_UserId) {
 		this.int_UserId = int_UserId;
 	}
-	public void setInt_TotalNoOfHouses(Integer int_TotalNoOfHouses) {
+	 
+	public Long getInt_TotalNoOfHouses() {
+		return int_TotalNoOfHouses;
+	}
+	public void setInt_TotalNoOfHouses(Long int_TotalNoOfHouses) {
 		this.int_TotalNoOfHouses = int_TotalNoOfHouses;
 	}
-	public Integer getInt_NoOfBlocks() {
+	public Long getInt_NoOfBlocks() {
 		return int_NoOfBlocks;
 	}
-	public void setInt_NoOfBlocks(Integer int_NoOfBlocks) {
+	public void setInt_NoOfBlocks(Long int_NoOfBlocks) {
 		this.int_NoOfBlocks = int_NoOfBlocks;
 	}
 	public Integer getInt_year() {

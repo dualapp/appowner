@@ -37,13 +37,13 @@ public class HouseDetails  implements Serializable{
 	public void setStr_HouseNo(String str_HouseNo) {
 		this.str_HouseNo = str_HouseNo;
 	}
-	public Integer getInt_HouseSize() {
-		return int_HouseSize;
-	}
-	public void setInt_HouseSize(Integer int_HouseSize) {
-		this.int_HouseSize = int_HouseSize;
-	}
 	 
+	public Double getDbl_HouseSize() {
+		return dbl_HouseSize;
+	}
+	public void setDbl_HouseSize(Double dbl_HouseSize) {
+		this.dbl_HouseSize = dbl_HouseSize;
+	}
 	public Integer getInt_NoOfBathRooms() {
 		return int_NoOfBathRooms;
 	}
@@ -97,7 +97,7 @@ public class HouseDetails  implements Serializable{
 	@Column (name="var_HouseNo")
 	private String str_HouseNo;
 	@Column 
-	private Integer int_HouseSize;
+	private Double dbl_HouseSize;
      
     @Column 
     private Integer int_NoOfBathRooms;
@@ -113,4 +113,5 @@ public class HouseDetails  implements Serializable{
 	private String str_TypeOfHouse;
     @Column 
 	private String  is_Rented;
+	 
 }
