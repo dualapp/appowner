@@ -105,7 +105,7 @@
         <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="Polls" />
     </h:commandLink>
                </td></tr> </table>
-             <p:dataTable    style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  id="DT" widgetVar="dataTable"  emptyMessage="No polls found with given criteria"     resizableColumns="true"    rows="3"  paginator="true"  
+             <p:dataTable    style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  id="DT" widgetVar="dataTable"  emptyMessage="No polls found with given criteria"     resizableColumns="true"    rows="10"  paginator="true"  
         paginatorAlwaysVisible="false"  paginatorPosition="bottom" var="pool" value="#{expenseBean.poolList}"  selectionMode="single" selection="#{expenseBean.onePoll}" rowKey="#{pool.int_PoolId}"  >
                  <p:ajax event="rowSelect" listener="#{expenseBean.desabled1Listener}"  execute="@this" immediate="true" update=":form:btn,:form:btn1"/>
                     
