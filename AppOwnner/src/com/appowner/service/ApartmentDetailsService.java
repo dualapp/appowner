@@ -88,4 +88,10 @@ public interface ApartmentDetailsService {
 
 	List getHouseDetailsByBlockId(Integer int_blockId);
 
+	Long getNoOfBlocks();
+
+	Long getTotalNoOfHouses();
+
+	void updateCommunitySetup1(Long int_NoOfBlock, Long int_TotalHouse);
+
 }
