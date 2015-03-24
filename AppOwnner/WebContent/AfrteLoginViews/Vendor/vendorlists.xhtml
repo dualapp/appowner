@@ -307,7 +307,7 @@
             <div>
 	 <hr/><p:commandButton  styleClass="btn"   update=":form:DT :form:ui-growl" value="update" action="#{vendorBean.updateVendor(vendor1)}" oncomplete="handleRequest(xhr, status, args)"/> 
              
-              &#150; &#150; <p:commandButton type="reset"   styleClass="btn"    value="Cancel"  />
+            &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	 
            </div>
             </ui:repeat>
@@ -503,7 +503,7 @@
      <div>
 	 <hr/>
   <p:commandButton  value="Submit" update=":form:DT :form:ui-growl"  styleClass="btn" action="#{vendorBean.updateVendor}" oncomplete="handleRequest1(xhr, status, args)"/> 
-   &#150; &#150; <p:commandButton  type="reset"  styleClass="btn"    value="Cancel"  />
+   &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	 
                 
   </div>
