@@ -46,7 +46,7 @@ public class EmailSendingServlet1 extends HttpServlet {
         String OpenDate=request.getParameter("str_OpenDate1");
         System.out.println(Flat);
         System.out.println(subject);
-        Boolean render1=false;
+        
         
  
         String resultMessage = "";
@@ -59,9 +59,9 @@ public class EmailSendingServlet1 extends HttpServlet {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
-        	 request.setAttribute("render1", "true");
+        	  
             request.setAttribute("Message", resultMessage);
-            response.sendRedirect(request.getContextPath()+"/AfrteLoginViews/Facilities/createnewservicerequest.xhtml");
+            response.sendRedirect(request.getContextPath()+"/AfrteLoginViews/Facilities/servicerequest.xhtml?render2=true");
         }
     }
 }

@@ -19,6 +19,7 @@ import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.UserExtraInfo;
+import com.appowner.model.Vendor;
 
 /**
  * @author kalpana jena
@@ -351,6 +352,12 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	public List<String> getRoleAssign(Integer int_UserId, Integer int_ApartmentId)
 	{
 		return getIn_userdao().getRoleAssign(int_UserId,int_ApartmentId);
+	}
+
+	@Override
+	public Vendor getVendor(String str_VendorName, String str_VendorType) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().getVendor(str_VendorName,str_VendorType);
 	}
 
 	 

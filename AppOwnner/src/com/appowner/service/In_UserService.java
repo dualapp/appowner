@@ -12,6 +12,7 @@ import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserBlocks;
 import com.appowner.model.UserExtraInfo;
+import com.appowner.model.Vendor;
 
 /**
  * @author pankaj
@@ -123,6 +124,8 @@ public interface In_UserService {
 	public User isUserStaying(String str_HouseNo, Integer int_UserRole);
 
 	public List<String> getRoleAssign(Integer int_UserId, Integer int_ApartmentId);
+
+	public Vendor getVendor(String str_VendorName, String str_VendorType);
 
 	 
 

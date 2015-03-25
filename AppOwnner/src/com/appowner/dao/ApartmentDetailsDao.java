@@ -91,4 +91,8 @@ public interface ApartmentDetailsDao {
 
 	void updateCommunitySetup1(Long int_NoOfBlock, Long int_TotalHouse);
 
+	Long getTotalNoOfHousesInABlock(String str_BlockName, Integer appartmentId);
+
+	void updateBlockTotalhouse(String str_BlockName, Long int_TotalHouse);
+
 }
