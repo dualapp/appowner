@@ -101,7 +101,7 @@
    
  
             <th><p:outputLabel for="str_VendorName1" value="Vendor Name  " /></th>
-            <td><h:selectOneMenu id="str_VendorName1"    value="#{expenseBean.str_VendorName}"  >
+            <td><h:selectOneMenu id="str_VendorName1"    value="#{loginBean.str_VendorName}"  >
                 <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
                   
@@ -117,7 +117,7 @@
    <tr><th><p:outputLabel for="editor"  value="Description"/></th>  <td></td><td><p:editor id="editor" required="true" requiredMessage=" Enter Description"  widgetVar="editorWidget" value="#{loginBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  /></td>
     <td> <p:message  id="editorMsg" for="editor" display="text"/> </td>
    </tr>
-   <tr><td> <h:commandButton  styleClass="btn" style="width:100px" onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addServiceRequest()}"/></td><td> <h:commandButton  styleClass="btn" style="width:100px" value="Cancel" type="reset"/> </td></tr>
+   <tr><td> <h:commandButton  styleClass="btn" style="width:100px" update=":form:ui-growl editorMsg TitleMsg str_VendorTypeMsg"  value="Submit" action="#{loginBean.addServiceRequest()}"/></td><td> <h:commandButton  styleClass="btn" style="width:100px" value="Cancel" type="reset"/> </td></tr>
                  
     </table>
     </div>
