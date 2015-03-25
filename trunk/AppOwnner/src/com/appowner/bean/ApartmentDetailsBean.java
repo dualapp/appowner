@@ -547,6 +547,12 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
 		housedetails.setInt_BlockId(getApartmentDetailsService().getBlockId(str_BlockName));
 		getApartmentDetailsService().saveHouseDetails(housedetails);
+		int_NoOfBlock=getApartmentDetailsService().getNoOfBlocks();
+		int_TotalHouse=getApartmentDetailsService().getTotalNoOfHousesInABlock(str_BlockName,Util.getAppartmentId());
+		if(int_TotalHouse!=null)
+		{
+			getApartmentDetailsService().updateBlockTotalhouse(str_BlockName,int_TotalHouse);
+		}
 		str_HouseNo="";
 		dbl_HouseSize=0.0;
 		int_NoOfBalconies=0;

@@ -92,6 +92,7 @@ import com.appowner.model.UserCity;
 import com.appowner.model.UserCountry;
 import com.appowner.model.UserExtraInfo;
 import com.appowner.model.UserState;
+import com.appowner.model.Vendor;
 import com.appowner.util.Util;
 //import com.appowner.model.VendorState;
 //import com.appowner.model.VendorCountry;
@@ -552,6 +553,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		}
 		return null;
 		  }
+
+		@Override
+		public Vendor getVendor(String str_VendorName, String str_VendorType) {
+			// TODO Auto-generated method stub
+			return (Vendor) getSessionFactory().getCurrentSession().createQuery("from Vendor where str_VendorName=? and str_VendorType=?").setParameter(0, str_VendorName).setParameter(1, str_VendorType).uniqueResult();
+		}
 
 	 
 }

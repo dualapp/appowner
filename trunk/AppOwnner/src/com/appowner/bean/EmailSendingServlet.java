@@ -61,15 +61,16 @@ public class EmailSendingServlet extends HttpServlet {
         } finally {
         	HttpSession session = request.getSession(false);
         	//save message in session
-        	session.setAttribute("render", "true");
+        	 
             request.setAttribute("Message", resultMessage);
-          //  request.setAttribute("render", "true");
+            request.setAttribute("render", "true");
+          
             if(str.equalsIgnoreCase("user"))
-            {
-            	response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/UserInfo/apartments_memberdetails.xhtml") ;
+            {  
+            	response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/UserInfo/apartments_memberdetails.xhtml?render1=true") ;
             }
               if(str.equalsIgnoreCase("admin"))
-            {
+            { 
             getServletContext().getRequestDispatcher("/NewRegistration.xhtml").forward(
                     request, response);
             }

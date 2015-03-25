@@ -38,6 +38,7 @@ import com.appowner.model.MemberLog;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.User;
 import com.appowner.model.UserExtraInfo;
+import com.appowner.model.Vendor;
 import com.appowner.service.ApartmentDetailsService;
 import com.appowner.service.In_UserService;
 import com.appowner.service.MaintainanceStaffService;
@@ -1147,6 +1148,8 @@ public class LoginBean implements Serializable {
 		serviceRequest.setStr_VendorName(str_VendorName);
 		serviceRequest.setStr_VendorType(str_VendorType);
 		serviceRequest.setDat_OpenDate(dat_OpenDate);
+		Vendor v=getUserService().getVendor(str_VendorName,str_VendorType);
+		System.out.println(v.getStr_VendorEmail()+"vemailidddddddddddddddddd");
 		serviceRequest.setStr_CloseDate(str_CloseDate);
 		getUserService().addServiceRequest(serviceRequest);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1157,7 +1160,8 @@ public class LoginBean implements Serializable {
 				FacesMessage.SEVERITY_INFO,
 				"Service Request Saved Successfully !",
 				"Service Request Saved Successfully !"));
-		 Email=user.getStr_Email();
+		if(v!=null)
+		 Email=v.getStr_VendorEmail();
 		//Email = "kalpana.j5599@gmail.com";
 		subject = "Service Request";
 		content = "Service Related";

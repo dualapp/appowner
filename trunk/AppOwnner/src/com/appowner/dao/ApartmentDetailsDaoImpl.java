@@ -326,5 +326,21 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		// TODO Auto-generated method stub
 		getSessionFactory().getCurrentSession().createQuery("UPDATE CommunitySetup SET int_NoOfBlocks =? , int_TotalNoOfHouses=? WHERE int_ApartmentID=?").setParameter(0, int_NoOfBlock).setParameter(1, int_TotalHouse).setParameter(2, Util.getAppartmentId()).executeUpdate();
 	}
+
+	@Override
+	public Long getTotalNoOfHousesInABlock(String str_BlockName,
+			Integer appartmentId) {
+		 Integer blockId=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_BlockId from UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, appartmentId).uniqueResult();
+		return (Long) getSessionFactory().getCurrentSession().createQuery("select count(*) from HouseDetails  where int_ApartmentId=? and int_BlockId=?").setParameter(0, appartmentId).setParameter(1, blockId).uniqueResult();
+	}
+
+	@Override
+	public void updateBlockTotalhouse(String str_BlockName, Long int_TotalHouse) {
+		// TODO Auto-generated method stub
+		Integer i = org.springframework.util.NumberUtils.convertNumberToTargetClass(int_TotalHouse, Integer.class);
+		 
+		 Integer blockId=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_BlockId from UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, Util.getAppartmentId()).uniqueResult();
+		getSessionFactory().getCurrentSession().createQuery("UPDATE UserBlocks SET int_NoOfHouses=? WHERE int_ApartmentID=? and int_BlockId=?").setParameter(0, i).setParameter(1, Util.getAppartmentId()).setParameter(2, blockId).executeUpdate();
+	}
 	
 }
