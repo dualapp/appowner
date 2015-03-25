@@ -35,8 +35,8 @@
 </style>
 </h:head>
 <body bgcolor="pink">
-<h:form method="post"
-              enctype="multipart/form-data">
+<h:form id="form" method="post">
+              
 <p:growl id="ui-growl" globalOnly="true" sticky="true" />
   <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" class="src">
 		<tbody>
@@ -233,7 +233,7 @@
              </td></tr>
  <tr><td></td>
  <td>
-   <h:commandButton  value="Save Changes"  action="#{loginBean.updateUser}"/>
+   <p:commandButton  value="Save Changes"   styleClass="btn"  update=":form:ui-growl" action="#{loginBean.updateUser}"/>
    </td>
    </tr>
   </table>

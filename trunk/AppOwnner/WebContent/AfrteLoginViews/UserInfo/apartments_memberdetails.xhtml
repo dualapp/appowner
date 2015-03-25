@@ -25,7 +25,14 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
  
  
 
+<script>
+ 
+function ShowNewPage(){
+ var callbackFunctionArray = new Array(Submit, Cancel);
+ modalWin.ShowURL('/AppOwnner/WebContent/AfrteLoginViews/UserInfo/newuseraddedmessage.xhtml',300,400,'Congratulation',null,callbackFunctionArray);
+ }
 
+</script>
 
 </h:head>
 
@@ -43,6 +50,9 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	</table>
   
     <body>
+    <p:outputPanel   rendered="#{request.getAttribute('render1')}">
+				  <body onLoad="PF('newUserMsgDialog').show()"/>
+					</p:outputPanel>
     <p:outputPanel   rendered="#{request.getParameter('render')}">
 				  <body onLoad="PF('multiDueTemplateDialog').show()" />
 					</p:outputPanel>
@@ -116,6 +126,15 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
          </table>
          
           </p:dialog>
+          <p:dialog widgetVar="newUserMsgDialog" header="Message" showEffect="explode" hideEffect="explode" resizable="false" height="100" width="500" >
+             <table>
+      
+      <h5>New Member Added successfully.....</h5>
+          <h5>One email is sent to new member to activate his account ....</h5>
+         <h5>Thanks....</h5>
+         </table>
+         
+          </p:dialog>
              <p:dialog header="Role Management" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="600" width="900" minHeight="100">
         <p:outputPanel id="multiDueTemplateDetail3" style="text-align:center;">
        
@@ -125,7 +144,7 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
 	  <h3 style="color:red">Current Roles of <h:outputText value="#{roleManagementBean.str_UserName}"/> are checked bellow. </h3>
 	 
-	<p:selectManyCheckbox     value="#{cls_UserBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
+	<p:selectManyCheckbox     value="#{roleManagementBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
   <f:selectItems value="#{roleManagementBean.str_Roles}"  /><br/>
    
 </p:selectManyCheckbox>
