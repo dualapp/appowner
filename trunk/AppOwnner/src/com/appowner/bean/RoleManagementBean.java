@@ -205,7 +205,8 @@ public List getList1() {
 public void roleChangeListener(ValueChangeEvent event)
 {  
 	list1=new ArrayList();
- 
+ if(event.getOldValue()!=null)
+ {
 	//str_AssignedRoleName=new ArrayList<String>();
 	list1.addAll((List<String>) event.getOldValue());
 	ListIterator itr1=list1.listIterator();
@@ -219,12 +220,12 @@ public void roleChangeListener(ValueChangeEvent event)
 	}
 	System.out.println(list);
 	
-	 
+ }
 	 //return "committeememberlist.xhtml";
 	list=new ArrayList();
 	list.addAll((List<String>) event.getNewValue());
 	 
-	 
+ 
 }
  
 private RoleManagement roleManagement;
