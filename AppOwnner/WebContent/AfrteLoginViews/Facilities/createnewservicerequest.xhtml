@@ -85,7 +85,7 @@
     <tr><th><p:outputLabel value="Date Open"/></th>  <td><p:calendar navigator="true" pattern="dd-MM-yyyy"  value="#{loginBean.dat_OpenDate}"/>  </td> <th><p:outputLabel value="Date Closed"/></th>  <td><p:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
     <tr><th><p:outputLabel value="Status"/></th> <td><p:inputText value="#{expenseBean.str_Status}"/></td> 
       <th><p:outputLabel for="str_VendorType" value="VendorCategory"/></th>  
-      <td><h:selectOneMenu id="str_VendorType" value="#{loginBean.str_VendorType}" required="true" requiredMessage="Select Category  ">
+      <td><h:selectOneMenu id="str_VendorType" value="#{loginBean.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
        <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/>
      <p:ajax event="change" update="str_VendorName1" process="str_VendorType"/>
