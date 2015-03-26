@@ -137,7 +137,7 @@
          <td><h:selectOneRadio id="options"    required="true" requiredMessage="Choose User Role" value="#{cls_UserBean.int_UserRole}" valueChangeListener="#{cls_UserBean.roleChangeListener}">
             <f:selectItem itemLabel="Tenant" itemValue="1" />
             <f:selectItem itemLabel="Owner" itemValue="2" />
-            <f:ajax  event="click" execute="@form"   render="ui-growl "/>
+            <f:ajax  event="click" execute="@form"   render="ui-growl :houseform "/>
             </h:selectOneRadio></td><td><p:message for="options" display="text"/></td> </tr>
              
             </table>
@@ -150,9 +150,10 @@
             <h:commandButton styleClass="btn" id="reset" value=" Reset"  type="reset" />
              
             </p:panel>
-  
-       
-            
+            </div>
+  </h:form>
+       <h:form id="houseform">
+            <div id="page3">
  <p:panel id="parentPanel"  style="border:none;" rendered="#{cls_UserBean.render}">
    
  <p:panel id="panelOne"  style="border:none;">
@@ -213,8 +214,10 @@
   </p:panel>
     
   </p:panel>
-   </div>
-            </h:form>
+  </div>
+   </h:form>
+   
+             
             
           </h:body>
             </ui:define>

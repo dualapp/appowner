@@ -23,16 +23,7 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 }
       </style>	
  
- 
-
-<script>
- 
-function ShowNewPage(){
- var callbackFunctionArray = new Array(Submit, Cancel);
- modalWin.ShowURL('/AppOwnner/WebContent/AfrteLoginViews/UserInfo/newuseraddedmessage.xhtml',300,400,'Congratulation',null,callbackFunctionArray);
- }
-
-</script>
+  
 
 </h:head>
 
@@ -50,7 +41,7 @@ function ShowNewPage(){
 	</table>
   
     <body>
-    <p:outputPanel   rendered="#{request.getAttribute('render1')}">
+    <p:outputPanel   rendered="#{request.getParameter('render1')}">
 				  <body onLoad="PF('newUserMsgDialog').show()"/>
 					</p:outputPanel>
     <p:outputPanel   rendered="#{request.getParameter('render')}">
