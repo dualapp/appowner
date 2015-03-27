@@ -1161,10 +1161,12 @@ public class LoginBean implements Serializable {
 				"Service Request Saved Successfully !",
 				"Service Request Saved Successfully !"));
 		if(v!=null)
+			
 		 Email=v.getStr_VendorEmail();
 		//Email = "kalpana.j5599@gmail.com";
 		subject = "Service Request";
 		content = "Service Related";
+		str_Vendorname1=str_VendorName;
 		str_ApartmentName1 = user.getStr_Apartment();
 		str_Flat1 = user.getStr_Flat();
 		str_Block1 = user.getStr_Block();
@@ -1174,9 +1176,23 @@ public class LoginBean implements Serializable {
 				"yyyy/MM/dd HH:mm:ss");
 		 
 		str_OpenDate1 = dateFormat.format(getDat_OpenDate());
+		 
+		str_VendorType="";
+		str_VendorName="";
+		str_Title="";
+		str_Description="";
+		
 		return "workordercategory1.jsp";
 
 	}
+	public static String getStr_Vendorname1() {
+		return str_Vendorname1;
+	}
+	public static void setStr_Vendorname1(String str_Vendorname1) {
+		LoginBean.str_Vendorname1 = str_Vendorname1;
+	}
+
+	private static  String str_Vendorname1;
 	public List<String> blockChangeListener(ValueChangeEvent event)
     {
 		
@@ -1233,13 +1249,7 @@ public class LoginBean implements Serializable {
 		bookAFacility.setStr_UserType(str_UserType);
 		getUserService().addBookAFacility(bookAFacility);
 
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(
-				FacesMessage.SEVERITY_INFO, "  Successfully  Book A Facility!",
-				" Successfully  Book A Facility !"));
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
 		return "/AfrteLoginViews/Facilities/book a facility.xhtml";
 	}
 
@@ -1328,13 +1338,7 @@ public class LoginBean implements Serializable {
 		user.setVar_FileName1(getPath2());
 		user.setVar_ImageName1(getPath());
 		getUserService().updateUs(user);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(
-				FacesMessage.SEVERITY_INFO, "  Successfully Updated!",
-				"Successfully Updated!"));
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Updated"));
 
 		return "editprofile.xhtml";
 	}
