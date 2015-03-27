@@ -307,6 +307,11 @@ public String addExpenses()
 	
 	expense=new Expense();
 	expense.setStr_ExpenseId(randomId());
+	if(str_ExcepenseType.equals("Estimate"))
+		
+	expense.setStr_Status("Pending Approval");
+	else
+		expense.setStr_Status("Approved");
 	expense.setDate_Duration(getDate_Duration());
 	expense.setInt_Ammount(getInt_Ammount());
 	expense.setStr_AccountName(getStr_AccountName());
@@ -328,7 +333,13 @@ public String addExpenses()
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
 	return "Expenses.xhtml";
 }
- 
+ private String str_Status;
+public String getStr_Status() {
+	return str_Status;
+}
+public void setStr_Status(String str_Status) {
+	this.str_Status = str_Status;
+}
 public String getStr_ExpenseCategory() {
 	return str_ExpenseCategory;
 }

@@ -885,7 +885,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 
 	 
  
-public void addOrganizationLogo ()
+public String addOrganizationLogo ()
 {
 	ol=new OrganizationLogo();
 	Integer logoid=getExpenseService().getLogoId(Util.getAppartmentId());
@@ -904,6 +904,7 @@ public void addOrganizationLogo ()
 			ol.setInt_AppartmentId(Util.getAppartmentId());
 			ol.setStr_Document_Upload(getStr_Document_Upload());
 			ol.setStr_Appartment_Img(path1);
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully"));
 	 getExpenseService().updateLogo(ol);
 	 getTextLogo();
 	}
@@ -922,13 +923,9 @@ public void addOrganizationLogo ()
      
 	getExpenseService().addOrganizationLogo(ol);
 	getTextLogo();
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"   Added Successfully!", "  Added Successfully!"));
-	 
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
 	}
+	return null;
 	 
 	 
 }

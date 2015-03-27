@@ -56,7 +56,7 @@ public class EmailUtility1 {
         msg.setContent("<html>\n" +"<fieldset style="+"width:40%"+">"+
                        "<legend style="+"background-color:#40E0D0; color:#fff;"+" align="+"left"+">"+"Service Request"+"</legend>"+
                         "<table width="+600+" bgcolor="+"#40E0D0"+">"+
-                        "<tr>"+"<td width="+30+">"+"Dear Mr/Mrs/Ms. :"+"</td>"+"<td width="+70+">"+userName+"</td>"+"</tr>"+
+                        "<tr>"+"<td width="+30+">"+"Dear Mr/Mrs/Ms. :"+"</td>"+"<td width="+70+">"+toAddress+"</td>"+"</tr>"+
                        
         		         "<tr>"+"<td width="+30+">"+"A new Service has been raised on :"+"</td>"+"<td width="+70+">"+OpenDate+"</tr>"+
         		         "<tr>"+"<td>"+"<h2>"+"<legend style="+"background-color:#40E0D0; color:#fff;"+" align="+"left"+">"+"Service Details Are"+"</legend>"+"</h2>"+"<br/>"+ "<tr>"+"<td width="+30+">"+"Title:"+"</td>"+"<td width="+70+">"+Title+"</td>"+"</tr>"+
