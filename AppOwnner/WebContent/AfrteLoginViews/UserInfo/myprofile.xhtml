@@ -12,7 +12,7 @@
 </f:metadata>
 	 
 <h:head>
-    <style type="text/css">
+    <style>
  .ui-growl {
  position:absolute;
         
@@ -22,9 +22,14 @@
          margin-left:-200px; 
 
 }
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
 </style>
-
-     
 </h:head>
 <body bgcolor="pink">
 <h:form method="post"
