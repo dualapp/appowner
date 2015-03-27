@@ -115,9 +115,8 @@
                rows="10"     paginatorAlwaysVisible="false" 
             id="DT"    var="vendor" value="#{vendorBean.vendorList}"   selection="#{vendorBean.selectedVendor}" rowKey="#{vendor.int_VendorId}"  >
        
-        <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
-         
-             </p:column>
+        <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">
+          </p:column>
         
          <p:column >
             <f:facet name="header">
@@ -325,25 +324,25 @@
  <th>
     <h:outputText value="Vendor Type:"/></th>
     <td>
-    <h:outputText value="#{vendor1.str_VendorType}"/></td>
+    <h:inputText value="#{vendor1.str_VendorType}"/></td>
     </tr>
  <tr>
  <th>
     <h:outputText value="Vendor Name:"/></th>
     <td>
-    <h:outputText value="#{vendor1.str_VendorName}"/></td>
+    <h:inputText  value="#{vendor1.str_VendorName}"/></td>
     </tr>
     <tr>
     <th>
     <h:outputText value="Vendor Phone:"/></th>
     <td>
-    <h:outputText value="#{vendor1.str_VendorPhone}"/></td>
+    <h:inputText  value="#{vendor1.str_VendorPhone}"/></td>
     </tr>
     <tr>
  <th>
     <h:outputText value="Vendor Email:"/></th>
     <td>
-   <h:outputText value="#{vendor1.str_VendorEmail}"/></td>
+   <h:inputText  value="#{vendor1.str_VendorEmail}"/></td>
     </tr>
    
   
@@ -351,19 +350,19 @@
  <th>
     <h:outputText value="Vendor Bank Name:"/></th>
     <td>
-    <h:outputText value="#{vendor1.str_VendorBankName}"/></td>
+    <h:inputText  value="#{vendor1.str_VendorBankName}"/></td>
     </tr>
     <tr>
  <th>
     <h:outputText value="Vendor Expense:"/></th>
     <td>
-    <h:outputText value="#{vendor1.bool_IsVendorActive}"/></td>
+    <h:inputText  value="#{vendor1.bool_IsVendorActive}"/></td>
     </tr>
      <tr>
  <th>
     <h:outputText value="Comments:"/></th>
     <td>
-    <h:outputText value="#{vendor1.str_VendorComments}"/></td>
+    <h:inputText  value="#{vendor1.str_VendorComments}"/></td>
     </tr>
       
                
@@ -382,37 +381,37 @@
  <th>
     <h:outputText value=" Bank Name:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorBankName}"/></td>
+    <h:inputText readonly="true"  value="#{vendorBean.vendor.str_VendorBankName}"/></td>
     </tr>
     <tr>
  <th>
     <h:outputText value="Acc No:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorAccount}"/></td>
+    <h:inputText readonly="true"  value="#{vendorBean.vendor.str_VendorAccount}"/></td>
     </tr>
      <tr>
  <th>
     <h:outputText value="NEFT/IFSC Code"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorBankNeftOrIfsc}"/></td>
+    <h:inputText  readonly="true" value="#{vendorBean.vendor.str_VendorBankNeftOrIfsc}"/></td>
     </tr>
      <tr>
  <th>
     <h:outputText value="Pan No"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_PanNo}"/></td>
+    <h:inputText  readonly="true" value="#{vendorBean.vendor.str_PanNo}"/></td>
     </tr>
      <tr>
  <th>
     <h:outputText value="Tax No"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_ServiceTaxNo}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor.str_ServiceTaxNo}"/></td>
     </tr>
      <tr>
  <th>
     <h:outputText value="TDS Charge"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.int_TdsCharge}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor.int_TdsCharge}"/></td>
     </tr>
       
                
@@ -442,7 +441,7 @@
  <td>
     <h:outputText value="Vendor Name:"/></td>
     <td>
-    <h:inputText value="#{vendorBean.vendor.str_VendorName}"/></td>
+    <h:inputText  value="#{vendorBean.vendor.str_VendorName}"/></td>
     </tr>
     <tr>
     <th>
@@ -511,7 +510,7 @@
    </p:outputPanel>
    </h:form>
    </p:dialog>
-         <p:dialog header="Vendor Details" widgetVar="viewVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="500">
+         <p:dialog header="Vendor Details" widgetVar="viewVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
          <h:form id="viewform1">
         <p:outputPanel id="viewVendorDetail" style="text-align:center;">
         <table>
@@ -519,43 +518,43 @@
  <th>
     <h:outputText value="Vendor Type:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorType}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor.str_VendorType}"/></td>
     </tr>
  <tr>
  <th>
     <h:outputText value="Vendor Name:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorName}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor.str_VendorName}"/></td>
     </tr>
     <tr>
     <th>
     <h:outputText value="Vendor Phone:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor. str_VendorPhone}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor. str_VendorPhone}"/></td>
     </tr>
     <tr>
  <th>
     <h:outputText value="Vendor Email:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorEmail}"/></td>
+   <h:inputText readonly="true" value="#{vendorBean.vendor.str_VendorEmail}"/></td>
     </tr>
     <tr>
  <th>
     <h:outputText value="Vendor Bank Name:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorBankName}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor.str_VendorBankName}"/></td>
     </tr>
     <tr>
  <th>
     <h:outputText value="Vendor Expense:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.bool_IsVendorActive}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor.bool_IsVendorActive}"/></td>
     </tr>
      <tr>
  <th>
     <h:outputText value="Comments:"/></th>
     <td>
-    <h:outputText value="#{vendorBean.vendor.str_VendorComments}"/></td>
+    <h:inputText readonly="true" value="#{vendorBean.vendor.str_VendorComments}"/></td>
     </tr>
        
   
