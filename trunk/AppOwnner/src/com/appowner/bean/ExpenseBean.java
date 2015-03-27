@@ -904,7 +904,7 @@ public String addOrganizationLogo ()
 			ol.setInt_AppartmentId(Util.getAppartmentId());
 			ol.setStr_Document_Upload(getStr_Document_Upload());
 			ol.setStr_Appartment_Img(path1);
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully"));
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Successful"));
 	 getExpenseService().updateLogo(ol);
 	 getTextLogo();
 	}
