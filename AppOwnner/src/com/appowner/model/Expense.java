@@ -37,7 +37,8 @@ public class Expense implements Serializable{
 	private String str_ExpenseType;
 	@Column(name="var_AssetName")
 	private String str_AssetName;
-	
+	@Column(name="var_str_Status")
+	private String str_Status;
 	@Column(name="var_AssetCatType")
 	private String str_AssetCatType;
 	@Column
@@ -121,6 +122,11 @@ public class Expense implements Serializable{
 	public void setStr_Description(String str_Description) {
 		this.str_Description = str_Description;
 	}
-	
+	public String getStr_Status() {
+		return str_Status;
+	}
+	public void setStr_Status(String str_Status) {
+		this.str_Status = str_Status;
+	}
 
 }
