@@ -132,7 +132,9 @@
 	 </p:column>
 	 
 	 <p:column headerText="Created On">
-                <p:outputLabel value="#{sr.dat_OpenDate}" /> 
+                <p:outputLabel value="#{sr.dat_OpenDate}" >
+                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+                 </p:outputLabel> 
             
 	 </p:column>
 	 <p:column headerText="Category">
@@ -153,7 +155,7 @@
             
 	 </p:column>
 	 </p:dataTable>
-	   <p:dialog header="Edit Service Details" widgetVar="pDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
+	   <p:dialog header="Edit Service Details" widgetVar="pDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
         <p:outputPanel id="pd" style="text-align:center;">
           
                
@@ -163,19 +165,36 @@
  <th>
     <p:outputLabel value="Organization Name:"/></th>
     <td>
-    <p:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
+    <p:inputText readonly="true" value="#{expenseBean.str_OrganizationName}"/></td>  
     </tr>
     <tr>
  <th>
-    <p:outputLabel value="Service category:"/></th>
+    <p:outputLabel  for="str_VendorType" value="Service category:"/></th>
     <td>
-    <p:inputText value="#{sr1.str_VendorType}"/></td>  
+    <h:selectOneMenu id="str_VendorType" value="#{sr1.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
+       <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/>
+     <p:ajax event="change" update="str_VendorName" process="str_VendorType"/>
+    </h:selectOneMenu>
+    </td>  
     </tr>
+    <tr>
+     <th><p:outputLabel for="str_VendorName" value="Vendor Name  " /></th>
+            <td><h:selectOneMenu id="str_VendorName"    value="#{loginBean.str_VendorName}"  >
+                <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
+                  
+            </h:selectOneMenu></td>
+           
+    
+   </tr>
+   
     <tr>
  <th>
     <p:outputLabel value="Created On:"/></th>
     <td>
-     <p:calendar  id="odate"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}"/>
+    
+     <p:calendar     readonly="true" id="odate"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}"/>
                
     </td>  
     </tr>
@@ -183,27 +202,27 @@
  <th>
     <p:outputLabel value="Title:"/></th>
     <td>
-    <p:inputText value="#{sr1.str_Title}"/></td>  
+    <p:inputText readonly="true" value="#{sr1.str_Title}"/></td>  
     </tr>
 
   <tr>
  <th>
     <p:outputLabel value="Status:"/></th>
     <td>
-    <p:inputText value="#{sr1.str_Status}"/></td>  
+    <p:inputText readonly="true" value="#{sr1.str_Status}"/></td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="Flat:"/></th>
     <td>
-    <p:inputText value="#{sr1.str_Flat}"/></td>  
+    <p:inputText  readonly="true" value="#{sr1.str_Flat}"/></td>  
     </tr>
     </table>
      <div>
               <hr/>
-    <p:commandButton value="Update" styleClass="btn" action="#{requestScopeBean.updateOneServiceRequest(sr1)}">
+    <h:commandButton value="Update" styleClass="btn" action="#{requestScopeBean.updateOneServiceRequest(sr1)}" />
     
-    </p:commandButton>
+     
      &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
 	  
 	   </div>
@@ -222,52 +241,76 @@
          </table>
          
           </p:dialog>
-             <p:dialog header="Service Details" widgetVar="pDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+             <p:dialog header="Service Details" widgetVar="pDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
         <p:outputPanel id="pd1" style="text-align:center;">
-           <table>
-              
-            <ui:repeat value="#{requestScopeBean.selectedServices}" var="sr1">
-            
-            <tr>
+           <ui:repeat value="#{requestScopeBean.selectedServices}" var="sr1">
+             <table>
+             <tr>
  <th>
     <p:outputLabel value="Organization Name:"/></th>
     <td>
-     <p:outputLabel value="#{expenseBean.str_OrganizationName}"/></td>  
+    <p:inputText readonly="true" value="#{expenseBean.str_OrganizationName}"/></td>  
     </tr>
     <tr>
  <th>
-    <p:outputLabel value="Service category:"/></th>
+    <p:outputLabel  for="str_VendorType1" value="Service category:"/></th>
     <td>
-     <p:outputLabel value="#{sr1.str_VendorType}"/></td>  
+    <h:selectOneMenu readonly="true" id="str_VendorType1" value="#{sr1.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
+       <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+    <f:selectItems value="#{vendorBean.str_VendorTypeList}"/>
+     <p:ajax event="change" update="str_VendorName1" process="str_VendorType1"/>
+    </h:selectOneMenu>
+    </td>  
     </tr>
     <tr>
- <td>
-    <p:outputLabel value="Created On:"/></td>
+     <th><p:outputLabel for="str_VendorName1" value="Vendor Name  " /></th>
+            <td><h:selectOneMenu id="str_VendorName1"  readonly="true"   value="#{loginBean.str_VendorName}"  >
+                <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
+                  
+            </h:selectOneMenu></td>
+           
+    
+   </tr>
+   
+    <tr>
+ <th>
+    <p:outputLabel value="Created On:"/></th>
     <td>
-     <p:outputLabel value="#{sr1.dat_OpenDate}"/></td>  
+     <p:calendar  readonly="true" id="odate"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}"/>
+               
+    </td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="Title:"/></th>
     <td>
-     <p:outputLabel value="#{sr1.str_Title}"/></td>  
+    <p:inputText readonly="true" value="#{sr1.str_Title}"/></td>  
     </tr>
 
   <tr>
  <th>
     <p:outputLabel value="Status:"/></th>
     <td>
-    <p:outputLabel value="#{sr1.str_Status}"/></td>  
+    <p:inputText readonly="true" value="#{sr1.str_Status}"/></td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="Flat:"/></th>
     <td>
-     <p:outputLabel value="#{sr1.str_Flat}"/></td>  
+    <p:inputText  readonly="true" value="#{sr1.str_Flat}"/></td>  
     </tr>
+    </table>
+     <div>
+              <hr/>
     
-            </ui:repeat>
-            </table>
+     
+     &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
+	  
+	   </div>
+    
+             </ui:repeat>
+             
             </p:outputPanel>
             </p:dialog>
             

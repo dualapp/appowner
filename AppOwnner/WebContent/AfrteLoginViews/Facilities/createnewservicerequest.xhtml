@@ -39,7 +39,7 @@
 	</table>
     <div id="page3">
       
-           <div class="gsTitleDiv">Service  Details<br/><hr/></div>
+           <div class="gsTitleDiv">Apartment Details <br/><hr/></div>
            
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
     
@@ -73,8 +73,10 @@
     </h:selectOneMenu>
     </td></tr>
     <tr><th><p:outputLabel value="Mobile"/></th>  <td><p:inputText  maxlength="11" value="#{loginBean.str_Mobile}"/></td>   <th><p:outputLabel value="LandLine"/></th>  <td><p:inputText value="#{loginBean.str_LandLineNum}"/></td></tr>
-     
-    <tr><th><p:outputLabel value="Date Open"/></th>  <td><p:calendar id="openDate" required="true" requiredMessage="Select Open Date " navigator="true" pattern="dd-MM-yyyy"  value="#{loginBean.dat_OpenDate}"/> 
+    </table>
+    <div class="gsTitleDiv">Service Request Details<br/><hr/></div>
+     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+    <tr><th><p:outputLabel value="Date Open"/></th>  <td><p:calendar id="openDate" required="true" requiredMessage="Select Open Date " navigator="true" pattern="yyyy-MM-dd HH:mm"  value="#{loginBean.dat_OpenDate}"/> 
      <p:message  id="openDateMsg" for="openDate" display="text"/>
      </td> <th><p:outputLabel value="Date Closed"/></th>  <td><p:inputText value="#{loginBean.str_CloseDate}"/></td></tr>
     <tr><th><p:outputLabel value="Status"/></th> <td><p:inputText value="#{expenseBean.str_Status}"/></td> 
