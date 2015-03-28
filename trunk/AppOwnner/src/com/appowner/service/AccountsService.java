@@ -140,6 +140,9 @@ public interface AccountsService {
 	public Date getOpeningDate();
 
 	public ManualJournal getManualJournal(int id1);
+
+	public List< ManualJournal> getlistManualJourna4(
+			Date dat_From, Date dat_To);
 			
 
 	

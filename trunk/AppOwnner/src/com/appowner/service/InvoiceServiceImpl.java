@@ -59,13 +59,17 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  { 
 		  return getInvoiceDao().getTaxAmount(str1);
 	  }
+	  public double getTaxExceptionAmount(String str1)
+	  {
+		  return getInvoiceDao().getTaxExceptionAmount(str1);
+	  }
 	  public double getSqft(String str)
 	  {
 		  return getInvoiceDao().getSqft(str);
 	  }
-	  public String getmailid(String str_ApartmentNo)
+	  public List<String> getmailid(String str_ApartmentNo, String BlockNo)
 	  {
-		  return getInvoiceDao().getmailid(str_ApartmentNo);
+		  return (List<String>)getInvoiceDao().getmailid(str_ApartmentNo,BlockNo);
 	  }
 	  public List<String> getAccountName()
 	  {
@@ -111,5 +115,9 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  public String getUserName(String str_Block, String str_ApartmentNo)
 	  {
 		  return getInvoiceDao().getUserName(str_Block,str_ApartmentNo);
+	  }
+	  public String getDescription(String str_InvoiceTemplate)
+	  {
+		  return getInvoiceDao().getDescription(str_InvoiceTemplate);
 	  }
 }
