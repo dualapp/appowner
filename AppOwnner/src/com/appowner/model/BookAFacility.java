@@ -49,8 +49,8 @@ public class BookAFacility implements Serializable{
 	private String Str_Description;
 	@Column (name="str_OpenDate")
 	private Date dat_OpenDate;
-	@Column (name="str_CloseDate")
-	private String str_CloseDate;
+	 
+	private Date dat_CloseDate;
 	@Column (name="var_Mobile")
 	private String Str_Mobile;
 	@Column (name="var_LandLineNum")
@@ -131,14 +131,12 @@ public class BookAFacility implements Serializable{
 	public void setDat_OpenDate(Date dat_OpenDate) {
 		this.dat_OpenDate = dat_OpenDate;
 	}
-	public String getStr_CloseDate() {
-		return str_CloseDate;
+	 
+	public Date getDat_CloseDate() {
+		return dat_CloseDate;
 	}
-	public void setStr_CloseDate(String str_CloseDate) {
-		this.str_CloseDate = str_CloseDate;
-	}
-	public String getStr_Mobile() {
-		return Str_Mobile;
+	public void setDat_CloseDate(Date dat_CloseDate) {
+		this.dat_CloseDate = dat_CloseDate;
 	}
 	public void setStr_Mobile(String str_Mobile) {
 		Str_Mobile = str_Mobile;
