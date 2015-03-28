@@ -83,7 +83,16 @@ public class LoginBean implements Serializable {
 	private String str_UserType;
 	private String str_Block;
 	private Date dat_OpenDate;
+	private Date dat_CloseDate;
+	public Date getDat_CloseDate() {
+		return dat_CloseDate;
+	}
+	public void setDat_CloseDate(Date dat_CloseDate) {
+		this.dat_CloseDate = dat_CloseDate;
+	}
+
 	private String str_CloseDate;
+	
 	private String str_VendorType;
 	private String str_Description;
 	private String str_Title;
@@ -1244,11 +1253,16 @@ public class LoginBean implements Serializable {
 		bookAFacility.setStr_Status("Open");
 		bookAFacility.setStr_Mobile(str_Mobile);
 		bookAFacility.setDat_OpenDate(dat_OpenDate);
-		bookAFacility.setStr_CloseDate(str_CloseDate);
+		bookAFacility.setDat_CloseDate(dat_CloseDate);
 		bookAFacility.setStr_StartTime(str_StartTime);
 		bookAFacility.setStr_UserType(str_UserType);
 		getUserService().addBookAFacility(bookAFacility);
-
+		str_EventName="";
+		str_EndTime="";
+		str_EventType="";
+		str_FacilityType="";
+		str_StartTime="";
+		
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
 		return "/AfrteLoginViews/Facilities/book a facility.xhtml";
 	}

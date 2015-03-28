@@ -1612,7 +1612,7 @@ public void setPool(Pool pool) {
 	this.pool = pool;
 }
  
-public void addPool()
+public String addPool()
 {
 	 
 	pool=new Pool();
@@ -1638,6 +1638,7 @@ public void addPool()
 		str_EndDate="";
 		str_PoolAudience="";
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Created Successfully!"));
+		return"pools.xhtml";
 }
 public String getStr_Choise() {
 	return str_Choise;
@@ -1929,6 +1930,7 @@ public String getMsg() {
 	return msg;
 }
 public void setMsg(String msg) {
+
 	this.msg = msg;
 }
 public String addVote()
@@ -1953,7 +1955,7 @@ public String addVote()
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(onePoll);
 	 
-  return null;
+  return "pools.xhtml";
 }
 public String addVote1()
 {
