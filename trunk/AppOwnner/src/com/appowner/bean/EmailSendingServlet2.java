@@ -58,11 +58,13 @@ public class EmailSendingServlet2 extends HttpServlet {
         String taxName=request.getParameter("taxName");
         String subTotal=request.getParameter("subtotal");
         String taxAmount=request.getParameter("taxAmount");
+        String notes=request.getParameter("notes");
+        String userName=request.getParameter("userName");
         String resultMessage = "";
  
         try {
             EmailUtility2.sendEmail(host, port, user, pass, recipient, subject,
-                    content,invoice,date,date1,amount,tax,due,organisation,transaction,date3,block,apartmentNo,bill,year,dues,taxName,subTotal,taxAmount);
+                    content,invoice,date,date1,amount,tax,due,organisation,transaction,date3,block,apartmentNo,bill,year,dues,taxName,subTotal,taxAmount,notes,userName);
             resultMessage = "One e-mail has been sent to your Email-id !";
         } catch (Exception ex) {
             ex.printStackTrace();

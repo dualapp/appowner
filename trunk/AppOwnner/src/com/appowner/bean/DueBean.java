@@ -319,6 +319,10 @@ public class DueBean implements Serializable{
 		 String ddd=(String)event.getNewValue();  
 	periodIndicator=getDueService().getFrequency(ddd);
 	  System.out.println(ddd+"hjhjjh");  
+	  str_Block="";
+ 		str_ApartmentNo="";
+ 		str_Period="";
+ 		int_Year=0;
 		return periodIndicator;
 	}
 	public void periodChangeListener(ValueChangeEvent event)
@@ -356,6 +360,7 @@ public class DueBean implements Serializable{
 			dbl_DueAmount=0.00;
 			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"This due already exists for the selected apartment. Duplicate dues cannot be created.", "This due already exists for the selected apartment. Duplicate dues cannot be created.!"));
    		System.out.println("jjkjkjkjkdf");
+   		
    		return dbl_DueAmount;
 		}
 		 dbl_DueAmount= getDueService().getDueAmount(str,str_DueTemplate1);	  
