@@ -187,7 +187,9 @@
                 
             </p:column>
              <p:column   headerText="Date"  >
-                <p:outputLabel    value="#{Expenselist.date_Duration}" /> 
+                <p:outputLabel    value="#{Expenselist.date_Duration}" >
+                 <f:convertDateTime pattern="dd-MMM-yyyy" />
+                 </p:outputLabel> 
           
                 
             </p:column>
