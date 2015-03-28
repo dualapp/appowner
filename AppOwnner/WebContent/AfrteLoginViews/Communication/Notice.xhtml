@@ -23,14 +23,14 @@
 			</tr>
 		</tbody>
 	</table>
-       <p:messages id="messages"/>  
+     
        <div id="page3">
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
      
         <tr>
            <th align="left">Subject</th>
-            <td>&#150; &#150;<p:inputText id="str_Subject" value="#{noticeBoardBean.str_Subject}"  required="true" requiredMessage="Subject can not be Empty"  size="60"/></td>
-              
+            <td>&#150; &#150;<p:inputText id="str_Subject" value="#{noticeBoardBean.str_Subject}"  required="true" requiredMessage="Subject can not be Empty"  size="60"/>
+             <p:message for="str_Subject"/> </td> 
             </tr>
            <tr>
             <th align="left">Flash the notice?</th>
@@ -108,7 +108,7 @@
             </td>
             </tr>
         <tr>     <td></td>
-                 <td>&#150; &#150;<p:commandButton id="submit" value="Submit" action="#{noticeBoardBean.addNotice}" ajax="false" /></td>
+                 <td>&#150; &#150;<h:commandButton id="submit" styleClass="btn" value="Submit" action="#{noticeBoardBean.addNotice()}" ajax="false" /></td>
                 
             </tr>
            
