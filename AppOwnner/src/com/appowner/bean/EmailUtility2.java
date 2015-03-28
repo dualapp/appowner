@@ -22,6 +22,7 @@ import java.util.Properties;
 
 
 
+
 import javax.faces.bean.ManagedProperty;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -48,7 +49,7 @@ public class EmailUtility2 {
 	
 	public static void sendEmail(String host, String port,
             final String userName, final String password, String toAddress,
-            String subject, String message,String invoice,String date,String date1,String amount,String tax,String due,String organisation, String transaction,String date3,String block,String apartmentNo,String billperiod,String year,String dues,String taxName,String subTotal,String taxAmount) throws AddressException,
+            String subject, String message,String invoice,String date,String date1,String amount,String tax,String due,String organisation, String transaction,String date3,String block,String apartmentNo,String billperiod,String year,String dues,String taxName,String subTotal,String taxAmount,String notes,String username) throws AddressException,
             MessagingException {
  
         // sets SMTP server properties
@@ -65,8 +66,12 @@ public class EmailUtility2 {
        System.out.println(taxAmount+"fdjfdjkfjkfdjkf");
        System.out.println(dues+"kldfklffd");
        System.out.println(transaction);
-       System.out.println(taxName+"fdkjdkfkfdj");
+     
+       System.out.println(notes+"fdkjfdjkfgjkfg");
       String str="";
+    
+   
+       
       List<String> taxTemplate=new ArrayList<String>();
        ListIterator list=InvoiceBean.getTransaction1().listIterator();
        while(list.hasNext())
@@ -76,13 +81,38 @@ public class EmailUtility2 {
     	  dues=template.getStr_DueTemplate();
     	  taxName=template.getStr_TaxTemplate();
     	  taxTemplate.add(taxName);
-    	 
-    	  System.out.println(dues+"kfdjkfjfdkdfkj");
+    	  String str3="";
+    	  System.out.println("jfcfkjdfdkjfdjkfd");
+    	  System.out.println(amount+"dfjfdjkfdkj");
+    	  String[] strArray = amount.split(",");
+    	  List<String> subamount=new ArrayList<String>();
+         String subamount1="";
+          for (String str2: strArray) 
+          {  
+        	  
+        	  subamount.add(str2) ;}
+        	System.out.println(subamount+"jkffgfgvjgfj"); 
+          	 System.out.println(subamount.get(0));
+          	 subamount1=subamount.get(0);
+          	 System.out.println(subamount.remove(0));
+          System.out.println(subamount+"dsjkjsjdjkfdfdj");
+          StringBuilder out = new StringBuilder();
+          for (Object o1 : subamount)
+          {
+            out.append(o1.toString());
+            out.append(",");
+          }
+          System.out.println(out+"cjkjkkjcxcx");
+          amount=out.toString();
+          System.out.println(amount+"sdjsdjhdsj");
+          str3=str3+subamount1;
+          System.out.println(str3+"dsdshjdsjhdsdsj");
+        
     	 str=str+"<tr style="+"line-height:25px;"+">"+"<td style="+"padding-left:5px;width:440px;"+">"+dues+
   	    "</td>"+
   	  "<td align="+"right"+"" +"style="+"width:250px;"+">"+"</td>"+
-  	    "<td align="+"right"+"" +"style="+"width:250px;"+">"+amount+
-      	"</td>"+
+  	"<td align="+"right"+"" +"style="+"width:250px;"+">"+str3+"</td>"+
+  	  
       	
       	"<td align="+"right"+""+ "style="+"padding-right:5px;width:200px;"+">"+taxName+"</td>"+
       	 "</tr>"+
@@ -101,29 +131,67 @@ public class EmailUtility2 {
      
    	System.out.println(taxTemplate+"fdjkfdkjdfkjf");
    	
-   
-       String str1="";
-      ListIterator list1=taxTemplate.listIterator();
-       while(list1.hasNext())
-       { 
-	      taxName=(String) list1.next();
-	    System.out.println(taxName+"dkjdjkkjdfjk");
-	    System.out.println(tax+"fghjjggjf");
+    String str1="";
+      
+    ListIterator list2=InvoiceBean.getTransaction1().listIterator();
+      System.out.println(tax+"fghjjggjf");
 	    System.out.println(taxAmount+"fdklfkgk");
-	    String[] strArray = tax.split(",");
-	   System.out.println(strArray.length+"fdjkdfjkfj");
-        for (String str2: strArray) 
-        {  
-            
-        	String tax2=str2;
-        	System.out.println(str2+"fklfgvkgf");
-        
-	
-	     str1=str1+"<tr style="+"line-height:25px;"+">"+
-        	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:300px;"+">"+"</td>"+"<td align="+"right"+"" +"style="+"width:200px;"+">"+taxName+"&nbsp;&nbsp;"+"("+tax2+"%"+")"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;"+">"+taxAmount+"</td>"+
-        	     "</tr>";
+	  
+       while(list2.hasNext())
+       { 
+       Object o=list2.next();
+	   DueTemplate template=(DueTemplate)o;
+	   taxName=template.getStr_TaxTemplate();
+		String[] strArray2 = tax.split(",");  
+	  
+	    List<String> taxpercentage=new ArrayList<String>();
+	 	String taxpercentage1="";
+      
+	   	for(String str2:strArray2)
+	   	{   
+	   		taxpercentage.add(str2);
+	   		
+	   	}
+	   	taxpercentage1=taxpercentage.get(0);
+     	 System.out.println(taxpercentage.remove(0));
+     	 StringBuilder out = new StringBuilder();
+         for (Object o1 : taxpercentage)
+         {
+           out.append(o1.toString());
+           out.append(",");
+         }
+         System.out.println(out+"cjkjkkjcxcx");
+         tax=out.toString(); 
+         System.out.println(out+"fvfjgfjg");
+         String[] strArray3 = taxAmount.split(",");  
+	   	List<String> taxAmount2=new ArrayList<String>();
+        String taxAmount1="";
+	   	for(String str2:strArray3)
+	   	{   
+	   		taxAmount2.add(str2);
+	   		
+	   	}
+	   	taxAmount1=taxAmount2.get(0);
+	   	System.out.println(taxAmount2.remove(0));
+	    StringBuilder out2 = new StringBuilder();
+        for (Object o1 : taxAmount2)
+        {
+          out2.append(o1.toString());
+          out2.append(",");
         }
+        System.out.println(out2+"cjkjkkjcxcx");
+        taxAmount=out2.toString(); 
+        System.out.println(taxAmount+"fvfjgfjg");
+        str1=str1+"<tr style="+"line-height:25px;"+">"+
+       	     "<td align="+"right"+"" +"style="+"padding-right:5px;width:300px;"+">"+"</td>"+"<td align="+"right"+"" +"style="+"width:200px;"+">"+taxName+"&nbsp;&nbsp;"+"("+taxpercentage1+"%"+")"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;"+">"+taxAmount1+"</td>"+
+       	     "</tr>";
+        
+	System.out.println(str1+"dfjkkjfgjkgfkjgfgfkj");
+	   
+	     
+        
        }
+       System.out.println(str1+"dfjkkjfgjkgfkjgfgfkj");
         // creates a new session with an authenticator
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
@@ -152,7 +220,7 @@ public class EmailUtility2 {
         		         "<tr>"+
                         "<td>"+"<font size="+5+" color="+"#BC8F8F"+">"+"INVOICE NO:"+" "+invoice+""+"</font>"+"</td>"+
         		        "</tr>"+"<tr>"+
-        		        "<td>"+"Date"+" "+date+""+" "+"(Pay Invoice by"+" "+date1+")"+"</td>"+
+        		        "<td>"+"<font size="+3+">"+"Date:"+" "+date+" "+" "+"(Pay Invoice by"+" "+date1+")"+"</font>"+"</td>"+
         		        "</tr>"+"<tr>"+
         		        "<td>"+"<font size="+3+" color="+"#FFA07A"+">"+"Rs."+due+"</td>"+
                         "</tr>"+
@@ -161,7 +229,7 @@ public class EmailUtility2 {
                         "<hr/>"+
                         "<table width="+600+" bgcolor="+"#FFFFFF"+">"+
        		         "<tr>"+
-                       "<td>"+"<font size="+3+" color="+"#000000"+">"+"Invoice To:"+" "+block+""+"-"+apartmentNo+""+"</td>"+
+                       "<td>"+"<font size="+3+" color="+"#000000"+">"+"Invoice To:"+" "+username+"</td>"+
        		        "<td>"+
        		       
        		        "</td>"+
@@ -169,7 +237,13 @@ public class EmailUtility2 {
      		       
        		        "</td>"+
        		      
-       		        "<td>"+"Bill Period:"+billperiod+""+"-"+""+year+""+"</td>"+
+       		        "<td>"+"<font size="+3+" color="+"#000000"+">"+"Bill Period:"+billperiod+""+"-"+""+year+""+"</td>"+
+                       "</tr>"+
+                       "<tr>"+
+                       "<td>"+"<font size="+3+" color="+"#000000"+">"+"Block No:"+" "+block+"</td>"+
+                       "</tr>"+
+                       "<tr>"+
+                       "<td>"+"<font size="+3+" color="+"#000000"+">"+"Flat No:"+" "+apartmentNo+"</td>"+
                        "</tr>"+
                        "</table>"+
         		"<body>\n" +
@@ -203,17 +277,21 @@ public class EmailUtility2 {
         	    "<td style="+"padding-left:5px;width:440px;line-height:20px;color:#E17009;" +"align="+"right"+">"+"SubTotal"+"</td>"+
         	    "<td align="+"right"+"" +"style="+"width:250px;color:#E17009;"+">"+subTotal+"</td>"+
         	    "</tr>"+
-        	    "<tr>"+"</tr>"+str1+
-        	     "<tr>"+
-        	  "<tr>"+
-        	    "</tr>"+
+        	    
+        	     "<tr>"+str1+
+        	  "</tr>"+
+        	   
         	    "<tr>"+
         	    "<td align="+"right"+"" +"style="+"width:200px;"+">"+"</td>"+
              "<td style="+"padding-left:5px;width:440px;line-height:20px;color:#E17009;" +"align="+"right"+">"+"Total Due"+"</td>"+"<td align="+"right"+"" +"style="+"width:250px;color:#E17009;"+">"+due+"</td>"+
         	  "</tr>"+
-        	     "<tbody>"+"</table>"+
+             
+        	     "<tbody>"+"</table>"+"<hr/>"+"<table>"+"<tr>"+"<td>"+ "<strong>"+"Notes"+"</strong>"+"</td>"+
+             	  "</tr>"+ "<tr>"+"<td>"+ "<strong>"+notes+"</strong>"+"</td>"+
+               	  "</tr>"+"</table>"+
         	    
         		"</body>\n" +
+        		
         		"</fieldset>"+
         		"</html>", "text/html");
         // sends the e-mail
