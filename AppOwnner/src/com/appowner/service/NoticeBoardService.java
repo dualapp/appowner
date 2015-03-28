@@ -10,4 +10,6 @@ public interface NoticeBoardService {
 	  public List<String> getmailids();
 	 
 	public Integer count();
+	public Notice getNotice(int id);
+	public void updateNotice(Notice notice);
 }

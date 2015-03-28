@@ -290,4 +290,10 @@ public class AccountsServiceImpl implements AccountsService {
 	{
 		return getAccountsDao().getManualJournal(id1);
 	}
+	public List< ManualJournal> getlistManualJourna4(Date dat_From, Date dat_To)
+	{
+		return getAccountsDao().getlistManualJourna4(dat_From,dat_To);
+	}
+	
+			
 }

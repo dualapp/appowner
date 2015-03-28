@@ -38,5 +38,13 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 		// TODO Auto-generated method stub
 		return getNoticeBoardDao().count();
 	}
+	public Notice getNotice(int id)
+	{
+		return getNoticeBoardDao().getNotice(id);
+	}
+	public void updateNotice(Notice notice)
+	{
+		getNoticeBoardDao().updateNotice(notice);
+	}
 	 
 }
