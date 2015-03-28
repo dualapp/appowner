@@ -532,6 +532,13 @@ public class AccountsDaoImpl implements AccountsDao{
 		return getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.eq("str_OrganisationID", apartmentID)).list();
 	 }
 	@SuppressWarnings("unchecked")
+	public List<ManualJournal> getlistManualJourna4(Date dat_From, Date dat_To)
+	{
+		List<ManualJournal> ddd=(List<ManualJournal>)getSessionFactory().getCurrentSession().createCriteria(ManualJournal.class).setCacheable(true).add(Restrictions.eq("str_OrganisationID",Util.getAppartmentId())).add(Restrictions.between("dat_Date", dat_From,dat_To)).list();
+	      System.out.println(ddd+"fdmkfgkghkllkh33333333333333333333333333333333333333333");
+		 return ddd;
+	}
+	@SuppressWarnings("unchecked")
 	public List<ManualJournal> getlistManualJournal1(String str_Accounts, Date dat_FromDate, Date dat_ToDate)
 	{   getApartmentID();
 	   

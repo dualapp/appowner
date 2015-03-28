@@ -61,5 +61,14 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 			// TODO Auto-generated method stub
 			return  (Integer) getSessionFactory().getCurrentSession().createCriteria(Notice.class).setCacheable(true).setProjection(Projections.rowCount()).uniqueResult();
 		}
+		public Notice getNotice(int id)
+		{
+			String hql="from Notice where int_NoticeID=? and int_ApartmentID=?";
+			return (Notice) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,id).setParameter(1,Util.getAppartmentId()).uniqueResult();
+		}
+		public void updateNotice(Notice notice)
+		{
+			sessionFactory.getCurrentSession().update(notice);
+		}
 	 
 }

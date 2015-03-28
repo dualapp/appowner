@@ -89,16 +89,17 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		  System.out.println("priyahuyt");
 		   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
 		}
-		else if(str_InvoiceTemplate.isEmpty())
+		/*else if(str_InvoiceTemplate.isEmpty())
 		{
 			 System.out.println("priyahuyt234");
 			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
-		}
+		}*/
 	/*	else if(str_Status.isEmpty())
 		{
 			 System.out.println("priyahuyt23467");
 			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
 		}*/
+		
 		else if(str_Status==null)
 		{
 			 System.out.println("priyahuyt23467");
@@ -159,8 +160,15 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		
 		double ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str1).setParameter(1, apartmentID).uniqueResult();
 	     System.out.println(ddd);
+	    
 		return ddd;
 	
+	}
+	public double getTaxExceptionAmount(String str1)
+	{
+		 String hql1="select int_TaxExemption from TaxTemplate where str_TaxName=? AND int_Organisation=?";
+	     double ddd1=(double)getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,str1).setParameter(1, apartmentID).uniqueResult();
+	     return ddd1;
 	}
 	public double getSqft(String str)
 	{
@@ -170,10 +178,24 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	    
 		return ddd1;
 	}
-	public String getmailid(String str_ApartmentNo)
+	@SuppressWarnings("unchecked")
+	public List<String> getmailid(String blockNo,String str_ApartmentNo)
+	{   System.out.println(str_ApartmentNo+"fjkfggf");
+	   System.out.println(blockNo+"flkfgjkfgkjgj");
+	   List<String> emailids=new ArrayList<String>();
+		String hql="select str_Email from User where int_ApartmentId=? and  str_UserRoleName='admin'";
+	   String emailid=(String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).setCacheable(true).uniqueResult();
+	   emailids.add(emailid);
+	   String hql1="select str_Email from User where int_ApartmentId=? and str_Block=? and str_Flat=? and str_UserRoleName='user'";
+	   String emailid1=(String)getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, Util.getAppartmentId()).setParameter(1, blockNo).setParameter(2, str_ApartmentNo).setCacheable(true).uniqueResult();
+	   emailids.add(emailid1);
+	   return emailids;
+		
+	}
+	public String getDescription(String str_InvoiceTemplate)
 	{
-		String hql="select str_Email from User where str_Flat=?";
-		return (String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_ApartmentNo).uniqueResult();
+		String hql="select str_Description from InvoiceTemplate where int_Organisation=? and str_InvoiceTemplateName=?";
+		return (String)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setParameter(1, str_InvoiceTemplate).uniqueResult();
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getAccountName()
@@ -236,9 +258,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	public String getUserName(String str_Block, String str_ApartmentNo)
 	{
-		String hql="select str_FirstName  from User  where int_ApartmentId=? and str_Block=? and str_Flat=?";
+		String hql="select str_FirstName  from User  where int_ApartmentId=? and str_Block=? and str_Flat=? and str_UserRoleName='user'";
 		String str=(String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setParameter(1, str_Block).setParameter(2, str_ApartmentNo).setCacheable(true).uniqueResult();
-		String hql1="select str_LastName  from User  where int_ApartmentId=? and str_Block=? and str_Flat=?";
+		String hql1="select str_LastName  from User  where int_ApartmentId=? and str_Block=? and str_Flat=? and str_UserRoleName='user'";
 		String str1=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,Util.getAppartmentId()).setParameter(1, str_Block).setParameter(2, str_ApartmentNo).setCacheable(true).uniqueResult();
 		
 		String str2=str+"   "+str1;

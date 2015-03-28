@@ -19,10 +19,10 @@ public List<String> getBlockList(String str_Organisation);
 public List<String> getApartmentlist(String str_Block);
 
 public double getTaxAmount(String str1);
-
+public double getTaxExceptionAmount(String str1);
 public double getSqft(String str);
 
-public String getmailid(String str_ApartmentNo);
+public List<String> getmailid(String str_ApartmentNo, String blockNo);
 
 public List<String> getAccountName();
 
@@ -49,6 +49,8 @@ public List<InvoiceTransaction> listInvoiceTransaction1(
 		Integer int_Year, String str_BillPeriod);
 
 public String getUserName(String str_Block, String str_ApartmentNo);
+
+public String getDescription(String str_InvoiceTemplate);
 
 
 
