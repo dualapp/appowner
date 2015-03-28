@@ -453,6 +453,7 @@ public String addAccounts()
 		account.setStr_Bank(str_Bank);
 		account.setStr_Branch(str_Branch);
 		account.setStr_City(str_City);
+		account.setInt_Organisation(Util.getAppartmentId());
 		account.setStr_IFSC_Code(str_IFSC_Code);
 		getAccountsService().addAccount(account); 
 		
