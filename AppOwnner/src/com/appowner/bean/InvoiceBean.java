@@ -226,12 +226,21 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	}
 	private static String subject="subject";
 	private static String content="content";
-	private static String mailid;
+	private static List<String> mailid;
 	
 	public static String getMailid() {
-		return mailid;
+		StringBuilder out = new StringBuilder();
+		for (Object o : mailid)
+		{
+		  out.append(o.toString());
+		  out.append(",");
+		}
+		return out.toString();
+			
+		
 	}
-	public static void setMailid(String mailid) {
+	
+	public static void setMailid(List<String> mailid) {
 		InvoiceBean.mailid = mailid;
 	}
 	public static String getSubject() {
@@ -248,7 +257,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	}
 	public void getTaxTemplate1(String str)
 	{
-		System.out.println("gfgfkjgkjkjgh");
+		System.out.println("gfgfkjgkjkjgh555555555555555555555555555555555");
 	}
 	 private static String InvoiceNo="invoiceNo";
 	   
@@ -443,6 +452,26 @@ public DueTransaction getDue1() {
 public void setDue1(DueTransaction due1) {
 	this.due1 = due1;
 }
+private static String notes;
+public static String getNotes() {
+	return notes;
+}
+public static void setNotes(String notes) {
+	InvoiceBean.notes = notes;
+}
+private static String username;
+public static String getUsername() {
+	return username;
+}
+public static void setUsername(String username) {
+	InvoiceBean.username = username;
+}
+public void datechangeListener(ValueChangeEvent event)
+{   System.out.println("jhjhjj");
+dat_DueDate=(Date)event.getNewValue();
+	System.out.println(dat_DueDate+"gjkfg");
+	
+}
 private List<DueTransaction> listDueTransaction;
 	public String addInvoiceTransaction()
 	{   
@@ -452,7 +481,7 @@ private List<DueTransaction> listDueTransaction;
 			invoice.setStr_BillPeriod(getStr_BillPeriod());
 			invoice.setInt_Year(getInt_Year());
 			invoice.setDat_InvoiceDate(dat_InvoiceDate);
-		     
+		     System.out.println(dat_DueDate+"dfkjfjkdfgkjfgkjgf");
 			invoice.setDat_DueDate(dat_DueDate);
 			invoice.setInt_Admin_ID(getInt_Admin_ID());
 			System.out.println(bl_Show+"kjfkjgkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
@@ -510,10 +539,13 @@ private List<DueTransaction> listDueTransaction;
 			
 			  if(bl_Show==true)
 				{
-					 mailid= getInvoiceService().getmailid(str_ApartmentNo);
+					 mailid=getInvoiceService().getmailid(str_Block,str_ApartmentNo);
+					 System.out.println(mailid+"flkgkllkf");
+					 notes=getInvoiceService().getDescription(getStr_InvoiceTemplate());
 					System.out.println("kdfkdfkjkjfkfj");
-					subject="Shaffi Paradise - Invoice posted for your Apartment";
+					subject="Invoice posted for your Apartment";
 					content="";
+					username=userName;
 					InvoiceNo=int_InvoiceNo;
 					Date=dat_InvoiceDate;
 					date1=getDat_DueDate();
@@ -613,7 +645,10 @@ private List<DueTransaction> listDueTransaction;
 	{  try{
 		select =( String )event.getNewValue();
 		System.out.println(select+"hhjjhjh");
-		
+		str_Block="";
+		str_ApartmentNo="";
+		str_BillPeriod="";
+		int_Year=int_Year;
          dueList=new ArrayList<String>();
 	    if(select.equals(getSelect()))
 	    {
@@ -753,12 +788,32 @@ private List<DueTransaction> listDueTransaction;
 	    }
 		return null;
 	}
+	public List<String> blockChangeListener1(ValueChangeEvent event)
+	{
+		 str_Block=(String)event.getNewValue();
+		 str_BlockNo=new ArrayList<String>();
+			str_BlockNo.addAll(getInvoiceService().getApartmentlist(str_Block));
+			return str_BlockNo;
+	}
 	public List<String> blockChangeListener(ValueChangeEvent event)
 	{   str_Block=(String)event.getNewValue();
 	   System.out.println(str_Block);
+	   System.out.println(select+"jkgfkjggfgfgf");
+	   if(select==null)
+	   {FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Select InvoiceTemplate", "Select InvoiceTemplate"));
+		  
+	   }
+	   else
+	   {   
 		str_BlockNo=new ArrayList<String>();
 		str_BlockNo.addAll(getInvoiceService().getApartmentlist(str_Block));
-		return str_BlockNo;
+		
+	   }
+	   return str_BlockNo;
 	}
 	private double taxAmount;
 	 
@@ -872,6 +927,7 @@ private List<DueTransaction> listDueTransaction;
 		     subTotal=0.00;
 		     totalDue=0.00;
 		     taxAmount2=0.00;
+		     double taxexceptionAmount=0.00;
 		     tax2=new ArrayList<Double>();
 		     while(list.hasNext())
 		     {
@@ -894,6 +950,7 @@ private List<DueTransaction> listDueTransaction;
 		    	 {
 		    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 		    	 System.out.println(taxAmount+"jkjkggf");
+		    	 taxexceptionAmount=getInvoiceService().getTaxExceptionAmount(str2);
 		    	 }
 		    	
 		    	 
@@ -913,6 +970,7 @@ private List<DueTransaction> listDueTransaction;
 		    	  }
 		    	
 		    	 taxAmount1=(taxAmount*totalAmount)/100;
+		    	 taxAmount1=taxAmount1-taxexceptionAmount;
 		    	 taxAmounts.add(taxAmount1);
 		    	 subTotal=subTotal+totalAmount;
 		    	 System.out.println(subTotal+"jhj");
@@ -954,6 +1012,13 @@ private List<DueTransaction> listDueTransaction;
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	private boolean render;
+	public boolean isRender() {
+		return render;
+	}
+	public void setRender(boolean render) {
+		this.render = render;
+	}
 	public List<String> amountChangeListener(ValueChangeEvent event)
 	 {      String str=(String)event.getNewValue();
 		System.out.println(str_BillPeriod+"hjjhj"); 
@@ -966,8 +1031,9 @@ private List<DueTransaction> listDueTransaction;
 		getListInvoiceTransaction1();
 		System.out.println(listInvoiceTransaction1.listIterator().hasNext());
 		System.out.println(!listInvoiceTransaction1.listIterator().hasNext());
+		
 		if(listInvoiceTransaction1.listIterator().hasNext())
-		{
+		{    render=false;
 			  FacesContext facesContext = FacesContext.getCurrentInstance();
 				Flash flash = facesContext.getExternalContext().getFlash();
 				flash.setKeepMessages(true);
@@ -979,7 +1045,7 @@ private List<DueTransaction> listDueTransaction;
 		 try
 		 {
 		      
-			    
+			 render=true;
 			  
 			    listDues=getInvoiceService().taxList(select);
 		       
@@ -1001,6 +1067,7 @@ private List<DueTransaction> listDueTransaction;
 			     totalDue=0.00;
 			     taxAmount2=0.00;
 			     tax2=new ArrayList<Double>();
+			     double taxexceptionAmount=0.00;
 			     while(list.hasNext())
 			     {
 			    	 Object obj=list.next();
@@ -1021,6 +1088,8 @@ private List<DueTransaction> listDueTransaction;
 			    	 {
 			    	 taxAmount=getInvoiceService().getTaxAmount(str2);
 			    	 System.out.println(taxAmount+"jkjkggf");
+			    	 taxexceptionAmount=getInvoiceService().getTaxExceptionAmount(str2);
+			    	 System.out.println(taxexceptionAmount+"fdkjkjgfjkggkj");
 			    	 }
 			    	
 			    	  tax2.add(taxAmount);
@@ -1039,15 +1108,18 @@ private List<DueTransaction> listDueTransaction;
 			    		  System.out.println(totalAmount+"dfjkdkjdf");
 			    	  }
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
-			    	
+			    	 System.out.println(taxAmount1+"fkjdfkjfg");
+			    	 taxAmount1=taxAmount1-taxexceptionAmount;
+			    	 System.out.println(taxAmount1+"dfjkkjfdjkfd");
 			    	 taxAmounts.add(taxAmount1);
 			    	 tax1=taxAmounts;  //for Mail purpose
 			    	 System.out.println(taxAmounts+"jkkjkjjk");
 			    	 subTotal=subTotal+totalAmount;
-			    	
+			    	 System.out.println(subTotal+"jkgfgfgf");
 					 taxAmount2=taxAmount2+taxAmount1;
+					 System.out.println(taxAmount2+"dkfkfdd");
 				     totalDue=subTotal+taxAmount2;
-			    	 
+			    	 System.out.println(totalDue+"fdjkfdjkfkjdfdkj");
 				    	  totalAmounts.add(totalAmount);
 				           amount=totalAmounts;  //for Mail purpose
 				           System.out.println(amount+"gffkllkfgh");
