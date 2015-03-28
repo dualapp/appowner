@@ -86,6 +86,13 @@ public static Date getOpeningdate() {
 public static void setOpeningdate(Date openingdate) {
 	AccountingBean.openingdate = openingdate;
 }
+private Date dat_ToDate1;
+public Date getDat_ToDate1() {
+	return dat_ToDate1;
+}
+public void setDat_ToDate1(Date dat_ToDate1) {
+	this.dat_ToDate1 = dat_ToDate1;
+}
 private String dat_FromDate1;
 public String getDat_FromDate1() {
 	
@@ -240,7 +247,7 @@ private String str_DebitAccount;
 private String str_CreditAccount;
 private Double str_DebitAmount;
 private Double str_CreditAmount;
-private ManualJournal selectedjournal=new ManualJournal();
+private ManualJournal selectedjournal;
 public ManualJournal getSelectedjournal() {
 	
 	return selectedjournal;
@@ -248,11 +255,11 @@ public ManualJournal getSelectedjournal() {
 public void setSelectedjournal(ManualJournal selectedjournal) {
 	this.selectedjournal = selectedjournal;
 }
-public void addInvoiceManualJournal() 
+public String addInvoiceManualJournal() 
 { System.out.println("dfjudffgviugfiugfiu");
 	try{
-	if(str_Notes!=null && str_DebitAmount!=null)
-	{
+	
+	
 	ManualJournal journal=new ManualJournal();
     journal.setStr_OrganisationID(Util.getAppartmentId());
     journal.setDat_Date(dat_Date);
@@ -273,30 +280,23 @@ public void addInvoiceManualJournal()
     	 getAccountsService().addManualJournal(journal);
     	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("ManualJournal Saved Successfully!"));
     	 str_Notes="";
+    	 return "manualjournal.xhtml";
     	 }
-    	 else{
-        	 FacesMessage message = null;
-         FacesContext.getCurrentInstance().addMessage(null, message);
-         
-         }
-  
-    
-   
-}
+    	
   catch(Exception e)
   {
 	e.printStackTrace();
   }
-
+	 return "manualjournal.xhtml";
 }
 
-public String saveManualJournal(ManualJournal journal) {
+public String saveManualJournal() {
 	System.out.println("jhvvnjggggggggggggggggggggg11111111111111111111111111111111111111111111111111111111");
-	System.out.println(journal+"fdkjfjkfdkj");
-	System.out.println(journal.getInt_ManualJournalID()+"fkjfgkfgkj");
-	if (journal.getInt_ManualJournalID()!= null) {
-		
-		 getAccountsService().updateManualJournal(journal);
+	System.out.println(journal1+"fdkjfjkfdkj");
+	System.out.println(journal1.getStr_OrganisationID()+"fkjfgkfgkj");
+	System.out.println(creditAccount+"fggfgf");
+		System.out.println(selectedjournal.getInt_ManualJournalID()+"fggfjkgfkjg");
+		 getAccountsService().updateManualJournal(journal1);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
@@ -304,15 +304,14 @@ public String saveManualJournal(ManualJournal journal) {
 
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
 
-	} else
-		getAccountsService().addManualJournal(journal);
-	return "true";
+	
+	return "manualjournal.xhtml";
 	
 }
-public void deleteManualJournal1(int id) {
+public void deleteManualJournal1() {
 	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-	
-	
+	System.out.println(selectedjournal.getInt_ManualJournalID()+"fkjkfjfg");
+	id=selectedjournal.getInt_ManualJournalID();
 	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
     	FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -323,6 +322,23 @@ public void deleteManualJournal1(int id) {
 
    getAccountsService().deleteManualJournal(id);
    
+}
+public void getsearch4()
+{   System.out.println("hhjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+	getListManualJournal4();
+}
+private List<ManualJournal> listManualJournal4;
+
+public List<ManualJournal> getListManualJournal4() {
+	System.out.println("ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+	System.out.println(dat_From);
+	System.out.println(dat_To+"fggkjgfkjgfjkgfjkggfjkgfjkgfkjgj7777777777777");
+	listManualJournal4=new ArrayList<ManualJournal>();
+	listManualJournal4.addAll(getAccountsService().getlistManualJourna4(dat_From,dat_To));
+	return listManualJournal4;
+}
+public void setListManualJournal4(List<ManualJournal> listManualJournal4) {
+	this.listManualJournal4 = listManualJournal4;
 }
 private List<ManualJournal> listManualJournal;
 public List<ManualJournal> getListManualJournal() {
@@ -372,9 +388,10 @@ private Date  dat_From;
 private Date dat_To;
 public Date getDat_From() {
 	Calendar cal = Calendar.getInstance();
+	cal.set(Calendar.MONTH, 0);
 	cal.set(Calendar.DAY_OF_MONTH, 1);
 	System.out.println(cal.getTime()+"fdkfkgfk");
-	cal.add(Calendar.MONTH,-1);
+	//cal.add(Calendar.MONTH,-1);
 	dat_From = cal.getTime();
 	
 	return dat_From;
@@ -1893,7 +1910,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 {
 	System.out.println("hjjhjhjk");
 	str=(String)event.getNewValue();
-  
+  System.out.println(str+"66666666666666666666666666666666666666666666666666666666666666666666666666666666");
    if(str.equalsIgnoreCase("This Week End"))
 		   {
 	   Calendar c = Calendar.getInstance();
@@ -1966,10 +1983,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
 		return dat_ToDate;
    }
-   else if(str.equalsIgnoreCase("Custom"))
-   {  dat_ToDate=null;
-	  return dat_ToDate;
-   }
+  
    else if(str.equalsIgnoreCase("Previous Week End"))
    {
 	   Calendar c = Calendar.getInstance();
@@ -2030,7 +2044,12 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
 		return dat_ToDate;  
    }
-    return null;
+   else if(str.equalsIgnoreCase("Custom"))
+   {   System.out.println("fdfgfgkjgfkjgfjkgf");
+   
+      return dat_ToDate;
+   }
+   return null;
 	
 }
 private List<Double>  assetDebitBalance;
