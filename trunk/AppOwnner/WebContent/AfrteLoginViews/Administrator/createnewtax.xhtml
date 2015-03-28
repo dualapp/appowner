@@ -64,8 +64,9 @@
              </tr>
              
               <tr>
-            <td>  <h:outputText  value="Tax Exemption"/><br /><small>(per month per flat)</small></td>
-           <td>  <p:inputText id="int_TaxExemption" value="#{templateBean.int_TaxExemption}" /> </td>
+            <td>  <h:outputText  value="Tax Exemption(Rs.)"/><br /><small>(per month per flat)</small></td>
+           <td>  <p:inputText id="int_TaxExemption" value="#{templateBean.int_TaxExemption}" required="true" requiredMessage="Rs. should be a Number " /> </td>
+            <td><p:message for="int_TaxExemption" dispay="text"/></td>
              </tr>
           
             
