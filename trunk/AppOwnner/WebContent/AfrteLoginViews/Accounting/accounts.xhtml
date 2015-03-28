@@ -20,14 +20,48 @@
            height:25px;
            weight:200px;
           }
-      </style>	
+          .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+.ui-growl-item-container.ui-state-highlight {
+    border-color: green;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
+</style>
+    
+       <script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiManualJournalDialog2').show();
+            
+        } 
+        else{
+        	 
+         
+        	PF('multiManualJournalDialog2').hide();
+        	
+        }
+        
+    }
+      </script>
       
 </h:head>
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/account.jpg" height="50" width="50"></img> <span class="title">Account</span>
+					<img src="#{expenseBean.str_Name}images/account.jpg" height="50" width="50"></img> <span class="title">Bank Account</span>
 				</td>
 			</tr>
 		</tbody>
@@ -62,21 +96,41 @@
       </td>
       </tr>
       </table>
-     <p:panel header="Account Name"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"    styleClass="customTitleBar">
-     <p:dataGrid   id="account" var="account" value="#{accountsBean.listAccounts}"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
-         rowKey="#{account.int_account_ID}" editable="true"  resizableColumns="true" columns="1" layout="block">
-            <h:panelGrid columns="2" style="width:100%"> 
+
+     <p:dataTable   id="account" var="account" value="#{accountsBean.listAccounts}"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  
+         rowKey="#{account.int_account_ID}" editable="true"  resizableColumns="true"  >
             
-                   
+            
+                <p:column >
+                <f:facet name="header">
+                    <h:outputText value="AccountName" />
+                </f:facet>
                 <h:outputText value="#{account.str_acount_Name}" />
-            
-                <h:outputText value="Balance:#{account.dou_opening_Balance}" />
-                <h:outputText value="Account NO:#{account.str_account_No}" />
-                <h:outputText value="IFSC Code:#{account.str_IFSC_Code}" />
-      </h:panelGrid>
-      </p:dataGrid>
-      </p:panel>
-      <p:dialog header="Add New Bank Account" widgetVar="multiAccountDialog"  id="multiAccountDetail"   showEffect="explode" hideEffect="explode" resizable="false" height="500" width="600">
+            </p:column>
+            <p:column>
+            <f:facet name="header">
+                    <h:outputText value="Balance" />
+                </f:facet>
+                <h:outputText value="#{account.dou_opening_Balance}" />
+                </p:column>   
+                <p:column>
+                 <f:facet name="header">
+                    <h:outputText value="Account No" />
+                </f:facet>
+                <h:outputText value="#{account.str_account_No}" />
+                </p:column>
+                
+                <p:column>
+                 <f:facet name="header">
+                    <h:outputText value="IFSC Code" />
+                </f:facet>
+                <h:outputText value="#{account.str_IFSC_Code}" />
+                </p:column>
+               
+      
+    </p:dataTable>
+     
+      <p:dialog header="Add New Bank Account" widgetVar="multiAccountDialog"  id="multiAccountDetail"   showEffect="explode" hideEffect="explode" resizable="false" height="550" width="600">
       <table>
       <tr>
       <td>Please Note:</td>
@@ -91,8 +145,12 @@
       <td><h:outputText value="Account No:  " /><font color="red">*</font></td>
       </tr>
       <tr>
-    <td>  <p:inputText value="#{accountsBean.str_acount_Name}"/></td>
-     <td>  <p:inputText value="#{accountsBean.str_account_No}"/></td>
+    <td><p:inputText id="accountName" value="#{accountsBean.str_acount_Name}"  required="true" ></p:inputText>
+    <p:message for="accountName" display="icon"/>
+    </td>
+     <td>  <p:inputText id="accountNo" value="#{accountsBean.str_account_No}" required="true"/>
+     <p:message for="accountNo" display="icon"/>
+     </td>
       </tr>
       
       <tr>
@@ -105,39 +163,50 @@
                   <f:selectItem itemLabel="Current" itemValue="Current"/>
                    <f:selectItem itemLabel="Fixed" itemValue="Fixed"/>
                     <f:selectItem itemLabel="Recurring" itemValue="Recurring"/>
-                 </h:selectOneMenu></td>
+                 </h:selectOneMenu>
+                </td>
     
-      <td><p:inputText value="#{accountsBean.str_Bank}"/></td>
+      <td><p:inputText id="accountType" value="#{accountsBean.str_Bank}"/>
+      <p:message for="accountType" display="icon"/>
+      </td>
       </tr>
       <tr>
       <td><h:outputText value="Branch: " /><font color="red">*</font></td>
        <td><h:outputText value="City: " /><font color="red">*</font></td>
       </tr>
       <tr>
-       <td><p:inputText value="#{accountsBean.str_Branch}"/></td>
+       <td><p:inputText id="branch" value="#{accountsBean.str_Branch}"/>
+       <p:message for="branch" display="icon"/>
+       </td>
     
-      <td><p:inputText value="#{accountsBean.str_City}"/></td>
+      <td><p:inputText id="city" value="#{accountsBean.str_City}"/>
+      <p:message for="city" display="icon"/>
+      </td>
       </tr>
       <tr>
       <td><h:outputText value="Opening Balance: " /><font color="red">*</font></td>
      <td><h:outputText value="IFSC Code: " /><font color="red">*</font></td>
       </tr>
       <tr>
-       <td><p:inputText value="#{accountsBean.dou_opening_Balance}"/></td>
+       <td><p:inputText id="openingBalance" value="#{accountsBean.dou_opening_Balance}"/>
+       <p:message for="openingBalance" display="icon"/>
+       </td>
       
-      <td><p:inputText value="#{accountsBean.str_IFSC_Code}"/></td>
+      <td><p:inputText id="ifscCode" value="#{accountsBean.str_IFSC_Code}"/>
+      <p:message for="ifscCode" display="icon"/>
+      </td>
       </tr>
       <tr>
-      <td><p:selectBooleanCheckbox id="bl_Show" value=""/>Make it default</td>       
+      <td><p:selectBooleanCheckbox id="bl_Show" value="#"/>Make it default
+      <p:message for="bl_Show" display="icon"/></td>       
       
       </tr>
-      <tr><td colspan="2"><p:separator/></td></tr>
-      <h:panelGroup style="display:block; text-align:right"> 
-         <tr>
-                 <td><p:commandButton id="submit" value="Submit" action="#{accountsBean.addAccounts}" ajax="false" /><p:spacer width="5%" height="5%"/>
-                 <p:commandButton id="cancel" value="Cancel" action="#{accountsBean.cancel}" ajax="false"/></td>
+     <tr>
+   
+                 <td><p:commandButton id="submit" styleClass="btn" value="Submit" actionListener="#{accountsBean.addAccounts}" update=":form:account,accountName,accountNo,str_account_Type,accountType" oncomplete="handleRequest(xhr, status, args)"/><p:spacer width="5%" height="5%"/>
+                 <p:commandButton id="cancel" styleClass="btn" value="Cancel" outcome="accounts.xhtml" ajax="false"/></td>
            </tr>
-  </h:panelGroup>
+  
       </table>
          </p:dialog>
          <p:dialog header="Transfer Funds" widgetVar="multiAccountDialog1"  id="multiAccountDetail1"   showEffect="explode" hideEffect="explode" resizable="false" height="400" width="700">
@@ -179,7 +248,7 @@
       <td colspan="4"><p:separator/></td>
       </tr>
       <tr>
-                 <td><p:commandButton id="submit1" value="Transfer" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" /></td>
+                 <td><p:commandButton id="submit1" value="Transfer" action="#{accountsBean.addAccounts()}" ajax="false" /></td>
                  </tr>
       </table>
          </p:dialog>

@@ -372,16 +372,30 @@ style="width:600px">
                <div id="page3">
    <div class="gsTitleDiv"><br/></div>
  
-&#150; &#150; <p:commandButton style="width:120px;height:25px;margin-left:2em;" oncomplete="PF('multiManualJournalDialog2').show()" icon="ui-icon-plus" value="Create New" />&#150; &#150;  &#150; &#150;&#150; &#150; 
-       &#150; &#150; 
+
       
-             <br/>
-           <br/>
-         
+            
+           
+           &#150; &#150;  &#150; &#150;   <p:outputLabel value="From :"/> &#150; &#150;
+                  <p:calendar value="#{accountingBean.date3}" navigator="true"   pattern="dd-MM-yyyy" valueChangeListener="#{accountingBean.datechangeListener3}">
+                      <p:ajax event="dateSelect" partialSubmit="true" /> 
+                    </p:calendar>
+                  &nbsp; &nbsp;
+                  <p:outputLabel value="To :"/> &#150; &#150;
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true"  pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
+                  </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <h:commandButton value="Go"  action="#{accountingBean.getsearch4()}" ajax="false"/>
+             
+                 
+                 
+    
+    <br/>
+  
+    
  
       
         
-         <p:dataTable id="journal5" var="journal"  value="#{accountingBean.listManualJournal}" selection="#{accountingBean.selectedjournal}" rowKey="#{journal.int_ManualJournalID}"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+         <p:dataTable id="journal5" var="journal"  value="#{accountingBean.listManualJournal4}" selection="#{accountingBean.selectedjournal}" rowKey="#{journal.int_ManualJournalID}"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
         rowsPerPageDropdown="{10,20,30,40,50}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-top: 5px;margin-bottom:5px" paginatorPosition="top">
            
             
@@ -428,100 +442,10 @@ style="width:600px">
            
       </p:dataTable> 
      
-      <p:dialog header="Create New ManualJournal" widgetVar="multiManualJournalDialog2"    showEffect="explode" hideEffect="explode" resizable="false" height="540" width="700"> 
-         <p:outputPanel id="multiManualJournalDetail2" style="text-align:center;">
-           <fieldset>
-     <table style="width: 60%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
     
-     <tr>
-    <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
-              <td><p:selectOneMenu id="str_Organisation" value="#{accountingBean.str_Organisation}"  style="width:250px">
-                   <f:selectItem itemValue="#{accountingBean.str_Organisation}"  itemLabel="#{accountingBean.str_Organisation}"/>
-                 </p:selectOneMenu>
-             </td>
-     </tr>
-     <tr>
-       <td>  <h:outputText  value="Date" /><font color="red" >*</font></td>
-           <td><p:calendar id="dat_Date" value="#{accountingBean.dat_Date}" pattern="dd-MM-yyyy"/></td>
-    </tr>
-   <tr>
-       <td>  <h:outputText  value="Referance" /></td>
-           <td><p:inputText id="str_Reference" value="#{accountingBean.str_Reference}"/></td>
-    </tr>
-     
-      <tr>
-       <td>  <h:outputText  value="Notes" /><font color="red" >*</font></td>
-           <td><h:inputTextarea id="str_Notes"  value="#{accountingBean.str_Notes}" required="true" requiredMessage="It Should not be Empty"/>
-           </td>
-    </tr>
-    </table>
-    </fieldset>
-     <fieldset>
-    <h2> Accounts Details</h2>
-      
-      <table style="width: 70%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-        <tr>
-     
-          <td><font size="4" color="red"> <h:outputText  value="Debit" /></font></td> 
-          <td></td><td></td>
-            <td><font size="4" color="red"><h:outputText  value="Credit" /></font></td>
-        </tr>
-         
-          
-          <tr>
-            <td>  <p:outputLabel for="str_DebitAccount" value="Account" /><font color="red" >*</font></td>
-            <td> <h:selectOneMenu id="str_DebitAccount" value="#{accountingBean.str_DebitAccount}" valueChangeListener="#{accountingBean.accountchangeListener4}"  style="width:250px">
-                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="#{accountingBean.listAccountsName}" />
-                   <p:ajax event="click" partialSubmit="true"/>
-                </h:selectOneMenu>
-                
-           </td>
-             <td align="right">  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
-            <td> <h:selectOneMenu id="str_CreditAccount" value="#{accountingBean.str_CreditAccount}" valueChangeListener="#{accountingBean.accountchangeListener5}" style="width:250px" >
-                  <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>
-                   <f:selectItems value="#{accountingBean.listAccountsName}" />
-                    <p:ajax event="change" partialSubmit="true"/>
-                </h:selectOneMenu>
-                
-           </td>
-           </tr>
        
-    
-      
-        <tr>
-       <td>  <h:outputText  value="Amount" /><font color="red" >*</font></td>
-           <td><p:inputText id="str_DebitAmount" value="#{accountingBean.str_DebitAmount}" size="15"  required="true" requiredMessage="Please Enter Amount!">
-           <p:messages for="str_DebitAmount" style="color:red"/>
-           </p:inputText>
-           </td>
-          <td align="right">  <h:outputText  value="Amount" /><font color="red" >*</font></td>
-           <td><p:inputText id="str_CreditAmount" value="#{accountingBean.str_CreditAmount}" size="15"  required="true" requiredMessage="It must be same as Debit Amount">
-           <p:messages for="str_CreditAmount" style="color:red"/>
-         </p:inputText>
-           </td>
-      </tr>
-     
-    </table>
-    
-    </fieldset>
-   
-    <br/>
-     <h:panelGroup style="display:block; text-align:right">
-     <tr>
-                <td><p:commandButton  styleClass="btn" id="submit1" value="Submit" actionListener="#{accountingBean.addInvoiceManualJournal}"  update="str_Notes,str_DebitAmount,str_CreditAmount" oncomplete="handleRequest(xhr, status, args)"/></td>
-             
-            </tr>
-    </h:panelGroup>
-         </p:outputPanel>
-         </p:dialog>
-        
-      </div>
-      </h:form>
-     
-      
- 
-       
+        </div>
+        </h:form>
         </p:tab>
         <p:tab title="TRIAL BALANCE" titleStyle="background-color: #87CEEB;padding-top:5px;padding-bottom:1px">
         <br/>
@@ -785,7 +709,7 @@ style="width:600px">
                     </p:calendar>
                   &nbsp; &nbsp;
                   <p:outputLabel value="To :"/> &#150; &#150;
-                  <p:calendar   required="true" requiredMessage="Please enter Duration"  pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
+                  <p:calendar   required="true" requiredMessage="Please enter Duration" navigator="true"  pattern="dd-MM-yyyy"   value="#{accountingBean.date5}" valueChangeListener="#{accountingBean.datechangeListener2}">
                   </p:calendar>&nbsp; &nbsp; &nbsp; &nbsp;
                   <h:commandButton value="Go"  action="#{accountingBean.getSearch1()}" ajax="false"/>
              
