@@ -20,9 +20,11 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.FacilityNeeded;
@@ -105,12 +107,45 @@ public class NoticeBoardBean implements Serializable {
 	public void setStr_Document(String str_Document) {
 		this.str_Document = str_Document;
 	}
+	private Notice notice1;
+	public Notice getNotice1() {
+		return notice1;
+	}
+
+	public void setNotice1(Notice notice1) {
+		this.notice1 = notice1;
+	}
+	public void getNotice()
+	{
+		 System.out.println(int_NoticeID+"dsjksdkjdfkjfdjh11111111111118888888111111111111111111111111111111111111111111");
+		 notice1=getNoticeService().getNotice(int_NoticeID);
+		 System.out.println(notice1.getInt_NoticeID()+"fcjdfdjfdjfd");
+	}
+	public void getNotice(int id)
+	{
+       System.out.println(id+"dsjksdkjdfkjfdjh1111111111111111111111111111111111111111111111111111111");
+       notice1=getNoticeService().getNotice(id);
+       System.out.println(notice1+"dfjjfdjkfgd");
+       System.out.println(notice1.getInt_NoticeID()+"fhfdfdhjdfhj");
+       System.out.println(notice1.getStr_Document()+"dkjdfkjfdkjd");
+    } 
 	private String str_Description;
 	private Boolean bool_SpecialNotice;
 	private Boolean bool_Staff;
 	private String str_Visible;
+	public String getStr_Document() {
+		return str_Document;
+	}
+	private Notice selectedNotice;
 	
-	
+	public Notice getSelectedNotice() {
+		return selectedNotice;
+	}
+
+	public void setSelectedNotice(Notice selectedNotice) {
+		this.selectedNotice = selectedNotice;
+	}
+
 	public Date getDat_EntryDate() {
 		return dat_EntryDate;
 	}
@@ -163,6 +198,30 @@ public static String getContent() {
 public static void setContent(String content) {
 	NoticeBoardBean.content = content;
 }
+private boolean indicator;
+
+public boolean isIndicator() {
+	return indicator;
+}
+
+public void setIndicator(boolean indicator) {
+	this.indicator = indicator;
+}
+
+public boolean changeListener(ActionEvent actionEvent)
+{
+	System.out.println("jmncjkfcfgjk");
+	indicator=true;
+	
+	return indicator;
+}
+public String updateNotice(Notice notice)
+{System.out.println("13333333333333333333333333333333333333333");
+	System.out.println(notice.getInt_NoticeID()+"fdkjkjfdfddff");
+   System.out.println(notice.getStr_Subject()+"dskjdfkjdf");
+   getNoticeService().updateNotice(notice);
+	return "noticeView.xhtml";
+}
 	private Date dat_EntryDate;
 	public String addNotice()
 	{    try{
@@ -199,14 +258,15 @@ public static void setContent(String content) {
 				content="hello";
 				return "/AfrteLoginViews/Communication/notice.jsp";
 			}
-			return null;
+			
 		
 	}
 	catch(DataAccessException e)
 	{e.printStackTrace();
 		
 	}
-	return null;
+	System.out.println("djhdhjcvhjvfjnfgvjkgffkjfgkjfgkj");
+	return "noticeView.xhtml";
 		
 	}
 	public void reset()
@@ -356,13 +416,21 @@ public static void setContent(String content) {
 		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
 	
 		System.out.println(fileName+"dfjkjkfjkfd");
- 
+		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		
-		String basePath = "E:" + File.separator + "sites" + File.separator+"AppOwnner"+File.separator+"WebContent"+File.separator+"images"+File.separator;
+		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
 		System.out.println(basePath);
-		File outputFilePath = new File(basePath+fileName);
+		File outputFilePath = new File(basePath);
 		
 		System.out.println(outputFilePath+"path");
+		if (!outputFilePath.exists()) {
+		   	if (outputFilePath.mkdir()) {
+		   		System.out.println("Directory is created!");
+		   	} else {
+		   		System.out.println("Failed to create directory!");
+		   	}
+	 }
+		outputFilePath = new File(basePath,fileName);
 		// Copy uploaded file to destination path
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
@@ -375,9 +443,15 @@ public static void setContent(String content) {
 			while ((read = inputStream.read(bytes)) != -1) {
 				outputStream.write(bytes, 0, read);
 			}
-			path1=outputFilePath.getName();
+			path1="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
 			System.out.println(path1+"fkjdfkdl");
-		
+		System.out.println(int_NoticeID+"fdjkfdjkfdkjfdj");
+		if(int_NoticeID!=null)
+		{  System.out.println("fdhfd33333333333333333333333333333333333333333333333");
+			notice1.setStr_Document(path1);
+			getNoticeService().updateNotice(notice1);
+			indicator=false;
+		}
 			statusMessage = "File upload successfull !!";
 			
 		} catch (IOException e) {
