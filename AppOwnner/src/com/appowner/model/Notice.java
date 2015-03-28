@@ -30,6 +30,9 @@ public class Notice implements Serializable {
 	public void setInt_NoticeID(Integer int_NoticeID) {
 		this.int_NoticeID = int_NoticeID;
 	}
+	public String getStr_Document() {
+		return str_Document;
+	}
 	public String getStr_Subject() {
 		return str_Subject;
 	}
