@@ -7,56 +7,135 @@
 	<ui:define name="content">
 	<h:head>
     <title>Welcome to Contact Page</title>
-    <script>
-    .customTitleBar > .ui-panel-titlebar {
-        background: #BBBBBB;
-        }
-    </script>
+   
+   
+    <script type="text/javascript">
+
+function changecolor(str){
+
+document.bgColor = str;
+
+}
+
+</script>
 </h:head>
 <body>
-    <h:form>
+   
        
           
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title"> NotificationList</span>
+					<img src="#{expenseBean.str_Name}images/started.jpg" height="50" width="50"></img> <span class="title"> Post An Notice</span>
 				</td>
 			</tr>
 		</tbody>
 	</table> 
                              
-       <p:dataGrid    var="notice" value="#{noticeBoardBean.listOfNotice}" columns="3" layout="block" paginator="true" id="cars"
-        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="6,12,16" paginatorPosition="bottom">
- 
-       
+        <h:form >
+        <div id="page3"> 
+	 
            
-          <p:panel header="#{notice.dat_EntryDate}" style="width: 400px; height: 200px;"  styleClass="customTitleBar">
-            <h:panelGrid columns="2" style="width:100%">
-             
-                 <h4>#{notice.str_Subject}</h4>      
-                   <h:outputText value="Dear All,"/> 
-                  <h:outputText value="#{notice.str_Description}"/> 
-                 <h:outputText value="#{notice.dat_ExpireOn}">
-                   <f:convertDateTime pattern="dd-MM-yyyy"/>
-                   </h:outputText>
-                    <h:outputText value="#{notice.dat_EntryDate}">
-                   <f:convertDateTime pattern="dd-MMM-yyyy"  />
-               </h:outputText>
- 
-              
-            </h:panelGrid>
-        </p:panel> 
-       
-        
-          </p:dataGrid>
-       
+        <p:button style="width:120px;height:25px" outcome="Notice.xhtml" icon="ui-icon-plus" value="Create New" />
      
       
-     
+&#150; &#150;<p:commandButton style="width:120px;height:25px"  value="Refresh" onclick="history.go(0)" icon="ui-icon-refresh"/>
+ 
+       <br/>
+          <p:dataGrid paginatorPosition="top" rowsPerPageDropdown="10,20,30,40,50" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" paginator="true" rows="10"  var="notice" value="#{noticeBoardBean.listOfNotice}"    id="cars" style="margin-top:20px">  
+          <br/>
+       
+        <fieldset style="width:28em;height:20em;background-color: #FFFFFF; border:2px solid green;">
+    
+   
+          
+            <table> 
+           <tr>
+           <td>
+           
+               <h:inputText value="#{notice.dat_EntryDate}" style="width: 80px;height:50px;background-color:orange;margin-top:-5px;margin-left:20px">
+                <f:convertDateTime pattern="dd-MMM"  />
+                </h:inputText> 
+                <h:link outcome="noticeView1.xhtml" >
+              <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
+              <f:param name="int_NoticeID" value="#{notice.int_NoticeID}"/>
+              </h:link>
+                
+               
+               
+               
+              <p:commandLink oncomplete="PF('multiNotice').show()" update=":viewform"    action="#{noticeBoardBean.getNotice(notice.int_NoticeID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink></td>
+            <td>   
+                    <h:outputText value="Dear All," style="width: 80px;height:50px;margin-top:-100em;margin-left:100px"/> 
+                
+              </td>  
+                </tr>
+                <tr>
+                <td><font size="4">  <p:outputLabel value="#{notice.str_Subject}"/>  </font>  </td> </tr>
+                 <tr><td>  <h:outputText value="Dear All,"/> </td></tr>
+                 <tr>
+                 <td>
+                  <h:outputText value="#{notice.str_Description}"> 
+                 
+                   </h:outputText>
+                   
+                </td>
+                </tr>
+         
+             
+              </table>
+           
+       
+       </fieldset>
+  
+    </p:dataGrid>
+    </div>
     </h:form>
-</body>
-</ui:define>
-</ui:composition>
+    <p:dialog header="View Notice" widgetVar="multiNotice"     showEffect="explode" hideEffect="explode" resizable="false" height="250" width="630">
+    <h:form id="viewform">
+        <p:outputPanel id="multiNoticeDetail" style="text-align:center;">
+           <table>
+              
+            
+             
+              <tr>
+             
+ <th>
+    <h:outputText value="Subject:"/></th>
+    <td>
+    <h:inputText value="#{noticeBoardBean.notice1.str_Subject}" readonly="true"/></td>
+     <td>
+               <p:outputPanel layout="block" id="parentPanel">  
+     <p:graphicImage id="image"  value="../images/profilepic.png" rendered="#{noticeBoardBean.notice1.str_Document} ==null}" title="User Image" style="background:#dddddd;height:180px;width:150px;float:right !important;margin:margin:-10px 55px -100px 70px;"/>  
+     <p:graphicImage id="image1"   value="#{noticeBoardBean.notice1.str_Document}"  title="User Image" style="background:#dddddd; height:180px;width:150px;float:right !important;margin:-10px 55px -100px 60px;"/></p:outputPanel> 
+     
+     </td>
+    </tr>
+ <tr>
+ <th>
+    <h:outputText value="Description"/></th>
+    <td>
+    <h:inputText value="#{noticeBoardBean.notice1.str_Description}" readonly="true"/>
+    
+    </td>
+    </tr>
+    
+           
+            </table>
+        </p:outputPanel>
+        </h:form>
+    </p:dialog>
+ <p:dialog header="Notice Details" widgetVar="multieditNotice"     showEffect="explode" hideEffect="explode" resizable="false" height="680" width="940">
+    <h:form id="editform">
+        <p:outputPanel id="multiEditNoticeDetail" style="text-align:center;">
+          
+        </p:outputPanel>
+        </h:form>
+    </p:dialog>
+  
+   </body>
+   </ui:define>
+   </ui:composition>
