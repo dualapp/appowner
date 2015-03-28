@@ -99,6 +99,14 @@
                 <td>Type</td>
                 <td><textarea rows="10" cols="39" name="taxAmount" id='test'><%=InvoiceBean.getTax1()%></textarea> </td>
             </tr>
+            <tr>
+                <td>Type</td>
+                <td><textarea rows="10" cols="39" name="notes" id='test'><%=InvoiceBean.getNotes()%></textarea> </td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td><textarea rows="10" cols="39" name="userName" id='test'><%=InvoiceBean.getUsername()%></textarea> </td>
+            </tr>
             <%System.out.println("zzzzzzzzggggggggggggzzzzzzzzzzzzzjjjjjjzzzzzzzzzzzzzzzzzzz");%>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Send"/></td>

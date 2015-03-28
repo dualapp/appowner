@@ -63,7 +63,7 @@
              </td>
              <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Block:" /></td>
-               <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}"   style="width:150px">
+               <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener1}"   style="width:150px">
                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{invoiceBean.str_Blocks}" />
                     <p:ajax event="change" update="str_ApartmentNo" process="str_Block" partialSubmit="true" />
@@ -141,7 +141,7 @@
             
              </h:panelGroup>
              <p:spacer width="40" height="20"/>
-            <td><p:commandButton id="priya" value="Go" style="width:40px;height:20px" action="#{invoiceBean.getListInvoiceTransaction()}" update="invoice"/></td>
+            <td><p:commandButton id="priya" value="Go" style="width:40px;height:20px" action="#{invoiceBean.getListInvoiceTransaction()}" update="invoice" ajax="false"/></td>
                  
           </tr>
           </table>
