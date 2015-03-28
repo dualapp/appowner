@@ -25,16 +25,16 @@
      <div id="page3">
             
      <ui:include src="/AfrteLoginViews/Communication/memberdetails.xhtml" />
-      </div>
-     <div id="page3">
+       
            <div class="gsTitleDiv">Booking Details<br/><hr/></div> 
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    
-  <tr><th width="15%"><p:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
-  <p:ajax event="blur" update="Eventname" />
+  <tr><th width="15%"><p:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText   id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
+  
   </p:inputText>
   </td>
    
+    
   <th width="20%"><p:message id="Eventname"  for="EventName" display="text"/></th>
   <th  width="15%"></th>
   <td width="15%"></td>
@@ -49,8 +49,15 @@
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </h:selectOneMenu></td><th></th></tr>
       
-    <tr><th><p:outputLabel value="Date Open"/></th>  <td><p:calendar navigator="true" pattern="dd-MM-yyyy"  value="#{loginBean.dat_OpenDate}"/>  </td> <th></th><th><p:outputLabel value="Date Closed"/></th>  <td><p:inputText value="#{loginBean.str_CloseDate}"/></td><th></th></tr>
-    <tr><th><p:outputLabel value="Start Time"/></th> 
+    <tr><th><p:outputLabel for="openDate" value="Date Open"/></th> 
+     <td><p:calendar  required="true" requiredMessage="Enter Open Date"  id="openDate" navigator="true" pattern="dd-MM-yyyy"  value="#{loginBean.dat_OpenDate}"/>  </td> 
+     
+      <th> <p:message id="openDateMsg"   for="openDate" display="text"/></th><th><p:outputLabel for="closeDate" value="Date Closed"/></th>  
+     <td><p:calendar id="closeDate" required="true" requiredMessage="Enter Close Date"  navigator="true" pattern="dd-MM-yyyy"  value="#{loginBean.dat_CloseDate}"/></td>
+     <th> <p:message id="closeDateMsg"   for="closeDate" display="text"/></th></tr>
+   
+    <tr><th><p:outputLabel for="STime" value="Start Time"/></th> 
+     
      <td><h:selectOneMenu  id="STime"   required="true" requiredMessage="Enter StartTime" value="#{loginBean.str_StartTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
@@ -62,12 +69,12 @@
       
        <th> <p:message id="STimeMsg"   for="STime" display="text"/></th>
        
-       <th><p:outputLabel value="End Time"/></th>  <td>
+       <th><p:outputLabel for="ETime" value="End Time"/></th>  <td>
      <h:selectOneMenu id="ETime"    required="true" requiredMessage="Enter EndTime" value="#{loginBean.str_EndTime}">
     <f:selectItem itemLabel="Select One" itemValue="" />
     <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
-     <p:ajax event="blur" update="ETimeMsg" />
+     
       </h:selectOneMenu>
     
       </td>
@@ -77,7 +84,7 @@
      <td><h:selectOneMenu id="Facility" required="true" requiredMessage="Enter Facility"   value="#{loginBean.str_FacilityType}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
-     <p:ajax event="blur" update="FacilityMsg" />
+      
     </h:selectOneMenu>
     </td>
     <th><p:message id="FacilityMsg"  for="Facility" display="text"/></th>
@@ -100,24 +107,11 @@
    <th width="20%"></th>
    
    </tr>
-   <tr><td> <h:commandButton styleClass="btn"    onclick="return confirm('U wanna send Email to admin ');" value="Submit" action="#{loginBean.addBookAFacility()}"/></td><td> <h:commandButton  styleClass="btn"  value="Cancel" type="reset"/> </td></tr>
+   <tr><td> <h:commandButton styleClass="btn"  value="Submit" action="#{loginBean.addBookAFacility()}"/></td><td> <h:commandButton  styleClass="btn"  value="Cancel" type="reset"/> </td></tr>
                  
     </table>
     
-    <script>
-	 
-        function EnrollNowClick() {
-            PassValueToParentWindow();
-            window.parent.modalWin.CallCallingWindowFunction(0, 'User Enrolled Scucessfully');
-           
-        }
-        function EnrollLaterClick() {
-            window.parent.modalWin.CallCallingWindowFunction(0, 'Do u want to sent Email to Manager');
-            window.opener.reload(true);
-            window.close();
-        }
- 
-    </script>
+     
     </div>
      
     <a href="book a facility.xhtml">>>Back To Book A Facility</a >

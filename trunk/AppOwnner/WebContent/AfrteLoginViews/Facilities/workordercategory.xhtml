@@ -182,7 +182,7 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
     </table>
     </p:outputPanel>
     </p:dialog>
-     <p:dialog header="  work Order Details" widgetVar="multiWorkOrderDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+     <p:dialog header="work Order Details" widgetVar="multiWorkOrderDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
         <p:outputPanel id="multiWorkOrderDetail1" style="text-align:center;">
           
            <table>
@@ -200,9 +200,14 @@ function ShowChildWindowValues(name,email,address,phone,zip) {
     <td>
     <h:outputText value="#{ws1.str_VendorCategoryType}"/></td>
     </tr>
-     
+      <div>
+              <hr/>
+              
+             &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
+           </div>
     </ui:repeat>
     </table>
+      
     </p:outputPanel>
     </p:dialog>
                  

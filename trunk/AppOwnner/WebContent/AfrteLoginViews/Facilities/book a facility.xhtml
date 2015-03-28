@@ -10,7 +10,7 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
 	<h:head>
-	<style type="text/css">
+	<style>
  .ui-growl {
  position:absolute;
         
@@ -20,8 +20,14 @@
          margin-left:-200px; 
 
 }
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
 </style>
-
      
 	</h:head>
 	<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
@@ -129,7 +135,7 @@
 	 
 	       
              <p:dataTable   id="DT"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
-               rows="3"  paginatorPosition="bottom" paginator="true"  
+               rows="10"  paginatorPosition="bottom" paginator="true"  
          emptyMessage="No Records Found" paginatorAlwaysVisible="false"   var="Bf"  value="#{requestScopeBean.bookAFacilityList}"   selection="#{requestScopeBean.selectedBookAFacility}" rowKey="#{Bf.int_FacilityBookId}">
 	 
 	 
@@ -148,11 +154,17 @@
             
 	 </p:column>
 	 <p:column headerText="Start Date">
-                <p:outputLabel value="#{Bf.dat_OpenDate}" /> 
+	 
+                <p:outputLabel value="#{Bf.dat_OpenDate}">
+                <f:convertDateTime pattern="dd-MMM-yyyy" />
+                </p:outputLabel> 
             
 	 </p:column>
 	 <p:column headerText="End Date">
-                <p:outputLabel value="#{Bf.str_CloseDate}" /> 
+	 
+                <p:outputLabel value="#{Bf.dat_CloseDate}" >
+                <f:convertDateTime pattern="dd-MMM-yyyy" />
+                </p:outputLabel> 
             
 	 </p:column>
 	 <p:column headerText="Event Type">
@@ -189,58 +201,74 @@
             </p:outputPanel>
             </p:dialog>
             
-             <p:dialog header="BookedFacility Details" widgetVar="bookDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="400">
+             <p:dialog header="BookedFacility Details" widgetVar="bookDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
         <p:outputPanel id="bookDetail2" style="text-align:center;">
+   <ui:repeat value="#{requestScopeBean.selectedBookAFacility}" var="bf1">
            <table>
               
-            <ui:repeat value="#{requestScopeBean.selectedBookAFacility}" var="bf1">
-               <tr>
+           
+            
+             <tr>
  <th>
     <p:outputLabel value="Organization:"/></th>
     <td>
-    <p:outputLabel value="#{loginBean.str_ApartmentName}" /></td>
+    <p:inputText readonly="true" value="#{loginBean.str_ApartmentName}" /></td>
     </tr>
      <tr>
  <th>
     <p:outputLabel value="Event Name:"/></th>
     <td>
-      <p:outputLabel value="#{bf1.str_EventName}" /> </td>
+      <p:inputText  readonly="true" value="#{bf1.str_EventName}" /> </td>
     </tr>
-     <tr>
+      <tr>
  <th>
-    <p:outputLabel value="Facility:"/></th>
+    <p:outputLabel for="fType" value="Facility:"/></th>
     <td>
-     <p:outputLabel value="#{bf1.str_FacilityType}" />  </td>
+    <h:selectOneMenu required="true"  id="fType"  requiredMessage="Enter Facility"   value="#{bf1.str_FacilityType}">
+    <f:selectItem itemLabel="Select One" itemValue="" />
+     <f:selectItems value="#{expenseBean.facilityTypeList}"/>
+      
+    </h:selectOneMenu>
+       </td>
     </tr>
     <tr>
  <th>
     <p:outputLabel value="Open Date:"/></th>
     <td>
-      <p:outputLabel value="#{bf1.dat_OpenDate}" />   </td>
+     <p:calendar readonly="true"  navigator="true" pattern="dd-MM-yyyy"    value="#{bf1.dat_OpenDate}"/>
+                   
+     </td>
     </tr>
     <tr>
  <th>
     <p:outputLabel value="Close Date:"/></th>
     <td>
-      <p:outputLabel value="#{bf1.str_CloseDate}" />   </td>
+     <p:inputText readonly="true" value="#{bf1.dat_CloseDate}" />   </td>
     </tr>
     
        <tr>
  <th>
     <p:outputLabel value="Event Type:"/></th>
     <td>
-      <p:outputLabel value="#{bf1.str_EventType}" />    </td>
+      <p:inputText  readonly="true" value="#{bf1.str_EventType}" />    </td>
     </tr>
     
       <tr>
  <th>
     <p:outputLabel value="Created By:"/></th>
     <td>
-      <p:outputLabel value="#{bf1.str_CreatedBy}" />   </td>
-    </tr>
+      <p:inputText  readonly="true" value="#{bf1.str_CreatedBy}" />   </td>
+    </tr> </table>
+           <div>
+              <hr/>
+             
             
-            </ui:repeat>
-            </table>
+             
+             &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
+           </div>
+           
+            
+             </ui:repeat>
             </p:outputPanel>
             </p:dialog>
             
@@ -255,25 +283,30 @@
  <th>
     <p:outputLabel value="Organization:"/></th>
     <td>
-    <p:inputText value="#{loginBean.str_ApartmentName}" /></td>
+    <p:inputText readonly="true" value="#{loginBean.str_ApartmentName}" /></td>
     </tr>
      <tr>
  <th>
     <p:outputLabel value="Event Name:"/></th>
     <td>
-      <p:inputText value="#{bf1.str_EventName}" /> </td>
+      <p:inputText  readonly="true" value="#{bf1.str_EventName}" /> </td>
     </tr>
-     <tr>
+      <tr>
  <th>
-    <p:outputLabel value="Facility:"/></th>
+    <p:outputLabel for="fType1" value="Facility:"/></th>
     <td>
-     <p:inputText value="#{bf1.str_FacilityType}" />  </td>
+    <h:selectOneMenu required="true"  id="fType1"  requiredMessage="Enter Facility"   value="#{bf1.str_FacilityType}">
+    <f:selectItem itemLabel="Select One" itemValue="" />
+     <f:selectItems value="#{expenseBean.facilityTypeList}"/>
+      
+    </h:selectOneMenu>
+       </td>
     </tr>
     <tr>
  <th>
     <p:outputLabel value="Open Date:"/></th>
     <td>
-     <p:calendar  navigator="true" pattern="dd-MM-yyyy"    value="#{bf1.dat_OpenDate}"/>
+     <p:calendar readonly="true"  navigator="true" pattern="dd-MM-yyyy"    value="#{bf1.dat_OpenDate}"/>
                    
      </td>
     </tr>
@@ -281,21 +314,22 @@
  <th>
     <p:outputLabel value="Close Date:"/></th>
     <td>
-     <p:inputText value="#{bf1.str_CloseDate}" />   </td>
+     <p:calendar readonly="true"  navigator="true" pattern="dd-MM-yyyy"    value="#{bf1.dat_CloseDate}" />
+      </td>
     </tr>
     
        <tr>
  <th>
     <p:outputLabel value="Event Type:"/></th>
     <td>
-      <p:inputText  value="#{bf1.str_EventType}" />    </td>
+      <p:inputText  readonly="true" value="#{bf1.str_EventType}" />    </td>
     </tr>
     
       <tr>
  <th>
     <p:outputLabel value="Created By:"/></th>
     <td>
-      <p:inputText value="#{bf1.str_CreatedBy}" />   </td>
+      <p:inputText  readonly="true" value="#{bf1.str_CreatedBy}" />   </td>
     </tr> </table>
            <div>
               <hr/>
