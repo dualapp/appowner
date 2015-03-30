@@ -14,7 +14,10 @@
         <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
         <param-value>6LegywITAAAAAIjjvS5Zrt0OpVuLhtoRPjK_T3PE</param-value>
     </context-param>
-   
+   <context-param>
+    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    <param-value>true</param-value>
+</context-param>
     <context-param>
         <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
         <param-value>6LegywITAAAAAPc-8LvrI4FFDbfSDoQRK7heUtSV</param-value>
