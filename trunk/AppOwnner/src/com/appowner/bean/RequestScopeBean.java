@@ -295,32 +295,48 @@ public static Integer getServiceRequestId() {
  
  
  
-public ServiceRequest processListener()
-{ 
-	servicerequest1=(ServiceRequest)dataTable.getRowData();
-	serviceRequestId=servicerequest1.getInt_ServiceRequestId();
-	 
-	System.out.println(serviceRequestId);
-	return servicerequest1;
-}
+ 
 public String assignRequestedService(ServiceRequest serviceRequest)
 {
+	 System.out.println(serviceRequest.getInt_ServiceRequestId()+"sissssssssssssssssssss");
+//serviceRequest.setStr_Status("Progress");
+	 str_Status="Progress";
 	 
-serviceRequest.setStr_Status("Progress");
  
-getRequestScopeService().updateStatusOfServiceRequest(serviceRequest);
+getRequestScopeService().updateStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId(),str_Status);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Assigned Successfully"));
     return "servicerequest.xhtml?faces-redirect=true";
 }
 public String closeRequestedService(ServiceRequest serviceRequest)
 {
 	 
-serviceRequest.setStr_Status("RequestClosed");
+//serviceRequest.setStr_Status("RequestClosed");
  
-   
-getRequestScopeService().updateStatusOfServiceRequest(serviceRequest);
+	str_Status="RequestClosed";
+getRequestScopeService().updateStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId(),str_Status);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Closed Successfully"));
     return "servicerequest.xhtml?faces-redirect=true";
+}
+public String assignBookFacility(BookAFacility baf)
+{
+	 System.out.println(baf.getInt_FacilityBookId()+"sissssssssssssssssssss");
+//serviceRequest.setStr_Status("Progress");
+	 str_Status="Progress";
+	 
+ 
+getRequestScopeService().updateStatusOfBookFacility(baf.getInt_FacilityBookId(),str_Status);
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assigned Successfully"));
+    return "book a facility.xhtml?faces-redirect=true";
+}
+public String closeBookFacility(BookAFacility baf)
+{
+	 
+//serviceRequest.setStr_Status("RequestClosed");
+ 
+	str_Status="RequestClosed";
+getRequestScopeService().updateStatusOfBookFacility(baf.getInt_FacilityBookId(),str_Status);
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Closed Successfully"));
+    return "book a facility.xhtml?faces-redirect=true";
 }
 private ServiceRequest servicerequest1;
 public ServiceRequest getServicerequest1() {
@@ -363,11 +379,7 @@ public String updateOneServiceRequest(ServiceRequest servicerequest)
 	return "servicerequest.xhtml";
 	
 }
-public void updateOneServiceRequest()
-{ servicerequest1=new ServiceRequest();
-	servicerequest1=processListener();
-getRequestScopeService().updateOneServiceRequest(servicerequest1);
-}
+ 
 public void deleteOneServiceRequest()
 { 
 servicerequest1.setInt_ServiceRequestId(serviceRequestId);

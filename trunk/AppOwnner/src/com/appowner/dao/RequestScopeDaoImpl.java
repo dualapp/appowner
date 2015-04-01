@@ -160,5 +160,20 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 	 
 		 
 	}
+
+	@Override
+	public void updateStatusOfServiceRequest(Integer int_ServiceRequestId,
+			String str_Status) {
+		sessionFactory.getCurrentSession().createQuery("update ServiceRequest set Str_Status=? where int_ServiceRequestId=?").setParameter(0, str_Status).setParameter(1, int_ServiceRequestId).executeUpdate();
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateStatusOfBookFacility(Integer int_FacilityBookId,
+			String str_Status) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().createQuery("update BookAFacility set Str_Status=? where int_FacilityBookId=?").setParameter(0, str_Status).setParameter(1, int_FacilityBookId).executeUpdate();
+	}
 }
 

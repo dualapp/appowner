@@ -177,5 +177,8 @@ public interface ExpenseService {
 	void updateAssetImage(String path3, Integer assetId);
 
 	 
+	void updateStatusOfEstimate(String str_ExpenseId, String str_Status);
+
+	 
 
 }

@@ -23,8 +23,7 @@ void updateOneServiceRequest(ServiceRequest serviceRequest);
 
 void deleteOneServiceRequest(ServiceRequest servicerequest1);
 
-void updateStatusOfServiceRequest(ServiceRequest serviceRequest);
-
+ 
 void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete);
 
 List<ServiceRequest> getListServiceRequest(
@@ -43,5 +42,10 @@ List<cls_Event> getEventList();
 void addEvent(cls_Event event);
 
 void updateEvent(cls_Event event);
+
+void updateStatusOfServiceRequest(Integer int_ServiceRequestId,
+		String str_Status);
+
+void updateStatusOfBookFacility(Integer int_FacilityBookId, String str_Status);
 
 }
