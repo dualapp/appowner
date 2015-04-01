@@ -167,4 +167,6 @@ public interface ExpenseDao {
 
 	List<FacilityNeeded> getFacilityNeededList();
 
+	void updateAssetImage(String path3, Integer assetId);
+
 }

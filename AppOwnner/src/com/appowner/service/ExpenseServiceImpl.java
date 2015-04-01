@@ -484,6 +484,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getFacilityNeededList();
 	}
 
+	@Override
+	public void updateAssetImage(String path3, Integer assetId) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateAssetImage(path3, assetId);
+	}
+
 	 
 	 
 
