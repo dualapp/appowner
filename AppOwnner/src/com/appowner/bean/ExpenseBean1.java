@@ -17,6 +17,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.apache.commons.lang.RandomStringUtils;
 
 import com.appowner.model.Expense;
+import com.appowner.model.ServiceRequest;
 import com.appowner.service.ExpenseService;
 import com.appowner.util.Util;
 
@@ -444,5 +445,21 @@ public ExpenseService getExpenseService() {
 }
 public void setExpenseService(ExpenseService expenseService) {
 	this.expenseService = expenseService;
+}
+public String assignRequestedEstimate(Expense expense)
+{ 
+	str_Status="Approved";
+ 
+getExpenseService().updateStatusOfEstimate(expense.getStr_ExpenseId(),str_Status);
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Estimate Assigned Successfully"));
+    return "Expenses.xhtml?faces-redirect=true";
+}
+public String closeRequestedEstimate(Expense expense)
+{
+	str_Status="Rejected";
+	 
+	getExpenseService().updateStatusOfEstimate(expense.getStr_ExpenseId(),str_Status);
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Estimate Closed Successfully"));
+    return "Expenses.xhtml?faces-redirect=true";
 }
 }

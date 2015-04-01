@@ -574,4 +574,12 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().createQuery("update Assets set str_AssetImg=?  where int_asset_id=?").setParameter(0, path3).setParameter(1, assetId).executeUpdate();
 	}
+
+	 
+	@Override
+	public void updateStatusOfEstimate(String str_ExpenseId, String str_Status) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().createQuery("update Expense set str_Status=?  where str_ExpenseId=?").setParameter(0, str_Status).setParameter(1, str_ExpenseId).executeUpdate();
+		
+	}
 }

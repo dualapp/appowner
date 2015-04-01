@@ -42,4 +42,10 @@ public interface RequestScopeDao {
 
 	void updateEvent(cls_Event event);
 
+	void updateStatusOfServiceRequest(Integer int_ServiceRequestId,
+			String str_Status);
+
+	void updateStatusOfBookFacility(Integer int_FacilityBookId,
+			String str_Status);
+
 }

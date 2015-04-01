@@ -52,11 +52,7 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 		// TODO Auto-generated method stub
 		getRequestScopeDao().deleteOneServiceRequest(servicerequest1);
 	}
-	@Override
-	public void updateStatusOfServiceRequest(ServiceRequest serviceRequest) {
-		// TODO Auto-generated method stub
-		getRequestScopeDao().updateStatusOfServiceRequest(serviceRequest);
-	}
+	 
 	@Override
 	public void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete) {
 		// TODO Auto-generated method stub
@@ -103,6 +99,21 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 		// TODO Auto-generated method stub
 		  getRequestScopeDao().updateEvent(event);
 	}
+	@Override
+	public void updateStatusOfServiceRequest(Integer int_ServiceRequestId,
+			String str_Status) {
+		getRequestScopeDao().updateStatusOfServiceRequest(int_ServiceRequestId, str_Status) ;
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateStatusOfBookFacility(Integer int_FacilityBookId,
+			String str_Status) {
+		// TODO Auto-generated method stub
+		getRequestScopeDao().updateStatusOfBookFacility(int_FacilityBookId, str_Status) ;
+	}
+				 
+	}
 	 
 
-}
+ 

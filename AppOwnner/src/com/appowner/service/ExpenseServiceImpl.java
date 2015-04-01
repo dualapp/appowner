@@ -491,6 +491,13 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	 
+	@Override
+	public void updateStatusOfEstimate(String str_ExpenseId, String str_Status) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateStatusOfEstimate(str_ExpenseId,str_Status);
+	}
+
+	 
 	 
 
 }
