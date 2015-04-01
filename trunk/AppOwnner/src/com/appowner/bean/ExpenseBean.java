@@ -1094,6 +1094,7 @@ public String updateOneAsset(Assets asset)
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Updated Successfully!", "Asset Updated Successfully!"));
+	selectedAssets=null;
 	return "assets.xhtml";
 }
 /*
@@ -1102,6 +1103,8 @@ public String updateOneAsset(Assets asset)
 public List<Assets> getAssetList() {
 	assetList= new ArrayList<Assets>();
 	assetList.addAll(getExpenseService().getAssetList(str_AssetCategoryType,str_Block,Util.getAppartmentId()));
+	str_AssetCategoryType=null;
+	str_Block=null;
 	return assetList;
 }
 public void setAssetList(List<Assets> assetList) {
@@ -1135,11 +1138,11 @@ public void setStr_BlockListByAppartmentName(
 	this.str_BlockListByAppartmentName = str_BlockListByAppartmentName;
 }
 
-public void addAsset()
+public String addAsset()
 {
 	asset =new Assets();
 	asset.setStr_assetcat_name(str_AssetCategoryType);
-	asset.setStr_AssetImg(str_AssetImg);
+	asset.setStr_AssetImg(path4);
 	asset.setStr_AssetName(str_AssetName);
 	asset.setStr_Block(str_Block);
 	asset.setStr_OrganizationName(str_OrganizationName);
@@ -1156,12 +1159,23 @@ public void addAsset()
 	asset.setStr_VendorType(str_VendorType);
 	asset.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().addAsset(asset);
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	Flash flash = facesContext.getExternalContext().getFlash();
-	flash.setKeepMessages(true);
-	flash.setRedirect(true);
-	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Added Successfully!", "Asset Added Successfully!"));
 	
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Saved Successfully!"));
+	str_VendorType="";
+	str_Block=null;
+	str_VendorName="";
+	str_SellerNameAnddetails="";
+	dbl_Price=0.0;
+	path4=null;
+	str_AssetName="";
+	str_AssetImg=null;
+	str_AssetCategoryType=null;
+	date_AMCEndDate=null;
+	date_AMCStartDate=null;
+	date_WarrantyEndDate=null;
+	date_WarrantyStartDate=null;
+	selectedAssets=null;
+	 return "assets.xhtml";
 }
 /*
  * Asset Image
@@ -1196,8 +1210,8 @@ public void  uploadAssetsFile( ) throws IOException   {
 	 			while ((read = inputStream.read(bytes)) != -1) {
 	 				outputStream.write(bytes, 0, read);
 	 			}
-	 			path3="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
-	 			 System.out.println(path3);
+	 			path4="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
+	 			 System.out.println(path4);
 	 			statusMessage = "File upload successfull !!";
 	 			
 	 		} catch (IOException e) {
@@ -1211,7 +1225,59 @@ public void  uploadAssetsFile( ) throws IOException   {
 	 				inputStream.close();
 	 			}
 	 		}
-	 		 
+	 		 part3=null;
+}
+public void  uploadAssetsFile1( ) throws IOException   {
+	 
+	   
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+    str_AssetImg = fmt.format(new Date()) +getFileName(part3).substring(getFileName(part3).lastIndexOf('.'));
+    ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+	String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+    File outputFilePath=new File(basePath);
+    if (!outputFilePath.exists()) {
+	   	if (outputFilePath.mkdir()) {
+	   		System.out.println("Directory is created!");
+	   	} else {
+	   		System.out.println("Failed to create directory!");
+	   	}
+ }
+    outputFilePath = new File(basePath,str_AssetImg);
+ // Copy uploaded file to destination path
+ 		InputStream inputStream = null;
+ 		OutputStream outputStream = null;
+ 		try {
+ 			inputStream = part3.getInputStream();
+ 			outputStream = new FileOutputStream(outputFilePath);
+
+ 			int read = 0;
+ 			final byte[] bytes = new byte[1024];
+ 			while ((read = inputStream.read(bytes)) != -1) {
+ 				outputStream.write(bytes, 0, read);
+ 			}
+ 			path3="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
+ 		ListIterator itr=selectedAssets.listIterator();
+ 		while(itr.hasNext())
+ 		{
+ 			Assets a=(Assets) itr.next();
+ 			Integer assetId=a.getInt_asset_id();
+ 			getExpenseService().updateAssetImage(path3,assetId);
+ 			 System.out.println(path3);
+ 			statusMessage = "File upload successfull !!";
+ 		}
+ 			
+ 		} catch (IOException e) {
+ 			e.printStackTrace();
+ 			statusMessage = "File upload failed !!";
+ 		} finally {
+ 			if (outputStream != null) {
+ 				outputStream.close();
+ 			}
+ 			if (inputStream != null) {
+ 				inputStream.close();
+ 			}
+ 		}
+ 		 
 }
 /*
 public void  handleFileUpload4(FileUploadEvent event) throws IOException {
@@ -1252,9 +1318,38 @@ public void  handleFileUpload4(FileUploadEvent event) throws IOException {
 	    
 	    
 }*/
+private String path4;
 public String getPath3() {
-	return path3;
+	if(path3==null)
+	{
+		path3="/images/no_attach.png";
+	}
+	 if(selectedAssets!=null)
+	{
+		ListIterator itr=selectedAssets.listIterator();
+		while(itr.hasNext())
+		{
+			Assets asset=(Assets) itr.next();
+			if(asset.getStr_AssetImg()!=null)
+			{
+			path3=asset.getStr_AssetImg();
+			System.out.println(path3+"imagesssssssssssssssss");
+			}
+		}
+		
+	}
+	return path3; 
 }
+	 public String getPath4() {
+		 if(path4==null)
+			{
+				path4="/images/no_attach.png";
+			}
+			 part3=null;
+				return path4;
+			} 
+	
+
 public void setPath3(String path3) {
 	this.path3 = path3;
 }
@@ -1710,7 +1805,7 @@ public void setTemplateIndicator(String templateIndicator) {
 
 public Long getLatestChoise1Vote()
 {
-	count1=0l;
+	count1=null;
 	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
 	 System.out.println(latestPolls.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -1727,7 +1822,7 @@ public Long getLatestChoise1Vote()
 
 
 public Long getChoise1Vote()
-{ count1=0l;
+{ count1=null;
 	  count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
 	 System.out.println(onePoll.getInt_PoolId());
 	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -1768,7 +1863,7 @@ private Long count3;
 
 public Long getLatestChoise2Vote()
 {
-	count2=0l;
+	count2=null;
 	System.out.println(latestPolls.getInt_PoolId());
 	  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
 	 System.out.println(latestPolls.getStr_Choise2());
@@ -1782,7 +1877,7 @@ public Long getLatestChoise2Vote()
 }
 public Long getChoise2Vote()
 {
-	count2=0l;
+	count2=null;
 	System.out.println(onePoll.getInt_PoolId());
 	  count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
 	 System.out.println(onePoll.getStr_Choise2());
@@ -1797,7 +1892,7 @@ public Long getChoise2Vote()
 
 public Long getLatestChoise3Vote()
 {System.out.println(latestPolls.getInt_PoolId());
-count3=0l;
+count3=null;
 	   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
 	  System.out.println(latestPolls.getStr_Choise3());
 		 System.out.println(int_PoolId+"pid");
@@ -1809,7 +1904,7 @@ count3=0l;
 }
 public Long getChoise3Vote()
 {System.out.println(onePoll.getInt_PoolId());
-count3=0l;
+count3=null;
 	   count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
 	  System.out.println(onePoll.getStr_Choise3());
 		 System.out.println(int_PoolId+"pid");

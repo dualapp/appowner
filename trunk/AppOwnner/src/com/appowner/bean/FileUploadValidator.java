@@ -17,6 +17,8 @@ public class FileUploadValidator implements Validator {
 		Part part = (Part) value;
  
 		// 1. validate file name length
+		if(part!=null)
+		{
 		String fileName = getFileName(part);
 		System.out.println("----- validator fileName: " + fileName);
 		if(fileName.length() == 0 ) {
@@ -26,7 +28,7 @@ public class FileUploadValidator implements Validator {
 			FacesMessage message = new FacesMessage("Error: File name is too long !!");
 			throw new ValidatorException(message);
 		}
- 
+	
 		// 2. validate file type (only text files allowed)
 		/*if (!"image/gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG".equals(part.getContentType())) {
 			FacesMessage message = new FacesMessage("Error: File type is invalid !!");
@@ -75,7 +77,7 @@ public class FileUploadValidator implements Validator {
 			throw new ValidatorException(message);
 		}
 	}
- 
+}
 	// Extract file name from content-disposition header of file part
 	private String getFileName(Part part) {
 		final String partHeader = part.getHeader("content-disposition");
