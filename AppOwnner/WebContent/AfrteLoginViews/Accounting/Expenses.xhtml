@@ -280,7 +280,7 @@
        <div>
        <hr/>
      <h:commandButton styleClass="btn" value="Update" action="#{expenseBean1.updateOneExpense(ex)}" /> 
-      &#150; &#150;  <h:commandButton   styleClass="btn"  type="reset"   value="Cancel" />
+      &#150; &#150;  <p:commandButton   styleClass="btn" id="submit"  value="Cancel" onclick="EnrollLaterClick1()"/>
 	   
     </div>
      
@@ -288,57 +288,81 @@
             
              </p:outputPanel>
              </p:dialog>
-              <p:dialog header="Expense Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="400">
+              <p:dialog header="Expense Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
         <p:outputPanel id="multiExpenseDetail1" style="text-align:center;">
-          
+              <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
            <table>
                
-            <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
-            <tr>
+            
+             <tr>
  <th>
     <p:outputLabel value="Organization Name:"/></th>
     <td>
-    <p:outputLabel value="#{ex.str_OrganizationName}"/></td>  
+    <p:inputText readonly="true" value="#{ex.str_OrganizationName}"/></td>  
     </tr>
   <tr>
  <th>
     <p:outputLabel value="AccountName:"/></th>
     <td>
-    <p:outputLabel value="#{ex.str_AccountName}"/></td>  
+    <h:selectOneMenu  readonly="true" valueChangeListener="#{expenseBean1.accountListener}" value="#{ex.str_AccountName}">
+           <f:selectItems  value= "#{expenseBean1.str_AccountNameList}"  />
+          </h:selectOneMenu>
+     </td>  
     </tr>
      <tr>
  <th>
     <p:outputLabel value="ExpenseType:"/></th>
     <td>
-    <p:outputLabel value="#{ex.str_ExpenseType}"/></td>  
+    <p:inputText  readonly="true" value="#{ex.str_ExpenseType}"/></td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="ExpenseCategory:"/></th>
     <td>
-    <p:outputLabel value="#{ex.str_ExpenseCategory}"/></td>  
+    <h:selectOneMenu id="ExpenseCategory"    value="#{ex.str_ExpenseCategory}"  valueChangeListener="#{expenseBean1.expenseCategoryListener}"   >
+                  
+                   <f:selectItem itemLabel="Expense" itemValue="Expense"  />
+                    
+                 </h:selectOneMenu>
+     </td>  
     </tr>
     
       <tr>
  <th>
     <p:outputLabel value="AssetCategoryType:"/></th>
     <td>
-    <p:outputLabel value="#{ex.str_AssetCatType}"/></td>  
+  <h:selectOneMenu readonly="true" id="assetcatname1"  value="#{ex.str_AssetCatType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                 
+                   <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
+                   <p:ajax event="change" update="assetname1" process="assetcatname1"/>
+                 </h:selectOneMenu>
+    </td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="AssetsName:"/></th>
     <td>
-    <p:outputLabel value="#{ex.str_AssetName}"/></td>  
+  <h:selectOneMenu  readonly="true" id="assetname1" value="#{ex.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
+                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
+                  
+                  
+                 </h:selectOneMenu>
+     </td>  
     </tr>
       <tr>
  <th>
     <p:outputLabel value="Ammount:"/></th>
     <td>
-    <p:outputLabel value="#{ex.int_Ammount}"/></td>  
+    <p:inputText readonly="true" value="#{ex.int_Ammount}"/></td>  
     </tr>
-            </ui:repeat>
-            </table>
+       </table>
+    <div><hr/>
+              <tr><td></td>
+             <td><p:commandButton   styleClass="btn" id="submit"  value="Cancel" onclick="EnrollLaterClick1()"/></td></tr>
+             </div>
+             </ui:repeat>
             </p:outputPanel>
             </p:dialog>
             </div>
