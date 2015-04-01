@@ -133,7 +133,7 @@
 	 
 	 <p:column headerText="Created On">
                 <p:outputLabel value="#{sr.dat_OpenDate}" >
-                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+                 <f:convertDateTime pattern="yyyy-MM-dd" />
                  </p:outputLabel> 
             
 	 </p:column>
@@ -171,7 +171,7 @@
  <th>
     <p:outputLabel  for="str_VendorType" value="Service category:"/></th>
     <td>
-    <h:selectOneMenu id="str_VendorType" value="#{sr1.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
+    <h:selectOneMenu id="str_VendorType" value="#{sr1.str_VendorType}"   valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
        <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/>
      <p:ajax event="change" update="str_VendorName" process="str_VendorType"/>
@@ -253,12 +253,12 @@
     </tr>
     <tr>
  <th>
-    <p:outputLabel  for="str_VendorType1" value="Service category:"/></th>
+    <p:outputLabel    value="Service category:"/></th>
     <td>
-    <h:selectOneMenu readonly="true" id="str_VendorType1" value="#{sr1.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
+    <h:selectOneMenu readonly="true"   value="#{sr1.str_VendorType}"   valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
        <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/>
-     <p:ajax event="change" update="str_VendorName1" process="str_VendorType1"/>
+      
     </h:selectOneMenu>
     </td>  
     </tr>
