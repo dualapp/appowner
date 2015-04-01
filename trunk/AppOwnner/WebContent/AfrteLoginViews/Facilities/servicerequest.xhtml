@@ -88,7 +88,7 @@
         <div id="page3">  
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>  <p:button    outcome="createnewservicerequest"  icon="ui-icon-plus"  style="width:120px;height:25px" value="create new" />  &#150; &#150;
 	   &#150; &#150; <p:menuButton style="width:120px;height:25px" value="Action">
-        <p:menuitem value="Assign Selected" rendered="#{expenseBean.isEnable}" process="DT" update=":form:pd2" icon="ui-icon-tick"   oncomplete="PF('pDialog2').show()" />
+        <p:menuitem value="Assign Selected"   process="DT" update=":form:pd2" icon="ui-icon-tick"   oncomplete="PF('pDialog2').show()" />
         <p:menuitem value="close Selected" process="DT" update=":form:pd3" icon="ui-icon-tick"   oncomplete="PF('pDialog3').show()"/>
         <p:menuitem value="View Chart" />
          <p:menuitem value="View Summary" />
@@ -133,7 +133,7 @@
 	 
 	 <p:column headerText="Created On">
                 <p:outputLabel value="#{sr.dat_OpenDate}" >
-                 <f:convertDateTime pattern="yyyy-MM-dd" />
+                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
                  </p:outputLabel> 
             
 	 </p:column>
@@ -253,12 +253,12 @@
     </tr>
     <tr>
  <th>
-    <p:outputLabel    value="Service category:"/></th>
+    <p:outputLabel  for="str_VendorType1" value="Service category:"/></th>
     <td>
-    <h:selectOneMenu readonly="true"   value="#{sr1.str_VendorType}"   valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
+    <h:selectOneMenu readonly="true" id="str_VendorType1" value="#{sr1.str_VendorType}"   valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
        <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/>
-      
+     <p:ajax event="change" update="str_VendorName1" process="str_VendorType1"/>
     </h:selectOneMenu>
     </td>  
     </tr>
@@ -315,7 +315,7 @@
             </p:dialog>
             
              
-              <p:dialog header="Service  Details" widgetVar="pDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="300">
+              <p:dialog header="Service  Details" widgetVar="pDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="300">
         <p:outputPanel id="pd2" style="text-align:center;">
            <table>
               
@@ -324,14 +324,14 @@
             <tr><th><p:outputLabel value="Selected request will be assign click yes to confirm"/></th></tr>
            <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
            <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
-           <tr><td><h:commandButton value="yes" action="#{requestScopeBean.assignRequestedService(sr1)}"/> 
-           <h:commandButton value="No" action="servicerequest.xhtml"/></td>
+           <tr><td><h:commandButton  styleClass="btn" update="ui-growl" value="yes" action="#{requestScopeBean.assignRequestedService(sr1)}"/> 
+          &#150; &#150;  <h:commandButton  styleClass="btn" value="No" action="servicerequest.xhtml"/></td>
            </tr>
             </ui:repeat>
             </table>
             </p:outputPanel>
             </p:dialog>
-            <p:dialog header="Service  Details" widgetVar="pDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="300">
+            <p:dialog header="Service  Details" widgetVar="pDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="300">
         <p:outputPanel id="pd3" style="text-align:center;">
            <table>
               
@@ -340,8 +340,8 @@
             <tr><th><p:outputLabel value="Selected request will be closed click yes to confirm"/></th></tr>
            <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
            <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
-           <tr><td><h:commandButton value="yes" action="#{requestScopeBean.closeRequestedService(sr1)}"/> 
-           <h:commandButton value="No" action="servicerequest.xhtml"/></td>
+           <tr><td><h:commandButton   styleClass="btn" value="yes" action="#{requestScopeBean.closeRequestedService(sr1)}"/> 
+           &#150; &#150; <h:commandButton  styleClass="btn" value="No" action="servicerequest.xhtml"/></td>
            </tr>
             </ui:repeat>
             </table>

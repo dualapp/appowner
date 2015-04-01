@@ -39,6 +39,7 @@
 			</tr> 
 		</tbody>
 	</table>
+	<h:body>
 	 <h:form id="form">
 	<p:growl id="ui-growl" globalOnly="true" sticky="true" />
 	 
@@ -90,7 +91,7 @@
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </h:selectOneMenu></td> 
      
-     <td></td><td><h:commandButton style="width:120px;height:25px" update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
+     <td></td><td><h:commandButton   update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
     </tr>
     </table></div>
     <div id="page3"> 
@@ -99,8 +100,8 @@
            <tr><td>     
               <p:button  style="width:120px;height:25px"  icon="ui-icon-plus"  outcome="createnewbookafacility.xhtml" value="create new" /> 
 	    &#150; &#150; <p:menuButton value="Action">
-        <p:menuitem value="Assign Selected" rendered="#{expenseBean.isEnable}" action="#{requestScopeBean.assignRequestedService}"/>
-        <p:menuitem value="close Selected" action="#{requestScopeBean.closeRequestedService}"/>
+       <p:menuitem value="Assign Selected"   process="DT" update=":bMsg" icon="ui-icon-tick"   oncomplete="PF('pDialog2').show()" />
+        <p:menuitem value="close Selected" process="DT" update=":bMsg1" icon="ui-icon-tick"   oncomplete="PF('pDialog3').show()"/>
          <p:menuitem value="Notify By Email" process="DT"  update=":form:bookedDetail1"    oncomplete="PF('bookedDialog1').show()" />
         <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
         <p:menuitem value="View Chart" />
@@ -151,6 +152,10 @@
 	 </p:column>
 	 <p:column headerText="Facility">
                 <p:outputLabel value="#{Bf.str_FacilityType}" /> 
+            
+	 </p:column>
+	 <p:column headerText="Status">
+                <p:outputLabel value="#{Bf.str_Status}" /> 
             
 	 </p:column>
 	 <p:column headerText="Start Date">
@@ -343,9 +348,45 @@
              </ui:repeat>
             </p:outputPanel>
             </p:dialog>
-             
-	  
-	 </h:form>
+             </h:form>
+	  <p:dialog header="Message" widgetVar="pDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="300">
+        <h:form id="bMsg">
+        <p:outputPanel id="pd2" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{requestScopeBean.selectedBookAFacility}" var="sr1">
+            
+            <tr><th><p:outputLabel value="Selected request will be assign click yes to confirm"/></th></tr>
+           <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><h:commandButton  styleClass="btn" update=":form:DT :form:ui-growl" value="yes" action="#{requestScopeBean.assignBookFacility(sr1)}"/> 
+          &#150; &#150;  <h:commandButton  styleClass="btn" value="No" action="book a facility.xhtml"/></td>
+           </tr>
+            </ui:repeat>
+            </table>
+            
+            </p:outputPanel>
+            </h:form>
+            </p:dialog>
+            <p:dialog header="Message" widgetVar="pDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="300">
+        <h:form id="bMsg1">
+        <p:outputPanel id="pd3" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{requestScopeBean.selectedBookAFacility}" var="sr1">
+            
+            <tr><th><p:outputLabel value="Selected request will be closed click yes to confirm"/></th></tr>
+           <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><h:commandButton   update=":form:DT :form:ui-growl"  styleClass="btn" value="yes" action="#{requestScopeBean.closeBookFacility(sr1)}"/> 
+           &#150; &#150; <h:commandButton  styleClass="btn" value="No" action="book a facility.xhtml"/></td>
+           </tr>
+            </ui:repeat>
+            </table>
+            </p:outputPanel>
+           </h:form>
+            </p:dialog>
+	</h:body>
 	</ui:define>
 	</ui:composition>
 	
