@@ -9,20 +9,7 @@
 	<ui:define name="content">
  <h:head>
     <title>Expense</title>
-   <style type="text/css">
-         input[type=text] 
-          {
-           
-           height:25px;
-           weight:250px;
-          }
-          select
-          {
-           height:25px;
-           weight:250px;
-          }
-      </style>	
-       <style type="text/css">
+   <style>
  .ui-growl {
  position:absolute;
         
@@ -32,6 +19,13 @@
          margin-left:-200px; 
 
 }
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
 </style>
       
 </h:head>
@@ -44,6 +38,7 @@
 			</tr>
 		</tbody>
 	</table>
+	<h:body>
   <h:form id="form">
   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
   <div id="page3">
@@ -114,8 +109,8 @@
             <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr><td>
           <p:button icon="ui-icon-plus"  style="width:120px;height:25px"  outcome="createExpenses" value="Create New"/>   &#150; &#150;  <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />&#150; &#150;<p:menuButton value="Action">
-        <p:menuitem value="Approved Selected" />
-        <p:menuitem value="Reject Selected" />
+        <p:menuitem value="Approve Selected"   process="DT" update=":sMsg" icon="ui-icon-tick"   oncomplete="PF('pDialog2').show()" />
+        <p:menuitem value="Reject Selected" process="DT" update=":sMsg1" icon="ui-icon-tick"   oncomplete="PF('pDialog3').show()"/>
         <p:menuitem value="View Chart" />
          <p:menuitem value="View Summary"/>
           
@@ -207,7 +202,7 @@
            
               
              </p:dataTable>
-              <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
+              <p:dialog header="Edit Vendor Details" widgetVar="multiExpenseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
         <p:outputPanel id="multiExpenseDetail" style="text-align:center;">
           <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
            <table>
@@ -288,7 +283,7 @@
             
              </p:outputPanel>
              </p:dialog>
-              <p:dialog header="Expense Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
+              <p:dialog header="Expense Details" widgetVar="multiExpenseDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="400">
         <p:outputPanel id="multiExpenseDetail1" style="text-align:center;">
               <ui:repeat value="#{expenseBean1.selectedExpenses}" var="ex">
            <table>
@@ -367,6 +362,46 @@
             </p:dialog>
             </div>
             </h:form>
+            <p:dialog header="Message" widgetVar="pDialog2"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="300">
+       <h:form id="sMsg">
+        <p:outputPanel id="pd2" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{expenseBean1.selectedExpenses}"  var="sr1">
+            
+            <tr><th><p:outputLabel value="Approve Selected Item? Click yes to proceed."/></th></tr>
+           <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><h:commandButton value="yes"  update=":form:DT :form:ui-growl" styleClass="btn" action="#{expenseBean1.assignRequestedEstimate(sr1)}"/> 
+           &#150; &#150; <h:commandButton value="No"  ajax="false" styleClass="btn" action="Expenses.xhtml">
            
+           </h:commandButton></td>
+           </tr>
+            </ui:repeat>
+            </table>
+            </p:outputPanel>
+            </h:form>
+            </p:dialog>
+             <p:dialog header="Message" widgetVar="pDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="300">
+       <h:form id="sMsg1">
+        <p:outputPanel id="pd3" style="text-align:center;">
+           <table>
+              
+            <ui:repeat value="#{expenseBean1.selectedExpenses}"  var="sr1">
+            
+            <tr><th><p:outputLabel value="Reject Selected Item? Click yes to proceed."/></th></tr>
+           <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><h:commandButton value="yes" styleClass="btn"  update=":form:DT :form:ui-growl"  action="#{expenseBean1.closeRequestedEstimate(sr1)}"/> 
+           &#150; &#150; <h:commandButton value="No" styleClass="btn" action="Expenses.xhtml"/></td>
+           </tr>
+            </ui:repeat>
+            </table>
+            
+            </p:outputPanel>
+            </h:form>
+            </p:dialog>
+           
+          </h:body>
             </ui:define>
             </ui:composition>
