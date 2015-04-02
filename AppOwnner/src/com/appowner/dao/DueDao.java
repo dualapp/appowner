@@ -30,7 +30,7 @@ public interface DueDao {
 
 	public double getDueAmount1(Integer str1);
 
-	public void updateDueTransaction(String str_Status, Integer str1, double ddd);
+	public void updateDueTransaction(String str_Status, Integer str1, double dueAmount, double paidAmount1);
 
 	public void deleteDues(Integer id);
 

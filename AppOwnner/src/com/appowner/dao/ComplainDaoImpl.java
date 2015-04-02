@@ -1,9 +1,12 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -79,21 +82,25 @@ public class ComplainDaoImpl implements ComplainDao {
 	  @SuppressWarnings("unchecked")
 	public List<String> blockList()
 	  {
-		  List<String> blockList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(User.class).setCacheable(true).setProjection(Projections.property("str_Block")).list();
-		  System.out.println( (blockList).listIterator().hasNext());
-		  System.out.println(blockList);
-		  return  blockList;
+		  String hql="select str_BlockName from UserBlocks where int_ApartmentId=?";
+			return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).list();
 	  }
 	  @SuppressWarnings("unchecked")
 	public List<String> flatListBlock(String Block)
 	  {
-		  System.out.println(Block);
-			String hql=" select str_Flat from User  where str_Block=?";
-			List<String> flatList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Block).list();
-			 
-		
-			System.out.println(flatList);
-			return flatList;  
+		  String hql="select int_BlockId from UserBlocks where str_BlockName=? and int_ApartmentId=?";
+			List<Integer> list=(List<Integer>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Block).setParameter(1,Util.getAppartmentId()).list();
+			ListIterator itr=list.listIterator();
+			List<String> str2=new ArrayList<String>();
+			while(itr.hasNext())
+			{
+				Integer id=(Integer) itr.next();
+				System.out.println(id+"gfgfkgfkj");
+				str2=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_ApartmentId=? and int_BlockId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,id).list();
+				
+			}
+		System.out.println(str2+"fdjdff");
+			return str2;
 	  }
 	  @SuppressWarnings("unchecked")
 	public List<String> renterListFlat(String Flat) {
