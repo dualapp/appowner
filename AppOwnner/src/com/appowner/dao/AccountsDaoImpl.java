@@ -719,14 +719,14 @@ public class AccountsDaoImpl implements AccountsDao{
 	}
 	@SuppressWarnings("unchecked")
 	public List<Account> listAccounts()
-	{
-		return (List<Account>)getSessionFactory().getCurrentSession().createCriteria(Account.class).setCacheable(true).list();
+	{   String hql="from  Account where  int_Organisation=?  ";
+		return (List<Account>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setCacheable(true).list();
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> listAccount()
 	{
-		String hql="select str_acount_Name from Account";
-		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+		String hql="select str_acount_Name from Account where int_Organisation=? ";
+		return (List<String>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setCacheable(true).list();
 	}
 	@SuppressWarnings("unchecked")
 	public List<AccountingGroup>  getAsset()

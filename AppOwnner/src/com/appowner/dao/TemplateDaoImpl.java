@@ -225,12 +225,12 @@ public class TemplateDaoImpl implements TemplateDao {
 		sessionFactory.getCurrentSession().delete(v);
 		}
 	}
-	public String detectDueTemplate(String str)
+	public boolean detectDueTemplate(String str)
 	{   getApartmentID();
 		String hql=" select str_DueTemplate from DueTransaction where str_DueTemplate=? and str_Organisation=?" ;
-		String id=(String) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str).setParameter(1, apartmentID).uniqueResult();
-		System.out.println(id+"jfdfd");
-		return id;
+		List<String> id=(List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str).setParameter(1, apartmentID).list();
+		System.out.println(id.contains(str)+"jfdfd");
+		return id.contains(str);
 		
 	}
 	public String getCalculation()
