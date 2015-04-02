@@ -90,7 +90,23 @@ public class Notice implements Serializable {
 	public void setStr_Document(String str_Document) {
 		this.str_Document = str_Document;
 	}
+	private String image;
+    private String imageName;
 	
+	
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getImageName() {
+		return imageName;
+	}
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 
 	@Column(name="var_Description")
 	private String str_Description;
