@@ -43,7 +43,14 @@ public class NoticeBoardBean implements Serializable {
 	public NoticeBoardService getNoticeService() {
 		return noticeService;
 	}
-
+    private String userName;
+	public String getUserName() {
+		userName=Util.getUserName();
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public void setNoticeService(NoticeBoardService noticeService) {
 		this.noticeService = noticeService;
 	}
@@ -199,7 +206,13 @@ public static void setContent(String content) {
 	NoticeBoardBean.content = content;
 }
 private boolean indicator;
-
+private boolean indicator1=true;
+public boolean isIndicator1() {
+	return indicator1;
+}
+public void setIndicator1(boolean indicator1) {
+	this.indicator1 = indicator1;
+}
 public boolean isIndicator() {
 	return indicator;
 }
@@ -207,24 +220,39 @@ public boolean isIndicator() {
 public void setIndicator(boolean indicator) {
 	this.indicator = indicator;
 }
+private static String title;
 
+public static String getTitle() {
+	return title;
+}
+public static void setTitle(String title) {
+	NoticeBoardBean.title = title;
+}
 public boolean changeListener(ActionEvent actionEvent)
 {
 	System.out.println("jmncjkfcfgjk");
 	indicator=true;
-	
+	indicator1=false;
 	return indicator;
 }
 public String updateNotice(Notice notice)
 {System.out.println("13333333333333333333333333333333333333333");
-	System.out.println(notice.getInt_NoticeID()+"fdkjkjfdfddff");
-   System.out.println(notice.getStr_Subject()+"dskjdfkjdf");
+	int no=notice.getInt_ExpireDay();
+	 Calendar c = Calendar.getInstance(); 
+	 c.setTime(notice.getDat_EntryDate());
+	 
+	 c.add(Calendar.DATE,no);
+	
+Date date1= c.getTime();
+notice.setDat_ExpireOn(date1);
+
    getNoticeService().updateNotice(notice);
 	return "noticeView.xhtml";
 }
 	private Date dat_EntryDate;
 	public String addNotice()
-	{    try{
+	{   System.out.println("kfkjfgfjkgfkjgfklffggfklgflk1111111111111111111111111111111111111"); 
+		try{
 		Notice notice=new Notice();
 		  notice.setStr_Subject(getStr_Subject());
 		notice.setBool_Flash(getBool_Flash());
@@ -249,15 +277,22 @@ public String updateNotice(Notice notice)
 		 notice.setBool_SpecialNotice(getBool_SpecialNotice());
 	     notice.setBool_Staff(getBool_Staff());
 		  notice.setStr_Visible(getStr_Visible());
+		  notice.setImage(getTxtfile());
+		  notice.setImageName(FileUploadValidator.filename);
 		  getNoticeService().addNotice(notice);
+		  System.out.println(getTxtfile()+"fdjkfgkjkgf");
+		 
 		  if(bool_SpecialNotice==true)
 			{
 				 mailids= getNoticeService().getmailids();
 				
-				subject="AppOwner.com";
+				subject="A New Notice";
 				content="hello";
+				title=getStr_Subject();
 				return "/AfrteLoginViews/Communication/notice.jsp";
 			}
+			
+		  return "noticeView.xhtml"; 
 			
 		
 	}
@@ -266,7 +301,7 @@ public String updateNotice(Notice notice)
 		
 	}
 	System.out.println("djhdhjcvhjvfjnfgvjkgffkjfgkjfgkj");
-	return "noticeView.xhtml";
+	return "noticeView.xhtml"; 
 		
 	}
 	public void reset()
@@ -406,15 +441,37 @@ public String updateNotice(Notice notice)
 
 	//FILE UPLOAD CONCEPT
 	
-
+    private String txtfile;
+	
+	
+	public String getTxtfile() {
+		return txtfile;
+	}
+	public void setTxtfile(String txtfile) {
+		this.txtfile = txtfile;
+	}
 	private Part part;
 	private String statusMessage;
-    private static  String path1;
+	private String path2;
+    public String getPath2() {
+		return path2;
+	}
+	public void setPath2(String path2) {
+		this.path2 = path2;
+	}
+	
+    private String imageName;
+	private static  String path1;
 	public String uploadFile() throws IOException {
         System.out.println("fjkjkfdjkkjfjkfkj");
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		System.out.println(FileUploadValidator.filename+"gvfjkgfjkf");
 		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
-	
+	System.out.println(part.getContentType());
+	    if(part.getContentType().equals("text/plain"))
+	    {
+	    	txtfile="true";
+	    }
 		System.out.println(fileName+"dfjkjkfjkfd");
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		
@@ -444,11 +501,14 @@ public String updateNotice(Notice notice)
 				outputStream.write(bytes, 0, read);
 			}
 			path1="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
+			path2=path1;
 			System.out.println(path1+"fkjdfkdl");
 		System.out.println(int_NoticeID+"fdjkfdjkfdkjfdj");
 		if(int_NoticeID!=null)
 		{  System.out.println("fdhfd33333333333333333333333333333333333333333333333");
 			notice1.setStr_Document(path1);
+			notice1.setImage(getTxtfile());
+			notice1.setImageName(FileUploadValidator.filename);
 			getNoticeService().updateNotice(notice1);
 			indicator=false;
 		}
@@ -468,8 +528,8 @@ public String updateNotice(Notice notice)
 		return null;    // return to same page
 	}
  
-	public Part getPart() throws IOException {
-		 
+	public Part getPart() {
+		System.out.println(part+"cdkjdfkjfdkjfgfgjk"); 
 		return part;
 	}
  
