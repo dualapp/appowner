@@ -3,24 +3,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 	<ui:define name="content">
 	<h:head>
     <title>Welcome to Contact Page</title>
    
    
-    <script type="text/javascript">
-
-function changecolor(str){
-
-document.bgColor = str;
-
-}
-
-</script>
+    
 </h:head>
 <body>
-   
+    <p:outputPanel   rendered="#{request.getParameter('render')}">
+				  <body onLoad="PF('multiDueTemplateDialog').show()" />
+					</p:outputPanel>
        
           
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
@@ -35,14 +29,27 @@ document.bgColor = str;
                              
         <h:form >
         <div id="page3"> 
-	 
+	  <h:panelGroup rendered="#{dueBean.indicator}">  
            
         <p:button style="width:120px;height:25px" outcome="Notice.xhtml" icon="ui-icon-plus" value="Create New" />
      
       
-&#150; &#150;<p:commandButton style="width:120px;height:25px"  value="Refresh" onclick="history.go(0)" icon="ui-icon-refresh"/>
+</h:panelGroup>
  
        <br/>
+       <br/>
+        <table><tr><td> 
+                            <h:commandButton value="prev" action="#{noticeBoardBean.pagePrevious}"
+                                             disabled="#{noticeBoardBean.firstRow == 0}" />
+                                              
+                                              
+                            <h:commandButton value="next" action="#{noticeBoardBean.pageNext}"
+                                             disabled="#{noticeBoardBean.firstRow + noticeBoardBean.rowPerPage >= noticeBoardBean.totalRows}"/>
+                                              
+                                             
+                             
+                            </td></tr></table>
+                           <br/>
           <p:dataGrid paginatorPosition="top" rowsPerPageDropdown="10,20,30,40,50" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" paginator="true" rows="10"  var="notice" value="#{noticeBoardBean.listOfNotice}"    id="cars" style="margin-top:20px">  
           <br/>
        
@@ -57,6 +64,7 @@ document.bgColor = str;
                <h:inputText value="#{notice.dat_EntryDate}" style="width: 80px;height:50px;background-color:orange;margin-top:-5px;margin-left:20px">
                 <f:convertDateTime pattern="dd-MMM"  />
                 </h:inputText> 
+                 <h:panelGroup rendered="#{dueBean.indicator}">  
                 <h:link outcome="noticeView1.xhtml" >
               <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
               <f:param name="int_NoticeID" value="#{notice.int_NoticeID}"/>
@@ -67,15 +75,28 @@ document.bgColor = str;
                
               <p:commandLink oncomplete="PF('multiNotice').show()" update=":viewform"    action="#{noticeBoardBean.getNotice(notice.int_NoticeID)}">
                   <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
-              </p:commandLink></td>
-            <td>   
-                    <h:outputText value="Dear All," style="width: 80px;height:50px;margin-top:-100em;margin-left:100px"/> 
-                
+              </p:commandLink>
+              </h:panelGroup>
+               <h:panelGroup rendered="#{dueBean.indicator1}">  
+               <p:commandLink oncomplete="PF('multiNotice').show()" update=":viewform"    action="#{noticeBoardBean.getNotice(notice.int_NoticeID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink>
+              </h:panelGroup>
+              </td>
+            <td>  <p:outputPanel layout="block" id="parentPanel">  
+     
+     <p:graphicImage id="image1"   value="#{notice.str_Document}"  title="User Image" style="background:#dddddd; height:80px;width:50px;float:right !important;margin:-10px 60px -80px -100px;"/> 
+     <p:graphicImage id="image2"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{notice.image}" title="User Image" style="background:#dddddd; height:80px;width:50px;float:right !important;margin:-10px 60px -80px -100px;"/>
+    
+    </p:outputPanel> 
+                    <h:outputText value="#{noticeBoardBean.userName}" style="width: 80px;height:50px;margin-top:-100em;margin-left:100px"/> 
+                 
               </td>  
                 </tr>
                 <tr>
                 <td><font size="4">  <p:outputLabel value="#{notice.str_Subject}"/>  </font>  </td> </tr>
-                 <tr><td>  <h:outputText value="Dear All,"/> </td></tr>
+                 <tr><td>  <h:outputText value="Dear All,"/> </td>
+                 <td> <h:link value="#{notice.imageName}" style="margin-left:2em;"/> </td></tr>
                  <tr>
                  <td>
                   <h:outputText value="#{notice.str_Description}"> 
@@ -110,7 +131,8 @@ document.bgColor = str;
      <td>
                <p:outputPanel layout="block" id="parentPanel">  
      <p:graphicImage id="image"  value="../images/profilepic.png" rendered="#{noticeBoardBean.notice1.str_Document} ==null}" title="User Image" style="background:#dddddd;height:180px;width:150px;float:right !important;margin:margin:-10px 55px -100px 70px;"/>  
-     <p:graphicImage id="image1"   value="#{noticeBoardBean.notice1.str_Document}"  title="User Image" style="background:#dddddd; height:180px;width:150px;float:right !important;margin:-10px 55px -100px 60px;"/></p:outputPanel> 
+     <p:graphicImage id="image1"   value="#{noticeBoardBean.notice1.str_Document}"  title="User Image" style="background:#dddddd; height:180px;width:150px;float:right !important;margin:-10px 55px -100px 60px;"/> 
+    </p:outputPanel>
      
      </td>
     </tr>
@@ -128,13 +150,17 @@ document.bgColor = str;
         </p:outputPanel>
         </h:form>
     </p:dialog>
- <p:dialog header="Notice Details" widgetVar="multieditNotice"     showEffect="explode" hideEffect="explode" resizable="false" height="680" width="940">
-    <h:form id="editform">
-        <p:outputPanel id="multiEditNoticeDetail" style="text-align:center;">
-          
-        </p:outputPanel>
-        </h:form>
-    </p:dialog>
+  <p:dialog widgetVar="multiDueTemplateDialog" header="Message" showEffect="explode" hideEffect="explode" resizable="false" height="100" width="500" >
+             <table>
+      
+              <h5>Notice successfully created and mailed to member</h5>
+        
+         
+       
+   
+         </table>
+         
+          </p:dialog>
   
    </body>
    </ui:define>

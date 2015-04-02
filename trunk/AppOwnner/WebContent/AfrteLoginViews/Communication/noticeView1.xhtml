@@ -42,14 +42,16 @@
     <h:outputText value="Subject:"/></th>
     <td>
     <h:inputText value="#{noticeBoardBean.notice1.str_Subject}" /></td>
+   
      <td>
-               <p:outputPanel layout="block" id="parentPanel">  
-     <p:graphicImage id="image"  value="../images/profilepic.png" rendered="#{noticeBoardBean.notice1.str_Document} ==null}" title="User Image" style="background:#dddddd;height:180px;width:150px;float:right !important;margin:-10px 55px -100px 70px;"/>  
-     <p:graphicImage id="image1"   value="#{noticeBoardBean.notice1.str_Document}"  title="User Image" style="background:#dddddd; height:180px;width:150px;float:right !important;margin:-20px 10px -100px 60px;"/>
+       <p:outputPanel layout="block" id="parentPanel">  
+          <p:graphicImage id="image3"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{noticeBoardBean.notice1.image}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-20px 50px -100px 60px;"/>
+     <p:graphicImage id="image1"   value="#{noticeBoardBean.notice1.str_Document}" rendered="#{noticeBoardBean.notice1.image==null}" title="User Image" style="background:#dddddd; height:180px;width:150px;float:right !important;margin:-20px 50px -100px 60px;"/>
     
      
    </p:outputPanel> 
      </td>
+ 
   
     </tr>
    
@@ -58,7 +60,7 @@
  
              <tr>
               <th align="left">Expires By</th>
-              <td>&#150; &#150; <h:selectOneMenu id="int_ExpireDay" value="#{noticeBoardBean.int_ExpireDay}">
+              <td>&#150; &#150; <h:selectOneMenu id="int_ExpireDay" value="#{noticeBoardBean.notice1.int_ExpireDay}">
                   <f:selectItem itemLabel="1 Day" itemValue="1"/>
                    <f:selectItem itemLabel="1 Week" itemValue="7"/>
                     <f:selectItem itemLabel="15 Days" itemValue="15"/>
@@ -66,7 +68,8 @@
                  </h:selectOneMenu>
              
                </td>
-                <p:commandButton id="submit1" value="Edit" actionListener="#{noticeBoardBean.changeListener}"  ajax="false" style="height:30px;width:70px;float:right !important;margin:180px -100px 0px -500px;">&#150;  &#150;
+              
+                <p:commandButton id="submit1" value="Edit" actionListener="#{noticeBoardBean.changeListener}"  ajax="false" style="height:30px;width:70px;float:right !important;margin:200px 100px 0px -500px;">&#150;  &#150;
     <p:ajax event="click"  process="submit1"  render=":upload"/></p:commandButton>
              </tr>
              <tr>

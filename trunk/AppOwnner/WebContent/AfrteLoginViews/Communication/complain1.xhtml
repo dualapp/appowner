@@ -46,12 +46,12 @@
               <h:panelGroup id="performed"  rendered="#{complainBean.str_ComplainType eq 'Personal'}">
            
               <td><h:outputText  value="Block:" /></td>
-              <td><p:inputText id="Block" value="#{complainBean.block}"  style="width:250px">
+              <td><p:inputText id="Block" value="#{complainBean.block1}"  style="width:250px">
                  
                 </p:inputText>
              </td>
              <td><h:outputText  value="FlatNo:" /></td>
-               <td><p:inputText id="Flat" value="#{complainBean.flat}"  style="width:250px">
+               <td><p:inputText id="Flat" value="#{complainBean.flat1}"  style="width:250px">
                  </p:inputText>
              </td>
             
@@ -103,38 +103,14 @@
                 
             </td>
             </tr>
-            <tr>
-            <td><h:outputText  value="Attachment If Any:"/></td>
-            <td><h:inputFile id="file"  label="file" value="#{complainBean.part}"  required="true"   requiredMessage="File not selected !!">
-		            
-			         
-			         
-			       
-		    <f:validator validatorId="FileUploadValidator" />
-		     </h:inputFile>
-		
-		<h:message style="color: red" for="file" /><br />
- 
-		<h:commandButton id="submit1" 
-		                 action="#{complainBean.uploadFile}"
-			             value="upload file"  style="height: 20px;font-size: 10px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
-			            <f:ajax execute="file" event="click"  />
-			             </h:commandButton>
-       
-		<h:outputText value="#{complainBean.statusMessage}"
-			          rendered="#{not empty complainBean.statusMessage}" /> </td></tr>
-			         
-			     
-			   
-			           
-  
+           
           
             
             
           
             <tr>
             <td></td>
-                <td><p:commandButton id="submit" value="Submit" action="#{complainBean.addComplain}" ajax="false" /></td>
+                <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{complainBean.addComplain1}" ajax="false" /></td>
                 
             </tr>
            

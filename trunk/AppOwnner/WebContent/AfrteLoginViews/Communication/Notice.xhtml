@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
@@ -8,11 +8,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 	<ui:define name="content">
 		<h:head></h:head>
   <body >
-    <h:form id="form1" enctype="multipart/form-data">
+   
     <br/>
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
@@ -25,8 +25,36 @@
 	</table>
      
        <div id="page3">
-   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-     
+  <h:form id="form2" enctype="multipart/form-data">
+      <p:outputPanel layout="block" id="parentPanel">  
+          
+   
+     <p:graphicImage id="image1"   value="#{noticeBoardBean.path2}"  title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-10px 155px -700px 0px;"/>
+     <p:graphicImage id="image2"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{noticeBoardBean.txtfile}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-10px 155px -700px 0px;"/> </p:outputPanel> 
+     <h:panelGroup rendered="#{noticeBoardBean.indicator1}">
+     <p:commandButton id="submit2" value="Attach File" actionListener="#{noticeBoardBean.changeListener}"  ajax="false" style="height:30px;width:70px;float:right !important;margin:200px 200px 0px -500px;">&#150;  &#150;
+    <p:ajax event="click"    render=":upload"/></p:commandButton></h:panelGroup>
+            <h:panelGroup rendered="#{noticeBoardBean.indicator}" style="height:30px;width:70px;float:right !important;margin:200px 200px 0px -500px;">
+                <h:inputFile id="file"  label="file" value="#{noticeBoardBean.part}" required="true" requiredMessage="Select file name">
+		            
+			         
+			         
+			       
+		    <f:validator validatorId="FileUploadValidator" />
+		     </h:inputFile>
+		
+		<p:message style="color: red" for="file" /><br/><br/>
+ 
+		<h:commandButton id="submit1" 
+		                 action="#{noticeBoardBean.uploadFile}" 
+			             value="upload file"  style="height: 20px;font-size: 10px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
+			            <f:ajax execute="file" event="click" render=":form2" />
+			             </h:commandButton>
+       
+			          </h:panelGroup>
+		</h:form>	          
+	 <h:form id="form1" enctype="multipart/form-data">		         
+	 <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">		         
         <tr>
            <th align="left">Subject</th>
             <td>&#150; &#150;<p:inputText id="str_Subject" value="#{noticeBoardBean.str_Subject}"  required="true" requiredMessage="Subject can not be Empty"  size="60"/>
@@ -46,32 +74,9 @@
                      <f:selectItem itemLabel="One Month" itemValue="30"/>
                  </p:selectOneMenu>
              </td>
+              
              </tr>
-             <tr>
-             <th align="left">Attachment, if any</th>
-                <td><h:inputFile id="file"  label="file" value="#{noticeBoardBean.part}"  required="true"   requiredMessage="File not selected !!">
-		            
-			         
-			         
-			       
-		    <f:validator validatorId="FileUploadValidator" />
-		     </h:inputFile>
-		
-		<h:message style="color: red" for="file" /><br />
- 
-		<h:commandButton id="submit1" 
-		                 action="#{noticeBoardBean.uploadFile}"
-			             value="upload file"  style="height: 20px;font-size: 10px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
-			            <f:ajax execute="file" event="click"  />
-			             </h:commandButton>
-       
-		<h:outputText value="#{noticeBoardBean.statusMessage}"
-			          rendered="#{not empty noticeBoardBean.statusMessage}" /> </td></tr>
-			         
-			     
-			   
-			           
-  
+            
           
             
             
@@ -81,17 +86,19 @@
              <tr>
             <th align="left">Notice Description</th>
               <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  />
-                 
+                
               </td>
              
-           
+          
              </tr>
+             
+		
              <tr>
            <th align="left">Special Notice?</th>
             
              <td> &#150; &#150;<p:selectBooleanCheckbox id="bool_SpecialNotice" value="#{noticeBoardBean.bool_SpecialNotice}"/> &#150;Notices are emailed only to those members who have opted to receive emails.Check this box to mark this as a special notic Special notices will also be emailed to relevant members  <br/>  &#150; &#150; &#150; &#150; &#150; &#150; &#150; including those who have marked their preference NOT to receieve emaHence, this must be used sparingly for some critical messages such as AGM notices or emergency repair notices.
              </td>
-            </tr>
+         </tr>
             <tr> 
         <th align="left">Copy Maintenance Staff?</th>
           <td>&#150; &#150; <p:selectBooleanCheckbox id="bool_Staff" value="#{noticeBoardBean.bool_Staff}"/> &#150; If this is checked the notice will be sent to all staff who has email ids on record.
@@ -107,15 +114,23 @@
              </p:selectOneMenu>
             </td>
             </tr>
+           
+           
+          
+          
+           
+            
         <tr>     <td></td>
-                 <td>&#150; &#150;<h:commandButton id="submit" styleClass="btn" value="Submit" action="#{noticeBoardBean.addNotice()}" ajax="false" /></td>
+                 <td>&#150; &#150;<p:commandButton id="submit" styleClass="btn" value="Submit" action="#{noticeBoardBean.addNotice}" ajax="false" >
+          
+                 </p:commandButton>
+<p:button  styleClass="btn" id="cancel" value="Cancel" outcome="noticeView.xhtml"   style="margin-left:2em;"/></td>
                 
             </tr>
-           
-      </table>
-      </div>
-      </h:form>
-   </body>
+     </table>
+    </h:form>
+    </div>
+    </body>
 </ui:define>
 </ui:composition>
 

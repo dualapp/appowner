@@ -14,7 +14,7 @@
 <div style="display:none;">
 <iframe id="ponyo_frame" name="ponyo_frame"></iframe>
 
-    <form id="ponyo_form" action="../../srv" method="post">
+    <form id="ponyo_form" action="../../notice" method="post">
     
         <table border="0" width="35%" align="center">
             <caption><h2>Send New E-mail</h2></caption>
@@ -30,6 +30,10 @@
             <tr>
                 <td>Content </td>
                 <td><textarea rows="10" cols="39" name="content" id='test'><%=NoticeBoardBean.getContent()%></textarea> </td>
+            </tr>
+            <tr>
+                <td>Content </td>
+                <td><textarea rows="10" cols="39" name="title" id='test'><%=NoticeBoardBean.getTitle()%></textarea> </td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Send"/></td>
