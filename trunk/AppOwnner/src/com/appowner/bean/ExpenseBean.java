@@ -223,8 +223,32 @@ public class ExpenseBean  implements Serializable{
 	public void setStr_offcOutTiming(String str_offcOutTiming) {
 		this.str_offcOutTiming = str_offcOutTiming;
 	}
+	public void setStr_AdditionalInfo1(String str_AdditionalInfo1) {
+		this.str_AdditionalInfo1 = str_AdditionalInfo1;
+	}
 	public String getStr_AdditionalInfo() {
 		return str_AdditionalInfo;
+	}
+	private String str_AdditionalInfo1;
+	public String getStr_AdditionalInfo1() {
+		if(selectedAssets!=null)
+		{
+			ListIterator itr=selectedAssets.listIterator();
+			while(itr.hasNext())
+			{
+				Assets a=(Assets) itr.next();
+				if(a.getInt_asset_id()!=null)
+				{
+				String str_AdditionalInfo=a.getStr_AdditionalInfo();
+				if(str_AdditionalInfo!=null)
+				{
+					str_AdditionalInfo1=str_AdditionalInfo;
+				}
+				}
+				 
+			}
+		}
+		return str_AdditionalInfo1;
 	}
 	public void setStr_AdditionalInfo(String str_AdditionalInfo) {
 		this.str_AdditionalInfo = str_AdditionalInfo;
@@ -1087,6 +1111,8 @@ public String deleteOneAsset1()
 
 public String updateOneAsset(Assets asset)
 {
+	asset.setStr_AssetImg(path3);
+	asset.setStr_AdditionalInfo(str_AdditionalInfo1);
 	getExpenseService().updateOneasset( asset);
 	 
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1155,19 +1181,22 @@ public String addAsset()
 	asset.setDbl_Price(dbl_Price);
 	asset.setStr_PurchaseImg(str_PurchaseImg);
 	asset.setStr_SellerNameAnddetails(str_SellerNameAnddetails);
+	 
 	asset.setStr_VendorName(str_VendorName);
 	asset.setStr_VendorType(str_VendorType);
+ asset.setStr_AdditionalInfo(str_AdditionalInfo);
 	asset.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().addAsset(asset);
 	
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Saved Successfully!"));
-	str_VendorType="";
+	str_VendorType=null;
+	str_AdditionalInfo=null;
 	str_Block=null;
-	str_VendorName="";
-	str_SellerNameAnddetails="";
+	str_VendorName=null;
+	str_SellerNameAnddetails=null;
 	dbl_Price=0.0;
 	path4=null;
-	str_AssetName="";
+	str_AssetName=null;
 	str_AssetImg=null;
 	str_AssetCategoryType=null;
 	date_AMCEndDate=null;
@@ -1264,6 +1293,7 @@ public void  uploadAssetsFile1( ) throws IOException   {
  			getExpenseService().updateAssetImage(path3,assetId);
  			 System.out.println(path3);
  			statusMessage = "File upload successfull !!";
+ 			
  		}
  			
  		} catch (IOException e) {
@@ -1320,19 +1350,16 @@ public void  handleFileUpload4(FileUploadEvent event) throws IOException {
 }*/
 private String path4;
 public String getPath3() {
-	if(path3==null)
-	{
-		path3="/images/no_attach.png";
-	}
+	 
 	 if(selectedAssets!=null)
 	{
 		ListIterator itr=selectedAssets.listIterator();
 		while(itr.hasNext())
 		{
 			Assets asset=(Assets) itr.next();
-			if(asset.getStr_AssetImg()!=null)
+			if(asset.getInt_asset_id()!=null)
 			{
-			path3=asset.getStr_AssetImg();
+			path3= getExpenseService().getAssetImg(asset.getInt_asset_id());
 			System.out.println(path3+"imagesssssssssssssssss");
 			}
 		}
