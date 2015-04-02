@@ -79,7 +79,7 @@
              <h:panelGrid >
              <p:outputPanel layout="block" id="assetimg" style="width:200px;height:200px;margin-bottom:20px">
                  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr> 
-                   <th>Additional Info</th><td><h:inputTextarea  readonly="true" style="Width: 370px; height:196px;float:left;" label="Additional Info"   value="#{vendorBean.str_AdditionalInfo}"/></td>
+                   <th>Additional Info</th><td><h:inputTextarea  readonly="true" style="Width: 370px; height:196px;float:left;" label="Additional Info"   value="#{expenseBean.str_AdditionalInfo}"/></td>
                     <td>   
        <p:graphicImage id="img" style="Width: 300px; height:186px;float:left;padding-left:60px" value="#{expenseBean.getPath3()}"/></td ></tr><tr><td>
        
@@ -131,7 +131,7 @@
                  
             </h:selectOneMenu></td>
              </tr>
-             <tr><th><p:outputLabel value="SellerNameAndDetails"/></th><td><h:inputTextarea  readonly="true" rows="10" cols="63" label="SellerNameAndDetails"   value="#{asset.str_SellerNameAnddetails}"/>
+             <tr><th><p:outputLabel value="SellerNameAndDetails"/></th><td><p:inputTextarea style="Width: 370px; height:196px;float:left;"  readonly="true" rows="10" cols="63" label="SellerNameAndDetails"   value="#{asset.str_SellerNameAnddetails}"/>
                   </td></tr>
                   
                   </table>
