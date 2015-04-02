@@ -146,13 +146,16 @@ public class DueDaoImpl implements DueDao{
 		System.out.println(str4+"hhjjhj");
 		if(str4.equalsIgnoreCase("Sqft"))
 		{
-			String hql="select int_HouseSize from HouseDetails where str_HouseNo=? and int_ApartmentId=?";
-			Integer  ddd=(Integer)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).setParameter(1,Util.getAppartmentId()).uniqueResult();
-		     Double ddd1=(double)ddd;
+			
+				String hql="select dbl_HouseSize from HouseDetails where str_HouseNo=? and int_ApartmentId=?";
+				double  ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Block).setParameter(1,Util.getAppartmentId()).uniqueResult();
+			    
+			    
+				
 		    
 			
-		System.out.println(str1*ddd1);
-		return (str1*ddd1);
+		System.out.println(str1*ddd);
+		return (str1*ddd);
 		}
 		return str1;
 	}
@@ -182,10 +185,10 @@ public class DueDaoImpl implements DueDao{
 		String str="select dbl_DueAmount from DueTransaction where int_DueTransactionID=?";
 		return (double) sessionFactory.getCurrentSession().createQuery(str).setParameter(0,str1).uniqueResult();
 	}
-	public void updateDueTransaction(String str_Status, Integer str1, double ddd)
-	{
-		String hql="update DueTransaction set str_Status=?,int_paidAmount=?,dbl_TotalDueAmount=? where int_DueTransactionID=?";
-		sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,"Paid").setParameter(1,ddd).setParameter(2, 0.00).setParameter(3, str1).executeUpdate();
+	public void updateDueTransaction(String str_Status, Integer str1, double dueAmount, double paidAmount1)
+	{  System.out.println();
+		String hql="update DueTransaction set str_Status=?,int_paidAmount=?,dbl_DueAmount=? where int_DueTransactionID=?";
+		sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_Status).setParameter(1,paidAmount1).setParameter(2,dueAmount).setParameter(3, str1).executeUpdate();
 	}
 	public void deleteDues(Integer id)
 	{
