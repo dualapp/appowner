@@ -497,6 +497,18 @@ public class ExpenseServiceImpl implements ExpenseService {
 		getExpenseDao().updateStatusOfEstimate(str_ExpenseId,str_Status);
 	}
 
+	@Override
+	public String getAssetImg(Integer int_asset_id) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAssetImg(int_asset_id);
+	}
+
+	@Override
+	public String getAdditionalInfo(Integer int_asset_id) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAdditionalInfo(int_asset_id);
+	}
+
 	 
 	 
 
