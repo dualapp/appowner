@@ -13,7 +13,7 @@
     <h:form id="form1" enctype="multipart/form-data">
     <br/>
      <center> <legend   style="background-color:#438eb9; color:#fff;"> Notice Board-Post Notice </legend></center>
-       <p:messages id="messages"/>  
+      
         <table>
         <tr>
            <th align="left">Subject</th>
@@ -37,11 +37,31 @@
              </tr>
              <tr>
              <th align="left">Attachment, if any</th>
-               <th align="left">&#150; &#150;<p:fileUpload fileUploadListener="#{noticeBoardBean.handleFileUpload}" value="#{noticeBoardBean.str_Document}" mode="advanced"  auto="true" 
-            sizeLimit="100000" fileLimit="3"  style="width:500px"/> 
-                 
-          </th>
-             </tr>
+                <td><h:inputFile id="file"  label="file" value="#{noticeBoardBean.part}"  >
+		            
+			         
+			         
+			       
+		    <f:validator validatorId="FileUploadValidator" />
+		     </h:inputFile>
+		
+		<p:message style="color: red" for="file" /><br />
+ 
+		<h:commandButton id="submit1" 
+		                 action="#{noticeBoardBean.uploadFile}" ajax="false"
+			             value="upload file"  style="height: 20px;font-size: 10px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
+			            <f:ajax execute="file" event="click"  />
+			             </h:commandButton>
+       
+		</td>
+			         
+			     
+			   
+			           
+  
+          </tr>
+            
+            
              <tr>
             <th align="left">Notice Description</th>
               <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  />
