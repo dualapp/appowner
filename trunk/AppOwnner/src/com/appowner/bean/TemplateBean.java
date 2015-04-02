@@ -234,13 +234,13 @@ public class TemplateBean implements Serializable,Validator {
 		dueTemplate.setInt_DueTemplateID(dueTemplate.getInt_DueTemplateID());
 		 String str=dueTemplate.getStr_DueTemplate();
     	 System.out.println(str+"fjfgvkjgfjkgfjk");
- 	    String id1=getTemplateService().detectDueTemplate(str);
+ 	    boolean id1=getTemplateService().detectDueTemplate(str);
  	    System.out.println(id1+"jffkjfj");
  	   FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
- 	    if(id1!=null)
+ 	    if(id1==true)
  	    {
  	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Due Template. Delete the due instances and try again.", "Cannot delete Due Template. Delete the due instances and try again."));
  	    }
@@ -271,10 +271,10 @@ public class TemplateBean implements Serializable,Validator {
 	    {	
 	    	 String str=template.getStr_DueTemplate();
 	    	 System.out.println(str+"fjfgvkjgfjkgfjk");
-	 	    String id=getTemplateService().detectDueTemplate(str);
+	 	    boolean id=getTemplateService().detectDueTemplate(str);
 	 	    System.out.println(id+"jffkjfj");
 	 	    
-	 	    if(id!=null)
+	 	    if(id==true)
 	 	    {
 	 	    	indicator=true;
 	 	    }
@@ -618,6 +618,11 @@ public class TemplateBean implements Serializable,Validator {
 	}
 	public void setListInvoices(List<InvoiceTemplate> listInvoices) {
 		this.listInvoices = listInvoices;
+	}
+	public String detectInvoiceTemplate()
+	{
+		System.out.println("vcnmjnngffgjmfgmjngfgfm");
+		return null;
 	}
 	private InvoiceTemplate invoiceTemplate=new InvoiceTemplate();
 	public InvoiceTemplate getInvoiceTemplate() {
