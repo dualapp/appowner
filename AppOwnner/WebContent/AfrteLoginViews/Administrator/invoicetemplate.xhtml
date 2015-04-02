@@ -70,7 +70,8 @@
 
 			<tr>
 			<td><p:button style="width:120px;height:25px" outcome="createinvoicetemplate.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150; &#150; &#150;<p:commandButton style="width:120px;height:25px" process="invoice" update=":form:multiInvoiceTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiInvoiceTemplateDialog1').show()" />
-       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="invoice" update=":form:multiInvoiceTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiInvoiceTemplateDialog').show()" />
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="invoice" update=":form:multiInvoiceTemplateDetail" actionListener="#{templateBean.detectInvoiceTemplate}" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiInvoiceTemplateDialog').show()" >
+       <f:ajax event="click" partialSubmit="true"/></p:commandButton>
        &#150; &#150; <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh" onclick="history.go(0)" value="Refresh" />
 					
     

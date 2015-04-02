@@ -37,6 +37,23 @@
          margin-left:-200px; 
       
     </style>
+     <script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {  
+        if(args.validationFailed)
+             {
+        	 PF('multiChartOfAccountDialog').show();
+            
+        } 
+        else{
+        	 
+         
+        	PF('multiChartOfAccountDialog').hide();
+        	
+        }
+        
+    }
+    </script>
 </h:head>
 <table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
@@ -49,9 +66,9 @@
 			</tr>
 		</tbody>
 	</table>
- 
-    <h:form>
-   	<h:body styleClass="width:40">
+ 	<h:body >
+    <h:form id="form">
+   
    	<p:growl id="ui-growl" globalOnly="true" sticky="true" />
  <div id="page3" >
    
@@ -66,15 +83,15 @@
              </tr>
              </table>
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"> 
-     <tr><td> <p:commandButton style="width:120px;height:25px" icon="ui-icon-pencil"  update="multiChartOfAccountDetail"  value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td></tr></table> 
+     <tr><td> <p:commandButton style="width:120px;height:25px" icon="ui-icon-pencil"    value="Creat New" oncomplete="PF('multiChartOfAccountDialog').show()" /></td></tr></table> 
  
  <table style="width: 90%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" border="2">
        <tr>
-       <td><font color="red"><h:outputText value="Asset Groups" /></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group)}">
-        </h:commandButton> </td>
-       <td><font color="red"><h:outputText value="RevenueGroups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group1)}"/></td>
-        <td><font color="red"> <h:outputText value="LiabilityGroups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group2)}"/></td>
-         <td><font color="red"> <h:outputText value="ExpenseGroups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group3)}"/></td>
+       <td><font color="red"><h:outputText value="Asset Groups" /></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage"  action="#{accountsBean.getAccountsHead(accountsBean.group)}" ajax="false">
+       </h:commandButton> </td>
+       <td><font color="red"><h:outputText value="Revenue Groups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group1)}"/></td>
+        <td><font color="red"> <h:outputText value="Liability Groups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group2)}"/></td>
+         <td><font color="red"> <h:outputText value="Expense Groups"/></font><p:spacer height="10px" weight="30px"/><h:commandButton value="Manage" action="#{accountsBean.getAccountsHead(accountsBean.group3)}"/></td>
        </tr>
      
 	   
@@ -108,7 +125,10 @@
                
                         
         </table>
+        </div>
+        </h:form>
          <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="280" width="450">
+         <h:form id="addform">
         <p:outputPanel id="multiChartOfAccountDetail" style="text-align:center;">
         <table >
 	<tr><td> 
@@ -119,24 +139,28 @@
                 
                  </h:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Type"/></td>
-	<td><h:selectOneMenu    value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}">
+	<td><h:selectOneMenu id="accountType"   value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}" required="true" >
 	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
 	    
 	   <f:selectItems   value="#{accountingBean.listAccountsType}" /><br/> 
 	   <p:ajax event="change" partialSubmit="true"/>
-                       </h:selectOneMenu></td></tr>
-	<tr><td><h:outputLabel value="Account Name:"/></td><td><h:inputText   value="#{accountingBean.str_AccountName}"/></td></tr>
-	<tr><td></td><td><p:commandButton styleClass="btn"  id="submit"  value="Submit"   action="#{accountingBean.saveChartOfAccount()}" ajax="false"  />
+                       </h:selectOneMenu>
+                     <p:message for="accountType" display="text"/></td></tr>  
+                     
+	<tr><td><h:outputLabel  value="Account Name:"/></td><td><p:inputText  id="accountName" value="#{accountingBean.str_AccountName}" required="true" />
+	<p:message for="accountName" display="text"/></td></tr>
+	<tr><td></td><td><p:commandButton styleClass="btn"  id="submit"  value="Submit"    actionListener="#{accountingBean.saveChartOfAccount}"  update="accountName,accountType,:form:ui-growl" oncomplete="handleRequest(xhr, status, args)"/></td>
 	
-	</td> </tr>  
+	 </tr>  
 	</table>
 	
          </p:outputPanel>
+         </h:form>
          </p:dialog>
     
-</div>
+
 </h:body>
-        </h:form>
+      
   
     </ui:define>
     </ui:composition>

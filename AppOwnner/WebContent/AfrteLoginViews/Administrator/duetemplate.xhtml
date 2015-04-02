@@ -86,7 +86,7 @@
                 
          <tr><td><p:button style="width:120px;height:25px" outcome="createnewduetemplate.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150; &#150; &#150; <p:commandButton style="width:120px;height:25px"  process="ggg" update=":form:multiDueTemplateDetail1" icon="ui-icon-search" value="View" oncomplete="PF('multiDueTemplateDialog1').show()" />
        &#150; &#150; <p:commandButton  style="width:120px;height:25px" process="ggg" update=":form:multiDueTemplateDetail" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiDueTemplateDialog').show()" />
-       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="ggg"     action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" >
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="ggg"     action="#{templateBean.deleteDueTemplate()}" icon="ui-icon-trash" value="Delete" onclick="return confirm('Are you sure you want to delete ?');">
 </p:commandButton>&#150; &#150;<p:commandButton style="width:120px;height:25px"  value="Refresh" onclick="history.go(0)" icon="ui-icon-refresh"/>
               
         &#150; &#150;

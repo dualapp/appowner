@@ -35,7 +35,7 @@
  
 </h:head>
 
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
@@ -62,13 +62,13 @@
     </div>
      <div id="page3">
     <h:panelGroup layout="block" styleClass="selection">
-      <fieldset>
+      <fieldset style="width:56%;height:25%;margin-left:30em;background-color: #FFFFFF; ">
        <p:selectManyCheckbox id="MenuNames" layout="pageDirection" value="#{roleManagementBean.menuNames}"  valueChangeListener="#{roleManagementBean.menuChangeListener}"  styleClass="nostyle" reqired="true" requiredMessage="Choose Atleast One Menu ">
                
               <f:selectItems value="#{roleManagementBean.listMenuNames}"/>
              <p:ajax event="click" partialSubmit="true"/>
         </p:selectManyCheckbox>
-        <p:commandButton value="Submit"    action="#{roleManagementBean.addRoleMenuManagement}" style="width:50px;margin-left:10px">
+        <p:commandButton value="Submit" styleClass="btn"   action="#{roleManagementBean.addRoleMenuManagement}" style="width:70px;margin-left:10px" ajax="false">
         
  </p:commandButton>
       </fieldset>
