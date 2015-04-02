@@ -68,7 +68,9 @@ public class UserInformationBean implements Serializable{
 	
 	
 	public String validate (String name1,String Password)  
-	{	user=getAdminService().validate(name1,Password);
+	{	System.out.println("11111111111111111111111111111111111111111111111111111111111111");
+		user=getAdminService().validate(name1,Password);
+		System.out.println(user+"fdkkgkgfkgf");
 	          if(user==null)
 	        	{  
 	        		FacesContext facesContext = FacesContext.getCurrentInstance();
