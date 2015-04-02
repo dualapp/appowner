@@ -924,6 +924,7 @@ private List<DueTransaction> listDueTransaction;
 	        }
 		     ListIterator list=transaction2.listIterator();
 		     totalAmounts=new ArrayList<Double>();
+		     taxAmounts=new ArrayList<Double>();
 		     subTotal=0.00;
 		     totalDue=0.00;
 		     taxAmount2=0.00;
@@ -1171,6 +1172,8 @@ public String savePayment()
 	System.out.println(amount+"jjk");
 	System.out.println(totalAmount+"jjjj");
 	System.out.println(select1+"jkkjds");
+	  double dueamount=0.00;
+	   double paidAmount1=0.00;
 	if(select1.equalsIgnoreCase("Full"))
 	{ 
 		
@@ -1182,8 +1185,7 @@ public String savePayment()
 	System.out.println(totalAmount+"hjhjjh");
 	if(select1.equalsIgnoreCase("Partial"))
 	{  System.out.println("fdjkfjkjkggfjkgfkj");
-	   double dueamount=0.00;
-	   double paidAmount1=0.00;
+	 
 	   if(paidAmount==0.00)
 	     { System.out.println("dfjfdjfdjfjfdfjfdj"); 
 		paidAmount1=totalAmount;
@@ -1210,7 +1212,7 @@ public String savePayment()
 	{
 		Integer str1=(Integer)list2.next();
 		double ddd=getDueService().getDueAmount1(str1);
-		getDueService().updateDueTransaction(str_Status,str1,ddd);
+		getDueService().updateDueTransaction(str_Status,str1,dueamount,paidAmount1);
 	}
 
 	return "invoice.xhtml";
