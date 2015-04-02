@@ -40,16 +40,17 @@
     
        <script type="text/javascript">
     function handleRequest(xhr, status, args) 
-    {
+    {  
         if(args.validationFailed)
              {
-        	 PF('multiManualJournalDialog2').show();
+           
+        	 PF('multiAccountDialog').show();
             
         } 
         else{
         	 
          
-        	PF('multiManualJournalDialog2').hide();
+        	PF('multiAccountDialog').hide();
         	
         }
         
@@ -129,8 +130,12 @@
                
       
     </p:dataTable>
+    </div>
+    </h:form>
+    
      
       <p:dialog header="Add New Bank Account" widgetVar="multiAccountDialog"  id="multiAccountDetail"   showEffect="explode" hideEffect="explode" resizable="false" height="550" width="600">
+      <h:form id="addform">
       <table>
       <tr>
       <td>Please Note:</td>
@@ -146,10 +151,10 @@
       </tr>
       <tr>
     <td><p:inputText id="accountName" value="#{accountsBean.str_acount_Name}"  required="true" ></p:inputText>
-    <p:message for="accountName" display="icon"/>
+    <p:message for="accountName" display="text"/>
     </td>
      <td>  <p:inputText id="accountNo" value="#{accountsBean.str_account_No}" required="true"/>
-     <p:message for="accountNo" display="icon"/>
+     <p:message for="accountNo" display="text"/>
      </td>
       </tr>
       
@@ -158,15 +163,16 @@
       <td><h:outputText value="Bank: " /><font color="red">*</font></td>
       </tr>
       <tr>
-        <td><h:selectOneMenu id="str_account_Type" value="#{accountsBean.str_account_Type}" >
+      <td><h:selectOneMenu id="str_account_Type" value="#{accountsBean.str_account_Type}" required="true">
                    <f:selectItem itemLabel="Savings" itemValue="Savings"/>
                   <f:selectItem itemLabel="Current" itemValue="Current"/>
                    <f:selectItem itemLabel="Fixed" itemValue="Fixed"/>
                     <f:selectItem itemLabel="Recurring" itemValue="Recurring"/>
-                 </h:selectOneMenu>
-                </td>
+               </h:selectOneMenu>
+               
+                </td> 
     
-      <td><p:inputText id="accountType" value="#{accountsBean.str_Bank}"/>
+      <td><p:inputText id="accountType" value="#{accountsBean.str_Bank}" required="true"/>
       <p:message for="accountType" display="icon"/>
       </td>
       </tr>
@@ -175,11 +181,11 @@
        <td><h:outputText value="City: " /><font color="red">*</font></td>
       </tr>
       <tr>
-       <td><p:inputText id="branch" value="#{accountsBean.str_Branch}"/>
+       <td><p:inputText id="branch" value="#{accountsBean.str_Branch}" required="true"/>
        <p:message for="branch" display="icon"/>
        </td>
     
-      <td><p:inputText id="city" value="#{accountsBean.str_City}"/>
+      <td><p:inputText id="city" value="#{accountsBean.str_City}" required="true"/>
       <p:message for="city" display="icon"/>
       </td>
       </tr>
@@ -188,28 +194,30 @@
      <td><h:outputText value="IFSC Code: " /><font color="red">*</font></td>
       </tr>
       <tr>
-       <td><p:inputText id="openingBalance" value="#{accountsBean.dou_opening_Balance}"/>
-       <p:message for="openingBalance" display="icon"/>
+       <td><p:inputText id="openingBalance" value="#{accountsBean.dou_opening_Balance}" />
+      
        </td>
       
-      <td><p:inputText id="ifscCode" value="#{accountsBean.str_IFSC_Code}"/>
+      <td><p:inputText id="ifscCode" value="#{accountsBean.str_IFSC_Code}" required="true"/>
       <p:message for="ifscCode" display="icon"/>
       </td>
       </tr>
       <tr>
       <td><p:selectBooleanCheckbox id="bl_Show" value="#"/>Make it default
-      <p:message for="bl_Show" display="icon"/></td>       
+         </td>
       
       </tr>
      <tr>
    
-                 <td><p:commandButton id="submit" styleClass="btn" value="Submit" actionListener="#{accountsBean.addAccounts}" update=":form:account,accountName,accountNo,str_account_Type,accountType" oncomplete="handleRequest(xhr, status, args)"/><p:spacer width="5%" height="5%"/>
+                 <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{accountsBean.addAccounts}" process="submit" update="accountType,accountName,accountNo,branch,city,ifscCode" oncomplete="handleRequest(xhr, status, args)"/><p:spacer width="5%" height="5%"/>
                  <p:commandButton id="cancel" styleClass="btn" value="Cancel" outcome="accounts.xhtml" ajax="false"/></td>
            </tr>
   
       </table>
+      </h:form>
          </p:dialog>
          <p:dialog header="Transfer Funds" widgetVar="multiAccountDialog1"  id="multiAccountDetail1"   showEffect="explode" hideEffect="explode" resizable="false" height="400" width="700">
+         <h:form id="addform1">
           <table>
       <tr>
       <td>Please Note:</td>
@@ -251,9 +259,9 @@
                  <td><p:commandButton id="submit1" value="Transfer" action="#{accountsBean.addAccounts()}" ajax="false" /></td>
                  </tr>
       </table>
+      </h:form>
          </p:dialog>
-   </div>
-   </h:form>
+   
    </body>
 </ui:define>
 </ui:composition>

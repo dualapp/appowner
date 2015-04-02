@@ -175,8 +175,8 @@
    
     <h:panelGroup id="fgggggg" rendered="#{accountingBean.income}">
     <ui:repeat id="ggg3" value="#{accountingBean.listInvoiceTransaction1}" var="account1" varStatus="status">
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account1.dat_PaymentDate.date}</td>
-     <td align="right" style="width:250px;">#{account1.str_paymentAccount}
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account1.dat_PaymentDate.date}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
+     <td align="right" style="width:250px;"><h:outputText value="#{account1.str_paymentAccount}"> </h:outputText>
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Income</td>
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
@@ -187,7 +187,7 @@
  </h:panelGroup>
  <h:panelGroup id="fggggggthg" rendered="#{accountingBean.str eq 'Bank' || accountingBean.str  eq 'Cash' || accountingBean.str  eq 'Expense'}">
     <ui:repeat id="ggg1" value="#{accountingBean.listExpense}" var="expense" varStatus="status">
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{expense.date_Duration}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{expense.date_Duration}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <h:panelGroup id="hjbffff" rendered="#{expense.str_ExpenseType eq accountingBean.str }">
      <td align="right" style="width:250px;">#{expense.str_AccountName}
    </td>
@@ -221,7 +221,7 @@
 </h:panelGroup>
  <h:panelGroup id="fgggggg1" rendered="#{! empty accountingBean.str}">
     <ui:repeat id="ggg2" value="#{accountingBean.listManualJournal1}" var="journal" varStatus="status">
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{journal.dat_Date}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{journal.dat_Date}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <h:panelGroup id="hygdtdf" rendered="#{journal.str_CreditAccount eq accountingBean.str}">
      <td align="right" style="width:250px;"><h:outputText value="#{journal.str_DebitAccount}"/></td>
      </h:panelGroup>
@@ -248,7 +248,7 @@
 
 style="width:600px"> 
     <h:panelGroup id="hhghhg"  rendered="#{accountingBean.str_Accounts eq 'Income from Resident'}">
-    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}" pattern="dd/MM/yyyy" ></h:outputText></td>
+    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}" > <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
@@ -258,7 +258,7 @@ style="width:600px">
     <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td> 
     </tr>
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}" > <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.type}"/></td>
@@ -269,7 +269,7 @@ style="width:600px">
        
       <h:panelGroup id="hhghhg1"  rendered="#{  accountingBean.str_Accounts eq 'Cash'|| accountingBean.str_Accounts eq 'Bank' || accountingBean.str_Accounts eq 'Expense'}">
       
-    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+    <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}"> <f:convertDateTime pattern="dd-MM-yyyy"  /> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.type} </td>
@@ -286,7 +286,7 @@ style="width:600px">
    
    
    
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Income from Residents
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Income</td>
@@ -296,7 +296,7 @@ style="width:600px">
     <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Income from Residents
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Income</td>
@@ -306,7 +306,7 @@ style="width:600px">
       <tr>
     <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">#{accountingBean.str_TaxName}
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Income</td>
@@ -315,7 +315,7 @@ style="width:600px">
     </tr>
    </h:panelGroup>
       <h:panelGroup id="hghhhhh" rendered="#{accountingBean.str_Accounts eq 'Tax Payable'}">
-     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;">#{account.dat_InvoiceDate}</td>
+     <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
     <td align="right" style="padding-right:5px;width:320px;">Income</td>
@@ -413,7 +413,8 @@ style="width:600px">
                 <f:facet name="header">
                     <h:outputText value="Date" />
                 </f:facet>
-                <h:outputText value="#{journal.dat_Date}" />
+                <h:outputText value="#{journal.dat_Date}" >
+                <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText>
             </p:column>
             <p:column>
                 <f:facet name="header">
@@ -460,7 +461,7 @@ style="width:600px">
               <p:ajax event="click" partialSubmit="true"  update="date" process="car"/>
        </h:selectOneMenu>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 </td> 
-              <td>  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_ToDate}">
+              <td>  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{accountingBean.dat_ToDate1}">
                   </p:calendar>&nbsp; &nbsp; &nbsp;</td>
              <td>      <h:commandButton value="Go" action="#{accountingBean.getSearch2}"/></td>
                

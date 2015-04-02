@@ -50,7 +50,7 @@
               <h:outputText value="#{invoice.str_InvoiceTemplate}"/>
              </td>
             <td><h:outputLabel value="Included Charges"  /></td>
-            <td><p:dataTable id="due" var="due" value="#{invoiceBean.getDueList3(invoice.str_InvoiceTemplate,invoice.str_ApartmentNo)}" style="width:500px">
+            <td><p:dataTable id="due" var="due" value="#{invoiceBean.getDueList3(invoice.str_InvoiceTemplate,invoice.str_ApartmentNo)}" style="width:700px">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Due" />
@@ -122,6 +122,7 @@
     <td style="width:440px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
     <strong>Item</strong>
     </td>
+    
      <td style="width:200px;height:20px;background:#0E94F9;color:#fff;padding-left:5px;line-height:25px;">
     <strong></strong>
     </td>
@@ -135,46 +136,48 @@
     </td>
     </tr>
     
-     <ui:repeat value="#{invoiceBean.transaction2}" var="dues" varStatus="status" style="width:600px"> 
     
-    <tr style="line-height:20px;"><td style="padding-left:5px;width:440px;">#{dues.str_DueTemplate}</td>
-     <td align="left" style="width:200px;"/>
+    
+    <tr style="line-height:20px;"><td style="padding-left:5px;width:440px;"> <ui:repeat value="#{invoiceBean.transaction2}" var="dues" varStatus="status" style="width:600px"> #{dues.str_DueTemplate}<br/></ui:repeat></td>
+     <td align="left" style="width:200px;"/><h:outputText   ><hr/></h:outputText>
     <td align="right" style="width:250px;"><ui:repeat value="#{invoiceBean.totalAmounts}" var="account">
    
-    <h:outputText value="#{account}" /><br/>
+     <h:outputText value="#{account}" /><br/>
   
      </ui:repeat>
    </td>
   
-    <td align="right" style="padding-right:5px;width:320px;">#{dues.str_TaxTemplate} </td>
+    <td align="right" style="padding-right:5px;width:320px;"><ui:repeat value="#{invoiceBean.transaction2}" var="dues" varStatus="status" style="width:600px">#{dues.str_TaxTemplate}<br/></ui:repeat></td>
     </tr>
     <tr>
     <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
  
-   </ui:repeat>
   
-    <tr style="line-height:25px;">
+  
+    <tr style="line-height:20px;">
      <td align="left" style="width:200px;"/>
   
-    <td style="padding-left:10px;width:200px;line-height:30px;color:#E17009;">SubTotal</td>
+    <td   style="padding-left:10px;width:200px;line-height:30px;color:#E17009;">SubTotal</td>
     <td align="right" style="width:250px;color:#E17009;">#{invoiceBean.subTotal}</td>
     </tr>
     <tr></tr>
-     <ui:repeat value="#{invoiceBean.transaction2}" var="dues" varStatus="status" style="width:600px">  
+  
     <tr>
     <td colspan="4" style="border-bottom:1px solid #DADADA ;"></td>
     </tr>
-     <tr style="line-height:25px;">
+     <tr style="line-height:20px;">
     
      <td align="right" style="padding-right:5px;width:320px;"></td>
      </tr>
-     <tr style="line-height:25px;">
+     <tr style="line-height:20px;">
+     
      <td align="right" style="width:200px;"/>
-     <td align="right">#{dues.str_TaxTemplate} &nbsp;(#{invoiceBean.taxAmount}%)</td>
-     <td align="right">#{invoiceBean.taxAmount1}</td>
+     <td align="right"> <ui:repeat value="#{invoiceBean.transaction2}" var="dues">#{dues.str_TaxTemplate}<br/></ui:repeat>
+    </td>
+     <td align="right"><ui:repeat value="#{invoiceBean.taxAmounts}" var="taxAmount">#{taxAmount}<br/></ui:repeat></td>
      </tr>
-   </ui:repeat>  
+
   
    
    
@@ -187,8 +190,8 @@
   <td style="height:20px;color:#E17009;" align="right">Total Due</td><td align="right" style="width:250px;color:#E17009;">#{invoiceBean.totalDue}</td><td align="right" style="padding-right:5px;width:320px;"></td>
   </tr>
     </tbody>
-    </table>
-   
+     
+   </table>  
    
     
    
