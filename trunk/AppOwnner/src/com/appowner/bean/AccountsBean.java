@@ -442,7 +442,7 @@ public void setStr_IFSC_Code(String str_IFSC_Code) {
 }
 public String addAccounts()
 {
-	try
+	if(str_acount_Name!=null)
 	{
 		Account account=new Account();
 		account.setInt_account_ID(int_account_ID);
@@ -459,10 +459,7 @@ public String addAccounts()
 		
 		return "accounts.xhtml";
 	}
-	catch(Exception e)
-	{
-		e.printStackTrace();
-	}
+	
 	return "accounts.xhtml";
 }
 public String cancel()
@@ -648,7 +645,7 @@ public void setGroupName(String groupName) {
 	this.groupName = groupName;
 }
 public String getAccountsHead(char d)
- {  System.out.println(d+"jdfjjf");
+ {  System.out.println(d+"jdfjjf222222222222222222222222222222");
     if(d=='A')
     {
     	groupName="Asset";
