@@ -40,7 +40,7 @@ public void deleteDue1(List<DueTemplate> delete);
 public void deleteInvoice1(List<InvoiceTemplate> delete);
 public void deleteMessage1(List<MessageTemplate> delete);
 public void deleteTax1(List<TaxTemplate> delete);
-public String detectDueTemplate(String str);
+public boolean detectDueTemplate(String str);
 public String getCalculation();
 public int getTaxID(String str);
 
