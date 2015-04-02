@@ -76,6 +76,7 @@ public void setDat_FromDate(Date dat_FromDate) {
 	this.dat_FromDate = dat_FromDate;
 }
 private Date dat_ToDate=new java.util.Date();
+
 public void setDat_ToDate(Date dat_ToDate) {
 	this.dat_ToDate = dat_ToDate;
 }
@@ -86,7 +87,7 @@ public static Date getOpeningdate() {
 public static void setOpeningdate(Date openingdate) {
 	AccountingBean.openingdate = openingdate;
 }
-private Date dat_ToDate1;
+private Date dat_ToDate1=new java.util.Date();
 public Date getDat_ToDate1() {
 	return dat_ToDate1;
 }
@@ -1345,7 +1346,9 @@ public void setListAccountsType(List<String> listAccountsType) {
 }
 public String saveChartOfAccount()
 {   System.out.println("jkfjkgfgjk");
-
+System.out.println(str_AccountType+"fkjkffdkl");
+  if(str_AccountName!=null && str_AccountType!=null)
+  {
   ChartOfAccount chartOfAccount=new ChartOfAccount();
 	chartOfAccount.setInt_UserId(Util.getUserId());
 	chartOfAccount.setInt_ApartmentId(Util.getAppartmentId());
@@ -1365,8 +1368,8 @@ public String saveChartOfAccount()
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Chart Of Account Saved Successfully!"));
 	return "chartofaccount.xhtml";
 	
-	
-	
+  }	
+  return "chartofaccount.xhtml";	
 }
 private double debitNetTotal=0.00;
 private double creditNetTotal=0.00;
@@ -1911,14 +1914,21 @@ public Date accountchangeListener3(ValueChangeEvent event)
 	System.out.println("hjjhjhjk");
 	str=(String)event.getNewValue();
   System.out.println(str+"66666666666666666666666666666666666666666666666666666666666666666666666666666666");
+  if(str.equalsIgnoreCase("Today"))
+  {
+	  System.out.println("dfhfdhjfdjfdfdj");
+   Calendar c = Calendar.getInstance();
+	dat_ToDate1=c.getTime();
+	return dat_ToDate1;
+  }
    if(str.equalsIgnoreCase("This Week End"))
 		   {
 	   Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
 		
-		dat_ToDate=c.getTime();
-		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
-		return dat_ToDate;
+		dat_ToDate1=c.getTime();
+		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate1;
 		   }
    else if(str.equalsIgnoreCase("This Month End"))
    {
@@ -1929,14 +1939,14 @@ public Date accountchangeListener3(ValueChangeEvent event)
 	        c.set(Calendar.DAY_OF_MONTH, 1);  
 	        c.add(Calendar.DATE, -1);  
 
-	 		dat_ToDate=c.getTime();
-	 		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
-	 		return dat_ToDate; 
+	 		dat_ToDate1=c.getTime();
+	 		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
+	 		return dat_ToDate1; 
    }
    else if(str.equalsIgnoreCase("This Quarter End"))
    {  
    Calendar c = Calendar.getInstance();
-	c.setTime(dat_ToDate);
+	c.setTime(dat_ToDate1);
 	int factor = 0;
 	int month = c.get(Calendar.MONTH);
 	if (month == Calendar.JANUARY
@@ -1956,8 +1966,8 @@ public Date accountchangeListener3(ValueChangeEvent event)
 
 	c.add(Calendar.MONTH, factor);
 	c.set(Calendar.DATE, c.getActualMaximum(Calendar.DATE));
-	dat_ToDate=c.getTime();
-	return dat_ToDate;
+	dat_ToDate1=c.getTime();
+	return dat_ToDate1;
 }
    
    else if(str.equalsIgnoreCase("This Year End"))
@@ -1971,17 +1981,17 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
 
 
-		dat_ToDate=c.getTime();
+		dat_ToDate1=c.getTime();
 		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
-		return dat_ToDate;  
+		return dat_ToDate1;  
    }
    else if(str.equalsIgnoreCase("Yesterday"))
    {
 	   Calendar c = Calendar.getInstance();
 	   c.add(Calendar.DATE, -1);
-		dat_ToDate=c.getTime();
-		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
-		return dat_ToDate;
+		dat_ToDate1=c.getTime();
+		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate1;
    }
   
    else if(str.equalsIgnoreCase("Previous Week End"))
@@ -1989,17 +1999,17 @@ public Date accountchangeListener3(ValueChangeEvent event)
 	   Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
 		c.set(Calendar.DATE,-1);
-		dat_ToDate=c.getTime();
-		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
-		return dat_ToDate;
+		dat_ToDate1=c.getTime();
+		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate1;
    }
    else if(str.equalsIgnoreCase("Previous Month End"))
    {
 	   Calendar aCalendar = Calendar.getInstance();
 	   aCalendar.set(Calendar.DATE, 1);
 	   aCalendar.add(Calendar.DAY_OF_MONTH, -1);
-	   dat_ToDate = aCalendar.getTime();
-	   System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
+	   dat_ToDate1 = aCalendar.getTime();
+	   System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
 	   
    }
    else if(str.equalsIgnoreCase("Previous Quarter End"))
@@ -2025,8 +2035,8 @@ public Date accountchangeListener3(ValueChangeEvent event)
 
 		c.add(Calendar.MONTH, factor);
 		c.set(Calendar.DATE, c.getActualMaximum(Calendar.DATE));
-		dat_ToDate=c.getTime();
-		return dat_ToDate;
+		dat_ToDate1=c.getTime();
+		return dat_ToDate1;
 	   
    }
    else if(str.equalsIgnoreCase("Previous Year End"))
@@ -2040,14 +2050,15 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		c.set(Calendar.DAY_OF_MONTH, 31); // new years eve
 
 
-		dat_ToDate=c.getTime();
-		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
-		return dat_ToDate;  
+		dat_ToDate1=c.getTime();
+		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
+		return dat_ToDate1;  
    }
    else if(str.equalsIgnoreCase("Custom"))
    {   System.out.println("fdfgfgkjgfkjgfjkgf");
-   
-      return dat_ToDate;
+   dat_ToDate1=null;
+	  return dat_ToDate1;
+     
    }
    return null;
 	
@@ -2134,12 +2145,12 @@ public void getSearch2()
 	{
 		String str=(String)list.next();
 		System.out.println(str);
-		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate1);
 		
 		System.out.println(balance+"jkjjkjk");
 		
 		
-		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate1);
 		System.out.println(balance1+"kjfgfgg");
 	     if(balance1 > balance)
 	     {
@@ -2169,8 +2180,8 @@ public void getSearch2()
 	{
 		String str=(String)list1.next();
 		System.out.println(str);
-		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
-		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate1);
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate1);
 		System.out.println(balance1+"kjfgfgg");
 		System.out.println(balance+"jkjjkjk");
 		 if(balance1 > balance)
@@ -2195,9 +2206,9 @@ public void getSearch2()
 	{
 		String str=(String)list2.next();
 		System.out.println(str);
-		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate1);
 		
-		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate1);
 		System.out.println(balance1+"kjfgfgg");
 		System.out.println(balance+"jkjjkjk");
 		 if(balance1 > balance)
@@ -2223,9 +2234,9 @@ public void getSearch2()
 	{    System.out.println(dat_ToDate+"jjkjkjk");
 		String str=(String)list3.next();
 		System.out.println(str);
-		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate);
+		Double balance=getAccountsService().getCreditAmount(str,dat_ToDate1);
 		
-		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate);
+		Double balance1=getAccountsService().getDebitAmount(str,dat_ToDate1);
 		System.out.println(balance1+"kjfgfgg");
 		System.out.println(balance+"jkjjkjk");
 		 if(balance1 > balance)
