@@ -94,11 +94,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
 			 System.out.println("priyahuyt234");
 			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
 		}*/
-	/*	else if(str_Status.isEmpty())
+		else if(str_Status.equalsIgnoreCase("paid"))
 		{
 			 System.out.println("priyahuyt23467");
-			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).setCacheable(true).list();
-		}*/
+			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
+		}
 		
 		else if(str_Status==null)
 		{
@@ -171,12 +171,12 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	     return ddd1;
 	}
 	public double getSqft(String str)
-	{
-		String hql="select int_HouseSize from HouseDetails where str_HouseNo=? and int_ApartmentId=?";
-		Integer  ddd=(Integer)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str).setParameter(1,Util.getAppartmentId()).uniqueResult();
-	     Double ddd1=(double)ddd;
+	{   System.out.println(str+"jdfjdffjd");
+		String hql="select dbl_HouseSize from HouseDetails where str_HouseNo=? and int_ApartmentId=?";
+		double  ddd=(double)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str).setParameter(1,Util.getAppartmentId()).uniqueResult();
 	    
-		return ddd1;
+	    
+		return ddd;
 	}
 	@SuppressWarnings("unchecked")
 	public List<String> getmailid(String blockNo,String str_ApartmentNo)
