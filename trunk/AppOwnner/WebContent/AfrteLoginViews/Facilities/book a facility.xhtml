@@ -229,7 +229,7 @@
  <th>
     <p:outputLabel for="fType" value="Facility:"/></th>
     <td>
-    <h:selectOneMenu required="true"  id="fType"  requiredMessage="Enter Facility"   value="#{bf1.str_FacilityType}">
+    <h:selectOneMenu   id="fType"    value="#{bf1.str_FacilityType}">
     <f:selectItem itemLabel="Select One" itemValue="" />
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
       
