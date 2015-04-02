@@ -80,9 +80,9 @@ public class DueServiceImpl implements DueService{
 	{
 		return getDueDao().getDueAmount1(str1);
 	}
-	public void updateDueTransaction(String str_Status, Integer str1, double ddd)
+	public void updateDueTransaction(String str_Status, Integer str1, double dueAmount, double paidAmount1)
 	{
-		getDueDao().updateDueTransaction(str_Status,str1,ddd);
+		getDueDao().updateDueTransaction(str_Status,str1,dueAmount,paidAmount1);
 	}
 	public void deleteDues(Integer id)
 	{

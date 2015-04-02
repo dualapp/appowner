@@ -147,7 +147,7 @@ public class TemplateServiceImpl implements TemplateService {
 	  {
 		  getTemplateDao().deleteTax1(delete);
 	  }
-	  public String detectDueTemplate(String str)
+	  public boolean detectDueTemplate(String str)
 	  {
 		 return getTemplateDao().detectDueTemplate(str);
 	  }
