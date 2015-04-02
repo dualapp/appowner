@@ -582,4 +582,16 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		sessionFactory.getCurrentSession().createQuery("update Expense set str_Status=?  where str_ExpenseId=?").setParameter(0, str_Status).setParameter(1, str_ExpenseId).executeUpdate();
 		
 	}
+
+	@Override
+	public String getAssetImg(Integer int_asset_id) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_AssetImg from Assets where int_asset_id=?").setParameter(0, int_asset_id).uniqueResult();
+	}
+
+	@Override
+	public String getAdditionalInfo(Integer int_asset_id) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_AdditionalInfo from Assets where int_asset_id=?").setParameter(0, int_asset_id).uniqueResult();
+	}
 }
