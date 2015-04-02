@@ -158,6 +158,36 @@ public class ComplainBean implements Serializable{
 	public void setAdminReason(String adminReason) {
 		this.adminReason = adminReason;
 	}
+	public String addComplain1()
+	{
+		try{
+			Complain cmp=new Complain();
+			
+			cmp.setCh_Complain(getCh_Complain());
+			cmp.setStr_ComplainType(getStr_ComplainType());
+			cmp.setStr_Description(getStr_Description());
+			
+			cmp.setStr_File(getPath1());
+			cmp.setStr_VendorType(str_VendorType);
+			cmp.setFlat(getFlat1());
+			cmp.setBlock(getBlock1());
+			System.out.println(str_VendorType);
+			cmp.setStr_VenderName(str_VenderName);
+			System.out.println(str_VenderName);
+			cmp.setStatus(0);
+			cmp.setInt_ApartmentId(Util.getAppartmentId());
+			cmp.setAdminReason(getAdminReason());
+			getComplainService().addComplain(cmp);
+			
+			return "ComplainView.xhtml";
+		}
+		catch(DataAccessException e)
+		{e.printStackTrace();
+			
+		}
+		return ERROR;
+			
+		}
 	
 	public String addComplain()
 	{  try{
@@ -188,7 +218,13 @@ public class ComplainBean implements Serializable{
 	return ERROR;
 		
 	}
-   
+	public String deleteComplain(int id){
+		System.out.println("11111111111111111111111111111111111111111111111111111111");
+		System.out.println(id+"cfkvjkvcjvc");
+		cmp.setInt_ComplainID(id);
+		getComplainService().deleteComplain(cmp);
+		return "ComplianView.xhtml?faces-redirect=true";
+	}
     private List<Complain> ListComplain;
 	public List<Complain> getListComplain() {
 		ListComplain= new ArrayList<Complain>();
@@ -234,14 +270,30 @@ public class ComplainBean implements Serializable{
 				FlatID = flatID;
 			}
 			public String getFlat() {
-				Flat=Util.getFlatNo();
+				
 				return Flat;
 			}
 			public void setFlat(String flat) {
 				Flat = flat;
 			}
+			private String block1;
+			private String flat1;
+			public String getBlock1() {
+				block1=Util.getBlock();	
+				return block1;
+			}
+			public void setBlock1(String block1) {
+				this.block1 = block1;
+			}
+			public String getFlat1() {
+				flat1=Util.getFlatNo();
+				return flat1;
+			}
+			public void setFlat1(String flat1) {
+				this.flat1 = flat1;
+			}
 			public String getBlock() {
-				Block=Util.getBlock();	
+				
 				return Block;
 			}
 			public void setBlock(String block) {
@@ -290,7 +342,7 @@ public class ComplainBean implements Serializable{
 			}
 			public List<String> blockChangeListener(ValueChangeEvent event)
 			{   Block=(String)event.getNewValue();
-			     System.out.println(Block);
+			     System.out.println(Block+"fcjkfdjkfdjkffjdf");
 			        faltNoByBlock = new ArrayList<String>();
 			       faltNoByBlock.addAll(getComplainService().faltListBlock(Block));
 
