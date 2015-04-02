@@ -39,6 +39,9 @@ public class Assets  implements Serializable{
 	private Boolean bool_Rentable;
 	@Column(name="var_VendorType")
 	private String str_VendorType;
+	@Column(name="var_AdditionalInfo")
+	private String str_AdditionalInfo;
+	
 	@Column(name="var_VendorName")
 	private String str_VendorName;
 	@Column
@@ -57,7 +60,12 @@ public class Assets  implements Serializable{
 	private Date  date_AMCEndDate;
 	@Column(name="var_PurchaseImg")
 	private String str_PurchaseImg;
-	
+	public String getStr_AdditionalInfo() {
+		return str_AdditionalInfo;
+	}
+	public void setStr_AdditionalInfo(String str_AdditionalInfo) {
+		this.str_AdditionalInfo = str_AdditionalInfo;
+	}
 	public Integer getInt_AppartmentId() {
 		return int_AppartmentId;
 	}
