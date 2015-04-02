@@ -179,6 +179,10 @@ public interface ExpenseService {
 	 
 	void updateStatusOfEstimate(String str_ExpenseId, String str_Status);
 
+	String getAssetImg(Integer int_asset_id);
+
+	String getAdditionalInfo(Integer int_asset_id);
+
 	 
 
 }
