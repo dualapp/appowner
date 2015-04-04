@@ -927,6 +927,7 @@ public String addOrganizationLogo ()
 			System.out.println(Util.getAppartmentId());
 			ol.setInt_AppartmentId(Util.getAppartmentId());
 			ol.setStr_Document_Upload(getStr_Document_Upload());
+			ol.setStr_Day(str_Day);
 			ol.setStr_Appartment_Img(path1);
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Successful"));
 	 getExpenseService().updateLogo(ol);
@@ -949,6 +950,9 @@ public String addOrganizationLogo ()
 	getTextLogo();
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
 	}
+	 str_ApptAddress=null;
+	 str_offcOutTiming=null;
+	 str_offcInTiming=null;
 	return null;
 	 
 	 
