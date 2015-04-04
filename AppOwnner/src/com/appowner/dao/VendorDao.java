@@ -98,4 +98,6 @@ public interface VendorDao {
 
 	public void deleteWorkOrder(List<WorkOrderCategory> entitiesToDelete);
 
+	public void deleteVendorService(VendorServiceDetails service);
+
 }
