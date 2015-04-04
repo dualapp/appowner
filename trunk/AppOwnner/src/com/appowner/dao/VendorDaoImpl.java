@@ -342,6 +342,12 @@ public class VendorDaoImpl implements VendorDao{
 		
 	}
 
+	@Override
+	public void deleteVendorService(VendorServiceDetails service) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(service);
+	}
+
 	 
 	 
 }
