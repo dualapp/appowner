@@ -5,12 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/#{expenseBean.templateIndicator}">
 	<ui:define name="content">
 	<f:metadata>
-	<f:viewParam name="int_VendorId" value="#{vendorBean.int_VendorId}"  />
+	<f:viewParam name="int_ServiceId" value="#{vendorBean.int_ServiceId}"  />
 	 
-	<f:viewAction action="#{vendorBean.deleteVendor}" />
+	<f:viewAction action="#{vendorBean.deleteService}" />
+	
 </f:metadata>
 
 <h:head>
@@ -20,7 +21,7 @@
 	<h:body>
 		<h:form>
 			 
-			<h:commandButton action="#{vendorBean.deleteVendor}" value="Delete" />
+			<h:commandButton action="#{vendorBean.deleteService}" value="Delete" />
 			 
 		</h:form>
 		</h:body>

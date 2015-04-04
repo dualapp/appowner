@@ -67,7 +67,7 @@
 </td>  </tr>
 </table>
 </legend>-->
- <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+ <p:growl id="ui-growl" globalOnly="true" />
   
 		<div id="page3">
  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
@@ -578,31 +578,37 @@
          <h:form id="viewServiceForm">
         <p:outputPanel id="viewServiceDetail" style="text-align:center;">
          
-      <p:dataTable id="v1" var="v"  editable="true" value="#{vendorBean.vendorServiceDetails3}" style="margin-bottom:20px"  >
+      <p:dataTable id="v1" var="v"    value="#{vendorBean.vendorServiceDetails3}" style="margin-bottom:20px"  >
      
-      <p:ajax event="rowEditInit" listener="#{vendorBean.onRowEdit}" update=":form:ui-growl" />
-       <p:ajax event="rowEditCancel" listener="#{vendorBean.onRowCancel}" update=":form:ui-growl" />
-      <p:column headerText="Vendor Service Name" >
-      <p:cellEditor>
-               <f:facet name="output"><h:outputText    value="#{v.str_ServiceName}" /></f:facet>
-               <f:facet name="input"><p:inputText  value="#{v.str_ServiceName}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-                
+      
+       <p:column>
+                 <f:facet name="header">Name</f:facet>
+                 <h:inputText value="#{v.str_ServiceName}" style="width:70%" rendered="#{vendorBean.isEditable()}"/>               
+                 <h:outputText value="#{v.str_ServiceName}"   rendered="#{not vendorBean.isEditable()}"/>
             </p:column>
-            <p:column headerText="Vendor Price(Rs.)" >
-            <p:cellEditor>
-               <f:facet name="output"><h:outputText    value="#{v.int_ServicePrice}" /></f:facet>
-               <f:facet name="input"><p:inputText   value="#{v.int_ServicePrice}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-                
+           <p:column>
+                 <f:facet name="header">Price</f:facet>
+                 <h:inputText value="#{v.int_ServicePrice}" style="width:70% " rendered="#{vendorBean.isEditable()}"/>               
+                 <h:outputText value="#{v.int_ServicePrice}" rendered="#{not vendorBean.isEditable()}"/>
             </p:column>
-             
-          <p:column style="width:50px">
-           <p:rowEditor >
-           
-           </p:rowEditor>
-            
-       </p:column>
+          <p:column>
+                <f:facet name="header">Edit</f:facet>                
+                <p:commandButton action="#{vendorBean.editAction()}"  icon="ui-icon-pencil" value="Edit">
+                  <f:ajax render="@form" execute="@form"/>
+                  </p:commandButton>                                
+            </p:column>
+            <p:column>
+                <f:facet name="header">Save</f:facet>                                
+                <p:commandButton value="Save Changes"  icon="ui-icon-plus" action="#{vendorBean.editar(v)}" >
+                    <f:ajax render="@form" execute="@form"/>
+                </p:commandButton>                
+            </p:column>
+             <p:column>
+                <f:facet name="header">Delete</f:facet>                
+                <p:commandButton action="#{vendorBean.deleteService(v)}"  onclick="return confirm('Are you sure you want to delete ?');" icon="ui-icon-trash" value="Delete">
+                 <f:ajax render="@form" />
+                </p:commandButton> 
+            </p:column>
             </p:dataTable>  
      
     </p:outputPanel>

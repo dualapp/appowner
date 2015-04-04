@@ -41,7 +41,7 @@
 	</table>
 
     <h:form id="form" > 
-   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+   <p:growl id="ui-growl" globalOnly="true" />
    
     
    
@@ -171,7 +171,7 @@
 	   <tr><th>  <p:outputLabel value="Price"/></th>
 	   <td> <p:inputText  value="#{int_ServicePrice}"  placeholder="Price(in double)" validatorMessage="Price should be  Double only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
 	      
-    <f:validateDoubleRange minimum="1" />
+    <f:convertNumber integerOnly="true" type="number" />
 	   </p:inputText></td>
 	    
 	   </tr>  </c:forEach> 
@@ -183,18 +183,11 @@
            <tr><th><p:outputLabel value="Is a Company? " /></th>
        <td> <p:selectBooleanCheckbox value="#{vendorBean.bool_IsACompany}" /></td>
            </tr>
-             <tr><th> <p:outputLabel value="ServiceRate" /></th>
-           <td>
-        <p:rating value="#{vendorBean.int_VendorServiceRating}">
-           
-        </p:rating>
-         
-        </td>
-        </tr>
+             
         <tr>
          
                 <th><p:outputLabel for="vendorcomments" value="Comments  " /></th>
-                <td><p:inputTextarea rows="6" cols="33" style="width:175px; height:45px; border:solid 1px #cccccc; margin:3px 0 3px 5px; float:left;"  id="vendorcomments"  placeholder="Comments" required="true" requiredMessage="Enter Comment" value="#{vendorBean.str_VendorComments}">
+                <td><p:inputTextarea style="Width: 370px; height:196px;float:left;"    id="vendorcomments"  placeholder="Comments" required="true" requiredMessage="Enter Comment" value="#{vendorBean.str_VendorComments}">
                 
                    
                     <p:ajax event="blur" update="vendorcommentsMsg" />
@@ -272,7 +265,7 @@
            </tr>
             <tr>
                 <th><p:outputLabel for="AdditionalInfo" value="Additional Info" /></th>
-                <td><p:inputTextarea id="AdditionalInfo" rows="6" cols="33" placeholder="Additional Info"  style="width:175px; height:45px; border:solid 1px #cccccc; margin:3px 0 3px 5px; float:left;"  value="#{vendorBean.str_AdditionalInfo}"/>
+                <td><p:inputTextarea style="Width: 370px; height:196px;float:left;"  id="AdditionalInfo"  placeholder="Additional Info"     value="#{vendorBean.str_AdditionalInfo}"/>
                  
               
                 </td>
