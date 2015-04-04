@@ -97,4 +97,6 @@ public interface VendorService {
 	public void updateWorkOrder(WorkOrderCategory w);
 
 	public void deleteWorkOrder(List<WorkOrderCategory> entitiesToDelete);
+
+	public void deleteVendorService(VendorServiceDetails service);
 }

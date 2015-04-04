@@ -265,6 +265,12 @@ public void setVendordao(VendorDao vendordao) {
 		getVendordao().deleteWorkOrder(entitiesToDelete);
 	}
 
+	@Override
+	public void deleteVendorService(VendorServiceDetails service) {
+		// TODO Auto-generated method stub
+		getVendordao().deleteVendorService(service);
+	}
+
 	 
 }
 	 
