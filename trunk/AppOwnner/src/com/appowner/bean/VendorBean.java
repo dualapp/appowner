@@ -1107,5 +1107,32 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	public void setSelectedVendor1(List<Vendor> selectedVendor1) {
 		this.selectedVendor1 = selectedVendor1;
 	}
-	
+	 private boolean isEditable;
+
+	 
+	public void editAction() {
+
+        setEditable(true);            
+    }
+
+    public void editar(VendorServiceDetails service){
+
+    	getVendorservice().updateVendorServiceDetails(service);
+        setEditable(false);
+
+    }
+    
+    public String deleteService(VendorServiceDetails service)
+    {
+    	 
+    	getVendorservice().deleteVendorService(service);   
+    	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully"));
+		return null;
+    }  
+	public boolean isEditable() {
+		return isEditable;
+	}
+	public void setEditable(boolean isEditable) {
+		this.isEditable = isEditable;
+	}
 }
