@@ -40,6 +40,14 @@ public class OrganizationLogo  implements Serializable{
 	private String str_Document_Upload;
 	@Column(name="var_ApptAddress")
 	private String str_ApptAddress;
+	@Column(name="var_Day")
+	private String str_Day;
+	public String getStr_Day() {
+		return str_Day;
+	}
+	public void setStr_Day(String str_Day) {
+		this.str_Day = str_Day;
+	}
 	public String getStr_ApptAddress() {
 		return str_ApptAddress;
 	}
