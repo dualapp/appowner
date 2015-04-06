@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/#{expenseBean.templateIndicator}">
+	<ui:define name="content">
+  <f:metadata>
+	 
+	 
+	<f:viewAction action="#{loginBean.getUserExtraInfo}" />
+</f:metadata>
+	 
+<h:head>
+</h:head>
+<h:body>
+<h:form>
+<div id="container">
+
+<div id="timelineContainer">
+<!-- timeline background -->
+<div id="timelineBackground">
+<img src="uploads/backgroundimage.jpg" class="bgImage" style="margin-top: -10px;"/>
+</div>
+
+<!-- timeline background -->
+<div id="timelineShade">
+<form id="bgimageform" method="post" enctype="multipart/form-data" action="image_upload_ajax_bg.php">
+<div class="uploadFile timelineUploadBG">
+<input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input" />
+</div>
+</form>
+</div>
+
+<!-- timeline profile picture -->
+ 
+<div class="uploadFile timelineUploadBG">
+<input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input" />
+</div>
+
+<!-- timeline title -->
+<div id="timelineTitle">Srinivas Tamada</div>
+
+<!-- timeline nav -->
+<div id="timelineNav"></div>
+
+</div>
+</div>
+</h:form>
+</h:body>
+</ui:define>
+</ui:composition>

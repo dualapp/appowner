@@ -167,11 +167,11 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	</tr>
 	<tr><th><p:outputLabel for="size" value="Size of House (Sqft.)" /> </th>
              
-	<td><p:inputText   id="size"   validatorMessage="size should be  Double only"  value="#{apartmentDetailsBean.housedetails.dbl_HouseSize}">
-	 <f:convertNumber integerOnly="true" type="number" />
+	<td><p:inputText   id="size"   onkeyup="this.value=this.value.replace(/[^\d]/,'')"  value="#{apartmentDetailsBean.housedetails.dbl_HouseSize}">
+	
 	 </p:inputText>
 	</td>
-	 <p:message  id="sizeMsg1" for="size" display="text"/>
+	 
 	</tr>
 	<tr><th><p:outputLabel value="Type Of House" /> </th>
 	<td><h:selectOneMenu  value="#{apartmentDetailsBean.housedetails.str_TypeOfHouse}" > 
@@ -184,19 +184,19 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                  </h:selectOneMenu></td></tr>
 	<tr><th><p:outputLabel for="noOfBathRoom" value="No Of BathRoom" /> </th>
              
-	<td><p:inputText     id="noOfBathRoom"  validatorMessage="No Of BathRoom should be  Number only" value="#{apartmentDetailsBean.housedetails.int_NoOfBathRooms}">
-	 <f:convertNumber integerOnly="true" type="number" />
+	<td><p:inputText     id="noOfBathRoom"  onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{apartmentDetailsBean.housedetails.int_NoOfBathRooms}">
+	
 	</p:inputText>
 	</td>
-	<p:message  id="noOfBathRoomMsg1" for="noOfBathRoom" display="text"/>
+	 
 	</tr>
 	<tr><th><p:outputLabel  for="noOfBalconies" value="No Of Balconies" /> </th>
             
-	<td><p:inputText   id="noOfBalconies"  validatorMessage="No Of Balconies should be Number only"  value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}">
-	 <f:convertNumber integerOnly="true" type="number" />
+	<td><p:inputText   id="noOfBalconies"  onkeyup="this.value=this.value.replace(/[^\d]/,'')"  value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}">
+	
 	</p:inputText>
 	</td>
-	 <p:message  id="noOfBalconiesMsg1" for="noOfBalconies" display="text"/>
+	 
 	</tr>
 	<tr><th><p:outputLabel value="Rented" /> </th>
           <td><h:selectOneMenu    value="#{apartmentDetailsBean.housedetails.is_Rented}"> 
@@ -210,7 +210,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </table>
 	 <div>
 	 <hr/>
-	  <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,HouseNoMsg1,sizeMsg1,noOfBathRoomMsg1,noOfBalconiesMsg1"  value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" oncomplete="handleRequest1(xhr, status, args)"/>
+	  <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,HouseNoMsg1" value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" oncomplete="handleRequest1(xhr, status, args)"/>
 	 
 	  
 	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
@@ -268,11 +268,11 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	</tr>
 	<tr><th><p:outputLabel  for="size1" value="Size of House (Sqft.)" /> </th>
              
-	<td><p:inputText    id="size1" value="#{apartmentDetailsBean.dbl_HouseSize}">
-	<f:convertNumber integerOnly="true" type="number" />
+	<td><p:inputText   onkeyup="this.value=this.value.replace(/[^\d]/,'')"  id="size1" value="#{apartmentDetailsBean.dbl_HouseSize}">
+	 
 	</p:inputText>
 	</td>
-	<p:message  id="size1Msg" for="size1" display="text"/>
+	 
 	</tr>
 	<tr><th><p:outputLabel value="Type Of House" /> </th>
 	<td><h:selectOneMenu  value="#{apartmentDetailsBean.str_TypeOfHouse}" > 
@@ -285,19 +285,19 @@ Unless the Community Setup is complete, the changes that are made will not be sa
                  </h:selectOneMenu></td></tr>
 	<tr><th><p:outputLabel  for="NoOfBathRoom1" value="No Of BathRoom" /> </th>
              
-	<td><p:inputText  validatorMessage="No Of BathRoom should be  Number only"   id="NoOfBathRoom1" value="#{apartmentDetailsBean.int_NoOfBedRooms}">
-	 <f:convertNumber integerOnly="true" type="number" />
+	<td><p:inputText  onkeyup="this.value=this.value.replace(/[^\d]/,'')"   id="NoOfBathRoom1" value="#{apartmentDetailsBean.int_NoOfBedRooms}">
+	
 	</p:inputText>
 	</td>
-	 <p:message  id="NoOfBathRoom1Msg1" for="NoOfBathRoom1" display="text"/>
+	 
 	</tr>
 	<tr><th><p:outputLabel for="noOfBalconies1" value="No Of Balconies" /> </th>
             
-	<td><p:inputText  id="noOfBalconies1"  validatorMessage="No Of Balconies should be  Number only"  value="#{apartmentDetailsBean.int_NoOfBalconies}">
-	 <f:convertNumber integerOnly="true" type="number" />
+	<td><p:inputText  id="noOfBalconies1" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  value="#{apartmentDetailsBean.int_NoOfBalconies}">
+	
 	</p:inputText>
 	</td>
-	<p:message  id="noOfBalconies1Msg1" for="noOfBalconies1" display="text"/>
+	 
 	</tr>
 	<tr><th><p:outputLabel value="Rented" /> </th>
           <td><h:selectOneMenu  id="isRented" value="#{apartmentDetailsBean.is_Rented}"> 
@@ -311,7 +311,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 </table>
 	 <div>
 	 <hr/>
-	   <p:commandButton   styleClass="btn" id="submit"  value="Confirm"    update=":form:DT :form:ui-growl,HouseNoMsg,NoOfBathRoom1Msg1,noOfBalconies1Msg1,size1Msg"  action="#{apartmentDetailsBean.saveHouseDetails}" oncomplete="handleRequest(xhr, status, args)" />
+	   <p:commandButton   styleClass="btn" id="submit"  value="Confirm"    update=":form:DT :form:ui-growl,HouseNoMsg"  action="#{apartmentDetailsBean.saveHouseDetails}" oncomplete="handleRequest(xhr, status, args)" />
 	 
 	 
 	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
