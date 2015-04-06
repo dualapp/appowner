@@ -307,6 +307,12 @@ public class ApartmentDetailsBean  implements Serializable{
 	{
 		if(selectedBlock1!=null)
 		{
+			String str_BlockName1=getApartmentDetailsService().checkBlock(selectedBlock1.getStr_BlockName(),Util.getAppartmentId());
+			if(selectedBlock1.getStr_BlockName().equalsIgnoreCase(str_BlockName1))
+			{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block with same name already exist in appartment!"));
+				return "blockdetails.xhtml";
+			}
 			Integer blockId=selectedBlock1.getInt_BlockId();
 			UserBlocks block=getApartmentDetailsService().getBlock(blockId);
 			String oldBlock=block.getStr_BlockName();
@@ -416,8 +422,15 @@ public class ApartmentDetailsBean  implements Serializable{
 	}
 	public String saveBlockDetails()
 	{
+		
 		if(str_BlockName!=null)
 		{
+			String str_BlockName1=getApartmentDetailsService().checkBlock(str_BlockName,Util.getAppartmentId());
+			if(str_BlockName.equalsIgnoreCase(str_BlockName1))
+			{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block with same name already exist in appartment!"));
+				return "blockdetails.xhtml";
+			}
 		UserBlocks ub=new UserBlocks();
 		ub.setInt_NoOfHouses(int_NoOfHouse);
 		ub.setStr_BlockName(str_BlockName);
@@ -496,7 +509,14 @@ public class ApartmentDetailsBean  implements Serializable{
 	public String updateHouseDetails()
 	{
 		if(housedetails!=null)
-		{ Integer houseId=housedetails.getInt_HouseId();
+		{ 
+			String str_HouseNo1=getApartmentDetailsService().checkHouse(housedetails.getStr_HouseNo(),Util.getAppartmentId(),housedetails.getInt_BlockId());
+			if(housedetails.getStr_HouseNo().equalsIgnoreCase(str_HouseNo1))
+			{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House No with same name already exist in Block!"));
+				return null;
+			}
+			Integer houseId=housedetails.getInt_HouseId();
 		HouseDetails housedetails1=getApartmentDetailsService().getHouseDetails(houseId);
 		String oldHouseNo=housedetails1.getStr_HouseNo();
 		String newHouseNo=housedetails.getStr_HouseNo();
@@ -531,7 +551,14 @@ public class ApartmentDetailsBean  implements Serializable{
 	public String saveHouseDetails()
 	{ 
 		if(str_HouseNo!=null)
-		{
+		{ 
+			Integer houseId=getApartmentDetailsService().getBlockId(str_BlockName);
+			String str_HouseNo1=getApartmentDetailsService().checkHouse(str_HouseNo,Util.getAppartmentId(),houseId);
+			if(str_HouseNo.equalsIgnoreCase(str_HouseNo1))
+			{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House Nowith same name already exist in Block!"));
+				return null;
+			}
 		housedetails=new HouseDetails();
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
 		
