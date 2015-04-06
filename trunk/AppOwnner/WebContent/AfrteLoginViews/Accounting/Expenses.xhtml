@@ -269,7 +269,7 @@
  <th>
     <p:outputLabel value="Ammount:"/></th>
     <td>
-    <p:inputText value="#{ex.int_Ammount}"/></td>  
+    <p:inputText onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{ex.int_Ammount}"/></td>  
     </tr>
        </table>
        <div>
