@@ -76,10 +76,9 @@
            
              <tr>
                 <th><p:outputLabel for="vendorphone" value="Phone  " /> </th>
-                <td><p:inputText id="vendorphone"  placeholder="Phone" value="#{vendorBean.str_VendorPhone}"   maxlength="11" required="true"  validatorMessage="invalid mobile no" requiredMessage=" Phone No Required">
+                <td><p:inputText id="vendorphone" validatorMessage="Required 10 digit" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  placeholder="Phone" value="#{vendorBean.str_VendorPhone}"   maxlength="10" required="true"    requiredMessage=" Phone No Required">
                     <f:validateLength minimum="10" />
-                    <f:validateRegex pattern="^([+]?[\d]+)?$" />
-                    <p:ajax event="keyup" update="vendorPhoneMsg" />
+                   <p:ajax event="blur" update="vendorPhoneMsg" />
               </p:inputText>
                    
                 </td>
@@ -169,9 +168,9 @@
 	   <td> <p:inputText value="#{str_ServiceName}" placeholder="Service" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
 	   </td></tr>
 	   <tr><th>  <p:outputLabel value="Price"/></th>
-	   <td> <p:inputText  value="#{int_ServicePrice}"  placeholder="Price(in double)" validatorMessage="Price should be  Double only"  valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
+	   <td> <p:inputText  value="#{int_ServicePrice}"  placeholder="Price(in double)" onkeyup="this.value=this.value.replace(/[^\d]/,'')" valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
 	      
-    <f:convertNumber integerOnly="true" type="number" />
+    
 	   </p:inputText></td>
 	    
 	   </tr>  </c:forEach> 
@@ -203,7 +202,7 @@
            
             <tr>
                 <th width="20%"><p:outputLabel for="vendorbankaccount" value="Account Number  " /></th>
-                <td width="30%"><p:inputText id="vendorbankaccount" placeholder="Account Number"  maxlength="11"  value="#{vendorBean.str_VendorBankAccount}" 
+                <td width="30%"><p:inputText onkeyup="this.value=this.value.replace(/[^\d]/,'')"  id="vendorbankaccount" placeholder="Account Number"  maxlength="11"  value="#{vendorBean.str_VendorBankAccount}" 
                  converterMessage="Please enter digits only." validatorMessage="Please enter 11 digits." >
     
       <f:validateRegex pattern="(^[0-9]{11}$)" />

@@ -41,7 +41,7 @@ and members associated.</p>
    </h:selectManyCheckbox>
 </td>
 </tr>
-<tr><th>Year Of Completion</th><td><p:inputText value="#{apartmentDetailsBean.int_year}" /></td></tr>
+<tr><th>Year Of Completion</th><td><p:inputText  minlength="2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{apartmentDetailsBean.int_year}" /></td></tr>
 <tr><th>No Of Blocks(if any)</th><td><p:inputText disabled="true" value="#{apartmentDetailsBean.int_NoOfBlock}" /></td></tr>
 <tr><th>Total No Of Houses</th><td><p:inputText  disabled="true" value="#{apartmentDetailsBean.int_TotalHouse}" /></td></tr>
  
