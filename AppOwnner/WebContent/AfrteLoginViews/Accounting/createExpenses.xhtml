@@ -76,7 +76,7 @@
                   </p:calendar>
                     
              </td>     
-             <td><p:inputText id="Amount" style="width:150px"  required="true" requiredMessage="Enter Amount" value="#{expenseBean1.int_Ammount}" valueChangeListener="#{expenseBean1.amountListener}">
+             <td><p:inputText id="Amount" style="width:150px"   onkeyup="this.value=this.value.replace(/[^\d]/,'')" required="true" requiredMessage="Enter Amount" value="#{expenseBean1.int_Ammount}" valueChangeListener="#{expenseBean1.amountListener}">
              
              </p:inputText> 
              
@@ -126,7 +126,7 @@
                   </p:calendar>
                     
              </td>     
-             <td><p:inputText id="Amount1"  value="#{expenseBean1.int_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean1.amountListener}">
+             <td><p:inputText id="Amount1" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  value="#{expenseBean1.int_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean1.amountListener}">
              
              </p:inputText> 
              

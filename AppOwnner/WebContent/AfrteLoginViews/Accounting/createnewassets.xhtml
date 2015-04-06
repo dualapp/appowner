@@ -126,7 +126,7 @@
         </p:calendar>
         <p:message id="PDateMsg"  for="PDate" display="text"/>
       </td> 
-                   <th> <p:outputLabel for="price" value="Price"/></th> <td><p:inputText id="price" value="#{expenseBean.dbl_Price}"/></td></tr>
+                   <th> <p:outputLabel for="price" value="Price"/></th> <td><p:inputText id="price" onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{expenseBean.dbl_Price}"/></td></tr>
                    <tr><th><p:outputLabel  for="WSDate" value="Warrenty Start Date"/></th><td><p:calendar id="WSDate"  required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyStartDate}">
                   
                    </p:calendar>
