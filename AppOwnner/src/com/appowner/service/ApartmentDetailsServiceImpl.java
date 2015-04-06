@@ -282,6 +282,21 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 		getApartmentDetailsDao().updateBlockTotalhouse(str_BlockName,int_TotalHouse);
 	}
 
+	@Override
+	public String checkBlock(String str_BlockName, Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().checkBlock(str_BlockName,appartmentId);
+	}
+ 
+
+	@Override
+	public String checkHouse(String str_HouseNo, Integer appartmentId,
+			Integer int_BlockId) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().checkHouse( str_HouseNo,  appartmentId, int_BlockId);
+				 
+	}
+
 	 
 
 }

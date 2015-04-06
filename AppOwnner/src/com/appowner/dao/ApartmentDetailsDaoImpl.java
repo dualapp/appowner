@@ -342,5 +342,18 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		 Integer blockId=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_BlockId from UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, Util.getAppartmentId()).uniqueResult();
 		getSessionFactory().getCurrentSession().createQuery("UPDATE UserBlocks SET int_NoOfHouses=? WHERE int_ApartmentID=? and int_BlockId=?").setParameter(0, i).setParameter(1, Util.getAppartmentId()).setParameter(2, blockId).executeUpdate();
 	}
+
+	@Override
+	public String checkBlock(String str_BlockName, Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return (String) getSessionFactory().getCurrentSession().createQuery("select str_BlockName from UserBlocks where str_BlockName=? and int_ApartmentId=?").setParameter(0, str_BlockName).setParameter(1, Util.getAppartmentId()).uniqueResult();
+	}
+
+	@Override
+	public String checkHouse(String str_HouseNo, Integer appartmentId,
+			Integer int_BlockId) {
+		// TODO Auto-generated method stub
+		return (String) getSessionFactory().getCurrentSession().createQuery("select str_HouseNo from HouseDetails where int_BlockId=? and int_ApartmentId=? and str_HouseNo=?").setParameter(0,int_BlockId).setParameter(1, Util.getAppartmentId()).setParameter(2,str_HouseNo).uniqueResult();
+	}
 	
 }

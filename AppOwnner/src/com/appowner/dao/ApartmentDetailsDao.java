@@ -95,4 +95,9 @@ public interface ApartmentDetailsDao {
 
 	void updateBlockTotalhouse(String str_BlockName, Long int_TotalHouse);
 
+	String checkBlock(String str_BlockName, Integer appartmentId);
+
+	String checkHouse(String str_HouseNo, Integer appartmentId,
+			Integer int_BlockId);
+
 }
