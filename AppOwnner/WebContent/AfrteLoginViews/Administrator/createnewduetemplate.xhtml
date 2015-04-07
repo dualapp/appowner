@@ -91,8 +91,8 @@
             
               <tr>
                <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}"  disabled="#{templateBean.str_Calculation eq 'None'}" required="true" requiredMessage="It Should be a Number"/>
-                 <p:message   for="str_Rate"  /> </td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  disabled="#{templateBean.str_Calculation eq 'None'}" required="true" requiredMessage="It Should be a Number"/>
+                 <p:message   for="str_Rate"  display="text"/> </td>
           
               </tr>
               
