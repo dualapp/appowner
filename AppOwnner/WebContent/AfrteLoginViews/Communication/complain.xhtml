@@ -38,7 +38,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/images.jpg" height="50" width="50"></img> <span class="title">send us your complain or queries.</span>
+					<img src="#{expenseBean.str_Name}images/images.jpg" height="50" width="50"></img> <span class="title">Send us your complain or queries.</span>
 				</td>
 			</tr>
 		</tbody>
@@ -123,11 +123,11 @@
            <tr>
             <td><h:outputText  value="Complain Nature*:" /></td>
             
-             <td><h:selectOneRadio id="options" value="#{complainBean.ch_Complain}"  required="true" requiredMessage="Compalint Nature should not Empty">
+             <td><p:selectOneRadio id="options" value="#{complainBean.ch_Complain}"  required="true" requiredMessage="Compalint Nature should not Empty">
                 <f:selectItem itemLabel="Complaint" itemValue="C" />
                 <f:selectItem itemLabel="Suggestion" itemValue="S" />
                  <f:selectItem itemLabel="Maintenance Activity" itemValue="P" />
-               </h:selectOneRadio>
+               </p:selectOneRadio>
             </td>
             </tr>
         
