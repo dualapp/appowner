@@ -364,8 +364,85 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 		return getProductDao().usremail(id);
 	}
 
+	@Override
+	public Cls_ProductDetails usrpostid(Integer postid) {
+		// TODO Auto-generated method stub
+	 return getProductDao().usrpostid( postid);
+	}
+
+	@Override
+	public int addid(Integer postid) {
+		// TODO Auto-generated method stub
+		 return getProductDao().addid(postid);
+	}
+
+	@Override
+	public void updatePic(Integer integer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatePics(Integer int_ProductId,String var_ImageName) {
+		 getProductDao().updatePics(int_ProductId,var_ImageName);
+		
+	}
+
+	@Override
+	public int subcategoryid(Integer postid) {
+		return	getProductDao().subcategoryid(postid);
+		 
+	}
+
+	@Override
+	public String subcatname(int subcatid) {
+		return	getProductDao().subcatname(subcatid);
+	}
+
+	@Override
+	public int subcategoryname(Integer postid) {
+		return	getProductDao().subcategoryname(postid);
+	}
+
+	@Override
+	public String subscatnames(int subcategoryId) {
+		return	getProductDao().subscatnames(subcategoryId);
+	}
+
+	@Override
+	public int subcategoryids(Integer postid) {
+		return	getProductDao().subcategoryids( postid);
+	}
+
+	@Override
+	public String subcatnames(int subcatids) {
+		return	getProductDao().subcatnames(subcatids);
+	}
+
+	@Override
+	public List<String> getCatmessage(int int_Ad_categoryId) {
+		// TODO Auto-generated method stub
+		return getProductDao().getCatmessage(int_Ad_categoryId);
+	}
+
+	@Override
+	public String getProductImg(Integer int_ProductId) {
+		// TODO Auto-generated method stub
+		return getProductDao().getProductImg(int_ProductId);
+	}
+
+	@Override
+	public void deleteselected(Integer int_ProductId) {
+		getProductDao().deleteselected(int_ProductId);
+		
+	}
+
 	
-}	
+		
+	}
+
+	
+	
 
 	
 	

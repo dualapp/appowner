@@ -43,5 +43,6 @@ public void deleteTax1(List<TaxTemplate> delete);
 public boolean detectDueTemplate(String str);
 public String getCalculation();
 public int getTaxID(String str);
+public boolean detectInvoiceTemplate(String str);
 
 }

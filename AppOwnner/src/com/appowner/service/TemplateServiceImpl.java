@@ -151,6 +151,10 @@ public class TemplateServiceImpl implements TemplateService {
 	  {
 		 return getTemplateDao().detectDueTemplate(str);
 	  }
+	  public boolean detectInvoiceTemplate(String str)
+	  {
+		  return getTemplateDao().detectInvoiceTemplate(str); 
+	  }
 	  public String getCalculation()
 			  {
 				  return getTemplateDao().getCalculation(); 
