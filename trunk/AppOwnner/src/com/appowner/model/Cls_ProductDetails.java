@@ -23,7 +23,27 @@ import javax.persistence.Table;
 	private Integer Int_ProductId;
 	@Column
 	private int int_Ad_categoryId;
-
+	private String str_Email;
+	private String str_Block;
+	private String str_PhoneNo;
+	public String getStr_Email() {
+		return str_Email;
+	}
+	public void setStr_Email(String str_Email) {
+		this.str_Email = str_Email;
+	}
+	public String getStr_Block() {
+		return str_Block;
+	}
+	public void setStr_Block(String str_Block) {
+		this.str_Block = str_Block;
+	}
+	public String getStr_PhoneNo() {
+		return str_PhoneNo;
+	}
+	public void setStr_PhoneNo(String str_PhoneNo) {
+		this.str_PhoneNo = str_PhoneNo;
+	}
 	public int getInt_Ad_categoryId() {
 	return int_Ad_categoryId;
 	}
@@ -45,14 +65,16 @@ import javax.persistence.Table;
 	private String username;
 	private Date dt_date;
 	private String Status;
-	private int int_subcategoryId;
+	private Date closedate;
 	
 	
-	public int getInt_subcategoryId() {
-		return int_subcategoryId;
+	
+	
+	public Date getClosedate() {
+		return closedate;
 	}
-	public void setInt_subcategoryId(int int_subcategoryId) {
-		this.int_subcategoryId = int_subcategoryId;
+	public void setClosedate(Date closedate) {
+		this.closedate = closedate;
 	}
 	public String getStatus() {
 		return Status;
@@ -143,23 +165,30 @@ import javax.persistence.Table;
 	public void setVar_Ad_CategoryName(String var_Ad_CategoryName) {
 		this.var_Ad_CategoryName = var_Ad_CategoryName;
 	}
-	
-	 
-	private String str_ApartmentName;
-
-	public String getStr_ApartmentName() {
+private String str_ApartmentName;
+public String getStr_ApartmentName() {
 		return str_ApartmentName;
 	}
 	public void setStr_ApartmentName(String str_ApartmentName) {
 		this.str_ApartmentName = str_ApartmentName;
 	}
-	private boolean selected;
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-	public boolean isSelected() {
-	    return selected;
-	  }
+private String var_subscategoryname;
+
+public String getVar_subscategoryname() {
+	return var_subscategoryname;
+}
+public void setVar_subscategoryname(String var_subscategoryname) {
+	this.var_subscategoryname = var_subscategoryname;
+}
+private int int_subcategoryId;
+
+public int getInt_subcategoryId() {
+	return int_subcategoryId;
+}
+public void setInt_subcategoryId(int int_subcategoryId) {
+	this.int_subcategoryId = int_subcategoryId;
+}
+
 	
 	}
 
