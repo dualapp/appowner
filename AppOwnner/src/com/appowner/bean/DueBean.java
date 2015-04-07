@@ -29,6 +29,7 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
 import com.appowner.model.DueTransaction;
 import com.appowner.service.DueService;
 import com.appowner.util.Util;
@@ -417,15 +418,48 @@ public class DueBean implements Serializable{
 	public static void setId(Integer id) {
 		DueBean.id = id;
 	}
+	private boolean indicate;
 	public String select()
-	{  System.out.println("hhhhhh");
+	{   try{ 
+		   if(indicate==false)
+		   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+			   FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Please Select an Item to View","Please Select an Item to View")); 
+				return "dues.xhtml";
+		   }
+		   else
+		   { 
+			   System.out.println("11111111111111111111111111111111111166666666666644444444444444444");
 		System.out.println(selectedDue.getInt_DueTransactionID()+"gfvgfg");
 		id=selectedDue.getInt_DueTransactionID();
 		dueTranasction=getDueService().getDueTransaction(selectedDue.getInt_DueTransactionID());
 		System.out.println(dueTranasction.getStr_Status()+"ffgkjfgjk");
 		return "viewuserdues.xhtml";
+		   }
+	    }
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return null;
 	}
 	public String deleteDues(){
+		try
+		{
+		if(indicate==false)
+		{
+			 FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Please Select an Item to View","Please Select an Item to View")); 
+				return "dues.xhtml?faces-redirect=true";
+		}
+		else
+		{
 		System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
 		Integer id=selectedDue.getInt_DueTransactionID();
@@ -446,9 +480,14 @@ public class DueBean implements Serializable{
 		System.out.println("hjjcjdf");
 		}
 	    return "dues.xhtml";
-
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 			
-			
+	return null;		
 	} 
 	{
 		

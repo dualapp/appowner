@@ -51,6 +51,18 @@ public class StringConverter  implements Converter {
 			    	String str1=str.concat("xpense");
 			    	return str1; 
 		     }
+		     else if(c=='S')
+		     {
+		    	 String str3=c.toString();
+			     String str4=str3.concat("uggstion");
+			     return str4;
+		     }
+		     else if(c=='c')
+		     {
+		    	 String str3=c.toString();
+			     String str4=str3.concat("omplain");
+			     return str4;
+		     }
 		     else
 		     {String str3=c.toString();
 		     String str4=str3.concat("ustom");

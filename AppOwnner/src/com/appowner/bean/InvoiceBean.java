@@ -22,6 +22,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.component.datatable.DataTable;
+import org.primefaces.event.SelectEvent;
 
 import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
@@ -1111,7 +1112,7 @@ private List<DueTransaction> listDueTransaction;
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	 System.out.println(taxAmount1+"fkjdfkjfg");
 			    	 taxAmount1=taxAmount1-taxexceptionAmount;
-			    	 System.out.println(taxAmount1+"dfjkkjfdjkfd");
+			    	 System.out.println(taxAmount1);
 			    	 taxAmounts.add(taxAmount1);
 			    	 tax1=taxAmounts;  //for Mail purpose
 			    	 System.out.println(taxAmounts+"jkkjkjjk");
@@ -1259,10 +1260,28 @@ public static void setId(Integer id) {
 }
 
 public String select()
-{   System.out.println(selectedInvoice.getInt_InvoiceTransactionID()+"fjfdjfdjffg");
-   id=selectedInvoice.getInt_InvoiceTransactionID();
-   
-	return "viewinvoice.xhtml";
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+	   FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Please Select an Item to View","Please Select an Item to View")); 
+		return "invoice.xhtml";
+   }
+   else
+   { id=selectedInvoice.getInt_InvoiceTransactionID(); 
+      System.out.println(id+"dfjkfjjkgfjkgf");
+	  return "viewinvoice.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
 }
 private static String invoiceNo;
 private static double totalAmount1;
@@ -1281,7 +1300,20 @@ public static void setPaidAmount(double paidAmount) {
 }
 public String cancel()
 
-{   id=selectedInvoice.getInt_InvoiceTransactionID();
+{  try
+   {
+	if(indicate==false)
+			{
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Please Select an Item to View","Please Select an Item to View")); 
+		return "invoice.xhtml";
+			}
+	else
+	{
+	id=selectedInvoice.getInt_InvoiceTransactionID();
 
      System.out.println(id+"fjgfjkgfgfkj");
   str_Status=getInvoiceService().getStatus(id);
@@ -1317,8 +1349,14 @@ public String cancel()
 	  System.out.println(totalAmount1+"fkjfdkjfdkj");
 	    return "quickpayment.xhtml";
 	  }
+   }
+  }
+catch(Exception e)
+{
+	e.printStackTrace();
+}
 
-	
+return null;	
 }
 
 private List<String> dueList3;
@@ -1386,8 +1424,19 @@ public double changeAccount(ValueChangeEvent event)
 	return totalAmount1;
 }
 public String deleteInvoice() {
-	
-System.out.println("fddffdk");
+try
+{
+if(indicate==false)
+{
+	 FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Please Select an Item to View","Please Select an Item to View")); 
+		return "invoice.xhtml?faces-redirect=true";
+}
+else
+{
 	Integer id=selectedInvoice.getInt_InvoiceTransactionID();
 	String str=selectedInvoice.getInt_InvoiceNo();
 	
@@ -1403,5 +1452,26 @@ System.out.println("fddffdk");
 		getInvoiceService().deleteDues(str);
     return "invoice.xhtml?faces-redirect=true";
 }
-
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+}
+return null;
+}
+public void desabled1Listener( SelectEvent event)
+{  
+	selectedInvoice=(InvoiceTransaction) event.getObject();
+	
+	if(selectedInvoice.getStr_Status().equalsIgnoreCase("Paid"))
+	{
+		indicate=true;
+		
+	}
+	else
+	{
+		indicate=false;
+	}
+	 
+}
 }

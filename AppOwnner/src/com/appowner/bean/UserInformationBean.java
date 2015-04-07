@@ -65,10 +65,20 @@ public class UserInformationBean implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	private static String userName;
 	
-	
+	public static String getUserName() {
+		return userName;
+	}
+
+	public static void setUserName(String userName) {
+		UserInformationBean.userName = userName;
+	}
+
 	public String validate (String name1,String Password)  
 	{	System.out.println("11111111111111111111111111111111111111111111111111111111111111");
+	     userName=name1;
+	     name=userName;
 		user=getAdminService().validate(name1,Password);
 		System.out.println(user+"fdkkgkgfkgf");
 	          if(user==null)
@@ -305,6 +315,8 @@ public class UserInformationBean implements Serializable{
 					inputStream.close();
 				}
 			}
+			indicator1=true;
+			indicator=false;
 			return null;    // return to same page
 		}
 	 

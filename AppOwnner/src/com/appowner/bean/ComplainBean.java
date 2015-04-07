@@ -62,6 +62,7 @@ public class ComplainBean implements Serializable{
 	}
 	private char ch_Complain;
 	public char getCh_Complain() {
+		ch_Complain='C';
 		return ch_Complain;
 	}
 	public void setCh_Complain(char ch_Complain) {
@@ -79,6 +80,7 @@ public class ComplainBean implements Serializable{
 	private String str_ComplainType;
 
 	public String getStr_ComplainType() {
+		//str_ComplainType="Community";
 		return str_ComplainType;
 	}
 	public void setStr_ComplainType(String str_ComplainType) {

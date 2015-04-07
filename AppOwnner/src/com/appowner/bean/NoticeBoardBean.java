@@ -442,8 +442,14 @@ notice.setDat_ExpireOn(date1);
 	//FILE UPLOAD CONCEPT
 	
     private String txtfile;
+    private String txtfile1;
 	
-	
+	public String getTxtfile1() {
+		return txtfile1;
+	}
+	public void setTxtfile1(String txtfile1) {
+		this.txtfile1 = txtfile1;
+	}
 	public String getTxtfile() {
 		return txtfile;
 	}
@@ -453,8 +459,13 @@ notice.setDat_ExpireOn(date1);
 	private Part part;
 	private String statusMessage;
 	private String path2;
-    public String getPath2() {
-		return path2;
+	
+	public String getPath2() {
+		if(path2==null)
+		{
+			path2 = "/images/no_attach.png";
+		}
+		 return path2;
 	}
 	public void setPath2(String path2) {
 		this.path2 = path2;
@@ -468,9 +479,21 @@ notice.setDat_ExpireOn(date1);
 		System.out.println(FileUploadValidator.filename+"gvfjkgfjkf");
 		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
 	System.out.println(part.getContentType());
+	    if(part.getContentType().equals("image/jpeg"))
+	    {
+	    	txtfile="false";
+	    	txtfile1="false";
+	    }
 	    if(part.getContentType().equals("text/plain"))
 	    {
 	    	txtfile="true";
+	    	txtfile1="false";
+	    	
+	    }
+	    if(part.getContentType().equals("application/msword")||part.getContentType().equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
+	    {
+	    	txtfile="false";
+	    	txtfile1="true";
 	    }
 		System.out.println(fileName+"dfjkjkfjkfd");
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
