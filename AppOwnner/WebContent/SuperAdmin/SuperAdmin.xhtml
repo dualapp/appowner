@@ -8,7 +8,31 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
+<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:250px;
+          }
+          select
+          {
+           height:25px;
+           weight:250px;
+          }
+        
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
 
+}
+      </style>	
+ 
 <title>App-Ownner</title>
 
 <meta charset="utf-8"/>
@@ -85,7 +109,7 @@
        
  
  <h:form>
-  
+   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
 
  
   <fieldset style="width: 43em;height:30em;margin-left:20%;margin-bottom:5%;"><legend><h:commandButton   value="Login"  action="#" style="background-color:blue; color:#fff;"/> </legend>
