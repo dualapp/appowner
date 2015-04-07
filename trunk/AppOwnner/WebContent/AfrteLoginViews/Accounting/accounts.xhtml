@@ -55,6 +55,22 @@
         }
         
     }
+    function handleRequest1(xhr, status, args) 
+    {  
+        if(args.validationFailed)
+             {
+           
+        	 PF('multiAccountDialog1').show();
+            
+        } 
+        else{
+        	 
+         
+        	PF('multiAccountDialog1').hide();
+        	
+        }
+        
+    }
       </script>
       
 </h:head>
@@ -134,8 +150,9 @@
     </h:form>
     
      
-      <p:dialog header="Add New Bank Account" widgetVar="multiAccountDialog"  id="multiAccountDetail"   showEffect="explode" hideEffect="explode" resizable="false" height="550" width="600">
+      <p:dialog header="Add New Bank Account" widgetVar="multiAccountDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="550" width="600">
       <h:form id="addform">
+       <p:outputPanel id="multiAccountDetail" style="text-align:center;">
       <table>
       <tr>
       <td>Please Note:</td>
@@ -214,9 +231,10 @@
            </tr>
   
       </table>
+      </p:outputPanel>
       </h:form>
          </p:dialog>
-         <p:dialog header="Transfer Funds" widgetVar="multiAccountDialog1"  id="multiAccountDetail1"   showEffect="explode" hideEffect="explode" resizable="false" height="400" width="700">
+         <p:dialog header="Transfer Funds" widgetVar="multiAccountDialog1"  id="multiAccountDetail1"   showEffect="explode" hideEffect="explode" resizable="false" height="500" width="800">
          <h:form id="addform1">
           <table>
       <tr>
@@ -231,9 +249,11 @@
       </tr>
       <tr>
       <td><h:outputText value="Enter Amount: " /><font color="red">*</font></td>
-      <td><p:inputText value="#{accountsBean.dob_transfer_Amount}" placeholder="Enter Amount"/></td>
+      <td><p:inputText id="amount" value="#{accountsBean.dob_transfer_Amount}" placeholder="Enter Amount" required="true"/>
+       <p:message for="amount" display="icon"/></td>
       <td><h:outputText value="Transfer Date:  " /><font color="red">*</font></td>
-        <td><p:calendar value="#{accountsBean.dat_transfer_Date}" placeholder="Transfer Date"/></td>
+        <td><p:calendar id="calendar" value="#{accountsBean.dat_transfer_Date}" placeholder="Transfer Date"/>
+         <p:message for="calendar" display="icon"/></td>
       </tr>
      
        <tr>
@@ -250,13 +270,13 @@
       
        <tr>
        <td><h:outputText value="Add Notes:  " /><font color="red">*</font></td>
-        <td><p:inputTextarea value="#{accountsBean.str_Notes}" placeholder="Why are you transferring this amount" /></td>
+        <td colspan="2"><h:inputTextarea value="#{accountsBean.str_Notes}" style="weight:250px;height:100px;" placeholder="Why are you transferring this amount" /></td>
       </tr>
        <tr>
       <td colspan="4"><p:separator/></td>
       </tr>
       <tr>
-                 <td><p:commandButton id="submit1" value="Transfer" action="#{accountsBean.addAccounts()}" ajax="false" /></td>
+                 <td><p:commandButton id="submit1" value="Transfer" styleClass="btn" action="#{accountsBean.addAccounts()}" oncomplete="handleRequest1(xhr, status, args)" update="calendar"/></td>
                  </tr>
       </table>
       </h:form>
