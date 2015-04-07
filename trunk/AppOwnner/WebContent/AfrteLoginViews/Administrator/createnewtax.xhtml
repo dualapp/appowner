@@ -53,19 +53,19 @@
                  <tr></tr><tr></tr><tr></tr><tr></tr>
            <tr>
             <td>  <h:outputText  value="Tax Name" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_TaxName" value="#{templateBean.str_TaxName}"   required="true" requiredMessage="It should not Empty"/> </td>
+           <td>  <p:inputText id="str_TaxName" value="#{templateBean.str_TaxName}"    required="true" requiredMessage="It should not Empty"/> </td>
            <td><p:message for="str_TaxName" dispay="text"/></td>
              </tr>
             
              <tr>
             <td>  <h:outputText  value="Percentage(%)" /><font color="red" >*</font></td>
-           <td>  <p:inputText id="int_Percentage" value="#{templateBean.int_Percentage}"   required="true" requiredMessage="Percentage should be a Number "/> </td>
+           <td>  <p:inputText id="int_Percentage" value="#{templateBean.int_Percentage}" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  required="true" requiredMessage="Percentage should be a Number "/> </td>
            <td><p:message for="int_Percentage" dispay="text"/></td>
              </tr>
              
               <tr>
             <td>  <h:outputText  value="Tax Exemption(Rs.)"/><br /><small>(per month per flat)</small></td>
-           <td>  <p:inputText id="int_TaxExemption" value="#{templateBean.int_TaxExemption}" required="true" requiredMessage="Rs. should be a Number " /> </td>
+           <td>  <p:inputText id="int_TaxExemption" value="#{templateBean.int_TaxExemption}" required="true" onkeyup="this.value=this.value.replace(/[^\d]/,'')" requiredMessage="Rs. should be a Number " /> </td>
             <td><p:message for="int_TaxExemption" dispay="text"/></td>
              </tr>
           
