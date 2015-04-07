@@ -6,7 +6,7 @@
 	template="../include/templates/template2.xhtml">
 	<ui:define name="content">
 <h:body>
-<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
 			<tr>
 				<td> 
@@ -16,31 +16,32 @@
 		</tbody>
 	</table>
   <div id="page3">
-   <table   style="width: 50%;margin-left: 1%;margin-right: 1%;margin-bottom:8px">
+   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:8px">
  <h:form>
- <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"  style="color:red">
- </h:messages>
+ 
  <table>        
   <tr>
-            <td><h:outputText value="Please Enter Subscription name* :">
+            <td><h:outputText value="Subscription name* :">
             </h:outputText>
             </td>            
            <td> <h:inputText id="subscriptname" value="#{scriptBean.subscriptname}" required="true" requiredMessage="Please Enter subscriptname!">
             </h:inputText>
             </td>
+          <td>  <h:messages for="subscriptname" display="text"/></td>
             </tr>
             <tr>
-            <td><h:outputText value="Please Enter price* :">
+            <td><h:outputText value="price* :">
             </h:outputText>
             </td>            
             <td><h:inputText id="price" value="#{scriptBean.price}" required="true" requiredMessage="Please Enter price!">
             </h:inputText> 	
             </td>
+             <td>  <h:messages for="price" display="text"/></td>
             </tr>
             <tr>
-            
-            <td><p:commandButton id="addUser" value="Submit" action="#{scriptBean.addUser}" ajax="false"  style=" float:right !important;margin: -30px 100px px 0px;"/> </td>
-               <td><p:button id="addUser1" value="Cancel" outcome="AddSubcription.xhtml" ajax="false" style=" float:right !important;margin: 0px 200px 0px 0px;"/></td>
+           <td></td>
+            <td><p:commandButton styleClass="btn" id="addUser" value="Submit" action="#{scriptBean.addUser}" ajax="false"  /> 
+              <p:button id="addUser1" styleClass="btn" value="Cancel" outcome="AddSubcription.xhtml" ajax="false" style="margin-left:2em;"/></td>
                </tr> 
                </table>  
             </h:form> 
