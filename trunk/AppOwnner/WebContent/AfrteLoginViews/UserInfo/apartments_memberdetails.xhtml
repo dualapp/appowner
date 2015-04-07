@@ -44,9 +44,7 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
     <p:outputPanel   rendered="#{request.getParameter('render1')}">
 				  <body onLoad="PF('newUserMsgDialog').show()"/>
 					</p:outputPanel>
-    <p:outputPanel   rendered="#{request.getParameter('render')}">
-				  <body onLoad="PF('multiDueTemplateDialog').show()" />
-					</p:outputPanel>
+    
        <h:form>
            <div id="page3">
   
@@ -73,9 +71,7 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
            <p:column headerText="Mobile"  width="100">
                 <h:outputText value="#{due.str_PhoneNo}" />
             </p:column>
-            <p:column headerText="Ownership"  width="100">
-                <h:outputText value="#{due.int_UserRole}" />
-            </p:column>
+           
              <p:column headerText="Name" width="100"  >
                 <h:outputText value="#{due.str_FirstName}" />&#150; &#150;<h:outputText value="#{due.str_LastName}" />
             </p:column>
@@ -104,24 +100,12 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
             
             
             </p:dataTable>
-            <p:dialog widgetVar="multiDueTemplateDialog" header="Message" showEffect="explode" hideEffect="explode" resizable="false" height="100" width="500" >
-             <table>
-      
-      <h5>Your account created successfully.....</h5>
-        
-         
-       
-   <h5>  <p:link target="_top" outcome="/layout.xhtml" 
-    value="Click here to Login" /></h5>
-         <h5>Thanks....</h5>
-         </table>
-         
-          </p:dialog>
+          
           <p:dialog widgetVar="newUserMsgDialog" header="Message" showEffect="explode" hideEffect="explode" resizable="false" height="100" width="500" >
              <table>
       
       <h5>New Member Added successfully.....</h5>
-          <h5>One email is sent to new member to activate his account ....</h5>
+          <h5>Email has been  send to given EmailAddress  to activate the account ....</h5>
          <h5>Thanks....</h5>
          </table>
          
@@ -129,18 +113,17 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
              <p:dialog header="Role Management" widgetVar="multiDueTemplateDialog3"    showEffect="explode" hideEffect="explode" resizable="false" height="600" width="900" minHeight="100">
         <p:outputPanel id="multiDueTemplateDetail3" style="text-align:center;">
        
- <h:messages style="color:red"/>
+ 
   <h:panelGroup layout="block" styleClass="selection">
 	<fieldset class="repeat">
-	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
-	  <h3 style="color:red">Current Roles of <h:outputText value="#{roleManagementBean.str_UserName}"/> are checked bellow. </h3>
-	 
+	<legend class="repeat" > You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
+	  
 	<p:selectManyCheckbox     value="#{roleManagementBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
-  <f:selectItems value="#{roleManagementBean.str_Roles}"  /><br/>
+       <f:selectItems value="#{roleManagementBean.str_Roles}"  />
    
 </p:selectManyCheckbox>
  
-<h5 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h5>
+<h3 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h3>
  </fieldset>
  </h:panelGroup>
 <br/><br/>
