@@ -297,6 +297,7 @@ public class ProductsDaoImpl implements ProductsDao{
 
 	@Override
 	public void updatedetails(Cls_ProductDetails productDetails) {
+		System.out.println(productDetails.getVar_ImageName()+"jkjkdkdffnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmm");
 		 sessionFactory.getCurrentSession().update(productDetails);
 		
 	}
@@ -513,7 +514,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
 		System.out.println(hql1);
 		 
-		 Integer cid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, var_Ad_SubCategoryName).uniqueResult();
+		 int cid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, var_Ad_SubCategoryName).uniqueResult();
 		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
 		 System.out.println(cid);
 		 return cid;
@@ -532,7 +533,157 @@ public class ProductsDaoImpl implements ProductsDao{
 		 return cid;
 	}
 
+	@Override
+	public Cls_ProductDetails usrpostid(Integer postid) {
+		System.out.println(postid+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		Cls_ProductDetails  cid= (Cls_ProductDetails) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
 	}
+
+	@Override
+	public int addid(Integer postid) {
+		//System.out.println(id+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="select int_Ad_categoryId from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		int cid=(int) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		 return cid;
+	}
+
+	@Override
+	public void updatePic(Cls_ProductDetails user) {
+		// TODO Auto-generated method stub
+	 String hql="update  Cls_ProductDetails set  Var_ImageName=? where int_ProductId=?";
+			 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "user").executeUpdate();
+			
+		}
+
+	@Override
+	public void updatePics(Integer int_ProductId,String var_ImageName) {
+		String hql="update  Cls_ProductDetails set  Var_ImageName=? where int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, var_ImageName).setParameter(1, int_ProductId).executeUpdate();
+		
+	}
+
+	@Override
+	public int subcategoryid(Integer postid) {
+		String hql1="select int_Ad_categoryId from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		int cid=(int) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		return cid;
+		
+	}
+
+	@Override
+	public String subcatname(int subcatid) {
+		String hql1="select var_Ad_CategoryName from Cls_categoryDetail  where int_Ad_categoryId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		String cid=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,subcatid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		return cid;
+		
+	}
+
+	@Override
+	public int subcategoryname(Integer postid) {
+		String hql1="select int_subcategoryId from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		int cid=(int) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		return cid;
+	}
+
+	@Override
+	public String subscatnames(int subcategoryId) {
+		String hql1="select var_subscategoryname from  Cls_subcategoryDetail where int_subcategoryId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		String cid=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,subcategoryId).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(cid);
+		return cid;
+	}
+
+	@Override
+	public int subcategoryids(Integer postid) {
+		String hql1="select int_subcategoryId from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		int subcatid=(int) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(subcatid);
+		return subcatid;
+		
+	}
+
+	@Override
+	public String subcatnames(int subcatids) {
+		String hql1="select var_subscategoryname from  Cls_subcategoryDetail where int_subcategoryId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		String subcatname=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,subcatids).uniqueResult();
+		 System.out.println("ccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+		 System.out.println(subcatname);
+		return subcatname;
+	}
+
+	@Override
+	public List<String> getCatmessage(int int_Ad_categoryId) {
+		// TODO Auto-generated method stub
+		//String catName=(String) getSessionFactory().getCurrentSession().createQuery("select var_Ad_CategoryName from Cls_categoryDetail where int_Ad_categoryId=?").setParameter(0, int_Ad_categoryId).uniqueResult(); 
+		return getSessionFactory().getCurrentSession().createQuery("select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?").setParameter(0, int_Ad_categoryId).list();
+	}
+
+	@Override
+	public String getProductImg(Integer int_ProductId) {
+		String hql1="select  Var_ImageName from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		String imagename=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,int_ProductId).uniqueResult();
+		 System.out.println("ccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+		 System.out.println(imagename);
+		return imagename;
+	}
+
+	@Override
+	public void deleteselected(Integer int_ProductId) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Cls_ProductDetails WHERE Int_ProductId="+int_ProductId).executeUpdate();
+	}
+		
+	}
+	
+
+	
 
 	
 
