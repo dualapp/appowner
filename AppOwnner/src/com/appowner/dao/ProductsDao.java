@@ -126,6 +126,34 @@ public interface ProductsDao {
 
 	public String usremail(int id);
 
+	public Cls_ProductDetails usrpostid(Integer postid);
+
+	public int addid(Integer postid);
+
+	public void updatePic(Cls_ProductDetails user);
+
+	public void updatePics(Integer int_ProductId, String var_ImageName);
+
+	public int subcategoryid(Integer postid);
+
+	public String subcatname(int subcatid);
+
+	public int subcategoryname(Integer postid);
+
+	public String subscatnames(int subcategoryId);
+
+	public int subcategoryids(Integer postid);
+
+	public String subcatnames(int subcatids);
+
+	public List<String> getCatmessage(int int_Ad_categoryId);
+
+	public String getProductImg(Integer int_ProductId);
+
+	public void deleteselected(Integer int_ProductId);
+
+	
+
 
 
 

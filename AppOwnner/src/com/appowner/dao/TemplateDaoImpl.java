@@ -233,6 +233,14 @@ public class TemplateDaoImpl implements TemplateDao {
 		return id.contains(str);
 		
 	}
+	public boolean detectInvoiceTemplate(String str)
+	{
+		String hql=" select str_InvoiceTemplate from InvoiceTransaction where str_InvoiceTemplate=? and int_Organisation=?" ;
+		List<String> id=(List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,str).setParameter(1,Util.getAppartmentId()).list();
+		System.out.println(id+"dsjfdhjjfgjf");
+		System.out.println(id.contains(str)+"jfdfd");
+		return id.contains(str);
+	}
 	public String getCalculation()
 	{
 		 getApartmentID();
