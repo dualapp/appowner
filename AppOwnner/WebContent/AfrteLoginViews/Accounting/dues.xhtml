@@ -169,7 +169,7 @@
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
          <tr>
        <td><h:panelGroup id="jjhj" rendered="#{dueBean.indicator}">
-          <p:button style="width:120px;height:25px"  icon="ui-icon-plus" value="Create New" outcome="createnewdue.xhtml" />&#150; &#150;<p:commandButton  style="width:120px;height:25px" process="due"  update="due" icon="ui-icon-search" value="View" action="#{dueBean.select()}" ajax="false"></p:commandButton>&#150; &#150;<p:commandButton  icon="ui-icon-pencil" process="due" update=":form:multiDuesDetail" oncomplete="PF('multiDuesDialog').show()" style="width:120px;height:25px" value="Edit " />&#150; &#150;<p:commandButton style="width:120px;height:25px"  icon="ui-icon-trash"  process="due" action="#{dueBean.deleteDues()}" value="Delete"  ajax="false"/> &#150; &#150;
+          <p:button style="width:120px;height:25px"  icon="ui-icon-plus" value="Create New" outcome="createnewdue.xhtml" />&#150; &#150;<p:commandButton id="view" style="width:120px;height:25px" process="due"  update="due" icon="ui-icon-search" value="View" action="#{dueBean.select()}" ajax="false"></p:commandButton>&#150; &#150;<p:commandButton id="edit" action="#{templateBean.detectInvoiceTemplate}" ajax="#{templateBean.indicate}" icon="ui-icon-pencil" process="due" update=":form:multiDuesDetail" oncomplete="PF('multiDuesDialog').show()" style="width:120px;height:25px" value="Edit " />&#150; &#150;<p:commandButton style="width:120px;height:25px"  icon="ui-icon-trash"  process="due" action="#{dueBean.deleteDues()}" value="Delete"  ajax="false"/> &#150; &#150;
           &#150; &#150;<p:commandButton style="width:120px;height:25px"  value="Refresh" onclick="history.go(0)" icon="ui-icon-refresh"/>
       </h:panelGroup>
         <h:panelGroup id="nnmnmnm" rendered="#{dueBean.indicator1}">
@@ -200,10 +200,10 @@
             
         <h:panelGroup id="jkdds" rendered="#{dueBean.indicator}">
        
-        <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}"  sortBy="#{due.str_DueTemplate}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
+        <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}" selectionMode="single"  sortBy="#{due.str_DueTemplate}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
           selection="#{dueBean.selectedDue}" rowKey="#{due.int_DueTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">
         
-                <p:column  exportable="false"  selectionMode="single" style="width:35px;text-align:center" /> 
+                <p:ajax event="rowSelect" listener="#{templateBean.desabledListener}"  execute="@form" immediate="true" update=":form:edit,:form:view,:form:ui-growl"/>  
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
