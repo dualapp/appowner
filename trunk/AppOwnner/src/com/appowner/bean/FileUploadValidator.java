@@ -9,7 +9,15 @@ import javax.servlet.http.Part;
  
 @FacesValidator("FileUploadValidator")
 public class FileUploadValidator implements Validator {
- 
+    public  static String filename;
+	public static String getFilename() {
+		return filename;
+	}
+
+	public static void setFilename(String filename) {
+		FileUploadValidator.filename = filename;
+	}
+
 	@Override
 	public void validate(FacesContext context, UIComponent uiComponent,
 			Object value) throws ValidatorException {
@@ -17,9 +25,8 @@ public class FileUploadValidator implements Validator {
 		Part part = (Part) value;
  
 		// 1. validate file name length
-		if(part!=null)
-		{
 		String fileName = getFileName(part);
+		filename=getFileName(part);
 		System.out.println("----- validator fileName: " + fileName);
 		if(fileName.length() == 0 ) {
 			FacesMessage message = new FacesMessage("Error: File name is invalid !!");
@@ -28,7 +35,7 @@ public class FileUploadValidator implements Validator {
 			FacesMessage message = new FacesMessage("Error: File name is too long !!");
 			throw new ValidatorException(message);
 		}
-	
+ 
 		// 2. validate file type (only text files allowed)
 		/*if (!"image/gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG".equals(part.getContentType())) {
 			FacesMessage message = new FacesMessage("Error: File type is invalid !!");
@@ -65,9 +72,12 @@ public class FileUploadValidator implements Validator {
             case "image/GIF":   
            	 
                 break;
-            case "text/txt":
+            case "text/plain":
             break;
-                     
+            case "application/msword":
+            	break;
+            case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            	break;
             default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 			throw new ValidatorException(message);
         } 
@@ -77,9 +87,12 @@ public class FileUploadValidator implements Validator {
 			throw new ValidatorException(message);
 		}
 	}
-}
+ 
 	// Extract file name from content-disposition header of file part
 	private String getFileName(Part part) {
+		System.out.println(part+"dfjkkjfdkj");
+		
+		
 		final String partHeader = part.getHeader("content-disposition");
 		System.out.println("----- validator partHeader: " + partHeader);
 		for (String content : part.getHeader("content-disposition").split(";")) {
@@ -87,7 +100,8 @@ public class FileUploadValidator implements Validator {
 				return content.substring(content.indexOf('=') + 1).trim()
 						.replace("\"", "");
 			}
-		}
+			}
+		
 		return "";
 	}
 }
