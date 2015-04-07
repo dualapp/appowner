@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -44,7 +45,7 @@ import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 @ManagedBean 
-@ViewScoped
+@SessionScoped
 public class Cls_AddDetailBean implements Serializable {
 	
 
@@ -232,8 +233,23 @@ public int getInt_Ad_categoryId() {
 	private int intdocID3;
 	private String subcatid;
 	private int subid;
-	public void AddProduct(){
-		 System.out.println("mukesh kumar 1989");
+	private String str_Email;
+	private String str_Block;
+	
+	public String getStr_Email() {
+		return str_Email;
+	}
+	public void setStr_Email(String str_Email) {
+		this.str_Email = str_Email;
+	}
+	public String getStr_Block() {
+		return str_Block;
+	}
+	public void setStr_Block(String str_Block) {
+		this.str_Block = str_Block;
+	}
+	public String  AddProduct(){
+		 System.out.println("mukesh kumar 1989hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 	     intdocid1=getVar_Ad_CategoryName();
 		 System.out.println(intdocid1);
 		 subcatid=getVar_subscategoryname();
@@ -244,16 +260,14 @@ public int getInt_Ad_categoryId() {
 		 System.out.println(subid+"khkjhkgkjhkjghkjghkguhguhu");
 		 intdocid2=getStr_ApartmentName();
 		 System.out.println(intdocid1);
-
-		
-		Cls_ProductDetails pro=new Cls_ProductDetails();
+		 Cls_ProductDetails pro=new Cls_ProductDetails();
 		pro.setInt_Ad_categoryId(intdocID1);
 		pro.setInt_subcategoryId( subid);
         pro.setUserId(getUserId());
 		pro.setCh_Product_Type(getCh_Product_Type());
 		pro.setInt_ProductId(getInt_ProductId());
 		pro.setVar_Description(getVar_Description());
-		pro.setUsername(usrname);
+		pro.setUsername(Util.getUserName());
 		pro.setApartementId(Util.getAppartmentId());
 		pro.setVar_FileName("image");
 		System.out.println(path+"fkjfdkjdfjk");
@@ -261,9 +275,51 @@ public int getInt_Ad_categoryId() {
         pro.setVar_Title(getVar_Title());
 		pro.setCh_Ad_Type(getCh_Ad_Type());
 		pro.setStr_ApartmentName(str_ApartmentName);
+		pro.setStr_Email(Util.getEmail());
+		pro.setStr_PhoneNo(Util.getStr_PhoneNo());
+		pro.setStr_Block(Util.getBlock());
 		pro.setStatus("Pending Approval");
+		java.util.Date d=new java.util.Date();
+		System.out.println(d+"dskdskdslkk");
+		Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.MONTH,1);
+		d=cal1.getTime();
+		pro.setClosedate(d);
+		System.out.println(d+"sdkk");
 		System.out.println(pro+"kjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjkjkjkjkjk");
-		getProductDetailService().AddProduct1(pro);		
+		getProductDetailService().AddProduct1(pro);
+		str_Email=null;
+		 str_Block=null;
+		 path=null;
+		 str_PhoneNo=null;
+		 Ch_Product_Type=null;
+	      Var_Title=null;
+      //   Var_FileName=null;
+          Ch_Ad_Type=null;
+          dt_date=null;
+     	 Status=null;
+     	 closedate=null;
+     	 Var_Description=null;
+     	Var_ImageName=null;
+     	var_Ad_CategoryName=null;
+    	 var_subscategoryname=null;
+    	 Ch_Ad_Type=null;
+     	 selectedAll=null;
+     	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
+    	return"Ad_an_Post.xhtml";
+		
+	
+	}
+private Date closedate;
+	
+	
+	
+	
+	public Date getClosedate() {
+		return closedate;
+	}
+	public void setClosedate(Date closedate) {
+		this.closedate = closedate;
 	}
 	private String var_Ad_SubCategoryName;
 	public String getVar_Ad_SubCategoryName() {
@@ -302,6 +358,7 @@ public int getInt_Ad_categoryId() {
 		detail.setVar_subscategoryname(var_subscategoryname);
 		detail.setInt_Ad_categoryId(getProductDetailService().getcatid(var_Ad_CategoryName));
 		getProductDetailService().AddCategorys(detail);
+		var_subscategoryname=null;
 		
 		}
 		
@@ -326,30 +383,6 @@ public int getInt_Ad_categoryId() {
 	public void setPath1(String path1) {
 		this.path1 = path1;
 	}
-	public void handleFileUpload1(FileUploadEvent event) throws IOException {
-		 System.out.println("hi");
-		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-		    System.out.println(name);
-		    File file= new File("E://"+ "images" + name);
-		    final UploadedFile uploadedFile = event.getFile();
-		    blb_image=file.getAbsolutePath();
-		    System.out.println(blb_image);
-		    blb_images1=file.getAbsolutePath();
-		    System.out.println(blb_images1);
-	        System.out.println(file);
-		    InputStream is = event.getFile().getInputstream();
-		    OutputStream out = new FileOutputStream(file);
-		    byte buf[] = new byte[1024];
-		    int len;
-		    while ((len = is.read(buf)) > 0)
-		        out.write(buf, 0, len);
-		    is.close();
-		    out.close();
-		    path1=file.getName();
-		    System.out.println(path1);
-	}
 	
 	
 
@@ -370,10 +403,7 @@ public int getInt_Ad_categoryId() {
 		public void setPro(Cls_ProductDetails pro2) {
 			this.pro2 = pro2;
 		}
-
-
-	
-	public void getCls_ProductDetails(){
+		public void getCls_ProductDetails(){
 		System.out.println(Int_ProductId);
 		pro2=getProductDetailService().editproduct(Int_ProductId);
 	    System.out.println("111111111111111111111111111111111111111111");
@@ -813,38 +843,64 @@ public void setSelectedAll(Cls_ProductDetails selectedAll) {
 }
 private Cls_categoryDetail cat;
 private int   int_subcatid; 
+public int getInt_subcatid() {
+	return int_subcatid;
+}
+public void setInt_subcatid(int int_subcatid) {
+	this.int_subcatid = int_subcatid;
+}
 public String editdetail(Cls_ProductDetails ProductDetails)
 {
+	System.out.println(ProductDetails+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 	 System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjlllllllllllllllll");
-	 System.out.println(var_Ad_SubCategoryName+"jgfgf");
+	 System.out.println(var_Ad_SubCategoryName+"jgfgfnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmhhhhhhhhhhhhg");
 	 System.out.println(var_Ad_CategoryName+"ndffdf");
+	System.out.println(subname+"jkfjffjnnnnnnnnnnnnnnnnnn");
+	
 	 System.out.println(catname+"fdjfdkjfdjdfk");
+	   if(catname==null)
+	 {
+		 
+		 //int_Ad_categoryId=getProductDetailService().getdocid2(ProductDetails.getVar_Ad_CategoryName());
+		 //int_subcatid=getProductDetailService().getdocid3(ProductDetails.getVar_subscategoryname());
+		  System.out.println(int_Ad_categoryId+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+		  System.out.println( int_subcatid+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+		 // ProductDetails.setInt_Ad_categoryId(int_Ad_categoryId);
+		   //ProductDetails.setInt_subcategoryId( int_subcatid);
+		 
+	 }
+	 else{
 	  int_Ad_categoryId=getProductDetailService().getdocid2(catname);
+	  System.out.println(catname+"fjghjfjjjgopopopopopopopopopopopopopopopopopo");
+	  System.out.println(var_Ad_SubCategoryName+"fjghjfjjjgopopopopopopopopopopopopopopopopopo");
 	  int_subcatid=getProductDetailService().getdocid3(var_Ad_SubCategoryName);
 	  
-	    System.out.println( int_subcatid+"jkfkjfdkj");
+	   System.out.println( int_subcatid+"jkfkjfdkjpoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+	   ProductDetails.setInt_Ad_categoryId(int_Ad_categoryId);
+	   ProductDetails.setInt_subcategoryId( int_subcatid);
+	 }
 	    if (ProductDetails.getInt_ProductId() != null) {
-		ProductDetails.setInt_Ad_categoryId(int_Ad_categoryId);
-		ProductDetails.setVar_Ad_CategoryName(var_Ad_CategoryName);
-		ProductDetails.setInt_subcategoryId( int_subcatid);
+	    ProductDetails.setVar_Ad_CategoryName(var_Ad_CategoryName);
+	    ProductDetails.setVar_ImageName(path3);
 		getProductDetailService().updatedetails(ProductDetails);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
-		
+		 Ch_Product_Type=null;
+		 Ch_Ad_Type=null;
+		 Status=null;
+	     selectedAll=null;
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
+	  
 	} 
+	    
 	return "Ad_an_Post.xhtml";
 }
 	
-
+	
 public String deletedetail(){
 	Cls_ProductDetails detail=new Cls_ProductDetails();
 	System.out.println(Int_ProductId);
 	detail.setInt_ProductId(Int_ProductId);;
 	getProductDetailService().deleteInvoice(detail);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 	return "Ad_an_Post.xhtml?faces-redirect=true";
   
 }
@@ -860,6 +916,9 @@ public List<Cls_ProductDetails> getDetails()
 	System.out.println(Int_ProductId+";;;;;;;;;;;;;;;;;;;;;;;;;;++++++++++++++++++++++++++++++++++++++++");
 	details=new ArrayList<Cls_ProductDetails>();
 	details.addAll(getProductDetailService().listDetail(Ch_Product_Type,Ch_Ad_Type,Status));
+  
+	 
+	 
 	System.out.println(details+"gvghhhfhfh");
 	return details;
 }
@@ -914,14 +973,14 @@ public static void setAprtmentname(String aprtmentname) {
 
 
 public String send4()
-{   System.out.println("fkjdfkjfkjfjlkkkkkkkkkkkkkkkkkkkkkkk");
+{   System.out.println("fkjdfkjfkjfjlkkkkkkkkkkkkkkkkkkkkkkkmukeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
 	recipient= emailids;
 	content="";
 	subject="Appowner.com";
 	aprtmentname=getStr_ApartmentName();
-	return null;
-	//return "/AfrteLoginViews/Communication/Email.jsp";
+
+return "/AfrteLoginViews/Communication/ApproveEmail.jsp";
 }
 
 
@@ -1033,12 +1092,12 @@ public void setEmailstatus(boolean emailstatus) {
 public String statusmsg;
 public String msgupdate; 
 public static String select1;
-public String selectinfo1(ActionEvent e)
+public int selectinfo1(ActionEvent e)
 { 
 productid=selectedAll.getInt_ProductId();
 System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
-System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
-//msgupdate=(getProductDetailService().getname(selectedAll.getInt_ProductId()));
+System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmmkesh");
+msgupdate=(getProductDetailService().getname(selectedAll.getInt_ProductId()));
 msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
 emailids=(getProductDetailService().getemailids(msgrejectid));
 System.out.println(selectedAll.getStatus()+"kjkjkjkjkjkjkjkjkjkjkjk");
@@ -1046,7 +1105,7 @@ System.out.println(statusmsg=="Ads Rejected"+"lklklklklklklklklklklklk;;';';';';
 //statusmsg=selectedAll.getStatus();
 //if(statusmsg=="Ads Rejected")
 //{
-	emailstatus=false;	
+	//emailstatus=false;	
 //}
    
 //statusmsg=(getProductDetailService().statusmesg(selectedAll.getInt_ProductId()));
@@ -1055,7 +1114,7 @@ System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbb
 System.out.println(msgupdate+"jhdsjdfbnnnnnnnnnnnnnnnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 //msgname=(getProductDetailService().getname(select1));
 //strmessage=(getProductDetailService().getmsg(ads_id));
-return select1;
+return productid;
 }  
 public String msgclose;
 public String selectinfo2(ActionEvent e)
@@ -1063,11 +1122,14 @@ public String selectinfo2(ActionEvent e)
 System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
 System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
 msgclose=(getProductDetailService().getclose(selectedAll.getInt_ProductId()));
-
+Ch_Product_Type=null;
+Ch_Ad_Type=null;
+Status=null;
 System.out.println(select1+"jhdsjdf");
 //msgname=(getProductDetailService().getname(select1));
 //strmessage=(getProductDetailService().getmsg(ads_id));
-return select1;
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Post close  Successfully!"));
+return "Ad_an_Post.xhtml?faces-redirect=true";
 }	
 public String send6()
 {
@@ -1126,28 +1188,36 @@ return select1;
 private Part part;
 private String statusMessage;
 private static String path;
-private Cls_ProductDetails user;
+private Cls_ProductDetails products;
 public String uploadFile() throws IOException {
 
 	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
 	String fileName = fmt.format(new Date())
 			+ getFileName(part).substring(
 					getFileName(part).lastIndexOf('.'));
-	// Extract file name from content-disposition header of file part
-	// String fileName = getFileName(part);
+	
 	System.out.println("***** fileName: " + fileName);
 	ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 
-	// String basePath = "D:" + File.separator + "temp" + File.separator;
-	// File outputFilePath = new File(basePath + fileName);
+	
 	String basePath =servletContext.getRealPath("")
 			+ File.separator + "images" 
-			+ File.separator;
+			+ File.separator+Util.getAppartmentName()+File.separator;
 	System.out.println(basePath);
 	File outputFilePath = new File(basePath);
-	outputFilePath=new File(basePath,fileName);
+	outputFilePath=new File(basePath);
+	if(!outputFilePath.exists())
+	{
+		if(outputFilePath.mkdirs())
+		{
+			System.out.println("directory");
+		}
+		else
+			System.out.println("failed to create directory");
+	}
     System.out.println(path + "path");
 	// Copy uploaded file to destination path
+    outputFilePath=new File(basePath,fileName);
 	InputStream inputStream = null;
 	OutputStream outputStream = null;
 	try {
@@ -1159,11 +1229,11 @@ public String uploadFile() throws IOException {
 		while ((read = inputStream.read(bytes)) != -1) {
 			outputStream.write(bytes, 0, read);
 		}
-		path = "/images" + File.separator 
-				 + fileName;
-		//user.setVar_ImageName1(path);
-		//user.setInt_UserId(user.getInt_UserId());
-		System.out.println(user+"m,,,,,,,,,,,,mmmmmmmmmmm,,,,,,,,,,,,,mmmmmmmmmmmmm,,,,,,,,,,,,");
+		path = "/images" + File.separator + Util.getAppartmentName()
+				+ File.separator + fileName;
+		//products.setVar_ImageName(path);
+		//products.setInt_ProductId(products.getInt_ProductId());
+		//System.out.println((selectedAll.getInt_ProductId()+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
 		//getProductDetailService().updateProfilePic(user);
 		
 		statusMessage = "File uploaded successfull !!";
@@ -1179,9 +1249,10 @@ public String uploadFile() throws IOException {
 			inputStream.close();
 		}
 	}
-	return null; // return to same page
+	part=null;
+	return "Create_Detail.xhtml"; // return to same page
 }
-public Part getPart() throws IOException {
+public Part getPart()  {
 return part;
 }
 public void setPart(Part part) {
@@ -1193,27 +1264,15 @@ public String getStatusMessage() {
 public void setStatusMessage(String statusMessage) {
 	this.statusMessage = statusMessage;}
 
-// Extract file name from content-disposition header of file part
-private String getFileName(Part part) {
-	final String partHeader = part.getHeader("content-disposition");
-	System.out.println("***** partHeader: " + partHeader);
-	for (String content : part.getHeader("content-disposition").split(";")) {
-		if (content.trim().startsWith("filename")) {
-			return content.substring(content.indexOf('=') + 1).trim()
-					.replace("\"", "");
-		}
-	}
-	return null;
-}
 
-public static String getPath() {
-	System.out.println(path + "path1");
+
+public  String getPath() {
+	System.out.println(path + "path1cvvvvvvvvvvvvvvvvvvvvvvvvvvcvcccccccccccvvvvvvvvvvvvv");
+	System.out.println("i  $ youuuuuuuuuuuuuuuuuuuuuuu");
 	if(path==null)
 	{
-		path = "/images/profilepic.png";
+		path = "/images/no_attach.png";
 	}
-	
-		
 	 return path;
 	
 }
@@ -1233,12 +1292,20 @@ HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 	 return path;
 	 }
 */
+private String msgupdate1;
 
+public String getMsgupdate1() {
+	return msgupdate1;
+}
+public void setMsgupdate1(String msgupdate1) {
+	this.msgupdate1 = msgupdate1;
+}
 public String selectinfo6(ActionEvent e)
 {  
 System.out.println("mukesh kumar ");	
-System.out.println(productid+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
-msgupdate=(getProductDetailService().getname(productid));
+System.out.println(productid+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmmmukeshhhhhhhhhhhhhhhhhhh");
+System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+msgupdate1=(getProductDetailService().getname(productid));
 return select1;
 }
 
@@ -1257,18 +1324,22 @@ public int msgid;
 
 public String selectinfo8(ValueChangeEvent event)
 {  
-
 catname =( String )event.getNewValue();
 System.out.println(catname+"lklklklkkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
 msgid=(getProductDetailService().getids(catname));
 System.out.println(catmessage+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
-System.out.println(msgid+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
+System.out.println(postid+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
 catmessage=(getProductDetailService().getmessages(msgid));
+
+System.out.println(subcatgeroynm+"fbdfgfdgdfsdsdfs");
 return catname;
 
 }
 
-public List<String> getCatmessage() {
+public List<String> getCatmessage()
+{
+	
+
 	return catmessage;
 }
 public void setCatmessage(List<String> catmessage) {
@@ -1290,6 +1361,7 @@ public List<Cls_ProductDetails> getSearchByType() {
 	searchByType=new ArrayList<Cls_ProductDetails>();
 	searchByType.addAll(getProductDetailService().getSearchBytype(var_Ad_CategoryName,var_subscategoryname,Ch_Ad_Type));
 	 blb_images1="E:/Var_ImageName";
+	
 		return searchByType;
 }
 public void setSearchByType(List<Cls_ProductDetails> searchByType) {
@@ -1338,7 +1410,7 @@ public static void setUsrnames(String usrnames) {
 }
 public String send9()
 {   System.out.println("jgjgjgjgkjgkghghhghh");
-	recipient=emailid;
+	recipient=getTo();
 	phnumber=Util.getStr_PhoneNo();
 	usrnames=Util.getUserName();
 	aprtmentname=getStr_ApartmentName();
@@ -1375,11 +1447,237 @@ public String getemailid(Integer id1)
 	return emailid;
 	
 }
+private Cls_ProductDetails adid;
+
+public Cls_ProductDetails getAdid() {
+	adid=(getProductDetailService().usrpostid(postid));
+	System.out.println(var_Ad_CategoryName+"llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
+	return adid;
 }
+public void setAdid(Cls_ProductDetails adid) {
+	this.adid = adid;
+}
+private static Integer   postid;
+public static Integer getPostid() {
+	return postid;
+}
+public static void setPostid(Integer postid) {
+	Cls_AddDetailBean.postid = postid;
+}
+public String  subname;
+public String subcatname;
+public String getSubcatname() 
+{
+if(postid==null)
+	{
+		System.out.println("ffkjfkjgfgf");
+	}
+	else
+	{
+		int subcategoryId=(getProductDetailService().subcategoryname(postid));
+		System.out.println( subcategoryId+"mppppmpppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+		subcatname=(getProductDetailService().subscatnames( subcategoryId));
+		System.out.println(subcatname+"my jannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+	}
+	return subcatname;
+}
+public void setSubcatname(String subcatname) {
+	this.subcatname = subcatname;
+}
+public String subcatgeroynm;
+
+public String getSubcatgeroynm() 
+{
 	
+	return subcatgeroynm;
+}
+public void setSubcatgeroynm(String subcatgeroynm) {
+	this.subcatgeroynm = subcatgeroynm;
+}
+public String getSubname() {
+	if(postid==null)
+	{
+		System.out.println("ffkjfkjgfgf");
+	}
+	else
+	{
+		int subcatid=(getProductDetailService().subcategoryid(postid));
+		System.out.println( subcatid+"mppppmppppppppppppppmmmmmmmmmmmmmmmmmmmppppppppppppppppppppppppp");
+		subname=(getProductDetailService().subcatname( subcatid));
+		System.out.println(postid+"my jannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+	}
+	return subname;
+}
+public void setSubname(String subname) {
+	this.subname = subname;
+}
+public String editselect1()
+{
+	 postid=selectedAll.getInt_ProductId();	
+	  System.out.println( postid+"mukeshkumaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+	  Ch_Product_Type=null;
+		 Ch_Ad_Type=null;
+		 Status=null;
+	 return "ViewDetails.xhtml";
+}
+public String editselect()
+{
+	System.out.println(selectedAll.getInt_ProductId()+"ibbbbbbbbbbbbbbbbbbbbbbbbveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+	 postid=selectedAll.getInt_ProductId();	
+	 if(selectedAll.getInt_Ad_categoryId()!=0)
+	 {
+	 	catmessage=new ArrayList<String>();
+	 	catmessage.addAll(getProductDetailService().getCatmessage(selectedAll.getInt_Ad_categoryId()));
+	 	System.out.println(catmessage+"pmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+	 	System.out.println("kjjhjhjhjhlkjhlkh");
+	 }
+	 else
+	 {
+	 	catmessage=new ArrayList<String>();
+	 }
+	
+	 System.out.println( postid+"mukeshkumaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+	 Ch_Product_Type=null;
+	 Ch_Ad_Type=null;
+	 Status=null;
+	return "EditDetails.xhtml";
+}
+
+public String uploadFile1() throws IOException {
+
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	System.out.println((postid+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
+	String fileName = fmt.format(new Date())
+		+ getFileName(part).substring(
+					getFileName(part).lastIndexOf('.'));
+	
+	System.out.println("***** fileName: " + fileName);
+	ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+
+	
+	String basePath =servletContext.getRealPath("")
+			+ File.separator + "images" 
+			+ File.separator+Util.getAppartmentName()+File.separator;
+	System.out.println(basePath);
+	File outputFilePath = new File(basePath);
+	outputFilePath=new File(basePath);
+	if(!outputFilePath.exists())
+	{
+		if(outputFilePath.mkdirs())
+		{
+			System.out.println("directory");
+		}
+		else
+			System.out.println("failed to create directory");
+	}
+    System.out.println(path + "path");
+	// Copy uploaded file to destination path
+    outputFilePath=new File(basePath,fileName);
 	 
-	
-	
+	InputStream inputStream = null;
+	OutputStream outputStream = null;
+	try {
+		inputStream = part.getInputStream();
+		outputStream = new FileOutputStream(outputFilePath);
+
+		int read = 0;
+		final byte[] bytes = new byte[1024];
+		while ((read = inputStream.read(bytes)) != -1) {
+			outputStream.write(bytes, 0, read);
+		}
+		path3 = "/images" + File.separator + Util.getAppartmentName()
+				+ File.separator + fileName;
+		 
+		//products.setVar_ImageName(path);
+		//products.setInt_ProductId(products.getInt_ProductId());
+		System.out.println((postid+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
+		
+		getProductDetailService().updatePics(postid,path3);
+		
+		statusMessage = "File uploaded successfull !!";
+
+	} catch (IOException e) {
+		e.printStackTrace();
+		statusMessage = "File upload failed !!";
+	} finally {
+		if (outputStream != null) {
+			outputStream.close();
+		}
+		if (inputStream != null) {
+			inputStream.close();
+		}
+	}
+	part=null;
+	return null; // return to same page
+}
+private String getFileName(Part part) {
+	final String partHeader = part.getHeader("content-disposition");
+	System.out.println(part+"fdjkfkjkjf");
+	System.out.println("partHeader: " +partHeader);
+	for (String content : part.getHeader("content-disposition").split(";")) {
+		if (content.trim().startsWith("filename")) {
+			return content.substring(content.indexOf('=') + 1).trim()
+					.replace("\"", "");
+		}
+	}
+	return null;
+}
+
+
+// Extract file name from content-disposition header of file part
+
+
+
+/*public static void setPath(String path) {
+	Cls_AddDetailBean.path = path;
+}
+HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+		.getExternalContext().getSession(false);
+     public String getPath() {
+	System.out.println(path + "path1");
+	path = (String) session.getAttribute("Var_ImageName");
+	if (user != null)
+		path = user.getVar_ImageName();
+	 else
+		path = "/images/profilepic.png";
+	 return path;
+	 }
+*/
+
+
+
+private String path3;
+
+public String getPath3() 
+{
+	if((selectedAll.getInt_ProductId()!=null))
+	{
+		
+		
+		 path3=getProductDetailService().getProductImg(selectedAll.getInt_ProductId());
+		
+	}
+	else
+		path3="images/no_attach.png";
+	return path3;
+}
+public void setPath3(String path3) {
+	this.path3 = path3;
+}
+
+ public String deleteselect()
+ {
+	 
+	 getProductDetailService().deleteselected(selectedAll.getInt_ProductId());
+	 Ch_Product_Type=null;
+	 Ch_Ad_Type=null;
+	 Status=null;
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
+   return "Ad_an_Post.xhtml?faces-redirect=true";
+}
+
+
+}	
 
 	
 	
