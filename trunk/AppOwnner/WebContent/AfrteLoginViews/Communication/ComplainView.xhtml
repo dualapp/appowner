@@ -53,7 +53,9 @@
                 <f:facet name="header">
                     <h:outputText value="Complaint Nature" />
                 </f:facet>
-                <h:outputText value="#{complain.ch_Complain}" />
+                <h:outputText value="#{complain.ch_Complain}" >
+                 <f:converter converterId="com.appowner.bean.StringConverter" />
+                 </h:outputText>
             </p:column>
               <p:column>
                 <f:facet name="header">
