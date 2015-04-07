@@ -23,20 +23,10 @@
                 <tr>
             <td><h:outputText value="User Name:">
             </h:outputText>  </td>          
-            <td><h:inputText value="#{cls_UserBean.editlis.str_Username}" required="true"   requiredMessage="Please ente the User Name!">
+            <td><h:inputText value="#{cls_UserBean.editlis.str_Username}" required="true" readOnly="true"  requiredMessage="Please ente the User Name!">
             </h:inputText></td></tr> 
    
-            <tr>
-            <td><h:outputText value="Password :"></h:outputText> <font color="red" >*</font> </td>          
-            <td><h:inputSecret id="str_Password"  label="Password" value="#{cls_UserBean.editlis.str_Password}"                required="true" requiredMessage="Enter Password!" validatorMessage="must contain alfanumeric lower case with one symbol from the list[@#$],with min 6 char and max 10 char!">
-          
-            </h:inputSecret></td> <td><p:message for="str_Password" display="text"/></td></tr>
-            
-                <tr>
-            <td><h:outputText value="User role:">
-            </h:outputText>  </td>          
-            <td><h:inputText value="#{cls_UserBean.editlis.int_UserRole}" required="true"   requiredMessage="Please ente the User Name!">
-            </h:inputText></td></tr> 
+           
             <tr><td colspan="2" align="left">
            <div class="gsTitleDiv">General Information</div> </td></tr> 
            <tr>
@@ -54,26 +44,36 @@
             </h:outputText><font color="red" >*</font></td>            
              <td><h:inputText value="#{cls_UserBean.editlis.str_Email}"  required="true" requiredMessage="Please Enter Email!">
             </h:inputText></td></tr>
-            
-               <tr>
-            <td><h:outputText value="Flate No:">
-            </h:outputText><font color="red" >*</font></td>            
-            <td><h:inputText value="#{cls_UserBean.editlis.str_Flat}"  required="true" requiredMessage="Please Enter Flate No">
-            </h:inputText></td> </tr>
             <tr>
+           <td> <h:outputText  value="Phone No :" /></td>
+           
+            <td><h:inputText value="#{cls_UserBean.editlis.str_PhoneNo}"  required="true" requiredMessage="Please Enter Email!"/>
+           </td>
+           </tr>
+           <tr><td colspan="2" align="left">
+           <div class="gsTitleDiv">Apartment Information</div></td></tr>
+           <tr>
             <td><h:outputLabel for="str_Block" value="Block :"/>
             </td>          
-            <td><p:selectOneMenu id="str_Block" value="#{cls_UserBean.editlis.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}" style="width:168px" required="true">
+            <td><h:selectOneMenu id="str_Block" value="#{cls_UserBean.editlis.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}"  required="true">
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
             <f:selectItems  value ="#{cls_UserBean.blocksNa}"/>
-             <p:ajax event="change" process="str_Block"/>
-             </p:selectOneMenu>  
+             <p:ajax event="change" process="str_Block" update="str_House"/>
+             </h:selectOneMenu>
             </td></tr> 
                <tr>
-             <td><h:outputText value="Phone No:">
+            <td><h:outputText value="Flat No:">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText value="#{cls_UserBean.editlis.str_PhoneNo}" required="true"                requiredMessage="Please Enter Phone No.!">
-            </h:inputText></td> </tr> 
+            <td><h:selectOneMenu id="str_House"       value="#{cls_UserBean.editlis.str_Flat}" required="true"      requiredMessage="Enter Flat Name!">
+            <f:selectItem itemLabel="Select Flat"   itemValue="" noSelectionOption="true" />
+            
+            <f:selectItems value="#{cls_UserBean.houseNoList}"/>
+              
+                                </h:selectOneMenu>
+            
+           </td> </tr>
+            
+               
             
           
  
