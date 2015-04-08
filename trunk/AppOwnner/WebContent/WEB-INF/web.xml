@@ -55,6 +55,14 @@
     <servlet-name>Servlet1</servlet-name>
     <url-pattern>/srv1</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Servlet12</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet12</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet12</servlet-name>
+    <url-pattern>/srv12</url-pattern>
+  </servlet-mapping>
    
   <servlet>
     <servlet-name>priya</servlet-name>
