@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -593,5 +594,33 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public String getAdditionalInfo(Integer int_asset_id) {
 		// TODO Auto-generated method stub
 		return (String) sessionFactory.getCurrentSession().createQuery("select str_AdditionalInfo from Assets where int_asset_id=?").setParameter(0, int_asset_id).uniqueResult();
+	}
+
+	@Override
+	public List<String> getListChoice(Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return (List<String>) sessionFactory.getCurrentSession().createQuery("select str_Choise1,str_Choise2,str_Choise3 from Pool where int_PoolId=?").setParameter(0, int_PoolId).list();
+	}
+
+	@Override
+	public List<String> getEmailIds(Integer appartmentId, String recipients) {
+		// TODO Auto-generated method stub
+		if(recipients.equalsIgnoreCase("Admin and Committees"))
+		{
+		List< Integer> uid=sessionFactory.getCurrentSession().createQuery("select int_UserId from CommiteeMember where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).list();
+		ListIterator itr=uid.listIterator();
+		List<String> emails=new ArrayList();
+		while(itr.hasNext())
+		{
+			Integer id=(Integer) itr.next();
+		 String email=(String) sessionFactory.getCurrentSession().createQuery("select str_Email from User where int_UserId=?").setParameter(0, id).uniqueResult();
+		emails.add(email);
+		 
+		}
+		return  emails;
+		}
+		else
+			
+			return sessionFactory.getCurrentSession().createQuery("select str_Email from User where int_ApartmentId=?").setParameter(0, appartmentId).list();
 	}
 }
