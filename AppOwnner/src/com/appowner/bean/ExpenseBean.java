@@ -1715,13 +1715,91 @@ public void setStr_PoolQuestion(String str_PoolQuestion) {
 }
 public String deleteOnePoll1()
 {
-	System.out.println(onePoll+"onePolllllllllll");
-	getExpenseService().deleteOnePoll(onePoll);
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Deleted Successfully!"));
-	return "pools.xhtml";
+	
+	  
+		   if(indicate==false)
+		   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+		   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a poll to delete!"));
+				return null;
+		   }
+		   else
+		   {  indicate=false;
+			   System.out.println(onePoll+"onePolllllllllll");
+				getExpenseService().deleteOnePoll(onePoll);
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Deleted Successfully!"));
+				return null;
+		   }
+	
 	
 }
- 
+public String sendBulkEmailOfPoll()
+{
+	 subject=Util.getAppartmentName()+"-A New Poll";
+	  content=PollMsgs;
+	return "/AfrteLoginViews/Communication/poll.jsp";
+}
+ private List<String> emailIds;
+public List<String> getEmailIds() {
+	emailIds=new ArrayList();
+	if(onePoll!=null){
+	String  recipients=onePoll.getStr_poolAudience();
+	emailIds.addAll(getExpenseService().getEmailIds(Util.getAppartmentId(),recipients));
+	
+	mailids=emailIds;
+	}
+	return emailIds;
+}
+private static List<String> mailids;
+
+private String PollMsgs;
+
+
+
+public String getPollMsgs() {
+	if(onePoll!=null){
+	PollMsgs="A new poll"+"'"+onePoll.getStr_poolQuestion()+"'"+ "has been created.";
+	System.out.println(PollMsgs+"pollmsgggggggggggggggggggggg");
+	}
+	return PollMsgs;
+}
+public void setPollMsgs(String pollMsgs) {
+	PollMsgs = pollMsgs;
+}
+public static String getMailids() {
+	
+	
+StringBuilder out = new StringBuilder();
+for (Object o : mailids)
+{
+  out.append(o.toString());
+  out.append(",");
+}
+return out.toString();
+	
+	
+	
+}
+public static void setMailids(List<String> mailids) {
+	ExpenseBean.mailids = mailids;
+}
+private static String subject="subject";
+private static String content="content";
+	
+public static String getSubject() {
+	return subject;
+}
+public static void setSubject(String subject) {
+	ExpenseBean.subject = subject;
+}
+public static String getContent() {
+	return content;
+}
+public static void setContent(String content) {
+	ExpenseBean.content = content;
+}
+public void setEmailIds(List<String> emailIds) {
+	this.emailIds = emailIds;
+}
 public List<Pool> getPoolList() {
 	poolList=new ArrayList<Pool>();
 	poolList.addAll(getExpenseService().getPoolList());
@@ -1838,16 +1916,19 @@ public Long getLatestChoise1Vote()
 {
 	count1=null;
 	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
-	 System.out.println(latestPolls.getInt_PoolId());
-	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
-	 System.out.println(latestPolls.getStr_Choise1());
-	 System.out.println(int_PoolId+"pid");
-	 
-	 System.out.println(latestPolls.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
-	 
+	  
+	 if(latestPolls.getInt_Vote()!=0){
+		 
 	 Long res= count1*100/latestPolls.getInt_Vote();
-	 System.out.println(res+"result");
 	 return res;
+	 
+	 }
+	 else
+	 {
+	 Long res=0l;
+	 return res;
+	 }
+	 
 	
 }
 
@@ -1855,12 +1936,6 @@ public Long getLatestChoise1Vote()
 public Long getChoise1Vote()
 { count1=null;
 	  count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
-	 System.out.println(onePoll.getInt_PoolId());
-	 System.out.println(count1+"kalpanaaaaaaaaaaaaaaaaaaaaaaaa");
-	 System.out.println(onePoll.getStr_Choise1());
-	 System.out.println(int_PoolId+"pid");
-	 
-	 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
 	 
 	 Long res= count1*100/onePoll.getInt_Vote();
 	 System.out.println(res+"result");
@@ -1868,20 +1943,55 @@ public Long getChoise1Vote()
 	
 }
 public Long getCount1() {
-	 
+	if(onePoll!=null)
+	{
+	count1=null;
+	System.out.println(onePoll.getStr_Choise1()+"checkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"+onePoll.getInt_PoolId());
+	  count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
+	 System.out.println(count1+"count1111111111111111111111111111111111111");
+	}
+	else
+	{
+		count1=null;
+		  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
+	}
 	return count1;
 }
 public void setCount1(Long count1) {
 	this.count1 = count1;
 }
 public Long getCount2() {
+	if(onePoll!=null)
+	{
 	 
+	System.out.println(onePoll.getStr_Choise2()+"checkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"+onePoll.getInt_PoolId());
+	count2=null;
+	 
+	  count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
+	 System.out.println(count2+"count222222222222222222222222222");
+	}
+	else{
+		count2=null;
+		 
+		  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
+	}
 	return count2;
 }
 public void setCount2(Long count2) {
 	this.count2 = count2;
 }
 public Long getCount3() {
+	if(onePoll!=null)
+	{
+		count3=null;
+		   count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
+		   System.out.println(count3+"count3333333333333333333333333333333333");
+	}
+	else
+	{
+		count3=null;
+		   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
+	}
 	 
 	return count3;
 }
@@ -1895,52 +2005,56 @@ private Long count3;
 public Long getLatestChoise2Vote()
 {
 	count2=null;
-	System.out.println(latestPolls.getInt_PoolId());
+	 
 	  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
-	 System.out.println(latestPolls.getStr_Choise2());
-	 System.out.println(int_PoolId+"pid");
-	 System.out.println(count2);
-	 System.out.println(latestPolls.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	  
+	 if(latestPolls.getInt_Vote()!=0)
+	 {
 	 Long res= count2*100/latestPolls.getInt_Vote();
 	 System.out.println(res+"result");
+	 }
+	 Long res=0l;
 	 return res;
 	
 }
 public Long getChoise2Vote()
 {
 	count2=null;
-	System.out.println(onePoll.getInt_PoolId());
+	 
 	  count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
-	 System.out.println(onePoll.getStr_Choise2());
-	 System.out.println(int_PoolId+"pid");
-	 System.out.println(count2);
-	 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	  
 	 Long res= count2*100/onePoll.getInt_Vote();
 	 System.out.println(res+"result");
 	 return res;
 	
 }
-
+private List<String> ListChoice;
+public List<String> getListChoice() {
+	ListChoice=new ArrayList<String>();
+	ListChoice.addAll(getExpenseService().getListChoice(onePoll.getInt_PoolId()));
+	return ListChoice;
+}
+public void setListChoice(List<String> listChoice) {
+	ListChoice = listChoice;
+}
 public Long getLatestChoise3Vote()
-{System.out.println(latestPolls.getInt_PoolId());
+{ 
 count3=null;
 	   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
-	  System.out.println(latestPolls.getStr_Choise3());
-		 System.out.println(int_PoolId+"pid");
-		 System.out.println(count3);
-		 System.out.println(latestPolls.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	   
+		 if(latestPolls.getInt_Vote()!=0)
+		 {
 	  Long res= count3*100/latestPolls.getInt_Vote();
 	  System.out.println(res+"result");
+		 }
+		 Long res=0l;
 	  return res;
 }
 public Long getChoise3Vote()
-{System.out.println(onePoll.getInt_PoolId());
+{ 
 count3=null;
 	   count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
-	  System.out.println(onePoll.getStr_Choise3());
-		 System.out.println(int_PoolId+"pid");
-		 System.out.println(count3);
-		 System.out.println(onePoll.getInt_Vote()+"voteeeeeeeeeeeeeeeeeeee");
+	   
 	  Long res= count3*100/onePoll.getInt_Vote();
 	  System.out.println(res+"result");
 	  return res;
@@ -1989,7 +2103,7 @@ public void setDisabled1(Boolean disabled1) {
 	this.disabled1 = disabled1;
 }
 public void desabled1Listener( SelectEvent event)
-{
+{ 
 	if(getIsVoted()==null)
 	{
 		disabled=false;	 
@@ -2000,7 +2114,7 @@ public void desabled1Listener( SelectEvent event)
 		disabled1=false;
 		disabled=true;
 	}
-	 
+	indicate=true;
 }
 public Boolean getDisabled() {
 	if(getIsVoted()==null)
@@ -2406,7 +2520,57 @@ public String getStr_Venue1() {
 }
 
  
+private boolean indicate;
+ 
+
+public boolean isIndicate() {
+	return indicate;
+}
+public void setIndicate(boolean indicate) {
+	this.indicate = indicate;
+}
+public String select()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a poll to view!"));
+		return null;
+   }
+   else
+   {  
+	   indicate=false;
+	  return "viewpool.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
+public String select1()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a poll to vote!"));
+		return null;
+   }
+   else
+   {  
+	   indicate=false;
+	  return "vote.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
 	
 }
+
 
 
