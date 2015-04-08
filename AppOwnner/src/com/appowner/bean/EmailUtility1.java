@@ -65,11 +65,22 @@ public class EmailUtility1 {
         		        "<td width="+30+">"+"Block:"+"</td>"+"<td width="+70+">"+Block+"</td>"+
                         "</tr>"+"<tr>"+"<td width="+30+">"+"Flat Name:"+"</td>"+"<td width="+70+">"+Flat+"</td>"+"</tr>"+
                         "<tr>"+"<td width="+30+">"+"Service Category:"+"</td>"+"<td width="+70+">"+Category+"</td>"+"</tr>"+
-                        "</table>"+
-        		"</fieldset>"+
-        		"</html>", "text/html");
-        // sends the e-mail
-        Transport.send(msg);
- 
+                        "<tr>"+
+       	             "<td style="+"width:350px;"+"color:#333300;"+" margin-left:15%;"+">"+""
+                         + "<h4> &#150;     &#150;    &#150;"+"Note:This is auto generated so please not reply this email"
+       	                  + " </td>" +"</tr>"+
+               		          "</table>"+
+                               "<hr/>"+
+                               
+
+               	     "<tbody>"+"<table>"+
+               	    
+               		"</body>\n" +
+               		"</fieldset>"+
+               		"</html>", "text/html");
+               // sends the e-mail
+       		
+               Transport.send(msg);
     }
 }
+        
