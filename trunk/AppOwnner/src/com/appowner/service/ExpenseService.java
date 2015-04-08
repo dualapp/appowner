@@ -183,6 +183,10 @@ public interface ExpenseService {
 
 	String getAdditionalInfo(Integer int_asset_id);
 
+	List< String> getListChoice(Integer int_PoolId);
+
+	List<String> getEmailIds(Integer appartmentId, String recipients);
+
 	 
 
 }
