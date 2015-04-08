@@ -21,6 +21,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.hibernate.search.annotations.Factory;
 import org.primefaces.event.RateEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 
 import com.appowner.model.Parking;
@@ -1037,6 +1038,13 @@ public void myChangeListener(ValueChangeEvent e){
                    disableButton();
 }
 	public String deleteVendor1() {
+		if(indicate==false)
+		   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+		   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to delete!"));
+				return null;
+		   }
+		   else{
+			   indicate=false;
 	    List<Vendor> entitiesToDelete = new ArrayList<Vendor>();
  
 	    for (Vendor vendor :selectedVendor) {
@@ -1046,15 +1054,12 @@ public void myChangeListener(ValueChangeEvent e){
 	            entitiesToDelete.add(vendor);
 	        }
 	    	
-	    } 
+	    }  
 System.out.println(entitiesToDelete+"entyt todelete");
 	    getVendorservice().deleteVendor1(entitiesToDelete);
-	    FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Vendor deleted Successfully!", "Vendor deleted Successfully!"));
-	    return "vendorlists?faces-redirect=true";
+	    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Delete Successful!"));
+	    return null;
+		   }
 	}
 	 
 /**
@@ -1134,5 +1139,39 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	}
 	public void setEditable(boolean isEditable) {
 		this.isEditable = isEditable;
+	}
+	public void rowSelectListener( SelectEvent event)
+	{ 
+		 System.out.println("seemaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		indicate=true;
+	}
+	private boolean indicate;
+	 
+
+	public boolean isIndicate() {
+		return indicate;
+	}
+	public void setIndicate(boolean indicate) {
+		this.indicate = indicate;
+	}
+	public String select()
+	{   
+	  try{ 
+	   if(indicate==false)
+	   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+	   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to delete!"));
+			return null;
+	   }
+	   else
+	   {  
+		   indicate=false;
+		  return "null";
+	   }
+	  }
+	  catch(Exception e)
+	  {
+		  e.printStackTrace();
+	  }
+	  return null;
 	}
 }
