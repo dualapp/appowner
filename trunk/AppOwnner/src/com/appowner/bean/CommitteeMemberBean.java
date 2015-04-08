@@ -16,6 +16,7 @@ import com.appowner.model.CommiteeMember;
 import com.appowner.model.CommitteeRole;
 import com.appowner.service.CommitteeMemberService;
 import com.appowner.service.VendorService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
@@ -155,6 +156,7 @@ public class CommitteeMemberBean implements Serializable{
 		 
 		commiteeMember=new CommiteeMember();
 		commiteeMember.setStr_UserName(str_UserName);
+		commiteeMember.setInt_ApartmentId(Util.getAppartmentId());
 		commiteeMember.setInt_UserId(getCommitteeMemberService().getUserId(str_UserName));
 		commiteeMember.setStr_CommitteeRole(str_CommitteeRole);
 		commiteeMember.setStr_ResponsibleFor(str_ResponsibleFor);
