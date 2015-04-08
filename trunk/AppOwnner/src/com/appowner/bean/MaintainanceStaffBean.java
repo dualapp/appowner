@@ -12,6 +12,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.MaintainanceStaff;
 import com.appowner.service.MaintainanceStaffService;
+import com.appowner.util.Util;
 
 @ManagedBean
 @ViewScoped
@@ -183,6 +184,7 @@ public void setInt_MaintainanceStaffID(Integer int_MaintainanceStaffID) {
 			System.out.println(str_RoleName);
 			maintainanceStaff=new MaintainanceStaff();
 			maintainanceStaff.setStr_UserName(str_UserName);
+			maintainanceStaff.setInt_ApartmentId(Util.getAppartmentId());
 			maintainanceStaff.setStr_RoleName(str_RoleName);
 			maintainanceStaff.setInt_UserId(getMaintainanceStaffService().getUserId(str_UserName));
 			maintainanceStaff.setInt_RoleId(getMaintainanceStaffService().getMaintainanceStaffRoleId(str_RoleName));
