@@ -34,6 +34,7 @@ public Integer getInt_VendorId() {
 	public void setInt_VendorId(Integer int_VendorId) {
 		this.int_VendorId = int_VendorId;
 	}
+	
 @Column(name="var_UserName")
 private String str_UserName;
 @Column(name="var_Email")
@@ -96,6 +97,14 @@ public String getStr_RoleName() {
 }
 public void setStr_RoleName(String str_RoleName) {
 	this.str_RoleName = str_RoleName;
+}
+@Column(name="int_ApartmentId")
+private Integer int_ApartmentId;
+public Integer getInt_ApartmentId() {
+	return int_ApartmentId;
+}
+public void setInt_ApartmentId(Integer int_ApartmentId) {
+	this.int_ApartmentId = int_ApartmentId;
 }
 
 

@@ -509,6 +509,18 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getAdditionalInfo(int_asset_id);
 	}
 
+	@Override
+	public List<String> getListChoice(Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getListChoice(int_PoolId);
+	}
+
+	@Override
+	public List<String> getEmailIds(Integer appartmentId, String recipients) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getEmailIds(appartmentId,recipients);
+	}
+
 	 
 	 
 

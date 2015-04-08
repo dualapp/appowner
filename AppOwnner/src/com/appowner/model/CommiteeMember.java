@@ -19,6 +19,15 @@ public class CommiteeMember implements Serializable{
 	private Integer int_MemberId;
 	@Column(name="int_UserId")
 	private Integer int_UserId;
+	@Column(name="int_ApartmentId")
+	private Integer int_ApartmentId;
+	 
+	public Integer getInt_ApartmentId() {
+		return int_ApartmentId;
+	}
+	public void setInt_ApartmentId(Integer int_ApartmentId) {
+		this.int_ApartmentId = int_ApartmentId;
+	}
 	public Integer getInt_UserId() {
 		return int_UserId;
 	}
@@ -71,7 +80,7 @@ private String str_ResponsibleFor;
 	public void setDate_Electiondate(Date date_Electiondate) {
 		this.date_Electiondate = date_Electiondate;
 	}
-	
+	 
 	
 	
 }
