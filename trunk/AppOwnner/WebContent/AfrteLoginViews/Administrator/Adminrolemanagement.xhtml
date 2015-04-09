@@ -25,7 +25,7 @@
 	<legend class="medium" style="background-color:blue; color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
 	   <h:panelGroup layout="block" styleClass="selection">
     <p:selectManyCheckbox layout="pageDirection"   value="#{administrationAccessBean.str_AssinedRoles}" valueChangeListener="#{administrationAccessBean.roleChangeListener}"   styleClass="nostyle">
-  <f:selectItems value="#{roleManagementBean.str_Roles}" /><br/>
+  <f:selectItems value="#{roleManagementBean.str_Roles}" /> 
    <!-- <f:ajax event="valueChange" update="@form" process="@form"/> --> 
 </p:selectManyCheckbox>
 </h:panelGroup>
