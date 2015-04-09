@@ -81,10 +81,10 @@
          <p:menuitem value="View Summary" action="#"/>
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
-         
-          &#150; &#150;  <p:commandButton  style="width:120px;height:25px" process="DT" update=":viewform" icon="ui-icon-info" value="View" oncomplete="PF('multiVendorDialog1').show()" />
-       &#150; &#150; <p:commandButton style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" />
-       &#150; &#150;  <p:commandButton style="width:120px;height:25px" rendered="#{expenseBean.isEnable}" update=":form:DT :form:ui-growl" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
+        
+          &#150; &#150;  <p:commandButton  style="width:120px;height:25px"  process="DT" update=":viewform" icon="ui-icon-info" value="view" oncomplete="PF('multiVendorDialog1').show()"  ajax="#{vendorBean.indicate}" id="btn"  action="#{vendorBean.select()}"/>
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" id="btn1" ajax="#{vendorBean.indicate}" rendered="#{expenseBean.isEnable}" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" action="#{vendorBean.select()}" />
+       &#150; &#150;  <p:commandButton style="width:120px;height:25px"  id="btn2"  rendered="#{expenseBean.isEnable}" update=":form:DT :form:ui-growl" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
      &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />
      &#150; &#150;   <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
@@ -114,8 +114,9 @@
                  emptyMessage="No cars found with given criteria" filteredValue="#{vendorBean.selectedVendor1}" 
                rows="10"     paginatorAlwaysVisible="false" 
             id="DT"    var="vendor" value="#{vendorBean.vendorList}"   selection="#{vendorBean.selectedVendor}" rowKey="#{vendor.int_VendorId}"  >
-       
-        <p:column     exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">
+       <p:ajax event="rowSelectCheckbox"   listener="#{vendorBean.rowSelectListener}"  execute="@this" immediate="true"  update=":form:btn,:form:btn1,:form:btn2" render=":form:btn,:form:btn1,:form:btn2"/>
+        <p:column      exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">
+        
           </p:column>
         
          <p:column >
