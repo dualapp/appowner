@@ -51,22 +51,22 @@
   <th width="15%"><p:outputLabel value="Status"/></th>
   <td width="15%"><p:inputText readonly="true" value="#{expenseBean.str_Status}"/></td>
   <th width="20%"></th>
-  <th width="15%"><p:outputLabel value="End Date"/></th>
-  <td width="15%"><p:calendar id="EDate" required="true" requiredMessage="plz  enter End date" navigator="true"  display="inline" value="#{expenseBean.date_EndDate}">
-   <p:ajax event="blur" update="EDateMsg" />
+  <th width="15%"><p:outputLabel  for="EDate" value="End Date"/></th>
+  <td width="15%"><p:calendar id="EDate" required="true" requiredMessage="Enter End Date" navigator="true"  display="inline" value="#{expenseBean.date_EndDate}">
+   
    </p:calendar>
   </td>
   <th width="20%"><p:message id="EDateMsg"  for="EDate" display="text"/></th>
   </tr>
   <tr><th><p:outputLabel value="Organization"/></th><td><p:inputText readonly="true" value="#{expenseBean.str_OrganizationName}"/></td><th></th>
-  <th><p:outputLabel value="Pool Audience"/></th><td><h:selectOneRadio id="Audience"
-                      value="#{expenseBean.str_PoolAudience}">
+  <th><p:outputLabel  for="Audience" value="Pool Audience"/></th><td><h:selectOneRadio id="Audience" required="true"
+             requiredMessage="choose audiance"         value="#{expenseBean.str_PoolAudience}">
         <f:selectItem   itemLabel="All Members" itemValue="All Members" />
         <f:selectItem   itemLabel="Admin And Committees" itemValue="Admin And Committees" />
         </h:selectOneRadio></td><th></th></tr>
         
-      <tr><th><p:outputLabel value="Pool Question?*"/></th><td><p:inputTextarea id="newPollQuestion"  required="true" requiredMessage="Enter PollQuestion" style="Width:150%;height:100px;"    value="#{expenseBean.str_PoolQuestion}" >
-       <p:ajax event="blur" update="newPollQuestionMsg" />
+      <tr><th><p:outputLabel for="newPollQuestion" value="Pool Question?"/></th><td><p:inputTextarea id="newPollQuestion"  required="true" requiredMessage="Enter PollQuestion" style="Width:300%;height:100px;"    value="#{expenseBean.str_PoolQuestion}" >
+       
        </p:inputTextarea>
        </td>
        <th><p:message id="newPollQuestionMsg"  for="newPollQuestion" display="text"/></th>
@@ -75,14 +75,14 @@
 <th></th>
         </tr> 
   <tr><th><p:outputLabel value="Enter Choices*"/></th></tr>
-  <tr><th><p:outputLabel value="choise1*"/></th><td><p:inputText  id="ch1" required="true" requiredMessage="Enter Choise1"  value="#{expenseBean.str_Choise1}">
-  <p:ajax event="blur" update="ch1Msg" />
+  <tr><th><p:outputLabel for="ch1" value="choise1*"/></th><td><p:inputText  id="ch1" required="true" requiredMessage="Enter Choise1"  value="#{expenseBean.str_Choise1}">
+   
   </p:inputText>
   </td>
   <th><p:message id="ch1Msg"  for="ch1" display="text"/></th>
   </tr>
-  <tr><th><p:outputLabel value="choise2*"/></th><td><p:inputText  id="ch2" required="true" requiredMessage="Enter Choise2"  value="#{expenseBean.str_Choise2}">
-  <p:ajax event="blur" update="ch2Msg" />
+  <tr><th><p:outputLabel for="ch2" value="choise2"/></th><td><p:inputText  id="ch2" required="true" requiredMessage="Enter Choise2"  value="#{expenseBean.str_Choise2}">
+   
   </p:inputText>
   </td>
   <th><p:message id="ch2Msg"  for="ch2" display="text"/></th>
