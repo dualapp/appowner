@@ -103,9 +103,11 @@
                 <tr>
            <td> <p:outputLabel for="str_PhoneNo" value="Phone No :" /></td>
                        
-            <td><p:inputText id="str_PhoneNo" value="#{cls_UserBean.str_PhoneNo}" validatorMessage="invalid mobile no" maxlength="10" required="true"                requiredMessage="Enter Phone No!">
+ 
+            <td><p:inputText id="str_PhoneNo" validatorMessage="Required 10 digit"  onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{cls_UserBean.str_PhoneNo}"   maxlength="10" required="true"                requiredMessage="Enter Phone No!">
+             
             <f:validateLength minimum="10" />
-                    <f:validateRegex pattern="^([+]?[\d]+)?$" />
+                    
                      <p:ajax event="keyup" update="PhoneMsg" />
             </p:inputText> </td><td><p:message  id="PhoneMsg" for="str_PhoneNo" display="text"/></td> </tr> 
             <tr><td colspan="2" align="left">
