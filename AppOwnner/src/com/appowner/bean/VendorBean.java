@@ -1159,12 +1159,12 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	  try{ 
 	   if(indicate==false)
 	   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
-	   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to delete!"));
+	   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to proceed!"));
 			return null;
 	   }
 	   else
 	   {  
-		   indicate=false;
+		   indicate=true;
 		  return "null";
 	   }
 	  }
