@@ -85,12 +85,7 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 			String str_Status, String str_VendorType,Date dat_ToDate) {
 		if(int_ApartmentId!=null&&str_Status!=null&&str_VendorType!=null)
 		{
-			if(str_Status.equalsIgnoreCase("All"))
-			{
-				String query="from ServiceRequest where  Str_VendorType=? AND int_ApartmentId=? AND dat_OpenDate=?";
-				
-				return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0,str_VendorType).setParameter(1, int_ApartmentId).setParameter(2, dat_ToDate).list();
-			}
+			 
 			String query="from ServiceRequest where Str_Status=? AND Str_VendorType=? AND int_ApartmentId=? AND dat_OpenDate=?";
 		
 			return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0, str_Status).setParameter(1,str_VendorType).setParameter(2, int_ApartmentId).setParameter(3, dat_ToDate).list();
@@ -125,12 +120,7 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 			String str_FacilityType,String str_EventType) {
 		if(int_ApartmentId!=null&&str_Status!=null&&str_OpenDate!=null&&str_FacilityType!=null&&str_EventType!=null)
 		{
-			if(str_Status.equalsIgnoreCase("All"))
-			{
-				String query="from BookAFacility where  str_FacilityType=? AND int_ApartmentId=? AND str_OpenDate=? AND str_EventType=? ";
-				
-				return sessionFactory.getCurrentSession().createQuery(query).setParameter(0,str_FacilityType).setParameter(1, int_ApartmentId).setParameter(2,str_OpenDate).setParameter(3, str_EventType).list();
-			}
+			 
 			String query="from BookAFacility where Str_Status=? AND str_FacilityType=? AND int_ApartmentId=? AND dat_OpenDate=? AND str_EventType=?";
 		
 			return sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_FacilityType).setParameter(2, int_ApartmentId).setParameter(3, str_OpenDate).setParameter(4, str_EventType).list();
