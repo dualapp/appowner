@@ -640,5 +640,59 @@ public cls_Event getEvent1() {
 public void setEvent1(cls_Event event1) {
 	this.event1 = event1;
 }
+public void rowSelectListener( SelectEvent event)
+{ 
+	 System.out.println("seemaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	indicate=true;
+}
+private boolean indicate;
+ 
+
+public boolean isIndicate() {
+	return indicate;
+}
+public void setIndicate(boolean indicate) {
+	this.indicate = indicate;
+}
+public String select()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to proceed!"));
+		return "servicerequest.xhtml";
+   }
+   else
+   {  
+	   indicate=true;
+	  return "servicerequest.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
+public String select1()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to proceed!"));
+		return "book a facility.xhtml";
+   }
+   else
+   {  
+	   indicate=true;
+	  return "book a facility.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
 }
 
