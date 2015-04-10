@@ -44,9 +44,11 @@
     <h:inputText value="#{noticeBoardBean.notice1.str_Subject}" /></td>
    
      <td>
-       <p:outputPanel layout="block" id="parentPanel">  
-          <p:graphicImage id="image3"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{noticeBoardBean.notice1.image}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-20px 50px -100px 60px;"/>
-     <p:graphicImage id="image1"   value="#{noticeBoardBean.notice1.str_Document}" rendered="#{noticeBoardBean.notice1.image==null}" title="User Image" style="background:#dddddd; height:180px;width:150px;float:right !important;margin:-20px 50px -100px 60px;"/>
+       <p:outputPanel layout="block" id="parentPanel"> 
+       <p:graphicImage id="image1"    value="#{noticeBoardBean.notice1.str_Document}"  title="User Image" rendered="#{noticeBoardBean.notice1.image==null}" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-20px 50px -100px 60px;"/>
+     <p:graphicImage id="image2"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{noticeBoardBean.notice1.image}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-20px 50px -100px 60px;"/>
+     <p:graphicImage id="image3"   value="#{expenseBean.str_Name}images/doc.jpg"  rendered="#{noticeBoardBean.notice1.image==false}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-20px 50px -100px 60px;"/>
+        
     
      
    </p:outputPanel> 
@@ -73,7 +75,7 @@
     <p:ajax event="click"  process="submit1"  render=":upload"/></p:commandButton>
              </tr>
              <tr>
-             <h:panelGroup id="image2" rendered="#{noticeBoardBean.indicator}" >
+             <h:panelGroup id="image4" rendered="#{noticeBoardBean.indicator}" >
               <th align="left">Attachment, if any</th>
              <td>
              

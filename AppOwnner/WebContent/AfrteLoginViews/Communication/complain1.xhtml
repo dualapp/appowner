@@ -8,7 +8,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
-<h:head></h:head>
+<h:head><script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script></h:head>
   <body bgcolor="green">
     <h:form id="form1" enctype="multipart/form-data">
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
@@ -22,7 +30,7 @@
 		</table>
 	 <div id="page3">
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-       <p:messages id="messages"/>  
+      
      
           
            <tr>
@@ -36,6 +44,7 @@
                <f:selectItem itemLabel="Community" itemValue="Community" />
                 <f:ajax event="change" execute="option" render="@form"/>
                </p:selectOneRadio>
+                <p:message for="option" display="text"/>
                </td>
               
               
@@ -62,20 +71,20 @@
              <tr>
              <td><h:outputText for="str_VendorType" value="Category*:" /></td>
             
-             <td><p:selectOneMenu id="str_VendorType" value="#{complainBean.str_VendorType}"  valueChangeListener="#{complainBean.vendorChangeListener}" style="width:250px">
+             <td><h:selectOneMenu id="str_VendorType" value="#{complainBean.str_VendorType}"  valueChangeListener="#{complainBean.vendorChangeListener}" style="width:250px">
                   <f:selectItem itemLabel="Select Vendor" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{complainBean.str_VendorTypes}" />
                  <p:ajax event="change" update="str_VenderName" process="str_VendorType"/>
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
              
           <td>  <h:outputText for="str_VendorName" value="Assigned To:" /></td> 
             
-           <td> <p:selectOneMenu id="str_VenderName" value="#{complainBean.str_VenderName}" style="width:250px">
+           <td> <h:selectOneMenu id="str_VenderName" value="#{complainBean.str_VenderName}" style="width:250px">
                 <f:selectItem itemLabel="Not Assigned"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{complainBean.str_VendorNames}"/>
-              </p:selectOneMenu></td> 
+              </h:selectOneMenu></td> 
            
             </tr>
             
@@ -88,21 +97,29 @@
             <td><h:outputText  value="Complain Nature*:" /></td>
             
              <td><p:selectOneRadio id="options" value="#{complainBean.ch_Complain}"  required="true" requiredMessage="Compalint Nature should not Empty">
-                <f:selectItem itemLabel="Complaint" itemValue="C" />
+                <f:selectItem itemLabel="Complaint" itemValue="c" />
                 <f:selectItem itemLabel="Suggestion" itemValue="S" />
                  <f:selectItem itemLabel="Maintenance Activity" itemValue="P" />
-               </p:selectOneRadio>
+              </p:selectOneRadio>
+               <p:message for="options" display="text"/>
             </td>
             </tr>
         
             <tr>
-               <td><h:outputText  value="Description*:"/><br /><small>(max of 1000 characters)</small></td>
-                <td><p:inputTextarea style="width:300px; height:100px" id="description" value="#{complainBean.str_Description}" required="true" requiredMessage="Complain box should not Empty">
-              </p:inputTextarea>
-               
+               <td><h:outputText  value="Description*:"/><br /><small><font color="red" size="2">(Maximum characters: 1000)</font></small></td>
+                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,1000);" style="width:300px; height:100px" 
+onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,1000);" maxlength="1000" required="true"></textarea>
+<br/>
+
+<input  type="text" name="countdown" size="3" value="1000"> characters left.</input>
+
+
+
+              
                 
-            </td>
-            </tr>
+         </td>
+         </tr>
+         
            
           
             
@@ -110,8 +127,8 @@
           
             <tr>
             <td></td>
-                <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{complainBean.addComplain1}" ajax="false" /></td>
-                
+                <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{complainBean.addComplain1}" ajax="false" />
+                <p:button id="submit1" styleClass="btn" value="Cancel" outcome="ComplainView.xhtml" style="margin-left:2em;"/></td>
             </tr>
            
      </table>

@@ -59,15 +59,15 @@
             </p:column>
               <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Category" />
+                    <h:outputText value="Block" />
                 </f:facet>
-                <h:outputText value="#{complain.str_VendorType}" />
+                <h:outputText value="#{complain.block}" />
             </p:column>
              <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Assigned To" />
+                    <h:outputText value="Flat No." />
                 </f:facet>
-                <h:outputText value="#{complain.str_VenderName}"  />
+                <h:outputText value="#{complain.flat}"  />
             </p:column>
              <p:column>
                 <f:facet name="header">
@@ -111,7 +111,7 @@
        
         <tr>
         <td>
-        <h:inputText value="#{complainBean.cmp.adminReason}"/>
+        <h:inputTextarea value="#{complainBean.cmp.adminReason}" style="weight:250px;height:100px;"/>
         </td>
         </tr>
        
@@ -126,14 +126,16 @@
            
              <tr>
                <td><h:outputText  value=" Admin Reason*:"/><br /></td>
-                <td><p:inputTextarea style="width:300px; height:100px" id="description" value="#{complainBean.str_Description}" >
+                <td><p:inputTextarea style="width:300px; height:100px" id="description" value="#{complainBean.adminReason}" >
               </p:inputTextarea>
               
               </td>
               </tr>
               <tr>
+              <td></td>
               <td>
-              <p:commandButton value="Submit" action="#{complainBean.addAdminReason()}" ajax="false">
+              
+              <p:commandButton value="Submit" styleClass="btn" action="#{complainBean.addAdminReason()}" ajax="false">
               </p:commandButton>
               </td>
               </tr>

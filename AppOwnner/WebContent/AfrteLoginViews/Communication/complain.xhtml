@@ -31,7 +31,16 @@
 
 }
           
-      </style>	</h:head>
+      </style>	
+      <script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script></h:head>
   <body bgcolor="green">
     <h:form id="form1" enctype="multipart/form-data">
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
@@ -59,6 +68,7 @@
                <f:selectItem itemLabel="Community" itemValue="Community" />
                 <f:ajax event="change" execute="option" render="@form"/>
                </p:selectOneRadio>
+               <p:message for="option" display="text"/>
                </td>
               
               
@@ -124,7 +134,7 @@
             <td><h:outputText  value="Complain Nature*:" /></td>
             
              <td><p:selectOneRadio id="options" value="#{complainBean.ch_Complain}"  required="true" requiredMessage="Compalint Nature should not Empty">
-                <f:selectItem itemLabel="Complaint" itemValue="C" />
+                <f:selectItem itemLabel="Complaint" itemValue="c" />
                 <f:selectItem itemLabel="Suggestion" itemValue="S" />
                  <f:selectItem itemLabel="Maintenance Activity" itemValue="P" />
                </p:selectOneRadio>
@@ -132,20 +142,29 @@
             </tr>
         
             <tr>
-               <td><h:outputText  value="Description*:"/><br /><small>(max of 1000 characters)</small></td>
-                <td colspan="2"><h:inputTextarea style="width:300px; height:100px" id="description" value="#{complainBean.str_Description}" required="true" requiredMessage="Complain box should not Empty">
-              </h:inputTextarea>
-               
+               <td><h:outputText  value="Description*:"/><br /><small><font color="red" size="2">(Maximum characters: 1000)</font></small></td>
+                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,1000);" style="width:300px; height:100px" 
+onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,1000);" maxlength="1000" required="true"></textarea>
+<br/>
+
+<input  type="text" name="countdown" size="3" value="1000"> characters left.</input>
+
+
+
+              
                 
-            </td>
-            </tr>
+         </td>
+         </tr>
+         
+          
            
             
             
           
             <tr>
             <td></td>
-                <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{complainBean.addComplain}" ajax="false" /></td>
+                <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{complainBean.addComplain}" ajax="false" />
+                 <p:button id="submit1" styleClass="btn" value="Cancel" outcome="ComplainView.xhtml" style="margin-left:2em;"/></td>
                 
             </tr>
            
