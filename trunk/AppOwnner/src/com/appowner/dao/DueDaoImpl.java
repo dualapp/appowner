@@ -73,6 +73,10 @@ public class DueDaoImpl implements DueDao{
 			System.out.println("ghhhhjhhh1111");
 			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).add(Restrictions.eq("str_Organisation", apartmentID)).list();
 		}  */
+		else if(str_DueTemplate.isEmpty() && str_Block.isEmpty() && str_ApartmentNo.isEmpty() && str_Period.isEmpty() && str_Status.isEmpty())
+		{
+			return getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).setCacheable(true).add(Restrictions.eq("str_Organisation", apartmentID)).list();
+		}
 		else if(str_Status==null)
 		{
 			
