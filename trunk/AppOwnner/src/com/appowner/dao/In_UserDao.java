@@ -139,6 +139,8 @@ public interface In_UserDao {
 
 	public Vendor getVendor(String str_VendorName, String str_VendorType);
 
+	public void deleteRole(Integer id);
+
 	 
 	//public void deleteUser1(int int_UserId);
 

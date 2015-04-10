@@ -387,7 +387,7 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			System.out.println("uuuuuuuuuuuuuuuuuuuueeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuuu");
 			User Userinfo=(User) getSessionFactory().getCurrentSession().createQuery(hql41).setParameter(0,userid).uniqueResult();
 			System.out.println("uuuuuuuuuuuuuuuuuuuuffffffffffuuuuuuuuuuuuuuuuuuuuuuuu");
-			System.out.println(Userinfo.getStr_Email());
+			
 			return Userinfo;
 		}
 
@@ -505,10 +505,10 @@ public class Cls_UserDaoImpl implements In_UserDao {
 				List<Integer> id= (List<Integer>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,int_ApartmentId).setParameter(1,int_UserId).list();
  
 				
-				if(id==null)
+				List<String> str4=new ArrayList<String>();
  
 				System.out.println(id+"fdkfdjkfdjkkjf");
-				if(id==null)
+				if(id.isEmpty())
  
 				{
 					Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,int_ApartmentId).setCacheable(true).uniqueResult();
@@ -538,20 +538,28 @@ public class Cls_UserDaoImpl implements In_UserDao {
 					 {
 					   Integer id2=(Integer) list.next();
 					 
-				    Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id2).setParameter(1,int_ApartmentId).uniqueResult();
-				
-				    List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id1).list();
-				 
-				    return str1;
-					 }
+				       List<Integer> id1=(List<Integer>) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id2).setParameter(1,int_ApartmentId).list();
+				        ListIterator list1=id1.listIterator();
+				        while(list1.hasNext())
+				        {
+				    	Integer id3=(Integer) list1.next();
+				    	List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id3).list();
+					    System.out.println(str1+"fdjdfjfd"); 
+						  str4.addAll(str1);
+					 	
+				        }
+				    
+				System.out.println(str4+"fjgggttrgtrtr");
 				}
-				
+			return str4;
+		   }
 		   }
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		return null;
+		
 		  }
 
 		@Override
@@ -559,7 +567,10 @@ public class Cls_UserDaoImpl implements In_UserDao {
 			// TODO Auto-generated method stub
 			return (Vendor) getSessionFactory().getCurrentSession().createQuery("from Vendor where str_VendorName=? and str_VendorType=?").setParameter(0, str_VendorName).setParameter(1, str_VendorType).uniqueResult();
 		}
-
+		public void deleteRole(Integer id)
+		{
+			getSessionFactory().getCurrentSession().createQuery("delete from RoleAssignment where int_ApartmentId=? and int_UserId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,id).executeUpdate();
+		}
 	 
 }
 		

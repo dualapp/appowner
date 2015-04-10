@@ -105,6 +105,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 			 System.out.println("priyahuyt23467");
 			   return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
 		}
+		
 	 else
 		 {   System.out.println("jndfjfdjfjdk");
 			String hql="from InvoiceTransaction where str_InvoiceTemplate=? AND str_BillPeriod=? AND str_Block=? AND  str_ApartmentNo=? AND str_Status=? AND int_Organisation=?" ;

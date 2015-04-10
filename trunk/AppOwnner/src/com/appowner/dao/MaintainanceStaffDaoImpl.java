@@ -321,9 +321,10 @@ public List<String> getRoleMenus(Integer i)
 public  List<String> getSideMenu()
   {  
 	  String str="select int_RoleId from RoleAssignment where int_ApartmentId=? and int_UserId=?";
-	Integer id= (Integer) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,Util.getAppartmentId()).setParameter(1, Util.getUserId()).uniqueResult();
+	List<Integer> id= (List<Integer>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,Util.getAppartmentId()).setParameter(1, Util.getUserId()).list();
 	System.out.println(id+"fjdfjdfjd");
-	if(id==null)
+	 List<String> str4=new ArrayList<String>();
+	if(id.isEmpty())
 	{
 		Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).setCacheable(true).uniqueResult();
 		   System.out.println(id1+"fcjdfjkdfjkfd");
@@ -346,13 +347,28 @@ public  List<String> getSideMenu()
 		   
 	}
 	else
-	{
-	Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id).setParameter(1,Util.getAppartmentId()).uniqueResult();
-	System.out.println(id1+"fddfhdfj");
-	List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id1).list();
-	 System.out.println(str1+"fdjdfjfd"); 
-	  return str1;
-	}
+	{  
+		ListIterator list=id.listIterator();
+		while(list.hasNext())
+		{
+			Integer id1=(Integer) list.next();
+			System.out.println(id1+"gfgjjkggf");
+			 List<Integer> id2=(List<Integer>) getSessionFactory().getCurrentSession().createQuery("select int_MenuID from RoleMenuManagement where int_RoleID=? and int_ApartmentID=?").setParameter(0,id1).setParameter(1,Util.getAppartmentId()).list();
+		        ListIterator list1=id2.listIterator();
+		        while(list1.hasNext())
+		        {
+		    	Integer id3=(Integer) list1.next();
+		    	List<String> str1=(List<String>) getSessionFactory().getCurrentSession().createQuery("select str_MenuName from ManuMaster where int_MenuID=?").setParameter(0,id3).list();
+			    System.out.println(str1+"fdjdfjfd"); 
+				  str4.addAll(str1);
+			 	
+		        }
+		    
+		System.out.println(str4+"fjgggttrgtrtr");
+		}
+	return str4;
+}
   }
-	}
-
+}
+	
+ 
