@@ -90,10 +90,16 @@ public class TemplateDaoImpl implements TemplateDao {
 	 @SuppressWarnings("unchecked")
 	 public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category)
 	{  getApartmentID();
+	System.out.println(str_Mode+"gfgfgf");
+	System.out.println(str_Category+"fggkjgkjgf");
 		 if(str_Mode==null && str_Category==null)
 	    {  
 		 return (List<MessageTemplate>) getSessionFactory().getCurrentSession().createCriteria(MessageTemplate.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list(); 
 	     }
+		 else if(str_Mode.isEmpty() && str_Category.isEmpty())
+		 {
+			 return (List<MessageTemplate>) getSessionFactory().getCurrentSession().createCriteria(MessageTemplate.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list(); 
+		 }
 	   else
 	   {   System.out.println(apartmentID+"lkffgkl");
 		   String hql="from MessageTemplate  where str_Mode=? and str_Category=? and int_Organisation=?";

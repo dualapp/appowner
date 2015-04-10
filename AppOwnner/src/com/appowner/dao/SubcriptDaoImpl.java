@@ -14,6 +14,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.bean.FileUploadValidator;
 import com.appowner.model.AccountingGroup;
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
@@ -35,7 +36,6 @@ import com.appowner.model.cls_Group;
 import com.appowner.model.cls_PersonCity;
 import com.appowner.model.cls_PersonState;
 import com.appowner.model.cls_hobby;
-import com.appowner.util.Util;
 import com.lowagie.text.pdf.hyphenation.TernaryTree.Iterator;
 
 /**
@@ -486,8 +486,7 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@Override
 	public List getlist() {
-		@SuppressWarnings("unchecked")
-		List<String> cityList=getSessionFactory().getCurrentSession().createQuery("from cls_Group where int_ApartmentID=?").setParameter(0,Util.getAppartmentId()).list();
+		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).list();
 		return cityList;
 	}
 
@@ -615,9 +614,9 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public  List<String> listblock() {
-		String hql2="select str_BlockName from UserBlocks where int_ApartmentId=?";		
+		String hql2="select str_BlockName from UserBlocks";		
 		System.out.println("8888888888888888888888888888888888");
-		return  sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0, Util.getAppartmentId()).list();
+		return  sessionFactory.getCurrentSession().createQuery(hql2).list();
 		
 	}
 
@@ -750,19 +749,17 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		 }
 		 else
 		 {
+		 
 		 String[] array=id.split(",");
 		 List<UserExtraInfo> conn1=new ArrayList<UserExtraInfo>();
 		 for(String id1:array)
-		   {  
+		 {  
 			 System.out.println(id1+"jjhhjjj"); 
 			 int id2=Integer.parseInt(id1);
 			 System.out.println(id2+"jjkjkjjklllllllllllllllllllllllllllllll");
 			 String query="{ call member1(?)}";
 				UserExtraInfo conn=(UserExtraInfo) sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0,id2).uniqueResult();
 				conn1.add(conn);
-				 System.out.println(conn1+"jjjj");
-				   return conn1;
-		     }
 		 }
 		 
 		// Set<Integer> str2 = new HashSet<Integer>(id);
@@ -785,8 +782,10 @@ public class SubcriptDaoImpl implements SubcriptDao {
 				
 		 
 			}*/
+		 System.out.println(conn1+"jjjjmnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmmmmmmm");
+	   return conn1;
+		 }
 		
-		return null;
 		
 		
 	}
@@ -826,9 +825,82 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		return cid1;
 	}
 
-	
-	
+	@Override
+	public String count(int meberids) {
+		String hql="select int_UserId from GroupMember where int_GroupId=?";
+		 String count1=(String) sessionFactory.getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,meberids).uniqueResult();
+		 return count1;
 	}
+
+	@Override
+	public Cls_CreateDocumentManagement listname(Integer postid) {
+		System.out.println(postid+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from Cls_CreateDocumentManagement where Int_DocumentID=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		Cls_CreateDocumentManagement  name= (Cls_CreateDocumentManagement) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(name);
+		 return name;
+	}
+
+	@Override
+	public void deletedetail(Cls_CreateDocumentManagement detail) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Cls_CreateDocumentManagement WHERE Int_DocumentID="+detail.getInt_DocumentID()).executeUpdate();
+		
+	}
+
+	@Override
+	public int getname(String intdocid) {
+		
+		String hql1="select Int_Document_CatID  from Cls_DocumentCategory where Int_Document_CatNM=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		 Integer getid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, intdocid).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( getid);
+		return  getid;
+	}
+
+	@Override
+	public void updatepost(Cls_CreateDocumentManagement document) {
+		sessionFactory.getCurrentSession().update( document);
+	}
+
+	
+		 
+	@Override
+	public void updateposts(Cls_CreateDocumentManagement doc) {
+		sessionFactory.getCurrentSession().update( doc);
+		
+	}
+
+	@Override
+	public void updateposts(String txtfile, Integer postid, String path,
+			String filename) {
+		  System.out.println(txtfile+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+		  System.out.println(FileUploadValidator.filename+"ppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+		 System.out.println(path+"mkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
+			String hql="update  Cls_CreateDocumentManagement  set  image=?, str_FolderNM=?, str_FileNM=? where Int_DocumentID=?";
+			 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, txtfile).setParameter(1, filename).setParameter(2, path).setParameter(3, postid).executeUpdate();
+			System.out.println(hql+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+		}
+		
+	}
+
+		
+	
+		
+	
+
+		
+	
+
+	
+	
+	
 	
 
 	
