@@ -1140,10 +1140,16 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	public void setEditable(boolean isEditable) {
 		this.isEditable = isEditable;
 	}
-	public void rowSelectListener( SelectEvent event)
+	public void rowUnSelectListener()
 	{ 
 		 System.out.println("seemaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		indicate=true;
+		  indicate=false;
+	}
+	public  void rowSelectListener( SelectEvent event)
+	{ 
+		
+		 System.out.println("seemuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"+event.getObject());
+		  indicate=true;
 	}
 	private boolean indicate;
 	 
