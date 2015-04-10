@@ -8,59 +8,9 @@
 	 template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head><title>Welcome to Advertisement</title></h:head>
- <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
+ 
 
- <style>
-     body
-        {
-            font-family: Verdana;
-            font-size: 10px;
-         
-        }
-     
-    </style>
-
-
-
-
-<h:body>
-
-<script>
-
- var modalWin = new CreateModalPopUpObject();
- modalWin.SetLoadingImagePath("images/loading_home.gif");
- modalWin.SetCloseButtonImagePath("images/cross.png");
- //Uncomment below line to make look buttons as link
- //modalWin.SetButtonStyle("background:none;border:none;textDecoration:underline;cursor:pointer");
-
-
-function ShowNewPage1(clicked_id){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-    modalWin.ShowURL("editrolemaster.xhtml?int_StaffID="+clicked_id+"",200,250,'Edit RoleMaster',null,callbackFunctionArray);
-	 }
-function ShowNewPage2(clicked_id){
-	 var callbackFunctionArray = new Array(Submit, Cancel);
-	modalWin.ShowURL("viewrolemaster.xhtml?int_StaffID="+clicked_id+"",200,250,'View RoleMaster',null,callbackFunctionArray);
-	 }
-	 
-
-function Submit(msg){
-	
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-function Cancel(){
-	
-modalWin.HideModalPopUp();
-modalWin.ShowMessage(msg,200,400,'User Information',null,null);
-}
-
-
-
-
-</script>
- </h:body>
+ 
     <h:form id="form">
     <br/>
          <legend class="medium" style="background-color:blue; color:#fff;">RoleMaster Information </legend>
@@ -80,15 +30,70 @@ modalWin.ShowMessage(msg,200,400,'User Information',null,null);
                  </h:outputText>
             </p:column>
            
-            <p:column rendered="#{master.flag == 2}">
-                <f:facet name="header">
+            <p:column>
+            <f:facet name="header">
                     <h:outputText value="Action" />
                 </f:facet>
-                 <input type="button" id="#{master.int_RoleID}" style="width: 50px"  onclick="ShowNewPage1(this.id)" value="Edit"/>
-            <input type="button" id="#{master.int_RoleID}" style="width: 50px" onclick="ShowNewPage2(this.id)" value="View" />
-           </p:column>     
+                <p:column rendered="#{master.flag == 2}">
+               <p:commandLink  process="master"  update=":form:multiTaxTemplateDetail4" oncomplete="PF('multiTaxTemplateDialog4').show()"   action="#{roleMasterBean.getRoleMaster(master.int_RoleID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
+              </p:commandLink>
+               &#150; 
+               
+               
+              <p:commandLink   process="master"  update=":form:multiTaxTemplateDetail" oncomplete="PF('multiTaxTemplateDialog').show()"   action="#{roleMasterBean.getRoleMaster(master.int_RoleID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink>
+         </p:column>
+         </p:column>
             </p:dataTable>
+        <p:dialog header="Edit Staff" widgetVar="multiTaxTemplateDialog4"     showEffect="explode" hideEffect="explode" resizable="false" height="100" width="400">
+        <p:outputPanel id="multiTaxTemplateDetail4" style="text-align:center;">
+           <table>
+          <h:form>
+   
+<tr>
        
+  <td>  <h:outputText value="RoleMasterName:"/></td>
+    
+  <td>  <h:inputText value="#{roleMasterBean.master2.str_RoleName}"/></td>
+  
+
+      </tr>
+       
+
+      <tr>
+      <td>
+      </td>
+      <td> <h:commandButton  value="Submit"  action="#{roleMasterBean.saveRoleMaster}"/></td>
+  
+   </tr>
+</h:form>
+              </table>
+              </p:outputPanel>
+              </p:dialog>
+      <p:dialog header="View Staff" widgetVar="multiTaxTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="100" width="400">
+        <p:outputPanel id="multiTaxTemplateDetail" style="text-align:center;">
+           <table>
+          <h:form>
+   
+<tr>
+       
+  <td>  <h:outputText value="RoleMasterName:"/></td>
+    
+  <td>  <h:inputText value="#{roleMasterBean.master2.str_RoleName}" readonly="true"/></td>
+  
+
+      </tr>
+       
+
+     
+
+</h:form>
+              </table>
+              </p:outputPanel>
+              </p:dialog>
+                      
         <br/>
         <br/> 
          <br/>        

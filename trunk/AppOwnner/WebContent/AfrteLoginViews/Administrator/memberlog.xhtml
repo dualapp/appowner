@@ -14,53 +14,74 @@
  <div class="gsTitleDiv">Member log <br/><hr/></div>
 <h:outputText value="Organisation:" /> 
               
-              <h:selectOneMenu       style="width:100px">
+              <h:selectOneMenu       style="width:250px">
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
                 
                  </h:selectOneMenu><br/>
                  
-                 <p:dataTable  widgetVar="MlTable"  emptyMessage="No Vendors found with given criteria"    id="radioDT" editable="true" resizableColumns="true"   scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="150"   var="memberlog" value="#{loginBean.listMemberLog}"   >
-                <f:facet name="header">
-               <h:outputText value="MemberLog"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <h:outputText  value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('MlTable').filter()" style="width:150px"    placeholder="Enter keyword"/>
+                 <p:dataTable   id="radioDT" editable="true" resizableColumns="true"   var="memberlog" value="#{loginBean.listMemberLog}"   >
+               
+         
+             
+        <p:column     >
+            <f:facet name="header">
+               <h:outputText value="UserName"/>
+               
+               
             
        </f:facet>
-         
-              
-              <f:facet name="header">
-            
-            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
-        <p:columnToggler datasource="radioDT" trigger="toggler" />
-        </f:facet>
-        <p:column   sortBy="#{loginBean.userloginname}"  headerText="UserName" footerText="UserName" >
-           
               <h:outputText   value="#{loginBean.userloginname}" /> 
                
             </p:column>
-        <p:column   sortBy="#{loginBean.str_ApartmentName}"  headerText="ApartmentName" footerText="ApartmentName"  >
-           
+        <p:column     >
+            <f:facet name="header">
+               <h:outputText value="Ornanisation"/>
+               
+               
+            
+       </f:facet>
               <h:outputText   value="#{loginBean.str_ApartmentName}" /> 
                
             </p:column>
-             <p:column   sortBy="#{memberlog.str_Block}"  headerText="BlockName" footerText="BlockName"  >
+             <p:column>    
+             <f:facet name="header">
+               <h:outputText value="Block"/>
+               
+               
+            
+       </f:facet>  
            
               <h:outputText   value="#{memberlog.str_Block}" /> 
                
             </p:column>
             
-             <p:column   sortBy="#{memberlog.str_LoggedInTime}"  headerText="LoggedInTime" footerText="LoggedInTime"  >
-           
+             <p:column      >
+            <f:facet name="header">
+               <h:outputText value="LogIn Time"/>
+               
+               
+            
+       </f:facet>
               <h:outputText   value="#{memberlog.str_LoggedInTime}" /> 
                
             </p:column>
-             <p:column   sortBy="#{memberlog.str_LogOutTime}"  headerText="LogOutTime" footerText="LogOutTime" >
-           
+             <p:column    >
+            <f:facet name="header">
+               <h:outputText value="LogOut Time"/>
+               
+               
+            
+       </f:facet>
               <h:outputText   value="#{memberlog.str_LogOutTime}" /> 
                
             </p:column>
-             <p:column   sortBy="#{memberlog.str_UserEmailId}"  headerText="UserEmailId" footerText="UserEmailId"  >
-           
+             <p:column    >
+            <f:facet name="header">
+               <h:outputText value="EmailID"/>
+               
+               
+            
+       </f:facet>
               <h:outputText   value="#{memberlog.str_UserEmailId}" /> 
                
             </p:column>

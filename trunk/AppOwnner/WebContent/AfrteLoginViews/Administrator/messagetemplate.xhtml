@@ -56,15 +56,16 @@
             
              <td><h:outputLabel value="Show:" /></td>
               <td><p:selectOneMenu id="str_Mode1" value="#{templateBean.str_Mode}"  style="width:150px">
-                   <f:selectItem itemLabel="All" itemValue="All" />
+                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                     <f:selectItem itemLabel="Sms" itemValue="Sms" />
                      <f:selectItem itemLabel="Email" itemValue="Email" />
                  </p:selectOneMenu>
              </td>
               <td><h:outputLabel value="Message Template Of:" /></td>
               <td><p:selectOneMenu id="str_Category1" value="#{templateBean.str_Category}"  style="width:150px">
-                   <f:selectItem itemLabel="All" itemValue="All" />
+                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                     <f:selectItem itemLabel="Ads" itemValue="Ads" />
+                     <f:selectItem itemLabel="Accounts" itemValue="Accounts" />
                     <f:selectItem itemLabel="Dues" itemValue="Dues" />
                      <f:selectItem itemLabel="Maintenance" itemValue="Maintenance" />
                      <f:selectItem itemLabel="Parking" itemValue="Parking" />
