@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Subcript;
@@ -112,6 +114,7 @@ getSubcriptService().update(usr);
 	}
 public String saveUser1(){
 	getSubcriptService().update1(cat);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
 	return "DocumentList.xhtml";
 	}
 public String deletedocument(int a){

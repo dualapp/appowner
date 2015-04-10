@@ -123,25 +123,28 @@ private List<Object> list=new ArrayList();
 	public String addMaster()
     {  
         @SuppressWarnings("rawtypes")
-		ListIterator itr=list.listIterator();
-           
-        while(itr.hasNext()){
-        	Object o=itr.next();
+        RoleMaster master=new RoleMaster();
+
+         System.out.println(str_RoleName+"fggfkjgfjkgfkjgfkjgf");  
+
+
         	  
-        	str_RoleName=(String)o;
+
+
            System.out.println(str_RoleName);
-        master2.setStr_RoleName(str_RoleName);
-        	master2.setCh_RoleMasterType('C');
-        	master2.setFlag(2);
-        	getStaffService().addMaster(master2);
+        master.setStr_RoleName(str_RoleName);
+        	master.setCh_RoleMasterType('C');
+        	master.setFlag(2);
+        	getStaffService().addMaster(master);
         	
-        }
+
+
         return "RoleMaster.xhtml";
     }
 
-  public void 	getRoleMaster()
+  public void 	getRoleMaster(int id)
   {
-	 master2= getStaffService().getRoleMaster(int_RoleID);
+	 master2= getStaffService().getRoleMaster(id);
   }
   public String saveRoleMaster()
   {

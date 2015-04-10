@@ -282,8 +282,8 @@ public class TemplateBean implements Serializable,Validator {
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		delete.setInt_DueTemplateID(selectedDueTemplate.getInt_DueTemplateID());
-	    
-	    	 String str=delete.getStr_DueTemplate();
+	    System.out.println(selectedDueTemplate.getInt_DueTemplateID()+"fgkgfjkgfjkgkjf");
+	    	 String str=selectedDueTemplate.getStr_DueTemplate();
 	    	 System.out.println(str+"fjfgvkjgfjkgfjk");
 	 	    boolean id=getTemplateService().detectDueTemplate(str);
 	 	    System.out.println(id+"jffkjfj");
@@ -615,6 +615,13 @@ public class TemplateBean implements Serializable,Validator {
 	public boolean isIndicate2() {
 		return indicate2;
 	}
+	private boolean indicate1;
+	public boolean isIndicate1() {
+		return indicate1;
+	}
+	public void setIndicate1(boolean indicate1) {
+		this.indicate1 = indicate1;
+	}
 	public void setIndicate2(boolean indicate2) {
 		this.indicate2 = indicate2;
 	}
@@ -630,25 +637,24 @@ public class TemplateBean implements Serializable,Validator {
 		indicate=true;
 		 String str=selectedInvoiceTemplate.getStr_InvoiceTemplateName();
 		 
-		 boolean indicate1=getTemplateService().detectInvoiceTemplate(str);
+		 indicate1=getTemplateService().detectInvoiceTemplate(str);
 		 System.out.println(indicate1+"fjkgfkjkjkjggjk");
-		 if(indicate1==true)
-		 {
-			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This invoice template already exists for the selected invoice. Duplicate invoice template cannot be created.")); 
-		 }
+		 
 		 if(indicate==true )
 				 
 		 { 
            if(indicate1==true)
            {  
-			 indicate2=true;
+			 indicate2=false;
+			
            }
            else
            {
-        	   indicate2=false;  
+        	   indicate2=true;  
            }
 		 }
 		 System.out.println(indicate2+"dskjfjkfgjkgfkjgkjf");
+		
 	}
 	public String addInvoiceTemplate()
 	{ try{
@@ -704,8 +710,16 @@ public class TemplateBean implements Serializable,Validator {
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
 	}
 	public void detectInvoiceTemplate1()
-	{
-		System.out.println("111111111116666666666666666677777777777777777777777777777");
+	{  System.out.println("111111111116666666666666666677777777777777777777777777777");
+		if(indicate==false)
+	   {
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
+	    }
+		else if(indicate2==false)
+		{
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This invoice template already exists for the selected invoice. Duplicate invoice template cannot be created.")); 
+		}
+		
 	}
 	private InvoiceTemplate invoiceTemplate=new InvoiceTemplate();
 	public InvoiceTemplate getInvoiceTemplate() {
@@ -717,6 +731,22 @@ public class TemplateBean implements Serializable,Validator {
 	public void getInvoiceTemplate1(int id1)
 	{   System.out.println(id1+"jfdfdjfjkgfjkjkg");
 		invoiceTemplate=getTemplateService().getInvoiceTemplate(id1);
+        String str=invoiceTemplate.getStr_InvoiceTemplateName();
+		 
+		 boolean indicate1=getTemplateService().detectInvoiceTemplate(str);
+		 System.out.println(indicate1+"fjkgfkjkjkjggjk");
+		 
+		
+           if(indicate1==true)
+           {  
+			 indicate2=false;
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This invoice template already exists for the selected invoice. Duplicate invoice template cannot be created.")); 
+           }
+           else
+           {
+        	   indicate2=true;  
+           }
+           System.out.println(indicate2+"fjkfgjkkjgjk");
 	}
 	public void getInvoiceTemplate2()
 	{   System.out.println(id);
@@ -765,17 +795,23 @@ public class TemplateBean implements Serializable,Validator {
 	public void setList1(List list1) {
 		this.list1 = list1;
 	}
-	private String str;
-	public String getStr() {
+	private static String str;
+
+
+	
+	public static String getStr() {
 		return str;
 	}
-	public void setStr(String str) {
-		this.str = str;
+	public static void setStr(String str) {
+		TemplateBean.str = str;
 	}
-	
 	@SuppressWarnings("unchecked")
 	public void roleChangeListener(ValueChangeEvent event) 
 	{   System.out.println("hi");
+	     System.out.println(list1+"fdjjfdfdfdfg");
+
+ 
+	    
 		list1.addAll((List<String>)event.getNewValue());
 		System.out.println(list1);
 		StringBuilder out = new StringBuilder();
@@ -839,12 +875,16 @@ public class TemplateBean implements Serializable,Validator {
 	}
    
     public String saveInvoiceTemplate(InvoiceTemplate invoiceTemplate) {
-		if (invoiceTemplate.getInt_InvoiceTemplateID()!= null) {
-			System.out.println(invoiceTemplate.getStr_DueInvoiceTemplate()+"fdkfdkj");
+    	try
+    	{
+			System.out.println("111111111111111111111111111111111111111111111111111111111111");
+
+
+			System.out.println(str+"jfjhffjhjfdj");
 			invoiceTemplate.setStr_DueInvoiceTemplate(str);
 			System.out.println(str1_Frequency+"fkfgkjfg");
-			invoiceTemplate.setStr_Frequency(str1_Frequency);
-			System.out.println(invoiceTemplate.getStr_DueInvoiceTemplate()+"fdkfdkj1111");
+			//invoiceTemplate.setStr_Frequency(str1_Frequency);
+			//invoiceTemplate.setStr_DueInvoiceTemplate(str_DueInvoiceTemplate);
 			getTemplateService().updateInvoiceTemplate(invoiceTemplate);
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			Flash flash = facesContext.getExternalContext().getFlash();
@@ -853,8 +893,11 @@ public class TemplateBean implements Serializable,Validator {
 
 			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
 
-		} else
-			getTemplateService().saveInvoiceTemplate(invoiceTemplate);
+		} 
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
 		return "invoicetemplate.xhtml";
 	}
     public String deleteInvoiceTemplate() {

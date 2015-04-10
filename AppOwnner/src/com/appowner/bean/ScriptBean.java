@@ -18,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
@@ -562,24 +563,20 @@ public void AddDocManagement()
 		Cls_CreateDocumentManagement d=new Cls_CreateDocumentManagement();
 		    d.setInt_Document_CatID(intdocID);
 			d.setBit_emailsend(getBit_emailsend());
-			
-			d.setCh_Access(getCh_Access());
+	        d.setCh_Access(getCh_Access());
 			d.setDt_Date(getDt_Date());
 			d.setStr_Description(getStr_Description());
-		    d.setStr_FileNM(path1);
-			System.out.println(path1);
+		    d.setStr_FileNM(path);
+			System.out.println(path);
 			d.setInt_Userid(getUserId());
 			d.setInt_ApartmentID(Util.getAppartmentId());
 			d.setUsername(Util.getUserName());
-			d.setStr_FolderNM("image");
+			d.setStr_FolderNM(FileUploadValidator.filename);
 			d.setStr_ApartmentName(getStr_ApartmentName());
-			//d.setInt_Document_CatNM(getInt_Document_CatNM());
-			//d.setInt_Document_CatNM("Circulars");
-			d.setSize(size);
-			d.setAction("");
-			d.setInt_DocumentID(getInt_DocumentID());
+		    d.setInt_DocumentID(getInt_DocumentID());
+		    d.setImage(txtfile);
 			getSubcriptService().documents(d);
-			if(Bit_emailsend==true)
+			/*if(Bit_emailsend==true)
 			{  System.out.println(Bit_emailsend);
 				mailids=getSubcriptService().getMailIds();
 				System.out.println(mailids);
@@ -589,8 +586,9 @@ public void AddDocManagement()
 				System.out.println(subject);
 				return "CreateDocument1.jsp";
 			
-			}
-			return null;
+			}*/
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
+			return "DocumentRepository.xhtml";
 		}
 			
 		catch(DataAccessException e)
@@ -652,7 +650,8 @@ public void setListSubcript(List<Subcript> listSubcript){
 private List list2=new ArrayList();
 @SuppressWarnings("unchecked")
 public void addDocumentListener(ValueChangeEvent event)
-{
+{ 
+	list2=new ArrayList();
 list2.add(event.getNewValue());	
 }
 public void AddDocument()
@@ -884,6 +883,7 @@ public String delete(){
 	System.out.println(Int_Document_CatID);
 	detail.setInt_Document_CatID(Int_Document_CatID);
 	getSubcriptService().deleted(detail);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 	return "DocumentList.xhtml?faces-redirect=true";
   
 }
@@ -971,8 +971,7 @@ public String group()
 	group.setBol_Emailallow(getBol_Emailallow());
 	group.setBol_Smsallow(getBol_Smsallow());
 	System.out.println(isCh_EmailAllow+"uhujhju");
-  
-	group.setInt_ApartmentID(Util.getAppartmentId());
+    group.setInt_ApartmentID(Util.getAppartmentId());
 	group.setUserId(Util.getUserId());
 	getSubcriptService().groupadd(group);
 	return "Create-SubGroup.xhtml";
@@ -1334,33 +1333,61 @@ public String saveContact1( )
 	 
 }
 
-
+private int  int_Nomember;
+public int getInt_Nomember() {
+	return int_Nomember;
+}
+public void setInt_Nomember(int int_Nomember) {
+	this.int_Nomember = int_Nomember;
+	}
 private List<cls_Group> userlist;
 
-	
-
-public List<cls_Group> getUserlist() {
+	public List<cls_Group> getUserlist() {
 	userlist=new ArrayList<cls_Group>();
 	userlist.addAll(getSubcriptService().getlist());
 	System.out.println(userlist);
+	ListIterator list=userlist.listIterator();
+	List<String> str1=new ArrayList<String>();
+	String  count=null;
+	while(list.hasNext())
+		{   Object o=list.next();
+		cls_Group memberid=(cls_Group) o;
+		int meberids=memberid.getInt_GroupId();
+		count=getSubcriptService().count(meberids);
+	    System.out.println(count+"mkjmnjmnjknbgfddcvgfddsssss");
+	  
+	    if(count==null)
+	    {
+	    	System.out.println("fkjjkgfkjgfkj");
+	    	str1=new ArrayList<String>();
+	    }
+	    else
+	    {   str1=new ArrayList<String>(); 
+	    	String[] strArray = count.split(",");
+	      for (String str : strArray) {
+	        System.out.println(str+"gjjgjdskfdskfjkdjfkdjsfkjdsfkjsdjf;sd");
+	        str1.add(str);
+	      
+		}
+	      System.out.println(str1+"jfjffjkj");
+	      System.out.println(str1.size() +"sdbfsadkjhgkjhjkhjhashdjskhjbcndbshkjsdhjkhbnbnb");
+	      
+	    }     
+	    memberid.setInt_Nomember(str1.size());    
+	        }
+	  
 	return userlist;
 }
 public void setUserlist(List<cls_Group> userlist) {
 	this.userlist = userlist; 
 }
-
-
-
 private cls_Group groups;
 public cls_Group getGroups() {
-	
 	return groups;
 }
 public void setGroups(cls_Group groups) {
 	this.groups = groups;
 }
-
-
 public void Subgroup()
 {
 	groups=getSubcriptService().alldata(int_GroupId);
@@ -1488,7 +1515,7 @@ public List<UserExtraInfo> getSearch() {
 		UserExtraInfo e=(UserExtraInfo) u;
 		System.out.println(  e.getStr_Hobbies()+"k11111111k111111111111111");
 		System.out.println(e.getResidence()+"hjjjhjhjhjhjjhjhhjjhhjhjjhhjhjhjjhhjhjhjhj");
-		System.out.println(e.getInt_UserID()+"");
+		//System.out.println(e.getInt_UserID()+"");
 		 char ch1=e.getStr_PhoneNo().charAt(0);
 		 char ch2=e.getStr_PhoneNo().charAt(9);
 		 char em1=e.getStr_Email().charAt(0);
@@ -1834,11 +1861,6 @@ public void subname()
 	groups=getSubcriptService().allname(str_GroupNm);
 	selectes=groups.getStr_GroupNm();
 }
-	
-
-
-
- 
 public Boolean getBol_Smsallow() {
 	return bol_Smsallow;
 }
@@ -1886,7 +1908,7 @@ public String saveSetting( )
 		getSubcriptService().addsetting(edit2);
      return "Sub-GroupDetail.xhtml";
 	 
-}
+}private Cls_CreateDocumentManagement file;
 public String uploadFile() throws IOException {
 
 	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -1915,8 +1937,8 @@ public String uploadFile() throws IOException {
 			outputStream.write(bytes, 0, read);
 		}
 		path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
-		user.setVar_ImageName1(path);
-		user.setInt_UserId(user.getInt_UserId());
+		//user.setVar_ImageName1(path);
+		//user.setInt_UserId(user.getInt_UserId());
 		//getApartmentDetailsService().updateProfilePic(user);
 		statusMessage = "File upload successfull !!";
 		
@@ -1965,26 +1987,19 @@ private String getFileName(Part part) {
 	return null;
 }
 
-private String path;
-private String Var_ImageName1;
+public String path;
 
-public String getVar_ImageName1() {
-	return Var_ImageName1;
-}
-public void setVar_ImageName1(String var_ImageName1) {
-	Var_ImageName1 = var_ImageName1;
-}
-public String getPath() {
-	System.out.println(path+"path1");
-	path=user.getVar_ImageName1();
-	if( path==null)
+public  String getPath() {
+	System.out.println(path + "path1cvvvvvvvvvvvvvvvvvvvvvvvvvvcvcccccccccccvvvvvvvvvvvvv");
+	System.out.println("i  $ youuuuuuuuuuuuuuuuuuuuuuu");
+	if(path==null)
 	{
-		//path="/images/profilepic.png";
-		System.out.println(path+"img1");
+		path = "/images/no_attach.png";
 	}
-	 
-	return path ;
+	 return path;
+	
 }
+
 private UserExtraInfo groupes;
 public UserExtraInfo getGroupes() {
 	groupes= getSubcriptService().alldatas(int_UserId);
@@ -2123,9 +2138,182 @@ public static String getAprtmentname() {
 public static void setAprtmentname(String aprtmentname) {
 	ScriptBean.aprtmentname = aprtmentname;
 }
-
-
+ public String txtfile;
+ public String txtfile1;
+ 
+public String getTxtfile() {
+	return txtfile;
 }
+public void setTxtfile(String txtfile) {
+	this.txtfile = txtfile;
+}
+public String getTxtfile1() {
+	return txtfile1;
+}
+public void setTxtfile1(String txtfile1) {
+	this.txtfile1 = txtfile1;
+}
+private  Cls_CreateDocumentManagement doc;
+
+public Cls_CreateDocumentManagement getDoc() {
+	return doc;
+}
+public void setDoc(Cls_CreateDocumentManagement doc) {
+	this.doc = doc;
+}
+public String uploadFile1() throws IOException {
+    System.out.println("fjkjkfdjkkjfjkfkj");
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	System.out.println(FileUploadValidator.filename+"gvfjkgfjkf");
+	 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
+     System.out.println(part.getContentType());
+    if(part.getContentType().equals("text/plain"))
+    {
+    	txtfile="true";
+    	txtfile1="false";
+    	
+    }
+    if(part.getContentType().equals("application/msword"))
+    {
+    	txtfile="false";
+    	txtfile1="true";
+    }
+	System.out.println(fileName+"dfjkjkfjkfd");
+	ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+	
+	String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+	System.out.println(basePath);
+	File outputFilePath = new File(basePath);
+	
+	System.out.println(outputFilePath+"path");
+	if (!outputFilePath.exists()) {
+	   	if (outputFilePath.mkdir()) {
+	   		System.out.println("Directory is created!");
+	   	} else {
+	   		System.out.println("Failed to create directory!");
+	   	}
+ }
+	outputFilePath = new File(basePath,fileName);
+	// Copy uploaded file to destination path
+	InputStream inputStream = null;
+	OutputStream outputStream = null;
+	try {
+		inputStream = part.getInputStream();
+		outputStream = new FileOutputStream(outputFilePath);
+
+		int read = 0;
+		final byte[] bytes = new byte[1024];
+		while ((read = inputStream.read(bytes)) != -1) {
+			outputStream.write(bytes, 0, read);
+		}
+		path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
+
+		System.out.println(postid+"Biharrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrpatnaaaaaaaaaaaaaa");
+		if(postid!=null)
+		{  System.out.println("fdhfd33333333333333333333333333333333333333333333333");
+			System.out.println(txtfile+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+			System.out.println(FileUploadValidator.filename+"ppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+			System.out.println(path+"mkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
+			getSubcriptService().updateposts(txtfile,postid,path,FileUploadValidator.filename);
+			//indicator=false;
+		System.out.println(path1+"fkjdfkdl");
+	
+	
+		statusMessage = "File upload successfull !!";
+		}
+	} 
+		catch (IOException e) {
+		e.printStackTrace();
+		statusMessage = "File upload failed !!";
+	} finally {
+		if (outputStream != null) {
+			outputStream.close();
+		}
+		if (inputStream != null) {
+			inputStream.close();
+		}
+	}
+	part=null;
+	return null;    // return to same page
+}
+private Cls_CreateDocumentManagement allinfo;
+public Cls_CreateDocumentManagement getAllinfo() {
+	return allinfo;
+}
+public void setAllinfo(Cls_CreateDocumentManagement allinfo) {
+	this.allinfo = allinfo;
+}
+public static Integer postid;
+
+ public static Integer getPostid() {
+	return postid;
+}
+public static void setPostid(Integer postid) {
+	ScriptBean.postid = postid;
+}
+public String editdocument()
+ {
+	postid=allinfo.getInt_DocumentID();
+	System.out.println(postid+"mukeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	return"ViewDocpost.xhtml";
+	
+ }
+private  Cls_CreateDocumentManagement listdocpost;
+public Cls_CreateDocumentManagement getListdocpost() {
+	listdocpost=getSubcriptService().listname(postid);
+	
+	return listdocpost;
+}
+public void setListdocpost(Cls_CreateDocumentManagement listdocpost) {
+	this.listdocpost = listdocpost;
+}
+
+
+public String deletepost(){
+	Cls_CreateDocumentManagement detail=new Cls_CreateDocumentManagement();
+	System.out.println(Int_DocumentID+"mukeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	detail.setInt_DocumentID(Int_DocumentID);
+	getSubcriptService().deletedetail(detail);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
+	return "DocumentRepository.xhtml?faces-redirect=true";
+  
+}
+
+public String editcategory()
+{
+	postid=allinfo.getInt_DocumentID();
+	System.out.println(intdocid+"mukeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	return"UpdateDocpost.xhtml";	
+}
+
+private int postsid;
+public String editpost(Cls_CreateDocumentManagement document)
+{
+	if(intdocid==null)
+	{
+		System.out.println(intdocid+"<><><><>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+	}
+		else
+		{
+			postsid=getSubcriptService().getname(intdocid);
+			System.out.println(postsid+"herooooooooooooooooheroooooooooooooooooooooooooooo");
+			document.setInt_Document_CatID(postsid);
+		
+		}
+	if(document.getInt_DocumentID()!=null)
+	{
+		document.setImage(path);
+      getSubcriptService().updatepost(document);
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
+	}
+	return "DocumentRepository.xhtml";
+}
+}
+
+
+
+
+
 
 
 

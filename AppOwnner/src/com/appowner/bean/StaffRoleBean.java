@@ -111,7 +111,7 @@ public class StaffRoleBean implements Serializable {
 		list.add(event.getNewValue());
 		
 	}
-	private Staff staff1;
+	private Staff staff1=new Staff();
 	
 	public Staff getStaff1() {
 		return staff1;
@@ -121,20 +121,16 @@ public class StaffRoleBean implements Serializable {
 	}
 	public String addStaff()
     {  
-        @SuppressWarnings("rawtypes")
-		ListIterator itr=list.listIterator();
+		Staff staff=new Staff();
            
-        while(itr.hasNext()){
-        	Object o=itr.next();
-        	  
-        	str_StaffName=(String)o;
+       
         
-        	staff1.setStr_StaffName(str_StaffName);
-        	staff1.setCh_StaffType('C');
-        	staff1.setFlag(2);
-        	 getStaffService().addStaff(staff1);
+        	staff.setStr_StaffName(str_StaffName);
+        	staff.setCh_StaffType('C');
+        	staff.setFlag(2);
+        	 getStaffService().addStaff(staff);
         	
-        }
+      
         return "StaffRoles.xhtml";
     }
 	private Integer flag;
@@ -144,9 +140,9 @@ public class StaffRoleBean implements Serializable {
 	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
-	public void getStaffRole()
-	{   System.out.println(int_StaffID);
-	    staff1=getStaffService().getStaffRole(int_StaffID);
+	public void getStaffRole(int id)
+	{   System.out.println(id+"kjdfggf");
+	    staff1=getStaffService().getStaffRole(id);
 	}
 	public String saveStaff( ) {
 		 
