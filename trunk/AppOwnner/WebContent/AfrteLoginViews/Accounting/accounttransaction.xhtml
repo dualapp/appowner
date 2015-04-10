@@ -13,38 +13,7 @@
  <h:head>
     <title>Accounting Form</title>
    
-   <script type="text/javascript">
-    function handleRequest(xhr, status, args) 
-    {
-        if(args.validationFailed)
-             {
-        	 PF('multiManualJournalDialog2').show();
-            
-        } 
-        else{
-        	 
-         
-        	PF('multiManualJournalDialog2').hide();
-        	
-        }
-        
-    }
-    function handleRequest1(xhr, status, args) 
-    { 
-        if(args.validationFailed)
-             {
-        	 PF('multiManualJournalDialog').show();
-            
-        } 
-        else{
-        	 
-         
-        	PF('multiManualJournalDialog').hide();
-        	
-        }
-        
-    }
-    </script> 
+   
     <style>
        .line
        {
@@ -103,10 +72,10 @@
                 
           
            
-           <td> <p:selectOneMenu id="account1" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}"  style="width:220px" >
+           <td> <h:selectOneMenu id="account1" value="#{accountingBean.account}" valueChangeListener="#{accountingBean.accountchangeListener1}"  style="width:220px" >
                    <f:selectItems value="#{accountingBean.listAccountsName}" />
                     <p:ajax event="change" partialSubmit="true"   />
-                </p:selectOneMenu>
+                </h:selectOneMenu>
                 
            </td>
            <td>  <h:outputText  value="From:" /></td>
@@ -167,9 +136,7 @@
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_Debit} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_Credit} </td>
     </tr>
-   <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+   
    
    
    
@@ -214,9 +181,7 @@
     <td align="right" style="padding-right:5px;width:320px;">#{expense.int_Ammount} </td>
     </h:panelGroup>
     </tr>
-     <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+    
     </ui:repeat>
 </h:panelGroup>
  <h:panelGroup id="fgggggg1" rendered="#{! empty accountingBean.str}">
@@ -238,9 +203,7 @@
     <td align="right" style="padding-right:5px;width:320px;"><h:outputText rendered="true" value="#{journal.dbl_CreditAmount}"/></td>
     </h:panelGroup>
     </tr>
-     <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+    
     </ui:repeat>
 </h:panelGroup>
      
@@ -255,9 +218,7 @@ style="width:600px">
      <td align="right" style="padding-right:5px;width:320px;"><h:outputText   value="#{accountingBean.int_blank}"/> </td>
     <td align="right" style="padding-right:5px;width:320px;"> #{account.totalDue} </td>
     </tr>
-    <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td> 
-    </tr>
+    
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}" > <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Accounts Receivable
    </td>
@@ -293,9 +254,7 @@ style="width:600px">
      <td align="right" style="padding-right:5px;width:320px;">#{account.subTotal} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
-    <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+   
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">Income from Residents
    </td>
@@ -303,9 +262,7 @@ style="width:600px">
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
-      <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+     
      <tr style="line-height:25px;"><td style="padding-left:5px;width:440px;"><h:outputText value="#{account.dat_InvoiceDate}"> <f:convertDateTime pattern="dd-MM-yyyy"  /></h:outputText></td>
      <td align="right" style="width:250px;">#{accountingBean.str_TaxName}
    </td>
@@ -322,9 +279,7 @@ style="width:600px">
      <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     <td align="right" style="padding-right:5px;width:320px;">#{accountingBean.int_blank} </td>
     </tr>
-      <tr>
-    <td colspan="5" style="border-bottom:1px solid #DADADA ;"></td>
-    </tr>
+     
     
     </h:panelGroup>
  </ui:repeat>
