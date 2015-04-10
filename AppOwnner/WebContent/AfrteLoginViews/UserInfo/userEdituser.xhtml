@@ -30,11 +30,13 @@
             <tr><td colspan="2" align="left">
            <div class="gsTitleDiv">General Information</div> </td></tr> 
            <tr>
- <td><h:outputText value="First Name:">
-            </h:outputText> <font color="red" >*</font></td>           
-           <td> <h:inputText value="#{cls_UserBean.editlis.str_FirstName}" required="true" requiredMessage="Please Enter First!">
-            </h:inputText> </td></tr>
-            <tr>
+<td><h:outputText for="str_FirstName" value="First Name:" /><font color="red" >*</font></td>    
+             
+            <td><h:inputText id="str_FirstName" value="#{cls_UserBean.editlis.str_FirstName}" required="true" requiredMessage="Enter First Name!">
+            </h:inputText></td>
+            <td><p:message for="str_FirstName" dispay="text"/></td>
+            </tr> 
+          <tr>
             <td><h:outputText value="Last Name :">
             </h:outputText><font color="red" >*</font> </td>           
            <td> <h:inputText value="#{cls_UserBean.editlis.str_LastName}"  required="true" requiredMessage="Please Enter Last Name!">
@@ -42,12 +44,15 @@
             <tr>
              <td><h:outputText value="Email:">
             </h:outputText><font color="red" >*</font></td>            
-             <td><h:inputText value="#{cls_UserBean.editlis.str_Email}"  required="true" requiredMessage="Please Enter Email!">
-            </h:inputText></td></tr>
+             <td><p:inputText value="#{cls_UserBean.editlis.str_Email}" id="str_Email" required="true" validatorMessage=" Email id should be like abc@gmail.com">
+             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+            <p:ajax event="blur" update="out3" listener="#{cls_UserBean.dataChange2}" partialSubmit="true" />
+           </p:inputText> <p:outputLabel id="out3" value="#{cls_UserBean.value1}" /></td><td><p:message for="str_Email" display="text"/></td></tr>
+           
             <tr>
            <td> <h:outputText  value="Phone No :" /></td>
            
-            <td><h:inputText value="#{cls_UserBean.editlis.str_PhoneNo}"  required="true" requiredMessage="Please Enter Email!"/>
+            <td><h:inputText value="#{cls_UserBean.editlis.str_PhoneNo}"  required="true" maxlength="10" requiredMessage="Please Enter Email!"/>
            </td>
            </tr>
            <tr><td colspan="2" align="left">
@@ -55,7 +60,7 @@
            <tr>
             <td><h:outputLabel for="str_Block" value="Block :"/>
             </td>          
-            <td><h:selectOneMenu id="str_Block" value="#{cls_UserBean.editlis.str_Block}" valueChangeListener="#{cls_UserBeanMain.blockChangeListener}"  required="true">
+            <td><h:selectOneMenu id="str_Block" value="#{cls_UserBean.editlis.str_Block}" valueChangeListener="#{cls_UserBean.blockChangeListener}"  required="true">
             <f:selectItem itemLabel="Select Block"  itemValue="" noSelectionOption="true" />
             <f:selectItems  value ="#{cls_UserBean.blocksNa}"/>
              <p:ajax event="change" process="str_Block" update="str_House"/>
@@ -64,12 +69,11 @@
                <tr>
             <td><h:outputText value="Flat No:">
             </h:outputText><font color="red" >*</font></td>            
-            <td><h:selectOneMenu id="str_House"       value="#{cls_UserBean.editlis.str_Flat}" required="true"      requiredMessage="Enter Flat Name!">
+            <td><h:selectOneMenu id="str_House"    value="#{cls_UserBean.editlis.str_Flat}" required="true"      requiredMessage="Enter Flat Name!">
             <f:selectItem itemLabel="Select Flat"   itemValue="" noSelectionOption="true" />
             
             <f:selectItems value="#{cls_UserBean.houseNoList}"/>
-              
-                                </h:selectOneMenu>
+              </h:selectOneMenu>
             
            </td> </tr>
             
@@ -90,6 +94,7 @@
    
      
    <h:commandButton  value="Update" styleClass="btn"  action="#{cls_UserBean.updateUser(editlis)}" ajax="false"/>
+   <p:button  value="Cancel" styleClass="btn"  outcome="apartments_memberdetails.xhtml" ajax="false" style="margin-left:2em;"/>
    </td>
    </tr>
   </table>
