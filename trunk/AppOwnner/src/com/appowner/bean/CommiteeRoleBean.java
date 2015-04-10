@@ -127,25 +127,21 @@ public void setRole2(CommiteeRole role2) {
 }
 	public String addRole()
     {  
-        @SuppressWarnings("rawtypes")
-		ListIterator itr=list.listIterator();
-           
-        while(itr.hasNext()){
-        	Object o=itr.next();
-        	  
-        	str_Commitee_RoleName=(String)o;
+		CommiteeRole role=new CommiteeRole();;
+		
         
-        	role2.setStr_Commitee_RoleName(str_Commitee_RoleName);
-            role2.setCh_Commitee_Type('C');
-            role2.setFlag(2);
-        	getStaffService().addRole(role2);
+        	role.setStr_Commitee_RoleName(str_Commitee_RoleName);
+            role.setCh_Commitee_Type('C');
+            role.setFlag(2);
+        	getStaffService().addRole(role);
         	
-        }
+
+
         return "CommiteeRole.xhtml";
     }
-	public void getCommiteeRole()
+	public void getCommiteeRole(int id)
 	{
-		role2=getStaffService().getCommiteeRole(int_Commitee_RoleID);
+		role2=getStaffService().getCommiteeRole(id);
 		
 	}
 	public String saveCommiteeRole()

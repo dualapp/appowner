@@ -347,7 +347,8 @@ public class Cls_UserBeanMain implements Serializable {
     {
     	
     	System.out.println("blockssssssssssssssssssssssssssssssssssssssssssssssss");
-    	
+    String str=(String) event.getNewValue();
+    System.out.println(str+"fklmfglkgky");
     }
     
     /**
