@@ -58,7 +58,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
  	    <p:panel id="btnPanel"   process=":form:DT"  update=":form:DT"  style="background:#438eb9;border:2;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
   <p:selectOneButton id="orientation"       styleClass="yourStyleClass" value="#{apartmentDetailsBean.str_BlockName}" valueChangeListener="#{apartmentDetailsBean.blockChangeListener}" >
             
-            <f:selectItems  value="#{apartmentDetailsBean.blockNameList}" />
+            <f:selectItems  default="true" value="#{apartmentDetailsBean.blockNameList}" />
              
            <p:ajax  event="change" immediate="true"
                     update=":form:DT"  />
