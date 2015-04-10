@@ -1,5 +1,7 @@
 package com.appowner.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -177,33 +179,32 @@ public String getStr_FolderNM() {
 	}
 */
 	
+private String image;
 
+	public String getImage() {
+	return image;
+}
+
+public void setImage(String image) {
+	this.image = image;
+}
+
+
+	private Date date;
+
+
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	
 
 	
 
-	public Integer getSize() {
-		return Size;
-	}
-
-	public void setSize(Integer size) {
-		Size = size;
-	}
-
-
-	//private String Int_Document_CatNM;
 	
-	
-	private Integer Size;
-	private String Action;
-
-   public String getAction() {
-		return Action;
-	}
-
-	public void setAction(String action) {
-		Action = action;
-	}
-	 
 
 }
