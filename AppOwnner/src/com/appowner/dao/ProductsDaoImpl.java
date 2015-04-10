@@ -17,6 +17,7 @@ import com.appowner.model.Notification;
 import com.appowner.model.UserExtraInfo;
 import com.appowner.model.cls_Ads;
 import com.appowner.model.cls_Contact;
+import com.appowner.util.Util;
 @Repository
 public class ProductsDaoImpl implements ProductsDao{
 	@Autowired
@@ -142,10 +143,10 @@ public class ProductsDaoImpl implements ProductsDao{
 		
 		if(ch_Product_Type==null && ch_Ad_Type==null && status==null )
 		{
-			String  query = "{ CALL detail() }";
+			String  query = "{ CALL detail(?) }";
 			
-			 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
-			          ).list();
+			 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,Util.getAppartmentId())
+			          .list();
 		     System.out.println(kkk.listIterator().hasNext());
 			 return kkk;	
 		}
