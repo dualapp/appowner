@@ -77,6 +77,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		this.int_NoOfHouse = int_NoOfHouse;
 	}
 	public String getStr_BlockName() {
+		
 		return str_BlockName;
 	}
 	public void setStr_BlockName(String str_BlockName) {
@@ -497,25 +498,23 @@ public class ApartmentDetailsBean  implements Serializable{
 			{
 	    	 
 				getApartmentDetailsService().deleteHouseDetails(house);
-				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
-			}
-			else
-				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("The selected Houses have users or maintenance dues associated with them .so they  couldn't be deleted!.Please remove the members from the houses to proceed."));
 				
+			}
+			else{
+				
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("some selected Houses have users or maintenance dues associated with them .so they  couldn't be deleted!.Please remove the members from the houses to proceed."));
+				return null;
+			}
 	    } 
-  
+	    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 	    return null;
 	}
 	public String updateHouseDetails()
 	{
+		
 		if(housedetails!=null)
 		{ 
-			String str_HouseNo1=getApartmentDetailsService().checkHouse(housedetails.getStr_HouseNo(),Util.getAppartmentId(),housedetails.getInt_BlockId());
-			if(housedetails.getStr_HouseNo().equalsIgnoreCase(str_HouseNo1))
-			{
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House No with same name already exist in Block!"));
-				return null;
-			}
+			 
 			Integer houseId=housedetails.getInt_HouseId();
 		HouseDetails housedetails1=getApartmentDetailsService().getHouseDetails(houseId);
 		String oldHouseNo=housedetails1.getStr_HouseNo();
@@ -556,7 +555,7 @@ public class ApartmentDetailsBean  implements Serializable{
 			String str_HouseNo1=getApartmentDetailsService().checkHouse(str_HouseNo,Util.getAppartmentId(),houseId);
 			if(str_HouseNo.equalsIgnoreCase(str_HouseNo1))
 			{
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House Nowith same name already exist in Block!"));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House No with same name already exist in Block!"));
 				return null;
 			}
 		housedetails=new HouseDetails();
@@ -622,6 +621,10 @@ public class ApartmentDetailsBean  implements Serializable{
 		blockNameList=new ArrayList<String>();
 		
 		blockNameList.addAll(getApartmentDetailsService().getBlockNameList(Util.getAppartmentId()));
+		if(str_BlockName==null)
+		{
+			str_BlockName=blockNameList.get(0);
+		}
 		return blockNameList;
 	}
 	public void setBlockNameList(List<String> blockNameList) {
@@ -703,7 +706,14 @@ public class ApartmentDetailsBean  implements Serializable{
 	                   System.out.print(cell.getStringCellValue()+ "\t\t");
 	               }
 	               else if (cell.getColumnIndex() == 1 ) {
-	            	  
+	            	   
+	           			Integer houseId=getApartmentDetailsService().getBlockId(str_BlockName);
+	           			String str_HouseNo1=getApartmentDetailsService().checkHouse(cell.getStringCellValue(),Util.getAppartmentId(),houseId);
+	           			if(cell.getStringCellValue().equalsIgnoreCase(str_HouseNo1))
+	           			{
+	           				 
+	           				return null;
+	           			}
 	            	   hdetails.setStr_HouseNo(cell.getStringCellValue());
 	                   empList.add( hdetails);
 	                   System.out.print(cell.getStringCellValue() + "\t\t");
@@ -812,6 +822,11 @@ public class ApartmentDetailsBean  implements Serializable{
 						outputStream.write(bytes, 0, read);
 					}
 					List<HouseDetails>  hDetailsList=readExcel(outputFilePath.getAbsolutePath());
+					if(hDetailsList==null)
+					{
+					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Some House No With Same name Already Exist In Block"+""+str_BlockName));
+       				return null;
+					}
 					 System.out.println( hDetailsList);
 				  getApartmentDetailsService().saveHouseDetails1( hDetailsList);
 				  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House Details Added Successfully!"));
