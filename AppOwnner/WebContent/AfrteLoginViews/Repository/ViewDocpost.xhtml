@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	<ui:define name="content">
+<h:head>
+<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:150px;
+          }
+          select
+          {
+           height:25px;
+           weight:150px;
+          }
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
+
+}
+      </style>	
+
+	</h:head>
+	 <h:body>
+   <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
+		<tbody>
+			<tr>
+				<td> 
+					<img src="#{expenseBean.str_Name}images/pic-home.gif" height="45" width="45"></img> <span class="title">View Post</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+ <p:outputPanel   rendered="#{request.getParameter('render')}">
+				  <body onLoad="PF('multiDueTemplateDialog').show()" />
+					</p:outputPanel>
+					
+ <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+  <div id="page3" >
+  
+   <a href="DocumentRepository.xhtml">&#60;&#60;Back To DocumentRepository</a> 
+<h:form  enctype="multipart/form-data">
+<ui:repeat value="#{scriptBean.listdocpost}" var="postad">
+
+ 
+  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+  
+  <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:10px 723px 00px 0px;"  >  
+         <p:graphicImage height="100" width="100" value="#{expenseBean.str_Name}images/txt.png"  rendered="#{postad.image}"  style=" float:right !important;margin:0px -600px -1100px 00px;" />
+         <p:graphicImage height="100" width="100" value="#{expenseBean.str_Name}images/doc.jpg"  rendered="#{postad.image==false}" style=" float:right !important;margin:0px -600px -110px 0px;"  />
+        </p:outputPanel>
+  
+    
+     <tr>
+           <td><p:outputLabel for="Document" value="Document Name" /></td>
+             <td><h:inputText  id="Document" value="#{postad.str_FolderNM}"   >
+             </h:inputText>
+             </td>
+             </tr>
+           
+             <tr> 
+          <td><p:outputLabel for="I" value="Uploaded By" /></td>
+        <td><h:inputText  id="I" value="#{postad.username}"  >
+        </h:inputText>
+        </td>
+        </tr>
+        
+            <tr>
+           <td>
+          <p:outputLabel value="Uploaded On"></p:outputLabel></td>
+                        
+          <td><h:inputText  id="po" value="#{postad.str_ApartmentName}"   >
+            </h:inputText>
+            </td>
+            </tr>
+          
+             <tr><td><p:outputLabel  value="Accessible To"/></td>
+                <td><h:inputText id="acc"  value="#{postad.ch_Access }"  >
+              </h:inputText>
+              </td>
+            </tr>
+         <tr><td><p:outputLabel  value="Categoru"/></td>
+                <td><h:inputText id="cat"  value="#{scriptBean.intdocid}"  >
+              </h:inputText>
+              </td>
+            </tr>
+             <tr><td><p:outputLabel  value="Description"/></td>
+                <td><h:inputText id="desc"  value="#{postad.str_Description}"  >
+              </h:inputText>
+              </td>
+            </tr>
+          
+             <tr><td><p:outputLabel  value="Posted Date"/></td>
+             <td><h:inputText id="dd"  value="#{postad.date}"  >
+             <f:convertDateTime pattern="dd-MM-yyyy"/>
+              </h:inputText>
+              </td>
+            </tr>
+          </table>
+           
+			       
+        
+           </ui:repeat>
+           </h:form>
+         
+           </div>
+           </h:body>
+           </ui:define>
+           </ui:composition>
+           
