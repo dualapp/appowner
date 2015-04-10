@@ -19,38 +19,92 @@
                 </f:facet>
                 <h:outputText value="#{commitee.str_Commitee_RoleName}"/>
             </p:column>
-           
-           
-            <p:column>
+           <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Actions" />
+                    <h:outputText value="Type" />
                 </f:facet>
+                <h:outputText value="#{commitee.ch_Commitee_Type}">
+                 <f:converter converterId="com.appowner.bean.StringConverter" />  
+                 </h:outputText>
+            </p:column>
+           <p:column>
+             <f:facet name="header">
+                    <h:outputText value="Action" />
+                </f:facet>
+            <p:column rendered="#{commitee.flag == 2}">
               
-                
-                 <h:link outcome="update1.xhtml" >
-                <p:graphicImage height="50" width="50" value="images/edit.jpg"/> 
-                <f:param name="int_Commitee_RoleID" value="#{commitee.int_Commitee_RoleID}"/>
-                </h:link>
-                <h:link outcome="update1.xhtml" >
-                <p:graphicImage height="50" width="50" value="images/delete.jpg"/> 
-                <f:param name="int_Commitee_RoleID" value="#{commitee.int_Commitee_RoleID}"/>
-                </h:link>     
+            <p:commandLink  process="commitee"  update=":form:multiTaxTemplateDetail4" oncomplete="PF('multiTaxTemplateDialog4').show()"   action="#{commiteeRoleBean.getCommiteeRole(commitee.int_Commitee_RoleID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
+              </p:commandLink>
+               &#150; 
                
-               </p:column>      
+               
+              <p:commandLink   process="commitee"  update=":form:multiTaxTemplateDetail" oncomplete="PF('multiTaxTemplateDialog').show()"   action="#{commiteeRoleBean.getCommiteeRole(commitee.int_Commitee_RoleID)}">
+                  <h:graphicImage  height="20" width="20"  value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
+              </p:commandLink>
+         
+       
+               
+                
+                  
+            </p:column>
+            </p:column>
+           
                
           
             
         </p:dataTable>
-         <br/>
-        <br/>
+         <p:dialog header="Edit CommitteeRole" widgetVar="multiTaxTemplateDialog4"     showEffect="explode" hideEffect="explode" resizable="false" height="100" width="450">
+        <p:outputPanel id="multiTaxTemplateDetail4" style="text-align:center;">
+           <table>
+          <h:form>
+   
+<tr>
        
+  <td>   <h:outputText value="CommiteeRoleName:"/></td>
+    
+  <td> <h:inputText value="#{commiteeRoleBean.role2.str_Commitee_RoleName}"/></td>
+  </tr>
+
+      
+      
+<tr>
+<td></td>
+   <td>    <h:commandButton  value="Submit"  action="#{commiteeRoleBean.saveCommiteeRole}"/></td>
+  </tr>
+  </h:form>
+              </table>
+             
+
+              </p:outputPanel>
+              </p:dialog>
+      <p:dialog header="View CommitteeRole" widgetVar="multiTaxTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="100" width="450">
+        <p:outputPanel id="multiTaxTemplateDetail" style="text-align:center;">
+          <table>
+          <h:form>
+   
+<tr>
+       
+  <td>   <h:outputText value="CommiteeRoleName:"/></td>
+    
+  <td> <h:inputText value="#{commiteeRoleBean.role2.str_Commitee_RoleName}" readonly="true"/></td>
+  </tr>
+
+      
+      
+
+
+  </h:form>
+              </table>
+              </p:outputPanel>
+              </p:dialog>
    </p:panel>
      <br/>        
           <p:panel header="Add New Commitee Roles ">
     
           <br/>
          
-	    <p:inputText value="#{service.str_Commitee_RoleName}" valueChangeListener="#{commiteeRoleBean.rolechangeListener}"/>
+	    <p:inputText value="#{commiteeRoleBean.str_Commitee_RoleName}" valueChangeListener="#{commiteeRoleBean.rolechangeListener}"/>
 	   
           <br/>      
          <br/>

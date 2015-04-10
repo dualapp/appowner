@@ -12,10 +12,7 @@
     <title>Accounts Opening Balance</title>
  <script type="text/javascript">
 
-function intialize()
-{  
-	
-}
+
 </script>    
 
 </h:head>
@@ -49,7 +46,7 @@ function intialize()
           <td>  <h:outputText  value="Opening Balance Date*" /></td>
         
            <td>  <p:calendar id="str_DueTemplate" value="#{accountsBean.dat_openingDate}" size="24" locale="de" navigator="true" pattern="yyyy-MM-dd" valueChangeListener="#{accountsBean.datechangeListener}">
-            <p:ajax event="click" partialSubmit="true"  /></p:calendar>
+            <p:ajax event="dateSelect" partialSubmit="true"  /></p:calendar>
         <font color="red">This is the date on which you are migrating accounts from your existing accounting system Accounting.</font></td>
              </tr>
              </table>
