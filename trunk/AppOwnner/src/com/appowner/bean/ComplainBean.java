@@ -20,6 +20,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 import org.springframework.dao.DataAccessException;
@@ -62,7 +63,7 @@ public class ComplainBean implements Serializable{
 	}
 	private char ch_Complain;
 	public char getCh_Complain() {
-		ch_Complain='C';
+		ch_Complain='c';
 		return ch_Complain;
 	}
 	public void setCh_Complain(char ch_Complain) {
@@ -87,7 +88,7 @@ public class ComplainBean implements Serializable{
 		this.str_ComplainType = str_ComplainType;
 	}
 	private String str_Description;
-
+    
 	public String getStr_Description() {
 		return str_Description;
 	}
@@ -164,10 +165,12 @@ public class ComplainBean implements Serializable{
 	{
 		try{
 			Complain cmp=new Complain();
-			
+			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+			str_Description=request.getParameter("limitedtextfield");
+			System.out.println(str_Description+"fggjkgkjgfkjgfgf");
 			cmp.setCh_Complain(getCh_Complain());
 			cmp.setStr_ComplainType(getStr_ComplainType());
-			cmp.setStr_Description(getStr_Description());
+			cmp.setStr_Description(str_Description);
 			
 			cmp.setStr_File(getPath1());
 			cmp.setStr_VendorType(str_VendorType);
@@ -180,7 +183,7 @@ public class ComplainBean implements Serializable{
 			cmp.setInt_ApartmentId(Util.getAppartmentId());
 			cmp.setAdminReason(getAdminReason());
 			getComplainService().addComplain(cmp);
-			
+			str_ComplainType=null;
 			return "ComplainView.xhtml";
 		}
 		catch(DataAccessException e)
@@ -194,10 +197,12 @@ public class ComplainBean implements Serializable{
 	public String addComplain()
 	{  try{
 		Complain cmp=new Complain();
-		
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		str_Description=request.getParameter("limitedtextfield");
+		System.out.println(str_Description+"fggjkgkjgfkjgfgf");
 		cmp.setCh_Complain(getCh_Complain());
 		cmp.setStr_ComplainType(getStr_ComplainType());
-		cmp.setStr_Description(getStr_Description());
+		cmp.setStr_Description(str_Description);
 		
 		cmp.setStr_File(getPath1());
 		cmp.setStr_VendorType(str_VendorType);
@@ -210,7 +215,7 @@ public class ComplainBean implements Serializable{
 		cmp.setInt_ApartmentId(Util.getAppartmentId());
 		cmp.setAdminReason(getAdminReason());
 		getComplainService().addComplain(cmp);
-		
+		str_ComplainType=null;
 		return "ComplainView.xhtml";
 	}
 	catch(DataAccessException e)
@@ -510,9 +515,9 @@ public class ComplainBean implements Serializable{
 			public void addAdminReason()
 			{	
 				System.out.println("dffdfdkjdfkj");
-				System.out.println(str_Description+"fdkjdfjkdfjk");
-				getComplainService().updateAdminReason(ID,str_Description);
-				
+				System.out.println(adminReason+"fdkjdfjkdfjk");
+				getComplainService().updateAdminReason(ID,adminReason);
+				adminReason=null;
 			}
 			private Complain selectedComplain;
 			public Complain getSelectedComplain() {

@@ -30,6 +30,9 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
+import org.primefaces.event.SelectEvent;
+
 import com.appowner.model.DueTransaction;
 import com.appowner.service.DueService;
 import com.appowner.util.Util;
@@ -445,6 +448,11 @@ public class DueBean implements Serializable{
 		e.printStackTrace();
 	}
 	return null;
+	}
+	public void desabledListener( SelectEvent event)
+	{
+		System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
+		indicate=true;
 	}
 	public String deleteDues(){
 		try

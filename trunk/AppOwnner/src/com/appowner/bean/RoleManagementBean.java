@@ -300,7 +300,7 @@ System.out.println(list+"list");
 		System.out.println(Cls_UserBean.id+"jfdffd");
 		roleAssignment.setStr_RoleName(str_RoleName);
 		roleAssignment.setInt_RoleId(getMaintainanceStaffService().getRoleId(str_RoleName));
-		roleAssignment.setInt_UserId(id1);
+		roleAssignment.setInt_UserId(Cls_UserBean.id);
 		 
 		S=getMaintainanceStaffService().getUserType(id1);
 		System.out.println(S);

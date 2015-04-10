@@ -994,7 +994,7 @@ public class LoginBean implements Serializable {
             session.setAttribute("int_UserRole", user.getInt_UserRole());
 		     return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
-		   else if(str_userRoleName.equalsIgnoreCase("user") && roleAssign==null)
+		   else if(str_userRoleName.equalsIgnoreCase("user") && roleAssign.isEmpty())
 		   {   System.out.println( "fdufdkjfdjkfdjgffggffg");
 			   int_ApartmentId=user.getInt_ApartmentId();
 				int_UserId=user.getInt_UserId();

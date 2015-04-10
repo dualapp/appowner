@@ -1,6 +1,7 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -148,6 +149,8 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 			System.out.println(amount+"hjjhmjj");
 			outstandingBalance=outstandingBalance+amount;
 		}
+		BigDecimal b1 = new BigDecimal(outstandingBalance).setScale(2,BigDecimal.ROUND_HALF_UP);
+		outstandingBalance=b1.doubleValue();
 		return outstandingBalance;
 	}
 	
@@ -316,6 +319,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	
 		
 		public static java.util.Date getDate() {
+			 
 			return Date;
 		}
 		public static void setDate(java.util.Date date) {
@@ -548,8 +552,11 @@ private List<DueTransaction> listDueTransaction;
 					content="";
 					username=userName;
 					InvoiceNo=int_InvoiceNo;
+					System.out.println(dat_InvoiceDate+"fggjkgfgfh");
 					Date=dat_InvoiceDate;
 					date1=getDat_DueDate();
+					System.out.println(getDat_DueDate()+"gfvjgvfkjfgj");
+						
 					amount=totalAmounts;
 					System.out.println(amount+"kvcvjvkj");
 					tax=tax2;
@@ -972,13 +979,14 @@ private List<DueTransaction> listDueTransaction;
 		    	  }
 		    	
 		    	 taxAmount1=(taxAmount*totalAmount)/100;
-		    	 taxAmount1=taxAmount1-taxexceptionAmount;
+		    	 taxAmount1=taxAmount1-taxexceptionAmount/10;
 		    	 taxAmounts.add(taxAmount1);
 		    	 subTotal=subTotal+totalAmount;
 		    	 System.out.println(subTotal+"jhj");
 				 taxAmount2=taxAmount2+taxAmount1;
 			     totalDue=subTotal+taxAmount2;
-		    	 
+			     BigDecimal b = new BigDecimal(totalDue).setScale(2,BigDecimal.ROUND_HALF_UP);
+			     totalDue=b.doubleValue(); 
 			    	  totalAmounts.add(totalAmount);
 			    	
 			    	  System.out.println(totalAmounts+"jffd");
@@ -1111,7 +1119,7 @@ private List<DueTransaction> listDueTransaction;
 			    	  }
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	 System.out.println(taxAmount1+"fkjdfkjfg");
-			    	 taxAmount1=taxAmount1-taxexceptionAmount;
+			    	 taxAmount1=taxAmount1-taxexceptionAmount/10;
 			    	 System.out.println(taxAmount1);
 			    	 taxAmounts.add(taxAmount1);
 			    	 tax1=taxAmounts;  //for Mail purpose
@@ -1121,6 +1129,8 @@ private List<DueTransaction> listDueTransaction;
 					 taxAmount2=taxAmount2+taxAmount1;
 					 System.out.println(taxAmount2+"dkfkfdd");
 				     totalDue=subTotal+taxAmount2;
+				     BigDecimal b = new BigDecimal(totalDue).setScale(2,BigDecimal.ROUND_HALF_UP);
+				     totalDue=b.doubleValue(); 
 			    	 System.out.println(totalDue+"fdjkfdjkfkjdfdkj");
 				    	  totalAmounts.add(totalAmount);
 				           amount=totalAmounts;  //for Mail purpose
@@ -1191,12 +1201,20 @@ public String savePayment()
 	     { System.out.println("dfjfdjfdjfjfdfjfdj"); 
 		paidAmount1=totalAmount;
 		dueamount=amount-totalAmount;
+		BigDecimal b1 = new BigDecimal(paidAmount1).setScale(2,BigDecimal.ROUND_HALF_UP);
+		paidAmount1=b1.doubleValue();
+		BigDecimal b2 = new BigDecimal(dueamount).setScale(2,BigDecimal.ROUND_HALF_UP);
+		dueamount=b2.doubleValue();
 		str_Status="Partial Due";
 	     }
 	  else
 	   {  System.out.println("gfgfjgjkgfj");
 		paidAmount1=paidAmount+totalAmount;
+		BigDecimal b1 = new BigDecimal(paidAmount1).setScale(2,BigDecimal.ROUND_HALF_UP);
+		paidAmount1=b1.doubleValue();
 		dueamount=amount-paidAmount1;
+		BigDecimal b2 = new BigDecimal(dueamount).setScale(2,BigDecimal.ROUND_HALF_UP);
+		dueamount=b2.doubleValue();
 		str_Status="Partial Due";
 		  if(paidAmount1==amount)
 		  {
@@ -1262,7 +1280,7 @@ public static void setId(Integer id) {
 public String select()
 {   
   try{ 
-   if(indicate==false)
+   if(indicator1==false)
    {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
 	   FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -1302,7 +1320,7 @@ public String cancel()
 
 {  try
    {
-	if(indicate==false)
+	if(indicator1==false)
 			{
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -1320,7 +1338,7 @@ public String cancel()
   System.out.println(str_Status+"jnfdjkdkjf");
   paidAmount=selectedInvoice.getPaidBalance();
   if(str_Status.equalsIgnoreCase("Due"))
-  {   indicate=false;
+  {   
   totalAmount1=selectedInvoice.getTotalBalance();
   
  
@@ -1331,7 +1349,7 @@ public String cancel()
   
   else if(str_Status.equalsIgnoreCase("Paid"))
   {
-	  indicate=true;
+	  
 	  FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
@@ -1426,7 +1444,8 @@ public double changeAccount(ValueChangeEvent event)
 public String deleteInvoice() {
 try
 {
-if(indicate==false)
+	System.out.println(indicate+"dfskjfdkjgfjkgfjk11111111111111111111111111111111111");
+if(indicator1==false)
 {
 	 FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -1459,10 +1478,18 @@ catch(Exception e)
 }
 return null;
 }
+private boolean indicator1;
+public boolean isIndicator1() {
+	return indicator1;
+}
+public void setIndicator1(boolean indicator1) {
+	this.indicator1 = indicator1;
+}
+
 public void desabled1Listener( SelectEvent event)
-{  
+{  System.out.println("11111111111111111111111111111111111111111111111111111");
 	selectedInvoice=(InvoiceTransaction) event.getObject();
-	
+	indicator1=true;
 	if(selectedInvoice.getStr_Status().equalsIgnoreCase("Paid"))
 	{
 		indicate=true;

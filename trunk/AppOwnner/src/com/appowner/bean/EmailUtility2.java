@@ -1,10 +1,16 @@
 package com.appowner.bean;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Properties;
  
+
+
+
 
 
 
@@ -50,7 +56,7 @@ public class EmailUtility2 {
 	public static void sendEmail(String host, String port,
             final String userName, final String password, String toAddress,
             String subject, String message,String invoice,String date,String date1,String amount,String tax,String due,String organisation, String transaction,String date3,String block,String apartmentNo,String billperiod,String year,String dues,String taxName,String subTotal,String taxAmount,String notes,String username) throws AddressException,
-            MessagingException {
+            MessagingException, ParseException {
  
         // sets SMTP server properties
         Properties properties = new Properties();
@@ -60,6 +66,7 @@ public class EmailUtility2 {
         properties.put("mail.smtp.starttls.enable", "true");
        System.out.println(invoice);
        System.out.println(date);
+      
        System.out.println(date1); 
        System.out.println(amount+"fjdfdkjdf");
        System.out.println(tax+"klkdffd");
