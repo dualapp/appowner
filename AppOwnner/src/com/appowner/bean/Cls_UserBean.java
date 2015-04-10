@@ -19,12 +19,15 @@ import java.io.Serializable;
 
 
 
+
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -683,9 +686,15 @@ public class Cls_UserBean implements Serializable{
 		public String deleteUser(Integer id)
 		{
 			//System.out.println(userid);
-			
+			System.out.println("jkgfgjggfh111111111111111111111111111");
 			getUserService().deleteUser2(id);
-			return "userDeleteuserconfirmation.xhtml";
+			getUserService().deleteRole(id);
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Deleted Successful", "Deleted Successful"));
+			return "apartments_memberdetails.xhtml";
 		}
 		/*
 		 * addApartment is to adding aparmtne.
@@ -738,7 +747,7 @@ public class Cls_UserBean implements Serializable{
 		}
 		
 		public void dataChange2()
-		{
+		{  System.out.println("176788779999999999999999999999999999999999999");
 			user=getUserService().validate1(getStr_Email());
 	          if(user!=null)
 	        	{  
@@ -883,7 +892,7 @@ public class Cls_UserBean implements Serializable{
 			System.out.println("..............................................");
 			System.out.println(editlis.getStr_FirstName());
 			edituserid2=editlis.getInt_UserId();
-			
+			str_BlockName=editlis.getStr_Block();
 		//	return "userEdituser.xhtml";
 		}
 		public static String getFn() {
@@ -901,9 +910,15 @@ public class Cls_UserBean implements Serializable{
 		public String updateUser(int usereditid)
 		{
 			
-			
+			System.out.println("fjghjfgjjkgjkfgj55555555555555555555555555");
 			getUserService().updateUser(editlis);
-			return "userupdateconfirmation.xhtml";
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			Flash flash = facesContext.getExternalContext().getFlash();
+			flash.setKeepMessages(true);
+			flash.setRedirect(true);
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Updated Successful", "Updated Successful"));
+			return "apartments_memberdetails.xhtml";
+			
 		}
 		private boolean indicator;
 		
@@ -926,6 +941,8 @@ public class Cls_UserBean implements Serializable{
 		private Boolean render;
 		public List<String> getHouseNoList() {
 			houseNoList=new ArrayList<String>();
+			System.out.println("1111155555555555551515151515511515");
+			System.out.println(str_BlockName+"hjdfjhfdfdfdjfjf");
 			houseNoList.addAll(getApartmentDetailsService().getHouseNoList(str_BlockName));
 			
 			 
@@ -934,6 +951,7 @@ public class Cls_UserBean implements Serializable{
 		public void setHouseNoList(List<String> houseNoList) {
 			this.houseNoList = houseNoList;
 		}
+		
 		private String str_HouseNo;
 		private List<String> houseNoList;
 		private List<String> blockNameByApartmentName;

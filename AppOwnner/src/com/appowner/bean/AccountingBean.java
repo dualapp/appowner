@@ -1,6 +1,7 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,7 @@ import javax.faces.model.SelectItemGroup;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.tabview.Tab;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TabChangeEvent;
 
 import com.appowner.model.AccountingGroup;
@@ -256,6 +258,23 @@ public ManualJournal getSelectedjournal() {
 public void setSelectedjournal(ManualJournal selectedjournal) {
 	this.selectedjournal = selectedjournal;
 }
+private boolean indicate;
+public boolean isIndicate() {
+	return indicate;
+}
+public void setIndicate(boolean indicate) {
+	this.indicate = indicate;
+}
+public void detectManualJournal()
+{
+	System.out.println("vcnmjnngffgjmfgmjngfgfm111111111111111111111111111111111");
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
+}
+public void desabledListener( SelectEvent event)
+{
+	System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
+	 indicate = true;
+}
 public String addInvoiceManualJournal() 
 { System.out.println("dfjudffgviugfiugfiu");
 	try{
@@ -310,8 +329,17 @@ public String saveManualJournal() {
 	
 }
 public void deleteManualJournal1() {
+	try
+	{ 
+	
 	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-	System.out.println(selectedjournal.getInt_ManualJournalID()+"fkjkfjfg");
+
+	if(selectedjournal.getInt_ManualJournalID()==null)
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
+	}
+	else
+	{
 	id=selectedjournal.getInt_ManualJournalID();
 	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
     	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -322,6 +350,12 @@ public void deleteManualJournal1() {
    
 
    getAccountsService().deleteManualJournal(id);
+	}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
    
 }
 public void getsearch4()
@@ -762,7 +796,7 @@ public double getDebit() {
 			 }
 	  if(credit>debit)
       {
-		 credit=credit-debit;
+		 credit=credit-debit/10;
 		 type1=false;
 		
 		 type2=true;
@@ -773,6 +807,8 @@ public double getDebit() {
 		 System.out.println(debit+"pp");
 		 System.out.println(credit+"jjj");
 		 System.out.println(totalBalance+"jkfkjfkj");
+		 BigDecimal b = new BigDecimal(totalBalance).setScale(2,BigDecimal.ROUND_HALF_UP);
+		 totalBalance=b.doubleValue(); 
 		 return totalBalance;
       }
       else
@@ -782,7 +818,8 @@ public double getDebit() {
  		 type2=false;
  		 credit=0.00;
  		 totalBalance=debit;
- 		
+ 		 BigDecimal b = new BigDecimal(debit).setScale(2,BigDecimal.ROUND_HALF_UP);
+ 		debit=b.doubleValue();
  		 System.out.println(debit+"pp1"); 
  		 return debit;
       }
@@ -887,7 +924,8 @@ public double getDebit() {
 				 totalBalance=credit;
 				 System.out.println(debit+"pp");
 				 System.out.println(credit+"ppp1");
-				
+				 BigDecimal b = new BigDecimal(credit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 credit=b.doubleValue();
 				 return credit;
 	          }
 	          else
@@ -895,6 +933,8 @@ public double getDebit() {
 	        	  debit=debit-credit;
 	        	  type1=true;
 	        	  type2=false;
+	        	  BigDecimal b = new BigDecimal(debit).setScale(2,BigDecimal.ROUND_HALF_UP);
+		 			debit=b.doubleValue();
 	        	  totalBalance=debit;
 	        	  credit=0.00;
 	 			 System.out.println(debit+"pp1");
@@ -1000,7 +1040,8 @@ try{
 				
 				totalBalance=debit;
 				 credit=0.00;
-				
+				 BigDecimal b = new BigDecimal(debit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 debit=b.doubleValue();
 				 return debit;
 			 }
 			 else
@@ -1010,7 +1051,8 @@ try{
 					  type2=true;
 				 debit=0.00;
 				 totalBalance=credit;
-				
+				 BigDecimal b = new BigDecimal(credit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 credit=b.doubleValue();
 				 return credit;
 			 }
 			 
@@ -1054,7 +1096,8 @@ try{
 					 getAccountsService().updateClosingBalance(debit1,credit,str,debit1);	
 					 return debit;
 				 }  */
-				
+				 BigDecimal b = new BigDecimal(debit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 debit=b.doubleValue();
 				 return debit;
 			 }
 			 else
@@ -1067,7 +1110,8 @@ try{
 				 totalBalance=credit;
 				// double credit1=0.00;
 				// credit1=totalBalance1+credit;
-				
+				 BigDecimal b = new BigDecimal(totalBalance).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 totalBalance=b.doubleValue();
 				 return totalBalance;
 			 }
 			 
@@ -1085,12 +1129,14 @@ try{
 			totalBalance=debit;
 			if(str_Accounts.equalsIgnoreCase("Opening Balance Adjustment"))
 			{
-			
+				 BigDecimal b = new BigDecimal(debit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 debit=b.doubleValue();
 			 return debit;
 			}
 			else
 			{
-				
+				 BigDecimal b = new BigDecimal(debit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 debit=b.doubleValue();
 				 return debit;
 			}
 		 }
@@ -1103,12 +1149,14 @@ try{
 			 totalBalance=credit;
 			 if(str_Accounts.equalsIgnoreCase("Opening Balance Adjustment")) 
 			 {
-			
+				 BigDecimal b = new BigDecimal(credit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 credit=b.doubleValue();
 			 return credit;
 			 }
 			 else
 			 {
-				
+				 BigDecimal b = new BigDecimal(credit).setScale(2,BigDecimal.ROUND_HALF_UP);
+				 credit=b.doubleValue();
 				 return credit; 
 			 }
 		 }
@@ -1532,7 +1580,8 @@ public List<Double> getExpenseAmount1() {
 		Expense expense=(Expense) list.next();
 		double ddd=expense.getInt_Ammount();
 		debitNetTotal=debitNetTotal+ddd;
-		
+		 BigDecimal b1 = new BigDecimal(debitNetTotal).setScale(2,BigDecimal.ROUND_HALF_UP);
+		 debitNetTotal=b1.doubleValue();
 	}	
 	System.out.println(debitNetTotal+"kjdfkdfk");
 	 getExpense2();
@@ -1565,7 +1614,8 @@ public List<Double> getExpenseAmount1() {
 						
 						debitNetTotal=debitNetTotal+balance3;
 						System.out.println(debitNetTotal+"123fghj");
-						
+						 BigDecimal b1 = new BigDecimal(debitNetTotal).setScale(2,BigDecimal.ROUND_HALF_UP);
+						 debitNetTotal=b1.doubleValue();
 					    }
 					
 					   
@@ -1687,7 +1737,8 @@ public List<Double> getTotalIncome() {
 		
 	    totalIncome1=totalIncome1+id;
 	    System.out.println(totalIncome1+"kkkk");
-	   
+	    BigDecimal b1 = new BigDecimal(totalIncome1).setScale(2,BigDecimal.ROUND_HALF_UP);
+		 totalIncome1=b1.doubleValue();
 	}
 	 getIncome2();
 		
@@ -1719,13 +1770,16 @@ public List<Double> getTotalIncome() {
 					{System.out.println("jfdjkfdjfjfd");
 					 totalIncome1=totalIncome1+balance3;
 					 System.out.println(totalIncome1+"jjjj");
-					
+					 BigDecimal b1 = new BigDecimal(totalIncome1).setScale(2,BigDecimal.ROUND_HALF_UP);
+					 totalIncome1=b1.doubleValue();
 					}
 				 else
 				 {
 					System.out.println("jkdfkjfkjg");
 					 totalIncome2=totalIncome2+balance3;
 					 System.out.println(totalIncome2+"jjkjkjk");
+					 BigDecimal b1 = new BigDecimal(totalIncome2).setScale(2,BigDecimal.ROUND_HALF_UP);
+					 totalIncome2=b1.doubleValue();
 					 totalIncome.add(totalIncome2);
 				 }
 				 
@@ -1736,6 +1790,8 @@ public List<Double> getTotalIncome() {
 	  totalIncome.add(totalIncome1);
 	 }	
 	 totalIncome2=totalIncome2+totalIncome1;
+	 BigDecimal b1 = new BigDecimal(totalIncome2).setScale(2,BigDecimal.ROUND_HALF_UP);
+	 totalIncome2=b1.doubleValue();
 	}
 	catch(Exception e)
 	{
@@ -1829,7 +1885,8 @@ public double getNetProfit() {
 	
 		
 		netProfit=totalIncome1-netProfit2;
-	
+		 BigDecimal b = new BigDecimal(netProfit).setScale(2,BigDecimal.ROUND_HALF_UP);
+		 netProfit=b.doubleValue();
 	return netProfit;
 }
 public void setNetProfit(double netProfit) {
@@ -1838,6 +1895,8 @@ public void setNetProfit(double netProfit) {
 public  double netProfit1;
 public  double getNetProfit1() {
 	netProfit1=netProfit+int_blank;
+	 BigDecimal b = new BigDecimal(netProfit1).setScale(2,BigDecimal.ROUND_HALF_UP);
+	 netProfit1=b.doubleValue();
 	return netProfit1;
 }
 public  void setNetProfit1(double netProfit1) {
@@ -2156,13 +2215,15 @@ public void getSearch2()
 	     {
 	    	balance1=balance1-balance; 
 	    	balance=0.00;
-	    	
+	    	 BigDecimal b = new BigDecimal(balance1).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance1=b.doubleValue();
 	     }
 	     else
 	     {
 	    	 balance=balance-balance1;
 	    	 balance1=0.00;
-	    	
+	    	 BigDecimal b = new BigDecimal(balance).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance=b.doubleValue();
 	     }
 	
 		assetDebitBalance.add(balance1);
@@ -2188,11 +2249,15 @@ public void getSearch2()
 	     {
 	    	balance1=balance1-balance; 
 	    	balance=0.00;
+	    	 BigDecimal b = new BigDecimal(balance1).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance1=b.doubleValue();
 	     }
 	     else
 	     {
 	    	 balance=balance-balance1;
 	    	 balance1=0.00;
+	    	 BigDecimal b = new BigDecimal(balance).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance=b.doubleValue();
 	     }
 		debitNetTotal1=debitNetTotal1+balance1;
 		incomeDebitBalance.add(balance1);
@@ -2215,11 +2280,15 @@ public void getSearch2()
 	     {
 	    	balance1=balance1-balance; 
 	    	balance=0.00;
+	    	 BigDecimal b = new BigDecimal(balance1).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance1=b.doubleValue();
 	     }
 	     else
 	     {
 	    	 balance=balance-balance1;
 	    	 balance1=0.00;
+	    	 BigDecimal b = new BigDecimal(balance).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance=b.doubleValue();
 	     }
 		expenseDebitBalance.add(balance1);
 		debitNetTotal1=debitNetTotal1+balance1;
@@ -2243,18 +2312,25 @@ public void getSearch2()
 	     {
 	    	balance1=balance1-balance; 
 	    	balance=0.00;
+	    	 BigDecimal b = new BigDecimal(balance1).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance1=b.doubleValue();
 	    	
 	     }
 	     else
 	     {
 	    	 balance=balance-balance1;
 	    	 balance1=0.00;
-	    	
+	    	 BigDecimal b = new BigDecimal(balance).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance=b.doubleValue();
 	     }
 		liabilityDebitBalance.add(balance1);
 		debitNetTotal1=debitNetTotal1+balance1;
+		 BigDecimal b = new BigDecimal(debitNetTotal1).setScale(2,BigDecimal.ROUND_HALF_UP);
+		 debitNetTotal1=b.doubleValue();
 		liabilityCreditBalance.add(balance);
 		creditNetTotal=creditNetTotal+balance;
+		 BigDecimal b1 = new BigDecimal(creditNetTotal).setScale(2,BigDecimal.ROUND_HALF_UP);
+		 creditNetTotal=b1.doubleValue();
 		
 	}
 	
@@ -2293,12 +2369,16 @@ public void getSearch3()
 	     {
 	    	balance1=balance1-balance; 
 	    	balance=0.00;
+	    	 BigDecimal b = new BigDecimal(balance1).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance1=b.doubleValue();
 	    	assetBalance.add(balance1);
 	     }
 	     else
 	     {
 	    	 balance=balance-balance1;
 	    	 balance1=0.00;
+	    	 BigDecimal b = new BigDecimal(balance).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance=b.doubleValue();
 	    	 if(balance==0.00)
 	    	 {
 	    		 assetBalance.add(balance); 
@@ -2322,6 +2402,8 @@ public void getSearch3()
 	     {
 	    	balance1=balance1-balance; 
 	    	balance=0.00;
+	    	 BigDecimal b = new BigDecimal(balance1).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance1=b.doubleValue();
 	    	 if(balance1==0.00)
 	    	 {
 	    		 assetBalance.add(balance1); 
@@ -2336,6 +2418,8 @@ public void getSearch3()
 	     {
 	    	 balance=balance-balance1;
 	    	 balance1=0.00;
+	    	 BigDecimal b = new BigDecimal(balance).setScale(2,BigDecimal.ROUND_HALF_UP);
+	    	 balance=b.doubleValue();
 	    	 liabilityBalance.add(balance);
 	     }
 	}
@@ -2345,7 +2429,8 @@ public void getSearch3()
 	{
 		double balance =(double) list5.next();
 		int_blank1=int_blank1+balance;
-		
+		BigDecimal b1 = new BigDecimal(int_blank1).setScale(2,BigDecimal.ROUND_HALF_UP);
+		int_blank1=b1.doubleValue();
 	}
 	ListIterator list6=liabilityBalance.listIterator();
 	int_blank=0.00;
@@ -2353,7 +2438,8 @@ public void getSearch3()
 	{
 		double balance1 =(double) list6.next();
 		int_blank=int_blank+balance1;
-		
+		BigDecimal b1 = new BigDecimal(int_blank).setScale(2,BigDecimal.ROUND_HALF_UP);
+		int_blank=b1.doubleValue();
 	}
 }
 public void setTest(TabChangeEvent event)

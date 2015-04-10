@@ -280,6 +280,8 @@ public void setStr_Organisation(String str_Organisation) {
 		System.out.println(creditBalance+"fdjkfdjk");
 	    System.out.println(id1+"hjhjjhj");
 	     indicator=false;
+	     System.out.println(openingDate+"fdhjfhjnfggtrf");
+	    
 	      getAccountsService().addBalance(openingDate,id1,debitBalance,creditBalance);
 	     
 		
