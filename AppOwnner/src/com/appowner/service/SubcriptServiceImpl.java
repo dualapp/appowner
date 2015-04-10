@@ -82,6 +82,12 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -123,6 +129,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
+
+
+
+
+
+
 
 
 
@@ -705,6 +717,49 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().memberid(str_Hobbies,  str_Profession); 
 	}
 
+	@Override
+	public String count(int meberids) {
+		return getSubcriptDao().count(meberids);
+	}
+
+	@Override
+	public Cls_CreateDocumentManagement listname(Integer postid) {
+		return getSubcriptDao().listname( postid);
+	}
+
+	@Override
+	public void deletedetail(Cls_CreateDocumentManagement detail) {
+		 getSubcriptDao().deletedetail( detail);
+		
+	}
+
+	@Override
+	public int getname(String intdocid) {
+		// TODO Auto-generated method stub
+		return getSubcriptDao().getname(intdocid);
+	}
+
+	@Override
+	public void updatepost(Cls_CreateDocumentManagement document) {
+		getSubcriptDao().updatepost( document);
+		
+	}
+
+	@Override
+	public void updateposts(Cls_CreateDocumentManagement doc) {
+		getSubcriptDao().updateposts( doc);
+	}
+
+	@Override
+	public void updateposts(String txtfile, Integer postid, String path,
+			String filename) {
+		getSubcriptDao().updateposts( txtfile,  postid,path,
+				filename);
+		
+	}
+
+	
+	
 	
 	
 	
