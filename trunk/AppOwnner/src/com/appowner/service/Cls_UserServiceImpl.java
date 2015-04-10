@@ -359,6 +359,9 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		return getIn_userdao().getVendor(str_VendorName,str_VendorType);
 	}
-
+	public void deleteRole(Integer id)
+	{
+		getIn_userdao().deleteRole(id);
+	}
 	 
 }

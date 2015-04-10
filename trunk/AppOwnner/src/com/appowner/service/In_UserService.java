@@ -127,6 +127,8 @@ public interface In_UserService {
 
 	public Vendor getVendor(String str_VendorName, String str_VendorType);
 
+	public void deleteRole(Integer id);
+
 	 
 
 }

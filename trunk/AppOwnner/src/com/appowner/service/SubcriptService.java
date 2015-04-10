@@ -89,6 +89,13 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -316,6 +323,23 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 	public int adduser(String selecte);
 
 	public List<Integer> memberid(String str_Hobbies, String str_Profession);
+
+	public String count(int meberids);
+
+	public Cls_CreateDocumentManagement listname(Integer postid);
+
+	public void deletedetail(Cls_CreateDocumentManagement detail);
+
+	public int getname(String intdocid);
+
+	public void updatepost(Cls_CreateDocumentManagement document);
+
+	public void updateposts(Cls_CreateDocumentManagement doc);
+
+	public void updateposts(String txtfile, Integer postid, String path,
+			String filename);
+
+	
 
 	
 	
