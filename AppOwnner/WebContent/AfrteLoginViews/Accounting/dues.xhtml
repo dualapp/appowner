@@ -203,7 +203,7 @@
         <p:dataTable id="due" var="due" value="#{dueBean.listDueTransaction}" selectionMode="single"  sortBy="#{due.str_DueTemplate}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" 
           selection="#{dueBean.selectedDue}" rowKey="#{due.int_DueTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">
         
-                <p:ajax event="rowSelect" listener="#{templateBean.desabledListener}"  execute="@form" immediate="true" update=":form:edit,:form:view,:form:ui-growl"/>  
+                <p:ajax event="rowSelect" listener="#{dueBean.desabledListener}"  execute="@form" immediate="true" update=":form:edit,:form:view,:form:ui-growl"/>  
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Organisation" />
@@ -316,10 +316,10 @@
        </h:panelGroup>
        
        <h:panelGroup id="jhhjjhjh"  rendered="#{dueBean.indicator1}">
-        <p:dataTable id="due1" var="due" value="#{dueBean.listUserDueTransaction}"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        <p:dataTable id="due1" var="due" value="#{dueBean.listUserDueTransaction}" selectionMode="single"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
         rowsPerPageTemplate="10,20,30,40,50"   selection="#{dueBean.selectedDue}" rowKey="#{due.int_DueTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">>
              
-                <p:column  exportable="false"  selectionMode="single" style="width:35px;text-align:center" /> 
+               <p:ajax event="rowSelect" listener="#{dueBean.desabledListener}"  execute="@form" immediate="true" update=":form:edit,:form:view,:form:ui-growl"/>  
             
        
         
