@@ -333,8 +333,9 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 	
 	 public void onRowEdit(RowEditEvent event) {
-		 VendorServiceDetails vs = (VendorServiceDetails) event.getObject();
-         System.out.println("Edit: " +vs);
+		 Object o =event.getObject();
+		  VendorServiceDetails  vs=(VendorServiceDetails)o;
+         System.out.println("Edit: " +o);
          getVendorservice().update(vs);
          
 	        FacesMessage msg = new FacesMessage("Car Edited" );
