@@ -35,15 +35,21 @@
 information in few minutes.</p><p> You can add, remove or update information related to houses, blocks
 and members associated.</p> 
   <table>
-<tr><th width="30%"><p:outputLabel for="communityType"  value="What is type of Community" /></th><td width="70%"><h:selectManyCheckbox  id="communityType" valueChangeListener="#{apartmentDetailsBean.communityTypeListener}"  required="true" requiredMessage="Choose Community type" value="#{apartmentDetailsBean.communityTypelist1}"  styleClass="nostyle">
+<tr><th width="20%"><p:outputLabel for="communityType"  value="What is type of Community" /></th><td width="70%"><h:selectManyCheckbox  id="communityType" valueChangeListener="#{apartmentDetailsBean.communityTypeListener}"  required="true" requiredMessage="Please select one or more value for type of community." value="#{apartmentDetailsBean.communityTypelist1}"  styleClass="nostyle">
    
   <f:selectItems value="#{apartmentDetailsBean.communityTypelist}" />
    </h:selectManyCheckbox>
+   
 </td>
+ <p:message  id="communityTypeMsg" for="communityType" display="text"/>
 </tr>
-<tr><th>Year Of Completion</th><td><p:inputText  minlength="2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{apartmentDetailsBean.int_year}" /></td></tr>
-<tr><th>No Of Blocks(if any)</th><td><p:inputText disabled="true" value="#{apartmentDetailsBean.int_NoOfBlock}" /></td></tr>
-<tr><th>Total No Of Houses</th><td><p:inputText  disabled="true" value="#{apartmentDetailsBean.int_TotalHouse}" /></td></tr>
+<tr><th><p:outputLabel for="year" value="Year Of Completion"/></th><td><p:inputText  minlength="2" id="year" maxlength="4" onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{apartmentDetailsBean.int_year}" required="true"  requiredMessage="Year of completion is empty. " />
+<p:message  id="yearMsg" for="year" display="text"/>
+</td>
+ 
+</tr>
+<tr><th><p:outputLabel   value="No Of Blocks(if any)"/></th><td><p:inputText disabled="true" value="#{apartmentDetailsBean.int_NoOfBlock}" /></td></tr>
+<tr><th><p:outputLabel   value="Total No Of Houses" /> </th><td><p:inputText  disabled="true" value="#{apartmentDetailsBean.int_TotalHouse}" /></td></tr>
  
 </table>
  <div>
