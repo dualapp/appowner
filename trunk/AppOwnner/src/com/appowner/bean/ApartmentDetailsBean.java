@@ -309,11 +309,9 @@ public class ApartmentDetailsBean  implements Serializable{
 		if(selectedBlock1!=null)
 		{
 			String str_BlockName1=getApartmentDetailsService().checkBlock(selectedBlock1.getStr_BlockName(),Util.getAppartmentId());
-			if(selectedBlock1.getStr_BlockName().equalsIgnoreCase(str_BlockName1))
+			if(!(selectedBlock1.getStr_BlockName().equalsIgnoreCase(str_BlockName1)))
 			{
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block with same name already exist in appartment!"));
-				return "blockdetails.xhtml";
-			}
+				
 			Integer blockId=selectedBlock1.getInt_BlockId();
 			UserBlocks block=getApartmentDetailsService().getBlock(blockId);
 			String oldBlock=block.getStr_BlockName();
@@ -323,6 +321,12 @@ public class ApartmentDetailsBean  implements Serializable{
 		
 		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Updated Successfully!"));
 		}
+			else
+			{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block with same name already exist in appartment!"));
+				return "blockdetails.xhtml";
+			}
+			}
 		 else{
 			 FacesMessage message = null;
 		FacesContext.getCurrentInstance().addMessage(null, message);
