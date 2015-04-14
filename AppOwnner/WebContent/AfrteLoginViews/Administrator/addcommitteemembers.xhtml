@@ -69,12 +69,10 @@
             <td><p:calendar     navigator="true" display="inline"   value="#{committeeMemberBean.date_ElectionDate}" valueChangeListener="#{committeeMemberBean.electionDateListener}"/> </td></tr>
              
      </table>
-     <h:commandButton value="Add CommiteeMembers" action="#{committeeMemberBean.addCommitteeMember}" >
+     <h:commandButton value="Add CommiteeMembers"  styleClass="btn" action="#{committeeMemberBean.addCommitteeMember}" >
       
       </h:commandButton>
-      <h:commandButton value="cancel CommiteeMember" action="#{committeeMemberBean.cancelCommitteeMembers}" >
-      
-      </h:commandButton>
+       &#150; &#150;  <h:commandButton   styleClass="btn" id="cancel" type="reset" value="Cancel" /> 
      </div>
      </center>
       
