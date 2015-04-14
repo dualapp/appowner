@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import com.appowner.model.MaintainanceStaff;
@@ -31,7 +33,7 @@ public class MaintainanceStaffBean implements Serializable {
 	public String getStr_UserName() {
 		return str_UserName;
 	}
-    
+
 	public void setStr_UserName(String str_UserName) {
 		this.str_UserName = str_UserName;
 	}
@@ -68,17 +70,17 @@ public class MaintainanceStaffBean implements Serializable {
 			MaintainanceStaffService maintainanceStaffService) {
 		this.maintainanceStaffService = maintainanceStaffService;
 	}
-	 
-	
+
+
 	private List<String> str_MaintainanceStaffRoles;
-	 
+
 
 
 	public List<String> getStr_MaintainanceStaffRoles() {
-		
+
 		str_MaintainanceStaffRoles=new ArrayList<String>();
 		str_MaintainanceStaffRoles.addAll(getMaintainanceStaffService().getStr_MaintainanceStaffRoles());
-		
+
 		return str_MaintainanceStaffRoles;
 	}
 
@@ -126,7 +128,7 @@ public class MaintainanceStaffBean implements Serializable {
 	{
 		list1.add(event.getNewValue());
 	}
-	
+
 	public void maintainanceStaffRoleListener(ValueChangeEvent event)
 	{
 		list2.add(event.getNewValue());
@@ -147,16 +149,16 @@ public class MaintainanceStaffBean implements Serializable {
 	public void setMaintainanceStaff(MaintainanceStaff maintainanceStaff) {
 		this.maintainanceStaff = maintainanceStaff;
 	}
-private Integer int_MaintainanceStaffID;
-	 
+	private Integer int_MaintainanceStaffID;
+
 
 	public Integer getInt_MaintainanceStaffID() {
-	return int_MaintainanceStaffID;
-}
+		return int_MaintainanceStaffID;
+	}
 
-public void setInt_MaintainanceStaffID(Integer int_MaintainanceStaffID) {
-	this.int_MaintainanceStaffID = int_MaintainanceStaffID;
-}
+	public void setInt_MaintainanceStaffID(Integer int_MaintainanceStaffID) {
+		this.int_MaintainanceStaffID = int_MaintainanceStaffID;
+	}
 
 	public String addMaintainanceStaff()
 	{
@@ -167,7 +169,7 @@ public void setInt_MaintainanceStaffID(Integer int_MaintainanceStaffID) {
 		maintainanceStaff.setStr_RoleName(getStr_RoleName());
 		maintainanceStaff.setStr_UserName(getStr_UserName());
 		getMaintainanceStaffService().addMaintainanceStaff(maintainanceStaff);*/
-		
+
 		ListIterator itr1 = list1.listIterator();
 		ListIterator itr2 = list2.listIterator();
 		ListIterator itr3 = list3.listIterator();
@@ -176,29 +178,31 @@ public void setInt_MaintainanceStaffID(Integer int_MaintainanceStaffID) {
 		{
 			if(itr1.hasNext()==true&&itr2.hasNext()==true)
 			{
-			str_UserName=(String) itr1.next();
-			str_RoleName=(String) itr2.next();
-			str_Email=(String) itr3.next();
-			str_Mobile=(String) itr4.next();
-			System.out.println(str_UserName);
-			System.out.println(str_RoleName);
-			maintainanceStaff=new MaintainanceStaff();
-			maintainanceStaff.setStr_UserName(str_UserName);
-			maintainanceStaff.setInt_ApartmentId(Util.getAppartmentId());
-			maintainanceStaff.setStr_RoleName(str_RoleName);
-			maintainanceStaff.setInt_UserId(getMaintainanceStaffService().getUserId(str_UserName));
-			maintainanceStaff.setInt_RoleId(getMaintainanceStaffService().getMaintainanceStaffRoleId(str_RoleName));
-			maintainanceStaff.setStr_Email(str_Email);
-			maintainanceStaff.setStr_Mobile(str_Mobile);
-			maintainanceStaff.setChar_User_Type('S');
-			getMaintainanceStaffService().addMaintainanceStaff(maintainanceStaff);
+				str_UserName=(String) itr1.next();
+				str_RoleName=(String) itr2.next();
+				str_Email=(String) itr3.next();
+				str_Mobile=(String) itr4.next();
+				System.out.println(str_UserName);
+				System.out.println(str_RoleName);
+				maintainanceStaff=new MaintainanceStaff();
+				maintainanceStaff.setStr_UserName(str_UserName);
+				maintainanceStaff.setInt_ApartmentId(Util.getAppartmentId());
+				maintainanceStaff.setStr_RoleName(str_RoleName);
+				maintainanceStaff.setInt_UserId(getMaintainanceStaffService().getUserId(str_UserName));
+				maintainanceStaff.setInt_RoleId(getMaintainanceStaffService().getMaintainanceStaffRoleId(str_RoleName));
+				maintainanceStaff.setStr_Email(str_Email);
+				maintainanceStaff.setStr_Mobile(str_Mobile);
+				maintainanceStaff.setChar_User_Type('S');
+				getMaintainanceStaffService().addMaintainanceStaff(maintainanceStaff);
 			}
+
 			else
 			{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
 				return "maintainancestafflist.xhtml";
 			}
-			
 		}
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
 		return "maintainancestafflist.xhtml";
 	}
 	private List<MaintainanceStaff> maintainanceStaffList;
@@ -229,6 +233,7 @@ public void setInt_MaintainanceStaffID(Integer int_MaintainanceStaffID) {
 		//maintainanceStaff.setInt_UserId(int_UserId);
 		maintainanceStaff.setInt_MaintainanceStaffID(int_MaintainanceStaffID);
 		getMaintainanceStaffService().deleteMaintainanceStaff(maintainanceStaff);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 		return "maintainancestafflist.xhtml?faces-redirect=true";
 	}
 	public String cancelMaintainanceStaff() {
