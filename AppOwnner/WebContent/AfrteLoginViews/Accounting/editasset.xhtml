@@ -122,7 +122,7 @@
         </p:calendar>
         <p:message id="PDateMsg"  for="PDate" display="text"/>
       </td> 
-                   <th> <p:outputLabel value="Price"/></th> <td><h:inputText onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{asset.dbl_Price}"/></td></tr>
+                   <th> <p:outputLabel value="Price"/></th> <td><h:inputText  onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" value="#{asset.dbl_Price}"/></td></tr>
                    <tr><th><p:outputLabel value="Warrenty Start Date"/></th><td><p:calendar id="WSDate"  required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{asset.date_WarrantyStartDate}">
                    <p:ajax event="blur" update="WSDateMsg" />
                    </p:calendar>
