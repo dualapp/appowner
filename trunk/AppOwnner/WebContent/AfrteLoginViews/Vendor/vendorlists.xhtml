@@ -598,7 +598,7 @@
             </p:column>
            <p:column>
                  <f:facet name="header">Price</f:facet>
-                 <h:inputText value="#{v.int_ServicePrice}" style="width:70% " rendered="#{vendorBean.isEditable()}"/>               
+                 <h:inputText value="#{v.int_ServicePrice}"  onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" style="width:70% " rendered="#{vendorBean.isEditable()}"/>               
                  <h:outputText value="#{v.int_ServicePrice}" rendered="#{not vendorBean.isEditable()}"/>
             </p:column>
           <p:column>

@@ -168,7 +168,7 @@
 	   <td> <p:inputText value="#{str_ServiceName}" placeholder="Service" valueChangeListener="#{vendorBean.vendorServiceDetailsListener}"/>
 	   </td></tr>
 	   <tr><th>  <p:outputLabel value="Price"/></th>
-	   <td> <p:inputText  value="#{int_ServicePrice}"  placeholder="Price(in double)" onkeyup="this.value=this.value.replace(/[^\d]/,'')" valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
+	   <td> <p:inputText  value="#{int_ServicePrice}"  placeholder="Price(in double)" onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" valueChangeListener="#{vendorBean.vendorServiceDetailsListener1}">
 	      
     
 	   </p:inputText></td>
