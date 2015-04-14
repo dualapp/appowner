@@ -92,7 +92,7 @@
            <p:dialog header="Role Assignment" widgetVar="multiRoleDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="600" width="600">
         <p:outputPanel id="multiRoleDetail" style="text-align:center;">
           <fieldset class="repeat">
-	<legend class="medium" style="color:#fff;"> You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
+	<legend class="medium" > You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
 	  <h3 style="color:red">Current Roles of <h:outputText value="#{roleManagementBean.str_UserName}"/> are checked bellow. </h3>
 	 
 	<h:selectManyCheckbox      value="#{roleManagementBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
