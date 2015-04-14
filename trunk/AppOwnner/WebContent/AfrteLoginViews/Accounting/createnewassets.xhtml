@@ -87,8 +87,9 @@
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                   
                  </h:selectOneMenu>
+                 <p:message id="AssetCategoryMsg"  for="AssetCategory" display="text"/>
                  </td>
-                 <td><p:message id="AssetCategoryMsg"  for="AssetCategory" display="text"/></td>
+                
                  </tr>
                  <tr><th><p:outputLabel for=" AssetName" value="Assets Name"/></th><td><p:inputText    id="AssetName" required="true" requiredMessage="plz Enter Asset Name" value="#{expenseBean.str_AssetName}">
                  
@@ -108,8 +109,10 @@
             <f:selectItem itemLabel="yes" itemValue="yes" />
             <f:selectItem itemLabel="No" itemValue="No" />
               
-        </p:selectOneRadio></td>
-        <td><p:message id="RantableMsg"  for="Rantable" display="text"/></td>
+        </p:selectOneRadio>
+        <p:message id="RantableMsg"  for="Rantable" display="text"/>
+        </td>
+        
         </tr>
                  </table>
                  
@@ -126,7 +129,7 @@
         </p:calendar>
         <p:message id="PDateMsg"  for="PDate" display="text"/>
       </td> 
-                   <th> <p:outputLabel for="price" value="Price"/></th> <td><p:inputText id="price" onkeyup="this.value=this.value.replace(/[^\d]/,'')" value="#{expenseBean.dbl_Price}"/></td></tr>
+                   <th> <p:outputLabel for="price" value="Price"/></th> <td><p:inputText id="price" onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" value="#{expenseBean.dbl_Price}"/></td></tr>
                    <tr><th><p:outputLabel  for="WSDate" value="Warrenty Start Date"/></th><td><p:calendar id="WSDate"  required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_WarrantyStartDate}">
                   
                    </p:calendar>
@@ -170,11 +173,13 @@
         <tr><th><p:outputLabel for="StartDate" value="AMC Start Date"/></th><td><p:calendar  id="StartDate" required="true" requiredMessage="Please enter start Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCStartDate}">
         
         </p:calendar>
-       </td><td> <p:message id="StartDateMsg"  for="StartDate" display="text"/></td>
+        <p:message id="StartDateMsg"  for="StartDate" display="text"/>
+       </td> 
         <th><p:outputLabel for="EndDate"  value="AMC End Date"/></th><td><p:calendar id="EndDate"  required="true" requiredMessage="Please enter end Date" navigator="true" display="inline"   value="#{expenseBean.date_AMCEndDate}">
         
         </p:calendar>
-        </td><td><p:message id="EndDateMsg"  for="EndDate" display="text"/></td>
+        <p:message id="EndDateMsg"  for="EndDate" display="text"/>
+        </td> 
         </tr>
           <tr><th><p:outputLabel value="VendorType"/></th><td> <h:selectOneMenu id="str_VendorType1"    value="#{expenseBean.str_VendorType}"  >
             <f:selectItem itemLabel="Select One" itemValue="" />
