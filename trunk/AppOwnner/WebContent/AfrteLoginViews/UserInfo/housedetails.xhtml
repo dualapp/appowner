@@ -167,7 +167,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	</tr>
 	<tr><th><p:outputLabel for="size" value="Size of House (Sqft.)" /> </th>
              
-	<td><p:inputText   id="size"   onkeyup="this.value=this.value.replace(/[^\d]/,'')"  value="#{apartmentDetailsBean.housedetails.dbl_HouseSize}">
+	<td><p:inputText   id="size"   onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')"  value="#{apartmentDetailsBean.housedetails.dbl_HouseSize}">
 	
 	 </p:inputText>
 	</td>
@@ -192,7 +192,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	</tr>
 	<tr><th><p:outputLabel  for="noOfBalconies" value="No Of Balconies" /> </th>
             
-	<td><p:inputText   id="noOfBalconies"  onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')"  value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}">
+	<td><p:inputText   id="noOfBalconies" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  value="#{apartmentDetailsBean.housedetails.int_NoOfBalconies}">
 	
 	</p:inputText>
 	</td>
