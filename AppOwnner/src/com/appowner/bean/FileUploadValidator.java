@@ -72,12 +72,7 @@ public class FileUploadValidator implements Validator {
             case "image/GIF":   
            	 
                 break;
-            case "text/plain":
-            break;
-            case "application/msword":
-            	break;
-            case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            	break;
+             
             default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 			throw new ValidatorException(message);
         } 
