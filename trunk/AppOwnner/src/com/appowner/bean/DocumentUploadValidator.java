@@ -48,6 +48,12 @@ public class DocumentUploadValidator implements Validator {
 	            case "application/pdf":   
 	           	 
 	                break;
+	            case "text/plain":
+	                break;
+	                case "application/msword":
+	                	break;
+	                case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+	                	break;
 	             
 	                     
 	            default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
