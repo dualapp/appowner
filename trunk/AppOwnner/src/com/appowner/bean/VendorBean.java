@@ -335,16 +335,17 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	 public void onRowEdit(RowEditEvent event) {
 		 Object o =event.getObject();
 		  VendorServiceDetails  vs=(VendorServiceDetails)o;
-         System.out.println("Edit: " +o);
+		  System.out.println("Edit: " +vs.getStr_ServiceName()+""+vs.getInt_ServicePrice());
          getVendorservice().update(vs);
          
-	        FacesMessage msg = new FacesMessage("Car Edited" );
+	        FacesMessage msg = new FacesMessage(" Row  Edited" );
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
 	     
 	    public void onRowCancel(RowEditEvent event) {
-	        FacesMessage msg = new FacesMessage("Edit Cancelled" );
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    	 
+		        FacesMessage msg = new FacesMessage(" Row Canceled" );
+		        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
 	
 	public String getStr_PanNo() {

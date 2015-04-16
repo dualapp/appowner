@@ -49,6 +49,7 @@ import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
+import com.appowner.model.VendorServiceDetails;
 import com.appowner.model.Vote;
 import com.appowner.service.ExpenseService;
 import com.appowner.util.Util;
@@ -111,6 +112,11 @@ public class ExpenseBean  implements Serializable{
 	private String str_PurchaseImg;
 	private List<String> images;
 	private List<Assets>selectedAssets;
+	@PostConstruct
+    public void init() {
+		str_PoolAudience="All Members";
+		str_Rentable="Yes";
+		     }
 	public List<String> getImages() {
 		images=new ArrayList<String>();
 		images.addAll(getExpenseService().getOrganizationImages());
@@ -223,32 +229,25 @@ public class ExpenseBean  implements Serializable{
 	public void setStr_offcOutTiming(String str_offcOutTiming) {
 		this.str_offcOutTiming = str_offcOutTiming;
 	}
-	public void setStr_AdditionalInfo1(String str_AdditionalInfo1) {
-		this.str_AdditionalInfo1 = str_AdditionalInfo1;
-	}
+	 
 	public String getStr_AdditionalInfo() {
 		return str_AdditionalInfo;
 	}
-	private String str_AdditionalInfo1;
-	public String getStr_AdditionalInfo1() {
+	 
+	public void getStr_AdditionalInfo1() {
 		if(selectedAssets!=null)
 		{
 			ListIterator itr=selectedAssets.listIterator();
 			while(itr.hasNext())
 			{
 				Assets a=(Assets) itr.next();
-				if(a.getInt_asset_id()!=null)
-				{
-				String str_AdditionalInfo=a.getStr_AdditionalInfo();
-				if(str_AdditionalInfo!=null)
-				{
-					str_AdditionalInfo1=str_AdditionalInfo;
-				}
-				}
+				 
+		  str_AdditionalInfo=a.getStr_AdditionalInfo();
+				 
 				 
 			}
 		}
-		return str_AdditionalInfo1;
+		 
 	}
 	public void setStr_AdditionalInfo(String str_AdditionalInfo) {
 		this.str_AdditionalInfo = str_AdditionalInfo;
@@ -907,7 +906,22 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 
 	 
 
-	 
+	 public  void  getOrganizationDetails()
+	 {
+		 OrganizationLogo organizationLogo=new OrganizationLogo();
+			 
+		 organizationLogo=getExpenseService().getOrganizationDetails();
+		 if(organizationLogo!=null)
+		 {
+		 textLogo=organizationLogo.getStr_TextLogo();
+		 str_WelcomeMsg=organizationLogo.getStr_WelcomeMsg();
+		 str_Day=organizationLogo.getStr_Day();
+		 str_ApptAddress=organizationLogo.getStr_ApptAddress();
+		 str_offcOutTiming=organizationLogo.getStr_OutTime();
+		 str_offcInTiming=organizationLogo.getStr_InTime();
+	 }
+		 
+	 }
  
 public String addOrganizationLogo ()
 {
@@ -950,9 +964,7 @@ public String addOrganizationLogo ()
 	getTextLogo();
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
 	}
-	 str_ApptAddress=null;
-	 str_offcOutTiming=null;
-	 str_offcInTiming=null;
+	  
 	return null;
 	 
 	 
@@ -983,7 +995,7 @@ public   void getOrganizationLogo()
 }
 private String str_TextLogo1;
 public String getStr_TextLogo1() {
-	textLogo=getExpenseService().getTextLogo(Util.getAppartmentId());
+	//textLogo=getExpenseService().getTextLogo(Util.getAppartmentId());
 	return textLogo;
 }
 public void setStr_TextLogo1(String str_TextLogo1) {
@@ -1020,7 +1032,7 @@ public void setPath1(String path1) {
 private List<String> str_BlockListByAppartmentName;
 private String str_Block;
 private Assets asset;
-private Boolean bool_Rentable;
+private String str_Rentable;
 private AssetCategory assetcategory;
 private List<AssetCategory> assetCategoryList;
 private List<AssetCategory> assetCategoryList1;
@@ -1075,13 +1087,14 @@ public AssetCategory getAssetcategory() {
 public void setAssetcategory(AssetCategory assetcategory) {
 	this.assetcategory = assetcategory;
 }
-public Boolean getBool_Rentable() {
-	return bool_Rentable;
-}
-public void setBool_Rentable(Boolean bool_Rentable) {
-	this.bool_Rentable = bool_Rentable;
-}
  
+ 
+public String getStr_Rentable() {
+	return str_Rentable;
+}
+public void setStr_Rentable(String str_Rentable) {
+	this.str_Rentable = str_Rentable;
+}
 public Assets getAsset() {
 	return asset;
 }
@@ -1116,7 +1129,7 @@ public String deleteOneAsset1()
 public String updateOneAsset(Assets asset)
 {
 	asset.setStr_AssetImg(path3);
-	asset.setStr_AdditionalInfo(str_AdditionalInfo1);
+	asset.setStr_AdditionalInfo(str_AdditionalInfo);
 	getExpenseService().updateOneasset( asset);
 	 
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1125,6 +1138,7 @@ public String updateOneAsset(Assets asset)
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Updated Successfully!", "Asset Updated Successfully!"));
 	selectedAssets=null;
+	str_AdditionalInfo=null;
 	return "assets.xhtml";
 }
 /*
@@ -1176,7 +1190,7 @@ public String addAsset()
 	asset.setStr_AssetName(str_AssetName);
 	asset.setStr_Block(str_Block);
 	asset.setStr_OrganizationName(str_OrganizationName);
-	asset.setBool_Rentable(getBool_Rentable());
+	asset.setStr_Rentable(getStr_Rentable());
 	asset.setDate_AMCStartDate(date_AMCStartDate);
 	asset.setDate_AMCEndDate(date_AMCEndDate);
 	asset.setDate_PurchaseDate(date_PurchaseDate);
@@ -2219,11 +2233,11 @@ public String addVote1()
 	getExpenseService().UpdatePool(latestPolls);
 	if(LoginBean.isAdmin())
 		 
-		 return "/AfrteLoginViews/Adminwelcomepage.xhtml";
+		 return "/AfrteLoginViews/Administrator/Adminwelcomepage.xhtml";
 	 
 	else
 	 
- return "/AfrteLoginViews/welcomepage.xhtml";
+ return "/AfrteLoginViews/Administrator/welcomepage.xhtml";
 	 
 }
 public void getOnePool()
