@@ -8,6 +8,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
+	
+	<f:metadata>
+	 
+	<f:viewAction action="#{expenseBean.getOrganizationDetails()}" />
+</f:metadata>
 <h:head>
 	 <link href="include/assets/css/ace.min.css" rel="stylesheet" />
 	 <style>
@@ -101,7 +106,7 @@
 			        required="true" 
 			         requiredMessage="File not selected !!" >
             <!-- FileUploadValidator for file validation -->
-		    <f:validator validatorId="DocumentUploadValidator" />
+		   <f:validator validatorId="DocumentUploadValidator" /> 
 		</h:inputFile>
 		<h:message style="color: red" for="file3" /><br />
  
@@ -171,7 +176,9 @@
    
             
         <tr><th><p:outputLabel value="OrganizationTextLogo" /></th><td><p:inputText id="textlogo" value="#{expenseBean.textLogo}"/></td></tr> 
+      
        <tr><th><p:outputLabel value="Appartment Address:"/> </th><td><p:inputTextarea style="Width: 370px; height:196px;float:left;"       value="#{expenseBean.str_ApptAddress}"/></td></tr> 
+        <tr><th><p:outputLabel value="Provide a welcome note for the new member *"/></th><td><p:inputTextarea  style="Width: 370px; height:196px;float:left;"  value="#{expenseBean.str_WelcomeMsg}" id="welcome_note" maxlength="650" placeholder="E.g: Welcome to Shafi Paradise. This is the official portal for all your apartment needs. Please go through the site to more more about the community and discover more neighbours." label="welcome_note"></p:inputTextarea></td></tr>
         <tr><th><p:outputLabel value="What is your association office timings? *"/></th> </tr><tr>
         
         <th><p:outputLabel value="From"/></th><td><h:selectOneMenu id="str_offcInTiming" value="#{expenseBean.str_offcInTiming}" >
