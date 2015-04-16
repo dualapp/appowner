@@ -43,7 +43,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getOrgationNameList() {
-		 
+
 		return  getSessionFactory().getCurrentSession().createCriteria(UserApartment.class).setCacheable(true).setProjection(Projections.property("str_ApartmentName")).list();
 	}
 
@@ -64,7 +64,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId) {
-		 
+
 		if( str_AssetName!=null&&str_AssetCategoryType!=null&&str_ExpenseCategory!=null&&str_ExcepenseType!=null&&int_ApartmentId!=null)
 		{
 			//pending
@@ -81,7 +81,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public void updateOneExpense(Expense expense) {
 		getSessionFactory().getCurrentSession().update(expense);
-		
+
 	}
 
 	@Override
@@ -93,26 +93,26 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public void saveParking(Parking parking) {
 		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		getSessionFactory().getCurrentSession().save(parking);
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Parking> getParkingSlotList() {
-		 
+
 		return getSessionFactory().getCurrentSession().createQuery("from Parking where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 	}
 
 	@Override
 	public void addOrganizationLogo(OrganizationLogo ol) {
 		getSessionFactory().getCurrentSession().save(ol);
-		
+
 	}
 
 	@Override
 	public void deleteParkingSlot(Parking p) {
 		getSessionFactory().getCurrentSession().delete(p);
-		
+
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public void updateLogo(OrganizationLogo ol) {
 		getSessionFactory().getCurrentSession().update(ol);
-		
+
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@Override
 	public void saveAssetCategory(AssetCategory assetcategory) {
-		 
+
 		getSessionFactory().getCurrentSession().save(assetcategory);
 	}
 
@@ -170,8 +170,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<AssetCategory> getAssetCategoryList1() {
 		/*String  query = "{ CALL assetCategoryList() }";
 		List<Expense> expense=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(AssetCategory.class)).list();
-		*/
-		
+		 */
+
 		return getSessionFactory().getCurrentSession().createQuery("from AssetCategory where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
@@ -180,13 +180,13 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<String> getAccountTypeList() {
 		return null;
 		// TODO Auto-generated method stub
-//		return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setProjection(Projections.property("str_Acct_GroupName")).list();
+		//		return getSessionFactory().getCurrentSession().createCriteria(AccountingGroup.class).setProjection(Projections.property("str_Acct_GroupName")).list();
 	}
 
 	@Override
 	public void saveChartOfAccount(ChartOfAccount chartOfAccount) {
 		getSessionFactory().getCurrentSession().save(chartOfAccount);
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -208,7 +208,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<String> getAccountTypeList(Character l) {
 		String hql="select str_Acct_GroupName from  AccountingGroup where ch_Group=?";
 		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, l).list();
-	 
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -227,8 +227,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FacilityNeeded> getFacilityNeededList(int firstRow, int rowPerPage) {
-		 
-		 System.out.println(firstRow+"100");
+
+		System.out.println(firstRow+"100");
 		return getSessionFactory().getCurrentSession().createQuery("from FacilityNeeded where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).list();
 	}
 
@@ -275,21 +275,21 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		String hql="select count(*) from Vote  where str_Choise=? and int_PoolId=?";
 		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise1).setParameter(1,int_PoolId).uniqueResult();
-		 
+
 	}
 
 	@Override
 	public Long  getChoise2Vote(String  str_Choise2,Integer int_PoolId) {
 		String hql="select count(*) from Vote  where str_Choise=? and int_PoolId=?";
 		return (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise2).setParameter(1, int_PoolId).uniqueResult();
-	 
+
 	}
 
 	@Override
 	public Long getChoise3Vote(String  str_Choise3,Integer int_PoolId) {
 		String hql="select count(*) from Vote  where str_Choise=? and int_PoolId=?";
 		return   (Long) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_Choise3).setParameter(1, int_PoolId).uniqueResult();
-		 
+
 	}
 
 	@Override
@@ -301,7 +301,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public ServiceRequest getOneServiceRequest(Integer serviceRequestId) {
 		// TODO Auto-generated method stub
-		
+
 		return (ServiceRequest) getSessionFactory().getCurrentSession().get(ServiceRequest.class,serviceRequestId);
 	}
 
@@ -349,7 +349,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		String hql=" select max(int_PoolId) from Pool where int_OrganizationId=?";
 		//String hql="from Pool order by int_PoolId desc limit 1,1;";
 		Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).uniqueResult();
-		 
+
 		return  (Pool) getSessionFactory().getCurrentSession().createQuery("from Pool where int_PoolId=?").setParameter(0, id).uniqueResult();
 	}
 
@@ -364,7 +364,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
 			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).setParameter(1, str_Block).setParameter(2, int_ApartmentId).list();
 		}
 		return getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
-	}
+			}
 
 	@Override
 	public void deleteSelectedExpenses(List<Expense> entitiesToDelete) {
@@ -372,9 +372,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		while(itr.hasNext())
 		{
 			Expense ex=(Expense) itr.next();
-		sessionFactory.getCurrentSession().delete(ex);
+			sessionFactory.getCurrentSession().delete(ex);
+		}
 	}
-}
 
 	@Override
 	public void deleteOnePoll(Pool onePoll) {
@@ -388,9 +388,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		while(itr.hasNext())
 		{
 			Assets ex=(Assets) itr.next();
-		sessionFactory.getCurrentSession().delete(ex);
+			sessionFactory.getCurrentSession().delete(ex);
 		}
-		
+
 	}
 
 	@Override
@@ -411,10 +411,10 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		while(itr.hasNext())
 		{
 			Parking ex=(Parking) itr.next();
-		sessionFactory.getCurrentSession().delete(ex);
-		
+			sessionFactory.getCurrentSession().delete(ex);
+
+		}
 	}
-}
 
 	@Override
 	public void delectAssetsCategory(List<AssetCategory> entitiesToDelete) {
@@ -422,9 +422,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		while(itr.hasNext())
 		{
 			AssetCategory ex=(AssetCategory) itr.next();
-		sessionFactory.getCurrentSession().delete(ex);
-		
-	}
+			sessionFactory.getCurrentSession().delete(ex);
+
+		}
 	}
 
 	@Override
@@ -446,12 +446,12 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		while(itr.hasNext())
 		{
 			FacilityNeeded fn=(FacilityNeeded) itr.next();
-		sessionFactory.getCurrentSession().delete(fn);
-		
-	}
+			sessionFactory.getCurrentSession().delete(fn);
+
+		}
 	}
 
-	 
+
 
 	@Override
 	public Integer count() {
@@ -496,14 +496,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public Integer getInt_MessageTypeId(String str_MessageType) {
 		// TODO Auto-generated method stub
 		return (Integer) sessionFactory.getCurrentSession().createQuery("select int_MessageTypeId from MessageType where str_MessageType=?").setParameter(0, str_MessageType).uniqueResult();
-		
+
 	}
 
 	@Override
 	public String getStr_Venue(Integer int_MessageTypeId) {
 		// TODO Auto-generated method stub
 		return (String) sessionFactory.getCurrentSession().createQuery("select str_Venue from AddTemplateMessage where int_MessageTypeId=?").setParameter(0, int_MessageTypeId).uniqueResult();
-		
+
 	}
 
 	@Override
@@ -528,31 +528,31 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public void updateAppartmentImg(String path1) {
 		// TODO Auto-generated method stub
 		Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
-		
-		
+
+
 		OrganizationLogo ol=new OrganizationLogo();
-		
+
 		ol=(OrganizationLogo) sessionFactory.getCurrentSession().createQuery("from OrganizationLogo where int_OthersInfoId=?").setParameter(0, id).uniqueResult();
-	if(ol!=null)
-	{
-		ol.setStr_Appartment_Img(path1);
-	sessionFactory.getCurrentSession().saveOrUpdate(ol);
-	}
+		if(ol!=null)
+		{
+			ol.setStr_Appartment_Img(path1);
+			sessionFactory.getCurrentSession().saveOrUpdate(ol);
+		}
 	}
 
 	@Override
 	public void updateOrganizationLogo(String path) {
 		// TODO Auto-generated method stubInteger id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
-		
+
 		Integer id=(Integer) sessionFactory.getCurrentSession().createQuery("select int_OthersInfoId from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
 		OrganizationLogo ol=new OrganizationLogo();
-		
+
 		ol=(OrganizationLogo) sessionFactory.getCurrentSession().createQuery("from OrganizationLogo where int_OthersInfoId=?").setParameter(0, id).uniqueResult();
 		if(ol!=null)
 		{
-		ol.setStr_Appartment_Logo(path);
-	
-	sessionFactory.getCurrentSession().saveOrUpdate(ol);
+			ol.setStr_Appartment_Logo(path);
+
+			sessionFactory.getCurrentSession().saveOrUpdate(ol);
 		}
 	}
 
@@ -576,12 +576,12 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		sessionFactory.getCurrentSession().createQuery("update Assets set str_AssetImg=?  where int_asset_id=?").setParameter(0, path3).setParameter(1, assetId).executeUpdate();
 	}
 
-	 
+
 	@Override
 	public void updateStatusOfEstimate(String str_ExpenseId, String str_Status) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().createQuery("update Expense set str_Status=?  where str_ExpenseId=?").setParameter(0, str_Status).setParameter(1, str_ExpenseId).executeUpdate();
-		
+
 	}
 
 	@Override
@@ -607,20 +607,26 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		if(recipients.equalsIgnoreCase("Admin and Committees"))
 		{
-		List< Integer> uid=sessionFactory.getCurrentSession().createQuery("select int_UserId from CommiteeMember where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).list();
-		ListIterator itr=uid.listIterator();
-		List<String> emails=new ArrayList();
-		while(itr.hasNext())
-		{
-			Integer id=(Integer) itr.next();
-		 String email=(String) sessionFactory.getCurrentSession().createQuery("select str_Email from User where int_UserId=?").setParameter(0, id).uniqueResult();
-		emails.add(email);
-		 
-		}
-		return  emails;
+			List< Integer> uid=sessionFactory.getCurrentSession().createQuery("select int_UserId from CommiteeMember where int_ApartmentId=?").setParameter(0,Util.getAppartmentId()).list();
+			ListIterator itr=uid.listIterator();
+			List<String> emails=new ArrayList();
+			while(itr.hasNext())
+			{
+				Integer id=(Integer) itr.next();
+				String email=(String) sessionFactory.getCurrentSession().createQuery("select str_Email from User where int_UserId=?").setParameter(0, id).uniqueResult();
+				emails.add(email);
+
+			}
+			return  emails;
 		}
 		else
-			
+
 			return sessionFactory.getCurrentSession().createQuery("select str_Email from User where int_ApartmentId=?").setParameter(0, appartmentId).list();
+	}
+
+	@Override
+	public OrganizationLogo getOrganizationDetails() {
+		// TODO Auto-generated method stub
+		return (OrganizationLogo) sessionFactory.getCurrentSession().createQuery("from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
 	}
 }
