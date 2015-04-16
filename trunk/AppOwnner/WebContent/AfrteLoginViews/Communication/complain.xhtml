@@ -143,7 +143,9 @@ function limitText(limitField, limitCount, limitNum) {
         
             <tr>
                <td><h:outputText  value="Description*:"/><br /><small><font color="red" size="2">(Maximum characters: 1000)</font></small></td>
-                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,1000);" style="width:300px; height:100px" 
+               
+                <td colspan="2">
+                <textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,1000);" style="width:300px; height:100px" 
 onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,1000);" maxlength="1000" required="true"></textarea>
 <br/>
 

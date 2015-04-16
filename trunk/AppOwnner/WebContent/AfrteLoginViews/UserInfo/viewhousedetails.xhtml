@@ -334,8 +334,9 @@ Unless the Community Setup is complete, the changes that are made will not be sa
             
             <f:validator validatorId="BulkUploadValidator" id="BulkUploadValidator"/> 
             </h:inputFile>
+            <p:message id="fileMsg" style="color: red" for="file" />
                       </td>
-		    <td>   <h:commandButton   id="submit1" update=":form:DT :form:ui-growl"  action="#{apartmentDetailsBean.uploadFile}"
+		    <td>   <h:commandButton   id="submit1" update=":form:DT :form:ui-growl,fileMsg"  action="#{apartmentDetailsBean.uploadFile}"
 			             value="Upload" oncomplete="handleRequest2(xhr, status, args)" /></td></tr>
 			            
  
