@@ -521,6 +521,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getEmailIds(appartmentId,recipients);
 	}
 
+	@Override
+	public OrganizationLogo getOrganizationDetails() {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getOrganizationDetails();
+	}
+
 	 
 	 
 
