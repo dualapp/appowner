@@ -219,8 +219,9 @@
 	   		 
               </center> 
             </p:column>
-         
+           
             </p:dataTable>
+             
             </div>
              </h:form>
            
@@ -586,40 +587,43 @@
     </p:dialog>
     <p:dialog header="Vendor Service  Details" widgetVar="viewServiceDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="500">
          <h:form id="viewServiceForm">
-        <p:outputPanel id="viewServiceDetail" style="text-align:center;">
          
-      <p:dataTable id="v1" var="v"    value="#{vendorBean.vendorServiceDetails3}" style="margin-bottom:20px"  >
-     
-      
-       <p:column>
-                 <f:facet name="header">Name</f:facet>
-                 <h:inputText value="#{v.str_ServiceName}" style="width:70%" rendered="#{vendorBean.isEditable()}"/>               
-                 <h:outputText value="#{v.str_ServiceName}"   rendered="#{not vendorBean.isEditable()}"/>
-            </p:column>
-           <p:column>
-                 <f:facet name="header">Price</f:facet>
-                 <h:inputText value="#{v.int_ServicePrice}"  onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" style="width:70% " rendered="#{vendorBean.isEditable()}"/>               
-                 <h:outputText value="#{v.int_ServicePrice}" rendered="#{not vendorBean.isEditable()}"/>
-            </p:column>
-          <p:column>
-                <f:facet name="header">Edit</f:facet>                
-                <p:commandButton action="#{vendorBean.editAction()}"  icon="ui-icon-pencil" value="Edit">
-                  <f:ajax render="@form" execute="@form"/>
-                  </p:commandButton>                                
-            </p:column>
-            <p:column>
-                <f:facet name="header">Save</f:facet>                                
-                <p:commandButton value="Save"  icon="ui-icon-plus" action="#{vendorBean.editar(v)}" >
-                    <f:ajax render="@form" execute="@form"/>
-                </p:commandButton>                
-            </p:column>
-             <p:column>
-                <f:facet name="header">Delete</f:facet>                
-                <p:commandButton action="#{vendorBean.deleteService(v)}"  onclick="return confirm('Are you sure you want to delete ?');" icon="ui-icon-trash" value="Delete">
-                 <f:ajax render="@form" />
-                </p:commandButton> 
-            </p:column>
+        <p:outputPanel id="viewServiceDetail" style="text-align:center;">
+         <h:panelGrid id="theGrid" style="width:200px">
+      <p:dataTable id="DT1" var="v"   editable="true"  value="#{vendorBean.vendorServiceDetails3}" style="margin-bottom:20px"  >
+     <p:ajax event="rowEdit" listener="#{vendorBean.onRowEdit}"    />
+            <p:ajax event="rowEditCancel" listener="#{vendorBean.onRowCancel}"  />
+        
+       <p:column headerText="Name" style="width:150px">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{v.str_ServiceName}" /></f:facet>
+               <f:facet name="input"><p:inputText value="#{v.str_ServiceName}" style="width:100%" label="Year"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+ 
+       <p:column headerText="Price" style="width:150px">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{v.int_ServicePrice}" /></f:facet>
+               <f:facet name="input">
+                   <p:inputText value="#{v.int_ServicePrice}" style="width:100%"/>
+                        
+               </f:facet>
+           </p:cellEditor>
+       </p:column>
+  
+        <p:column headerText="Action" style="width:150px">
+           <p:rowEditor /> <br/>
+            <h:commandLink  update="DT1,viewServiceForm"  actionListener="#{vendorBean.deleteService(v)}"  style="margin-right:20px;"  ajax="false"   onclick="return confirm('Are you sure you want to delete ?');" >
+                 <p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
+                 
+                 
+
+                </h:commandLink>
+       </p:column>
+       
+       
             </p:dataTable>  
+            </h:panelGrid>
      
     </p:outputPanel>
     </h:form>
