@@ -187,6 +187,8 @@ public interface ExpenseService {
 
 	List<String> getEmailIds(Integer appartmentId, String recipients);
 
+	OrganizationLogo getOrganizationDetails();
+
 	 
 
 }
