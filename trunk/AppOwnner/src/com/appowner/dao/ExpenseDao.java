@@ -181,4 +181,6 @@ public interface ExpenseDao {
 
 	List<String> getEmailIds(Integer appartmentId, String recipients);
 
+	OrganizationLogo getOrganizationDetails();
+
 }

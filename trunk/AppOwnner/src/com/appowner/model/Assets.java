@@ -35,8 +35,9 @@ public class Assets  implements Serializable{
 	private String str_OrganizationName;
 	@Column(name="var_AssetName")
 	private String str_AssetName;
-	@Column 
-	private Boolean bool_Rentable;
+	 @Column(name="var_Rentable")
+	private String str_Rentable;
+	
 	@Column(name="var_VendorType")
 	private String str_VendorType;
 	@Column(name="var_AdditionalInfo")
@@ -132,11 +133,12 @@ public class Assets  implements Serializable{
 	public void setStr_PurchaseImg(String str_PurchaseImg) {
 		this.str_PurchaseImg = str_PurchaseImg;
 	}
-	public Boolean getBool_Rentable() {
-		return bool_Rentable;
+	 
+	public String getStr_Rentable() {
+		return str_Rentable;
 	}
-	public void setBool_Rentable(Boolean bool_Rentable) {
-		this.bool_Rentable = bool_Rentable;
+	public void setStr_Rentable(String str_Rentable) {
+		this.str_Rentable = str_Rentable;
 	}
 	public String getStr_AssetName() {
 		return str_AssetName;
