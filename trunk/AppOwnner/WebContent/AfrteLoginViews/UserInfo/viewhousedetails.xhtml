@@ -334,9 +334,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
             
             <f:validator validatorId="BulkUploadValidator" id="BulkUploadValidator"/> 
             </h:inputFile>
-            <p:message id="fileMsg" style="color: red" for="file" />
                       </td>
-		    <td>   <h:commandButton   id="submit1" update=":form:DT :form:ui-growl,fileMsg"  action="#{apartmentDetailsBean.uploadFile}"
+		    <td>   <h:commandButton   id="submit1" update=":form:DT :form:ui-growl"  action="#{apartmentDetailsBean.uploadFile}"
 			             value="Upload" oncomplete="handleRequest2(xhr, status, args)" /></td></tr>
 			            
  
@@ -352,11 +351,11 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 			           <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
 		 <tr><h3><b>Please Follow The Bellow Steps Before Bulk Uploading</b></h3></tr>
 		<tr><th width="10%">1</th><td>
-		
-    <h:commandButton value="Download"     icon="ui-icon-arrowthick-1-s">
-        <p:fileDownload value="#{apartmentDetailsBean.downloadFile}" />
-        
-    </h:commandButton>
+		<p:commandLink ajax="false" title="Communitysetup.xls">  
+    <p:graphicImage value="/images/download.gif" />  
+     <p:fileDownload value="#{apartmentDetailsBean.downloadFile}" />
+</p:commandLink>  
+    
     </td> </tr>
     <tr><th>2</th><td>Fill The Template</td> </tr>
     <tr><th>3</th><td>Upload</td></tr></table>  
