@@ -68,7 +68,7 @@
     <th> <p:outputLabel value="End Date:"/></th><th><p:outputLabel   value="#{expenseBean.onePoll.str_EndDate}" /> </th>
      
     </tr> 
-    <tr><th><p:outputLabel for="pq"  value="Pool Question?"/></th><td><p:inputTextarea id="pq"  style="Width:200%;height:100px;"  value="#{expenseBean.onePoll.str_poolQuestion}"/></td></tr>
+    <tr><th><p:outputLabel for="pq"  value="Pool Question?"/></th><td><h:inputTextarea id="pq"  readonly="true" style="Width:200%;height:100px;"  value="#{expenseBean.onePoll.str_poolQuestion}"/></td></tr>
       <tr><th><p:outputLabel for="votechoise"  value="Vote Choices"/></th><td><h:selectOneRadio   layout="pageDirection" id="votechoise" required="true"
                      requiredMessage="Select Any One Vote Choice" value="#{expenseBean.str_Choise}">
         <f:selectItem   itemLabel="#{expenseBean.onePoll.str_Choise1}" itemValue="#{expenseBean.onePoll.str_Choise1}" />
@@ -78,7 +78,7 @@
         </h:selectOneRadio></td>
         <td><p:message   for="votechoise" display="text"/></td>
         </tr>
-        <tr><th><p:outputLabel value="Remark"/></th><td><p:inputTextarea   style="Width:200%;height:100px;"   value="#{expenseBean.str_Remark}" /></td>
+        <tr><th><p:outputLabel value="Remark"/></th><td><h:inputTextarea   style="Width:200%;height:100px;"   value="#{expenseBean.str_Remark}" /></td>
         </tr> 
         <tr><td><h:commandButton  disabled="#{expenseBean.disabled}" value="Vote" action="#{expenseBean.addVote}"/></td></tr>
       </table>
