@@ -38,10 +38,10 @@
              <h:panelGrid >
              <p:outputPanel layout="block" id="assetimg" style="width:200px;height:200px;margin-bottom:20px">
                  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr> 
-                   <th>Additional Info</th><td><p:inputTextarea style="Width: 370px; height:196px;float:left;" label="Additional Info"   value="#{expenseBean.str_AdditionalInfo}"/></td>
+                    
                     <td>   
        <p:graphicImage id="img" style="Width: 300px; height:186px;float:left;padding-left:60px" value="#{expenseBean.getPath4()}"/></td ></tr>
-       <tr><th></th><td></td><td>
+       <tr> <td>
        
        <!-- inputFile tag to upload file -->
 		 
@@ -51,10 +51,9 @@
 			         >
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
-		</h:inputFile> 
+		</h:inputFile></td> <td>
 		
-		 <br/>
- 
+		 
 		<h:commandButton   
 		                 action="#{expenseBean.uploadAssetsFile()}"
 			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
@@ -112,7 +111,7 @@
         </p:selectOneRadio>
         <p:message id="RantableMsg"  for="Rantable" display="text"/>
         </td>
-        
+        <th><p:outputLabel value="Additional Info"/></th><td><h:inputTextarea  id="aditionalinfo" style="Width: 370px; height:196px;float:left;" label="Additional Info"   value="#{expenseBean.str_AdditionalInfo}"/></td>
         </tr>
                  </table>
                  
@@ -160,7 +159,7 @@
                   
             </h:selectOneMenu></td>
              </tr>
-             <tr><th><p:outputLabel value="SellerNameAndDetails"/></th><td><p:inputTextarea style="Width: 370px; height:196px;float:left;" label="SellerNameAndDetails"   value="#{expenseBean.str_SellerNameAnddetails}"/>
+             <tr><th><p:outputLabel value="SellerNameAndDetails"/></th><td><h:inputTextarea style="Width: 370px; height:196px;float:left;" label="SellerNameAndDetails"   value="#{expenseBean.str_SellerNameAnddetails}"/>
                   </td></tr>
                   
                   </table>
