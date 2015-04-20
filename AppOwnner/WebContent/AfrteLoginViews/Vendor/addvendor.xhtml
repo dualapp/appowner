@@ -11,6 +11,15 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
 	<h:head>
+	 <script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script>
 	 <style>
  .ui-growl {
  position:absolute;
@@ -185,13 +194,15 @@
              
         <tr>
          
-                <th><p:outputLabel for="vendorcomments" value="Comments  " /></th>
-                <td><p:inputTextarea style="width:300px;height:100px;" effectDuration="400"     id="vendorcomments"  placeholder="Comments" required="true" requiredMessage="Enter Comment" value="#{vendorBean.str_VendorComments}">
-                
-                   
-                    <p:ajax event="blur" update="vendorcommentsMsg" />
-               </p:inputTextarea>
-                    <p:message id="vendorcommentsMsg" for="vendorcomments" display="text"/>
+                <th><p:outputLabel   value="Comments  " /></th>
+                <td>
+                <textarea     id="vendorcomments"    placeholder="Comments" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,100);" style="width:300px; height:100px" 
+onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,100);" maxlength="100" required="true"></textarea>
+<br/>
+                 
+                    
+                    
+                    
                 </td>
            </tr>  
              
@@ -263,8 +274,11 @@
              
            </tr>
             <tr>
-                <th><p:outputLabel for="AdditionalInfo" value="Additional Info" /></th>
-                <td><p:inputTextarea style="width:300px;height:100px;" effectDuration="400"   id="AdditionalInfo"  placeholder="Additional Info"     value="#{vendorBean.str_AdditionalInfo}"/>
+                <th><p:outputLabel   value="Additional Info" /></th>
+                <td>
+                <textarea       placeholder="AdditionalInfo" name="limitedtextfield1" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,100);" style="width:300px; height:100px" 
+onKeyUp="limitText(this.form.limitedtextfield1,this.form.countdown,100);" maxlength="100" required="true"></textarea>
+          
                  
               
                 </td>
