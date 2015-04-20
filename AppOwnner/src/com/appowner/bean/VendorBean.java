@@ -17,6 +17,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.search.annotations.Factory;
 import org.primefaces.event.RateEvent;
@@ -891,6 +892,9 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
  
 		vendorServiceDetails1 = new VendorServiceDetails();
 		vendorServiceDetails2 = new VendorServiceDetails();
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		str_VendorComments=request.getParameter("limitedtextfield");
+		str_AdditionalInfo=request.getParameter("limitedtextfield1");
 		Vendor vendor = new Vendor();
 
 		 
@@ -900,7 +904,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 
 		 vendor.setBool_VisibleToPublic(getBool_VisibleToPublic());
 		 vendor.setInt_TdsCharge(getInt_TdsCharge());
-		 vendor.setStr_AdditionalInfo(getStr_AdditionalInfo());
+		 vendor.setStr_AdditionalInfo(str_AdditionalInfo);
 		 vendor.setStr_ContactPersonName(getStr_ContactPersonName());
 		 vendor.setStr_PanNo(getStr_PanNo());
 		 vendor.setStr_ServiceTaxNo(getStr_ServiceTaxNo());
@@ -910,7 +914,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		vendor.setStr_CountryName(str_VendorCountry);
  
 		vendor.setInt_VendorId(getInt_VendorId());
-		vendor.setStr_VendorComments(getStr_VendorComments());
+		vendor.setStr_VendorComments(str_VendorComments);
 		vendor.setStr_VendorType(getStr_VendorType());
 		vendor.setInt_VendorServiceRating(getInt_VendorServiceRating());
 		vendor.setStr_VendorAccount(getStr_VendorBankAccount());
