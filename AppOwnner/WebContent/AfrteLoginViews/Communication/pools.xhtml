@@ -40,7 +40,9 @@
   <h:form id="form">
    <p:growl id="ui-growl" globalOnly="true" sticky="true" />
   
-   
+   <p:outputPanel   rendered="#{request.getParameter('render2')}">
+				  <body onLoad="PF('pollMsgDialog').show()"/>
+					</p:outputPanel>
   
      <div id="page3">
             
@@ -115,7 +117,9 @@
              <p:dataTable    style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  id="DT" widgetVar="dataTable"  emptyMessage="No polls found with given criteria"     resizableColumns="true"    rows="10"  paginator="true"  
         paginatorAlwaysVisible="false"  paginatorPosition="bottom" var="pool" value="#{expenseBean.poolList}"  selectionMode="single" selection="#{expenseBean.onePoll}" rowKey="#{pool.int_PoolId}"  >
                  <p:ajax event="rowSelect" listener="#{expenseBean.desabled1Listener}"  execute="@this" immediate="true" update=":form:btn,:form:btn1,:form:btn2"/>
-                    
+                    <p:ajax  ajax="true" event="rowSelectCheckbox"   listener="#{expenseBean.rowSelectListener}"  update=":form:btn,:form:btn1,:form:btn2"/>
+        <p:ajax  ajax="true"  event="rowUnselectCheckbox"
+				listener="#{expenseBean.rowUnSelectListener}" update=":form:btn,:form:btn1,:form:btn2"/>
                
          <p:column      headerText="Pool Question"  >
           
@@ -149,6 +153,15 @@
             
          </p:dataTable>
          </div>
+          <p:dialog widgetVar="pollMsgDialog" header="Message" showEffect="explode" hideEffect="explode" resizable="false" height="100" width="200" >
+             <table>
+      
+       
+          <h5>Email has been  send to corresponding users ....</h5>
+          
+         </table>
+         
+          </p:dialog>
              <p:dialog header="Email" widgetVar="pollDialog" showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
         <p:outputPanel id="pollDetail" style="text-align:center;">
          
@@ -158,8 +171,8 @@
             <tr><th><p:outputLabel value="Select recipient"/></th>
             <td><h:selectOneRadio id="Audience" readonly="true"
                       value="#{expenseBean.onePoll.str_poolAudience}">
-        <f:selectItem   itemLabel="All Members" itemValue="1" />
-        <f:selectItem   itemLabel="Admin And Committees" itemValue="2" />
+        <f:selectItem   itemLabel="All Members" itemValue="All Members" />
+        <f:selectItem   itemLabel="Admin And Committees" itemValue="Admin And Committees" />
         </h:selectOneRadio></td></tr>
        <tr> <th><p:outputLabel value="To"/></th><br/>
        <td><p:inputTextarea value="#{expenseBean.getEmailIds()}" readonly="true" style="Width: 270px; height:150px;float:left;" /></td></tr>
