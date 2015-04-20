@@ -74,9 +74,9 @@
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
          
-          &#150; &#150;   <h:commandButton   action="viewasset.xhtml"   process="DT" style="width:120px;height:25px"   icon="ui-icon-info" value="View"/>
-       &#150; &#150; <h:commandButton   action="editasset.xhtml"    process="DT" style="width:120px;height:25px"   icon="ui-icon-pencil" value="Edit "/>
-       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOneAsset1()}" icon="ui-icon-trash" value="Delete" />
+          &#150; &#150;   <h:commandButton   action="#{expenseBean.select2()}"   id="btn"  process="DT" style="width:120px;height:25px"   icon="ui-icon-info" value="View"/>
+       &#150; &#150; <h:commandButton   action="#{expenseBean.select3()}"  id="btn1"   process="DT" style="width:120px;height:25px"   icon="ui-icon-pencil" value="Edit "/>
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="DT"  id="btn2" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOneAsset1()}" icon="ui-icon-trash" value="Delete" />
                  <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
         <p:dataExporter type="xls" pageOnly="true"  target="DT" fileName="Assets" />
@@ -101,6 +101,9 @@
                rows="10"  paginator="true" 
         emptyMessage="No Records Found" paginatorAlwaysVisible="false"    id="DT"     var="ps"  value="#{expenseBean.assetList}"   selection="#{expenseBean.selectedAssets}" rowKey="#{ps.int_asset_id}"  >
                   
+	 <p:ajax  ajax="true" event="rowSelectCheckbox"   listener="#{expenseBean.rowSelectListener}"  update=":form:btn,:form:btn1,:form:btn2"/>
+        <p:ajax  ajax="true"  event="rowUnselectCheckbox"
+				listener="#{expenseBean.rowUnSelectListener}" update=":form:btn,:form:btn1,:form:btn2"/>
 	  <p:column    exportable="false"  selectionMode="multiple" style="width:35px;text-align:center">
          
              </p:column>

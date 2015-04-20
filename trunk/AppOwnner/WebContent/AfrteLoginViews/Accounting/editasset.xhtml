@@ -51,8 +51,8 @@
 			         >
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
-		</h:inputFile> 
-		  <br/>
+		</h:inputFile> </td>
+		<td>
 		<h:commandButton id="upload"   
 		                 action="#{expenseBean.uploadAssetsFile1()}"
 			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
@@ -109,14 +109,14 @@
                  <tr><th><p:outputLabel value="Rentable*"/></th>
                  <td><p:selectOneRadio  id="Rantable" required="true" requiredMessage="plz Select Rentable"   value="#{asset.str_Rentable}" >
             
-            <f:selectItem itemLabel="yes" itemValue="yes" />
+            <f:selectItem itemLabel="Yes" itemValue="Yes" />
             <f:selectItem itemLabel="No" itemValue="No" />
              <p:ajax event="blur" update="RantableMsg" />
         </p:selectOneRadio>
         <p:message id="RantableMsg"  for="Rantable" display="text"/>
         </td>
         
-        <th><p:outputLabel value="Additional Info"/></th><td><p:inputTextarea  id="aditionalinfo" style="Width: 370px; height:196px;float:left;" label="Additional Info"   value="#{asset.str_AdditionalInfo}"/></td>
+        <th><p:outputLabel value="Additional Info"/></th><td><h:inputTextarea  id="aditionalinfo" style="Width: 370px; height:196px;float:left;" label="Additional Info"   value="#{asset.str_AdditionalInfo}"/></td>
         </tr>
                  </table>
           
@@ -161,7 +161,7 @@
                   
             </h:selectOneMenu></td>
              </tr>
-             <tr><th><p:outputLabel value="SellerNameAndDetails"/></th><td><p:inputTextarea style="Width: 370px; height:196px;float:left;" label="SellerNameAndDetails"   value="#{asset.str_SellerNameAnddetails}"/>
+             <tr><th><p:outputLabel value="SellerNameAndDetails"/></th><td><h:inputTextarea style="Width: 370px; height:196px;float:left;" label="SellerNameAndDetails"   value="#{asset.str_SellerNameAnddetails}"/>
                   </td></tr>
                   
                   </table>
