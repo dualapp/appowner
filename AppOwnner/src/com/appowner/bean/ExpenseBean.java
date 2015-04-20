@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -1129,7 +1130,7 @@ public String deleteOneAsset1()
 public String updateOneAsset(Assets asset)
 {
 	asset.setStr_AssetImg(path3);
-	asset.setStr_AdditionalInfo(str_AdditionalInfo);
+	 
 	getExpenseService().updateOneasset( asset);
 	 
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1752,9 +1753,9 @@ public String sendBulkEmailOfPoll()
 	  content=PollMsgs;
 	return "/AfrteLoginViews/Communication/poll.jsp";
 }
- private List<String> emailIds;
-public List<String> getEmailIds() {
-	emailIds=new ArrayList();
+ private Set<String> emailIds;
+public Set<String> getEmailIds() {
+	emailIds=new TreeSet<String>();
 	if(onePoll!=null){
 	String  recipients=onePoll.getStr_poolAudience();
 	emailIds.addAll(getExpenseService().getEmailIds(Util.getAppartmentId(),recipients));
@@ -1763,7 +1764,7 @@ public List<String> getEmailIds() {
 	}
 	return emailIds;
 }
-private static List<String> mailids;
+private static Set<String> mailids;
 
 private String PollMsgs;
 
@@ -1793,7 +1794,11 @@ return out.toString();
 	
 	
 }
-public static void setMailids(List<String> mailids) {
+ 
+public void setEmailIds(Set<String> emailIds) {
+	this.emailIds = emailIds;
+}
+public static void setMailids(Set<String> mailids) {
 	ExpenseBean.mailids = mailids;
 }
 private static String subject="subject";
@@ -1811,9 +1816,7 @@ public static String getContent() {
 public static void setContent(String content) {
 	ExpenseBean.content = content;
 }
-public void setEmailIds(List<String> emailIds) {
-	this.emailIds = emailIds;
-}
+ 
 public List<Pool> getPoolList() {
 	poolList=new ArrayList<Pool>();
 	poolList.addAll(getExpenseService().getPoolList());
@@ -2575,6 +2578,77 @@ public String select1()
    {  
 	   indicate=false;
 	  return "vote.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
+public String select2()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an Asset!"));
+		return null;
+   }
+   else
+   {  
+	   indicate=false;
+	  return "viewasset.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
+public void rowUnSelectListener()
+{ 
+	 System.out.println("seemaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	  indicate=false;
+}
+public  void rowSelectListener( SelectEvent event)
+{ 
+	
+	 System.out.println("seemuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"+event.getObject());
+	  indicate=true;
+}
+public String select3()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an Asset!"));
+		return null;
+   }
+   else
+   {  
+	   indicate=false;
+	  return "editasset.xhtml";
+   }
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
+public String select4()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to proceed!"));
+		return null;
+   }
+   else
+   {  
+	   indicate=true;
+	  return "null";
    }
   }
   catch(Exception e)
