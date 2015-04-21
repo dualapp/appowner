@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -20,6 +21,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.ServletContext;
+import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
@@ -629,7 +632,7 @@ public class AdvertisementBean  implements Serializable{
 				public void setAgency(List<Company> agency) {
 					this.agency = agency;
 				}
-				public  static  String select;
+				public  static String select;
 				
 				
 				public static String getSelect() {
@@ -641,8 +644,9 @@ public class AdvertisementBean  implements Serializable{
 				public List<String> selectinfo(ValueChangeEvent event)
 				{  
 					select =( String )event.getNewValue();
-					System.out.println(select+"jhdsjdf");
+					System.out.println(select+"jhdsjdfxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 					agency=getAdvertisementService().listoperation(select);
+					System.out.println(agency+"<><><><><><><><><><><><><><><><><><><><><><><><><><><><<");
 				/*	getStr_City();
 						ListIterator list=agency.listIterator();
 					while(list.hasNext())
@@ -665,27 +669,36 @@ public class AdvertisementBean  implements Serializable{
 		}
 				public String agencyname1;
 				public int agencyid1;
+				public int  companyid;
+				public static  int agc_id;
+				public static int getAgc_id() {
+					return agc_id;
+				}
+				public static void setAgc_id(int agc_id) {
+					AdvertisementBean.agc_id = agc_id;
+				}
 				public void addagency()
 				
 				{  
-					System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiii");
 					agencyname1=getStr_CompanyName();
-					System.out.println(agencyname1);
-					agencyid1=getAdvertisementService().agency1(agencyname1);
-					agency_information agency=new agency_information();
+				    agencyid1=getAdvertisementService().agency1(agencyname1);
+				    System.out.println( agencyid1+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+				   agency_information agency=new agency_information();
 					agency.setInt_CompanyID(agencyid1);
 					agency.setAds_type(getAds_type());
 					agency.setStr_addposition(getStr_addposition());
 					agency.setStr_CompanyName(getStr_CompanyName());
-					agency.setVar_ImageName(path1);
-					agency.setStr_content(getStr_content());
-					agency.setStr_Url(getStr_Url());
-					agency.setStr_vedio(path1);
-					//agency.setInt_till(getInt_till());
-				    getAdvertisementService().addagencies(agency);
+					 agency.setVar_ImageName(path);
+					 agency.setStr_content(getStr_content());
+					 agency.setStr_Url(getStr_Url());
+					 //agency.setStr_vedio(path1);
+				     agency.setInt_till(getInt_till());
+				     agc_id= getAdvertisementService().addagencies(agency);
+				   System.out.println( agc_id+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+				    
+				}  
 					
-					
-}               private String blb_vedio1;
+             private String blb_vedio1;
 
 				
 				public String getBlb_vedio1()
@@ -792,35 +805,20 @@ public class AdvertisementBean  implements Serializable{
 				public String deleteagencies()
 				{
 					agency_information detail=new agency_information();
-					System.out.println(int_agencyid);
+					System.out.println(int_agencyid+"kkkkkkkkkkkkkkkkkkkkkkllllllllllllllllllllllllllllllllllllllllllllllllll");
+					
 					detail.setInt_agencyid(int_agencyid);
 					getAdvertisementService().deleted(detail);
+					getAdvertisementService().deletepost(detail);
+					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 					return "ViewAgency.xhtml?faces-redirect=true";
 				}
+			
 				
-				public void handleFileUpload2(FileUploadEvent event) throws IOException {
-					 System.out.println("hi");
-					 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-					    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-					    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-					    System.out.println(name);
-					    File file= new File("D://Image\\"+ "vedio" + name);
-					    final UploadedFile uploadedFile = event.getFile();
-					    blb_vedio1=file.getAbsolutePath();
-					     System.out.println(blb_vedio1);
-					     System.out.println(file);
-				       InputStream is = event.getFile().getInputstream();
-					    OutputStream out = new FileOutputStream(file);
-					    byte buf[] = new byte[1024];
-					    int len;
-					    while ((len = is.read(buf)) > 0)
-					        out.write(buf, 0, len);
-					    is.close();
-					    out.close();
-					    path1=file.getName();
-					    System.out.println(path1);
+				
 					   
-				}
+			
+				
 				private Date checkdate;
 				private Date str_paymentDate;
 				
@@ -854,23 +852,24 @@ public class AdvertisementBean  implements Serializable{
 				public void setIntdocid2(int intdocid2) {
 					this.intdocid2 = intdocid2;
 				}
-				public void payment()
+				public String payment()
 				{
 					
-					intdocid2=getAdvertisementService().adv1(select);
+					//intdocid2=getAdvertisementService().adv1(select);
+					companyid=getAdvertisementService().companysid(agc_id);
 					cls_MakePayment pay=new cls_MakePayment();
-                    pay.setInt_agencyid(intdocid2);    
+					pay.setInt_agencyid(agc_id);
+                    //pay.setInt_agencyid(intdocid2);  
+                    pay.setInt_CompanyID(companyid);
 					pay.setStr_paymenttype(getStr_paymenttype());
 					pay.setStr_bankname(getStr_bankname());
 				    pay.setStr_checkNo(getStr_checkNo());
 					pay.setCheckdate(getCheckdate());
-					
-					pay.setApartementId(Util.getAppartmentId());
+				    pay.setApartementId(Util.getAppartmentId());
 					pay.setStr_paymentDate(str_paymentDate);
-					
-					
-					
-					getAdvertisementService().payment(pay);
+				    getAdvertisementService().payment(pay);
+				    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Successfully!"));
+				     return "ViewAgency.xhtml";
 					
 				}
 				
@@ -896,10 +895,181 @@ public class AdvertisementBean  implements Serializable{
 					return  select1;
 				}
 				
+				private Part part;
+				private String statusMessage;
+				private static String path;
+				
+				
+					public String uploadFile2() throws IOException {
+
+						SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+						String fileName = fmt.format(new Date())
+								+ getFileName(part).substring(
+										getFileName(part).lastIndexOf('.'));
+						
+						System.out.println("***** fileName: " + fileName);
+						ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+
+						
+						String basePath =servletContext.getRealPath("")
+								+ File.separator + "images" 
+								+ File.separator+Util.getAppartmentName()+File.separator;
+						System.out.println(basePath);
+						File outputFilePath = new File(basePath);
+						outputFilePath=new File(basePath);
+						if(!outputFilePath.exists())
+						{
+							if(outputFilePath.mkdirs())
+							{
+								System.out.println("directory");
+							}
+							else
+								System.out.println("failed to create directory");
+						}
+					    System.out.println(path + "path");
+						// Copy uploaded file to destination path
+					    outputFilePath=new File(basePath,fileName);
+						InputStream inputStream = null;
+						OutputStream outputStream = null;
+						try {
+							inputStream = part.getInputStream();
+							outputStream = new FileOutputStream(outputFilePath);
+
+							int read = 0;
+							final byte[] bytes = new byte[1024];
+							while ((read = inputStream.read(bytes)) != -1) {
+								outputStream.write(bytes, 0, read);
+							}
+							path = "/images" + File.separator + Util.getAppartmentName()
+									+ File.separator + fileName;
+							//products.setVar_ImageName(path);
+							//products.setInt_ProductId(products.getInt_ProductId());
+							//System.out.println((selectedAll.getInt_ProductId()+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
+							//getProductDetailService().updateProfilePic(user);
+							
+							statusMessage = "File uploaded successfull !!";
+
+						} catch (IOException e) {
+							e.printStackTrace();
+							statusMessage = "File upload failed !!";
+						} finally {
+							if (outputStream != null) {
+								outputStream.close();
+							}
+							if (inputStream != null) {
+								inputStream.close();
+							}
+						}
+						return null; // return to same page
+					}
+					public Part getPart()  {
+					return part;
+					}
+					public void setPart(Part part) {
+						this.part = part;
+					}
+					public String getStatusMessage() {
+						return statusMessage;
+					}
+					public void setStatusMessage(String statusMessage) {
+						this.statusMessage = statusMessage;}
+
+					// Extract file name from content-disposition header of file part
+					private String getFileName(Part part) {
+						System.out.println(part+"dfjfdkjfdkjfdkj");
+						final String partHeader = part.getHeader("content-disposition");
+						System.out.println("***** partHeader: " + partHeader);
+						for (String content : part.getHeader("content-disposition").split(";")) {
+						if (content.trim().startsWith("filename")) {
+								return content.substring(content.indexOf('=') + 1).trim()
+										.replace("\"", "");
+						}
+						}
+						return "filename";
+					}
+
+					public  String getPath() {
+						System.out.println(path + "path1cvvvvvvvvvvvvvvvvvvvvvvvvvvcvcccccccccccvvvvvvvvvvvvv");
+						System.out.println("i  $ youuuuuuuuuuuuuuuuuuuuuuu");
+						if(path==null)
+						{
+							path = "/images/no_attach.png";
+						}
+						 return path;
+						
+					}
+
+				private agency_information selectedAll;
+
+				public agency_information getSelectedAll() {
+					return selectedAll;
+				}
+				public void setSelectedAll(agency_information selectedAll) {
+					this.selectedAll = selectedAll;
+				}
+				public String uploadFile() throws IOException {
+
+					SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+					String fileName = fmt.format(new Date())
+							+ getFileName(part).substring(
+									getFileName(part).lastIndexOf('.'));
 					
+					System.out.println("***** fileName: " + fileName);
+					ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 
+					
+					String basePath =servletContext.getRealPath("")
+							+ File.separator + "images" 
+							+ File.separator+Util.getAppartmentName()+File.separator;
+					System.out.println(basePath);
+					File outputFilePath = new File(basePath);
+					outputFilePath=new File(basePath);
+					if(!outputFilePath.exists())
+					{
+						if(outputFilePath.mkdirs())
+						{
+							System.out.println("directory");
+						}
+						else
+							System.out.println("failed to create directory");
+					}
+				    System.out.println(path + "path");
+					// Copy uploaded file to destination path
+				    outputFilePath=new File(basePath,fileName);
+					InputStream inputStream = null;
+					OutputStream outputStream = null;
+					try {
+						inputStream = part.getInputStream();
+						outputStream = new FileOutputStream(outputFilePath);
 
+						int read = 0;
+						final byte[] bytes = new byte[1024];
+						while ((read = inputStream.read(bytes)) != -1) {
+							outputStream.write(bytes, 0, read);
+						}
+						path = "/images" + File.separator + Util.getAppartmentName()
+								+ File.separator + fileName;
+						//products.setVar_ImageName(path);
+						//products.setInt_ProductId(products.getInt_ProductId());
+						//System.out.println((selectedAll.getInt_ProductId()+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
+						//getProductDetailService().updateProfilePic(user);
+						
+						statusMessage = "File uploaded successfull !!";
 
+					} catch (IOException e) {
+						e.printStackTrace();
+						statusMessage = "File upload failed !!";
+					} finally {
+						if (outputStream != null) {
+							outputStream.close();
+						}
+						if (inputStream != null) {
+							inputStream.close();
+						}
+					}
+					return null; // return to same page
+
+				}
 }
 
 		
