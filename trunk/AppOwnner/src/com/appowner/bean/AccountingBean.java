@@ -19,6 +19,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.component.html.HtmlSelectBooleanCheckbox;
+import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
@@ -26,6 +30,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
+import javax.faces.validator.ValidatorException;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.tabview.Tab;
@@ -144,96 +149,8 @@ public Date getDat_ToDate() {
 	
 }
 
-//MANUAL JOURNAL
-private Integer int_ManualJournalID;
-public Integer getInt_ManualJournalID() {
-	return int_ManualJournalID;
-}
-public void setInt_ManualJournalID(Integer int_ManualJournalID) {
-	this.int_ManualJournalID = int_ManualJournalID;
-}
-public String getStr_Organisation() {
-	str_Organisation=Util.getAppartmentName();
-	return str_Organisation;
-}
-public void setStr_Organisation(String str_Organisation) {
-	this.str_Organisation = str_Organisation;
-}
-public Date getDat_Date() {
-	dat_Date=new java.util.Date();
-	
-	
-	return dat_Date;
-	
-}
-private static String debitAccount;
-private static String creditAccount;
-public void accountchangeListener4(ValueChangeEvent event)
-{
-	System.out.println("fjkfgjkfgjkf");
-	debitAccount=(String)event.getNewValue();
-   System.out.println(debitAccount+"lovejjjjjjjjjjjjjjjjj");
-	
-}
-public void accountchangeListener5(ValueChangeEvent event)
-{
-	System.out.println("fjkfgjkfgjkf123");
-	creditAccount=(String)event.getNewValue();
-   System.out.println(creditAccount+"lovejjjjjjjjjjjjjjjjj");
-	
-}
-public static String getDebitAccount() {
-	return debitAccount;
-}
-public static void setDebitAccount(String debitAccount) {
-	AccountingBean.debitAccount = debitAccount;
-}
-public static String getCreditAccount() {
-	return creditAccount;
-}
-public static void setCreditAccount(String creditAccount) {
-	AccountingBean.creditAccount = creditAccount;
-}
-public void setDat_Date(Date dat_Date) {
-	this.dat_Date = dat_Date;
-}
-public String getStr_Reference() {
-	return str_Reference;
-}
-public void setStr_Reference(String str_Reference) {
-	this.str_Reference = str_Reference;
-}
-public String getStr_Notes() {
-	return str_Notes;
-}
-public void setStr_Notes(String str_Notes) {
-	this.str_Notes = str_Notes;
-}
-public String getStr_DebitAccount() {
-	return str_DebitAccount;
-}
-public void setStr_DebitAccount(String str_DebitAccount) {
-	this.str_DebitAccount = str_DebitAccount;
-}
-public String getStr_CreditAccount() {
-	return str_CreditAccount;
-}
-public void setStr_CreditAccount(String str_CreditAccount) {
-	this.str_CreditAccount = str_CreditAccount;
-}
 
-public Double getStr_DebitAmount() {
-	return str_DebitAmount;
-}
-public void setStr_DebitAmount(Double str_DebitAmount) {
-	this.str_DebitAmount = str_DebitAmount;
-}
-public Double getStr_CreditAmount() {
-	return str_CreditAmount;
-}
-public void setStr_CreditAmount(Double str_CreditAmount) {
-	this.str_CreditAmount = str_CreditAmount;
-}
+
 private char account1;
 
 public char getAccount1() {
@@ -242,122 +159,7 @@ public char getAccount1() {
 public void setAccount1(char account1) {
 	this.account1 = account1;
 }
-private String str_Organisation;
-private Date dat_Date;
-private String str_Reference;
-private String str_Notes;
-private String str_DebitAccount;
-private String str_CreditAccount;
-private Double str_DebitAmount;
-private Double str_CreditAmount;
-private ManualJournal selectedjournal;
-public ManualJournal getSelectedjournal() {
-	
-	return selectedjournal;
-}
-public void setSelectedjournal(ManualJournal selectedjournal) {
-	this.selectedjournal = selectedjournal;
-}
-private boolean indicate;
-public boolean isIndicate() {
-	return indicate;
-}
-public void setIndicate(boolean indicate) {
-	this.indicate = indicate;
-}
-public void detectManualJournal()
-{
-	System.out.println("vcnmjnngffgjmfgmjngfgfm111111111111111111111111111111111");
-	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
-}
-public void desabledListener( SelectEvent event)
-{
-	System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
-	 indicate = true;
-}
-public String addInvoiceManualJournal() 
-{ System.out.println("dfjudffgviugfiugfiu");
-	try{
-	
-	
-	ManualJournal journal=new ManualJournal();
-    journal.setStr_OrganisationID(Util.getAppartmentId());
-    journal.setDat_Date(dat_Date);
-    journal.setStr_Reference(getStr_Reference());
-    journal.setStr_Notes(getStr_Notes());
-    journal.setStr_DebitAccount(debitAccount);
-    System.out.println(debitAccount+"fdjfdfd");
-    System.out.println(creditAccount+"djkfdkjfdkj");
-    System.out.println(getStr_DebitAccount()+"fdkdffd");
-    System.out.println(getStr_CreditAccount()+"fdkjfdjkfd");
-    journal.setStr_CreditAccount(creditAccount);
-    journal.setDbl_DebitAmount(getStr_DebitAmount());
-    System.out.println(getStr_DebitAmount());
-    journal.setDbl_CreditAmount(getStr_CreditAmount());
-   
-   
-    
-    	 getAccountsService().addManualJournal(journal);
-    	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("ManualJournal Saved Successfully!"));
-    	 str_Notes="";
-    	 return "manualjournal.xhtml";
-    	 }
-    	
-  catch(Exception e)
-  {
-	e.printStackTrace();
-  }
-	 return "manualjournal.xhtml";
-}
 
-public String saveManualJournal() {
-	System.out.println("jhvvnjggggggggggggggggggggg11111111111111111111111111111111111111111111111111111111");
-	System.out.println(journal1+"fdkjfjkfdkj");
-	System.out.println(journal1.getStr_OrganisationID()+"fkjfgkfgkj");
-	System.out.println(creditAccount+"fggfgf");
-		System.out.println(selectedjournal.getInt_ManualJournalID()+"fggfjkgfkjg");
-		 getAccountsService().updateManualJournal(journal1);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
-
-	
-	return "manualjournal.xhtml";
-	
-}
-public void deleteManualJournal1() {
-	try
-	{ 
-	
-	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-
-	if(selectedjournal.getInt_ManualJournalID()==null)
-	{
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
-	}
-	else
-	{
-	id=selectedjournal.getInt_ManualJournalID();
-	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
-    	FacesContext facesContext = FacesContext.getCurrentInstance();
-		Flash flash = facesContext.getExternalContext().getFlash();
-		flash.setKeepMessages(true);
-		flash.setRedirect(true);
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ManualJournal deleted Successfully!", "ManualJournal deleted Successfully!"));
-   
-
-   getAccountsService().deleteManualJournal(id);
-	}
-	}
-	catch(Exception e)
-	{
-		e.printStackTrace();
-	}
-   
-}
 public void getsearch4()
 {   System.out.println("hhjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 	getListManualJournal4();
@@ -592,6 +394,7 @@ public String getStr() {
 public void setStr(String str) {
 	this.str = str;
 }
+
 public void accountchangeListener1(ValueChangeEvent event)
  {
 	
