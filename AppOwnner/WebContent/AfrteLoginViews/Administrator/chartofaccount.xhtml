@@ -139,17 +139,17 @@
                 
                  </h:selectOneMenu></td></tr>
 	<tr><td><h:outputLabel value="Account Type"/></td>
-	<td><h:selectOneMenu id="accountType"   value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}" required="true" >
+	<td><h:selectOneMenu id="accountType"   value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}" required="true" requiredMessage="Choose atleast One">
 	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
 	    
 	   <f:selectItems   value="#{accountingBean.listAccountsType}" /><br/> 
 	   <p:ajax event="change" partialSubmit="true"/>
                        </h:selectOneMenu>
-                     <p:message for="accountType" display="text"/></td></tr>  
+                     <p:message id="accountTypeMsg" for="accountType" display="text"/></td></tr>  
                      
-	<tr><td><h:outputLabel  value="Account Name:"/></td><td><p:inputText  id="accountName" value="#{accountingBean.str_AccountName}" required="true" />
-	<p:message for="accountName" display="text"/></td></tr>
-	<tr><td></td><td><p:commandButton styleClass="btn"  id="submit"  value="Submit"    actionListener="#{accountingBean.saveChartOfAccount}"  update="accountName,accountType,:form:ui-growl" oncomplete="handleRequest(xhr, status, args)"/></td>
+	<tr><td><h:outputLabel  value="Account Name:"/></td><td><p:inputText  id="accountName" value="#{accountingBean.str_AccountName}" required="true" requiredMessage="Should Not Empty"/>
+	<p:message id="accountNameMsg" for="accountName" display="text"/></td></tr>
+	<tr><td></td><td><p:commandButton styleClass="btn"  id="submit"  value="Submit"    actionListener="#{accountingBean.saveChartOfAccount}"  update="accountNameMsg,accountTypeMsg,:form:ui-growl" oncomplete="handleRequest(xhr, status, args)"/></td>
 	
 	 </tr>  
 	</table>
