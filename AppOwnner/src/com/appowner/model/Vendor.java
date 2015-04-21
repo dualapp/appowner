@@ -31,6 +31,17 @@ public class Vendor implements Serializable
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="int_VendorId", insertable = false, updatable=false)
  private Integer int_VendorId;
+	@Column 
+	 private Integer int_ApartmentId;
+	public Integer getInt_ApartmentId() {
+		return int_ApartmentId;
+	}
+	public void setInt_ApartmentId(Integer int_ApartmentId) {
+		this.int_ApartmentId = int_ApartmentId;
+	}
+
+
+
 	@Column(name="Var_PanNo")
 private String str_PanNo;
 @Column(name="Var_ServiceTaxNo")

@@ -927,6 +927,7 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 		 
 		vendor.setInt_VendorServiceRating(getInt_VendorServiceRating());
 		vendor.setStr_VendorPhone(getStr_VendorPhone());
+		vendor.setInt_ApartmentId(Util.getAppartmentId());
 		/*
 		 * checks for existing mobile num
 		 */

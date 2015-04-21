@@ -50,6 +50,7 @@ import com.appowner.model.OrganizationLogo;
 import com.appowner.model.Parking;
 import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
+import com.appowner.model.Vendor;
 import com.appowner.model.VendorServiceDetails;
 import com.appowner.model.Vote;
 import com.appowner.service.ExpenseService;
@@ -1199,7 +1200,7 @@ public String addAsset()
 	asset.setDate_WarrantyStartDate(date_WarrantyStartDate);
 	asset.setDbl_Price(dbl_Price);
 	asset.setStr_PurchaseImg(str_PurchaseImg);
-	asset.setStr_SellerNameAnddetails(str_SellerNameAnddetails);
+	 
 	 
 	asset.setStr_VendorName(str_VendorName);
 	asset.setStr_VendorType(str_VendorType);
@@ -1934,20 +1935,15 @@ public Long getLatestChoise1Vote()
 	count1=null;
 	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
 	  
-	 if(latestPolls.getInt_Vote()!=0){
+	 
 		 
 	 Long res= count1*100/latestPolls.getInt_Vote();
-	 return res;
 	 
-	 }
-	 else
-	 {
-	 Long res=0l;
 	 return res;
 	 }
 	 
 	
-}
+ 
 
 
 public Long getChoise1Vote()
@@ -2025,12 +2021,9 @@ public Long getLatestChoise2Vote()
 	 
 	  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
 	  
-	 if(latestPolls.getInt_Vote()!=0)
-	 {
+	  
 	 Long res= count2*100/latestPolls.getInt_Vote();
-	 System.out.println(res+"result");
-	 }
-	 Long res=0l;
+	  
 	 return res;
 	
 }
@@ -2058,13 +2051,9 @@ public Long getLatestChoise3Vote()
 { 
 count3=null;
 	   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
-	   
-		 if(latestPolls.getInt_Vote()!=0)
-		 {
+	    
 	  Long res= count3*100/latestPolls.getInt_Vote();
-	  System.out.println(res+"result");
-		 }
-		 Long res=0l;
+	   
 	  return res;
 }
 public Long getChoise3Vote()
@@ -2236,11 +2225,11 @@ public String addVote1()
 	getExpenseService().UpdatePool(latestPolls);
 	if(LoginBean.isAdmin())
 		 
-		 return "/AfrteLoginViews/Administrator/Adminwelcomepage.xhtml";
+		 return "../AfrteLoginViews/Adminwelcomepage.xhtml";
 	 
 	else
 	 
- return "/AfrteLoginViews/Administrator/welcomepage.xhtml";
+ return "../AfrteLoginViews/welcomepage.xhtml";
 	 
 }
 public void getOnePool()
@@ -2370,6 +2359,8 @@ public void deleteOneServiceRequest()
 	getExpenseService().deleteOneServiceRequest(servicerequest1);
 }
 
+ 
+ 
 public List<Assets> getSelectedAssets() {
 	return selectedAssets;
 }
