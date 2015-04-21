@@ -11,7 +11,7 @@
  
   
    <h:body>
-<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
 				<td> 
@@ -23,8 +23,8 @@
    <div id="page3">
    <h:form id="upload" enctype="multipart/form-data">
    <p:outputPanel   layout="block"  id= "image" update="aaa1"  style="background:#ffffff; ">
-  <p:graphicImage id="image2"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{scriptBean.txtfile}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-18px 120px -800px 100px;"/>
-     <p:graphicImage id="image3"   value="#{expenseBean.str_Name}images/doc.jpg"  rendered="#{scriptBean.txtfile1}" title="User Image" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-18px 120px -800px 100px;"/> </p:outputPanel> 
+  <p:graphicImage id="image2"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{scriptBean.txtfile}" title="User Image" style="background:#dddddd; height:100px;width:100px;float:right !important;margin:-8px 140px -700px 150px;"/>
+     <p:graphicImage id="image3"   value="#{expenseBean.str_Name}images/doc.jpg"  rendered="#{scriptBean.txtfile1}" title="User Image" style="background:#dddddd; height:100px;width:100px;float:right !important;margin:-8px 140px -700px 150px;"/> </p:outputPanel> 
      
   <table style="margin-left:60px">
  <tr>
@@ -49,7 +49,7 @@
       <h:message style="color: red" for="file" />
            <h:commandButton id="submit" 
 		                 action="#{scriptBean.uploadFile1}"
-			             value="upload file"   style="border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" >
+			             value="upload file"   style="margin-left:9%;border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" >
 			              <f:ajax execute="file"  render="@form" />
 			             </h:commandButton>
             
@@ -57,7 +57,7 @@
 			         </tr>
 			         </table>
 			         </h:form>
- <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
+ 
     <h:form id="form" > 
     <table   style="overflow:hidden;border:0pt none;width:60%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
     <table style="margin-left:30px">
@@ -73,22 +73,23 @@
             <table style="margin-left:80px">
            <tr>
             <td><h:outputText for="int_Document_CatNM" value="Document    Category" /></td>
-            <td><h:selectOneMenu  value="#{scriptBean.int_Document_CatNM}" style="width:250px">
-            <f:selectItem itemLabel="Select   Document   Category"  itemValue=""  />
-                <f:selectItems value="#{scriptBean.int_Document_CatNM1}"  /> </h:selectOneMenu>
-            
+            <td><h:selectOneMenu  id="category" value="#{scriptBean.int_Document_CatNM}" required="true"      requiredMessage="Please Select Category name!" style="width:250px">
+            <f:selectItem itemLabel="Select   Document   Category"  itemValue="" noSelectionOption="true"  />
+             <f:selectItems value="#{scriptBean.int_Document_CatNM1}"  /> </h:selectOneMenu>
+            <p:messages for="category" display="text"/>
             </td>
             </tr> 
             </table>
             <table style="margin-left:110px">  
             <tr> 
             <td><p:outputLabel for="ch_Access" value="Accessible to" /></td>
-            <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:250px">
-             <f:selectItem itemLabel="All Members"  itemValue="All Members"  />
-            <f:selectItem itemLabel="Owners"  itemValue="Owners"  />
-                <f:selectItem itemLabel="Committee"  itemValue="Committee"  />
-                 <f:selectItem itemLabel="Administrator"  itemValue="Administrator"  />
-               	<f:selectItem itemLabel="Group"  itemValue="Group"  />
+            <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:250px"  >
+            <f:selectItem itemLabel="Select"  itemValue=""></f:selectItem>
+               <f:selectItem itemLabel="All Members"  itemValue="All Members"  />
+               <f:selectItem itemLabel="Committee"  itemValue="Committee"  />
+                <f:selectItem itemLabel="Administrator"  itemValue="Administrator"  />
+                 <f:selectItem itemLabel="Group"  itemValue="Group"  />
+               	<p:ajax partialSubmit="true" event="change"/>
             </h:selectOneMenu>
             
 </td>

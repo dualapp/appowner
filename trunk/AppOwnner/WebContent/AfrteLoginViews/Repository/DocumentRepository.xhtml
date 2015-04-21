@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-		template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+		template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
     <title>DocumentRepository</title>
@@ -40,16 +40,24 @@
 }
       </style>	
       <body>
+      <h:form id="button">
 <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
 				<td> 
 					<img src="#{expenseBean.str_Name}images/document.png" height="45" width="45"></img> <span class="title"> Document Detail </span>
+					<td><h:outputText value="Search By Name"></h:outputText>
+					  <h:inputText  id="ch_Ad_Type" value="#{scriptBean.username}" style="width:45%;height:90%;"></h:inputText>   &#150;         &#150;      &#150;    &#150;
+					  <p:commandButton id="button1" value="Search"  action="#{scriptBean.getListCreatedocument()}"  update="user" ajax="false"></p:commandButton></td>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-    <h:form>
+    <p:outputPanel   rendered="#{request.getParameter('render')}">
+				  <body onLoad="PF('multiDueTemplateDialog').show()" />
+					</p:outputPanel>
+					
+ 
   
        
         <p:growl id="ui-growl" globalOnly="true" sticky="true"/> 
@@ -75,7 +83,7 @@
                 
                     <h:outputText value="Categeory" />
                 </f:facet>
-                <h:outputText value="#{scriptBean.intdocid}" />
+                <h:outputText value="#{user.int_Document_CatNM}" />
             </p:column>
             
               <p:column>
@@ -137,9 +145,19 @@
           
         </p:dataTable>
         </h:form>
+        <p:dialog widgetVar="multiDueTemplateDialog" header="Message" showEffect="explode" hideEffect="explode" resizable="false" height="100" width="500" >
+             <form id="mailform">
+             <table>
+      
+              <h5>Message Has been Send Succcessfully.....</h5>
+         </table>
+         </form>
+          </p:dialog>
+          
         </body>
         </ui:define>
+        
        
         
         
- </ui:composition>
+ </ui:composition>  
