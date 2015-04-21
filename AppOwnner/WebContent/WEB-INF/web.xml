@@ -72,7 +72,14 @@
     <servlet-name>priya</servlet-name>
     <url-pattern>/srv2</url-pattern>
   </servlet-mapping>
-   
+    <servlet>
+    <servlet-name>mukesh</servlet-name>
+    <servlet-class>com.appowner.bean.FileUploadEmailSending</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mukesh</servlet-name>
+    <url-pattern>/srv19</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>Password</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet5</servlet-class>
@@ -80,6 +87,14 @@
   <servlet-mapping>
     <servlet-name>Password</servlet-name>
     <url-pattern>/srv6</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>amulya</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet11</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>amulya</servlet-name>
+    <url-pattern>/notice</url-pattern>
   </servlet-mapping>
   <context-param>
     <param-name>host</param-name>
