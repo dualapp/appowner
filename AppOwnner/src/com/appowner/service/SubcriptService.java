@@ -96,6 +96,12 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -177,7 +183,7 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 
 	public void documents(Cls_CreateDocumentManagement d);
 
-	public List<Cls_CreateDocumentManagement> getListCreatedocument();
+	public List<Cls_CreateDocumentManagement> getListCreatedocument(String username);
 
 	public Integer getInt_Document_CatID(String int_Document_CatNM);
 
@@ -338,6 +344,13 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 
 	public void updateposts(String txtfile, Integer postid, String path,
 			String filename);
+
+	List getListCreatedocument();
+
+	public List<String> getcommiteid();
+
+	public List<String> getgroupid();
+    public List<String> getadminname();
 
 	
 

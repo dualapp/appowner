@@ -89,8 +89,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		}
 
 		
-		public void addagencies(agency_information agency) {
-			 getAdvertisementDao().addagencies(agency);
+		public int addagencies(agency_information agency) {
+			return  getAdvertisementDao().addagencies(agency);
 			
 		}
 
@@ -146,6 +146,23 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 		@Override
 		public int adv1(String intdocid1) {
 			return getAdvertisementDao().adv1( intdocid1);
+		}
+
+		@Override
+		public int companysid(int agencyid1) {
+			// TODO Auto-generated method stub
+			return  getAdvertisementDao().companysid(agencyid1);
+		}
+
+		@Override
+		public List<agency_information> allinf(int postid) {
+			return  getAdvertisementDao().allinf(postid);
+		}
+
+		@Override
+		public void deletepost(agency_information detail) {
+			 getAdvertisementDao().deletepost(detail);
+			
 		}
 
 		

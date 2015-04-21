@@ -88,6 +88,7 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -129,6 +130,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
+
 
 
 
@@ -350,13 +352,7 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		
 	}
 
-	@Override
-	public List getListCreatedocument() {
-		return getSubcriptDao().getListCreatedocument();
-		
-	}
-
-	@Override
+	
 	public Integer getInt_Document_CatID(String int_Document_CatNM) {
 		// TODO Auto-generated method stub
 		return null;
@@ -756,6 +752,35 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		getSubcriptDao().updateposts( txtfile,  postid,path,
 				filename);
 		
+	}
+
+	@Override
+	public List getListCreatedocument(String username) {
+		// TODO Auto-generated method stub
+		return getSubcriptDao().getListCreatedocument( username);
+	}
+
+	@Override
+	public List getListCreatedocument() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List getcommiteid() {
+		// TODO Auto-generated method stub
+		return getSubcriptDao().getcommiteid();
+	}
+
+	@Override
+	public List getgroupid() {
+		// TODO Auto-generated method stub
+		return getSubcriptDao().getgroupid();
+	}
+
+	@Override
+	public List getadminname() {
+		return getSubcriptDao().getadminname();
 	}
 
 	
