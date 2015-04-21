@@ -31,6 +31,14 @@ public class cls_MakePayment implements Serializable{
 	public void setInt_agencyid(Integer int_agencyid) {
 		this.int_agencyid = int_agencyid;
 	}
+	private Integer int_CompanyID;
+	
+	public Integer getInt_CompanyID() {
+		return int_CompanyID;
+	}
+	public void setInt_CompanyID(Integer int_CompanyID) {
+		this.int_CompanyID = int_CompanyID;
+	}
 	@Column
 	private Date checkdate;
 	public int getApartementId() {

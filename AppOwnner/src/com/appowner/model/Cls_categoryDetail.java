@@ -22,8 +22,7 @@ public class Cls_categoryDetail implements Serializable{
     private int int_Ad_categoryId;
 	@Column
 	private String var_Ad_CategoryName;
-   
-	public int getInt_Ad_categoryId() {
+	 public int getInt_Ad_categoryId() {
 		return int_Ad_categoryId;
 	}
 	public void setInt_Ad_categoryId(int int_Ad_categoryId) {
