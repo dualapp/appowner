@@ -508,7 +508,7 @@ public class Cls_UserDaoImpl implements In_UserDao {
 				List<String> str4=new ArrayList<String>();
  
 				System.out.println(id+"fdkfdjkfdjkkjf");
-				if(id.isEmpty())
+				if(id==null)
  
 				{
 					Integer id1=(Integer) getSessionFactory().getCurrentSession().createQuery("select int_subscriptID from UserApartment where int_ApartmentId=?").setParameter(0,int_ApartmentId).setCacheable(true).uniqueResult();
