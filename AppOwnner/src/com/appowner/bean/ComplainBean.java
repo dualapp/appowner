@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -95,7 +96,11 @@ public class ComplainBean implements Serializable{
 	public void setStr_Description(String str_Description) {
 		this.str_Description = str_Description;
 	}
+	@PostConstruct
+	public void init() {
+		str_ComplainType="Community";
 	
+	}
 	
 	private String str_VendorType;
 	
@@ -184,6 +189,7 @@ public class ComplainBean implements Serializable{
 			cmp.setAdminReason(getAdminReason());
 			getComplainService().addComplain(cmp);
 			str_ComplainType=null;
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Complain Added  Successfully!"));
 			return "ComplainView.xhtml";
 		}
 		catch(DataAccessException e)
@@ -216,6 +222,7 @@ public class ComplainBean implements Serializable{
 		cmp.setAdminReason(getAdminReason());
 		getComplainService().addComplain(cmp);
 		str_ComplainType=null;
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Complain Added  Successfully!"));
 		return "ComplainView.xhtml";
 	}
 	catch(DataAccessException e)
@@ -230,6 +237,7 @@ public class ComplainBean implements Serializable{
 		System.out.println(id+"cfkvjkvcjvc");
 		cmp.setInt_ComplainID(id);
 		getComplainService().deleteComplain(cmp);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted   Successfully!"));
 		return "ComplianView.xhtml?faces-redirect=true";
 	}
     private List<Complain> ListComplain;
@@ -324,7 +332,7 @@ public class ComplainBean implements Serializable{
 				Blocks = blocks;
 			}
 			public List<String> selectRadioButton(ValueChangeEvent event)
-			{
+			{   System.out.println("1111111111111111111111111111111111111111111111111111111111111111");
 				String select =( String )event.getNewValue();
                  System.out.println(select);
 			    if(select.equals("Personal"))
