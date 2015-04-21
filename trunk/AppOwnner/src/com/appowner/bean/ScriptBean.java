@@ -41,7 +41,7 @@ import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ScriptBean implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
@@ -329,12 +329,7 @@ public void setList(List<String> list) {
 		public void setAction(String action) {
 			Action = action;
 		}
-		public String getEmail() {
-			return email;
-		}
-		public void setEmail(String email) {
-			this.email = email;
-		}
+		
 		public String getStr_Description() {
 			return str_Description;
 		}
@@ -552,6 +547,15 @@ public void AddDocManagement()
 		public void setSize(int size) {
 			this.size = size;
 		}
+		private static List<int[]> usrids;
+		
+	
+	public static List<int[]> getUsrids() {
+			return usrids;
+		}
+		public static void setUsrids(List<int[]> usrids) {
+			ScriptBean.usrids = usrids;
+		}
 	//For create Document
 	@SuppressWarnings("unchecked")
 	public String document()
@@ -576,28 +580,56 @@ public void AddDocManagement()
 		    d.setInt_DocumentID(getInt_DocumentID());
 		    d.setImage(txtfile);
 			getSubcriptService().documents(d);
-			/*if(Bit_emailsend==true)
-			{  System.out.println(Bit_emailsend);
-				mailids=getSubcriptService().getMailIds();
-				System.out.println(mailids);
-				content="Appowner.com";
-				System.out.println(content);
-				subject="hello";
-				System.out.println(subject);
-				return "CreateDocument1.jsp";
+			if(Bit_emailsend==true)
+				
+			{  if(Ch_Access.equalsIgnoreCase("All Members"))
+				{
+			  mailids=getSubcriptService().getMailIds();
+			  }
+			else
+			{
+				if(Ch_Access.equalsIgnoreCase("Committee"))
+				{
+					mailids=getSubcriptService().getcommiteid();
+			}
+			}
+			if(Ch_Access.equalsIgnoreCase("Group"))
+			{
+				mailids=getSubcriptService().getgroupid();	
+			}
 			
-			}*/
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
-			return "DocumentRepository.xhtml";
+			else
+			{
+				if(Ch_Access.equalsIgnoreCase("Administrator"))
+				{
+					mailids=getSubcriptService().getadminname();	
+				}
+			}
+			
+			    System.out.println(mailids+"my countrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+			    content="Appowner.com";
+			    subject="";
+			    return "/AfrteLoginViews/Repository/CreateDocument12.jsp";
+			
+			}
+			
 		}
 			
 		catch(DataAccessException e)
-		{e.printStackTrace();
+		{
+			e.printStackTrace();
 			
 		}
 		return null;
 		}
-			public String addOption()
+	public static String Email;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String addOption()
 		{  
 			String optionname=getOptionName();
 			System.out.println(optionname);
@@ -674,13 +706,23 @@ public void AddDocument()
    }
 	   
    } 
+private String image;
+
+public String getImage() {
+	return image;
+}
+public void setImage(String image) {
+	this.image = image;
+}
+
 private List<Cls_CreateDocumentManagement> ListCreatedocument;
 @SuppressWarnings("unchecked")
 public List<Cls_CreateDocumentManagement> getListCreatedocument()
 {
 	System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 	ListCreatedocument=new ArrayList<Cls_CreateDocumentManagement>();
-	ListCreatedocument.addAll(getSubcriptService().getListCreatedocument());
+	ListCreatedocument.addAll(getSubcriptService().getListCreatedocument(username));
+	System.out.println(username+"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 	ListIterator list=ListCreatedocument.listIterator();
 	while(list.hasNext())
 	{
@@ -1293,7 +1335,7 @@ public void setCityListByState(List<String> cityListByState) {
 public List<String> stateChangeListener(ValueChangeEvent event)
 {  
       enquiry_selectedState=(String)event.getNewValue();
-      System.out.println(enquiry_selectedState);
+      System.out.println(enquiry_selectedState+"kjjfkjgtfkjgfgfkjgfkjgfgf2222222222222222222222222222222");
 		cityListByState=new ArrayList<String>();
 		cityListByState.addAll(getSubcriptService().cityList(enquiry_selectedState));
            System.out.println(cityListByState);
@@ -1852,15 +1894,16 @@ m1.setInt_UserId(userID);
 m1.setDT_Date(getDTDate());
 m1.setInt_GroupmemberId(getInt_GroupmemberId());
 getSubcriptService().insertes(m1);
-
 return "View-SubGroup.xhtml";
 
 }
-public void subname()
+/*public void subname()
 {
 	groups=getSubcriptService().allname(str_GroupNm);
+	System.out.println(groups+"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
 	selectes=groups.getStr_GroupNm();
 }
+*/
 public Boolean getBol_Smsallow() {
 	return bol_Smsallow;
 }
@@ -2261,7 +2304,7 @@ public String editdocument()
 private  Cls_CreateDocumentManagement listdocpost;
 public Cls_CreateDocumentManagement getListdocpost() {
 	listdocpost=getSubcriptService().listname(postid);
-	
+	System.out.println(listdocpost.getInt_DocumentID()+"mnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn,,,,,,,,,,,,,,,,,");
 	return listdocpost;
 }
 public void setListdocpost(Cls_CreateDocumentManagement listdocpost) {
@@ -2308,6 +2351,17 @@ public String editpost(Cls_CreateDocumentManagement document)
 	}
 	return "DocumentRepository.xhtml";
 }
+
+public static String allmembers;
+
+public static String getAllmembers() {
+	return allmembers;
+}
+public static void setAllmembers(String allmembers) {
+	ScriptBean.allmembers = allmembers;
+}
+
+
 }
 
 

@@ -30,6 +30,7 @@ import javax.faces.validator.ValidatorException;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.selectcheckboxmenu.SelectCheckboxMenu;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
@@ -55,6 +56,15 @@ public class TemplateBean implements Serializable,Validator {
 	public TemplateService getTemplateService() {
 		return templateService;
 	}
+	public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg =  new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate  added Successfully!", " DueTemplate added Successfully!");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+    	FacesMessage msg =  new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate  added Successfully!", " DueTemplate added Successfull666666666666666y!");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 	public void setTemplateService(TemplateService templateService) {
 		this.templateService = templateService;
 	}
@@ -763,7 +773,9 @@ public class TemplateBean implements Serializable,Validator {
 	}
 	private List<String> dueTemplates;
 	public List<String> getDueTemplates() {
-		
+		System.out.println(str_Frequency+"jkfkjggfkjgfkjgfkjgfkjgf11111111111111111111111111111111111111");
+		 dueTemplates=new ArrayList<String>();
+	     dueTemplates.addAll(getTemplateService().getDueTemplate(str_Frequency));
 	        return dueTemplates;
 	}
 	public void setDueTemplates(List<String> dueTemplates) {
@@ -771,10 +783,10 @@ public class TemplateBean implements Serializable,Validator {
 	}
   public List<String> frequencyChangeListener(ValueChangeEvent event)
   {  
-	   str1_Frequency=(String)event.getNewValue();
-	   System.out.println(str1_Frequency+"fjkjkkjfd");
+	   str_Frequency=(String)event.getNewValue();
+	   System.out.println(str_Frequency+"fjkjkkjfd");
 	    dueTemplates=new ArrayList<String>();
-	     dueTemplates.addAll(getTemplateService().getDueTemplate(str1_Frequency));
+	     dueTemplates.addAll(getTemplateService().getDueTemplate(str_Frequency));
 	     if(dueTemplates.isEmpty())
 	     {    System.out.println("fdkfdkjfkjf");
 	    	// FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("When no template is selected .You must select atleast one due template to create invoice template!")); 
