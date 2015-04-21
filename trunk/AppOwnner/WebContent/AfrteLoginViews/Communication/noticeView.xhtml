@@ -5,18 +5,44 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 	<ui:define name="content">
-	<h:head>
-    <title>Welcome to Contact Page</title>
-   
-   
-    
+	 <h:head>
+<title>DueTemplate form</title>
+<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:250px;
+          }
+          select
+          {
+           height:25px;
+           weight:250px;
+         
+        }
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
+
+}
+
+      </style>	
+ 
+ 
+ 
 </h:head>
+
 <body>
     <p:outputPanel   rendered="#{request.getParameter('render')}">
 				  <body onLoad="PF('multiDueTemplateDialog').show()" />
 					</p:outputPanel>
        
-          
+     <p:growl id="ui-growl" globalOnly="true"  />     
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
@@ -53,14 +79,14 @@
           <p:dataGrid paginatorPosition="top" rowsPerPageDropdown="10,20,30,40,50" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" paginator="true" rows="10"  var="notice" value="#{noticeBoardBean.listOfNotice}"    id="cars" style="margin-top:20px">  
           <br/>
        
-        <fieldset style="width:28em;height:20em;background-color: #FFFFFF; border:2px solid green;">
+        <fieldset style="width:33em;height:20em;background-color: #FFFFFF; border:2px solid green;">
     
    
           
-            <table> 
+            <table > 
            <tr>
-           <td>
-           
+           <td width="50%">
+            
                <h:inputText value="#{notice.dat_EntryDate}" style="width: 80px;height:50px;background-color:orange;margin-top:-5px;margin-left:20px">
                 <f:convertDateTime pattern="dd-MMM"  />
                 </h:inputText> 
@@ -97,26 +123,27 @@
                 </tr>
                 <tr>
                 <td><font size="4">  <p:outputLabel value="#{notice.str_Subject}"/>  </font>  </td> </tr>
-                 <tr><td>  <h:outputText value="Dear All,"/> </td>
-                 <td> <h:link value="#{notice.imageName}" style="margin-left:2em;"/> </td></tr>
+                 <tr><td>  <h:outputText value="Dear All," /> </td>
+                 <td >  <p:commandLink value="#{notice.imageName}"  action="#{noticeBoardBean.downloadFile(notice.str_Document,notice.image)}" ajax="false"  icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{noticeBoardBean.downloadFile}" />
+        
+</p:commandLink> </td></tr>
                  <tr>
-                 <td>
-                  <h:outputText value="#{notice.str_Description}"> 
-                 
-                   </h:outputText>
+                 <td  >
+                 <h:outputText value="#{notice.str_Description}" /> </td>
                    
-                </td>
+            
+               
                 </tr>
          
              
               </table>
            
-       
-       </fieldset>
-  
-    </p:dataGrid>
-    </div>
-    </h:form>
+     </fieldset>
+     </p:dataGrid>
+     </div>
+     </h:form>
+     
     <p:dialog header="View Notice" widgetVar="multiNotice"     showEffect="explode" hideEffect="explode" resizable="false" height="250" width="630">
     <h:form id="viewform">
         <p:outputPanel id="multiNoticeDetail" style="text-align:center;">

@@ -19,6 +19,9 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 		</tbody>
 	</table>
  <h:form>
+ <p:outputPanel   rendered="#{request.getParameter('render')}">
+				  <body onLoad="PF('multiDueTemplateDialog').show()" />
+					</p:outputPanel>
  <div id="page3" >
  <tr>
  <td>
@@ -56,20 +59,22 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
          <font size="2"><h:outputText value="Community :#{car.str_ApartmentName}" style="color:#00CC66;"/><br/></font>
         <font size="2"><h:outputText value="Posted By :#{car.username}" style="color:#00CC66;"/><br/></font>
         <font size="2"><h:outputText value="Posted On :#{car.dt_date}"  style="color:#FFA500;"/><br/></font>
-        <p:commandButton process="car" value="Send Email" action="#{cls_AddDetailBean.getemailid(car.userId)}" style="color:#FFFAF0;background:#FF8C00; border:2px;font-size:15px;width:160px;height:30px"
+        <p:commandButton process="car"  update=":sellid" value="Send Email" action="#{cls_AddDetailBean.getemailid(car.userId)}" style="color:#FFFAF0;background:#FF8C00; border:2px;font-size:15px;width:160px;height:30px"
            oncomplete="PF('multiVendorDialog1').show()"  /><hr/>
           <p:outputPanel   layout="block" width="15%" height="6%"  update="aaa1" style="background:#ffffff; ">
             <p:graphicImage  id="aaa1" value="#{car.var_ImageName}" style=" width:15%; height:15%; float:right !important;margin:-160px 50px -800px 100px;" />
           </p:outputPanel>  
        </p:dataList>
     </div>
+    </h:form>
      <p:dialog header="Buy&#38;Sell" widgetVar="multiVendorDialog1"   showEffect="fade" hideEffect="explode" resizable="false" height="200" width="400">
+     <h:form id="sellid">
       <p:outputPanel id="multiVendorDetail1" style="text-align:center;"> 
         
         <table>
          <tr>
              
-             <td> <h:inputHidden  value="#{cls_AddDetailBean.emailid}" > 
+             <td> <h:inputHidden  value="#{cls_AddDetailBean.to}" > 
              </h:inputHidden>
               </td>
              </tr>
@@ -87,11 +92,18 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
    
   
        </p:outputPanel>
+       </h:form>
         </p:dialog> 
+       <p:dialog widgetVar="multiDueTemplateDialog" header="Message" showEffect="explode" hideEffect="explode" resizable="false" height="100" width="500" >
+             <table>
+      
+              <h6>Message Has been Send Succcessfully.....</h6>
+         </table>
+         
+          </p:dialog>
       
       
-      
-</h:form>
+
 </h:body>
 </ui:define>
 </ui:composition>
