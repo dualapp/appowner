@@ -23,24 +23,22 @@
 	 
 	<f:viewAction action="#{advertisementBean.agencydetail}" />
 </f:metadata>
-<h:head>
-    <title>Edit</title>
-</h:head>
-<body bgcolor="pink">
+
+    
 <h:form>
-  
+
+    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+
  
- <table>
- 
   
-        <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px -200px -5000px 0px;" >  
-           <p:graphicImage height="150" width="150" value="#{advertisementBean.blb_image}"/>
+        <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px 100px -2000px 0px;" >  
+           <p:graphicImage height="150" width="150" value="#{advertisementBean.getPath()}"/>
           </p:outputPanel>
          
           
       <tr> 
         <td><h:outputLabel for="str_CompanyName" value="Agency Name" /></td>
-            <td><h:inputText id="str_CompanyName" value="#{advertisementBean.pro.str_CompanyName}" style="width:200px" >
+            <td><h:inputText id="str_CompanyName" value="#{advertisementBean.pro.str_CompanyName}"  >
             
             </h:inputText>
             
@@ -50,33 +48,31 @@
        
       <tr>
    
-               
-               
-                <td><h:outputLabel for="CompanyAddress1" value="CompanyAddress: " />
-                <br />
+      
+                <td>
                 <h:outputLabel for="CompanyAddress" value="Location "  /></td>
-                <td><p:inputText  id="CompanyAddress" value="#{advertisementBean.str_CompanyAddress}" style="width:200px" >
+                <td><p:inputText  id="CompanyAddress" value="#{advertisementBean.str_CompanyAddress}"  >
                
                   </p:inputText>
                </td>
            </tr>
            <tr>
                 <td><h:outputLabel for="City" value="City "  /></td>
-                <td><p:inputText id="City" value="#{advertisementBean.str_City}" style="width:200px">
+                <td><p:inputText id="City" value="#{advertisementBean.str_City}" >
                   </p:inputText>
                   
                 </td>
           </tr>
      <tr>
                 <td><h:outputLabel for="State" value="State "  /></td>
-                <td><p:inputText id="State" value="#{advertisementBean.str_State}" style="width:200px">
+                <td><p:inputText id="State" value="#{advertisementBean.str_State}" >
                   </p:inputText>
                   
                 </td></tr>
            
            <tr>
                 <td><h:outputLabel for="MobileNo" value="MobileNo "  /></td>
-                <td><p:inputText id="MobileNo" value="#{advertisementBean.str_Mobile}" style="width:200px">
+                <td><p:inputText id="MobileNo" value="#{advertisementBean.str_Mobile}" >
                 </p:inputText>
                 </td>
                 </tr>
@@ -84,7 +80,7 @@
                 
      <tr> 
              <td><h:outputLabel for="Ads Type" value="Ads Type" /></td>
-             <td><h:inputText id="Add_Type"  style="width:200px" value="#{advertisementBean.pro.ads_type}" >
+             <td><h:inputText id="Add_Type"   value="#{advertisementBean.pro.ads_type}" >
             </h:inputText>
             
      </td>
@@ -92,7 +88,7 @@
            
          <tr> 
              <td><h:outputLabel for="Position of Add"  value="Position of Add "    /></td>
-            <td> <h:inputText id="Add"  style="width:200px"  value="#{advertisementBean.pro.str_addposition}">
+            <td> <h:inputText id="Add"    value="#{advertisementBean.pro.str_addposition}">
             
             </h:inputText>
      </td>
@@ -108,10 +104,8 @@
         --> 
           
          </table>
-         
          </h:form>
-       </body>
-       </h:body>
+         </h:body>
          </ui:define>
          </ui:composition>
          

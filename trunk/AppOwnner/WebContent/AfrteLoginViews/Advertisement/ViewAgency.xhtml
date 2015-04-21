@@ -5,8 +5,41 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
-	
-	<h:body>
+<h:body>
+<style type="text/css">
+         input[type=text] 
+          {
+           
+           height:25px;
+           weight:150px;
+          }
+          select
+          {
+           height:25px;
+           weight:150px;
+          }
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
+
+}
+
+ 
+   
+      </style>	
 <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
@@ -18,8 +51,13 @@
 	</table>
 <h:body>
     <h:form>
-        
-        <p:dataTable id="agc" var="agc" value="#{advertisementBean.agencies}" style="width: 80%">
+       <div id="page3" >
+    <p:growl id="ui-growl" globalOnly="true" sticky="true"/> 
+        <p:dataTable id="agc" var="agc" value="#{advertisementBean.agencies}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  resizableColumns="true" rows="5" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+        rowsPerPageTemplate="10,20,30,40,50" selection="#{advertisementBean.selectedAll}" rowKey="#{agc.int_agencyid}"  paginatorPosition="bottom" >
+        <p:column exportable="false"  selectionMode="single" style="width:50px;text-align:center" >
+    </p:column>
+       
             
           
             <p:column>
@@ -28,7 +66,12 @@
                 </f:facet>
                 <h:outputText value="#{agc.str_CompanyName}" />
             </p:column>
-             
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Bank Name" />
+                </f:facet>
+                <h:outputText value="#{agc.str_bankname}" />
+            </p:column>
                <p:column>
             <f:facet name="header">  
               <h:outputText value="Location" />
@@ -74,6 +117,14 @@
               <h:outputText value="Position of Ads" />
                 </f:facet>
                 <h:outputText value="#{agc.str_addposition}" />
+            </p:column>  
+              <p:column>
+            <f:facet name="header">  
+              <h:outputText value="Payment Date" />
+              </f:facet>
+                <h:outputText value="#{agc.str_paymentDate}" >
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                </h:outputText>
             </p:column>        
                    
            
@@ -95,25 +146,13 @@
 							<f:param name="int_agencyid"
 								value="#{agc.int_agencyid}" />
 						</h:link>
-						
-	   		 </p:column>
-	   		 
-            
-          <!-- <p:commandButton value="update" action="#{cls_UpdateBean.editPerson(person.personId)}"   -->  
-             
-             
-             
-              
-        </p:dataTable>
-        
-        
-         </h:form>
-        <h:form>
-        
-        </h:form>
-        
-         </h:body>
-</h:body>
+						</p:column>
+						</p:dataTable>
+						</div>
+						</h:form>
+						</h:body>
+						</h:body>
+					
 
 </ui:define>
 </ui:composition>
