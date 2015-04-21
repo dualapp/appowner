@@ -85,7 +85,7 @@
 			         required="true" 
 			         requiredMessage="File not selected !!">
             <!-- FileUploadValidator for file validation -->
-		    <f:validator validatorId="FileUploadValidator" />
+		    <f:validator validatorId="DocumentUploadValidator" />
 		</h:inputFile>
 		<h:message style="color: red" for="file" /><br />
  
@@ -102,7 +102,7 @@
              
              
             <th align="left">Notice Description</th>
-              <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.notice1.str_Description}" width="550" height="280" style="margin-bottom:20px;"  />
+              <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.notice1.str_Description}" width="550" height="280" style="margin-bottom:20px;"  maxlength="100"/>
                  
               </td>
              
