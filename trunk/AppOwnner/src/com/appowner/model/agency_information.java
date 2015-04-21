@@ -1,6 +1,7 @@
 package com.appowner.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +16,7 @@ public class agency_information implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer int_agencyid;
-	
-	
-	private String str_CompanyName;
+    private String str_CompanyName;
 	private String ads_type;
 	private String str_addposition;
 	private String str_content;
@@ -28,7 +27,21 @@ public class agency_information implements Serializable{
 	private String str_State;
     private String str_Mobile;
     private String str_Url;
-    public String getStr_vedio() {
+    private String str_bankname;
+    public Date getStr_paymentDate() {
+		return str_paymentDate;
+	}
+	public void setStr_paymentDate(Date str_paymentDate) {
+		this.str_paymentDate = str_paymentDate;
+	}
+	private Date str_paymentDate;
+    public String getStr_bankname() {
+		return str_bankname;
+	}
+	public void setStr_bankname(String str_bankname) {
+		this.str_bankname = str_bankname;
+	}
+	public String getStr_vedio() {
 		return str_vedio;
 	}
 	public void setStr_vedio(String str_vedio) {
@@ -97,6 +110,12 @@ public class agency_information implements Serializable{
 	public void setAds_type(String ads_type) {
 		this.ads_type = ads_type;
 	}
+	public int getInt_till() {
+		return int_till;
+	}
+	public void setInt_till(int int_till) {
+		this.int_till = int_till;
+	}
 	public String getStr_addposition() {
 		return str_addposition;
 	}
@@ -108,5 +127,14 @@ public class agency_information implements Serializable{
 	}
 	public void setStr_content(String str_content) {
 		this.str_content = str_content;
+	}
+	private int int_till;
+	private int int_paymentid ;
+//	
+	public int getInt_paymentid() {
+		return int_paymentid;
+	}
+	public void setInt_paymentid(int int_paymentid) {
+		this.int_paymentid = int_paymentid;
 	}
 }

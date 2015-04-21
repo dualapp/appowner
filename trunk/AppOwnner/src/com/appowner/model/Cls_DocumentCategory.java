@@ -26,16 +26,7 @@ public class Cls_DocumentCategory {
 	private Integer isDelete;
 	@Column
 	private char Ch_Category_Status;
-	@Column
-	private String Action;
 	
-public String getAction() {
-		return Action;
-	}
-
-	public void setAction(String action) {
-		Action = action;
-	}
 
 public Integer getInt_Document_CatID() {
 		return Int_Document_CatID;
