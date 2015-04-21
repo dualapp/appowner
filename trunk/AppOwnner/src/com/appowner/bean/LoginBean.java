@@ -946,7 +946,7 @@ public class LoginBean implements Serializable {
 		str_ApartmentName=user.getStr_Apartment();
 		roleAssign=getUserService().getRoleAssign(int_UserId,int_ApartmentId);
 		System.out.println(roleAssign+"gfgfkjgfjk");
-		System.out.println(roleAssign+"fdkjfdkjfdkj");
+		
 		 status=getUserService().getStatus(str_ApartmentName);
 		 actvationkey=user.getInt_activationbit();
 		 System.out.println(status+"fkdfdkj");

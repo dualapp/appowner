@@ -1,6 +1,8 @@
 package com.appowner.bean;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,17 +16,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UICommand;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.FacilityNeeded;
@@ -247,6 +254,7 @@ Date date1= c.getTime();
 notice.setDat_ExpireOn(date1);
 
    getNoticeService().updateNotice(notice);
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
 	return "noticeView.xhtml";
 }
 	private Date dat_EntryDate;
@@ -278,7 +286,7 @@ notice.setDat_ExpireOn(date1);
 	     notice.setBool_Staff(getBool_Staff());
 		  notice.setStr_Visible(getStr_Visible());
 		  notice.setImage(getTxtfile());
-		  notice.setImageName(FileUploadValidator.filename);
+		  notice.setImageName(DocumentUploadValidator.filename);
 		  getNoticeService().addNotice(notice);
 		  System.out.println(getTxtfile()+"fdjkfgkjkgf");
 		 
@@ -289,9 +297,9 @@ notice.setDat_ExpireOn(date1);
 				subject="A New Notice";
 				content="hello";
 				title=getStr_Subject();
-				return "/AfrteLoginViews/Communication/notice.jsp";
+				return "/AfrteLoginViews/Communication/notice1.jsp";
 			}
-			
+		  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Notice Added  Successfully!"));	
 		  return "noticeView.xhtml"; 
 			
 		
@@ -476,14 +484,10 @@ notice.setDat_ExpireOn(date1);
 	public String uploadFile() throws IOException {
         System.out.println("fjkjkfdjkkjfjkfkj");
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-		System.out.println(FileUploadValidator.filename+"gvfjkgfjkf");
+		System.out.println(DocumentUploadValidator.filename+"gvfjkgfjkf");
 		 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
 	System.out.println(part.getContentType());
-	    if(part.getContentType().equals("image/jpeg"))
-	    {
-	    	txtfile="false";
-	    	txtfile1="false";
-	    }
+	    
 	    if(part.getContentType().equals("text/plain"))
 	    {
 	    	txtfile="true";
@@ -531,7 +535,7 @@ notice.setDat_ExpireOn(date1);
 		{  System.out.println("fdhfd33333333333333333333333333333333333333333333333");
 			notice1.setStr_Document(path1);
 			notice1.setImage(getTxtfile());
-			notice1.setImageName(FileUploadValidator.filename);
+			notice1.setImageName(DocumentUploadValidator.filename);
 			getNoticeService().updateNotice(notice1);
 			indicator=false;
 		}
@@ -589,8 +593,71 @@ notice.setDat_ExpireOn(date1);
 	public static void setPath1(String path1) {
 		NoticeBoardBean.path1 = path1;
 	}
-
-	
+	private StreamedContent downloadFile;
+	public StreamedContent getDownloadFile() {
+		return downloadFile;
+	}
+	public void setDownloadFile(StreamedContent downloadFile) {
+		this.downloadFile = downloadFile;
+	}
+	/*public NoticeBoardBean() throws FileNotFoundException{ 
+ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		
+		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		//  ExternalContext extContext = FacesContext.getCurrentInstance().getExternalContext(); 
+		  File result = new File(basePath);  
+		  System.out.println(result+"dkdfkjfdkjfd");
+		  InputStream stream= new FileInputStream(result.getAbsolutePath());
+		//  InputStream stream = new FileInputStream(result.getAbsolutePath());
+		  downloadFile = new DefaultStreamedContent(stream, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "Community_setup_house.xls");
+	      
+	      System.out.println(stream+"djjhfdhjfdjhfdjhfdjhgf");
+	      System.out.println(downloadFile+"kkkkkkkkkkkkkkkkkkkkkkkkffffffffffffffffffffffff");
+	  }*/
+	 public String downloadFile(String path,String path1) throws IOException
+	  {    System.out.println("1111111111111177777777777777777777777777777777777777777777777777777777777777777777777777777777777777");
+		  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		  String basePath = servletContext.getRealPath("")+File.separator;
+			//String basePath = servletContext.getContextPath()+File.separator+"WebContent"+File.separator;
+	     File file = new File(basePath+path);
+	      System.out.println(file+"hhhjhj22222222222222222222222222555555555555555555555555555555555555555555555");
+	     InputStream fis = new FileInputStream(file);
+	     System.out.println(file.getAbsolutePath());
+	     System.out.println(file.getName());
+	     String str=file.getName();
+	     System.out.println(path1+"fhffjfghj111111111111111111111111111");
+	     byte[] buf = new byte[10000];
+	     int offset = 0;
+	     int numRead = 0;
+	     while ((offset < buf.length) && ((numRead = fis.read(buf, offset, buf.length - offset)) >= 0)) 
+	     {
+	       offset += numRead;
+	     }
+	     fis.close();
+	     HttpServletResponse response =
+	        (HttpServletResponse) FacesContext.getCurrentInstance()
+	            .getExternalContext().getResponse();
+	    if(path1.equals("true"))
+	    {    System.out.println("jffj11111111111111111111111111111111");
+	    	response.setContentType("text/plain");
+	    }
+	    else if(path1.isEmpty())
+	    {    System.out.println("111111111111111111188888888888888888888888888888888888");
+	    	response.setContentType("image/jpeg");
+	    }
+	    else if(path1.equals("false"))
+	    {   System.out.println("11111111111117777898765544");
+	    	response.setContentType("application/msword");
+	    }
+	    
+	    response.setHeader("Content-Disposition", "attachment;filename=Notice");
+	    response.getOutputStream().write(buf);
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	 
+	    FacesContext.getCurrentInstance().responseComplete();
+	    return null;
+	  }
 
 	
 }

@@ -16,10 +16,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.component.datatable.DataTable;
@@ -29,6 +33,7 @@ import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
+import com.appowner.service.AccountsService;
 import com.appowner.service.DueService;
 import com.appowner.service.InvoiceService;
 import com.appowner.util.Util;
@@ -1501,4 +1506,277 @@ public void desabled1Listener( SelectEvent event)
 	}
 	 
 }
+//MANUAL JOURNAL
+private Integer int_ManualJournalID;
+public Integer getInt_ManualJournalID() {
+	return int_ManualJournalID;
+}
+public void setInt_ManualJournalID(Integer int_ManualJournalID) {
+	this.int_ManualJournalID = int_ManualJournalID;
+}
+
+public Date getDat_Date() {
+	dat_Date=new java.util.Date();
+	
+	
+	return dat_Date;
+	
+}
+
+
+private static String debitAccount;
+private static String creditAccount;
+public void accountchangeListener4(ValueChangeEvent event)
+{
+	System.out.println("fjkfgjkfgjkf");
+	debitAccount=(String)event.getNewValue();
+   System.out.println(debitAccount+"lovejjjjjjjjjjjjjjjjj");
+	
+}
+public void accountchangeListener5(ValueChangeEvent event)
+{
+	System.out.println("fjkfgjkfgjkf123");
+	creditAccount=(String)event.getNewValue();
+   System.out.println(creditAccount+"lovejjjjjjjjjjjjjjjjj");
+	
+}
+public static String getDebitAccount() {
+	return debitAccount;
+}
+
+public static String getCreditAccount() {
+	return creditAccount;
+}
+public static void setCreditAccount(String creditAccount) {
+	InvoiceBean.creditAccount = creditAccount;
+}
+public String getStr_Organisation1() {
+	return str_Organisation1;
+}
+public void setStr_Organisation1(String str_Organisation1) {
+	this.str_Organisation1 = str_Organisation1;
+}
+public static void setDebitAccount(String debitAccount) {
+	InvoiceBean.debitAccount = debitAccount;
+}
+public void setDat_Date(Date dat_Date) {
+	this.dat_Date = dat_Date;
+}
+@ManagedProperty(value = "#{AccountsService}")
+private AccountsService accountsService;
+public AccountsService getAccountsService() {
+	return accountsService;
+}
+ public void setAccountsService(AccountsService accountsService) {
+	this.accountsService = accountsService;
+}
+public String getStr_Reference() {
+	return str_Reference;
+}
+public void setStr_Reference(String str_Reference) {
+	this.str_Reference = str_Reference;
+}
+public String getStr_Notes() {
+	return str_Notes;
+}
+public void setStr_Notes(String str_Notes) {
+	this.str_Notes = str_Notes;
+}
+public String getStr_DebitAccount() {
+	return str_DebitAccount;
+}
+public void setStr_DebitAccount(String str_DebitAccount) {
+	this.str_DebitAccount = str_DebitAccount;
+}
+public String getStr_CreditAccount() {
+	return str_CreditAccount;
+}
+public void setStr_CreditAccount(String str_CreditAccount) {
+	this.str_CreditAccount = str_CreditAccount;
+}
+
+public Double getStr_DebitAmount() {
+	return str_DebitAmount;
+}
+public void setStr_DebitAmount(Double str_DebitAmount) {
+	this.str_DebitAmount = str_DebitAmount;
+}
+public Double getStr_CreditAmount() {
+	return str_CreditAmount;
+}
+public void setStr_CreditAmount(Double str_CreditAmount) {
+	this.str_CreditAmount = str_CreditAmount;
+}
+private String str_Organisation1;
+private Date dat_Date;
+private String str_Reference;
+private String str_Notes;
+private String str_DebitAccount;
+private String str_CreditAccount;
+private Double str_DebitAmount;
+private Double str_CreditAmount;
+private ManualJournal selectedjournal=new ManualJournal();
+public ManualJournal getSelectedjournal() {
+	
+	return selectedjournal;
+}
+public void setSelectedjournal(ManualJournal selectedjournal) {
+	this.selectedjournal = selectedjournal;
+}
+private boolean indicate4;
+
+public boolean isIndicate4() {
+	return indicate4;
+}
+public void setIndicate4(boolean indicate4) {
+	this.indicate4 = indicate4;
+}
+public void detectManualJournal()
+{
+	System.out.println("vcnmjnngffgjmfgmjngfgfm111111111111111111111111111111111");
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
+}
+public void desabledListener( SelectEvent event)
+{
+	System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
+	selectedjournal=(ManualJournal) event.getObject();
+	System.out.println(selectedjournal.getInt_ManualJournalID()+"dfjjffjnfjjfgjgfjfgj");
+		 indicate4 = true;
+}
+public String addInvoiceManualJournal() 
+{ System.out.println("dfjudffgviugfiugfiu");
+	try{
+	
+	
+	ManualJournal journal=new ManualJournal();
+    journal.setStr_OrganisationID(Util.getAppartmentId());
+    journal.setDat_Date(dat_Date);
+    journal.setStr_Reference(getStr_Reference());
+    journal.setStr_Notes(getStr_Notes());
+    journal.setStr_DebitAccount(debitAccount);
+    System.out.println(debitAccount+"fdjfdfd");
+    System.out.println(creditAccount+"djkfdkjfdkj");
+    System.out.println(getStr_DebitAccount()+"fdkdffd");
+    System.out.println(getStr_CreditAccount()+"fdkjfdjkfd");
+    journal.setStr_CreditAccount(creditAccount);
+    journal.setDbl_DebitAmount(getStr_DebitAmount());
+    System.out.println(getStr_DebitAmount());
+    journal.setDbl_CreditAmount(getStr_CreditAmount());
+   
+   
+    
+    	 getAccountsService().addManualJournal(journal);
+    	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("ManualJournal Saved Successfully!"));
+    	 str_Notes="";
+    	 return "manualjournal.xhtml";
+    	 }
+    	
+  catch(Exception e)
+  {
+	e.printStackTrace();
+  }
+	 return "manualjournal.xhtml";
+}
+
+public String saveManualJournal(ManualJournal jouranl) {
+	System.out.println("jhvvnjggggggggggggggggggggg11111111111111111111111111111111111111111111111111111111");
+	System.out.println(dat_Date);
+	System.out.println(selectedjournal.getStr_Reference());
+	System.out.println(selectedjournal.getStr_Notes());
+	System.out.println(jouranl.getInt_ManualJournalID()+"dfjdfdf");
+	System.out.println(jouranl.getStr_Notes()+"dfjdfjfdjfdjkf");
+	System.out.println(selectedjournal.getInt_ManualJournalID()+"djkffdjfjkjkfgjjf");
+			 getAccountsService().updateManualJournal(jouranl);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
+
+	
+	return "manualjournal.xhtml";
+	
+}
+public void deleteManualJournal1() {
+	try
+	{ 
+	
+	System.out.println("hyjhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+
+	if(indicate4==false)
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
+	}
+	else
+	{
+	id=selectedjournal.getInt_ManualJournalID();
+	System.out.println(id+"gchhhhhhhhhhhhhhhhhh");
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+		Flash flash = facesContext.getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+		flash.setRedirect(true);
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ManualJournal deleted Successfully!", "ManualJournal deleted Successfully!"));
+   
+
+   getAccountsService().deleteManualJournal(id);
+	}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+   
+}
+private static double amount1;
+
+public static double getAmount1() {
+	return amount1;
+}
+public static void setAmount1(double amount1) {
+	InvoiceBean.amount1 = amount1;
+}
+public void amountchangeListener(ValueChangeEvent event)
+{
+	amount1=(double) event.getNewValue();
+	System.out.println(amount1+"jhcfffdjhfjhdffdj1111111111111111111");
+}
+public void validateAccount(FacesContext context, UIComponent component,Object o) 
+{System.out.println("111111111111111111111118888888888888888888888888888888888888888888");
+	 
+		HtmlSelectOneMenu menu =(HtmlSelectOneMenu) component;
+		System.out.println(debitAccount+"fdjfdfd");
+	    System.out.println(creditAccount+"djkfdkjfdkj");
+		System.out.println(menu.getSubmittedValue().equals(debitAccount)+"hjfddfhffgf");
+		if(menu.getSubmittedValue().equals(debitAccount)) {
+			FacesMessage msg
+	          = new FacesMessage();
+			 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+		        throw new ValidatorException(msg);
+		}
+		else
+		{   
+			System.out.println("jfdjjfjfgjfgj");
+		}
+}
+public void validateAmount(FacesContext context, UIComponent component,Object o) 
+ {
+	 System.out.println("166666666666666666666666666666666666666666666666666666666666666666666666666");
+		HtmlInputText input =(HtmlInputText) component;
+		double amount2= Double.parseDouble((String) input.getSubmittedValue());
+		
+		 int retval = Double.compare(amount1,amount2);
+		
+		
+		if(retval==0) {
+			System.out.println("vfgfjkfkjgfkj");
+		}
+		else
+		{   
+			FacesMessage msg
+	          = new FacesMessage();
+			 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+		        throw new ValidatorException(msg);
+		}
+ }
 }
