@@ -54,7 +54,7 @@
    
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" >
             <tr>
-            <td><h:outputLabel value="Account" /> <font color="red" >*</font></td> 
+            <td ><h:outputLabel value="Account" /> <font color="red" >*</font></td> 
             
               <td ><h:selectOneMenu id="str_Account" value="#{dueBean.str_Accounts}" required="false" >
               
@@ -78,8 +78,8 @@
   
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
-            <td> <h:outputText  value="Period" /><font color="red" >*</font></td> 
-           <td>
+            <td width="24%"> <h:outputText  value="Period" /><font color="red" >*</font></td> 
+           <td >
            <h:panelGroup id="str_Period">
           
            <h:selectOneMenu value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Quarterly' }" valueChangeListener="#{dueBean.periodChangeListener}">
@@ -144,7 +144,7 @@
   
    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr>
-      <td><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
+      <td width="24%"><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
               <td><h:selectOneMenu id="str_Organisation" value="#{dueBean.str_Organisation}" >
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                   <f:selectItem itemLabel="#{dueBean.str_Organisation}" itemValue="#{dueBean.str_Organisation}"/>
@@ -177,7 +177,7 @@
           <div id="page3"> 
     <div class="gsTitleDiv">Amount Details<br/><hr/></div>     
  
-   <table style="width: 78%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    
           <tr>
            <td>  <h:outputText  value="Due Amount" /></td>
