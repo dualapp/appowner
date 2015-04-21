@@ -40,6 +40,8 @@
   
     <th><p:outputLabel value="PoolAudience"/></th>
     <td><p:inputText value="#{expenseBean.onePoll.str_poolAudience}"/></td>
+    <th><p:outputLabel value="End Date"/></th>
+    <td><p:inputText value="#{expenseBean.onePoll.str_EndDate}"/></td>
      
     </tr>
     </table> 
@@ -47,18 +49,22 @@
     <div id="page3">
             
   <div class="gsTitleDiv">Pool Result<br/><hr/></div> 
-   
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <tr><td>
     
-<h2><p:outputLabel value="*#{expenseBean.onePoll.str_poolQuestion}"/>?</h2> 
- #{expenseBean.onePoll.str_Choise1} Got:  #{expenseBean.getCount1()} Vote
+<h2><p:outputLabel value="*#{expenseBean.onePoll.str_poolQuestion}"/>?</h2> </td></tr>
+<tr><td>
+ #{expenseBean.onePoll.str_Choise1} Got:  #{expenseBean.getCount1()} Vote</td></tr>
   
-<p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
-  #{expenseBean.onePoll.str_Choise2} Got: #{expenseBean.getCount2()} Vote
- <p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/>
-#{expenseBean.onePoll.str_Choise3} Got: #{expenseBean.getCount3()} Vote
- <p:progressBar style="width: 30%;" value="#{expenseBean.getChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/>
+<tr><td><p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/></td></tr>
+  <tr><td></td></tr>
+  <tr><td>#{expenseBean.onePoll.str_Choise2} Got: #{expenseBean.getCount2()} Vote</td></tr>
+ <tr><td><p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/></td></tr>
+<tr><td></td></tr>
+<tr><td>#{expenseBean.onePoll.str_Choise3} Got: #{expenseBean.getCount3()} Vote</td></tr>
+ <tr><td><p:progressBar style="width: 30%;" value="#{expenseBean.getChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/></td></tr>
 
-    
+    </table>
     </div>
    
     </h:body>
