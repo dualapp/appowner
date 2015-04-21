@@ -41,7 +41,7 @@
 			         
 			         
 			       
-		    <f:validator validatorId="FileUploadValidator" />
+		    <f:validator validatorId="DocumentUploadValidator" />
 		     </h:inputFile>
 		
 		<p:message style="color: red" for="file" /><br/><br/>
@@ -86,7 +86,7 @@
              </tr>
              <tr>
             <th align="left">Notice Description</th>
-              <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.str_Description}" width="550" height="280" style="margin-bottom:20px;"  />
+              <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" maxlength="100" />
                 
               </td>
              
