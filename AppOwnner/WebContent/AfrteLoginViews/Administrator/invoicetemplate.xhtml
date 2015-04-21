@@ -179,6 +179,7 @@
  <tr>
  <th>
     <h:outputText value="Frequency:"/><font color="red" >*</font></th>
+   
     <td>
    <h:selectOneMenu id="str_Frequency" value="#{invoiceTemplate1.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
                   <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
@@ -186,7 +187,7 @@
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
                         <f:selectItem itemLabel="One Time" itemValue="One Time"/>
-                         <p:ajax event="change" update="str_DueInvoiceTemplate" process="str_Frequency"/>
+                         <p:ajax event="change" partialSubmit="true" update="str_DueInvoiceTemplate" execute="str_Frequency"/>
                  </h:selectOneMenu></td>
     </tr>
     <tr>
