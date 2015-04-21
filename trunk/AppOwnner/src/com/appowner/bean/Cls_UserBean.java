@@ -890,7 +890,7 @@ public class Cls_UserBean implements Serializable{
 		
 			editlis=getUserService().edit(int_UserId);
 			System.out.println("..............................................");
-			System.out.println(editlis.getStr_FirstName());
+			//System.out.println(editlis.getStr_FirstName());
 			edituserid2=editlis.getInt_UserId();
 			str_BlockName=editlis.getStr_Block();
 		//	return "userEdituser.xhtml";
