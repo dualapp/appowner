@@ -53,19 +53,19 @@
     <div class="gsTitleDiv"> Create Invoice Template<br/><hr/></div>
   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
-             <td> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
+             <td width="30%"> <h:outputLabel value="Organisation" /><font color="red" >*</font></td>  
           <td><h:inputText id="str_Organisation" readonly="true"
 								value="#{templateBean.str_Organisation}" ></h:inputText>
 								</td>
                  </tr>
-                 <tr></tr><tr></tr><tr></tr><tr></tr>
+                
                  <tr>
                  <h:panelGroup>
             <td>  <h:outputText  value="Invoice Template Name" /><font color="red" >*</font></td>
            <td>  <p:inputText id="str_InvoiceTemplateName" value="#{templateBean.str_InvoiceTemplateName}"  required="true" requiredMessage="InvoiceTemplate is not Empty"  />  </td>
            <td><p:message for="str_InvoiceTemplateName" dispay="text"/></td>
           
-           <td> &#150; &#150; &#150;<p:selectBooleanCheckbox id="bl_Show" value="#{templateBean.bl_Show}"/>Show Invoice no in Email</td>       
+           <td> &#150; &#150; &#150;<p:selectBooleanCheckbox id="bl_Show" value="#{templateBean.bl_Show}"/>&#150; &#150; &#150;Show Invoice no in Email</td>       
        
            </h:panelGroup>
              </tr>
