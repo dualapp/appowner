@@ -21,7 +21,10 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
          margin-left:-200px; 
 
 }
-      </style>	
+
+ 
+</style>
+     
  
   
 
@@ -117,13 +120,14 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
   <h:panelGroup layout="block" styleClass="selection">
 	<fieldset class="repeat">
 	<legend class="repeat" > You can add a role roles by selecting the checkboxes and remove a role by de-selecting the checkbox </legend>
-	  
+	
 	<p:selectManyCheckbox     value="#{roleManagementBean.str_AssinedRoles}" valueChangeListener="#{roleManagementBean.roleChangeListener}" layout="pageDirection" styleClass="nostyle">
        <f:selectItems value="#{roleManagementBean.str_Roles}"  />
    
 </p:selectManyCheckbox>
+
  
-<h3 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h3>
+<h4 style="color:red">* Community Administrator overrides all other role assignments of a user. Any member/staff being assigned "Communtiy Administrator" role will have access to ALL information and can perform ANY action on the data associated with your complex. This includes removing other community administrators as well. Thus please assign "Communtiy Administrator" role responsibly.</h4>
  </fieldset>
  </h:panelGroup>
 <br/><br/>
