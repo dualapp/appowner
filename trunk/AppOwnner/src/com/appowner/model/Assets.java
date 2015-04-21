@@ -53,8 +53,7 @@ public class Assets  implements Serializable{
 	private Date  date_WarrantyEndDate;
 	@Column
 	private Double dbl_Price;
-	@Column(name="var_SellerNameAnddetails")
-	private String str_SellerNameAnddetails;
+	 
 	@Column 
 	private Date date_AMCStartDate;
 	@Column
@@ -109,12 +108,7 @@ public class Assets  implements Serializable{
 	public void setDbl_Price(Double dbl_Price) {
 		this.dbl_Price = dbl_Price;
 	}
-	public String getStr_SellerNameAnddetails() {
-		return str_SellerNameAnddetails;
-	}
-	public void setStr_SellerNameAnddetails(String str_SellerNameAnddetails) {
-		this.str_SellerNameAnddetails = str_SellerNameAnddetails;
-	}
+	 
 	public Date getDate_AMCStartDate() {
 		return date_AMCStartDate;
 	}
