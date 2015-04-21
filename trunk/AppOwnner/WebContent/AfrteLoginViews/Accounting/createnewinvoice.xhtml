@@ -55,11 +55,12 @@
             <tr>
             
             <td><h:outputLabel value="Invoice Template:" /></td>
-            <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}">
+            <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}" required="true">
                      <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
                     <f:ajax event="change" execute="str_InvoiceTemplate" render="@form" />
                  </p:selectOneMenu>
+                 <p:message for="str_InvoiceTemplate" display="text"/>
              </td>
         
           
@@ -160,6 +161,7 @@
              <td>  <h:outputLabel  value="Due Date*" /></td>
            <td>  <p:calendar id="dat_DueDate" value="#{invoiceBean.dat_DueDate}"  required="true" pattern="dd/MM/yyyy" requiredMessage="It Should not be Empty" style="width:250px">
             <p:ajax event="dateSelect" partailSubmit="true"/>
+            <p:message for="dat_DueDate" display="true"/>
              </p:calendar> </td>
           
             
@@ -325,7 +327,7 @@
        <tr>
         
                  <td><p:commandButton styleClass="btn" id="submit" value="Submit" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" >
-                <f:ajax execute="@all"/>
+              
                 </p:commandButton>
                  <p:button styleClass="btn" id="cancel" value="Cancel" outcome="invoice.xhtml"  style="margin-left:2em;" /></td>
            </tr>
