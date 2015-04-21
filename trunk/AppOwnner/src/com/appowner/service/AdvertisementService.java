@@ -24,7 +24,7 @@ public interface AdvertisementService {
 	public void updatePanel(PanelPrice panel);
 	public List<Company> listperson1();
 	public List<Company> listoperation(String select);
-	public void addagencies(agency_information agency);
+	public int addagencies(agency_information agency);
 	public int agency1(String agencyname1);
 	public List<agency_information> agencies1();
 	public void Deleted(agency_information category);
@@ -35,6 +35,9 @@ public interface AdvertisementService {
 	public void payment(cls_MakePayment pay);
 	public int adv(String intdocid1);
 	public int adv1(String intdocid1);
+	public int companysid(int agencyid1);
+	public List<agency_information> allinf(int postid);
+	public void deletepost(agency_information detail);
 	
 	
 }
