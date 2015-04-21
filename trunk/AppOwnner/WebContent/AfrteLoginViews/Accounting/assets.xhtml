@@ -46,13 +46,13 @@
               
                 <th> <p:outputLabel value="Bolck"/></th> 
                <td>  <h:selectOneMenu  value="#{expenseBean.str_Block}" > 
-                <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                >
               <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
                  </h:selectOneMenu> </td>
                  <th> <p:outputLabel value="Category"/></th>
                 <td> <h:selectOneMenu  id="AssetCategory"    value="#{expenseBean.str_AssetCategoryType}">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                   
                  
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                  
