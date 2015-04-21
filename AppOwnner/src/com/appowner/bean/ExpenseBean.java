@@ -1149,6 +1149,7 @@ public String updateOneAsset(Assets asset)
 public List<Assets> getAssetList() {
 	assetList= new ArrayList<Assets>();
 	assetList.addAll(getExpenseService().getAssetList(str_AssetCategoryType,str_Block,Util.getAppartmentId()));
+	System.out.println(assetList+"AssetListttttttttttttttttttt");
 	str_AssetCategoryType=null;
 	str_Block=null;
 	return assetList;
