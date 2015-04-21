@@ -21,6 +21,7 @@ import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.Cls_SubcriptionOption;
 import com.appowner.model.Cls_categoryDetail;
+import com.appowner.model.CommiteeMember;
 import com.appowner.model.Company;
 import com.appowner.model.GroupMember;
 import com.appowner.model.Mail;
@@ -232,10 +233,26 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cls_CreateDocumentManagement> getListCreatedocument() {
-		List<Cls_CreateDocumentManagement> sss= getSessionFactory().getCurrentSession().createCriteria(Cls_CreateDocumentManagement.class).list();
-		System.out.println(sss);
-		return sss;
+	public List<Cls_CreateDocumentManagement> getListCreatedocument(String username) {
+		if(username==null )
+		{
+			String  query = "{ CALL uploaddocument() }";
+			
+			 List<Cls_CreateDocumentManagement> fileupload = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_CreateDocumentManagement.class)
+			          ).list();
+		     System.out.println(fileupload.listIterator().hasNext());
+			 return fileupload;	
+		}
+		else
+		{
+			String  query = "{ CALL uploaddocument1(?)}";
+			List<Cls_CreateDocumentManagement> fileuploads=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_CreateDocumentManagement.class)).setParameter(0, username).list();
+			return fileuploads;
+		
+		
+		
+	}
+		
 	}
 
 	@Override
@@ -887,9 +904,88 @@ public class SubcriptDaoImpl implements SubcriptDao {
 			 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, txtfile).setParameter(1, filename).setParameter(2, path).setParameter(3, postid).executeUpdate();
 			System.out.println(hql+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
 		}
-		
+
+	@Override
+	public List getcommiteid() {
+		List<Integer> list= (List<Integer>)getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class).setProjection(Projections.property("int_UserId")).list();
+		ListIterator itr=(ListIterator) list.listIterator();
+		System.out.println(itr);
+		List<String> mailids=new ArrayList<String>();
+		while(itr.hasNext())
+		{
+	    Object obj= itr.next();
+		    System.out.println(".,,,,,,,,,,,,,,,,,,,,,,,,,,,,,................>>>>>>>>>>");
+
+		   int int_UserId=(int) obj;
+	        System.out.println(int_UserId+"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmm");
+	        String hql1="select str_Email  from User where  int_UserId=?";
+			System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+			System.out.println(hql1);
+			 
+			String mailid=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, int_UserId).uniqueResult();
+			 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+			 System.out.println( mailid+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+			 mailids.add(mailid);
+		}
+		 System.out.println(list);
+	        return mailids;	
 	}
 
+	@Override
+	public List getgroupid() {
+		List<Integer> list= (List<Integer>)getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).setProjection(Projections.property("userId")).list();
+		ListIterator itr=(ListIterator) list.listIterator();
+		System.out.println(itr);
+		List<String> mailids=new ArrayList<String>();
+		while(itr.hasNext())
+		{
+	    Object obj= itr.next();
+		    System.out.println(".,,,,,,,,,,,,,,,,,,,,,,,,,,,,,................>>>>>>>>>>");
+
+		   int userId=(int) obj;
+	        System.out.println(userId+"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmm");
+	        String hql1="select str_Email  from User where  int_UserId=?";
+			System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+			System.out.println(hql1);
+			 
+			String mailid=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, userId).uniqueResult();
+			 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+			 System.out.println( mailid+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+			 mailids.add(mailid);
+		}
+		 System.out.println(list);
+	        return mailids;	
+	}
+
+	@Override
+	public List getadminname() {
+		List<Integer> list= (List<Integer>)getSessionFactory().getCurrentSession().createCriteria(User.class).setProjection(Projections.property("str_UserRoleName")).list();
+		ListIterator itr=(ListIterator) list.listIterator();
+		System.out.println(itr);
+		List<String> mailids=new ArrayList<String>();
+		while(itr.hasNext())
+		{
+	    Object obj= itr.next();
+		    System.out.println(".,,,,,,,,,,,,,,,,,,,,,,,,,,,,,................>>>>>>>>>>");
+
+		  String  str_UserRoleName=(String) obj;
+	        System.out.println(str_UserRoleName+"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmm");
+	        String hql1="select str_Email  from User where  str_UserRoleName=?";
+			System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+			System.out.println(hql1);
+			 
+		List<String>mailid=(List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_UserRoleName).list();
+			 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+			 System.out.println( mailid+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+			 mailids.addAll(mailid);
+		
+		}
+		 System.out.println(list);
+	        return mailids;	
+	}
+	}
+
+
 		
 	
 		
@@ -899,23 +995,7 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	
 
 	
-	
-	
-	
 
-	
-	
-	
-
-
-
-	
-	
-	
-
-	
-
-	
 	
 
 	
