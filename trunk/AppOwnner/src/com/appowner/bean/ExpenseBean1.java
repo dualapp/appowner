@@ -15,6 +15,7 @@ import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.primefaces.event.SelectEvent;
 
 import com.appowner.model.Expense;
 import com.appowner.model.ServiceRequest;
@@ -36,7 +37,8 @@ public class ExpenseBean1  implements Serializable{
 	 */
 	 
 	String str_ExpenseId;
-	private Date date_Duration;
+	 
+	private Date date_Duration=new java.util.Date();;
 	public String getStr_Name() {
 		return str_Name;
 	}
@@ -359,12 +361,64 @@ private List<Expense> selectedExpenses;
 
 public List<Expense> getExpenseList() {
 	expenseList=new ArrayList<Expense>();
-	expenseList.addAll(getExpenseService().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,Util.getAppartmentId()));
+	expenseList.addAll(getExpenseService().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,Util.getAppartmentId(),date_Duration));
 	
 	return expenseList;
 }
 public void setExpenseList(List<Expense> expenseList) {
 	this.expenseList = expenseList;
+}
+private boolean indicate;
+
+
+public boolean isIndicate() {
+	return indicate;
+}
+public void setIndicate(boolean indicate) {
+	this.indicate = indicate;
+}
+public String select()
+{   
+  try{ 
+   if(indicate==false)
+   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a row  to view!"));
+   return "Expenses.xhtml";
+   }
+   
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
+public String select1()
+{   
+  try{ 
+   if(indicate==false)
+   {    
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a row to edit!"));
+		return "Expenses.xhtml";
+   }
+   
+  }
+  catch(Exception e)
+  {
+	  e.printStackTrace();
+  }
+  return null;
+}
+public void rowUnSelectListener()
+{ 
+	  
+	  indicate=false;
+}
+public  void rowSelectListener( SelectEvent event)
+{ 
+	
+	 
+	  indicate=true;
 }
 private Expense expense1;
 public void getExpense1() {
