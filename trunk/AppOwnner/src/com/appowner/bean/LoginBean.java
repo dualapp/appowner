@@ -82,8 +82,8 @@ public class LoginBean implements Serializable {
 	private String str_EmailId;
 	private String str_UserType;
 	private String str_Block;
-	private Date dat_OpenDate;
-	private Date dat_CloseDate;
+	private Date dat_OpenDate=new java.util.Date();
+	private Date dat_CloseDate=new java.util.Date();
 	public Date getDat_CloseDate() {
 		return dat_CloseDate;
 	}
