@@ -46,18 +46,18 @@
               
                 <th> <p:outputLabel value="Bolck"/></th> 
                <td>  <h:selectOneMenu  value="#{expenseBean.str_Block}" > 
-                >
+                <f:selectItem itemLabel="All" itemValue="All" />
               <f:selectItems value="#{expenseBean.str_BlockListByAppartmentName}"/>
                 
                  </h:selectOneMenu> </td>
                  <th> <p:outputLabel value="Category"/></th>
                 <td> <h:selectOneMenu  id="AssetCategory"    value="#{expenseBean.str_AssetCategoryType}">
                    
-                 
+                 <f:selectItem itemLabel="All" itemValue="All" />
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                  
                  </h:selectOneMenu></td>
-                <th> <h:commandButton     value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
+                <th> <p:commandButton   icon="ui-icon-search"   value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
                 
                   
                  
@@ -74,8 +74,8 @@
          <p:menuitem value="Export To Excel" action="#"/>
         </p:menuButton>
          
-          &#150; &#150;   <h:commandButton   action="#{expenseBean.select2()}"   id="btn"  process="DT" style="width:120px;height:25px"   icon="ui-icon-info" value="View"/>
-       &#150; &#150; <h:commandButton   action="#{expenseBean.select3()}"  id="btn1"   process="DT" style="width:120px;height:25px"   icon="ui-icon-pencil" value="Edit "/>
+          &#150; &#150;   <p:commandButton   action="#{expenseBean.select2()}"   id="btn"  process="DT" style="width:120px;height:25px"  ajax="false"  icon="ui-icon-info" value="View"/>
+       &#150; &#150; <p:commandButton   action="#{expenseBean.select3()}"  id="btn1"   process="DT" style="width:120px;height:25px"   ajax="false"  icon="ui-icon-pencil" value="Edit "/>
        &#150; &#150;  <p:commandButton  style="width:120px;height:25px" update="DT"  id="btn2" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOneAsset1()}" icon="ui-icon-trash" value="Delete" />
                  <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
