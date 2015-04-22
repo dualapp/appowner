@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -60,9 +61,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId){
+	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId, Date date_Duration){
 		// TODO Auto-generated method stub
-		return getExpenseDao().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,int_ApartmentId);
+		return getExpenseDao().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,int_ApartmentId,date_Duration);
 	}
 
 	@Override

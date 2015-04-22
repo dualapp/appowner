@@ -1,6 +1,7 @@
 package com.appowner.service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -28,7 +29,7 @@ public interface ExpenseService {
 
 	void addExpenses(Expense expense);
 
-	List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId);
+	List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId, Date date_Duration);
 
 	Expense getOneExpense(String str_ExpenseId);
 

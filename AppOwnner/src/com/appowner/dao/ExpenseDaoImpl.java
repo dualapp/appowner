@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -63,11 +64,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId) {
+	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExpenseType, Integer int_ApartmentId,Date date_Duration) {
 
-		if( str_AssetName!=null&&str_AssetCategoryType!=null&&str_ExpenseCategory!=null&&str_ExcepenseType!=null&&int_ApartmentId!=null)
+		if( str_AssetName!=null&&str_AssetCategoryType!=null&&str_ExpenseCategory!=null&&str_ExpenseType!=null&&int_ApartmentId!=null&&date_Duration!=null)
 		{
 			//pending
+			
+			String hql="from Expense where int_AppartmentId=? and str_AssetName=? and str_AssetCatType=? and str_ExpenseCategory=? and str_ExpenseType=? and date_Duration=?";
+			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).setParameter(1, str_AssetName).setParameter(2, str_AssetCategoryType).setParameter(3, str_ExpenseCategory).setParameter(4, str_ExpenseType).setParameter(5, date_Duration).list();
 		}
 		return getSessionFactory().getCurrentSession().createQuery("from Expense where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 	}
@@ -358,12 +362,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public List<Assets> getAssetList(String str_AssetCategoryType,
 			String str_Block, Integer int_ApartmentId) 
 			{
-		if(str_AssetCategoryType!=null&&str_Block!=null&&int_ApartmentId!=null)
+		if(str_AssetCategoryType!=null&&str_Block!=null&&int_ApartmentId!=null&& !str_AssetCategoryType.equalsIgnoreCase("All")&& !str_Block.equalsIgnoreCase("All"))
 		{
 			String hql="from Assets where str_assetcat_name=? AND str_Block=? AND int_AppartmentId=?";
 			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).setParameter(1, str_Block).setParameter(2, int_ApartmentId).list();
 		}
-		return getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		 
+		else
+			return getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 			}
 
 	@Override
