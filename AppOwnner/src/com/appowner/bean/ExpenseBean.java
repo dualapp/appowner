@@ -1141,6 +1141,8 @@ public String updateOneAsset(Assets asset)
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Asset Updated Successfully!", "Asset Updated Successfully!"));
 	selectedAssets=null;
 	str_AdditionalInfo=null;
+	str_AssetCategoryType=null;
+	str_Block=null;
 	return "assets.xhtml";
 }
 /*
@@ -1148,10 +1150,10 @@ public String updateOneAsset(Assets asset)
  */
 public List<Assets> getAssetList() {
 	assetList= new ArrayList<Assets>();
+	System.out.println(str_AssetCategoryType+""+str_Block);
 	assetList.addAll(getExpenseService().getAssetList(str_AssetCategoryType,str_Block,Util.getAppartmentId()));
 	System.out.println(assetList+"AssetListttttttttttttttttttt");
-	str_AssetCategoryType=null;
-	str_Block=null;
+	
 	return assetList;
 }
 public void setAssetList(List<Assets> assetList) {
@@ -2542,9 +2544,9 @@ public String select()
 {   
   try{ 
    if(indicate==false)
-   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   {    
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a poll to view!"));
-		return null;
+		return "pools.xhtml";
    }
    else
    {  
@@ -2564,7 +2566,7 @@ public String select1()
    if(indicate==false)
    {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a poll to vote!"));
-		return null;
+		return "pools.xhtml";
    }
    else
    {  
@@ -2582,13 +2584,13 @@ public String select2()
 {   
   try{ 
    if(indicate==false)
-   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   {   
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an Asset!"));
-		return null;
+		return "assets.xhtml";
    }
    else
-   {  
-	   indicate=false;
+   {  indicate=false;
+	    
 	  return "viewasset.xhtml";
    }
   }
@@ -2600,26 +2602,26 @@ public String select2()
 }
 public void rowUnSelectListener()
 { 
-	 System.out.println("seemaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	 
 	  indicate=false;
 }
 public  void rowSelectListener( SelectEvent event)
 { 
 	
-	 System.out.println("seemuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"+event.getObject());
+	 
 	  indicate=true;
 }
 public String select3()
 {   
   try{ 
    if(indicate==false)
-   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   {    
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an Asset!"));
-		return null;
+		return "assets.xhtml";
    }
    else
-   {  
-	   indicate=false;
+   {  indicate=false;
+	   
 	  return "editasset.xhtml";
    }
   }
@@ -2633,14 +2635,14 @@ public String select4()
 {   
   try{ 
    if(indicate==false)
-   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+   {    
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to proceed!"));
 		return null;
    }
    else
    {  
-	   indicate=true;
-	  return "null";
+	   indicate=false;
+	  return null;
    }
   }
   catch(Exception e)
