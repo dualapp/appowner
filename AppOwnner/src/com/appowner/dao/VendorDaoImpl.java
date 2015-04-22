@@ -109,7 +109,7 @@ public class VendorDaoImpl implements VendorDao{
 	public List<String> cityList1(String str_VendorState) {
 		System.out.println(str_VendorState);
 		String hql=" select int_stateId from VendorState  where str_StateName=?";
-		int StateId=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_VendorState).uniqueResult();
+		Integer StateId=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_VendorState).uniqueResult();
 		 
 		String hql1="select str_CityName from VendorCity where int_stateId="+StateId;
 		@SuppressWarnings("unchecked")

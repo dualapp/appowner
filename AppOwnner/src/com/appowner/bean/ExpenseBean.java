@@ -2246,7 +2246,7 @@ private Boolean render;
 public Boolean getRendered() {
 	 
 			 
-	if(getIsVoted()==null)
+	if(getIsVoted()==null&&!(getExpenseService().getLatestPolls()==null))
 		 
 		rendered=true;
 	else
