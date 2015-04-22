@@ -77,11 +77,7 @@
               <f:selectItem  itemLabel="NextMonth" itemValue="Private" />
                <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
                 <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
-      </h:selectOneMenu> --><h:selectOneMenu id="car" value="#{requestScopeBean.str_Period}" valueChangeListener="#{requestScopeBean.accountchangeListener3}" >
-           
-            <f:selectItems value="#{requestScopeBean.dates}" />
-              <p:ajax event="click" partialSubmit="true"  update="date" process="car"/>
-       </h:selectOneMenu>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      </h:selectOneMenu> --> 
                   <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}">
                   </p:calendar>&nbsp; &nbsp; &nbsp;</td>
     <th><p:outputLabel value="Event Type"/></th> 
@@ -91,7 +87,7 @@
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </h:selectOneMenu></td> 
      
-     <td></td><td><h:commandButton   update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
+     <td></td><td><p:commandButton    icon="ui-icon-search" update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
     </tr>
     </table></div>
     <div id="page3"> 

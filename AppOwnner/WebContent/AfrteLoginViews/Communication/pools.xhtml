@@ -67,7 +67,7 @@
                    
                     
                  </h:selectOneMenu>
-                 </td><th><h:commandButton value="Go" icon="ui-icon-search" action="#"/></th></tr>
+                 </td><th><p:commandButton  update="DT" value="Go" icon="ui-icon-search" action="#"/></th></tr>
                            
              
              </table>
@@ -87,9 +87,9 @@
         </p:menuButton>
          
           
-        <h:commandButton  style="width:120px;height:25px"  action="#{expenseBean.select1()}"    id="btn" update="DT" process="DT"  disabled="#{expenseBean.disabled}" value="Vote Selected"/>
+        <p:commandButton  style="width:120px;height:25px"  action="#{expenseBean.select1()}"  ajax="false"  id="btn" update="DT" process="DT"   icon="ui-icon-info" disabled="#{expenseBean.disabled}" value="Vote"/>
     
-      &#150; &#150; <h:commandButton id="btn1"  action="#{expenseBean.select()}"  style="width:120px;height:25px"  disabled="#{expenseBean.disabled1}" update="DT" process="DT" value="View Selected Vote" />
+      &#150; &#150; <p:commandButton id="btn1"  action="#{expenseBean.select()}"  ajax="false" style="width:120px;height:25px"  disabled="#{expenseBean.disabled1}" icon="ui-icon-info" update="DT" process="DT" value="View" />
      
        
         &#150; &#150;  <p:commandButton  style="width:120px;height:25px"   rendered="#{expenseBean.isEnable}"  id="btn2"   update="DT" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{expenseBean.deleteOnePoll1()}" icon="ui-icon-trash" value="Delete" />

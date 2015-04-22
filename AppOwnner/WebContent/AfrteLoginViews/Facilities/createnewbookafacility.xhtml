@@ -28,8 +28,9 @@
        
            <div class="gsTitleDiv">Booking Details<br/><hr/></div> 
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+ 
    
-  <tr><th width="15%"><p:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText   id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
+  <tr><th width="15%"><p:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText  style="width:500px;height:22px;" maxlength="50"  id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
   
   </p:inputText>
   </td>
@@ -40,7 +41,7 @@
   <td width="15%"></td>
   <th  width="20%"></th>
   </tr>
-   <tr><th><p:outputLabel value="Organization"/></th>  <td><p:inputText value="#{loginBean.str_ApartmentName}"/>  </td>
+   <tr><th><p:outputLabel value="Organization"/></th>  <td><p:inputText  readonly="true" value="#{loginBean.str_ApartmentName}"/>  </td>
    <th></th>
    <th><p:outputLabel value="Event Type"/></th> 
    <td><h:selectOneMenu value="#{loginBean.str_EventType}">

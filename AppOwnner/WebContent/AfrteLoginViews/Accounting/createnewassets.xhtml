@@ -36,19 +36,19 @@
                  <div class="gsTitleDiv"> OtherDetails <br/><hr/></div>  
                  <h:panelGroup id="sss1">
              <h:panelGrid >
-             <p:outputPanel layout="block" id="assetimg" style="width:200px;height:200px;margin-bottom:20px">
-                 <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr> 
-                    
-                    <td>   
-       <p:graphicImage id="img" style="Width: 300px; height:186px;float:left;padding-left:60px" value="#{expenseBean.getPath4()}"/></td ></tr>
-       <tr> <td>
+             <p:outputPanel layout="block" id="assetimg">
+              
+                     
+       <p:graphicImage alt="No Attachment" id="img" style="Width: 280px; height:166px;" value="#{expenseBean.getPath4()}"/> 
+        </p:outputPanel>
+        <table><tr> <td width="20%">
        
        <!-- inputFile tag to upload file -->
 		 
 		<h:inputFile id="file" 
 		             label="file"
-			         value="#{expenseBean.part3}" 
-			         >
+			         value="#{expenseBean.part3}" >
+			        
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
 		</h:inputFile></td> <td>
@@ -63,10 +63,11 @@
        </td></tr>
         
                  </table>
-                 </p:outputPanel>
+                
                  
                  </h:panelGrid>
                  </h:panelGroup>
+                
                   </h:form>
   <h:form id="form" > 
      <p:growl id="ui-growl" globalOnly="true" sticky="true" />
