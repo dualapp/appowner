@@ -38,7 +38,8 @@
 			</tr>
 		</tbody>
 	</table>
-	<h:form>
+	<h:body>
+	<h:form id="form">
 	 <p:growl id="ui-growl"   sticky="true" />
 	 <div id="page3">
    
@@ -76,14 +77,14 @@
                   </p:calendar>
                     
              </td>     
-             <td><p:inputText id="Amount" style="width:150px"   onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" required="true" requiredMessage="Enter Amount" value="#{expenseBean1.int_Ammount}" valueChangeListener="#{expenseBean1.amountListener}">
+             <td><p:inputText id="Amount" style="width:150px"   placeholder="Price(in double)" onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" required="true" requiredMessage="Enter Amount" value="#{expenseBean1.dbl_Ammount}" valueChangeListener="#{expenseBean1.amountListener}">
              
              </p:inputText> 
              
               </td>
               
                <td><p:inputText  value="#{expenseBean1.str_Description}" style="width:150px" valueChangeListener="#{expenseBean1.descriptionListener}"/>  </td>
-               <td><h:selectOneMenu id="assetcatname" required="true" requiredMessage="Enter AssetCatName"  style="width:150px" value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
+               <td><h:selectOneMenu id="assetcatname" required="true" requiredMessage="Enter AssetCategoty"  style="width:150px" value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
                   <f:selectItem itemLabel="Select" itemValue=""/>
                  
                    <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
@@ -126,7 +127,7 @@
                   </p:calendar>
                     
              </td>     
-             <td><p:inputText id="Amount1" onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')"  value="#{expenseBean1.int_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean1.amountListener}">
+             <td><p:inputText id="Amount1" placeholder="Price(in double)" onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')"  value="#{expenseBean1.dbl_Ammount}"  style="width:150px" valueChangeListener="#{expenseBean1.amountListener}">
              
              </p:inputText> 
              
@@ -164,6 +165,7 @@
 	 
 	 
 	</h:form>
+	</h:body>
  </ui:define>
  </ui:composition>
  
