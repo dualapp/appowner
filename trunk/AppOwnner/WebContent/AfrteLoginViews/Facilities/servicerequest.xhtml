@@ -320,7 +320,7 @@
             
             <tr><th><p:outputLabel value="Selected request will be assign click yes to confirm"/></th></tr>
            <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
-           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send SMS to creator"/></td></tr>
            <tr><td><h:commandButton  styleClass="btn" update="ui-growl" value="yes" action="#{requestScopeBean.assignRequestedService(sr1)}"/> 
           &#150; &#150;  <h:commandButton  styleClass="btn" value="No" action="servicerequest.xhtml"/></td>
            </tr>
@@ -336,7 +336,7 @@
             
             <tr><th><p:outputLabel value="Selected request will be closed click yes to confirm"/></th></tr>
            <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
-           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send SMS to creator"/></td></tr>
            <tr><td><h:commandButton   styleClass="btn" value="yes" action="#{requestScopeBean.closeRequestedService(sr1)}"/> 
            &#150; &#150; <h:commandButton  styleClass="btn" value="No" action="servicerequest.xhtml"/></td>
            </tr>

@@ -82,7 +82,7 @@
         
           &#150; &#150;  <p:commandButton  style="width:120px;height:25px"   process="DT" update=":viewform"   icon="ui-icon-info" value="view" oncomplete="PF('multiVendorDialog1').show()"  ajax="#{vendorBean.indicate}" id="btn"  action="#{vendorBean.select()}"/>
        &#150; &#150; <p:commandButton style="width:120px;height:25px" id="btn1" ajax="#{vendorBean.indicate}" rendered="#{expenseBean.isEnable}" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" action="#{vendorBean.select()}" />
-       &#150; &#150;  <p:commandButton style="width:120px;height:25px"  id="btn2"   rendered="#{expenseBean.isEnable}" update=":form:DT :form:ui-growl" process="DT" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
+       &#150; &#150;  <p:commandButton style="width:120px;height:25px"  id="btn2"    rendered="#{expenseBean.isEnable}" update=":form:DT :form:ui-growl" process="DT"   ajax="#{vendorBean.indicate1}" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
     
      &#150; &#150;   <h:commandLink id="excel">
        <p:graphicImage  height="20" width="20" alt="excel" value="#{expenseBean.str_Name}images/excel.jpg"/>
@@ -590,7 +590,7 @@
        <p:column headerText="Name" style="width:150px">
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{v.str_ServiceName}" /></f:facet>
-               <f:facet name="input"><p:inputText value="#{v.str_ServiceName}" style="width:100%" label="Year"/></f:facet>
+               <f:facet name="input"><p:inputText value="#{v.str_ServiceName}" style="width:100%" label="Service"/></f:facet>
            </p:cellEditor>
        </p:column>
  
