@@ -371,9 +371,23 @@ public void setExpenseList(List<Expense> expenseList) {
 	this.expenseList = expenseList;
 }
 private boolean indicate;
+private boolean indicate1;
 
 
+public boolean isIndicate1() {
+	return indicate1;
+}
+public void setIndicate1(boolean indicate1) {
+	this.indicate1 = indicate1;
+}
 public boolean isIndicate() {
+	if(selectedExpenses!=null)
+	{
+	if (selectedExpenses.size() >= 2)
+	{
+		indicate=false;
+	}
+	}
 	return indicate;
 }
 public void setIndicate(boolean indicate) {
@@ -382,8 +396,13 @@ public void setIndicate(boolean indicate) {
 public String select()
 {   
   try{ 
-   if(indicate==false)
-   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+	  if (selectedExpenses.size() >= 2) {
+          
+		   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("You cannot selected more than 1 row to proceed"));
+		   return "Expenses.xhtml";
+	  }
+	  else if(indicate==false)
+   {    
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select a row  to view!"));
    return "Expenses.xhtml";
    }
@@ -415,11 +434,12 @@ public void rowUnSelectListener()
 { 
 	  
 	  indicate=false;
+	  indicate1=false;
 }
 public  void rowSelectListener( SelectEvent event)
 { 
 	
-	 
+	indicate1=true;
 	  indicate=true;
 }
 private Expense expense1;
@@ -459,6 +479,13 @@ public String updateOneExpense(Expense expense)
 }
 public String deleteSelectedExpenses()
 {
+	if(indicate1==false)
+	   {    
+	   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to delete!"));
+	   return "Expenses.xhtml";
+	   }
+	   else{
+		   indicate1=false;
 List<Expense> entitiesToDelete = new ArrayList<Expense>();
  
     for (Expense expense :selectedExpenses) {
@@ -475,7 +502,7 @@ List<Expense> entitiesToDelete = new ArrayList<Expense>();
 	 
     return "Expenses.xhtml";
 
-	
+	   }
 }
 public String deleteOneExpense()
 {expense=new Expense();
