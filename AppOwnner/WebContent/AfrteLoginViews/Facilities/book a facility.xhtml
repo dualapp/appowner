@@ -355,7 +355,7 @@
             
             <tr><th><p:outputLabel value="Selected request will be assign click yes to confirm"/></th></tr>
            <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
-           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send SMS to creator"/></td></tr>
            <tr><td><h:commandButton  styleClass="btn" update=":form:DT :form:ui-growl" value="yes" action="#{requestScopeBean.assignBookFacility(sr1)}"/> 
           &#150; &#150;  <h:commandButton  styleClass="btn" value="No" action="book a facility.xhtml"/></td>
            </tr>
@@ -374,7 +374,7 @@
             
             <tr><th><p:outputLabel value="Selected request will be closed click yes to confirm"/></th></tr>
            <tr><td><p:selectBooleanCheckbox      value="#"/> <p:outputLabel value="Send Email to creator"/> </td></tr>
-           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send Email to creator"/></td></tr>
+           <tr><td><p:selectBooleanCheckbox     value="#"/><p:outputLabel value="Send SMS to creator"/></td></tr>
            <tr><td><h:commandButton   update=":form:DT :form:ui-growl"  styleClass="btn" value="yes" action="#{requestScopeBean.closeBookFacility(sr1)}"/> 
            &#150; &#150; <h:commandButton  styleClass="btn" value="No" action="book a facility.xhtml"/></td>
            </tr>
