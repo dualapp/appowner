@@ -40,7 +40,7 @@
 	</table>
 	<h:body>
   <h:form id="form">
-  <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+  <p:growl id="ui-growl" globalOnly="true" />
   <div id="page3">
    
        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
@@ -172,7 +172,7 @@
                 
             </p:column>
              <p:column   headerText="Amount"  >
-                <p:outputLabel    value="#{Expenselist.int_Ammount}" /> 
+                <p:outputLabel    value="#{Expenselist.dbl_Ammount}" /> 
           
                 
             </p:column>
@@ -263,7 +263,7 @@
  <th>
     <p:outputLabel value="Ammount:"/></th>
     <td>
-    <p:inputText onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" value="#{ex.int_Ammount}"/></td>  
+    <p:inputText onkeyup="this.value=this.value.replace(/[^\d+\.$]/,'')" value="#{ex.dbl_Ammount}"/></td>  
     </tr>
        </table>
        <div>
@@ -344,7 +344,7 @@
  <th>
     <p:outputLabel value="Ammount:"/></th>
     <td>
-    <p:inputText readonly="true" value="#{ex.int_Ammount}"/></td>  
+    <p:inputText readonly="true" value="#{ex.dbl_Ammount}"/></td>  
     </tr>
        </table>
     <div><hr/>
