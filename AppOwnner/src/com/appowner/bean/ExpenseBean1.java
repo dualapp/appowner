@@ -64,11 +64,12 @@ public class ExpenseBean1  implements Serializable{
 	public void setInt_ExpenseId(Integer int_ExpenseId) {
 		this.int_ExpenseId = int_ExpenseId;
 	}
-	public Integer getInt_Ammount() {
-		return int_Ammount;
+	 
+	public Double getDbl_Ammount() {
+		return dbl_Ammount;
 	}
-	public void setInt_Ammount(Integer int_Ammount) {
-		this.int_Ammount = int_Ammount;
+	public void setDbl_Ammount(Double dbl_Ammount) {
+		this.dbl_Ammount = dbl_Ammount;
 	}
 	public String getStr_Description() {
 		return str_Description;
@@ -102,7 +103,7 @@ public class ExpenseBean1  implements Serializable{
 	private String str_ExcepenseType;
 	private String str_ExpenseCategory;
 	private Integer int_ExpenseId;
-	private Integer int_Ammount;
+	private Double dbl_Ammount;
 	private String str_Description;
 	private String str_AccountName;
 	 
@@ -302,7 +303,7 @@ public String addExpenses()
 		 str_ExcepenseType=(String)expensetype.next();
 		  str_ExpenseCategory=(String)expensecategory.next();
 		 date_Duration=(Date)dateduration.next();
-		  int_Ammount=(Integer)ammountlist.next();
+		  dbl_Ammount=(Double)ammountlist.next();
 		  str_Description=(String)descriptionlist.next();
 		  str_AccountName=(String)accountlist.next();
 		 
@@ -316,7 +317,7 @@ public String addExpenses()
 	else
 		expense.setStr_Status("Approved");
 	expense.setDate_Duration(getDate_Duration());
-	expense.setInt_Ammount(getInt_Ammount());
+	expense.setDbl_Ammount(getDbl_Ammount());
 	expense.setStr_AccountName(getStr_AccountName());
 	expense.setStr_AssetCatType(getStr_AssetCategoryType());
 	expense.setStr_AssetName(getStr_AssetName());
@@ -328,12 +329,13 @@ public String addExpenses()
 	
 	getExpenseService().addExpenses(expense);
 	
+	
 		}
 		else
 			return "Expenses.xhtml";
 	}
-	
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
+	
 	return "Expenses.xhtml";
 }
  private String str_Status;
