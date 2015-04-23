@@ -795,7 +795,7 @@ public double getDebit() {
 			String account1=expense.getStr_ExpenseType();
 			if(account.equalsIgnoreCase(str))
 			{
-			  double balance5=expense.getInt_Ammount();
+			  double balance5=expense.getDbl_Ammount();
 			   System.out.println(balance5);
 			
 			   credit=credit+balance5;
@@ -803,7 +803,7 @@ public double getDebit() {
 			}
 			else if(account1.equalsIgnoreCase(str))
 			{
-				double balance6=expense.getInt_Ammount();
+				double balance6=expense.getDbl_Ammount();
 				   System.out.println(balance6);
 				
 				   debit=debit+balance6;
@@ -1381,7 +1381,7 @@ public List<Double> getExpenseAmount1() {
 	while(list.hasNext())
 	{
 		Expense expense=(Expense) list.next();
-		double ddd=expense.getInt_Ammount();
+		double ddd=expense.getDbl_Ammount();
 		debitNetTotal=debitNetTotal+ddd;
 		 BigDecimal b1 = new BigDecimal(debitNetTotal).setScale(2,BigDecimal.ROUND_HALF_UP);
 		 debitNetTotal=b1.doubleValue();
