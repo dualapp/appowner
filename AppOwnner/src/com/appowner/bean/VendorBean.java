@@ -20,6 +20,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.search.annotations.Factory;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.RateEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -1045,13 +1046,13 @@ public void myChangeListener(ValueChangeEvent e){
                    disableButton();
 }
 	public String deleteVendor1() {
-		if(indicate==false)
+		if(indicate1==false)
 		   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
 		   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to delete!"));
 				return null;
 		   }
 		   else{
-			   indicate=false;
+			   indicate1=false;
 	    List<Vendor> entitiesToDelete = new ArrayList<Vendor>();
  
 	    for (Vendor vendor :selectedVendor) {
@@ -1149,19 +1150,29 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	}
 	public void rowUnSelectListener()
 	{ 
-		 System.out.println("seemaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		 
 		  indicate=false;
+		  indicate1=false;
 	}
 	public  void rowSelectListener( SelectEvent event)
 	{ 
 		
-		 System.out.println("seemuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"+event.getObject());
+		 
 		  indicate=true;
+		  indicate1=true;
 	}
 	private boolean indicate;
+	private boolean indicate1;
 	 
 
 	public boolean isIndicate() {
+		if(selectedVendor!=null)
+		{
+		if (selectedVendor.size() >= 2)
+		{
+			indicate=false;
+		}
+		}
 		return indicate;
 	}
 	public void setIndicate(boolean indicate) {
@@ -1169,16 +1180,25 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	}
 	public String select()
 	{   
+ 
 	  try{ 
-	   if(indicate==false)
-	   {   System.out.println("jcvkvcjvj11111111111111111111111111111111111111111111111111");
+		   if (selectedVendor.size() >= 2) {
+	           
+			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("You cannot selected more than 1 row to proceed"));
+			   
+	           return "vendorlists.xhtml";
+	       }
+		   else if(indicate==false)
+	   {   
 	   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please select an item to proceed!"));
-			return null;
+			return "vendorlists.xhtml";
 	   }
+	    
+	   
 	   else
 	   {  
 		   indicate=true;
-		  return "null";
+		  return "vendorlists.xhtml";
 	   }
 	  }
 	  catch(Exception e)
@@ -1186,5 +1206,11 @@ System.out.println(entitiesToDelete+"entyt todelete");
 		  e.printStackTrace();
 	  }
 	  return null;
+	}
+	public boolean isIndicate1() {
+		return indicate1;
+	}
+	public void setIndicate1(boolean indicate1) {
+		this.indicate1 = indicate1;
 	}
 }
