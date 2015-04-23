@@ -45,17 +45,17 @@ public class VendorDaoImpl implements VendorDao{
 	public List<Vendor> vendorList(String str_VendorName,String str_VendorType) {
 		if(str_VendorName!=null)
 		{
-			String hql="from  Vendor where str_VendorName=?";
-			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorName).list();
+			String hql="from  Vendor where str_VendorName=? and int_ApartmentId=?";
+			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorName).setParameter(1, Util.getAppartmentId()).setCacheable(true).list();
 			
 		}
 		 if(str_VendorType!=null)
 		{
-			String hql="from  Vendor where str_VendorType=?";
-			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorType).list();
+			String hql="from  Vendor where str_VendorType=? and int_ApartmentId=?";
+			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorType).setParameter(1, Util.getAppartmentId()).setCacheable(true).list();
 			
 		}
-		return (List<Vendor>) getSessionFactory().getCurrentSession().createCriteria(Vendor.class).setCacheable(true).list();
+		return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery("from Vendor where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 	
 	public void deleteVendor(Vendor vendor) {
@@ -128,8 +128,8 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public int getVendorId(String VendorName) {
 		System.out.println( VendorName);
-		String hql2="select int_VendorId from Vendor where str_VendorName=?" ;
-		int id=(Integer) getSessionFactory().getCurrentSession().createQuery( hql2).setParameter(0,VendorName).uniqueResult();
+		String hql2="select int_VendorId from Vendor where str_VendorName=?and int_ApartmentId=?";
+		int id=(Integer) getSessionFactory().getCurrentSession().createQuery( hql2).setParameter(0,VendorName).setParameter(1, Util.getAppartmentId()).uniqueResult();
      return id;
 		
 	}
@@ -167,9 +167,9 @@ public class VendorDaoImpl implements VendorDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> listOfVendorNameByType(String str_VendorType) {
-		String hql4="select str_VendorName from Vendor where str_VendorType=?";
+		String hql4="select str_VendorName from Vendor where str_VendorType=? and int_ApartmentId=?";
 		 
-		return sessionFactory.getCurrentSession().createQuery(hql4).setParameter(0, str_VendorType).list();
+		return sessionFactory.getCurrentSession().createQuery(hql4).setParameter(0, str_VendorType).setParameter(1, Util.getAppartmentId()).list();
 		
 	}
 
@@ -245,14 +245,14 @@ public class VendorDaoImpl implements VendorDao{
 
 	@Override
 	public Vendor getSearchVendorByName1(String str_VendorName) {
-		 String hql7="from Vendor where str_VendorName=?";
-		return (Vendor) sessionFactory.getCurrentSession().createQuery(hql7).setParameter(0, str_VendorName).uniqueResult();
+		 String hql7="from Vendor where str_VendorName=? and int_ApartmentId=?";
+		return (Vendor) sessionFactory.getCurrentSession().createQuery(hql7).setParameter(0, str_VendorName).setParameter(1,Util.getAppartmentId()).uniqueResult(); 
 	}
 
 	@Override
 	public Integer getInt_VendorId(String str_VendorPhone) {
-		 String hql8="select int_VendorId from Vendor where str_VendorPhone=?";
-		return (Integer) sessionFactory.getCurrentSession().createQuery(hql8).setParameter(0, str_VendorPhone).uniqueResult();
+		 String hql8="select int_VendorId from Vendor where str_VendorPhone=? and int_ApartmentId=?";
+		return (Integer) sessionFactory.getCurrentSession().createQuery(hql8).setParameter(0, str_VendorPhone).setParameter(1,Util.getAppartmentId()).uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -272,24 +272,23 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<String> getStr_VendorTypes() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setCacheable(true).setProjection(Projections.property("str_VendorType")).list();
+		return sessionFactory.getCurrentSession().createQuery("select str_VendorCategoryType from WorkOrderCategory where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getVendorNameList() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(Vendor.class).setProjection(Projections.property("str_VendorName")).list();
+		String hql="select  str_VendorName from Vendor where int_ApartmentId=?";
+		return sessionFactory.getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Vendor> getVendorListByName(String str_VendorName) {
-		/*String  query = "{ CALL vendorListByName() }";
-		return sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Vendor.class)).list();
-	*/
-		String hql="from Vendor where str_VendorName=?";
-	 return sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_VendorName).list();
+		 
+		String hql="from Vendor where str_VendorName=? and int_ApartmentId=?";
+	 return sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_VendorName).setParameter(1, Util.getAppartmentId()).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -304,7 +303,7 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<WorkOrderCategory> getWorkOrderCategoryList() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(WorkOrderCategory.class).setCacheable(true).list();
+		return sessionFactory.getCurrentSession().createQuery("from WorkOrderCategory where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 	}
 
 	@Override

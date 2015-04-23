@@ -48,7 +48,7 @@ public class Expense implements Serializable{
 	@Column(name="var_Description")
 	private String str_Description;
 	@Column
-	private double int_Ammount;
+	private double dbl_Ammount;
 	
 	
 	 
@@ -103,12 +103,13 @@ public class Expense implements Serializable{
 	
 	
 	
-	public double getInt_Ammount() {
-		return int_Ammount;
+	public double getDbl_Ammount() {
+		return dbl_Ammount;
 	}
-	public void setInt_Ammount(double int_Ammount) {
-		this.int_Ammount = int_Ammount;
+	public void setDbl_Ammount(double dbl_Ammount) {
+		this.dbl_Ammount = dbl_Ammount;
 	}
+	 
 	public Integer getInt_AppartmentId() {
 		return int_AppartmentId;
 	}
