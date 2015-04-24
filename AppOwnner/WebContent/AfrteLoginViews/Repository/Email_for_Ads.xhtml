@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+ 
+ </h:head> 
+<body  bgcolor="">
+ <h:form>
+ <center>  E-Mail </center>
+ <table>
+            <tr>
+                       <td><h:outputText  value="To" /></td>  
+             <td> <p:inputTextarea rows="7" cols="40" value="#{cls_AddDetailBean.to}"> 
+              </p:inputTextarea>
+              </td>
+             </tr>
+             <tr>
+             <td><h:outputText  value="Category" ></h:outputText></td>
+                <td><p:selectOneMenu id="option"    style="width:200px"  >
+                <f:selectItem itemLabel="Select" itemValue="Select"  />
+                  <f:selectItem itemLabel="Ads" itemValue="Ads"  />
+                 </p:selectOneMenu></td></tr>
+              
+             <tr>
+             <td><h:outputText  value="Title" /></td>
+               <td> <p:selectOneMenu id="option2" value="#{cls_AddDetailBean.msg1}"  valueChangeListener="#{cls_AddDetailBean.messageChangeListener1}"  required="true"  style="width:200px"  >
+                <f:selectItem itemLabel="Select" itemValue="Select"  />
+                  <f:selectItem itemLabel="Ads Reject" itemValue="s1"  />
+                  <f:selectItem itemLabel="Maintance got" itemValue="s2"  />
+                  <f:selectItem itemLabel="house rent came" itemValue="s3"  />
+                  <p:ajax event="change" update="msg" process="option2"/> 
+                 </p:selectOneMenu>
+                 </td>
+                 </tr>
+                 
+                 <tr>
+               <td><h:outputText  value="Message *"/></td>
+               <td><h:inputTextarea rows="7" cols="40" id="msg" value="#{cls_AddDetailBean.msg}"/>
+              </td>
+              </tr>
+             <tr>  
+             <td><h:commandButton  value="Send"  action="#{cls_AddDetailBean.send}"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
+            <td><h:commandButton  value="Cancel" outcome="Email_for_Ads.xhtml"/></td>
+            </tr>
+            </table>
+             </h:form> 
+             </body>
+           
+       </html>
+       

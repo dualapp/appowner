@@ -6,17 +6,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
  
   
    <h:body>
   
-<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/group.png" height="40" width="40"></img> <span class="title"> Sub-Groups View  </span>
+					<img src="#{expenseBean.str_Name}images/group.jpg" height="40" width="40"></img> <span class="title"> Sub-Groups View  </span>
 				</td>
 			</tr>
 		</tbody>
@@ -53,7 +53,7 @@
                  <h:outputText value="Owner" rendered="#{group.int_UserRole==2}" />&#150;  &#150; 
                 <h:outputText value="#{group.residence}," />&#150;  &#150; 
                 <h:outputText value="#{group.str_MaritalStatus}," />&#150;  &#150;
-                <h:outputText value="#{group.bool_gender}," /><br />
+                <h:outputText value="#{group.str_gender}," /><br />
                 
                 
                 &#150;   &#150;  &#150;   &#150;   <h:outputLabel value="House &#150; ::" />&#150;  &#150;
