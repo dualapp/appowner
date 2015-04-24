@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
 <h:head>
 <style type="text/css">
@@ -61,7 +61,7 @@
   <tr>
         
   <!-- inputFile tag to upload file -->
-   
+   <tr><td><p:graphicImage height="130" width="130" value="#{cls_AddDetailBean.getPath3()}" /></td></tr>
   <td><h:inputFile id="file"  
 		             label="file" 
 			         value="#{cls_AddDetailBean.part}" 
@@ -69,14 +69,14 @@
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
 		</h:inputFile>
-      </td><td><p:graphicImage height="150" width="150" value="#{cls_AddDetailBean.getPath3()}" /></td>
+      </td>
        </tr>
       <tr>
 	    <td>
 	    <h:commandButton id="submit" 
 		                 action="#{cls_AddDetailBean.uploadFile1}"
-			             value="upload file">
-			            <f:ajax execute="file"  render="@form" />
+			             value="upload file" style="border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
+			            <f:ajax execute="file" update="@all" render="@form" />
 			             </h:commandButton>
           
 			          </td>
@@ -112,83 +112,68 @@
       </p:accordionPanel>
  
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-  <table style="margin-left:5%">
+  
   <tr>
-        <td><p:outputLabel for="var_Ad_CategoryName" value="Category"   style="margin-left:5%"/>
+        <td><p:outputLabel for="var_Ad_CategoryName" value="Category"  />
            </td>
             <td> &#150;  &#150;   &#150;   &#150;
-            <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.subname}" style="margin-left:15%;width:240px" valueChangeListener="#{cls_AddDetailBean.selectinfo8}">
+            <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.subname}"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}">
             
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailBean.categories}" />
                 <p:ajax  update="var_Ad_SubCategoryName" />
-                </h:selectOneMenu> </td>
-                 <td>&#150;       &#150;      &#150;      &#150;      
-                     &#150;         &#150;      &#150;   
-                     &#150;         &#150;      &#150;   
-        <p:outputLabel for="var_Ad_SubCategoryName" value="SubCategory:" /></td>
-         <td>   <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" style="width:240px">
+                </h:selectOneMenu> 
+               &#150;  &#150;   &#150;   &#150;
+        <p:outputLabel for="var_Ad_SubCategoryName" value="SubCategory" />
+           <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" >
             
             <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
             </h:selectOneMenu>
           </td>
             </tr>
-         </table>
-    <table style="margin-left:5%">
-     <tr>
-           <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
-             <td><h:inputText  id="ch_Ad_Type" value="#{postad.ch_Ad_Type}"  style="margin-left:16%;width:240px" >
-             </h:inputText>
-             </td>
-             </tr>
-            </table>
-            <table style="margin-left:5%">
-             <tr> 
-          <td><p:outputLabel for="I" value="I want to" /></td>
-        <td><h:inputText  id="I" value="#{postad.ch_Product_Type}"  style="margin-left:16%;width:240px">
-        </h:inputText>
+         
+     
+        <tr> 
+            <td><p:outputLabel for="ch_Ad_Type" value="Ad Type:" /> &#150;&#150;  </td>  
+            <td><h:selectOneRadio id="ch_Ad_Type" value="#{postad.ch_Ad_Type}" >
+            <f:selectItem itemLabel="My Community" itemValue="My Community" />
+            <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
+          </h:selectOneRadio>
         </td>
         </tr>
-        </table>
-                 
-    <table style="margin-left:5%">
-            <tr>
-           <td>
-          <p:outputLabel value="Title"></p:outputLabel></td>
-                        
-          <td><h:inputText  id="po" value="#{postad.var_Title}"  style="margin-left:27%;width:240px" >
-            </h:inputText>
-            </td>
-            </tr>
-           </table>
-            <br />
-             <br />
-              <br />
-               <br />
-              <br />
-			    
-           <table style="margin-left:5%">
+        
+       <tr> 
+        <td><p:outputLabel for="I" value="I want to:" /></td>
+        <td><h:selectOneRadio id="I" value="#{postad.ch_Product_Type}" >
+          <f:selectItem itemLabel="Sell" itemValue="Sell"  />  
+            <f:selectItem itemLabel="Buy" itemValue="Buy" />
+            <f:selectItem itemLabel="Rent   " itemValue="Rent" />
+        </h:selectOneRadio>
+      </td>
+      </tr>
+      
              <tr><td><p:outputLabel  value="Description:"/></td>
-                <td><h:inputTextarea id="desc"  style="margin-left:2%;height:300px ;width:800px" value="#{postad.var_Description}" >
+                <td><h:inputTextarea id="desc"  style="height:300px ;width:800px" value="#{postad.var_Description}" >
               </h:inputTextarea>
               </td>
             </tr>
-          </table>
+          
            
 			     
         <tr>
-			           <td><h:commandButton styleClass="btn"  
-			           value="update" action="#{cls_AddDetailBean.editdetail(postad)}"     style=" float:left !important;margin: 0px 1300px 100px 800px;">
-			            
-			           </h:commandButton>
-			           </td>
-            <td> <h:commandButton styleClass="btn" value="Cancel" outcome="Ad_an_Post.xhtml" style=" float:left !important;margin:  -130px 00px 100px 900px;" ajax="false">
-             </h:commandButton>
+          <td></td>
+	   <td>
+	 
+	       <h:commandButton styleClass="btn" value="update" action="#{cls_AddDetailBean.editdetail(postad)}"/>
+		    <h:button styleClass="btn" value="Cancel" outcome="Ad_an_Post.xhtml"  ajax="false" style="margin-left:6em;width:100px;height:30px">
+             </h:button>
              </td>
+               <td></td>
              </tr>
+           
          </table>
            </ui:repeat>
-          
+         
 			    
            </h:form>
           

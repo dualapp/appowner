@@ -9,6 +9,17 @@
 	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 	<h:head>
+	
+	<script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script>
+
 	<style type="text/css">
          input[type=text] 
           {
@@ -58,8 +69,7 @@
 <body>
 <h:form id="upload" enctype="multipart/form-data">
 <p:outputPanel   layout="block"  id= "image" update="aaa1"  style="background:#ffffff; ">
-
-<p:graphicImage width="150" height="150"  id="aaa1" value="#{cls_AddDetailBean.getPath()}" style=" float:right !important;margin:-18px 420px -800px 100px;" />
+<p:graphicImage width="150" height="150"  id="aaa1" value="#{cls_AddDetailBean.getPath()}" style=" float:right !important;margin:-18px 120px -800px 100px;" />
      <table style="margin-left:13px">
     <tr>
     <td>
@@ -83,7 +93,7 @@
            <h:commandButton id="submit" 
 		                 action="#{cls_AddDetailBean.uploadFile}"
 			             value="upload file"   style="border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" >
-			              <f:ajax execute="file" event="click" render="@form" />
+			              <f:ajax execute="file"  render="@form" />
 			             </h:commandButton>
             
 			          </td>
@@ -97,7 +107,7 @@
 			         
 
 </h:form>
-  <p:growl id="ui-growl" showSummary="true" showDetail="true"/>
+  
     <h:form id="form">
     <table    style="overflow:hidden;border:0pt none;width:60%;margin-left: 10em;margin-right: 1%;margin-bottom:5px;margin-top:5px">
      <table style="margin-left:15px">
@@ -109,23 +119,33 @@
            </h:selectOneMenu>
           </td>
         <td>&#150;           &#150;           &#150;    &#150;  
-        <p:outputLabel for="var_Ad_CategoryName" value="Category:" /></td>
- <td> <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}"   >
-           <f:selectItem itemLabel="Category"  itemValue=""  />
+        <p:outputLabel   value="Category:" /></td>
+ <td>  <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}" required="true"              requiredMessage="Select Category!"  >
+           <f:selectItem itemLabel="Category"  itemValue="" noSelectionOption="true"  />
             <f:selectItems value="#{cls_AddDetailBean.categories}"   />
             <p:ajax partialSubmit="true" update="var_Ad_SubCategoryName" execute="catmessage"/>
-            
-            </h:selectOneMenu>
-            
+          </h:selectOneMenu>
+          
           </td>
      
       <td>&#150;           &#150;           &#150;    &#150;  
-        <p:outputLabel for="var_Ad_SubCategoryName" value="SubCategory:" /></td>
-         <td>   <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" style="width:200px">
-            <f:selectItem itemLabel="Category"  itemValue=""  />
+        <p:outputLabel  value="SubCategory:" /></td>
+         <td>   <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" required="true" requiredMessage="Select SubCategory!"  style="width:200px">
+            <f:selectItem itemLabel="SubCategory"   itemValue="" noSelectionOption="true"  />
             <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
             </h:selectOneMenu>
+           
           </td>
+      </tr>
+      <tr>
+     <td></td>
+     <td></td>
+     <td></td>
+      <td><p:messages for="var_Ad_CategoryName" display="icon"/>
+      </td>
+      <td></td>
+      <td> <p:messages for="var_Ad_SubCategoryName" display="icon"/></td>
+      <td></td>
       </tr>
       </table> 
       <table style="margin-left:35px">
@@ -161,14 +181,16 @@
             </tr>
             </table>
             
-			       <table style="margin-left:20px">
+			       <table style="margin-left:15px">
 			      <tr>
-			    <td><p:outputLabel  value="Description:"/></td>
-			    <td><h:inputTextarea id="d" value="#{cls_AddDetailBean.var_Description}" style="width:700px; height:300px" >
-             </h:inputTextarea>
+               <td><h:outputText  value="Description:"/></td>
+                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,500);" style="width:520px; height:300px" 
+onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,500);" maxlength="500" ></textarea>
+<br /><small><font color="red" size="2">(Maximum characters:500)</font></small>
              </td>
              </tr>
              </table>
+             
             <table style="margin-left:95px">
            <tr>
                 <td><h:commandButton id="AddProduct" styleClass="btn"  value="Submit"  action="#{cls_AddDetailBean.AddProduct}" ajax="false"    style="width:80px;height:30px;float:left !important;margin: px 0px 0px `0px;"  > 

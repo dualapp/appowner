@@ -59,7 +59,6 @@
 					
  
     <h:form id="form" >
-    
     <div id="page3" >
     <p:growl id="ui-growl" globalOnly="true" sticky="true"/>
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -129,7 +128,7 @@
            <div class="gsTitleDiv"> Buy&#38;Sell<br/><hr/></div> 
             &#150; &#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:button  value="Create New" outcome="Create_Detail.xhtml" style="width:120px;height:25px" />
             &#150;
-            <p:commandButton process="per"   icon="ui-icon-search" value="View Selected"    action="#{cls_AddDetailBean.editselect1()}"  ajax="false" style="width:120px;height:25px" />  &#150;&#150;  <p:commandButton process="per"   value="Edit Selected"    action="#{cls_AddDetailBean.editselect()}" ajax="false" style="width:120px;height:25px"/> &#150;&#150; <p:commandButton process="per"   value="Delete Selected"      ajax="false"  action="#{cls_AddDetailBean.deleteselect()}"   onclick="return confirm('Are You Sure Want To Detete ?');" style="width:120px;height:25px"/> &#150;&#150;<p:button  value="Refresh" icon="ui-icon-refresh" style="width:120px;height:25px" />&#150; &#150;
+            <p:commandButton process="per"   icon="ui-icon-search" value="View Selected"    action="#{cls_AddDetailBean.editselect1()}"  ajax="false" style="width:120px;height:25px" />  &#150;&#150;  <p:commandButton process="per"   value="Edit Selected"    action="#{cls_AddDetailBean.editselect()}" ajax="false" style="width:120px;height:25px"/> &#150;&#150; <p:commandButton process="per"   value="Delete Selected"   action="#{cls_AddDetailBean.deleteselect()}"  update=":ui-growl"  ajax="false"  style="width:120px;height:25px"/> &#150;&#150;<p:button  value="Refresh" icon="ui-icon-refresh" style="width:120px;height:25px" />&#150; &#150;
             <p:menuButton value="Action" style="width:120px;height:25px">
             <p:menuitem value="Approval Selected"  update=":email"   oncomplete="PF('multiVendorDialog1').show()"  actionListener="#{cls_AddDetailBean.selectinfo1(e)}"></p:menuitem>
           <p:menuitem value="Reject Selected"   update=":rejectid" oncomplete="PF('multiVendorDialog8').show()"  actionListener="#{cls_AddDetailBean.selectinfo3(e)}"/>
@@ -139,9 +138,9 @@
            <br />
             <br />
          <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  resizableColumns="true" rows="5" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
-        rowsPerPageTemplate="10,20,30,40,50" selection="#{cls_AddDetailBean.selectedAll}" rowKey="#{per.int_ProductId}"  paginatorPosition="bottom" >
-     <p:column exportable="false"  selectionMode="single" style="width:50px;text-align:center" >
-  </p:column>
+        rowsPerPageTemplate="10,20,30,40,50"  selectionMode="single" selection="#{cls_AddDetailBean.selectedAll}" rowKey="#{per.int_ProductId}"  paginatorPosition="bottom" >
+         <p:ajax event="rowSelect" listener="#{cls_AddDetailBean.desabledListener}" execute="@form" immediate="true"/>
+     
           <p:column style="width: 7%">
             <f:facet name="header">
             <h:outputText value="I Want To" />
@@ -471,7 +470,7 @@
               </tr>
              <tr>  
              <td><h:commandButton styleClass="btn"  value="Send"  action="#{cls_AddDetailBean.send4}"  actionListener="#{cls_AddDetailBean.selectinfo6(e)}" ajax="false"  style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
-           <td><h:commandButton styleClass="btn"  value="Cancel" outcome="Ad_an_Post.xhtml" ajax="false"/></td>
+           <td><h:commandButton styleClass="btn"  value="Cancel"  action="#{cls_AddDetailBean.editseand()}"  /></td>
             </tr>
    </table>
    </ui:repeat>
@@ -517,7 +516,7 @@
               </tr>
              <tr>  
              <td><h:commandButton styleClass="btn"  value="Send"  action="#{cls_AddDetailBean.send5()}"  ajax="false" style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
-            <td><h:commandButton styleClass="btn"  value="Cancel" outcome="Ad_an_Post.xhtml"/></td>
+            <td><h:commandButton styleClass="btn"  value="Cancel"  action="#{cls_AddDetailBean.editseand()}" /></td>
             </tr>
    </table>
    </ui:repeat>
@@ -545,7 +544,7 @@
               </tr>
              <tr>  
              <td><h:commandButton styleClass="btn"  value="Send"  action="#{cls_AddDetailBean.send6}"  actionListener="#{cls_AddDetailBean.selectinfo7(e)}"  ajax="false" style=" float:right !important;margin: 0px 0px 0px 0px;" /></td>
-            <td><h:commandButton  styleClass="btn" value="Cancel" outcome="Ad_an_Post.xhtml"/></td>
+            <td><h:commandButton styleClass="btn"  value="Cancel"  action="#{cls_AddDetailBean.editseand()}" /></td>
             </tr>
    </table>
    
