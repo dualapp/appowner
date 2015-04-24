@@ -20,18 +20,13 @@
 	</table>
 	 <f:metadata>
 	<f:viewParam name="int_agencyid" value="#{advertisementBean.int_agencyid}"  />
-	 
-	<f:viewAction action="#{advertisementBean.agencydetail}" />
+	 <f:viewAction action="#{advertisementBean.agencydetail}" />
 </f:metadata>
-
-    
 <h:form>
-
-    <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-
- 
-  
-        <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px 100px -2000px 0px;" >  
+<div id="page3" >
+<a href="ViewAgency.xhtml">&#60;&#60;Back To Agency Detail</a> 
+<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+ <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:0px 100px -2000px 0px;" >  
            <p:graphicImage height="150" width="150" value="#{advertisementBean.getPath()}"/>
           </p:outputPanel>
          
@@ -96,16 +91,12 @@
     
       
            
-       <!--   
-       <tr>
-         <td><h:outputLabel value="Enter Contents "></h:outputLabel></td>
-         <td><h:inputText id="editor" widgetVar="editorWidget" value="#{advertisementBean.str_content}" style="width:200px"  ></h:inputText></td>
-         </tr>
-        --> 
+       
           
-         </table>
-         </h:form>
-         </h:body>
+        </table>
+        </div>
+        </h:form>
+        </h:body>
          </ui:define>
          </ui:composition>
          
