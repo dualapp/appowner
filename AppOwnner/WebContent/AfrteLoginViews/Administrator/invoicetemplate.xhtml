@@ -31,8 +31,23 @@
 
 }
       </style>	
- 
- 
+ <script type="text/javascript">
+    function handleRequest(xhr, status, args) 
+    {
+        if(args.validationFailed)
+             {
+        	 PF('multiInvoiceTemplateDialog').show();
+            
+        } 
+        else{
+        	 
+         
+        	PF('multiInvoiceTemplateDialog').hide();
+        	
+        }
+        
+    }
+    </script>
 		</h:head>
 		
 <table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
@@ -155,7 +170,7 @@
 					</p:column>
 				</p:dataTable>
 				</div>
-				  <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="400" width="450">
+				  <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="430" width="450">
         <p:outputPanel id="multiInvoiceTemplateDetail" style="text-align:center;">
           
            <table>
@@ -181,28 +196,34 @@
     <h:outputText value="Frequency:"/><font color="red" >*</font></th>
    
     <td>
-   <h:selectOneMenu id="str_Frequency" value="#{invoiceTemplate1.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
+   <h:selectOneMenu id="str_Frequency" value="#{templateBean.selectedInvoiceTemplate.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
                   <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
                         <f:selectItem itemLabel="One Time" itemValue="One Time"/>
-                         <p:ajax event="change" partialSubmit="true" update="str_DueInvoiceTemplate" execute="str_Frequency"/>
+                         <p:ajax event="change"  update="str_DueInvoiceTemplate" execute="str_Frequency"/>
                  </h:selectOneMenu></td>
     </tr>
     <tr>
  
    <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
    
-    <td><p:selectManyCheckbox id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}" style="height:25px;width:250px;" reqired="true" requiredMessage="Choose Atleast One Due Template ">
-              
-              <f:selectItems value="#{templateBean.dueTemplates}"  style="height:25px;width:250px;"/>
-               <p:ajax event="change"  process="str_DueInvoiceTemplate"/>
-             </p:selectManyCheckbox>
-             </td>
-    </tr>
+    <td><p:selectManyCheckbox id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" validator="#{templateBean.validate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" validatorMessage="Choose Atleast One Due Template ">
+               
+              <f:selectItems value="#{templateBean.dueTemplates}"/>
+             
+            <p:ajax event="change"  process="str_DueInvoiceTemplate"/>
+        </p:selectManyCheckbox>
+           </td>
+           
+            </tr>
    
-  
+  <tr>
+  <td>
+  </td>
+  <td><p:message id="str_DueInvoiceTemplateMsg" for="str_DueInvoiceTemplate" dispay="text" /></td>
+  </tr>
     <tr>
  <th>
     <h:outputText value="Description:"/></th>
@@ -211,8 +232,9 @@
     </tr>
     
    <tr>
-             <td></td><td><h:commandButton styleClass="btn" value="update" execute="template,description,str_Frequency" action="#{templateBean.saveInvoiceTemplate(invoiceTemplate1)}" 
-/></td></tr>
+             <td></td><td><p:commandButton styleClass="btn" value="update" action="#{templateBean.saveInvoiceTemplate(invoiceTemplate1)}"  update=":form:invoice,:form:ui-growl,str_DueInvoiceTemplateMsg" oncomplete="handleRequest(xhr, status, args)"/></td></tr>
+              
+
     
       
             </ui:repeat>
@@ -221,68 +243,7 @@
             
         </p:outputPanel>
     </p:dialog>
-    <p:dialog header="Edit InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog3"     showEffect="explode" hideEffect="explode" resizable="false" height="400" width="450">
-        <p:outputPanel id="multiInvoiceTemplateDetail3" style="text-align:center;">
-          <h:form>
-           <table>
-     <tr>
-     <th><h:outputText value="Organisation"/><font color="red" >*</font></th>
-      <td><h:inputText id="str_Organisation4" readonly="true"
-								value="#{templateBean.str_Organisation}" ></h:inputText>
-								</td>									
-								
-						
-    </tr>  
-           
-             <tr>
- <th>
-    <h:outputText value="Invoice Template:"/></th>
-    <td>
-    <h:inputText value="#{templateBean.invoiceTemplate.str_InvoiceTemplateName}"/></td>
-    </tr>
- <tr>
- <th>
-    <h:outputText value="Frequency:"/><font color="red" >*</font></th>
-    <td>
-   <h:selectOneMenu id="str_Frequency" value="#{templateBean.invoiceTemplate.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
-                  <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
-                   <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
-                     <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
-                       <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
-                        <f:selectItem itemLabel="One Time" itemValue="One Time"/>
-                         <p:ajax event="change" update="str_DueInvoiceTemplate" process="str_Frequency"/>
-                 </h:selectOneMenu></td>
-    </tr>
-    <tr>
-   
-   <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
-   
-    <td><p:selectManyCheckbox id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}" style="height:25px;width:250px;" reqired="true" requiredMessage="Choose Atleast One Due Template ">
-               <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
-              <f:selectItems value="#{templateBean.dueTemplates}"/>
-             
-             </p:selectManyCheckbox>  </td>
-    </tr>
-   
-  
-    <tr>
- <th>
-    <h:outputText value="Description:"/></th>
-    <td>
-    <h:inputTextarea style="weight:250px;height:100px;" value="#{templateBean.invoiceTemplate.str_Description}"/></td>
-    </tr>
     
- 
-    
-      
-          
-             <tr>
-             <td></td><td><h:commandButton  styleClass="btn" value="update" action="#{templateBean.saveInvoiceTemplate()}"/></td></tr>
-             
-            </table>
-  </h:form>
-        </p:outputPanel>
-    </p:dialog>
     <p:dialog header="View InvoiceTemplate" widgetVar="multiInvoiceTemplateDialog1"     showEffect="explode" hideEffect="explode" resizable="false" height="300" width="400">
         <p:outputPanel id="multiInvoiceTemplateDetail1" style="text-align:center;">
            <table>

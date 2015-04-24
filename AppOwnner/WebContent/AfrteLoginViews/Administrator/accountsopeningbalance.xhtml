@@ -69,16 +69,16 @@
            
                 
                  <p:spacer height="10px" width="70px"></p:spacer>
-                <h:inputText id="true" value="#{accounts.int_Debit}"  size="30" onchange="submit();" valueChangeListener="#{accountsBean.processValueChange}" >
-                <f:ajax event="blur" update="id" partialSubmit="true" />   
-                </h:inputText>
+                <p:inputText id="true" value="#{accounts.int_Debit}"  size="30" onchange="submit();" valueChangeListener="#{accountsBean.processValueChange}" >
+                <f:ajax event="blur" update="priya" partialSubmit="true" />   
+               </p:inputText>
             <p:spacer height="10px" width="80px"></p:spacer>
         
          
                
-                <h:inputText value="#{accounts.int_Credit}" valueChangeListener="#{accountsBean.processValueChange1}" size="30" onchange="submit();">
+                <p:inputText value="#{accounts.int_Credit}" valueChangeListener="#{accountsBean.processValueChange1}" size="30" onchange="submit();">
                   <f:ajax event="blur" update="hgy"  partialSubmit="true"/>   
-                </h:inputText>
+               </p:inputText>
                 </p:column>
                 </p:column>
          
@@ -113,7 +113,7 @@
 	
 	
 	  <tr><td></td>
-                <td><p:commandButton id="AddProduct" value="Submit" style=" background-color:#9ACD32;width:10em;height:2em; color:white;margin-top:1em;" action="#{accountsBean.addAccountsHead()}" ajax="false" /></td>     
+                <td><p:commandButton id="AddProduct" excute="str_DueTemplate" value="Submit" style=" background-color:#9ACD32;width:10em;height:2em; color:white;margin-top:1em;" action="#{accountsBean.addAccountsHead(accountsBean.dat_openingDate)}" ajax="false" /></td>     
             </tr>
   </table>
          </div> 
