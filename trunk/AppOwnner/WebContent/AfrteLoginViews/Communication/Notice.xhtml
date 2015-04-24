@@ -10,7 +10,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 	<ui:define name="content">
-		<h:head></h:head>
+		<h:head>
+		<style>
+		.preformatted {
+    white-space: pre;
+}
+		</style>
+		</h:head>
   <body >
    
     <br/>
@@ -58,7 +64,9 @@
 	 <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">		         
         <tr>
            <th align="left">Subject</th>
-            <td>&#150; &#150;<p:inputText id="str_Subject" value="#{noticeBoardBean.str_Subject}"  required="true" requiredMessage="Subject can not be Empty"  size="60"/>
+            <td>&#150; &#150;<p:inputText id="str_Subject" value="#{noticeBoardBean.str_Subject}" styleClass="preformatted" required="true" requiredMessage="Subject can not be Empty" maxlength="20" size="60">
+            
+            </p:inputText>
              <p:message for="str_Subject"/> </td> 
             </tr>
            <tr>

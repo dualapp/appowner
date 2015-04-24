@@ -58,7 +58,7 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
          <font size="2"> <h:outputText value="#{car.var_Description}" style="color:#00CC66;"/><br/></font>
          <font size="2"><h:outputText value="Community :#{car.str_ApartmentName}" style="color:#00CC66;"/><br/></font>
         <font size="2"><h:outputText value="Posted By :#{car.username}" style="color:#00CC66;"/><br/></font>
-        <font size="2"><h:outputText value="Posted On :#{car.dt_date}"  style="color:#FFA500;"/><br/></font>
+        <font size="2"><h:outputText value="Posted On :#{car.dt_date}"  style="color:#FFA500;"><f:convertDateTime pattern="dd-MM-yyyy"/></h:outputText><br/></font>
         <p:commandButton process="car"  update=":sellid" value="Send Email" action="#{cls_AddDetailBean.getemailid(car.userId)}" style="color:#FFFAF0;background:#FF8C00; border:2px;font-size:15px;width:160px;height:30px"
            oncomplete="PF('multiVendorDialog1').show()"  /><hr/>
           <p:outputPanel   layout="block" width="15%" height="6%"  update="aaa1" style="background:#ffffff; ">
