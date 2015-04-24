@@ -73,7 +73,7 @@
                <tr>
             <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
            <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" valueChangeListener="#{templateBean.frequencyChangeListener}">
-                  <f:selectItem itemLabel="Select" itemValue=""  noSelectionOption="true"/>
+                  
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
@@ -84,7 +84,7 @@
             <tr>
           
            <td><h:outputText  value="DueTemplate" /><font color="red" >*</font></td>
-            <td><p:selectManyCheckbox id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" validatorMessage="Choose Atleast One Due Template ">
+            <td><p:selectManyCheckbox id="str_DueInvoiceTemplate" value="#{templateBean.str_DueInvoiceTemplate}" validator="#{templateBean.validate}" valueChangeListener="#{templateBean.roleChangeListener}"  style="height:25px;width:250px;" reqired="true" validatorMessage="Choose Atleast One Due Template ">
                
               <f:selectItems value="#{templateBean.dueTemplates}"/>
              
@@ -114,11 +114,11 @@
                  
                  <tr>
              <td> <h:outputLabel value="Message Template" /></td>  
-          <td><p:selectOneMenu id="str_MessageTemplate" value="#{templateBean.str_MessageTemplate}" valueChangeListener="#{templateBean.templateChangeListener}" >
+          <td><h:selectOneMenu id="str_MessageTemplate" value="#{templateBean.str_MessageTemplate}" valueChangeListener="#{templateBean.templateChangeListener}" >
           <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{templateBean.str_MessageTemplate1}"  />
                     <p:ajax event="change" update="description" process="str_MessageTemplate"/>
-                 </p:selectOneMenu></td>   
+                 </h:selectOneMenu></td>   
                  </tr>
                
                  <tr>

@@ -70,12 +70,13 @@
            
           <tr>
             <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
-           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" >
+           <td> <p:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" required="true">
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
                        <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
                         <f:selectItem itemLabel="One Time" itemValue="One Time"/>
                  </p:selectOneMenu></td>
+                  <td> <p:message   for="str_Frequency"  /> </td>
             </tr>
           
             <tr>
@@ -91,8 +92,8 @@
             
               <tr>
                <td> <h:outputText  value="Rate"  /><font color="red" >*</font></td>
-           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  disabled="#{templateBean.str_Calculation eq 'None'}" required="true" requiredMessage="It Should be a Number"/>
-                 <p:message   for="str_Rate"  display="text"/> </td>
+           <td>  <p:inputText id="str_Rate" value="#{templateBean.str_Rate}" onkeyup="this.value=this.value.replace(/[^\d]/,'')" validator="#{templateBean.validate1}" disabled="#{templateBean.str_Calculation eq 'None'}" reqired="true" validatorMessage="Should not Empty"/></td>
+           <td>     <p:message   for="str_Rate"  display="text"/> </td>
           
               </tr>
               
