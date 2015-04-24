@@ -22,6 +22,7 @@ import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
@@ -679,10 +680,10 @@ public class AdvertisementBean  implements Serializable{
 				}
 				public void addagency()
 				
-				{  
+				{  HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+				  str_content=request.getParameter("limitedtextfield");
 					agencyname1=getStr_CompanyName();
 				    agencyid1=getAdvertisementService().agency1(agencyname1);
-				    System.out.println( agencyid1+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 				   agency_information agency=new agency_information();
 					agency.setInt_CompanyID(agencyid1);
 					agency.setAds_type(getAds_type());
@@ -691,7 +692,7 @@ public class AdvertisementBean  implements Serializable{
 					 agency.setVar_ImageName(path);
 					 agency.setStr_content(getStr_content());
 					 agency.setStr_Url(getStr_Url());
-					 //agency.setStr_vedio(path1);
+					 agency.setStr_vedio(path1);
 				     agency.setInt_till(getInt_till());
 				     agc_id= getAdvertisementService().addagencies(agency);
 				   System.out.println( agc_id+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -1067,9 +1068,74 @@ public class AdvertisementBean  implements Serializable{
 							inputStream.close();
 						}
 					}
-					return null; // return to same page
-
+					return null; // return to same path
+				
+				
 				}
+				
+				
+				public String uploadvedio() throws IOException {
+
+					SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+					String fileName = fmt.format(new Date())
+							+ getFileName(part).substring(
+									getFileName(part).lastIndexOf('.'));
+					
+					System.out.println("***** fileName: " + fileName);
+					ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+
+					
+					String basePath =servletContext.getRealPath("")
+							+ File.separator + "images" 
+							+ File.separator+Util.getAppartmentName()+File.separator;
+					System.out.println(basePath);
+					File outputFilePath = new File(basePath);
+					outputFilePath=new File(basePath);
+					if(!outputFilePath.exists())
+					{
+						if(outputFilePath.mkdirs())
+						{
+							System.out.println("directory");
+						}
+						else
+							System.out.println("failed to create directory");
+					}
+				    System.out.println(path + "path");
+					// Copy uploaded file to destination path
+				    outputFilePath=new File(basePath,fileName);
+					InputStream inputStream = null;
+					OutputStream outputStream = null;
+					try {
+						inputStream = part.getInputStream();
+						outputStream = new FileOutputStream(outputFilePath);
+
+						int read = 0;
+						final byte[] bytes = new byte[1024];
+						while ((read = inputStream.read(bytes)) != -1) {
+							outputStream.write(bytes, 0, read);
+						}
+						path1 = "/images" + File.separator + Util.getAppartmentName()
+								+ File.separator + fileName;
+						//products.setVar_ImageName(path);
+						//products.setInt_ProductId(products.getInt_ProductId());
+						//System.out.println((selectedAll.getInt_ProductId()+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
+						//getProductDetailService().updateProfilePic(user);
+						
+						statusMessage = "File uploaded successfull !!";
+
+					} catch (IOException e) {
+						e.printStackTrace();
+						statusMessage = "File upload failed !!";
+					} finally {
+						if (outputStream != null) {
+							outputStream.close();
+						}
+						if (inputStream != null) {
+							inputStream.close();
+						}
+					}
+					return null;
+}
 }
 
 		

@@ -254,8 +254,9 @@ public void setStr_Organisation(String str_Organisation) {
 		this.accounts = accounts;
 	}
 	
-	public void addAccountsHead()  
+	public void addAccountsHead(Date date)  
 	   { System.out.println("gud");
+	   System.out.println(date+"dskdskjjkd33333333333333333333333333333333333333333333333333333333333333333");
 	   System.out.println(adjustmentBalance2+"fdkjfdjk");
 	   System.out.println(adjustmentBalance3+"dskfdkjdf");
 		System.out.println(adjustmentBalance+"hjdfjfdfd");
@@ -280,8 +281,13 @@ public void setStr_Organisation(String str_Organisation) {
 		System.out.println(creditBalance+"fdjkfdjk");
 	    System.out.println(id1+"hjhjjhj");
 	     indicator=false;
+	     
 	     System.out.println(openingDate+"fdhjfhjnfggtrf");
-	    
+	       if(openingDate==null)
+			   {
+		          openingDate=date;
+			   }
+	  
 	      getAccountsService().addBalance(openingDate,id1,debitBalance,creditBalance);
 	     
 		
@@ -324,7 +330,7 @@ public boolean isIndicator() {
 	}
 public void processValueChange(ValueChangeEvent event)  
 	        throws AbortProcessingException { 
-	
+	System.out.println("jhdjfdjjhfd555555555555555555555555555555555555555555555555555555555555555555555555555555");
 	accounts=(AccountsOpeningBalance) updatedAccounts.getRowData();
 	int_Accounts_OpeningID=accounts.getInt_Accounts_OpeningID();
 	id=accounts.getInt_Accounts_OpeningID();
