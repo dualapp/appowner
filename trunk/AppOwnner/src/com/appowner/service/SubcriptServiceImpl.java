@@ -783,6 +783,12 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().getadminname();
 	}
 
+	@Override
+	public void deletemembergroup(cls_Group detail) {
+		getSubcriptDao().deletemembergroup( detail);
+		
+	}
+
 	
 	
 	

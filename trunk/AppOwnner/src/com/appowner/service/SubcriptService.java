@@ -102,6 +102,7 @@ import java.util.List;
 
 
 
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -351,6 +352,8 @@ public void addSubcriptions(Cls_SubcriptionOption sop);
 
 	public List<String> getgroupid();
     public List<String> getadminname();
+
+	public void deletemembergroup(cls_Group detail);
 
 	
 
