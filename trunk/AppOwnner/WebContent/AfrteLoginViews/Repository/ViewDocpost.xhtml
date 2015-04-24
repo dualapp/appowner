@@ -68,8 +68,8 @@
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
   
   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:10px 723px 00px 0px;"  >  
-         <p:graphicImage height="100" width="100" value="#{expenseBean.str_Name}images/txt.png"  rendered="#{postad.image}"  style=" float:right !important;margin:0px -600px -1100px 00px;" />
-         <p:graphicImage height="100" width="100" value="#{expenseBean.str_Name}images/doc.jpg"  rendered="#{postad.image==false}" style=" float:right !important;margin:0px -600px -110px 0px;"  />
+         <p:graphicImage height="100" width="100" value="#{expenseBean.str_Name}images/txt.png"  rendered="#{postad.image==true}"  style=" float:right !important;margin:0px -600px -1100px 00px;" />
+         <p:graphicImage height="100" width="100" value="#{expenseBean.str_Name}images/doc.jpg"  rendered="#{postad.image==false}" style=" float:right !important;margin:0px -600px -110px 00px;"  />
         </p:outputPanel>
   
     
@@ -101,12 +101,8 @@
               </h:inputText>
               </td>
             </tr>
-         <tr><td><p:outputLabel  value="Categoru"/></td>
-                <td><h:inputText id="cat"  value="#{scriptBean.intdocid}"  >
-              </h:inputText>
-              </td>
-            </tr>
-             <tr><td><p:outputLabel  value="Description"/></td>
+        
+          <tr><td><p:outputLabel  value="Description"/></td>
                 <td><h:inputText id="desc"  value="#{postad.str_Description}"  >
               </h:inputText>
               </td>

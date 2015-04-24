@@ -6,20 +6,27 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template.xhtml">
 	<ui:define name="content">
- 
-  
-   <h:body>
-<table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
+ <h:body>
+<table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/group.png" height="40" width="40"></img> <span class="title"> Create Sub-Group </span>
+					<img src="#{expenseBean.str_Name}images/group.jpg" height="40" width="40"></img> <span class="title"> Create Sub-Group </span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	<script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script>
 	<style type="text/css">
          input[type=text] 
           {
@@ -58,13 +65,13 @@
             </td>
             </tr>
              <tr>
-           <td>
-          <p:outputLabel value="Sub-Group  Description" style=" float:right !important;margin: 0px  30px 0px 100px;">
-           </p:outputLabel></td>            
-          <td>  <h:inputTextarea  value="#{scriptBean.str_GroupDescription}" style="height:180px;width:450px">
-            </h:inputTextarea>
-            </td>
-            </tr>
+               <td style=" float:right !important;margin: 0px  30px 0px 100px;">
+               <p:outputLabel  value="Sub-Group Description"/></td>
+                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,100);" style="width:420px; height:140px" 
+     onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,100);" maxlength="100" ></textarea>
+
+ </td>
+ </tr>
             <tr> 
               <td style=" float:right !important;margin: 0px  30px 10px 100px;">
               <p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
@@ -93,7 +100,7 @@
            
             <tr>
             <td> 
-            <p:commandButton value="Create Sub-Group"  styleClass="btn"  action="#{scriptBean.group}" ajax="false" style="width:155px;height:30px; float:left !important;margin: 0px  50px 00px 100px;"/> 
+            <p:commandButton value="Create Sub-Group"  styleClass="btn"  action="#{scriptBean.group}" ajax="false" style="width:155px;height:30px; float:right !important;margin: 0px  -300px 00px 100px;"/> 
              
                </td></tr> 
             
@@ -103,7 +110,7 @@
           
            
            
-</h:body>
+</h:body>3
          
    </ui:define>
    </ui:composition>
