@@ -151,10 +151,20 @@ public class TemplateDaoImpl implements TemplateDao {
 	@SuppressWarnings("unchecked")
 	public List<String> getDueTemplate(String frequency)
 	{    getApartmentID();
+	   if(frequency==null)
+	   {
+		   String hql="select str_DueTemplate from DueTemplate where str_Frequency=? and int_Organisation=?" ;
+			List<String> dueList=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,"Monthly").setParameter(1, apartmentID).setCacheable(true).list();
+			
+				return dueList; 
+	   }
+	   else
+	   {   
 		String hql="select str_DueTemplate from DueTemplate where str_Frequency=? and int_Organisation=?" ;
 		List<String> dueList=(List<String>)  getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,frequency).setParameter(1, apartmentID).setCacheable(true).list();
 		
-			return dueList;  
+			return dueList; 
+	   }
 	 }
 	@SuppressWarnings("unchecked")
 	public List<String> getMessageTemplate(String str)

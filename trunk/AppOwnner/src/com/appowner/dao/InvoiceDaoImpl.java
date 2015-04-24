@@ -189,8 +189,15 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	   emailids.add(emailid);
 	   String hql1="select str_Email from User where int_ApartmentId=? and str_Block=? and str_Flat=? and str_UserRoleName='user'";
 	   String emailid1=(String)getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, Util.getAppartmentId()).setParameter(1, blockNo).setParameter(2, str_ApartmentNo).setCacheable(true).uniqueResult();
+	   if(emailid1==null)
+	   {
+		 return  emailids;   
+	   }
+	   else
+	   {
 	   emailids.add(emailid1);
 	   return emailids;
+	   }
 		
 	}
 	public String getDescription(String str_InvoiceTemplate)

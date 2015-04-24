@@ -231,6 +231,8 @@ public interface SubcriptDao {
 
 	public List getadminname();
 
+	public void deletemembergroup(cls_Group detail);
+
 	
 	
 
