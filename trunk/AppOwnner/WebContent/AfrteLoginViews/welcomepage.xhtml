@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="../include/templates/template12.xhtml"
+	template="../include/templates/template.xhtml"
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
 	<h:head>
@@ -19,21 +19,21 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="images/started.jpg" height="50" width="50"></img> <span class="title">Welcome to AppOwner World</span>
+					<img src="#{loginBean.url}images/started.jpg" height="50" width="50"></img> <span class="title">Welcome to AppOwner World</span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	 
 	 <div id="page">
-		<div class="gsTitleDiv"><img src="images/Notices.png" height="42" width="42"></img> Notice Board</div>
+		<div class="gsTitleDiv"><img src="#{loginBean.url}images/Notices.png" height="42" width="42"></img> Notice Board</div>
 		
 		<hr/>
 		 	<ui:include   src="/AfrteLoginViews/Communication/noticeboard.xhtml"/>	
 	</div>
 	
 	<div id="page1">
-	<div class="gsTitleDiv"><img src="images/dues.png" height="42" width="42"></img>My OutStanding Invoice</div>
+	<div class="gsTitleDiv"><img src="#{loginBean.url}images/dues.png" height="42" width="42"></img>My OutStanding Invoice</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
@@ -48,7 +48,7 @@
 	<div style="clear: all;"></div>
 	<p:outputPanel id="poll" rendered="#{expenseBean.rendered}" > 
 	<div id="page1">
-		<div class="gsTitleDiv"><img src="images/polls.jpg" height="42" width="42"></img>Opinion Polls</div>
+		<div class="gsTitleDiv"><img src="#{loginBean.url}images/polls.jpg" height="42" width="42"></img>Opinion Polls</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
@@ -67,7 +67,7 @@
 	<p:outputPanel id="pollResult" rendered="#{expenseBean.getRendered1()}"> 
        <div id="page1">
            
-  <div    class="gsTitleDiv"><img src="images/polls.jpg" height="42" width="42"></img>Opinion Poll Results<br/><hr/></div> 
+  <div    class="gsTitleDiv"><img src="#{loginBean.url}images/polls.jpg" height="42" width="42"></img>Opinion Poll Results<br/><hr/></div> 
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
 					<tr>
@@ -81,7 +81,7 @@
    </p:outputPanel>
    <div style="clear: both;"></div>
        <div id="page1">
-		<div class="gsTitleDiv"><img src="images/photos.png" height="42" width="42"/> Latest photo</div>
+		<div class="gsTitleDiv"><img src="#{loginBean.url}images/photos.png" height="42" width="42"/> Latest photo</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" >
 				<tbody>
@@ -97,7 +97,7 @@
 	</div>
 	<div style="clear: both;"></div>  
 	<div id="page1">
-		<div class="gsTitleDiv"><img src="images/events.jpg" height="42" width="42"></img>Events</div>
+		<div class="gsTitleDiv"><img src="#{loginBean.url}images/events.jpg" height="42" width="42"></img>Events</div>
 		<hr/>
 		<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
 				<tbody>
