@@ -1,11 +1,14 @@
 package com.appowner.bean;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -18,10 +21,16 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.persistence.Column;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.Cls_CreateDocumentManagement;
@@ -41,7 +50,7 @@ import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ScriptBean implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
@@ -609,7 +618,7 @@ public void AddDocManagement()
 			    System.out.println(mailids+"my countrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 			    content="Appowner.com";
 			    subject="";
-			    return "/AfrteLoginViews/Repository/CreateDocument12.jsp";
+			    return "/AfrteLoginViews/Repository/CreateDocument1.jsp";
 			
 			}
 			
@@ -730,10 +739,13 @@ public List<Cls_CreateDocumentManagement> getListCreatedocument()
 		Cls_CreateDocumentManagement aa=(Cls_CreateDocumentManagement)obj;
 		Int_Document_CatID=aa.getInt_Document_CatID();
 		intdocid=getSubcriptService().getDocumentName(Int_Document_CatID);
-		System.out.println(intdocid);
+		System.out.println(intdocid+",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+		intdocid=null;
 	}
+	
 	return ListCreatedocument;
 }
+
 public void setListCreatedocument(List<Cls_CreateDocumentManagement> listCreatedocument) {
 	this.ListCreatedocument = listCreatedocument;
 }
@@ -1004,10 +1016,12 @@ public void setApartementId(int apartementId) {
 
 public String group()
 {
+	HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+	str_GroupDescription=request.getParameter("limitedtextfield");
 	cls_Group group=new cls_Group();
 	group.setStr_GroupNm(getStr_GroupNm());
+	group.setStr_GroupDescription(str_GroupDescription);
 	group.setStr_Groupaddress(getStr_Groupaddress());
-	group.setStr_GroupDescription(getStr_GroupDescription());
 	group.setStr_groupPrivate(getStr_groupPrivate());
 	group.setIsCh_EmailAllow(getIsCh_EmailAllow());
 	group.setBol_Emailallow(getBol_Emailallow());
@@ -1016,10 +1030,13 @@ public String group()
     group.setInt_ApartmentID(Util.getAppartmentId());
 	group.setUserId(Util.getUserId());
 	getSubcriptService().groupadd(group);
-	return "Create-SubGroup.xhtml";
-	
-	
-}
+	str_GroupNm=null;
+   str_Groupaddress=null;
+   str_groupPrivate=null;
+   str_GroupDescription=null;
+   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Group Created Successfully!"));
+  return "Create-SubGroup.xhtml";
+	}
 private List<String> groupNames;
 @SuppressWarnings("unchecked")
 public List<String> getGroupNames() {
@@ -1147,7 +1164,7 @@ public void setStr_residence(boolean str_residence) {
 public String selectinfo3(ValueChangeEvent event)
 {  
 	str_residence =( boolean )event.getNewValue();
-	System.out.println(select2+"jhnhjj");
+	System.out.println(str_residence+"jhnhjj");
 	return  "";
 }
 private int hobbyid;
@@ -1229,7 +1246,7 @@ public void setVar_hobby(boolean var_hobby) {
 public String selectinfo7(ValueChangeEvent event)
 {  
 	var_hobby =( boolean )event.getNewValue();
-	System.out.println(select2+"jhnhjj");
+	System.out.println(var_hobby+"jhnhjj");
 	return  "";
 }
 private Boolean bol_Smsallow;
@@ -1371,6 +1388,7 @@ public String saveContact1( )
 		 getSubcriptService().update3(edit1);
 	else		
 		getSubcriptService().addContact1(edit1);
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
      return "Sub-GroupDetail.xhtml";
 	 
 }
@@ -1441,6 +1459,8 @@ public String deletedetail(){
 	System.out.println(int_GroupId);
 	detail.setInt_GroupId(int_GroupId);
 	getSubcriptService().deleteInvoice(detail);
+	getSubcriptService().deletemembergroup(detail);
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
 	return "Create-SubGroup.xhtml?faces-redirect=true";
   
 }
@@ -1569,6 +1589,7 @@ public List<UserExtraInfo> getSearch() {
         System.out.println(first+"kjfkjjfkj"); 
        
 	}
+	
 	return search;
 }
 public void setStr_Profession(String str_Profession) {
@@ -1740,32 +1761,60 @@ public String getStatus() {
 public void setStatus(String status) {
 	this.status = status;
 }
-
+public String selectinfo5(ValueChangeEvent event)
+{  
+	residence =( boolean )event.getNewValue();
+	System.out.println(residence+"jhnhjj");
+	return  "";
+}
+public String selectinfo12(ValueChangeEvent event)
+{  
+	str_MaritalStatus =( boolean )event.getNewValue();
+	System.out.println(str_MaritalStatus+"jhnhjj88888888888888888888888888888888888");
+	return  "";
+}
+public String selectinfo10(ValueChangeEvent event)
+{  
+	str_Profession =( String )event.getNewValue();
+	System.out.println(str_Profession+"jhnhjj77777777777777777777777777777777777");
+	return  "";
+}
+public String selectinfo11(ValueChangeEvent event)
+{  
+	str_Hobbies =( String )event.getNewValue();
+	System.out.println(str_Hobbies+"jhnhjj122222222222222222222222222");
+	return  "";
+}
 private boolean str_MaritalStatus;
 
 public String getSearch1() {
-	System.out.println("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
-	System.out.println(residence+"jjjkkj");
+	
+	System.out.println(str_residence+"fkjjfgkjgfjggfkj");
+	System.out.println(residence+"fkjfjfjfj1111111111111111111111111111111111111111");
+	System.out.println(str_MaritalStatus+"jdfffjgfj111111111111111111111111111111");
+	System.out.println(str_Hobbies+"jdfkjfjkgfkj55555555555555555555555555555555555555555555");
+	System.out.println(str_Profession+"222222222222222222222777777777777777777777777");
 	search=new ArrayList<UserExtraInfo>();
 	if(residence==true)
 	{
-		residence1="Non-Residing";
+		residence1="residence";
 	}
 	else
 	{
-		residence1="Residing";
+		residence1="Non-residence";
 	}
-	if(str_MaritalStatus==true)
+	if(str_MaritalStatus==false)
 	{
 		
-		status="Single";
+		status="single";
 		}
 		else
 		{
-			status="Married";
+			status="married";
 		}
 	
 	 search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession,residence1,status ));
+	 
 	return "View-SubGroup.xhtml";
 }
 	
@@ -1829,7 +1878,7 @@ public void setDTDate(Date dTDate) {
 	DTDate = dTDate;
 }
 
-public  static  String selectes;
+private  static  String selectes;
 
 
 public static String getSelectes() {
@@ -1876,8 +1925,30 @@ public void setUserID(String userID) {
 public String  memberadd() {
 	
 intdocid2=getSubcriptService().adv1(selectes);
+System.out.println(str_residence+"fkjjfgkjgfjggfkj");
+System.out.println(residence+"fkjfjfjfj1111111111111111111111111111111111111111");
+System.out.println(str_MaritalStatus+"jdfffjgfj111111111111111111111111111111");
+System.out.println(str_Hobbies+"jdfkjfjkgfkj55555555555555555555555555555555555555555555");
+System.out.println(str_Profession+"222222222222222222222777777777777777777777777");
 userinfo=(List<Integer>) getSubcriptService().memberid(str_Hobbies,str_Profession);
 System.out.println(userinfo+"mmmmmmmmmmmmmmmmmmmmmmmmppppppppppppppppppppppppppppppp");
+if(residence==true)
+{
+	residence1="residence";
+}
+else
+{
+	residence1="Non-residence";
+}
+if(str_MaritalStatus==false)
+{
+	
+	status="single";
+	}
+	else
+	{
+		status="married";
+	}
 System.out.println(userinfo);
 StringBuilder out = new StringBuilder();
 for (Object o : userinfo)
@@ -1886,7 +1957,7 @@ for (Object o : userinfo)
   out.append(",");
 }
 userID=out.toString();
-System.out.println(selectes+"mmmmmmmmmmmmmmmmmmmmmmmm");
+System.out.println(userID+"mmmmmmmmmmmmmmmmmmmmmmmm");
 System.out.println(intdocid2);
 GroupMember m1=new GroupMember();
 m1.setInt_GroupId(intdocid2);
@@ -1897,13 +1968,17 @@ getSubcriptService().insertes(m1);
 return "View-SubGroup.xhtml";
 
 }
-/*public void subname()
+public void subname()
 {
+	System.out.println(str_GroupNm+"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 	groups=getSubcriptService().allname(str_GroupNm);
 	System.out.println(groups+"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
 	selectes=groups.getStr_GroupNm();
+	System.out.println(selectes+",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+	
+	
 }
-*/
+
 public Boolean getBol_Smsallow() {
 	return bol_Smsallow;
 }
@@ -2113,24 +2188,41 @@ public String send()
 	content="";
 	subject="Appowner.com";
 	str_message=getMessage();
-	aprtmentname=getStr_ApartmentName();
+	aprtmentname=Util.getAppartmentName();
 	blockname=Util.getBlock();
 	usrname=Util.getUserName();
-	str_date=getDates();
+	System.out.println(usrname+",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+	java.util.Date d=new java.util.Date();
+	 SimpleDateFormat ft = 
+		      new SimpleDateFormat ("dd-MM-yyyy");
+	//String str=ft.format(d);
+	 Calendar c = Calendar.getInstance(); 
+	 c.setTime(d);
+	 
+	 
+	
+	 d= c.getTime();
+	System.out.println(d+"kunkupriya");
+
+	 String str=ft.format(d);
+	str_date=str;
+	System.out.println(str_date+"kgfkjkgkgkjlihhhhhhhhhhhjlllllllllllllllllllllllllll");
 	System.out.println(recipient);
 	System.out.println(content);
-	return "/AfrteLoginViews/Repository/GroupEmail.jsp";
+	return "/AfrteLoginViews/Repository/GroupEmail11.jsp";
 }
 
 
-private static  Date str_date;
+private static  String  str_date;
 private Date dates;
 
 
-public static Date getStr_date() {
+
+
+public static String getStr_date() {
 	return str_date;
 }
-public static void setStr_date(Date str_date) {
+public static void setStr_date(String str_date) {
 	ScriptBean.str_date = str_date;
 }
 public Date getDates() {
@@ -2294,11 +2386,28 @@ public static Integer postid;
 public static void setPostid(Integer postid) {
 	ScriptBean.postid = postid;
 }
-public String editdocument()
- {
+public String viewcategory()
+{
+	if(indicate==false)
+	  {
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+		str_Description=null;
+	    str_FolderNM=null;
+		 str_ApartmentName=null;
+		 username=null;
+		 return"DocumentRepository.xhtml";
+	  }
+	else
+	{
 	postid=allinfo.getInt_DocumentID();
 	System.out.println(postid+"mukeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	str_Description=null;
+    str_FolderNM=null;
+	 str_ApartmentName=null;
+	 username=null;
 	return"ViewDocpost.xhtml";
+	
+	}
 	
  }
 private  Cls_CreateDocumentManagement listdocpost;
@@ -2318,15 +2427,36 @@ public String deletepost(){
 	detail.setInt_DocumentID(Int_DocumentID);
 	getSubcriptService().deletedetail(detail);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
+	str_Description=null;
+    str_FolderNM=null;
+	 str_ApartmentName=null;
+	 username=null;
+	 
 	return "DocumentRepository.xhtml?faces-redirect=true";
   
 }
 
 public String editcategory()
 {
+	if(indicate==false)
+	  {
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+		str_Description=null;
+	    str_FolderNM=null;
+		 str_ApartmentName=null;
+		 username=null;
+		 return"DocumentRepository.xhtml";
+	  }
+	else
+	{
 	postid=allinfo.getInt_DocumentID();
 	System.out.println(intdocid+"mukeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-	return"UpdateDocpost.xhtml";	
+	str_Description=null;
+    str_FolderNM=null;
+	 str_ApartmentName=null;
+	 username=null;
+	return"UpdateDocpost.xhtml";
+	}
 }
 
 private int postsid;
@@ -2349,6 +2479,12 @@ public String editpost(Cls_CreateDocumentManagement document)
       getSubcriptService().updatepost(document);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
 	}
+	str_Description=null;
+     str_FolderNM=null;
+	 str_ApartmentName=null;
+	 username=null;
+	 
+	
 	return "DocumentRepository.xhtml";
 }
 
@@ -2361,8 +2497,79 @@ public static void setAllmembers(String allmembers) {
 	ScriptBean.allmembers = allmembers;
 }
 
-
+	 public String downloadFile(String path,String path1) throws IOException
+	  {    System.out.println("1111111111111177777777777777777777777777777777777777777777777777777777777777777777777777777777777777");
+	  ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		
+		String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
+		System.out.println(path1+"fdhjjdf333333333333333333333333333333333333333333");
+		System.out.println(path+"hfdh111111111111111111111111111111111");
+		path="20150420121913.txt";
+			//String basePath = servletContext.getContextPath()+File.separator+"WebContent"+File.separator;
+	     File file = new File(basePath+path);
+	      System.out.println(file+"hhhjhj22222222222222222222222222555555555555555555555555555555555555555555555");
+	     InputStream fis = new FileInputStream(file);
+	     System.out.println(file.getAbsolutePath());
+	     System.out.println(file.getName());
+	     String str=file.getName();
+	     System.out.println(path1+"fhffjfghj111111111111111111111111111");
+	     byte[] buf = new byte[10000];
+	     int offset = 0;
+	     int numRead = 0;
+	     while ((offset < buf.length) && ((numRead = fis.read(buf, offset, buf.length - offset)) >= 0)) 
+	     {
+	       offset += numRead;
+	     }
+	     fis.close();
+	     HttpServletResponse response =
+	        (HttpServletResponse) FacesContext.getCurrentInstance()
+	            .getExternalContext().getResponse();
+	    
+	    	response.setContentType("text/plain");
+	    
+	   
+	    
+	    response.setHeader("Content-Disposition", "attachment;filename=Document");
+	    response.getOutputStream().write(buf);
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	 
+	    FacesContext.getCurrentInstance().responseComplete();
+	    return null;
+	  }
+	 private StreamedContent downloadFile;
+		public StreamedContent getDownloadFile() {
+			return downloadFile;
+		}
+		public void setDownloadFile(StreamedContent downloadFile) {
+			this.downloadFile = downloadFile;
+		}
+		private boolean indicate;
+		public boolean isIndicate() {
+			return indicate;
+		}
+		public void setIndicate(boolean indicate) {
+			this.indicate = indicate;
+		}
+		private boolean indicate2;
+		public boolean isIndicate2() {
+			return indicate2;
+		}
+		public void setIndicate2(boolean indicate2) {
+			this.indicate2 = indicate2;
+		}
+		public void desabledListener( SelectEvent event)
+		{
+			System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333mnmnmnmnnnnnnnnnnnnn");
+			
+			indicate=true;
+			
+		
+		
+		}
+		
 }
+
 
 
 
