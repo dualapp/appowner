@@ -73,6 +73,12 @@ public class ExpenseBean  implements Serializable{
 	public void setStr_AssetCategoryType(String str_AssetCategoryType) {
 		this.str_AssetCategoryType = str_AssetCategoryType;
 	}
+	public Parking getParking11() {
+		return parking11;
+	}
+	public void setParking11(Parking parking11) {
+		this.parking11 = parking11;
+	}
 	private String str_AssetName;
 	private String str_OrganizationName;
 	private String str_ExcepenseType;
@@ -516,19 +522,20 @@ public void setParking(Parking parking) {
 private List<Parking> parkingSpaceList;
 private List<Parking> parkingSpaceList1;
 
-public  void updateParkingSpace(Parking p)
+public  String  updateParkingSpace()
 {
-	if( p!=null)
+	if(parking11!=null)
 	{
 	System.out.println("updateeeeeeee");
-	getExpenseService().updateParkingSpace( p);
+	getExpenseService().updateParkingSpace(parking11);
 	System.out.println("updat");
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Parking Updated Successfully!"));
+	 return "parkingspace.xhtml";
 	}
 	 else{
     	 FacesMessage message = null;
      FacesContext.getCurrentInstance().addMessage(null, message);
-     
+     return "parkingspace.xhtml";
      }
 	
 }
@@ -1565,30 +1572,44 @@ private void loadFacilityNeededList()
          pages[i] = ++firstPage;  
      }   
 }
+private FacilityNeeded facilityNeeded1=new FacilityNeeded() ;
+public void getFacility1(Integer fid)
+{
+	facilityNeeded1=getExpenseService().getOneFacilityNeeded(fid);
+}
 public List<FacilityNeeded> getFacilityNeededList() {
 	
 	facilityNeededList=new ArrayList<FacilityNeeded>();
 	facilityNeededList.addAll((getExpenseService().getFacilityNeededList()));
 	return facilityNeededList;
 }
+public FacilityNeeded getFacilityNeeded1() {
+	return facilityNeeded1;
+}
+public void setFacilityNeeded1(FacilityNeeded facilityNeeded1) {
+	this.facilityNeeded1 = facilityNeeded1;
+}
 public void setFacilityNeededList(List<FacilityNeeded> facilityNeededList) {
 	this.facilityNeededList = facilityNeededList;
 }
-public String updateFacility(FacilityNeeded fn1)
+public String updateFacility()
 { 
-	if(fn1!=null)
+	if(facilityNeeded1!=null)
 	{
-	getExpenseService().updateFacility(fn1);
-
+	getExpenseService().updateFacility(facilityNeeded1);
+	
+	facilityNeeded1=null;
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Updated Successfully!"));
+return "facilityneeded.xhtml";
 }
 else{
 	 FacesMessage message = null;
 FacesContext.getCurrentInstance().addMessage(null, message);
+return "facilityneeded.xhtml";
 
 }
  
-return "facilityneeded.xhtml";
+
 }
 public FacilityNeeded getFacilityNeeded() {
 	return facilityNeeded;
@@ -2369,6 +2390,11 @@ public List<Assets> getSelectedAssets() {
 }
 public void setSelectedAssets(List<Assets> selectedAssets) {
 	this.selectedAssets = selectedAssets;
+}
+private Parking parking11=new Parking();
+public void getParking1(Integer pid)
+{
+	parking11=getExpenseService().getOneParking(pid);
 }
 public List<Parking> getParkingSpaceList1() {
 	return parkingSpaceList1;

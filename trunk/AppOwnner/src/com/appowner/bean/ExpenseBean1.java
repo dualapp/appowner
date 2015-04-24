@@ -232,16 +232,15 @@ public void setStr_ExpenseId(String str_ExpenseId) {
 public void assetCatNameListener(ValueChangeEvent  event)
 {  
 	str_AssetCategoryType=(String) event.getNewValue();
-	
-   assetCatnameList.add(str_AssetCategoryType);
-
-	str_AssetNameList=new ArrayList<String>();
+	if (str_AssetCategoryType!= null) {
+		
+		str_AssetNameList = new ArrayList<String>();
+		str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType));
+		}
+		else
+			str_AssetNameList= new ArrayList<String>();
+	assetCatnameList.add(str_AssetCategoryType);
 	 
-
-str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(str_AssetCategoryType));
-System.out.println(str_AssetNameList);
-
- 
 }
 public void assetCatNameListener1(ValueChangeEvent  event)
 {
@@ -276,7 +275,7 @@ public void  amountListener(ValueChangeEvent  event)
 	ammountList.add(event.getNewValue());
 }
 
-private Expense expense;
+private Expense expense=new Expense() ;
  
 public String addExpenses()
 {     
@@ -443,11 +442,17 @@ public  void rowSelectListener( SelectEvent event)
 	  indicate=true;
 }
 private Expense expense1;
-public void getExpense1() {
-	expense=new Expense();
+public void getExpense1(String str_ExpenseId) {
+	 
 	 
 	expense=getExpenseService().getOneExpense(str_ExpenseId);
-	System.out.println(expense.getStr_AssetName());
+	if(expense!=null)
+	{
+		
+		str_AssetNameList = new ArrayList<String>();
+		str_AssetNameList.addAll(getExpenseService().getStr_AssetNameList(expense.getStr_AssetCatType()));
+	}
+	
 	 
 }
 public void setExpense1(Expense expense1) {
@@ -465,8 +470,10 @@ public void getOneExpense()
 /*
  * Update One Expense Object
  */
-public String updateOneExpense(Expense expense)
+public String updateOneExpense()
 {
+	if(expense.getStr_ExpenseId()!=null)
+	{
 	getExpenseService().updateOneExpense(expense);
 	System.out.println("nbcsjjjjjjjjjjjjjjjzn");
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -474,6 +481,7 @@ public String updateOneExpense(Expense expense)
 	flash.setKeepMessages(true);
 	flash.setRedirect(true);
 	facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Updated Successfully!", "Updated Successfully!"));
+	}
 	return "Expenses.xhtml";
 	
 }
@@ -531,18 +539,43 @@ public void setExpenseService(ExpenseService expenseService) {
 }
 public String assignRequestedEstimate(Expense expense)
 { 
+	String status=getExpenseService().checkStatus(expense.getStr_ExpenseId());
+	System.out.println(status);
+	if(status.equalsIgnoreCase("Approved"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(expense.getStr_ExpenseType()+""+" Already Approved"));
+		return "Expenses.xhtml";
+	}
+	
+	else if(expense.getStr_Status().equalsIgnoreCase("Rejected"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(expense.getStr_ExpenseType()+""+" Already Rejected"));
+		return "Expenses.xhtml";
+	}
 	str_Status="Approved";
  
 getExpenseService().updateStatusOfEstimate(expense.getStr_ExpenseId(),str_Status);
-FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Estimate Assigned Successfully"));
-    return "Expenses.xhtml?faces-redirect=true";
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(expense.getStr_ExpenseType()+""+" Approved Successfully"));
+    return "Expenses.xhtml";
 }
 public String closeRequestedEstimate(Expense expense)
 {
+	String status=getExpenseService().checkStatus(expense.getStr_ExpenseId());
+	System.out.println(status);
+	if(status.equalsIgnoreCase("Rejected"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(expense.getStr_ExpenseType()+""+" Already Rejected"));
+		return "Expenses.xhtml";
+	}
+	else if(expense.getStr_Status().equalsIgnoreCase("Approved"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(expense.getStr_ExpenseType()+""+" Already Approved"));
+		return "Expenses.xhtml";
+	}
 	str_Status="Rejected";
 	 
 	getExpenseService().updateStatusOfEstimate(expense.getStr_ExpenseId(),str_Status);
-FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Estimate Closed Successfully"));
-    return "Expenses.xhtml?faces-redirect=true";
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(expense.getStr_ExpenseType()+""+"Closed Successfully"));
+    return "Expenses.xhtml";
 }
 }

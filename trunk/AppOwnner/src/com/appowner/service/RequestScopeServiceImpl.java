@@ -112,6 +112,21 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 		// TODO Auto-generated method stub
 		getRequestScopeDao().updateStatusOfBookFacility(int_FacilityBookId, str_Status) ;
 	}
+	@Override
+	public String checkStatusOfServiceRequest(Integer int_ServiceRequestId) {
+		// TODO Auto-generated method stub
+		return getRequestScopeDao().checkStatusOfServiceRequest(int_ServiceRequestId);
+	}
+	@Override
+	public BookAFacility getOneBookAFacility(Integer bid) {
+		// TODO Auto-generated method stub
+		return getRequestScopeDao().getOneBookAFacility(bid);
+	}
+	@Override
+	public String checkStatusOfBookFacility(Integer int_FacilityBookId) {
+		// TODO Auto-generated method stub
+		return getRequestScopeDao().checkStatusOfBookFacility(int_FacilityBookId);
+	}
 				 
 	}
 	 

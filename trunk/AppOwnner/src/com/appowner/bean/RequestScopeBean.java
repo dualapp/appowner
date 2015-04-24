@@ -35,6 +35,7 @@ import com.appowner.model.Vendor;
 import com.appowner.model.cls_Event;
 import com.appowner.service.In_UserService;
 import com.appowner.service.RequestScopeService;
+import com.appowner.service.VendorService;
 import com.appowner.util.Util;
 @ManagedBean
 @ViewScoped
@@ -48,6 +49,15 @@ public class RequestScopeBean implements Serializable {
 
 @ManagedProperty(value = "#{RequestScopeService}")
 private RequestScopeService requestScopeService;
+@ManagedProperty(value = "#{VendorService}")
+private VendorService vendorservice;
+ 
+public VendorService getVendorservice() {
+	return vendorservice;
+}
+public void setVendorservice(VendorService vendorservice) {
+	this.vendorservice = vendorservice;
+}
 private String str_Status;
 private String str_VendorType;
 private String str_Period;
@@ -285,68 +295,140 @@ public void setDataTable(DataTable dataTable) {
 }
 
 private   ServiceRequest serviceRequest;
+private   ServiceRequest serviceReq=new ServiceRequest() ;
+public ServiceRequest getServiceReq() {
+	return serviceReq;
+}
+public void setServiceReq(ServiceRequest serviceReq) {
+	this.serviceReq = serviceReq;
+}
 private static Integer serviceRequestId; 
   
 public static Integer getServiceRequestId() {
 	return serviceRequestId;
 }
  
+ public void getServiceRequest1(Integer sid)
+ {
+	 serviceReq= getRequestScopeService().getOneServiceRequest(sid);
+	 if(serviceReq!=null)
+	 {
+		 str_VendorNameByType=new ArrayList<String>();
+			str_VendorNameByType.addAll(getVendorservice().listOfVendorNameByType(serviceReq.getStr_VendorType()));
+	 }
+ }
  
- 
- 
- 
+  private List<String>  str_VendorTypeList;
+public List<String> getStr_VendorTypeList() {
+	str_VendorTypeList=new ArrayList<String>();
+	str_VendorTypeList.addAll(getVendorservice().getStr_VendorTypeList());
+	System.out.println(str_VendorTypeList);
+	return str_VendorTypeList;
+}
+private  List<String> str_VendorNameByType;
+public List<String> vendorTypeChangeListener(ValueChangeEvent event)
+{   
+	str_VendorType=(String) event.getNewValue();
+	if(str_VendorType!=null)
+	{
+	System.out.println(str_VendorType);
+	str_VendorNameByType=new ArrayList<String>();
+	str_VendorNameByType.addAll(getVendorservice().listOfVendorNameByType(str_VendorType));
+	System.out.println(str_VendorNameByType);
+	return str_VendorNameByType ;
+	}
+	else
+		return str_VendorNameByType=new ArrayList<String>();
+	
+}
+
+public List<String> getStr_VendorNameByType() {
+	 
+		 
+		return str_VendorNameByType;
+	 
+	 
+}
+ private BookAFacility bf1=new BookAFacility();
+ public void getBookAFacility1(Integer bid)
+ {
+ bf1= getRequestScopeService().getOneBookAFacility(bid);
+ }
  
 public String assignRequestedService(ServiceRequest serviceRequest)
 {
-	 System.out.println(serviceRequest.getInt_ServiceRequestId()+"sissssssssssssssssssss");
-//serviceRequest.setStr_Status("Progress");
+	String status=getRequestScopeService().checkStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId());
+	if(status.equalsIgnoreCase("Progress"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Only Open status service request can be assigned"));
+		return "servicerequest.xhtml";
+	}
+	 
+	else if(serviceRequest.getStr_Status().equalsIgnoreCase("RequestClosed"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Only Open status service request can be assigned"));
+		return "servicerequest.xhtml";
+	}
 	 str_Status="Progress";
 	 
  
 getRequestScopeService().updateStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId(),str_Status);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Assigned Successfully"));
-    return "servicerequest.xhtml?faces-redirect=true";
+    return "servicerequest.xhtml";
 }
 public String closeRequestedService(ServiceRequest serviceRequest)
 {
 	 
-//serviceRequest.setStr_Status("RequestClosed");
- 
+	String status=getRequestScopeService().checkStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId());
+	if(status.equalsIgnoreCase("RequestClosed"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Request Already Closed"));
+		return "servicerequest.xhtml";
+	}
+	
 	str_Status="RequestClosed";
 getRequestScopeService().updateStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId(),str_Status);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Closed Successfully"));
-    return "servicerequest.xhtml?faces-redirect=true";
+    return "servicerequest.xhtml";
 }
 public String assignBookFacility(BookAFacility baf)
 {
-	 System.out.println(baf.getInt_FacilityBookId()+"sissssssssssssssssssss");
-//serviceRequest.setStr_Status("Progress");
+	String status=getRequestScopeService().checkStatusOfBookFacility(baf.getInt_FacilityBookId());
+	if(status.equalsIgnoreCase("Progress"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Only Open status Book A Facility can be assigned"));
+		return "book a facility.xhtml";
+	}
+	 
+	else if(serviceRequest.getStr_Status().equalsIgnoreCase("RequestClosed"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Only Open status Book A Facility can be closed"));
+		return "book a facility.xhtml";
+	}
 	 str_Status="Progress";
 	 
  
 getRequestScopeService().updateStatusOfBookFacility(baf.getInt_FacilityBookId(),str_Status);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assigned Successfully"));
-    return "book a facility.xhtml?faces-redirect=true";
+    return "book a facility.xhtml";
 }
 public String closeBookFacility(BookAFacility baf)
 {
 	 
-//serviceRequest.setStr_Status("RequestClosed");
+String status=getRequestScopeService().checkStatusOfBookFacility(baf.getInt_FacilityBookId());
+if(status.equalsIgnoreCase("RequestClosed"))
+{
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Book A Facility Already Closed"));
+	return "book a facility.xhtml";
+}
+ 
  
 	str_Status="RequestClosed";
 getRequestScopeService().updateStatusOfBookFacility(baf.getInt_FacilityBookId(),str_Status);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Closed Successfully"));
-    return "book a facility.xhtml?faces-redirect=true";
+    return "book a facility.xhtml";
 }
-private ServiceRequest servicerequest1;
-public ServiceRequest getServicerequest1() {
-	 
-	 
-	return servicerequest1;
-}
-public void setServicerequest1(ServiceRequest servicerequest1) {
-	this.servicerequest1 = servicerequest1;
-}
+ 
 
 public String deleteServices(){
     List<ServiceRequest> entitiesToDelete = new ArrayList<ServiceRequest>();
@@ -366,28 +448,19 @@ FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Succ
     return "servicerequest.xhtml";
 }
  
-public void getOneServiceRequest()
-{   
-  servicerequest1=getRequestScopeService().getOneServiceRequest(serviceRequestId);
-	   System.out.println(servicerequest1+"servicerequest");
-  
-}
-public String updateOneServiceRequest(ServiceRequest servicerequest)
+ 
+public String updateOneServiceRequest()
 {
-	getRequestScopeService().updateOneServiceRequest(servicerequest);
+	if(serviceReq.getInt_ServiceRequestId()!=null)
+	{
+	getRequestScopeService().updateOneServiceRequest(serviceReq);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully"));
+	}
 	return "servicerequest.xhtml";
 	
 }
  
-public void deleteOneServiceRequest()
-{ 
-servicerequest1.setInt_ServiceRequestId(serviceRequestId);
-getRequestScopeService().deleteOneServiceRequest(servicerequest1);
-}
-public ServiceRequest getServiceRequest() {
-	return serviceRequest;
-}
+ 
 
 /*
  * book a facility
@@ -430,11 +503,19 @@ public List<BookAFacility> getSelectedBookAFacility() {
 public void setSelectedBookAFacility(List<BookAFacility> selectedBookAFacility) {
 	this.selectedBookAFacility = selectedBookAFacility;
 }
-public String updateBookAFacility(BookAFacility bf1)
+public String updateBookAFacility()
+{if(bf1!=null)
 {
 	getRequestScopeService().updateBookAFacility(bf1);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully"));
+}
 	    return "book a facility.xhtml";
+}
+public BookAFacility getBf1() {
+	return bf1;
+}
+public void setBf1(BookAFacility bf1) {
+	this.bf1 = bf1;
 }
 public String getStr_FacilityType() {
 	return str_FacilityType;

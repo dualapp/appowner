@@ -271,6 +271,12 @@ public void setVendordao(VendorDao vendordao) {
 		getVendordao().deleteVendorService(service);
 	}
 
+	@Override
+	public WorkOrderCategory getWorkOrder1(Integer wid) {
+		// TODO Auto-generated method stub
+		return getVendordao().getWorkOrder1(wid);
+	}
+
 	 
 }
 	 

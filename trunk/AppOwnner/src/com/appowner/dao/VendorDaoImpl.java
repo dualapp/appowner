@@ -347,6 +347,12 @@ public class VendorDaoImpl implements VendorDao{
 		sessionFactory.getCurrentSession().delete(service);
 	}
 
+	@Override
+	public WorkOrderCategory getWorkOrder1(Integer wid) {
+		// TODO Auto-generated method stub
+		return (WorkOrderCategory) sessionFactory.getCurrentSession().get(WorkOrderCategory.class,wid);
+	}
+
 	 
 	 
 }

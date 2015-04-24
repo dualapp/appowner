@@ -100,4 +100,6 @@ public interface VendorDao {
 
 	public void deleteVendorService(VendorServiceDetails service);
 
+	public WorkOrderCategory getWorkOrder1(Integer wid);
+
 }

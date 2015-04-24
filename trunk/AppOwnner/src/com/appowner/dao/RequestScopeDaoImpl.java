@@ -165,5 +165,23 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().createQuery("update BookAFacility set Str_Status=? where int_FacilityBookId=?").setParameter(0, str_Status).setParameter(1, int_FacilityBookId).executeUpdate();
 	}
+
+	@Override
+	public String checkStatusOfServiceRequest(Integer int_ServiceRequestId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select Str_Status from ServiceRequest where int_ServiceRequestId=?").setParameter(0, int_ServiceRequestId).uniqueResult();
+	}
+
+	@Override
+	public BookAFacility getOneBookAFacility(Integer bid) {
+		// TODO Auto-generated method stub
+		return (BookAFacility) sessionFactory.getCurrentSession().get(BookAFacility.class,bid );
+	}
+
+	@Override
+	public String checkStatusOfBookFacility(Integer int_FacilityBookId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select Str_Status from BookAFacility where int_FacilityBookId=?").setParameter(0, int_FacilityBookId).uniqueResult();
+	}
 }
 
