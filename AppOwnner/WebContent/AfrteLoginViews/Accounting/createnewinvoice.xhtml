@@ -48,22 +48,22 @@
 	</table>
 <body  bgcolor="pink">
   <h:form prependID="false">
-  <p:growl id="ui-growl" globalOnly="true" sticky="true" />  
+   <p:growl id="ui-growl" globalOnly="true" sticky="true" />
    <div id="page3"> 
     <div class="gsTitleDiv">Template<br/><hr/></div>
   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
             <tr>
             
             <td><h:outputLabel value="Invoice Template:" /></td>
-            <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}" required="true">
+            <td><h:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:250px" valueChangeListener="#{invoiceBean.selectRadioButton}" required="true" requiredMessage="It Should not be Empty">
                      <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
                     <f:ajax event="change" execute="str_InvoiceTemplate" render="@form" />
-                 </p:selectOneMenu>
-                 <p:message for="str_InvoiceTemplate" display="text"/>
+                </h:selectOneMenu>
+               <p:message for="str_InvoiceTemplate" display="text"/> 
              </td>
-        
-          
+         
+         
           <h:panelGroup  id="performed"  rendered="#{! empty invoiceBean.str_InvoiceTemplate}" >
           <td><h:outputLabel value="Included Charges"  /></td>
           <td><p:dataTable id="due" var="due" value="#{invoiceBean.dueList}" style="width:500px">
@@ -85,10 +85,12 @@
             </p:column>
             </p:dataTable>
           </td>
+          
           </h:panelGroup>
-        
+       
           </tr>
           </table>
+          
        </div>
          
            <div id="page3"> 
@@ -134,7 +136,7 @@
           
        
             <td> <h:outputText  value="Year" /><font color="red" >*</font></td>
-           <td> <p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}" valueChangeListener="#{invoiceBean.periodChangeListener1}" >
+           <td> <h:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}" valueChangeListener="#{invoiceBean.periodChangeListener1}" >
             <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                  
                      <f:selectItem itemLabel="2015" itemValue="2015"/>
@@ -144,7 +146,7 @@
                      <f:selectItem itemLabel="2019" itemValue="2019"/>
                        <f:selectItem itemLabel="2020" itemValue="2020"/>
                       <p:ajax event="change"  process="int_Year"  />   
-                       </p:selectOneMenu>
+                      </h:selectOneMenu>
                         </td>
                        
     </tr> 
@@ -159,9 +161,9 @@
             
            <p:spacer width="150" height="20"/>
              <td>  <h:outputLabel  value="Due Date*" /></td>
-           <td>  <p:calendar id="dat_DueDate" value="#{invoiceBean.dat_DueDate}"  required="true" pattern="dd/MM/yyyy" requiredMessage="It Should not be Empty" style="width:250px">
+           <td>  <p:calendar id="dat_DueDate" value="#{invoiceBean.dat_DueDate}"  required="true" pattern="dd/MM/yyyy" requiredMessage="Select Date" style="width:250px">
             <p:ajax event="dateSelect" partailSubmit="true"/>
-            <p:message for="dat_DueDate" display="true"/>
+            
              </p:calendar> </td>
           
             
@@ -176,37 +178,51 @@
            
               <td><h:outputLabel value="Organisation:" /></td>
              <p:spacer width="45" height="20"/>
-              <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}" valueChangeListener="#{invoiceBean.organisationChangeListener}" style="width:250px">
+              <td><h:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}" valueChangeListener="#{invoiceBean.organisationChangeListener}" style="width:250px">
                     <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                   <f:selectItem itemLabel="#{invoiceBean.str_Organisation}" itemValue="#{invoiceBean.str_Organisation}"/>
                     <p:ajax event="change" update="str_Block" process="str_Organisation"/>
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
              </td>
           <p:spacer width="80" height="20"/>
              <td><h:outputLabel value="Block:" /></td>
-              <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}" style="width:250px">
+              <td><h:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener}" style="width:250px"   required="true"   >
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{invoiceBean.str_Blocks}" />
                     <p:ajax event="change" update="str_ApartmentNo,ui-growl" process="str_Block" partialSubmit="true" />
-                 </p:selectOneMenu>
-             </td>
+              </h:selectOneMenu>
+              <p:message for="str_Block" display="text"/> </td>
+            
  </tr>
  <tr>
    <h:panelGroup id="performed5"  >
            
               <td><h:outputLabel value="Apartment.No:" /></td>
            <p:spacer width="40" height="20"/>
-              <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" valueChangeListener="#{invoiceBean.amountChangeListener}"  style="width:250px">
+              <td><h:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}" valueChangeListener="#{invoiceBean.amountChangeListener}"   required="true" requiredMessage="It Should not be Empty">
               <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                      <f:selectItems value="#{invoiceBean.str_BlockNo}" />
                        <f:ajax event="change" process="@this" render="ui-growl :invoiceform " />
-                 </p:selectOneMenu>
-          
-             </td>
+                </h:selectOneMenu>
+          <p:message for="str_ApartmentNo" display="text"/> </td>
+            
              </h:panelGroup>
  
   </tr>
+  
   </table>
+ <h:panelGroup style="display:block; text-align:right" >
+ 
+  
+       <tr>
+        
+                 <td><p:commandButton styleClass="btn" id="submit" value="Submit"  action="#{invoiceBean.addInvoiceTransaction}" ajax="false" >
+              
+                </p:commandButton>
+                 <p:button styleClass="btn" id="cancel" value="Cancel" outcome="invoice.xhtml"  style="margin-left:2em;" /></td>
+           </tr>
+ </h:panelGroup>
+ 
   </div>
   </h:form>
   <h:form id="invoiceform">
@@ -320,18 +336,18 @@
   
   </div>  
  </h:panelGroup>
- 
- <h:panelGroup style="display:block; text-align:right">
+ <h:panelGroup style="display:block; text-align:right" >
  
   
        <tr>
         
-                 <td><p:commandButton styleClass="btn" id="submit" value="Submit" action="#{invoiceBean.addInvoiceTransaction}" ajax="false" >
+                 <td><p:commandButton styleClass="btn" id="submit" value="Submit"  action="#{invoiceBean.addInvoiceTransaction}" ajax="false" >
               
                 </p:commandButton>
                  <p:button styleClass="btn" id="cancel" value="Cancel" outcome="invoice.xhtml"  style="margin-left:2em;" /></td>
            </tr>
  </h:panelGroup>
+ 
  </h:form>
           </body>
           

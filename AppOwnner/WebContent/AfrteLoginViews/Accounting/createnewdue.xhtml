@@ -70,6 +70,7 @@
                     <p:ajax event="change"  process="str_DueTemplate" update="str_Period"/>
                  </h:selectOneMenu>
              </td>
+            
           </tr> 
           </table>
          </div>
@@ -163,7 +164,7 @@
              </tr>
              <tr>
                <td><h:outputLabel value="Apt.No" /><font color="red" >*</font></td>
-              <td><h:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}" valueChangeListener="#{dueBean.apartmentChangeListener}"  required="true" requiredMessage="ApartmentNo Should not Empty" oncomplete="PF('multiDuesDialog').show()">
+              <td><h:selectOneMenu id="str_ApartmentNo" value="#{dueBean.str_ApartmentNo}" valueChangeListener="#{dueBean.apartmentChangeListener}"  required="true" requiredMessage="ApartmentNo Should not Empty" >
                    <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.str_BlockNo}" />
                     <p:ajax event="change" update="dbl_DueAmount,dbl_TotalDueAmount,ui-growl" process="str_ApartmentNo" />
@@ -177,12 +178,12 @@
           <div id="page3"> 
     <div class="gsTitleDiv">Amount Details<br/><hr/></div>     
  
-   <table style="width: 80%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    
           <tr>
-           <td>  <h:outputText  value="Due Amount" /></td>
-           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}"  readonly="true" /> </td>
-           <td></td>
+           <td width="24%">  <h:outputText  value="Due Amount" /></td>
+           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" validator="#{dueBean.validateAmount}" readonly="false" required="true" validatorMessage="This due already exists for the selected apartment. Duplicate dues cannot be created"  /> </td>
+           <td><p:message id="str_CreditAccountMsg" for="dbl_DueAmount"  display="text"/>  </td>
            </tr>
            <tr>
            <td>  <h:outputText  value="Total Due Amount" /></td>
@@ -197,20 +198,6 @@
            </tr>
            </table>
          
-              <p:dialog header="Message" widgetVar="multiDuesDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="100" width="300">
-        <p:outputPanel id="multiDuesDetail" style="text-align:center;">
-          <table>
-          <tr>
-          <td><h4>Dues cannot be edited.</h4>
-          
-          </td>
-          </tr>
-         
-         
-          </table>
-          
-        </p:outputPanel>
-    </p:dialog>
 </div>
 
           
