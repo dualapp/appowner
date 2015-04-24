@@ -81,14 +81,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	public void setDeposite_Account_Name(String deposite_Account_Name) {
 		this.deposite_Account_Name = deposite_Account_Name;
 	}
-	public InvoiceBean()
-	{
-		
-	}
-	public InvoiceBean(String msg)
-	{
-		super(msg);
-	}
+	
 	
 	public String getInt_InvoiceNo() {
 		return int_InvoiceNo;
@@ -576,9 +569,10 @@ private List<DueTransaction> listDueTransaction;
 					organisation=getStr_Organisation();
 					transaction1=transaction;
 				System.out.println("kifglkfgf");
-					return "/AfrteLoginViews/Accounting/invoice1.jsp";
+					return "/AfrteLoginViews/Accounting/sendinvoice.jsp";
 				
 				}
+			  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
 			  System.out.println("vfgjgfvfjfjk");
 				return "invoice.xhtml";
 			
@@ -654,14 +648,17 @@ private List<DueTransaction> listDueTransaction;
 	public void setPeriodIndicator(String periodIndicator) {
 		this.periodIndicator = periodIndicator;
 	}
-	public List<String> selectRadioButton(ValueChangeEvent event) throws InvoiceBean
+	public List<String> selectRadioButton(ValueChangeEvent event) 
 	{  try{
 		select =( String )event.getNewValue();
 		System.out.println(select+"hhjjhjh");
+		str_InvoiceTemplate=select;
+		System.out.println(str_InvoiceTemplate+"fjjkdfdjkkjfdjkfdjkfdjdjfdfj44444444444444444444444444444");
 		str_Block="";
 		str_ApartmentNo="";
 		str_BillPeriod="";
 		int_Year=int_Year;
+		render=false;
          dueList=new ArrayList<String>();
 	    if(select.equals(getSelect()))
 	    {
@@ -692,13 +689,14 @@ private List<DueTransaction> listDueTransaction;
 	}
 	catch(Exception e)
 	{
-		throw new InvoiceBean("DueTemplate is not Present");
+		e.printStackTrace();
 	}
 	 finally
 	    {
 	    	 periodIndicator=getInvoiceService().getPeriod(select);
 				System.out.println(periodIndicator+"jhjjkkj");
 	    }
+	return dueList;
 
 	}
 	public void periodChangeListener(ValueChangeEvent event)
@@ -808,17 +806,19 @@ private List<DueTransaction> listDueTransaction;
 			str_BlockNo.addAll(getInvoiceService().getApartmentlist(str_Block));
 			return str_BlockNo;
 	}
-	public List<String> blockChangeListener(ValueChangeEvent event)
+	public String blockChangeListener(ValueChangeEvent event)
 	{   str_Block=(String)event.getNewValue();
 	   System.out.println(str_Block);
 	   System.out.println(select+"jkgfkjggfgfgf");
 	   if(select==null)
-	   {FacesContext facesContext = FacesContext.getCurrentInstance();
+	   {   System.out.println("djfdjhjdfjfdjdfjfdj44444444444444444444444444444444444444444444444444444445555555555555555555555555");
+		   FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Select InvoiceTemplate", "Select InvoiceTemplate"));
-		  
+		return null;
+		
 	   }
 	   else
 	   {   
@@ -826,7 +826,7 @@ private List<DueTransaction> listDueTransaction;
 		str_BlockNo.addAll(getInvoiceService().getApartmentlist(str_Block));
 		
 	   }
-	   return str_BlockNo;
+	   return "invoice.xhtml?faces-redirect=true";
 	}
 	private double taxAmount;
 	 
@@ -943,6 +943,7 @@ private List<DueTransaction> listDueTransaction;
 		     taxAmount2=0.00;
 		     double taxexceptionAmount=0.00;
 		     tax2=new ArrayList<Double>();
+		     taxAmounts=new ArrayList<Double>();
 		     while(list.hasNext())
 		     {
 		    	 Object obj=list.next();
@@ -950,7 +951,7 @@ private List<DueTransaction> listDueTransaction;
 		    	 String str2=template.getStr_TaxTemplate();
 		    	 System.out.println(str2);
 		    	 String str3=template.getStr_Calculation();
-		    	
+		    	 taxexceptionAmount=0.00;
 		    	 if(str2.isEmpty())
 		    	 {   System.out.println("dfjkfkjfdkj");
 		    		 taxAmount=0.00; 
@@ -1082,6 +1083,7 @@ private List<DueTransaction> listDueTransaction;
 			     totalDue=0.00;
 			     taxAmount2=0.00;
 			     tax2=new ArrayList<Double>();
+			     taxAmounts=new ArrayList<Double>();
 			     double taxexceptionAmount=0.00;
 			     while(list.hasNext())
 			     {
@@ -1090,6 +1092,7 @@ private List<DueTransaction> listDueTransaction;
 			    	 String str2=template.getStr_TaxTemplate();
 			    	 System.out.println(str2+"gfjjgjkfg");
 			    	 String str3=template.getStr_Calculation();
+			    	 taxexceptionAmount=0.00;
 			    	 if(str2.isEmpty())
 			    	 {   System.out.println("dfjkfkjfdkj");
 			    		 taxAmount=0.00; 
@@ -1098,6 +1101,7 @@ private List<DueTransaction> listDueTransaction;
 			    	 {
 			    		 System.out.println("dfjkfkjfdkjsssssssssssssss");
 			    		 taxAmount=0.00;  
+			    		 
 			    	 }
 			    	 else
 			    	 {
@@ -1114,6 +1118,8 @@ private List<DueTransaction> listDueTransaction;
 			    	      System.out.println(sqrt+"dksdsk");
 			    	      System.out.println(template.getStr_Rate()+"kjfdfjkd");
 			    	      totalAmount=template.getStr_Rate()*sqrt;
+			    	      BigDecimal b = new BigDecimal(totalAmount).setScale(2,BigDecimal.ROUND_HALF_UP);
+			    	      totalAmount=b.doubleValue(); 
 			    	      System.out.println(totalAmount+"fdkdfk");
 			    	  }
 			    	  else if(str3.equalsIgnoreCase("Flat"))
@@ -1124,6 +1130,7 @@ private List<DueTransaction> listDueTransaction;
 			    	  }
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	 System.out.println(taxAmount1+"fkjdfkjfg");
+			    	 System.out.println(taxexceptionAmount+"fdklfkjfdjk11111111111111111111111111111111111111");
 			    	 taxAmount1=taxAmount1-taxexceptionAmount/10;
 			    	 System.out.println(taxAmount1);
 			    	 taxAmounts.add(taxAmount1);
@@ -1740,6 +1747,37 @@ public void amountchangeListener(ValueChangeEvent event)
 {
 	amount1=(double) event.getNewValue();
 	System.out.println(amount1+"jhcfffdjhfjhdffdj1111111111111111111");
+}
+public void validateTemplate(FacesContext context, UIComponent component,Object o) 
+{System.out.println("111111111111111111111118888888888888888888888888888888888888888888");
+	 
+		System.out.println(select+"fdkjjkfg444444444444444444444444444444444");
+		if(select==null) {
+			FacesMessage msg
+	          = new FacesMessage();
+			 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+		        throw new ValidatorException(msg);
+		}
+		else
+		{   
+			System.out.println("jfdjjfjfgjfgj");
+		}
+}
+public void validateTemplate1(FacesContext context, UIComponent component,Object o) 
+{System.out.println("111111111111111111111118888888888888888888888888888888888888888888");
+	 
+		HtmlSelectOneMenu menu =(HtmlSelectOneMenu) component;
+		
+		if(menu.getSubmittedValue().equals(debitAccount)) {
+			FacesMessage msg
+	          = new FacesMessage();
+			 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+		        throw new ValidatorException(msg);
+		}
+		else
+		{   
+			System.out.println("jfdjjfjfgjfgj");
+		}
 }
 public void validateAccount(FacesContext context, UIComponent component,Object o) 
 {System.out.println("111111111111111111111118888888888888888888888888888888888888888888");
