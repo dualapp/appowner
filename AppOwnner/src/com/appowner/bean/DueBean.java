@@ -14,6 +14,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
@@ -30,6 +31,9 @@ import javax.faces.event.ValueChangeEvent;
 
 
 
+
+
+import javax.faces.validator.ValidatorException;
 
 import org.primefaces.event.SelectEvent;
 
@@ -260,6 +264,7 @@ public class DueBean implements Serializable{
 			due.setDbl_TotalDueAmount(getDbl_DueAmount());
 			due.setStr_Status("Due");
 			getDueService().saveDueTransaction(due);
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Dues Saved Successfully!"));
 			return "dues.xhtml";
 		}
 		catch(Exception e)
@@ -285,6 +290,12 @@ public class DueBean implements Serializable{
 	}
 	public void setListDueTransaction(List<DueTransaction> listDueTransaction) {
 		this.listDueTransaction = listDueTransaction;
+	}
+	
+	public void detectInvoiceTemplate()
+	{
+		System.out.println("vcnmjnngffgjmfgmjngfgfm111111111111111111111111111111111");
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select an Item to View!"));
 	}
 	private List<DueTransaction> listDueTransaction;
 	private List<String> str_Blocks;
@@ -454,6 +465,12 @@ public class DueBean implements Serializable{
 		System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
 		indicate=true;
 	}
+	public boolean isIndicate() {
+		return indicate;
+	}
+	public void setIndicate(boolean indicate) {
+		this.indicate = indicate;
+	}
 	public String deleteDues(){
 		try
 		{
@@ -497,9 +514,21 @@ public class DueBean implements Serializable{
 			
 	return null;		
 	} 
-	{
-		
-	}
+	public void validateAmount(FacesContext context, UIComponent component,Object o) 
+	 {
+		 System.out.println("166666666666666666666666666666666666666666666666666666666666666666666666666");
+			HtmlInputText input =(HtmlInputText) component;
+			double amount2= Double.parseDouble((String) input.getSubmittedValue());
+			
+			
+			if(amount2==0.00)
+			{   
+				FacesMessage msg
+		          = new FacesMessage();
+				 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			        throw new ValidatorException(msg);
+			}
+	 }
 
 }
 
