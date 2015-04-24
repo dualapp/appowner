@@ -158,9 +158,9 @@
     
      <tr>
     <td width="15%"><h:outputLabel value="Organisation" /><font color="red" >*</font></td>
-              <td ><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}"  style="width:250px">
+              <td ><h:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}"  style="width:250px">
                    <f:selectItem itemValue="#{invoiceBean.str_Organisation}"  itemLabel="#{invoiceBean.str_Organisation}"/>
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
      </tr>
      <tr>
@@ -239,7 +239,7 @@
       <td> <p:message id="str_CreditAmountMsg" for="str_CreditAmount"  display="text"/></td>
       </tr>
      <tr>      <td></td>
-                <td ><p:commandButton  styleClass="btn" id="submit1" value="Submit" actionListener="#{invoiceBean.addInvoiceManualJournal}"  update=":form:ggg :form:ui-growl,notesmsg,str_DebitAmountMsg,str_CreditAmountMsg,str_CreditAccountMsg" oncomplete="handleRequest(xhr, status, args)"/></td>
+                <td ><p:commandButton  styleClass="btn" id="submit1" value="Submit" actionListener="#{invoiceBean.addInvoiceManualJournal}"  update=":form:ggg,:form:ui-growl,notesmsg,str_DebitAmountMsg,str_CreditAmountMsg,str_CreditAccountMsg" oncomplete="handleRequest(xhr, status, args)"/></td>
              
             </tr>
     </table>
