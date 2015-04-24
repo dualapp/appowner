@@ -48,4 +48,10 @@ public interface RequestScopeDao {
 	void updateStatusOfBookFacility(Integer int_FacilityBookId,
 			String str_Status);
 
+	String checkStatusOfServiceRequest(Integer int_ServiceRequestId);
+
+	BookAFacility getOneBookAFacility(Integer bid);
+
+	String checkStatusOfBookFacility(Integer int_FacilityBookId);
+
 }

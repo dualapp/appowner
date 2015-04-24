@@ -92,21 +92,23 @@ public class VendorBean implements Serializable {
 		 
 		return "workordercategory.xhtml";
 	}
-	public String updateWorkOrder(WorkOrderCategory w)
+	public String updateWorkOrder()
 	
 	{
 		if(w!=null)
 		{
-		System.out.println("kakkakakakkak");
+		 
 		getVendorservice().updateWorkOrder(w);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Workorder Updated Successfully!"));
+		return "workordercategory.xhtml";
 		}
 		else{
 			 FacesMessage message = null;
 		FacesContext.getCurrentInstance().addMessage(null, message);
+		return "workordercategory.xhtml";
 
 		}
-		return "workordercategory.xhtml";
+		
 	}
 
 	public void setWorkOrderCategoryList1(
@@ -1184,7 +1186,7 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	  try{ 
 		   if (selectedVendor.size() >= 2) {
 	           
-			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("You cannot selected more than 1 row to proceed"));
+			   FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This operation is applicable when only one item is selected."));
 			   
 	           return "vendorlists.xhtml";
 	       }
@@ -1207,10 +1209,21 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	  }
 	  return null;
 	}
+	public WorkOrderCategory getW() {
+		return w;
+	}
+	public void setW(WorkOrderCategory w) {
+		this.w = w;
+	}
 	public boolean isIndicate1() {
 		return indicate1;
 	}
 	public void setIndicate1(boolean indicate1) {
 		this.indicate1 = indicate1;
+	}
+	private WorkOrderCategory w=new WorkOrderCategory();
+	public void getWorkOrder1(Integer wid)
+	{
+		w=getVendorservice().getWorkOrder1(wid);
 	}
 }

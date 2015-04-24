@@ -528,6 +528,24 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getOrganizationDetails();
 	}
 
+	@Override
+	public String checkStatus(String str_ExpenseId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().checkStatus(str_ExpenseId);
+	}
+
+	@Override
+	public FacilityNeeded getOneFacilityNeeded(Integer fid) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getOneFacilityNeeded(fid);
+	}
+
+	@Override
+	public Parking getOneParking(Integer pid) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getOneParking(pid);
+	}
+
 	 
 	 
 

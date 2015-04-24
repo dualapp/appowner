@@ -190,6 +190,12 @@ public interface ExpenseService {
 
 	OrganizationLogo getOrganizationDetails();
 
+	String checkStatus(String str_ExpenseId);
+
+	FacilityNeeded getOneFacilityNeeded(Integer fid);
+
+	Parking getOneParking(Integer pid);
+
 	 
 
 }

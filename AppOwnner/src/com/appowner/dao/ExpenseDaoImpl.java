@@ -635,4 +635,22 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		return (OrganizationLogo) sessionFactory.getCurrentSession().createQuery("from OrganizationLogo where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).uniqueResult();
 	}
+
+	@Override
+	public String checkStatus(String str_ExpenseId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_Status from Expense where str_ExpenseId=?").setParameter(0, str_ExpenseId).uniqueResult();
+	}
+
+	@Override
+	public FacilityNeeded getOneFacilityNeeded(Integer fid) {
+		// TODO Auto-generated method stub
+		return (FacilityNeeded) sessionFactory.getCurrentSession().get(FacilityNeeded.class, fid);
+	}
+
+	@Override
+	public Parking getOneParking(Integer pid) {
+		// TODO Auto-generated method stub
+		return (Parking) sessionFactory.getCurrentSession().get(Parking.class, pid);
+	}
 }
