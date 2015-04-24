@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -16,8 +17,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIData;
+import javax.faces.component.UIInput;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.component.html.HtmlInputHidden;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
@@ -29,7 +32,9 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.selectcheckboxmenu.SelectCheckboxMenu;
+import org.primefaces.component.selectmanycheckbox.SelectManyCheckbox;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
@@ -56,15 +61,7 @@ public class TemplateBean implements Serializable,Validator {
 	public TemplateService getTemplateService() {
 		return templateService;
 	}
-	public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg =  new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate  added Successfully!", " DueTemplate added Successfully!");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-     
-    public void onRowCancel(RowEditEvent event) {
-    	FacesMessage msg =  new FacesMessage(FacesMessage.SEVERITY_INFO," DueTemplate  added Successfully!", " DueTemplate added Successfull666666666666666y!");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+	
 	public void setTemplateService(TemplateService templateService) {
 		this.templateService = templateService;
 	}
@@ -95,11 +92,16 @@ public class TemplateBean implements Serializable,Validator {
 		this.str_Frequency = str_Frequency;
 	}
 	public String getStr_Calculation() {
-		//str_Calculation=getTemplateService().getCalculation();
+		
 		return str_Calculation;
 	}
 	public void setStr_Calculation(String str_Calculation) {
 		this.str_Calculation = str_Calculation;
+	}
+	@PostConstruct
+	public void init() {
+		str_Calculation="Sqft";
+	
 	}
 	
 	public String getStr_TaxTemplate() {
@@ -167,7 +169,26 @@ public class TemplateBean implements Serializable,Validator {
 	   dueTemplate1=getTemplateService().getDueTemplate(id1);
 	  
 	}
+	public void validate1(FacesContext context, UIComponent component,
+	           Object value) throws ValidatorException { 
+	      System.out.println("fjkgfkjggkjhgkjh111111111111111111111111111111111111111111111111111111111");
+	      
+	      InputText inputtext=(InputText) component;
+	      System.out.println( inputtext.getSubmittedValue());
+	      double amount2= Double.parseDouble((String) inputtext.getSubmittedValue());
+	      if(amount2==0.0) {
+				FacesMessage msg
+		          = new FacesMessage();
+				 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			        throw new ValidatorException(msg);
+			}
+			else
+			{   
+				System.out.println("jfdjjfjfgjfgj");
+			}
+	    
 	 
+} 
 	public String addDueTemplate()
 	{  
 		try{
@@ -639,14 +660,28 @@ public class TemplateBean implements Serializable,Validator {
 	{
 		System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
 		indicate=true;
-	}
+	} 
+	
 	public void desabled1Listener( SelectEvent event)
 	{  
 		selectedInvoiceTemplate=(InvoiceTemplate) event.getObject();
 		System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
 		indicate=true;
 		 String str=selectedInvoiceTemplate.getStr_InvoiceTemplateName();
-		 
+		 str_Frequency=selectedInvoiceTemplate.getStr_Frequency();
+		 String str1=selectedInvoiceTemplate.getStr_DueInvoiceTemplate();
+		 System.out.println(str1+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+		 String[] strArray = str1.split(",");
+		 str_DueInvoiceTemplate=new ArrayList<String>();
+		  for (String str2 : strArray) {
+		       System.out.println(str2+"jdfjkdffdjkjkfjkgffgkjfgfjkfkjfjkfjkfjk");
+		       
+		       str_DueInvoiceTemplate.add(str2);
+		       System.out.println(str2+"dskjfdjkdfkj");
+		       
+		          
+		        }
+		  System.out.println(str_DueInvoiceTemplate+"1111111111111111111111111uuuuuuuuuuuuuuuuuuuuuuuuu");
 		 indicate1=getTemplateService().detectInvoiceTemplate(str);
 		 System.out.println(indicate1+"fjkgfkjkjkjggjk");
 		 
@@ -682,7 +717,7 @@ public class TemplateBean implements Serializable,Validator {
 	  invoicetemplate.setStr_DueInvoiceTemplate(str);
 	  getTemplateService().saveInvoiceTemplate(invoicetemplate);
 	  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Invoice Template Saved Successfully!"));
-         return "invoicetemplate.xhtml?faces-redirect=true";
+         return "invoicetemplate.xhtml";
 		
 	}
 	catch(Exception e)
@@ -798,7 +833,7 @@ public class TemplateBean implements Serializable,Validator {
 		
 	}
      @SuppressWarnings("rawtypes")
-	 List list1=new ArrayList();
+	private  List list1;
 	@SuppressWarnings("rawtypes")
 	public List getList1() {
 		return list1;
@@ -820,10 +855,10 @@ public class TemplateBean implements Serializable,Validator {
 	@SuppressWarnings("unchecked")
 	public void roleChangeListener(ValueChangeEvent event) 
 	{   System.out.println("hi");
-	     System.out.println(list1+"fdjjfdfdfdfg");
-
- 
 	    
+
+         list1=new ArrayList<String>();
+	   
 		list1.addAll((List<String>)event.getNewValue());
 		System.out.println(list1);
 		StringBuilder out = new StringBuilder();
@@ -894,7 +929,7 @@ public class TemplateBean implements Serializable,Validator {
 
 			System.out.println(str+"jfjhffjhjfdj");
 			invoiceTemplate.setStr_DueInvoiceTemplate(str);
-			System.out.println(str1_Frequency+"fkfgkjfg");
+			
 			//invoiceTemplate.setStr_Frequency(str1_Frequency);
 			//invoiceTemplate.setStr_DueInvoiceTemplate(str_DueInvoiceTemplate);
 			getTemplateService().updateInvoiceTemplate(invoiceTemplate);
@@ -910,7 +945,7 @@ public class TemplateBean implements Serializable,Validator {
     	{
     		e.printStackTrace();
     	}
-		return "invoicetemplate.xhtml";
+    	return "invoicetemplate.xhtml?faces-redirect=true";
 	}
     public String deleteInvoiceTemplate() {
 	    InvoiceTemplate delete = new InvoiceTemplate();
@@ -1117,10 +1152,24 @@ public class TemplateBean implements Serializable,Validator {
 	    	   }
 	    	return null;
 	    }
-		@Override
-		public void validate(FacesContext context, UIComponent component,
-				Object value) throws ValidatorException {
-			// TODO Auto-generated method stub
-			
-		}
+	    @Override
+		   public void validate(FacesContext context, UIComponent component,
+		           Object value) throws ValidatorException { 
+		      System.out.println("fjkgfkjggkjhgkjh111111111111111111111111111111111111111111111111111111111");
+		      
+		      java.util.ArrayList checkbox1=(ArrayList)value;
+		      System.out.println( checkbox1.size()+"dkjjkdfdjkfdj4444444444444444444");
+		      if(checkbox1.size()==0) {
+					FacesMessage msg
+			          = new FacesMessage();
+					 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+				        throw new ValidatorException(msg);
+				}
+				else
+				{   
+					System.out.println("jfdjjfjfgjfgj");
+				}
+		    
+		 
+	} 
 }
