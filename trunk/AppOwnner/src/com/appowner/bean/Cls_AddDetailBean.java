@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -26,12 +27,14 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 import javax.persistence.Column;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.UploadedFile;
 
 import com.appowner.model.Cls_ProductDetails;
@@ -53,15 +56,22 @@ public class Cls_AddDetailBean implements Serializable {
 	
 	@SuppressWarnings("unused")
 	private static final String SEARCHBYPRODUCTTYPE = "searchByProducttype";
-	private Integer Int_ProductId;
-	private String Ch_Product_Type;
-	 
-	public String getCh_Product_Type() {
-		return Ch_Product_Type;
+	
+	 @PostConstruct
+	 public void init()
+	 {
+   Ch_Product_Type="Sell"; 
+   Ch_Ad_Type = "My Community";
+	 }
+	  public String getCh_Product_Type() {
+     return Ch_Product_Type;
+		
 	}
 	public void setCh_Product_Type(String ch_Product_Type) {
 		Ch_Product_Type = ch_Product_Type;
 	}
+	private Integer Int_ProductId;
+	private String Ch_Product_Type;
 	private Date dt_date;
 	
 	
@@ -178,6 +188,7 @@ public int getInt_Ad_categoryId() {
 	
 	
 	public String getCh_Ad_Type() {
+		
 		return Ch_Ad_Type;
 	}
 	public void setCh_Ad_Type(String ch_Ad_Type) {
@@ -249,6 +260,8 @@ public int getInt_Ad_categoryId() {
 		this.str_Block = str_Block;
 	}
 	public String  AddProduct(){
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		Var_Description=request.getParameter("limitedtextfield");
 		 System.out.println("mukesh kumar 1989hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 	     intdocid1=getVar_Ad_CategoryName();
 		 System.out.println(intdocid1);
@@ -288,24 +301,24 @@ public int getInt_Ad_categoryId() {
 		System.out.println(d+"sdkk");
 		System.out.println(pro+"kjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjkjkjkjkjk");
 		getProductDetailService().AddProduct1(pro);
-		str_Email=null;
-		 str_Block=null;
-		 path=null;
-		 str_PhoneNo=null;
-		 Ch_Product_Type=null;
+		  str_Email=null;
+		  str_Block=null;
+		  path=null;
+		  str_PhoneNo=null;
+		  Ch_Product_Type="Sell";
 	      Var_Title=null;
-      //   Var_FileName=null;
-          Ch_Ad_Type=null;
+          Var_FileName=null;
+          Ch_Ad_Type="My Community";
           dt_date=null;
-     	 Status=null;
-     	 closedate=null;
-     	 Var_Description=null;
-     	Var_ImageName=null;
-     	var_Ad_CategoryName=null;
+     	  Status=null;
+     	  closedate=null;
+     	  Var_Description=null;
+     	  Var_ImageName=null;
+     	  var_Ad_CategoryName=null;
     	 var_subscategoryname=null;
-    	 Ch_Ad_Type=null;
+    	
      	 selectedAll=null;
-     	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Added Successfully!"));
+     	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Your Information  Post Successfully!"));
     	return"Ad_an_Post.xhtml";
 		
 	
@@ -382,6 +395,30 @@ private Date closedate;
 	}
 	public void setPath1(String path1) {
 		this.path1 = path1;
+	}
+	public void handleFileUpload1(FileUploadEvent event) throws IOException {
+		 System.out.println("hi");
+		 String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+		    SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+		    String name = fmt.format(new Date()) +event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+		    System.out.println(name);
+		    File file= new File("E://"+ "images" + name);
+		    final UploadedFile uploadedFile = event.getFile();
+		    blb_image=file.getAbsolutePath();
+		    System.out.println(blb_image);
+		    blb_images1=file.getAbsolutePath();
+		    System.out.println(blb_images1);
+	        System.out.println(file);
+		    InputStream is = event.getFile().getInputstream();
+		    OutputStream out = new FileOutputStream(file);
+		    byte buf[] = new byte[1024];
+		    int len;
+		    while ((len = is.read(buf)) > 0)
+		        out.write(buf, 0, len);
+		    is.close();
+		    out.close();
+		    path1=file.getName();
+		    System.out.println(path1);
 	}
 	
 	
@@ -499,6 +536,8 @@ private Date closedate;
 			 searchByProducttype=new ArrayList<Cls_ProductDetails>();
 			 System.out.println(Ch_Product_Type);
 			 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type,Status));
+			 Ch_Product_Type="Sell";
+			 Ch_Ad_Type="My Community";
 			return "Ad_an_Post.xhtml?faces-redirect=true";
 		}
 		
@@ -883,8 +922,8 @@ public String editdetail(Cls_ProductDetails ProductDetails)
 	    ProductDetails.setVar_Ad_CategoryName(var_Ad_CategoryName);
 	    ProductDetails.setVar_ImageName(path3);
 		getProductDetailService().updatedetails(ProductDetails);
-		 Ch_Product_Type=null;
-		 Ch_Ad_Type=null;
+		Ch_Product_Type="Sell";
+        Ch_Ad_Type="My Community";
 		 Status=null;
 	     selectedAll=null;
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
@@ -916,10 +955,8 @@ public List<Cls_ProductDetails> getDetails()
 	System.out.println(Int_ProductId+";;;;;;;;;;;;;;;;;;;;;;;;;;++++++++++++++++++++++++++++++++++++++++");
 	details=new ArrayList<Cls_ProductDetails>();
 	details.addAll(getProductDetailService().listDetail(Ch_Product_Type,Ch_Ad_Type,Status));
-  
-	 
-	 
-	System.out.println(details+"gvghhhfhfh");
+   System.out.println(details+"gvghhhfhfh");
+   
 	return details;
 }
 public void setDetails(List<Cls_ProductDetails> details) {
@@ -979,7 +1016,9 @@ public String send4()
 	content="";
 	subject="Appowner.com";
 	aprtmentname=getStr_ApartmentName();
-
+	Ch_Product_Type="Sell";
+    Ch_Ad_Type="My Community";
+	 Status=null;
 return "/AfrteLoginViews/Communication/ApproveEmail.jsp";
 }
 
@@ -1078,6 +1117,9 @@ public String send5()
 	content="";
 	subject="Appowner.com";
 	messages=getStrmessage();
+	Ch_Product_Type="Sell";
+    Ch_Ad_Type="My Community";
+	 Status=null;
 	return "/AfrteLoginViews/Communication/AdsEmail.jsp";
 	
 	
@@ -1122,8 +1164,8 @@ public String selectinfo2(ActionEvent e)
 System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
 System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
 msgclose=(getProductDetailService().getclose(selectedAll.getInt_ProductId()));
-Ch_Product_Type=null;
-Ch_Ad_Type=null;
+Ch_Product_Type="Sell";
+Ch_Ad_Type="My Community";
 Status=null;
 System.out.println(select1+"jhdsjdf");
 //msgname=(getProductDetailService().getname(select1));
@@ -1138,6 +1180,9 @@ public String send6()
 	subject="Appowner.com";
 	aprtmentname=getStr_ApartmentName();
 	System.out.println(emailids+"jshadkjashjdhkjashdjhasjhdhjdhfjlhdsfjhdhf");
+	Ch_Product_Type="Sell";
+    Ch_Ad_Type="My Community";
+	 Status=null;
 	return "/AfrteLoginViews/Communication/Ads1Email.jsp";
 }	
 
@@ -1264,7 +1309,19 @@ public String getStatusMessage() {
 public void setStatusMessage(String statusMessage) {
 	this.statusMessage = statusMessage;}
 
-
+// Extract file name from content-disposition header of file part
+private String getFileName(Part part) {
+	System.out.println(part+"dfjfdkjfdkjfdkj");
+	final String partHeader = part.getHeader("content-disposition");
+	System.out.println("***** partHeader: " + partHeader);
+	for (String content : part.getHeader("content-disposition").split(";")) {
+	if (content.trim().startsWith("filename")) {
+			return content.substring(content.indexOf('=') + 1).trim()
+					.replace("\"", "");
+	}
+	}
+	return "filename";
+}
 
 public  String getPath() {
 	System.out.println(path + "path1cvvvvvvvvvvvvvvvvvvvvvvvvvvcvcccccccccccvvvvvvvvvvvvv");
@@ -1452,6 +1509,9 @@ private Cls_ProductDetails adid;
 public Cls_ProductDetails getAdid() {
 	adid=(getProductDetailService().usrpostid(postid));
 	System.out.println(var_Ad_CategoryName+"llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
+	Ch_Product_Type="Sell";
+    
+    Ch_Ad_Type="My Community";
 	return adid;
 }
 public void setAdid(Cls_ProductDetails adid) {
@@ -1513,17 +1573,40 @@ public void setSubname(String subname) {
 }
 public String editselect1()
 {
+	if(indicate==false)
+	  {
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		 Status=null;
+    	return"Ad_an_Post.xhtml";
+	  }
+	else{
+		
 	 postid=selectedAll.getInt_ProductId();	
 	  System.out.println( postid+"mukeshkumaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-	  Ch_Product_Type=null;
-		 Ch_Ad_Type=null;
+	  Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
 		 Status=null;
-	 return "ViewDetails.xhtml";
+		 
+		 }return "ViewDetails.xhtml";
+	
+	  
 }
 public String editselect()
 {
-	System.out.println(selectedAll.getInt_ProductId()+"ibbbbbbbbbbbbbbbbbbbbbbbbveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-	 postid=selectedAll.getInt_ProductId();	
+	
+			if(indicate==false)
+			  {
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+				Ch_Product_Type="Sell";
+			    Ch_Ad_Type="My Community";
+				 Status=null;
+		    	return"Ad_an_Post.xhtml";
+			  }
+			
+			
+	 
 	 if(selectedAll.getInt_Ad_categoryId()!=0)
 	 {
 	 	catmessage=new ArrayList<String>();
@@ -1535,10 +1618,10 @@ public String editselect()
 	 {
 	 	catmessage=new ArrayList<String>();
 	 }
-	
-	 System.out.println( postid+"mukeshkumaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-	 Ch_Product_Type=null;
-	 Ch_Ad_Type=null;
+	 postid=selectedAll.getInt_ProductId();	
+	  System.out.println( postid+"mukeshkumaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+	  Ch_Product_Type="Sell";
+	   Ch_Ad_Type="My Community";
 	 Status=null;
 	return "EditDetails.xhtml";
 }
@@ -1610,18 +1693,6 @@ public String uploadFile1() throws IOException {
 	part=null;
 	return null; // return to same page
 }
-private String getFileName(Part part) {
-	final String partHeader = part.getHeader("content-disposition");
-	System.out.println(part+"fdjkfkjkjf");
-	System.out.println("partHeader: " +partHeader);
-	for (String content : part.getHeader("content-disposition").split(";")) {
-		if (content.trim().startsWith("filename")) {
-			return content.substring(content.indexOf('=') + 1).trim()
-					.replace("\"", "");
-		}
-	}
-	return null;
-}
 
 
 // Extract file name from content-disposition header of file part
@@ -1667,16 +1738,60 @@ public void setPath3(String path3) {
 
  public String deleteselect()
  {
-	 
+	
+	 if(indicate==false)
+	  {
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		 Status=null;
+   	return"Ad_an_Post.xhtml";
+	  }
+	 else
+	 {
 	 getProductDetailService().deleteselected(selectedAll.getInt_ProductId());
+	 Ch_Product_Type="Sell";
+	   Ch_Ad_Type="My Community";
+	 Status=null;
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
+	 
+	 Ch_Product_Type="Sell";
+	 Ch_Ad_Type="My Community";
+	 Status=null;
+     return "Ad_an_Post.xhtml";
+}}
+
+ public String editseand()
+ {
 	 Ch_Product_Type=null;
 	 Ch_Ad_Type=null;
 	 Status=null;
-	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
-   return "Ad_an_Post.xhtml?faces-redirect=true";
-}
-
-
+	 return "Ad_an_Post.xhtml";
+ }
+ 
+ private boolean indicate;
+	public boolean isIndicate() {
+		return indicate;
+	}
+	public void setIndicate(boolean indicate) {
+		this.indicate = indicate;
+	}
+	private boolean indicate2;
+	public boolean isIndicate2() {
+		return indicate2;
+	}
+	public void setIndicate2(boolean indicate2) {
+		this.indicate2 = indicate2;
+	}
+	public void desabledListener( SelectEvent event)
+	{
+		System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333mnmnmnmnnnnnnnnnnnnn");
+		
+		indicate=true;
+		
+		
+	}
+	
 }	
 
 	
