@@ -17,7 +17,6 @@ import com.appowner.model.Notification;
 import com.appowner.model.UserExtraInfo;
 import com.appowner.model.cls_Ads;
 import com.appowner.model.cls_Contact;
-import com.appowner.util.Util;
 @Repository
 public class ProductsDaoImpl implements ProductsDao{
 	@Autowired
@@ -141,12 +140,12 @@ public class ProductsDaoImpl implements ProductsDao{
 		System.out.println( ch_Ad_Type+",........,.,.,,.,.,<><><><><>");
 		System.out.println( status);
 		
-		if(ch_Product_Type==null && ch_Ad_Type==null && status==null )
+		if(ch_Product_Type=="Sell" && ch_Ad_Type=="My Community" && status==null )
 		{
-			String  query = "{ CALL detail(?) }";
+			String  query = "{ CALL detail() }";
 			
-			 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,Util.getAppartmentId())
-			          .list();
+			 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+			          ).list();
 		     System.out.println(kkk.listIterator().hasNext());
 			 return kkk;	
 		}
@@ -319,6 +318,8 @@ public class ProductsDaoImpl implements ProductsDao{
 	@Override
 	public List<Cls_ProductDetails> listDetail(String ch_Product_Type,
 			String ch_Ad_Type, String status) {
+		 
+		
 		{   if(ch_Product_Type==null&&ch_Ad_Type==null&&status==null)
 	     {
 		    return (List<Cls_ProductDetails>) getSessionFactory().getCurrentSession().createCriteria(Cls_ProductDetails.class).setCacheable(true).list();
@@ -473,7 +474,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		System.out.println(var_Ad_CategoryName+";;;;;;;;;;;;;;;");
 		System.out.println( var_subscategoryname+",........,.,.,,.,.,<><><><><>");
 		System.out.println( ch_Ad_Type);
-		if(var_Ad_CategoryName==null&&var_subscategoryname==null&&ch_Ad_Type==null)
+		if(var_Ad_CategoryName==null&&var_subscategoryname==null&&ch_Ad_Type=="My Community")
 		{
 			String  query = "{ CALL search() }";
 			

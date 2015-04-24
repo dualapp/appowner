@@ -37,6 +37,7 @@ import com.appowner.model.cls_Group;
 import com.appowner.model.cls_PersonCity;
 import com.appowner.model.cls_PersonState;
 import com.appowner.model.cls_hobby;
+import com.appowner.util.Util;
 import com.lowagie.text.pdf.hyphenation.TernaryTree.Iterator;
 
 /**
@@ -503,8 +504,10 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@Override
 	public List getlist() {
-		List<String> cityList=getSessionFactory().getCurrentSession().createCriteria(cls_Group.class).list();
-		return cityList;
+		String hql2=" from cls_Group where int_ApartmentId=? ";		
+		System.out.println("8888888888888888888888888888888888");
+		return  sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,Util.getAppartmentId()).list();
+		
 	}
 
 	@Override
@@ -597,10 +600,10 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
 		System.out.println(hql1);
 		 
-		 Integer cid1=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, selectes).uniqueResult();
+		 Integer getid=(Integer) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, selectes).uniqueResult();
 		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
-		 System.out.println(cid1);
-		return cid1;
+		 System.out.println(getid);
+		return getid;
 		
 	}
 
@@ -631,9 +634,9 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public  List<String> listblock() {
-		String hql2="select str_BlockName from UserBlocks";		
+		String hql2="select str_BlockName from UserBlocks where int_ApartmentId=? ";		
 		System.out.println("8888888888888888888888888888888888");
-		return  sessionFactory.getCurrentSession().createQuery(hql2).list();
+		return  sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,Util.getAppartmentId()).list();
 		
 	}
 
@@ -644,8 +647,7 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		
 			System.out.println(str_Profession+"jjjjjjjjjjjjjjjjjjjjjj");
 			System.out.println(str_Hobbies);
-			
-           System.out.println(residence+"kfjkgf");
+		    System.out.println(residence+"kfjkgf");
            System.out.println( status+"kfjkgf");
           
         String query="{call member(?,?,?,?)}";
@@ -982,6 +984,13 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		}
 		 System.out.println(list);
 	        return mailids;	
+	}
+
+	@Override
+	public void deletemembergroup(cls_Group detail) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM GroupMember  WHERE int_GroupId="+detail.getInt_GroupId()).executeUpdate();
+		
+		
 	}
 	}
 
