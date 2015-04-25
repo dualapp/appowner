@@ -79,7 +79,7 @@
         <!-- status message of file upload; rendered if message is set 
 		<p:outputLabel value="#{expenseBean.statusMessage}"
 			          rendered="#{not empty expenseBean.statusMessage}" />-->
-  
+    <p:graphicImage    alt="AppartmentLogo" value="#{expenseBean.getStr_OrganizationLogo()}"     style="background:#dddddd; height:90px;width:90px;float:right !important;margin:-100px -170px -200px 0px;"/>
   
   
              </td></tr>
@@ -120,7 +120,7 @@
 		<p:outputLabel value="#{expenseBean.statusMessage}"
 			          rendered="#{not empty expenseBean.statusMessage}" />-->
   
-                                  
+                                    <p:graphicImage    alt="AppartmentLogo" value="#{expenseBean.getStr_Document_Upload()}"     style="background:#dddddd; height:90px;width:90px;float:right !important;margin:-100px 290px -100px 0px;"/>
                                   </td></tr>
 	</table>
 	</h:form>
@@ -159,7 +159,7 @@
 			          rendered="#{not empty expenseBean.statusMessage}" />-->
   
      
-  
+    <p:graphicImage    alt="AppartmentLogo" value="#{expenseBean.getStr_OrganizationLogo()}"     style="background:#dddddd; height:90px;width:90px;float:right !important;margin:-100px 290px -100px 0px;"/>
     </td></tr>
     </table>
     </h:form>
@@ -212,10 +212,10 @@
         </td></tr>
         <tr><th><p:outputLabel value="Weekly Holidays"/></th><td> <h:selectOneMenu id="str_Day" value="#{expenseBean.str_Day}" >
             <f:selectItem itemLabel="Sunday" itemValue="Sunday" />
-            <f:selectItem itemLabel="Monday" itemValue="monday" />
-            <f:selectItem itemLabel="tuesdat" itemValue="tuesday" />
-            <f:selectItem itemLabel="wednesday" itemValue="wednesday" />
-             <f:selectItem itemLabel="thrusday" itemValue="thrusady" /></h:selectOneMenu></td></tr>
+            <f:selectItem itemLabel="Monday" itemValue="Tonday" />
+            <f:selectItem itemLabel="Tuesdat" itemValue="Tuesday" />
+            <f:selectItem itemLabel="Wednesday" itemValue="Wednesday" />
+             <f:selectItem itemLabel="Thrusday" itemValue="Thrusady" /></h:selectOneMenu></td></tr>
               <tr><td></td><td><h:commandButton styleClass="btn" value="Submit"     action="#{expenseBean.addOrganizationLogo}" >
               
               </h:commandButton>

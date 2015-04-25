@@ -73,15 +73,13 @@
 		
 		   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr><td>
-		<p:button style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}"  icon="ui-icon-plus"  outcome="/AfrteLoginViews/Vendor/addvendor.xhtml" value="create new" /> 
+		<p:button style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}"  icon="ui-icon-plus"  outcome="/AfrteLoginViews/Vendor/addvendor.xhtml" value="Create new" /> 
    
 	 &#150; &#150; <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />
 		 
 		
     
-        
-          &#150; &#150;  <p:commandButton  style="width:120px;height:25px"   process="DT" update=":viewform"   icon="ui-icon-info" value="view" oncomplete="PF('multiVendorDialog1').show()"  ajax="#{vendorBean.indicate}" id="btn"  action="#{vendorBean.select()}"/>
-       &#150; &#150; <p:commandButton style="width:120px;height:25px" id="btn1" ajax="#{vendorBean.indicate}" rendered="#{expenseBean.isEnable}" process="DT" update=":editform" icon="ui-icon-pencil" value="Edit " oncomplete="PF('multiVendorDialog').show()" action="#{vendorBean.select()}" />
+         
        &#150; &#150;  <p:commandButton style="width:120px;height:25px"  id="btn2"    rendered="#{expenseBean.isEnable}" update=":form:DT :form:ui-growl" process="DT"   ajax="#{vendorBean.indicate1}" onclick="return confirm('Are you sure you want to delete ?');" action="#{vendorBean.deleteVendor1()}" icon="ui-icon-trash" value="Delete" />
     
      &#150; &#150;   <h:commandLink id="excel">
@@ -113,9 +111,9 @@
                  emptyMessage="No cars found with given criteria" filteredValue="#{vendorBean.selectedVendor1}" 
                rows="10"     paginatorAlwaysVisible="false" 
             id="DT"    var="vendor" value="#{vendorBean.vendorList}"   selection="#{vendorBean.selectedVendor}" rowKey="#{vendor.int_VendorId}"  >
-       <p:ajax  ajax="true" event="rowSelectCheckbox"   listener="#{vendorBean.rowSelectListener}"  execute="@this" immediate="true"  update=":form:btn,:form:btn1,:form:btn2"/>
+       <p:ajax  ajax="true" event="rowSelectCheckbox"   listener="#{vendorBean.rowSelectListener}"  execute="@this" immediate="true"  update=":form:btn2"/>
         <p:ajax  ajax="true"  event="rowUnselectCheckbox"
-				listener="#{vendorBean.rowUnSelectListener}" update=":form:btn,:form:btn1,:form:btn2"/>
+				listener="#{vendorBean.rowUnSelectListener}" update=":form:btn2"/>
 				
         <p:column      exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">
         
@@ -203,12 +201,7 @@
               <p:commandLink   process="DT"  update=":viewform1" oncomplete="PF('viewVendorDialog').show()" action="#{vendorBean.getVendor1(vendor.int_VendorId)}">
                   <h:graphicImage  height="20" width="20" alt="View" value="#{expenseBean.str_Name}images/view.jpg" title="View"/> 
               </p:commandLink>
-               &#150;
-          <h:link outcome="deletevendor.xhtml"  update=":form:DT :form:ui-growl"
-	   		 onclick="return confirm('Are you sure you want to delete #{vendor.str_VendorName}?');" >  
-	   			<p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
-	   				<f:param name="int_VendorId" value="#{vendor.int_VendorId}" />
-	   		</h:link>
+               
 	   		 
               </center> 
             </p:column>
@@ -217,165 +210,8 @@
              
             </div>
              </h:form>
-           
             
-            <p:dialog header="Edit Vendor Details" widgetVar="multiVendorDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="600" width="500">
-        <h:form id="editform">
-        <p:outputPanel id="multiVendorDetail" style="text-align:center;">
-          
-       
-         <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
-           <table>
-               
-          
-             <tr>
- <th>
-    <h:outputText value="Vendor Category:"/></th>
-    <td>
-   
-    <h:selectOneMenu value="#{vendor1.str_VendorType}" id="vendorCategory" required="true" requiredMessage="Enterr Category">
-            <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true"/>
-             
-             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
-               
-        </h:selectOneMenu>
-     
-</td>
-    </tr>
- <tr>
- <th>
-    <h:outputText value="Vendor Name:"/></th>
-    <td>
-    <h:inputText value="#{vendor1.str_VendorName}"/></td>
-    </tr>
-     <tr>
-    <th>
-    <h:outputText value="Country:"/></th>
-    <td>
-    <h:selectOneMenu id="str_VendorCountry" value="#{vendor1.str_CountryName}" required="true" requiredMessage="Enterr Country"    valueChangeListener="#{vendorBean.countryChangeListener}">
-                <!--c --> 
-               <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
-                
-                <f:selectItems value="#{vendorBean.str_VendorCountries}" />
-                 <p:ajax event="change" update="str_VendorState,str_VendorCity" process="str_VendorCountry"/>
-            </h:selectOneMenu>
-    </td>
-    </tr>
-    <tr>
-    <th>
-    <h:outputText value="State:"/></th>
-    <td>
-    <h:selectOneMenu id="str_VendorState" value="#{vendor1.str_StateName}"  required="true" requiredMessage="Enter State"  valueChangeListener="#{vendorBean.stateChangeListener}"  >
-                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{vendorBean.str_VendorStates}"/>
-               <p:ajax event="change" update="str_VendorCity" process="str_VendorState"/>    
-            </h:selectOneMenu>
-     </td>
-    </tr>
-    <tr>
-    <th>
-    <h:outputText value="City:"/></th>
-    <td>
-    <h:selectOneMenu id="str_VendorCity" value="#{vendor1.str_CityName}" required="true" requiredMessage="Enterr City" >
-                <f:selectItem itemLabel="Select One"  itemValue="" noSelectionOption="true" />
-                <f:selectItems  value ="#{vendorBean.str_VendorCities}"/>
-             
-            </h:selectOneMenu>
-     </td>
-    </tr>
-    <tr>
-    <th>
-    <h:outputText value="Vendor Phone:"/></th>
-    <td>
-    <h:inputText value="#{vendor1.str_VendorPhone}"/></td>
-    </tr>
-    <tr>
- <th>
-    <h:outputText value="Vendor Email:"/></th>
-    <td>
-    <h:inputText value="#{vendor1.str_VendorEmail}"/></td>
-    </tr>
     
-    <tr>
- <th>
-    <h:outputText value="Active:"/></th>
-    <td>
-    <p:selectBooleanCheckbox value="#{vendor1.bool_IsVendorActive}" />
-     </td>
-    </tr>
-     
-       </table>
-            
-             
-            <div>
-	 <hr/><p:commandButton  styleClass="btn"   update=":form:DT :form:ui-growl" value="update" action="#{vendorBean.updateVendor(vendor1)}" oncomplete="handleRequest(xhr, status, args)"/> 
-             
-            &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
-	 
-           </div>
-            </ui:repeat>
-        </p:outputPanel>
-        </h:form>
-    </p:dialog>
-    <p:dialog header="Vendor Details" widgetVar="multiVendorDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="600" width="500">
-         <h:form id="viewform">
-        <p:outputPanel id="multiVendorDetail1" style="text-align:center;">
-           <table>
-              
-            <ui:repeat value="#{vendorBean.selectedVendor}" var="vendor1">
-             
-                <tr>
- <th>
-    <h:outputText value="Vendor Type:"/></th>
-    <td>
-    <h:inputText readonly="true" value="#{vendor1.str_VendorType}"/></td>
-    </tr>
- <tr>
- <th>
-    <h:outputText value="Vendor Name:"/></th>
-    <td>
-    <h:inputText   readonly="true" value="#{vendor1.str_VendorName}"/></td>
-    </tr>
-    <tr>
-    <th>
-    <h:outputText value="Vendor Phone:"/></th>
-    <td>
-    <h:inputText   readonly="true" value="#{vendor1.str_VendorPhone}"/></td>
-    </tr>
-    <tr>
- <th>
-    <h:outputText value="Vendor Email:"/></th>
-    <td>
-   <h:inputText readonly="true"  value="#{vendor1.str_VendorEmail}"/></td>
-    </tr>
-   
-  
-    
-    <tr>
- <th>
-    <h:outputText value="Is Active:"/></th>
-    <td>
-    <p:selectBooleanCheckbox value="#{vendor1.bool_IsVendorActive}" /></td>
-    </tr>
-     <tr>
- <th>
-    <h:outputText value="Comments:"/></th>
-    <td>
-    <h:inputTextarea  style="width:300px; height:100px" readonly="true" value="#{vendor1.str_VendorComments}"/></td>
-    </tr>
-      
-               
-                
-            </ui:repeat>
-            </table>
-            <div>
-              <hr/>
-              
-             &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
-           </div>
-        </p:outputPanel>
-        </h:form>
-    </p:dialog>
      <p:dialog header="Vendor Bank  Details" widgetVar="viewBankDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="550" width="500">
          <h:form id="viewBankDetailsForm">
         <p:outputPanel id="viewBankDetail" style="text-align:center;">

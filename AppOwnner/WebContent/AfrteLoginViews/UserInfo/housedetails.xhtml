@@ -134,8 +134,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	
 	<h3>Tired of updating House individually</h3>
    <h6> Easily input data for multiple block/houses in one go</h6>
-   
-	      <table style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+   <div class="gsTitleDiv">
+	      <table>
 	      
 	      <tr><td>  
 	  
@@ -147,12 +147,11 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 
 	    &#150; &#150;  <p:button  style="width:120px;height:25px"  icon="ui-icon-extlink"  outcome="blockdetails.xhtml" value="Back"/>
 	     
-	     </td> </tr>
-	   
-	    <tr><td>
+	     
 	   &#150; &#150; <p:commandButton  style="width:120px;height:25px" id="Btn" value="Bulk Upload"  update=":uploadform" oncomplete="PF('fileDialog').show()" />
 	    &#150; &#150;   <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" /></td></tr>
 	    </table>
+	    <hr/></div>
   </div>
 	</h:form>
   <p:dialog header="Edit House Details" widgetVar="editHouseDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="500">
