@@ -289,7 +289,7 @@ public void setStr_Organisation(String str_Organisation) {
 			   }
 	  
 	      getAccountsService().addBalance(openingDate,id1,debitBalance,creditBalance);
-	     
+	      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!")); 
 		
 	    }
 	private static Integer id;

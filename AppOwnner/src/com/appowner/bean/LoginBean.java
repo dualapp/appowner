@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -82,8 +84,8 @@ public class LoginBean implements Serializable {
 	private String str_EmailId;
 	private String str_UserType;
 	private String str_Block;
-	private Date dat_OpenDate=new java.util.Date();
-	private Date dat_CloseDate=new java.util.Date();
+	private Date dat_OpenDate;
+	private Date dat_CloseDate;
 	public Date getDat_CloseDate() {
 		return dat_CloseDate;
 	}
@@ -1671,5 +1673,36 @@ public List<String> getCityListByState() {
 
 	public void setVendorservice(VendorService vendorservice) {
 		this.vendorservice = vendorservice;
+	}
+	private String url;
+	private String url1;
+	public String getUrl1() {
+		url1="../";
+		return url1;
+	}
+	public void setUrl1(String url1) {
+		this.url1 = url1;
+	}
+	public String getUrl() throws MalformedURLException {
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		 String url = request.getRequestURL().toString();
+		
+		if(url.equalsIgnoreCase("http://localhost:8080/AppOwnner/layout.xhtml"))
+				{
+		            
+		           url="";
+				}
+		else if(url.equalsIgnoreCase("http://localhost:8080/AppOwnner/AfrteLoginViews/Adminwelcomepage.xhtml") || url.equalsIgnoreCase("http://localhost:8080/AppOwnner/AfrteLoginViews/welcomepage.xhtml"))
+				{
+			       url="../";
+				}
+		else
+		{   
+			url="../../";
+		}
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

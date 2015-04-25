@@ -9,7 +9,15 @@ import javax.faces.validator.ValidatorException;
 import javax.servlet.http.Part;
 @FacesValidator("DocumentUploadValidator")
 public class DocumentUploadValidator implements Validator {
-	 
+	 public  static String filename;
+		public static String getFilename() {
+			return filename;
+		}
+
+		public static void setFilename(String filename) {
+			FileUploadValidator.filename = filename;
+		}
+
 		@Override
 		public void validate(FacesContext context, UIComponent uiComponent,
 				Object value) throws ValidatorException {
@@ -18,6 +26,7 @@ public class DocumentUploadValidator implements Validator {
 	 
 			// 1. validate file name length
 			String fileName = getFileName(part);
+			filename=getFileName(part);
 			System.out.println("----- validator fileName: " + fileName);
 			if(fileName.length() == 0 ) {
 				FacesMessage message = new FacesMessage("Error: File name is invalid !!");
@@ -33,6 +42,33 @@ public class DocumentUploadValidator implements Validator {
 				throw new ValidatorException(message);
 			  }*/
 			 switch (part.getContentType()) {
+			 case "image/jpeg":  
+				 
+                 break;
+        case "image/png":   
+		 
+                 break;
+        case "image/bmp":   
+        	 
+                 break;
+        case "image/gif":   
+       	 
+            break;
+        case "image/jpg":   
+       	 
+            break;
+        case "image/PNG":   
+       	 
+            break;
+        case "image/JPEG":   
+          	 
+            break;
+        case "image/JPG":   
+         	 
+            break;
+        case "image/GIF":   
+       	 
+            break;
 	            case "application/doc":  
 				 
 	                     break;
@@ -54,7 +90,6 @@ public class DocumentUploadValidator implements Validator {
 	                	break;
 	                case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
 	                	break;
-	             
 	                     
 	            default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 				throw new ValidatorException(message);
