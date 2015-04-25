@@ -25,6 +25,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
@@ -34,6 +35,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.springframework.dao.DataAccessException;
 
+import com.appowner.model.Complain;
 import com.appowner.model.FacilityNeeded;
 import com.appowner.model.Notice;
 import com.appowner.service.NoticeBoardService;
@@ -265,7 +267,9 @@ notice.setDat_ExpireOn(date1);
 		  notice.setStr_Subject(getStr_Subject());
 		notice.setBool_Flash(getBool_Flash());
 		notice.setStr_Document(path1);
-		
+		Complain cmp=new Complain();
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		str_Description=request.getParameter("limitedtextfield");
 		  notice.setStr_Description(getStr_Description());
 		  System.out.println(str_Description);
 		  Date date=new java.util.Date();

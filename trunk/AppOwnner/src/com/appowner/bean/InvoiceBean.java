@@ -2,6 +2,7 @@ package com.appowner.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +25,7 @@ import javax.faces.context.Flash;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.component.datatable.DataTable;
@@ -483,6 +485,21 @@ private List<DueTransaction> listDueTransaction;
 			invoice.setStr_InvoiceTemplate(getStr_InvoiceTemplate());
 			invoice.setStr_BillPeriod(getStr_BillPeriod());
 			invoice.setInt_Year(getInt_Year());
+			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+			String str4=request.getParameter("dat_InvoiceDate");
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			
+		 
+			try {
+		 
+				dat_DueDate = formatter.parse(str4);
+				
+		 
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
 			invoice.setDat_InvoiceDate(dat_InvoiceDate);
 		     System.out.println(dat_DueDate+"dfkjfjkdfgkjfgkjgf");
 			invoice.setDat_DueDate(dat_DueDate);
@@ -1648,6 +1665,8 @@ public void desabledListener( SelectEvent event)
 	System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
 	selectedjournal=(ManualJournal) event.getObject();
 	System.out.println(selectedjournal.getInt_ManualJournalID()+"dfjjffjnfjjfgjgfjfgj");
+	debitAccount=selectedjournal.getStr_DebitAccount();
+	str_DebitAmount=selectedjournal.getDbl_DebitAmount();
 		 indicate4 = true;
 }
 public String addInvoiceManualJournal() 
@@ -1675,14 +1694,14 @@ public String addInvoiceManualJournal()
     	 getAccountsService().addManualJournal(journal);
     	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("ManualJournal Saved Successfully!"));
     	 str_Notes="";
-    	 return "manualjournal.xhtml";
+    	
     	 }
     	
   catch(Exception e)
   {
 	e.printStackTrace();
   }
-	 return "manualjournal.xhtml";
+	 return "manualjournal.xhtml?faces-redirect=true";
 }
 
 public String saveManualJournal(ManualJournal jouranl) {
@@ -1801,6 +1820,7 @@ public void validateAmount(FacesContext context, UIComponent component,Object o)
  {
 	 System.out.println("166666666666666666666666666666666666666666666666666666666666666666666666666");
 		HtmlInputText input =(HtmlInputText) component;
+		System.out.println(amount1+"sdmkldkmfdkkjfdkj");
 		double amount2= Double.parseDouble((String) input.getSubmittedValue());
 		
 		 int retval = Double.compare(amount1,amount2);
