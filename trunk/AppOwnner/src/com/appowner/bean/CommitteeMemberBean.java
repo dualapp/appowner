@@ -230,16 +230,18 @@ public class CommitteeMemberBean implements Serializable{
 		return "committeememberlist.xhtml";
 	}
 
-	public String deleteCommitteeMember()
+	public String deleteCommitteeMember(Integer uid,Integer cid)
 	{commiteeMember=new CommiteeMember();
-	commiteeMember.setInt_MemberId(int_MemberId);
+	commiteeMember.setInt_MemberId(cid);
+	//getCommitteeMemberService().deleteAssignedRole(uid);
 	getCommitteeMemberService().deleteCommitteeMember(commiteeMember);
+	
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
-	return "committeememberlist.xhtml?faces-redirect=true";
+	return "committeememberlist.xhtml";
 
 	}
 	public String cancelCommitteeMember () {
-		return "committeememberlist.xhtml?faces-redirect=true";
+		return "committeememberlist.xhtml";
 	}
 
 }

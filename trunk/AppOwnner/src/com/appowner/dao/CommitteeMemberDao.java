@@ -21,6 +21,8 @@ public interface CommitteeMemberDao {
 	void deleteCommitteeMember(CommiteeMember commiteeMember);
 
 	Integer getUserId(String str_UserName);
+
+	void deleteAssignedRole(Integer uid);
 	
 
 }

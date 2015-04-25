@@ -196,6 +196,12 @@ public	List<String> getSideMenu()
 	{
 		return getMaintainanceStaffDao().getSideMenu();
 	}
+
+@Override
+public void deleteAssignedRole(Integer uid) {
+	getMaintainanceStaffDao().deleteAssignedRole(uid);
+	
+}
 	 
 	 
 }

@@ -653,4 +653,18 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		return (Parking) sessionFactory.getCurrentSession().get(Parking.class, pid);
 	}
+
+	@Override
+	public AssetCategory getAssetCategory1(Integer assetCatId) {
+		// TODO Auto-generated method stub
+		return (AssetCategory) sessionFactory.getCurrentSession().get(AssetCategory.class, assetCatId);
+	}
+
+	 
+
+	@Override
+	public String getStr_Document_Upload(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		  return (String) sessionFactory.getCurrentSession().createQuery("select str_Document_Upload from OrganizationLogo where int_AppartmentId=?").setParameter(0, appartmentId).uniqueResult();
+	}
 }

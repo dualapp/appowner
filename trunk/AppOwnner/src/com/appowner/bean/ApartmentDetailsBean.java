@@ -281,7 +281,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		return "instructions.xhtml";
 	}
 	 String  oldBlockName;
-	 private UserBlocks selectedBlock;
+	 private List<UserBlocks> selectedBlock;
 	 private UserBlocks selectedBlock1=new UserBlocks();
 	public UserBlocks getSelectedBlock1() {
 		return selectedBlock1;
@@ -289,14 +289,14 @@ public class ApartmentDetailsBean  implements Serializable{
 	public void setSelectedBlock1(UserBlocks selectedBlock1) {
 		this.selectedBlock1 = selectedBlock1;
 	}
-	public UserBlocks getSelectedBlock() {
-		System.out.println(selectedBlock+"makhetbdbcccccccs");
+	 
+	
+	public List<UserBlocks> getSelectedBlock() {
 		return selectedBlock;
 	}
-	public void setSelectedBlock(UserBlocks selectedBlock) {
+	public void setSelectedBlock(List<UserBlocks> selectedBlock) {
 		this.selectedBlock = selectedBlock;
 	}
-	
 	public void getBlock1(Integer blockId)
 	{
 		System.out.println(blockId);
@@ -336,49 +336,22 @@ public class ApartmentDetailsBean  implements Serializable{
 		
 	}
 
-	 
-		public void onCellEdit(CellEditEvent event) {
-	 
-		
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-      
-        
-       System.out.println(getSelectedBlock().getInt_BlockId()+"blockid");
-        
-        if(newValue != null && !newValue.equals(oldValue)) {
-        	UserBlocks ub=new UserBlocks();
-        	 if (newValue instanceof Integer)
-        		 selectedBlock.setInt_NoOfHouses((Integer)newValue);  
-             if (newValue instanceof String)
-            	 selectedBlock.setStr_BlockName((String)newValue); 
-              if(oldValue instanceof String)
-            	  oldBlockName=(String)oldValue;
-              System.out.println(ub.getStr_BlockName()+"kakkakak");
-    	   System.out.println(ub.getInt_NoOfHouses()+"k1k1k1k1k");
-    	   selectedBlock.setInt_ApartmentId(Util.getAppartmentId());
-    	   getApartmentDetailsService().updateOneBlock(selectedBlock);
-    		//getApartmentDetailsService().updateBlockDetails(ub, oldBlockName);
-        	
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-    }
+	  
 	private Integer int_blockId;
 	@SuppressWarnings("unchecked")
 	public String deleteBlock()
 	{
-		System.out.println(int_blockId+"BlockId");
+		 
 		List<HouseDetails> hd=new ArrayList<HouseDetails>();
 		  hd=getApartmentDetailsService().getHouseDetailsByBlockId(int_blockId);
-		  System.out.println(hd+"nuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+		 
 		if(hd.isEmpty())
 		{
 
 			getApartmentDetailsService().deleteBlock(int_blockId);
 			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Deleted Successfully!"));
 		
-		}
+		} 
 		else
 		{
 			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This Block can't be deleted as it has some houses.Please delete the houses to proceed!"));
@@ -492,6 +465,31 @@ public class ApartmentDetailsBean  implements Serializable{
 			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("The selected Houses have users or maintenance dues associated with them .so they  couldn't be deleted!.Please remove the members from the houses to proceed."));
 			
 		return null;
+	}
+	public String deleteSelectedBlock()
+	{
+		List<UserBlocks> entitiesToDelete = new ArrayList<UserBlocks>();
+		 
+	    for (UserBlocks block :selectedBlock) {
+	    	List<HouseDetails> hd=new ArrayList<HouseDetails>();
+			  hd=getApartmentDetailsService().getHouseDetailsByBlockId(block.getInt_BlockId());
+			 
+			if(hd.isEmpty())
+			{
+
+				getApartmentDetailsService().deleteBlock(block.getInt_BlockId());
+				
+			
+			}
+			else
+			{
+				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Some Block can't be deleted as it has some houses.Please delete the houses to proceed!"));
+				 return "blockdetails.xhtml";
+			}
+			
+	    }
+	    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Block Deleted Successfully!"));
+			return "blockdetails.xhtml";
 	}
 	public String deleteSelectedHouse() {
 	    List<HouseDetails> entitiesToDelete = new ArrayList<HouseDetails>();
