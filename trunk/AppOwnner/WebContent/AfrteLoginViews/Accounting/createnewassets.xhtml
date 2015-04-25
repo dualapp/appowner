@@ -36,12 +36,8 @@
                  <div class="gsTitleDiv"> OtherDetails <br/><hr/></div>  
                  <h:panelGroup id="sss1">
              <h:panelGrid >
-             <p:outputPanel layout="block" id="assetimg">
-              
-                     
-       <p:graphicImage alt="No Attachment" id="img" style="Width: 280px; height:166px;" value="#{expenseBean.getPath4()}"/> 
-        </p:outputPanel>
-        <table><tr> <td width="20%">
+             
+        <table><tr> <td>
        
        <!-- inputFile tag to upload file -->
 		 
@@ -60,7 +56,12 @@
 			               
 			             </h:commandButton>
         
-       </td></tr>
+       </td> 
+              
+                     
+       <p:graphicImage alt="No Attachment" id="img"     style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-130px -600px -100px 0px;" value="#{expenseBean.getPath4()}"/> 
+        
+       </tr>
         
                  </table>
                 
@@ -197,8 +198,8 @@
                 <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
                   
-            </h:selectOneMenu></td><th><p:outputLabel value="Same as Purchase Vendor? " /></th>
-       <td> <h:selectBooleanCheckbox value="#{vendorBean.bool_IsVendorActive}" /></td>
+            </h:selectOneMenu></td> 
+        
              </tr>
         </table>
         

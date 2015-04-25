@@ -42,7 +42,7 @@
     <body>
      
  <div id="page3">
-              <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td><p:outputLabel value="Organisation:" />  <p:outputLabel value="#{expenseBean.str_OrganizationName}" /> </td>
+              <table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td><p:outputLabel value="Organisation:" />  <p:inputText value="#{expenseBean.str_OrganizationName}" /> </td>
               
                 <th> <p:outputLabel value="Bolck"/></th> 
                <td>  <h:selectOneMenu  value="#{expenseBean.str_Block}" > 
@@ -57,13 +57,15 @@
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                  
                  </h:selectOneMenu></td>
-                <th> <p:commandButton   icon="ui-icon-search"   value="Go" action="#{expenseBean.getAssetList}" /> </th></tr></table>
+                </tr>
+                <tr><th></th><td></td><th></th><td></td><th> <p:commandButton   icon="ui-icon-search"   value="Go" action="#{expenseBean.getAssetList}" /> </th></tr>
+                </table>
                 
                   
-                 
+              <div class="gsTitleDiv">   
                 
                  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><td>
-  <p:button   icon="ui-icon-plus"   outcome="/AfrteLoginViews/Accounting/createnewassets.xhtml" value="create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
+  <p:button   icon="ui-icon-plus"   outcome="/AfrteLoginViews/Accounting/createnewassets.xhtml" value="Create new" />&#150; &#150; <p:commandButton  immediate="true" execute="@this" icon="ui-icon-refresh" value="Refresh" >
    
   </p:commandButton>
 	 &#150; &#150;  <p:menuButton style="width:120px;height:25px" value="Action">
@@ -97,6 +99,7 @@
         <p:dataExporter type="xml" pageOnly="true"  target="DT" fileName="Assets" />
     </h:commandLink>
                   </td></tr></table>
+                  <hr/></div> 
                  <p:dataTable   paginatorPosition="bottom"    resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                rows="10"  paginator="true" 
         emptyMessage="No Records Found" paginatorAlwaysVisible="false"    id="DT"     var="ps"  value="#{expenseBean.assetList}"   selection="#{expenseBean.selectedAssets}" rowKey="#{ps.int_asset_id}"  >
@@ -136,68 +139,7 @@
           
           </p:dataTable>
            </div>
-           <p:dialog header="Edit asset Details" widgetVar="multiAssetDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="400">
-        <p:outputPanel id="multiAssetDetail" style="text-align:center;">
-          
-               
-           <ui:repeat value="#{expenseBean.selectedAssets}" var="asset">
-            <table>
-             <tr>
-             <th><p:outputLabel  value="Organization"/></th>
-             <td> <h:inputText value="#{asset.str_OrganizationName}" />  </td>
-             </tr>
-             <tr>
-             <th><p:outputLabel  value="Asset Name"/></th>
-             <td> <h:inputText value="#{asset.str_AssetName}" />    </td>
-             </tr>
-              <tr>
-             <th><p:outputLabel  value="Asset Category"/></th>
-             <td> <h:inputText value="#{asset.str_assetcat_name}" />    </td>
-             </tr>
-              <tr>
-             <th><p:outputLabel  value="Vendor Name"/></th>
-             <td> <h:inputText value="#{asset.str_VendorName}" />    </td>
-             </tr>
-             
-             
             
-             </table>
-             <div><hr/>
-             <tr><td><h:commandButton value="Update" styleClass="btn"  action="#{expenseBean.updateOneAsset(asset)}"/></td>
-             <td><h:commandButton value="Cancel" styleClass="btn" type="reset"  /></td></tr>
-             </div>
-              </ui:repeat>
-             </p:outputPanel>
-             </p:dialog>
-              <p:dialog header="  Asset Details" widgetVar="multiAssetDialog1"     showEffect="explode" hideEffect="bounce" resizable="false" height="400" width="400">
-        <p:outputPanel id="multiAssetDetail1" style="text-align:center;">
-               
-           <ui:repeat value="#{expenseBean.selectedAssets}" var="asset">
-            <table>
-             <tr>
-             <th><p:outputLabel  value="Organization"/></th>
-             <td> <h:inputText  readonly="true" value="#{asset.str_OrganizationName}" />  </td>
-             </tr>
-             <tr>
-             <th><p:outputLabel  value="Asset Name"/></th>
-             <td> <h:inputText  readonly="true" value="#{asset.str_AssetName}" />    </td>
-             </tr>
-              <tr>
-             <th><p:outputLabel  value="Asset Category"/></th>
-             <td> <h:inputText readonly="true" value="#{asset.str_assetcat_name}" />    </td>
-             </tr>
-               
-             
-             
-            
-             </table>
-             <div><hr/>
-              <tr>
-             <td><p:commandButton   styleClass="btn" id="submit"  value="Cancel" onclick="EnrollLaterClick1()"/></td></tr>
-             </div>
-              </ui:repeat>
-             </p:outputPanel>
-             </p:dialog>
           
                  </body>
                  </h:form>

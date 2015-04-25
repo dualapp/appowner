@@ -37,10 +37,7 @@
                  <div class="gsTitleDiv">OtherDetails<br/><hr/></div>  
                  <h:panelGroup id="sss1">
              <h:panelGrid >
-             <p:outputPanel layout="block" id="assetimg"  >
-                    
-       <p:graphicImage id="img" style="Width: 280px; height:166px;" value="#{expenseBean.getPath3()}"/>  
-       </p:outputPanel>
+              
        <table> 
        <!-- inputFile tag to upload file -->
 		 
@@ -58,7 +55,9 @@
 			              <f:ajax execute="file"  update="@all" render="@all"/>
 			             </h:commandButton>
          
-       </td></tr>
+       </td>
+       <p:graphicImage id="img" style="background:#dddddd; height:200px;width:200px;float:right !important;margin:-130px -600px -100px 0px;" value="#{expenseBean.getPath3()}"/>  
+       </tr>
         
                  </table>
                  
