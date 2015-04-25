@@ -369,6 +369,12 @@ public  List<String> getSideMenu()
 	return str4;
 }
   }
+
+@Override
+public void deleteAssignedRole(Integer uid) {
+	// TODO Auto-generated method stub
+	getSessionFactory().getCurrentSession().createQuery("delete from RoleAssignment where int_ApartmentId=? and int_UserId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,uid).executeUpdate();
+}
 }
 	
  

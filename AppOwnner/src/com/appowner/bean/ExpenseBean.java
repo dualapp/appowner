@@ -210,6 +210,7 @@ public class ExpenseBean  implements Serializable{
 		this.str_AppartmentImg = str_AppartmentImg;
 	}
 	public String getStr_Document_Upload() {
+		str_Document_Upload=getExpenseService().getStr_Document_Upload(Util.getAppartmentId());
 		return str_Document_Upload;
 	}
 	public void setStr_Document_Upload(String str_Document_Upload) {
@@ -285,6 +286,7 @@ public class ExpenseBean  implements Serializable{
 		return blb_images1;
 	}
 	private Boolean renderlogo;
+	 
 	public String getStr_OrganizationLogo() {
 		str_OrganizationLogo=getExpenseService().organizationLogo(Util.getAppartmentId());
 		
@@ -384,8 +386,14 @@ public class ExpenseBean  implements Serializable{
 	public void setDate_Duration(Date date_Duration) {
 		this.date_Duration = date_Duration;
 	}
-	
-
+	private AssetCategory assetsCategory1=new AssetCategory();
+	/*
+	 * get  one Assetcategory by assetCatId
+	 */
+public void getAssetCategory1(Integer assetCatId)
+{
+	assetsCategory1=getExpenseService().getAssetCategory1(assetCatId);
+}
 	
 /*
  * return All AppartmentName from Appartment table
@@ -1045,19 +1053,27 @@ private String str_Rentable;
 private AssetCategory assetcategory;
 private List<AssetCategory> assetCategoryList;
 private List<AssetCategory> assetCategoryList1;
-public String updateAssetCategory(AssetCategory ac)
+public String updateAssetCategory()
 {
-	System.out.println(ac+"kalpaaaaaaaaaaaaaaaaaaaaaaa");
-	if(ac!= null) {
-	getExpenseService().updateAssetCategory( ac);
+	 
+	if(assetsCategory1!= null) {
+	getExpenseService().updateAssetCategory(assetsCategory1);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Assetcategory Updated Successfully!"));
+	 return "assetcategory.xhtml";
 	}
 	 else{
     	 FacesMessage message = null;
      FacesContext.getCurrentInstance().addMessage(null, message);
+     return "assetcategory.xhtml";
      
      }
-	 return "assetcategory.xhtml";
+	
+}
+public AssetCategory getAssetsCategory1() {
+	return assetsCategory1;
+}
+public void setAssetsCategory1(AssetCategory assetsCategory1) {
+	this.assetsCategory1 = assetsCategory1;
 }
 public String deleteAssetsCategory()
 {

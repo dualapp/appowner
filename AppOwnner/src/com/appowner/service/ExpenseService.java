@@ -196,6 +196,12 @@ public interface ExpenseService {
 
 	Parking getOneParking(Integer pid);
 
+	AssetCategory getAssetCategory1(Integer assetCatId);
+
+	 
+
+	String getStr_Document_Upload(Integer appartmentId);
+
 	 
 
 }

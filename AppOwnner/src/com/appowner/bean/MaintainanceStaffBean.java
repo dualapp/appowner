@@ -227,17 +227,16 @@ public class MaintainanceStaffBean implements Serializable {
 		getMaintainanceStaffService().updateMaintainanceStaff(maintainanceStaff);
 		return "maintainancestafflist.xhtml";
 	}
-	public String deleteMaintainanceStaff()
+	public String deleteMaintainanceStaff(Integer uid,Integer mid)
 	{
 		maintainanceStaff=new MaintainanceStaff();
 		//maintainanceStaff.setInt_UserId(int_UserId);
-		maintainanceStaff.setInt_MaintainanceStaffID(int_MaintainanceStaffID);
+		maintainanceStaff.setInt_MaintainanceStaffID(mid);
+		//getMaintainanceStaffService().deleteAssignedRole(uid);
 		getMaintainanceStaffService().deleteMaintainanceStaff(maintainanceStaff);
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
-		return "maintainancestafflist.xhtml?faces-redirect=true";
+		return "maintainancestafflist.xhtml";
 	}
-	public String cancelMaintainanceStaff() {
-		return "maintainancestafflist.xhtml?faces-redirect=true";
-	}
+	 
 }
 

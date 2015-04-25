@@ -60,5 +60,10 @@ public class CommitteeMemberServiceImpl implements CommitteeMemberService {
 		// TODO Auto-generated method stub
 		return getCommitteeMemberDao().getUserId(str_UserName);
 	}
+	@Override
+	public void deleteAssignedRole(Integer uid) {
+		 getCommitteeMemberDao().deleteAssignedRole( uid);
+		
+	}
 	 
 }

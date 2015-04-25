@@ -68,6 +68,8 @@ public interface MaintainanceStaffService {
 
 	List<String> getSideMenu();
 
+	void deleteAssignedRole(Integer uid);
+
 	
 
 	 

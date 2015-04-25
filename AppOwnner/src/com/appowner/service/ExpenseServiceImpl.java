@@ -546,6 +546,19 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return getExpenseDao().getOneParking(pid);
 	}
 
+	@Override
+	public AssetCategory getAssetCategory1(Integer assetCatId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getAssetCategory1(assetCatId);
+	}
+
+	 
+	@Override
+	public String getStr_Document_Upload(Integer appartmentId) {
+		// TODO Auto-generated method stub
+		return  getExpenseDao().getStr_Document_Upload(appartmentId);
+	}
+
 	 
 	 
 

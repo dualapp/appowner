@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.CommiteeMember;
 import com.appowner.model.CommitteeRole;
 import com.appowner.model.User;
+import com.appowner.util.Util;
 @Repository
 public class CommitteeMemberDaoImpl  implements CommitteeMemberDao{
 	@Autowired
@@ -73,5 +74,11 @@ public class CommitteeMemberDaoImpl  implements CommitteeMemberDao{
 		// TODO Auto-generated method stub
 		String hql="select int_UserId from User where str_Username=?";
 		return (Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_UserName).uniqueResult();
+	}
+
+	@Override
+	public void deleteAssignedRole(Integer uid) {
+		getSessionFactory().getCurrentSession().createQuery("delete from RoleAssignment where int_ApartmentId=? and int_UserId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,uid).executeUpdate();
+		
 	}
 }
