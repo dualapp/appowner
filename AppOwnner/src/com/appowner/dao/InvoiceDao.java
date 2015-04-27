@@ -51,7 +51,7 @@ public List<InvoiceTransaction> listInvoiceTransaction1(
 public String getUserName(String str_Block, String str_ApartmentNo);
 
 public String getDescription(String str_InvoiceTemplate);
-
+public List<InvoiceTransaction> listInvoiceTransaction(String query);
 
 
 
