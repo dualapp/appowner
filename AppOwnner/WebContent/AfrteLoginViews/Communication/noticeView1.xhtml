@@ -15,8 +15,21 @@
 	 
 	<f:viewAction action="#{noticeBoardBean.getNotice}" />
 </f:metadata>
-		
+	<h:head>
+	 <script> 
+function limitTextArea(element, limit) { 
+
+if (element.value.length > limit) { 
+element.value = element.value.substring(0, limit); 
+} 
+
+} 
+
+</script> 
+	</h:head>	
   <body >
+ 
+
     <h:form id="form1" enctype="multipart/form-data">
     <br/>
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
@@ -102,12 +115,17 @@
              
              
             <th align="left">Notice Description</th>
-              <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.notice1.str_Description}" width="550" height="280" style="margin-bottom:20px;"  maxlength="100"/>
-                 
-              </td>
+               <td colspan="2"><h:inputTextarea id="description" value="#{noticeBoardBean.notice1.str_Description}" type="text" name="#{noticeBoardBean.notice1.str_Description}" onkeyup="limitTextArea(this,500);" 
+onkeydown="limitTextArea(this,500);"  style="width:550px; height:240px" 
+  required="true"></h:inputTextarea>
+<br/>
+
+
+
              
            
-             </tr>
+            </td>
+            </tr>
             <tr>
            <th align="left">Special Notice?</th>
             
@@ -126,7 +144,8 @@
             </td>
             </tr>
         <tr>     <td></td>
-                 <td>&#150; &#150;<p:commandButton id="submit" styleClass="btn" value="Submit" action="#{noticeBoardBean.updateNotice(noticeBoardBean.notice1)}" ajax="false" /></td>
+                 <td>&#150; &#150;<p:commandButton id="submit" styleClass="btn" value="Submit" action="#{noticeBoardBean.updateNotice(noticeBoardBean.notice1)}" ajax="false" />
+                 <p:button  styleClass="btn" id="cancel" value="Cancel" outcome="noticeView.xhtml"   style="margin-left:2em;"/></td>
                 
             </tr>
            

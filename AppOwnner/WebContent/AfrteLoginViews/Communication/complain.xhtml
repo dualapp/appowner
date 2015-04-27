@@ -53,15 +53,16 @@ function limitText(limitField, limitCount, limitNum) {
 		</tbody>
 		</table>
 	 <div id="page3">
-   <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+  
+
        
      
-          
-           <tr>
-            <td><h:outputText  value="Complaint Type*:" /></td>
+         <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">  
+           <tr >
+            <td width="20%"><h:outputText  value="Complaint Type*:" /></td>
             
               
-              <td><p:selectOneRadio id="option" value="#{complainBean.str_ComplainType}"  required="true" requiredMessage="Complaint Type should not Empty" valueChangeListener="#{complainBean.selectRadioButton}">  
+              <td ><p:selectOneRadio id="option" value="#{complainBean.str_ComplainType}"  required="true" requiredMessage="Complaint Type should not Empty" valueChangeListener="#{complainBean.selectRadioButton}">  
                 <f:selectItem itemLabel="Personal" itemValue="Personal" />
                 
                 
@@ -75,40 +76,54 @@ function limitText(limitField, limitCount, limitNum) {
               
         
             </tr>
-           
-             <tr>
+         </table>
+         
+
              
-              <h:panelGroup id="performed"  rendered="#{complainBean.str_ComplainType eq 'Personal'}">
-           
-              <td><h:outputText  value="Block:" /></td>
-              <td><h:selectOneMenu id="Block" value="#{complainBean.block}" valueChangeListener="#{complainBean.blockChangeListener}" style="width:250px">
+
+             
+              <h:panelGroup id="performed"  rendered="#{complainBean.str_ComplainType eq 'Personal'}" >
+               <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">  
+               <tr>
+              <td width="20%"><h:outputText  value="Block:" /></td>
+              <td ><h:selectOneMenu id="Block" value="#{complainBean.block}" valueChangeListener="#{complainBean.blockChangeListener}" style="width:250px">
                   <f:selectItem itemLabel="Select Block" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{complainBean.blocks}" />
                    <p:ajax event="change" update="Flat" execute="Block" />
                  </h:selectOneMenu>
              </td>
-             <td><h:outputText  value="FlatNo:" /></td>
+             <td  ><h:outputText  value="FlatNo:" /></td>
                <td><h:selectOneMenu id="Flat" value="#{complainBean.flat}" valueChangeListener="#{complainBean.flatChangeListener}" style="width:250px">
                   <f:selectItem itemLabel="Select Flat" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{complainBean.flats}" />
                     <p:ajax event="change" update="BeHalfOf" process="Flat" partialSubmit="true"/>
                  </h:selectOneMenu>
              </td>
-             <td><h:outputText  value="BeHalfOf:" /></td>
-              <td><h:selectOneMenu id="BeHalfOf" value="#{complainBean.beHalfOf}"  style="width:250px">
+             <td ><h:outputText  value="BeHalfOf:" /></td>
+              <td ><h:selectOneMenu id="BeHalfOf" value="#{complainBean.beHalfOf}"  style="width:250px">
                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{complainBean.beHalfOfs}" />
                  </h:selectOneMenu>
              </td>
              
            
-             </h:panelGroup>
-             
-             </tr>
-             <tr>
-             <td><h:outputText for="str_VendorType" value="Category*:" /></td>
+         </tr>
+         </table>
+         </h:panelGroup>
+         
+
+          
+          
             
-             <td><h:selectOneMenu id="str_VendorType" value="#{complainBean.str_VendorType}"  valueChangeListener="#{complainBean.vendorChangeListener}" style="width:250px">
+
+             <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+             
+
+             
+              <tr>
+             <td width="20%"><h:outputText for="str_VendorType" value="Category*:" /></td>
+            
+             <td width="22%"><h:selectOneMenu id="str_VendorType" value="#{complainBean.str_VendorType}"  valueChangeListener="#{complainBean.vendorChangeListener}" style="width:250px">
                   <f:selectItem itemLabel="Select Vendor" itemValue="" noSelectionOption="true" />
                 
                 <f:selectItems value="#{complainBean.str_VendorTypes}" />
@@ -116,22 +131,23 @@ function limitText(limitField, limitCount, limitNum) {
                 </h:selectOneMenu>
              </td>
              
-          <td>  <h:outputText for="str_VendorName" value="Assigned To:" /></td> 
+          <td  >  <h:outputText for="str_VendorName" value="Assigned To:" /></td> 
             
-           <td> <h:selectOneMenu id="str_VenderName" value="#{complainBean.str_VenderName}" style="width:250px">
+           <td width="52%"> <h:selectOneMenu id="str_VenderName" value="#{complainBean.str_VenderName}" style="width:250px">
                 <f:selectItem itemLabel="Not Assigned"  itemValue="" noSelectionOption="true" />
                 <f:selectItems  value ="#{complainBean.str_VendorNames}"/>
              </h:selectOneMenu></td> 
-           
-            </tr>
-            
-           
           
+         </tr>
+         </table>
+         
+        
+        
              
             
-          
+           <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr>
-            <td><h:outputText  value="Complain Nature*:" /></td>
+            <td width="20%"><h:outputText  value="Complain Nature*:" /></td>
             
              <td><p:selectOneRadio id="options" value="#{complainBean.ch_Complain}"  required="true" requiredMessage="Compalint Nature should not Empty">
                 <f:selectItem itemLabel="Complaint" itemValue="c" />
@@ -142,14 +158,12 @@ function limitText(limitField, limitCount, limitNum) {
             </tr>
         
             <tr>
-               <td><h:outputText  value="Description*:"/><br /><small><font color="red" size="2">(Maximum characters: 1000)</font></small></td>
-               
-                <td colspan="2">
-                <textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,1000);" style="width:300px; height:100px" 
-onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,1000);" maxlength="1000" required="true"></textarea>
+               <td><h:outputText  value="Description*:"/><br /><small><font color="red" size="2">(Maximum characters: 500)</font></small></td>
+                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,500);" style="width:620px; height:140px" 
+onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,500);" maxlength="500" required="true"></textarea>
 <br/>
 
-<input  type="text" name="countdown" size="3" value="1000"> characters left.</input>
+<input  type="text" name="countdown" size="3" value="500"> characters left.</input>
 
 
 
@@ -159,9 +173,7 @@ onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,1000);" maxlen
          </tr>
          
           
-           
-            
-            
+         
           
             <tr>
             <td></td>
@@ -170,7 +182,8 @@ onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,1000);" maxlen
                 
             </tr>
            
-     </table>
+    </table>
+
      </div>
      </h:form>
      </body>
