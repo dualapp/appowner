@@ -38,7 +38,7 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/invoice1.jpg" height="50" width="50"></img> <span class="title">Invoice</span>
+					<img src="#{expenseBean.str_Name}images/invoice1.jpg" height="50" width="50"></img> <span class="title">Invoice of #{invoiceBean.str_Organisation}</span>
 				</td>
 			</tr>
 		</tbody>
@@ -63,29 +63,29 @@
              </td>
              <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Block:" /></td>
-               <td><p:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener1}"   style="width:150px">
+               <td><h:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener1}"   style="width:150px">
                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                    <f:selectItems value="#{invoiceBean.str_Blocks}" />
                     <p:ajax event="change" update="str_ApartmentNo" process="str_Block" partialSubmit="true" />
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
               <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Apartment:" /></td>
-               <td><p:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}"  style="width:150px">
+               <td><h:selectOneMenu id="str_ApartmentNo" value="#{invoiceBean.str_ApartmentNo}"  style="width:150px">
                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
                      <f:selectItems value="#{invoiceBean.str_BlockNo}" />
-                 </p:selectOneMenu>
+                 </h:selectOneMenu>
                  </td>
                   <p:spacer width="40" height="20"/>
                  <td><h:outputText  value="Status:" /></td>
-                 <td><p:selectOneMenu id="str_Status" value="#{invoiceBean.str_Status}"  style="width:150px">
+                 <td><h:selectOneMenu id="str_Status" value="#{invoiceBean.str_Status}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem  itemLabel="Paid" itemValue="Paid" />
                    <f:selectItem  itemLabel="Partial" itemValue="Partial" />
                     <f:selectItem  itemLabel="Due" itemValue="Due" />
                 
                     <f:selectItem  itemLabel="Processing" itemValue="Processing" />
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
             
              </h:panelGroup>
@@ -94,24 +94,24 @@
              <h:panelGroup id="aa">
             
               <td><h:outputLabel value="Invoice Date:" /></td>
-              <td><p:selectOneMenu id="dat_InvoiceDate"   style="width:150px">
+              <td><h:selectOneMenu id="dat_InvoiceDate"   style="width:150px">
                   <f:selectItem itemLabel="Today" itemValue="Today"  />
                   <f:selectItem itemLabel="Last Week" itemValue="Last Week"  />
                   <f:selectItem itemLabel="Current MOnth" itemValue="Current MOnth"  />
                   <f:selectItem itemLabel="Specific Date" itemValue="Specific Date"  />
                    <f:selectItem itemLabel="Select Date Range" itemValue="Select Date Range"  />
-               </p:selectOneMenu>
+              </h:selectOneMenu>
              </td>
               <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Template:" /></td>
-               <td><p:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:150px">
+               <td><h:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
               <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Period" /></td>
-               <td><p:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:150px">
+               <td><h:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                  <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
@@ -125,23 +125,23 @@
                      <f:selectItem itemLabel="OCT" itemValue="OCT"/>
                        <f:selectItem itemLabel="NOV" itemValue="NOV"/>
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
                  </td>
                   <p:spacer width="40" height="20"/>
                  <td><h:outputText  value="Year" /></td>
-               <td><p:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:150px">
+               <td><h:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                   <f:selectItem  itemLabel="2013" itemValue="2013" />
                    <f:selectItem  itemLabel="2014" itemValue="2014" />
                     <f:selectItem  itemLabel="2015" itemValue="2015" />
                    <f:selectItem  itemLabel="2016" itemValue="2016" />
                     <f:selectItem  itemLabel="2017" itemValue="2017" />
-                </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
             
              </h:panelGroup>
              <p:spacer width="40" height="20"/>
-            <td><p:commandButton id="priya" value="Go" style="width:40px;height:20px" action="#{invoiceBean.getListInvoiceTransaction()}" update="invoice" ajax="false"/></td>
+            <td><h:commandButton id="priya" value="Go" style="width:40px;height:20px"  update="invoice" ajax="false"/></td>
                  
           </tr>
           </table>
@@ -184,8 +184,8 @@
           selection="#{invoiceBean.selectedInvoice}" rowKey="#{invoice.int_InvoiceTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">
              <p:ajax event="rowSelect" listener="#{invoiceBean.desabled1Listener}"  execute="@form" immediate="true" update=":form:payment,:form:ui-growl"/>
                   
-            <p:column>
-                <f:facet name="header">
+            <p:column sortBy="#{invoice.int_InvoiceTransactionID}">
+                <f:facet name="header" >
                     <h:outputText value="Organisation" />
                 </f:facet>
                 <h:outputText value="#{invoiceBean.str_Organisation}" />

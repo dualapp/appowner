@@ -48,7 +48,7 @@
 		</tbody>
 	</table>
   <h:form id="form" >
-  <p:growl id="ui-growl" globalOnly="true" sticky="true" />  
+  <p:messages id="ui-growl" globalOnly="true" sticky="true" />  
    <div id="page3"> 
    <div class="gsTitleDiv">Template<br/><hr/></div>
    
@@ -182,7 +182,7 @@
    
           <tr>
            <td width="24%">  <h:outputText  value="Due Amount" /></td>
-           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" validator="#{dueBean.validateAmount}" readonly="false" required="true" validatorMessage="This due already exists for the selected apartment. Duplicate dues cannot be created"  /> </td>
+           <td>  <p:inputText id="dbl_DueAmount" value="#{dueBean.dbl_DueAmount}" validator="#{dueBean.validateAmount}" requiredMessage="ApartmentNo Should not Empty" required="true" validatorMessage="This due already exists for the selected apartment. Duplicate dues cannot be created"  /> </td>
            <td><p:message id="str_CreditAccountMsg" for="dbl_DueAmount"  display="text"/>  </td>
            </tr>
            <tr>

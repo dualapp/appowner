@@ -83,7 +83,7 @@
 	</table>
 <h:body>
   <h:form id="form" prependId="false">
-    <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+    <p:growl id="ui-growl"  sticky="true" />
   <div id="page3">
    <div class="gsTitleDiv"><br/></div>
     
@@ -267,9 +267,9 @@
  <th>
     <h:outputText value="Organization"/><font color="red" >*</font></th>
   
-     <td><p:selectOneMenu id="str_Organisation1" value="#{invoiceBean.str_Organisation}"  style="width:250px">
+     <td><h:selectOneMenu id="str_Organisation1" value="#{invoiceBean.str_Organisation}"  style="width:250px">
                    <f:selectItem itemValue="#{invoiceBean.str_Organisation}"  itemLabel="#{invoiceBean.str_Organisation}"/>
-                 </p:selectOneMenu>
+               </h:selectOneMenu>
              </td>
                
     </tr>
@@ -348,8 +348,8 @@
           
       </tr>
     <tr><td></td>
-                <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{invoiceBean.saveManualJournal(journal1)}" update=":form:ggg :form:ui-growl,str_CreditAccountMsg,str_CreditAmountMsg"  oncomplete="handleRequest1(xhr, status, args)">
-                
+                <td><p:commandButton id="submit" styleClass="btn" value="Submit" action="#{invoiceBean.saveManualJournal(journal1)}" update=":form:ggg,:form:ui-growl,str_CreditAccountMsg,str_CreditAmountMsg"  oncomplete="handleRequest1(xhr, status, args)">
+               
                  </p:commandButton></td>
                  </tr>
   </table>
@@ -378,9 +378,9 @@
  <th>
     <h:outputText value="Organization"/><font color="red" >*</font></th>
   
-     <td><p:selectOneMenu id="str_Organisation1" value="#{invoiceBean.str_Organisation}"  style="width:250px">
+     <td><h:selectOneMenu id="str_Organisation1" value="#{invoiceBean.str_Organisation}"  style="width:250px">
                    <f:selectItem itemValue="#{invoiceBean.str_Organisation}"  itemLabel="#{invoiceBean.str_Organisation}"/>
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
                
     </tr>
