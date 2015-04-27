@@ -44,5 +44,6 @@ public boolean detectDueTemplate(String str);
 public String getCalculation();
 public int getTaxID(String str);
 public boolean detectInvoiceTemplate(String str);
+public boolean detectTaxTemplate(String str_TaxName);
 
 }
