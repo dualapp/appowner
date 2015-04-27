@@ -29,7 +29,7 @@ public class Pool implements Serializable{
 	@Column 
 	private String str_StartDate;
 	@Column 
-	private String str_EndDate;
+	private Date date_EndDate;
 	 
 	 
 	public String getStr_StartDate() {
@@ -38,12 +38,14 @@ public class Pool implements Serializable{
 	public void setStr_StartDate(String str_StartDate) {
 		this.str_StartDate = str_StartDate;
 	}
-	public String getStr_EndDate() {
-		return str_EndDate;
+	 
+	public Date getDate_EndDate() {
+		return date_EndDate;
 	}
-	public void setStr_EndDate(String str_EndDate) {
-		this.str_EndDate = str_EndDate;
+	public void setDate_EndDate(Date date_EndDate) {
+		this.date_EndDate = date_EndDate;
 	}
+
 	@Column(name="var_CreatedBy")
 	private String str_CreatedBy;
 	@Column(name="var_Status")

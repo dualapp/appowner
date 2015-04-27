@@ -559,6 +559,18 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return  getExpenseDao().getStr_Document_Upload(appartmentId);
 	}
 
+	@Override
+	public void updateOrganizationDocument(String path2) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateOrganizationDocument(path2);
+	}
+
+	@Override
+	public Assets getOneAssets(Integer aid) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().getOneAssets(aid);
+	}
+
 	 
 	 
 

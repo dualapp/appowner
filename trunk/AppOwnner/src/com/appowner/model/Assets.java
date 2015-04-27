@@ -40,11 +40,27 @@ public class Assets  implements Serializable{
 	
 	@Column(name="var_VendorType")
 	private String str_VendorType;
+	@Column(name="var_VendorType1")
+	private String str_VendorType1;
+	public String getStr_VendorType1() {
+		return str_VendorType1;
+	}
+	public void setStr_VendorType1(String str_VendorType1) {
+		this.str_VendorType1 = str_VendorType1;
+	}
 	@Column(name="var_AdditionalInfo")
 	private String str_AdditionalInfo;
 	
 	@Column(name="var_VendorName")
 	private String str_VendorName;
+	@Column(name="var_VendorName1")
+	private String str_VendorName1;
+	public String getStr_VendorName1() {
+		return str_VendorName1;
+	}
+	public void setStr_VendorName1(String str_VendorName1) {
+		this.str_VendorName1 = str_VendorName1;
+	}
 	@Column
 	private Date date_PurchaseDate;
 	@Column

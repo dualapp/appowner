@@ -571,6 +571,15 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		{
 			getSessionFactory().getCurrentSession().createQuery("delete from RoleAssignment where int_ApartmentId=? and int_UserId=?").setParameter(0,Util.getAppartmentId()).setParameter(1,id).executeUpdate();
 		}
+
+		@Override
+		public BookAFacility checkAvailability(Date dat_OpenDate,
+				Date dat_CloseDate, String str_StartTime,
+				String str_StartTime1, String str_EndTime, String str_EndTime1,
+				Integer appartmentId,String str_FacilityType) {
+			// TODO Auto-generated method stub
+			return (BookAFacility) getSessionFactory().getCurrentSession().createQuery("from BookAFacility where dat_OpenDate=? and dat_CloseDate=? and str_StartTime=? and str_StartTime1=? and str_EndTime=? and str_EndTime1=? and int_ApartmentId=? and str_FacilityType=?").setParameter(0, dat_OpenDate).setParameter(1, dat_CloseDate).setParameter(2, str_StartTime).setParameter(3, str_StartTime1).setParameter(4, str_EndTime).setParameter(5, str_EndTime1).setParameter(6, appartmentId).setParameter(7, str_FacilityType).uniqueResult();
+		}
 	 
 }
 		
