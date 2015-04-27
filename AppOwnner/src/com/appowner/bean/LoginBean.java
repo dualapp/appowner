@@ -322,7 +322,10 @@ public class LoginBean implements Serializable {
 	private static String str_OpenDate1;
 	private String str_EventName;
 	private String str_StartTime;
+	private String str_StartTime1;
 	private String str_EndTime;
+	private String str_EndTime1;
+	
 	private String str_EventType;
 	private String str_FacilityType;
 	private BookAFacility bookAFacility;
@@ -1240,7 +1243,7 @@ public class LoginBean implements Serializable {
 	}*/
 	 
 	}
-
+	
 	public String addBookAFacility() {
 		bookAFacility = new BookAFacility();
 		bookAFacility.setStr_CreatedBy(userloginname);
@@ -1249,6 +1252,7 @@ public class LoginBean implements Serializable {
 		bookAFacility.setStr_EventName(str_EventName);
 		bookAFacility.setStr_EmailId(str_EmailId);
 		bookAFacility.setStr_EndTime(str_EndTime);
+		bookAFacility.setStr_EndTime1(str_EndTime1);
 		bookAFacility.setStr_EventType(str_EventType);
 		bookAFacility.setStr_FacilityType(str_FacilityType);
 		bookAFacility.setStr_Flat(str_Flat);
@@ -1257,6 +1261,7 @@ public class LoginBean implements Serializable {
 		bookAFacility.setDat_OpenDate(dat_OpenDate);
 		bookAFacility.setDat_CloseDate(dat_CloseDate);
 		bookAFacility.setStr_StartTime(str_StartTime);
+		bookAFacility.setStr_StartTime1(str_StartTime1);
 		bookAFacility.setStr_UserType(str_UserType);
 		getUserService().addBookAFacility(bookAFacility);
 		str_EventName="";
@@ -1268,7 +1273,38 @@ public class LoginBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
 		return "/AfrteLoginViews/Facilities/book a facility.xhtml";
 	}
-
+	public String checkAvailability()
+	{
+		bookAFacility = new BookAFacility();
+		
+		bookAFacility=getUserService().checkAvailability(dat_OpenDate,dat_CloseDate,str_StartTime,str_StartTime1,str_EndTime,str_EndTime1,Util.getAppartmentId(),str_FacilityType);
+	if(bookAFacility!=null)
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Not Available"));
+		return null;
+		
+	}
+		
+		else
+		{
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Available"));
+			
+			return null;
+		}
+			
+	}
+	public String getStr_StartTime1() {
+		return str_StartTime1;
+	}
+	public void setStr_StartTime1(String str_StartTime1) {
+		this.str_StartTime1 = str_StartTime1;
+	}
+	public String getStr_EndTime1() {
+		return str_EndTime1;
+	}
+	public void setStr_EndTime1(String str_EndTime1) {
+		this.str_EndTime1 = str_EndTime1;
+	}
 	/*
 	 * add member login and logout info
 	 */
