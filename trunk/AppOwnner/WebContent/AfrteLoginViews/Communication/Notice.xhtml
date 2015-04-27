@@ -16,6 +16,15 @@
     white-space: pre;
 }
 		</style>
+		<script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script>
 		</h:head>
   <body >
    
@@ -94,11 +103,18 @@
              </tr>
              <tr>
             <th align="left">Notice Description</th>
-              <td><p:editor id="editor" widgetVar="editorWidget" value="#{noticeBoardBean.str_Description}" width="550" height="280" style="margin-bottom:20px;" maxlength="100" />
-                
-              </td>
              
-          
+                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,500);" style="width:550px; height:240px" 
+onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,500);" maxlength="500" required="true"></textarea>
+<br/>
+
+
+
+
+
+              
+                
+         </td>
              </tr>
              
 		

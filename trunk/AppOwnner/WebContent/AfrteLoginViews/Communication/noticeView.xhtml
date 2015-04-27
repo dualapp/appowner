@@ -109,12 +109,13 @@
               </p:commandLink>
               </h:panelGroup>
               </td>
-            <td width="20%">  <p:outputPanel layout="block" id="parentPanel">  
+            <td width="20%">  <p:outputPanel layout="block" id="parentPanel"> 
+            <p:commandLink action="#{noticeBoardBean.downloadFile(notice.str_Document,notice.image)}" ajax="false"> 
      <p:graphicImage id="image1"    value="#{notice.str_Document}"  title="User Image" rendered="#{notice.image==null}" style="background:#dddddd; height:80px;width:50px;"/> 
-     <p:graphicImage id="image2"   value="#{expenseBean.str_Name}images/txt.png"  rendered="#{notice.image}" title="User Image" style="background:#dddddd; height:80px;width:50px;"/>
+     <p:graphicImage id="image2"   value="#{expenseBean.str_Name}images/txt.png" action="#{noticeBoardBean.downloadFile(notice.str_Document,notice.image)}" ajax="false" rendered="#{notice.image}" title="User Image" style="background:#dddddd; height:80px;width:50px;"/>
      <p:graphicImage id="image3"   value="#{expenseBean.str_Name}images/doc.jpg"  rendered="#{notice.image==false}" title="User Image" style="background:#dddddd; height:80px;width:50px;"/> 
       
-     
+     </p:commandLink>
     
     </p:outputPanel> 
                     
