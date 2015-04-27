@@ -141,6 +141,10 @@ public interface In_UserDao {
 
 	public void deleteRole(Integer id);
 
+	public BookAFacility checkAvailability(Date dat_OpenDate,
+			Date dat_CloseDate, String str_StartTime, String str_StartTime1,
+			String str_EndTime, String str_EndTime1, Integer appartmentId, String str_FacilityType);
+
 	 
 	//public void deleteUser1(int int_UserId);
 
