@@ -1,6 +1,8 @@
 package com.appowner.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -274,5 +276,26 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		String str2=str+"   "+str1;
 		
 		return str2;
+	}
+	@SuppressWarnings("unchecked")
+	public List<InvoiceTransaction> listInvoiceTransaction(String query)
+	{
+		if(query.isEmpty())
+		{
+			List<InvoiceTransaction> invoice=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
+			
+			Collections.sort(invoice);
+			
+			return  invoice;
+		}
+		else
+		{
+			System.out.println(query+"fggggg");
+			 String hql="from InvoiceTransaction where int_Organisation=? and "+query; 
+			 System.out.println(hql+"jkjfdjkjfdd");
+				return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
+			
+		}
+				
 	}
 }
