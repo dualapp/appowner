@@ -363,5 +363,13 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 	{
 		getIn_userdao().deleteRole(id);
 	}
+
+	@Override
+	public BookAFacility checkAvailability(Date dat_OpenDate,
+			Date dat_CloseDate, String str_StartTime, String str_StartTime1,
+			String str_EndTime, String str_EndTime1, Integer appartmentId,String str_FacilityType) {
+		// TODO Auto-generated method stub
+		return getIn_userdao().checkAvailability(dat_OpenDate,dat_CloseDate,str_StartTime,str_StartTime1,str_EndTime,str_EndTime1,appartmentId,str_FacilityType);
+	}
 	 
 }

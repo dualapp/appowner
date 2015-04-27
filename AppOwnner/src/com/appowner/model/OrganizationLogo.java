@@ -30,8 +30,13 @@ public class OrganizationLogo  implements Serializable{
 	private String str_Appartment_Logo;
 	@Column(name="var_InTime")
 	private String  str_InTime;
+	@Column(name="var_InTime1")
+	private String  str_InTime1;
 	@Column(name="var_OutTime")
 	private String str_OutTime;
+	@Column(name="var_OutTime1")
+	private String str_OutTime1;
+	
 	@Column(name="var_TextLogo")
 	private String str_TextLogo;
 	@Column(name="var_WelcomeMsg")
@@ -42,6 +47,18 @@ public class OrganizationLogo  implements Serializable{
 	private String str_ApptAddress;
 	@Column(name="var_Day")
 	private String str_Day;
+	public String getStr_InTime1() {
+		return str_InTime1;
+	}
+	public void setStr_InTime1(String str_InTime1) {
+		this.str_InTime1 = str_InTime1;
+	}
+	public String getStr_OutTime1() {
+		return str_OutTime1;
+	}
+	public void setStr_OutTime1(String str_OutTime1) {
+		this.str_OutTime1 = str_OutTime1;
+	}
 	public String getStr_Day() {
 		return str_Day;
 	}

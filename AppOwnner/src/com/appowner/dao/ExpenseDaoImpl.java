@@ -667,4 +667,16 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		// TODO Auto-generated method stub
 		  return (String) sessionFactory.getCurrentSession().createQuery("select str_Document_Upload from OrganizationLogo where int_AppartmentId=?").setParameter(0, appartmentId).uniqueResult();
 	}
+
+	@Override
+	public void updateOrganizationDocument(String path2) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().createQuery("update OrganizationLogo set str_Document_Upload=? where int_AppartmentId=?").setParameter(0, path2).setParameter(1, Util.getAppartmentId()).executeUpdate();
+	}
+
+	@Override
+	public Assets getOneAssets(Integer aid) {
+		// TODO Auto-generated method stub
+		return (Assets) sessionFactory.getCurrentSession().get(Assets.class, aid);
+	}
 }

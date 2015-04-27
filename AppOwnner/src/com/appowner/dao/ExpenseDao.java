@@ -195,4 +195,8 @@ public interface ExpenseDao {
 	 
 	String getStr_Document_Upload(Integer appartmentId);
 
+	void updateOrganizationDocument(String path2);
+
+	Assets getOneAssets(Integer aid);
+
 }

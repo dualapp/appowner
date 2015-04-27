@@ -54,6 +54,7 @@ import com.appowner.model.Vendor;
 import com.appowner.model.VendorServiceDetails;
 import com.appowner.model.Vote;
 import com.appowner.service.ExpenseService;
+import com.appowner.service.VendorService;
 import com.appowner.util.Util;
  
 
@@ -64,7 +65,17 @@ public class ExpenseBean  implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value="#{ExpenseService}")
+	
 	private ExpenseService expenseService;
+	@ManagedProperty(value = "#{VendorService}")
+	private VendorService vendorservice;
+	 
+	public VendorService getVendorservice() {
+		return vendorservice;
+	}
+	public void setVendorservice(VendorService vendorservice) {
+		this.vendorservice = vendorservice;
+	}
 	private String str_AssetCategoryType;
 	private String str_Name ;
 	public String getStr_AssetCategoryType() {
@@ -101,7 +112,11 @@ public class ExpenseBean  implements Serializable{
 	private String Var_ImageName;
 	
 	private String str_offcInTiming;
+	private String str_offcInTiming1;
 	private String str_offcOutTiming;
+	private String str_offcOutTiming1;
+	
+	
 	private String str_AdditionalInfo;
 	private  String str_OrganizationLogo;
 	private String str_AppartmentImg;
@@ -164,6 +179,18 @@ public class ExpenseBean  implements Serializable{
 	public void setStr_VendorType(String str_VendorType) {
 		this.str_VendorType = str_VendorType;
 	}
+	public String getStr_offcInTiming1() {
+		return str_offcInTiming1;
+	}
+	public void setStr_offcInTiming1(String str_offcInTiming1) {
+		this.str_offcInTiming1 = str_offcInTiming1;
+	}
+	public String getStr_offcOutTiming1() {
+		return str_offcOutTiming1;
+	}
+	public void setStr_offcOutTiming1(String str_offcOutTiming1) {
+		this.str_offcOutTiming1 = str_offcOutTiming1;
+	}
 	public String getStr_VendorName() {
 		return str_VendorName;
 	}
@@ -203,7 +230,10 @@ public class ExpenseBean  implements Serializable{
 	
 	public String getStr_AppartmentImg() {
 		str_AppartmentImg=getExpenseService().getAppartmentImg(Util.getAppartmentId());
-		//str_AppartmentImg="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AppartmentImg;
+		if(str_AppartmentImg==null)
+		{
+			str_AppartmentImg="/images/no_attach.png";
+		}
 		return str_AppartmentImg;
 	}
 	public void setStr_AppartmentImg(String str_AppartmentImg) {
@@ -211,6 +241,7 @@ public class ExpenseBean  implements Serializable{
 	}
 	public String getStr_Document_Upload() {
 		str_Document_Upload=getExpenseService().getStr_Document_Upload(Util.getAppartmentId());
+		 
 		return str_Document_Upload;
 	}
 	public void setStr_Document_Upload(String str_Document_Upload) {
@@ -290,7 +321,10 @@ public class ExpenseBean  implements Serializable{
 	public String getStr_OrganizationLogo() {
 		str_OrganizationLogo=getExpenseService().organizationLogo(Util.getAppartmentId());
 		
-		//str_OrganizationLogo="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_OrganizationLogo;
+		if(str_OrganizationLogo==null)
+		{
+			str_OrganizationLogo="/images/no_attach.png";
+		}
 		return str_OrganizationLogo;
 	}
 	public Boolean getRenderlogo() {
@@ -851,7 +885,9 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 			while ((read = inputStream.read(bytes)) != -1) {
 				outputStream.write(bytes, 0, read);
 			}
-			path2="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_Document_Upload;
+			path2=str_Document_Upload;
+			getExpenseService().updateOrganizationDocument(path2);
+			 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("RWA Information Updated successfully!"));
 			 System.out.println(path2);
 			statusMessage = "File upload successfull !!";
 			
@@ -958,9 +994,13 @@ public String addOrganizationLogo ()
 			System.out.println(Util.getAppartmentId());
 			ol.setInt_AppartmentId(Util.getAppartmentId());
 			ol.setStr_Document_Upload(getStr_Document_Upload());
+			ol.setStr_Document_Upload(getStr_Document_Upload());
+			ol.setStr_Appartment_Img(getStr_AppartmentImg());
 			ol.setStr_Day(str_Day);
 			ol.setStr_Appartment_Img(path1);
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Successful"));
+			ol.setStr_InTime1(getStr_offcInTiming1());
+			ol.setStr_OutTime1(getStr_offcOutTiming1());
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("RWA Information updated successfully"));
 	 getExpenseService().updateLogo(ol);
 	 getTextLogo();
 	}
@@ -969,6 +1009,8 @@ public String addOrganizationLogo ()
 	ol.setStr_Appartment_Logo(getStr_OrganizationLogo());
 	ol.setStr_InTime(getStr_offcInTiming());
 	ol.setStr_OutTime(getStr_offcOutTiming());
+	ol.setStr_InTime1(getStr_offcInTiming1());
+	ol.setStr_OutTime1(getStr_offcOutTiming1());
 	ol.setStr_TextLogo(getTextLogo());
 	ol.setStr_ApptAddress(getStr_ApptAddress());
 	ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
@@ -979,7 +1021,7 @@ public String addOrganizationLogo ()
      
 	getExpenseService().addOrganizationLogo(ol);
 	getTextLogo();
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("RWA Information Added successfully"));
 	}
 	  
 	return null;
@@ -1150,12 +1192,92 @@ public String deleteOneAsset1()
 	 return "assets.xhtml?faces-redirect=true";
 	
 }
+private List<String>  str_VendorTypeList;
+private List<String>  str_VendorTypeList1;
+public List<String> getStr_VendorTypeList1() {
+	str_VendorTypeList1=new ArrayList<String>();
+	str_VendorTypeList1.addAll(getVendorservice().getStr_VendorTypeList());
+	System.out.println(str_VendorTypeList1);
+	return str_VendorTypeList1;
+}
+public void setStr_VendorTypeList1(List<String> str_VendorTypeList1) {
+	this.str_VendorTypeList1 = str_VendorTypeList1;
+}
+public void setStr_VendorTypeList(List<String> str_VendorTypeList) {
+	this.str_VendorTypeList = str_VendorTypeList;
+}
+public List<String> getStr_VendorTypeList() {
+	str_VendorTypeList=new ArrayList<String>();
+	str_VendorTypeList.addAll(getVendorservice().getStr_VendorTypeList());
+	System.out.println(str_VendorTypeList);
+	return str_VendorTypeList;
+}
+private  List<String> str_VendorNameByType;
+private  List<String> str_VendorNameByType1;
+private String str_VendorType1;
+private String str_VendorName1;
+public String getStr_VendorName1() {
+	return str_VendorName1;
+}
+public void setStr_VendorName1(String str_VendorName1) {
+	this.str_VendorName1 = str_VendorName1;
+}
+public String getStr_VendorType1() {
+	return str_VendorType1;
+}
+public void setStr_VendorType1(String str_VendorType1) {
+	this.str_VendorType1 = str_VendorType1;
+}
+public List<String> vendorTypeChangeListener(ValueChangeEvent event)
+{   
+	str_VendorType=(String) event.getNewValue();
+	if(str_VendorType!=null)
+	{
+	System.out.println(str_VendorType);
+	str_VendorNameByType=new ArrayList<String>();
+	str_VendorNameByType.addAll(getVendorservice().listOfVendorNameByType(str_VendorType));
+	System.out.println(str_VendorNameByType);
+	return str_VendorNameByType ;
+	}
+	else
+		return str_VendorNameByType=new ArrayList<String>();
+	
+}
+public List<String> vendorTypeChangeListener1(ValueChangeEvent event)
+{   
+	str_VendorType1=(String) event.getNewValue();
+	if(str_VendorType1!=null)
+	{
+	System.out.println(str_VendorType1);
+	str_VendorNameByType1=new ArrayList<String>();
+	str_VendorNameByType1.addAll(getVendorservice().listOfVendorNameByType(str_VendorType1));
+	System.out.println(str_VendorNameByType1);
+	return str_VendorNameByType1 ;
+	}
+	else
+		return str_VendorNameByType1=new ArrayList<String>();
+	
+}
 
-public String updateOneAsset(Assets asset)
-{
-	asset.setStr_AssetImg(path3);
+public List<String> getStr_VendorNameByType1() {
+	return str_VendorNameByType1;
+}
+public void setStr_VendorNameByType1(List<String> str_VendorNameByType1) {
+	this.str_VendorNameByType1 = str_VendorNameByType1;
+}
+public void setStr_VendorNameByType(List<String> str_VendorNameByType) {
+	this.str_VendorNameByType = str_VendorNameByType;
+}
+public List<String> getStr_VendorNameByType() {
 	 
-	getExpenseService().updateOneasset( asset);
+		 
+		return str_VendorNameByType;
+	 
+	 
+}
+public String updateOneAsset()
+{ 
+	getExpenseService().updateOneasset(a);
 	 
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	Flash flash = facesContext.getExternalContext().getFlash();
@@ -1229,13 +1351,16 @@ public String addAsset()
 	 
 	 
 	asset.setStr_VendorName(str_VendorName);
+	asset.setStr_VendorName1(str_VendorName1);
 	asset.setStr_VendorType(str_VendorType);
+	asset.setStr_VendorType1(str_VendorType1);
  asset.setStr_AdditionalInfo(str_AdditionalInfo);
 	asset.setInt_AppartmentId(Util.getAppartmentId());
 	getExpenseService().addAsset(asset);
 	
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Saved Successfully!"));
 	str_VendorType=null;
+	str_VendorType1=null;
 	str_AdditionalInfo=null;
 	str_Block=null;
 	str_VendorName=null;
@@ -1331,16 +1456,12 @@ public void  uploadAssetsFile1( ) throws IOException   {
  				outputStream.write(bytes, 0, read);
  			}
  			path3="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
- 		ListIterator itr=selectedAssets.listIterator();
- 		while(itr.hasNext())
- 		{
- 			Assets a=(Assets) itr.next();
- 			Integer assetId=a.getInt_asset_id();
- 			getExpenseService().updateAssetImage(path3,assetId);
+ 		 
+ 			getExpenseService().updateAssetImage(path3,a.getInt_asset_id());
  			 System.out.println(path3);
  			statusMessage = "File upload successfull !!";
  			
- 		}
+ 		 
  			
  		} catch (IOException e) {
  			e.printStackTrace();
@@ -1414,11 +1535,12 @@ public String getPath3() {
 	return path3; 
 }
 	 public String getPath4() {
+		 path4= getExpenseService().getAssetImg(a.getInt_asset_id());
 		 if(path4==null)
 			{
 				path4="/images/no_attach.png";
 			}
-			 part3=null;
+			 
 				return path4;
 			} 
 	
@@ -1769,6 +1891,23 @@ public String getStr_PoolQuestion() {
 public void setStr_PoolQuestion(String str_PoolQuestion) {
 	this.str_PoolQuestion = str_PoolQuestion;
 }
+private Pool p=new Pool();
+public String getpoll1(Integer pid)
+{
+	p=getExpenseService().getOnePool(pid);
+	return "editpoll.xhtml";
+}
+public String getpoll2(Integer pid)
+{
+	p=getExpenseService().getOnePool(pid);
+	return "viewpoll.xhtml";
+}
+public Pool getP() {
+	return p;
+}
+public void setP(Pool p) {
+	this.p = p;
+}
 public String deleteOnePoll1()
 {
 	
@@ -1873,10 +2012,26 @@ public Pool getPool() {
 public void setPool(Pool pool) {
 	this.pool = pool;
 }
+ public String updateOnePoll()
+ {
+	  
+			getExpenseService().UpdatePool(p);
+			p=null;
+			str_PoolQuestion="";
+			str_Choise1="";
+			str_Choise2="";
+			str_Choise3="";
+			str_EndDate="";
+			str_PoolAudience="";
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Updated Successfully!"));
+			
+			return"pools.xhtml";
+		}
+		 
  
 public String addPool()
 {
-	 
+	
 	pool=new Pool();
 	pool.setInt_OrganizationId(Util.getAppartmentId());
 	pool.setStr_poolAudience(str_PoolAudience);
@@ -1884,7 +2039,7 @@ public String addPool()
 	pool.setInt_userId(Util.getUserId());
 	pool.setStr_StartDate(getStr_StartDate());
 	 
-	pool.setStr_EndDate(getStr_EndDate());
+	pool.setDate_EndDate(getDate_EndDate());
     pool.setStr_Status(str_Status);
 	pool.setStr_CreatedBy(Util.getUserName());
 	pool.setStr_poolQuestion(str_PoolQuestion);
@@ -1893,6 +2048,7 @@ public String addPool()
 	pool.setStr_Choise3(str_Choise3);
 	 
 		getExpenseService().addPool(pool);
+		
 		str_PoolQuestion="";
 		str_Choise1="";
 		str_Choise2="";
@@ -1901,6 +2057,7 @@ public String addPool()
 		str_PoolAudience="";
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Created Successfully!"));
 		return"pools.xhtml";
+	 
 }
 public String getStr_Choise() {
 	return str_Choise;
@@ -2399,7 +2556,23 @@ public void deleteOneServiceRequest()
 	getExpenseService().deleteOneServiceRequest(servicerequest1);
 }
 
- 
+ private Assets a=new Assets();
+ public Assets getA() {
+	return a;
+}
+public void setA(Assets a) {
+	this.a = a;
+}
+public String editAssets(Integer aid)
+ {
+	a=getExpenseService().getOneAssets(aid);
+	 return "editasset.xhtml";
+ }
+ public String viewAssets(Integer aid)
+ {
+	 a=getExpenseService().getOneAssets(aid);
+	 return "viewasset.xhtml";
+ }
  
 public List<Assets> getSelectedAssets() {
 	return selectedAssets;

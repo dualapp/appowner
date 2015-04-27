@@ -27,9 +27,25 @@ public class BookAFacility implements Serializable{
 	private Integer int_FacilityBookId;
 	@Column(name="var_StartTime")
 	private String  str_StartTime;
+	@Column(name="var_StartTime1")
+	private String  str_StartTime1;
 	
+	public String getStr_StartTime1() {
+		return str_StartTime1;
+	}
+	public String getStr_EndTime1() {
+		return str_EndTime1;
+	}
+	public void setStr_EndTime1(String str_EndTime1) {
+		this.str_EndTime1 = str_EndTime1;
+	}
+	public void setStr_StartTime1(String str_StartTime1) {
+		this.str_StartTime1 = str_StartTime1;
+	}
 	@Column(name="var_EndTime")
 	private String  str_EndTime;
+	@Column(name="var_EndTime1")
+	private String  str_EndTime1;
 	@Column(name="var_EventType")
 	private String  str_EventType;
 	@Column(name="var_EventName")
