@@ -79,13 +79,13 @@
      <p:message  id="openDateMsg" for="openDate" display="text"/>
      </td> <th><p:outputLabel value="Date Closed"/></th>  <td><p:inputText readonly="true" value="#{loginBean.str_CloseDate}"/></td></tr>
     <tr><th><p:outputLabel value="Status"/></th> <td><p:inputText value="#{expenseBean.str_Status}" readonly="true"/></td> 
-      <th><p:outputLabel for="str_VendorType" value="VendorCategory"/></th>  
-      <td><h:selectOneMenu id="str_VendorType" value="#{loginBean.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
+      <th><p:outputLabel for="Service Category" value="Service Category"/></th>  
+      <td><h:selectOneMenu id="Service Category" value="#{loginBean.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{vendorTransactionBean.vendorTypeChangeListener}">
        <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/>
-     <p:ajax event="change" update="str_VendorName1" process="str_VendorType"/>
+     <p:ajax event="change" update="str_VendorName1" process="Service Category"/>
     </h:selectOneMenu>
-     <p:message  id="str_VendorTypeMsg" for="str_VendorType" display="text"/>
+     <p:message  id="str_VendorTypeMsg" for="Service Category" display="text"/>
     </td></tr>
     <tr>
  <th><p:outputLabel for="Title" value="title"/></th>  <td><p:inputText id="Title" required="true" requiredMessage="  Enter Title" value="#{loginBean.str_Title}">
