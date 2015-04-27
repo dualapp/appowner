@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="tb_taxtemplate")
-public class TaxTemplate implements Serializable {
+public class TaxTemplate implements Serializable,Comparable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -69,4 +69,10 @@ public class TaxTemplate implements Serializable {
 	private double int_Percentage;
 	@Column(name = "var_Frequency")
 	private double int_TaxExemption;
+
+	
+	public int compareTo(Object o) {
+		int id=((TaxTemplate)o).getInt_TaxTemplateID();
+		return id-this.int_TaxTemplateID;
+	}
 }

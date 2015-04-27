@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="tb_duetransaction")
-public class DueTransaction implements Serializable{
+public class DueTransaction implements Serializable,Comparable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -140,6 +140,11 @@ public class DueTransaction implements Serializable{
 	}
 	public void setInt_paidAmount(Double int_paidAmount) {
 		this.int_paidAmount = int_paidAmount;
+	}
+	@Override
+	public int compareTo(Object o) {
+	int id=((DueTransaction)o).getInt_DueTransactionID();
+		return id-this.int_DueTransactionID;
 	}
 	
     

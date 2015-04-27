@@ -3,6 +3,7 @@ package com.appowner.model;
 import java.io.Serializable;
 
 
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="tb_invoicetemplate")
-public class InvoiceTemplate implements Serializable {
+public class InvoiceTemplate implements Serializable,Comparable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -93,6 +94,12 @@ public class InvoiceTemplate implements Serializable {
 	}
 	public void setStr_DueInvoiceTemplate(String str_DueInvoiceTemplate) {
 		this.str_DueInvoiceTemplate = str_DueInvoiceTemplate;
+	}
+	
+	public int compareTo(Object o) {
+		int id=((InvoiceTemplate)o).getInt_InvoiceTemplateID();
+		
+		return id-this.int_InvoiceTemplateID;
 	}
 	
 }

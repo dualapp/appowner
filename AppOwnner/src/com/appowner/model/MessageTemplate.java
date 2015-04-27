@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="tb_messagetemplate")
-public class MessageTemplate implements Serializable {
+public class MessageTemplate implements Serializable,Comparable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -93,6 +93,11 @@ public class MessageTemplate implements Serializable {
 	}
 	public void setInt_Organisation(Integer int_Organisation) {
 		this.int_Organisation = int_Organisation;
+	}
+	@Override
+	public int compareTo(Object o) {
+		int id=((MessageTemplate)o).getInt_MessageTemplateID();
+		return id-this.int_MessageTemplateID;
 	}
 	
 	

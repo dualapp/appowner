@@ -20,7 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="tb_invoicetransaction")
-public class InvoiceTransaction implements Serializable{
+public class InvoiceTransaction implements Serializable,Comparable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -227,5 +227,17 @@ public class InvoiceTransaction implements Serializable{
 	public void setDeposit_Account(String deposit_Account) {
 		this.deposit_Account = deposit_Account;
 	}
+	public int compareTo(Object  invoice) {
+		
+	        int id=((InvoiceTransaction) invoice).getInt_InvoiceTransactionID();
+	        /* For Ascending order*/
+	      //  return this.studentage-compareage;
+
+	        /* For Descending order do like this */
+	        return id-this.int_InvoiceTransactionID;
+	  
+		
+	}
+	
 	
 }
