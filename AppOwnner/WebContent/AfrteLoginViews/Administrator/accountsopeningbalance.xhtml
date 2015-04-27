@@ -13,8 +13,19 @@
  <script type="text/javascript">
 
 
-</script>    
+</script> 
+<style>
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
 
+}
+</style>   
 </h:head>
 <table cellpadding="0" cellspacing="0" border="1" width="98%" class="src">
 		<tbody>
@@ -27,13 +38,13 @@
 			</tr>
 		</tbody>
 	</table>
-<body>
-   
+<h:body>
+ <p:growl id="ui-growl" globalOnly="true" sticky="true" />    
       <h:form>
-      	<h:body>
+      	
        <div id="page3" >
     
-       <p:messages id="messages"/>  
+        
       <table style="width: 98%;margin-left: 1%;margin-right: 2%;margin-bottom:5px">
             <tr>
              <td> <h:outputLabel value="Organisation:" /> <p:spacer height="10px" width="210px"/></td> 
@@ -113,12 +124,11 @@
 	
 	
 	  <tr><td></td>
-                <td><p:commandButton id="AddProduct" excute="str_DueTemplate" value="Submit" style=" background-color:#9ACD32;width:10em;height:2em; color:white;margin-top:1em;" action="#{accountsBean.addAccountsHead(accountsBean.dat_openingDate)}" ajax="false" /></td>     
+                <td><p:commandButton id="AddProduct" update=":form:ui-growl" value="Submit" style=" background-color:#9ACD32;width:10em;height:2em; color:white;margin-top:1em;" action="#{accountsBean.addAccountsHead(accountsBean.dat_openingDate)}" ajax="false" /></td>     
             </tr>
   </table>
          </div> 
+         </h:form>
          </h:body>
-             </h:form>
-       </body>
-  </ui:define>
-  </ui:composition>
+         </ui:define>
+         </ui:composition>
