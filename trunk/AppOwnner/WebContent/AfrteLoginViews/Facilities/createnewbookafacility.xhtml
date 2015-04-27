@@ -19,9 +19,29 @@
 			</tr>
 		</tbody>
 	</table>
-    <h:form>
+	<h:head>
+	<style>
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
+</style>
+	</h:head>
+    <h:form id="form">
     
-    
+    <p:growl id="ui-growl" globalOnly="true" sticky="true" />
      <div id="page3">
             
      <ui:include src="/AfrteLoginViews/Communication/memberdetails.xhtml" />
@@ -30,13 +50,13 @@
      <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
  
    
-  <tr><th width="15%"><p:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText  style="width:500px;height:22px;" maxlength="50"  id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
+  <tr><th width="15%"><p:outputLabel value="Event Name"/>  </th><td width="15%"><p:inputText  style="width:500px;height:30px;" maxlength="50"  id="EventName" required="true" requiredMessage="Enter Event"  value="#{loginBean.str_EventName}">
   
   </p:inputText>
   </td>
    
     
-  <th width="20%"><p:message id="Eventname"  for="EventName" display="text"/></th>
+  <th width="15%"><p:message id="Eventname"  for="EventName" display="text"/></th>
   <th  width="15%"></th>
   <td width="15%"></td>
   <th  width="20%"></th>
@@ -59,38 +79,48 @@
    
     <tr><th><p:outputLabel for="STime" value="Start Time"/></th> 
      
-     <td><h:selectOneMenu  id="STime"   required="true" requiredMessage="Enter StartTime" value="#{loginBean.str_StartTime}">
-    <f:selectItem itemLabel="Select One" itemValue="" />
+     <td><h:selectOneMenu  id="STime" style="width:20%;"   required="true" requiredMessage="Enter StartTime" value="#{loginBean.str_StartTime}">
+    
      <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
       <p:ajax event="blur" update="STimeMsg" />
       </h:selectOneMenu>
+      <h:selectOneMenu  style="width:20%;" id="AMPM" value="#{loginBean.str_StartTime1}" >
+         <f:selectItem itemLabel="AM" itemValue="AM" />
+         <f:selectItem itemLabel="PM" itemValue="PM" />
+         </h:selectOneMenu>
     
       </td>
       
        <th> <p:message id="STimeMsg"   for="STime" display="text"/></th>
        
        <th><p:outputLabel for="ETime" value="End Time"/></th>  <td>
-     <h:selectOneMenu id="ETime"    required="true" requiredMessage="Enter EndTime" value="#{loginBean.str_EndTime}">
-    <f:selectItem itemLabel="Select One" itemValue="" />
+     <h:selectOneMenu id="ETime"   style="width:30%;" required="true" requiredMessage="Enter EndTime" value="#{loginBean.str_EndTime}">
+     
     <f:selectItem   itemValue="7.00" itemLabel="7.00"/>
      <f:selectItem  itemLabel="7.30" itemValue="7.30" />
      
       </h:selectOneMenu>
-    
+    <h:selectOneMenu  style="width:30%;" id="AMPM1" value="#{loginBean.str_EndTime1}" >
+         <f:selectItem itemLabel="AM" itemValue="AM" />
+         <f:selectItem itemLabel="PM" itemValue="PM" />
+         </h:selectOneMenu>
       </td>
       <th>  <p:message id="ETimeMsg"  for="ETime" display="text"/></th>
        </tr>
      <tr><th><p:outputLabel value="Facility Needed"/></th>
      <td><h:selectOneMenu id="Facility" required="true" requiredMessage="Enter Facility"   value="#{loginBean.str_FacilityType}">
-    <f:selectItem itemLabel="Select One" itemValue="" />
+     
      <f:selectItems value="#{expenseBean.facilityTypeList}"/>
       
     </h:selectOneMenu>
     </td>
     <th><p:message id="FacilityMsg"  for="Facility" display="text"/></th>
     
-    <th><h:commandButton value="Check Availability" action="#"/></th>
+    <th><h:commandButton value="Check Availability" action="#{loginBean.checkAvailability()}">
+     
+    </h:commandButton>
+    </th>
    
     <td></td>
     <th></th>
