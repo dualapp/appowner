@@ -30,18 +30,22 @@
  <th>
     <p:outputLabel value="Organization:"/></th>
     <td>
-    <p:inputText value="#{expenseBean.str_OrganizationName}"/></td>  
+    <p:inputText  readonly="true" value="#{expenseBean.str_OrganizationName}"/></td>  
     
     <th><p:outputLabel value="Status:"/> </th>
     <td>
-    <p:inputText value="#{expenseBean.onePoll.str_Status}"/></td>  
+    <p:inputText  readonly="true" value="#{expenseBean.onePoll.str_Status}"/></td>  
     </tr>
 <tr>
   
     <th><p:outputLabel value="PoolAudience"/></th>
-    <td><p:inputText value="#{expenseBean.onePoll.str_poolAudience}"/></td>
+    <td><p:inputText  readonly="true" value="#{expenseBean.onePoll.str_poolAudience}"/></td>
     <th><p:outputLabel value="End Date"/></th>
-    <td><p:inputText value="#{expenseBean.onePoll.date_EndDate}"/></td>
+    <td><p:inputText readonly="true" value="#{expenseBean.onePoll.date_EndDate}">
+    <f:convertDateTime pattern="dd-MMM-yyyy" />
+    </p:inputText>
+    
+    </td>
      
     </tr>
     </table> 

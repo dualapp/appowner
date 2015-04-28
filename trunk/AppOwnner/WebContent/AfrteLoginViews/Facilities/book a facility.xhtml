@@ -78,7 +78,9 @@
                <f:selectItem  itemLabel="PreviousMonth" itemValue="Private" />
                 <f:selectItem  itemLabel="SpecificDate" itemValue="Private" />
       </h:selectOneMenu> --> 
-                  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}">
+                  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true"  value="#{requestScopeBean.dat_ToDate}">
+                  
+                 
                   </p:calendar>&nbsp; &nbsp; &nbsp;</td>
     <th><p:outputLabel value="Event Type"/></th> 
    <td><h:selectOneMenu value="#{requestScopeBean.str_EventType}">
@@ -87,7 +89,7 @@
             <f:selectItem  itemLabel="Private" itemValue="Private" />
       </h:selectOneMenu></td> 
      
-     <th></th><td><p:commandButton    icon="ui-icon-search" update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
+     <th></th><td><h:commandButton    icon="ui-icon-search" update="DT" value="Go" action="#{requestScopeBean.getBookAFacilityList}"/></td>
     </tr>
     </table> 
     

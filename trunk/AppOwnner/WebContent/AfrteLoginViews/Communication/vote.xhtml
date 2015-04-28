@@ -65,9 +65,9 @@
         <f:selectItem   itemLabel="Admin And Committees" itemValue="Admin And Committees" />
         </h:selectOneRadio>
     </td>
-    <th> <p:outputLabel value="End Date:"/></th><th><p:outputLabel   value="#{expenseBean.onePoll.date_EndDate}" >
+    <th> <p:outputLabel value="End Date:"/></th><th><p:inputText readonly="true"   value="#{expenseBean.onePoll.date_EndDate}" >
     <f:convertDateTime pattern="dd-MMM-yyyy" />
-    </p:outputLabel>
+    </p:inputText>
      </th>
      
     </tr> 
