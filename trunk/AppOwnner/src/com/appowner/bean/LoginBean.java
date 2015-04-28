@@ -84,8 +84,15 @@ public class LoginBean implements Serializable {
 	private String str_EmailId;
 	private String str_UserType;
 	private String str_Block;
-	private Date dat_OpenDate;
+	private Date dat_OpenDate=new Date();
 	private Date dat_CloseDate;
+	private Date dat_AssignDate;
+	public Date getDat_AssignDate() {
+		return dat_AssignDate;
+	}
+	public void setDat_AssignDate(Date dat_AssignDate) {
+		this.dat_AssignDate = dat_AssignDate;
+	}
 	public Date getDat_CloseDate() {
 		return dat_CloseDate;
 	}
@@ -1164,7 +1171,7 @@ public class LoginBean implements Serializable {
 		serviceRequest.setDat_OpenDate(dat_OpenDate);
 		Vendor v=getUserService().getVendor(str_VendorName,str_VendorType);
 		System.out.println(v.getStr_VendorEmail()+"vemailidddddddddddddddddd");
-		serviceRequest.setStr_CloseDate(str_CloseDate);
+		 
 		getUserService().addServiceRequest(serviceRequest);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();

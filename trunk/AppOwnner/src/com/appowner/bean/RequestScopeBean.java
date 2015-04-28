@@ -372,7 +372,7 @@ public String assignRequestedService(ServiceRequest serviceRequest)
 	 str_Status="Progress";
 	 
  
-getRequestScopeService().updateStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId(),str_Status);
+getRequestScopeService().updateStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId(),str_Status, new Date());
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Assigned Successfully"));
     return "servicerequest.xhtml";
 }
@@ -387,7 +387,8 @@ public String closeRequestedService(ServiceRequest serviceRequest)
 	}
 	
 	str_Status="RequestClosed";
-getRequestScopeService().updateStatusOfServiceRequest(serviceRequest.getInt_ServiceRequestId(),str_Status);
+	 
+getRequestScopeService().updateStatusOfServiceRequest2(serviceRequest.getInt_ServiceRequestId(),str_Status, new Date());
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Service Closed Successfully"));
     return "servicerequest.xhtml";
 }
@@ -400,9 +401,9 @@ public String assignBookFacility(BookAFacility baf)
 		return "book a facility.xhtml";
 	}
 	 
-	else if(serviceRequest.getStr_Status().equalsIgnoreCase("RequestClosed"))
+	else if(baf.getStr_Status().equalsIgnoreCase("RequestClosed"))
 	{
-		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Only Open status Book A Facility can be closed"));
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Only Open status Book A Facility can be assigned"));
 		return "book a facility.xhtml";
 	}
 	 str_Status="Progress";
