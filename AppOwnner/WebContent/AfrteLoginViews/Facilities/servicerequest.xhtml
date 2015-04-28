@@ -64,7 +64,7 @@
     <td> <h:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
     
               <f:selectItem itemLabel="All" noSelectionOption="true" />
-              <f:selectItem itemLabel="open"  itemValue="open" />
+              <f:selectItem itemLabel="Open"  itemValue="Open" />
               <f:selectItem itemLabel="Assigned"  itemValue="Progress" />
               <f:selectItem itemLabel="Closed"  itemValue="RequestClosed" />
             </h:selectOneMenu>
@@ -217,7 +217,7 @@
     <p:outputLabel  for="str_VendorType" value="Service category:"/></th>
     <td>
     <h:selectOneMenu id="str_VendorType" value="#{requestScopeBean.serviceReq.str_VendorType}"   valueChangeListener="#{requestScopeBean.vendorTypeChangeListener}">
-       <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+      
     <f:selectItems value="#{requestScopeBean.str_VendorTypeList}"/>
      <p:ajax event="change" update="str_VendorName" process="str_VendorType"/>
     </h:selectOneMenu>
@@ -236,12 +236,34 @@
    
     <tr>
  <th>
-    <p:outputLabel value="Created On:"/></th>
+    <p:outputLabel value="Date Opened:"/></th>
     <td>
     
-     <p:calendar     readonly="true" id="odate"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}">
+      <p:inputText   readonly="true"   id="odate"  required="true" requiredMessage="Please enter Duration"    value="#{requestScopeBean.serviceReq.dat_OpenDate}">
       <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
-      </p:calendar>
+     </p:inputText>
+               
+    </td>  
+    </tr>
+     <tr>
+ <th>
+    <p:outputLabel value="Date Asssigned:"/></th>
+    <td>
+    
+      <p:inputText   readonly="true"   id="adate"  required="true" requiredMessage="Please enter Duration"    value="#{requestScopeBean.serviceReq.dat_AssignDate}">
+      <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+     </p:inputText>
+               
+    </td>  
+    </tr>
+    <tr>
+ <th>
+    <p:outputLabel value="Date closed:"/></th>
+    <td>
+    
+       <p:inputText     readonly="true" id="cdate"  required="true" requiredMessage="Please enter Duration"    value="#{requestScopeBean.serviceReq.dat_CloseDate}">
+      <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+     </p:inputText>
                
     </td>  
     </tr>
@@ -258,12 +280,7 @@
     <td>
     <p:inputText readonly="true" value="#{requestScopeBean.serviceReq.str_Status}"/></td>  
     </tr>
-      <tr>
- <th>
-    <p:outputLabel value="Flat:"/></th>
-    <td>
-    <p:inputText  readonly="true" value="#{requestScopeBean.serviceReq.str_Flat}"/></td>  
-    </tr>
+      
     </table>
      <div>
               <hr/>
@@ -284,8 +301,8 @@
              <table>
       
       <h5>Service Request Added successfully.....</h5>
-          <h5>One email is sent to vendor   ....</h5>
-         <h5>Thanks....</h5>
+          <h5>One email has been sent to vendor   ....</h5>
+         
          </table>
          
           </p:dialog>
@@ -293,42 +310,61 @@
         <h:form id="viewForm">
         <p:outputPanel id="pd1" style="text-align:center;">
            
+                     
+            
              <table>
-             <tr>
- <th>
-    <p:outputLabel value="Organization Name:"/></th>
-    <td>
-    <p:inputText readonly="true" value="#{expenseBean.str_OrganizationName}"/></td>  
-    </tr>
+             
     <tr>
  <th>
-    <p:outputLabel  for="str_VendorType1" value="Service category:"/></th>
+    <p:outputLabel    value="Service category:"/></th>
     <td>
-    <h:selectOneMenu readonly="true" id="str_VendorType1" value="#{requestScopeBean.serviceReq.str_VendorType}"   valueChangeListener="#{requestScopeBean.vendorTypeChangeListener}">
+    <p:inputText  value="#{requestScopeBean.serviceReq.str_VendorType}"  readonly="true"  >
        
-    <f:selectItems value="#{requestScopeBean.str_VendorTypeList}"/>
-     <p:ajax event="change" update="str_VendorName1" process="str_VendorType1"/>
-    </h:selectOneMenu>
+    </p:inputText>
     </td>  
     </tr>
     <tr>
-     <th><p:outputLabel for="str_VendorName1" value="Vendor Name  " /></th>
-            <td><h:selectOneMenu id="str_VendorName1"  readonly="true"   value="#{requestScopeBean.serviceReq.str_VendorName}"  >
-                <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{requestScopeBean.str_VendorNameByType}"/>
+     <th><p:outputLabel  value="Vendor Name  " /></th>
+            <td><p:inputText    readonly="true"
+              value="#{requestScopeBean.serviceReq.str_VendorName}"  />
+                
+                
                   
-            </h:selectOneMenu></td>
+             </td>
            
     
    </tr>
    
     <tr>
  <th>
-    <p:outputLabel value="Created On:"/></th>
+    <p:outputLabel value="Date Opened:"/></th>
     <td>
-     <p:calendar  readonly="true" id="odate"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}">
+    
+      <p:inputText      readonly="true"    required="true" requiredMessage="Please enter Duration"    value="#{requestScopeBean.serviceReq.dat_OpenDate}">
       <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
-      </p:calendar>
+     </p:inputText>
+               
+    </td>  
+    </tr>
+    <tr>
+ <th>
+    <p:outputLabel value="Date Asssigned:"/></th>
+    <td>
+    
+      <p:inputText   readonly="true"     required="true" requiredMessage="Please enter Duration"    value="#{requestScopeBean.serviceReq.dat_AssignDate}">
+      <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+     </p:inputText>
+               
+    </td>  
+    </tr>
+    <tr>
+ <th>
+    <p:outputLabel value="Date closed:"/></th>
+    <td>
+    
+      <p:inputText    readonly="true"    required="true" requiredMessage="Please enter Duration"    value="#{requestScopeBean.serviceReq.dat_CloseDate}">
+      <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+     </p:inputText>
                
     </td>  
     </tr>
@@ -345,12 +381,7 @@
     <td>
     <p:inputText readonly="true" value="#{requestScopeBean.serviceReq.str_Status}"/></td>  
     </tr>
-      <tr>
- <th>
-    <p:outputLabel value="Flat:"/></th>
-    <td>
-    <p:inputText  readonly="true" value="#{requestScopeBean.serviceReq.str_Flat}"/></td>  
-    </tr>
+      
     </table>
      <div>
               <hr/>

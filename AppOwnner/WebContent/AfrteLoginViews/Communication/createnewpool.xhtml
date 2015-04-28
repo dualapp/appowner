@@ -53,7 +53,7 @@
   <th width="20%"></th>
   <th width="15%"><p:outputLabel  for="EDate" value="End Date"/></th>
   <td width="15%"><p:calendar id="EDate" required="true" requiredMessage="Enter End Date" navigator="true"  display="inline" value="#{expenseBean.date_EndDate}">
-   
+ 
    </p:calendar>
   </td>
   <th width="20%"><p:message id="EDateMsg"  for="EDate" display="text"/></th>
@@ -75,19 +75,19 @@
 <th></th>
         </tr> 
   <tr><th><p:outputLabel value="Enter Choices*"/></th></tr>
-  <tr><th><p:outputLabel for="ch1" value="choise1*"/></th><td><p:inputText  id="ch1" required="true" requiredMessage="Enter Choise1"  value="#{expenseBean.str_Choise1}">
+  <tr><th><p:outputLabel for="ch1" value="Choise1*"/></th><td><p:inputText  id="ch1" required="true" requiredMessage="Enter Choise1"  value="#{expenseBean.str_Choise1}">
    
   </p:inputText>
   </td>
   <th><p:message id="ch1Msg"  for="ch1" display="text"/></th>
   </tr>
-  <tr><th><p:outputLabel for="ch2" value="choise2"/></th><td><p:inputText  id="ch2" required="true" requiredMessage="Enter Choise2"  value="#{expenseBean.str_Choise2}">
+  <tr><th><p:outputLabel for="ch2" value="Choise2"/></th><td><p:inputText  id="ch2" required="true" requiredMessage="Enter Choise2"  value="#{expenseBean.str_Choise2}">
    
   </p:inputText>
   </td>
   <th><p:message id="ch2Msg"  for="ch2" display="text"/></th>
   </tr>
-  <tr><th><p:outputLabel value="choise3"/></th><td><p:inputText  value="#{expenseBean.str_Choise3}"/></td></tr>
+  <tr><th><p:outputLabel value="Choise3"/></th><td><p:inputText  value="#{expenseBean.str_Choise3}"/></td></tr>
    <tr><td><h:commandButton  styleClass="btn"  style="width:100px" onsubmit="return confirm(' Poll created successfully');"  value="submit" action="#{expenseBean.addPool}"/></td>
   <td><h:commandButton  value="Cancel" type="reset" styleClass="btn"  style="width:100px" /></td></tr>
    </table>
