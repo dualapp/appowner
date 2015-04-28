@@ -3,6 +3,7 @@ package com.appowner.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -286,6 +287,7 @@ public class DueBean implements Serializable{
 	public List<DueTransaction> getListDueTransaction() {
 		listDueTransaction=new ArrayList<DueTransaction>();
 		listDueTransaction.addAll(getDueService().listDueTransaction(str_DueTemplate,str_Block,str_ApartmentNo,str_Period,str_Status));
+		Collections.sort(listDueTransaction);
 		return listDueTransaction;
 	}
 	public void setListDueTransaction(List<DueTransaction> listDueTransaction) {
