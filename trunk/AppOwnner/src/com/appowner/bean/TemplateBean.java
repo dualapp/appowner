@@ -3,6 +3,7 @@ package com.appowner.bean;
  import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -235,7 +236,7 @@ public class TemplateBean implements Serializable,Validator {
 		listDues=new ArrayList<DueTemplate>();
 		System.out.println(str_Accounts+"fdhfj");
 	  	listDues.addAll(getTemplateService().listDueTemplate(str_Accounts));
-	  
+	  Collections.sort(listDues);
 		return listDues;
 	}
 	public void setListDues(List<DueTemplate> listDues) {
@@ -462,6 +463,7 @@ public class TemplateBean implements Serializable,Validator {
 	public List<TaxTemplate> getListTaxs() {
 		listTaxs=new ArrayList<TaxTemplate>();
 		listTaxs.addAll(getTemplateService().listTaxTemplate());
+		Collections.sort(listTaxs);
 		return listTaxs;
 	}
 	public void setListTaxs(List<TaxTemplate> listTaxs) {
@@ -496,10 +498,25 @@ public class TemplateBean implements Serializable,Validator {
 		
 		
 		System.out.println(tax.getInt_TaxTemplateID()+"fdkjfdkjffgkj");
+		 boolean id1=getTemplateService().detectTaxTemplate(tax.getStr_TaxName());
+	  	    System.out.println(id1+"jffkjfj");
+	  	   
+	  	   FacesContext facesContext = FacesContext.getCurrentInstance();
+	 		Flash flash = facesContext.getExternalContext().getFlash();
+	 		flash.setKeepMessages(true);
+	 		flash.setRedirect(true);
+	  	    if(id1==true)
+	  	    {
+	  	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Tax Template. Delete the due instances and try again.", "Cannot delete Tax Template. Delete the due instances and try again."));
+	  	    }
+	  	    else
+	  	    {
 	  getTemplateService().deleteTax(tax);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
-		return "taxtemplate.xhtml?faces-redirect=true";
+		
 	  
+	}
+	  	  return "taxtemplate.xhtml?faces-redirect=true";
 	}
 	public String cancelTax()
 	{
@@ -543,17 +560,28 @@ public class TemplateBean implements Serializable,Validator {
 				{
 		    TaxTemplate delete = new TaxTemplate();
 	         delete.setInt_TaxTemplateID(selectedTaxTemplate.getInt_TaxTemplateID());
+	         boolean id1=getTemplateService().detectTaxTemplate(selectedTaxTemplate.getStr_TaxName());
+	  	    System.out.println(id1+"jffkjfj");
+	  	   
+	  	   FacesContext facesContext = FacesContext.getCurrentInstance();
+	 		Flash flash = facesContext.getExternalContext().getFlash();
+	 		flash.setKeepMessages(true);
+	 		flash.setRedirect(true);
+	  	    if(id1==true)
+	  	    {
+	  	    	 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Tax Template. Delete the due instances and try again.", "Cannot delete Tax Template. Delete the due instances and try again."));
+	  	    }
+	  	    else
+	  	    {
 	         getTemplateService().deleteTax(delete);
-		    	FacesContext facesContext = FacesContext.getCurrentInstance();
-				Flash flash = facesContext.getExternalContext().getFlash();
-				flash.setKeepMessages(true);
-				flash.setRedirect(true);
+		    	
 				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Deleted Successfully!", "Deleted Successfully!"));
 		   
 
 	    
 		    return "taxtemplate.xhtml?faces-redirect=true";
-		}
+		    }
+			   }
 			   }
 	    	catch(Exception e)
 	    	{
@@ -744,6 +772,7 @@ public class TemplateBean implements Serializable,Validator {
 	public List<InvoiceTemplate> getListInvoices() {
 		listInvoices=new ArrayList<InvoiceTemplate>();
 		listInvoices.addAll(getTemplateService().listInvoiceTemplate());
+		Collections.sort(listInvoices);
 		return listInvoices;
 	}
 	public void setListInvoices(List<InvoiceTemplate> listInvoices) {
@@ -824,7 +853,7 @@ public class TemplateBean implements Serializable,Validator {
 	     dueTemplates.addAll(getTemplateService().getDueTemplate(str_Frequency));
 	     if(dueTemplates.isEmpty())
 	     {    System.out.println("fdkfdkjfkjf");
-	    	// FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("When no template is selected .You must select atleast one due template to create invoice template!")); 
+	    	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"When no template is selected .You must select atleast one due template to create invoice template!","When no template is selected .You must select atleast one due template to create invoice template!")); 
 	     }
 	     
 	    
@@ -900,12 +929,23 @@ public class TemplateBean implements Serializable,Validator {
 		return str_MessageTemplate1;
 		
 	}
-	public String deleteInvoice(){
-		InvoiceTemplate invoice=new InvoiceTemplate();
-		System.out.println(int_DueTemplateID);
-		invoice.setInt_InvoiceTemplateID(int_InvoiceTemplateID);
+	public String deleteInvoice(InvoiceTemplate invoice){
+	System.out.println("jhcvjhv11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");	
+		System.out.println(invoice.getInt_InvoiceTemplateID()+"dfjfjjfdjfjfdjffffffffffffffffffffffffffffffffffffffff");
+		String str=invoice.getStr_InvoiceTemplateName();
+		boolean invoiceindicate=getTemplateService().detectInvoiceTemplate(str);
+		if(invoiceindicate==true)
+			
+		{
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Invoice Template. Delete the due instances and try again.", "Cannot delete Invoice Template. Delete the due instances and try again."));
+ 	    
+		}
+		else
+		{
 	getTemplateService().deleteInvoice(invoice);
-		return "invoicetemplate.xhtml?faces-redirect=true";
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"InvoiceTemplate Deleted Successfully!", "InvoiceTemplate Deleted Successfully!"));
+		}
+		return "invoicetemplate.xhtml";
 	  
 	}
 	public String deleteInvoice1(){
@@ -948,6 +988,20 @@ public class TemplateBean implements Serializable,Validator {
     	return "invoicetemplate.xhtml?faces-redirect=true";
 	}
     public String deleteInvoiceTemplate() {
+    	System.out.println("hvgfhjugvfjgfjgf1111111111111111111111111111111111111111111111111111111111111111111111111");
+    	try
+		   {
+			if(indicate==false)
+					{
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				Flash flash = facesContext.getExternalContext().getFlash();
+				flash.setKeepMessages(true);
+				flash.setRedirect(true);
+				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Please Select an Item to View","Please Select an Item to View")); 
+				return "invoicetemplate.xhtml?faces-redirect=true";
+					}
+			else
+			{
 	    InvoiceTemplate delete = new InvoiceTemplate();
    
 	    delete.setInt_InvoiceTemplateID(selectedInvoiceTemplate.getInt_InvoiceTemplateID());
@@ -959,7 +1013,12 @@ public class TemplateBean implements Serializable,Validator {
 			flash.setRedirect(true);
 			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Invoice deleted Successfully!"));
 	    
-
+			}
+		   }
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
     
 	    return "invoicetemplate.xhtml?faces-redirect=true";
 	}
@@ -1054,6 +1113,7 @@ public class TemplateBean implements Serializable,Validator {
 	public List<MessageTemplate> getListMessages() {
 		listMessages=new ArrayList<MessageTemplate>();
 		listMessages.addAll(getTemplateService().listMessageTemplate(str_Mode,str_Category));
+		Collections.sort(listMessages);
 		return listMessages;
 	}
 	public void setListMessages(List<MessageTemplate> listMessages) {

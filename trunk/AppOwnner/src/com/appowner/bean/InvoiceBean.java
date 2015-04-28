@@ -735,10 +735,56 @@ private List<DueTransaction> listDueTransaction;
 			List<InvoiceTransaction> listInvoiceTransaction1) {
 		this.listInvoiceTransaction1 = listInvoiceTransaction1;
 	}
+	private String query="";
+	public String getQuery() {
+		return query;
+	}
+	public void setQuery(String query) {
+		this.query = query;
+	}
 	public List<InvoiceTransaction> getListInvoiceTransaction() {
 		listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
-		System.out.println(str_InvoiceTemplate+"priya");
-		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction(str_InvoiceTemplate,str_Block,str_ApartmentNo,str_Status,str_BillPeriod));
+		System.out.println(str_Block+"fgfggfgfgfgfgf111111111111111111111111111");
+		System.out.println(str_ApartmentNo+"fjkkjfdjkfjfgjgjgf111111222222222222222222222222222222222");
+		System.out.println(str_Status+"fgvkkjgfjkf333333333333333333333333333333333333333333");
+		System.out.println(str_BillPeriod+"fdjkjkfjfdjkfdj666666666666666666666666666");
+		System.out.println(str_InvoiceTemplate+"jfdjkfjkfjd3333333333333366666666666666666666666666");
+		
+		 if(str_Block==null && str_ApartmentNo==null && str_Status==null && str_BillPeriod==null && str_InvoiceTemplate==null)
+		{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+			query="";
+		}
+		else if(str_Block.isEmpty() && str_ApartmentNo.isEmpty() && str_Status.isEmpty() && str_BillPeriod.isEmpty() && str_InvoiceTemplate.isEmpty())
+			{ System.out.println("jcvvcjjcv11111111111111111111111111111111111111111111111111111111111111111111");
+				query="";
+			}
+		else if(str_Block!=null || !str_Block.isEmpty())
+		{
+			query=query+"str_Block="+"'"+str_Block+"'";;
+		}
+	/*	else if(str_ApartmentNo.)
+		{
+			query=query+"str_ApartmentNo="+"'"+str_ApartmentNo+"'";
+		}
+		else if(str_Status!=null)
+		{
+			query=query+"str_Status="+"'"+str_Status+"'";
+		}
+		else if(str_BillPeriod!=null)
+		{
+			query=query+"str_BillPeriod="+"'"+str_BillPeriod+",";
+		}
+		else if(str_InvoiceTemplate!=null)
+		{
+			query=query+"str_InvoiceTemplate="+","+str_InvoiceTemplate+",";
+		}
+		else
+		{   
+			query="";
+		}  */
+		System.out.println(query+"jdffjkdjhfdjfdfdfdffdjfdjfdjfjddfjhdfjhfdjhfd");
+		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction(query));
+		query="";
 		System.out.println(listInvoiceTransaction);
 		return listInvoiceTransaction;
 	}
@@ -1147,8 +1193,18 @@ private List<DueTransaction> listDueTransaction;
 			    	  }
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	 System.out.println(taxAmount1+"fkjdfkjfg");
+<<<<<<< .mine
+			    	 System.out.println(taxexceptionAmount+"fdklfkjfdjk11111111111111111111111111111111111111");
+			    	 if(taxAmount1 > taxexceptionAmount )
+			    	 {
+			    		 
+			    	
+			    	 taxAmount1=taxexceptionAmount;
+			         }
+=======
 			    	 System.out.println(taxexceptionAmount+"fdklfkjfdjk11111111111111111111111111111111111111");
 			    	 taxAmount1=taxAmount1-taxexceptionAmount/10;
+>>>>>>> .r2828
 			    	 System.out.println(taxAmount1);
 			    	 taxAmounts.add(taxAmount1);
 			    	 tax1=taxAmounts;  //for Mail purpose
