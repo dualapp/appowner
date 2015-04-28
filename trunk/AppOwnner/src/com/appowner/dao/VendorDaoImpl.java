@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -55,7 +56,10 @@ public class VendorDaoImpl implements VendorDao{
 			return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_VendorType).setParameter(1, Util.getAppartmentId()).setCacheable(true).list();
 			
 		}
-		return (List<Vendor>) getSessionFactory().getCurrentSession().createQuery("from Vendor where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		 
+	  List<Vendor>  vlist=getSessionFactory().getCurrentSession().createQuery("from Vendor where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		Collections.sort(vlist);
+		return vlist;
 	}
 	
 	public void deleteVendor(Vendor vendor) {
@@ -303,7 +307,9 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public List<WorkOrderCategory> getWorkOrderCategoryList() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from WorkOrderCategory where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		List<WorkOrderCategory>	wlist= sessionFactory.getCurrentSession().createQuery("from WorkOrderCategory where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+	  Collections.sort(wlist);
+	  return wlist;
 	}
 
 	@Override

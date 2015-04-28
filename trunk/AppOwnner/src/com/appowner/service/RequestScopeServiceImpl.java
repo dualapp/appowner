@@ -101,8 +101,8 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 	}
 	@Override
 	public void updateStatusOfServiceRequest(Integer int_ServiceRequestId,
-			String str_Status) {
-		getRequestScopeDao().updateStatusOfServiceRequest(int_ServiceRequestId, str_Status) ;
+			String str_Status,Date dat_OpenDate) {
+		getRequestScopeDao().updateStatusOfServiceRequest(int_ServiceRequestId, str_Status, dat_OpenDate) ;
 		// TODO Auto-generated method stub
 		
 	}
@@ -126,6 +126,14 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 	public String checkStatusOfBookFacility(Integer int_FacilityBookId) {
 		// TODO Auto-generated method stub
 		return getRequestScopeDao().checkStatusOfBookFacility(int_FacilityBookId);
+	}
+	 
+	 
+	@Override
+	public void updateStatusOfServiceRequest2(Integer int_ServiceRequestId,
+			String str_Status, Date dat_CloseDate) {
+		getRequestScopeDao().updateStatusOfServiceRequest2(int_ServiceRequestId, str_Status, dat_CloseDate) ;
+		
 	}
 				 
 	}

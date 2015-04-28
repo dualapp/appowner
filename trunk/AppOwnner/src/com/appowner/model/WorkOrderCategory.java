@@ -1,5 +1,7 @@
 package com.appowner.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="tb_workordercategory")
-public class WorkOrderCategory {
+public class WorkOrderCategory  implements  Serializable,Comparable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column 
@@ -41,6 +43,16 @@ public class WorkOrderCategory {
 	}
 	public void setStr_VendorCategoryType(String str_VendorCategoryType) {
 		this.str_VendorCategoryType = str_VendorCategoryType;
+	}
+	@Override
+	public int compareTo(Object workOrderCategory) {
+		// TODO Auto-generated method stub
+		Integer wid=((WorkOrderCategory)workOrderCategory).getInt_WorkOrderCategoryId();
+		/* For Ascending order*/
+	      //  return this.int_FacilityBookId;
+
+	        /* For Descending order do like this */
+		return wid-this.int_WorkOrderCategoryId;
 	}
 
 }

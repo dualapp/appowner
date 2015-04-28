@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "tb_servicerequest")
-public class ServiceRequest implements Serializable{
+public class ServiceRequest implements  Serializable,Comparable{
 	/**
 	 * 
 	 */
@@ -42,10 +42,12 @@ public class ServiceRequest implements Serializable{
 	private String Str_Title;
 	@Column (name="var_Description")
 	private String Str_Description;
-	 
+	@Column
+	private Date dat_AssignDate;
+	@Column
 	private Date dat_OpenDate;
-	@Column (name="str_CloseDate")
-	private String str_CloseDate;
+	@Column 
+	private Date dat_CloseDate;
 	@Column (name="var_Mobile")
 	private String Str_Mobile;
 	@Column (name="var_LandLineNum")
@@ -131,11 +133,18 @@ public class ServiceRequest implements Serializable{
 	public void setDat_OpenDate(Date dat_OpenDate) {
 		this.dat_OpenDate = dat_OpenDate;
 	}
-	public String getStr_CloseDate() {
-		return str_CloseDate;
+	 
+	public Date getDat_AssignDate() {
+		return dat_AssignDate;
 	}
-	public void setStr_CloseDate(String str_CloseDate) {
-		this.str_CloseDate = str_CloseDate;
+	public void setDat_AssignDate(Date dat_AssignDate) {
+		this.dat_AssignDate = dat_AssignDate;
+	}
+	public Date getDat_CloseDate() {
+		return dat_CloseDate;
+	}
+	public void setDat_CloseDate(Date dat_CloseDate) {
+		this.dat_CloseDate = dat_CloseDate;
 	}
 	public String getStr_Status() {
 		return Str_Status;
@@ -148,6 +157,16 @@ public class ServiceRequest implements Serializable{
 	}
 	public void setStr_UserType(String str_UserType) {
 		Str_UserType = str_UserType;
+	}
+	@Override
+	public int compareTo(Object serviceRequest) {
+		Integer id=((ServiceRequest) serviceRequest).getInt_ServiceRequestId();
+        /* For Ascending order*/
+      //  return this.int_ServiceRequestId;
+
+        /* For Descending order do like this */
+       return id-this.int_ServiceRequestId ;
+  
 	}
 	
 	

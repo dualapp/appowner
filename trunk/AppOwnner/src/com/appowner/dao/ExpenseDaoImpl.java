@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -104,7 +105,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<Parking> getParkingSlotList() {
 
-		return getSessionFactory().getCurrentSession().createQuery("from Parking where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
+		List<Parking>  plist= getSessionFactory().getCurrentSession().createQuery("from Parking where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
+		Collections.sort(plist);
+		return plist;
 	}
 
 	@Override
@@ -176,7 +179,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		List<Expense> expense=getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(AssetCategory.class)).list();
 		 */
 
-		return getSessionFactory().getCurrentSession().createQuery("from AssetCategory where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		List<AssetCategory> alist= getSessionFactory().getCurrentSession().createQuery("from AssetCategory where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		Collections.sort(alist);
+       return alist;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -219,7 +224,10 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<Assets> getAssetsList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		List<Assets> alist = getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		
+		Collections.sort(alist);
+		return alist;
 	}
 
 	@Override
@@ -253,7 +261,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<Pool> getPoolList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		List<Pool> plist= getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		 Collections.sort(plist);
+		 return plist;
 	}
 
 	@Override
@@ -369,7 +379,11 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		}
 		 
 		else
-			return getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		{
+			List<Assets> alist= getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		Collections.sort(alist);
+		return alist;
+		}
 			}
 
 	@Override
@@ -573,7 +587,9 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	@Override
 	public List<FacilityNeeded> getFacilityNeededList() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from FacilityNeeded where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).list();
+		List<FacilityNeeded> flist= sessionFactory.getCurrentSession().createQuery("from FacilityNeeded where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).list();
+		 Collections.sort(flist);
+		 return flist;
 	}
 
 	@Override

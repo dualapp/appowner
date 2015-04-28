@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-public class Parking implements Serializable {
+public class Parking implements  Serializable,Comparable {
 	/**
 	 * 
 	 */
@@ -55,5 +55,12 @@ public class Parking implements Serializable {
 	}
 	@Column(name="var_ParkingSlot")
 	private String str_ParkingSlot;
+	@Override
+	public int compareTo(Object parking) {
+		// TODO Auto-generated method stub
+		Integer pid=((Parking)parking).getInt_ParkingId();
+		//for Descending Order
+		return pid-this.int_ParkingId;
+	}
 
 }

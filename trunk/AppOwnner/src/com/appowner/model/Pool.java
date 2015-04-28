@@ -17,7 +17,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "tb_pool")
-public class Pool implements Serializable{
+public class Pool implements  Serializable,Comparable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
@@ -132,6 +136,16 @@ public class Pool implements Serializable{
 	public void setStr_Choise3(String str_Choise3) {
 		this.str_Choise3 = str_Choise3;
 	}
+	public int compareTo(Object poll) {
+		 Integer id=((Pool) poll).getInt_PoolId();
+	        /* For Ascending order*/
+	      //  return this.studentage-compareage;
+
+	        /* For Descending order do like this */
+	       return id-this.int_PoolId ;
+	  
+	}
+
 	
 	
 	

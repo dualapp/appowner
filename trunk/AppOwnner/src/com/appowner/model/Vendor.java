@@ -21,7 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  
 @Table(name = "tb_vendormanagement")
  
-public class Vendor implements Serializable 
+public class Vendor implements  Serializable,Comparable
 {
 /**
 	 * 
@@ -279,6 +279,13 @@ public void setStr_Website(String str_Website) {
 	public void setList(List list) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public int compareTo(Object vendor) {
+		// TODO Auto-generated method stub
+		Integer vid=((Vendor)vendor).getInt_VendorId();
+		//for Descending Order
+		return vid-this.int_VendorId;
 	}
 	 
 	 
