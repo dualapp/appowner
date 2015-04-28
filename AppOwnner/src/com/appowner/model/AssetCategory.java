@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-public class AssetCategory  implements Serializable{
+public class AssetCategory  implements  Serializable,Comparable{
 	
 	/**
 	 * 
@@ -57,6 +57,16 @@ public class AssetCategory  implements Serializable{
 	}
 	public void setStr_assetcat_name(String str_assetcat_name) {
 		this.str_assetcat_name = str_assetcat_name;
+	}
+	@Override
+	public int compareTo(Object assetCategory) {
+		// TODO Auto-generated method stub
+		Integer aid=((AssetCategory)assetCategory).getInt_assetcatId();
+		/* For Ascending order*/
+	      //  return this.int_FacilityBookId;
+
+	        /* For Descending order do like this */
+		return aid-this.int_assetcatId;
 	}
 
 }

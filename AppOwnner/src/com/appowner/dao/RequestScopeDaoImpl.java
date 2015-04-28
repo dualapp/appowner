@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -32,7 +33,9 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 	@Override
 	public List<ServiceRequest> getListServiceRequest() {
 		// TODO Auto-generated method stub
-		return (List<ServiceRequest>)getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).setCacheable(true).list();
+		List<ServiceRequest> slist=getSessionFactory().getCurrentSession().createCriteria(ServiceRequest.class).setCacheable(true).list();
+		Collections.sort(slist);
+		return slist;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -41,6 +44,7 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 		// TODO Auto-generated method stub
 		List<Pool> poolList=getSessionFactory().getCurrentSession().createCriteria(Pool.class).setCacheable(true).list();
 		System.out.println(poolList+"poollist");
+		Collections.sort(poolList);
 		return poolList;
 	}
 
@@ -92,8 +96,9 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 			
 		}
 		 
-		return sessionFactory.getCurrentSession().createQuery("from ServiceRequest where int_ApartmentId=? ").setParameter(0, int_ApartmentId).setCacheable(true).list();
-		 
+		List<ServiceRequest> slist= sessionFactory.getCurrentSession().createQuery("from ServiceRequest where int_ApartmentId=? ").setParameter(0, int_ApartmentId).setCacheable(true).list();
+		Collections.sort(slist);
+		return slist;
 	}
 
 	@Override
@@ -118,16 +123,18 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 	public List<BookAFacility> getSelectedBookFacility(
 			Integer int_ApartmentId, String str_Status, Date str_OpenDate,
 			String str_FacilityType,String str_EventType) {
-		if(int_ApartmentId!=null&&str_Status!=null&&str_OpenDate!=null&&str_FacilityType!=null&&str_EventType!=null)
+		if(str_Status!=null&&str_FacilityType!=null&&str_EventType!=null)
 		{
 			 
 			String query="from BookAFacility where Str_Status=? AND str_FacilityType=? AND int_ApartmentId=? AND dat_OpenDate=? AND str_EventType=?";
 		
-			return sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_FacilityType).setParameter(2, int_ApartmentId).setParameter(3, str_OpenDate).setParameter(4, str_EventType).list();
-			
+			List<BookAFacility> list= sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_FacilityType).setParameter(2, int_ApartmentId).setParameter(3, str_OpenDate).setParameter(4, str_EventType).list();
+			Collections.sort(list);
 		}
 		 
-		return sessionFactory.getCurrentSession().createQuery("from  BookAFacility where int_ApartmentId=?").setParameter(0, int_ApartmentId).setCacheable(true).list();
+		List<BookAFacility> blist= sessionFactory.getCurrentSession().createQuery("from  BookAFacility where int_ApartmentId=?").setParameter(0, int_ApartmentId).list();
+		Collections.sort(blist);
+		return blist;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -153,8 +160,15 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 
 	@Override
 	public void updateStatusOfServiceRequest(Integer int_ServiceRequestId,
-			String str_Status) {
-		sessionFactory.getCurrentSession().createQuery("update ServiceRequest set Str_Status=? where int_ServiceRequestId=?").setParameter(0, str_Status).setParameter(1, int_ServiceRequestId).executeUpdate();
+			String str_Status,Date dat_AssignDate) {
+		sessionFactory.getCurrentSession().createQuery("update ServiceRequest set Str_Status=? ,dat_AssignDate=? where int_ServiceRequestId=?").setParameter(0, str_Status).setParameter(1, dat_AssignDate).setParameter(2, int_ServiceRequestId).executeUpdate();
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updateStatusOfServiceRequest2(Integer int_ServiceRequestId,
+			String str_Status,Date dat_CloseDate) {
+		sessionFactory.getCurrentSession().createQuery("update ServiceRequest set Str_Status=?,dat_CloseDate=? where int_ServiceRequestId=?").setParameter(0, str_Status).setParameter(1, dat_CloseDate).setParameter(2, int_ServiceRequestId).executeUpdate();
 		// TODO Auto-generated method stub
 		
 	}

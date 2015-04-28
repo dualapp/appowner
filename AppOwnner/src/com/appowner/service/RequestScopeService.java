@@ -44,7 +44,7 @@ void addEvent(cls_Event event);
 void updateEvent(cls_Event event);
 
 void updateStatusOfServiceRequest(Integer int_ServiceRequestId,
-		String str_Status);
+		String str_Status, Date dat_AssignDate);
 
 void updateStatusOfBookFacility(Integer int_FacilityBookId, String str_Status);
 
@@ -53,5 +53,8 @@ String checkStatusOfServiceRequest(Integer int_ServiceRequestId);
 BookAFacility getOneBookAFacility(Integer bid);
 
 String checkStatusOfBookFacility(Integer int_FacilityBookId);
+
+void updateStatusOfServiceRequest2(Integer int_ServiceRequestId,
+		String str_Status, Date dat_CloseDate);
 
 }

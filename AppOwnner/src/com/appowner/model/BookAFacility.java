@@ -20,7 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="tb_bookafacility")
-public class BookAFacility implements Serializable{
+public class BookAFacility implements  Serializable,Comparable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
@@ -63,9 +63,9 @@ public class BookAFacility implements Serializable{
 	 
 	@Column (name="var_Description")
 	private String Str_Description;
-	@Column (name="str_OpenDate")
+	@Column  
 	private Date dat_OpenDate;
-	 
+	@Column  
 	private Date dat_CloseDate;
 	@Column (name="var_Mobile")
 	private String Str_Mobile;
@@ -186,6 +186,16 @@ public class BookAFacility implements Serializable{
 	}
 	public void setStr_Description(String str_Description) {
 		Str_Description = str_Description;
+	}
+	@Override
+	public int compareTo(Object bookAFacility) {
+		// TODO Auto-generated method stub
+		Integer bid=((BookAFacility)bookAFacility).int_FacilityBookId;
+		/* For Ascending order*/
+	      //  return this.int_FacilityBookId;
+
+	        /* For Descending order do like this */
+		return bid-this.int_FacilityBookId;
 	}
 	
 	
