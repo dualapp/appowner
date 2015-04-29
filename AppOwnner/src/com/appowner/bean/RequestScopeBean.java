@@ -29,6 +29,7 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
+import com.appowner.model.Assets;
 import com.appowner.model.BookAFacility;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vendor;
@@ -85,7 +86,7 @@ public String getStr_VendorType() {
 public void setStr_VendorType(String str_VendorType) {
 	this.str_VendorType = str_VendorType;
 }
-private Date dat_ToDate=new java.util.Date();
+private Date dat_ToDate;
 public Date getDat_ToDate() {
 	return dat_ToDate;
 }
@@ -268,9 +269,46 @@ public void setSelectedServices(List<ServiceRequest> selectedServices) {
 	this.selectedServices = selectedServices;
 }
 private List<ServiceRequest> listServiceRequest;
+private String query1;
+public String getQuery1() {
+	return query1;
+}
+public void setQuery1(String query1) {
+	this.query1 = query1;
+}
 public List<ServiceRequest> getListServiceRequest() {
-	listServiceRequest=new ArrayList<ServiceRequest>();
-	listServiceRequest.addAll(getRequestScopeService().getListServiceRequest(Util.getAppartmentId(),str_Status,str_VendorType,dat_ToDate));
+	try{
+		listServiceRequest=new ArrayList<ServiceRequest>();
+		if(str_Status==null && str_VendorType==null&& dat_ToDate==null )
+		{   
+			query1="";
+		}
+		if(!(str_Status==null) && !(str_Status.isEmpty()))
+		{
+			query1=query1+"Str_Status="+"'"+str_Status+"'";
+		}
+		
+		 if(!(str_VendorType==null) && !(str_VendorType.isEmpty()))
+			{
+				query1=query1+" and "+"Str_VendorType="+"'"+str_VendorType+"'";
+			}
+		 if(!(dat_ToDate==null))
+			{
+				query1=query1+" and "+"dat_OpenDate="+"'"+dat_ToDate+"'";
+			}
+		 if(query1.indexOf("and")==1)
+			{    
+			   query1=query1.replaceFirst("and","" );
+	                
+			}
+			 
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	listServiceRequest.addAll(getRequestScopeService().getListServiceRequest(query1));
+	query1="";
 	return listServiceRequest;
 	
 }
@@ -524,12 +562,53 @@ public String getStr_FacilityType() {
 public void setStr_FacilityType(String str_FacilityType) {
 	this.str_FacilityType = str_FacilityType;
 }
+private String query;
+public String getQuery() {
+	return query;
+}
+public void setQuery(String query) {
+	this.query = query;
+}
 public List<BookAFacility> getBookAFacilityList() {
-	bookAFacilityList=new ArrayList<BookAFacility>();
-	System.out.println(dat_ToDate+"dateeee");
-	bookAFacilityList.addAll(getRequestScopeService().getSelectedBookFacility(Util.getAppartmentId(),str_Status,dat_ToDate,str_FacilityType,str_EventType));
-	System.out.println(bookAFacilityList.size()+"size");
+	try{
+		bookAFacilityList=new ArrayList<BookAFacility>();
+		if(str_Status==null && str_VendorType==null&& dat_ToDate==null)
+		{   
+			query="";
+		}
+		if(!(str_Status==null) && !(str_Status.isEmpty()))
+		{
+			query=query+"Str_Status="+"'"+str_Status+"'";
+		}
+		 if(!(dat_ToDate==null))
+			{
+				query=query+" and "+"dat_OpenDate="+"'"+dat_ToDate+"'";
+			}
+		 if(!(str_FacilityType==null) && !(str_FacilityType.isEmpty()))
+			{
+				query=query+" and "+"str_FacilityType="+"'"+str_FacilityType+"'";
+			}
+		 if(!( str_EventType==null) && !( str_EventType.isEmpty()))
+			{
+				query=query+" and "+" str_EventType="+"'"+ str_EventType+"'";
+			}
+		
+		 if(query.indexOf("and")==1)
+			{    
+			   query=query.replaceFirst("and","" );
+	                
+			}
+			 
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	bookAFacilityList.addAll(getRequestScopeService().getSelectedBookFacility(query));
+	query="";
 	return bookAFacilityList;
+	 
+	
 }
 public void setBookAFacilityList(List<BookAFacility> bookAFacilityList) {
 	this.bookAFacilityList = bookAFacilityList;
