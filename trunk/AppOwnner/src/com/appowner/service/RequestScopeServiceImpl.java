@@ -59,10 +59,8 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 		getRequestScopeDao().deleteOneServiceRequest(entitiesToDelete);
 	}
 	@Override
-	public List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
-			String str_Status, String str_VendorType,Date dat_ToDate) {
-		return getRequestScopeDao().getListServiceRequest( int_ApartmentId,
-				str_Status,  str_VendorType,dat_ToDate);
+	public List<ServiceRequest> getListServiceRequest(String query) {
+		return getRequestScopeDao().getListServiceRequest(query);
 		 
 	}
 	@Override
@@ -76,14 +74,12 @@ public class RequestScopeServiceImpl implements RequestScopeService{
 		getRequestScopeDao().updateBookAFacility(bf1);
 	}
 	@Override
-	public List<BookAFacility> getSelectedBookFacility(
-			Integer int_ApartmentId, String str_Status, Date str_Period,
-			String str_FacilityType,String str_EventType) {
+	public List<BookAFacility> getSelectedBookFacility(String query)
+			  {
 		// TODO Auto-generated method stub
-		return getRequestScopeDao().getSelectedBookFacility(
-				int_ApartmentId,   str_Status,   str_Period,
-				  str_FacilityType,str_EventType);
-	}
+		return getRequestScopeDao().getSelectedBookFacility(query);
+			  }
+				 
 	@Override
 	public List<cls_Event> getEventList() {
 		// TODO Auto-generated method stub

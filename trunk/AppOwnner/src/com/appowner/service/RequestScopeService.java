@@ -27,15 +27,14 @@ void deleteOneServiceRequest(ServiceRequest servicerequest1);
 void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete);
 
 List<ServiceRequest> getListServiceRequest(
-		Integer int_ApartmentId, String str_Status, String str_VendorType, Date dat_ToDate);
+		String str_Status);
 
 void deleteOnefacility(List<BookAFacility> entitiesToDelete);
 
 void updateBookAFacility(BookAFacility bf1);
 
 List<BookAFacility> getSelectedBookFacility(
-		Integer int_ApartmentId, String str_Status, Date dat_ToDate,
-		String str_FacilityType, String str_EventType);
+		String str_Status);
 
 List<cls_Event> getEventList();
 

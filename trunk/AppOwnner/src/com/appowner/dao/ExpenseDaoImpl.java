@@ -8,6 +8,7 @@ import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,7 @@ import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.UserApartment;
 import com.appowner.model.Vote;
+import com.appowner.model.WaterPayment;
 import com.appowner.util.Util;
 
 @Repository
@@ -259,11 +261,24 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Pool> getPoolList() {
-		// TODO Auto-generated method stub
-		List<Pool> plist= getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
-		 Collections.sort(plist);
+	public List<Pool> getPoolList(Date date_FromDate, Date date_ToDate, String str_Status) {
+		
+		if( date_FromDate==null && date_ToDate==null && str_Status==null)
+		{
+			
+			 
+			List<Pool> plist= getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		 Collections.sort(plist);	
 		 return plist;
+		 }
+	else
+	{
+		 
+		List<Pool> plist1 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("str_Status", str_Status)).list(); 
+		// TODO Auto-generated method stub
+		Collections.sort(plist1);	
+		 return plist1;
+	}
 	}
 
 	@Override
@@ -369,20 +384,21 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Assets> getAssetList(String str_AssetCategoryType,
-			String str_Block, Integer int_ApartmentId) 
+	public List<Assets> getAssetList(String  query) 
 			{
-		if(str_AssetCategoryType!=null&&str_Block!=null&&int_ApartmentId!=null&& !str_AssetCategoryType.equalsIgnoreCase("All")&& !str_Block.equalsIgnoreCase("All"))
+		if(query.isEmpty())
 		{
-			String hql="from Assets where str_assetcat_name=? AND str_Block=? AND int_AppartmentId=?";
-			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, str_AssetCategoryType).setParameter(1, str_Block).setParameter(2, int_ApartmentId).list();
+			List<Assets> alist= getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+			Collections.sort(alist);
+			return alist;
 		}
 		 
 		else
 		{
-			List<Assets> alist= getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
-		Collections.sort(alist);
-		return alist;
+			String hql="from Assets where int_AppartmentId=? and "+query; 
+			List<Assets> alist1= getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		Collections.sort(alist1);
+		return alist1;
 		}
 			}
 

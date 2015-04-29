@@ -31,18 +31,19 @@ public class Pool implements  Serializable,Comparable{
 	@Column(name="var_PoolQuestion")
 	private String str_poolQuestion;
 	@Column 
-	private String str_StartDate;
+	private Date dat_StartDate;
 	@Column 
 	private Date date_EndDate;
 	 
 	 
-	public String getStr_StartDate() {
-		return str_StartDate;
-	}
-	public void setStr_StartDate(String str_StartDate) {
-		this.str_StartDate = str_StartDate;
-	}
 	 
+	 
+	public Date getDat_StartDate() {
+		return dat_StartDate;
+	}
+	public void setDat_StartDate(Date dat_StartDate) {
+		this.dat_StartDate = dat_StartDate;
+	}
 	public Date getDate_EndDate() {
 		return date_EndDate;
 	}

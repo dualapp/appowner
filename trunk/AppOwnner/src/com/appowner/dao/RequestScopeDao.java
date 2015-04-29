@@ -26,15 +26,13 @@ public interface RequestScopeDao {
 
 	void deleteOneServiceRequest(List<ServiceRequest> entitiesToDelete);
 
-	List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
-			String str_Status, String str_VendorType, Date dat_ToDate);
+	List<ServiceRequest> getListServiceRequest(String str_Status);
 
 	void deleteOnefacility(List<BookAFacility> entitiesToDelete);
 
 	void updateBookAFacility(BookAFacility bf1);
 
-	List<BookAFacility> getSelectedBookFacility(Integer int_ApartmentId,
-			String str_Status, Date str_Period, String str_FacilityType, String str_EventType);
+	List<BookAFacility> getSelectedBookFacility(String str_Status);
 
 	List<cls_Event> getEventList();
 
