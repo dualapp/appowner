@@ -79,7 +79,7 @@
      <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
     </p:inputText> 
      <p:message  id="openDateMsg" for="openDate" display="text"/>
-     </td> <th><p:outputLabel value="Date Closed"/></th>  <td><p:inputText readonly="true" value="Not Applicablee}"/></td></tr>
+     </td> <th><p:outputLabel value="Date Closed"/></th>  <td><p:inputText readonly="true" value="Not Applicablee"/></td></tr>
     <tr><th><p:outputLabel value="Status"/></th> <td><p:inputText value="#{expenseBean.str_Status}" readonly="true"/></td> 
       <th><p:outputLabel for="ServiceCategory" value="Service Category"/></th>  
       <td><h:selectOneMenu id="ServiceCategory" value="#{loginBean.str_VendorType}" required="true" requiredMessage="Select Category " valueChangeListener="#{requestScopeBean.vendorTypeChangeListener}">

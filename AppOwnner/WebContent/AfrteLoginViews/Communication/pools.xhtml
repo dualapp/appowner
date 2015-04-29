@@ -48,10 +48,11 @@
             
        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            
-             <tr><td><p:outputLabel value="Organisation:" />  <p:outputLabel value="#{expenseBean.str_OrganizationName}" /> </td>
+             <tr> 
             
-             <th><p:outputLabel  value="Status:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_Status}">
+            
+               <td><p:outputLabel  value="Status:" />
+               <h:selectOneMenu   value="#{expenseBean.str_Status}">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
                     <f:selectItem itemLabel="Closed" itemValue="Closed"  />
@@ -59,15 +60,16 @@
                  </h:selectOneMenu>
              </td>
               
-             <th><p:outputLabel  value="Pool in the last:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean.str_ExpenseCategory}">
-                  <f:selectItem itemLabel="3 Month" itemValue="3 Month" />
-                   <f:selectItem itemLabel="6 Month" itemValue="6 Month"  />
-                    <f:selectItem itemLabel="12 Month" itemValue="12 Month"  />
-                   
-                    
-                 </h:selectOneMenu>
-                 </td><th><p:commandButton  update="DT" value="Go" icon="ui-icon-search" action="#"/></th></tr>
+            
+               <td>  <p:outputLabel  value="Pool in the last:" /> 
+         <p:calendar  navigator="true"    placeholder="From Date" display="inline" value="#{ expenseBean.date_FromDate}">
+         </p:calendar>
+       
+        </td>
+        <td>
+          <p:calendar  navigator="true" placeholder="To Date" display="inline" value="#{expenseBean.date_ToDate}">
+          </p:calendar>
+                 </td><th><h:commandButton    update="DT" value="Go" icon="ui-icon-search" action="#{expenseBean.getPoolList()}"/></th></tr>
                            
              
              </table>
@@ -131,7 +133,7 @@
             
             <p:column     headerText="Start Date"  >
           
-               <p:outputLabel   value="#{pool.str_StartDate}" > 
+               <p:outputLabel   value="#{pool.dat_StartDate}" > 
                <f:convertDateTime pattern="dd-MMM-yyyy" />
                </p:outputLabel>
                

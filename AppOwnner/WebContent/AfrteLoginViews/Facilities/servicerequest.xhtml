@@ -50,20 +50,20 @@
 					</p:outputPanel>
    <p:growl id="ui-growl" globalOnly="true" sticky="true" />
                  <div id="page3"> 
-  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr><th>
-               <p:outputLabel value="Organisation:" /> </th>
-             <td> <h:selectOneMenu value="#{requestScopeBean.str_OrganizationName}">&nbsp;
+  <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr> 
+                
+             <td> <p:outputLabel value="Organisation" /><h:selectOneMenu value="#{requestScopeBean.str_OrganizationName}">&nbsp;
              
               <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
     </h:selectOneMenu></td>
-   <th><p:outputLabel value="VendorCategory"/></th>  <td><h:selectOneMenu value="#{requestScopeBean.str_VendorType}">
-   <f:selectItem itemLabel="All" noSelectionOption="true" />
+     <td> <p:outputLabel value="VendorCategory"/><h:selectOneMenu value="#{requestScopeBean.str_VendorType}">
+    <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
     <f:selectItems value="#{vendorBean.str_VendorTypeList}"/></h:selectOneMenu>
     </td>
-    <th><p:outputLabel value="Status"></p:outputLabel></th>
-    <td> <h:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
+     
+    <td>  <p:outputLabel value="Status" /><h:selectOneMenu   value="#{requestScopeBean.str_Status}"> 
     
-              <f:selectItem itemLabel="All" noSelectionOption="true" />
+              <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
               <f:selectItem itemLabel="Open"  itemValue="Open" />
               <f:selectItem itemLabel="Assigned"  itemValue="Progress" />
               <f:selectItem itemLabel="Closed"  itemValue="RequestClosed" />
@@ -71,13 +71,14 @@
             </td>
    
      </tr>
-    <tr><th><p:outputLabel value="Period"></p:outputLabel></th>
-    <td>
+    <tr>  
+    <td><p:outputLabel value="Period" />
      
-                  <p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{requestScopeBean.dat_ToDate}">
+                  <p:calendar  id="date"   navigator="true"     value="#{requestScopeBean.dat_ToDate}">
+                  
                   </p:calendar>&nbsp; &nbsp; &nbsp;</td>
      
-     <th></th><td><p:commandButton  icon="ui-icon-search" update="DT" value="Go" action="#{requestScopeBean.getListServiceRequest}"/></td>
+      <td><p:commandButton ajax="false" icon="ui-icon-search" update="DT" value="Go" action="#{requestScopeBean.getListServiceRequest}"/></td>
     </tr>
     </table> 
      
