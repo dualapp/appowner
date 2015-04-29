@@ -229,9 +229,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<Pool> getPoolList() {
+	public List<Pool> getPoolList(Date date_FromDate, Date date_ToDate, String str_Status) {
 		// TODO Auto-generated method stub
-		return getExpenseDao().getPoolList();
+		return getExpenseDao().getPoolList(date_FromDate,date_ToDate,str_Status);
 	}
 
 	@Override
@@ -327,9 +327,8 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<Assets> getAssetList(String str_AssetCategoryType,
-			String str_Block, Integer int_ApartmentId) {
-		return getExpenseDao().getAssetList(str_AssetCategoryType,str_Block,int_ApartmentId);
+	public List<Assets> getAssetList(String query) {
+		return getExpenseDao().getAssetList(query);
 	}
 
 	@Override

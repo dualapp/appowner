@@ -82,7 +82,7 @@ public interface ExpenseDao {
 
 	void addPool(Pool pool);
 
-	List<Pool> getPoolList();
+	List<Pool> getPoolList(Date date_FromDate, Date date_ToDate, String str_Status);
 
 	Pool getOnePool(Integer int_PoolId);
 
@@ -114,7 +114,7 @@ public interface ExpenseDao {
 
 	Pool getLatestPolls();
 
-	List<Assets> getAssetList(String str_AssetCategoryType, String str_Block, Integer int_ApartmentId);
+	List<Assets> getAssetList(String str_AssetCategoryType);
 
 	void deleteSelectedExpenses(List<Expense> entitiesToDelete);
 

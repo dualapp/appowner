@@ -15,6 +15,7 @@ import com.appowner.model.Pool;
 import com.appowner.model.ServiceRequest;
 import com.appowner.model.Vendor;
 import com.appowner.model.cls_Event;
+import com.appowner.util.Util;
 
 @Repository
 public class RequestScopeDaoImpl implements RequestScopeDao {
@@ -85,20 +86,19 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 	}
 
 	@Override
-	public List<ServiceRequest> getListServiceRequest(Integer int_ApartmentId,
-			String str_Status, String str_VendorType,Date dat_ToDate) {
-		if(int_ApartmentId!=null&&str_Status!=null&&str_VendorType!=null)
+	public List<ServiceRequest> getListServiceRequest(String query) {
+		if(query.isEmpty())
 		{
+
 			 
-			String query="from ServiceRequest where Str_Status=? AND Str_VendorType=? AND int_ApartmentId=? AND dat_OpenDate=?";
-		
-			return sessionFactory.getCurrentSession().createQuery(query).setCacheable(true).setParameter(0, str_Status).setParameter(1,str_VendorType).setParameter(2, int_ApartmentId).setParameter(3, dat_ToDate).list();
-			
+			List<ServiceRequest> slist= sessionFactory.getCurrentSession().createQuery("from ServiceRequest where int_ApartmentId=? ").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+			Collections.sort(slist);
+			return slist;
 		}
 		 
-		List<ServiceRequest> slist= sessionFactory.getCurrentSession().createQuery("from ServiceRequest where int_ApartmentId=? ").setParameter(0, int_ApartmentId).setCacheable(true).list();
-		Collections.sort(slist);
-		return slist;
+		List<ServiceRequest> slist1= sessionFactory.getCurrentSession().createQuery("from ServiceRequest where int_ApartmentId=? and "+query).setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+		Collections.sort(slist1);
+		return slist1;
 	}
 
 	@Override
@@ -120,21 +120,19 @@ public class RequestScopeDaoImpl implements RequestScopeDao {
 	}
 
 	@Override
-	public List<BookAFacility> getSelectedBookFacility(
-			Integer int_ApartmentId, String str_Status, Date str_OpenDate,
-			String str_FacilityType,String str_EventType) {
-		if(str_Status!=null&&str_FacilityType!=null&&str_EventType!=null)
+	public List<BookAFacility> getSelectedBookFacility(String query)
+			 {
+		if(query.isEmpty())
 		{
-			 
-			String query="from BookAFacility where Str_Status=? AND str_FacilityType=? AND int_ApartmentId=? AND dat_OpenDate=? AND str_EventType=?";
-		
-			List<BookAFacility> list= sessionFactory.getCurrentSession().createQuery(query).setParameter(0, str_Status).setParameter(1,str_FacilityType).setParameter(2, int_ApartmentId).setParameter(3, str_OpenDate).setParameter(4, str_EventType).list();
-			Collections.sort(list);
+
+			List<BookAFacility> blist= sessionFactory.getCurrentSession().createQuery("from  BookAFacility where int_ApartmentId=?").setParameter(0, Util.getAppartmentId()).list();
+			Collections.sort(blist);
+			return blist;
 		}
 		 
-		List<BookAFacility> blist= sessionFactory.getCurrentSession().createQuery("from  BookAFacility where int_ApartmentId=?").setParameter(0, int_ApartmentId).list();
-		Collections.sort(blist);
-		return blist;
+		List<BookAFacility> blist1= sessionFactory.getCurrentSession().createQuery("from  BookAFacility where int_ApartmentId=? and "+query).setParameter(0, Util.getAppartmentId()).list();
+		Collections.sort(blist1);
+		return blist1;
 	}
 
 	@SuppressWarnings("unchecked")

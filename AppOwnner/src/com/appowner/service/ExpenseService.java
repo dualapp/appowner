@@ -87,7 +87,7 @@ public interface ExpenseService {
 
 	void addPool(Pool pool);
 
-	List<Pool> getPoolList();
+	List<Pool> getPoolList(Date date_FromDate, Date date_ToDate, String str_Status);
 
 	Pool getOnePool(Integer int_PoolId);
 
@@ -121,7 +121,7 @@ public interface ExpenseService {
 
 	Pool getLatestPolls();
 
-	List<Assets> getAssetList(String str_AssetCategoryType, String str_Block, Integer integer);
+	List<Assets> getAssetList(String query);
 
 	 
 
