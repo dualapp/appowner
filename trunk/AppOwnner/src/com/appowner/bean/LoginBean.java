@@ -1288,6 +1288,12 @@ public class LoginBean implements Serializable {
 	if(bookAFacility!=null)
 	{
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Not Available"));
+		dat_OpenDate=null;
+		dat_CloseDate=null;
+		str_StartTime=null;
+		str_StartTime1=null;
+		str_EndTime=null;
+		str_EndTime1=null;
 		return null;
 		
 	}
@@ -1730,12 +1736,12 @@ public List<String> getCityListByState() {
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		 String url = request.getRequestURL().toString();
 		
-		if(url.equalsIgnoreCase("http://localhost:8080/AppOwnner/layout.xhtml"))
+		if(url.equalsIgnoreCase("http://localhost:5436/AppOwnner/layout.xhtml"))
 				{
 		            
 		           url="";
 				}
-		else if(url.equalsIgnoreCase("http://localhost:8080/AppOwnner/AfrteLoginViews/Adminwelcomepage.xhtml") || url.equalsIgnoreCase("http://localhost:8080/AppOwnner/AfrteLoginViews/welcomepage.xhtml"))
+		else if(url.equalsIgnoreCase("http://localhost:5436/AppOwnner/AfrteLoginViews/Adminwelcomepage.xhtml") || url.equalsIgnoreCase("http://localhost:5436/AppOwnner/AfrteLoginViews/welcomepage.xhtml"))
 				{
 			       url="../";
 				}

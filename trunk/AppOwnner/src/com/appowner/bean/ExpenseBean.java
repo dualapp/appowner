@@ -100,7 +100,22 @@ public class ExpenseBean  implements Serializable{
 	private Integer int_ParkingId;
 	private String Str_Organization;
 	private String str_ParkingSlot;
+	private Date date_FromDate;
+	private Date date_ToDate;
 	
+	
+	public Date getDate_FromDate() {
+		return date_FromDate;
+	}
+	public void setDate_FromDate(Date date_FromDate) {
+		this.date_FromDate = date_FromDate;
+	}
+	public Date getDate_ToDate() {
+		return date_ToDate;
+	}
+	public void setDate_ToDate(Date date_ToDate) {
+		this.date_ToDate = date_ToDate;
+	}
 	private String str_AccountName;
 	private List<String> str_OrganizationNameList;
 	private List<String> str_AssetCatNameList;
@@ -1293,12 +1308,46 @@ public String updateOneAsset()
 /*
  * get asset,purchase,amc list
  */
+private String query1;
+public String getQuery1() {
+	return query1;
+}
+public void setQuery1(String query1) {
+	this.query1 = query1;
+}
 public List<Assets> getAssetList() {
+	try{
 	assetList= new ArrayList<Assets>();
-	System.out.println(str_AssetCategoryType+""+str_Block);
-	assetList.addAll(getExpenseService().getAssetList(str_AssetCategoryType,str_Block,Util.getAppartmentId()));
-	System.out.println(assetList+"AssetListttttttttttttttttttt");
-	
+	if(str_AssetCategoryType==null && str_Block==null )
+	{   
+		query1="";
+	}
+	 if(!(str_AssetCategoryType==null) && !(str_AssetCategoryType.isEmpty()))
+		{
+			query1=query1+"str_assetcat_name="+"'"+str_AssetCategoryType+"'";
+		}
+	 if(!(str_Block==null) && !(str_Block.isEmpty()))
+		{
+			query1=query1+" and "+"str_Block="+"'"+str_Block+"'";
+		} 
+		 
+		
+		if(query1.indexOf("and")==1)
+		{    
+		   query1=query1.replaceFirst("and","" );
+                
+		}
+		 
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+ assetList.addAll(getExpenseService().getAssetList(query1));
+
+	 
+	query1="";
 	return assetList;
 }
 public void setAssetList(List<Assets> assetList) {
@@ -1535,6 +1584,7 @@ public String getPath3() {
 	return path3; 
 }
 	 public String getPath4() {
+		 path4=null;
 		 path4= getExpenseService().getAssetImg(a.getInt_asset_id());
 		 if(path4==null)
 			{
@@ -1738,12 +1788,12 @@ public String updateFacility()
 	
 	facilityNeeded1=null;
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Updated Successfully!"));
-return "facilityneeded.xhtml";
+return null;
 }
 else{
 	 FacesMessage message = null;
 FacesContext.getCurrentInstance().addMessage(null, message);
-return "facilityneeded.xhtml";
+return null;
 
 }
  
@@ -1764,14 +1814,15 @@ public String addFacility()
 	facilityNeeded.setInt_ApartmentId(Util.getAppartmentId());
 	getExpenseService().addFacility(facilityNeeded);
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Added Successfully!"));
-	str_FacilityName="";
+	str_FacilityName=null;
+	return null;
 	}
 	 else{
     	 FacesMessage message = null;
      FacesContext.getCurrentInstance().addMessage(null, message);
-     
+     return null;
      }
-	return "facilityneeded.xhtml";
+	
 }
 public String deletefacilityNeeded()
 {
@@ -1790,7 +1841,7 @@ public String deletefacilityNeeded()
      getExpenseService().deletefacilityNeeded(entitiesToDelete);
  
      FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Facility Deleted Successfully!"));
-return "facilityneeded.xhtml";
+return null;
 }
 
 /*
@@ -1805,7 +1856,13 @@ private Long long_Vote;
 private String str_EndDate;
  
 
-private String str_StartDate;
+private Date dat_StartDate;
+public Date getDat_StartDate() {
+	return dat_StartDate;
+}
+public void setDat_StartDate(Date dat_StartDate) {
+	this.dat_StartDate = dat_StartDate;
+}
 private List<Pool> poolList;
 private Pool pool;
 private String str_Status;
@@ -1829,17 +1886,7 @@ public String getStr_EndDate() {
 public void setStr_EndDate(String str_EndDate) {
 	this.str_EndDate = str_EndDate;
 }
-public String getStr_StartDate() {
-	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-	Date d=new Date();
-	str_StartDate=dateFormat.format(d);
-	System.out.println(str_StartDate);
-	
-	return str_StartDate;
-}
-public void setStr_StartDate(String str_StartDate) {
-	this.str_StartDate = str_StartDate;
-}
+ 
 public String getStr_Remark() {
 	return str_Remark;
 }
@@ -1996,11 +2043,52 @@ public static String getContent() {
 public static void setContent(String content) {
 	ExpenseBean.content = content;
 }
- 
+private String query="";
+public String getQuery() {
+	return query;
+}
+public void setQuery(String query) {
+	this.query = query;
+}
 public List<Pool> getPoolList() {
-	poolList=new ArrayList<Pool>();
-	poolList.addAll(getExpenseService().getPoolList());
+	try
+	{
+		 poolList=new ArrayList<Pool>();
 	
+	if(date_FromDate==null && date_ToDate==null && str_Status==null)
+	{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+		query="";
+	}
+	if(!(str_Status==null) && !(str_Status.isEmpty()))
+	{
+		query=query+"str_Status="+"'"+str_Status+"'";
+	}
+	 
+	 if(!(date_FromDate==null)&&!(date_ToDate==null))
+		{    
+			query=query+" and "+ "dat_ToDate "+"BETWEEN"+date_FromDate+","+date_ToDate;
+		}
+	 
+	 if(query.indexOf("and")==1)
+		{   
+		  
+		   query=query.replaceFirst("and","" );
+                
+		}
+	 
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		 
+		query="";
+		  
+		 
+	
+	poolList.addAll(getExpenseService().getPoolList(getDate_FromDate(),getDate_ToDate(),getStr_Status()));
+	 
 	return poolList;
 }
 public void setPoolList(List<Pool> poolList) {
@@ -2037,7 +2125,7 @@ public String addPool()
 	pool.setStr_poolAudience(str_PoolAudience);
 	pool.setInt_Vote(0l);
 	pool.setInt_userId(Util.getUserId());
-	pool.setStr_StartDate(getStr_StartDate());
+	pool.setDat_StartDate(new Date());
 	 
 	pool.setDate_EndDate(getDate_EndDate());
     pool.setStr_Status(str_Status);
