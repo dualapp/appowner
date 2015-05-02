@@ -55,8 +55,8 @@
              </td>
             
              <th><p:outputLabel  value="Expense Type:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean1.str_ExcepenseType}" >
-                  <f:selectItem itemLabel="All" itemValue="All" />
+               <td><h:selectOneMenu   value="#{expenseBean1.str_ExpenseType}" >
+                    <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"/>
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"/>
                    
@@ -74,13 +74,14 @@
              
             
              <tr> <th><p:outputLabel value="Duration:" /></th>
-              <td><p:calendar  id="date"  required="true" requiredMessage="Please enter Duration" navigator="true" pattern="dd-MM-yyyy"   value="#{expenseBean1.date_Duration}">
+              <td><p:calendar  id="date"    navigator="true"  pattern="dd/MM/yyyy"  value="#{expenseBean1.date_Duration}">
+                 
                   </p:calendar>&nbsp; &nbsp; &nbsp;
              </td>
                
              <th><p:outputLabel  value="Asset Category:" /></th>
                <td><h:selectOneMenu id="assetcatname"  value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
                    <p:ajax event="change" update="assetname" process="assetcatname"/>
@@ -89,14 +90,14 @@
                
              <th><p:outputLabel  value="Asset Name" /></th>
                <td><h:selectOneMenu  id="assetname" value="#{expenseBean1.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
+                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                   <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
                   
                   
                  </h:selectOneMenu>
                  </td></tr>
                  <tr> <th></th><td></td><th></th><td></td><td><th>
-                 <p:commandButton  icon="ui-icon-search" update="DT"  value="Go" action="#{expenseBean1.getExpenseList}"/></th> </td></tr>
+                 <h:commandButton  icon="ui-icon-search" update="DT"  value="Go" action="#{expenseBean1.getExpenseList}"/></th> </td></tr>
                  </table>
                   
                   

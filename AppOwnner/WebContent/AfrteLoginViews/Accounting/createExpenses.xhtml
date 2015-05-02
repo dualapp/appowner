@@ -56,7 +56,7 @@
           <f:selectItems  value= "#{expenseBean1.str_AccountNameList}"  />
           </h:selectOneMenu>
           </td> 
-  <td><h:selectOneMenu id="ExpenseType" style="width:150px"  value="#{expenseBean1.str_ExcepenseType}" valueChangeListener="#{expenseBean1.expenseTypeListener}"  >
+  <td><h:selectOneMenu id="ExpenseType" style="width:150px"  value="#{expenseBean1.str_ExpenseType}" valueChangeListener="#{expenseBean1.expenseTypeListener}"  >
                   
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />
@@ -73,7 +73,7 @@
                  </td>
                 <td> 
                <p:calendar  id="Date" style="width:150px"  required="true" requiredMessage="Enter Date"  navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean1.dateListener}"   value="#{expenseBean1.date_Duration}">
-                
+                  <f:convertDateTime pattern="dd-MMM-yyyy" />
                   </p:calendar>
                     
              </td>     
@@ -106,7 +106,7 @@
           
           </h:selectOneMenu>
           </td> 
-  <td><h:selectOneMenu id="ExpenseType1"   value="#{expenseBean1.str_ExcepenseType}" style="width:150px" valueChangeListener="#{expenseBean1.expenseTypeListener}" >
+  <td><h:selectOneMenu id="ExpenseType1"   value="#{expenseBean1.str_ExpenseType}" style="width:150px" valueChangeListener="#{expenseBean1.expenseTypeListener}" >
                   
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"  />

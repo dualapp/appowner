@@ -71,13 +71,13 @@
       </h:selectOneMenu></td><th></th></tr>
       
     <tr><th><p:outputLabel for="openDate" value="Date Open"/></th> 
-     <td><p:calendar  required="true" requiredMessage="Enter Open Date"  id="openDate" navigator="true"    value="#{loginBean.dat_OpenDate}">
+     <td><p:calendar  required="true" requiredMessage="Enter Open Date"  pattern="dd/MM/yyyy"  id="openDate" navigator="true"    value="#{loginBean.dat_OpenDate}">
       
       </p:calendar>
        </td> 
      
       <th> <p:message id="openDateMsg"   for="openDate" display="text"/></th><th><p:outputLabel for="closeDate" value="Date Closed"/></th>  
-     <td><p:calendar id="closeDate" required="true" requiredMessage="Enter Close Date"  navigator="true"   value="#{loginBean.dat_CloseDate}">
+     <td><p:calendar id="closeDate" required="true" requiredMessage="Enter Close Date"  navigator="true" pattern="dd/MM/yyyy"  value="#{loginBean.dat_CloseDate}">
       
       </p:calendar>
      </td>
