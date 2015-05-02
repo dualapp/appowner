@@ -62,14 +62,14 @@
               
             
                <td>  <p:outputLabel  value="Pool in the last:" /> 
-         <p:calendar  navigator="true"    placeholder="From Date" display="inline" value="#{ expenseBean.date_FromDate}">
+         <p:calendar  navigator="true"  pattern="yyyy/MM/dd"  placeholder="From Date" display="inline" value="#{expenseBean.date_FromDate}"  valueChangeListener="#{expenseBean.datechangeListener}">
          </p:calendar>
        
         </td>
         <td>
-          <p:calendar  navigator="true" placeholder="To Date" display="inline" value="#{expenseBean.date_ToDate}">
+          <p:calendar  navigator="true" pattern="yyyy/MM/dd"  placeholder="To Date" display="inline" value="#{expenseBean.date_ToDate}"  valueChangeListener="#{expenseBean.datechangeListener1}">
           </p:calendar>
-                 </td><th><h:commandButton    update="DT" value="Go" icon="ui-icon-search" action="#{expenseBean.getPoolList()}"/></th></tr>
+                 </td><th><h:commandButton    ajax="false"  update="DT" value="Go" icon="ui-icon-search" action="#{expenseBean.getPoolList}"/></th></tr>
                            
              
              </table>
@@ -83,7 +83,7 @@
            <p:menuButton style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}"  value="Action">
          <p:menuitem value="Notify by Email" process="DT"  update=":form:pollDetail"    oncomplete="PF('pollDialog').show()"/>
         <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
-        <p:menuitem   update="DT" process="DT"  ajax="false" icon="ui-icon-close"   actionListener="#{expenseBean.deleteOnePoll1()}"    value="Close Selected"/>
+        <p:menuitem value="Close Selected" process="DT" update=":form:pd3"    oncomplete="PF('pDialog3').show()"/>
          <p:menuitem value="View Summary"/>
          <p:menuitem value="Export To Excel"/>
         </p:menuButton>
@@ -192,6 +192,21 @@
          </table>
          
           </p:dialog>
+           <p:dialog header="Service  Details" widgetVar="pDialog3"     showEffect="explode" hideEffect="bounce" resizable="false" height="200" width="200">
+        <p:outputPanel id="pd3" style="text-align:center;">
+           <table>
+              
+            
+            
+            <tr><th><p:outputLabel value="Selected Poll will be closed click yes to confirm"/></th></tr>
+            
+           <tr><td><h:commandButton   styleClass="btn" value="yes" action="#{expenseBean.closeRequestedPoll}"/> 
+           &#150; &#150; <h:commandButton  styleClass="btn" value="No" action="pools.xhtml"/></td>
+           </tr>
+            
+            </table>
+            </p:outputPanel>
+            </p:dialog>
              <p:dialog header="Email" widgetVar="pollDialog" showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="400">
         <p:outputPanel id="pollDetail" style="text-align:center;">
          

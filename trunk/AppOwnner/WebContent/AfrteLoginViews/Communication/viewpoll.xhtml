@@ -51,12 +51,12 @@
   <th width="15%"><p:outputLabel value="Status"/></th>
   <td width="15%"><p:inputText readonly="true" value="#{expenseBean.p.str_Status}"/></td>
   <th width="20%"></th>
-  <th width="15%"><p:outputLabel  for="EDate" value="End Date"/></th>
-  <td width="15%"> <p:inputText id="EDate" readonly="true" value="#{expenseBean.onePoll.date_EndDate}">
-  <f:convertDateTime pattern="dd-MMM-yyyy" />
-  </p:inputText>
+  <th width="15%"><p:outputLabel    value="End Date"/></th>
+  <td width="15%"><p:inputText readonly="true" value="#{expenseBean.p.date_EndDate}">
+                <f:convertDateTime pattern="dd-MMM-yyyy" />
+                </p:inputText>
   </td>
-  <th width="20%"><p:message id="EDateMsg"  for="EDate" display="text"/></th>
+   <th></th>
   </tr>
   <tr><th><p:outputLabel value="Organization"/></th><td><p:inputText readonly="true" value="#{expenseBean.str_OrganizationName}"/></td><th></th>
   <th><p:outputLabel  for="Audience" value="Pool Audience"/></th><td><h:selectOneRadio id="Audience"  readonly="true" required="true"
