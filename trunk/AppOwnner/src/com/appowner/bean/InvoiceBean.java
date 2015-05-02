@@ -743,6 +743,8 @@ private List<DueTransaction> listDueTransaction;
 		this.query = query;
 	}
 	public List<InvoiceTransaction> getListInvoiceTransaction() {
+		try
+		{
 		listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
 		System.out.println(str_Block+"fgfggfgfgfgfgf111111111111111111111111111");
 		System.out.println(str_ApartmentNo+"fjkkjfdjkfjfgjgjgf111111222222222222222222222222222222222");
@@ -750,39 +752,49 @@ private List<DueTransaction> listDueTransaction;
 		System.out.println(str_BillPeriod+"fdjkjkfjfdjkfdj666666666666666666666666666");
 		System.out.println(str_InvoiceTemplate+"jfdjkfjkfjd3333333333333366666666666666666666666666");
 		
+		System.out.println(query+"dfjfdjfjfdjjfdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 		 if(str_Block==null && str_ApartmentNo==null && str_Status==null && str_BillPeriod==null && str_InvoiceTemplate==null)
 		{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
 			query="";
 		}
-		else if(str_Block.isEmpty() && str_ApartmentNo.isEmpty() && str_Status.isEmpty() && str_BillPeriod.isEmpty() && str_InvoiceTemplate.isEmpty())
-			{ System.out.println("jcvvcjjcv11111111111111111111111111111111111111111111111111111111111111111111");
-				query="";
-			}
-		else if(str_Block!=null || !str_Block.isEmpty())
+		 
+	    
+		 if(!(str_Block==null) && !(str_Block.isEmpty()) )
 		{
-			query=query+"str_Block="+"'"+str_Block+"'";;
+			query=query+"str_Block="+"'"+str_Block+"'";
 		}
-	/*	else if(str_ApartmentNo.)
+	 if(!(str_ApartmentNo==null) && !(str_ApartmentNo.isEmpty()))
+		{   System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
+			query=query+" and "+"str_ApartmentNo="+"'"+str_ApartmentNo+"'";
+		}
+     if(!(str_Status==null) && !(str_Status.isEmpty()))
 		{
-			query=query+"str_ApartmentNo="+"'"+str_ApartmentNo+"'";
+			query=query+" and "+"str_Status="+"'"+str_Status+"'";
 		}
-		else if(str_Status!=null)
+	if(!(str_BillPeriod==null) && !(str_BillPeriod.isEmpty()))
 		{
-			query=query+"str_Status="+"'"+str_Status+"'";
+			query=query+" and "+"str_BillPeriod="+"'"+str_BillPeriod+"'";
 		}
-		else if(str_BillPeriod!=null)
+	if(!(str_InvoiceTemplate==null) && !(str_InvoiceTemplate.isEmpty()))
 		{
-			query=query+"str_BillPeriod="+"'"+str_BillPeriod+",";
-		}
-		else if(str_InvoiceTemplate!=null)
-		{
-			query=query+"str_InvoiceTemplate="+","+str_InvoiceTemplate+",";
-		}
-		else
-		{   
-			query="";
-		}  */
+			query=query+" and "+"str_InvoiceTemplate="+"'"+str_InvoiceTemplate+"'";
+		} 
+		 
 		System.out.println(query+"jdffjkdjhfdjfdfdfdffdjfdjfdjfjddfjhdfjhfdjhfd");
+		System.out.println(query.indexOf("and"));
+		
+		if(query.indexOf("and")==1)
+		{   System.out.println("jhujugfjf11111111111111111111111111111111111111111111");
+		  
+		   query=query.replaceFirst("and","" );
+                   
+		}
+		System.out.println(query+"fdjjhgjjgfjgfjfjfjgjfgjgfjgfj");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction(query));
 		query="";
 		System.out.println(listInvoiceTransaction);
@@ -880,7 +892,7 @@ private List<DueTransaction> listDueTransaction;
 		flash.setKeepMessages(true);
 		flash.setRedirect(true);
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Select InvoiceTemplate", "Select InvoiceTemplate"));
-		return null;
+		 return "invoice.xhtml";
 		
 	   }
 	   else
@@ -923,7 +935,7 @@ private List<DueTransaction> listDueTransaction;
 	public void setTotalDue(double totalDue) {
 		this.totalDue = totalDue;
 	}
-	private boolean bl_Show;
+	private boolean bl_Show=true;
 	
 	public boolean isBl_Show() {
 		return bl_Show;
@@ -1038,6 +1050,8 @@ private List<DueTransaction> listDueTransaction;
 		    	  {   Double sqrt=getInvoiceService().getSqft(ddd);
 		    	      System.out.println("dksdsk");
 		    	      totalAmount=template.getStr_Rate()*sqrt;
+		    	      BigDecimal b = new BigDecimal(totalAmount).setScale(2,BigDecimal.ROUND_HALF_UP);
+		    	      totalAmount=b.doubleValue(); 
 		    	      System.out.println(totalAmount+"fdkdfk");
 		    	  }
 		    	  else if(str3.equalsIgnoreCase("Flat"))
@@ -1193,7 +1207,7 @@ private List<DueTransaction> listDueTransaction;
 			    	  }
 			    	 taxAmount1=(taxAmount*totalAmount)/100;
 			    	 System.out.println(taxAmount1+"fkjdfkjfg");
-<<<<<<< .mine
+
 			    	 System.out.println(taxexceptionAmount+"fdklfkjfdjk11111111111111111111111111111111111111");
 			    	 if(taxAmount1 > taxexceptionAmount )
 			    	 {
@@ -1201,10 +1215,10 @@ private List<DueTransaction> listDueTransaction;
 			    	
 			    	 taxAmount1=taxexceptionAmount;
 			         }
-=======
+
 			    	 System.out.println(taxexceptionAmount+"fdklfkjfdjk11111111111111111111111111111111111111");
 			    	 taxAmount1=taxAmount1-taxexceptionAmount/10;
->>>>>>> .r2828
+
 			    	 System.out.println(taxAmount1);
 			    	 taxAmounts.add(taxAmount1);
 			    	 tax1=taxAmounts;  //for Mail purpose
@@ -1609,15 +1623,15 @@ private static String creditAccount;
 public void accountchangeListener4(ValueChangeEvent event)
 {
 	System.out.println("fjkfgjkfgjkf");
-	debitAccount=(String)event.getNewValue();
-   System.out.println(debitAccount+"lovejjjjjjjjjjjjjjjjj");
+	str_DebitAccount=(String)event.getNewValue();
+   System.out.println(str_DebitAccount+"lovejjjjjjjjjjjjjjjjj");
 	
 }
 public void accountchangeListener5(ValueChangeEvent event)
 {
 	System.out.println("fjkfgjkfgjkf123");
-	creditAccount=(String)event.getNewValue();
-   System.out.println(creditAccount+"lovejjjjjjjjjjjjjjjjj");
+	str_CreditAccount=(String)event.getNewValue();
+   System.out.println(str_CreditAccount+"lovejjjjjjjjjjjjjjjjj");
 	
 }
 public static String getDebitAccount() {
@@ -1722,7 +1736,7 @@ public void desabledListener( SelectEvent event)
 	selectedjournal=(ManualJournal) event.getObject();
 	System.out.println(selectedjournal.getInt_ManualJournalID()+"dfjjffjnfjjfgjgfjfgj");
 	debitAccount=selectedjournal.getStr_DebitAccount();
-	str_DebitAmount=selectedjournal.getDbl_DebitAmount();
+	amount1=selectedjournal.getDbl_DebitAmount();
 		 indicate4 = true;
 }
 public String addInvoiceManualJournal() 
@@ -1735,21 +1749,24 @@ public String addInvoiceManualJournal()
     journal.setDat_Date(dat_Date);
     journal.setStr_Reference(getStr_Reference());
     journal.setStr_Notes(getStr_Notes());
-    journal.setStr_DebitAccount(debitAccount);
-    System.out.println(debitAccount+"fdjfdfd");
-    System.out.println(creditAccount+"djkfdkjfdkj");
-    System.out.println(getStr_DebitAccount()+"fdkdffd");
-    System.out.println(getStr_CreditAccount()+"fdkjfdjkfd");
-    journal.setStr_CreditAccount(creditAccount);
+    journal.setStr_DebitAccount(str_DebitAccount);
+    
+   
+    journal.setStr_CreditAccount(str_CreditAccount);
     journal.setDbl_DebitAmount(getStr_DebitAmount());
-    System.out.println(getStr_DebitAmount());
+  
     journal.setDbl_CreditAmount(getStr_CreditAmount());
    
    
     
     	 getAccountsService().addManualJournal(journal);
-    	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("ManualJournal Saved Successfully!"));
-    	 str_Notes="";
+    	 FacesContext facesContext = FacesContext.getCurrentInstance();
+ 		Flash flash = facesContext.getExternalContext().getFlash();
+ 		flash.setKeepMessages(true);
+ 		flash.setRedirect(true);
+ 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ManualJournal Saved Successfully!", "ManualJournal Saved Successfully!"));
+    
+
     	
     	 }
     	
@@ -1757,17 +1774,12 @@ public String addInvoiceManualJournal()
   {
 	e.printStackTrace();
   }
-	 return "manualjournal.xhtml?faces-redirect=true";
+	return "manualjournal.xhtml";
 }
 
 public String saveManualJournal(ManualJournal jouranl) {
 	System.out.println("jhvvnjggggggggggggggggggggg11111111111111111111111111111111111111111111111111111111");
-	System.out.println(dat_Date);
-	System.out.println(selectedjournal.getStr_Reference());
-	System.out.println(selectedjournal.getStr_Notes());
-	System.out.println(jouranl.getInt_ManualJournalID()+"dfjdfdf");
-	System.out.println(jouranl.getStr_Notes()+"dfjdfjfdjfdjkf");
-	System.out.println(selectedjournal.getInt_ManualJournalID()+"djkffdjfjkjkfgjjf");
+	
 			 getAccountsService().updateManualJournal(jouranl);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Flash flash = facesContext.getExternalContext().getFlash();
@@ -1777,7 +1789,7 @@ public String saveManualJournal(ManualJournal jouranl) {
 		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO," Updated Successfully!", "Updated Successfully!"));
 
 	
-	return "manualjournal.xhtml";
+	return "manualjournal.xhtml?faces-redirect=true";
 	
 }
 public void deleteManualJournal1() {
@@ -1823,45 +1835,16 @@ public void amountchangeListener(ValueChangeEvent event)
 	amount1=(double) event.getNewValue();
 	System.out.println(amount1+"jhcfffdjhfjhdffdj1111111111111111111");
 }
-public void validateTemplate(FacesContext context, UIComponent component,Object o) 
-{System.out.println("111111111111111111111118888888888888888888888888888888888888888888");
-	 
-		System.out.println(select+"fdkjjkfg444444444444444444444444444444444");
-		if(select==null) {
-			FacesMessage msg
-	          = new FacesMessage();
-			 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-		        throw new ValidatorException(msg);
-		}
-		else
-		{   
-			System.out.println("jfdjjfjfgjfgj");
-		}
-}
-public void validateTemplate1(FacesContext context, UIComponent component,Object o) 
-{System.out.println("111111111111111111111118888888888888888888888888888888888888888888");
-	 
-		HtmlSelectOneMenu menu =(HtmlSelectOneMenu) component;
-		
-		if(menu.getSubmittedValue().equals(debitAccount)) {
-			FacesMessage msg
-	          = new FacesMessage();
-			 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-		        throw new ValidatorException(msg);
-		}
-		else
-		{   
-			System.out.println("jfdjjfjfgjfgj");
-		}
-}
+
 public void validateAccount(FacesContext context, UIComponent component,Object o) 
 {System.out.println("111111111111111111111118888888888888888888888888888888888888888888");
 	 
 		HtmlSelectOneMenu menu =(HtmlSelectOneMenu) component;
-		System.out.println(debitAccount+"fdjfdfd");
-	    System.out.println(creditAccount+"djkfdkjfdkj");
-		System.out.println(menu.getSubmittedValue().equals(debitAccount)+"hjfddfhffgf");
-		if(menu.getSubmittedValue().equals(debitAccount)) {
+		System.out.println(str_DebitAccount+"fdjfdfd");
+	    System.out.println(str_CreditAccount+"djkfdkjfdkj");
+	    System.out.println(menu.getSubmittedValue()+"fdjkjkfjkjffjkfgkjjkjkk");
+		System.out.println(menu.getSubmittedValue().equals(str_DebitAccount)+"hjfddfhffgf");
+		if(menu.getSubmittedValue().equals(str_DebitAccount)) {
 			FacesMessage msg
 	          = new FacesMessage();
 			 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -1877,6 +1860,7 @@ public void validateAmount(FacesContext context, UIComponent component,Object o)
 	 System.out.println("166666666666666666666666666666666666666666666666666666666666666666666666666");
 		HtmlInputText input =(HtmlInputText) component;
 		System.out.println(amount1+"sdmkldkmfdkkjfdkj");
+		System.out.println(input.getSubmittedValue()+"jkjxkjcjkcjkckjcvjcvvjcvcjcvjcvj");
 		double amount2= Double.parseDouble((String) input.getSubmittedValue());
 		
 		 int retval = Double.compare(amount1,amount2);

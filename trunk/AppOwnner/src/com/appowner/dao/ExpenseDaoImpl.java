@@ -67,16 +67,22 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExpenseType, Integer int_ApartmentId,Date date_Duration) {
-
-		if( str_AssetName!=null&&str_AssetCategoryType!=null&&str_ExpenseCategory!=null&&str_ExpenseType!=null&&int_ApartmentId!=null&&date_Duration!=null)
+	public List<Expense> getExpenseList(String query) {
+System.out.println(query+"queryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+		if(query.isEmpty())
 		{
-			//pending
+			List<Expense> elist= getSessionFactory().getCurrentSession().createQuery("from Expense where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
 			
-			String hql="from Expense where int_AppartmentId=? and str_AssetName=? and str_AssetCatType=? and str_ExpenseCategory=? and str_ExpenseType=? and date_Duration=?";
-			return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).setParameter(1, str_AssetName).setParameter(2, str_AssetCategoryType).setParameter(3, str_ExpenseCategory).setParameter(4, str_ExpenseType).setParameter(5, date_Duration).list();
+			System.out.println(query+"queryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+			return elist;
 		}
-		return getSessionFactory().getCurrentSession().createQuery("from Expense where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).list();
+		else
+		{
+			String hql="from Expense where int_AppartmentId=? and "+query;
+			List<Expense> elist1= getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).list();
+			System.out.println(hql+"queryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy1");
+			return elist1;
+		}
 	}
 
 	@Override
@@ -267,17 +273,30 @@ public class ExpenseDaoImpl implements ExpenseDao {
 		{
 			
 			 
-			List<Pool> plist= getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
+			List<Pool> plist= getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).list();
 		 Collections.sort(plist);	
 		 return plist;
 		 }
+		else if(date_FromDate==null && date_ToDate==null && str_Status!=null)
+		{
+			List<Pool> plist1= getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=? and str_Status=?").setParameter(0, Util.getAppartmentId()).setParameter(1, str_Status).list();
+			 Collections.sort(plist1);	
+			 return plist1;
+		}
+		else if(date_FromDate!=null && date_ToDate!=null && str_Status==null)
+		{
+			List<Pool> plist3 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("int_OrganizationId", Util.getAppartmentId())).add(Restrictions.eq("str_Status", str_Status)).list(); 
+			// TODO Auto-generated method stub
+			Collections.sort(plist3);	
+			 return plist3;
+		}
 	else
 	{
 		 
-		List<Pool> plist1 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("str_Status", str_Status)).list(); 
+		List<Pool> plist2 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("int_OrganizationId", Util.getAppartmentId())).list(); 
 		// TODO Auto-generated method stub
-		Collections.sort(plist1);	
-		 return plist1;
+		Collections.sort(plist2);	
+		 return plist2;
 	}
 	}
 
@@ -710,5 +729,18 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public Assets getOneAssets(Integer aid) {
 		// TODO Auto-generated method stub
 		return (Assets) sessionFactory.getCurrentSession().get(Assets.class, aid);
+	}
+
+	@Override
+	public String checkStatusOfPoll(Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return (String) sessionFactory.getCurrentSession().createQuery("select str_Status From Pool where int_PoolId=?").setParameter(0, int_PoolId).uniqueResult();
+	}
+
+	@Override
+	public void updateStatusOfPoll(Integer int_PoolId, String str_Status) {
+		// TODO Auto-generated method stub
+	String hql="update Pool set str_Status=? where int_PoolId=?"; 
+		sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,str_Status).setParameter(1, int_PoolId).executeUpdate();
 	}
 }

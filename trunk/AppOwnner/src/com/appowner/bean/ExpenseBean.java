@@ -1908,7 +1908,7 @@ public void setInt_PoolId(Integer int_PoolId) {
 	this.int_PoolId = int_PoolId;
 }
 public String getStr_Status() {
-	str_Status="open";
+	 
 	return str_Status;
 }
 public void setStr_Status(String str_Status) {
@@ -2050,46 +2050,43 @@ public String getQuery() {
 public void setQuery(String query) {
 	this.query = query;
 }
+public void datechangeListener1(ValueChangeEvent event)
+{    System.out.println("priyyyyyyssssssssss");
+date_ToDate=(Date)event.getNewValue();
+System.out.println(date_ToDate+"jjjjjjjjjjjjjjjjjjjjjjjjjjjlokiiiiiiiiiiiiiiiii");
+
+}
+public void datechangeListener(ValueChangeEvent event)
+{    System.out.println("priyyyyyyssssssssss");
+date_FromDate=(Date)event.getNewValue();
+System.out.println(date_FromDate+"jjjjjjjjjjjjjjjjjjjjjjjjjjjlokiiiiiiiiiiiiiiiii");
+
+}
 public List<Pool> getPoolList() {
-	try
-	{
-		 poolList=new ArrayList<Pool>();
-	
-	if(date_FromDate==null && date_ToDate==null && str_Status==null)
-	{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
-		query="";
-	}
-	if(!(str_Status==null) && !(str_Status.isEmpty()))
-	{
-		query=query+"str_Status="+"'"+str_Status+"'";
-	}
-	 
-	 if(!(date_FromDate==null)&&!(date_ToDate==null))
-		{    
-			query=query+" and "+ "dat_ToDate "+"BETWEEN"+date_FromDate+","+date_ToDate;
-		}
-	 
-	 if(query.indexOf("and")==1)
-		{   
-		  
-		   query=query.replaceFirst("and","" );
-                
-		}
-	 
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		 
-		query="";
-		  
-		 
+	poolList=new ArrayList<Pool>();
+	 System.out.println(getDate_FromDate()+""+getDate_ToDate()+""+getStr_Status()+"pollllllistssssssssssss");
 	
 	poolList.addAll(getExpenseService().getPoolList(getDate_FromDate(),getDate_ToDate(),getStr_Status()));
-	 
+	  
 	return poolList;
+}
+public String closeRequestedPoll()
+{
+	 if(onePoll!=null)
+	 {
+	String status=getExpenseService().checkStatusOfPoll(onePoll.getInt_PoolId());
+	if(status.equalsIgnoreCase("Closed"))
+	{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Poll Already Closed"));
+		return "servicerequest.xhtml";
+	}
+	
+	str_Status="Closed";
+	 
+	getExpenseService().updateStatusOfPoll(onePoll.getInt_PoolId(),str_Status);
+FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Poll Closed Successfully"));
+	 }
+    return "pools.xhtml";
 }
 public void setPoolList(List<Pool> poolList) {
 	this.poolList = poolList;
@@ -2128,7 +2125,7 @@ public String addPool()
 	pool.setDat_StartDate(new Date());
 	 
 	pool.setDate_EndDate(getDate_EndDate());
-    pool.setStr_Status(str_Status);
+    pool.setStr_Status("Open");
 	pool.setStr_CreatedBy(Util.getUserName());
 	pool.setStr_poolQuestion(str_PoolQuestion);
 	pool.setStr_Choise1(str_Choise1);
@@ -2137,12 +2134,12 @@ public String addPool()
 	 
 		getExpenseService().addPool(pool);
 		
-		str_PoolQuestion="";
-		str_Choise1="";
-		str_Choise2="";
-		str_Choise3="";
-		str_EndDate="";
-		str_PoolAudience="";
+		str_PoolQuestion=null;
+		str_Choise1=null;
+		str_Choise2=null;
+		str_Choise3=null;
+		str_EndDate=null;
+		str_PoolAudience=null;
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Created Successfully!"));
 		return"pools.xhtml";
 	 

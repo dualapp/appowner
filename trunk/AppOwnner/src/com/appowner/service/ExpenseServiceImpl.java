@@ -61,9 +61,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId, Date date_Duration){
+	public List<Expense> getExpenseList(String query){
 		// TODO Auto-generated method stub
-		return getExpenseDao().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,int_ApartmentId,date_Duration);
+		return getExpenseDao().getExpenseList(query);
 	}
 
 	@Override
@@ -568,6 +568,18 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public Assets getOneAssets(Integer aid) {
 		// TODO Auto-generated method stub
 		return getExpenseDao().getOneAssets(aid);
+	}
+
+	@Override
+	public String checkStatusOfPoll(Integer int_PoolId) {
+		// TODO Auto-generated method stub
+		return getExpenseDao().checkStatusOfPoll(int_PoolId);
+	}
+
+	@Override
+	public void updateStatusOfPoll(Integer int_PoolId, String str_Status) {
+		// TODO Auto-generated method stub
+		getExpenseDao().updateStatusOfPoll(int_PoolId,str_Status);
 	}
 
 	 
