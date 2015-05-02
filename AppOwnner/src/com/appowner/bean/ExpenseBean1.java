@@ -1,6 +1,7 @@
 package com.appowner.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +39,7 @@ public class ExpenseBean1  implements Serializable{
 	 
 	String str_ExpenseId;
 	 
-	private Date date_Duration=new java.util.Date();;
+	private Date date_Duration;
 	public String getStr_Name() {
 		return str_Name;
 	}
@@ -52,11 +53,11 @@ public class ExpenseBean1  implements Serializable{
 		this.str_AssetName = str_AssetName;
 	}
 	 
-	public String getStr_ExcepenseType() {
-		return str_ExcepenseType;
+	public String getstr_ExpenseType() {
+		return str_ExpenseType;
 	}
-	public void setStr_ExcepenseType(String str_ExcepenseType) {
-		this.str_ExcepenseType = str_ExcepenseType;
+	public void setstr_ExpenseType(String str_ExpenseType) {
+		this.str_ExpenseType = str_ExpenseType;
 	}
 	public Integer getInt_ExpenseId() {
 		return int_ExpenseId;
@@ -100,7 +101,7 @@ public class ExpenseBean1  implements Serializable{
 	}
 	private String str_AssetName;
 	private String str_OrganizationName;
-	private String str_ExcepenseType;
+	private String str_ExpenseType;
 	private String str_ExpenseCategory;
 	private Integer int_ExpenseId;
 	private Double dbl_Ammount;
@@ -299,7 +300,7 @@ public String addExpenses()
 		{
 		str_AssetName=(String)assetName.next();
 		str_AssetCategoryType=(String)assetCategory.next();
-		 str_ExcepenseType=(String)expensetype.next();
+		 str_ExpenseType=(String)expensetype.next();
 		  str_ExpenseCategory=(String)expensecategory.next();
 		 date_Duration=(Date)dateduration.next();
 		  dbl_Ammount=(Double)ammountlist.next();
@@ -310,7 +311,7 @@ public String addExpenses()
 	
 	expense=new Expense();
 	expense.setStr_ExpenseId(randomId());
-	if(str_ExcepenseType.equals("Estimate"))
+	if(str_ExpenseType.equals("Estimate"))
 		
 	expense.setStr_Status("Pending Approval");
 	else
@@ -321,7 +322,7 @@ public String addExpenses()
 	expense.setStr_AssetCatType(getStr_AssetCategoryType());
 	expense.setStr_AssetName(getStr_AssetName());
 	expense.setStr_ExpenseCategory(getStr_ExpenseCategory());
-	expense.setStr_ExpenseType(getStr_ExcepenseType());
+	expense.setStr_ExpenseType(getstr_ExpenseType());
 	expense.setStr_OrganizationName(getStr_OrganizationName());
 	expense.setStr_Description(getStr_Description());
 	expense.setInt_AppartmentId(Util.getAppartmentId());
@@ -359,10 +360,62 @@ public void setExpense(Expense expense) {
 private List<Expense> expenseList;
 private List<Expense> selectedExpenses;
 
-
+private String query1;
+public String getQuery1() {
+	return query1;
+}
+public void setQuery1(String query1) {
+	this.query1 = query1;
+}
 public List<Expense> getExpenseList() {
-	expenseList=new ArrayList<Expense>();
-	expenseList.addAll(getExpenseService().getExpenseList(str_AssetName,str_AssetCategoryType,str_ExpenseCategory,str_ExcepenseType,Util.getAppartmentId(),date_Duration));
+	
+	try{
+		expenseList=new ArrayList<Expense>();
+		if(str_AssetName==null && str_AssetCategoryType==null && str_ExpenseCategory==null && str_ExpenseType==null && date_Duration==null )
+		{   
+			query1="";
+		}
+		if(!(str_AssetName==null) && !(str_AssetName.isEmpty()))
+		{
+			query1=query1+"str_AssetName="+"'"+str_AssetName+"'";
+		}
+		
+		 if(!(str_AssetCategoryType==null) && !(str_AssetCategoryType.isEmpty()))
+			{
+				query1=query1+" and "+"str_AssetCatType="+"'"+str_AssetCategoryType+"'";
+			}
+		 if(!(str_ExpenseCategory==null)&& !(str_ExpenseCategory.isEmpty()))
+			{
+				query1=query1+" and "+"str_ExpenseCategory="+"'"+str_ExpenseCategory+"'";
+			}
+		 if(!(str_ExpenseType==null)&& !(str_ExpenseType.isEmpty()))
+			{
+				query1=query1+" and "+"str_ExpenseType="+"'"+str_ExpenseType+"'";
+			}
+		 if(!(date_Duration==null))
+			{
+			 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String date=formatter.format(date_Duration) ;
+			 
+				 System.out.println(date+"dddddddddddddddd");
+			 
+				query1=query1+" and "+"date_Duration="+"'"+date+"'";
+			}
+		 if(query1.indexOf("and")==1)
+			{    
+			   query1=query1.replaceFirst("and","" );
+	               
+			}
+			 
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	 System.out.println(query1+"qqqqqqqqqqqqqqqqqqqqqqqq");
+	expenseList.addAll(getExpenseService().getExpenseList( query1));
+	query1="";
+	
 	
 	return expenseList;
 }

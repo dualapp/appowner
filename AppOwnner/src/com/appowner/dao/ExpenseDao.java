@@ -28,7 +28,7 @@ public interface ExpenseDao {
 
 	void addExpenses(Expense expense);
 
-	List<Expense> getExpenseList(String str_AssetName, String str_AssetCategoryType, String str_ExpenseCategory, String str_ExcepenseType, Integer int_ApartmentId, Date date_Duration);
+	List<Expense> getExpenseList(String str_AssetName);
 
 	Expense getOneExpense(String str_ExpenseId);
 
@@ -198,5 +198,9 @@ public interface ExpenseDao {
 	void updateOrganizationDocument(String path2);
 
 	Assets getOneAssets(Integer aid);
+
+	String checkStatusOfPoll(Integer int_PoolId);
+
+	void updateStatusOfPoll(Integer int_PoolId, String str_Status);
 
 }

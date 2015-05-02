@@ -294,7 +294,12 @@ public List<ServiceRequest> getListServiceRequest() {
 			}
 		 if(!(dat_ToDate==null))
 			{
-				query1=query1+" and "+"dat_OpenDate="+"'"+dat_ToDate+"'";
+			
+			 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				String date=formatter.format(dat_ToDate) ;
+			 
+				 System.out.println(date+"dddddddddddddddd");
+				query1=query1+" and "+"dat_OpenDate="+"'"+date+"'";
 			}
 		 if(query1.indexOf("and")==1)
 			{    
@@ -582,7 +587,11 @@ public List<BookAFacility> getBookAFacilityList() {
 		}
 		 if(!(dat_ToDate==null))
 			{
-				query=query+" and "+"dat_OpenDate="+"'"+dat_ToDate+"'";
+			 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String date=formatter.format(dat_ToDate) ;
+			 
+				 System.out.println(date+"dddddddddddddddd");
+				query=query+" and "+"dat_OpenDate="+"'"+date+"'";
 			}
 		 if(!(str_FacilityType==null) && !(str_FacilityType.isEmpty()))
 			{
