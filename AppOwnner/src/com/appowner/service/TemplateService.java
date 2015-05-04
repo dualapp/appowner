@@ -16,8 +16,8 @@ public interface TemplateService {
  public Integer saveInvoiceTemplate(InvoiceTemplate invoiceTemplate);
  public Integer saveMessageTemplate(MessageTemplate messageTemplate);
   public List<DueTemplate>  listDueTemplate(String str_Accounts);
-  public List<InvoiceTemplate> listInvoiceTemplate();
-  public List<TaxTemplate> listTaxTemplate();
+  public List<InvoiceTemplate> listInvoiceTemplate(String query);
+  public List<TaxTemplate> listTaxTemplate(String query);
   public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category);
 public List<String> getTaxName();
 public DueTemplate getDueTemplate(Integer int_DueTemplateID);
@@ -45,5 +45,6 @@ public String getCalculation();
 public int getTaxID(String str);
 public boolean detectInvoiceTemplate(String str);
 public boolean detectTaxTemplate(String str_TaxName);
+public List<MessageTemplate> listMessageTemplate(String query);
 
 }
