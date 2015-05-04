@@ -24,7 +24,9 @@
 		<link href="#{loginBean.url}include/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="#{loginBean.url}include/assets/css/font-awesome.min.css" />
 
-	
+		
+
+		
 
 		<link rel="stylesheet"
 			href="#{loginBean.url}include/assets/css/jquery-ui-1.10.3.custom.min.css" />
@@ -41,7 +43,13 @@
 		<link rel="stylesheet" href="#{loginBean.url}include/assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="#{loginBean.url}include/assets/css/select2.css" />
 
-		
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="#{expenseBean.str_Name}#{loginBean.url}include/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
 
 		<script src="#{loginBean.url}include/assets/js/ace-extra.min.js"></script>
 		<script src="#{loginBean.url}include/assets/js/popup.js"></script>
@@ -113,7 +121,7 @@
 				<div  class="main-content">
 				 
 					<ui:insert name="content" >
-					<ui:include src="News.xhtml" />
+					<ui:include src="/AfrteLoginViews/Administrator/News.xhtml" />
 					</ui:insert>
 					 
 				</div>
@@ -124,7 +132,7 @@
 		</div>
 		<div  align="center" class="footer">
 					<ui:insert name="footer" >
-					<ui:include src=" footer1.xhtml" />
+					<ui:include src="../../include/templates/footer.xhtml" />
 					</ui:insert>
 					 
 					
@@ -145,8 +153,8 @@
 
 
 		<script src="#{loginBean.url}include/assets/js/jquery.mobile.custom.min.js"></script>
-		<script src="#{loginBean.url}#{loginBean.url}include/assets/js/bootstrap.min.js"></script>
-		<script src="#{loginBean.url}#{loginBean.url}include/assets/js/typeahead-bs2.min.js"></script>
+		<script src="#{loginBean.url}include/assets/js/bootstrap.min.js"></script>
+		<script src="#{loginBean.url}include/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
