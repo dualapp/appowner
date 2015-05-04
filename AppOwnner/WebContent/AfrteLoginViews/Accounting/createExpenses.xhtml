@@ -44,12 +44,7 @@
 	 <div id="page3">
    
 	<table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-        <tr><th> 
-               <p:outputLabel value="Organisation:" /> </th>
-             <td> <h:selectOneMenu  style="width:150px" >
-              <f:selectItem itemLabel="#{expenseBean1.str_OrganizationName}"  itemValue="#{expenseBean1.str_OrganizationName}" />
-                
-                 </h:selectOneMenu></td></tr>
+        
          <tr>
           <th> Acc Name*</th>  <th>  Type* </th> <th> Category*  </th>   <th>  Date* </th>   <th>  Ammount* </th> <th>  Description </th> <th> Assets Category </th> <th>  Assets Name</th></tr> 
           <tr><td> <h:selectOneMenu  valueChangeListener="#{expenseBean1.accountListener}"  value="#{expenseBean1.str_AccountName}" style="width:150px" >
@@ -72,8 +67,8 @@
                  </h:selectOneMenu>
                  </td>
                 <td> 
-               <p:calendar  id="Date" style="width:150px"  required="true" requiredMessage="Enter Date"  navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean1.dateListener}"   value="#{expenseBean1.date_Duration}">
-                  <f:convertDateTime pattern="dd-MMM-yyyy" />
+               <p:calendar   id="Date" style="width:150px"  required="true" requiredMessage="Enter Date"  navigator="true" pattern="dd/MM/yyyy" maxdate="#{now}"  display="inline" valueChangeListener="#{expenseBean1.dateListener}"   value="#{expenseBean1.date_Duration}">
+                
                   </p:calendar>
                     
              </td>     

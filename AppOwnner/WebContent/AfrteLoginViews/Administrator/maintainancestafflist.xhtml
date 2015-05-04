@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 <h:head>
     <title> </title>
@@ -48,12 +48,6 @@
             <p:button    outcome="/AfrteLoginViews/Administrator/addmaintainancestaff.xhtml"   icon="ui-icon-plus"  value="Add More Maintainance Staff"  />
  <hr/></div> 
   <p:dataTable id="DT"  rows="10"   emptyMessage="No Records Found" paginatorAlwaysVisible="false"   var="maintainancestaff" value="#{maintainanceStaffBean.maintainanceStaffList}" paginator="true"  paginatorPosition="bottom"   resizableColumns="true"  style="overflow:hidden;border:0pt none;width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:20px"  >
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value=" maintainancestaff ID" />
-                </f:facet>
-                <h:outputText  id="int_maintainancestaff" value="#{maintainancestaff.int_MaintainanceStaffID}" />
-            </p:column>
             
               <p:column>
                 <f:facet name="header">

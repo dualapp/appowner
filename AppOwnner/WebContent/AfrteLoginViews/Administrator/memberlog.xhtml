@@ -12,14 +12,9 @@
 <h:body>
 <div id="page3">
  <div class="gsTitleDiv">Member log <br/><hr/></div>
-<h:outputText value="Organisation:" /> 
-              
-              <h:selectOneMenu       style="width:250px">
-              <f:selectItem itemLabel="#{loginBean.str_ApartmentName}"  itemValue="#{loginBean.str_ApartmentName}" />
-                
-                 </h:selectOneMenu><br/>
+ 
                  
-                 <p:dataTable   id="radioDT" editable="true" resizableColumns="true"   var="memberlog" value="#{loginBean.listMemberLog}"   >
+                 <p:dataTable   id="radioDT"   resizableColumns="true"  stickyHeader="true"  var="memberlog" value="#{loginBean.listMemberLog}"   >
                
          
              
