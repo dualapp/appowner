@@ -83,13 +83,13 @@
 	</table>
 <h:body>
   <h:form id="form" prependId="false">
-    <p:growl id="ui-growl"  sticky="true" />
+    <p:growl id="ui-growl" globalOnly="true" sticky="true"  />
   <div id="page3">
    <div class="gsTitleDiv"><br/></div>
     
 &#150; &#150;  &#150; &#150; <p:commandButton style="width:120px;height:25px" oncomplete="PF('multiManualJournalDialog2').show()" icon="ui-icon-plus" update=":addform" value="Create New" />&#150; &#150; &#150; &#150; <p:commandButton id="edit" style="width:120px;height:25px" process="ggg" update=":editform" action="#{invoiceBean.detectManualJournal}" ajax="#{invoiceBean.indicate4}" icon="ui-icon-pencil" value="Edit"   oncomplete="PF('multiManualJournalDialog').show()" /> &#150; &#150; <p:commandButton  id="view" style="width:120px;height:25px"  process="ggg" update=":viewform" icon="ui-icon-search" value="View" action="#{invoiceBean.detectManualJournal}" ajax="#{invoiceBean.indicate4}" oncomplete="PF('multiManualJournalDialog1').show()" />
 
-       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" id="delete" process="ggg"  action="#{invoiceBean.deleteManualJournal1()}" icon="ui-icon-trash" value="Delete" ajax="false" update="ui-growl"/>  &#150; &#150;
+       &#150; &#150;  <p:commandButton  style="width:120px;height:25px" id="delete" process="ggg"  action="#{invoiceBean.deleteManualJournal1()}" icon="ui-icon-trash" value="Delete" ajax="false" update="ui-growl" onclick="return confirm('Are you sure you want to delete ?');"/>  &#150; &#150;
       
              <br/>
            <br/>
@@ -202,10 +202,10 @@
                 
            </td>
              <td align="right">  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
-            <td> <h:selectOneMenu id="str_CreditAccount" value="#{invoiceBean.str_CreditAccount}" validator="#{invoiceBean.validateAccount}" valueChangeListener="#{invoiceBean.accountchangeListener5}" validatorMessage="debit and credit account are different" style="width:250px" required="true" requiredMessage="Enter Account">
+            <td> <h:selectOneMenu id="str_CreditAccount" value="#{invoiceBean.str_CreditAccount}" validator="#{invoiceBean.validateAccount}"  validatorMessage="debit and credit account are different" style="width:250px" required="true" requiredMessage="Enter Account">
                  
                    <f:selectItems value="#{accountingBean.listAccountsName}" />
-                    <p:ajax event="change" partialSubmit="true"/>
+                  
                 </h:selectOneMenu>
             <p:message id="str_CreditAccountMsg" for="str_CreditAccount"  display="text"/>  
            </td>
@@ -239,7 +239,7 @@
       <td> <p:message id="str_CreditAmountMsg" for="str_CreditAmount"  display="text"/></td>
       </tr>
      <tr>      <td></td>
-                <td ><p:commandButton  styleClass="btn" id="submit1" value="Submit" actionListener="#{invoiceBean.addInvoiceManualJournal}"  update=":form:ggg,:form:ui-growl,notesmsg,str_DebitAmountMsg,str_CreditAmountMsg,str_CreditAccountMsg" oncomplete="handleRequest(xhr, status, args)"/></td>
+                <td ><p:commandButton  styleClass="btn" id="submit1" value="Submit" actionListener="#{invoiceBean.addInvoiceManualJournal}"  update=":form:ggg,:form:ui-growl,notesmsg,str_DebitAmountMsg,str_CreditAmountMsg,str_CreditAccountMsg,str_DebitAccount" oncomplete="handleRequest(xhr, status, args)"/></td>
              
             </tr>
     </table>
@@ -323,10 +323,10 @@
                 
            </td>
              <td >  <h:outputLabel for="str_CreditAccount" value="Account"  /><font color="red" >*</font></td>
-            <td> <h:selectOneMenu id="str_CreditAccount" value="#{journal1.str_CreditAccount}"  validator="#{invoiceBean.validateAccount}" valueChangeListener="#{invoiceBean.accountchangeListener5}" validatorMessage="debit and credit account are different" style="width:250px" required="true" requiredMessage="Enter Account">
+            <td> <h:selectOneMenu id="str_CreditAccount" value="#{journal1.str_CreditAccount}"  validator="#{invoiceBean.validateAccount}"  validatorMessage="debit and credit account are different" style="width:250px" required="true" requiredMessage="Enter Account">
                  
                    <f:selectItems value="#{accountingBean.listAccountsName}" />
-                    <p:ajax event="change" partialSubmit="true"/>
+                    
                 </h:selectOneMenu>
             <p:message id="str_CreditAccountMsg" for="str_CreditAccount"  display="text"/>  
            </td>

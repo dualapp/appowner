@@ -55,12 +55,13 @@
      <h:panelGroup id="performed"  >
            
               <td><h:outputLabel value="Organisation:" /></td>
-              <td><p:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}" valueChangeListener="#{invoiceBean.organisationChangeListener}" style="width:150px">
-                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true"/>
+              <td><h:selectOneMenu id="str_Organisation" value="#{invoiceBean.str_Organisation}" valueChangeListener="#{invoiceBean.organisationChangeListener}" style="width:150px">
+                   <f:selectItem itemLabel="Select" itemValue="null" noSelectionOption="true"/>
                   <f:selectItem itemLabel="#{invoiceBean.str_Organisation}" itemValue="#{invoiceBean.str_Organisation}"/>
                     <p:ajax event="change" update="str_Block" process="str_Organisation"/>
-                 </p:selectOneMenu>
+               </h:selectOneMenu>
              </td>
+            
              <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Block:" /></td>
                <td><h:selectOneMenu id="str_Block" value="#{invoiceBean.str_Block}"  valueChangeListener="#{invoiceBean.blockChangeListener1}"   style="width:150px">
@@ -104,16 +105,29 @@
              </td>
               <p:spacer width="40" height="20"/>
              <td><h:outputText  value="Template:" /></td>
-               <td><h:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:150px">
+               <td><h:selectOneMenu id="str_InvoiceTemplate" value="#{invoiceBean.str_InvoiceTemplate}"  style="width:150px" valueChangeListener="#{invoiceBean.selectRadioButton}">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{invoiceBean.listInvoiceName}" />
+                     <f:ajax event="change" process="str_InvoiceTemplate"  partialSubmit="true" render="@form" update="str_BillPeriod,str_BillPeriod1,str_BillPeriod2" />
                 </h:selectOneMenu>
              </td>
               <p:spacer width="40" height="20"/>
+              
              <td><h:outputText  value="Period" /></td>
-               <td><h:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}"  style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                 <f:selectItem itemLabel="JAN" itemValue="JAN"/>
+              
+        
+        <td>   <h:selectOneMenu id="str_BillPeriod" value="#{invoiceBean.str_BillPeriod}" rendered="#{invoiceBean.periodIndicator eq 'Quarterly' }" style="width:150px"  >
+            <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                   <f:selectItem itemLabel="Q1[APR-JUN]" itemValue="Q1[APR-JUN]"/>
+                     <f:selectItem itemLabel="Q2[JUL-SEP]" itemValue="Q2[JUL-SEP]"/>
+                       <f:selectItem itemLabel="Q3[OCT-DEC]" itemValue="Q3[OCT-DEC]"/>
+                        <f:selectItem itemLabel="Q4[JAN-MAR]" itemValue="Q4[JAN-MAR]"/>
+                       <p:ajax event="change"   partialSubmit="true" update="int_Year"/>  
+                 </h:selectOneMenu>
+                 
+         <h:selectOneMenu id="str_BillPeriod1" value="#{invoiceBean.str_BillPeriod}" rendered="#{invoiceBean.periodIndicator eq 'Monthly'}" style="width:150px"  >
+            <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                   <f:selectItem itemLabel="JAN" itemValue="JAN"/>
                      <f:selectItem itemLabel="FEB" itemValue="FEB"/>
                        <f:selectItem itemLabel="MAR" itemValue="MAR"/>
                         <f:selectItem itemLabel="APR" itemValue="APR"/>
@@ -125,8 +139,19 @@
                      <f:selectItem itemLabel="OCT" itemValue="OCT"/>
                        <f:selectItem itemLabel="NOV" itemValue="NOV"/>
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
-                </h:selectOneMenu>
-                 </td>
+                        <p:ajax event="change"   update="int_Year" />  
+                         
+                 </h:selectOneMenu>
+                <h:selectOneMenu id="str_BillPeriod2" value="#{invoiceBean.str_BillPeriod}" style="width:150px" rendered="#{invoiceBean.periodIndicator eq 'Yearly' || invoiceBean.periodIndicator eq 'One Time'|| invoiceBean.periodIndicator eq null}"  >
+                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
+                   <f:selectItem itemLabel="N/A" itemValue="N/A"/>
+                   <p:ajax event="change"   update="int_Year" />  
+                   </h:selectOneMenu>
+                    <p:message for="str_BillPeriod1" display="text"/>  
+                   </td>
+              
+           
+            
                   <p:spacer width="40" height="20"/>
                  <td><h:outputText  value="Year" /></td>
                <td><h:selectOneMenu id="int_Year" value="#{invoiceBean.int_Year}"  style="width:150px">
@@ -138,10 +163,10 @@
                     <f:selectItem  itemLabel="2017" itemValue="2017" />
                 </h:selectOneMenu>
              </td>
-            
+           
              </h:panelGroup>
              <p:spacer width="40" height="20"/>
-            <td><h:commandButton id="priya" value="Go" style="width:40px;height:20px"  update="invoice" ajax="false"/></td>
+            <td><p:commandButton id="priya" value="Go" style="width:40px;height:20px"  update="invoice" ajax="false"/></td>
                  
           </tr>
           </table>
