@@ -1859,8 +1859,8 @@ public Date accountchangeListener3(ValueChangeEvent event)
    else if(str.equalsIgnoreCase("Previous Week End"))
    {
 	   Calendar c = Calendar.getInstance();
-		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
-		c.set(Calendar.DATE,-1);
+	   c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		c.add(Calendar.DATE,-7);
 		dat_ToDate1=c.getTime();
 		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
 		return dat_ToDate1;
