@@ -331,8 +331,10 @@ public String addExpenses()
 	
 	
 		}
-		else
+		else{
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
 			return "Expenses.xhtml";
+		}
 	}
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Saved Successfully!"));
 	
