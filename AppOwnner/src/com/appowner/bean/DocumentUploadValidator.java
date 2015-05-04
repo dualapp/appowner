@@ -42,33 +42,7 @@ public class DocumentUploadValidator implements Validator {
 				throw new ValidatorException(message);
 			  }*/
 			 switch (part.getContentType()) {
-			 case "image/jpeg":  
-				 
-                 break;
-        case "image/png":   
-		 
-                 break;
-        case "image/bmp":   
-        	 
-                 break;
-        case "image/gif":   
-       	 
-            break;
-        case "image/jpg":   
-       	 
-            break;
-        case "image/PNG":   
-       	 
-            break;
-        case "image/JPEG":   
-          	 
-            break;
-        case "image/JPG":   
-         	 
-            break;
-        case "image/GIF":   
-       	 
-            break;
+			  
 	            case "application/doc":  
 				 
 	                     break;
