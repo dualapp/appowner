@@ -233,10 +233,40 @@ public class TemplateBean implements Serializable,Validator {
 	private List<DueTemplate> listDues;
 	
 	public List<DueTemplate> getListDues() {
-		listDues=new ArrayList<DueTemplate>();
-		System.out.println(str_Accounts+"fdhfj");
-	  	listDues.addAll(getTemplateService().listDueTemplate(str_Accounts));
-	  Collections.sort(listDues);
+		try
+		{
+			listDues=new ArrayList<DueTemplate>();
+		 if(str_Accounts==null  )
+			{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+				query="";
+			}
+			 
+		    
+			 if(!(str_Accounts==null) && !(str_Accounts.isEmpty()) )
+			{
+				query=query+"str_Accounts="+"'"+str_Accounts+"'";
+			}
+		 
+	    
+			
+			if(query.indexOf("and")==1)
+			{   
+			  
+			   query=query.replaceFirst("and","" );
+	                   
+			}
+			
+			}
+	
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		listDues.addAll(getTemplateService().listDueTemplate(query));
+			query="";
+		
+		
+		Collections.sort(listDues);
 		return listDues;
 	}
 	public void setListDues(List<DueTemplate> listDues) {
@@ -460,12 +490,46 @@ public class TemplateBean implements Serializable,Validator {
 	   return "taxtemplate.xhtml?faces-redirect=true";
 	}
 	private List<TaxTemplate> listTaxs;
+	
 	public List<TaxTemplate> getListTaxs() {
-		listTaxs=new ArrayList<TaxTemplate>();
-		listTaxs.addAll(getTemplateService().listTaxTemplate());
-		Collections.sort(listTaxs);
+		try
+		{
+			listTaxs=new ArrayList<TaxTemplate>();
+			 if(str_TaxTemplate==null )
+				{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+					query="";
+				}
+				 
+			    
+				 if(!(str_TaxTemplate==null) && !(str_TaxTemplate.isEmpty()) )
+				{
+					query=query+"str_TaxName="+"'"+str_TaxTemplate+"'";
+				}
+			 
+				
+				if(query.indexOf("and")==1)
+				{   System.out.println("jhujugfjf11111111111111111111111111111111111111111111");
+				  
+				   query=query.replaceFirst("and","" );
+		                   
+				}
+				System.out.println(query+"fdjjhgjjgfjgfjfjfjgjfgjgfjgfj");
+				}
+
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+		listTaxs.addAll(getTemplateService().listTaxTemplate(query));
+				query="";
+			
+			
+			Collections.sort(listTaxs);
+			
 		return listTaxs;
 	}
+	
+	
 	public void setListTaxs(List<TaxTemplate> listTaxs) {
 		this.listTaxs = listTaxs;
 	}
@@ -770,8 +834,43 @@ public class TemplateBean implements Serializable,Validator {
 	
 	
 	public List<InvoiceTemplate> getListInvoices() {
-		listInvoices=new ArrayList<InvoiceTemplate>();
-		listInvoices.addAll(getTemplateService().listInvoiceTemplate());
+		try
+		{
+			listInvoices=new ArrayList<InvoiceTemplate>();
+		 if(str_InvoiceTemplateName==null && str_Frequency==null )
+			{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+				query="";
+			}
+			 
+		    
+			 if(!(str_InvoiceTemplateName==null) && !(str_InvoiceTemplateName.isEmpty()) )
+			{
+				query=query+"str_InvoiceTemplateName="+"'"+str_InvoiceTemplateName+"'";
+			}
+		 if(!(str_Frequency==null) && !(str_Frequency.isEmpty()))
+			{   System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
+				query=query+" and "+"str_Frequency="+"'"+str_Frequency+"'";
+			}
+	    
+			
+			
+			if(query.indexOf("and")==1)
+			{   System.out.println("jhujugfjf11111111111111111111111111111111111111111111");
+			  
+			   query=query.replaceFirst("and","" );
+	                   
+			}
+			
+			}
+	
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		listInvoices.addAll(getTemplateService().listInvoiceTemplate(query));
+			query="";
+		
+		
 		Collections.sort(listInvoices);
 		return listInvoices;
 	}
@@ -1011,7 +1110,7 @@ public class TemplateBean implements Serializable,Validator {
 			Flash flash = facesContext.getExternalContext().getFlash();
 			flash.setKeepMessages(true);
 			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Message", "Invoice deleted Successfully!"));
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Invoice deleted Successfully!", "Invoice deleted Successfully!"));
 	    
 			}
 		   }
@@ -1109,10 +1208,54 @@ public class TemplateBean implements Serializable,Validator {
 				}
 		return "messagetemplate.xhtml";
 	}
+	private String query="";
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
 	private List<MessageTemplate> listMessages;
 	public List<MessageTemplate> getListMessages() {
+		try
+		{
 		listMessages=new ArrayList<MessageTemplate>();
-		listMessages.addAll(getTemplateService().listMessageTemplate(str_Mode,str_Category));
+		 if(str_Mode==null && str_Category==null )
+			{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+				query="";
+			}
+			 
+		    
+			 if(!(str_Mode==null) && !(str_Mode.isEmpty()) )
+			{
+				query=query+"str_Mode="+"'"+str_Mode+"'";
+			}
+		 if(!(str_Category==null) && !(str_Category.isEmpty()))
+			{   System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
+				query=query+" and "+"str_Category="+"'"+str_Category+"'";
+			}
+	    
+			System.out.println(query+"jdffjkdjhfdjfdfdfdffdjfdjfdjfjddfjhdfjhfdjhfd");
+			System.out.println(query.indexOf("and"));
+			
+			if(query.indexOf("and")==1)
+			{   System.out.println("jhujugfjf11111111111111111111111111111111111111111111");
+			  
+			   query=query.replaceFirst("and","" );
+	                   
+			}
+			System.out.println(query+"fdjjhgjjgfjgfjfjfjgjfgjgfjgfj");
+			}
+	
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		listMessages.addAll(getTemplateService().listMessageTemplate(query));
+			query="";
+		
+		
 		Collections.sort(listMessages);
 		return listMessages;
 	}
