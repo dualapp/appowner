@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.Complain;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.InvoiceTemplate;
+import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.MessageTemplate;
 import com.appowner.model.TaxTemplate;
 import com.appowner.model.Vendor;
@@ -63,29 +65,65 @@ public class TemplateDaoImpl implements TemplateDao {
 		return  (Integer) getSessionFactory().getCurrentSession().save(messageTemplate);  
 	 }
 	 @SuppressWarnings("unchecked")
-	public List<DueTemplate> listDueTemplate(String str_Accounts)
-	 {   getApartmentID();
-		 if(str_Accounts==null)
-	     {   System.out.println("dfjkjkdfdkj");
-		    return (List<DueTemplate>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
-	     }
-	 else
-	 {    System.out.println("jdjkdffjkfdjk");
-	     System.out.println(str_Accounts+"fggfkj");
-		 String hql="from DueTemplate  where str_Accounts=? AND int_Organisation=?";
-		    return (List<DueTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,str_Accounts).setParameter(1, apartmentID).setCacheable(true).list();
-	 }
-		 
+	public List<DueTemplate> listDueTemplate(String query)
+	 {   if(query.isEmpty())
+		{
+			List<DueTemplate> dues=(List<DueTemplate>)getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).add(Restrictions.eq("int_Organisation",Util.getAppartmentId())).setCacheable(true).list();
+			
+			
+			
+			return  dues;
+		}
+		else
+		{
+			System.out.println(query+"fggggg");
+			
+			 String hql="from DueTemplate where int_Organisation=? and "+query; 
+			 System.out.println(hql+"jkjfdjkjfdd");
+				return (List<DueTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
+			
+		}
 	 }
 	 @SuppressWarnings("unchecked")
-	public List<InvoiceTemplate> listInvoiceTemplate(){
-		 getApartmentID();
-		 return (List<InvoiceTemplate>) getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).setCacheable(true).add(Restrictions.eq("int_Organisation", apartmentID)).list(); 
+	 public List<InvoiceTemplate> listInvoiceTemplate(String query)
+	 {
+		 if(query.isEmpty())
+			{
+				List<InvoiceTemplate> invoice=(List<InvoiceTemplate>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTemplate.class).add(Restrictions.eq("int_Organisation",Util.getAppartmentId())).setCacheable(true).list();
+				
+				
+				
+				return  invoice;
+			}
+			else
+			{
+				System.out.println(query+"fggggg");
+				
+				 String hql="from InvoiceTemplate where int_Organisation=? and "+query; 
+				 System.out.println(hql+"jkjfdjkjfdd");
+					return (List<InvoiceTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
+				
+			}
 	 }
 	 @SuppressWarnings("unchecked")
-	public List<TaxTemplate> listTaxTemplate()
-	 { getApartmentID();
-		 return (List<TaxTemplate>) getSessionFactory().getCurrentSession().createCriteria(TaxTemplate.class).setCacheable(true).add(Restrictions.eq("int_Organisation", apartmentID)).list();
+	  public List<TaxTemplate> listTaxTemplate(String query)
+	 {  if(query.isEmpty())
+		{
+			List<TaxTemplate> tax=(List<TaxTemplate>)getSessionFactory().getCurrentSession().createCriteria(TaxTemplate.class).add(Restrictions.eq("int_Organisation",Util.getAppartmentId())).setCacheable(true).list();
+			
+			
+			
+			return  tax;
+		}
+		else
+		{
+			System.out.println(query+"fggggg");
+			
+			 String hql="from TaxTemplate where int_Organisation=? and "+query; 
+			 System.out.println(hql+"jkjfdjkjfdd");
+				return (List<TaxTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
+			
+		}
 	 }
 	 @SuppressWarnings("unchecked")
 	 public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category)
@@ -107,6 +145,29 @@ public class TemplateDaoImpl implements TemplateDao {
 	   }
 		 
 	 }
+	 @SuppressWarnings("unchecked")
+	public List<MessageTemplate> listMessageTemplate(String query)
+	 {
+		 if(query.isEmpty())
+			{
+				List<MessageTemplate> message=(List<MessageTemplate>)getSessionFactory().getCurrentSession().createCriteria(MessageTemplate.class).add(Restrictions.eq("int_Organisation",Util.getAppartmentId())).setCacheable(true).list();
+				
+				
+				
+				return  message;
+			}
+			else
+			{
+				System.out.println(query+"fggggg");
+				
+				 String hql="from MessageTemplate where int_Organisation=? and "+query; 
+				 System.out.println(hql+"jkjfdjkjfdd");
+					return (List<MessageTemplate>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
+				
+			}
+					
+		}
+	
 	 @SuppressWarnings("unchecked")
 	public List<String> getTaxName(){
 		 getApartmentID();
