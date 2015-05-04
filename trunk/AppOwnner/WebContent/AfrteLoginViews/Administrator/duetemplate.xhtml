@@ -63,15 +63,15 @@
              
              <p:spacer width="40" height="20"/>
              <th><h:outputText  value="Due Template Of:" /></th>
-               <td><p:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:150px">
+               <td><h:selectOneMenu id="str_Accounts" value="#{templateBean.str_Accounts}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                     <f:selectItems value="#{templateBean.ravenues}" />
-                 </p:selectOneMenu>
+                </h:selectOneMenu>
              </td>
                 <p:spacer width="40" height="20"/>
              <th><h:outputText  value="Account" /></th>
                <p:spacer width="40" height="20"/>
-              <td><p:commandButton id="priya" value="Go"  style="width:40px;height:20px" action="#{templateBean.getListDues()}" update="ggg" ajax="false">
+              <td><p:commandButton id="priya" value="Go"  style="width:40px;height:20px"  update="ggg" ajax="false">
                   </p:commandButton></td>
                              
               

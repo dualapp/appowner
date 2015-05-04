@@ -54,6 +54,12 @@
               <td><h:inputText id="str_Organisation1" readonly="true"
 								value="#{templateBean.str_Organisation}" style="width:200px"></h:inputText>
 								</td>
+           <td> <h:outputText  value="Tax Template" /><font color="red" >*</font></td>
+           <td>  <h:selectOneMenu id="str_TaxTemplate" value="#{templateBean.str_TaxTemplate}"  style="width:200px">
+                   <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"></f:selectItem>
+                   <f:selectItems value="#{templateBean.str_TaxTemplates}"  />
+                    
+                 </h:selectOneMenu></td>
             
              <td><h:commandButton  value="Go" style="width:40px;height:20px"/></td>
                 </h:panelGroup>
