@@ -154,6 +154,7 @@ public class ExpenseBean  implements Serializable{
     public void init() {
 		str_PoolAudience="All Members";
 		str_Rentable="Yes";
+		 
 		     }
 	public List<String> getImages() {
 		images=new ArrayList<String>();
@@ -982,7 +983,7 @@ public void  handleFileUpload1(FileUploadEvent event) throws IOException {
 		 if(organizationLogo!=null)
 		 {
 		 textLogo=organizationLogo.getStr_TextLogo();
-		 str_WelcomeMsg=organizationLogo.getStr_WelcomeMsg();
+		// str_WelcomeMsg=organizationLogo.getStr_WelcomeMsg();
 		 str_Day=organizationLogo.getStr_Day();
 		 str_ApptAddress=organizationLogo.getStr_ApptAddress();
 		 str_offcOutTiming=organizationLogo.getStr_OutTime();
@@ -1000,24 +1001,25 @@ public String addOrganizationLogo ()
 	 if(logoid!=null)
 	{ 
 		 ol.setInt_OthersInfoId(logoid);
-		 ol.setStr_Appartment_Logo(path);
+		 ol.setStr_Appartment_Logo(getStr_OrganizationLogo());
 			ol.setStr_InTime(getStr_offcInTiming());
 			ol.setStr_OutTime(getStr_offcOutTiming());
 			ol.setStr_TextLogo(getTextLogo());
 			ol.setStr_ApptAddress(getStr_ApptAddress());
-			ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
+		//	ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
 			System.out.println(Util.getAppartmentId());
 			ol.setInt_AppartmentId(Util.getAppartmentId());
-			ol.setStr_Document_Upload(getStr_Document_Upload());
-			ol.setStr_Document_Upload(getStr_Document_Upload());
+			 
+			//ol.setStr_Document_Upload(getStr_Document_Upload());
 			ol.setStr_Appartment_Img(getStr_AppartmentImg());
 			ol.setStr_Day(str_Day);
-			ol.setStr_Appartment_Img(path1);
+			ol.setStr_Appartment_Img(getStr_AppartmentImg());
 			ol.setStr_InTime1(getStr_offcInTiming1());
 			ol.setStr_OutTime1(getStr_offcOutTiming1());
+			getExpenseService().updateLogo(ol);
+			 getTextLogo();
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("RWA Information updated successfully"));
-	 getExpenseService().updateLogo(ol);
-	 getTextLogo();
+	 
 	}
 	else
 	{
@@ -1028,10 +1030,10 @@ public String addOrganizationLogo ()
 	ol.setStr_OutTime1(getStr_offcOutTiming1());
 	ol.setStr_TextLogo(getTextLogo());
 	ol.setStr_ApptAddress(getStr_ApptAddress());
-	ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
+	//ol.setStr_WelcomeMsg(getStr_WelcomeMsg());
 	System.out.println(Util.getAppartmentId());
 	ol.setInt_AppartmentId(Util.getAppartmentId());
-	ol.setStr_Document_Upload(getStr_Document_Upload());
+	//ol.setStr_Document_Upload(getStr_Document_Upload());
 	ol.setStr_Appartment_Img(getStr_AppartmentImg());
      
 	getExpenseService().addOrganizationLogo(ol);
@@ -1303,6 +1305,7 @@ public String updateOneAsset()
 	str_AdditionalInfo=null;
 	str_AssetCategoryType=null;
 	str_Block=null;
+	str_Rentable="Yes";
 	return "assets.xhtml";
 }
 /*
@@ -1385,7 +1388,7 @@ public String addAsset()
 {
 	asset =new Assets();
 	asset.setStr_assetcat_name(str_AssetCategoryType);
-	asset.setStr_AssetImg(path4);
+	asset.setStr_AssetImg(assetimg);
 	asset.setStr_AssetName(str_AssetName);
 	asset.setStr_Block(str_Block);
 	asset.setStr_OrganizationName(str_OrganizationName);
@@ -1412,12 +1415,15 @@ public String addAsset()
 	str_VendorType1=null;
 	str_AdditionalInfo=null;
 	str_Block=null;
+	
+	str_Rentable="Yes";
 	str_VendorName=null;
 	str_SellerNameAnddetails=null;
 	dbl_Price=0.0;
-	path4=null;
+	 
 	str_AssetName=null;
-	str_AssetImg=null;
+	 
+	assetimg=null;
 	str_AssetCategoryType=null;
 	date_AMCEndDate=null;
 	date_AMCStartDate=null;
@@ -1459,7 +1465,7 @@ public void  uploadAssetsFile( ) throws IOException   {
 	 			while ((read = inputStream.read(bytes)) != -1) {
 	 				outputStream.write(bytes, 0, read);
 	 			}
-	 			path4="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
+	 			assetimg="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
 	 			 System.out.println(path4);
 	 			statusMessage = "File upload successfull !!";
 	 			
@@ -1565,6 +1571,18 @@ public void  handleFileUpload4(FileUploadEvent event) throws IOException {
 	    
 }*/
 private String path4;
+private String assetimg;
+
+public String getAssetimg() {
+	if(assetimg==null)
+	{
+		assetimg="/images/no_attach.png";
+	}
+	return assetimg;
+}
+public void setAssetimg(String assetimg) {
+	this.assetimg = assetimg;
+}
 public String getPath3() {
 	 
 	 if(selectedAssets!=null)
@@ -2052,24 +2070,36 @@ public void setQuery(String query) {
 }
 public void datechangeListener1(ValueChangeEvent event)
 {    System.out.println("priyyyyyyssssssssss");
+date_ToDate=null;
 date_ToDate=(Date)event.getNewValue();
 System.out.println(date_ToDate+"jjjjjjjjjjjjjjjjjjjjjjjjjjjlokiiiiiiiiiiiiiiiii");
 
 }
 public void datechangeListener(ValueChangeEvent event)
 {    System.out.println("priyyyyyyssssssssss");
+date_FromDate=null;
 date_FromDate=(Date)event.getNewValue();
 System.out.println(date_FromDate+"jjjjjjjjjjjjjjjjjjjjjjjjjjjlokiiiiiiiiiiiiiiiii");
 
 }
 public List<Pool> getPoolList() {
-	poolList=new ArrayList<Pool>();
+	
+	/*poolList=new ArrayList<Pool>();
 	 System.out.println(getDate_FromDate()+""+getDate_ToDate()+""+getStr_Status()+"pollllllistssssssssssss");
 	
 	poolList.addAll(getExpenseService().getPoolList(getDate_FromDate(),getDate_ToDate(),getStr_Status()));
-	  
+	date_FromDate=null;
+	date_ToDate=null;
+    str_Status=null;*/
+	 
+	poolList=new ArrayList<Pool>();
+	 System.out.println(getDate_FromDate()+""+getDate_ToDate()+""+getStr_Status()+"pollllllistssssssssssss");
+	
+	poolList .addAll(getExpenseService().getPoolList(getDate_FromDate(),getDate_ToDate(),getStr_Status()));
+	System.out.println(poolList+"pppppplist");
 	return poolList;
-}
+}  
+ 
 public String closeRequestedPoll()
 {
 	 if(onePoll!=null)
@@ -2085,6 +2115,7 @@ public String closeRequestedPoll()
 	 
 	getExpenseService().updateStatusOfPoll(onePoll.getInt_PoolId(),str_Status);
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Poll Closed Successfully"));
+str_Status=null;
 	 }
     return "pools.xhtml";
 }
@@ -2107,7 +2138,7 @@ public void setPool(Pool pool) {
 			str_Choise2="";
 			str_Choise3="";
 			str_EndDate="";
-			str_PoolAudience="";
+			str_PoolAudience="All Members";
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Updated Successfully!"));
 			
 			return"pools.xhtml";
@@ -2139,7 +2170,7 @@ public String addPool()
 		str_Choise2=null;
 		str_Choise3=null;
 		str_EndDate=null;
-		str_PoolAudience=null;
+		str_PoolAudience="All Members";
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Created Successfully!"));
 		return"pools.xhtml";
 	 
