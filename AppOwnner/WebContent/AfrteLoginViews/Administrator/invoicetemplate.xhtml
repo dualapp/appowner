@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
+	template="#{loginBean.url}include/templates/template1.xhtml">
 	<ui:define name="content">
 		<h:head>
 			<title>InvoiceTemplate Form</title>
@@ -59,8 +59,10 @@
 			</tr>
 		</tbody>
 	</table>
-		<body bgcolor="pink">
+		<h:body bgcolor="pink">
 			<h:form id="form" prependId="false">
+			 <p:growl id="ui-growl" globalOnly="true" autoUpdate="true"/>
+			 
 				 <div id="page3">
    <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
    <tr> 
@@ -70,10 +72,26 @@
 						<td><h:inputText id="str_Organisation1" readonly="true"
 								value="#{templateBean.str_Organisation}" style="width:200px"></h:inputText>
 								</td>
-								
+								<th><h:outputText value="Template Name:" /></th>
+				<td ><h:selectOneMenu id="str_InvoiceTemplate" value="#{templateBean.str_InvoiceTemplateName}"    style="width:200px" >
+                     <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
+                   <f:selectItems value="#{invoiceBean.listInvoiceName}" />
+                   
+                 </h:selectOneMenu>
+                
+             </td>
+                 <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
+           <td> <h:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" style="width:200px">
+            <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
+                   <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
+                     <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
+                       <f:selectItem itemLabel="Yearly" itemValue="Yearly"/>
+                        <f:selectItem itemLabel="One Time" itemValue="One Time"/>
+                 </h:selectOneMenu></td>
+                  
 								
               <p:spacer width="40" height="20"/>
-             <td>   <h:commandButton value="Go" style="width:40px;height:20px" /></td>
+             <td>   <p:commandButton value="Go" style="width:40px;height:20px" ajax="false"/></td>
 					</h:panelGroup>
 
 				</tr>
@@ -85,8 +103,8 @@
 
 			<tr>
 			<td><p:button style="width:120px;height:25px" outcome="createinvoicetemplate.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150; &#150; &#150;<p:commandButton style="width:120px;height:25px" process="invoice" id="view" update=":form:multiInvoiceTemplateDetail1" icon="ui-icon-search" action="#{templateBean.detectInvoiceTemplate}" ajax="#{templateBean.indicate}" value="View" oncomplete="PF('multiInvoiceTemplateDialog1').show()" />
-       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="invoice" id="edit" update=":form:multiInvoiceTemplateDetail" action="#{templateBean.detectInvoiceTemplate1}" icon="ui-icon-pencil" value="Edit " oncomplete="#{templateBean.indicate2}?PF('multiInvoiceTemplateDialog').show():null"  ajax="#{templateBean.indicate2}">
-       <f:ajax event="click" partialSubmit="true"/></p:commandButton>&#150; &#150; &#150; &#150; <p:commandButton  style="width:120px;height:25px" update="invoice" id="delete"    action="#{templateBean.deleteInvoiceTemplate()}"  icon="ui-icon-trash" value="Delete" onclick="return confirm('Are you sure you want to delete ?');"/>
+       &#150; &#150; <p:commandButton style="width:120px;height:25px" process="invoice" id="edit" update=":form:multiInvoiceTemplateDetail,ui:growl" action="#{templateBean.detectInvoiceTemplate1}" icon="ui-icon-pencil" value="Edit " oncomplete="#{templateBean.indicate2}?PF('multiInvoiceTemplateDialog').show():null"  ajax="#{templateBean.indicate2}">
+      </p:commandButton>&#150; &#150; &#150; &#150; <p:commandButton  style="width:120px;height:25px" update="invoice" id="delete"    action="#{templateBean.deleteInvoiceTemplate()}"  icon="ui-icon-trash" value="Delete" onclick="return confirm('Are you sure you want to delete ?');"/>
        &#150; &#150; <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh" onclick="history.go(0)" value="Refresh" />
 			
 			
@@ -115,7 +133,7 @@
        </td></tr></table>
 
 			
-				 <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+				
 				<p:dataTable id="invoice" var="invoice"
 					value="#{templateBean.listInvoices}" selectionMode="single"  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  rows="12" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "  rowsPerPageTemplate="10,20,30,40,50" editable="true" paginatorPosition="top"  resizableColumns="true"  selection="#{templateBean.selectedInvoiceTemplate}" rowKey="#{invoice.int_InvoiceTemplateID}" >
 					  <p:ajax event="rowSelect" listener="#{templateBean.desabled1Listener}"   immediate="true" update=":form:edit,:form:view,:form:delete,:form:ui-growl"/>
@@ -335,6 +353,6 @@
     </p:dialog>
      
 		</h:form>
-		</body>
+		</h:body>
 		</ui:define>
 		</ui:composition>
