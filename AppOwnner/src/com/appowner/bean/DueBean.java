@@ -224,7 +224,7 @@ public class DueBean implements Serializable{
 	}private List<String> str_DueTemplates;
 	public List<String> getStr_DueTemplates() {
 		str_DueTemplates=new ArrayList<String>();
-		str_DueTemplates.addAll(getDueService().getDueTemplate());
+		str_DueTemplates.addAll(getDueService().getDueTemplate(str_DueTemplate));
 		if(str_DueTemplates.listIterator().hasNext())
 		{
 		str_DueTemplate1=str_DueTemplates.get(0);
@@ -284,11 +284,61 @@ public class DueBean implements Serializable{
 	public void setListDueTransaction1(List<DueTransaction> listDueTransaction1) {
 		this.listDueTransaction1 = listDueTransaction1;
 	}
+	private String query="";
 	public List<DueTransaction> getListDueTransaction() {
+		try
+		{
 		listDueTransaction=new ArrayList<DueTransaction>();
-		listDueTransaction.addAll(getDueService().listDueTransaction(str_DueTemplate,str_Block,str_ApartmentNo,str_Period,str_Status));
+		 if(str_Block==null && str_ApartmentNo==null && str_Status==null && str_Period==null && str_DueTemplate==null)
+			{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+				query="";
+			}
+			 
+		    
+			 if(!(str_Block==null) && !(str_Block.isEmpty()) )
+			{
+				query=query+"str_Block="+"'"+str_Block+"'";
+			}
+		 if(!(str_ApartmentNo==null) && !(str_ApartmentNo.isEmpty()))
+			{   System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
+				query=query+" and "+"str_ApartmentNo="+"'"+str_ApartmentNo+"'";
+			}
+	     if(!(str_Status==null) && !(str_Status.isEmpty()))
+			{
+				query=query+" and "+"str_Status="+"'"+str_Status+"'";
+			}
+		if(!(str_Period==null) && !(str_Period.isEmpty()))
+			{
+				query=query+" and "+"str_Period="+"'"+str_Period+"'";
+			}
+		if(!(str_DueTemplate==null) && !(str_DueTemplate.isEmpty()))
+			{
+				query=query+" and "+"str_DueTemplate="+"'"+str_DueTemplate+"'";
+			} 
+			 
+			System.out.println(query+"jdffjkdjhfdjfdfdfdffdjfdjfdjfjddfjhdfjhfdjhfd");
+			System.out.println(query.indexOf("and"));
+			
+			if(query.indexOf("and")==1)
+			{   System.out.println("jhujugfjf11111111111111111111111111111111111111111111");
+			  
+			   query=query.replaceFirst("and","" );
+	                   
+			}
+			System.out.println(query+"fdjjhgjjgfjgfjfjfjgjfgjgfjgfj");
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		listDueTransaction.addAll(getDueService().listDueTransaction(query));
 		Collections.sort(listDueTransaction);
-		return listDueTransaction;
+			query="";
+			
+			return listDueTransaction;
+		
+		
+		
 	}
 	public void setListDueTransaction(List<DueTransaction> listDueTransaction) {
 		this.listDueTransaction = listDueTransaction;
@@ -331,15 +381,22 @@ public class DueBean implements Serializable{
 	public void setPeriodIndicator(String periodIndicator) {
 		this.periodIndicator = periodIndicator;
 	}
+	public List<String> templateChangeListener1(ValueChangeEvent event)
+	{  System.out.println("fggfkjfkjgfkj11111111111111111111111111111111");
+		str_DueTemplate=(String)event.getNewValue();
+		System.out.println(str_DueTemplate+"fdkjfdkjdkfkjfdkjfdjkfgkjgfkjgfkjgfk");
+		str_DueTemplates=new ArrayList<String>();
+		 str_DueTemplates.addAll(getDueService().getDueTemplate(str_DueTemplate));
+		 System.out.println(str_DueTemplates+"dfjkjdfdjkfdjfdjfjfdjfjfdjfdjdfj");
+		return str_DueTemplates;
+	
+	}
 	public String templateChangeListener(ValueChangeEvent event)
-	{  
+	{  System.out.println("hvjggjfgjkfjkgfjkkgffg111111111111111111111111111111111111111111111");
 		 String ddd=(String)event.getNewValue();  
 	periodIndicator=getDueService().getFrequency(ddd);
 	  System.out.println(ddd+"hjhjjh");  
-	  str_Block="";
- 		str_ApartmentNo="";
- 		str_Period="";
- 		int_Year=0;
+	 
 		return periodIndicator;
 	}
 	public void periodChangeListener(ValueChangeEvent event)
