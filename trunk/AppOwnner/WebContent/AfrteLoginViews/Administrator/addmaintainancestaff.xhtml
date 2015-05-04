@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 	<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
@@ -16,37 +16,58 @@
 			</tr>
 		</tbody>
 	</table>
-<h:head><title>Maintainance Staff  Registration</title></h:head>
-<body bgcolor="pink">
+<h:head><title>Maintainance Staff  Registration</title>
+<title> Committee Members</title>
+      <style>
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="form:ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
+</style>
+ 
+</h:head>
+<h:body>
     <h:form id="form" ><br/> 
      
      <center>
   <div>  <table >
          <th><h3>FullName</h3></th> <th><h3> RoleName</h3></th><th><h3>Email</h3></th><th><h3>Mobile</h3></th> 
       
-   <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
-            </h:inputText></td>
+   <tr><td>   <p:inputText value="#{maintainanceStaffBean.str_UserName}" required="true" requiredMessage="plz Enter MaintainanceStaff Name" valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
+            </p:inputText></td>
             <td>   <h:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}" required="true" requiredMessage="plz enter  Role Name"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
             
             <f:selectItem itemLabel="Select One" itemValue="" /> 
             <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
             </h:selectOneMenu></td>
-             <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" Email is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
-              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
+             <td><p:inputText value="#{maintainanceStaffBean.str_Email}"  required="true" validatorMessage=" Email is not valid" requiredMessage="Please enter  Email"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
+              <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></p:inputText>
              </td> 
-            <td> <h:inputText value="#{maintainanceStaffBean.str_Mobile}"   required="true"  validatorMessage="invalid mobile no" requiredMessage="Please enter  phone number" maxlength="11" valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
+            <td> <p:inputText value="#{maintainanceStaffBean.str_Mobile}"   required="true"  validatorMessage="invalid mobile no" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  requiredMessage="Please enter  phone number" maxlength="10" valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
              
-               <tr><td>   <h:inputText value="#{maintainanceStaffBean.str_UserName}"    valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
-            </h:inputText></td>
-            <td>   <h:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}"    valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
+               <tr><td>   <p:inputText value="#{maintainanceStaffBean.str_UserName}"    valueChangeListener="#{maintainanceStaffBean.userNameListener}" style="width:200px">
+            </p:inputText></td>
+            <td>   <h:selectOneMenu  style="width:200px" value="#{maintainanceStaffBean.str_RoleName}"    required="true"  valueChangeListener="#{maintainanceStaffBean.maintainanceStaffRoleListener}">
             
-            <f:selectItem itemLabel="Select One" itemValue="" /> 
+            <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" /> 
             <f:selectItems value="#{maintainanceStaffBean.str_MaintainanceStaffRoles}" />
             </h:selectOneMenu></td>
-             <td><h:inputText value="#{maintainanceStaffBean.str_Email}"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
-             </h:inputText>
+             <td><p:inputText value="#{maintainanceStaffBean.str_Email}"  valueChangeListener="#{maintainanceStaffBean.emailListener}" style=" width:200px">
+             </p:inputText>
              </td> 
-            <td> <h:inputText value="#{maintainanceStaffBean.str_Mobile}"   valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
+            <td> <p:inputText value="#{maintainanceStaffBean.str_Mobile}" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  valueChangeListener="#{maintainanceStaffBean.mobileListener}"/> </td></tr>
    
       
             
@@ -57,7 +78,7 @@
  </center>
  
  </h:form>
- </body>
+</h:body>
  </ui:define>
  </ui:composition>
  

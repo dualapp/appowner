@@ -87,44 +87,7 @@
 	</table>
 	 
 	</h:form>
-	<h:form   enctype="multipart/form-data" >
-
-  
-            
-  <table   style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
-   
-         <tr><th width="20%"><p:outputLabel value="Upload Doucment:"/></th> 
- <td  width="80%"> </td></tr>
-  <tr><th></th><td>
-  
-  
-           <!-- inputFile tag to upload file -->
 	 
-		<h:inputFile id="file3" 
-		             label="file"
-			         value="#{expenseBean.part2}" 
-			        required="true" 
-			         requiredMessage="File not selected !!" >
-            <!-- FileUploadValidator for file validation -->
-		   <f:validator validatorId="DocumentUploadValidator" /> 
-		</h:inputFile>
-		<h:message style="color: red" for="file3" /><br />
- 
-		<h:commandButton id="submit3"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
-		                 action="#{expenseBean.uploadDocument()}"
-			             value="upload file" >
-			                 
-			             </h:commandButton><br />
- 
-        <!-- status message of file upload; rendered if message is set 
-		<p:outputLabel value="#{expenseBean.statusMessage}"
-			          rendered="#{not empty expenseBean.statusMessage}" />-->
-  
-                                   
-                                  </td></tr>
-                                 
-	</table>
-	</h:form>
 	<h:form  id="upload2" enctype="multipart/form-data" >
 
   
@@ -179,7 +142,7 @@
         <tr><th><p:outputLabel value="OrganizationTextLogo" /></th><td><p:inputText id="textlogo" value="#{expenseBean.textLogo}"/></td></tr> 
       
        <tr><th><p:outputLabel value="Appartment Address:"/> </th><td><p:inputTextarea style="Width: 370px; height:196px;float:left;"       value="#{expenseBean.str_ApptAddress}"/></td></tr> 
-        <tr><th><p:outputLabel value="Provide a welcome note for the new member *"/></th><td><p:inputTextarea  style="Width: 370px; height:196px;float:left;"  value="#{expenseBean.str_WelcomeMsg}" id="welcome_note" maxlength="650" placeholder="E.g: Welcome to Shafi Paradise. This is the official portal for all your apartment needs. Please go through the site to more more about the community and discover more neighbours." label="welcome_note"></p:inputTextarea></td></tr>
+        
         <tr><th><p:outputLabel value="What is your association office timings? *"/></th> </tr>
         <tr>
         
@@ -224,7 +187,7 @@
                  
         <th style="width:50%;">  <h:selectOneMenu id="str_Day" style="width:25%;" value="#{expenseBean.str_Day}" >
             <f:selectItem itemLabel="Sunday" itemValue="Sunday" />
-            <f:selectItem itemLabel="Monday" itemValue="Tonday" />
+            <f:selectItem itemLabel="Monday" itemValue="Monday" />
             <f:selectItem itemLabel="Tuesday" itemValue="Tuesday" />
             <f:selectItem itemLabel="Wednesday" itemValue="Wednesday" />
              <f:selectItem itemLabel="Thrusday" itemValue="Thrusady" />
