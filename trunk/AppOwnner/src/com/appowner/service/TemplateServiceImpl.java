@@ -53,17 +53,22 @@ public class TemplateServiceImpl implements TemplateService {
 	{
 		return getTemplateDao().listDueTemplate(str_Accounts);
 	}
-	public List<InvoiceTemplate> listInvoiceTemplate(){
-		return getTemplateDao().listInvoiceTemplate();
-	}
-	public List<TaxTemplate> listTaxTemplate()
-	{
-		return getTemplateDao().listTaxTemplate();
-	}
+	 public List<InvoiceTemplate> listInvoiceTemplate(String query)
+	 {
+		 return getTemplateDao().listInvoiceTemplate(query); 
+	 }
+	  public List<TaxTemplate> listTaxTemplate(String query)
+	  {
+		  return getTemplateDao().listTaxTemplate(query);  
+	  }
 	 public List<MessageTemplate> listMessageTemplate(String str_Mode, String str_Category)
 	  {
 		  return getTemplateDao().listMessageTemplate(str_Mode,str_Category);  
 	  }
+	 public List<MessageTemplate> listMessageTemplate(String query)
+	 {
+		 return getTemplateDao().listMessageTemplate(query);  
+	 }
 	  public List<String> getTaxName()
 	  {
 		  return getTemplateDao().getTaxName(); 

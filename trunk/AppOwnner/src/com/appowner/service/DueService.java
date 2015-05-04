@@ -9,7 +9,7 @@ public interface DueService {
 
 	public List<String> getAccountsList();
 
-	public List<String> getDueTemplate();
+	public List<String> getDueTemplate(String ddd);
 
 	public Integer saveDueTransaction(DueTransaction due);
 
@@ -48,6 +48,8 @@ public interface DueService {
 	public boolean getInvoiceNo(Integer id);
 
 	public DueTransaction getDueTransaction(Integer int_DueTransactionID);
+
+	public List<DueTransaction> listDueTransaction(String query);
 			
 			
 

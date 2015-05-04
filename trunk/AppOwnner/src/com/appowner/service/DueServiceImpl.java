@@ -27,9 +27,9 @@ public class DueServiceImpl implements DueService{
 		return getDueDao().getAccountsList();
 	}
 
-	public List<String> getDueTemplate()
+	public List<String> getDueTemplate(String ddd)
 	{
-		return getDueDao().getDueTemplate();
+		return getDueDao().getDueTemplate(ddd);
 	}
 	public List<DueTransaction> listDueTransaction(String str_DueTemplate, String str_Block, String str_ApartmentNo, String str_Period, String str_Status)
 	{
@@ -103,5 +103,9 @@ public class DueServiceImpl implements DueService{
 	public DueTransaction getDueTransaction(Integer int_DueTransactionID)
 	{
 		return getDueDao().getDueTransaction(int_DueTransactionID);
+	}
+	public List<DueTransaction> listDueTransaction(String query)
+	{
+		return getDueDao().listDueTransaction(query);
 	}
 }
