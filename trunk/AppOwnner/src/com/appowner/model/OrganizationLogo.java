@@ -39,10 +39,22 @@ public class OrganizationLogo  implements Serializable{
 	
 	@Column(name="var_TextLogo")
 	private String str_TextLogo;
-	@Column(name="var_WelcomeMsg")
+	/* @Column(name="var_WelcomeMsg")
 	private String str_WelcomeMsg;
+	public String getStr_WelcomeMsg() {
+		return str_WelcomeMsg;
+	}
+	public void setStr_WelcomeMsg(String str_WelcomeMsg) {
+		this.str_WelcomeMsg = str_WelcomeMsg;
+	}
 	@Column(name="var_Document_Upload")
 	private String str_Document_Upload;
+	public String getStr_Document_Upload() {
+		return str_Document_Upload;
+	}
+	public void setStr_Document_Upload(String str_Document_Upload) {
+		this.str_Document_Upload = str_Document_Upload;
+	}*/
 	@Column(name="var_ApptAddress")
 	private String str_ApptAddress;
 	@Column(name="var_Day")
@@ -114,18 +126,8 @@ public class OrganizationLogo  implements Serializable{
 	public void setStr_TextLogo(String str_TextLogo) {
 		this.str_TextLogo = str_TextLogo;
 	}
-	public String getStr_WelcomeMsg() {
-		return str_WelcomeMsg;
-	}
-	public void setStr_WelcomeMsg(String str_WelcomeMsg) {
-		this.str_WelcomeMsg = str_WelcomeMsg;
-	}
-	public String getStr_Document_Upload() {
-		return str_Document_Upload;
-	}
-	public void setStr_Document_Upload(String str_Document_Upload) {
-		this.str_Document_Upload = str_Document_Upload;
-	}
+	
+	
 	 
  
 }
