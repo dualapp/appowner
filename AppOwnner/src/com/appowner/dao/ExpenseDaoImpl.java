@@ -277,7 +277,7 @@ System.out.println(query+"queryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 		 Collections.sort(plist);	
 		 return plist;
 		 }
-		else if(date_FromDate==null && date_ToDate==null && str_Status!=null)
+		else if(date_FromDate==null && date_ToDate==null && !(str_Status.equalsIgnoreCase("All")))
 		{
 			List<Pool> plist1= getSessionFactory().getCurrentSession().createQuery("from Pool where int_OrganizationId=? and str_Status=?").setParameter(0, Util.getAppartmentId()).setParameter(1, str_Status).list();
 			 Collections.sort(plist1);	
@@ -285,15 +285,30 @@ System.out.println(query+"queryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 		}
 		else if(date_FromDate!=null && date_ToDate!=null && str_Status==null)
 		{
-			List<Pool> plist3 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("int_OrganizationId", Util.getAppartmentId())).add(Restrictions.eq("str_Status", str_Status)).list(); 
+			List<Pool> plist3 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("int_OrganizationId", Util.getAppartmentId())).list(); 
 			// TODO Auto-generated method stub
 			Collections.sort(plist3);	
 			 return plist3;
 		}
+		else if(date_FromDate!=null && date_ToDate!=null && str_Status.equalsIgnoreCase("All"))
+		{
+			List<Pool> plist5 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("int_OrganizationId", Util.getAppartmentId())).list(); 
+			// TODO Auto-generated method stub
+			Collections.sort(plist5);	
+			 return plist5;
+		}
+		else if(date_FromDate==null && date_ToDate==null && str_Status.equalsIgnoreCase("All"))
+		{
+			 
+			List<Pool> plist4 =sessionFactory.getCurrentSession().createQuery("from Pool where int_OrganizationId=?").setParameter(0, Util.getAppartmentId()).list();
+			// TODO Auto-generated method stub
+			Collections.sort(plist4);	
+			 return plist4;
+		}
 	else
 	{
 		 
-		List<Pool> plist2 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("int_OrganizationId", Util.getAppartmentId())).list(); 
+		List<Pool> plist2 =sessionFactory.getCurrentSession().createCriteria(Pool.class).setCacheable(true).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("int_OrganizationId", Util.getAppartmentId())).add(Restrictions.between("dat_StartDate", date_FromDate,date_ToDate)).add(Restrictions.eq("str_Status", str_Status)).list(); 
 		// TODO Auto-generated method stub
 		Collections.sort(plist2);	
 		 return plist2;
@@ -405,7 +420,7 @@ System.out.println(query+"queryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 	@Override
 	public List<Assets> getAssetList(String  query) 
 			{
-		if(query.isEmpty())
+		if(query=="")
 		{
 			List<Assets> alist= getSessionFactory().getCurrentSession().createQuery("from Assets where int_AppartmentId=?").setParameter(0, Util.getAppartmentId()).setCacheable(true).list();
 			Collections.sort(alist);
