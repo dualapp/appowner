@@ -1602,7 +1602,10 @@ public class LoginBean implements Serializable {
 			.getExternalContext().getSession(false);
 
 	public String getPath() {
+		try
+		{
 		path = (String) session.getAttribute("str_ImageName1");
+		
 		if (user != null)
 			path = user.getVar_ImageName1();
 			
@@ -1615,8 +1618,13 @@ public class LoginBean implements Serializable {
 		 
 			
 		return path;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return path;
 	}
-
 	public void setPath(String path) {
 		this.path = path;
 	}
