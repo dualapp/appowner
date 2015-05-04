@@ -7,7 +7,7 @@ import com.appowner.model.DueTransaction;
 public interface DueDao {
 	public List<String> getAccountsList();
 
-	public List<String> getDueTemplate();
+	public List<String> getDueTemplate(String ddd);
 	public List<DueTransaction> listDueTransaction(String str_DueTemplate, String str_Block, String str_ApartmentNo, String str_Period, String str_Status);
 
 	public Integer saveDueTransaction(DueTransaction due);
@@ -43,6 +43,8 @@ public interface DueDao {
 	public boolean getInvoiceNo(Integer id);
 
 	public DueTransaction getDueTransaction(Integer int_DueTransactionID);
+
+	public List<DueTransaction> listDueTransaction(String query);
 			
 			
 
