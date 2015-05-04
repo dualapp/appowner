@@ -349,7 +349,7 @@ public class AccountsDaoImpl implements AccountsDao{
 			System.out.println(str+"fdkmlfdkjgfkgfkj1234");
 			if(str.equalsIgnoreCase("Expense"))
 			{
-				String hql1="select int_Ammount from Expense where int_AppartmentId=?  and str_ExpenseType='Expense' and date_Duration <=?";
+				String hql1="select dbl_Ammount from Expense where int_AppartmentId=?  and str_ExpenseType='Expense' and date_Duration <=?";
 				List<Double> sss1=(List<Double>)getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,Util.getAppartmentId()).setDate(1,openingdate).setCacheable(true).list();
 				System.out.println(sss1+"fdkfggfgf");
 				ListIterator list1=sss1.listIterator();
@@ -366,7 +366,7 @@ public class AccountsDaoImpl implements AccountsDao{
 			String query="select str_AccountName from ChartOfAccount where  str_AccountType IN('Bank','Cash') and int_ApartmentId IN('0',"+Util.getAppartmentId()+')';
 			List<String> accountName=(List<String>)getSessionFactory().getCurrentSession().createQuery(query).setCacheable(true).list();
 			System.out.println(accountName+"flkmfdkfgkgf");
-			String hql1="select int_Ammount from Expense where int_AppartmentId=? and str_AccountName=? and str_ExpenseType='Expense' and date_Duration <=?";
+			String hql1="select dbl_Ammount from Expense where int_AppartmentId=? and str_AccountName=? and str_ExpenseType='Expense' and date_Duration <=?";
 			List<Double> sss1=(List<Double>)getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,Util.getAppartmentId()).setParameter(1,str).setDate(2,openingdate).setCacheable(true).list();
 			System.out.println(sss1+"fdkfggfgf");
 			ListIterator list1=sss1.listIterator();
@@ -829,7 +829,7 @@ public class AccountsDaoImpl implements AccountsDao{
 	@SuppressWarnings("unchecked")
 	public List<Double> getExpenseAmount(Date dat_To)
 	{   getApartmentID();
-		String str="select int_Ammount from Expense where str_ExpenseType='Expense' and int_AppartmentId=? and date_Duration <=?";
+		String str="select dbl_Ammount from Expense where str_ExpenseType='Expense' and int_AppartmentId=? and date_Duration <=?";
 		return getSessionFactory().getCurrentSession().createQuery(str).setCacheable(true).setParameter(0,apartmentID).setDate(1, dat_To).list();
 	}
 	@SuppressWarnings("unchecked")
@@ -876,7 +876,7 @@ public class AccountsDaoImpl implements AccountsDao{
 			 }
 		 
 		}
-		 String hql="select int_Ammount from Expense where date_Duration <=? AND int_AppartmentId=? AND str_ExpenseType=? AND str_AccountName=?";
+		 String hql="select dbl_Ammount from Expense where date_Duration <=? AND int_AppartmentId=? AND str_ExpenseType=? AND str_AccountName=?";
 		 List<Double> amount1=(List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setDate(0,dat_ToDate).setParameter(1, apartmentID).setParameter(2, "Expense").setParameter(3,str).list();
 		
 		 String hq11="select dbl_CreditAmount from ManualJournal where str_OrganisationID=? AND str_CreditAccount=? AND dat_Date <= ?";
@@ -928,7 +928,7 @@ public class AccountsDaoImpl implements AccountsDao{
 		}
 		if(str.equalsIgnoreCase("Expense"))
 		{
-		 String hql="select int_Ammount from Expense where date_Duration <=? AND int_AppartmentId=? AND str_ExpenseType=?";
+		 String hql="select dbl_Ammount from Expense where date_Duration <=? AND int_AppartmentId=? AND str_ExpenseType=?";
 		 List<Double> amount1=(List<Double>) getSessionFactory().getCurrentSession().createQuery(hql).setDate(0,dat_ToDate).setParameter(1, apartmentID).setParameter(2, "Expense").list();
 		
 		 ListIterator list1=amount1.listIterator();

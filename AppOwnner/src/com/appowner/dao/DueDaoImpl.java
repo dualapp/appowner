@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
 import com.appowner.model.InvoiceTemplate;
+import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.Vendor;
 import com.appowner.util.Util;
 
@@ -42,9 +44,10 @@ public class DueDaoImpl implements DueDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<String> getDueTemplate()
+	public List<String> getDueTemplate(String ddd)
 	{    getApartmentID();
-		List<String> dueTemplateList= (List<String>) getSessionFactory().getCurrentSession().createCriteria(DueTemplate.class).setCacheable(true).setProjection(Projections.property("str_DueTemplate")).add(Restrictions.eq("int_Organisation", apartmentID)).list();
+	String str="select str_DueTemplate from DueTemplate where int_Organisation=? and str_Accounts=?";
+		List<String> dueTemplateList= (List<String>) getSessionFactory().getCurrentSession().createQuery(str).setParameter(0,Util.getAppartmentId()).setParameter(1,ddd).setCacheable(true).list();
 		return dueTemplateList;
 	}
 	public Integer saveDueTransaction(DueTransaction due)
@@ -223,4 +226,27 @@ public class DueDaoImpl implements DueDao{
 		String hql="from DueTransaction where int_DueTransactionID=?";
 		return (DueTransaction) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_DueTransactionID).setCacheable(true).uniqueResult();
 	}
-}
+	@SuppressWarnings("unchecked")
+	public List<DueTransaction> listDueTransaction(String query)
+	{
+		if(query.isEmpty())
+		{
+			List<DueTransaction> dues=(List<DueTransaction>)getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).add(Restrictions.eq("str_Organisation",Util.getAppartmentId())).setCacheable(true).list();
+			
+			
+			
+			return  dues;
+		}
+		else
+		{
+			System.out.println(query+"fggggg");
+			
+			 String hql="from DueTransaction where str_Organisation=? and "+query; 
+			 System.out.println(hql+"jkjfdjkjfdd");
+				return (List<DueTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
+			
+		}
+				
+	}
+	}
+

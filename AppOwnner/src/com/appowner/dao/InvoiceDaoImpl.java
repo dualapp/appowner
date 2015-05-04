@@ -291,6 +291,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 		else
 		{
 			System.out.println(query+"fggggg");
+			
 			 String hql="from InvoiceTransaction where int_Organisation=? and "+query; 
 			 System.out.println(hql+"jkjfdjkjfdd");
 				return (List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
