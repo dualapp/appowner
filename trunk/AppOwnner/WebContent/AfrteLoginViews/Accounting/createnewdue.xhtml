@@ -56,18 +56,19 @@
             <tr>
             <td ><h:outputLabel value="Account" /> <font color="red" >*</font></td> 
             
-              <td ><h:selectOneMenu id="str_Account" value="#{dueBean.str_Accounts}" required="false" >
-              
+              <td ><h:selectOneMenu id="str_Account" value="#{dueBean.str_Accounts}" valueChangeListener="#{dueBean.templateChangeListener1}" >
+                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItems value="#{dueBean.ravenues}"  />
-                 
+                  <p:ajax event="change"  process="str_Account" update="str_DueTemplate"/>
                  </h:selectOneMenu>
+                 
              </td>
           </tr> 
           <tr>
             <td><h:outputLabel value="Due Template" /><font color="red" >*</font></td>
               <td><h:selectOneMenu id="str_DueTemplate" value="#{dueBean.str_DueTemplate}" valueChangeListener="#{dueBean.templateChangeListener}" >
                    <f:selectItems value="#{dueBean.str_DueTemplates}"/>
-                    <p:ajax event="change"  process="str_DueTemplate" update="str_Period"/>
+                    <p:ajax event="change"  execute="str_DueTemplate" update="str_Period" partialSubmit="true" render="@from"/>
                  </h:selectOneMenu>
              </td>
             
@@ -89,7 +90,7 @@
                      <f:selectItem itemLabel="Q2[JUL-SEP]" itemValue="Q2[JUL-SEP]"/>
                        <f:selectItem itemLabel="Q3[OCT-DEC]" itemValue="Q3[OCT-DEC]"/>
                         <f:selectItem itemLabel="Q4[JAN-MAR]" itemValue="Q4[JAN-MAR]"/>
-                       <p:ajax event="change"  process="str_Period"  partialSubmit="true" update="int_Year"/>  
+                       <p:ajax event="change"  process="str_Period"  partialSubmit="true" />  
                  </h:selectOneMenu>
            <h:selectOneMenu  value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Monthly'}" valueChangeListener="#{dueBean.periodChangeListener}" onChange="submit();">
             <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
@@ -105,7 +106,7 @@
                      <f:selectItem itemLabel="OCT" itemValue="OCT"/>
                        <f:selectItem itemLabel="NOV" itemValue="NOV"/>
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
-                        <f:ajax event="change"  process="str_Period" partialSubmit="true" />  
+                        <p:ajax event="change"  process="str_Period" partialSubmit="true" />  
                  </h:selectOneMenu>
                   <h:selectOneMenu  value="#{dueBean.str_Period}" rendered="#{dueBean.periodIndicator eq 'Yearly' || dueBean.periodIndicator eq 'One Time' || dueBean.str_DueTemplate1 eq null}" valueChangeListener="#{dueBean.periodChangeListener}">
                   
