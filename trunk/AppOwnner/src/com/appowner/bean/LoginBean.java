@@ -1743,13 +1743,15 @@ public List<String> getCityListByState() {
 	public String getUrl() throws MalformedURLException {
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		 String url = request.getRequestURL().toString();
+		 System.out.println(request.getRequestedSessionId()+"fdjkfdgffggfgfgf");
+		 int port=request.getServerPort();
 		
-		if(url.equalsIgnoreCase("http://localhost:5436/AppOwnner/layout.xhtml"))
+		if(url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml"))
 				{
 		            
 		           url="";
 				}
-		else if(url.equalsIgnoreCase("http://localhost:5436/AppOwnner/AfrteLoginViews/Adminwelcomepage.xhtml") || url.equalsIgnoreCase("http://localhost:5436/AppOwnner/AfrteLoginViews/welcomepage.xhtml"))
+		else if(url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/AfrteLoginViews/Adminwelcomepage.xhtml") || url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/AfrteLoginViews/welcomepage.xhtml"))
 				{
 			       url="../";
 				}

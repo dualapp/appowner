@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -103,6 +104,12 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	public String getSelect() {
 		return select;
 	}
+	@PostConstruct
+	public void init() {
+		select1="Partial";
+	
+	}
+	
 	public void setSelect(String select) {
 		this.select = select;
 	}
@@ -485,7 +492,7 @@ private List<DueTransaction> listDueTransaction;
 			invoice.setStr_InvoiceTemplate(getStr_InvoiceTemplate());
 			invoice.setStr_BillPeriod(getStr_BillPeriod());
 			invoice.setInt_Year(getInt_Year());
-			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		/*	HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 			String str4=request.getParameter("dat_InvoiceDate");
 			
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -499,7 +506,7 @@ private List<DueTransaction> listDueTransaction;
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			
+		*/	
 			invoice.setDat_InvoiceDate(dat_InvoiceDate);
 		     System.out.println(dat_DueDate+"dfkjfjkdfgkjfgkjgf");
 			invoice.setDat_DueDate(dat_DueDate);
@@ -568,6 +575,8 @@ private List<DueTransaction> listDueTransaction;
 					username=userName;
 					InvoiceNo=int_InvoiceNo;
 					System.out.println(dat_InvoiceDate+"fggjkgfgfh");
+					
+					
 					Date=dat_InvoiceDate;
 					date1=getDat_DueDate();
 					System.out.println(getDat_DueDate()+"gfvjgvfkjfgj");
@@ -1584,7 +1593,10 @@ public boolean isIndicator1() {
 public void setIndicator1(boolean indicator1) {
 	this.indicator1 = indicator1;
 }
-
+public void getManualJournal(int id)
+{
+	System.out.println(id+"fjgjgfjfssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss333333333333333");
+}
 public void desabled1Listener( SelectEvent event)
 {  System.out.println("11111111111111111111111111111111111111111111111111111");
 	selectedInvoice=(InvoiceTransaction) event.getObject();

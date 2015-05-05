@@ -224,7 +224,7 @@ public class DueBean implements Serializable{
 	}private List<String> str_DueTemplates;
 	public List<String> getStr_DueTemplates() {
 		str_DueTemplates=new ArrayList<String>();
-		str_DueTemplates.addAll(getDueService().getDueTemplate(str_DueTemplate));
+		str_DueTemplates.addAll(getDueService().getDueTemplate(str_Accounts));
 		if(str_DueTemplates.listIterator().hasNext())
 		{
 		str_DueTemplate1=str_DueTemplates.get(0);
@@ -383,19 +383,19 @@ public class DueBean implements Serializable{
 	}
 	public List<String> templateChangeListener1(ValueChangeEvent event)
 	{  System.out.println("fggfkjfkjgfkj11111111111111111111111111111111");
-		str_DueTemplate=(String)event.getNewValue();
-		System.out.println(str_DueTemplate+"fdkjfdkjdkfkjfdkjfdjkfgkjgfkjgfkjgfk");
+	str_Accounts=(String)event.getNewValue();
+		System.out.println(str_Accounts+"fdkjfdkjdkfkjfdkjfdjkfgkjgfkjgfkjgfk");
 		str_DueTemplates=new ArrayList<String>();
-		 str_DueTemplates.addAll(getDueService().getDueTemplate(str_DueTemplate));
+		 str_DueTemplates.addAll(getDueService().getDueTemplate(str_Accounts));
 		 System.out.println(str_DueTemplates+"dfjkjdfdjkfdjfdjfjfdjfjfdjfdjdfj");
 		return str_DueTemplates;
 	
 	}
 	public String templateChangeListener(ValueChangeEvent event)
-	{  System.out.println("hvjggjfgjkfjkgfjkkgffg111111111111111111111111111111111111111111111");
-		 String ddd=(String)event.getNewValue();  
-	periodIndicator=getDueService().getFrequency(ddd);
-	  System.out.println(ddd+"hjhjjh");  
+	{  System.out.println(str_DueTemplate+"hvjggjfgjkfjkgfjkkgffg111111111111111111111111111111111111111111111");
+	str_DueTemplate =(String)event.getNewValue();  
+	periodIndicator=getDueService().getFrequency(str_DueTemplate);
+	  System.out.println(str_DueTemplate+"hjhjjh");  
 	 
 		return periodIndicator;
 	}
