@@ -58,14 +58,14 @@
     
 <h2><p:outputLabel value="*#{expenseBean.onePoll.str_poolQuestion}"/>?</h2> </td></tr>
 <tr><td>
- #{expenseBean.onePoll.str_Choise1} Got:  #{expenseBean.getCount1()} Vote</td></tr>
+ #{expenseBean.onePoll.str_Choise1}  : Got   #{expenseBean.getCount1()} Vote</td></tr>
   
 <tr><td><p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/></td></tr>
   <tr><td></td></tr>
-  <tr><td>#{expenseBean.onePoll.str_Choise2} Got: #{expenseBean.getCount2()} Vote</td></tr>
+  <tr><td>#{expenseBean.onePoll.str_Choise2} : Got   #{expenseBean.getCount2()} Vote</td></tr>
  <tr><td><p:progressBar  style="width: 30%;" value="#{expenseBean.getChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/></td></tr>
 <tr><td></td></tr>
-<tr><td>#{expenseBean.onePoll.str_Choise3} Got: #{expenseBean.getCount3()} Vote</td></tr>
+<tr><td>#{expenseBean.onePoll.str_Choise3} :Got   #{expenseBean.getCount3()} Vote</td></tr>
  <tr><td><p:progressBar style="width: 30%;" value="#{expenseBean.getChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/></td></tr>
 
     </table>

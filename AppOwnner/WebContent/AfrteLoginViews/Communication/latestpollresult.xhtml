@@ -10,20 +10,20 @@
 	 </f:metadata>
 	 
 <h:form> 
-<center>
-<h5><h:outputText value="*#{expenseBean.latestPolls.str_poolQuestion}"/>?</h5>
-<h5> #{expenseBean.latestPolls.getInt_Vote()}  <h:outputText value="People Have Taken Part In This Poll:"/></h5>
-  </center>
  
-  #{expenseBean.latestPolls.str_Choise1} Got: #{expenseBean.getCount1()} Vote 
+<h5> #{expenseBean.latestPolls.str_poolQuestion}?</h5>
+ <h5> <h:outputText value="Total Vote:"/>#{expenseBean.latestPolls.getInt_Vote()}  </h5>
+  
+ 
+  #{expenseBean.latestPolls.str_Choise1} :  Got  #{expenseBean.getLatestCount1()} Vote 
   
  <p:progressBar  style="width: 50%;" value="#{expenseBean.getLatestChoise1Vote()}" labelTemplate="{value}%" displayOnly="true"/> <br/><br/>
-   #{expenseBean.latestPolls.str_Choise2} Got: #{expenseBean.getCount2()} Vote <br/><br/>
+   #{expenseBean.latestPolls.str_Choise2}: Got  #{expenseBean.getLatestCount2()} Vote <br/><br/>
   <p:progressBar  style="width: 50%;"  value="#{expenseBean.getLatestChoise2Vote()}" labelTemplate="{value}%" displayOnly="true"/><br/> <br/>
-  #{expenseBean.latestPolls.str_Choise3} Got: #{expenseBean.getCount3()} Vote  <br/><br/>
+  #{expenseBean.latestPolls.str_Choise3}  :  Got  #{expenseBean.getLatestCount3()} Vote  <br/><br/>
    <p:progressBar style="width: 50%;" value="#{expenseBean.getLatestChoise3Vote()}" labelTemplate="{value}% " displayOnly="true"/>  
-  <p:link value="see past polls..." outcome="/AfrteLoginViews/Communication/pools.xhtml"/> 
- 
+ <br/><br/>
+  <tr> <td><p:link value="see past polls..." outcome="/AfrteLoginViews/Communication/pools.xhtml"/></td></tr>
     </h:form>
     
   </html>
