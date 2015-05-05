@@ -46,16 +46,11 @@
    
        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
          
-              <th><p:outputLabel value="Organisation:" /></th>
-              <td><h:selectOneMenu     value="#{expenseBean1.str_OrganizationName}" >
-               
-                <f:selectItem itemLabel="#{expenseBean1.str_OrganizationName}"  itemValue="#{expenseBean1.str_OrganizationName}"/>
-                   
-                 </h:selectOneMenu>
-             </td>
+              
+              
             
-             <th><p:outputLabel  value="Expense Type:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean1.str_ExpenseType}" >
+            
+               <td><p:outputLabel  value="Expense Type:" /><h:selectOneMenu   value="#{expenseBean1.str_ExpenseType}" >
                     <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"/>
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"/>
@@ -63,24 +58,26 @@
                  </h:selectOneMenu>
              </td>
               
-             <th><p:outputLabel  value="Expense Category:" /></th>
-               <td><h:selectOneMenu   value="#{expenseBean1.str_ExpenseCategory}"  >
+              
+               <td><p:outputLabel  value="Expense Category:" /><h:selectOneMenu   value="#{expenseBean1.str_ExpenseCategory}"  >
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
                  </h:selectOneMenu>
-                 </td></tr>
-                           
-             
-            
-             <tr> <th><p:outputLabel value="Duration:" /></th>
-              <td><p:calendar  id="date"    navigator="true"  pattern="dd/MM/yyyy"  value="#{expenseBean1.date_Duration}">
+                 </td>
+                  <td><p:outputLabel value="Duration:" /><p:calendar  id="date"    navigator="true"  pattern="dd/MM/yyyy"  value="#{expenseBean1.date_Duration}">
                  
                   </p:calendar>&nbsp; &nbsp; &nbsp;
              </td>
+                 </tr>
+                           
+             
+            
+             <tr> 
+             
                
-             <th><p:outputLabel  value="Asset Category:" /></th>
-               <td><h:selectOneMenu id="assetcatname"  value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
+            
+               <td><p:outputLabel  value="Asset Category:" /><h:selectOneMenu id="assetcatname"  value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                  
                    <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
@@ -88,16 +85,16 @@
                  </h:selectOneMenu>
              </td>
                
-             <th><p:outputLabel  value="Asset Name" /></th>
-               <td><h:selectOneMenu  id="assetname" value="#{expenseBean1.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
+             
+               <td><p:outputLabel  value="Asset Name:  " /><h:selectOneMenu  id="assetname" value="#{expenseBean1.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                   <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
                   
                   
                  </h:selectOneMenu>
-                 </td></tr>
-                 <tr> <th></th><td></td><th></th><td></td><td><th>
-                 <h:commandButton  icon="ui-icon-search" update="DT"  value="Go" action="#{expenseBean1.getExpenseList}"/></th> </td></tr>
+                 </td><td> 
+                 <h:commandButton  icon="ui-icon-search" update="DT"  value="Go" action="#{expenseBean1.getExpenseList}"/>  </td></tr>
+        
                  </table>
                   
                   
