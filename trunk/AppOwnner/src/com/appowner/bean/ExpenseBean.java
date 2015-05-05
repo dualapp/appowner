@@ -1986,6 +1986,7 @@ public String deleteOnePoll1()
 		   {  indicate=false;
 			   System.out.println(onePoll+"onePolllllllllll");
 				getExpenseService().deleteOnePoll(onePoll);
+				onePoll=null;
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Deleted Successfully!"));
 				return null;
 		   }
@@ -2171,6 +2172,7 @@ public String addPool()
 		str_Choise3=null;
 		str_EndDate=null;
 		str_PoolAudience="All Members";
+		onePoll=null;
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Created Successfully!"));
 		return"pools.xhtml";
 	 
@@ -2247,10 +2249,13 @@ public Long getLatestChoise1Vote()
 {
 	count1=null;
 	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
-	  
+	  Long res=0l;
 	 
+		 if(latestPolls.getInt_Vote()!=0)
+		 {
 		 
-	 Long res= count1*100/latestPolls.getInt_Vote();
+	  res= count1*100/latestPolls.getInt_Vote();
+		 }
 	 
 	 return res;
 	 }
@@ -2334,8 +2339,13 @@ public Long getLatestChoise2Vote()
 	 
 	  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
 	  
-	  
-	 Long res= count2*100/latestPolls.getInt_Vote();
+	  Long res=0l;
+		 
+		 if(latestPolls.getInt_Vote()!=0)
+		 {
+		 
+	   res= count2*100/latestPolls.getInt_Vote();
+		 }
 	  
 	 return res;
 	
@@ -2364,8 +2374,13 @@ public Long getLatestChoise3Vote()
 { 
 count3=null;
 	   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
-	    
-	  Long res= count3*100/latestPolls.getInt_Vote();
+	   Long res=0l;
+		 
+		 if(latestPolls.getInt_Vote()!=0)
+		 {
+		 
+	   res= count3*100/latestPolls.getInt_Vote();
+		 }
 	   
 	  return res;
 }
@@ -2513,7 +2528,7 @@ public String addVote()
 	 onePoll.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(onePoll);
-	 
+	onePoll=null;
   return "pools.xhtml";
 }
 public String addVote1()
@@ -2536,6 +2551,7 @@ public String addVote1()
 	latestPolls.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(latestPolls);
+	onePoll=null;
 	if(LoginBean.isAdmin())
 		 
 		 return "../AfrteLoginViews/Adminwelcomepage.xhtml";
@@ -2602,6 +2618,7 @@ public Pool getLatestPolls() {
 	else
 	{
 		 render=true;
+		  
 	latestPolls=getExpenseService().getLatestPolls();
 	
 	}
