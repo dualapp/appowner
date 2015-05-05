@@ -206,15 +206,7 @@
 </h:selectOneMenu>
              </td></tr>
              <tr>
-             <td></td><td></td>
-            <td><p:outputLabel value="Hobbies:"/>
-             </td>          
-            <td><p:inputText value="#{loginBean.str_Hobbies}"/>
-             </td></tr>
-              <tr>
-             <td><p:outputLabel value="Proffession:"/>
-             </td>            
-             <td><h:selectOneMenu value="#{loginBean.str_Proffession}"  >
+             <td></td><td><h:selectOneMenu value="#{loginBean.str_Proffession}"  >
 <f:selectItem itemValue="ArmedForce" itemLabel="ArmedForce"/>
 <f:selectItem itemValue="Artist" itemLabel="Artist"/>
 <f:selectItem itemValue="Softwarw Developer" itemLabel="Softwarw Developer"/>
@@ -223,14 +215,15 @@
 <f:selectItem itemValue="Police" itemLabel="Police"/>
 </h:selectOneMenu>
              </td>  
-            <td><p:outputLabel value="Intrested In"/>
+            <td><p:outputLabel value="Hobbies:"/>
              </td>          
-            <td><h:selectManyCheckbox value="#{loginBean.str_IntrestedIn}"  layout="pageDirection" styleClass="nostyle">
-<f:selectItem itemValue="Meeting Others" itemLabel="Meeting Others"/>
-<f:selectItem itemValue="Sharing Stuff" itemLabel="Sharing Stuff"/>
-<f:selectItem itemValue="Organizing Events" itemLabel="Organizing Events"/>
-</h:selectManyCheckbox>
+            <td><p:inputText value="#{loginBean.str_Hobbies}"/>
              </td></tr>
+              <tr>
+                        
+             
+                    
+             </tr>
  <tr><td></td>
  <td>
    <p:commandButton  value="Save Changes"   styleClass="btn"  update=":form:ui-growl" action="#{loginBean.updateUser}"/>

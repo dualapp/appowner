@@ -87,8 +87,8 @@
   </td>
   <th><p:message id="ch2Msg"  for="ch2" display="text"/></th>
   </tr>
-  <tr><th><p:outputLabel value="Choise3"/></th><td><p:inputText  value="#{expenseBean.str_Choise3}"/></td></tr>
-   <tr><td><h:commandButton  styleClass="btn"  style="width:100px" onsubmit="return confirm(' Poll created successfully');"  value="submit" action="#{expenseBean.addPool}"/></td>
+  <tr><th><p:outputLabel  for="ch3" value="Choise3"/></th><td><p:inputText  required="true" requiredMessage="Enter Choise3"  id="ch3" value="#{expenseBean.str_Choise3}"/></td></tr>
+   <tr><td><h:commandButton  styleClass="btn"  style="width:100px" onsubmit="return confirm(' Poll created successfully');"  value="Submit" action="#{expenseBean.addPool}"/></td>
   <td><h:commandButton  value="Cancel" type="reset" styleClass="btn"  style="width:100px" /></td></tr>
    </table>
    </div>

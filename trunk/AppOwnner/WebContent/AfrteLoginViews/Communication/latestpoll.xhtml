@@ -12,9 +12,9 @@
 	 </f:metadata>
 
 <h:form>
-  
+  <h5> #{expenseBean.latestPolls.str_poolQuestion}?</h5> 
 <table>
-<tr><td></td><td><h5><p:outputLabel value="#{expenseBean.latestPolls.str_poolQuestion}"/>?</h5></td></tr>
+
       <tr><td><h:selectOneRadio  id="votechoise" layout="pageDirection"
                required="true" requiredMessage="Plz select Choise"       value="#{expenseBean.str_Choise}">
         <f:selectItem   itemLabel="#{expenseBean.latestPolls.str_Choise1}" itemValue="#{expenseBean.latestPolls.str_Choise1}" />
@@ -27,10 +27,12 @@
         <tr><td><h:outputText value="Remark"/></td><td><p:inputTextarea     value="#{expenseBean.str_Remark}" /></td>
         </tr> 
          
-        <tr><td><h:commandButton    disabled="#{expenseBean.disabled}" styleClass="btn" value="Vote"   action="#{expenseBean.addVote1}">
+        <tr><td><h:commandButton     styleClass="btn" value="Vote"   action="#{expenseBean.addVote1}">
        
         </h:commandButton>
-        </td> <td><p:link value="see past polls..." outcome="/AfrteLoginViews/Communication/pools.xhtml"/></td></tr>
+        </td></tr>
+        <tr></tr>
+        <tr> <td><p:link value="see past polls..." outcome="/AfrteLoginViews/Communication/pools.xhtml"/></td></tr>
       </table>
        
 </h:form>
