@@ -10,11 +10,29 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<ui:define name="content">
 	<h:head>
-	
+	 <style>
+ .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+         margin-left:-200px; 
+
+}
+.ui-growl-item-container.ui-state-highlight {
+    border-color: pink;
+}
+        div[id="ui-growl_container"] > div{
+        
+            background-color: green !important;
+        }
+</style>
 	</h:head>
-	<body>
+	<h:body>
 	
-	<form>
+	<form id="form">
+	 <p:growl id="ui-growl" globalOnly="true" />
 	<table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
@@ -112,7 +130,7 @@
 															
 	</div>
 	</form>
-	</body>
+	</h:body>
 	</ui:define>
 </ui:composition>
 

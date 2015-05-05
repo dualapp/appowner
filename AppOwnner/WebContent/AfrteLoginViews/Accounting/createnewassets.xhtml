@@ -83,8 +83,7 @@
                  </h:selectOneMenu> </td> 
                  <th><p:outputLabel value="Assets Category*"/></th>
                  <td><h:selectOneMenu  id="AssetCategory" required="true" requiredMessage="plz Enter Assets Category "  value="#{expenseBean.str_AssetCategoryType}">
-                  <f:selectItem itemLabel="All" itemValue="All" noSelectionOption="true" />
-                 
+                   
                    <f:selectItems  value="#{expenseBean.str_AssetCatNameList}" />
                   
                  </h:selectOneMenu>
