@@ -122,7 +122,7 @@
              <td><h:outputText  value="Template:" /></td>
               
                <td><h:selectOneMenu id="str_DueTemplate1" value="#{dueBean.str_DueTemplate}"  style="width:150px" valueChangeListener="#{dueBean.templateChangeListener}">
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
+                  
                    <f:selectItems value="#{dueBean.str_DueTemplates}"/>
                     <p:ajax event="change"  process="str_DueTemplate1" update="str_Period" partialSubmit="true"/>
                  </h:selectOneMenu>
@@ -156,7 +156,7 @@
                         <f:selectItem itemLabel="DEC" itemValue="DEC"/>
                         <f:ajax event="change"  process="str_Period" partialSubmit="true" />  
                  </h:selectOneMenu>
-                  <h:selectOneMenu  value="#{dueBean.str_Period}" style="width:150px" rendered="#{dueBean.periodIndicator eq 'Yearly' || dueBean.periodIndicator eq 'One Time' || dueBean.str_DueTemplate eq null}" valueChangeListener="#{dueBean.periodChangeListener}">
+                  <h:selectOneMenu  value="#{dueBean.str_Period}" style="width:150px" rendered="#{dueBean.periodIndicator eq 'Yearly' || dueBean.periodIndicator eq 'One Time' || dueBean.str_DueTemplate1 eq null}" valueChangeListener="#{dueBean.periodChangeListener}">
                   <f:selectItem itemLabel="Select" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="N/A" itemValue="N/A"/>
                    <p:ajax event="change"  process="str_Period"   />  
