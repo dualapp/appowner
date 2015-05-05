@@ -2247,14 +2247,14 @@ public void setTemplateIndicator(String templateIndicator) {
 
 public Long getLatestChoise1Vote()
 {
-	count1=null;
-	  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
+	latestCount1=null;
+	latestCount1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
 	  Long res=0l;
 	 
 		 if(latestPolls.getInt_Vote()!=0)
 		 {
 		 
-	  res= count1*100/latestPolls.getInt_Vote();
+	  res= latestCount1*100/latestPolls.getInt_Vote();
 		 }
 	 
 	 return res;
@@ -2273,6 +2273,34 @@ public Long getChoise1Vote()
 	 return res;
 	
 }
+private Long latestCount1;
+private Long latestCount2;
+private Long latestCount3;
+public Long getLatestCount1()
+{
+	latestCount1=null;
+	  return latestCount1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
+}
+public Long getLatestCount2()
+{
+	latestCount2=null;
+	  return latestCount2=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
+}
+public void setLatestCount1(Long latestCount1) {
+	this.latestCount1 = latestCount1;
+}
+public void setLatestCount2(Long latestCount2) {
+	this.latestCount2 = latestCount2;
+}
+public void setLatestCount3(Long latestCount3) {
+	this.latestCount3 = latestCount3;
+}
+public Long getLatestCount3()
+{
+	latestCount3=null;
+	  return latestCount3=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
+}
+
 public Long getCount1() {
 	if(onePoll!=null)
 	{
@@ -2281,11 +2309,7 @@ public Long getCount1() {
 	  count1=getExpenseService().getChoise1Vote(onePoll.getStr_Choise1(),onePoll.getInt_PoolId());
 	 System.out.println(count1+"count1111111111111111111111111111111111111");
 	}
-	else
-	{
-		count1=null;
-		  count1=getExpenseService().getChoise1Vote(latestPolls.getStr_Choise1(),latestPolls.getInt_PoolId());
-	}
+	 
 	return count1;
 }
 public void setCount1(Long count1) {
@@ -2301,11 +2325,7 @@ public Long getCount2() {
 	  count2=getExpenseService().getChoise2Vote(onePoll.getStr_Choise2(),onePoll.getInt_PoolId());
 	 System.out.println(count2+"count222222222222222222222222222");
 	}
-	else{
-		count2=null;
-		 
-		  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
-	}
+	 
 	return count2;
 }
 public void setCount2(Long count2) {
@@ -2318,11 +2338,7 @@ public Long getCount3() {
 		   count3=getExpenseService().getChoise3Vote(onePoll.getStr_Choise3(),onePoll.getInt_PoolId());
 		   System.out.println(count3+"count3333333333333333333333333333333333");
 	}
-	else
-	{
-		count3=null;
-		   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
-	}
+	 
 	 
 	return count3;
 }
@@ -2335,16 +2351,16 @@ private Long count3;
 
 public Long getLatestChoise2Vote()
 {
-	count2=null;
+	latestCount2=null;
 	 
-	  count2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
+	latestCount2=getExpenseService().getChoise2Vote(latestPolls.getStr_Choise2(),latestPolls.getInt_PoolId());
 	  
 	  Long res=0l;
 		 
 		 if(latestPolls.getInt_Vote()!=0)
 		 {
 		 
-	   res= count2*100/latestPolls.getInt_Vote();
+	   res= latestCount2*100/latestPolls.getInt_Vote();
 		 }
 	  
 	 return res;
@@ -2372,14 +2388,14 @@ public void setListChoice(List<String> listChoice) {
 }
 public Long getLatestChoise3Vote()
 { 
-count3=null;
-	   count3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
+	latestCount3=null;
+	latestCount3=getExpenseService().getChoise3Vote(latestPolls.getStr_Choise3(),latestPolls.getInt_PoolId());
 	   Long res=0l;
 		 
 		 if(latestPolls.getInt_Vote()!=0)
 		 {
 		 
-	   res= count3*100/latestPolls.getInt_Vote();
+	   res= latestCount3*100/latestPolls.getInt_Vote();
 		 }
 	   
 	  return res;
@@ -2478,8 +2494,22 @@ public List<Pool> getSelectedPolls() {
 public void setSelectedPolls(List<Pool> selectedPolls) {
 	this.selectedPolls = selectedPolls;
 }
-public Integer getIsVoted() {
+private Integer isVoted1;
+public void setIsVoted1(Integer isVoted1) {
+	this.isVoted1 = isVoted1;
+}
+public Integer getIsVoted1() {
 	getLatestPolls();
+	 if(latestPolls!=null){
+		 
+		 isVoted1=getExpenseService().isVoted(Util.getUserId(),latestPolls.getInt_PoolId());
+		 System.out.println(isVoted1+"Vote");
+	 }
+	 
+	return isVoted1;
+}
+public Integer getIsVoted() {
+	 
 	if(onePoll!=null)
 	{
  
@@ -2487,14 +2517,7 @@ public Integer getIsVoted() {
 		System.out.println(isVoted);
 	}
     
-	else
-	{
-		System.out.println(Util.getUserId());
- 
-		 
-		 isVoted=getExpenseService().isVoted(Util.getUserId(),latestPolls.getInt_PoolId());
-		 System.out.println(isVoted+"Vote");
-	}
+	 
 	return isVoted;
 }
 public void setIsVoted(Integer isVoted) {
@@ -2572,7 +2595,7 @@ private Boolean render;
 public Boolean getRendered() {
 	 
 			 
-	if(getIsVoted()==null&&!(getExpenseService().getLatestPolls()==null))
+	if(getIsVoted1()==null&&!(getExpenseService().getLatestPolls()==null))
 		 
 		rendered=true;
 	else
@@ -2584,7 +2607,7 @@ public void setRendered(Boolean rendered) {
 	this.rendered = rendered;
 }
 public Boolean getRendered1() {
-	if(getIsVoted()==null)
+	if(getIsVoted1()==null)
 		 
 		rendered1=false;
 	else
