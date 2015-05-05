@@ -837,7 +837,7 @@ public class TemplateBean implements Serializable,Validator {
 		try
 		{
 			listInvoices=new ArrayList<InvoiceTemplate>();
-		 if(str_InvoiceTemplateName==null && str_Frequency==null )
+		 if(str_InvoiceTemplateName==null && str1_Frequency==null )
 			{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
 				query="";
 			}
@@ -847,15 +847,15 @@ public class TemplateBean implements Serializable,Validator {
 			{
 				query=query+"str_InvoiceTemplateName="+"'"+str_InvoiceTemplateName+"'";
 			}
-		 if(!(str_Frequency==null) && !(str_Frequency.isEmpty()))
-			{   System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
-				query=query+" and "+"str_Frequency="+"'"+str_Frequency+"'";
+		 if(!(str1_Frequency==null) && !(str1_Frequency.isEmpty()))
+			{  
+				query=query+" and "+"str_Frequency="+"'"+str1_Frequency+"'";
 			}
 	    
 			
 			
 			if(query.indexOf("and")==1)
-			{   System.out.println("jhujugfjf11111111111111111111111111111111111111111111");
+			{   
 			  
 			   query=query.replaceFirst("and","" );
 	                   
