@@ -464,16 +464,13 @@ public String addAccounts()
 		account.setInt_Organisation(Util.getAppartmentId());
 		account.setStr_IFSC_Code(str_IFSC_Code);
 		getAccountsService().addAccount(account); 
+		 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Accounts Saved Successfully!"));	
 		
-		return "accounts.xhtml";
 	}
 	
 	return "accounts.xhtml";
 }
-public String cancel()
-{
-	return "accounts.xhtml";
-}
+
 private List<Account> listAccounts;
 
 public List<Account> getListAccounts() {
