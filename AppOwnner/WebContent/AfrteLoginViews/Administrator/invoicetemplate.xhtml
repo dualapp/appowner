@@ -81,7 +81,7 @@
                 
              </td>
                  <td> <h:outputText  value="Frequency" /><font color="red" >*</font></td>
-           <td> <h:selectOneMenu id="str_Frequency" value="#{templateBean.str_Frequency}" style="width:200px">
+           <td> <h:selectOneMenu id="str_Frequency" value="#{templateBean.str1_Frequency}" style="width:200px">
             <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/> 
                    <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
                      <f:selectItem itemLabel="Quarterly" itemValue="Quarterly"/>
@@ -104,7 +104,7 @@
 			<tr>
 			<td><p:button style="width:120px;height:25px" outcome="createinvoicetemplate.xhtml" icon="ui-icon-plus" value="Create New" />&#150; &#150; &#150; &#150;<p:commandButton style="width:120px;height:25px" process="invoice" id="view" update=":form:multiInvoiceTemplateDetail1" icon="ui-icon-search" action="#{templateBean.detectInvoiceTemplate}" ajax="#{templateBean.indicate}" value="View" oncomplete="PF('multiInvoiceTemplateDialog1').show()" />
        &#150; &#150; <p:commandButton style="width:120px;height:25px" process="invoice" id="edit" update=":form:multiInvoiceTemplateDetail,ui:growl" action="#{templateBean.detectInvoiceTemplate1}" icon="ui-icon-pencil" value="Edit " oncomplete="#{templateBean.indicate2}?PF('multiInvoiceTemplateDialog').show():null"  ajax="#{templateBean.indicate2}">
-      </p:commandButton>&#150; &#150; &#150; &#150; <p:commandButton  style="width:120px;height:25px" update="invoice" id="delete"    action="#{templateBean.deleteInvoiceTemplate()}"  icon="ui-icon-trash" value="Delete" onclick="return confirm('Are you sure you want to delete ?');"/>
+      </p:commandButton>&#150; &#150; &#150; &#150; <p:commandButton  style="width:120px;height:25px" update="invoice" id="delete"    action="#{templateBean.deleteInvoiceTemplate()}" ajax="false" icon="ui-icon-trash" value="Delete" onclick="return confirm('Are you sure you want to delete ?');"/>
        &#150; &#150; <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh" onclick="history.go(0)" value="Refresh" />
 			
 			
