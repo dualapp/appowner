@@ -169,8 +169,8 @@
               
             
         <h:outputLabel  value="Due Date*" /></td>
-           <td>  <input type="date" name="dat_InvoiceDate"       style="width:250px"/>
-            </td>
+           <td><p:calendar id="dat_DueDate" value="#{invoiceBean.dat_DueDate}" required="true" pattern="dd/MM/yyyy" requiredMessage="It Should not be Empty" style="width:250px"/> </td>
+           
           
             
   </h:panelGroup>
