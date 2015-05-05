@@ -969,9 +969,9 @@ public class AccountsDaoImpl implements AccountsDao{
 	public List<String> getIncome()
 	{
 		 getApartmentID();
-			String hql="select str_AccountName from ChartOfAccount  where ch_Group='R' AND int_ApartmentId=0 or int_ApartmentId=?";
+			String hql="select str_AccountName from ChartOfAccount  where ch_Group='R' AND int_ApartmentId IN ('0',"+Util.getAppartmentId()+')';
 			 
-			List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0, apartmentID).list();
+			List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 			return ravenueList; 
 	}
 
@@ -979,9 +979,9 @@ public class AccountsDaoImpl implements AccountsDao{
 	public List<String> getExpense1()
 	{
 		 getApartmentID();
-			String hql="select str_AccountName from ChartOfAccount  where ch_Group='E' AND int_ApartmentId=0 or int_ApartmentId=?";
+			String hql="select str_AccountName from ChartOfAccount  where ch_Group='E' AND int_ApartmentId IN ('0',"+Util.getAppartmentId()+')';
 			 
-			List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,apartmentID).list();
+			List<String> ravenueList= (List<String>) getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
 			
 	
 			return ravenueList; 
