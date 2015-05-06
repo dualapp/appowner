@@ -72,7 +72,7 @@
  
 		<h:commandButton id="submit1"     style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
 		                 action="#{expenseBean.uploadOrganizationLogo()}"
-			             value="upload file" >
+			             value="Upload File" >
 			              
 			             </h:commandButton><br />
  
@@ -114,7 +114,7 @@
  
 		<h:commandButton id="submit"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;"
 		                 action="#{expenseBean.uploadApartmentImage()}"
-			             value="upload file" >
+			             value="Upload File" >
 			             
 			             </h:commandButton><br />
  
@@ -123,7 +123,7 @@
 			          rendered="#{not empty expenseBean.statusMessage}" />-->
   
      
-    <p:graphicImage    alt="AppartmentLogo" value="#{expenseBean.getStr_AppartmentImg()}"     style="background:#dddddd; height:90px;width:90px;float:right !important;margin:-100px 290px -100px 0px;"/>
+    <p:graphicImage    alt="AppartmentLogo" value="#{expenseBean.getStr_AppartmentImg()}"     style="background:#dddddd; height:90px;width:90px;float:right !important;margin:-100px 240px -100px 0px;"/>
     </td></tr>
     </table>
     </h:form>
@@ -143,7 +143,7 @@
       
        <tr><th><p:outputLabel value="Appartment Address:"/> </th><td><p:inputTextarea style="Width: 370px; height:196px;float:left;"       value="#{expenseBean.str_ApptAddress}"/></td></tr> 
         
-        <tr><th><p:outputLabel value="What is your association office timings? *"/></th> </tr>
+        <tr><th><p:outputLabel value=" Association Office Timings? *"/></th> </tr>
         <tr>
         
         <th><p:outputLabel value="From"/></th><td>

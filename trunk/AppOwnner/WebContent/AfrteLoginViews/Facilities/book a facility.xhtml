@@ -97,7 +97,7 @@
 	  <div class="gsTitleDiv">
            <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
            <tr><td>     
-              <p:button  style="width:120px;height:25px"  icon="ui-icon-plus"  outcome="createnewbookafacility.xhtml" value="Create new" /> 
+              <p:button  style="width:120px;height:25px"  icon="ui-icon-plus"  outcome="createnewbookafacility.xhtml" value="Create New" /> 
 	    &#150; &#150; <p:menuButton rendered="#{expenseBean.isEnable}" value="Action">
        <p:menuitem value="Assign Selected"   process="DT" update=":bMsg"    oncomplete="PF('pDialog2').show()" />
         <p:menuitem value="close Selected" process="DT" update=":bMsg1"     oncomplete="PF('pDialog3').show()"/>
@@ -286,7 +286,7 @@
              
             
              
-             &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
+           &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="book a facility.xhtml" />
            </div>
            
             
@@ -361,7 +361,7 @@
              
             
             <h:commandButton value="update" styleClass="btn" action="#{requestScopeBean.updateBookAFacility}"/>
-             &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+              &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="book a facility.xhtml" />
            </div>
            
             

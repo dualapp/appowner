@@ -13,6 +13,10 @@
     
     <script src="JavaScript/ModalPopupWindow.js" type="text/javascript"></script>
    <style>
+   .ui-datatable tbody td.wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}
  .ui-growl {
  position:absolute;
         
@@ -73,7 +77,7 @@
 		
 		   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  <tr><td>
-		<p:button style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}"  icon="ui-icon-plus"  outcome="/AfrteLoginViews/Vendor/addvendor.xhtml" value="Create new" /> 
+		<p:button style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}"  icon="ui-icon-plus"  outcome="/AfrteLoginViews/Vendor/addvendor.xhtml" value="Create New" /> 
    
 	 &#150; &#150; <p:commandButton style="width:120px;height:25px" icon="ui-icon-refresh"    onclick="javascript:history.go(0);" value="Refresh" />
 		 
@@ -149,12 +153,12 @@
                 
             
             </p:column>
-             <p:column >
+             <p:column styleClass="wrap" >
              <f:facet name="header">
                 <h:outputText value="Address"/>      
           
              </f:facet>
-                 <h:outputText   value="#{vendor.str_CityName}" /> 
+                 <h:outputText   value="#{vendor.str_CityName}" /> ,
                  <h:outputText   value="#{vendor.str_StateName}" /> 
                  
                 
@@ -261,7 +265,7 @@
             <div>
               <hr/>
               
-             &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
+              &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="vendorlists.xhtml" />
            </div>
         </p:outputPanel>
         </h:form>
@@ -347,7 +351,7 @@
      <div>
 	 <hr/>
   <p:commandButton  value="Submit" update=":form:DT :form:ui-growl"  styleClass="btn" action="#{vendorBean.updateVendor}" oncomplete="handleRequest1(xhr, status, args)"/> 
-   &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+   &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="vendorlists.xhtml" />
 	 
                 
   </div>

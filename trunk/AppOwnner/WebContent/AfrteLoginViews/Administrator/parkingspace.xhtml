@@ -123,7 +123,7 @@
                 
                  </h:selectOneMenu></td></tr>
                  
-<tr><th><p:outputLabel for="Parkingslot" value="parkingSlot"/></th>
+<tr><th><p:outputLabel for="Parkingslot" value="parking Slot"/></th>
 	<td><p:inputText  id="Parkingslot"  placeholder="Enter Parkingslot" required="true" requiredMessage="Enter Parkingslot" value="#{expenseBean.str_ParkingSlot}">
 	  
 	</p:inputText>
@@ -139,7 +139,7 @@
      <p:commandButton   styleClass="btn" id="submit"  value="Submit"   update=":form:DT :form:ui-growl,ParkingslotMsg"  actionListener="#{expenseBean.saveParking}"  oncomplete="handleRequest(xhr, status, args)" />
 	  
 	 
-	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="parkingspace.xhtml" />
 	  
 	 
     </div>
@@ -165,7 +165,7 @@
     </tr>
     <tr>
  <th>
-	<p:outputLabel for="Parkingslot1" value="Parking slot:" /> </th>
+	<p:outputLabel for="Parkingslot1" value="Parking Slot:" /> </th>
     <td>
     <p:inputText id="Parkingslot1"  required="true" requiredMessage="Enter Parking slot" value="#{expenseBean.parking11.str_ParkingSlot}">
       
@@ -181,7 +181,7 @@
             <p:commandButton value="update" update=":form:DT :form:ui-growl,ParkingslotMsg1" styleClass="btn"    action="#{expenseBean.updateParkingSpace}" oncomplete="handleRequest1(xhr, status, args)" />
       
       
-    	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+    	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="parkingspace.xhtml" />
 	  
            </div>
              
@@ -219,7 +219,7 @@
               <div>
               <hr/>
               
-             &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
+             &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="parkingspace.xhtml" />
            </div>
     </p:outputPanel>
     </h:form>

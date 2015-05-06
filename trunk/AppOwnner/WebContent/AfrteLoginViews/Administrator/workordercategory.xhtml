@@ -141,7 +141,7 @@
 	<hr/>
 	 <p:commandButton   styleClass="btn"   value="Submit" update=":form:DT :form:ui-growl,CategoryNameMsg"      action="#{vendorBean.saveWorkOrderCategory}" oncomplete="handleRequest(xhr, status, args)"/>
 	
-	  &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+	  &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="workordercategory.xhtml" />
                 
                 </div> </p:outputPanel>
                 </h:form>
@@ -181,7 +181,7 @@
       
    <p:commandButton value="Update"   
                 update=":form:DT :form:ui-growl,CategoryNameMsg1"   styleClass="btn"   action="#{vendorBean.updateWorkOrder}"  oncomplete="handleRequest1(xhr, status, args)" />
-   &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+    &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="workordercategory.xhtml" />
    
     
     </div>
@@ -220,7 +220,7 @@
      <div>
               <hr/>
               
-             &#150; &#150; <h:commandButton value="Close"  styleClass="btn" onclick="history.go(0); return false;"/>
+            &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="workordercategory.xhtml" />
            </div>
     </p:outputPanel>
     </h:form>

@@ -212,7 +212,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	  <p:commandButton   styleClass="btn"  update=":form:DT :form:ui-growl,HouseNoMsg1" value="Confirm"     action="#{apartmentDetailsBean.updateHouseDetails}" oncomplete="handleRequest1(xhr, status, args)"/>
 	 
 	  
-	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+	  &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="housedetails.xhtml" />
 	  
 	 
 	  
@@ -277,7 +277,7 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	 <hr/>
 	   
 	  
-	  <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+	   &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="housedetails.xhtml" />
 	  
 	 
 	  
@@ -344,14 +344,14 @@ Unless the Community Setup is complete, the changes that are made will not be sa
 	   <p:commandButton   styleClass="btn" id="submit"  value="Confirm"    update=":form:DT :form:ui-growl,HouseNoMsg"  action="#{apartmentDetailsBean.saveHouseDetails}" oncomplete="handleRequest(xhr, status, args)" />
 	 
 	 
-	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+	 &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="housedetails.xhtml" />
 	  
 	 </div>
 	 </p:outputPanel>
 	 </h:form>
 	 </p:dialog>
 	 
-	 <p:dialog header="File Upload" widgetVar="fileDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="500" width="600">
+	 <p:dialog header="File Upload" widgetVar="fileDialog"     showEffect="explode" hideEffect="bounce" resizable="false" height="300" width="500">
         <h:form id="uploadform"  enctype="multipart/form-data">
         <p:outputPanel id="fileDetail" style="text-align:center;">
          <!-- inputFile tag to upload file -->
@@ -389,6 +389,8 @@ Unless the Community Setup is complete, the changes that are made will not be sa
     </td> </tr>
     <tr><th>2</th><td>Fill The Template</td> </tr>
     <tr><th>3</th><td>Upload</td></tr></table>  
+     &#150; &#150; &#150; &#150; &#150; &#150; &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="housedetails.xhtml" />
+	  
 </h:form>
         
       
