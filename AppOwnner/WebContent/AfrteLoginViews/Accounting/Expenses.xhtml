@@ -10,6 +10,10 @@
  <h:head>
     <title>Expense</title>
    <style>
+    .ui-datatable tbody td.wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}
  .ui-growl {
  position:absolute;
         
@@ -158,7 +162,7 @@
           
                 
             </p:column>
-             <p:column    headerText="Description" >
+             <p:column  styleClass="wrap"  headerText="Description" >
               <p:outputLabel    value="#{Expenselist.str_Description}" /> 
                 
             </p:column>
@@ -286,7 +290,9 @@
        <div>
        <hr/>
      <h:commandButton styleClass="btn" value="Update" action="#{expenseBean1.updateOneExpense}" /> 
-     &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/>
+     &#150; &#150; <h:commandButton value="Cancel"  styleClass="btn" action="Expenses.xhtml" />
+     
+     
 	   
     </div>
      
@@ -363,7 +369,7 @@
        </table>
     <div><hr/>
               <tr><td></td>
-             <td> <h:commandButton value="Cancel"  styleClass="btn" onclick="history.go(0); return false;"/></td></tr>
+             <td>  <h:commandButton value="Cancel"  styleClass="btn" action="Expenses.xhtml" /></td></tr>
              </div>
               
             </p:outputPanel>
