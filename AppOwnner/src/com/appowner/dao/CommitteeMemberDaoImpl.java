@@ -1,5 +1,6 @@
 package com.appowner.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -48,7 +49,9 @@ public class CommitteeMemberDaoImpl  implements CommitteeMemberDao{
 	@Override
 	public List<CommiteeMember> getCommitteememberlist() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class).setCacheable(true) .list();
+		List<CommiteeMember> cmlist= getSessionFactory().getCurrentSession().createCriteria(CommiteeMember.class).setCacheable(true) .list();
+		Collections.sort(cmlist);
+		return cmlist;
 	}
 
 	@Override

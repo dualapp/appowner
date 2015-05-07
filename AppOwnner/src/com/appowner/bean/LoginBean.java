@@ -969,7 +969,14 @@ public class LoginBean implements Serializable {
 	  {
 		if(formuserloginuserpassword.equals(user.getStr_Password()) )
 		  {    
-		
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			//get current date time with Date()
+			Date date = new Date();
+			 
+			str_LoggedInTime= dateFormat.format(date);
+			 
+			 
+			  memberLog();
 		     if(admin1.equals(str_userRoleName))
 		    {
 			int_ApartmentId=user.getInt_ApartmentId();
@@ -1034,16 +1041,7 @@ public class LoginBean implements Serializable {
 	            
 	            session.setAttribute("str_Apartment",user.getStr_Apartment());
 	            session.setAttribute("str_userRoleName", str_userRoleName);
-				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-				//get current date time with Date()
-				Date date = new Date();
-				 
-				str_LoggedInTime= dateFormat.format(date);
-				System.out.println(str_LoggedInTime);
 				
-				str_LoggedInTime=dateFormat.format(date);
-				if(session==null)
-				  memberLog();
 				
 				 return "/AfrteLoginViews/welcomepage.xhtml";
 		   }
@@ -1075,16 +1073,7 @@ public class LoginBean implements Serializable {
 	            
 	            session.setAttribute("str_Apartment",user.getStr_Apartment());
 	            session.setAttribute("str_userRoleName", str_userRoleName);
-				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-				//get current date time with Date()
-				Date date = new Date();
 				 
-				str_LoggedInTime= dateFormat.format(date);
-				System.out.println(str_LoggedInTime);
-				
-				str_LoggedInTime=dateFormat.format(date);
-				if(session==null)
-				  memberLog();
 				 return "/AfrteLoginViews/Adminwelcomepage.xhtml";
 		   }
 		}
@@ -1138,17 +1127,17 @@ public class LoginBean implements Serializable {
 		this.indicator = indicator;
 	}
 	public String logout(ActionEvent e) {
-		System.out.println("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
-	     
-	      memberLog();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    //get current date time with Date()
+		System.out.println("kalpanaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		 Date date = new Date();
+		     
+		      str_LoggedOutTime=dateFormat.format(date);
+		updateMemberLog();
 	      HttpSession session = Util.getSession();
 	      session.invalidate();
-	      DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	    //get current date time with Date()
-	    Date date = new Date();
-	    indicator=true;
-	      str_LoggedOutTime=dateFormat.format(date);
-	      System.out.println("djjdffjfjdfj");
+	       
+		     
 	      return "/layout.xhtml";
 	   }
 
@@ -1319,18 +1308,37 @@ public class LoginBean implements Serializable {
 		this.str_EndTime1 = str_EndTime1;
 	}
 	/*
+	 * update member logout info
+	 */
+	public void  updateMemberLog()
+	{
+		 
+			      
+		memberLog = new MemberLog();
+		memberLog.setInt_ApartmentId(int_ApartmentId);
+		memberLog.setInt_UserId(int_UserId);
+		 memberLog.setStr_Block(str_Block);
+		 memberLog.setStr_UserEmailId(str_EmailId);
+
+		memberLog.setStr_LoggedInTime(str_LoggedInTime);
+
+		memberLog.setStr_LogOutTime(str_LoggedOutTime);
+		System.out.println(str_LoggedOutTime+"logggggggggggggggggggggggggggggggggggggggggggggggggggggggout");
+		getUserService(). updateMemberLog(memberLog);
+	}
+	/*
 	 * add member login and logout info
 	 */
 	public void memberLog() {
 		memberLog = new MemberLog();
 		memberLog.setInt_ApartmentId(int_ApartmentId);
 		memberLog.setInt_UserId(int_UserId);
-		// memberLog.setStr_Block(user.getStr_Block());
-		// memberLog.setStr_UserEmailId(user.getStr_Email());
+		 memberLog.setStr_Block(str_Block);
+		 memberLog.setStr_UserEmailId(str_EmailId);
 
 		memberLog.setStr_LoggedInTime(str_LoggedInTime);
 
-		memberLog.setStr_LogOutTime(str_LoggedOutTime);
+		memberLog.setStr_LogOutTime("N/A");
 		getUserService().addMemberLog(memberLog);
 		System.out.println(str_LoggedOutTime);
 

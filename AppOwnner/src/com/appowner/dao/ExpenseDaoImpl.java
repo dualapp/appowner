@@ -409,9 +409,9 @@ System.out.println(query+"queryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 	@Override
 	public Pool getLatestPolls() {
 		// TODO Auto-generated method stub
-		String hql=" select max(int_PoolId) from Pool where int_OrganizationId=?";
+		String hql=" select max(int_PoolId) from Pool where int_OrganizationId=? and str_Status=?";
 		//String hql="from Pool order by int_PoolId desc limit 1,1;";
-		Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).uniqueResult();
+		Integer id=(Integer) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, Util.getAppartmentId()).setParameter(1, "Open").uniqueResult();
 
 		return  (Pool) getSessionFactory().getCurrentSession().createQuery("from Pool where int_PoolId=?").setParameter(0, id).uniqueResult();
 	}

@@ -371,5 +371,11 @@ public class Cls_UserServiceImpl implements In_UserService,Serializable {
 		// TODO Auto-generated method stub
 		return getIn_userdao().checkAvailability(dat_OpenDate,dat_CloseDate,str_StartTime,str_StartTime1,str_EndTime,str_EndTime1,appartmentId,str_FacilityType);
 	}
+
+	@Override
+	public void updateMemberLog(MemberLog memberLog) {
+		// TODO Auto-generated method stub
+		getIn_userdao().updateMemberLog( memberLog);
+	}
 	 
 }

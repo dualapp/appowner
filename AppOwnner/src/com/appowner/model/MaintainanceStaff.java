@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="tb_maintainance_staff")
-public class MaintainanceStaff  implements Serializable{
+public class MaintainanceStaff  implements Serializable,Comparable{
 	/**
 	 * 
 	 */
@@ -108,7 +108,16 @@ public void setInt_ApartmentId(Integer int_ApartmentId) {
 }
 
 
-	
+@Override
+public int compareTo(Object ms) {
+	// TODO Auto-generated method stub
+	Integer wid=((MaintainanceStaff)ms).int_MaintainanceStaffID;
+	/* For Ascending order*/
+      //  return this.int_FacilityBookId;
+
+        /* For Descending order do like this */
+	return wid-this.int_MaintainanceStaffID;
+}
 	
 
 }

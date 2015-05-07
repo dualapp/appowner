@@ -145,6 +145,8 @@ public interface In_UserDao {
 			Date dat_CloseDate, String str_StartTime, String str_StartTime1,
 			String str_EndTime, String str_EndTime1, Integer appartmentId, String str_FacilityType);
 
+	public void updateMemberLog(MemberLog memberLog);
+
 	 
 	//public void deleteUser1(int int_UserId);
 
