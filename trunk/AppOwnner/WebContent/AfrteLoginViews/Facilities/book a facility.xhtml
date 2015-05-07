@@ -130,7 +130,7 @@
        </td></tr></table>
 	 <hr/></div>
 	       
-             <p:dataTable   id="DT"   resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
+             <p:dataTable   id="DT"    resizableColumns="true" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" 
                rows="10"  paginatorPosition="bottom" paginator="true"  
          emptyMessage="No Records Found" paginatorAlwaysVisible="false"   var="Bf"  value="#{requestScopeBean.bookAFacilityList}"   selection="#{requestScopeBean.selectedBookAFacility}" rowKey="#{Bf.int_FacilityBookId}">
 	 
@@ -138,15 +138,12 @@
         <p:column      exportable="false"  selectionMode="multiple" style="width:35px;text-align:left">
         
           </p:column>
-          <p:column headerText="Organization">
-                <p:outputLabel value="#{loginBean.str_ApartmentName}" /> 
-            
-	 </p:column>
-	  <p:column headerText="EventName">
+          
+	  <p:column  styleClass="wrap" headerText="EventName">
                 <p:outputLabel value="#{Bf.str_EventName}" /> 
             
 	 </p:column>
-	 <p:column headerText="Facility">
+	 <p:column  styleClass="wrap" headerText="Facility">
                 <p:outputLabel value="#{Bf.str_FacilityType}" /> 
             
 	 </p:column>
