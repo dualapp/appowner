@@ -358,7 +358,7 @@ public class Cls_UserBean implements Serializable{
 				 else
 					 user.setStr_UserRoleName("Tenant");
 				 
-				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This House is already Booked for: "  + user.getStr_UserRoleName()+""+user.getStr_Username()));
+				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("This House Is Already Booked For: " +"" + user.getStr_UserRoleName()+":"+""+user.getStr_Username()));
 			 }
 		}
 }
