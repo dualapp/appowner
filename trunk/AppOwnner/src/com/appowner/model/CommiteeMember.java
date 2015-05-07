@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_commiteemember")
-public class CommiteeMember implements Serializable{
+public class CommiteeMember implements Serializable,Comparable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="int_MemberId")
@@ -82,5 +82,14 @@ private String str_ResponsibleFor;
 	}
 	 
 	
-	
+	@Override
+	public int compareTo(Object cm) {
+		// TODO Auto-generated method stub
+		Integer wid=((CommiteeMember)cm).int_MemberId;
+		/* For Ascending order*/
+	      //  return this.int_FacilityBookId;
+
+	        /* For Descending order do like this */
+		return wid-this.int_MemberId;
+	}
 }

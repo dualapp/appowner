@@ -2,6 +2,7 @@ package com.appowner.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -51,7 +52,9 @@ public class MaintainanceStaffDaoImpl implements  MaintainanceStaffDao {
 	@Override
 	public List<MaintainanceStaff> getMaintainanceStaffList() {
 		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createCriteria(MaintainanceStaff.class).setCacheable(true).list();
+		List<MaintainanceStaff>	mlist= getSessionFactory().getCurrentSession().createCriteria(MaintainanceStaff.class).setCacheable(true).list();
+		Collections.sort(mlist);
+		return mlist;
 	}
 
 	@Override

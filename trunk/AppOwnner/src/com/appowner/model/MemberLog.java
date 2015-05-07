@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable(true)
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "tb_memberlog")
-public class MemberLog implements Serializable{
+public class MemberLog implements Serializable,Comparable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column 
@@ -80,7 +80,16 @@ public class MemberLog implements Serializable{
 		this.str_UserEmailId = str_UserEmailId;
 	}
 	
-	
+	@Override
+	public int compareTo(Object mlogo) {
+		// TODO Auto-generated method stub
+		Integer wid=((MemberLog)mlogo).int_MemberLogId;
+		/* For Ascending order*/
+	      //  return this.int_FacilityBookId;
+
+	        /* For Descending order do like this */
+		return wid-this.int_MemberLogId;
+	}
 	
 
 }

@@ -1221,9 +1221,25 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	public void setIndicate1(boolean indicate1) {
 		this.indicate1 = indicate1;
 	}
+	public VendorServiceDetails getService() {
+		return service;
+	}
+
 	private WorkOrderCategory w=new WorkOrderCategory();
 	public void getWorkOrder1(Integer wid)
 	{
 		w=getVendorservice().getWorkOrder1(wid);
+	}
+	private VendorServiceDetails service=new VendorServiceDetails();
+	public void getService(Integer sid) {
+		service=getVendorservice().getServiceDetails(sid);
+		 
+	}
+	public void setService(VendorServiceDetails service) {
+		this.service = service;
+	}
+	public void editService(VendorServiceDetails service)
+	{
+		 getVendorservice().updateVendorServiceDetails(service);
 	}
 }

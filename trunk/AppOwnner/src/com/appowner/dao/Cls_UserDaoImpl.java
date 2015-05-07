@@ -2,6 +2,7 @@ package com.appowner.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -319,7 +320,9 @@ public class Cls_UserDaoImpl implements In_UserDao {
 		@Override
 		public List<MemberLog> getListMemberLog() {
 			// TODO Auto-generated method stub
-			return sessionFactory.getCurrentSession().createCriteria(MemberLog.class).list();
+			List<MemberLog>	mlist= sessionFactory.getCurrentSession().createCriteria(MemberLog.class).list();
+			Collections.sort(mlist);
+			return mlist;
 		}
 
 		@Override
@@ -579,6 +582,12 @@ public class Cls_UserDaoImpl implements In_UserDao {
 				Integer appartmentId,String str_FacilityType) {
 			// TODO Auto-generated method stub
 			return (BookAFacility) getSessionFactory().getCurrentSession().createQuery("from BookAFacility where dat_OpenDate=? and dat_CloseDate=? and str_StartTime=? and str_StartTime1=? and str_EndTime=? and str_EndTime1=? and int_ApartmentId=? and str_FacilityType=?").setParameter(0, dat_OpenDate).setParameter(1, dat_CloseDate).setParameter(2, str_StartTime).setParameter(3, str_StartTime1).setParameter(4, str_EndTime).setParameter(5, str_EndTime1).setParameter(6, appartmentId).setParameter(7, str_FacilityType).uniqueResult();
+		}
+
+		@Override
+		public void updateMemberLog(MemberLog memberLog) {
+			// TODO Auto-generated method stub
+			getSessionFactory().getCurrentSession().save(memberLog);
 		}
 	 
 }
