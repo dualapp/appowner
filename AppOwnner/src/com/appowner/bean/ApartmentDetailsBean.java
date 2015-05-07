@@ -826,7 +826,7 @@ public class ApartmentDetailsBean  implements Serializable{
 					List<HouseDetails>  hDetailsList=readExcel(outputFilePath.getAbsolutePath());
 					if(hDetailsList==null)
 					{
-					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Some House No With Same name Already Exist In Block"+""+str_BlockName));
+					FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Some House No With Same Name Already Exist In Block"+""+str_BlockName));
        				return null;
 					}
 					 System.out.println( hDetailsList);
