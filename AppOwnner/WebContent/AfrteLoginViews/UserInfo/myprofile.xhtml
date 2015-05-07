@@ -104,7 +104,7 @@
         
            <tr>
  <td width="20%">
-    <p:outputLabel value="First name:"/></td>
+    <p:outputLabel value="First Name:"/></td>
     <td width="20%">
     <p:outputLabel value="#{loginBean.str_FirstName}"> </p:outputLabel></td>
      
@@ -133,11 +133,11 @@
             </td> </tr>
            
              <tr>
-           <td> <p:outputLabel value="Phone No* :"/>
+           <td> <p:outputLabel value="Phone No :"/>
             </td>            
             <td><p:outputLabel id="str_PhoneNo" value="#{loginBean.str_Mobile}" />
               </td>
-              <td> <p:outputLabel value="FaceBook Profile* :"/></td>
+              <td> <p:outputLabel value="FaceBook Profile :"/></td>
           
             <td><p:outputLabel id="str_fb" value="#{loginBean.str_FacebookId}"  />
          <br/> www.facebook.com/</td>
@@ -196,14 +196,16 @@
              <td width="20%"><p:outputLabel value="Gender:"/>
              </td>            
              <td width="20%"><h:selectOneRadio value="#{loginBean.str_Gender}"  >
-<f:selectItem itemValue="male" itemLabel="male" />
-<f:selectItem itemValue="female" itemLabel="female" />
+<f:selectItem itemValue="Male" itemLabel="Male" />
+<f:selectItem itemValue="Female" itemLabel="Female" />
 </h:selectOneRadio>
              </td>  
             <td width="20%"><p:outputLabel value="Date Of Birth:"/>
              </td>          
             <td width="20%"> 
-            <p:outputLabel  value="#{loginBean.date_DateOfBirth}"/>
+            <p:outputLabel  value="#{loginBean.date_DateOfBirth}">
+            <f:convertDateTime pattern="dd-MMM-yyyy" />
+            </p:outputLabel>
              </td></tr>
               
           <tr>
@@ -228,14 +230,8 @@
              <td><p:outputLabel value="Proffession:"/>
              </td>            
              <td><p:outputLabel value="#{loginBean.str_Proffession}"/></td>  
-            <td><p:outputLabel value="Intrested In"/>
-             </td>          
-            <td><h:selectManyCheckbox value="#{loginBean.str_IntrestedIn}"  layout="pageDirection" styleClass="nostyle">
-<f:selectItem itemValue="Meeting Others" itemLabel="Meeting Others"/>
-<f:selectItem itemValue="Sharing Stuff" itemLabel="Sharing Stuff"/>
-<f:selectItem itemValue="Organizing Events" itemLabel="Organizing Events"/>
-</h:selectManyCheckbox>
-             </td></tr></table>
+                       
+             </tr></table>
   </div>
  </h:form>
  
