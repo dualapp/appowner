@@ -49,12 +49,8 @@
   
    
        <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"><tr>
-         
-              
-              
-            
-            
-               <td><p:outputLabel  value="Expense Type:" /><h:selectOneMenu   value="#{expenseBean1.str_ExpenseType}" >
+          
+               <td><p:outputLabel  value="Expense Type:" /><h:selectOneMenu  style="width:150px"  value="#{expenseBean1.str_ExpenseType}" >
                     <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"/>
                     <f:selectItem itemLabel="Estimate" itemValue="Estimate"/>
@@ -63,15 +59,18 @@
              </td>
               
               
-               <td><p:outputLabel  value="Expense Category:" /><h:selectOneMenu   value="#{expenseBean1.str_ExpenseCategory}"  >
+               <td><p:outputLabel  value="Expense Category:" /><h:selectOneMenu  style="width:150px"  value="#{expenseBean1.str_ExpenseCategory}"  >
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem itemLabel="Expense" itemValue="Expense"  />
                     
                  </h:selectOneMenu>
                  </td>
-                  <td><p:outputLabel value="Duration:" /><p:calendar  id="date"    navigator="true"  pattern="dd/MM/yyyy"  value="#{expenseBean1.date_Duration}">
+                 <td><p:outputLabel  value="Asset Category:" /><h:selectOneMenu id="assetcatname"   style="width:150px" value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
+                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                  
-                  </p:calendar>&nbsp; &nbsp; &nbsp;
+                   <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
+                   <p:ajax event="change" update="assetname" process="assetcatname"/>
+                 </h:selectOneMenu>
              </td>
                  </tr>
                            
@@ -81,23 +80,22 @@
              
                
             
-               <td><p:outputLabel  value="Asset Category:" /><h:selectOneMenu id="assetcatname"  value="#{expenseBean1.str_AssetCategoryType}" valueChangeListener="#{expenseBean1.assetCatNameListener}" >
-                  <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
-                 
-                   <f:selectItems  value="#{expenseBean1.str_AssetCatNameList}" />
-                   <p:ajax event="change" update="assetname" process="assetcatname"/>
-                 </h:selectOneMenu>
-             </td>
                
+                
              
-               <td><p:outputLabel  value="Asset Name:  " /><h:selectOneMenu  id="assetname" value="#{expenseBean1.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
+               <td><p:outputLabel  value="Asset Name:  " /><h:selectOneMenu style="width:150px"  id="assetname" value="#{expenseBean1.str_AssetName}"  valueChangeListener="#{expenseBean1.assetNameListener}" >
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                   <f:selectItems  value= "#{expenseBean1.str_AssetNameList}"  />
                   
                   
                  </h:selectOneMenu>
-                 </td><td> 
-                 <h:commandButton  icon="ui-icon-search" update="DT"  value="Go" action="#{expenseBean1.getExpenseList}"/>  </td></tr>
+                 </td>
+                 <td><p:outputLabel value="Duration:" /><p:calendar  id="date" style="width:150px"   navigator="true"  pattern="dd/MM/yyyy"  value="#{expenseBean1.date_Duration}">
+                 
+                  </p:calendar>&nbsp; &nbsp; &nbsp;
+             </td>
+                 <td> 
+                 <p:commandButton   ajax="false" icon="ui-icon-search" update="DT"  value="Go" action="#{expenseBean1.getExpenseList}"/>  </td></tr>
         
                  </table>
                   
