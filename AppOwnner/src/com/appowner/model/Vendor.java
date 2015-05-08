@@ -31,6 +31,10 @@ public class Vendor implements  Serializable,Comparable
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="int_VendorId", insertable = false, updatable=false)
  private Integer int_VendorId;
+	
+
+
+
 	@Column 
 	 private Integer int_ApartmentId;
 	public Integer getInt_ApartmentId() {
