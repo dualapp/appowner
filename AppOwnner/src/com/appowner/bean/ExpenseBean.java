@@ -2545,7 +2545,7 @@ public String addVote()
 		 
 	 
 	getExpenseService().addVote(vote);
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Vote Added Successfully!"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Your Vote has been registered Successfully. Thank you participating!"));
 	 
 	 long_Vote= getExpenseService().getTotalVote(onePoll.getInt_PoolId());
 	 onePoll.setInt_Vote(long_Vote);
@@ -2568,20 +2568,16 @@ public String addVote1()
 		 
    
 	getExpenseService().addVote(vote);
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Vote Added Successfully!"));
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Your Vote has been registered Successfully. Thank you participating!"));
 	 
 	long_Vote= getExpenseService().getTotalVote(latestPolls.getInt_PoolId());
 	latestPolls.setInt_Vote(long_Vote);
 	System.out.println( long_Vote);
 	getExpenseService().UpdatePool(latestPolls);
 	onePoll=null;
-	if(LoginBean.isAdmin())
-		 
-		 return "../AfrteLoginViews/Adminwelcomepage.xhtml";
 	 
-	else
 	 
- return "../AfrteLoginViews/welcomepage.xhtml";
+ return null;
 	 
 }
 public void getOnePool()
