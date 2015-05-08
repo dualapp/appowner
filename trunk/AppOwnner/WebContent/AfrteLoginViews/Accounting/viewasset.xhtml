@@ -115,7 +115,7 @@
                  
                    </td> 
                    </tr>
-                 <tr><th><p:outputLabel value="VendorType"/></th><td> <h:selectOneMenu id="str_VendorType"   valueChangeListener="#{expenseBean.vendorTypeChangeListener}"  value="#{expenseBean.a.str_VendorType}"  >
+                <tr><th><p:outputLabel value="VendorType"/></th><td> <h:selectOneMenu id="str_VendorType"   valueChangeListener="#{expenseBean.vendorTypeChangeListener}"  value="#{expenseBean.a.str_VendorType}"  >
             
              <f:selectItems value="#{expenseBean.str_VendorTypeList}" />
               <p:ajax event="change" update="str_VendorName1" process="str_VendorType"/> 
@@ -126,16 +126,15 @@
  <tr>
  
  
-            <th><p:outputLabel   value="Select Vendor Name* " /></th>
-            <td><h:selectOneMenu id="str_VendorName1" value="#{expenseBean.a.str_VendorName1}" >
-                <f:selectItems value="#{expenseBean.str_VendorNameByType1}"/>
+            <th><p:outputLabel for="str_VendorName1" value="Select Vendor Name* " /></th>
+            <td><h:selectOneMenu id="str_VendorName1"    value="#{expenseBean.a.str_VendorName}"  >
+                
+                <f:selectItems value="#{expenseBean.str_VendorNameByType}"/>
                   
-                 
             </h:selectOneMenu></td>
              </tr>
-              
-                  
-                  </table>
+             
+              </table>
            </fieldset>
         </p:tab>
         <p:tab title="AMC Details">

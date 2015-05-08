@@ -53,7 +53,7 @@
 		<h:commandButton   
 		                 action="#{expenseBean.uploadAssetsFile()}"
 			             value="upload file"  style="border-radius: 3px;padding: 0 13px;height: 31px;line-height: 29px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
-			               
+			                <f:ajax execute="file"  update="img" render="img"/>
 			             </h:commandButton>
         
        </td> 
@@ -180,10 +180,10 @@
         <p:message id="EndDateMsg"  for="EndDate" display="text"/>
         </td> 
         </tr>
-          <tr><th><p:outputLabel value="VendorType"/></th><td> <h:selectOneMenu id="str_VendorType1"    value="#{expenseBean.str_VendorType}"  >
-            <f:selectItem itemLabel="Select One" itemValue="" />
-             
-             <f:selectItems value="#{vendorBean.str_VendorTypeList}" />
+        <tr><th><p:outputLabel value="VendorType"/></th>
+          <td> <h:selectOneMenu id="str_VendorType1"   valueChangeListener="#{expenseBean.vendorTypeChangeListener1}" value="#{expenseBean.str_VendorType1}"  >
+            <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
+             <f:selectItems value="#{expenseBean.str_VendorTypeList1}" />
               <p:ajax event="change" update="str_VendorName2" process="str_VendorType1"/> 
                
         </h:selectOneMenu>
@@ -192,13 +192,12 @@
  <tr>
  
  
-            <th><p:outputLabel for="str_VendorName2" value="Select Vendor Name " /></th>
-            <td><h:selectOneMenu id="str_VendorName2"   value="#{expenseBean.str_VendorName}"  >
+            <th><p:outputLabel for="str_VendorName2" value="Select Vendor Name* " /></th>
+            <td><h:selectOneMenu id="str_VendorName2"   value="#{expenseBean.str_VendorName1}"  >
                 <f:selectItem itemLabel="Select name"  itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{vendorTransactionBean.str_VendorNameByType}"/>
+                <f:selectItems value="#{expenseBean.str_VendorNameByType1}"/>
                   
             </h:selectOneMenu></td> 
-        
              </tr>
         </table>
         

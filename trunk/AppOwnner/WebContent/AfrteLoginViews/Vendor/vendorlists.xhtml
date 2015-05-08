@@ -417,41 +417,54 @@
          <h:form id="viewServiceForm">
          
         <p:outputPanel id="viewServiceDetail" style="text-align:center;">
-         <h:panelGrid id="theGrid" style="width:200px">
-      <p:dataTable id="DT1" var="v"   editable="true"  value="#{vendorBean.vendorServiceDetails3}" style="margin-bottom:20px"  >
-     <p:ajax event="rowEdit" listener="#{vendorBean.onRowEdit}"    />
-            <p:ajax event="rowEditCancel" listener="#{vendorBean.onRowCancel}"  />
-        
-       <p:column headerText="Name" style="width:150px">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{v.str_ServiceName}" /></f:facet>
-               <f:facet name="input"><p:inputText value="#{v.str_ServiceName}" style="width:100%" label="Service"/></f:facet>
-           </p:cellEditor>
-       </p:column>
- 
-       <p:column headerText="Price" style="width:150px">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{v.int_ServicePrice}" /></f:facet>
-               <f:facet name="input">
-                   <p:inputText value="#{v.int_ServicePrice}" style="width:100%"/>
-                        
-               </f:facet>
-           </p:cellEditor>
-       </p:column>
-  
-        <p:column headerText="Action" style="width:150px">
-           <p:rowEditor /> <br/>
-            <h:commandLink  update="DT1,viewServiceForm"  actionListener="#{vendorBean.deleteService(v)}"  style="margin-right:20px;"  ajax="false"   onclick="return confirm('Are you sure you want to delete ?');" >
+         
+      <p:dataTable id="DT1" var="v"   value="#{vendorBean.vendorServiceDetails3}"  >
+            
+             <p:column styleClass="wrap">
+                <f:facet name="header">
+                    <h:outputText value="Service Name" />
+                </f:facet>
+                <h:outputText  rendered="#{not v.editable}"     value="#{v.str_ServiceName}" />
+                 
+                  <h:inputText style="width:80px"   rendered="#{v.editable}"    value="#{v.str_ServiceName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Price" />
+                </f:facet>
+                <h:outputText  rendered="#{not v.editable}"     value="#{v.int_ServicePrice}" />
+                  <h:inputText  rendered="#{v.editable}" style="width:50px"      value="#{v.int_ServicePrice}" />
+            </p:column>
+             <p:column>
+            <f:facet name="header">Action</f:facet>                
+               
+              <h:commandLink     rendered="#{not v.editable}"     update="@form" process="@this"  immediate="true" execute="@this"  action="#{vendorBean.editAction(v)}"   > 
+               <f:ajax render="@form" execute="@form"/>
+                <p:graphicImage  height="20" width="20" alt="Edit" value="#{expenseBean.str_Name}images/edit.jpg" title="Edit"/> 
+               
+               </h:commandLink>
+               	   		 
+               
+               	   		 
+	   		 
+                
+	   		<h:commandLink       action="#{vendorBean.updateVendorServiceDetails(v)}" > 
+               <f:ajax render="@form" execute="@form" update="ui-growl" />
+               <p:graphicImage  height="20" width="20" alt="Update" value="#{expenseBean.str_Name}images/tick.png" title="Update"/> 
+               
+               </h:commandLink>
+               
+               <h:commandLink  update="DT1,viewServiceForm"  actionListener="#{vendorBean.deleteService(v)}"  style="margin-right:20px;"  ajax="false"   onclick="return confirm('Are you sure you want to delete ?');" >
                  <p:graphicImage  height="20" width="20" alt="delete" value="#{expenseBean.str_Name}images/delete.jpg" title="Delete"/> 
                  
-                 
+                 <f:ajax render="@form" />
 
                 </h:commandLink>
-       </p:column>
-       
-       
+               
+               </p:column>
             </p:dataTable>  
-            </h:panelGrid>
+  
+            
      
     </p:outputPanel>
     </h:form>
