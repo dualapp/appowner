@@ -858,9 +858,13 @@ public void setVendorListByName(List<Vendor> vendorListByName) {
 	 
 	 System.out.println( str_ServiceName);
 	 System.out.println(int_ServicePrice);
-	   
-		getVendorservice().updateVendorServiceDetails(vendorServiceDetails5);
+	 for (VendorServiceDetails service :vendorServiceDetails3){
+		 service.setEditable(false);
+		 getVendorservice().updateVendorServiceDetails(vendorServiceDetails5);
 		 
+		}
+		
+	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully"));
 		  return null;
 	 }
 	
@@ -1125,9 +1129,10 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	 private boolean isEditable;
 
 	 
-	public void editAction() {
+	public String editAction(VendorServiceDetails service) {
 
-        setEditable(true);            
+		 service.setEditable(true);     
+        return null;
     }
 
     public void editar(VendorServiceDetails service){
@@ -1241,5 +1246,6 @@ System.out.println(entitiesToDelete+"entyt todelete");
 	public void editService(VendorServiceDetails service)
 	{
 		 getVendorservice().updateVendorServiceDetails(service);
+		 
 	}
 }
