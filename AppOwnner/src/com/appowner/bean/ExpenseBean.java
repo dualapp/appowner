@@ -1293,7 +1293,7 @@ public List<String> getStr_VendorNameByType() {
 	 
 }
 public String updateOneAsset()
-{ 
+{ a.setStr_AssetImg(path3);
 	getExpenseService().updateOneasset(a);
 	 
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1482,7 +1482,7 @@ public void  uploadAssetsFile( ) throws IOException   {
 	 		}
 	 		 part3=null;
 }
-public void  uploadAssetsFile1( ) throws IOException   {
+public void  uploadAssetsFile1() throws IOException   {
 	 
 	   
     SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -1585,20 +1585,7 @@ public void setAssetimg(String assetimg) {
 }
 public String getPath3() {
 	 
-	 if(selectedAssets!=null)
-	{
-		ListIterator itr=selectedAssets.listIterator();
-		while(itr.hasNext())
-		{
-			Assets asset=(Assets) itr.next();
-			if(asset.getInt_asset_id()!=null)
-			{
-			path3= getExpenseService().getAssetImg(asset.getInt_asset_id());
-			System.out.println(path3+"imagesssssssssssssssss");
-			}
-		}
-		
-	}
+	 
 	return path3; 
 }
 	 public String getPath4() {
