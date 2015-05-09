@@ -373,6 +373,7 @@ notice.setDat_ExpireOn(date1);
 	}
 
 	public void pageNext() {
+		System.out.println("hcjfjjfjfqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 	    page(firstRow + rowPerPage);
 	}
 
@@ -390,10 +391,24 @@ notice.setDat_ExpireOn(date1);
 	public void page(ActionEvent event) {
 	    page(((Integer) ((UICommand) event.getComponent()).getValue() - 1) * rowPerPage);
 	}
-	
+	private List<Notice> listOfArchieveNotice;
 	
 	 
 	 
+	public List<Notice> getListOfArchieveNotice() {
+		listOfArchieveNotice=new ArrayList<Notice>();
+		if(LoginBean.isAdmin())
+			 str_Visible="Only Owner of this Complex";
+			else
+				str_Visible="Only Member of this Complex";
+		listOfArchieveNotice.addAll(getNoticeService().listArchieveNotices(str_Visible));
+	  
+		return listOfArchieveNotice;
+	}
+	public void setListOfArchieveNotice(List<Notice> listOfArchieveNotice) {
+		this.listOfArchieveNotice = listOfArchieveNotice;
+	}
+	
 	private List<Notice> listOfNotice;
 	
 	private void loadListOfNotice()
