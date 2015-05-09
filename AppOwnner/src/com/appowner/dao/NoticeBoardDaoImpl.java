@@ -1,5 +1,7 @@
 package com.appowner.dao;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -35,19 +37,52 @@ public class NoticeBoardDaoImpl implements NoticeBoardDao {
 	          ).list();
 	 
 	  }   */
+		Date date=new java.util.Date();
+		Calendar c = Calendar.getInstance(); 
+		 c.setTime(date);
+		 
+		 
+		
+	Date date1= c.getTime();
+		System.out.println(date1+"kunkupriya");
+		
 	System.out.println(firstRow+"k22");
 		if(str_Visible.equalsIgnoreCase("Only Owner of this Complex"))
 		{
 		     System.out.println("jkjkkjjjjjjjjjjjjjjjjjjjjj");
-			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery("from Notice where  int_ApartmentID=?").setParameter(0,Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).list();
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery("from Notice where  int_ApartmentID=? and dat_ExpireOn >=?").setParameter(0,Util.getAppartmentId()).setParameter(1, date1).setFirstResult(firstRow).setMaxResults(rowPerPage).list();
 		}
 		else
 		{   System.out.println("hjfvvhjfghjjj");
-			String hql="from Notice where str_Visible=1 and int_ApartmentID=?";
-			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setFirstResult(firstRow).setMaxResults(rowPerPage).list();   
+			String hql="from Notice where str_Visible=1 and int_ApartmentID=? and dat_ExpireOn >=?";
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setParameter(1, date1).setFirstResult(firstRow).setMaxResults(rowPerPage).list();   
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public List<Notice> listArchieveNotices(String str_Visible)
+	{
+		Date date=new java.util.Date();
+		Calendar c = Calendar.getInstance(); 
+		 c.setTime(date);
+		 
+		 
+		
+	Date date1= c.getTime();
+		System.out.println(date1+"kunkupriya");
+		
 	
+		if(str_Visible.equalsIgnoreCase("Only Owner of this Complex"))
+		{
+		     System.out.println("jkjkkjjjjjjjjjjjjjjjjjjjjj");
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery("from Notice where  int_ApartmentID=? and dat_ExpireOn <=?").setParameter(0,Util.getAppartmentId()).setParameter(1, date1).list();
+		}
+		else
+		{   System.out.println("hjfvvhjfghjjj");
+			String hql="from Notice where str_Visible=1 and int_ApartmentID=? and dat_ExpireOn <=?";
+			return (List<Notice>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,Util.getAppartmentId()).setParameter(1, date1).list();   
+		}
+	}
+			
 		 @SuppressWarnings("unchecked")
 			public List<String> getmailids(){
 				 List<String> list1= (List<String>) getSessionFactory().getCurrentSession().createCriteria(Mail.class).setProjection(Projections.property("mail")).list();
