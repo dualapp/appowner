@@ -53,7 +53,7 @@
   
 <table>
                 <tr>
-            <td><p:outputLabel  for="str_username" value="User name:"/></td>
+            <td><p:outputLabel  for="str_username" value="User Name:"/></td>
                        
             <td><p:inputText id="str_username" value="#{cls_UserBean.str_Username}" required="true" validatorMessage="Must starts with alphanumeric[0-9 or a-z] min 3 char and max 15 char!" requiredMessage="Enter User Name!">
             <f:validateRegex pattern="^[a-z0-9]{3,15}$"/>
@@ -84,7 +84,7 @@
             <td><p:message for="str_FirstName" dispay="text"/></td>
             </tr> 
             <tr>
-            <td><p:outputLabel for="str_LastName" value="Last name :" />
+            <td><p:outputLabel for="str_LastName" value="Last Name :" />
               </td>           
             <td><p:inputText id="str_LastName" value="#{cls_UserBean.str_LastName}"  required="true" requiredMessage="Enter First Name!">
             </p:inputText></td><td><p:message for="str_LastName" display="text"/></td></tr>
@@ -162,19 +162,19 @@
  <p:panel id="panelOne"  style="border:none;">
  <div class="gsTitleDiv">House Details of  #{cls_UserBean.str_BlockName}, #{cls_UserBean.str_HouseNo}</div><hr/>
         <table><tr>
-    <th width="10%"><p:outputLabel value="Size of house:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.housedetails.dbl_HouseSize}"/></td>
+    <th width="10%"><p:outputLabel value="Size Of House:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.housedetails.dbl_HouseSize}"/></td>
    
-   <th width="10%"> <p:outputLabel value="Type of house:"/></th><td width="20%"><p:outputLabel value="#{cls_UserBean.housedetails.str_TypeOfHouse}"/></td>
+   <th width="10%"> <p:outputLabel value="Type Of House:"/></th><td width="20%"><p:outputLabel value="#{cls_UserBean.housedetails.str_TypeOfHouse}"/></td>
    
-  <th width="10%">  <p:outputLabel value="No of Bathrooms:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.housedetails.int_NoOfBathRooms}"/></td>
+  <th width="10%">  <p:outputLabel value="No Of Bathrooms:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.housedetails.int_NoOfBathRooms}"/></td>
   <th width="10%"></th><td width="10%"></td>
   </tr>
  
   <tr>
    
-   <th> <p:outputLabel value="No of Balconies:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.int_NoOfBalconies}"/></td>
+   <th> <p:outputLabel value="No Of Balconies:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.int_NoOfBalconies}"/></td>
    
-   <th> <p:outputLabel value="Intercom no:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.str_HouseNo}"/></td>
+   <th> <p:outputLabel value="Intercom No:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.str_HouseNo}"/></td>
    
    <th> <p:outputLabel value="Occupancy Status:"/></th><td><p:outputLabel value="#{cls_UserBean.housedetails.is_Rented}"/></td>
    </tr></table>
@@ -187,13 +187,14 @@
    <th width="10%"> <p:outputLabel value="Email:"/></th><td width="20%"><p:outputLabel value="#{cls_UserBean.u.str_Email}"/></td>
    
   <th width="10%">  <p:outputLabel value="Mobile No:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.u.str_PhoneNo}"/></td>  
-   <th width="10%"> <p:outputLabel value="Land Line No:"/></th><td width="10%"> <p:outputLabel value=" "/></td></tr>
+  <th width="10%"></th><td width="10%"></td>
+   </tr>
    <tr>
    
-   <th> <p:outputLabel value="Alternate No:"/></th><td><p:outputLabel value="2"/></td>
+   <th> <p:outputLabel value="Alternate No:"/></th><td><p:outputLabel value=""/></td>
    
    <th> <p:outputLabel value="Postal Address:"/></th><td><p:outputLabel value="#{cls_UserBean.u.str_City}"/><p:outputLabel value="#{cls_UserBean.u.str_State}"/><p:outputLabel value="#{cls_UserBean.u.str_Country}"/></td>
-    <th> <p:outputLabel value="Uplaod Files:"/></th><td><p:outputLabel value="Vacant"/></td>
+    <th > <p:outputLabel value="Land Line No:"/></th><td  > <p:outputLabel value=" "/></td>
    </tr></table>
   </p:panel>
   <p:panel id="panelThree"  style="border:none;">
@@ -205,14 +206,14 @@
    
   <th width="10%">  <p:outputLabel value="Mobile No:"/></th><td width="10%"><p:outputLabel value="#{cls_UserBean.u1.str_PhoneNo}"/></td>
    
-   <th width="10%"> <p:outputLabel value="Land Line No:"/></th><td width="10%"><p:outputLabel value="2"/></td></tr>
+   <th width="10%"> <p:outputLabel value="Land Line No:"/></th><td width="10%"><p:outputLabel value=""/></td></tr>
    <tr>
-    <th> <p:outputLabel value=" Altername No:"/></th><td><p:outputLabel value="2"/></td>
+    <th> <p:outputLabel value=" Altername No:"/></th><td><p:outputLabel value=""/></td>
    
-   <th> <p:outputLabel value="Rental Agrement:"/></th><td><p:outputLabel value="2"/></td>
+   <th> <p:outputLabel value="Rental Agrement:"/></th><td><p:outputLabel value=""/></td>
    
    <th> <p:outputLabel value="Postal Address:"/></th><td><p:outputLabel value="#{cls_UserBean.u1.str_City}"/><p:outputLabel value="#{cls_UserBean.u1.str_State}"/><p:outputLabel value="#{cls_UserBean.u1.str_Country}"/></td>
-    <th> <p:outputLabel value="Uplaod Files:"/></th><td><p:outputLabel value="Vacant"/></td>
+    
    </tr></table>
   </p:panel>
     
