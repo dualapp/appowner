@@ -237,14 +237,9 @@ public class EmailUtility2 {
                         "<table width="+600+" bgcolor="+"#FFFFFF"+">"+
        		         "<tr>"+
                        "<td>"+"<font size="+3+" color="+"#000000"+">"+"Invoice To:"+" "+username+"</td>"+
-       		        "<td>"+
        		       
-       		        "</td>"+
-       		        "<td>"+
-     		       
-       		        "</td>"+
        		      
-       		        "<td>"+"<font size="+3+" color="+"#000000"+">"+"Bill Period:"+billperiod+""+"-"+""+year+""+"</td>"+
+       		        "<td colspan="+3+">"+"<font size="+3+" color="+"#000000"+">"+"Bill Period:"+billperiod+""+"-"+""+year+""+"</td>"+
                        "</tr>"+
                        "<tr>"+
                        "<td>"+"<font size="+3+" color="+"#000000"+">"+"Block No:"+" "+block+"</td>"+
