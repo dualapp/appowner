@@ -37,7 +37,7 @@ public interface AccountsService {
 
 	List<Character> getCh_AccountGroup();
 	List<Character> getCh_AccountGroup1();
-	List<String> getAccountTypeList();
+	List<String> getAccountTypeList(String account);
 
 	public List<SelectItem> getAccounts();
 	public List<SelectItem> getAccount();

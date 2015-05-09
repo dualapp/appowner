@@ -1,5 +1,6 @@
 package com.appowner.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.appowner.model.Notice;
@@ -12,4 +13,6 @@ public interface NoticeBoardService {
 	public Integer count();
 	public Notice getNotice(int id);
 	public void updateNotice(Notice notice);
+	public List<Notice> listArchieveNotices(String str_Visible);
+			
 }

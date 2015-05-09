@@ -28,6 +28,10 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	  {
 		  return  getNoticeBoardDao().listNotices( firstRow,  rowPerPage,str_Visible);  
 	  }
+	  public List<Notice> listArchieveNotices(String str_Visible)
+	  {
+		  return  getNoticeBoardDao().listArchieveNotices(str_Visible);  
+	  }
 	  public List<String> getmailids()
 	  {
 		  return  getNoticeBoardDao().getmailids();  
