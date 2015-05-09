@@ -282,7 +282,7 @@ private List<ChartOfAccount>  listAccountsName1;
 	 {
 		 ChartOfAccount account=(ChartOfAccount) list.next();
 		 String str=account.getStr_AccountName();
-		System.out.println(str+"fdjfjkfjk");
+		
 		 char ch=account.getCh_Group();
 	
 		 if(ch=='A')
@@ -311,29 +311,8 @@ public void setListAccountsName1(List<ChartOfAccount> listAccountsName1) {
 }
 public List<String> getListAccountsName() {
 	 listAccountsName=new ArrayList<String>();
-	 System.out.println(str+"fjjgfjdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-	 
-	   getListAccountsName1();
-	   if(str=="E")
-		 {
-		   listAccountsName.addAll(expense);
-		 }
-		 else if(str=="A")
-		 {
-			 listAccountsName.addAll(asset);
-			 
-		 }
-		 else if(str=="L")
-		 {
-			 listAccountsName.addAll(liability);
-			 
-		 }
-		 else
-		 {
-			 listAccountsName.addAll(income1) ;
-		 }
-	
-
+	 listAccountsName.addAll(getAccountsService().getAccountTypeList1());
+	 getListAccountsName1();
 	
 	return listAccountsName;
 }
@@ -424,13 +403,7 @@ public void accountchangeListener1(ValueChangeEvent event)
 	id1=getAccountsService().getAccountId(str);
 	System.out.println(id1+"jhjhj");
 }
-public void accountchangeListener4(ValueChangeEvent event)
-{
-	
-   str=(String)event.getNewValue();
-   System.out.println(str+"lovejjjjjjjjjjjjjjjjj44444444444444444444444444444444444444444444444");
-   
-}
+
 
 
 public void datechangeListener(ValueChangeEvent event)
@@ -626,7 +599,7 @@ public double getDebit() {
 			 }
 	  if(credit>debit)
       {
-		 credit=credit-debit/10;
+		 credit=credit-debit;
 		 type1=false;
 		
 		 type2=true;
@@ -1212,11 +1185,27 @@ public void accountchangeListener(ValueChangeEvent event){
 	System.out.println(ch_Group+"hjjhjhhj");
 	
 } 
+public void accountchangeListener4(ValueChangeEvent event)
+{
+	
+	accounttype=(String)event.getNewValue();
+   System.out.println(accounttype+"lovejjjjjjjjjjjjjjjjj44444444444444444444444444444444444444444444444");
+  
+}
+private static String accounttype;
+public static String getAccounttype() {
+	return accounttype;
+}
+public static void setAccounttype(String accounttype) {
+	AccountingBean.accounttype = accounttype;
+}
 private List<String> listAccountsType;
 
 public List<String> getListAccountsType() {
 	listAccountsType=new ArrayList<String>();
-	listAccountsType.addAll(getAccountsService().getAccountTypeList());
+	System.out.println(accounttype+"gvjgfjgjkgjfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+	listAccountsType.addAll(getAccountsService().getAccountTypeList(accounttype));
+	System.out.println(listAccountsType+"gfjjmfggggggggggg7777777777777777777777777gggggggggggggggggggggggggggggggggggggggggggggggg");
 	return listAccountsType;
 }
 public void setListAccountsType(List<String> listAccountsType) {
@@ -1244,6 +1233,8 @@ System.out.println(str_AccountType+"fkjkffdkl");
 	balance.setStr_AccountsHead(str_AccountName);
 	getAccountsService().saveOpeningAccount(balance);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Chart Of Account Saved Successfully!"));
+	 listAccountsType=null;
+	 str_AccountName=null;
 	return "chartofaccount.xhtml";
 	
   }	
@@ -1405,6 +1396,7 @@ public List<Double> getExpenseAmount1() {
 	expenseList=new ArrayList<Expense>();
 	debitNetTotal=0.00;
 	expenseAmount2=0.00;
+	double expenseAmount2=0.00;
 	expenseList.addAll(getAccountsService().expenseList(dat_From,dat_To));
 	expenseAmount1=new ArrayList<Double>();
 	ListIterator list=expenseList.listIterator();
@@ -1416,7 +1408,7 @@ public List<Double> getExpenseAmount1() {
 		 BigDecimal b1 = new BigDecimal(debitNetTotal).setScale(2,BigDecimal.ROUND_HALF_UP);
 		 debitNetTotal=b1.doubleValue();
 	}	
-	
+	expenseAmount2=debitNetTotal;
 	 getExpense2();
 	 ListIterator list1=expense2.listIterator();
 	 while(list1.hasNext())
@@ -1461,13 +1453,29 @@ public List<Double> getExpenseAmount1() {
 						}
 					}		
 			  }					  
- 	  if(expenseAmount2==0.00 && listManualJournal3.listIterator().hasNext())
- 		 expenseAmount1.add(debitNetTotal); 
- 		  else
- 			 expenseAmount1.add(expenseAmount2); 
- 	     expenseAmount2=0.00;
- 			
- 		 }	
+ 	  int retval = Double.compare(expenseAmount2,debitNetTotal);
+	  System.out.println(retval+"fgfggfkjgfkjfgfjkfg1111111111111111111111111");
+	  if(expenseAmount2==0.00 && listManualJournal3.listIterator().hasNext())
+	  {
+		  System.out.println("fgjhgfjddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		  expenseAmount1.add(debitNetTotal); 
+	  }
+	  else 
+	  {    System.out.println("kjjkffjgfjkgjgfggggggggggggggggggggggggggggggggggggggggggg");
+	     if(retval==0)
+	     {
+	    	 System.out.println("hdfjdffdjssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+	    	 expenseAmount1.add(debitNetTotal); 
+	    	 debitNetTotal=0.00;
+	     }
+	     else
+	     {
+	    	 expenseAmount1.add(expenseAmount2); 
+		  expenseAmount2=0.00;
+	     }
+	  }
+		
+	 }	
 	 expenseAmount3=0.00;
  		 for(double amount:expenseAmount1)
  		 {
@@ -1602,6 +1610,8 @@ public List<Double> getTotalIncome() {
 	    BigDecimal b1 = new BigDecimal(totalIncome1).setScale(2,BigDecimal.ROUND_HALF_UP);
 		 totalIncome1=b1.doubleValue();
 	}
+	
+	incomeAmount=totalIncome1;
 	getIncome2();
 	ListIterator list1=income2.listIterator();
 	 while(list1.hasNext())
@@ -1637,11 +1647,28 @@ public List<Double> getTotalIncome() {
 				   }
 	    	}
 	  }
+	  int retval = Double.compare(incomeAmount,totalIncome1);
+	  System.out.println(retval+"fgfggfkjgfkjfgfjkfg1111111111111111111111111");
 	  if(totalIncome2==0.00 && listManualJournal2.listIterator().hasNext())
+	  {
+		  System.out.println("fgjhgfjddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 	  totalIncome.add(totalIncome1); 
-	  else
+	  }
+	  else 
+	  {    System.out.println("kjjkffjgfjkgjgfggggggggggggggggggggggggggggggggggggggggggg");
+	     if(retval==0 && incomeCrditAccount.equalsIgnoreCase("Income from Resident"))
+	     {
+	    	 System.out.println("hdfjdffdjssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+	    	 totalIncome.add(totalIncome1); 
+	    	 totalIncome1=0.00;
+	    	 
+	     }
+	     else
+	     {
 		  totalIncome.add(totalIncome2); 
-	  totalIncome2=0.00;
+	      totalIncome2=0.00;
+	     }
+	  }
 		
 	 }	
 	 totalIncome3=0.00;
@@ -1834,16 +1861,16 @@ public void getSearch1(){
 public Date accountchangeListener3(ValueChangeEvent event)
 {
 	System.out.println("hjjhjhjk");
-	str=(String)event.getNewValue();
-  System.out.println(str+"66666666666666666666666666666666666666666666666666666666666666666666666666666666");
-  if(str.equalsIgnoreCase("Today"))
+  String day=(String)event.getNewValue();
+  System.out.println(day+"66666666666666666666666666666666666666666666666666666666666666666666666666666666");
+  if(day.equalsIgnoreCase("Today"))
   {
 	  System.out.println("dfhfdhjfdjfdfdj");
    Calendar c = Calendar.getInstance();
 	dat_ToDate1=c.getTime();
 	return dat_ToDate1;
   }
-   if(str.equalsIgnoreCase("This Week End"))
+   if(day.equalsIgnoreCase("This Week End"))
 		   {
 	   Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
@@ -1852,7 +1879,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
 		return dat_ToDate1;
 		   }
-   else if(str.equalsIgnoreCase("This Month End"))
+   else if(day.equalsIgnoreCase("This Month End"))
    {
 	   Calendar c = Calendar.getInstance();
 	 		
@@ -1865,7 +1892,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 	 		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
 	 		return dat_ToDate1; 
    }
-   else if(str.equalsIgnoreCase("This Quarter End"))
+   else if(day.equalsIgnoreCase("This Quarter End"))
    {  
    Calendar c = Calendar.getInstance();
 	c.setTime(dat_ToDate1);
@@ -1892,7 +1919,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 	return dat_ToDate1;
 }
    
-   else if(str.equalsIgnoreCase("This Year End"))
+   else if(day.equalsIgnoreCase("This Year End"))
    {
 	   Calendar c = Calendar.getInstance();
 		
@@ -1907,7 +1934,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		System.out.println(dat_ToDate+"hhhhhhhhhhhhhhhhhhhh");
 		return dat_ToDate1;  
    }
-   else if(str.equalsIgnoreCase("Yesterday"))
+   else if(day.equalsIgnoreCase("Yesterday"))
    {
 	   Calendar c = Calendar.getInstance();
 	   c.add(Calendar.DATE, -1);
@@ -1925,7 +1952,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
 		return dat_ToDate1;
    }
-   else if(str.equalsIgnoreCase("Previous Month End"))
+   else if(day.equalsIgnoreCase("Previous Month End"))
    {
 	   Calendar aCalendar = Calendar.getInstance();
 	   aCalendar.set(Calendar.DATE, 1);
@@ -1961,7 +1988,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		return dat_ToDate1;
 	   
    }
-   else if(str.equalsIgnoreCase("Previous Year End"))
+   else if(day.equalsIgnoreCase("Previous Year End"))
    {
 	   Calendar c = Calendar.getInstance();
 		
@@ -1976,7 +2003,7 @@ public Date accountchangeListener3(ValueChangeEvent event)
 		System.out.println(dat_ToDate1+"hhhhhhhhhhhhhhhhhhhh");
 		return dat_ToDate1;  
    }
-   else if(str.equalsIgnoreCase("Custom"))
+   else if(day.equalsIgnoreCase("Custom"))
    {   System.out.println("fdfgfgkjgfkjgfjkgf");
    dat_ToDate1=null;
 	  return dat_ToDate1;
