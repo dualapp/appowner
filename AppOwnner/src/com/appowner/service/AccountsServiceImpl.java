@@ -77,9 +77,9 @@ public class AccountsServiceImpl implements AccountsService {
 	}
 
 	@Override
-	public List<String> getAccountTypeList(){
+	public List<String> getAccountTypeList(String account){
 		
-		return getAccountsDao().getAccountTypeList();
+		return getAccountsDao().getAccountTypeList(account);
 	}
 	public List<String> getAccountTypeList1()
 	{
