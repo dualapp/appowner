@@ -86,10 +86,9 @@
            <p:button  outcome="createnewpool.xhtml" rendered="#{expenseBean.isEnable}"  style="width:120px;height:25px" icon="ui-icon-plus" value="Create New"/>&#150; &#150; 
            <p:menuButton style="width:120px;height:25px"  rendered="#{expenseBean.isEnable}"  value="Action">
          <p:menuitem value="Notify by Email" process="DT"  update=":form:pollDetail"    oncomplete="PF('pollDialog').show()"/>
-        <p:menuitem value="Notify by sms"  action="#{expenseBean.getOnePool}"/>
+         
         <p:menuitem value="Close Selected" process="DT" update=":form:pd3"    oncomplete="PF('pDialog3').show()"/>
-         <p:menuitem value="View Summary"/>
-         <p:menuitem value="Export To Excel"/>
+          
         </p:menuButton>
          
           
