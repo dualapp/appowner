@@ -272,11 +272,11 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	}
 	 private static String InvoiceNo="invoiceNo";
 	   
-	    private static java.util.Date Date;
+	    private static String Date;
 	    private static List<Double> amount;
 	    private static List<Double> tax;
 	    private static Double due;
-	    private static Date date1;
+	    private static String date1;
 	    public static String Dues;
 	    public static String taxname;
 	    private static Double subtotal;
@@ -307,10 +307,11 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		public static void setOrganisation(String organisation) {
 			InvoiceBean.organisation = organisation;
 		}
-	public static Date getDate1() {
+	
+	public static String getDate1() {
 			return date1;
 		}
-		public static void setDate1(Date date1) {
+		public static void setDate1(String date1) {
 			InvoiceBean.date1 = date1;
 		}
 	public static String getInvoiceNo() {
@@ -325,14 +326,14 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 		
 	
 		
-		public static java.util.Date getDate() {
-			 
+		
+		
+		public static String getDate() {
 			return Date;
 		}
-		public static void setDate(java.util.Date date) {
+		public static void setDate(String date) {
 			Date = date;
 		}
-		
 		public static String getAmount() {
 			StringBuilder out = new StringBuilder();
 			for (Object o : amount)
@@ -485,7 +486,7 @@ dat_DueDate=(Date)event.getNewValue();
 	
 }
 private List<DueTransaction> listDueTransaction;
-	public String addInvoiceTransaction()
+	public String addInvoiceTransaction() throws ParseException
 	{   
 		try{
 			InvoiceTransaction invoice=new InvoiceTransaction();
@@ -577,8 +578,13 @@ private List<DueTransaction> listDueTransaction;
 					System.out.println(dat_InvoiceDate+"fggjkgfgfh");
 					
 					
-					Date=dat_InvoiceDate;
-					date1=getDat_DueDate();
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					
+				 
+					Date = formatter.format(dat_InvoiceDate);
+					
+					System.out.println(Date);
+					date1=formatter.format(dat_DueDate);
 					System.out.println(getDat_DueDate()+"gfvjgvfkjfgj");
 						
 					amount=totalAmounts;
