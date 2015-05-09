@@ -68,7 +68,7 @@ public class EmailUtility12 {
 		          
                   "<tr>"+
 	              "<td >"+ 
-	              "<input type="+"button"+"  value="+"Vote Poll"+" style="+"width:25%;"+""
+	              "<input type="+"button"+"value="+"Vote Poll"+" style="+"width:25%;"+""
          		    + "margin-left:40%;"+"color"+":#FF4500"+""
          		  		+ " a href="+"www.appowners.com"+">" +"</input>"
 	               + " </td>" +"</tr>"+
