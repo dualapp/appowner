@@ -576,9 +576,6 @@ public class Cls_UserBean implements Serializable{
 				String str1=getStr_ConfirmPassword();
 				if (str_Password.equals(str_ConfirmPassword)&&str_Email.equals(str_ConfirmEmail))
 				{ 
-				usr.setStr_Country(Util.getStr_Country());
-				usr.setStr_State(Util.getStr_State());
-				usr.setStr_City(Util.getStr_City());
 				usr.setStr_Apartment(Util.getAppartmentName());
 				//int_getappartmentid=getUserService().getAppartmenId(getUserapartment());
 				usr.setInt_ApartmentId(Util.getAppartmentId());
