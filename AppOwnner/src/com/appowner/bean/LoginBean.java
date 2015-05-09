@@ -1751,7 +1751,7 @@ public List<String> getCityListByState() {
 	public String getUrl() throws MalformedURLException {
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		 String url = request.getRequestURL().toString();
-		
+		String sessionId=request.getRequestedSessionId();
 		 int port=request.getServerPort();
 		
 		if(url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml"))
