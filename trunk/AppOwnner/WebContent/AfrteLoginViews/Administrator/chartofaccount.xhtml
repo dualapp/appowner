@@ -130,22 +130,26 @@
          <p:dialog header="Chart Of Account " widgetVar="multiChartOfAccountDialog"     showEffect="explode" hideEffect="explode" resizable="false" height="280" width="450">
          <h:form id="addform">
         <p:outputPanel id="multiChartOfAccountDetail" style="text-align:center;">
-        <table >
-	<tr><td> 
+        <table style="width: 99%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
+	<tr style="height:50%;"><td> 
                <h:outputLabel value="Organisation:" /> </td>
-             <td> <h:selectOneMenu  value="#{accountingBean.str_OrganizationName}"    editable="true"   >
+             <td> <h:selectOneMenu  value="#{accountingBean.account}"  valueChangeListener="#{accountingBean.accountchangeListener4}"  editable="true"   >
               <f:selectItem itemLabel="Select One" itemValue=""  noSelectionOption="true" /> 
-              <f:selectItem itemLabel="#{accountingBean.str_OrganizationName}"  itemValue="#{accountingBean.str_OrganizationName}" />
-                
+             <f:selectItem itemLabel="Asset Group" itemValue="A" /> 
+              <f:selectItem itemLabel="Liability Group" itemValue="L" /> 
+               <f:selectItem itemLabel="Expense Group" itemValue="E" /> 
+                <f:selectItem itemLabel="Revenue Group" itemValue="R" />  
+                 <p:ajax event="change" partialSubmit="true" update="accountType"/>
                  </h:selectOneMenu></td></tr>
-	<tr><td><h:outputLabel value="Account Type"/></td>
-	<td><h:selectOneMenu id="accountType"   value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}" required="true" requiredMessage="Choose atleast One">
-	    <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true"/>  
+	<tr ><td><h:outputLabel value="Account Type"/></td>
+	<td><h:selectOneMenu id="accountType"   value="#{accountingBean.str_AccountType}"   valueChangeListener="#{accountingBean.accountchangeListener}" required="true" requiredMessage="Choose type">
 	    
-	   <f:selectItems   value="#{accountingBean.listAccountsType}" /><br/> 
-	   <p:ajax event="change" partialSubmit="true"/>
-                       </h:selectOneMenu>
-                     <p:message id="accountTypeMsg" for="accountType" display="text"/></td></tr>  
+	    
+	   <f:selectItems   value="#{accountingBean.listAccountsType}" /> 
+	     <f:ajax event="change" partialSubmit="true" execute="accountType"/>
+                       </h:selectOneMenu></td></tr>
+                     
+                <tr><td></td><td>  <p:message id="accountTypeMsg" for="accountType" display="text"/></td></tr>
                      
 	<tr><td><h:outputLabel  value="Account Name:"/></td><td><p:inputText  id="accountName" value="#{accountingBean.str_AccountName}" required="true" requiredMessage="Should Not Empty"/>
 	<p:message id="accountNameMsg" for="accountName" display="text"/></td></tr>
