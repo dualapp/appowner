@@ -63,15 +63,14 @@ public class EmailUtility12 {
  		          + "<h4> &#150;     &#150;    &#150;"+" " + " "+""+message+""+"</h4>"+"</td>" +"</tr>"+
  		  		"<tr>"+
  		  		"<td style="+"width:350px;"+"color:#333300;"+" margin-left:15%;"+">"+""
-		          + "<h4> &#150;     &#150;    &#150;"+"To Vote This Poll Please Click This Below Button"
-		  		 + " </td>" +"</tr>"+
+		          + "<h4> &#150;     &#150;    &#150;"+"To Vote This Poll Please Click This Below Link:"
+ + " </td>" +"</tr>"+
 		          
                   "<tr>"+
-	              "<td >"+ 
-	              "<input type="+"button"+"value="+"Vote Poll"+" style="+"width:25%;"+""
-         		    + "margin-left:40%;"+"color"+":#FF4500"+""
-         		  		+ " a href="+"www.appowners.com"+">" +"</input>"
-	               + " </td>" +"</tr>"+
+                  "<td width="+30+">"+
+                    
+           		  		 "<a href="+"www.appownners.com"+">"+"Vote Poll"+"</a>" +
+	                " </td>" +"</tr>"+
            
            "<tr>"+
 	             "<td style="+"width:350px;"+"color:#333300;"+" margin-left:15%;"+">"+""
