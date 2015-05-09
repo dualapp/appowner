@@ -55,6 +55,7 @@ import java.util.List;
 
 
 
+
 import javax.faces.model.SelectItem;
 
 import com.appowner.model.Account;
@@ -80,7 +81,7 @@ public interface AccountsDao {
 
 	List<Character> getCh_AccountGroup();
 	public List<Character> getCh_AccountGroup1() ;
-	List<String> getAccountTypeList();
+	List<String> getAccountTypeList(String account);
 	public List<SelectItem> getAccounts();
 	public List<SelectItem> getAccount();
 	public List<String> getAccountTypeList1();

@@ -147,9 +147,9 @@ public class AccountsDaoImpl implements AccountsDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> getAccountTypeList() {
-		String hql="select str_Acct_GroupName from  AccountingGroup ";
-		return getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).list();
+	public List<String> getAccountTypeList(String group) {
+		String hql="select str_Acct_GroupName from  AccountingGroup where ch_Group=? AND int_ApartmentId IN ('0',"+Util.getAppartmentId()+')';
+		return getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, group).setCacheable(true).list();
 	 
 	}
 	@SuppressWarnings("unchecked")
