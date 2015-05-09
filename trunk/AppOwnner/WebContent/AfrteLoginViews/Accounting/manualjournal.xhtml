@@ -239,8 +239,8 @@
       <td> <p:message id="str_CreditAmountMsg" for="str_CreditAmount"  display="text"/></td>
       </tr>
      <tr>      <td></td>
-                <td ><p:commandButton  styleClass="btn" id="submit1" value="Submit" actionListener="#{invoiceBean.addInvoiceManualJournal}"  update=":form:ggg,:form:ui-growl,notesmsg,str_DebitAmountMsg,str_CreditAmountMsg,str_CreditAccountMsg,str_DebitAccount" oncomplete="handleRequest(xhr, status, args)"/></td>
-             
+                <td ><p:commandButton  styleClass="btn" id="submit1" value="Submit" actionListener="#{invoiceBean.addInvoiceManualJournal}"  update=":form:ggg,:form:ui-growl,notesmsg,str_DebitAmountMsg,str_CreditAmountMsg,str_CreditAccountMsg,str_DebitAccount" oncomplete="handleRequest(xhr, status, args)"/>
+              <p:button  styleClass="btn" id="cancel" value="Cancel" target="_top"   style="margin-left:2em;"/></td>
             </tr>
     </table>
     

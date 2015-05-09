@@ -209,12 +209,7 @@
           selection="#{invoiceBean.selectedInvoice}" rowKey="#{invoice.int_InvoiceTransactionID}" editable="true"  resizableColumns="true" paginatorPosition="top" paginatorAlwaysVisible="false">
              <p:ajax event="rowSelect" listener="#{invoiceBean.desabled1Listener}"  execute="@form" immediate="true" update=":form:payment,:form:ui-growl"/>
                   
-            <p:column sortBy="#{invoice.int_InvoiceTransactionID}">
-                <f:facet name="header" >
-                    <h:outputText value="Organisation" />
-                </f:facet>
-                <h:outputText value="#{invoiceBean.str_Organisation}" />
-            </p:column>
+            
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="InvoiceNo" />
@@ -242,6 +237,12 @@
                 </f:facet>
                 <h:outputText value="#{invoice.str_ApartmentNo}" />
               
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Period" />
+                </f:facet>
+                <h:outputText value="#{invoice.str_BillPeriod}" />
             </p:column>
              <p:column>
                 <f:facet name="header">
