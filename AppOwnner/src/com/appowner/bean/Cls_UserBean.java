@@ -594,17 +594,20 @@ public class Cls_UserBean implements Serializable{
 				usr.setVar_ImageName1("/images/profilepic.png");
 				usr.setStr_UserRoleName("user");
 				Integer activationbit2=0;
-				System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmiiiiiiiiiiiiiiiiiiillllllll");
+				 
 				final String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
 				
 				//System.out.println(uuid);
 				//String s= UUID.randomUUID().toString();
 				//System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnn");
-				//System.out.println(s);
+				
 				usr.setStr_activationkey(uuid1);
 				usr.setInt_activationbit(0);
-				System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
+				 
 				getUserService().addUser(usr);
+			Long noOfUser=getApartmentDetailsService().getNoOfUsers(str_BlockName,str_HouseNo);
+			System.out.println(noOfUser+"noOfUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+			getApartmentDetailsService().updateNoOfUsersForAHouse(str_BlockName,str_HouseNo,noOfUser);
 				 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("User Added Successfully"));
 				 show=true;
 				 el=getStr_Email();
@@ -613,7 +616,7 @@ public class Cls_UserBean implements Serializable{
 				fn=getStr_FirstName();
 				an=Util.getAppartmentName();
 				Bn="user";
-				url="http://localhost:8088/AppOwnner/activate.jsp?activationkey="+uuid1;
+				url="http://www.appowners.com//AppOwnner/activate.jsp?activationkey="+uuid1;
 				System.out.println(url+"fdjjkjkfdjkdffdj");
 				subject="AppOwner.com";
 				content="gggggg";
@@ -684,8 +687,16 @@ public class Cls_UserBean implements Serializable{
 		{
 			//System.out.println(userid);
 			System.out.println("jkgfgjggfh111111111111111111111111111");
+			
+			User u=new User();
+			u=getApartmentDetailsService().getUser(id);
+			String blockName=u.getStr_Block();
+			String flatName=u.getStr_Flat();
 			getUserService().deleteUser2(id);
 			getUserService().deleteRole(id);
+			Long noOfUser=getApartmentDetailsService().getNoOfUsers(blockName,flatName);
+			System.out.println(noOfUser+"noOfUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+			getApartmentDetailsService().updateNoOfUsersForAHouse(blockName,flatName,noOfUser);
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			Flash flash = facesContext.getExternalContext().getFlash();
 			flash.setKeepMessages(true);
