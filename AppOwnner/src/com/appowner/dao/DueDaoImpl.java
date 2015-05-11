@@ -248,5 +248,27 @@ public class DueDaoImpl implements DueDao{
 		}
 				
 	}
+	@SuppressWarnings("unchecked")
+	public List<DueTransaction> listUserDueTransaction(String query)
+	{
+		if(query.isEmpty())
+		{
+			List<DueTransaction> dues=(List<DueTransaction>)getSessionFactory().getCurrentSession().createCriteria(DueTransaction.class).add(Restrictions.eq("str_Organisation",Util.getAppartmentId())).setCacheable(true).list();
+			
+			
+			
+			return  dues;
+		}
+		else
+		{
+			System.out.println(query+"fggggg");
+			
+			 String hql="from DueTransaction where str_Organisation=? and "+query; 
+			 System.out.println(hql+"jkjfdjkjfdd");
+				return (List<DueTransaction>)getSessionFactory().getCurrentSession().createQuery(hql).setCacheable(true).setParameter(0,Util.getAppartmentId()).list();
+			
+		}
+				
+	}
 	}
 
