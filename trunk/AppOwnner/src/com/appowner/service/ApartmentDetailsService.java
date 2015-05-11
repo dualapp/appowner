@@ -105,4 +105,9 @@ public interface ApartmentDetailsService {
 	String checkHouse(String str_HouseNo, Integer appartmentId,
 			Integer int_BlockId);
 
+	void updateNoOfUsersForAHouse(String str_BlockName, String str_HouseNo,
+			Long noOfUser);
+
+	User getUser(Integer id);
+
 }

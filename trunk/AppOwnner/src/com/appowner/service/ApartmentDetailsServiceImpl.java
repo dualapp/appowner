@@ -297,6 +297,19 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 				 
 	}
 
+	@Override
+	public void updateNoOfUsersForAHouse(String str_BlockName,
+			String str_HouseNo, Long noOfUser) {
+		// TODO Auto-generated method stub
+		getApartmentDetailsDao().updateNoOfUsersForAHouse(str_BlockName,str_HouseNo, noOfUser);
+	}
+
+	@Override
+	public User getUser(Integer id) {
+		// TODO Auto-generated method stub
+		return getApartmentDetailsDao().getUser(id);
+	}
+
 	 
 
 }

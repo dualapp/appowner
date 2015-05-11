@@ -69,7 +69,7 @@ public class EmailUtility {
         		        "<td>"+"<font size="+2+">"+"Please Click here to Activate your Account"+" "+url+"</font>"+"</td>"+
         		        
         		        "</tr>"+"<tr>"+
-"<td>"+"<font size="+2+">"+"For any queries.please contact  your maintenance manager for details or sene an email to "+" "+email+"</font>"+"</td>"+
+"<td>"+"<font size="+2+">"+"For any queries.please contact  your maintenance manager for details or send an email to "+" "+userName+"</font>"+"</td>"+
         		        
         		        "</tr>"+"<tr>"+
         		        "<td>"+"<font size="+2+">"+"Regards:"+"</font>"+"</td>"+
