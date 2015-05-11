@@ -28,7 +28,7 @@ template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
 <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
 		<tbody>
 			<tr>
-				<td> 
+				<td width="92%"> 
 					<img src="#{expenseBean.str_Name}images/dues.png" height="60" width="70"></img> <span class="title">Dues</span>
 				</td>
 				<td ><a href="dues.xhtml"> &lt;&lt; Back to Grid</a></td>
@@ -66,9 +66,13 @@ template="#{expenseBean.str_Name}include/templates/#{dueBean.indicator2}">
            </tr>
             <tr>
            <td> <h:outputText value="Initiated On:" /></td>
-         <td>   <h:inputText value="#{dueBean.dueTranasction.str_InitiatedOn}" /></td>
+         <td>  <h:inputText value="#{dueBean.dueTranasction.dat_LastDate}" >
+                 <f:convertDateTime pattern="dd-MM-yyyy" />
+                 </h:inputText></td>
             <td > <h:outputText value="Last Date" /> </td>
-         <td>   <h:inputText value="#{dueBean.dueTranasction.dat_LastDate}" /></td>
+         <td> <h:inputText value="#{dueBean.dueTranasction.dat_LastDate}" >
+                 <f:convertDateTime pattern="dd-MM-yyyy" />
+                 </h:inputText></td>
            </tr>
         </table>
         </div>

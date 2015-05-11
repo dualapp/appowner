@@ -99,7 +99,7 @@
                <td><h:selectOneMenu id="str_Status" value="#{dueBean.str_Status}"  style="width:150px">
                   <f:selectItem itemLabel="All" itemValue="" noSelectionOption="true" />
                    <f:selectItem  itemLabel="Paid" itemValue="Paid" />
-                   <f:selectItem  itemLabel="Partial" itemValue="Partial" />
+                   <f:selectItem  itemLabel="Partial Due" itemValue="Partial Due" />
                     <f:selectItem  itemLabel="Due" itemValue="Due" />
                 
                     <f:selectItem  itemLabel="Processing" itemValue="Processing" />
@@ -179,8 +179,8 @@
              </h:panelGroup>
           <p:spacer width="40" height="20"/>
             
-           <td><p:commandButton id="priya" value="Go"  style="width:40px;height:20px" rendered="#{dueBean.indicator}" action="#{dueBean.getListDueTransaction()}" update="due" ajax="false"/></td>
-            <td>  <p:commandButton id="priya1" value="Go" style="width:40px;height:20px" rendered="#{dueBean.indicator1}" action="#{dueBean.getListUserDueTransaction}" update="due1"/></td>
+           <td><p:commandButton id="priya" value="Go"  style="width:40px;height:20px" rendered="#{dueBean.indicator}"  update="due" ajax="false"/></td>
+            <td>  <p:commandButton id="priya1" value="Go" style="width:40px;height:20px" rendered="#{dueBean.indicator1}" ajax="false" update="due1"/></td>
           </tr>
          
            </table>
@@ -379,7 +379,9 @@
                 <f:facet name="header">
                     <h:outputText value="Last Date" />
                 </f:facet>
-                <h:outputText value="#{due.dat_LastDate}" />
+                <h:outputText value="#{due.dat_LastDate}" >
+                 <f:convertDateTime pattern="dd-MM-yyyy" />
+                 </h:outputText>
             </p:column>
              <p:column>
                 <f:facet name="header">
