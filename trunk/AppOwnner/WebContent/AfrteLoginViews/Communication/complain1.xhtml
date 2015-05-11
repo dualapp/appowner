@@ -34,7 +34,7 @@ function limitText(limitField, limitCount, limitNum) {
            <tr >
             <td width="20%"><h:outputText  value="Complaint Type*:" /></td>
             
-              <td><input type="radio" name="imgsel"  value="" checked="checked" /></td>
+              
               <td ><p:selectOneRadio id="option" value="#{complainBean.str_ComplainType}"  required="true" requiredMessage="Complaint Type should not Empty" valueChangeListener="#{complainBean.selectRadioButton}">  
                 <f:selectItem itemLabel="Personal" itemValue="Personal" />
                 
