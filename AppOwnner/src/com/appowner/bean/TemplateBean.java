@@ -739,30 +739,31 @@ public class TemplateBean implements Serializable,Validator {
 	}
 	public void desabledListener( SelectEvent event)
 	{
-		
+		System.out.println("hdhfhfhfdfhj77777777777777777777777777777777777777777777777777777777777777777");
 		indicate=true;
 	} 
 	
-	public void desabled1Listener( SelectEvent event)
+	@SuppressWarnings("unused")
+	public String desabled1Listener(SelectEvent event)
 	{  
-		selectedInvoiceTemplate=(InvoiceTemplate) event.getObject();
+		InvoiceTemplate	invoiceTemplate=(InvoiceTemplate) event.getObject();
 		System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333");
 		indicate=true;
-		 String str=selectedInvoiceTemplate.getStr_InvoiceTemplateName();
+		 String str=invoiceTemplate.getStr_InvoiceTemplateName();
 		 indicate1=getTemplateService().detectInvoiceTemplate(str);
 		 if(indicate==true )
 			 
 		 { 
            if(indicate1==true)
-           {  
+           {  System.out.println("jhfjugfjgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
 			 indicate2=false;
 			
            }
            else
-           {
+           { System.out.println("vjkgjkkjgfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         	   indicate2=true; 
-        	   str_Frequency=selectedInvoiceTemplate.getStr_Frequency();
-        		 String str1=selectedInvoiceTemplate.getStr_DueInvoiceTemplate();
+        	   str_Frequency=invoiceTemplate.getStr_Frequency();
+        		 String str1=invoiceTemplate.getStr_DueInvoiceTemplate();
         		
         		 String[] strArray = str1.split(",");
         		 str_DueInvoiceTemplate=new ArrayList<String>();
@@ -781,7 +782,7 @@ public class TemplateBean implements Serializable,Validator {
 		          
 		     
 		
-		 System.out.println(indicate2+"dskjfjkfgjkgfkjgkjf");
+		  return "invoicetemplate.xhtml";
 		
 	}
 	public String addInvoiceTemplate()
@@ -1084,23 +1085,25 @@ public class TemplateBean implements Serializable,Validator {
 				flash.setKeepMessages(true);
 				flash.setRedirect(true);
 				facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Please Select an Item to View","Please Select an Item to View")); 
-				return "invoicetemplate.xhtml?faces-redirect=true";
+				
 					}
 			else
+			{ String str=selectedInvoiceTemplate.getStr_InvoiceTemplateName();
+			boolean invoiceindicate=getTemplateService().detectInvoiceTemplate(str);
+			if(invoiceindicate==true)
+				
 			{
-	    InvoiceTemplate delete = new InvoiceTemplate();
-   
-	    delete.setInt_InvoiceTemplateID(selectedInvoiceTemplate.getInt_InvoiceTemplateID());
-	    	
-	    getTemplateService().deleteInvoice(delete);
-	    	FacesContext facesContext = FacesContext.getCurrentInstance();
-			Flash flash = facesContext.getExternalContext().getFlash();
-			flash.setKeepMessages(true);
-			flash.setRedirect(true);
-			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Invoice deleted Successfully!", "Invoice deleted Successfully!"));
-	    
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Cannot delete Invoice Template. Delete the due instances and try again.", "Cannot delete Invoice Template. Delete the due instances and try again."));
+	 	    
+			}
+			else
+			{
+		getTemplateService().deleteInvoice(selectedInvoiceTemplate);
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"InvoiceTemplate Deleted Successfully!", "InvoiceTemplate Deleted Successfully!"));
+			}
 			}
 		   }
+			
 			catch(Exception e)
 			{
 				e.printStackTrace();
