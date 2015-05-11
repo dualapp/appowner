@@ -1754,7 +1754,7 @@ public List<String> getCityListByState() {
 		String sessionId=request.getRequestedSessionId();
 		 int port=request.getServerPort();
 		
-		if(url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml"))
+		if(url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml")||url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/confirmfbaccount.xhtml"))
 				{
 		            
 		           url="";

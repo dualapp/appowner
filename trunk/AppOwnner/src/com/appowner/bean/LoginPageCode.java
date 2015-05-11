@@ -165,19 +165,21 @@ private String str_Password;
 			usr.setStr_LastName(getStr_lastName());
 			usr.setStr_Email(getStr_Email());
 			usr.setStr_UserRoleName("user");
+
 			usr.setStr_Username(getStr_Username());
 			usr.setStr_Password(str_Password);
 		 
 			usr.setVar_ImageName1(str_ImageName1);
 			usr.setInt_UserRole(1);
-			usr.setStr_Apartment("kalpnavilla");
-			usr.setInt_ApartmentId(0);
-			usr.setStr_Block("WingA");
-			usr.setStr_Flat("A");
-			usr.setStr_City("Kolkata");
-			usr.setStr_Country("India");
-			usr.setStr_State("Westbengal");
+			usr.setStr_Apartment("Shaffi Paradise");
+			usr.setInt_ApartmentId(66);
+			usr.setStr_Block(" ");
+			usr.setStr_Flat(" ");
+			
+			usr.setStr_Country("india");
+			usr.setStr_State("Karnataka");
 			usr.setStr_PhoneNo("0000000000");
+			usr.setStr_City("Bangalore");
 			usr.setInt_activationbit(1);
 			 
 			 getUserService().addUser(usr);

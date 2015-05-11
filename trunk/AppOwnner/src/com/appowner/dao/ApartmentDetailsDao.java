@@ -38,7 +38,7 @@ public interface ApartmentDetailsDao {
 
 	void updateProfilePic(User user);
 
-	Long getNoOfUsers(String str_HouseNo);
+	Long getNoOfUsers(String str_BlockName, String str_HouseNo);
 
 	HouseDetails getHouseDetails(Integer houseId);
 

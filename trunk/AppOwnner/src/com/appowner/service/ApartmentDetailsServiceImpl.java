@@ -110,9 +110,9 @@ public class ApartmentDetailsServiceImpl implements ApartmentDetailsService{
 	}
 
 	@Override
-	public Long getNoOfUsers(String str_HouseNo) {
+	public Long getNoOfUsers(String str_BlockName,String str_HouseNo) {
 		// TODO Auto-generated method stub
-		return getApartmentDetailsDao().getNoOfUsers(str_HouseNo);
+		return getApartmentDetailsDao().getNoOfUsers(str_BlockName,str_HouseNo);
 	}
 
 	@Override
