@@ -1293,7 +1293,8 @@ public List<String> getStr_VendorNameByType() {
 	 
 }
 public String updateOneAsset()
-{ a.setStr_AssetImg(path3);
+{ if(path3!=null)
+	a.setStr_AssetImg(path3);
 	getExpenseService().updateOneasset(a);
 	 
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1305,6 +1306,7 @@ public String updateOneAsset()
 	str_AdditionalInfo=null;
 	str_AssetCategoryType=null;
 	str_Block=null;
+	path3=null;
 	str_Rentable="Yes";
 	return "assets.xhtml";
 }
@@ -2158,6 +2160,7 @@ public String addPool()
 		str_Choise2=null;
 		str_Choise3=null;
 		str_EndDate=null;
+		
 		str_PoolAudience="All Members";
 		onePoll=null;
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Pool Created Successfully!"));

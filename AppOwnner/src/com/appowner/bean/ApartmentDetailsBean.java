@@ -452,7 +452,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	public String deleteHouseDetails(Integer HouseId)
 	{  housedetails=new HouseDetails();
 	 housedetails=getApartmentDetailsService().getHouseDetails(HouseId);
-		Long u=getApartmentDetailsService().getNoOfUsers( housedetails.getStr_HouseNo());
+		Long u=getApartmentDetailsService().getNoOfUsers(str_BlockName,housedetails.getStr_HouseNo());
 		System.out.println(u+"uuuuuuuuuuuuuuuuuuuuser");
 		if(u==0)
 		{
@@ -495,7 +495,7 @@ public class ApartmentDetailsBean  implements Serializable{
 	    List<HouseDetails> entitiesToDelete = new ArrayList<HouseDetails>();
  
 	    for (HouseDetails house :selectedHouse) {
-	    	Long u=getApartmentDetailsService().getNoOfUsers( house.getStr_HouseNo());
+	    	Long u=getApartmentDetailsService().getNoOfUsers(str_BlockName, house.getStr_HouseNo());
 			if(u==0)
 			{
 	    	 
@@ -569,7 +569,7 @@ public class ApartmentDetailsBean  implements Serializable{
 		housedetails.setInt_NoOfBalconies(int_NoOfBalconies);
 		housedetails.setInt_NoOfBathRooms(int_NoOfBedRooms);
 		 
-		housedetails.setInt_NoOfUsers(getApartmentDetailsService().getNoOfUsers(str_HouseNo));
+		housedetails.setInt_NoOfUsers(getApartmentDetailsService().getNoOfUsers(str_BlockName,str_HouseNo));
 		housedetails.setIs_Rented(is_Rented);
 		housedetails.setStr_TypeOfHouse(str_TypeOfHouse);
 		housedetails.setInt_ApartmentId(Util.getAppartmentId());
@@ -831,6 +831,11 @@ public class ApartmentDetailsBean  implements Serializable{
 					}
 					 System.out.println( hDetailsList);
 				  getApartmentDetailsService().saveHouseDetails1( hDetailsList);
+				  int_TotalHouse=getApartmentDetailsService().getTotalNoOfHousesInABlock(str_BlockName,Util.getAppartmentId());
+					if(int_TotalHouse!=null)
+					{
+						getApartmentDetailsService().updateBlockTotalhouse(str_BlockName,int_TotalHouse);
+					}
 				  FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("House Details Added Successfully!"));
 					statusMessage = "File upload successfull !!";
 				} catch (IOException e) {

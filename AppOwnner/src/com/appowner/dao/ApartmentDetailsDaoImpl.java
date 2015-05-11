@@ -140,9 +140,9 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	}
 
 	@Override
-	public Long getNoOfUsers(String str_HouseNo) {
+	public Long getNoOfUsers(String str_BlockName,String str_HouseNo) {
 		// TODO Auto-generated method stub
-		return  (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from User  where str_Flat=?").setParameter(0, str_HouseNo).uniqueResult();
+		return  (Long) sessionFactory.getCurrentSession().createQuery("select count(*) from User  where str_Flat=? and str_Block=?").setParameter(0, str_HouseNo).setParameter(1, str_BlockName).uniqueResult();
 	}
 
 	@Override
