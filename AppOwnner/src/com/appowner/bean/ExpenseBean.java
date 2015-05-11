@@ -1293,8 +1293,8 @@ public List<String> getStr_VendorNameByType() {
 	 
 }
 public String updateOneAsset()
-{ if(path3!=null)
-	a.setStr_AssetImg(path3);
+{  
+	
 	getExpenseService().updateOneasset(a);
 	 
 	FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -1515,6 +1515,7 @@ public void  uploadAssetsFile1() throws IOException   {
  			path3="/images"+ File.separator +Util.getAppartmentName()+File.separator+str_AssetImg;
  		 
  			getExpenseService().updateAssetImage(path3,a.getInt_asset_id());
+ 			a.setStr_AssetImg(path3);
  			 System.out.println(path3);
  			statusMessage = "File upload successfull !!";
  			
