@@ -442,10 +442,62 @@ public class DueBean implements Serializable{
 	}
 	private List<DueTransaction>   listUserDueTransaction;
 	public List<DueTransaction> getListUserDueTransaction() {
-		listUserDueTransaction=new ArrayList<DueTransaction>();
-	
-		listUserDueTransaction.addAll(getDueService().listUserDueTransaction(str_Block1,str_ApartmentNo1,str_Status,str_Period,str_DueTemplate));
-		return listUserDueTransaction;
+		
+		try
+		{
+			listUserDueTransaction=new ArrayList<DueTransaction>();
+		 if(str_Block==null && str_ApartmentNo==null && str_Status==null && str_Period==null && str_DueTemplate==null)
+			{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+				query="";
+			}
+			 
+		    
+			 if(!(str_Block1==null) && !(str_Block1.isEmpty()) )
+			{
+				query=query+"str_Block="+"'"+str_Block1+"'";
+			}
+		 if(!(str_ApartmentNo1==null) && !(str_ApartmentNo1.isEmpty()))
+			{   System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
+				query=query+" and "+"str_ApartmentNo="+"'"+str_ApartmentNo1+"'";
+			}
+	     if(!(str_Status==null) && !(str_Status.isEmpty()))
+			{
+				query=query+" and "+"str_Status="+"'"+str_Status+"'";
+			}
+		if(!(str_Period==null) && !(str_Period.isEmpty()))
+			{
+				query=query+" and "+"str_Period="+"'"+str_Period+"'";
+			}
+		if(!(str_DueTemplate==null) && !(str_DueTemplate.isEmpty()))
+			{
+				query=query+" and "+"str_DueTemplate="+"'"+str_DueTemplate+"'";
+			} 
+			 
+			System.out.println(query+"jdffjkdjhfdjfdfdfdffdjfdjfdjfjddfjhdfjhfdjhfd");
+			System.out.println(query.indexOf("and"));
+			
+			if(query.indexOf("and")==1)
+			{   System.out.println("jhujugfjf11111111111111111111111111111111111111111111");
+			  
+			   query=query.replaceFirst("and","" );
+	                   
+			}
+			System.out.println(query+"fdjjhgjjgfjgfjfjfjgjfgjgfjgfj");
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		listUserDueTransaction.addAll(getDueService().listUserDueTransaction(query));
+		Collections.sort(listUserDueTransaction);
+			query="";
+			
+			return listUserDueTransaction;
+		
+		
+		
+		
+		
 	}
 	public void setListUserDueTransaction(
 			List<DueTransaction> listUserDueTransaction) {
