@@ -382,9 +382,9 @@
               
             <ui:repeat value="#{expenseBean1.selectedExpenses}"  var="sr1">
             
-            <tr><th><p:outputLabel value="Approve Selected Item? Click yes to proceed."/></th></tr>
+            <tr><th><p:outputLabel value="Approve Selected Item? Click Yes to proceed."/></th></tr>
            
-           <tr><td><h:commandButton value="yes"  update=":form:DT :form:ui-growl" styleClass="btn" action="#{expenseBean1.assignRequestedEstimate(sr1)}"/> 
+           <tr><td><h:commandButton value="Yes"  update=":form:DT :form:ui-growl" styleClass="btn" action="#{expenseBean1.assignRequestedEstimate(sr1)}"/> 
            &#150; &#150; <h:commandButton value="No"  ajax="false" styleClass="btn" action="Expenses.xhtml">
            
            </h:commandButton></td>
@@ -401,9 +401,9 @@
               
             <ui:repeat value="#{expenseBean1.selectedExpenses}"  var="sr1">
             
-            <tr><th><p:outputLabel value="Reject Selected Item? Click yes to proceed."/></th></tr>
+            <tr><th><p:outputLabel value="Reject Selected Item? Click Yes to proceed."/></th></tr>
             
-           <tr><td><h:commandButton value="yes" styleClass="btn"  update=":form:DT :form:ui-growl"  action="#{expenseBean1.closeRequestedEstimate(sr1)}"/> 
+           <tr><td><h:commandButton value="Yes" styleClass="btn"  update=":form:DT :form:ui-growl"  action="#{expenseBean1.closeRequestedEstimate(sr1)}"/> 
            &#150; &#150; <h:commandButton value="No" styleClass="btn" action="Expenses.xhtml"/></td>
            </tr>
             </ui:repeat>
