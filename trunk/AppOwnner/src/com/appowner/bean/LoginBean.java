@@ -1152,7 +1152,7 @@ public class LoginBean implements Serializable {
 		serviceRequest.setStr_Flat(str_Flat);
 		serviceRequest.setStr_LandLineNum(str_LandLineNum);
 		serviceRequest.setStr_Mobile(str_Mobile);
-		serviceRequest.setStr_Status("open");
+		serviceRequest.setStr_Status("Open");
 		serviceRequest.setStr_Title(str_Title);
 		serviceRequest.setStr_UserType(str_UserType);
 		serviceRequest.setStr_VendorName(str_VendorName);
@@ -1259,12 +1259,14 @@ public class LoginBean implements Serializable {
 		bookAFacility.setStr_StartTime(str_StartTime);
 		bookAFacility.setStr_StartTime1(str_StartTime1);
 		bookAFacility.setStr_UserType(str_UserType);
+		bookAFacility.setStr_Description(str_Description);
 		getUserService().addBookAFacility(bookAFacility);
 		str_EventName="";
 		str_EndTime="";
 		str_EventType="";
 		str_FacilityType="";
 		str_StartTime="";
+		str_Description="";
 		
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("SuccessFully Added"));
 		return "/AfrteLoginViews/Facilities/book a facility.xhtml";
