@@ -69,7 +69,7 @@ public class EmailUtility12 {
                   "<tr>"+
                   "<td width="+30+">"+
                     
-           		  		 "<a href="+"www.appownners.com"+">"+"Vote Poll"+"</a>" +
+           		  		 "<a href="+"http://www.appowners.com/"+">"+"Vote Poll"+"</a>" +
 	                " </td>" +"</tr>"+
            
            "<tr>"+
