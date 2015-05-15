@@ -1756,7 +1756,7 @@ public List<String> getCityListByState() {
 		 String sesionId=request.getRequestedSessionId();
 		 int port=request.getServerPort();
 	
-		if(url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml")||url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/confirmfbaccount.xhtml") || url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml?session="+sesionId))
+		if(url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml")||url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/confirmfbaccount.xhtml") || url.equalsIgnoreCase("http://localhost:"+port+"/AppOwnner/layout.xhtml;jsessionid="+sesionId))
 				{
 		            
 		           url="";
