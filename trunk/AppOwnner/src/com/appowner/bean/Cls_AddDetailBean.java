@@ -47,6 +47,7 @@ import com.appowner.model.cls_Ads;
 import com.appowner.service.ProductsDetailService;
 import com.appowner.util.Util;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.lowagie.text.pdf.hyphenation.TernaryTree.Iterator;
 @ManagedBean 
 @SessionScoped
 public class Cls_AddDetailBean implements Serializable {
@@ -315,7 +316,7 @@ public int getInt_Ad_categoryId() {
      	  Var_Description=null;
      	  Var_ImageName=null;
      	  var_Ad_CategoryName=null;
-    	 var_subscategoryname=null;
+    	  var_subscategoryname=null;
     	
      	 selectedAll=null;
      	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Your Information  Post Successfully!"));
@@ -521,30 +522,59 @@ private Date closedate;
 	public void setListDetails(List<Cls_ProductDetails> listDetails) {
 		this.listDetails = listDetails;
 	}
+	private Integer statusid;
+	public Integer getStatusid() {
+		return statusid;
+	}
+	public void setStatusid(Integer statusid) {
+		this.statusid = statusid;
+	}
 	private List<Cls_ProductDetails> searchByProducttype;
-	
-	 public List<Cls_ProductDetails> getSearchByProducttype() {
-		 searchByProducttype=new ArrayList<Cls_ProductDetails>();
-		 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type,Status));
-		 blb_images1="E:/Var_ImageName";
-			return searchByProducttype;
-			
-			
-	 }
-	      public String getSearchByProducttype1()
+    public List<Cls_ProductDetails> getSearchByProducttype() {
+    	try
 		{
-			 searchByProducttype=new ArrayList<Cls_ProductDetails>();
-			 System.out.println(Ch_Product_Type);
-			 searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(Ch_Product_Type,Ch_Ad_Type,Status));
-			 Ch_Product_Type="Sell";
-			 Ch_Ad_Type="My Community";
-			return "Ad_an_Post.xhtml?faces-redirect=true";
+    		searchByProducttype=new ArrayList<Cls_ProductDetails>();	
+    		
+		
+		 if(ch_product_type1==null && Status==null && ch_Ad_Type1==null )
+		{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+		statusid=0;
 		}
+		if(!(ch_product_type1==null) && !(ch_product_type1.isEmpty()) )
+		{
+			 statusid=2;
+			 
+				
+		}
+	 if(!(Status==null) && !(Status.isEmpty()))
+		{   
+		 System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
+		 statusid=1;
+		 			
+		}
+     if(!(ch_Ad_Type1==null) && !(ch_Ad_Type1.isEmpty()))
+		{
+    	 statusid=3;
+		}
+  
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+    	  searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(ch_product_type1,ch_Ad_Type1,Status,statusid));
+    	  statusid=-1;
+		System.out.println("12345678765433333333333333333333333333333333333333333333333333333333333333333333");
+		 return searchByProducttype
+    	 ;
+		 }
+	      
 		
 		public void setSearchByProducttype(List<Cls_ProductDetails> searchByProducttype) {
 			this.searchByProducttype = searchByProducttype;
 		}
 
+		
 		
 	////////////////////////////////////////////////////
 	/*public List<Cls_ProductDetails> typeChangeListener(ValueChangeEvent event)
@@ -895,20 +925,17 @@ public String editdetail(Cls_ProductDetails ProductDetails)
 	 System.out.println(var_Ad_SubCategoryName+"jgfgfnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmhhhhhhhhhhhhg");
 	 System.out.println(var_Ad_CategoryName+"ndffdf");
 	System.out.println(subname+"jkfjffjnnnnnnnnnnnnnnnnnn");
-	
-	 System.out.println(catname+"fdjfdkjfdjdfk");
+    System.out.println(catname+"fdjfdkjfdjdfk");
 	   if(catname==null)
 	 {
-		 
-		 //int_Ad_categoryId=getProductDetailService().getdocid2(ProductDetails.getVar_Ad_CategoryName());
+	  //int_Ad_categoryId=getProductDetailService().getdocid2(ProductDetails.getVar_Ad_CategoryName());
 		 //int_subcatid=getProductDetailService().getdocid3(ProductDetails.getVar_subscategoryname());
 		  System.out.println(int_Ad_categoryId+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
 		  System.out.println( int_subcatid+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
 		 // ProductDetails.setInt_Ad_categoryId(int_Ad_categoryId);
 		   //ProductDetails.setInt_subcategoryId( int_subcatid);
-		 
-	 }
-	 else{
+		 }
+	   else{
 	  int_Ad_categoryId=getProductDetailService().getdocid2(catname);
 	  System.out.println(catname+"fjghjfjjjgopopopopopopopopopopopopopopopopopo");
 	  System.out.println(var_Ad_SubCategoryName+"fjghjfjjjgopopopopopopopopopopopopopopopopopo");
@@ -924,13 +951,13 @@ public String editdetail(Cls_ProductDetails ProductDetails)
 		getProductDetailService().updatedetails(ProductDetails);
 		Ch_Product_Type="Sell";
         Ch_Ad_Type="My Community";
-		 Status=null;
-	     selectedAll=null;
+		Status=null;
+	    selectedAll=null;
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
-	  
-	} 
-	    
-	return "Ad_an_Post.xhtml";
+		
+	}   indicate=false;
+	    return "Ad_an_Post.xhtml";   
+	
 }
 	
 	
@@ -1160,7 +1187,29 @@ return productid;
 }  
 public String msgclose;
 public String selectinfo2(ActionEvent e)
-{  
+{
+	if(indicate==false)
+
+	{
+	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+	Ch_Product_Type="Sell";
+  Ch_Ad_Type="My Community";
+	 Status=null;
+	return"Ad_an_Post.xhtml";
+}
+else 
+{
+String status=getProductDetailService().checkclose(selectedAll.getInt_ProductId());
+	if(status.equalsIgnoreCase("Close"))
+	{   postreject=false;
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Post Already Close"));
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		 Status=null;
+		return "Ad_an_Post.xhtml";
+	}
+	else
+	{
 System.out.println("lkllklklklklklklklklklklklklklklllkllklklklllllllllllllllkkkkkkkkkkkkkkkk");	
 System.out.println(selectedAll.getInt_ProductId()+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
 msgclose=(getProductDetailService().getclose(selectedAll.getInt_ProductId()));
@@ -1173,6 +1222,8 @@ System.out.println(select1+"jhdsjdf");
 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Post close  Successfully!"));
 return "Ad_an_Post.xhtml?faces-redirect=true";
 }	
+}
+}
 public String send6()
 {
 	recipient= emailids;
@@ -1221,14 +1272,29 @@ return select1;
 
 public String selectinfo4(ActionEvent e)
 {  
+		if(indicate==false)
+		{
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+		Ch_Product_Type="Sell";
+	   Ch_Ad_Type="My Community";
+	   Status=null;
+		return"Ad_an_Post.xhtml";
+	}
+	else 
+	{
 msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
 emailids=(getProductDetailService().getemailids(msgrejectid));
 System.out.println(msgrejectid+"jhdsjdfbnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbbbbbbbbbbb");
 System.out.println(emailids+"lkkkkkkkkkkkkkkkkkAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 //msgname=(getProductDetailService().getname(select1));
 //strmessage=(getProductDetailService().getmsg(ads_id));
-return select1;
+Ch_Product_Type="Sell";
+Ch_Ad_Type="My Community";
+Status=null;
+return "Ad_an_Post.xhtml";
 }
+}
+
 
 private Part part;
 private String statusMessage;
@@ -1387,17 +1453,15 @@ msgid=(getProductDetailService().getids(catname));
 System.out.println(catmessage+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
 System.out.println(postid+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
 catmessage=(getProductDetailService().getmessages(msgid));
-
 System.out.println(subcatgeroynm+"fbdfgfdgdfsdsdfs");
+
 return catname;
 
 }
 
 public List<String> getCatmessage()
 {
-	
-
-	return catmessage;
+return catmessage;
 }
 public void setCatmessage(List<String> catmessage) {
 	this.catmessage = catmessage;
@@ -1408,18 +1472,49 @@ public static String getCatname() {
 public static void setCatname(String catname) {
 	Cls_AddDetailBean.catname = catname;
 }
+private Integer categorystatus;
 
-
-
+public Integer getCategorystatus() {
+	return categorystatus;
+}
+public void setCategorystatus(Integer categorystatus) {
+	this.categorystatus = categorystatus;
+}
 private List<Cls_ProductDetails> searchByType;
-
 public List<Cls_ProductDetails> getSearchByType() {
-	
+	try
+	{
 	searchByType=new ArrayList<Cls_ProductDetails>();
-	searchByType.addAll(getProductDetailService().getSearchBytype(var_Ad_CategoryName,var_subscategoryname,Ch_Ad_Type));
-	 blb_images1="E:/Var_ImageName";
+	if(var_Ad_CategoryName==null && var_subscategoryname==null && ch_Ad_Type1==null )
+	{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
+	categorystatus=0;
+	}
+	if(!(var_Ad_CategoryName==null) && !(var_Ad_CategoryName.isEmpty()) )
+	{
+		categorystatus=1;
+		 
+			
+	}
+ if(!(var_subscategoryname==null) && !(var_subscategoryname.isEmpty()))
+	{   
+	 System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
+	 categorystatus=2;
+	 			
+	}
+ if(!(ch_Ad_Type1==null) && !(ch_Ad_Type1.isEmpty()))
+	{
+	 categorystatus=3;
+	}
+
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	searchByType.addAll(getProductDetailService().getSearchBytypes(var_Ad_CategoryName,var_subscategoryname,ch_Ad_Type1,categorystatus));
+	categorystatus=-1;
 	
-		return searchByType;
+	return searchByType;
 }
 public void setSearchByType(List<Cls_ProductDetails> searchByType) {
 	this.searchByType = searchByType;
@@ -1467,7 +1562,8 @@ public static void setUsrnames(String usrnames) {
 }
 public String send9()
 {   System.out.println("jgjgjgjgkjgkghghhghh");
-	recipient=getTo();
+	recipient=emailid;
+	System.out.println(emailid+"jkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 	phnumber=Util.getStr_PhoneNo();
 	usrnames=Util.getUserName();
 	aprtmentname=getStr_ApartmentName();
@@ -1484,11 +1580,9 @@ public static int getUsreid() {
 public static void setUsreid(int usreid) {
 	Cls_AddDetailBean.usreid = usreid;
 }
-public String emailid;
+public   String emailid;
 
-public String getEmailid() 
-{
-	emailid=(getProductDetailService().usremail(usreid));
+public String getEmailid() {
 	return emailid;
 }
 public void setEmailid(String emailid) {
@@ -1498,19 +1592,20 @@ public static int usreid;
 
 public String getemailid(Integer id1)
 {
+	System.out.println("WE LOVE OUR COUNTRY");
 	 usreid=id1;
+	 emailid=(getProductDetailService().usremail(usreid));
      System.out.println(id1+"lklklklklklklklklklklklklklklklklklklklklklklklklklklklklklk");
      System.out.println(emailid+";lmd;lmasldfmsamfmas;lfm;sakmf;lsa;lf;lasf;laslkmasmf;las");
 	return emailid;
 	
 }
-private Cls_ProductDetails adid;
+public Cls_ProductDetails adid;
 
 public Cls_ProductDetails getAdid() {
 	adid=(getProductDetailService().usrpostid(postid));
 	System.out.println(var_Ad_CategoryName+"llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
 	Ch_Product_Type="Sell";
-    
     Ch_Ad_Type="My Community";
 	return adid;
 }
@@ -1571,7 +1666,7 @@ public String getSubname() {
 public void setSubname(String subname) {
 	this.subname = subname;
 }
-public String editselect1()
+public String viewposts()
 {
 	if(indicate==false)
 	  {
@@ -1588,44 +1683,45 @@ public String editselect1()
 	  Ch_Product_Type="Sell";
 	    Ch_Ad_Type="My Community";
 		 Status=null;
-		 
+		 indicate=false;
 		 }return "ViewDetails.xhtml";
 	
 	  
 }
 public String editselect()
 {
-	
-			if(indicate==false)
+		if(indicate==false)
 			  {
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
 				Ch_Product_Type="Sell";
 			    Ch_Ad_Type="My Community";
 				 Status=null;
-		    	return"Ad_an_Post.xhtml";
+				return"Ad_an_Post.xhtml";
 			  }
 			
-			
 	 
-	 if(selectedAll.getInt_Ad_categoryId()!=0)
+		if(selectedAll.getInt_Ad_categoryId()!=0)
 	 {
+		System.out.println(selectedAll.getInt_Ad_categoryId()+"lllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
 	 	catmessage=new ArrayList<String>();
 	 	catmessage.addAll(getProductDetailService().getCatmessage(selectedAll.getInt_Ad_categoryId()));
-	 	System.out.println(catmessage+"pmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
-	 	System.out.println("kjjhjhjhjhlkjhlkh");
+	 	System.out.println(catmessage+"pmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnoooooooooooooooooooooo");
+	 	
 	 }
-	 else
+		else
 	 {
-	 	catmessage=new ArrayList<String>();
+	 catmessage=new ArrayList<String>();
+	 
 	 }
-	 postid=selectedAll.getInt_ProductId();	
+	  postid=selectedAll.getInt_ProductId();	
 	  System.out.println( postid+"mukeshkumaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 	  Ch_Product_Type="Sell";
-	   Ch_Ad_Type="My Community";
-	 Status=null;
-	return "EditDetails.xhtml";
-}
+	  Ch_Ad_Type="My Community";
+	  Status=null;
+	 
+	  return "EditDetails.xhtml";
 
+}
 public String uploadFile1() throws IOException {
 
 	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -1675,7 +1771,7 @@ public String uploadFile1() throws IOException {
 		//products.setInt_ProductId(products.getInt_ProductId());
 		System.out.println((postid+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
 		
-		getProductDetailService().updatePics(postid,path3);
+		getProductDetailService().updatePics(selectedAll.getInt_ProductId(),path3);
 		
 		statusMessage = "File uploaded successfull !!";
 
@@ -1738,8 +1834,7 @@ public void setPath3(String path3) {
 
  public String deleteselect()
  {
-	
-	 if(indicate==false)
+if(indicate==false)
 	  {
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
 		Ch_Product_Type="Sell";
@@ -1751,20 +1846,20 @@ public void setPath3(String path3) {
 	 {
 	 getProductDetailService().deleteselected(selectedAll.getInt_ProductId());
 	 Ch_Product_Type="Sell";
-	   Ch_Ad_Type="My Community";
+	 Ch_Ad_Type="My Community";
 	 Status=null;
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Deleted Successfully!"));
-	 
 	 Ch_Product_Type="Sell";
 	 Ch_Ad_Type="My Community";
 	 Status=null;
      return "Ad_an_Post.xhtml";
-}}
+}
+}
 
  public String editseand()
  {
-	 Ch_Product_Type=null;
-	 Ch_Ad_Type=null;
+	 Ch_Product_Type="Sell";
+	 Ch_Ad_Type="My Community";
 	 Status=null;
 	 return "Ad_an_Post.xhtml";
  }
@@ -1786,18 +1881,513 @@ public void setPath3(String path3) {
 	public void desabledListener( SelectEvent event)
 	{
 		System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333mnmnmnmnnnnnnnnnnnnn");
-		
 		indicate=true;
+	    selectedAll=(Cls_ProductDetails) event.getObject();
+		productid=selectedAll.getInt_ProductId();
+		System.out.println(productid+"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+		String status=getProductDetailService().checkStatuss(selectedAll.getInt_ProductId());
+		System.out.println(status+"mkeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(status);
+		msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
+		emailids=(getProductDetailService().getemailids(msgrejectid));
+		if(status.equalsIgnoreCase("Open"))
+		{   postindicate=false;
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Post Already Open"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+			
+		}
+		else if(status.equalsIgnoreCase("Pending Approval"))
+		{   
+	      postindicate=true;
+		  Ch_Product_Type="Sell";
+	      Ch_Ad_Type="My Community";
+		  Status=null;
+		System.out.println("kjfkfjkf11111111111111111111111111111111111111111111111111111111111111111111");
+		System.out.println(postindicate+"fdhjfffjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 		
+		}
+		
+		else if(status.equalsIgnoreCase("Ads Rejected"))
+		{   postindicate=false;
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Post Already Rejected"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+			
+		}
+		else if(status.equalsIgnoreCase("Close"))
+		{   postindicate=false;
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Post Already Close"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+			
+		}
+		else if(status.equalsIgnoreCase("Pending Approval"))
+		{    postindicate=true;
+			System.out.println("kjfkfjkf11111111111111111111111111111111111111111111111111111111111111111111");
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			Status=null;
+			System.out.println(postindicate+"fdhjfffjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+      }     
 		
 	}
 	
+	
+
+private boolean postindicate;	
+	
+	public boolean isPostindicate() {
+	return postindicate;
+}
+public void setPostindicate(boolean postindicate) {
+	this.postindicate = postindicate;
+}
+	public String postupdate()
+	{
+		if(indicate==false)
+		  {
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+	    	return"Ad_an_Post.xhtml";
+		  }
+		else
+		{
+		productid=selectedAll.getInt_ProductId();
+		System.out.println(selectedAll.getInt_ProductId()+"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+		String status=getProductDetailService().checkStatuss(selectedAll.getInt_ProductId());
+		System.out.println(status+"mkeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(status);
+		msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
+		emailids=(getProductDetailService().getemailids(msgrejectid));
+		if(status.equalsIgnoreCase("Open"))
+		{   postindicate=false;
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Post Already Open"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+			return "Ad_an_Post.xhtml";
+		}
+		else if(status.equalsIgnoreCase("Pending Approval"))
+		{   
+	      postindicate=true;
+		  Ch_Product_Type="Sell";
+	      Ch_Ad_Type="My Community";
+		  Status=null;
+		System.out.println("kjfkfjkf11111111111111111111111111111111111111111111111111111111111111111111");
+		System.out.println(postindicate+"fdhjfffjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+		return "Ad_an_Post.xhtml";
+		}
+		
+		else if(status.equalsIgnoreCase("Ads Rejected"))
+		{   postindicate=false;
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Post Already Rejected"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+			return "Ad_an_Post.xhtml";
+		}
+		else if(status.equalsIgnoreCase("Close"))
+		{   postindicate=false;
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Post Already Close"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+			return "Ad_an_Post.xhtml";
+		}
+		return status;
 }	
+	}
+	private boolean postreject;
+
+	public boolean isPostreject() {
+		return postreject;
+	}
+	public void setPostreject(boolean postreject) {
+		this.postreject = postreject;
+	};
+	public String postrejects()
+	{
+		if(indicate==false)
+		  {
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
+			Ch_Product_Type="Sell";
+		    Ch_Ad_Type="My Community";
+			 Status=null;
+	    	return"Ad_an_Post.xhtml";
+		  }
+		else
+		{
+		productsid=selectedAll.getInt_ProductId();
+	System.out.println(productsid+"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+	String rejectstatus=getProductDetailService().rejectStatuss(selectedAll.getInt_ProductId());
+	System.out.println(rejectstatus+"mkeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	System.out.println(rejectstatus);
+	System.out.println("mukesh kumar ");	
+	System.out.println(productid+"dfjfjfjjfmmmmmmmmmmmmmmmmmmmmmmmmmm");
+	msgrejectid=(getProductDetailService().getrejectids(selectedAll.getInt_ProductId()));
+	emailids=(getProductDetailService().getemailids(msgrejectid));
+	
+	if(rejectstatus.equalsIgnoreCase("Close"))
+	{   postreject=false;
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Post Already Close"));
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		 Status=null;
+		return "Ad_an_Post.xhtml";
+	}
+	else if(rejectstatus.equalsIgnoreCase("Open"))
+	{    postreject=false;
+		System.out.println("kjfkfjkf11111111111111111111111111111111111111111111111111111111111111111111");
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		Status=null;
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Post Already Open"));
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		 Status=null;
+		return "Ad_an_Post.xhtml";
+	}
+	else if(rejectstatus.equalsIgnoreCase("Pending Approval"))
+	{    postreject=false;
+		System.out.println("kjfkfjkf11111111111111111111111111111111111111111111111111111111111111111111");
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		Status=null;
+		
+		return "Ad_an_Post.xhtml";
+	}
+	else if(rejectstatus.equalsIgnoreCase("Ads Rejected"))
+	{   postreject=false;
+		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(" Post Already Rejected"));
+		Ch_Product_Type="Sell";
+	    Ch_Ad_Type="My Community";
+		 Status=null;
+		return "Ad_an_Post.xhtml";
+	}
+	
+	return rejectstatus;
+}
+	
+	}
+	
+	private Cls_ProductDetails post=new  Cls_ProductDetails();
+	
+	public Cls_ProductDetails getPost() {
+		return post;
+	}
+	public void setPost(Cls_ProductDetails post) {
+		this.post = post;
+	}
+	public int subcategoryId;
+	public int categoryId;
+	
+	public int getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+	public List<String> Subcategoryname;
+	public List<String> getSubcategoryname() {
+		return Subcategoryname;
+	}
+	public String categoryNM;
+public String getCategoryNM() {
+		return categoryNM;
+	}
+	public void setCategoryNM(String categoryNM) {
+		this.categoryNM = categoryNM;
+	}
+	public void setSubcategoryname(List<String> subcategoryname) {
+		Subcategoryname = subcategoryname;
+	}
+	public String subcatnames;
+	public String getSubcatnames() {
+		return subcatnames;
+	}
+	public void setSubcatnames(String subcatnames) {
+		this.subcatnames = subcatnames;
+	}
+	public String editspost(int postid)
+	{
+	System.out.println(postid+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+	post=getProductDetailService().getpostdetail(postid);
+	if(post.getInt_Ad_categoryId()!=0)
+		 {
+			System.out.println(post.getInt_Ad_categoryId()+"lllllllllllllllllllllllllllllllllllllllllllllllllllllllllll bihar");
+			Subcategoryname=new ArrayList<String>();
+			Subcategoryname.addAll(getProductDetailService().getcatdetail(post.getInt_Ad_categoryId()));
+		 	System.out.println(Subcategoryname+"pmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnoooooooooooooooooooooo");
+		 	
+		 }
+			else
+		 {
+		Subcategoryname=new ArrayList<String>();
+		}
+	  
+		return "EditPost.xhtml";  
+
+	}
+		
+	
+	public String editposts(int postId)
+	{
+	if(subcatsname==null)
+		 {
+		  //int_Ad_categoryId=getProductDetailService().getdocid2(ProductDetails.getVar_Ad_CategoryName());
+			 //int_subcatid=getProductDetailService().getdocid3(ProductDetails.getVar_subscategoryname());
+			  System.out.println(int_Ad_categoryId+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+			  System.out.println( int_subcatid+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+			 // ProductDetails.setInt_Ad_categoryId(int_Ad_categoryId);
+			   //ProductDetails.setInt_subcategoryId( int_subcatid);
+			 }
+		   else{
+		  int_Ad_categoryId=getProductDetailService().getdocid2(subcatsname);
+		  System.out.println(catname+"fjghjfjjjgopopopopopopopopopopopopopopopopopo");
+		  System.out.println(var_Ad_SubCategoryName+"fjghjfjjjgopopopopopopopopopopopopopopopopopo");
+		  int_subcatid=getProductDetailService().getdocid3(var_Ad_SubCategoryName);
+		  
+		   System.out.println( int_subcatid+"jkfkjfdkjpoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+		   post.setInt_Ad_categoryId(int_Ad_categoryId);
+		    post.setInt_subcategoryId( int_subcatid);
+		 }
+		    if (post.getInt_ProductId() != null) {
+		    post.setVar_Ad_CategoryName(var_Ad_CategoryName);
+		    post.setVar_ImageName(path4);
+			getProductDetailService().updatedetails(post);
+			 
+		   
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
+			
+		}   
+		    return "Ad_an_Post.xhtml";   
+		
+	}
+	public String subname1;
+	public String getSubname1() {
+		if(post.getInt_ProductId()==null)
+		{
+			System.out.println("ffkjfkjgfgf");
+		}
+		else
+		{
+			int subcatid=(getProductDetailService().subcategoryid(post.getInt_ProductId()));
+			System.out.println( subcatid+"mppppmppppppppppppppmmmmmmmmmmmmmmmmmmmppppppppppppppppppppppppp");
+			subname1=(getProductDetailService().subcatname( subcatid));
+			System.out.println(subname1+"my jannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+		}
+		return subname1;
+	}
+		
+public void setSubname1(String subname1) {
+	this.subname1 = subname1;
+}
+public String viewpost(Integer postId)
+{
+	
+	System.out.println(postId+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+	post=getProductDetailService().getpostdetail(postId);
+	if(post.getInt_Ad_categoryId()!=0)
+	 {
+		System.out.println(post.getInt_Ad_categoryId()+"lllllllllllllllllllllllllllllllllllllllllllllllllllllllllll bihar");
+	 	catmessage=new ArrayList<String>();
+	 	catmessage.addAll(getProductDetailService().getCatmessage(post.getInt_Ad_categoryId()));
+	 	System.out.println(catmessage+"pmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnoooooooooooooooooooooo");
+	 	
+	 }
+		else
+	 {
+	 catmessage=new ArrayList<String>();
+	 
+	 }
+	  postid=post.getInt_ProductId();	
+	  System.out.println( postid+"mukeshkumaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+	  Ch_Product_Type="Sell";
+	  Ch_Ad_Type="My Community";
+	  Status=null;
+	  return "ViewPost.xhtml";
+
+}
+public String uploadFile2() throws IOException {
+
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	System.out.println((postid+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
+	String fileName = fmt.format(new Date())
+		+ getFileName(part).substring(
+					getFileName(part).lastIndexOf('.'));
+	
+	System.out.println("***** fileName: " + fileName);
+	ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 
 	
-	
-	
+	String basePath =servletContext.getRealPath("")
+			+ File.separator + "images" 
+			+ File.separator+Util.getAppartmentName()+File.separator;
+	System.out.println(basePath);
+	File outputFilePath = new File(basePath);
+	outputFilePath=new File(basePath);
+	if(!outputFilePath.exists())
+	{
+		if(outputFilePath.mkdirs())
+		{
+			System.out.println("directory");
+		}
+		else
+			System.out.println("failed to create directory");
+	}
+    System.out.println(path + "path");
+	// Copy uploaded file to destination path
+    outputFilePath=new File(basePath,fileName);
+	 
+	InputStream inputStream = null;
+	OutputStream outputStream = null;
+	try {
+		inputStream = part.getInputStream();
+		outputStream = new FileOutputStream(outputFilePath);
 
+		int read = 0;
+		final byte[] bytes = new byte[1024];
+		while ((read = inputStream.read(bytes)) != -1) {
+			outputStream.write(bytes, 0, read);
+		}
+		path4 = "/images" + File.separator + Util.getAppartmentName()
+				+ File.separator + fileName;
+		 
+		//products.setVar_ImageName(path);
+		//products.setInt_ProductId(products.getInt_ProductId());
+		System.out.println((postid+"mkkmkmmmkmkmkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkk"));
+		
+		getProductDetailService().updatePics(post.getInt_ProductId(),path4);
+		
+		statusMessage = "File uploaded successfull !!";
+
+	} catch (IOException e) {
+		e.printStackTrace();
+		statusMessage = "File upload failed !!";
+	} finally {
+		if (outputStream != null) {
+			outputStream.close();
+		}
+		if (inputStream != null) {
+			inputStream.close();
+		}
+	}
+	part=null;
+	return null; // return to same page
+}
+
+
+// Extract file name from content-disposition header of file part
+
+
+
+/*public static void setPath(String path) {
+	Cls_AddDetailBean.path = path;
+}
+HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+		.getExternalContext().getSession(false);
+     public String getPath() {
+	System.out.println(path + "path1");
+	path = (String) session.getAttribute("Var_ImageName");
+	if (user != null)
+		path = user.getVar_ImageName();
+	 else
+		path = "/images/profilepic.png";
+	 return path;
+	 }
+*/
+
+
+
+private String path4;
+
+public String getPath4() 
+{
+	if((post.getInt_ProductId()!=null))
+	{
+		
+		
+		 path4=getProductDetailService().getProductImg(post.getInt_ProductId());
+		
+	}
+	else
+		path4="images/no_attach.png";
+	return path4;
+}
+public void setPath4(String path4) {
+	this.path4 = path4;
+}
+public static String subcatsname;
+
+public static String getSubcatsname() {
+	return subcatsname;
+}
+public static void setSubcatsname(String subcatsname) {
+	Cls_AddDetailBean.subcatsname = subcatsname;
+}
+public int subcatId;
+public String selectinfo9(ValueChangeEvent event)
+{  
+subcatsname =( String )event.getNewValue();
+System.out.println(subcatsname+"lklklklkkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
+subcatId=(getProductDetailService().gecatid(subcatsname));
+System.out.println(catmessage+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
+System.out.println(postid+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
+Subcategoryname=(getProductDetailService().getcatmessages(subcatId));
+System.out.println(subcatgeroynm+"fbdfgfdgdfsdsdfs");
+return subcatsname;
+
+}
+
+private String ch_Product_Types;
+
+public String getCh_Product_Types() {
+	return ch_Product_Types;
+}
+public void setCh_Product_Types(String ch_Product_Types) {
+	this.ch_Product_Types = ch_Product_Types;
+}
+private String ch_Ad_Types;
+
+public String getCh_Ad_Types() {
+	return ch_Ad_Types;
+}
+public void setCh_Ad_Types(String ch_Ad_Types) {
+	this.ch_Ad_Types = ch_Ad_Types;
+}
+
+
+
+private String ch_product_type1;
+private String status1;
+private String ch_Ad_Type1;
+
+public String getCh_product_type1() {
+	return ch_product_type1;
+}
+public void setCh_product_type1(String ch_product_type1) {
+	this.ch_product_type1 = ch_product_type1;
+}
+public String getStatus1() {
+	return status1;
+}
+public void setStatus1(String status1) {
+	this.status1 = status1;
+}
+public String getCh_Ad_Type1() {
+	return ch_Ad_Type1;
+}
+public void setCh_Ad_Type1(String ch_Ad_Type1) {
+	this.ch_Ad_Type1 = ch_Ad_Type1;
+}
+
+}
 	
 	
 	

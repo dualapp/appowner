@@ -869,7 +869,7 @@ public class AdvertisementBean  implements Serializable{
 				    pay.setApartementId(Util.getAppartmentId());
 					pay.setStr_paymentDate(str_paymentDate);
 				    getAdvertisementService().payment(pay);
-				    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Transaction Successfully!"));
+				    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Information Added Successfully!"));
 				     return "ViewAgency.xhtml";
 					
 				}
