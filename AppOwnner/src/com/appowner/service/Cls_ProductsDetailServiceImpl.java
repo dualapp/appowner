@@ -98,9 +98,9 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cls_ProductDetails> getSearchByProducttype(
-			String ch_Product_Type, String ch_Ad_Type,String status) {
-		return getProductDao().getSearchByProducttype(ch_Product_Type,ch_Ad_Type, status);
+public List<Cls_ProductDetails> getSearchByProducttype(
+					String ch_Product_Type, String ch_Ad_Type,String status, Integer statusid) {
+		return getProductDao().getSearchByProducttype(ch_Product_Type,ch_Ad_Type, status,statusid);
 	}
 
 	@Override
@@ -342,9 +342,9 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 
 	@Override
 	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
-			String var_subscategoryname, String ch_Ad_Type) {
+			String var_subscategoryname, String ch_Ad_Type, int categorystatus) {
 		return getProductDao().getSearchBytype( var_Ad_CategoryName,
-				 var_subscategoryname,  ch_Ad_Type); 
+				 var_subscategoryname,  ch_Ad_Type, categorystatus); 
 	
 
 }
@@ -437,12 +437,128 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 		
 	}
 
-	
+	@Override
+	public String checkStatus(Integer int_ProductId) {
+		return getProductDao().checkStatus(int_ProductId);
+	}
+
+	@Override
+	public String checkStatuss(Integer int_ProductId) {
+		return getProductDao().checkStatuss(int_ProductId);
+	}
+
+	@Override
+	public String rejectStatuss(Integer int_ProductId) {
+		return getProductDao().rejectStatuss(int_ProductId);
+	}
+
+	@Override
+	public String checkclose(Integer int_ProductId) {
+		return getProductDao().checkclose( int_ProductId);
+	}
+
+	@Override
+	public void editselected(Integer int_ProductId) {
+		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Cls_ProductDetails getpostdetail(Integer postId) {
+		return getProductDao().getpostdetail( postId);
+	}
+
+	@Override
+	public int getsubcategoryId(Integer postId) {
+		return getProductDao().getsubcategoryId( postId);
+	}
+
+	@Override
+	public List<String> getlistsubcategory(int subcategoryId) {
+		return getProductDao().getlistsubcategory(subcategoryId);
+	}
+
+	@Override
+	public int getcategoryId(Integer postId) {
+		return getProductDao().getcategoryId( postId);
+	}
+
+	@Override
+	public String categoryname(int categoryId) {
+		return getProductDao().categoryname( categoryId);
+	}
+
+	@Override
+	public String subcategorynames(int categoryId) {
+		return getProductDao().subcategorynames(categoryId);
+	}
+
+	@Override
+	public int gecatid(String subcatsname) {
+		return getProductDao().subcategorynames(subcatsname);
+	}
+
+	@Override
+	public List<String> getcatmessages(int subcatId) {
+		return getProductDao().getcatmessages(subcatId);
+	}
+
+	@Override
+	public List<String> getCatmessages(int int_Ad_categoryId) {
+		return getProductDao().getcatmessages(int_Ad_categoryId);
+	}
+
+	@Override
+	public List<String> getcatdetail(int int_Ad_categoryId) {
+		return getProductDao().getcatdetail(int_Ad_categoryId);
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchByProducttypes(
+			String ch_Product_Type, String ch_Ad_Type, String status) {
+		return getProductDao().getSearchByProducttypes1(
+				 ch_Product_Type, ch_Ad_Type, status);
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
+			String var_subscategoryname, String ch_Ad_Type,
+			Integer categorystatus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
+			String var_subscategoryname, String ch_Ad_Type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchBytypes(
+			String var_Ad_CategoryName, String var_subscategoryname,
+			String ch_Ad_Type1, Integer categorystatus) {
+		return getProductDao().getSearchBytypes(
+				var_Ad_CategoryName, var_subscategoryname,
+				 ch_Ad_Type1,categorystatus);
 	}
 
 	
 	
+				 
+	}
+
+	
+	
+		
+
+
+	
+		
+	
+
+		
 
 	
 	

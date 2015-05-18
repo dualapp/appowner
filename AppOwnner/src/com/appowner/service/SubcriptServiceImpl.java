@@ -89,6 +89,10 @@ import java.util.List;
 
 
 
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -130,6 +134,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
+
+
+
+
 
 
 
@@ -755,16 +763,12 @@ public   class SubcriptServiceImpl implements SubcriptService {
 	}
 
 	@Override
-	public List getListCreatedocument(String username) {
-		// TODO Auto-generated method stub
-		return getSubcriptDao().getListCreatedocument( username);
-	}
-
-	@Override
 	public List getListCreatedocument() {
 		// TODO Auto-generated method stub
-		return null;
+		return getSubcriptDao().getListCreatedocument();
 	}
+
+	
 
 	@Override
 	public List getcommiteid() {
@@ -787,6 +791,31 @@ public   class SubcriptServiceImpl implements SubcriptService {
 	public void deletemembergroup(cls_Group detail) {
 		getSubcriptDao().deletemembergroup( detail);
 		
+	}
+
+	@Override
+	public Cls_CreateDocumentManagement getdocdetail(int docid) {
+		 return getSubcriptDao().getdocdetail(docid);
+	}
+
+	@Override
+	public List getdocdetails(Integer int_Document_CatID) {
+		 return getSubcriptDao().getdocdetails( int_Document_CatID);
+	}
+
+	@Override
+	public Cls_CreateDocumentManagement getdetail(int docId) {
+		return getSubcriptDao().getdetail( docId);
+	}
+
+	@Override
+	public List getdocumentdetail(Integer int_Document_CatID) {
+		return getSubcriptDao(). getdocumentdetail( int_Document_CatID);
+	}
+
+	@Override
+	public String documentnames(Integer int_Document_CatID) {
+		return getSubcriptDao().documentnames( int_Document_CatID);
 	}
 
 	
