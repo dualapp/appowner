@@ -33,26 +33,24 @@ public class EmailSendingServlet10 extends HttpServlet {
  
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        // reads form fields
-        String recipient = request.getParameter("recipient");
-    	 //String recipient="kalpanasudha1990@gmail.com";
-        System.out.println(recipient+"recipient");
-        String subject = request.getParameter("subject");
-        String content = request.getParameter("content");
-         String Organization=request.getParameter("Organization") ;
-        String resultMessage = "";
- 
-        try {
+            String recipient = request.getParameter("recipient");
+           System.out.println(recipient+"recipient");
+           String subject = request.getParameter("subject");
+          String content = request.getParameter("content");
+           String Organization=request.getParameter("Organization") ;
+           String resultMessage = "";
+            boolean render;
+           try {
             EmailUtility8.sendEmail(host, port, user, pass,recipient, subject,
                     content,Organization);
             resultMessage = "One e-mail has been sent to your Email-id !";
-        } catch (Exception ex) {
+            } catch (Exception ex) {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
-        } finally {
+           } finally {
+        	request.setAttribute("render", "true");
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/Result.jsp").forward(
-                    request, response);
+            response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/Communication/Ad_an_Post.xhtml?render=true") ;
         }
     }
 }

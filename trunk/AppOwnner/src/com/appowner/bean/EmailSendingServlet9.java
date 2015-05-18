@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author www.codejava.net
  * 
  */
-@WebServlet("/EmailSendingServlet7")
+@WebServlet("/EmailSendingServlet9")
 public class EmailSendingServlet9 extends HttpServlet {
     private String host;
     private String port;
@@ -41,7 +41,7 @@ public class EmailSendingServlet9 extends HttpServlet {
         String content = request.getParameter("content");
          String message=request.getParameter("message") ;
         String resultMessage = "";
- 
+          boolean render1;
         try {
             EmailUtility7.sendEmail(host, port, user, pass,recipient, subject,
                     content,message);
@@ -50,9 +50,9 @@ public class EmailSendingServlet9 extends HttpServlet {
             ex.printStackTrace();
             resultMessage = "There were an error: " + ex.getMessage();
         } finally {
+        	request.setAttribute("render1", "true");
             request.setAttribute("Message", resultMessage);
-            getServletContext().getRequestDispatcher("/Result.jsp").forward(
-                    request, response);
+            response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/Communication/Ad_an_Post.xhtml?render=true") ;
         }
     }
 }
