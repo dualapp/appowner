@@ -104,10 +104,11 @@ function limitText(limitField, limitCount, limitNum) {
              <tr>
             <th align="left">Notice Description</th>
              
-                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,500);" style="width:550px; height:240px" 
-onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,500);" maxlength="500" required="true"></textarea>
-<br/>
+                <td colspan="2"><h:inputTextarea id="description" value="#{noticeBoardBean.str_Description}" type="text" onkeyup="limitTextArea(this,500);" 
+onkeydown="limitTextArea(this,500);"  style="width:550px; height:240px" 
+  required="true" requiredMessage="Description should not Empty"></h:inputTextarea>
 
+  <p:message for="description" display="text"/>  
 
 
 
