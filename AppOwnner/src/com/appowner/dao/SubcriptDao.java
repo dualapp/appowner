@@ -72,7 +72,7 @@ public interface SubcriptDao {
 
 	public void documents(Cls_CreateDocumentManagement d);
 
-	public List<Cls_CreateDocumentManagement> getListCreatedocument(String username);
+	public List<Cls_CreateDocumentManagement> getListCreatedocument();
 
 	public Integer getInt_Document_CatNM2(int int_Document_CatID);
 
@@ -232,6 +232,16 @@ public interface SubcriptDao {
 	public List getadminname();
 
 	public void deletemembergroup(cls_Group detail);
+
+	public Cls_CreateDocumentManagement getdocdetail(int docid);
+
+	public List getdocdetails(Integer int_Document_CatID);
+
+	public Cls_CreateDocumentManagement getdetail(int docId);
+
+	public List getdocumentdetail(Integer int_Document_CatID);
+
+	public String documentnames(Integer int_Document_CatID);
 
 	
 	

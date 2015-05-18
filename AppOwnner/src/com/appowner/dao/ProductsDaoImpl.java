@@ -1,6 +1,9 @@
 package com.appowner.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -44,7 +47,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	@Override
 	public void AddProduct1(Cls_ProductDetails pro) 
 	{
-		System.out.println(pro.getCh_Product_Type()+"';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
+		
 		getSessionFactory().getCurrentSession().save(pro);
 		
 	}
@@ -134,32 +137,52 @@ public class ProductsDaoImpl implements ProductsDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type ,String ch_Ad_Type,String status)
+	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type, String ch_Ad_Type, String status, Integer statusid)
 	{
-		System.out.println(ch_Product_Type+";;;;;;;;;;;;;;;");
-		System.out.println( ch_Ad_Type+",........,.,.,,.,.,<><><><><>");
-		System.out.println( status);
-		
-		if(ch_Product_Type=="Sell" && ch_Ad_Type=="My Community" && status==null )
-		{
+		System.out.println(ch_Product_Type+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+		System.out.println(ch_Ad_Type+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+		System.out.println(statusid+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+		System.out.println(status+"jcfjfjhdfgggggggggggggggggggggggggggggggggggggggggg");
+	
+		if(statusid==0)
+		{  
+			System.out.println("hgfhf2222222222222222222222222222222222222222222222222222222222222222222222222");
 			String  query = "{ CALL detail() }";
 			
-			 List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+			List<Cls_ProductDetails> listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
 			          ).list();
-		     System.out.println(kkk.listIterator().hasNext());
-			 return kkk;	
+		   
+			 return listdetails;	
 		}
-		else
-		{
-			String  query = "{ CALL details(?,?,?)}";
-			List<Cls_ProductDetails> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0, ch_Product_Type).setParameter(1, ch_Ad_Type).setParameter(2, status).list();
-			return conn;
+		else 
 		
+		   { if(statusid==-1)
+			   
+		   {  
+				System.out.println("hgfhf2222222222222222222222222222222222222222222222222222222222222222222222222");
+				String  query = "{ CALL detail() }";
+				
+				List<Cls_ProductDetails> listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+				          ).list();
+			   
+				 return listdetails;	
+			}
+		   else
+		   {
+			System.out.println("hffhrrrrrrrrrrrrrrrrrrrrrrrrr444444444444444444477777777777777777777777777777777777777777");
+			String  query = "{ CALL details(?,?,?,?) }";
+			
+			List<Cls_ProductDetails>  listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,ch_Product_Type).setParameter(1,ch_Ad_Type).setParameter(2,status).setParameter(3, statusid).list();
+			System.out.println(listdetails+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");	
+			return listdetails;
+			 }
+		 }
 		
+		}
 		
-	}
 	
-	}
+	
+	
 	/*@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getAprtmentName() {
@@ -468,35 +491,48 @@ public class ProductsDaoImpl implements ProductsDao{
 		 return cid;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
-			String var_subscategoryname, String ch_Ad_Type) {
+			String var_subscategoryname, String ch_Ad_Type, int categorystatus) {
 		System.out.println(var_Ad_CategoryName+";;;;;;;;;;;;;;;");
 		System.out.println( var_subscategoryname+",........,.,.,,.,.,<><><><><>");
-		System.out.println( ch_Ad_Type);
-		if(var_Ad_CategoryName==null&&var_subscategoryname==null&&ch_Ad_Type=="My Community")
-		{
+	     System.out.println( ch_Ad_Type);
+	
+		if(categorystatus==0)
+		{  
+			System.out.println("hgfhf2222222222222222222222222222222222222222222222222222222222222222222222222");
 			String  query = "{ CALL search() }";
 			
-			 @SuppressWarnings("unchecked")
-			List<Cls_ProductDetails> kkk = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+			List<Cls_ProductDetails> listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
 			          ).list();
-		     		 return kkk;	
+		   
+			 return listdetails;	
 		}
-		else
-		{
-			System.out.println(var_Ad_CategoryName+";;;;;;;;;;;;;;;");
-			System.out.println( var_subscategoryname+",........,.,.,,.,.,<><><><><>");
-			System.out.println( ch_Ad_Type);
-			String  query = "{ CALL searchcategory(?,?,?)}";
-			@SuppressWarnings("unchecked")
-			List<Cls_ProductDetails> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,var_Ad_CategoryName).setParameter(1,var_subscategoryname).setParameter(2,ch_Ad_Type).list();
-			return conn;
+		else 
 		
+		   { 
+			if(categorystatus==-1)
+			   
+		        {
+			   System.out.println("jggfffffffffffffffff777777777777777777777777777777777777777777777777777777777777777777777777777777777777");
+		        }
+		   else
+		   {
+			System.out.println("hffhrrrrrrrrrrrrrrrrrrrrrrrrr444444444444444444477777777777777777777777777777777777777777");
+			String  query = "{ CALL searchcategory(?,?,?,?) }";
+			
+			List<Cls_ProductDetails>  listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,var_Ad_CategoryName).setParameter(1,var_subscategoryname).setParameter(2,ch_Ad_Type).setParameter(3, categorystatus).list();
+			System.out.println(listdetails+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");	
+			return listdetails;
+			 }
+		 }
+		return null;
+		}
 		
+	
 		
-	}
-	}
+	
 
 	@Override
 	public int getcatsid(String str_sub_catid) {
@@ -661,7 +697,7 @@ public class ProductsDaoImpl implements ProductsDao{
 	public List<String> getCatmessage(int int_Ad_categoryId) {
 		// TODO Auto-generated method stub
 		//String catName=(String) getSessionFactory().getCurrentSession().createQuery("select var_Ad_CategoryName from Cls_categoryDetail where int_Ad_categoryId=?").setParameter(0, int_Ad_categoryId).uniqueResult(); 
-		return getSessionFactory().getCurrentSession().createQuery("select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?").setParameter(0, int_Ad_categoryId).list();
+		return getSessionFactory().getCurrentSession().createQuery("select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?").setParameter(0,int_Ad_categoryId).list();
 	}
 
 	@Override
@@ -681,9 +717,232 @@ public class ProductsDaoImpl implements ProductsDao{
 	public void deleteselected(Integer int_ProductId) {
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM Cls_ProductDetails WHERE Int_ProductId="+int_ProductId).executeUpdate();
 	}
+
+	@Override
+	public String checkStatus(Integer int_ProductId) {
+		String hql="select  Status from Cls_ProductDetails  where int_ProductId=?";
+		 getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0, "Open").setParameter(1,int_ProductId).executeUpdate();
+		return hql;
 		
 	}
+	public String checkStatuss(Integer int_ProductId) {
+		String hql="select  Status from Cls_ProductDetails  where Int_ProductId=?";
+		String status= (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_ProductId).uniqueResult();
+		
+		System.out.println(status+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+		return status;
+	}
+	public String rejectStatuss(Integer int_ProductId) {
+		String hql="select  Status from Cls_ProductDetails  where Int_ProductId=?";
+		String status= (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_ProductId).uniqueResult();
+		
+		System.out.println(status+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+		return status;
+	}
+
+	@Override
+	public String checkclose(Integer int_ProductId) {
+		String hql="select  Status from Cls_ProductDetails  where Int_ProductId=?";
+		String status= (String) getSessionFactory().getCurrentSession().createQuery(hql).setParameter(0,int_ProductId).uniqueResult();
+		
+		System.out.println(status+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+		return status;
+	}
+
+	@Override
+	public void editselected(Integer int_ProductId) {
+		getSessionFactory().getCurrentSession().update(int_ProductId);
+	}
+
+	@Override
+	public Cls_ProductDetails getpostdetail(Integer postId) {
+		System.out.println(postId+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		Cls_ProductDetails postdetail= (Cls_ProductDetails) getSessionFactory().getCurrentSession().get(Cls_ProductDetails.class, postId);
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( postdetail);
+		 return  postdetail;
+	}
+
+	@Override
+	public int getsubcategoryId(Integer postId) {
+		String hql1="select  int_subcategoryId from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		int subcategoryId=(int) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postId).uniqueResult();
+		 System.out.println("ccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+		 System.out.println( subcategoryId);
+		return  subcategoryId;
+	}
+
+	@Override
+	public List<String> getlistsubcategory(int subcategoryId) {
+		return getSessionFactory().getCurrentSession().createQuery("select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?").setParameter(0,subcategoryId).list();
+	}
+
+	@Override
+	public int getcategoryId(Integer postId) {
+		String hql1="select  int_subcategoryId from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		int categoryId=(int) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,postId).uniqueResult();
+		 System.out.println("ccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+		 System.out.println( categoryId);
+		return  categoryId;
+	}
+
+	@Override
+	public String categoryname(int categoryId) {
+		String hql1="select var_Ad_CategoryName from Cls_categoryDetail where int_Ad_categoryId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		String categoryName=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,categoryId).uniqueResult();
+		 System.out.println("ccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+		 System.out.println( categoryId);
+		return  categoryName;
+	}
+
+	@Override
+	public String subcategorynames(int categoryId) {
+		String var_subscategoryname = null;
+		String hql1="select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println("My nameeeeeeeeeeeeeeeeeeeeeeee");
+		System.out.println(hql1);
+		 
+		List<String> subcategoryName=(List<String>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,categoryId).list();
+		Iterator<String> itr= subcategoryName.iterator();
+		while(itr.hasNext())
+		{
+	     Object sub=itr.next();
+	      var_subscategoryname=(String) sub;
+		}
+		 System.out.println("ccccccccccccccccccccccccccccccccccccccmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+		 System.out.println( categoryId);
+		return  var_subscategoryname;
+	}
+
+	@Override
+	public int subcategorynames(String subcatsname) {
+System.out.println( subcatsname+"mukesh kumar");
+		
+		String hql4="select int_Ad_categoryId from Cls_categoryDetail where var_Ad_CategoryName=?";
+	   return  (Integer) getSessionFactory().getCurrentSession().createQuery(hql4).setParameter(0, subcatsname).uniqueResult();
+		
+	}
+
+	@Override
+	public List<String> getcatmessages(int subcatId) {
+		String hql4="select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?";
+		return  (List<String>) getSessionFactory().getCurrentSession().createQuery(hql4).setParameter(0, subcatId).list();
+	}
+
+	@Override
+	public List<String> getcatdetail(int int_Ad_categoryId) {
+		return getSessionFactory().getCurrentSession().createQuery("select var_subscategoryname from Cls_subcategoryDetail where int_Ad_categoryId=?").setParameter(0,int_Ad_categoryId).list();
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchByProducttypes(
+			String ch_Product_Type, String ch_Ad_Type, String status) {
+		{
+			System.out.println(ch_Product_Type+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+			System.out.println(ch_Ad_Type+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+			System.out.println(status+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+			
+			if(ch_Product_Type=="Sell" && ch_Ad_Type=="My Community" && status==null )
+			{
+				String  query = "{ CALL detail() }";
+				
+				 @SuppressWarnings("unchecked")
+				List<Cls_ProductDetails> listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+				          ).list();
+			   
+				 return listdetails;	
+			}
+			else
+			{
+				String  query = "{ CALL details(?,?,?)}";
+				@SuppressWarnings("unchecked")
+				List<Cls_ProductDetails> listdetails=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0, ch_Product_Type).setParameter(1, ch_Ad_Type).setParameter(2, status).list();
+				
+				return listdetails;
+			
+			
+			
+		
+			}
+	}
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchByProducttypes1(
+			String ch_Product_Type, String ch_Ad_Type, String status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
+			String var_subscategoryname, String ch_Ad_Type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cls_ProductDetails> getSearchBytypes(
+			String var_Ad_CategoryName, String var_subscategoryname,
+			String ch_Ad_Type1, Integer categorystatus) {
+		System.out.println(var_Ad_CategoryName+";;;;;;;;;;;;;;;");
+		System.out.println( ch_Ad_Type1+",........,.,.,,.,.,<><><><><>");
+	     System.out.println( categorystatus+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 	
+		if(categorystatus==0)
+		{  
+			System.out.println("hgfhf2222222222222222222222222222222222222222222222222222222222222222222222222");
+			String  query = "{ CALL search() }";
+			
+			
+			List<Cls_ProductDetails> listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)
+			          ).list();
+		   
+			 return listdetails;	
+		}
+		else 
+		
+		   { 
+			if(categorystatus==-1)
+			   
+		        {
+			   System.out.println("jggfffffffffffffffff777777777777777777777777777777777777777777777777777777777777777777777777777777777777");
+		        }
+		   else
+		   {
+			System.out.println("hffhrrrrrrrrrrrrrrrrrrrrrrrrr444444444444444444477777777777777777777777777777777777777777");
+			String  query = "{ CALL searchcategory(?,?,?,?) }";
+			
+			List<Cls_ProductDetails>  listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,var_Ad_CategoryName).setParameter(1,var_subscategoryname).setParameter(2,ch_Ad_Type1).setParameter(3, categorystatus).list();
+			System.out.println(listdetails+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");	
+			return listdetails;
+			 }
+		 }
+		return null;
+		}
+		
+	}
+
+	
+	
+
 
 	
 
