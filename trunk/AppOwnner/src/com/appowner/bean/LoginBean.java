@@ -8,13 +8,21 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import javax.imageio.stream.FileImageOutputStream;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
@@ -31,6 +39,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,7 +59,7 @@ import com.appowner.util.Util;
 
 @ManagedBean(name = "loginBean")
 @SessionScoped
-public class LoginBean implements Serializable {
+public class LoginBean implements Serializable,Filter {
 	/**
 	 * 
 	 */
@@ -916,18 +926,27 @@ public class LoginBean implements Serializable {
 	public void setActvationkey(Integer actvationkey) {
 		this.actvationkey = actvationkey;
 	}
-	public String userLogin()
+	private boolean aprt;
+	public boolean isAprt() {
+		return aprt;
+	}
+	public void setAprt(boolean aprt) {
+		this.aprt = aprt;
+	}
+	public String userLogin() throws URISyntaxException
 	{
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		String userName=request.getParameter("Userloginname");
 		System.out.println(userName+"klkk123");
 		 String userPassword=request.getParameter("userPassword");
 		 System.out.println(userPassword+"sdjdskjdskj");
+		
 		formuserloginusername=userName;
 		formuserloginuserpassword=userPassword;
 		System.out.println(formuserloginusername+"klkk");
 		System.out.println(formuserloginuserpassword+"fdkfd");
 		System.out.println(userloginpassword+"jjkjkkjkj");
+		
 		if(formuserloginusername==null)
 		{
 			user=getUserService().getUserList(Util.getUserName());
@@ -951,11 +970,16 @@ public class LoginBean implements Serializable {
 		str_FirstName=user.getStr_FirstName();
 		str_LastName=user.getStr_LastName();
 		str_Flat=user.getStr_Flat();
+		System.out.println(str_Flat+"gjgjkjjkhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 		str_Mobile=user.getStr_PhoneNo();
 		int_UserId=user.getInt_UserId();
 		str_EmailId=user.getStr_Email();
 		int_ApartmentId=user.getInt_ApartmentId();
 		str_ApartmentName=user.getStr_Apartment();
+		if(str_Flat==null)
+		{  System.out.println("jggjyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+			aprt=true;
+		}
 		roleAssign=getUserService().getRoleAssign(int_UserId,int_ApartmentId);
 		System.out.println(roleAssign+"gfgfkjgfjk");
 		
@@ -1011,7 +1035,9 @@ public class LoginBean implements Serializable {
             session.setAttribute("str_userRoleName",str_userRoleName);
 			 
             session.setAttribute("int_UserRole", user.getInt_UserRole());
-		     return "/AfrteLoginViews/Adminwelcomepage.xhtml";
+           
+            return "/AfrteLoginViews/Adminwelcomepage.xhtml?faces-redirect=true";
+           
 		   }
 		   else if(str_userRoleName.equalsIgnoreCase("user") && roleAssign.isEmpty())
 		   {   System.out.println( "fdufdkjfdjkfdjgffggffg");
@@ -1773,5 +1799,31 @@ public List<String> getCityListByState() {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	@Override
+    public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhuuuuuuuuuuuuuuuuuuuuuuuuuuyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+        final HttpServletRequestWrapper wrapped = new HttpServletRequestWrapper((HttpServletRequest) request) {
+        	
+            @Override
+            public StringBuffer getRequestURL() {
+                final StringBuffer originalUrl = ((HttpServletRequest) getRequest()).getRequestURL();
+                int port=((HttpServletRequest) getRequest()).getServerPort();
+                System.out.println(originalUrl+"fgjgjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+                return new StringBuffer("http://localhost:"+port+"/AppOwnner/AfrteLoginViews/Adminwelcomepage.xhtml");
+            }
+        };
+        chain.doFilter(wrapped, response);
+    }
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+		System.out.println("gfjggjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		
 	}
 }
