@@ -170,9 +170,7 @@ public class ComplainBean implements Serializable{
 	{
 		try{
 			Complain cmp=new Complain();
-			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-			str_Description=request.getParameter("limitedtextfield");
-			System.out.println(str_Description+"fggjkgkjgfkjgfgf");
+			cmp.setStr_Description(str_Description);
 			cmp.setCh_Complain(getCh_Complain());
 			cmp.setStr_ComplainType(getStr_ComplainType());
 			cmp.setStr_Description(str_Description);
@@ -203,9 +201,7 @@ public class ComplainBean implements Serializable{
 	public String addComplain()
 	{  try{
 		Complain cmp=new Complain();
-		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		str_Description=request.getParameter("limitedtextfield");
-		System.out.println(str_Description+"fggjkgkjgfkjgfgf");
+		cmp.setStr_Description(str_Description);
 		cmp.setCh_Complain(getCh_Complain());
 		cmp.setStr_ComplainType(getStr_ComplainType());
 		cmp.setStr_Description(str_Description);
