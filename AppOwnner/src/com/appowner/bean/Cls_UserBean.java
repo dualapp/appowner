@@ -438,6 +438,7 @@ public class Cls_UserBean implements Serializable{
 				ua.setInt_PinCode(565434);
 				ua.setStr_Address(getCity());
 				ua.setInt_CityId(id);
+				ua.setInt_subscriptID(1);
 				ua.setStatus(0);
 				java.util.Date d=new java.util.Date();
 				System.out.println(d+"dskdskdslkk");
@@ -487,22 +488,28 @@ public class Cls_UserBean implements Serializable{
 			usr.setInt_activationbit(0);
 			System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppllllllllllllllllllllllllllllllll");
 			getUserService().addUser(usr);
-			
 			 el=getStr_Email();
 			 un=getStr_Username();
 			pd=getStr_Password();
 			fn=getStr_FirstName();
-			
-			
-			url="http://http://localhost:5434/AppOwnner/activate.jsp?activationkey="+uuid1;
-			subject="AppOwner.com";
-			content="fffff";
+			an=Util.getAppartmentName();
 			Bn="admin";
+			url="http://www.appowners.com/AppOwnner/activate.jsp?activationkey="+uuid1;
+			System.out.println(url+"fdjjkjkfdjkdffdj");
+			subject="AppOwner.com";
+			content="gggggg";
 					
 				
 			List<String> list=new ArrayList<String>();
 			list.add(el);
 			list.add(pd);
+			
+			
+			
+			
+			
+				
+			
 			
 			return "EmailForm2.jsp";
 			}
@@ -1086,6 +1093,7 @@ public class Cls_UserBean implements Serializable{
 			
 			}
 	}
+		
 
 }
 

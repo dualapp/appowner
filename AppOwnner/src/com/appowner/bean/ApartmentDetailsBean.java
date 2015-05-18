@@ -410,7 +410,7 @@ public class ApartmentDetailsBean  implements Serializable{
 				return "blockdetails.xhtml";
 			}
 		UserBlocks ub=new UserBlocks();
-		ub.setInt_NoOfHouses(int_NoOfHouse);
+		ub.setInt_NoOfHouses(0);
 		ub.setStr_BlockName(str_BlockName);
 		ub.setInt_ApartmentId(Util.getAppartmentId());
 		getApartmentDetailsService().saveBlockDetails(ub);
