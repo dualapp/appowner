@@ -95,7 +95,52 @@
   <servlet-mapping>
     <servlet-name>amulya</servlet-name>
     <url-pattern>/notice</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    <servlet-name>dum9</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet7</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   <servlet-name>dum9</servlet-name>
+   <url-pattern>/contact</url-pattern>
+   </servlet-mapping>
+ 
+  <servlet>
+    <servlet-name>dum12</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet9</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   <servlet-name>dum12</servlet-name>
+   <url-pattern>/srv10</url-pattern>
+   </servlet-mapping>
+   
+    <servlet>
+    <servlet-name>dum13</servlet-name>
+    <servlet-class>com.appowner.bean.EmailSendingServlet10</servlet-class>
+    </servlet>
+    <servlet-mapping>
+   <servlet-name>dum13</servlet-name>
+   <url-pattern>/srv11</url-pattern>
+   </servlet-mapping>
+ 
+ 
+   <servlet>
+    <servlet-name>dum14</servlet-name>
+    <servlet-class>com.appowner.bean.ContactEmailSendingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dum14</servlet-name>
+    <url-pattern>/srv22</url-pattern>
   </servlet-mapping>
+  <servlet>
+   <servlet-name>dum22</servlet-name>
+    <servlet-class>com.appowner.bean.GroupEmailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dum22</servlet-name>
+    <url-pattern>/srv20</url-pattern>
+  </servlet-mapping>
+  
   <context-param>
     <param-name>host</param-name>
     <param-value>smtp.gmail.com</param-value>
