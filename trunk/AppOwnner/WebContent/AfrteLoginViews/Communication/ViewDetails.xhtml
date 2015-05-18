@@ -72,17 +72,18 @@
  
            <div class="gsTitleDiv">Member Details<br/><hr/></div> 
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-    <tr><th width="15%"><h:outputText value="Created by"/></th>  <td  width="15%"><h:inputText readonly="true"  value="#{postad.username}"/></td> <th width="20%"></th>  <th width="15%"><h:outputText value="Organization"/></th> <td width="15%"><h:inputText readonly="true" value="#{postad.str_ApartmentName}"/></td><th width="20%"></th></tr>
-    <tr><th ><h:outputText value="Organization"/></th>  <td><h:inputText readonly="true" value="#{postad.str_ApartmentName}"/></td><th></th>   <th><h:outputText value="Block"/></th>  <td><h:inputText  readonly="true" value="#{postad.str_Block}"/></td><th></th></tr>
-   <tr><th><h:outputText value="Mobile"/></th>  <td><h:inputText readonly="true"  value="#{postad.str_PhoneNo}"/></td><th></th> <th><h:outputText value="Email"/></th>  <td><h:inputText readonly="true" value="#{postad.str_Email}"/></td><th></th></tr>
-   <tr><th><h:outputText value="Ad Detail >>"/></th></tr>
-    <tr><th><h:outputText value="Post Date"/></th>  <td><h:inputText readonly="true"  value="#{postad.dt_date}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td> <th></th>  <th><h:outputText value="Close Date"/></th>  <td  ><h:inputText readonly="true" value="#{postad.closedate}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td><th></th></tr>
-    <tr><th><h:outputText value="Status"/></th>  <td><h:inputText readonly="true"  value="#{postad.status}"/></td> </tr>
+    <tr><th  width="15%" style="vertical-align: top;"><h:outputText value="Created by"/></th>  <td  width="15%"><h:inputText readonly="true"  value="#{postad.username}"/></td><th width="20%"></th>   
+ <th style="vertical-align: top;"><h:outputText value="Organization"/></th>  <td><h:inputText readonly="true" value="#{postad.str_ApartmentName}"/></td><th></th></tr>   
+     <tr><th style="vertical-align: top;"><h:outputText value="Block"/></th>  <td><h:inputText  readonly="true" value="#{postad.str_Block}"/></td><th></th>
+   <th style="vertical-align: top;"><h:outputText value="Mobile"/></th>  <td><h:inputText readonly="true"  value="#{postad.str_PhoneNo}"/></td><th></th> </tr>
+  <tr> <th style="vertical-align: top;"><h:outputText value="Email"/></th>  <td><h:inputText readonly="true" value="#{postad.str_Email}"/></td><th></th></tr>
+   <tr><th style="vertical-align: top;"><h:outputText value="Ad Detail >>"/></th></tr>
+    <tr><th style="vertical-align: top;"><h:outputText value="Post Date"/></th>  <td><h:inputText readonly="true"  value="#{postad.dt_date}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td> <th></th>  <th style="vertical-align: top;"><h:outputText value="Close Date"/></th>  <td  ><h:inputText readonly="true" value="#{postad.closedate}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td><th></th></tr>
+    <tr><th style="vertical-align: top;"><h:outputText value="Status"/></th>  <td><h:inputText readonly="true"  value="#{postad.status}"/></td> </tr>
 </table>
  
 </h:body>
-       
-      </p:tab>
+  </p:tab>
       </p:accordionPanel>
  
   <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
@@ -92,39 +93,41 @@
   
    <tr>
   
-   <td><p:outputLabel value="Category" /></td>
-   <td><h:inputText value="#{cls_AddDetailBean.subname}"  readonly="true" /> 
+   <td style="vertical-align: top;"><p:outputLabel value="Category"  /></td>
+  <td><h:inputText value="#{cls_AddDetailBean.subname}"  readonly="true" /> 
     &#150;  &#150;   &#150;   &#150;
-    <p:outputLabel value="SubCategory" />
-    &#150;   &#150;   &#150;
-    <h:inputText value="#{cls_AddDetailBean.subcatname}" /> 
+    <p:outputLabel value="SubCategory"  style="vertical-align: top;"/>
+    &#150;   &#150;    &#150;    &#150;
+    <h:inputText value="#{cls_AddDetailBean.subcatname}"  readonly="true"/> 
    </td>
     </tr>
     <tr>
-           <td><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
-             <td><h:inputText  id="ch_Ad_Type" value="#{postad.ch_Ad_Type}"  >
-             </h:inputText>
-             </td>
+    
+           <td style="vertical-align: top;"><p:outputLabel for="ch_Ad_Type" value="Ad Type" /></td>
+            <td><h:inputText  id="ch_Ad_Type" value="#{postad.ch_Ad_Type}"  readonly="true">
+             </h:inputText></td>
+             
              </tr>
             
              <tr> 
-          <td><p:outputLabel for="I" value="I want to" /></td>
-        <td><h:inputText  id="I" value="#{postad.ch_Product_Type}" >
+          <td style="vertical-align: top;"><p:outputLabel for="I" value="I want to" /></td>
+        <td><h:inputText  id="I" value="#{postad.ch_Product_Type}"  readonly="true">
         </h:inputText>
         </td>
         </tr>
         
             <tr>
-           <td>
+           <td style="vertical-align: top;">
           <p:outputLabel value="Title"></p:outputLabel></td>
                         
-          <td><h:inputText  id="po" value="#{postad.var_Title}"   >
+          <td><h:inputText  id="po" value="#{postad.var_Title}"   readonly="true">
             </h:inputText>
             </td>
             </tr>
            
-             <tr><td><p:outputLabel  value="Description:"/></td>
-                <td><h:inputTextarea id="desc"  style="height:300px ;width:800px" value="#{postad.var_Description}" >
+             <tr><td style="vertical-align: top;">
+             <p:outputLabel  value="Description:"/></td>
+                <td><h:inputTextarea id="desc"  style="height:300px ;width:800px" value="#{postad.var_Description}" readonly="true">
               </h:inputTextarea>
               </td>
             </tr>

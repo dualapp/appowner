@@ -23,7 +23,7 @@ function limitText(limitField, limitCount, limitNum) {
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/images.jpg" height="50" width="50"></img> <span class="title">send us your complain or queries.</span>
+					<img src="#{expenseBean.str_Name}images/images.jpg" height="50" width="50"></img> <span class="title">Send us your complain or queries.</span>
 				</td>
 			</tr>
 		</tbody>
@@ -114,12 +114,16 @@ function limitText(limitField, limitCount, limitNum) {
             </tr>
         
             <tr>
-               <td><h:outputText  value="Description*:"/><br /><small><font color="red" size="2">(Maximum characters: 1000)</font></small></td>
-                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,1000);" style="width:300px; height:100px" 
-onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,1000);" maxlength="1000" required="true"></textarea>
+               <td><h:outputText  value="Description*:"/><br /><small><font color="red" size="2">(Maximum characters: 500)</font></small></td>
+                <td colspan="2"><h:inputTextarea id="description" value="#{complainBean.str_Description}" type="text" name="#{noticeBoardBean.notice1.str_Description}" onkeyup="limitTextArea(this,500);" 
+onkeydown="limitTextArea(this,500);"  style="width:550px; height:240px" 
+  required="true" requiredMessage="Description should not Empty">
+  
+  </h:inputTextarea>
+    <p:message for="description" display="text"/>           
 <br/>
 
-<input  type="text" name="countdown" size="3" value="1000"> characters left.</input>
+
 
 
 

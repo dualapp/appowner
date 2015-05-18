@@ -65,16 +65,16 @@
   
    
              <tr> 
-            <td> &#150;       &#150;      &#150;      &#150;      &#150;         &#150;      &#150;    &#150;  
+            <td  style="vertical-align: top;"> &#150;       &#150;      &#150;      &#150;      &#150;         &#150;      &#150;    &#150;  
             <p:outputLabel value="Organisation"  /></td>
             <td><h:inputText value="#{cls_AddDetailBean.str_ApartmentName}"  readonly="true" >
       </h:inputText>
             </td>
           
         
-             <td><p:outputLabel  value="Intent" /></td>
-               <td><h:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Product_Type}" >
-                  <f:selectItem itemLabel="All" itemValue="All"  />
+             <td style="vertical-align: top;"><p:outputLabel  value="Intent" /></td>
+               <td><h:selectOneMenu id="option1"   value="#{cls_AddDetailBean.ch_product_type1}" >
+                  <f:selectItem  itemLabel="All" itemValue=""  />
                   <f:selectItem itemLabel="Buy" itemValue="Buy"  />
                   <f:selectItem itemLabel="Sell" itemValue="Sell"  />
                   <f:selectItem itemLabel="Rent" itemValue="Rent"  />
@@ -83,41 +83,31 @@
              </td>
              
          
-             <td><p:outputLabel value="Status" /></td>
+             <td style="vertical-align: top;"><p:outputLabel value="Status" /></td>
                <td><h:selectOneMenu id="option2"  value="#{cls_AddDetailBean.status}" >
-                  <f:selectItem itemLabel="All" itemValue="All"  />
+                  <f:selectItem itemLabel="All" itemValue="" />
                    <f:selectItem itemLabel="Open" itemValue="Open"  />
                     <f:selectItem itemLabel="Pending Approval" itemValue="Pending Approval"  />
-                     <f:selectItem itemLabel="Closed" itemValue="Closed"  />
+                     <f:selectItem itemLabel="Close" itemValue="Close"  />
+                     <p:ajax event="change" process="option2"/>
                       </h:selectOneMenu>
                  </td>
                </tr>
                <tr>
                  
                 
-                 <td><p:outputLabel  value="Posted in the last" /></td>
-               <td><h:selectOneMenu id="option3" value="ghgf"  >
-                  <f:selectItem itemLabel="10 days" itemValue="10 days"  />
-                  <f:selectItem itemLabel="30 days" itemValue="30 days"  />
-                  <f:selectItem itemLabel="All days" itemValue="All days"  />
-                   
-                 </h:selectOneMenu>
-             </td>
+                 
             
-           
-           
-           
-             
-              <td><p:outputLabel value="Type" /></td>
-              <td><h:selectOneMenu id="option4" value="#{cls_AddDetailBean.ch_Ad_Type}" >
-              <f:selectItem itemLabel="All" itemValue="All"  />
+         <td style="vertical-align: top;"><p:outputLabel value="Type" /></td>
+              <td><h:selectOneMenu id="option4" value="#{cls_AddDetailBean.ch_Ad_Type1}" >
+              <f:selectItem itemLabel="All"  itemValue=""  />
               <f:selectItem itemLabel="My Community" itemValue="My Community"  />
               <f:selectItem itemLabel="Negihbourhood" itemValue="Neighbourhood"  />
-               
+              <p:ajax event="change" process="option4"/> 
                  </h:selectOneMenu> 
              </td>
           
-           <td>  <p:commandButton  value="Go" action="#{cls_AddDetailBean.getDetails()}"  style="width:40px; height:20px;" update="per" ajax="false">
+           <td>  <p:commandButton  value="Go"  style="width:40px; height:20px;" update="per" >
                </p:commandButton></td>
           
           </tr>
@@ -128,18 +118,18 @@
            <div class="gsTitleDiv"> Buy&#38;Sell<br/><hr/></div> 
             &#150; &#150; &#150;&#150;&#150; &#150;&#150; &#150;&#150; &#150;<p:button  value="Create New" outcome="Create_Detail.xhtml" style="width:120px;height:25px" />
             &#150;
-            <p:commandButton process="per"   icon="ui-icon-search" value="View Selected"    action="#{cls_AddDetailBean.editselect1()}"  ajax="false" style="width:120px;height:25px" />  &#150;&#150;  <p:commandButton process="per"   value="Edit Selected"    action="#{cls_AddDetailBean.editselect()}" ajax="false" style="width:120px;height:25px"/> &#150;&#150; <p:commandButton process="per"   value="Delete Selected"   action="#{cls_AddDetailBean.deleteselect()}"  update=":ui-growl"  ajax="false"  style="width:120px;height:25px"/> &#150;&#150;<p:button  value="Refresh" icon="ui-icon-refresh" style="width:120px;height:25px" />&#150; &#150;
-            <p:menuButton value="Action" style="width:120px;height:25px">
-            <p:menuitem value="Approval Selected"  update=":email"   oncomplete="PF('multiVendorDialog1').show()"  actionListener="#{cls_AddDetailBean.selectinfo1(e)}"></p:menuitem>
-          <p:menuitem value="Reject Selected"   update=":rejectid" oncomplete="PF('multiVendorDialog8').show()"  actionListener="#{cls_AddDetailBean.selectinfo3(e)}"/>
-          <p:menuitem value="Close Selected" actionListener="#{cls_AddDetailBean.selectinfo2(e)}" ajax="fals"/>
-          <p:menuitem value="Send Email to Creator"  update=":msgid" oncomplete="PF('multiVendorDialog').show()" actionListener="#{cls_AddDetailBean.selectinfo4(e)}"/>
+            <p:commandButton process="per"   icon="ui-icon-search" value="View Selected"    action="#{cls_AddDetailBean.viewposts()}"  ajax="false" style="width:120px;height:25px" />  &#150;&#150;  <p:commandButton process="per"   value="Edit Selected"    action="#{cls_AddDetailBean.editselect()}" ajax="false" style="width:120px;height:25px"/> &#150;&#150; <p:commandButton process="per"   value="Delete Selected"   action="#{cls_AddDetailBean.deleteselect()}"  update=":ui-growl"  ajax="false"  style="width:120px;height:25px"/> &#150;&#150;<p:button  value="Refresh" icon="ui-icon-refresh" style="width:120px;height:25px" />&#150; &#150;
+            <p:menuButton id="menubutton"  value="Action" style="width:120px;height:25px" listener="#{cls_AddDetailBean.desabledListener}" execute="@form" immediate="true">
+            <p:menuitem  value="Approval Selected"  update=":email,ui-growl"   oncomplete="#{cls_AddDetailBean.postindicate}?PF('multiVendorDialog1').show():null" action="#{cls_AddDetailBean.postupdate}" />
+          <p:menuitem value="Reject Selected"   update=":rejectid,ui-growl" oncomplete="#{cls_AddDetailBean.postindicate}?PF('multiVendorDialog8').show():null"  action="#{cls_AddDetailBean.postrejects}" />
+          <p:menuitem value="Close Selected" actionListener="#{cls_AddDetailBean.selectinfo2(e)}" ajax="false"/>
+          <p:menuitem value="Send Email to Creator"  update=":msgid,ui-growl" oncomplete="#{cls_AddDetailBean.postindicate}?PF('multiVendorDialog').show():null"   ajax="false" actionListner="#{cls_AddDetailBean.selectinfo4(e)}"  />
          </p:menuButton> 
            <br />
             <br />
          <p:dataTable id="per" var="per" value="#{cls_AddDetailBean.searchByProducttype}" style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  resizableColumns="true" rows="5" paginator="true"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
         rowsPerPageTemplate="10,20,30,40,50"  selectionMode="single" selection="#{cls_AddDetailBean.selectedAll}" rowKey="#{per.int_ProductId}"  paginatorPosition="bottom" >
-         <p:ajax event="rowSelect" listener="#{cls_AddDetailBean.desabledListener}" execute="@form" immediate="true"/>
+         <p:ajax event="rowSelect" listener="#{cls_AddDetailBean.desabledListener}" execute="@form" immediate="true" update=":form:menubutton"/>
      
           <p:column style="width: 7%">
             <f:facet name="header">
@@ -201,35 +191,26 @@
                 </f:facet>
                 <h:outputText value="#{per.username}" style="width:30px" />
             </p:column>
-             <!-- 
-             <p:column>
-            <f:facet name="header">
-                
-                    <h:outputText value="Description" />
-                </f:facet>
-                <h:outputText value="#{per.var_Description}" style="width:30px"/>
-            </p:column>
-             -->
-                <p:column >
-            <f:facet name="header">
-              <h:outputText value="Action" />
-               </f:facet>
-	   			 <p:commandLink  action="#{cls_AddDetailBean.editselect()}" ajax="false"  >
-	   		      <p:graphicImage height="20" width="20" alt="delete"
+             
+                  <p:column >
+                 <f:facet name="header">
+                 <h:outputText value="Action" />
+                 </f:facet>
+	   			 <h:commandLink  action="#{cls_AddDetailBean.editspost(per.int_ProductId)}" update="per">
+	   			 <p:graphicImage height="20" width="20" alt="edit"
 								value="#{expenseBean.str_Name}images/edit.jpg" />
-								
-								</p:commandLink>
-								<p:commandLink  action="#{cls_AddDetailBean.editselect1()}" ajax="false" >
-	   		      <p:graphicImage height="20" width="20" alt="delete"
+							
+						</h:commandLink>
+				  <h:commandLink   process="per" action="#{cls_AddDetailBean.viewpost(per.int_ProductId)}" ajax="false"  >
+	   		      <p:graphicImage height="20" width="20" alt="view"
 								value="#{expenseBean.str_Name}images/view.jpg" />
 								
-								</p:commandLink>
-	   	      <h:link outcome="deletedetail.xhtml"
+								</h:commandLink>
+	   	          <h:link outcome="deletedetail.xhtml"
 							onclick="return confirm('Are you sure you want to delete ?');">
 							<p:graphicImage height="20" width="20" alt="delete"
 								value="#{expenseBean.str_Name}images/delete.jpg" />
-							<f:param name="int_ProductId"
-								value="#{per.int_ProductId}" />
+							<f:param name="int_ProductId" value="#{per.int_ProductId}" />
 						</h:link>
 	   	     </p:column>
                </p:dataTable>
@@ -423,13 +404,10 @@
         </h:inputText>
         </td>
         </tr>
-        
- 
- 
-   <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -300px -400px 0px;"  >  
+        <p:outputPanel layout="block" id="aaa"  style=" float:right !important;margin:-10px -300px -400px 0px;"  >  
            <p:graphicImage height="150" width="150" value="#{per1.var_ImageName}"/>
           </p:outputPanel>  
-  <tr>
+         <tr>
            <td>
           <h:outputLabel value="Title"></h:outputLabel></td>
                         
@@ -437,12 +415,10 @@
             </h:inputText>
             </td>
             </tr>
- <tr>
+                <tr>
                <td><h:outputLabel  value="Description:"/><br/><small>(max of 500 characters)</small></td>
                 <td><p:inputTextarea style="height:100px ;width:300px" value="#{per1.var_Description}" >
               </p:inputTextarea>
-               
-                
             </td>
             </tr>
             </table>
@@ -450,10 +426,10 @@
             </p:outputPanel>
            </h:form>
             </p:dialog>
-             <p:dialog header="Ads Approval" widgetVar="multiVendorDialog1"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
+             <p:dialog header="Ads Approval" widgetVar="multiVendorDialog1"    showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
              <h:form id="email">
       <p:outputPanel id="multiVendorDetail1" style="text-align:center;"> 
-         <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
+         <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1"   >
         <table>
         
        
@@ -478,7 +454,7 @@
        </p:outputPanel>
        </h:form>
         </p:dialog>
-        <p:dialog header="Email" widgetVar="multiVendorDialog"   showEffect="fade" hideEffect="explode" resizable="false" height="300" width="400">
+        <p:dialog header="Email" widgetVar="multiVendorDialog"   showEffect="fade" hideEffect="explode" resizable="false" height="470" width="500">
         <h:form id="msgid">
       <p:outputPanel id="multiVendorDetail" style="text-align:center;"> 
          <ui:repeat value="#{cls_AddDetailBean.selectedAll}" var="per1">
