@@ -61,7 +61,7 @@
   <tr>
         
   <!-- inputFile tag to upload file -->
-   <tr><td><p:graphicImage height="130" width="130" value="#{cls_AddDetailBean.getPath3()}" /></td></tr>
+   <tr><td><p:graphicImage height="130" width="130" value="#{cls_AddDetailBean.getPath4()}" /></td></tr>
   <td><h:inputFile id="file"  
 		             label="file" 
 			         value="#{cls_AddDetailBean.part}" 
@@ -74,7 +74,7 @@
       <tr>
 	    <td>
 	    <h:commandButton id="submit" 
-		                 action="#{cls_AddDetailBean.uploadFile1}"
+		                 action="#{cls_AddDetailBean.uploadFile2}"
 			             value="upload file" style="border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;">
 			            <f:ajax execute="file" update="@all" render="@form" />
 			             </h:commandButton>
@@ -88,7 +88,6 @@
 			          </h:form>
 <h:form >
 <p:growl id="str_FileNM" showSummary="true" showDetail="true"/>
-<ui:repeat value="#{cls_AddDetailBean.adid}" var="postad">
 <p:accordionPanel  multiple="true" activeIndex="">
     
         <p:tab title="Ad Details">
@@ -98,14 +97,14 @@
  
            <div class="gsTitleDiv">Member Details<br/><hr/></div> 
     <table style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px">
-    <tr><th width="15%" style="vertical-align: top;"><h:outputText value="Created by" style="vertical-align: top;"/></th>  <td  width="15%"><h:inputText readonly="true"  value="#{postad.username}"/></td><th width="20%"></th>   
- <th style="vertical-align: top;"><h:outputText value="Organization" style="vertical-align: top;"/></th>  <td><h:inputText readonly="true" value="#{postad.str_ApartmentName}"/></td><th></th></tr>   
-     <tr><th style="vertical-align: top;"><h:outputText value="Block" style="vertical-align: top;"/></th>  <td><h:inputText  readonly="true" value="#{postad.str_Block}"/></td><th></th>
-   <th style="vertical-align: top;"><h:outputText value="Mobile" style="vertical-align: top;"/></th>  <td><h:inputText readonly="true"  value="#{postad.str_PhoneNo}"/></td><th></th> </tr>
-  <tr> <th style="vertical-align: top;"><h:outputText value="Email" style="vertical-align: top;"/></th>  <td><h:inputText readonly="true" value="#{postad.str_Email}"/></td></tr>
+    <tr><th width="15%" style="vertical-align: top;"><h:outputText value="Created by" /></th>  <td  width="15%"><h:inputText readonly="true"  value="#{cls_AddDetailBean.post.username}"/></td><th width="20%"></th>   
+ <th style="vertical-align: top;"><h:outputText value="Organization"/></th>  <td><h:inputText readonly="true" value="#{cls_AddDetailBean.post.str_ApartmentName}"/></td><th></th></tr>   
+     <tr><th style="vertical-align: top;"><h:outputText value="Block"/></th>  <td><h:inputText  readonly="true" value="#{cls_AddDetailBean.post.str_Block}"/></td><th></th>
+   <th style="vertical-align: top;"><h:outputText value="Mobile"/></th>  <td><h:inputText readonly="true"  value="#{cls_AddDetailBean.post.str_PhoneNo}"/></td><th></th> </tr>
+  <tr> <th style="vertical-align: top;"><h:outputText value="Email"/></th>  <td><h:inputText readonly="true" value="#{cls_AddDetailBean.post.str_Email}"/></td></tr>
    <tr><th style="vertical-align: top;"><h:outputText value="Ad Detail >>"/></th></tr>
-    <tr><th style="vertical-align: top;"><h:outputText value="Post Date" style="vertical-align: top;"/></th>  <td><h:inputText readonly="true"  value="#{postad.dt_date}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td> <th></th>  <th style="vertical-align: top;"><h:outputText value="Close Date" style="vertical-align: top;"/></th>  <td  ><h:inputText readonly="true" value="#{postad.closedate}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td><th></th></tr>
-    <tr><th style="vertical-align: top;"><h:outputText value="Status" style="vertical-align: top;"/></th>  <td><h:inputText readonly="true"  value="#{postad.status}"/></td> </tr>
+    <tr><th style="vertical-align: top;"><h:outputText value="Post Date"/></th>  <td><h:inputText readonly="true"  value="#{cls_AddDetailBean.post.dt_date}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td> <th></th>  <th style="vertical-align: top;"><h:outputText value="Close Date"/></th>  <td  ><h:inputText readonly="true" value="#{cls_AddDetailBean.post.closedate}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td><th></th></tr>
+    <tr><th style="vertical-align: top;"><h:outputText value="Status"/></th>  <td><h:inputText readonly="true"  value="#{cls_AddDetailBean.post.status}"/></td> </tr>
 </table>
  
 </h:body>
@@ -117,26 +116,24 @@
   <tr>
         <td style="vertical-align: top;"><p:outputLabel for="var_Ad_CategoryName" value="Category"  />
            </td>
-            <td> &#150;  &#150;   &#150;   &#150;
-            <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.subname}"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}">
-            
+            <td> &#150;  &#150;   &#150;   
+            <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.subname1}"  valueChangeListener="#{cls_AddDetailBean.selectinfo9}">
             <f:selectItem itemLabel="Category"  itemValue=""  />
                 <f:selectItems value="#{cls_AddDetailBean.categories}" />
-                <p:ajax  update="var_Ad_SubCategoryName" />
+                <p:ajax  update="var_Ad_SubCategoryName"  />
                 </h:selectOneMenu> 
                &#150;  &#150;   &#150;   &#150;
-        <p:outputLabel for="var_Ad_SubCategoryName" value="SubCategory" style="vertical-align: top;"/>&#150;   &#150; &#150;
+        <p:outputLabel for="var_Ad_SubCategoryName" value="SubCategory"  style="vertical-align: top;"/>&#150;   &#150;  &#150;
            <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" >
-            
-            <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
+            <f:selectItems value="#{cls_AddDetailBean.subcategoryname}"  />
             </h:selectOneMenu>
           </td>
             </tr>
          
      
         <tr> 
-            <td ><p:outputLabel for="ch_Ad_Type" value="Ad Type:" />   </td>  
-            <td><h:selectOneRadio id="ch_Ad_Type" value="#{postad.ch_Ad_Type}" >
+            <td><p:outputLabel for="ch_Ad_Type" value="Ad Type:" /> &#150;&#150;  </td>  
+            <td><h:selectOneRadio id="ch_Ad_Type" value="#{cls_AddDetailBean.post.ch_Ad_Type}" >
             <f:selectItem itemLabel="My Community" itemValue="My Community" />
             <f:selectItem itemLabel="Neighbourhood" itemValue="Neighbourhood" />
           </h:selectOneRadio>
@@ -145,25 +142,24 @@
         
        <tr> 
         <td ><p:outputLabel for="I" value="I want to:" /></td>
-        <td><h:selectOneRadio id="I" value="#{postad.ch_Product_Type}"  >
-          <f:selectItem itemLabel="Sell" itemValue="Sell"   />  
+        <td><h:selectOneRadio id="I" value="#{cls_AddDetailBean.post.ch_Product_Type}" >
+          <f:selectItem itemLabel="Sell" itemValue="Sell"  />  
             <f:selectItem itemLabel="Buy" itemValue="Buy" />
             <f:selectItem itemLabel="Rent   " itemValue="Rent" />
         </h:selectOneRadio>
       </td>
       </tr>
       <tr>
-      <td style="vertical-align: top;">
+      <td  style="vertical-align: top;">
       <p:outputLabel value="Title:"/>
           </td>
         <td>
-        <h:inputTextarea id="t" value="#{postad.var_Title}"  style="width:350px;height:40px">
+        <h:inputTextarea id="t" value="#{cls_AddDetailBean.post.var_Title}"  style="width:350px;height:40px">
             </h:inputTextarea>
       </td>
       </tr>
-      
              <tr><td style="vertical-align: top;"><p:outputLabel  value="Description:"/></td>
-                <td><h:inputTextarea id="desc"  style="height:300px ;width:800px" value="#{postad.var_Description}" >
+                <td><h:inputTextarea id="desc"  style="height:300px ;width:800px" value="#{cls_AddDetailBean.post.var_Description}" >
               </h:inputTextarea>
               </td>
             </tr>
@@ -174,7 +170,7 @@
           <td></td>
 	   <td>
 	 
-	       <h:commandButton styleClass="btn" value="update" action="#{cls_AddDetailBean.editdetail(postad)}"/>
+	       <h:commandButton styleClass="btn" value="update" action="#{cls_AddDetailBean.editposts(post)}"/>
 		    <h:button styleClass="btn" value="Cancel" outcome="Ad_an_Post.xhtml"  ajax="false" style="margin-left:6em;width:100px;height:30px">
              </h:button>
              </td>
@@ -182,7 +178,7 @@
              </tr>
            
          </table>
-           </ui:repeat>
+           
          
 			    
            </h:form>

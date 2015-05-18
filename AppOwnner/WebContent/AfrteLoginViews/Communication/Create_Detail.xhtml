@@ -83,13 +83,14 @@ function limitText(limitField, limitCount, limitNum) {
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
 		</h:inputFile>
+		 <h:message style="color: red" for="file" />
        </td>
        </tr>
        </table>
          <table style="margin-left:100px">
        <tr>
 	    <td>
-		 <h:message style="color: red" for="file" />
+		
            <h:commandButton id="submit" 
 		                 action="#{cls_AddDetailBean.uploadFile}"
 			             value="upload file"   style="border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" >
@@ -100,10 +101,7 @@ function limitText(limitField, limitCount, limitNum) {
 			          </tr>
 			     </table> 
 			     </p:outputPanel>
-		<br /> 
-		 <br />   
-		   <br />   
-			 <br />          
+		        
 			         
 
 </h:form>
@@ -112,41 +110,36 @@ function limitText(limitField, limitCount, limitNum) {
     <table    style="overflow:hidden;border:0pt none;width:60%;margin-left: 10em;margin-right: 1%;margin-bottom:5px;margin-top:5px">
      <table style="margin-left:15px">
       <tr> 
-    <td>
-  <p:outputLabel value="Organisation:"  />   &#150;     &#150;  </td>
-         <td>   <h:selectOneMenu id="str_ApartmentName"  style="width:200px">
+      <td>
+       <p:outputLabel value="Organisation:"  />   &#150;     &#150;           
+        <h:selectOneMenu id="str_ApartmentName"  style="width:200px">
              <f:selectItem itemLabel="#{cls_AddDetailBean.str_ApartmentName}"  itemValue="#{cls_AddDetailBean.str_ApartmentName}"  />
            </h:selectOneMenu>
           </td>
-        <td>&#150;           &#150;           &#150;    &#150;  
-        <p:outputLabel   value="Category:" /></td>
- <td>  <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}" required="true"              requiredMessage="Select Category!"  >
+          </tr>
+          </table>
+          <table style="margin-left:37px">
+          <tr>
+          <td>
+          <p:outputLabel   value="Category:" />&#150;    &#150;  
+          <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}" required="true"              requiredMessage="Select Category!"  >
            <f:selectItem itemLabel="Category"  itemValue="" noSelectionOption="true"  />
             <f:selectItems value="#{cls_AddDetailBean.categories}"   />
             <p:ajax partialSubmit="true" update="var_Ad_SubCategoryName" execute="catmessage"/>
           </h:selectOneMenu>
-          
+          <td><h:messages for="var_Ad_CategoryName"  style="color: red" display="icon"/></td>
           </td>
      
       <td>&#150;           &#150;           &#150;    &#150;  
-        <p:outputLabel  value="SubCategory:" /></td>
-         <td>   <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" required="true" requiredMessage="Select SubCategory!"  style="width:200px">
+        <p:outputLabel  value="SubCategory:" />&#150;    &#150;  
+           <h:selectOneMenu id="var_Ad_SubCategoryName"  value="#{cls_AddDetailBean.var_Ad_SubCategoryName}" required="true" requiredMessage="Select SubCategory!"  style="width:200px">
             <f:selectItem itemLabel="SubCategory"   itemValue="" noSelectionOption="true"  />
             <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
             </h:selectOneMenu>
-           
+          <td> <h:messages for="var_Ad_SubCategoryName" style="color: red" display="icon"/></td>
           </td>
       </tr>
-      <tr>
-     <td></td>
-     <td></td>
-     <td></td>
-      <td><p:messages for="var_Ad_CategoryName" display="icon"/>
-      </td>
-      <td></td>
-      <td> <p:messages for="var_Ad_SubCategoryName" display="icon"/></td>
-      <td></td>
-      </tr>
+      
       </table> 
       <table style="margin-left:35px">
         <tr> 
@@ -171,7 +164,7 @@ function limitText(limitField, limitCount, limitNum) {
       </table>
       <table style="margin-left:60px">   
          <tr>
-           <td>
+           <td  style="vertical-align: top;">
         <p:outputLabel value="Title:"/>
           </td>
         <td>
@@ -181,12 +174,12 @@ function limitText(limitField, limitCount, limitNum) {
             </tr>
             </table>
             
-			       <table style="margin-left:15px">
+			       <table style="margin-left:25px">
 			      <tr>
-               <td><h:outputText  value="Description:"/></td>
-                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,500);" style="width:520px; height:300px" 
-onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,500);" maxlength="500" ></textarea>
-<br /><small><font color="red" size="2">(Maximum characters:500)</font></small>
+               <td style="vertical-align: top;"><h:outputText  value="Description"/></td>
+                <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,500);" style="width:720px; height:300px" 
+  onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,500);" maxlength="500" ></textarea>
+         <br /><small><font color="red" size="2">(Maximum characters:500)</font></small>
              </td>
              </tr>
              </table>

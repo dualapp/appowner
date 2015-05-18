@@ -26,35 +26,42 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
  <tr>
  <td>
  &#150;           &#150;           &#150;    &#150; &#150;    &#150; &#150;    &#150; 
- <h:outputLabel for="var_Ad_CategoryName" value="Choose Category:" />&#150;    &#150;</td>
- <td> <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}" style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}"   >
-           <f:selectItem itemLabel="Category"  itemValue=""  />
+ <p:outputLabel for="var_Ad_CategoryName" value="Choose Category:" />&#150;    &#150;</td>
+ <td> <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}"  ajax="false"  style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}"   >
+           <f:selectItem itemLabel="Select Category "  itemValue=""  />
             <f:selectItems value="#{cls_AddDetailBean.categories}"   />
             <p:ajax partialSubmit="true" update="sub_Ad_CategoryName" execute="catmessage"/>
             </h:selectOneMenu>
             </td> 
             <td> &#150;           &#150;            &#150;   
-        <h:outputLabel for="sub_Ad_CategoryName" value="Choose SubCategory:" /> &#150; &#150;</td>
+        <h:outputLabel  id="sub_Ad_CategoryNamec" for="sub_Ad_CategoryName" value="Choose SubCategory:" /> &#150; &#150;</td>
          <td>   <h:selectOneMenu id="sub_Ad_CategoryName"  value="#{cls_AddDetailBean.var_subscategoryname}" style="width:200px">
-            <f:selectItem itemLabel="SubCategory"  itemValue=""  />
+            <f:selectItem itemLabel="Select SubCategory "  itemValue=""  />
             <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
+            <p:ajax event="change" process="sub_Ad_CategoryNamec"/>
             </h:selectOneMenu>
           </td>
+          
            <td>&#150;           &#150;            &#150; 
-           <h:outputLabel value="Type:" /> &#150; &#150;</td>
-          <td><h:selectOneMenu id="option1"  required="true" value="#{cls_AddDetailBean.ch_Ad_Type}" style="width:150px">
-                  <f:selectItem itemLabel="All" itemValue="All"  />
+           <p:outputLabel value="Type:" /> &#150; &#150;</td>
+          <td><h:selectOneMenu id="option1"   value="#{cls_AddDetailBean.ch_Ad_Type1}"  style="width:150px">
+               <f:selectItem itemLabel="All" itemValue=""  />
               <f:selectItem itemLabel="My Community" itemValue="My Community"  />
               <f:selectItem itemLabel="Negihbourhood" itemValue="Neighbourhood"  />
+                 <p:ajax event="change" process="option1"/>
                   </h:selectOneMenu>
                   </td>
-                  <td> <h:commandButton  value="Search" action="#{cls_AddDetailBean.getSearchByType()}" style=" background:#00CC66;color:#F5FFFA;border:2px;font-size:17px;width:110px; height:42px;" update="car"> 
-               </h:commandButton></td>
+                  <td> <p:commandButton  value="Search"  style=" background:#00CC66;color:#F5FFFA;border:2px;font-size:17px;width:110px; height:42px;" update="car" > 
+           </p:commandButton></td>
               </tr>
               </div>
       <div id="page3" >
-     <p:dataList  id="car" value="#{cls_AddDetailBean.searchByType}" style="width:93%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" var="car" rowKey="#{car.int_ProductId}">
-       <font size="2"><b><h:outputText value="#{car.var_Title}" style="color:#00CC66;"/><br/></b></font>
+     <p:dataList  id="car" value="#{cls_AddDetailBean.searchByType}" style="width:83%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" var="car" rowKey="#{car.int_ProductId}"
+                paginator="true" rows="5" effectSpeed="fast"  
+                paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"  
+                rowsPerPageTemplate="4,8,16" type="none"
+                paginatorPosition="top">
+           <font size="2"><b><h:outputText value="#{car.var_Title}" style="color:#00CC66;"/><br/></b></font>
          <font size="2"> <h:outputText value="#{car.var_Description}" style="color:#00CC66;"/><br/></font>
          <font size="2"><h:outputText value="Community :#{car.str_ApartmentName}" style="color:#00CC66;"/><br/></font>
         <font size="2"><h:outputText value="Posted By :#{car.username}" style="color:#00CC66;"/><br/></font>
@@ -74,7 +81,7 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
         <table>
          <tr>
              
-             <td> <h:inputHidden  value="#{cls_AddDetailBean.to}" > 
+             <td> <h:inputHidden  value="#{cls_AddDetailBean.emailid}" > 
              </h:inputHidden>
               </td>
              </tr>
