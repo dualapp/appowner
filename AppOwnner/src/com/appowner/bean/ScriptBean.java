@@ -730,7 +730,7 @@ public List<Cls_CreateDocumentManagement> getListCreatedocument()
 {
 	System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 	ListCreatedocument=new ArrayList<Cls_CreateDocumentManagement>();
-	ListCreatedocument.addAll(getSubcriptService().getListCreatedocument(username));
+	ListCreatedocument.addAll(getSubcriptService().getListCreatedocument());
 	System.out.println(username+"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 	ListIterator list=ListCreatedocument.listIterator();
 	while(list.hasNext())
@@ -1026,6 +1026,7 @@ public String group()
 	group.setIsCh_EmailAllow(getIsCh_EmailAllow());
 	group.setBol_Emailallow(getBol_Emailallow());
 	group.setBol_Smsallow(getBol_Smsallow());
+	group.setInt_Nomember(int_Nomember);
 	System.out.println(isCh_EmailAllow+"uhujhju");
     group.setInt_ApartmentID(Util.getAppartmentId());
 	group.setUserId(Util.getUserId());
@@ -2093,17 +2094,7 @@ public void setStatusMessage(String statusMessage) {
 }
 
 // Extract file name from content-disposition header of file part
-private String getFileName(Part part) {
-	final String partHeader = part.getHeader("content-disposition");
-	System.out.println("***** partHeader: " + partHeader);
-	for (String content : part.getHeader("content-disposition").split(";")) {
-		if (content.trim().startsWith("filename")) {
-			return content.substring(content.indexOf('=') + 1).trim()
-					.replace("\"", "");
-		}
-	}
-	return null;
-}
+
 
 public String path;
 
@@ -2299,7 +2290,7 @@ public void setDoc(Cls_CreateDocumentManagement doc) {
 public String uploadFile1() throws IOException {
     System.out.println("fjkjkfdjkkjfjkfkj");
 	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
-	System.out.println(FileUploadValidator.filename+"gvfjkgfjkf");
+	System.out.println(FileUploadValidator.filename+"gvfjkgfjkfcccccccccccccccccccccccccccccccccccccccccccccccccc");
 	 String fileName = fmt.format(new Date()) +getFileName(part).substring(getFileName(part).lastIndexOf('.'));
      System.out.println(part.getContentType());
     if(part.getContentType().equals("text/plain"))
@@ -2313,7 +2304,10 @@ public String uploadFile1() throws IOException {
     	txtfile="false";
     	txtfile1="true";
     }
-	System.out.println(fileName+"dfjkjkfjkfd");
+	System.out.println(fileName+"dfjkjkfjkfduuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+	System.out.println(FileUploadValidator.filename+"ppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
+	System.out.println(path+"mkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
+	
 	ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 	
 	String basePath = servletContext.getRealPath("")+File.separator+"images"+File.separator+Util.getAppartmentName()+File.separator;
@@ -2343,18 +2337,15 @@ public String uploadFile1() throws IOException {
 		}
 		path="/images"+ File.separator +Util.getAppartmentName()+File.separator+fileName;
 
-		System.out.println(postid+"Biharrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrpatnaaaaaaaaaaaaaa");
-		if(postid!=null)
+		System.out.println(document.getInt_DocumentID()+"Biharrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrpatnaaaaaaaaaaaaaa");
+		if(document.getInt_DocumentID()!=null)
 		{  System.out.println("fdhfd33333333333333333333333333333333333333333333333");
 			System.out.println(txtfile+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
 			System.out.println(FileUploadValidator.filename+"ppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
 			System.out.println(path+"mkmmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
-			getSubcriptService().updateposts(txtfile,postid,path,FileUploadValidator.filename);
-			//indicator=false;
+			getSubcriptService().updateposts(txtfile,document.getInt_DocumentID(),path,FileUploadValidator.filename);
 		System.out.println(path1+"fkjdfkdl");
-	
-	
-		statusMessage = "File upload successfull !!";
+        statusMessage = "File upload successfull !!";
 		}
 	} 
 		catch (IOException e) {
@@ -2460,7 +2451,7 @@ public String editcategory()
 }
 
 private int postsid;
-public String editpost(Cls_CreateDocumentManagement document)
+public String editpost()
 {
 	if(intdocid==null)
 	{
@@ -2468,6 +2459,7 @@ public String editpost(Cls_CreateDocumentManagement document)
 	}
 		else
 		{
+			System.out.println(intdocid+"<><><><>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 			postsid=getSubcriptService().getname(intdocid);
 			System.out.println(postsid+"herooooooooooooooooheroooooooooooooooooooooooooooo");
 			document.setInt_Document_CatID(postsid);
@@ -2475,17 +2467,17 @@ public String editpost(Cls_CreateDocumentManagement document)
 		}
 	if(document.getInt_DocumentID()!=null)
 	{
-		document.setImage(path);
+	   document.setImage(path);
+	   document.setInt_Document_CatNM(int_Document_CatNM);
       getSubcriptService().updatepost(document);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
-	}
+	
 	str_Description=null;
      str_FolderNM=null;
 	 str_ApartmentName=null;
 	 username=null;
-	 
-	
-	return "DocumentRepository.xhtml";
+	} 
+return "DocumentRepository.xhtml";
 }
 
 public static String allmembers;
@@ -2526,10 +2518,7 @@ public static void setAllmembers(String allmembers) {
 	            .getExternalContext().getResponse();
 	    
 	    	response.setContentType("text/plain");
-	    
-	   
-	    
-	    response.setHeader("Content-Disposition", "attachment;filename=Document");
+	       response.setHeader("Content-Disposition", "attachment;filename=Document");
 	    response.getOutputStream().write(buf);
 	    response.getOutputStream().flush();
 	    response.getOutputStream().close();
@@ -2563,11 +2552,86 @@ public static void setAllmembers(String allmembers) {
 			System.out.println("klcfkfkjfgfgkffkg33333333333333333333333333333mnmnmnmnnnnnnnnnnnnn");
 			
 			indicate=true;
-			
-		
-		
+			}
+		private  Cls_CreateDocumentManagement document=new Cls_CreateDocumentManagement();
+		public Cls_CreateDocumentManagement getDocument() {
+			return document;
+		}
+		public void setDocument(Cls_CreateDocumentManagement document) {
+			this.document = document;
 		}
 		
+		public List<String>documents;
+		
+		public List<String> getDocuments() {
+			return documents;
+		}
+		public void setDocuments(List<String> documents) {
+			this.documents = documents;
+		}
+		public String documentname;
+		
+		
+		public String getDocumentname() {
+			return documentname;
+		}
+		public void setDocumentname(String documentname) {
+			this.documentname = documentname;
+		}
+		public String documentupload( int docId)
+		{
+			document=getSubcriptService().getdetail(docId);
+			//documentname=getSubcriptService().documentnames(document.getInt_Document_CatID());
+			System.out.println(documentname+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+			if(document.getInt_Document_CatID()!=0)
+			{
+			documents=new ArrayList<String>();
+		    documents.addAll(getSubcriptService().getdocumentdetail(document.getInt_Document_CatID()));
+		   System.out.println(	documents+"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+			}
+			
+			else
+			{
+				documents=new ArrayList<String>();
+				
+			}
+			return "UpdateDocpost.xhtml";
+		}
+		
+		public String documentview( int docId)
+		{
+			document=getSubcriptService().getdetail(docId);
+			if(document.getInt_Document_CatID()!=0)
+			{
+				documents=new ArrayList<String>();
+				documents.addAll(getSubcriptService().getdocumentdetail(document.getInt_Document_CatID()));
+				
+				System.out.println(	documents+"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+			}
+			
+			else
+			{
+				documents=new ArrayList<String>();
+				
+			}
+			return "ViewDocpost.xhtml";
+		}
+		
+		
+		
+		
+		private String getFileName(Part part) {
+			System.out.println(part+"dfjfdkjfdkjfdkj");
+			final String partHeader = part.getHeader("content-disposition");
+			System.out.println("***** partHeader: " + partHeader);
+			for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename")) {
+					return content.substring(content.indexOf('=') + 1).trim()
+							.replace("\"", "");
+			}
+			}
+			return "filename";
+		}
 }
 
 

@@ -31,7 +31,7 @@ public class FileUploadValidator implements Validator {
 		if(fileName.length() == 0 ) {
 			FacesMessage message = new FacesMessage("Error: File name is invalid !!");
 			throw new ValidatorException(message);
-		} else if (fileName.length() > 50) {
+		} else if (fileName.length() > 80) {
 			FacesMessage message = new FacesMessage("Error: File name is too long !!");
 			throw new ValidatorException(message);
 		}
@@ -45,6 +45,16 @@ public class FileUploadValidator implements Validator {
 		 */
 		System.out.println(part.getContentType()+"fjkdfjfgjkgk");
         switch (part.getContentType()) {
+        case "application/doc":  
+	   break;
+         case "application/docx":   
+	 
+            break;
+        case "application/xls":   
+   	 
+            break;
+          case "application/xlsx":   
+        	  break;
             case "image/jpeg":  
 			 
                      break;
@@ -70,14 +80,14 @@ public class FileUploadValidator implements Validator {
              	 
                 break;
             case "image/GIF":   
-           	 
+            	 break;
+            case "text/plain":
                 break;
-             
-            default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
+          default: FacesMessage message = new FacesMessage("Error: File type is invalid !!");
 			throw new ValidatorException(message);
         } 
 		// 3. validate file size (should not be greater than 512 bytes)
-		if (part.getSize() >262144) {
+		if (part.getSize() >15728640) {
 			FacesMessage message = new FacesMessage("Error: File size is too big !!");
 			throw new ValidatorException(message);
 		}
