@@ -32,7 +32,7 @@ public interface ProductsDao {
 
 	public void AddNotice(Notification p);
 
-	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type, String ch_Ad_Type,String status);
+	public List<Cls_ProductDetails> getSearchByProducttype(String ch_Product_Type, String ch_Ad_Type, String status, Integer statusid);
 
 	public List<Cls_categoryDetail> listcategory();
 
@@ -118,7 +118,7 @@ public interface ProductsDao {
 	public int getdid(String subcatid);
 
 	public List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
-			String var_subscategoryname, String ch_Ad_Type);
+			String var_subscategoryname, String ch_Ad_Type ,int categorystatus);
 
 	public int getcatsid(String str_sub_catid);
 
@@ -151,6 +151,47 @@ public interface ProductsDao {
 	public String getProductImg(Integer int_ProductId);
 
 	public void deleteselected(Integer int_ProductId);
+
+	public String checkStatus(Integer int_ProductId);
+
+	public String checkStatuss(Integer int_ProductId);
+
+	public String rejectStatuss(Integer int_ProductId);
+
+	public String checkclose(Integer int_ProductId);
+
+	public void editselected(Integer int_ProductId);
+
+	public Cls_ProductDetails getpostdetail(Integer postId);
+
+	public int getsubcategoryId(Integer postId);
+
+	public List<String> getlistsubcategory(int subcategoryId);
+
+	public int getcategoryId(Integer postId);
+
+	public String categoryname(int categoryId);
+
+	public String subcategorynames(int categoryId);
+
+	public int subcategorynames(String subcatsname);
+
+	public List<String> getcatmessages(int subcatId);
+
+	public List<String> getcatdetail(int int_Ad_categoryId);
+
+	public List<Cls_ProductDetails> getSearchByProducttypes(
+			String ch_Product_Type, String ch_Ad_Type, String status);
+
+	public List<Cls_ProductDetails> getSearchByProducttypes1(
+			String ch_Product_Type, String ch_Ad_Type, String status);
+
+	List<Cls_ProductDetails> getSearchBytype(String var_Ad_CategoryName,
+			String var_subscategoryname, String ch_Ad_Type);
+
+	public List<Cls_ProductDetails> getSearchBytypes(
+			String var_Ad_CategoryName, String var_subscategoryname,
+			String ch_Ad_Type1, Integer categorystatus);
 
 	
 

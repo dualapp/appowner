@@ -234,9 +234,8 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cls_CreateDocumentManagement> getListCreatedocument(String username) {
-		if(username==null )
-		{
+	public List<Cls_CreateDocumentManagement> getListCreatedocument() {
+		
 			String  query = "{ CALL uploaddocument() }";
 			
 			 List<Cls_CreateDocumentManagement> fileupload = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_CreateDocumentManagement.class)
@@ -244,17 +243,9 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		     System.out.println(fileupload.listIterator().hasNext());
 			 return fileupload;	
 		}
-		else
-		{
-			String  query = "{ CALL uploaddocument1(?)}";
-			List<Cls_CreateDocumentManagement> fileuploads=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_CreateDocumentManagement.class)).setParameter(0, username).list();
-			return fileuploads;
 		
 		
-		
-	}
-		
-	}
+	
 
 	@Override
 	public Integer getInt_Document_CatNM2(int int_Document_CatID) {
@@ -992,7 +983,57 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		
 		
 	}
+
+	@Override
+	public Cls_CreateDocumentManagement getdocdetail(int docid) {
+		System.out.println(docid+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from Cls_ProductDetails where Int_ProductId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		Cls_CreateDocumentManagement docdetail= (Cls_CreateDocumentManagement) getSessionFactory().getCurrentSession().get(Cls_CreateDocumentManagement.class, docid);
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( docdetail);
+		 return  docdetail;
 	}
+
+	@Override
+	public List getdocdetails(Integer int_Document_CatID) {
+		return getSessionFactory().getCurrentSession().createQuery("select Int_Document_CatNM from Cls_DocumentCategory where int_Document_CatID=?").setParameter(0,int_Document_CatID).list();
+	}
+
+	@Override
+	public Cls_CreateDocumentManagement getdetail(int docId) {
+		String hql1="from Cls_CreateDocumentManagement where Int_DocumentID=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		Cls_CreateDocumentManagement documentdetail= (Cls_CreateDocumentManagement) getSessionFactory().getCurrentSession().get(Cls_CreateDocumentManagement.class, docId);
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( documentdetail);
+		 return  documentdetail;
+	}
+
+	@Override
+	public List<String> getdocumentdetail(Integer int_Document_CatID) {
+		return getSessionFactory().getCurrentSession().createCriteria(Cls_DocumentCategory.class).setProjection(Projections.property("Int_Document_CatNM")).list();
+	}
+
+	@Override
+	public String documentnames(Integer int_Document_CatID) {
+		String hql1="select Int_Document_CatNM  from   Cls_DocumentCategory where  int_Document_CatID=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		String catname=(String) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, int_Document_CatID).uniqueResult();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( catname+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+		 
+        return catname;	
+}
+	}
+	
+	
 
 
 		
