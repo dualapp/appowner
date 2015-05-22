@@ -26,7 +26,8 @@
 	</table>
  <h:form>
    <div id="page3">
-         <div class="gsTitleDiv">Apartment Information<br/><hr/></div>   
+         <div class="gsTitleDiv">Apartment Information<br/><hr/></div> 
+<table>
     <h:panelGrid columns="2">
         <h:outputText value="Apartment Name" />
         <h:inputText value="#{userInformationBean.apartmentinformation.str_ApartmentName}" />
@@ -34,21 +35,22 @@
         <h:outputText value="No of Flats" />
         <h:inputText value="#{userInformationBean.apartmentinformation.int_NoOfFlates}" />
 
-        <h:outputText value="No of users" />
-        <h:inputText value="#{userInformationBean.apartmentinformation.int_NoOfUser}" />
-      
+       
+        <h:outputText value="No Of Days Credited" />
+        <h:inputText value="#{userInformationBean.expireDay}" />
         
          </h:panelGrid>
   
   
-  <br/>
-   <h:panelGroup style="display:block; text-align:right">
+ 
      <tr>
                 <td><h:commandButton id="submit" value="Submit" action="#{userInformationBean.saveApartment}" ajax="false" /></td>
                
             </tr>
-    </h:panelGroup>
-    </div>
+            </table>
+   </div>
+  
+   
 </h:form>
  </ui:define>
  </ui:composition>

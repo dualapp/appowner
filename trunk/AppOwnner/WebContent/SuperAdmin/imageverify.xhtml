@@ -1,0 +1,106 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../include/templates/template2.xhtml">
+	<ui:define name="content">
+	<h:head>
+    <title>Welcome to Apartment Information</title>
+    <style type="text/css">
+    .ui-growl {
+ position:absolute;
+        
+         width:400px;
+         left:50%;
+         top:200px;
+        
+         margin-left:-200px; 
+
+}
+      </style>	
+</h:head>
+<table  style="width: 98%;margin-left: 1%;margin-right: 1%;margin-bottom:5px;margin-top:5px" class="src">
+		<tbody>
+			<tr>
+				<td width="87%"> 
+					<img src="../images/members.png" height="50" width="50"></img> <span class="title">Super Admin</span>
+				</td>
+				<td><p:button  value="Verified Image" icon="ui-icon-plus"  outcome="verifedimage.xhtml"/></td>
+			</tr>
+		</tbody>
+	</table>
+<body>
+    <h:form>
+     <p:growl id="ui-growl" globalOnly="true" sticky="true" />
+       <div id="page3">
+         <div class="gsTitleDiv">Profile Image<br/></div>                 
+       <p:carousel  var="apartment" value="#{userInformationBean.listImage}"  
+        rows="5" effect="easeInStrong" circular="true" style="width: 98%;margin-left: 2%;margin-bottom:5px"> 
+         
+      
+
+  
+
+ 
+ <p:graphicImage id="img" value="#{apartment.var_ImageName1}" height="230" width="230" ></p:graphicImage>
+ <p:commandLink      action="#{userInformationBean.verifyImage(apartment.int_UserId)}">
+ 
+     <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-5em;" alt="delete" value="../images/tick.png" title="Verify"/>
+              </p:commandLink>  
+ <p:commandLink      action="#{userInformationBean.deleteImage(apartment.int_UserId)}">
+     <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-1em;" alt="delete" value="../images/cross.png" title="Delete"/> 
+              </p:commandLink>    
+ </p:carousel>
+     
+     </div>
+   <div id="page3">
+         <div class="gsTitleDiv">Buy and Sell  Image<br/></div>                 
+       <p:carousel  var="apartment" value="#{userInformationBean.listImage}"   
+        rows="5" effect="easeInStrong" circular="true" style="width: 98%;margin-left: 2%;margin-bottom:5px">
+         
+      
+
+  
+
+ 
+ <p:graphicImage id="img" value="#{apartment.var_ImageName1}" height="230" width="230" ></p:graphicImage>
+   
+  
+ <p:commandLink      action="#{userInformationBean.deleteImage(apartment.int_UserId)}">
+ 
+     <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-5em;" alt="delete" value="../images/tick.png" title="Verify"/>
+              </p:commandLink>  
+ <p:commandLink      action="#{userInformationBean.deleteImage(apartment.int_UserId)}">
+     <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-1em;" alt="delete" value="../images/cross.png" title="Delete"/> 
+              </p:commandLink>   
+ </p:carousel>
+     
+     </div>
+          
+     
+    </h:form>
+</body>
+</ui:define>
+</ui:composition>
+
+              
+              
+       
+
+   
+       
+       
+       
+    
+      
+       
+         
+         
+                 
+            
+                  
+                  
+ 
+
+          
