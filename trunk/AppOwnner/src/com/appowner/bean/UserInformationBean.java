@@ -8,9 +8,12 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -70,6 +73,14 @@ public class UserInformationBean implements Serializable{
 	public static String getUserName() {
 		return userName;
 	}
+private Integer expireDay;
+	public Integer getExpireDay() {
+	return expireDay;
+}
+
+public void setExpireDay(Integer expireDay) {
+	this.expireDay = expireDay;
+}
 
 	public static void setUserName(String userName) {
 		UserInformationBean.userName = userName;
@@ -187,7 +198,13 @@ public class UserInformationBean implements Serializable{
 			apartmentinformation=getAdminService().getApartmentDetails(int_ApartmentId);
 		}
 		public String saveApartment()
-		{
+		{    System.out.println(apartmentinformation.getDat_ExpireDate()+"hfhjgfgfgfhjgfgfgffgfgfgfg");
+		System.out.println(expireDay+"jffggfvjgfjgfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+		 Calendar c = Calendar.getInstance();
+		 c.setTime(apartmentinformation.getDat_ExpireDate());
+		   c.add(Calendar.DATE, expireDay);
+			System.out.println(c.getTime());
+			apartmentinformation.setDat_ExpireDate(c.getTime());
 			getAdminService().updateApartment(apartmentinformation);
 			return "ApartmentView.xhtml";
 		}
@@ -365,6 +382,21 @@ public class UserInformationBean implements Serializable{
 		public void setPath(String path) {
 			this.path = path;
 		}
+		public void deleteImage(int id)
+		{  User user=new User();
+			System.out.println(id+"jfjfjfjdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+			user.setVar_ImageName1("/images/profilepic.png");
+			user.setInt_UserId(id);
+			getAdminService().updateProfilePic1(user);
+		}
+		public void verifyImage(int id)
+		{  System.out.println("chjfhjfghjgfgffgfgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+			User user=new User();
+			System.out.println(id+"jfjfjfjdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+			user.setBitimageverify(1);
+			user.setInt_UserId(id);
+			getAdminService().verifyPic(user);
+		}
 		public void deleteProfilepic(int id)
 		{
 			
@@ -372,6 +404,33 @@ public class UserInformationBean implements Serializable{
 			user.setInt_UserId(id);
 			getAdminService().updateProfilePic(user);
 		}
+		private List<User> listImage;
+		private List<String> listVerifiedImage;
+		
+		public List<String> getListVerifiedImage() {
+			listVerifiedImage=getAdminService().getVerifyImage();
+			return listVerifiedImage;
+		}
+
+		public void setListVerifiedImage(List<String> listVerifiedImage) {
+			this.listVerifiedImage = listVerifiedImage;
+		}
+
+		public List<User> getListImage() {
+			listImage=new ArrayList<User>();
+			listImage=getAdminService().getImage();
+			System.out.println(listImage+"fggkjgfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+			return listImage;
+		}
+
+		public void setListImage(List<User> listImage) {
+			this.listImage = listImage;
+		}
+
+		
+
+		
+		
 	}
 
 

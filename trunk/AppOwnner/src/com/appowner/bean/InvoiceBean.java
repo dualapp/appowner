@@ -31,6 +31,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.RandomStringUtils;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
@@ -108,7 +112,7 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	public void init() {
 		select1="Partial";
 	
-	}
+	} 
 	
 	public void setSelect(String select) {
 		this.select = select;
@@ -1895,4 +1899,6 @@ public void validateAmount(FacesContext context, UIComponent component,Object o)
 		        throw new ValidatorException(msg);
 		}
  }
+
+
 }
