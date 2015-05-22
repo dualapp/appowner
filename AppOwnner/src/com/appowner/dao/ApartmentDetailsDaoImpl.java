@@ -43,6 +43,7 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 	@Override
 	public void saveBlockDetails(UserBlocks ub) {
 		sessionFactory.getCurrentSession().save(ub);
+		sessionFactory.getCurrentSession().createQuery("UPDATE User SET str_Block =?  WHERE int_ApartmentId = ? and int_UserId=?").setParameter(0,ub.getStr_BlockName()).setParameter(1,Util.getAppartmentId()).setParameter(2,Util.getUserId()).executeUpdate(); 
 	}
 
 	@SuppressWarnings("unchecked")
@@ -77,6 +78,7 @@ public class ApartmentDetailsDaoImpl implements ApartmentDetailsDao {
 		
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(housedetails);
+		sessionFactory.getCurrentSession().createQuery("UPDATE User SET str_Flat =?  WHERE int_ApartmentId = ? and int_UserId=?").setParameter(0,housedetails.getStr_HouseNo()).setParameter(1,Util.getAppartmentId()).setParameter(2,Util.getUserId()).executeUpdate(); 
 	}
 
 	@SuppressWarnings("unchecked")

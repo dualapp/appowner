@@ -1,6 +1,7 @@
 package com.appowner.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
@@ -18,4 +19,8 @@ public interface AdminDao {
 	public User getUser(Integer user_ID);
 	public void updateProfilePic(User user);
 	public UserExtraInfo getExtraUserInfo(Integer user_ID);
+	public List<User> getImage();
+	public void updateProfilePic1(User user);
+	public void verifyPic(User user);
+	public List<String> getVerifyImage();
 }
