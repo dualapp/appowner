@@ -49,17 +49,7 @@
             
           </p:column>
          
-         <p:column>
-          <f:facet name="header">
-          <center>
-                    <h:outputText value="No of Units" />
-                    </center>
-                </f:facet>
-          <center>
-                  <h:outputText value="#{apartment.int_NoOfFlates}">
-               </h:outputText></center>
-              
-         </p:column>
+       
          
            <p:column>
           <f:facet name="header">
@@ -90,6 +80,32 @@
                 </f:facet>
           <center>
                   <h:outputText value="#{apartment.dat_EntryDate}">
+                   <f:convertDateTime pattern="dd-MM-yyyy"  />
+                 </h:outputText>
+              </center>
+              
+         </p:column>
+         <p:column>
+          <f:facet name="header">
+          <center>
+                    <h:outputText value="Expiry Date" />
+                    </center>
+                </f:facet>
+          <center>
+                  <h:outputText value="#{apartment.dat_ExpireDate}">
+                <f:convertDateTime pattern="dd-MM-yyyy"  />
+                 </h:outputText></center>
+              
+         </p:column>
+         
+           <p:column>
+          <f:facet name="header">
+          <center>
+                    <h:outputText value="Subcription Name" />
+                    </center>
+                </f:facet>
+          <center>
+                  <h:outputText value="#{apartment.subCription__Name}">
                </h:outputText></center>
               
          </p:column>
@@ -108,11 +124,11 @@
           <p:column>
           <f:facet name="header">
           <center>
-                    <h:outputText value="Payment Status" />
+                    <h:outputText value="Price" />
                     </center>
                 </f:facet>
           <center>
-                  <h:outputText value="#{apartment.payment_Status}">
+                  <h:outputText value="#{apartment.price}">
                   
                </h:outputText></center>
               
