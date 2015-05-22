@@ -124,5 +124,9 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  {
 		  return getInvoiceDao().listInvoiceTransaction(query);
 	  }
+	  public List<InvoiceTransaction> listInvoiceTransaction()
+	  {
+		  return getInvoiceDao().listInvoiceTransaction();
+	  }
 				
 }
