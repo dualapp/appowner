@@ -946,6 +946,7 @@ public StreamedContent getDownloadFile() {
 public void setDownloadFile(StreamedContent downloadFile) {
 	this.downloadFile = downloadFile;
 }
+
  
  
 }
