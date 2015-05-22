@@ -58,6 +58,8 @@ public String getDescription(String str_InvoiceTemplate);
 
 public List<InvoiceTransaction> listInvoiceTransaction(
 		String query);
+
+public List<InvoiceTransaction> listInvoiceTransaction();
 		
 
 

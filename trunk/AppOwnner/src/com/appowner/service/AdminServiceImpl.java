@@ -2,6 +2,7 @@ package com.appowner.service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,22 @@ public class AdminServiceImpl implements AdminService,Serializable{
 	public UserExtraInfo getExtraUserInfo(Integer user_ID)
 	{
 		return getAdminDao().getExtraUserInfo(user_ID);
+	}
+	@SuppressWarnings("unchecked")
+	public List<User> getImage()
+	{
+		return getAdminDao().getImage();
+	}
+	public void updateProfilePic1(User user)
+	{
+		getAdminDao().updateProfilePic1(user);
+	}
+	public void verifyPic(User user)
+	{
+		getAdminDao().verifyPic(user);
+	}
+	public List<String> getVerifyImage()
+	{
+		return getAdminDao().getVerifyImage();
 	}
 }
