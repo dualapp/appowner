@@ -279,7 +279,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	}
 	@SuppressWarnings("unchecked")
 	public List<InvoiceTransaction> listInvoiceTransaction(String query)
-	{
+	{  System.out.println("hfjfjfjgjffffgfgfgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 		if(query.isEmpty())
 		{
 			List<InvoiceTransaction> invoice=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation", apartmentID)).setCacheable(true).list();
@@ -298,5 +298,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
 			
 		}
 				
+	}
+	@SuppressWarnings("unchecked")
+	public List<InvoiceTransaction> listInvoiceTransaction()
+	{  System.out.println("hjfggfhfhjgfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		List<InvoiceTransaction> invoice=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation",Util.getAppartmentId())).setCacheable(true).list();
+		return invoice;
 	}
 }
