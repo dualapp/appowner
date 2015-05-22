@@ -215,6 +215,13 @@ public class User implements Serializable{
 	public void setVar_ImageName1(String var_ImageName1) {
 		Var_ImageName1 = var_ImageName1;
 	}
+	private Integer bitimageverify;
+	public Integer getBitimageverify() {
+		return bitimageverify;
+	}
+	public void setBitimageverify(Integer bitimageverify) {
+		this.bitimageverify = bitimageverify;
+	}
  
 	 
 }

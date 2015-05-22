@@ -124,7 +124,19 @@ public class UserApartment   implements Serializable{
 	public void setInt_subscriptID(Integer int_subscriptID) {
 		this.int_subscriptID = int_subscriptID;
 	}
-	
-	
+	private String subCription__Name;
+	private double price;
+	public double getPrice() {
+		return price;
+	}
+	public String getSubCription__Name() {
+		return subCription__Name;
+	}
+	public void setSubCription__Name(String subCription__Name) {
+		this.subCription__Name = subCription__Name;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 	
 }
