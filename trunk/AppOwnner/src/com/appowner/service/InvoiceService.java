@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 
 public interface InvoiceService {
@@ -60,6 +61,8 @@ public List<InvoiceTransaction> listInvoiceTransaction(
 		String query);
 
 public List<InvoiceTransaction> listInvoiceTransaction();
+
+public List<Expense> listExpense();
 		
 
 

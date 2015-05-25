@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.InvoiceDao;
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 @Service("InvoiceService")
 @Transactional 
@@ -127,6 +128,10 @@ public class InvoiceServiceImpl implements InvoiceService{
 	  public List<InvoiceTransaction> listInvoiceTransaction()
 	  {
 		  return getInvoiceDao().listInvoiceTransaction();
+	  }
+	  public List<Expense> listExpense()
+	  {
+		  return getInvoiceDao().listExpense(); 
 	  }
 				
 }
