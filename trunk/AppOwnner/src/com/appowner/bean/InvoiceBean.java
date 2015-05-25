@@ -5,10 +5,13 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -38,6 +41,7 @@ import org.primefaces.model.chart.ChartSeries;
 
 import com.appowner.model.DueTemplate;
 import com.appowner.model.DueTransaction;
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.ManualJournal;
 import com.appowner.service.AccountsService;
@@ -111,7 +115,9 @@ public class InvoiceBean  extends RuntimeException implements Serializable  {
 	@PostConstruct
 	public void init() {
 		select1="Partial";
-	
+		System.out.println("jnffggfjfjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		 createBarModel();
+		
 	} 
 	
 	public void setSelect(String select) {
@@ -1899,6 +1905,214 @@ public void validateAmount(FacesContext context, UIComponent component,Object o)
 		        throw new ValidatorException(msg);
 		}
  }
+private BarChartModel barModel;
+/*@PostConstruct
+public void init1() {
+    createBarModel();
+} */
+/*public InvoiceBean(){
+	System.out.println("fcbhfhjhggfgfhgfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+	 createBarModel();
+}*/
+public BarChartModel getBarModel() {
+	return barModel;
+}
+public void setBarModel(BarChartModel barModel) {
+	this.barModel = barModel;
+}
+private BarChartModel barModel1;
 
+private void createBarModel() {
+    barModel = initBarModel();
+    barModel1=initBarModel1() ;
+    barModel.setTitle("Bar Chart");
+    barModel.setLegendPosition("ne");
+    listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+    listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction());
+    System.out.println(listInvoiceTransaction+"fkjgfkjgjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+    ListIterator list=listInvoiceTransaction.listIterator();
+    double amount=0.00;
+    while(list.hasNext())
+    {
+    	InvoiceTransaction invoice=(InvoiceTransaction) list.next();
+    	amount=amount+invoice.getTotalBalance();
+    }
+    System.out.println(amount+"kgvgkjkjggkjkjggghghgjhjh");
+    Axis xAxis = barModel.getAxis(AxisType.X);
+    xAxis.setLabel("Income");
+     
+    Axis yAxis = barModel.getAxis(AxisType.Y);
+    yAxis.setLabel("Months");
+    yAxis.setMin(0);
+    yAxis.setMax(amount);
+    Axis xAxis1 = barModel1.getAxis(AxisType.X);
+    xAxis1.setLabel("Income");
+     
+    Axis yAxis1 = barModel1.getAxis(AxisType.Y);
+    yAxis.setLabel("Months");
+    yAxis1.setMin(0);
+    yAxis1.setMax(amount);
+}
+private  List<Expense> listExpense;
+
+
+public List<Expense> getListExpense() {
+	return listExpense;
+}
+public void setListExpense(List<Expense> listExpense) {
+	this.listExpense = listExpense;
+}
+private BarChartModel initBarModel() {
+    BarChartModel model = new BarChartModel();
+    Map<Object, Number> data =new LinkedHashMap<Object, Number>();
+   
+   
+
+    List<String> number=Arrays.asList("0","1","2","3","4","5","6","7","8","9","10","11");
+List<String> str1=Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+ListIterator list2=number.listIterator();
+ListIterator list1=str1.listIterator();
+
+while(list2.hasNext() && list1.hasNext())
+{    String str=(String) list2.next();
+	 int no=Integer.parseInt(str);
+	  System.out.println(no+"fhjgfgfgffg");
+	  listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+	    listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction());
+	    
+	   
+	    ListIterator list=listInvoiceTransaction.listIterator();
+	  System.out.println(list.hasNext());
+	  String month=(String) list1.next();
+	 Date date=new java.util.Date();
+	 InvoiceTransaction invoice=new InvoiceTransaction();
+	
+	  double amount=0.00;
+	 
+	  while(list.hasNext() )
+	  {  System.out.println("jfjgffjgfggfjgfgjgfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+	  invoice=(InvoiceTransaction) list.next();
+	  	date=invoice.getDat_InvoiceDate();
+	  
+	  	System.out.println(month+"jgffggfgfgf");
+	    System.out.println(date.getMonth()==no);
+	  
+	    if(date.getMonth()==no)
+	     {  System.out.println("kunku");
+	     amount=amount+ invoice.getTotalBalance();
+		
+	     }
+  	   
+	   
+	  }
+	  data.put(month, amount);   
+	System.out.println(data+"hffhjfjgfjgjgjggjgjjgjgfj");  
+}
+ChartSeries invoice = new ChartSeries();
+
+invoice.setLabel("Income");
+invoice.setData(data);
+
+    
+
+    model.addSeries(invoice);
+    
+     
+    return model;
+}
+public BarChartModel getBarModel1() {
+	return barModel1;
+}
+public void setBarModel1(BarChartModel barModel1) {
+	this.barModel1 = barModel1;
+}
+private BarChartModel initBarModel1() {
+    BarChartModel model = new BarChartModel();
+    Map<Object, Number> incomedata =new LinkedHashMap<Object, Number>();
+    Map<Object, Number> expensedata =new LinkedHashMap<Object, Number>();
+   
+
+    List<String> number=Arrays.asList("0","1","2","3","4","5","6","7","8","9","10","11");
+List<String> str1=Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+ListIterator list2=number.listIterator();
+ListIterator list1=str1.listIterator();
+
+while(list2.hasNext() && list1.hasNext())
+{    String str=(String) list2.next();
+	 int no=Integer.parseInt(str);
+	  System.out.println(no+"fhjgfgfgffg");
+	  listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
+	    listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction());
+	    
+	   
+	    ListIterator list=listInvoiceTransaction.listIterator();
+	  System.out.println(list.hasNext());
+	  String month=(String) list1.next();
+	 Date date=new java.util.Date();
+	 InvoiceTransaction invoice=new InvoiceTransaction();
+	 listExpense=new ArrayList<Expense>();
+	 listExpense.addAll(getInvoiceService().listExpense());
+	 ListIterator list3=listExpense.listIterator();
+	  double amount=0.00;
+	  double amount1=0.00;
+	  while(list.hasNext() )
+	  {  System.out.println("jfjgffjgfggfjgfgjgfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+	  invoice=(InvoiceTransaction) list.next();
+	  	date=invoice.getDat_InvoiceDate();
+	  
+	  	System.out.println(month+"jgffggfgfgf");
+	    System.out.println(date.getMonth()==no);
+	  
+	    if(date.getMonth()==no)
+	     {  System.out.println("kunku");
+	     amount=amount+ invoice.getTotalBalance();
+		
+	     }
+  	   
+	   
+	  }
+	  incomedata.put(month, amount);   
+	System.out.println(incomedata+"hffhjfjgfjgjgjggjgjjgjgfj"); 
+	Expense expense=new Expense();
+	 while(list3.hasNext() )
+	  {  
+	  expense=(Expense) list3.next();
+	  	date=expense.getDate_Duration();
+	  System.out.println(date.getMonth()+"fdjfjdfjjfgjff");
+	  	System.out.println(month+"jgffggfgfgf");
+	    System.out.println(date.getMonth()==no);
+	  
+	    if(date.getMonth()==no)
+	     {  System.out.println("kunku");
+	     amount1=amount1+expense.getDbl_Ammount();
+		
+	     }
+ 	   
+	   
+	  }
+	 expensedata.put(month, amount1);   
+	 System.out.println(expensedata+"fdjfjkfjkgfjkgfjkgfjgfjkgfkjgjggffjk");
+}
+
+	
+	  
+	
+
+	
+	
+	
+
+ChartSeries invoice = new ChartSeries();
+ChartSeries invoice1 = new ChartSeries();
+invoice.setLabel("Income");
+invoice.setData(incomedata);
+invoice1.setData(expensedata);
+ invoice1.setLabel("Expense");   
+
+    model.addSeries(invoice);
+    model.addSeries(invoice1);
+     
+    return model;
+}
 
 }
