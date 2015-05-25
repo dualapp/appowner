@@ -3,6 +3,7 @@ package com.appowner.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTransaction;
 
 public interface InvoiceDao {
@@ -54,6 +55,8 @@ public String getDescription(String str_InvoiceTemplate);
 public List<InvoiceTransaction> listInvoiceTransaction(String query);
 
 public List<InvoiceTransaction> listInvoiceTransaction();
+
+public List<Expense> listExpense();
 
 
 
