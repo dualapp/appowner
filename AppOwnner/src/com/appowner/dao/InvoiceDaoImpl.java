@@ -16,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.Expense;
 import com.appowner.model.InvoiceTemplate;
 import com.appowner.model.InvoiceTransaction;
 import com.appowner.model.TaxTemplate;
@@ -304,5 +305,10 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	{  System.out.println("hjfggfhfhjgfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 		List<InvoiceTransaction> invoice=(List<InvoiceTransaction>)getSessionFactory().getCurrentSession().createCriteria(InvoiceTransaction.class).add(Restrictions.eq("int_Organisation",Util.getAppartmentId())).setCacheable(true).list();
 		return invoice;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Expense> listExpense()
+	{
+		 return getSessionFactory().getCurrentSession().createCriteria(Expense.class).add(Restrictions.eq("int_AppartmentId",Util.getAppartmentId())).setCacheable(true).list();
 	}
 }
