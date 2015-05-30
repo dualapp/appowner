@@ -48,15 +48,16 @@
  
      <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-5em;" alt="delete" value="../images/tick.png" title="Verify"/>
               </p:commandLink>  
- <p:commandLink      action="#{userInformationBean.deleteImage(apartment.int_UserId)}">
-     <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-1em;" alt="delete" value="../images/cross.png" title="Delete"/> 
-              </p:commandLink>    
+ <p:commandLink action="#{userInformationBean.deleteImage(apartment.int_UserId,apartment.str_Email,apartment.str_FirstName,apartment.str_LastName)}">
+ <f:ajax event="click"  partialSubmit="true"/>
+     <h:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-1em;" alt="delete" value="../images/cross.png" title="Delete"/> 
+       </p:commandLink>
  </p:carousel>
      
      </div>
    <div id="page3">
          <div class="gsTitleDiv">Buy and Sell  Image<br/></div>                 
-       <p:carousel  var="apartment" value="#{userInformationBean.listImage}"   
+       <p:carousel  var="apartment" value="#{userInformationBean.listadvertisementImage}"   
         rows="5" effect="easeInStrong" circular="true" style="width: 98%;margin-left: 2%;margin-bottom:5px">
          
       
@@ -64,15 +65,15 @@
   
 
  
- <p:graphicImage id="img" value="#{apartment.var_ImageName1}" height="230" width="230" ></p:graphicImage>
+ <p:graphicImage id="img" value="#{apartment.var_ImageName}" height="230" width="230" ></p:graphicImage>
    
   
- <p:commandLink      action="#{userInformationBean.deleteImage(apartment.int_UserId)}">
+ <p:commandLink      >
  
-     <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-5em;" alt="delete" value="../images/tick.png" title="Verify"/>
+     <p:graphicImage  style="height:30;width:30;margin-top:-18em;margin-left:-5em;" alt="delete" value="../images/tick.png" title="Verify"/>
               </p:commandLink>  
- <p:commandLink      action="#{userInformationBean.deleteImage(apartment.int_UserId)}">
-     <p:graphicImage  style="height:30px;width:30px;margin-top:-18em;margin-left:-1em;" alt="delete" value="../images/cross.png" title="Delete"/> 
+ <p:commandLink      >
+     <p:graphicImage  style="height:30;width:30;margin-top:-18em;margin-left:-1em;" alt="delete" value="../images/cross.png" title="Delete"/> 
               </p:commandLink>   
  </p:carousel>
      
