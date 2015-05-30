@@ -1927,6 +1927,7 @@ private void createBarModel() {
     barModel1=initBarModel1() ;
     barModel.setTitle("Bar Chart");
     barModel.setLegendPosition("ne");
+    barModel1.setLegendPosition("ne");
     listInvoiceTransaction=new ArrayList<InvoiceTransaction>();
     listInvoiceTransaction.addAll(getInvoiceService().listInvoiceTransaction());
     System.out.println(listInvoiceTransaction+"fkjgfkjgjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
