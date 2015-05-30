@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserExtraInfo;
@@ -69,6 +70,11 @@ public class AdminDaoImpl implements AdminDao{
 		 return (List<User>) getSessionFactory().getCurrentSession().createCriteria(User.class).add(Restrictions.eq("bitimageverify",0)).setCacheable(true).list();
 		
 			
+	 }
+	 @SuppressWarnings("unchecked")
+	public List<Cls_ProductDetails> getAdvertisementImage()
+	 {
+		 return (List<Cls_ProductDetails>) getSessionFactory().getCurrentSession().createCriteria(Cls_ProductDetails.class).setCacheable(true).list(); 
 	 }
 	 @SuppressWarnings("unchecked")
 	 public List<String> getVerifyImage()
