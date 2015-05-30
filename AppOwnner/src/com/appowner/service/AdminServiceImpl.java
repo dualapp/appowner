@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.appowner.dao.AdminDao;
+import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserExtraInfo;
@@ -85,4 +86,9 @@ public class AdminServiceImpl implements AdminService,Serializable{
 	{
 		return getAdminDao().getVerifyImage();
 	}
+	public List<Cls_ProductDetails> getAdvertisementImage()
+	{
+		return getAdminDao().getAdvertisementImage();
+	}
+	
 }
