@@ -3,6 +3,7 @@ package com.appowner.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserExtraInfo;
@@ -23,4 +24,5 @@ public interface AdminDao {
 	public void updateProfilePic1(User user);
 	public void verifyPic(User user);
 	public List<String> getVerifyImage();
+	public List<Cls_ProductDetails> getAdvertisementImage();
 }
