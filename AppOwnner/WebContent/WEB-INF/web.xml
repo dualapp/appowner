@@ -80,6 +80,14 @@
     <servlet-name>mukesh</servlet-name>
     <url-pattern>/srv19</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>image</servlet-name>
+    <servlet-class>com.appowner.bean.ImageEmailSendingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>image</servlet-name>
+    <url-pattern>/image</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>Password</servlet-name>
     <servlet-class>com.appowner.bean.EmailSendingServlet5</servlet-class>
