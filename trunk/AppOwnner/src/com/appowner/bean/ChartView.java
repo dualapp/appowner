@@ -3,7 +3,9 @@ package com.appowner.bean;
 import javax.annotation.PostConstruct;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -11,6 +13,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import org.apache.xerces.impl.dv.xs.MonthDV;
 import org.primefaces.model.chart.Axis;
@@ -24,6 +27,7 @@ import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
 
 import com.appowner.model.InvoiceTransaction;
+import com.appowner.service.ApartmentDetailsService;
  
 @ManagedBean
 public class ChartView implements Serializable {
@@ -31,15 +35,24 @@ public class ChartView implements Serializable {
     private LineChartModel lineModel1;
     
      
- /*   @PostConstruct
+   @PostConstruct
     public void init() {
     	
         createLineModels();
-    }*/
-  public  ChartView()
+    }
+   @ManagedProperty(value="#{ApartmentDetailsService}")
+	private ApartmentDetailsService apartmentDetailsService;
+	public ApartmentDetailsService getApartmentDetailsService() {
+		return apartmentDetailsService;
+	}
+	public void setApartmentDetailsService(
+			ApartmentDetailsService apartmentDetailsService) {
+		this.apartmentDetailsService = apartmentDetailsService;
+	}
+ /* public  ChartView()
   {
 	  createLineModels();
-  }
+  } */
     public LineChartModel getLineModel1() {
         return lineModel1;
     }
@@ -81,9 +94,18 @@ public class ChartView implements Serializable {
         if(indicate.isEmpty() || indicate.equalsIgnoreCase("day"))
         {
         	DateAxis axis = new DateAxis("Dates");
-        	
-          axis.setMin("2014-01-10");
-            axis.setMax("2014-02-01");
+        	java.util.Date d=new java.util.Date();
+   		 SimpleDateFormat ft = 
+   			      new SimpleDateFormat ("yyyy-dd-MM");
+   		//String str=ft.format(d);
+   		 Calendar c = Calendar.getInstance(); 
+   		 c.setTime(d); 
+   		
+   		 d= c.getTime();
+   		 String str=ft.format(d);
+   		 System.out.println(str+"gjfjgjkjkgjffjfggjkgfjkgfjkgjkgfkjgjkgfkjgkj");
+          axis.setMin("2015-01-10");
+            axis.setMax(str);
             axis.setTickFormat("%b %#d, %y");
             lineModel1.getAxes().put(AxisType.X, axis);
           
@@ -112,15 +134,16 @@ public class ChartView implements Serializable {
  
         LineChartSeries series1 = new LineChartSeries();
         series1.setLabel("Series 1");
+       
         Map<Object, Number> data =new LinkedHashMap<Object, Number>();
         if(indicate.isEmpty()|| indicate.equalsIgnoreCase("day"))
         {  System.out.println("fhjgfjfffgfggfggghgh");
-        	data.put("2014-01-01", 2);
-            data.put("2014-01-06", 12);
-            data.put("2014-01-12", 19);
-            data.put("2014-01-18", 12);
-            data.put("2014-01-24", 6);
-            data.put("2014-01-30", 7);
+        	data.put("2015-15-05", 2);
+            data.put("2015-20-05", 12);
+            data.put("2015-26-05", 19);
+            data.put("2015-21-05", 12);
+            data.put("2015-18-05", 6);
+            data.put("2015-12-05", 7);
         }
         else if(indicate.equalsIgnoreCase("month"))
         {  System.out.println("jjgjfgfgfgggghhgggg");
