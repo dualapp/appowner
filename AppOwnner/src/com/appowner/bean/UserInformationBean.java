@@ -26,6 +26,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 
+import com.appowner.model.Cls_ProductDetails;
 import com.appowner.model.User;
 import com.appowner.model.UserApartment;
 import com.appowner.model.UserExtraInfo;
@@ -382,12 +383,54 @@ public void setExpireDay(Integer expireDay) {
 		public void setPath(String path) {
 			this.path = path;
 		}
-		public void deleteImage(int id)
+		  private static String el;
+		  private static String un;
+		  private static String pd;
+		  private static String fn;
+		public static String getEl() {
+			return el;
+		}
+
+		public static void setEl(String el) {
+			UserInformationBean.el = el;
+		}
+
+		public static String getUn() {
+			return un;
+		}
+
+		public static void setUn(String un) {
+			UserInformationBean.un = un;
+		}
+
+		public static String getPd() {
+			return pd;
+		}
+
+		public static void setPd(String pd) {
+			UserInformationBean.pd = pd;
+		}
+
+		public static String getFn() {
+			return fn;
+		}
+
+		public static void setFn(String fn) {
+			UserInformationBean.fn = fn;
+		}
+
+		public String deleteImage(int id,String email,String firstName,String LastName)
 		{  User user=new User();
 			System.out.println(id+"jfjfjfjdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 			user.setVar_ImageName1("/images/profilepic.png");
 			user.setInt_UserId(id);
 			getAdminService().updateProfilePic1(user);
+			  el =email;
+			 un=firstName+" "+LastName;
+					
+			
+			fn="AppOwner Team";
+			return "imageverify.jsp";
 		}
 		public void verifyImage(int id)
 		{  System.out.println("chjfhjfghjgfgffgfgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
@@ -426,7 +469,18 @@ public void setExpireDay(Integer expireDay) {
 		public void setListImage(List<User> listImage) {
 			this.listImage = listImage;
 		}
+		private List<Cls_ProductDetails> listadvertisementImage;
 
+		public List<Cls_ProductDetails> getListadvertisementImage() {
+			listadvertisementImage=new ArrayList<Cls_ProductDetails>();
+			listadvertisementImage.addAll(getAdminService().getAdvertisementImage());
+			return listadvertisementImage;
+		}
+
+		public void setListadvertisementImage(
+				List<Cls_ProductDetails> listadvertisementImage) {
+			this.listadvertisementImage = listadvertisementImage;
+		}
 		
 
 		
