@@ -21,6 +21,8 @@ import java.io.Serializable;
 
 
 
+
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -29,11 +31,14 @@ import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 //import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.faces.bean.ManagedProperty;
@@ -46,6 +51,12 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.context.RequestContext;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.CategoryAxis;
+import org.primefaces.model.chart.DateAxis;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
 import org.springframework.dao.DataAccessException;
 
 import com.appowner.model.DueTransaction;
@@ -851,6 +862,7 @@ public class Cls_UserBean implements Serializable{
 		@PostConstruct
 	    public void init() {
 			userblock=new ArrayList<UserBlocks>();
+			 createLineModels();
 		}
 
 		public List<UserBlocks> getUserblock() {
@@ -1093,7 +1105,58 @@ public class Cls_UserBean implements Serializable{
 			
 			}
 	}
-		
+		 private LineChartModel lineModel;
+		public LineChartModel getLineModel() {
+			return lineModel;
+		}
+		public void setLineModel(LineChartModel lineModel) {
+			this.lineModel = lineModel;
+		}
+		    
+		  private void createLineModels() {
+		        lineModel =  initLinearModel();
+		        lineModel.setTitle("Linear Chart");
+		       		       
+		       
+		            
+		        	lineModel.getAxes().put(AxisType.X, new CategoryAxis("UserName"));
+		       
+		        	
+		       
+		        Axis yAxis = lineModel.getAxis(AxisType.Y);
+		       
+		        yAxis.setMin(0);
+		        yAxis.setMax(30);
+		       
+		      
+		    }
+		     
+		   
+			private LineChartModel initLinearModel() {
+		    	LineChartModel model = new LineChartModel();
+		 
+		        LineChartSeries series1 = new LineChartSeries();
+		        series1.setLabel("Series 1");
+		        series1.set("Praveen", 10);
+		      
+		       
+		        series1.set("Raju", 20);
+		        series1.set("Ajay", 13);
+		        series1.set("Amit", 25);
+		        series1.set("Rasmi", 8);
+		       
+		        
+		 
+		        
+		 
+		        model.addSeries(series1);
+		       
+		         
+		        return  model;
+		    }
+		     
+			  
+		   	
 
 }
 
