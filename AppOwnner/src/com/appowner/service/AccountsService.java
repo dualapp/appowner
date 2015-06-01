@@ -143,6 +143,8 @@ public interface AccountsService {
 
 	public List< ManualJournal> getlistManualJourna4(
 			Date dat_From, Date dat_To);
+
+	
 			
 
 	
