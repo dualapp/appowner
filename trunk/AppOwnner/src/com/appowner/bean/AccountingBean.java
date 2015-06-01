@@ -177,6 +177,7 @@ public List<ManualJournal> getListManualJournal4() {
 public void setListManualJournal4(List<ManualJournal> listManualJournal4) {
 	this.listManualJournal4 = listManualJournal4;
 }
+
 private List<ManualJournal> listManualJournal;
 public List<ManualJournal> getListManualJournal() {
 	listManualJournal=new ArrayList<ManualJournal>();
