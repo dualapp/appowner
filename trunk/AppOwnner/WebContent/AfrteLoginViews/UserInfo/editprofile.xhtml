@@ -101,16 +101,16 @@
             </td> </tr>
            
              <tr>
-           <td> <p:outputLabel value="Phone No* :"/>
+           <td> <p:outputLabel for="str_PhoneNo" value="Phone No:"/>
             </td>            
-            <td><p:inputText id="str_PhoneNo" value="#{loginBean.str_Mobile}" validatorMessage="invalid mobile no" maxlength="11">
+            <td><p:inputText id="str_PhoneNo" required="true" requiredMessage="Phone No Required" value="#{loginBean.str_Mobile}" validatorMessage="invalid mobile no" maxlength="11">
             <f:validateLength minimum="10" />
                     <f:validateRegex pattern="^([+]?[\d]+)?$" />
                      <p:ajax event="keyup" update="PhoneMsg" />
                      </p:inputText>
                      <p:message  id="PhoneMsg" for="str_PhoneNo" display="text"/>
               </td>
-              <td> <p:outputLabel value="FaceBook Profile* :"/></td>
+              <td> <p:outputLabel value="FaceBook Profile :"/></td>
           
             <td><p:inputText id="str_fb" value="#{loginBean.str_FacebookId}"  />
          <br/> www.facebook.com/</td>
@@ -178,10 +178,10 @@
 <f:selectItem itemValue="Female" itemLabel="Female" />
 </h:selectOneRadio>
              </td>  
-            <td width="15%"><p:outputLabel value="Date Of Birth:"/>
+            <td width="15%"><p:outputLabel  value="Date Of Birth:"/>
              </td>          
             <td width="30%"> 
-            <p:calendar required="true" requiredMessage="plz  enter to date" navigator="true"   display="inline" value="#{loginBean.date_DateOfBirth}"/>
+            <p:calendar id="bd"  navigator="true"   display="inline" value="#{loginBean.date_DateOfBirth}"/>
              </td></tr>
               
           <tr>
