@@ -593,7 +593,8 @@ public class LoginBean implements Serializable,Filter {
 	}
 
 	public String getStr_EmailId() {
-		if (str_EmailId == null)
+		System.out.println(str_EmailId+"emailiDDDDDDDD");
+		 
 			str_EmailId = Util.getEmail();
 		return str_EmailId;
 	}
