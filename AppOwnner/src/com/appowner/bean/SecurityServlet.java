@@ -69,12 +69,35 @@ public class SecurityServlet extends HttpServlet   {
 				System.out.println(request.getParameter("email")+"email"+session.getAttribute("str_EmailId"));
 				String userName=(String) session.getAttribute("str_EmailId");
 				 
+				 
+				 
 				user=LoginPageCode.getUser(userName);
-				 
-				 
-				if(user!=null)
-				{
-					response.sendRedirect(request.getContextPath() +"/layout.xhtml");
+		    	if(user!=null)
+		    	{
+		    	//	User user=new User();
+		    		//user=getUserService().getFbUser(id);
+		    		System.out.println(user+"uid"+user.getInt_UserId());
+		    		session.setAttribute("str_Flat",user.getStr_Flat());
+		    		session.setAttribute("str_Block",user.getStr_Block());
+		    		session.setAttribute("str_EmailId",user.getStr_Email());
+		    		session.setAttribute("str_Mobile",user.getStr_PhoneNo());
+		    		session.setAttribute("int_UserRole",user.getInt_UserRole());
+		    		session.setAttribute("int_ApartmentId",user.getInt_ApartmentId());
+		    		session.setAttribute("str_Apartment",user.getStr_Apartment());
+		    		session.setAttribute("int_UserId",user.getInt_UserId());
+		    		session.setAttribute("str_Country", user.getStr_Country());
+		    		session.setAttribute("str_State", user.getStr_State());
+		    		session.setAttribute("str_UserRoleName", user.getStr_UserRoleName());
+		    		session.setAttribute("str_City", user.getStr_City());
+		    		//session.setAttribute(str_Password, str_Password);
+		    		 
+		    		/*if(user.getUserExtraInfo().getStr_gender()!=null)
+		    		{
+		    		
+		    		session.setAttribute("gender", user.getUserExtraInfo().getStr_gender());
+		    		}
+					*/
+					response.sendRedirect(request.getContextPath() +"/AfrteLoginViews/welcomepage.xhtml");
 					 
 					
 				 
@@ -103,8 +126,8 @@ public class SecurityServlet extends HttpServlet   {
 		if (faceCode != null && ! "".equals(faceCode)) {
 			String appId = "1525993687671325";
 			  
-			//String redirectUrl = "http://localhost:5356/AppOwnner/index.sec";
-			String redirectUrl = "http://www.appowners.com/AppOwnner/index.sec";
+			String redirectUrl = "http://localhost:9865/AppOwnner/index.sec";
+			//String redirectUrl = "http://www.appowners.com/AppOwnner/index.sec";
 			String faceAppSecret = "7c395ac6d696bed2bf4ef1c42dcf415c";
 			String newUrl = "https://graph.facebook.com/oauth/access_token?client_id="
 					+ appId + "&redirect_uri=" + redirectUrl + "&client_secret=" 
