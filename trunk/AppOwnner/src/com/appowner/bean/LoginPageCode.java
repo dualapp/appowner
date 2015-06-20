@@ -39,8 +39,9 @@ private String str_Password;
         String sessionId = session.getId();
          
         String appId = "1525993687671325";
-       String redirectUrl = "http://www.appowners.com/AppOwnner/index.sec";
-        //String redirectUrl = "http://localhost:5356/AppOwnner/index.sec";
+       String redirectUrl = "http://localhost:9865/AppOwnner/index.sec";
+    		    
+        //String redirectUrl = "http://www.appowners.com/AppOwnner/index.sec";
         
         String returnValue = "https://www.facebook.com/dialog/oauth?client_id="
                 + appId + "&redirect_uri=" + redirectUrl
@@ -163,7 +164,7 @@ private String str_Password;
 			{
 			usr.setStr_FirstName(getStr_FirstName());
 			usr.setStr_LastName(getStr_lastName());
-			usr.setStr_Email(getStr_Email());
+			usr.setStr_Email(getStr_Username());
 			usr.setStr_UserRoleName("user");
 
 			usr.setStr_Username(getStr_Username());
@@ -172,7 +173,7 @@ private String str_Password;
 			usr.setVar_ImageName1(str_ImageName1);
 			usr.setInt_UserRole(1);
 			usr.setStr_Apartment("Shaffi Paradise");
-			usr.setInt_ApartmentId(66);
+			usr.setInt_ApartmentId(1);
 			usr.setStr_Block(" ");
 			usr.setStr_Flat(" ");
 			
@@ -181,7 +182,7 @@ private String str_Password;
 			usr.setStr_PhoneNo("0000000000");
 			usr.setStr_City("Bangalore");
 			usr.setInt_activationbit(1);
-			 
+			//usr.setUserExtraInfo(userExtraInfo);
 			 getUserService().addUser(usr);
 			 getId();
 			 return "/AfrteLoginViews/welcomepage.xhtml";

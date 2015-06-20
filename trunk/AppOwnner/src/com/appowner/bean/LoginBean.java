@@ -1641,7 +1641,8 @@ public class LoginBean implements Serializable,Filter {
 		try
 		{
 		path = (String) session.getAttribute("str_ImageName1");
-		
+		user=new User();
+		user=getUserService().getUser(Util.getUserId());
 		if (user != null)
 			path = user.getVar_ImageName1();
 			
