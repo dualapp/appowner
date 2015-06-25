@@ -20,6 +20,8 @@
            height:25px;
            weight:150px;
           }
+          
+         
  .ui-growl {
  position:absolute;
         
@@ -39,7 +41,16 @@
 
 }
       </style>	
+ <script> 
+function limitTextArea(element, limit) { 
 
+if (element.value.length > limit) { 
+element.value = element.value.substring(0, limit); 
+} 
+
+} 
+
+</script> 
 	</h:head>
 	 <h:body>
    <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
@@ -159,8 +170,12 @@
       </td>
       </tr>
              <tr><td style="vertical-align: top;"><p:outputLabel  value="Description:"/></td>
-                <td><h:inputTextarea id="desc"  style="height:300px ;width:800px" value="#{cls_AddDetailBean.post.var_Description}" >
-              </h:inputTextarea>
+                <td><h:inputTextarea id="description" value="#{cls_AddDetailBean.post.var_Description}"  type="text" name="#{cls_AddDetailBean.post.var_Description}" onkeyup="limitTextArea(this,500);" 
+onkeydown="limitTextArea(this,500);"  style="width:720px; height:300px" 
+  required="true"></h:inputTextarea>
+                
+                 
+
               </td>
             </tr>
           

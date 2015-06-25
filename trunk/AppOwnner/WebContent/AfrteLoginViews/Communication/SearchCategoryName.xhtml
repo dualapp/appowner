@@ -8,7 +8,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
- <h:body>
+ <h:head>
+	
+ <style type="text/css">
+         input[type=outputText] 
+ .someClass 
+    word-wrap: break-word;
+    </style>
+
+
 <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
 		<tbody>
 			<tr>
@@ -18,60 +26,78 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 			</tr>
 		</tbody>
 	</table>
- <h:form>
+	<h:body>
+ <h:form id="form">
+ 
  <p:outputPanel   rendered="#{request.getParameter('render')}">
 				  <body onLoad="PF('multiDueTemplateDialog').show()" />
 					</p:outputPanel>
- <div id="page3" >
+ <div id="page3">
+
  <tr>
  <td>
  &#150;           &#150;           &#150;    &#150; &#150;    &#150; &#150;    &#150; 
- <p:outputLabel for="var_Ad_CategoryName" value="Choose Category:" />&#150;    &#150;</td>
- <td> <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName}"  ajax="false"  style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}"   >
-           <f:selectItem itemLabel="Select Category "  itemValue=""  />
+ <p:outputLabel for="var_Ad_CategoryName" value="Category:" />&#150;    &#150;</td>
+ <td> <h:selectOneMenu id="var_Ad_CategoryName" value="#{cls_AddDetailBean.var_Ad_CategoryName1}"  style="width:200px"  valueChangeListener="#{cls_AddDetailBean.selectinfo8}"   >
+           <f:selectItem itemLabel="All"  itemValue=""  />
             <f:selectItems value="#{cls_AddDetailBean.categories}"   />
             <p:ajax partialSubmit="true" update="sub_Ad_CategoryName" execute="catmessage"/>
             </h:selectOneMenu>
             </td> 
             <td> &#150;           &#150;            &#150;   
-        <h:outputLabel  id="sub_Ad_CategoryNamec" for="sub_Ad_CategoryName" value="Choose SubCategory:" /> &#150; &#150;</td>
-         <td>   <h:selectOneMenu id="sub_Ad_CategoryName"  value="#{cls_AddDetailBean.var_subscategoryname}" style="width:200px">
-            <f:selectItem itemLabel="Select SubCategory "  itemValue=""  />
+        <h:outputLabel  id="sub_Ad_CategoryNamec" for="sub_Ad_CategoryName" value="SubCategory:" /> &#150; &#150;</td>
+         <td>   <h:selectOneMenu id="sub_Ad_CategoryName"  value="#{cls_AddDetailBean.var_subscategoryname1}" style="width:200px">
+            <f:selectItem itemLabel="All "  itemValue=""  />
             <f:selectItems value="#{cls_AddDetailBean.catmessage}"  />
-            <p:ajax event="change" process="sub_Ad_CategoryNamec"/>
+            <p:ajax event="change"   />
             </h:selectOneMenu>
           </td>
           
            <td>&#150;           &#150;            &#150; 
            <p:outputLabel value="Type:" /> &#150; &#150;</td>
-          <td><h:selectOneMenu id="option1"   value="#{cls_AddDetailBean.ch_Ad_Type1}"  style="width:150px">
+          <td><h:selectOneMenu id="option1"   value="#{cls_AddDetailBean.ch_Ad_Type2}"   style="width:200px">
                <f:selectItem itemLabel="All" itemValue=""  />
               <f:selectItem itemLabel="My Community" itemValue="My Community"  />
               <f:selectItem itemLabel="Negihbourhood" itemValue="Neighbourhood"  />
-                 <p:ajax event="change" process="option1"/>
+                 <p:ajax event="change"   />
                   </h:selectOneMenu>
                   </td>
-                  <td> <p:commandButton  value="Search"  style=" background:#00CC66;color:#F5FFFA;border:2px;font-size:17px;width:110px; height:42px;" update="car" > 
-           </p:commandButton></td>
-              </tr>
+               
+                 
+                 
+                  
+                
+        <td>   <p:outputLabel value="I want to:"  for="sell"/> &#150; &#150;</td>
+          <td><h:selectOneMenu id="sell"   value="#{cls_AddDetailBean.ch_Product_Type2}"   style="width:200px">
+               <f:selectItem itemLabel="All" itemValue=""  />
+              <f:selectItem itemLabel="Sell" itemValue="Sell"  />
+              <f:selectItem itemLabel="Buy" itemValue="Buy"   />
+               <f:selectItem itemLabel="Rent" itemValue="Rent" />
+                 <p:ajax event="change"  />
+                  </h:selectOneMenu>
+                  </td>
+                  &#150;           &#150;            &#150; 
+                  <td> <p:button  value="Search"   ajax="false"  style=" background:#00CC66;color:#F5FFFA;border:2px;font-size:17px;width:95px; height:30px;" update="car" > 
+</p:button></td>
+           </tr>
               </div>
-      <div id="page3" >
-     <p:dataList  id="car" value="#{cls_AddDetailBean.searchByType}" style="width:83%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" var="car" rowKey="#{car.int_ProductId}"
-                paginator="true" rows="5" effectSpeed="fast"  
-                paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"  
-                rowsPerPageTemplate="4,8,16" type="none"
-                paginatorPosition="top">
+       <div style="height:600px; overflow-y: scroll;">
+     <p:dataList  id="car"   value="#{cls_AddDetailBean.searchByType}" style="width:83%;margin-left: 1%;margin-right: 1%;margin-bottom:5px"  rowKey="#{car.int_ProductId}" var="car">
+         
            <font size="2"><b><h:outputText value="#{car.var_Title}" style="color:#00CC66;"/><br/></b></font>
-         <font size="2"> <h:outputText value="#{car.var_Description}" style="color:#00CC66;"/><br/></font>
-         <font size="2"><h:outputText value="Community :#{car.str_ApartmentName}" style="color:#00CC66;"/><br/></font>
+         <font size="2"><h:outputText value="#{car.var_Description}"   style="color:#00CC66;"/><br/></font>
+         
+         <font size="2"><h:outputText value="Community :#{car.str_ApartmentName}"  style="color:#00CC66; maxlength=10;"/><br/></font>
         <font size="2"><h:outputText value="Posted By :#{car.username}" style="color:#00CC66;"/><br/></font>
-        <font size="2"><h:outputText value="Posted On :#{car.dt_date}"  style="color:#FFA500;"><f:convertDateTime pattern="dd-MM-yyyy"/></h:outputText><br/></font>
+        <font size="2"><h:outputText value="Posted On :#{car.dt_date}"  style="color:#FFA500;"><f:convertDateTime pattern="yyyy-MM-dd"/></h:outputText><br/></font>
         <p:commandButton process="car"  update=":sellid" value="Send Email" action="#{cls_AddDetailBean.getemailid(car.userId)}" style="color:#FFFAF0;background:#FF8C00; border:2px;font-size:15px;width:160px;height:30px"
            oncomplete="PF('multiVendorDialog1').show()"  /><hr/>
           <p:outputPanel   layout="block" width="15%" height="6%"  update="aaa1" style="background:#ffffff; ">
             <p:graphicImage  id="aaa1" value="#{car.var_ImageName}" style=" width:15%; height:15%; float:right !important;margin:-160px 50px -800px 100px;" />
-          </p:outputPanel>  
+          </p:outputPanel> 
+  
        </p:dataList>
+       
     </div>
     </h:form>
      <p:dialog header="Buy&#38;Sell" widgetVar="multiVendorDialog1"   showEffect="fade" hideEffect="explode" resizable="false" height="200" width="400">
@@ -112,5 +138,6 @@ template="#{expenseBean.str_Name}include/templates/template1.xhtml">
       
 
 </h:body>
+</h:head>
 </ui:define>
 </ui:composition>
