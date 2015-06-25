@@ -99,7 +99,7 @@ public class Cls_ProductsDetailServiceImpl implements ProductsDetailService {
 	@SuppressWarnings("unchecked")
 	@Override
 public List<Cls_ProductDetails> getSearchByProducttype(
-					String ch_Product_Type, String ch_Ad_Type,String status, Integer statusid) {
+					String ch_Product_Type, String ch_Ad_Type,String status, int statusid) {
 		return getProductDao().getSearchByProducttype(ch_Product_Type,ch_Ad_Type, status,statusid);
 	}
 
@@ -538,10 +538,15 @@ public List<Cls_ProductDetails> getSearchByProducttype(
 	@Override
 	public List<Cls_ProductDetails> getSearchBytypes(
 			String var_Ad_CategoryName, String var_subscategoryname,
-			String ch_Ad_Type1, Integer categorystatus) {
+			String ch_Ad_Type1,String ch_Product_Type1, Integer categorystatus) {
 		return getProductDao().getSearchBytypes(
 				var_Ad_CategoryName, var_subscategoryname,
-				 ch_Ad_Type1,categorystatus);
+				 ch_Ad_Type1,ch_Product_Type1,categorystatus);
+	}
+
+	@Override
+	public List<String> getCount() {
+		return getProductDao().getCount();
 	}
 
 	

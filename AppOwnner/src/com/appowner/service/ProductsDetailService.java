@@ -34,7 +34,7 @@ public interface ProductsDetailService {
 	public void AddNotice(Notification p);
 
 	public List<Cls_ProductDetails> getSearchByProducttype(
-			String ch_Product_Type, String ch_Ad_Type,String status, Integer statusid);
+			String ch_Product_Type, String ch_Ad_Type,String status, int statusid);
 
 	public List<Cls_categoryDetail> listcategory();
 
@@ -200,7 +200,9 @@ public interface ProductsDetailService {
 
 	public List<Cls_ProductDetails> getSearchBytypes(
 			String var_Ad_CategoryName, String var_subscategoryname,
-			String ch_Ad_Type1, Integer categorystatus);
+			String ch_Ad_Type1, String ch_Product_Type1, Integer categorystatus);
+
+	public List< String> getCount();
 
 	
 
