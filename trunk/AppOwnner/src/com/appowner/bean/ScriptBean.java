@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.primefaces.component.spinner.Spinner;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -1032,9 +1033,9 @@ public String group()
 	group.setUserId(Util.getUserId());
 	getSubcriptService().groupadd(group);
 	str_GroupNm=null;
-   str_Groupaddress=null;
-   str_groupPrivate=null;
-   str_GroupDescription=null;
+    str_Groupaddress=null;
+    str_groupPrivate=null;
+    str_GroupDescription=null;
    FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Group Created Successfully!"));
   return "Create-SubGroup.xhtml";
 	}
@@ -1054,13 +1055,30 @@ public void setGroupNames(List<String> groupNames) {
 public   boolean select;
 
 
+public boolean blockinfo;
 
+public boolean isBlockinfo() {
+	return blockinfo;
+}
+public void setBlockinfo(boolean blockinfo) {
+	this.blockinfo = blockinfo;
+}
 public boolean isSelect() {
 	return select;
 }
 public void setSelect(boolean select) {
 	this.select = select;
 }
+public boolean selectingroup1(ValueChangeEvent event)
+{  
+	group1=new ArrayList<String>();
+	blockinfo =(boolean) event.getNewValue();
+	System.out.println(str_group+"jhdsjdfvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+	group1.addAll(getSubcriptService().listblock());
+	System.out.println(group1+"jhjjhccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+	return str_group ;
+	}
+
 
 public List<String> group1;
 
@@ -1068,9 +1086,9 @@ public boolean selectingroup(ValueChangeEvent event)
 {  
 	group1=new ArrayList<String>();
 	str_group =(boolean) event.getNewValue();
-	System.out.println(str_group+"jhdsjdf");
+	System.out.println(str_group+"jhdsjdfvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 	group1.addAll(getSubcriptService().listblock());
-	System.out.println(group1+"jhjjh");
+	System.out.println(group1+"jhjjhccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
 	return str_group ;
 	}
 
@@ -1087,14 +1105,7 @@ public void setGroup1(List<String> group1) {
 
 
 
-public List<String> group2;
 
-public List<String> getGroup2() {
-	return group2;
-}
-public void setGroup2(List<String> group2) {
-	this.group2 = group2;
-}
 private List<String> residing;
 
 public List<String> getResiding() {
@@ -1168,6 +1179,21 @@ public String selectinfo3(ValueChangeEvent event)
 	System.out.println(str_residence+"jhnhjj");
 	return  "";
 }
+public boolean str_residence2;
+
+public boolean isStr_residence2() {
+	return str_residence2;
+}
+public void setStr_residence2(boolean str_residence2) {
+	this.str_residence2 = str_residence2;
+}
+public String residenceinfo(ValueChangeEvent event)
+{  
+	str_residence2 =( boolean )event.getNewValue();
+	System.out.println(str_residence+"jhnhjj");
+	return  "";
+}
+
 private int hobbyid;
 
 private String HobbyName;
@@ -1235,6 +1261,20 @@ public String selectinfo6(ValueChangeEvent event)
 	System.out.println(select2+"jhnhjj");
 	return  "";
 }
+public boolean str_profession;
+
+public boolean isStr_profession() {
+	return str_profession;
+}
+public void setStr_profession(boolean str_profession) {
+	this.str_profession = str_profession;
+}
+public String profession(ValueChangeEvent event)
+{  
+	str_profession =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
 
 public boolean var_hobby;
 
@@ -1247,6 +1287,20 @@ public void setVar_hobby(boolean var_hobby) {
 public String selectinfo7(ValueChangeEvent event)
 {  
 	var_hobby =( boolean )event.getNewValue();
+	System.out.println(var_hobby+"jhnhjj");
+	return  "";
+}
+public boolean str_hobby1;
+
+public boolean isStr_hobby1() {
+	return str_hobby1;
+}
+public void setStr_hobby1(boolean str_hobby1) {
+	this.str_hobby1 = str_hobby1;
+}
+public String  hobby(ValueChangeEvent event)
+{  
+	str_hobby1 =( boolean )event.getNewValue();
 	System.out.println(var_hobby+"jhnhjj");
 	return  "";
 }
@@ -1268,6 +1322,20 @@ public String selectinfo8(ValueChangeEvent event)
 	System.out.println(select2+"jhnhjj");
 	return  "";
 }
+public boolean married;
+
+public boolean isMarried() {
+	return married;
+}
+public void setMarried(boolean married) {
+	this.married = married;
+}
+public String married(ValueChangeEvent event)
+{  
+	married =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
 
 
 private List<String>Categories2;
@@ -1284,19 +1352,33 @@ public void setCategories2(List<String> categories2) {
 }
 
 
-public boolean str_state;
-public boolean isStr_state() {
-	return str_state;
+public boolean str_state1;
+
+
+
+public boolean isStr_state1() {
+	return str_state1;
 }
-public void setStr_state(boolean str_state) {
-	this.str_state = str_state;
+public void setStr_state1(boolean str_state1) {
+	this.str_state1 = str_state1;
 }
-
-
-
 public String selectinfo9(ValueChangeEvent event)
 {  
-	str_state =( boolean )event.getNewValue();
+	str_state1 =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
+public boolean str_state2;
+
+public boolean isStr_state2() {
+	return str_state2;
+}
+public void setStr_state2(boolean str_state2) {
+	this.str_state2 = str_state2;
+}
+public String stateinf(ValueChangeEvent event)
+{  
+	str_state2 =( boolean )event.getNewValue();
 	System.out.println(select2+"jhnhjj");
 	return  "";
 }
@@ -1351,13 +1433,20 @@ public void setCityListByState(List<String> cityListByState) {
 }
 
 public List<String> stateChangeListener(ValueChangeEvent event)
-{  
-      enquiry_selectedState=(String)event.getNewValue();
+
+{   enquiry_selectedState=(String)event.getNewValue();
+if(enquiry_selectedState!=null)
+{
       System.out.println(enquiry_selectedState+"kjjfkjgtfkjgfgfkjgfkjgfgf2222222222222222222222222222222");
 		cityListByState=new ArrayList<String>();
 		cityListByState.addAll(getSubcriptService().cityList(enquiry_selectedState));
            System.out.println(cityListByState);
            return cityListByState;
+}
+           else
+           { System.out.println("i my and uuuuuuuuuuuuuuuuuuuuu");
+        	   return cityListByState;   
+           }
 	}
 	 
 private cls_Group edit1 ;
@@ -1380,15 +1469,15 @@ System.out.println(edit1);
 }
 
 
-public String saveContact1( )
+public String saveContact1(int groupid )
 {
 	System.out.println("hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjh");
 	System.out.println(bol_Smsallow);
-	 if(edit1.getInt_GroupId()!=null)
+	 if(group.getInt_GroupId()!=null)
 	 
-		 getSubcriptService().update3(edit1);
+		 getSubcriptService().update3(group);
 	else		
-		getSubcriptService().addContact1(edit1);
+		getSubcriptService().addContact1(group);
 	 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Updated Successfully!"));
      return "Sub-GroupDetail.xhtml";
 	 
@@ -1401,15 +1490,15 @@ public int getInt_Nomember() {
 public void setInt_Nomember(int int_Nomember) {
 	this.int_Nomember = int_Nomember;
 	}
+String  count=null;
 private List<cls_Group> userlist;
-
-	public List<cls_Group> getUserlist() {
+public List<cls_Group> getUserlist() {
 	userlist=new ArrayList<cls_Group>();
 	userlist.addAll(getSubcriptService().getlist());
 	System.out.println(userlist);
 	ListIterator list=userlist.listIterator();
 	List<String> str1=new ArrayList<String>();
-	String  count=null;
+	
 	while(list.hasNext())
 		{   Object o=list.next();
 		cls_Group memberid=(cls_Group) o;
@@ -1510,6 +1599,20 @@ public String selectinfoq(ValueChangeEvent event)
 	System.out.println(select2+"jhnhjj");
 	return  "";
 }
+public boolean male1;
+
+public boolean isMale1() {
+	return male1;
+}
+public void setMale1(boolean male1) {
+	this.male1 = male1;
+}
+public String genders(ValueChangeEvent event)
+{  
+	male1 =( boolean )event.getNewValue();
+	System.out.println(select2+"jhnhjj");
+	return  "";
+}
 
 
 private List<String>addcompany;
@@ -1524,8 +1627,8 @@ public void setAddcompany(List<String> addcompany) {
 
 
 
-private String str_State;
-private String str_City;
+public String str_State;
+public String str_City;
 public String getStr_Username() {
 	return str_Username;
 }
@@ -1535,6 +1638,7 @@ public void setStr_Username(String str_Username) {
 
 private String str_Block;
 private String str_Username;
+
 
 
 public String getStr_State() {
@@ -1565,18 +1669,26 @@ public void setStr_Block(String str_Block) {
  
 private List<UserExtraInfo> search;
 public List<UserExtraInfo> getSearch() {
+	try{
 	search=new ArrayList<UserExtraInfo>();
-	search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession,residence1,status));
+	if(str_Hobby==null&& str_Profession1==null&&reistence==null && 
+			gender1==null &&married_statuss==null && statusid==0 && block1==null &&
+			str_State1==null  && str_City1==null){
+	}
+	
+	else 
+	{
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+search.addAll(getSubcriptService().getsearch1(str_Hobby,str_Profession1,reistence,gender1,married_statuss,statusid,block1,str_State1,str_City1));
 	System.out.println(search+"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 	System.out.println(search.getClass());
-	
 	ListIterator itr=search.listIterator();
 	System.out.println(itr);
 	while(itr.hasNext())
 	{
 		Object u=(Object) itr.next();
 		UserExtraInfo e=(UserExtraInfo) u;
-		System.out.println(  e.getStr_Hobbies()+"k11111111k111111111111111");
+		System.out.println( e.getStr_Hobbies()+"k11111111k111111111111111");
 		System.out.println(e.getResidence()+"hjjjhjhjhjhjjhjhhjjhhjhjjhhjhjhjjhhjhjhjhj");
 		//System.out.println(e.getInt_UserID()+"");
 		 char ch1=e.getStr_PhoneNo().charAt(0);
@@ -1590,8 +1702,33 @@ public List<UserExtraInfo> getSearch() {
         System.out.println(first+"kjfkjjfkj"); 
        
 	}
+	}}
 	
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	married_Status=null;
+	blockdetails=null;
+	married_status2=null;
+	str_Gender=null;
+	residing1=null;
+	str_residence1=null;
+	blockdetail=null;
+	married_status1=null;
+	str_gender=null;
+	str_Hobby=null;
+	str_Profession1=null;
+	reistence=null;
+	str_residence3=null;
+	gender1=null;
+	married_statuss=null;
+	statusid=0;
+	block1=null;
+	str_State1=null;
+	str_City1=null;
 	return search;
+	
 }
 public void setStr_Profession(String str_Profession) {
 	this.str_Profession = str_Profession;
@@ -1764,13 +1901,32 @@ public void setStatus(String status) {
 }
 public String selectinfo5(ValueChangeEvent event)
 {  
-	residence =( boolean )event.getNewValue();
+	str_residence1 =( List<String> )event.getNewValue();
 	System.out.println(residence+"jhnhjj");
 	return  "";
 }
+
+public String selectinfoos(ValueChangeEvent event)
+{  
+	str_residence3 =( List<String> )event.getNewValue();
+	System.out.println(str_residence3+"jhnhjj");
+	return  "";
+}
+
+public List<String> residing1;
+public List<String> getResiding1() {
+	residing1=new ArrayList<String>();
+	residing1.add("residence");
+	residing1.add("non-residence");
+	System.out.println(residing1);
+	return residing1;
+}
+public void setResiding1(List<String> residing1) {
+	this.residing1 = residing1;
+}
 public String selectinfo12(ValueChangeEvent event)
 {  
-	str_MaritalStatus =( boolean )event.getNewValue();
+	married_status =( List<String> )event.getNewValue();
 	System.out.println(str_MaritalStatus+"jhnhjj88888888888888888888888888888888888");
 	return  "";
 }
@@ -1787,36 +1943,136 @@ public String selectinfo11(ValueChangeEvent event)
 	return  "";
 }
 private boolean str_MaritalStatus;
+private int statusid;
+
+public int getStatusid() {
+	return statusid;
+}
+public void setStatusid(int statusid) {
+	this.statusid = statusid;
+}
+
 
 public String getSearch1() {
-	
-	System.out.println(str_residence+"fkjjfgkjgfjggfkj");
-	System.out.println(residence+"fkjfjfjfj1111111111111111111111111111111111111111");
-	System.out.println(str_MaritalStatus+"jdfffjgfj111111111111111111111111111111");
-	System.out.println(str_Hobbies+"jdfkjfjkgfkj55555555555555555555555555555555555555555555");
-	System.out.println(str_Profession+"222222222222222222222777777777777777777777777");
-	search=new ArrayList<UserExtraInfo>();
-	if(residence==true)
+	try
 	{
-		residence1="residence";
+		search=new ArrayList<UserExtraInfo>();
+	
+	if(blockdetail!=null)
+	{
+System.out.println(blockdetails+"llllllllllllllllllllllllllllllllllllllllllllllllLLLLLLLLLLLLLLLLLLLLLLLLL");
+ListIterator itr=blockdetails.listIterator();
+while(itr.hasNext())
+{
+	block1=(String) itr.next();
+System.out.println(block1+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}}
+	else
+	{
+		
+	}
+	if(str_residence3!=null)
+	{
+System.out.println(str_residence3+"llllllllllllllllllllllllllllllllllllllllllllllllLLLLLLLLLLLLLLLLLLLLLLLLL");
+ListIterator itr=str_residence3.listIterator();
+while(itr.hasNext())
+{
+  reistence=(String) itr.next();
+System.out.println(reistence+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}}
+	else
+	{
+		
+	}
+	if(married_Status!=null)
+	{
+ListIterator itr1=married_Status.listIterator();
+while(itr1.hasNext())
+{
+	married_statuss=(String) itr1.next();
+System.out.println(married_status1+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}
 	}
 	else
 	{
-		residence1="Non-residence";
-	}
-	if(str_MaritalStatus==false)
-	{
 		
-		status="single";
-		}
-		else
-		{
-			status="married";
-		}
+	}
+	if(str_Gender!=null)
+	{
+ListIterator itr2=str_Gender.listIterator();
+while(itr2.hasNext())
+{
+	gender1=(String) itr2.next();
+System.out.println(gender1+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}
+	}
+	else{
+		
+	}
 	
-	 search.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession,residence1,status ));
-	 
-	return "View-SubGroup.xhtml";
+System.out.println(str_residence+"fkjjfgkjgfjggfkj");
+System.out.println(married_statuss+"fkjfjfjfj1111111111111111111111111111111111111111jjjjjjjjjjj");
+System.out.println(str_Gender+"jdfffjgfj111111111111111111111111111111");
+System.out.println(str_Hobby+"jdfkjfjkgfkj55555555555555555555555555555555555555555555");
+System.out.println(str_Profession1+"222222222222222222222777777777777777777777777");
+
+
+if(str_Hobby==null && str_Profession1==null && reistence==null && gender1==null && married_statuss==null && block1==null && str_State1==null &&str_City1==null)
+{
+	statusid=0;
+}
+if(!(str_Hobby==null) && !(str_Hobby.isEmpty()) )
+{
+	 statusid=1;
+}
+if(!(str_Profession1==null) && !(str_Profession1.isEmpty()) )
+{
+	 statusid=2;
+}
+if(!(reistence==null) && !(reistence.isEmpty()) )
+{ System.out.println(reistence+"hjgjjjghhhhhhhhhhhhhhhhhhhhhhhhhh888888888888888888888888888888888888888888888888888888888888888");
+	 statusid=3;
+}
+if(!(gender1==null) && !(gender1.isEmpty()) )
+{
+	 statusid=4;
+}
+if(!(married_statuss==null) && !(married_statuss.isEmpty()) )
+{
+	 statusid=5;
+}
+if(!(block1==null) && !(block1.isEmpty()) )
+{
+	 statusid=6;
+}
+if(!(str_State1==null ) && !(str_State1.isEmpty()))
+{
+	statusid=7;
+}
+if(!(str_City1==null ) && !(str_City1.isEmpty()))
+{
+	statusid=8;
+}
+
+	
+
+search.addAll(getSubcriptService().getsearch1(str_Hobby,str_Profession1,reistence,gender1,married_statuss,statusid,block1,str_State1,str_City1));
+
+
+blockinfo=false;
+str_residence2=false;
+str_profession=false;
+str_hobby1=false;
+married=false;
+str_state2=false;
+male1=false;
+	}
+catch(Exception e)
+{
+	e.printStackTrace();
+}
+	
+return "View-SubGroup.xhtml";
 }
 	
 
@@ -1923,50 +2179,226 @@ public String getUserID() {
 public void setUserID(String userID) {
 	this.userID = userID;
 }
+ public   String reistences;
+
+
+public String married_status1;
+
+public String getMarried_status1() {
+	return married_status1;
+}
+public void setMarried_status1(String married_status1) {
+	this.married_status1 = married_status1;
+}
+public String gender;
+
+public String block;
+
+public String getBlock() {
+	return block;
+}
+public void setBlock(String block) {
+	this.block = block;
+}
+public String getGender() {
+	return gender;
+}
+public void setGender(String gender) {
+	this.gender = gender;
+}
 public String  memberadd() {
 	
-intdocid2=getSubcriptService().adv1(selectes);
-System.out.println(str_residence+"fkjjfgkjgfjggfkj");
-System.out.println(residence+"fkjfjfjfj1111111111111111111111111111111111111111");
-System.out.println(str_MaritalStatus+"jdfffjgfj111111111111111111111111111111");
-System.out.println(str_Hobbies+"jdfkjfjkgfkj55555555555555555555555555555555555555555555");
-System.out.println(str_Profession+"222222222222222222222777777777777777777777777");
-userinfo=(List<Integer>) getSubcriptService().memberid(str_Hobbies,str_Profession);
-System.out.println(userinfo+"mmmmmmmmmmmmmmmmmmmmmmmmppppppppppppppppppppppppppppppp");
-if(residence==true)
-{
-	residence1="residence";
-}
-else
-{
-	residence1="Non-residence";
-}
-if(str_MaritalStatus==false)
-{
 	
-	status="single";
+	try{
+	if(blockdetail!=null)
+	{
+System.out.println(blockdetail+"llllllllllllllllllllllllllllllllllllllllllllllllLLLLLLLLLLLLLLLLLLLLLLLLL");
+ListIterator itr=blockdetail.listIterator();
+while(itr.hasNext())
+{
+	block=(String) itr.next();
+System.out.println(block+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}}
+	else
+	{
+		
+	}
+	if(str_residence1!=null)
+	{
+System.out.println(str_residence1+"llllllllllllllllllllllllllllllllllllllllllllllllLLLLLLLLLLLLLLLLLLLLLLLLL");
+ListIterator itr=str_residence1.listIterator();
+while(itr.hasNext())
+{
+  reistences=(String) itr.next();
+System.out.println(reistences+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}}
+	else
+	{
+		
+	}
+	if(married_status!=null)
+	{
+ListIterator itr1=married_status.listIterator();
+while(itr1.hasNext())
+{
+	married_status1=(String) itr1.next();
+System.out.println(married_status1+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}
 	}
 	else
 	{
-		status="married";
+		
 	}
+	if(str_gender!=null)
+	{
+ListIterator itr2=str_gender.listIterator();
+while(itr2.hasNext())
+{
+	gender=(String) itr2.next();
+System.out.println(gender+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+}
+	}
+	else{
+		
+	}
+	
+System.out.println(str_residence+"fkjjfgkjgfjggfkj");
+System.out.println(married_status+"fkjfjfjfj1111111111111111111111111111111111111111jjjjjjjjjjj");
+System.out.println(str_gender+"jdfffjgfj111111111111111111111111111111");
+System.out.println(str_Hobbies+"jdfkjfjkgfkj55555555555555555555555555555555555555555555");
+System.out.println(str_Profession+"222222222222222222222777777777777777777777777");
+System.out.println(str_State+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+System.out.println(str_City+"cccccccccccccccccccccccccccccccccccccccccccccccccccc");
+intdocid2=getSubcriptService().adv1(selectes);
+
+if(block ==null && str_Hobbies==null && str_Profession==null && married_status1==null &&
+gender==null && str_State==null && str_City==null && reistences==null )
+{
+	System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+}
+else if(block!=null)
+{
+	userinfo=(List<Integer>) getSubcriptService().block_usrid(block);		
+}
+else if(reistences!=null)
+{
+userinfo=(List<Integer>) getSubcriptService().memberId(reistences);	
+System.out.println(userinfo+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+}
+else if(str_Hobbies!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().memberid(str_Hobbies);
+}
+else if(str_Profession!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().ProfessionId(str_Profession);
+}
+else if(married_status1!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().MarriedId(married_status1);
+}
+else if(gender!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().hobbyId(gender);
+}
+else if(str_State!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().stateId(str_State);
+}
+else if(str_State!=null && str_City!=null)
+{
+	userinfo=(List<Integer>) getSubcriptService().usrId(str_City,str_State);
+	System.out.println(userinfo+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+}
+else if(reistences!=null && str_Profession!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().res_profession(reistences,str_Profession);
+}
+else if(reistences!=null && str_Hobbies!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().res_hobby(reistences,str_Hobbies);
+}
+else if(reistences!=null && married_status1!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().res_married(reistences,married_status1);
+}
+else if(reistences!=null && gender!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().res_gender(reistences,gender);
+}
+else if(str_Profession!=null && str_Hobbies!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().pro_hobby(str_Profession,str_Hobbies);
+}
+else if(str_Profession!=null && married_status1!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().pro_married(str_Profession,married_status1);
+}
+else if(married_status1!=null && gender!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().married_gen(married_status1,gender);
+}
+else if(reistences!=null && str_Profession!=null &&str_Hobbies!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().res_pro_hoby(reistences,str_Profession,str_Hobbies);
+}
+else if(reistences!=null && married_status1!=null &&gender!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().res_married_gender(reistences,married_status1,gender);
+}
+else if(str_Profession!=null && str_Hobbies!=null &&gender!=null) 
+{
+userinfo=(List<Integer>) getSubcriptService().res_hobby_gender(reistences,str_Hobbies,gender);
+}
+System.out.println(userinfo+"mmmmmmmmmmmmmmmmmmmmmmmmpppppppppppppppppppppppppppppppcccccccc");
 System.out.println(userinfo);
 StringBuilder out = new StringBuilder();
 for (Object o : userinfo)
 {
-	out.append(o.toString());
+out.append(o.toString());
   out.append(",");
 }
+
 userID=out.toString();
 System.out.println(userID+"mmmmmmmmmmmmmmmmmmmmmmmm");
 System.out.println(intdocid2);
 GroupMember m1=new GroupMember();
+System.out.println(intdocid2+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 m1.setInt_GroupId(intdocid2);
+if (userID.length() > 0 && userID.charAt(userID.length()-1)==',') {
+	userID = userID.substring(0, userID.length()-1);
+  }
+ 
 m1.setInt_UserId(userID);
 m1.setDT_Date(getDTDate());
 m1.setInt_GroupmemberId(getInt_GroupmemberId());
+if(userinfo.isEmpty())
+{
+System.out.println(userinfo+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmccccccccccccccccccccccccccccccccccccccccccccccccccccc");	
+}
+else{
 getSubcriptService().insertes(m1);
-return "View-SubGroup.xhtml";
+getSearch2();
+}
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		
+	}
+	
+	str_group=false;
+	str_residence=false;
+	str_hobby=false;
+	var_hobby=false;
+	martial=false;
+	str_state1=false;
+	male=false;
+	
+return "AddMember.xhtml";
+
+
+
 
 }
 public void subname()
@@ -2124,9 +2556,7 @@ System.out.println(int_UserId+"vbbbbvbvbbvbvbvbvvvbvbvbvvvvvvvvvvvvvvvvvvv");
 
 private List<UserExtraInfo> users;
 public List<UserExtraInfo> getUsers() {
-	System.out.println(int_UserId);
-	users=getSubcriptService().allusers(int_GroupId);
-	return users;
+return users;
 }
 public void setUsers(List<UserExtraInfo> users) {
 	this.users = users;
@@ -2632,11 +3062,458 @@ public static void setAllmembers(String allmembers) {
 			}
 			return "filename";
 		}
+		
+		cls_Group gropus=new cls_Group();
+		
+		public cls_Group getGropus() {
+			return gropus;
+		}
+		public void setGropus(cls_Group gropus) {
+			this.gropus = gropus;
+		}
+		public List<String>grouplists;
+		
+		public List<String> getGrouplists() {
+			return grouplists;
+		}
+		public void setGrouplists(List<String> grouplists) {
+			this.grouplists = grouplists;
+		}
+		public  String groupdetail( int groupId)
+		{
+			System.out.println(groupId+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn66666666666");
+			gropus=getSubcriptService().groupdetail(groupId);
+			System.out.println(gropus+"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+		     return "Sub-GroupDetail.xhtml";
+		}
+		cls_Group group=new cls_Group();
+		
+		public cls_Group getGroup() {
+			return group;
+		}
+		public void setGroup(cls_Group group) {
+			this.group = group;
+		}
+		public String groupedit(int groupid)
+	{
+			System.out.println(groupid+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn66666666666");
+			group=getSubcriptService().grouedit(groupid);
+			return"EditGroup.xhtml";
+		}
+		cls_Group groupset=new cls_Group();
+       public String settingedit(int Groupid)
+		{
+		groupset=getSubcriptService().groupsetting(Groupid);
+	    return "Sub_Group-Settings.xhtml";
+		}
+		public cls_Group getGroupset() {
+			return groupset;
+		}
+		public void setGroupset(cls_Group groupset) {
+			this.groupset = groupset;
+		}
+		public String savesetting( int settingid)
+		{
+			System.out.println("hjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjh");
+			System.out.println(bol_Smsallow);
+			 if(groupset.getInt_GroupId()!=null)
+			 
+				 getSubcriptService().update3(groupset);
+			else		
+				getSubcriptService().addContact1(groupset);
+			 return "Sub-GroupDetail.xhtml";
+			 
+		}
+		
+		
+		public String invitemember(int inviteid)
+		{
+			System.out.println(inviteid+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn66666666666");
+			group=getSubcriptService().grouedit(inviteid);
+			return"Invite-Members.xhtml";
+		}
+		public static int getusrid;
+		
+		public static int getGetusrid() {
+			return getusrid;
+		}
+		public static void setGetusrid(int getusrid) {
+			ScriptBean.getusrid = getusrid;
+		}
+		public String addmember(int inviteids)
+		{
+			System.out.println(str_GroupNm+"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+			group=getSubcriptService().grouedit(inviteids);
+			System.out.println(groups+"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
+			selectes=group.getStr_GroupNm();
+			getusrid=group.getInt_GroupId();
+			System.out.println(selectes+",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+		    System.out.println(inviteids+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn66666666666");
+			return"Add-member.xhtml";
+			
+			
+}
+		public static int alluserid;
+		
+		public static int getAlluserid() {
+			return alluserid;
+		}
+		public static void setAlluserid(int alluserid) {
+			ScriptBean.alluserid = alluserid;
+		}
+		public String viewmember(int inviteid)
+		{
+			users=getSubcriptService().allusers(inviteid);
+		   System.out.println(getusrid+"ggggggggggggggnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn66666666666");
+		   alluserid=inviteid;
+			return"ViewMember.xhtml";
+}
+		
+		public List<String> str_residence1;
+		public List<String> getStr_residence1() {
+			return str_residence1;
+		}
+		public void setStr_residence1(List<String> str_residence1) {
+			this.str_residence1 = str_residence1;
+		}
+		public List<String>married_status;
+		public List<String> getMarried_status() {
+			return married_status;
+		}
+		public void setMarried_status(List<String> married_status) {
+			this.married_status = married_status;
+		}
+		
+		public List<String> str_gender;
+		public List<String> getStr_gender() {
+			return str_gender;
+		}
+		public void setStr_gender(List<String> str_gender) {
+			this.str_gender = str_gender;
+		}
+		public String selectinfos(ValueChangeEvent event)
+		{  System.out.println("hghjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+			str_gender =( List<String> )event.getNewValue();
+			System.out.println(str_Hobbies+"jhnhjj122222222222222222222222222");
+			return  "";
+}
+		public void viewmember1()
+		{
+			users=getSubcriptService().allusers(getusrid);
+		   System.out.println(getusrid+"ggggggggggggggnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn66666666666");
+		
+			
+}
+		public String block1;
+		public String getBlock1() {
+			return block1;
+		}
+		public void setBlock1(String block1) {
+			this.block1 = block1;
+		}
+		public String getReistence() {
+			return reistence;
+		}
+		public void setReistence(String reistence) {
+			this.reistence = reistence;
+		}
+		public String getMarried_statuss() {
+			return married_statuss;
+		}
+		public void setMarried_statuss(String married_statuss) {
+			this.married_statuss = married_statuss;
+		}
+		public String getGender1() {
+			return gender1;
+		}
+		public void setGender1(String gender1) {
+			this.gender1 = gender1;
+		}
+
+		public String reistence;
+		public String married_statuss;
+		public String gender1;
+		
+		public List<UserExtraInfo> getSearch2() {
+			
+			if(blockdetail!=null)
+			{
+		System.out.println(blockdetail+"llllllllllllllllllllllllllllllllllllllllllllllllLLLLLLLLLLLLLLLLLLLLLLLLL");
+		ListIterator itr=blockdetail.listIterator();
+		while(itr.hasNext())
+		{
+			block=(String) itr.next();
+		System.out.println(block1+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+		}}
+			else
+			{
+				
+			}
+			if(str_residence1!=null)
+			{
+		System.out.println(str_residence1+"llllllllllllllllllllllllllllllllllllllllllllllllLLLLLLLLLLLLLLLLLLLLLLLLL");
+		ListIterator itr=str_residence1.listIterator();
+		while(itr.hasNext())
+		{
+			reistences=(String) itr.next();
+		System.out.println(reistences+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+		}}
+			else
+			{
+				
+			}
+			if(married_status1!=null)
+			{
+		ListIterator itr1=married_status.listIterator();
+		while(itr1.hasNext())
+		{
+			married_statuss=(String) itr1.next();
+		System.out.println(married_status1+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+		}
+			}
+			else
+			{
+				
+			}
+			if(str_gender!=null)
+			{
+		ListIterator itr2=str_gender.listIterator();
+		while(itr2.hasNext())
+		{
+			gender=(String) itr2.next();
+		System.out.println(gender+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbb");
+		}
+			}
+			else{
+				
+			}
+			
+		System.out.println(str_residence+"fkjjfgkjgfjggfkj");
+		System.out.println(married_statuss+"fkjfjfjfj1111111111111111111111111111111111111111jjjjjjjjjjj");
+		System.out.println(str_Gender+"jdfffjgfj111111111111111111111111111111");
+		System.out.println(str_Hobby+"jdfkjfjkgfkj55555555555555555555555555555555555555555555");
+		System.out.println(str_Profession1+"222222222222222222222777777777777777777777777");
+		try
+		{
+			getmember=new ArrayList<UserExtraInfo>();
+
+		if(str_Hobbies==null && str_Profession==null && reistences==null && gender==null && married_status==null && block==null && str_State==null &&str_City==null)
+		{
+			statusid=0;
+		}
+		if(!(str_Hobbies==null) && !(str_Hobbies.isEmpty()) )
+		{
+			 statusid=1;
+		}
+		if(!(str_Profession==null) && !(str_Profession.isEmpty()) )
+		{
+			 statusid=2;
+		}
+		if(!(reistences==null) && !(reistences.isEmpty()) )
+		{
+			 statusid=3;
+		}
+		if(!(gender==null) && !(gender.isEmpty()) )
+		{
+			 statusid=4;
+		}
+		if(!(married_status1==null) && !(married_status1.isEmpty()) )
+		{
+			 statusid=5;
+		}
+		if(!(block==null) && !(block.isEmpty()) )
+		{
+			 statusid=6;
+		}
+		if(!(str_State==null ) && !(str_State.isEmpty()))
+		{
+			statusid=7;
+		}
+		if(!(str_City==null ) && !(str_City.isEmpty()))
+		{
+			statusid=8;
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		getmember.addAll(getSubcriptService().getsearch1(str_Hobbies,str_Profession,reistences,gender,married_status1,statusid,block,str_State,str_City));
+		str_gender=null;
+		married_status1=null;
+		str_residence1=null;
+		blockdetail=null;
+		block=null;
+	    str_Hobbies=null;  
+		str_Profession=null; 
+		married_status1=null;
+		gender=null; 
+		str_State=null; 
+		str_City=null; 
+		reistences=null;
+	    return getmember;
+			 
+		}
+		public String str_State1;
+		 public String str_City1;
+		 
+		public String getStr_State1() {
+			return str_State1;
+		}
+		public void setStr_State1(String str_State1) {
+			this.str_State1 = str_State1;
+		}
+		public String getStr_City1() {
+			return str_City1;
+		}
+		public void setStr_City1(String str_City1) {
+			this.str_City1 = str_City1;
+		}
+
+		private List<UserExtraInfo> getmember;
+		public List<UserExtraInfo> getGetmember() {
+			return getmember;
+		}
+		public void setGetmember(List<UserExtraInfo> getmember) {
+			this.getmember = getmember;
+		}
+		
+		public String selectinfoo(ValueChangeEvent event)
+		{  
+			blockdetail =( List<String> )event.getNewValue();
+			System.out.println(blockdetail+"jhnhjjxxxxxxx");
+			return  "";
+		}
+		public String selectinfs(ValueChangeEvent event)
+		{  
+			blockdetails =( List<String> )event.getNewValue();
+			System.out.println(blockdetails+"jhnhjjxxxxxxx");
+			return  "";
+		}
+		public List<String> blockdetail;
+		public List<String> getBlockdetail() {
+			
+			return blockdetail;
+		}
+		public void setBlockdetail(List<String> blockdetail) {
+			this.blockdetail = blockdetail;
+		}
+	public	UserExtraInfo useinfo=new UserExtraInfo();
+	
+  public UserExtraInfo getUseinfo() {
+		return useinfo;
+	}
+	public void setUseinfo(UserExtraInfo useinfo) {
+		this.useinfo = useinfo;
+	}
+public String memberdetail( int userId)
+  {
+	  
+	  useinfo=getSubcriptService().getallinfo(userId);
+	System.out.println(useinfo+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+	  str_Hobbies=null;
+	  str_Profession=null;reistences=null;
+	  gender=null;
+	  married_status1=null;
+	  statusid=0;
+	  block=null;
+	  str_State=null;
+	  str_City=null;
+	  return"Viewprofile.xhtml";
+	 
+  }
+
+
+public List<String> married_status2;
+
+public List<String> getMarried_status2() {
+	return married_status2;
+}
+public void setMarried_status2(List<String> married_status2) {
+	this.married_status2 = married_status2;
 }
 
+public List<String>str_residence3;
 
+public List<String> getStr_residence3() {
+	return str_residence3;
+}
+public void setStr_residence3(List<String> str_residence3) {
+	this.str_residence3 = str_residence3;
+}
+public List<String> getBlockdetails() {
+	return blockdetails;
+}
+public void setBlockdetails(List<String> blockdetails) {
+	this.blockdetails = blockdetails;
+}
 
+public List<String> blockdetails;
+public List<String>str_gender1;
+public List<String> getStr_gender1() {
+	return str_gender1;
+}
+public void setStr_gender1(List<String> str_gender1) {
+	this.str_gender1 = str_gender1;
+}
+public String str_Profession1;
 
+public String getStr_Profession1() {
+	return str_Profession1;
+}
+public void setStr_Profession1(String str_Profession1) {
+	this.str_Profession1 = str_Profession1;
+}
+public String selectinfo15(ValueChangeEvent event)
+{  
+	str_Profession1 =( String )event.getNewValue();
+	System.out.println(str_Profession+"jhnhjj77777777777777777777777777777777777");
+	return  "";
+}
+public String str_Hobby;
+
+public String getStr_Hobby() {
+	return str_Hobby;
+}
+public void setStr_Hobby(String str_Hobby) {
+	this.str_Hobby = str_Hobby;
+}
+public List<String>married_Status;
+
+public List<String> getMarried_Status() {
+	return married_Status;
+}
+public void setMarried_Status(List<String> married_Status) {
+	this.married_Status = married_Status;
+}
+public String selectinfo17(ValueChangeEvent event)
+{  
+	married_status2 =( List<String> )event.getNewValue();
+	System.out.println(str_MaritalStatus+"jhnhjj88888888888888888888888888888888888");
+	return  "";
+}
+public String selectinfo16(ValueChangeEvent event)
+{  
+	str_Hobby =( String )event.getNewValue();
+	System.out.println(str_Hobbies+"jhnhjj122222222222222222222222222");
+	return  "";
+}
+public List<String>str_Gender;
+
+public List<String> getStr_Gender() {
+	return str_Gender;
+}
+public void setStr_Gender(List<String> str_Gender) {
+	this.str_Gender = str_Gender;
+}
+public String selectinfo18(ValueChangeEvent event)
+{  
+	str_gender =( List<String> )event.getNewValue();
+	System.out.println(str_Hobbies+"jhnhjj122222222222222222222222222");
+	return  "";
+}
+}
 
 
 
