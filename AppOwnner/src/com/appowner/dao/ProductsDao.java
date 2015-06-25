@@ -191,7 +191,9 @@ public interface ProductsDao {
 
 	public List<Cls_ProductDetails> getSearchBytypes(
 			String var_Ad_CategoryName, String var_subscategoryname,
-			String ch_Ad_Type1, Integer categorystatus);
+			String ch_Ad_Type1, String ch_Product_Type1, int categorystatus);
+
+	public List<String> getCount();
 
 	
 

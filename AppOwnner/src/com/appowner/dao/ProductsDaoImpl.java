@@ -142,7 +142,7 @@ public class ProductsDaoImpl implements ProductsDao{
 		System.out.println(ch_Product_Type+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 		System.out.println(ch_Ad_Type+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 		System.out.println(statusid+"ccccccccccccvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-		System.out.println(status+"jcfjfjhdfgggggggggggggggggggggggggggggggggggggggggg");
+		System.out.println(statusid+"jcfjfjhdfgggggggggggggggggggggggggggggggggggggggggg");
 	
 		if(statusid==0)
 		{  
@@ -901,10 +901,12 @@ System.out.println( subcatsname+"mukesh kumar");
 	@Override
 	public List<Cls_ProductDetails> getSearchBytypes(
 			String var_Ad_CategoryName, String var_subscategoryname,
-			String ch_Ad_Type1, Integer categorystatus) {
+			String ch_Ad_Type1, String ch_Product_Type1, int categorystatus) {
 		System.out.println(var_Ad_CategoryName+";;;;;;;;;;;;;;;");
 		System.out.println( ch_Ad_Type1+",........,.,.,,.,.,<><><><><>");
 	     System.out.println( categorystatus+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+	System.out.println(ch_Product_Type1+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+	System.out.println(var_subscategoryname+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
 	
 		if(categorystatus==0)
 		{  
@@ -917,26 +919,25 @@ System.out.println( subcatsname+"mukesh kumar");
 		   
 			 return listdetails;	
 		}
-		else 
 		
-		   { 
-			if(categorystatus==-1)
-			   
-		        {
-			   System.out.println("jggfffffffffffffffff777777777777777777777777777777777777777777777777777777777777777777777777777777777777");
-		        }
+		        
 		   else
 		   {
 			System.out.println("hffhrrrrrrrrrrrrrrrrrrrrrrrrr444444444444444444477777777777777777777777777777777777777777");
-			String  query = "{ CALL searchcategory(?,?,?,?) }";
+			String  query = "{ CALL searchcategory(?,?,?,?,?) }";
 			
-			List<Cls_ProductDetails>  listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,var_Ad_CategoryName).setParameter(1,var_subscategoryname).setParameter(2,ch_Ad_Type1).setParameter(3, categorystatus).list();
+			List<Cls_ProductDetails>  listdetails = getSessionFactory().getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(Cls_ProductDetails.class)).setParameter(0,var_Ad_CategoryName).setParameter(1,var_subscategoryname).setParameter(2,ch_Ad_Type1).setParameter(3,ch_Product_Type1).setParameter(4, categorystatus).list();
 			System.out.println(listdetails+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");	
 			return listdetails;
 			 }
 		 }
-		return null;
-		}
+		
+	
+
+	@Override
+	public List<String> getCount() {
+		return getSessionFactory().getCurrentSession().createCriteria(Cls_categoryDetail.class).setProjection(Projections.property("var_Description")).list();
+	}
 		
 	}
 
