@@ -623,11 +623,19 @@ public class ApartmentDetailsBean  implements Serializable{
 		blockNameList=new ArrayList<String>();
 		
 		blockNameList.addAll(getApartmentDetailsService().getBlockNameList(Util.getAppartmentId()));
-		if(str_BlockName==null)
-		{
+		System.out.println(blockNameList.isEmpty()+"fggjgjgghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		
+		if(!(blockNameList.isEmpty()))
+			
+		{    System.out.println("jgfjggjgfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 			str_BlockName=blockNameList.get(0);
 		}
-		return blockNameList;
+		else
+		{
+			 System.out.println("jgfjggjgfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+			 str_BlockName="";
+		}
+			return blockNameList;
 	}
 	public void setBlockNameList(List<String> blockNameList) {
 		this.blockNameList = blockNameList;
