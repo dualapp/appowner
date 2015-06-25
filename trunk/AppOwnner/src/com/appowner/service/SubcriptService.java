@@ -109,6 +109,30 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import com.appowner.model.Cls_CreateDocumentManagement;
 import com.appowner.model.Cls_DocumentCategory;
 import com.appowner.model.Cls_SubcriptionOption;
@@ -280,7 +304,8 @@ public interface SubcriptService<subscriptname> {
 
 	public List< String> reside();
 
-	public List<UserExtraInfo> getsearch1(String str_Hobbies, String str_Profession,String residence,String status
+	public List<UserExtraInfo> getsearch1(String str_Hobbies, String str_Profession,String residence,String status,
+			 String married_status1, int statusid, String block, String str_State, String str_City
 			);
 
 	public UserExtraInfo alldatas(Integer int_UserId);
@@ -297,7 +322,7 @@ public interface SubcriptService<subscriptname> {
 
 	public int adduser(String selecte);
 
-	public List<Integer> memberid(String str_Hobbies, String str_Profession);
+	public List<Integer> memberid(String str_Hobbies);
 
 	public String count(int meberids);
 
@@ -333,6 +358,37 @@ public interface SubcriptService<subscriptname> {
 			Integer int_Document_CatID);
 
 	public String documentnames(Integer int_Document_CatID);
+	public cls_Group groupdetail(int groupId);
+	public List<String> getlistgrouo(Integer int_GroupId);
+	public cls_Group grouedit(int groupid);
+	public cls_Group groupsetting(int groupid);
+	public List<Integer> memberId(String str_Hobbies);
+	public List<Integer> ProfessionId(String str_Profession);
+	public List<Integer> MarriedId(String married_status1);
+	public List<Integer> hobbyId(String hobby);
+	public List<Integer> res_profession(String reistences, String str_Profession);
+	public List<Integer> res_hobby(String reistences, String str_Hobbies);
+	public List<Integer> res_married(String reistences, String married_status1);
+	public List<Integer> res_gender(String reistences, String gender);
+	public List<Integer> pro_hobby(String str_Profession, String str_Hobbies);
+	public List<Integer> pro_married(String str_Profession,String married_status1);
+	public List<Integer> pro_gender(String str_Profession, String gender);
+	public List<Integer> married_gen(String married_status1, String gender);
+	public List<Integer> res_pro_hoby(String reistences, String str_Profession,
+			String str_Hobbies);
+	public List<Integer> res_married_gender(String reistences,
+			String married_status1, String gender);
+	public List<Integer> res_hobby_gender(String reistences,
+			String str_Hobbies, String gender);
+	public List<Integer> stateId(String str_State);
+	public List<Integer> usrId(String str_City, String str_State);
+	public List<Integer> block_usrid(String block);
+	public cls_Group getusrid(int memberid);
+	public UserExtraInfo getallinfo(int userId);
+	public List< UserExtraInfo> getuserinformation(
+			String str_Hobby, String str_Profession1, String reistence,
+			String gender1, String married_statuss, int statusid,
+			String block1, String str_State1, String str_City1);
 
 	
 

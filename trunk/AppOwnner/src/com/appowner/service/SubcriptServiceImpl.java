@@ -93,6 +93,32 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -134,6 +160,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 //import com.kalpana.dao.EmployeeDao;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -627,12 +679,8 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().listblock();
 	}
 
-	@Override
-	public List<UserExtraInfo> getsearch1(String str_Hobbies,
-			String str_Profession,String residence,String status) {
-		return getSubcriptDao().getsearch1( str_Hobbies,
-				 str_Profession,residence,status);
-	}
+	
+	
 
 	@Override
 	public UserExtraInfo searchuser(Integer int_UserExtraID) {
@@ -716,9 +764,9 @@ public   class SubcriptServiceImpl implements SubcriptService {
 	}
 
 	@Override
-	public List memberid(String str_Hobbies, String str_Profession) 
+	public List memberid(String str_Hobbies) 
 	{
-		return getSubcriptDao().memberid(str_Hobbies,  str_Profession); 
+		return getSubcriptDao().memberid(str_Hobbies); 
 	}
 
 	@Override
@@ -818,6 +866,150 @@ public   class SubcriptServiceImpl implements SubcriptService {
 		return getSubcriptDao().documentnames( int_Document_CatID);
 	}
 
+	@Override
+	public cls_Group groupdetail(int groupId) {
+		return getSubcriptDao().groupdetail( groupId);
+	}
+
+	@Override
+	public List getlistgrouo(Integer int_GroupId) {
+		return getSubcriptDao().getlistgrouo(int_GroupId);
+	}
+
+	@Override
+	public cls_Group grouedit(int groupid) {
+		return getSubcriptDao().grouedit(groupid);
+	}
+
+	@Override
+	public cls_Group groupsetting(int groupid) {
+		return getSubcriptDao().groupsetting(groupid);
+	}
+
+	@Override
+	public List memberId(String str_Hobbies) {
+		return getSubcriptDao().memberId(str_Hobbies);
+	}
+
+	@Override
+	public List ProfessionId(String str_Profession) {
+		return getSubcriptDao().ProfessionId(str_Profession);
+	}
+
+	@Override
+	public List MarriedId(String married_status1) {
+		return getSubcriptDao().MarriedId( married_status1);
+	}
+
+	@Override
+	public List hobbyId(String hobby) {
+		return getSubcriptDao(). hobbyId(hobby);
+	}
+
+	@Override
+	public List res_profession(String reistences, String str_Profession) {
+		return getSubcriptDao().res_profession(reistences, str_Profession);
+	}
+
+	@Override
+	public List res_hobby(String reistences, String str_Hobbies) {
+		return getSubcriptDao().res_hobby( reistences, str_Hobbies);
+	}
+
+	@Override
+	public List res_married(String reistences, String married_status1) {
+		return getSubcriptDao().res_married( reistences, married_status1);
+	}
+
+	@Override
+	public List res_gender(String reistences, String gender) {
+		return getSubcriptDao().res_gender( reistences, gender);
+	}
+
+	@Override
+	public List pro_hobby(String str_Profession, String str_Hobbies) {
+		return getSubcriptDao().pro_hobby( str_Profession,str_Hobbies);
+	}
+
+	@Override
+	public List pro_married(String str_Profession, String married_status1) {
+		return getSubcriptDao().pro_married( str_Profession,married_status1);
+	}
+
+	@Override
+	public List pro_gender(String str_Profession, String gender) {
+		return getSubcriptDao().pro_gender(str_Profession,gender);
+	}
+
+	@Override
+	public List married_gen(String married_status1, String gender) {
+		return getSubcriptDao().married_gen( married_status1, gender); 
+	}
+
+	@Override
+	public List res_pro_hoby(String reistences, String str_Profession,
+			String str_Hobbies) {
+		return getSubcriptDao().res_pro_hoby( reistences, str_Profession,
+				 str_Hobbies); 
+	}
+
+	@Override
+	public List res_married_gender(String reistences, String married_status1,
+			String gender) {
+		return getSubcriptDao().res_married_gender( reistences,married_status1,
+				gender);
+	}
+
+	@Override
+	public List res_hobby_gender(String reistences, String str_Hobbies,
+			String gender) {
+		return getSubcriptDao().res_hobby_gender( reistences, str_Hobbies,
+			 gender);
+	}
+
+	@Override
+	public List getsearch1(String str_Hobbies, String str_Profession,
+			String residence, String status, String married_status1,  
+			int statusid,String block,String str_State, String str_City) {
+		return getSubcriptDao().getsearch1(str_Hobbies, str_Profession,
+				 residence,  status,  married_status1,statusid, block, str_State, str_City);
+	}
+
+	@Override
+	public List stateId(String str_State) {
+		return getSubcriptDao().stateId(str_State);
+	}
+
+	@Override
+	public List usrId(String str_City,String str_State) {
+		return getSubcriptDao().usrId( str_City,str_State);
+	}
+
+	@Override
+	public List block_usrid(String block) {
+		return getSubcriptDao().block_usrid(block);
+	}
+
+	@Override
+	public cls_Group getusrid(int memberid) {
+		return getSubcriptDao().getusrid(memberid);
+	}
+
+	@Override
+	public UserExtraInfo getallinfo(int userId) {
+		return getSubcriptDao().getallinfo( userId);
+	}
+
+	@Override
+	public List getuserinformation(String str_Hobby, String str_Profession1,
+			String reistence, String gender1, String married_statuss,
+			int statusid, String block1, String str_State1, String str_City1) {
+		return getSubcriptDao().getuserinformation( str_Hobby,  str_Profession1,
+			 reistence, gender1, married_statuss,
+				 statusid,  block1, str_State1, str_City1);
+	}
+
+	
 	
 	
 	
