@@ -1,12 +1,16 @@
 package com.appowner.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.TreeSet;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -558,11 +562,11 @@ public class SubcriptDaoImpl implements SubcriptDao {
 
 	@Override
 	public void insertes(GroupMember m1) {
-		
-        int groupid=m1.getInt_GroupId();
+	int groupid=m1.getInt_GroupId();
         String str=m1.getInt_UserId();
+        System.out.println(str+"hfjjggjjgjfjfjfj");
         String hql1="  from GroupMember where int_GroupId=?";
-     GroupMember cid1=(GroupMember) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, groupid).uniqueResult();
+       GroupMember cid1=(GroupMember) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, groupid).uniqueResult();
         System.out.println(cid1);
         if(cid1==null)
         {
@@ -572,14 +576,61 @@ public class SubcriptDaoImpl implements SubcriptDao {
         {
         	Integer id1=cid1.getInt_GroupmemberId();
             Integer id2=cid1.getInt_GroupId();
+            String id3=cid1.getInt_UserId();
+            
            if(id2==groupid)
            {
-           	System.out.println(groupid);
+        	   System.out.println(str+"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzkkkkkkkkkkkkk");
+        	String hql3="select  int_UserId from GroupMember where int_GroupId=?"; 
+        	 String  usrid=(String) sessionFactory.getCurrentSession().createQuery(hql3).setParameter(0, id2).uniqueResult();
+        	 System.out.println(usrid+"zzzoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooozzzzzzzkkkkkkkkkkkkk");
+        		
+                   
+                    Set<String> str2=new HashSet<String>();
+              System.out.println(str2+"hhjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");      
+            String[] str1=usrid.split(","); 
+            for(String id:str1)
+            { System.out.println(str2.contains(id)+"pppppppppppppppppp");
+                
+            	str2.add(id);
+            
+           }
+            System.out.println(str2+"hhshhshssssfffffffffffffffffffttttttttttttttttttttttttttttttttttttttttttttttt");
+            String[] str3=str.split(","); 
+            for(String id:str3)
+            { System.out.println(str2.contains(id)+"pppppppppppppppppp");
+                
+            	str2.add(id);
+            
+           }
+			
+        	if (str.length() > 0 && str.charAt(str.length()-1)==',') {
+        		str = str.substring(0, str.length()-1);
+        	  }
+        	
+        	
+        	if(id3==str)
+        	{
+        		sessionFactory.getCurrentSession().save(m1);	
+        	}
+        	else{
+        		StringBuilder out = new StringBuilder();
+        		for (Object o : str2)
+        		{
+        		out.append(o.toString());
+        		  out.append(",");
+        		}
+
+        		str=out.toString();
+        
+        	System.out.println(str+"chhhfhhhhhhhhhhhhhhhhhhhhhhhhhh");
+           	System.out.println(hql3+"mukeshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
            	String hql2="update GroupMember set int_UserId=? where int_GroupmemberId=?";
        		sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,str).setParameter(1, id1).executeUpdate();	
            }
-        	
-        }
+           
+        	}
+           }
 		
 		
 	}
@@ -625,26 +676,38 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public  List<String> listblock() {
-		String hql2="select str_BlockName from UserBlocks where int_ApartmentId=? ";		
+		String hql2="select str_BlockName from UserBlocks  ";		
 		System.out.println("8888888888888888888888888888888888");
-		return  sessionFactory.getCurrentSession().createQuery(hql2).setParameter(0,Util.getAppartmentId()).list();
+		return  sessionFactory.getCurrentSession().createQuery(hql2).list();
 		
 	}
 
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserExtraInfo> getsearch1(String str_Hobbies,String str_Profession,String residence,String status) {
-		
-			System.out.println(str_Profession+"jjjjjjjjjjjjjjjjjjjjjj");
+	public List<UserExtraInfo> getsearch1(String str_Hobbies, String str_Profession,
+			String residence, String status, String married_status1 ,int statusid,String block,String str_State, String str_City) {
+System.out.println(str_Profession+"jjjjjjjjjjjjjjjjjjjjjj");
 			System.out.println(str_Hobbies);
-		    System.out.println(residence+"kfjkgf");
-           System.out.println( status+"kfjkgf");
-          
-        String query="{call member(?,?,?,?)}";
-			List<UserExtraInfo> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0, str_Hobbies).setParameter(1, str_Profession).setParameter(2, residence).setParameter(3, status).list();
+		    System.out.println(block+"kfjkgf");
+           System.out.println( statusid+"kfjkgfmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+           System.out.println(residence+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        if(statusid==0)
+           {
+        	  System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"); 
+        	 return null;
+           }
+           else
+           
+           {
+        String query="{call member(?,?,?,?,?,?,?,?,?)}";
+			List<UserExtraInfo> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter
+					(0, str_Hobbies).setParameter(1, str_Profession).setParameter(2, residence).
+					setParameter(3, status).setParameter(4, married_status1).
+					setParameter(5, statusid).setParameter(6, block).setParameter(7, str_State).setParameter(8, str_City).list();
 			return conn;
-          
+} 
+           
 }
 			
  
@@ -724,6 +787,7 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	public UserExtraInfo alldatas(Integer int_UserId) {
 		String query="{call member1(?)}";
 		UserExtraInfo conn=(UserExtraInfo) sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0,int_UserId).uniqueResult();
+		System.out.println("bbbbbbbbbbbbbzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
 		return (UserExtraInfo) conn;
 	}
 
@@ -762,8 +826,15 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		 
 		 String[] array=id.split(",");
 		 List<UserExtraInfo> conn1=new ArrayList<UserExtraInfo>();
+		 
+			 
 		 for(String id1:array)
 		 {  
+			 if(id1.isEmpty())
+			 {
+				 System.out.println(id1+"jjhhjjjazzzzzzzzzzzzzzzzzzzzzzzzzzvvvvvvvvvvvvvvvvvvvvvvvvv");  
+			 }
+			 else
 			 System.out.println(id1+"jjhhjjj"); 
 			 int id2=Integer.parseInt(id1);
 			 System.out.println(id2+"jjkjkjjklllllllllllllllllllllllllllllll");
@@ -820,16 +891,13 @@ public class SubcriptDaoImpl implements SubcriptDao {
 	}
 
 	@Override
-	public List memberid(String str_Hobbies, String str_Profession) {
-		
-		System.out.println(str_Hobbies+"mmmmmmkkkkkkkkkkkppppppppppppp");
-		System.out.println(str_Profession+"mmmmmmkkkkkkkkkkkpppppppp");
-		
-		String hql1="select int_UserId  from UserExtraInfo  where str_Hobbies=? and str_Profession=?";
+	public List memberid(String str_Hobbies) {
+	    System.out.println(str_Hobbies+"mmmmmmkkkkkkkkkkkppppppppppppp");
+        String hql1="select int_UserId  from UserExtraInfo  where str_Hobbies=?";
 		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
 		System.out.println(hql1);
 		 
-		List <Integer> cid1=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_Hobbies).setParameter(1, str_Profession).list();
+		List <Integer> cid1=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_Hobbies).list();
 		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
 		 System.out.println(cid1);
 		return cid1;
@@ -1031,7 +1099,326 @@ public class SubcriptDaoImpl implements SubcriptDao {
 		 
         return catname;	
 }
+
+	@Override
+	public cls_Group groupdetail(int groupId) {
+		System.out.println(groupId+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from cls_Group where int_GroupId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		cls_Group groupdetail= (cls_Group) getSessionFactory().getCurrentSession().get(cls_Group.class,groupId);
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( groupdetail);
+		 return  groupdetail;
 	}
+
+	@Override
+	public List getlistgrouo(Integer int_GroupId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public cls_Group grouedit(int groupid) {
+		System.out.println(groupid+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from cls_Group where int_GroupId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		cls_Group groupdetail= (cls_Group) getSessionFactory().getCurrentSession().get(cls_Group.class,groupid);
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( groupdetail);
+		 return  groupdetail;
+	}
+
+	@Override
+	public cls_Group groupsetting(int groupid) {
+		System.out.println(groupid+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from cls_Group where int_GroupId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		cls_Group groupdetail= (cls_Group) getSessionFactory().getCurrentSession().get(cls_Group.class,groupid);
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( groupdetail);
+		 return  groupdetail;
+	}
+
+	@Override
+	public List memberId(String str_Hobbies) {
+		System.out.println(str_Hobbies+"mmmmmmkkkkkkkkkkkppppppppppppp");
+		
+		
+		String hql1="select int_UserId  from UserExtraInfo  where residence=? ";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> cid1=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_Hobbies).list();
+		 
+		 System.out.println(cid1+"cccccccccccccccccccccccccccccccccccccc");
+		return cid1;
+	}
+
+	@Override
+	public List ProfessionId(String str_Profession) {
+System.out.println(str_Profession+"mmmmmmkkkkkkkkkkkppppppppppppp");
+	String hql1="select int_UserId  from UserExtraInfo  where  str_Profession=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> professionId=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_Profession).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(professionId);
+		return professionId;
+	}
+
+	@Override
+	public List MarriedId(String married_status1) {
+		String hql1="select int_UserId  from UserExtraInfo  where str_MaritalStatus=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> married_status=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, married_status1).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(married_status);
+		return married_status;
+	}
+
+	@Override
+	public List hobbyId(String hobby) {
+		String hql1="select int_UserId  from UserExtraInfo  where str_gender=? ";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> hobby1=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, hobby).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(hobby1);
+		return hobby1;
+	}
+
+	@Override
+	public List res_profession(String reistences, String str_Profession) {
+		String hql1="select int_UserId  from UserExtraInfo  where reistences=? and str_Profession=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> profession=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,reistences).setParameter(1,str_Profession).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(profession);
+		return profession;
+	}
+
+	@Override
+	public List res_hobby(String reistences, String str_Hobbies) {
+		String hql1="select int_UserId  from UserExtraInfo  where reistences=? and str_Hobbies=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> profession=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,reistences).setParameter(1,str_Hobbies).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(profession);
+		return profession;
+	
+	}
+
+	@Override
+	public List res_married(String reistences, String married_status1) {
+		String hql1="select int_UserId  from UserExtraInfo  where reistences=? and str_MaritalStatus=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> married=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,reistences).setParameter(1,married_status1).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(married);
+		return married;
+	}
+
+	@Override
+	public List res_gender(String reistences, String gender) {
+		String hql1="select int_UserId  from UserExtraInfo  where reistences=? and str_gender=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> married=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,reistences).setParameter(1,gender).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(married);
+		return married;
+	}
+
+	@Override
+	public List pro_hobby(String str_Profession, String str_Hobbies) {
+		String hql1="select int_UserId  from UserExtraInfo  where str_Profession=? and str_Hobbies=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> pro_hobby=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,str_Profession).setParameter(1,str_Hobbies).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(pro_hobby);
+		return pro_hobby;
+	}
+
+	@Override
+	public List pro_married(String str_Profession, String married_status1) {
+		String hql1="select int_UserId  from UserExtraInfo  where str_Profession=? and str_MaritalStatus=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> pro_hobby=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,str_Profession).setParameter(1,married_status1).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(pro_hobby);
+		return pro_hobby;
+	}
+
+	@Override
+	public List pro_gender(String str_Profession, String gender) {
+		String hql1="select int_UserId  from UserExtraInfo  where str_Profession=? and str_gender=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> pro_hobby=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,str_Profession).setParameter(1,gender).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(pro_hobby);
+		return pro_hobby;
+	}
+
+	@Override
+	public List married_gen(String married_status1, String gender) {
+		String hql1="select int_UserId  from UserExtraInfo  where str_MaritalStatus=? and str_gender=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> pro_hobby=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,married_status1).setParameter(1,gender).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(pro_hobby);
+		return pro_hobby;
+	}
+
+	@Override
+	public List res_pro_hoby(String reistences, String str_Profession,String str_Hobbies) {
+		String hql1="select int_UserId  from UserExtraInfo  where reistences=? and str_Profession=? and str_Hobbies=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> pro_res=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,reistences).setParameter(1,str_Profession).setParameter(2,str_Hobbies).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(pro_res);
+		return pro_res;
+	}
+
+	@Override
+	public List res_married_gender(String reistences, String married_status1,
+			String gender) {
+		String hql1="select int_UserId  from UserExtraInfo  where reistences=? and str_MaritalStatus=? and str_gender=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> pro_married=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,reistences).setParameter(1,married_status1).setParameter(2,gender).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(pro_married);
+		return pro_married;
+	}
+
+	@Override
+	public List res_hobby_gender(String reistences, String str_Hobbies,
+			String gender) {
+		String hql1="select int_UserId  from UserExtraInfo  where reistences=? and str_Hobbies=? and str_gender=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> pro_married=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0,reistences).setParameter(1,str_Hobbies).setParameter(2,gender).list();
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println(pro_married);
+		return pro_married;
+	}
+
+	@Override
+	public List stateId(String str_State) {
+		
+			String hql1="select int_UserId  from User  where str_State=? ";
+			System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+			System.out.println(hql1);
+			 
+			List <Integer> usrid=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_State).list();
+			System.out.println(usrid+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmbbbbbbbbbbbbbbbbbbbb");
+			return usrid;
+		}
+
+	@Override
+	public List usrId(String str_City,String str_State) {
+		String hql1="select int_UserId  from User  where str_City=? and str_State=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> usrId=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, str_City).setParameter(1, str_State).list();
+		System.out.println(usrId+"cccccccccccccccccccccccccccccccccccccccccbbbbbbbbbbbbbbbbb");
+		return usrId;
+	}
+
+	@Override
+	public List block_usrid(String block) {
+		String hql1="select int_UserId  from User  where str_Block=? ";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		List <Integer> usrId=(List<Integer>) getSessionFactory().getCurrentSession().createQuery(hql1).setParameter(0, block).list();
+		System.out.println(usrId+"mukkkkkkkkkkkeshhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		return usrId;
+	}
+
+	@Override
+	public cls_Group getusrid(int memberid) {
+		System.out.println(memberid+"klklklklklkhghghghghghghghghghghghghghghghgggh");
+		String hql1="from cls_Group where int_UserId=?";
+		System.out.println("ddddddddddddddddddddddddddddddddddddddddd");
+		System.out.println(hql1);
+		 
+		cls_Group groupdetail= (cls_Group) getSessionFactory().getCurrentSession().get(cls_Group.class,memberid);
+		 System.out.println("cccccccccccccccccccccccccccccccccccccc");
+		 System.out.println( groupdetail);
+		 return  groupdetail;
+	}
+
+	@Override
+	public UserExtraInfo getallinfo(int userId) {
+		System.out.println(userId+"bbbbbbbbbbbbbbbbbbbjmmmmmmmmmmmmjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+		String query="{call member1(?)}";
+		UserExtraInfo conn=(UserExtraInfo) sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter(0,userId).uniqueResult();
+		return (UserExtraInfo) conn;
+	}
+
+	@Override
+	public List getuserinformation(String str_Hobby, String str_Profession1,
+			String reistence, String gender1, String married_statuss,
+			int statusid, String block1, String str_State1, String str_City1) 
+		{
+			System.out.println(str_Profession1+"jjjjjjjjjjjjjjjjjjjjjj");
+						System.out.println(str_Hobby);
+					    System.out.println(block1+"kfjkgf");
+			           System.out.println( statusid+"kfjkgfmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+			           System.out.println(reistence+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+			           System.out.println(gender1+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+			        if(statusid==0)
+			           {
+			        	  System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"); 
+			        	 return null;
+			           }
+			           else
+			           
+			           {
+			        String query="{call member(?,?,?,?,?,?,?,?,?)}";
+						List<UserExtraInfo> conn=sessionFactory.getCurrentSession().createSQLQuery(query).setResultTransformer(Transformers.aliasToBean(UserExtraInfo.class)).setParameter
+								(0, str_Hobby).setParameter(1, str_Profession1).setParameter(2, reistence).
+								setParameter(3, married_statuss).setParameter(4, married_statuss).
+								setParameter(5, statusid).setParameter(6, block1).setParameter(7, str_State1).setParameter(8, str_City1).list();
+						return conn;
+			} 
+	}
+	
+	}
+
+	
+	
 	
 	
 

@@ -176,7 +176,7 @@ public interface SubcriptDao {
 	public List<String> listblock();
 
 	public List<UserExtraInfo> getsearch1(String str_Hobbies,
-			String str_Profession,String residence,String status );
+			String str_Profession,String residence,String status, String married_status1,int statusid, String block, String str_State, String str_City );
 
 	public UserExtraInfo searchuser(Integer int_UserExtraID);
 
@@ -208,7 +208,7 @@ public interface SubcriptDao {
 
 	public int adduser(String selecte);
 
-	public List memberid(String str_Hobbies, String str_Profession);
+	public List memberid(String str_Hobbies);
 
 	public String count(int meberids);
 
@@ -242,6 +242,61 @@ public interface SubcriptDao {
 	public List getdocumentdetail(Integer int_Document_CatID);
 
 	public String documentnames(Integer int_Document_CatID);
+
+	public cls_Group groupdetail(int groupId);
+
+	public List getlistgrouo(Integer int_GroupId);
+
+	public cls_Group grouedit(int groupid);
+
+	public cls_Group groupsetting(int groupid);
+
+	public List memberId(String str_Hobbies);
+
+	public List ProfessionId(String str_Profession);
+
+	public List MarriedId(String married_status1);
+
+	public List hobbyId(String hobby);
+
+	public List res_profession(String reistences, String str_Profession);
+
+	public List res_hobby(String reistences, String str_Hobbies);
+
+	public List res_married(String reistences, String married_status1);
+
+	public List res_gender(String reistences, String gender);
+
+	public List pro_hobby(String str_Profession, String str_Hobbies);
+
+	public List pro_married(String str_Profession, String married_status1);
+
+	public List pro_gender(String str_Profession, String gender);
+
+	public List married_gen(String married_status1, String gender);
+
+	public List res_pro_hoby(String reistences, String str_Profession,
+			String str_Hobbies);
+
+	public List res_married_gender(String reistences, String married_status1,
+			String gender);
+
+	public List res_hobby_gender(String reistences, String str_Hobbies,
+			String gender);
+
+	public List stateId(String str_State);
+
+	public List usrId(String str_City, String str_State);
+
+	public List block_usrid(String block);
+
+	public cls_Group getusrid(int memberid);
+
+	public UserExtraInfo getallinfo(int userId);
+
+	public List getuserinformation(String str_Hobby, String str_Profession1,
+			String reistence, String gender1, String married_statuss,
+			int statusid, String block1, String str_State1, String str_City1);
 
 	
 	
