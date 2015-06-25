@@ -107,8 +107,9 @@
                  </h:selectOneMenu> 
              </td>
           
-           <td>  <p:commandButton  value="Go"  style="width:40px; height:20px;" update="per" >
-               </p:commandButton></td>
+            <td style="vertical-align: top;">  
+           <p:button  value="Go"  style="width:40px; height:20px;" update="per" >
+            </p:button></td>
           
           </tr>
           </table>
@@ -123,7 +124,7 @@
             <p:menuitem  value="Approval Selected"  update=":email,ui-growl"   oncomplete="#{cls_AddDetailBean.postindicate}?PF('multiVendorDialog1').show():null" action="#{cls_AddDetailBean.postupdate}" />
           <p:menuitem value="Reject Selected"   update=":rejectid,ui-growl" oncomplete="#{cls_AddDetailBean.postindicate}?PF('multiVendorDialog8').show():null"  action="#{cls_AddDetailBean.postrejects}" />
           <p:menuitem value="Close Selected" actionListener="#{cls_AddDetailBean.selectinfo2(e)}" ajax="false"/>
-          <p:menuitem value="Send Email to Creator"  update=":msgid,ui-growl" oncomplete="#{cls_AddDetailBean.postindicate}?PF('multiVendorDialog').show():null"   ajax="false" actionListner="#{cls_AddDetailBean.selectinfo4(e)}"  />
+          <p:menuitem value="Send Email to Creator"  update=":msgid,ui-growl" oncomplete="#{cls_AddDetailBean.postindicate}?PF('multiVendorDialog').show():null"  action="#{cls_AddDetailBean.selectinfo4(e)}"  />
          </p:menuButton> 
            <br />
             <br />
