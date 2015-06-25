@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
 	<h:head>
 	<style type="text/css">
@@ -55,11 +55,7 @@
 			</tr>
 		</tbody>
 	</table>
-  <f:metadata>
-   <f:viewParam name="int_GroupId" value="#{scriptBean.int_GroupId}"  />
-	 
-	<f:viewAction action="#{scriptBean.Subgroup}" />
-</f:metadata>
+  <h:form>
  <a href="Create-SubGroup.xhtml"> &#60;&#60; Back To Sub-Group</a> 
     <div id="page3">
     <p:growl id="ui-growl" globalOnly="true" sticky="true"/>
@@ -69,13 +65,13 @@
               
              
               
-             <td><h:link  id="ch_Ad_Type" value="#{scriptBean.groups.str_GroupNm}"  style="color:#00CC66;font-size:17px;font-weight:bold;">
+             <td><h:link  id="str_GroupNms" value="#{scriptBean.gropus.str_GroupNm}"  style="color:#00CC66;font-size:17px;font-weight:bold;">
             </h:link>
              </td>
              </tr>
              <tr>
             <td>  <p:outputLabel value=" Sub-Group Email Address: " /> 
-             <p:outputLabel value="#{scriptBean.groups.str_GroupNm}" style="color:#00CC66;font-size:17px;"/>
+             <p:outputLabel value="#{scriptBean.gropus.str_GroupNm}" style="color:#00CC66;font-size:17px;"/>
             
             <p:outputLabel  value=".#{scriptBean.str_ApartmentName}@appowner.com" style="color:#00CC66;font-size:17px;" />
            
@@ -85,43 +81,42 @@
              
              <tr>
              <td><p:outputLabel value=" Allow you to join: " />
-              <p:outputLabel  id="h_Ad_Type" value="#{scriptBean.groups.str_groupPrivate}" style="color:#00CC66;font-size:17px;">
+              <p:outputLabel  id="h_Ad_Type" value="#{scriptBean.gropus.str_groupPrivate}" style="color:#00CC66;font-size:17px;">
               </p:outputLabel>
               </td>
               </tr>
    <tr>
-                   <td><h:link value="Settings  &#150; |  &#150;"   outcome="Sub_Group-Settings.xhtml" style="color:#FFA500;font-size:14px;">
-                   <f:param name="int_GroupId" value="#{scriptBean.groups.int_GroupId}" />
-	   		  </h:link>
+                   <td><h:commandLink value="Settings  &#150; |  &#150;"   action="#{scriptBean.settingedit(scriptBean.gropus.int_GroupId)}" style="color:#FFA500;font-size:14px;">
+                   
+	   		 </h:commandLink>
+	   		
                    &#150;  &#150;  &#150; 
-                   <h:link value="Edit Sub-Group Details   &#150; |  &#150;"  outcome="EditGroup.xhtml" style="color:#FFA500;font-size:14px;">
-	   		  <f:param name="int_GroupId" value="#{scriptBean.groups.int_GroupId}" />
-	   		  </h:link>
+                   <h:commandLink value="Edit Sub-Group Details   &#150; |  &#150;"   action="#{scriptBean.groupedit(scriptBean.gropus.int_GroupId)}" style="color:#FFA500;font-size:14px;">
+	   		  	   		  </h:commandLink>
 	   		  
 	   		 
                    &#150;  &#150;  &#150; 
-                   <h:link value="Invite Members  &#150; |  &#150; " outcome="Invite-Members.xhtml?str_GroupNm=#{scriptBean.groups.str_GroupNm}"  style="color:#FFA500;font-size:14px;"/>
+                   <h:commandLink value="Invite Members  &#150; |  &#150; " action="#{scriptBean.invitemember(scriptBean.gropus.int_GroupId)}"   style="color:#FFA500;font-size:14px;"/>
                    &#150;  &#150;  &#150; 
-                   <h:link value="Add Members  &#150; |  &#150;" outcome="Add-member.xhtml?str_GroupNm=#{scriptBean.groups.str_GroupNm}" style="color:#FFA500;font-size:14px;"/>
+                   <h:commandLink value="Add Members  &#150; |  &#150;" action="#{scriptBean.addmember(scriptBean.gropus.int_GroupId)}" style="color:#FFA500;font-size:14px;"/>
                    &#150;  &#150;  &#150; 
-                    <h:link value="View Member &#150; |  &#150;"  outcome="ViewMember.xhtml " style="color:#FFA500;font-size:14px;"> 
-                        <f:param name="int_GroupId" value="#{scriptBean.groups.int_GroupId}" />
-	   		  </h:link>
+                    <h:commandLink value="View Member &#150; |  &#150;"  action="#{scriptBean.viewmember(scriptBean.gropus.int_GroupId)}" style="color:#FFA500;font-size:14px;"> 
+                        
+	   		 </h:commandLink>
                    &#150;  &#150;  &#150; 
                    <h:link outcome="deletegroup.xhtml " value="Delete Sub-Group" style="color:#FFA500;font-size:14px;"
 							onclick="return confirm('Are you sure you want to delete')">
 						    <f:param name="int_GroupId"
-								value="#{scriptBean.groups.int_GroupId}" />
+								value="#{scriptBean.gropus.int_GroupId}" />
 						
 						</h:link><br /> 
                   </td>
  </tr>
   
 </table>
-
-  </div>
-  
-  </h:body>
+</div>
+</h:form>
+</h:body>
   
   </ui:define>
   </ui:composition>

@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
  
   
@@ -15,16 +15,12 @@
 		<tbody>
 			<tr>
 				<td> 
-					<img src="#{expenseBean.str_Name}images/group.jpg" height="40" width="40"></img> <span class="title"> Sub Group Settings </span>
+					<img src="#{expenseBean.str_Name}images/group.png" height="40" width="40"></img> <span class="title"> Sub Group Settings </span>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	<f:metadata>
-   <f:viewParam name="int_GroupId" value="#{scriptBean.int_GroupId}"  />
-	 
-	<f:viewAction action="#{scriptBean.getedit1}" />
-</f:metadata>
+	
 	<h:form>
 	<a href="Sub-GroupDetail.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
 	<div id="page3">
@@ -40,7 +36,7 @@
            <td>
           <h4><p:outputLabel value="Your  Settings  For">
            </p:outputLabel>&#150; &#150;            
-           <p:outputLabel  value="#{scriptBean.edit1.str_GroupNm}" style="color:#009900;font-size:22px;" />
+           <p:outputLabel  value="#{scriptBean.groupset.str_GroupNm}" style="color:#009900;font-size:22px;" />
            &#150; &#150; 
           <p:outputLabel  value="Sub-Group" /></h4>
             </td>
@@ -49,21 +45,21 @@
   
           <tr>
          
-               <td><p:selectBooleanCheckbox value="#{scriptBean.edit1.bol_Smsallow}" /> 
+               <td><p:selectBooleanCheckbox value="#{scriptBean.groupset.bol_Smsallow}" /> 
                <p:outputLabel value= "Allow Sub-Group members to send updates through SMS"></p:outputLabel><br />
                    &#150; &#150; &#150; &#150; &#150;<h:outputText value="(Your mobile number would not be visible or shared)"/>
                </td> 
       </tr> 
       <tr>
          
-               <td><p:selectBooleanCheckbox value="#{scriptBean.edit1.bol_Emailallow}" /> 
+               <td><p:selectBooleanCheckbox value="#{scriptBean.groupset.bol_Emailallow}" /> 
                <p:outputLabel value= "Send me an email for every new Discussion or Polls in"></p:outputLabel>
-               &#150; <p:outputLabel  value="#{scriptBean.edit1.str_GroupNm}"  style="color:#009900;"/>
+               &#150; <p:outputLabel  value="#{scriptBean.groupset.str_GroupNm}"  style="color:#009900;"/>
                    
                </td> 
       </tr> 
       <tr>
-             <td><h:commandButton  value="Save My Setting"  action="#{scriptBean.saveContact1()}" style=" width:120px;float:left !important;margin: 100px  10px 0px 0px;" />
+             <td><h:commandButton  value="Save My Setting"  action="#{scriptBean.savesetting(groupset)}" style=" width:120px;float:left !important;margin: 100px  10px 0px 0px;" />
               <h:button  value="Cancel"      outcome="Sub-GroupDetail.xhtml" style="width:120px; float:left !important;margin: 100px -150px 10px 0px;" /></td>
               </tr>
           </table>

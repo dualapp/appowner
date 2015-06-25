@@ -38,15 +38,15 @@
 			         requiredMessage="File not selected !!">
             <!-- FileUploadValidator for file validation -->
 		    <f:validator validatorId="FileUploadValidator" />
-		</h:inputFile>
-		
+		    </h:inputFile>
+		<h:message style="color: red" for="file" />
 		</td>
 		</tr>
 		</table>
 		<table style="margin-left:200px">
 		<tr>
 		<td>
-      <h:message style="color: red" for="file" />
+     
            <h:commandButton id="submit" 
 		                 action="#{scriptBean.uploadFile1}"
 			             value="upload file"   style="margin-left:9%;border-radius: 3px;padding: 0 13px;height: 22px;line-height: 20px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-size: 13px;color: #fff;background-color: #287bbc;border-color: #1b5480;" >
@@ -62,7 +62,7 @@
     <table   style="overflow:hidden;border:0pt none;width:60%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
     <table style="margin-left:30px">
   <tr>
-     <td>
+     <td style="vertical-align: top;">
           <p:outputLabel value="Description of the document">
            </p:outputLabel></td>            
           <td>  <h:inputTextarea  value="#{scriptBean.str_Description}" style="width:400px;height:100px">
@@ -72,7 +72,7 @@
             </table>
             <table style="margin-left:80px">
            <tr>
-            <td><h:outputText for="int_Document_CatNM" value="Document    Category" /></td>
+            <td style="vertical-align: top;"><h:outputText for="int_Document_CatNM" value="Document    Category" /></td>
             <td><h:selectOneMenu  id="category" value="#{scriptBean.int_Document_CatNM}" required="true"      requiredMessage="Please Select Category name!" style="width:250px">
             <f:selectItem itemLabel="Select   Document   Category"  itemValue="" noSelectionOption="true"  />
              <f:selectItems value="#{scriptBean.int_Document_CatNM1}"  /> </h:selectOneMenu>
@@ -82,7 +82,7 @@
             </table>
             <table style="margin-left:110px">  
             <tr> 
-            <td><p:outputLabel for="ch_Access" value="Accessible to" /></td>
+            <td style="vertical-align: top;"><p:outputLabel for="ch_Access" value="Accessible to" /></td>
             <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.ch_Access}" style="width:250px"  >
             <f:selectItem itemLabel="Select"  itemValue=""></f:selectItem>
                <f:selectItem itemLabel="All Members"  itemValue="All Members"  />

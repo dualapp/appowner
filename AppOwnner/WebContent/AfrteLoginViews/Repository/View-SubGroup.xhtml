@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
  
   
@@ -31,45 +31,56 @@
 
     <div id="page3">
    
-    <p:dataList  style="width:93%;margin-left: 1%;margin-right: 1%;margin-bottom:5px" var="group" value="#{scriptBean.search}"   layout="block"  id="DT">
-    
-     <tr><td>
-                  <p:selectBooleanCheckbox id="str_group" ></p:selectBooleanCheckbox>&#150; &#150;
-        
-                  <p:graphicImage width="40px" height="40px"    value="#{group.var_ImageName1}" style="background:#dddddd;"/>
-                <font  size="3" color="#OO8B8B"> 
-                <h:outputText value="#{group.str_Username}" ></h:outputText> 
-               
-                    </font>
-             </td>
-             <br />
-             </tr>
-             
-                 <tr>
-                 <td width="35%">                                       
-                <h:outputText   value="#{group.str_Block}" /> &#150;  &#150;&#150;  &#150;
-                <h:outputText   value="#{group.str_Flat}" />  
-                &#150;  &#150;  &#150;<p:outputLabel value=":::"/> 
-                &#150;  &#150;  <h:outputText value="#{group.residence}," />&#150;  &#150; 
-                  <br /> 
-                <h:outputText value="#{group.str_MaritalStatus}," />&#150;  &#150;
-                <h:outputText value="#{group.str_gender}," /> </td>
+    <p:dataList  var="group" value="#{scriptBean.search}"  style=" overflow:hidden;border:0pt none;width:83%; height:500%;margin-left: 2%;margin-right: 1%;margin-bottom:10px;margin-top:1px" id="group">
+     <table style="margin-left:10px;width:70%">
+         <tr>
+         <td >
+         <p:graphicImage  value="#{group.var_ImageName1}"    width="70px" height="70px"  style="vertical-align: top;background:#dddddd;float:left !important;margin: 10000px -50px px 0px;" />
+         &#150;    
+        <font  size="2" color="#OO8B8B">
+       <h:outputText value="Name :" />&#150; 
+            <h:outputText value="#{group.str_Username}" ></h:outputText> <br />
+            &#150;   
+             <h:outputText value="Phone No:"/>&#150;  
+                <h:outputText value="+91#{group.str_PhoneNo}" ></h:outputText><br />
+                &#150;  
+               <h:outputText value="Email Id:"/>&#150; 
+                 <h:outputText value="#{group.str_Email}"></h:outputText><br/>
+                    &#150;
+              <h:outputText value="Owner/Tenent:"/>
+                 <h:outputText value="Tenent" rendered="#{group.int_UserRole==1}"/>
+                 <h:outputText value="Owner" rendered="#{group.int_UserRole==2}" /><br />
+                 &#150;          &#150;   &#150;        &#150;          
+                 &#150;     &#150;          &#150;
+                 &#150;     &#150;          &#150;     &#150;    &#150;      
+                  &#150;    &#150;          &#150;      &#150;
+                  &#150;     &#150;    &#150;     &#150;            
+                     
+                 <h:outputText value="Residing/Non-Residing:"/> &#150;    
+                  <h:outputText value="#{group.residence}," /> <br />
+                  &#150;      &#150;   &#150;       &#150;          
+                 &#150;     &#150;          &#150;
+                 &#150;     &#150;          &#150;     &#150;    &#150;      
+                  &#150;    &#150;          &#150;      &#150;
+                  &#150;     &#150;          
+                     &#150;     &#150;       
+                  <h:outputText value="Married/Un-Married:"/>    
+                <h:outputText value="#{group.str_MaritalStatus}" />
+                </font>
+                </td>
                 </tr>
-                 <br />
-                 
-                 
-                  <tr>
-                 <td>
-                <h:panelGroup layout="block" id="mainDiv">
-                <h:link value="View Profile"  outcome="Viewprofile.xhtml"  style="color:#FFA500;font-size:12px" >&#150;    &#150; &#150;  &#150; 
-                <f:param name="int_UserId" value="#{group.int_UserId}" />
-	   		  </h:link>
-	   		  
-                <font  size="2"><p:commandLink value="Send Message"   action="#{scriptBean.getTo()}" oncomplete="PF('multiVendorDialog3').show()" style="color:#FFA500;width:110px; height:32px;text-align:center;"/></font> 
-                      </h:panelGroup> </td>
+                </table>
+               <tr>
+                 <td >
+                  <table style=" width:40%;margin-left:20%">
+                  <font  size="2"><p:commandLink value="Send Message"   action="#{scriptBean.getTo()}" oncomplete="PF('multiVendorDialog3').show()" style="color:#FFA500;width:110px; height:32px;text-align:center;"/> 
+                      </font>
+                      </table>
+                      </td>
+                      
                       
      </tr>
-     
+     <hr/>
         </p:dataList>
         
    
