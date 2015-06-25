@@ -181,12 +181,11 @@ public int getInt_Ad_categoryId() {
 		this.blb_images1 = blb_images1;
 	}
 	public String getVar_Description() {
-		return Var_Description;
+	return Var_Description;
 	}
 	public void setVar_Description(String var_Description) {
 		Var_Description = var_Description;
 	}
-	
 	
 	public String getCh_Ad_Type() {
 		
@@ -565,6 +564,10 @@ private Date closedate;
     	  searchByProducttype.addAll(getProductDetailService().getSearchByProducttype(ch_product_type1,ch_Ad_Type1,Status,statusid));
     	  statusid=-1;
 		System.out.println("12345678765433333333333333333333333333333333333333333333333333333333333333333333");
+		ch_product_type1=null;
+		ch_product_type1=null;
+		Status=null;
+		statusid=0;
 		 return searchByProducttype
     	 ;
 		 }
@@ -1193,7 +1196,7 @@ public String selectinfo2(ActionEvent e)
 	{
 	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
 	Ch_Product_Type="Sell";
-  Ch_Ad_Type="My Community";
+    Ch_Ad_Type="My Community";
 	 Status=null;
 	return"Ad_an_Post.xhtml";
 }
@@ -1277,7 +1280,7 @@ public String selectinfo4(ActionEvent e)
 		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Please Select One Item View"));
 		Ch_Product_Type="Sell";
 	   Ch_Ad_Type="My Community";
-	   Status=null;
+		 Status=null;
 		return"Ad_an_Post.xhtml";
 	}
 	else 
@@ -1447,7 +1450,10 @@ public int msgid;
 
 public String selectinfo8(ValueChangeEvent event)
 {  
+	
 catname =( String )event.getNewValue();
+if(catname!=null)
+{
 System.out.println(catname+"lklklklkkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkmkm");
 msgid=(getProductDetailService().getids(catname));
 System.out.println(catmessage+"lklklklkkjkjhjhjhjghjghjghjfgfghfghfghdhgdfhdfd");
@@ -1456,7 +1462,12 @@ catmessage=(getProductDetailService().getmessages(msgid));
 System.out.println(subcatgeroynm+"fbdfgfdgdfsdsdfs");
 
 return catname;
-
+}
+else
+{
+System.out.println(catname+"bbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");	
+return catname;
+}
 }
 
 public List<String> getCatmessage()
@@ -1472,12 +1483,13 @@ public static String getCatname() {
 public static void setCatname(String catname) {
 	Cls_AddDetailBean.catname = catname;
 }
-private Integer categorystatus;
+private int categorystatus;
 
-public Integer getCategorystatus() {
+
+public int getCategorystatus() {
 	return categorystatus;
 }
-public void setCategorystatus(Integer categorystatus) {
+public void setCategorystatus(int categorystatus) {
 	this.categorystatus = categorystatus;
 }
 private List<Cls_ProductDetails> searchByType;
@@ -1485,36 +1497,84 @@ public List<Cls_ProductDetails> getSearchByType() {
 	try
 	{
 	searchByType=new ArrayList<Cls_ProductDetails>();
-	if(var_Ad_CategoryName==null && var_subscategoryname==null && ch_Ad_Type1==null )
+	if(var_Ad_CategoryName1==null && var_subscategoryname1==null && ch_Ad_Type1==null && ch_Product_Type2==null )
 	{  System.out.println("fdjfkjfjd111111111111111111111111111111111111111");
 	categorystatus=0;
 	}
-	if(!(var_Ad_CategoryName==null) && !(var_Ad_CategoryName.isEmpty()) )
+	if(!(var_Ad_CategoryName1==null) && !(var_Ad_CategoryName1.isEmpty()) )
 	{
 		categorystatus=1;
 		 
 			
 	}
- if(!(var_subscategoryname==null) && !(var_subscategoryname.isEmpty()))
+ if(!(var_subscategoryname1==null) && !(var_subscategoryname1.isEmpty()))
 	{   
 	 System.out.println("hhh111111111111111111111111111111111111111111111111111111111111111");
 	 categorystatus=2;
 	 			
 	}
- if(!(ch_Ad_Type1==null) && !(ch_Ad_Type1.isEmpty()))
+ if(!(ch_Ad_Type2==null) && !(ch_Ad_Type2.isEmpty()))
 	{
 	 categorystatus=3;
 	}
+ if(!(ch_Product_Type2==null) && !(ch_Product_Type2.isEmpty()))
+	{
+	 categorystatus=4;
+	}
 
+	
+	searchByType.addAll(getProductDetailService().getSearchBytypes(var_Ad_CategoryName1,var_subscategoryname1,ch_Ad_Type2,ch_Product_Type2,categorystatus));
 	}
 	catch(Exception e)
 	{
 		e.printStackTrace();
 	}
-	searchByType.addAll(getProductDetailService().getSearchBytypes(var_Ad_CategoryName,var_subscategoryname,ch_Ad_Type1,categorystatus));
-	categorystatus=-1;
-	
-	return searchByType;
+	ch_Ad_Type2=null;
+	var_Ad_CategoryName1=null;
+	var_subscategoryname1=null;
+	ch_Ad_Type1=null;
+	categorystatus=0;
+	ch_Product_Type2=null;
+return searchByType;
+}
+ public String ch_Product_Type2;
+ 
+public String getCh_Product_Type2() {
+	return ch_Product_Type2;
+}
+public void setCh_Product_Type2(String ch_Product_Type2) {
+	this.ch_Product_Type2 = ch_Product_Type2;
+}
+public  String var_Ad_CategoryName1;
+ public String var_subscategoryname1;
+ 
+public String getVar_Ad_CategoryName1() {
+	return var_Ad_CategoryName1;
+}
+public void setVar_Ad_CategoryName1(String var_Ad_CategoryName1) {
+	this.var_Ad_CategoryName1 = var_Ad_CategoryName1;
+}
+public String getVar_subscategoryname1() {
+	return var_subscategoryname1;
+}
+public void setVar_subscategoryname1(String var_subscategoryname1) {
+	this.var_subscategoryname1 = var_subscategoryname1;
+}
+private String ch_Product_Type1;
+
+public String getCh_Product_Type1() {
+	return ch_Product_Type1;
+}
+public void setCh_Product_Type1(String ch_Product_Type1) {
+	this.ch_Product_Type1 = ch_Product_Type1;
+}
+private String ch_Ad_Type2;
+
+public String getCh_Ad_Type2() {
+	return ch_Ad_Type2;
+}
+public void setCh_Ad_Type2(String ch_Ad_Type2) {
+	this.ch_Ad_Type2 = ch_Ad_Type2;
 }
 public void setSearchByType(List<Cls_ProductDetails> searchByType) {
 	this.searchByType = searchByType;
@@ -1932,9 +1992,12 @@ if(indicate==false)
 		    Ch_Ad_Type="My Community";
 			Status=null;
 			System.out.println(postindicate+"fdhjfffjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-      }     
+}
+		  
+		
 		
 	}
+
 	
 	
 
@@ -2387,7 +2450,38 @@ public void setCh_Ad_Type1(String ch_Ad_Type1) {
 	this.ch_Ad_Type1 = ch_Ad_Type1;
 }
 
+public String description;
+
+public String getDescription() {
+	return description;
 }
+public void setDescription(String description) {
+	this.description = description;
+}
+private List<String>countletter;
+
+public List<String> getCountletter() {
+	countletter=new ArrayList<String>();
+	countletter.addAll(getProductDetailService().getCount());
+	ListIterator itr=countletter.listIterator();
+	System.out.println(itr);
+	while(itr.hasNext())
+	{
+	   Object description = itr.next();
+	   Cls_ProductDetails u= (Cls_ProductDetails) description;
+	   int temp=u.getVar_Description().length();
+	   System.out.println(temp+"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmm");
+	   String  ch2="<br />";
+	}
+	   return countletter;
+
+}
+public void setCountletter(List<String> countletter) {
+	this.countletter = countletter;
+}
+
+}
+
 	
 	
 	

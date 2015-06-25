@@ -503,7 +503,7 @@ public class Cls_UserBean implements Serializable{
 			 un=getStr_Username();
 			pd=getStr_Password();
 			fn=getStr_FirstName();
-			an=Util.getAppartmentName();
+			
 			Bn="admin";
 			url="http://www.appowners.com/AppOwnner/activate.jsp?activationkey="+uuid1;
 			System.out.println(url+"fdjjkjkfdjkdffdj");
