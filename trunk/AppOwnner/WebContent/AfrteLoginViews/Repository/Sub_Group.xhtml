@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
  <h:body>
 <table cellpadding="0" cellspacing="0" border="1" width="100%" class="src">
@@ -46,18 +46,19 @@ function limitText(limitField, limitCount, limitNum) {
     <div id="page3">
     
 	  
-   <table>
+   <table   style="overflow:hidden;border:0pt none;width:98%;margin-left: 2%;margin-right: 1%;margin-bottom:5px;margin-top:5px">
  
           <tr>
-           <td style=" float:right !important;margin: 0px  30px 0px 100px;">
+           <td style="vertical-align: top;">
           <p:outputLabel value="Sub-Group Name">
            </p:outputLabel></td>            
-          <td>  <h:inputText  value="#{scriptBean.str_GroupNm}" style="width:250px"/>
+          <td>  <h:inputText id="group"  value="#{scriptBean.str_GroupNm}" style="width:250px" required="true"              requiredMessage=" Please Enter Group Name!" />
+         <h:messages for="group"  style="color: red" display="icon"/>
            </td>
             </tr>
            <tr>
-           <td>
-          <p:outputLabel value="Sub-Group  Address" style=" float:right !important;margin: 0px  30px 10px 100px;">
+           <td style="vertical-align: top;">
+          <p:outputLabel value="Sub-Group  Address">
            </p:outputLabel></td>            
           <td>  <h:inputText  value="#{scriptBean.str_Groupaddress}"  style="width:250px"/>
            &#150;
@@ -65,7 +66,7 @@ function limitText(limitField, limitCount, limitNum) {
             </td>
             </tr>
              <tr>
-               <td style=" float:right !important;margin: 0px  30px 0px 100px;">
+               <td style="vertical-align: top;">
                <p:outputLabel  value="Sub-Group Description"/></td>
                 <td colspan="2"><textarea id="description" name="limitedtextfield" type="text" onKeyDown="limitText(this.form.limitedtextfield,this.form.countdown,100);" style="width:420px; height:140px" 
      onKeyUp="limitText(this.form.limitedtextfield,this.form.countdown,100);" maxlength="100" ></textarea>
@@ -73,7 +74,7 @@ function limitText(limitField, limitCount, limitNum) {
  </td>
  </tr>
             <tr> 
-              <td style=" float:right !important;margin: 0px  30px 10px 100px;">
+              <td style="vertical-align: top;">
               <p:outputLabel for="ch_Access" value="Want to keep the Sub-Group private? Choose:" /></td>
                  <td><h:selectOneMenu id="ch_Access" value="#{scriptBean.str_groupPrivate}" style="width:250px">   
                  <f:selectItem itemLabel ="Open--Any One #{scriptBean.str_ApartmentName} can join. "   itemValue="Open" />
@@ -86,7 +87,7 @@ function limitText(limitField, limitCount, limitNum) {
           
              <tr> 
              
-                 <td style=" float:right !important;margin: 0px  30px 10px 100px;">
+                 <td style="vertical-align: top;">
                  <p:outputLabel for="Allow" value="Allow email from non Sub-Group member:" /></td>
             <td><h:selectOneMenu id="Allow" value="#{scriptBean.isCh_EmailAllow}" style="width:100px">
 

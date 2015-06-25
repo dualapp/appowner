@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="#{expenseBean.str_Name}include/templates/template.xhtml">
+	template="#{expenseBean.str_Name}include/templates/template1.xhtml">
 	<ui:define name="content">
  
   
@@ -22,52 +22,58 @@
 		</tbody>
 	</table>
   
-    <f:metadata>
-	<f:viewParam name="int_UserId" value="#{scriptBean.int_UserId}"  />
-	 
-	<f:viewAction action="#{scriptBean.Subdetail}" />
-</f:metadata>
+    
   <h:form id="form">
-<a href="View-SubGroup.xhtml?int_UserId=#{scriptBean.groupes.int_UserId}"> &#60;&#60; Back To Sub-Group Detail</a> 
+<a href="View-SubGroup.xhtml"> &#60;&#60; Back To Sub-Group Detail</a> 
     <div id="page3">
    
-    <p:dataGrid value="#{scriptBean.groupes}" var="groupes" style=" overflow:hidden;border:0pt none;width:80%; height:500%;margin-left: 2%;margin-right: 1%;margin-bottom:10px;margin-top:2px"  layout="block"  id="DT">
-       
-    
-     <tr><td width="100px">
-                
-        
-               <p:graphicImage width="70px" height="70px"    value="#{groupes.var_ImageName1}" style="background:#dddddd;"/>
-                <font  size="3" color="#OO8B8B"> 
-                <h:outputText value="#{groupes.str_Username}" ></h:outputText>  </font><br />
-                <font  size="2" color="#OO8B8B">
-                <h:outputText value="+91#{scriptBean.first}"></h:outputText><br />
-                <h:outputText value="#{scriptBean.stt_email}@gmail.com"></h:outputText><br />
-                  </font>
-             </td>
-             </tr>
-             <tr>
-                 <td width="35%">                                       
-                  &#150;  &#150;  &#150;  &#150; 
-                  <h:outputText value="Tenent" rendered="#{groupes.int_UserRole==1}"/>
-                 <h:outputText value="Owner" rendered="#{groupes.int_UserRole==2}" />&#150;  &#150; 
-                <h:outputText value="#{groupes.residence}," />&#150;  &#150; 
-                <h:outputText value="#{groupes.str_MaritalStatus}," />&#150;  &#150;
-                <h:outputText value="#{groupes.str_gender}," /><br />
-                
-                
-                &#150;   &#150;  &#150;   &#150;   <h:outputLabel value="House &#150; ::" />&#150;  &#150;
-               <h:outputText   value="#{groupes.str_Block}" />&#150;   &#150;
-                <h:outputText   value="#{groupes.str_Flat}" />    
+    <p:dataList    style=" overflow:hidden;border:0pt none;width:83%; height:500%;margin-left: 2%;margin-right: 1%;margin-bottom:10px;margin-top:1px" id="group">
+     <table style="margin-left:10px;width:70%">
+         <tr>
+         <td >
+         <p:graphicImage  value="#{useinfo.var_ImageName1}"    width="70px" height="70px"  style="vertical-align: top;background:#dddddd;float:left !important;margin: 10000px -50px px 0px;" />
+         &#150;    
+        <font  size="2" color="#OO8B8B">
+       <h:outputText value="Name :" />&#150; 
+            <h:outputText value="#{useinfo.str_Username}" ></h:outputText> <br />
+            &#150;   
+             <h:outputText value="Phone No:"/>&#150;  
+                <h:outputText value="+91#{useinfo.str_PhoneNo}" ></h:outputText><br />
+                &#150;  
+               <h:outputText value="Email Id:"/>&#150; 
+                 <h:outputText value="#{useinfo.str_Email}"></h:outputText><br/>
+                 &#150;  
+              <h:outputText value="Owner/Tenent:"/>
+                 <h:outputText value="Tenent" rendered="#{useinfo.int_UserRole==1}"/>
+                 <h:outputText value="Owner" rendered="#{useinfo.int_UserRole==2}" /><br />
+                 &#150;      &#150;        &#150;          
+                 &#150;     &#150;          &#150;
+                 &#150;     &#150;          &#150;     &#150;    &#150;      
+                  &#150;    &#150;          &#150;      &#150;
+                  &#150;     &#150;          &#150;       
+                   &#150;          &#150;      
+                 <h:outputText value="Residing/Non-Residing:"/> &#150;    
+                  <h:outputText value="#{useinfo.residence}," /> <br />
+                  &#150;      &#150;        &#150;          
+                 &#150;     &#150;          &#150;
+                 &#150;     &#150;          &#150;     &#150;    &#150;      
+                  &#150;    &#150;          &#150;      &#150;
+                  &#150;     &#150;          &#150;    
+                 &#150;          &#150;      
+                  <h:outputText value="Married/Un-Married:"/>    
+                <h:outputText value="#{useinfo.str_MaritalStatus}" />
+                </font>  
                  </td>
                 </tr>
+                
                 <tr><td>
  <p:commandButton value="Say Hello"   oncomplete="PF('multiVendorDialog3').show()"  style=" float:left !important;width:70px;height:25px; background:#7FFF00
 ;margin: -150px 100px 0px 400px;"  />
                  <p:button value="Invite to Your Sub-group"  outcome="Create-SubGroup.xhtml"  style=" background:#00FFFF;float:left !important; width:180px;height:25px;margin: -150px 100px 0px 500px;"  />
                  </td></tr>
                  
-                  </p:dataGrid>
+                  </table>
+                  </p:dataList>
      
    
    <p:dialog header="Message" widgetVar="multiVendorDialog3"   showEffect="fade" hideEffect="explode" resizable="false" height="180" width="500">
