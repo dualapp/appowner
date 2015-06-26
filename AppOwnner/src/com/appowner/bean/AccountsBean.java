@@ -42,7 +42,7 @@ import com.appowner.service.AccountsService;
 import com.appowner.util.Util;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AccountsBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{AccountsService}")
